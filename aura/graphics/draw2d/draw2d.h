@@ -59,7 +59,7 @@ namespace draw2d
       e_format text_to_format(string str);
       
       virtual ::e_status initialize_write_text();
-      virtual ::e_status write_text_factory_exchange();
+      virtual ::e_status write_text_factory_exchange(::factory_map * pfactorymap);
 
       virtual void term_instance() override;
 

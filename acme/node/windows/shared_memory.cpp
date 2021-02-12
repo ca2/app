@@ -251,7 +251,7 @@ void shared_memory::set_data(void *pdata, memsize uiSize)
 
 /*void shared_memory::To(string & str, memsize iStart, memsize iEnd)
 {
-   iStart = max(iStart, 0);
+   iStart = maximum(iStart, 0);
    if(iEnd == -1)
       iEnd = this->get_size() - 1;
    char * pch = (char *) get_data();

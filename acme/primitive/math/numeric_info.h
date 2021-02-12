@@ -537,14 +537,6 @@ public:
 
    typedef numeric_info_internal::numeric_info < T > INTERNAL_INFO;
 
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum()
-   {
-      return INTERNAL_INFO::maximum();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum()
-   {
-      return INTERNAL_INFO::minimum();
-   }
    static inline typename numeric_info_internal::numeric_info < T >::TYPE null()
    {
       return INTERNAL_INFO::null();
@@ -621,11 +613,11 @@ public:
       return get_allset();
    }
 
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE min()
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum()
    {
       return get_minimum_value();
    }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE max()
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum()
    {
       return get_maximum_value();
    }
@@ -633,7 +625,7 @@ public:
    template < typename T2 >
    static inline typename numeric_info_internal::numeric_info < T >::TYPE natural(const T2 & t2)
    {
-      return min(max(), max(null(), (T) t2));
+      return minimum(maximum(), maximum(null(), (T) t2));
    }
 
 };
@@ -642,13 +634,13 @@ public:
 //template < typename T, typename T2 >
 //inline T clip_assign(T & t, const T2 & t2)
 //{
-//   t = min(::numeric_info < T >::max(),max(::numeric_info < T >::min(),(T)t2));
+//   t = minimum(::numeric_info < T >::maximum(),maximum(::numeric_info < T >::minimum(),(T)t2));
 //}
 
 template < typename T,typename T2 >
 inline T natural_assign(T & t,const T2 & t2)
 {
-   t = min(::numeric_info < T >::max(),max(::numeric_info < T >::null(),(T)t2));
+   t = minimum(::numeric_info < T >::maximum(),maximum(::numeric_info < T >::null(),(T)t2));
 }
 
 

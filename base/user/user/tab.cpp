@@ -1283,7 +1283,7 @@ namespace user
 
                size.cx += tab_pane.m_pimage->width()+ 2;
 
-               size.cy = max(size.cy, tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy, tab_pane.m_pimage->height());
 
             }
 
@@ -1390,7 +1390,7 @@ namespace user
             if(tab_pane.m_pimage->is_ok())
             {
 
-               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = maximum(size.cy, tab_pane.m_pimage->size().cy);
 
             }
 
@@ -1699,7 +1699,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
       }
 
@@ -1718,7 +1718,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          KillTimer(e_timer_drag_start);
 
@@ -3388,7 +3388,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          auto pointCursor = pwindowing->get_cursor_pos();
 

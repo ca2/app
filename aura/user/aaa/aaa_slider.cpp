@@ -151,7 +151,7 @@ namespace user
 
       }
 
-      dScalar = min(1.0, max(0.0, dScalar));
+      dScalar = minimum(1.0, maximum(0.0, dScalar));
 
       return dScalar;
 
@@ -243,8 +243,8 @@ namespace user
 
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
-      rect.left = (::i32)min(rectClient.right,m_dRate * (rectClient.width() - iWidth));
-      rect.right = (::i32)min(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
+      rect.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
+      rect.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
 
 
    }

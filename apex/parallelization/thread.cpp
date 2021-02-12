@@ -1982,7 +1982,7 @@ sync_result thread::wait(const duration & duration)
 
          auto millisDelay = duration.millis();
 
-         auto dwStep = min(max(millisDelay / 10, 1), 100);
+         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
 
          while(is_thread_on(ithread))
          {

@@ -267,16 +267,16 @@ namespace draw2d
       //virtual void UpdateColors();
 
       // Drawing-Attribute Functions
-      virtual i32 GetPolyFillMode();
-      virtual i32 GetROP2();
-      virtual i32 GetStretchBltMode();
+      //virtual i32 GetPolyFillMode();
+      //virtual i32 GetROP2();
+      //virtual i32 GetStretchBltMode();
 
 
       virtual double get_dpix();
       virtual double get_dpiy();
 
-      virtual i32 SetPolyFillMode(i32 nPolyFillMode);
-      virtual i32 SetROP2(i32 nDrawMode);
+      //virtual i32 SetPolyFillMode(i32 nPolyFillMode);
+      //virtual i32 SetROP2(i32 nDrawMode);
 //      virtual bool set_interpolation_mode(enum_interpolation_mode einterpolationmode);
 
 
@@ -312,8 +312,8 @@ namespace draw2d
 //#endif
 
       // Graphics mode
-      virtual i32 SetGraphicsMode(i32 iMode);
-      virtual i32 GetGraphicsMode();
+      //virtual i32 SetGraphicsMode(i32 iMode);
+      //virtual i32 GetGraphicsMode();
 
 //      // World transform
 //#ifdef WINDOWS
@@ -325,9 +325,9 @@ namespace draw2d
       virtual void get_viewport_scale(::draw2d::matrix & matrix);
 
       // Mapping Functions
-      virtual i32 GetMapMode();
+      ///virtual i32 GetMapMode();
       virtual ::point_f64 GetViewportOrg();
-      virtual i32 SetMapMode(i32 nMapMode);
+      //virtual i32 SetMapMode(i32 nMapMode);
       // Viewport Origin
       virtual ::point_f64 SetViewportOrg(double x, double y);
       virtual ::point_f64 SetViewportOrg(const ::point_f64 & point_f64);
@@ -1170,7 +1170,7 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::po
 
 
 
-CLASS_DECL_AURA PFN_factory_exchange get_draw2d_factory_exchange();
+CLASS_DECL_AURA PFN_factory_exchange get_draw2d_factory_exchange(::factory_map * pfactorymap);
 
 CLASS_DECL_AURA void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d);
 

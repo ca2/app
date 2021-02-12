@@ -2951,7 +2951,7 @@ namespace android
 
       strncpy(lpszStringBuf, m_strWindowText, nMaxCount);
 
-      return min(nMaxCount, m_strWindowText.get_length());
+      return minimum(nMaxCount, m_strWindowText.get_length());
 
    }
 

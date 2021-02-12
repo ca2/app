@@ -100,7 +100,7 @@ namespace multimedia
             free(m_mixercontroldetails.paDetails);
          m_mixercontroldetails.paDetails = malloc(cb);
 
-         nRange = (i32) min(32767, m_mixercontrol.Metrics.cSteps - 1);
+         nRange = (i32) minimum(32767, m_mixercontrol.Metrics.cSteps - 1);
          bool bOk = false;
          for(i32 i = 5; i <= 10; i++)
          {
@@ -415,7 +415,7 @@ namespace multimedia
                i32 nRightValue = (i32)MulDivRN(pmxcd_u[1].dwValue - m_mixercontrol.Bounds.dwMinimum, nRange, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum);
 
 
-               i32 nMaxValue = max(nLeftValue, nRightValue);
+               i32 nMaxValue = maximum(nLeftValue, nRightValue);
                i32 nBalance = nMaxValue == 0 ?
                                   nRange / 2 :
                                   (nRange +

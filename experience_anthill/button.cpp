@@ -41,7 +41,7 @@ namespace experience
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
+      if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
       {
 
          return;
@@ -81,7 +81,7 @@ namespace experience
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
       }
-      else if (has_focus())
+      else if (has_keyboard_focus())
       {
 
          pgraphics->set(m_pcontrolbox->m_brushButtonBackFocus);
@@ -136,12 +136,12 @@ namespace experience
       {
 
          m_brush->create_solid(::is_set(pgraphics->get_current_pen())
-                               ? (color32_t) pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+                               ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_brush);
 
          m_pen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
-                             ? (color32_t) pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+                             ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_pen);
 

@@ -102,7 +102,7 @@ namespace user
 
       strsize iFind2 = strPath.rfind('\\');
 
-      strsize iFind = max(iFind1, iFind2) + 1;
+      strsize iFind = maximum(iFind1, iFind2) + 1;
 
       strsize iDot = strPath.find('.', iFind);
 

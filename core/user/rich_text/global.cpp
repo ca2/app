@@ -282,7 +282,7 @@ namespace user
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
 
-                  return min(pbox->m_iPosEnd + 1, iSel - pbox->m_iPosBeg + pbox->m_iPosBeg);
+                  return minimum(pbox->m_iPosEnd + 1, iSel - pbox->m_iPosBeg + pbox->m_iPosBeg);
 
                }
 

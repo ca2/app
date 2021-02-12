@@ -1352,7 +1352,7 @@ namespace base
 
          }
 
-         pstyle = plibrary->create_object(papp, "user_theme");
+         pstyle = plibrary->create_object("user_theme");
 
          if (!pstyle)
          {
@@ -1362,6 +1362,8 @@ namespace base
             continue;
 
          }
+
+         pstyle->initialize(papp);
 
          //sync_lock sl(&System.m_mutexLibrary);
 
@@ -1474,7 +1476,7 @@ namespace base
 //
 //   string str = __get_text(psz);
 //
-//   iLen = min(iLen, (int)str.get_length());
+//   iLen = minimum(iLen, (int)str.get_length());
 //
 //   strncpy(pszText, str, iLen);
 //

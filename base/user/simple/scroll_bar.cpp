@@ -98,7 +98,7 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
             SetTrackingPos(point, pgraphics);
 
-            post_scroll_message(e_scroll_bar_command_thumb_track);
+            post_scroll_message(e_scroll_command_thumb_track);
 
          });
 
@@ -252,13 +252,11 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
       }
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       pmouse->m_bRet = false;
 
-
-
-      post_scroll_message(e_scroll_bar_command_thumb_position);
+      post_scroll_message(e_scroll_command_thumb_position);
 
       set_need_redraw();
 
@@ -546,7 +544,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
 
       double dRate = (double)(point.x - iScrollBarWidth) / (double)iWidth;
 
-      dRate = min(1.0, dRate);
+      dRate = minimum(1.0, dRate);
 
       nPos = (i32)(dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
 
@@ -560,7 +558,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
 
       double dRate = (double)(point.y - iScrollBarWidth) / (double) iHeight;
 
-      dRate = min(1.0, dRate);
+      dRate = minimum(1.0, dRate);
 
       nPos = (i32) (dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
 
@@ -640,13 +638,13 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       m_rectA.left   = 0;
       m_rectA.top    = 0;
-      m_rectA.right  = min(iScrollBarWidth,size.cx / 2);
+      m_rectA.right  = minimum(iScrollBarWidth,size.cx / 2);
       m_rectA.bottom = size.cy;
 
       /*
       m_ptaA[0].x = 0;
       m_ptaA[0].y = size.cy / 2;
-      m_ptaA[1].x = min(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_ptaA[1].x = minimum(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
       m_ptaA[1].y = size.cy - 1;
       m_ptaA[2].x = m_ptaA[1].x;
       m_ptaA[2].y = 1;
@@ -661,7 +659,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowStability) / 2;;
 
-      m_rectB.left   = max(size.cx - iScrollBarWidth,size.cx / 2);
+      m_rectB.left   = maximum(size.cx - iScrollBarWidth,size.cx / 2);
       m_rectB.top    = 0;
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
@@ -691,13 +689,13 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_rectA.left   = 0;
       m_rectA.top    = 0;
       m_rectA.right  = size.cx;
-      m_rectA.bottom = min(iScrollBarWidth,size.cy / 2);
+      m_rectA.bottom = minimum(iScrollBarWidth,size.cy / 2);
 
       /*
       m_ptaA[0].x = size.cx / 2;
       m_ptaA[0].y = 0;
       m_ptaA[1].x = 1;
-      m_ptaA[1].y = min(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaA[1].y = minimum(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaA[2].x = size.cx - 1;
       m_ptaA[2].y = m_ptaA[1].y;
       m_ptaA[3].x = m_ptaA[0].x;
@@ -712,7 +710,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;;
 
       m_rectB.left   = 0;
-      m_rectB.top    = max(size.cy - iScrollBarWidth,size.cy / 2);
+      m_rectB.top    = maximum(size.cy - iScrollBarWidth,size.cy / 2);
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
 
@@ -720,7 +718,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       m_ptaB[0].x = size.cx / 2;
       m_ptaB[0].y = size.cy;
       m_ptaB[1].x = size.cx - 1;
-      m_ptaB[1].y = max(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaB[1].y = maximum(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaB[2].x = 1;
       m_ptaB[2].y = m_ptaB[1].y;
       m_ptaB[3].x = m_ptaA[0].x;
@@ -807,13 +805,13 @@ bool simple_scroll_bar::scrollbar_lineA(::draw2d::graphics_pointer & pgraphics)
    if(m_eorientation == e_orientation_horizontal)
    {
       
-      post_scroll_message(e_scroll_bar_command_line_left);
+      post_scroll_message(e_scroll_command_line_left);
 
    }
    else
    {
       
-      post_scroll_message(e_scroll_bar_command_line_up);
+      post_scroll_message(e_scroll_command_line_up);
 
    }
 
@@ -844,13 +842,13 @@ bool simple_scroll_bar::scrollbar_lineB(::draw2d::graphics_pointer & pgraphics)
    if(m_eorientation == e_orientation_horizontal)
    {
       
-      post_scroll_message(e_scroll_bar_command_line_right);
+      post_scroll_message(e_scroll_command_line_right);
 
    }
    else
    {
       
-      post_scroll_message(e_scroll_bar_command_line_down);
+      post_scroll_message(e_scroll_command_line_down);
 
    }
 
@@ -881,13 +879,13 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point_i32 & point, ::draw2d::gra
    if(m_eorientation == e_orientation_horizontal)
    {
       
-      post_scroll_message(e_scroll_bar_command_page_left);
+      post_scroll_message(e_scroll_command_page_left);
 
    }
    else
    {
 
-      post_scroll_message(e_scroll_bar_command_page_up);
+      post_scroll_message(e_scroll_command_page_up);
 
    }
 
@@ -929,13 +927,13 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::gra
    if(m_eorientation == e_orientation_horizontal)
    {
 
-      post_scroll_message(e_scroll_bar_command_page_right);
+      post_scroll_message(e_scroll_command_page_right);
 
    }
    else
    {
 
-      post_scroll_message(e_scroll_bar_command_page_down);
+      post_scroll_message(e_scroll_command_page_down);
 
    }
 
@@ -978,11 +976,11 @@ m_scrollinfo.nPos = nPos;
 
 if(m_eorientation == e_orientation_horizontal)
 {
-puiParent->SendMessage(e_message_hscroll, MAKEWPARAM(e_scroll_bar_command_LINERIGHT, m_scrollinfo.nPos), (LPARAM) this->get_handle());
+puiParent->SendMessage(e_message_hscroll, MAKEWPARAM(e_scroll_command_LINERIGHT, m_scrollinfo.nPos), (LPARAM) this->get_handle());
 }
 else
 {
-puiParent->SendMessage(e_message_vscroll, MAKEWPARAM(e_scroll_bar_command_LINEDOWN, m_scrollinfo.nPos), (LPARAM) this->get_handle());
+puiParent->SendMessage(e_message_vscroll, MAKEWPARAM(e_scroll_command_LINEDOWN, m_scrollinfo.nPos), (LPARAM) this->get_handle());
 }*/
 
 //}
@@ -1372,7 +1370,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::u32 tickFadeOut = 300;
 
-   //   byte uchAlpha = max(0, min(255, prop("tracking_alpha").u32()));
+   //   byte uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
 
    //   if (m_bTracking)
    //   {
@@ -1444,7 +1442,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeIn)
    //      {
 
-   //         uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
+   //         uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
 
    //      }
    //      else
@@ -1465,7 +1463,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeOut)
    //      {
 
-   //         uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));
+   //         uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
 
    //      }
    //      else
@@ -1502,7 +1500,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //      rectIntersect.intersect(rectMachineThumb, rectTrack);
 
-   //      i32 iArea = (i32)(max(1, rectIntersect.area()));
+   //      i32 iArea = (i32)(maximum(1, rectIntersect.area()));
 
    //      rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -1710,7 +1708,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
          for (int j = 0; j <= iDiv2; j++)
          {
 
-            iSize = max(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
+            iSize = maximum(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
 
             iSize = (m_pimageDots->width() / 2) - iSize;
 

@@ -491,7 +491,7 @@ inline stream & operator << (stream & s, ::file::file * pfile)
 
    memory m;
 
-   m.set_size(min((memsize)pfile->get_remaining_byte_count(), (memsize)1024 * 1024));
+   m.set_size(minimum((memsize)pfile->get_remaining_byte_count(), (memsize)1024 * 1024));
 
    memsize sizeRead;
 

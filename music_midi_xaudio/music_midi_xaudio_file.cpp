@@ -1447,7 +1447,7 @@ smf_Open_File_Cleanup:
 
             lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
             dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-            dwLength = min(dwLength, 8);
+            dwLength = minimum(dwLength, 8);
 
             //u32 dwa = MEVT_F_CALLBACK;
             //   u32 dwb = MEVT_LONGMSG;
@@ -1547,7 +1547,7 @@ smf_Open_File_Cleanup:
             lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 
             dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-            dwLength = min(dwLength, m_cbPendingUserEvent);
+            dwLength = minimum(dwLength, m_cbPendingUserEvent);
 
             *lpdw++ = (u32)tkDelta;
             *lpdw++ = 0L;

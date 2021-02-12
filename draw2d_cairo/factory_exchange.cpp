@@ -2,7 +2,7 @@
 
 
 extern "C"
-void draw2d_cairo_factory_exchange()
+void draw2d_cairo_factory_exchange(::factory_map * pfactorymap)
 {
 
    init_cairo_mutex();

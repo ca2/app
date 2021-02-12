@@ -22,7 +22,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect);
 const char * get_main_app_id();
 #endif
 
-void __node_aura_factory_exchange();
+void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
@@ -202,7 +202,7 @@ namespace aura
 
       }
  
-      __node_aura_factory_exchange();
+      __node_aura_factory_exchange(::factory::get_factory_map());
 
       m_bGudoNetCache = true;
 
@@ -640,7 +640,7 @@ namespace aura
 //
 //               iSize *= 2;
 //
-//               iSize = max(iSize, 4096);
+//               iSize = maximum(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //
@@ -1013,7 +1013,7 @@ namespace aura
       try
       {
 
-         if (!draw2d_factory_exchange())
+         if (!draw2d_factory_exchange(::factory::get_factory_map()))
          {
 
             message_box("Failed to initialize draw2d library.");
@@ -1045,7 +1045,7 @@ namespace aura
          try
          {
 
-            if (!imaging_factory_exchange())
+            if (!imaging_factory_exchange(::factory::get_factory_map()))
             {
 
                WARN("Failed to initialize imaging library.");
@@ -1152,7 +1152,7 @@ namespace aura
    }
 
 
-   ::e_status system::draw2d_factory_exchange()
+   ::e_status system::draw2d_factory_exchange(::factory_map * pfactorymap)
    {
 
       string strLibrary;
@@ -1284,7 +1284,7 @@ namespace aura
 
    //   }
 
-   //   pfn_factory_exchange();
+   //   pfn_factory_exchange(::factory_map * pfactorymap);
 
    //   return true;
 
@@ -1293,7 +1293,7 @@ namespace aura
    }
 
 
-   bool system::imaging_factory_exchange()
+   bool system::imaging_factory_exchange(::factory_map * pfactorymap)
    {
 
 
@@ -1416,7 +1416,7 @@ namespace aura
 //
 //      }
 //
-//      pfn_factory_exchange();
+//      pfn_factory_exchange(::factory_map * pfactorymap);
 //
 //      return true;
 //

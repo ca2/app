@@ -1832,7 +1832,7 @@ namespace user
 
                auto pwindowing = puser->windowing();
 
-               pwindowing->release_capture();
+               pwindowing->release_mouse_capture();
 
             }
 
@@ -5939,7 +5939,7 @@ namespace user
    strsize interaction::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      strsize n = min(nMaxCount, m_strWindowText.get_length());
+      strsize n = minimum(nMaxCount, m_strWindowText.get_length());
 
       ansi_count_copy(pszStringBuf, m_strWindowText, n);
 
@@ -8744,6 +8744,13 @@ namespace user
 
       auto puser = psession->user();
 
+      if (::is_null(puser))
+      {
+
+         return false;
+
+      }
+
       auto pwindowing = puser->windowing();
 
       if (::is_null(pwindowing))
@@ -10790,7 +10797,9 @@ restart:
    void interaction::on_simple_command(::message::simple_command * psimplecommand)
    {
 
-      switch (psimplecommand->command())
+      auto esimplecommand = psimplecommand->command();
+
+      switch (esimplecommand)
       {
       case e_simple_command_layout:
       {
@@ -11773,9 +11782,9 @@ restart:
 
          }
 
-         m_sizeRestoreBroad = sizeMin.max(rectWkspace.size() * 4 / 5);
+         m_sizeRestoreBroad = sizeMin.maximum(rectWkspace.size() * 4 / 5);
 
-         m_sizeRestoreCompact = sizeMin.max(rectWkspace.size() * 2 / 5);
+         m_sizeRestoreCompact = sizeMin.maximum(rectWkspace.size() * 2 / 5);
 
          if (::is_set(prectWkspace))
          {
@@ -12605,7 +12614,11 @@ restart:
    {
 
       if (m_pimpl == nullptr)
+      {
+
          return true; // optimistic response, assume always true alpha blendable
+
+      }
 
       return m_pimpl->is_composite();
 
@@ -13840,7 +13853,7 @@ restart:
 
       wstring wstr(m_strWindowText);
 
-      n = (int) min(wstr.get_length() + 1, n);
+      n = (int) minimum(wstr.get_length() + 1, n);
 
       wcsncpy(pwsz, wstr.c_str(), n);
 
@@ -16129,7 +16142,7 @@ restart:
 
       }
 
-      //m_pimpl->_task
+      m_pimpl->_task_transparent_mouse_event();
 
    }
 

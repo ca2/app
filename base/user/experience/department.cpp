@@ -96,7 +96,7 @@ namespace experience
 
       //}
 
-      __pointer(::experience::experience) pexperience = plibrary->create_object(this, "experience");
+      __pointer(::experience::experience) pexperience = plibrary->create_object("experience");
 
       if(pexperience == nullptr)
       {
@@ -104,6 +104,8 @@ namespace experience
          return nullptr;
 
       }
+
+      pexperience->initialize(this);
 
       pexperience->m_plibrary = plibrary;
 

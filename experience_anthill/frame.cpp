@@ -106,7 +106,7 @@ namespace experience
                   ::point_i32(rectClient.left - iInflate, rectClient.top - iInflate));
                //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
 
-               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
+               m_blur1.blur(pimage1, 2, ::rectangle_i32(::size_i32(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
 
                //spgraphics->Draw3dRect(rectClient, 127 << 24, 127 << 24);
                //rectClient.deflate(1, 1);
@@ -355,7 +355,7 @@ namespace experience
                m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
                m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
                m_colorDkShadow = crButtonDarkShadow;
-               m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
+               m_colorFrameBorder = argb(255, 0, 0, 0);
 
 
             }
@@ -595,7 +595,7 @@ namespace experience
                else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
                {
 
-                  if (m_pframewindow->is_active() && m_colorActiveCaptionTextBk.is_set())
+                  if (m_pframewindow->is_active_window() && m_colorActiveCaptionTextBk.is_ok())
                   {
 
                      pgraphics->fill_rectangle(m_rectCaption, m_colorActiveCaptionTextBk);
@@ -652,7 +652,7 @@ namespace experience
 
                   pframewindow->get_window_rect(rectangle);
 
-                  rectangle_i32 -= rectangle.top_left();
+                  rectangle -= rectangle.top_left();
 
                   if (get_element_rect(rectIcon, ElementTopLeftIcon))
                   {

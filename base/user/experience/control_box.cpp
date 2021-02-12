@@ -94,7 +94,7 @@ namespace experience
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -301,8 +301,8 @@ namespace experience
 
                      get_window_rect(rectWindow);
 
-                     rectWindow.left = min(rectWindow.left, rectWindow.right);
-                     rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
+                     rectWindow.left = minimum(rectWindow.left, rectWindow.right);
+                     rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
 
 
                      if (pointCursor.x >= rectWindow.left && pointCursor.y <= rectWindow.right && pointCursor.y == 0)
@@ -332,8 +332,8 @@ namespace experience
 
                get_window_rect(rectWindow);
 
-               rectWindow.left = min(rectWindow.left, rectWindow.right);
-               rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
+               rectWindow.left = minimum(rectWindow.left, rectWindow.right);
+               rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
 
                ::point_i32 point;
 
@@ -652,7 +652,9 @@ namespace experience
 
       auto & pbutton = pitem->m_pbutton;
 
-      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object(this, "button");
+      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object("button");
+
+      pbutton->initialize(this);
 
       pbutton->display(e_display_none);
 

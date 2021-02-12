@@ -505,68 +505,34 @@ namespace draw2d
    //}
 
 
-   i32 graphics::GetPolyFillMode()
-   {
+   //i32 graphics::GetPolyFillMode()
+   //{
 
 
 
-      return -1;
+   //   return -1;
 
-   }
-
-
-   i32 graphics::GetROP2()
-   {
+   //}
 
 
-
-      return -1;
-
-   }
-
-
-   i32 graphics::GetStretchBltMode()
-   {
+   //i32 graphics::GetROP2()
+   //{
 
 
 
-      return -1;
+   //   return -1;
 
-   }
-
-
-   i32 graphics::GetMapMode()
-   {
+   //}
 
 
-
-      return -1;
-
-   }
-
-
-   i32 graphics::GetGraphicsMode()
-   {
+   //i32 graphics::GetStretchBltMode()
+   //{
 
 
 
-      return -1;
+   //   return -1;
 
-   }
-
-
-//#ifdef WINDOWS
-//
-//   bool graphics::GetWorldTransform(XFORM* pXform)
-//   {
-//      UNREFERENCED_PARAMETER(pXform);
-//
-//
-//      return false;
-//
-//   }
-//
-//#endif
+   //}
 
 
    point_f64 graphics::GetViewportOrg()
@@ -1160,9 +1126,9 @@ namespace draw2d
 
             pimage2->fill(255, 0, 0, 0);
 
-            pimage2->g()->draw(::rectangle_f64(point_f64(max(0, m_pointAlphaBlend.x - rectDst.left), max(0, m_pointAlphaBlend.y - rectDst.top)), size),
+            pimage2->g()->draw(::rectangle_f64(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size),
                m_pimageAlphaBlend->get_graphics(),
-               ::point_f64(max(0, rectDst.left - m_pointAlphaBlend.x), max(0, rectDst.top - m_pointAlphaBlend.y)));
+               ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)));
 
             pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 
@@ -1339,8 +1305,8 @@ namespace draw2d
 
    //   //         pimage1->blend(::point_i32(), m_pimageAlphaBlend,
    //   //            {
-   //   //               (int)max(0, rectangle.left - m_pointAlphaBlend.x),
-   //   //               (int)max(0, rectangle.top - m_pointAlphaBlend.y)
+   //   //               (int)maximum(0, rectangle.left - m_pointAlphaBlend.x),
+   //   //               (int)maximum(0, rectangle.top - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
    //   //         draw_image(rectangle, pimage1->get_graphics());
@@ -1579,7 +1545,7 @@ namespace draw2d
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
-         pimage1->draw(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size()));
+         pimage1->draw(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectText.size()));
 
          draw(::rectangle_f64(::point_f64(x, y), rectText.size()), pimage1);
 
@@ -2400,24 +2366,24 @@ namespace draw2d
    //}
 
 
-   i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
-   {
+   //i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
+   //{
 
-      UNREFERENCED_PARAMETER(nPolyFillMode);
+   //   UNREFERENCED_PARAMETER(nPolyFillMode);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
-   i32 graphics::SetROP2(i32 nDrawMode)
-   {
+   //i32 graphics::SetROP2(i32 nDrawMode)
+   //{
 
-      UNREFERENCED_PARAMETER(nDrawMode);
+   //   UNREFERENCED_PARAMETER(nDrawMode);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
 //   i32 graphics::set_interpolation_mode(i32 nStretchMode)
@@ -2430,14 +2396,14 @@ namespace draw2d
 //   }
 
 
-   i32 graphics::SetGraphicsMode(i32 iMode)
-   {
+   //i32 graphics::SetGraphicsMode(i32 iMode)
+   //{
 
-      UNREFERENCED_PARAMETER(iMode);
+   //   UNREFERENCED_PARAMETER(iMode);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
 //#ifdef WINDOWS
@@ -2463,14 +2429,14 @@ namespace draw2d
 //
 //#endif
 
-   i32 graphics::SetMapMode(i32 nMapMode)
-   {
+   //i32 graphics::SetMapMode(i32 nMapMode)
+   //{
 
-      UNREFERENCED_PARAMETER(nMapMode);
+   //   UNREFERENCED_PARAMETER(nMapMode);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
    point_f64 graphics::SetViewportOrg(double x, double y)
@@ -4106,7 +4072,7 @@ namespace draw2d
 
             }
 
-            char * psz = str.get_string_buffer(max(0, i));
+            char * psz = str.get_string_buffer(maximum(0, i));
 
             while (i > 0)
             {
@@ -4221,13 +4187,13 @@ namespace draw2d
       if (iUnderline >= 0 && iUnderline < str.get_length())
       {
 
-         pgraphics->text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)min(iUnderline, str.get_length()) });
+         pgraphics->text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)minimum(iUnderline, str.get_length()) });
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
          rectangle.left,
          rectangle.top,
          str,
-         min(iUnderline, str.get_length()));*/
+         minimum(iUnderline, str.get_length()));*/
          if (iUnderline <= str.get_length())
          {
             pgraphics->set(pfontUnderline);
@@ -4767,7 +4733,7 @@ namespace draw2d
                   double fy = 1.0 - fmod(fabs(dy), 1.0);
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
-                  A = min(A, 255);
+                  A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
                }
             }
@@ -4786,7 +4752,7 @@ namespace draw2d
                   double fy = 1.0 - fmod(fabs(dy), 1.0);
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
-                  A = min(A, 255);
+                  A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
                }
 
@@ -4808,7 +4774,7 @@ namespace draw2d
                   double fy = 1.0 - fmod(fabs(dy), 1.0);
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
-                  A = min(A, 255);
+                  A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
 
                }

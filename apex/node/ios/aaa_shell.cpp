@@ -186,7 +186,7 @@ namespace ios
       strsize iFind2 = ::str::find_ci(":", imagekey.m_strPath);
       if (iFind >= 0 || iFind2 >= 2)
       {
-         string strProtocol = string(imagekey.m_strPath).Left(max(iFind, iFind2));
+         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
          while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
@@ -1538,7 +1538,7 @@ namespace ios
 //      strsize iFind2 = imagekey.m_strPath.find_ci(":");
 //      if (iFind >= 0 || iFind2 >= 2)
 //      {
-//         string strProtocol = string(imagekey.m_strPath).Left(max(iFind, iFind2));
+//         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
 //         i32 i = 0;
 //
 //         while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))

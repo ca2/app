@@ -348,11 +348,11 @@ namespace draw2d_direct2d
          {
             bMax = 0;
             b = (byte)(r1[0] - r2[0]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b = (byte)(r1[1] - r2[1]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b = (byte)(r1[2] - r2[2]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0] = bMax;
@@ -376,12 +376,12 @@ namespace draw2d_direct2d
    //   /*      int cx = cx;
    //   int cy = cy; */
 
-   //   int l = max(cx, cy);
+   //   int l = maximum(cx, cy);
 
 
-   //   int jmax = min(l, cy / 2);
+   //   int jmax = minimum(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = min(l, cx / 2);
+   //   int imax = minimum(l, cx / 2);
    //   int imin = - imax;
 
 
@@ -461,12 +461,12 @@ namespace draw2d_direct2d
    //   /*      int cx = cx;
    //   int cy = cy;*/
 
-   //   int l = max(cx, cy);
+   //   int l = maximum(cx, cy);
 
 
-   //   int jmax = min(l, cy / 2);
+   //   int jmax = minimum(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = min(l, cx / 2);
+   //   int imax = minimum(l, cx / 2);
    //   int imin = - imax;
 
 
@@ -537,11 +537,11 @@ namespace draw2d_direct2d
    //   int cx = rectangle.width();
    //   int cy = rectangle.height();
 
-   //   int l = max(cx, cy);
+   //   int l = maximum(cx, cy);
 
-   //   int jmax = min(l, cy / 2);
+   //   int jmax = minimum(l, cy / 2);
    //   int jmin = - jmax;
-   //   int imax = min(l, cx / 2);
+   //   int imax = minimum(l, cx / 2);
    //   int imin = - imax;
 
 

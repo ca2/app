@@ -1436,17 +1436,17 @@ namespace draw2d_xlib
 
          imageWork4.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                               ::size_i32(max(0, m_pimageAlphaBlend->width() - max(0, x - m_pointAlphaBlend.x)), max(0, m_pimageAlphaBlend->height() - max(0, y - m_pointAlphaBlend.y))));
+         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                               ::size_i32(maximum(0, m_pimageAlphaBlend->width() - maximum(0, x - m_pointAlphaBlend.x)), maximum(0, m_pimageAlphaBlend->height() - maximum(0, y - m_pointAlphaBlend.y))));
 
          imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
          /*imageWork.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         imageWork.from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                               ::size_i32(max(0, size.cx - max(0, x - m_pointAlphaBlend.x)), max(0, size.cy - max(0, y - m_pointAlphaBlend.y))));*/
+         imageWork.from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                               ::size_i32(maximum(0, size.cx - maximum(0, x - m_pointAlphaBlend.x)), maximum(0, size.cy - maximum(0, y - m_pointAlphaBlend.y))));*/
 
          //keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
@@ -1690,10 +1690,10 @@ namespace draw2d_xlib
                       pimage2 = create_image(rectText.size());
                       pimage2->Fill(255, 0, 0, 0);
                       pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-                      pimage2->from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                         size_i32(max(0, m_pimageAlphaBlend->width()-max(0, x - m_pointAlphaBlend.x)),
-                               max(0, m_pimageAlphaBlend->height()-max(0, y - m_pointAlphaBlend.y))));
+                      pimage2->from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                         size_i32(maximum(0, m_pimageAlphaBlend->width()-maximum(0, x - m_pointAlphaBlend.x)),
+                               maximum(0, m_pimageAlphaBlend->height()-maximum(0, y - m_pointAlphaBlend.y))));
                       pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
                       /* p::image_pointer pimage3(get_object());
                       pimage1->mult_alpha(image3);*/
@@ -1747,8 +1747,8 @@ namespace draw2d_xlib
                ::image_pointer pimage2;
                pimage2 = create_image(rectText.size());
                pimage2->Fill(255, 0, 0, 0);
-               pimage2->from(point_i32((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
-                           m_pimageAlphaBlend->get_graphics(), point_i32((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
+               pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
+                           m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
                pimage1->channel_multiply(::color::e_channel_alpha, pimage2->m_p);
                /* p::image_pointer pimage3(get_object());
                pimage1->mult_alpha(image3);*/
@@ -2776,8 +2776,8 @@ namespace draw2d_xlib
 
                   imageWork4.Fill(255, 0, 0, 0);
 
-                  imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-                     m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+                  imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+                     m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
                   imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
@@ -2909,8 +2909,8 @@ namespace draw2d_xlib
 
          imageWork4.Fill(255, 0, 0, 0);
 
-         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
          imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 

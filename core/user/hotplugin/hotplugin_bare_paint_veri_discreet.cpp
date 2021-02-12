@@ -58,8 +58,8 @@ namespace hotplugin
       else
       {
 
-         left = rectangle.left + min(m / 2,::width(rectangle) / 2);
-         right = rectangle.right - min(m / 2,::width(rectangle) / 2);
+         left = rectangle.left + minimum(m / 2,::width(rectangle) / 2);
+         right = rectangle.right - minimum(m / 2,::width(rectangle) / 2);
 
       }
 
@@ -87,7 +87,7 @@ namespace hotplugin
 
       ::rectangle_i32 rectProgress(rectBar);
 
-      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * min(1.0, max(0.0, dRate)));
+      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
       ::rectangle_i32 rectProgressComplement(rectBar);
 

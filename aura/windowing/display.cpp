@@ -1148,8 +1148,8 @@ namespace windowing
          || rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy)
       {
 
-         if (rectMonitor.width() / 7 + max(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + max(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         if (rectMonitor.width() / 7 + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
+            || rectMonitor.height() / 7 + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
          {
 
             rectRestore = rectMonitor;
@@ -1162,9 +1162,9 @@ namespace windowing
 
             rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + max(sizeMin.cx, rectMonitor.width() * 2 / 5);
+            rectRestore.right = rectRestore.left + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + max(sizeMin.cy, rectMonitor.height() * 2 / 5);
+            rectRestore.bottom = rectRestore.top + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5);
 
             if (rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
             {
@@ -1238,9 +1238,9 @@ namespace windowing
 
          iMatchingWkspace = get_best_wkspace(&rectWkspace, rectParam);
 
-         sizeBroad = sizeMin.max(rectWkspace.size() * 4 / 5);
+         sizeBroad = sizeMin.maximum(rectWkspace.size() * 4 / 5);
 
-         sizeCompact = sizeMin.max(rectWkspace.size() * 2 / 5);
+         sizeCompact = sizeMin.maximum(rectWkspace.size() * 2 / 5);
 
       }
 

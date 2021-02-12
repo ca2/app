@@ -781,7 +781,7 @@ namespace write_text
       if (m_etype == type_wide)
       {
 
-         int iBaseHeight = max(250, m_rectClient.height());
+         int iBaseHeight = maximum(250, m_rectClient.height());
 
          iBaseHeight = iBaseHeight + 250;
 
@@ -1345,9 +1345,9 @@ namespace write_text
 
          x = nextx;
 
-         h = max(h, s.cy);
+         h = maximum(h, s.cy);
 
-         hExtra = max(hExtra, s.cy);
+         hExtra = maximum(hExtra, s.cy);
 
       }
 
@@ -1399,7 +1399,7 @@ namespace write_text
             rect2.top = rectangle.top - dh;
             rect2.bottom = rect2.top + size2.cy;
 
-            hExtra = max(hExtra, size2.cy);
+            hExtra = maximum(hExtra, size2.cy);
 
          }
 
@@ -1457,11 +1457,11 @@ namespace write_text
          pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx;
          pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy;
 
-         sizeTotal.cx = max(m_size.cx, pitem->m_box[0].m_rectangle.right + 4);
+         sizeTotal.cx = maximum(m_size.cx, pitem->m_box[0].m_rectangle.right + 4);
 
          ySingleColumn += s.cy;
 
-         h = max(h, s.cy);
+         h = maximum(h, s.cy);
 
       }
 

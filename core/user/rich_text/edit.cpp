@@ -268,7 +268,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          set_need_redraw();
 

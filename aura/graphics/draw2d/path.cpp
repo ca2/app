@@ -206,10 +206,10 @@ namespace draw2d
    //bool path::line::get_bounding_rect(RECTANGLE_F64* prectangle) const
    //{
 
-   //   prectangle->left = min(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->right = max(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->top = min(m_pointBeg.y, m_pointEnd.y);
-   //   prectangle->bottom = max(m_pointBeg.y, m_pointEnd.y);
+   //   prectangle->left = minimum(m_pointBeg.x, m_pointEnd.x);
+   //   prectangle->right = maximum(m_pointBeg.x, m_pointEnd.x);
+   //   prectangle->top = minimum(m_pointBeg.y, m_pointEnd.y);
+   //   prectangle->bottom = maximum(m_pointBeg.y, m_pointEnd.y);
 
    //   return true;
 

@@ -509,7 +509,7 @@ namespace user
    void format_tool::set_font_size(double dFontSize)
    {
 
-      dFontSize = max(6.0, min(1440.0, dFontSize));
+      dFontSize = maximum(6.0, minimum(1440.0, dFontSize));
 
       double dRound = dFontSize - (double)(int)dFontSize;
 

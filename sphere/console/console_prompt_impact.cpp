@@ -325,7 +325,7 @@ namespace console
 
       m_sizeChar = pgraphics.GetTextExtent("M");
       
-      m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
+      m_sizeChar = m_sizeChar.maximum(pgraphics.GetTextExtent("p"));
 
       pgraphics->fill_rectangle(rectClient,argb(dwAlpha,0,0,0));
 

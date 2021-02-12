@@ -102,7 +102,7 @@ namespace file
       if(size > 0)
       {
          _thereAreBytesToReadEvent.wait();
-         sizeToRead = min(_size, size);
+         sizeToRead = minimum(_size, size);
          if(_size > 0)
          {
             ::memcpy_dup(data, _data, sizeToRead);

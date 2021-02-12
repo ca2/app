@@ -587,10 +587,10 @@ namespace aura
 
       virtual ::e_status initialize_draw2d();
       //virtual ::e_status initialize_write_text();
-      virtual ::e_status draw2d_factory_exchange();
+      virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
       virtual string draw2d_get_default_library_name();
 
-      virtual bool imaging_factory_exchange();
+      virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
       virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;

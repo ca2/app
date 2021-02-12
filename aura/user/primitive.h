@@ -206,6 +206,7 @@ namespace user
       virtual void mouse_hover_add(::user::interaction * pinterface);
       virtual bool mouse_hover_remove(::user::interaction * pinterface);
 
+      virtual void _task_transparent_mouse_event();
 
       virtual bool CheckAutoCenter();
 

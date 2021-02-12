@@ -241,9 +241,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 {
 
-   auto left   = max(prect1->left, prect2->left);
+   auto left   = maximum(prect1->left, prect2->left);
 
-   auto right  = min(prect1->right, prect2->right);
+   auto right  = minimum(prect1->right, prect2->right);
 
    bool bIntersect = right > left;
 
@@ -272,9 +272,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto top     = max(prect1->top,prect2->top);
+   auto top     = maximum(prect1->top,prect2->top);
 
-   auto bottom  = min(prect1->bottom,prect2->bottom);
+   auto bottom  = minimum(prect1->bottom,prect2->bottom);
 
    bool bIntersect = bottom > top;
 
@@ -325,9 +325,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto left = max(prect1->left, prect2->left);
+   auto left = maximum(prect1->left, prect2->left);
 
-   auto right = min(prect1->right, prect2->right);
+   auto right = minimum(prect1->right, prect2->right);
 
    bool bIntersect = right >= left;
 
@@ -356,9 +356,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   auto top = max(prect1->top, prect2->top);
+   auto top = maximum(prect1->top, prect2->top);
 
-   auto bottom = min(prect1->bottom, prect2->bottom);
+   auto bottom = minimum(prect1->bottom, prect2->bottom);
 
    bool bIntersect = bottom >= top;
 
@@ -410,9 +410,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool x_left_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   prectangle->left    = max(prect1->left,prect2->left);
+   prectangle->left    = maximum(prect1->left,prect2->left);
 
-   prectangle->right   = min(prect1->right,prect2->right);
+   prectangle->right   = minimum(prect1->right,prect2->right);
 
    return prectangle->right > prectangle->left || (prectangle->right == prectangle->left && prect1->left == prect2->left);
 
@@ -423,9 +423,9 @@ template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
 bool y_top_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
-   prectangle->top     = max(prect1->top, prect2->top);
+   prectangle->top     = maximum(prect1->top, prect2->top);
 
-   prectangle->bottom  = min(prect1->bottom, prect2->bottom);
+   prectangle->bottom  = minimum(prect1->bottom, prect2->bottom);
 
    return prectangle->top < prectangle->bottom || (prectangle->top == prectangle->bottom && prect1->top == prect2->top);
 
@@ -484,10 +484,10 @@ RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const R
    else
    {
 
-      prectangle->left = (decltype(RECT_TYPE::left))min(prect1->left, prect2->left);
-      prectangle->top = (decltype(RECT_TYPE::top))min(prect1->top, prect2->top);
-      prectangle->right = (decltype(RECT_TYPE::right))max(prect1->right, prect2->right);
-      prectangle->bottom = (decltype(RECT_TYPE::bottom))max(prect1->bottom, prect2->bottom);
+      prectangle->left = (decltype(RECT_TYPE::left))minimum(prect1->left, prect2->left);
+      prectangle->top = (decltype(RECT_TYPE::top))minimum(prect1->top, prect2->top);
+      prectangle->right = (decltype(RECT_TYPE::right))maximum(prect1->right, prect2->right);
+      prectangle->bottom = (decltype(RECT_TYPE::bottom))maximum(prect1->bottom, prect2->bottom);
 
    }
 
@@ -500,10 +500,10 @@ RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const 
 {
 
 
-   prectangle->left = (decltype(RECT_TYPE1::left))min(prect1->left, prect2->left);
-   prectangle->top = (decltype(RECT_TYPE1::top))min(prect1->top, prect2->top);
-   prectangle->right = (decltype(RECT_TYPE1::right))max(prect1->right, prect2->right);
-   prectangle->bottom = (decltype(RECT_TYPE1::bottom))max(prect1->bottom, prect2->bottom);
+   prectangle->left = (decltype(RECT_TYPE1::left))minimum(prect1->left, prect2->left);
+   prectangle->top = (decltype(RECT_TYPE1::top))minimum(prect1->top, prect2->top);
+   prectangle->right = (decltype(RECT_TYPE1::right))maximum(prect1->right, prect2->right);
+   prectangle->bottom = (decltype(RECT_TYPE1::bottom))maximum(prect1->bottom, prect2->bottom);
 
    return prectangle;
 
@@ -1299,10 +1299,10 @@ inline void expand_rect(RECT1* prectangle, const RECT2& r)
    else
    {
 
-      prectangle->left = min((decltype(prectangle->left))prectangle->left, (decltype(prectangle->left))r.left);
-      prectangle->right = max((decltype(prectangle->right))prectangle->right, (decltype(prectangle->right))r.right);
-      prectangle->top = min((decltype(prectangle->top))prectangle->top, (decltype(prectangle->top))r.top);
-      prectangle->bottom = max((decltype(prectangle->bottom))prectangle->bottom, (decltype(prectangle->bottom))r.bottom);
+      prectangle->left = minimum((decltype(prectangle->left))prectangle->left, (decltype(prectangle->left))r.left);
+      prectangle->right = maximum((decltype(prectangle->right))prectangle->right, (decltype(prectangle->right))r.right);
+      prectangle->top = minimum((decltype(prectangle->top))prectangle->top, (decltype(prectangle->top))r.top);
+      prectangle->bottom = maximum((decltype(prectangle->bottom))prectangle->bottom, (decltype(prectangle->bottom))r.bottom);
 
    }
 
@@ -1322,10 +1322,10 @@ inline void collapse_rect(RECT1 * prectangle, const RECT2 & r)
    else
    {
 
-      prectangle->left = max((decltype(prectangle->left))prectangle->left, (decltype(prectangle->left))r.left);
-      prectangle->right = min((decltype(prectangle->right))prectangle->right, (decltype(prectangle->right))r.right);
-      prectangle->top = max((decltype(prectangle->top))prectangle->top, (decltype(prectangle->top))r.top);
-      prectangle->bottom = min((decltype(prectangle->bottom))prectangle->bottom, (decltype(prectangle->bottom))r.bottom);
+      prectangle->left = maximum((decltype(prectangle->left))prectangle->left, (decltype(prectangle->left))r.left);
+      prectangle->right = minimum((decltype(prectangle->right))prectangle->right, (decltype(prectangle->right))r.right);
+      prectangle->top = maximum((decltype(prectangle->top))prectangle->top, (decltype(prectangle->top))r.top);
+      prectangle->bottom = minimum((decltype(prectangle->bottom))prectangle->bottom, (decltype(prectangle->bottom))r.bottom);
 
       if (::width(prectangle) == 0 || height(prectangle) == 0)
       {

@@ -10,19 +10,19 @@
 
 #ifdef WINDOWS_DESKTOP
 
-extern "C" void draw2d_gdiplus_factory_exchange();
+extern "C" void draw2d_gdiplus_factory_exchange(::factory_map * pfactorymap);
 
 #endif
 
-extern "C" void draw2d_direct2d_factory_exchange();
+extern "C" void draw2d_direct2d_factory_exchange(::factory_map * pfactorymap);
 
 #elif defined(__APPLE__)
 
-extern "C" void draw2d_quartz_factory_exchange();
+extern "C" void draw2d_quartz_factory_exchange(::factory_map * pfactorymap);
 
 #else
 
-extern "C" void draw2d_factory_exchange();
+extern "C" void draw2d_factory_exchange(::factory_map * pfactorymap);
 
 #endif
 
@@ -36,17 +36,17 @@ extern "C" void draw2d_cairo_exchange();
 #ifndef NO_IMAGING
 #ifdef WINDOWS_DESKTOP
 
-extern "C" void imaging_wic_factory_exchange();
+extern "C" void imaging_wic_factory_exchange(::factory_map * pfactorymap);
 
 #endif
 
-extern "C" void imaging_freeimage_factory_exchange();
+extern "C" void imaging_freeimage_factory_exchange(::factory_map * pfactorymap);
 
 #endif
 
 #ifdef WITH_GPU
 
-extern "C" void gpu_opengl_factory_exchange();
+extern "C" void gpu_opengl_factory_exchange(::factory_map * pfactorymap);
 
 #endif
 

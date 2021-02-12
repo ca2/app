@@ -685,3 +685,44 @@ inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype)
 
 
 
+
+
+
+inline __pointer(::factory::factory_interface) & factory_map::get_factory(const ::id & id)
+{
+
+   critical_section_lock cs(::factory::get_factory_critical_section());
+
+   return (*this)[id];
+
+}
+
+
+template < typename BASE_TYPE >
+inline __pointer(::factory::factory_interface) & factory_map::get_factory()
+{
+
+   string strTypename(typeid(BASE_TYPE).name());
+
+   demangle(strTypename);
+
+   return get_factory(strTypename);
+
+}
+
+
+template < typename TYPE, typename BASE_TYPE>
+inline __pointer(::factory::factory_base < BASE_TYPE >) factory_map::create_factory()
+{
+
+   critical_section_lock lock(::factory::get_factory_critical_section());
+
+   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
+
+   get_factory < BASE_TYPE >() = pfactory;
+
+   return pfactory;
+
+}
+
+

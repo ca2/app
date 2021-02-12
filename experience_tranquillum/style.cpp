@@ -338,7 +338,7 @@ namespace tranquillum
             if (tab_pane.m_pimage->is_set())
             {
                size.cx += tab_pane.m_pimage->width() + 2;
-               size.cy = max(size.cy, tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy, tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -433,7 +433,7 @@ namespace tranquillum
             if (tab_pane.m_pimage->is_set())
             {
 
-               size.cy = max(max(size.cy, tab_pane.m_pimage->size().cy), metric.get_line_spacing());
+               size.cy = maximum(maximum(size.cy, tab_pane.m_pimage->size().cy), metric.get_line_spacing());
 
             }
 

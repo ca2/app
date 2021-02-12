@@ -130,7 +130,7 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
    pmessagemessage->set(
       pmessage->oswindow, 
       nullptr,
-      pmessage->message, 
+      (enum_message) pmessage->message, 
       pmessage->wParam, 
       pmessage->lParam);
 

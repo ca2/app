@@ -149,8 +149,8 @@ extern CLASS_DECL_APEX int g_bApex;
 //#include "apex/os/_c.h"
 
 
-#undef min
-#undef max
+#undef minimum
+#undef maximum
 
 
 #define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -668,7 +668,10 @@ struct plane_system;
 #endif
 
 
-typedef  void(*PFN_factory_exchange)();
+class factory_map;
+
+
+typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 
 class object;

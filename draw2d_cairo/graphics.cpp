@@ -3927,7 +3927,7 @@ size_f64 graphics::GetOutputTextExtent(const string & str)
 bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
-   string str(lpszString, min_non_neg(iIndex, nCount));
+   string str(lpszString, minimum_non_negative(iIndex, nCount));
 
    str = ::str::q_valid(str);
 
@@ -4040,7 +4040,7 @@ bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize n
 
       GetTextExtent(s0, strLine, str.get_length(), str.get_length());
 
-      size.cx = max(size.cx, s0.cx);
+      size.cx = maximum(size.cx, s0.cx);
 
       size.cy += s0.cy;
 
@@ -4061,7 +4061,7 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 
     }
 
-    string str(lpszString, min(iIndex, nCount));
+    string str(lpszString, minimum(iIndex, nCount));
 
     str = ::str::q_valid(str);
 
@@ -4586,7 +4586,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
    if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
    {
 
-      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, max(pbrush->m_size.cx, pbrush->m_size.cy));
+      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
       cairo_pattern_add_color_stop_rgba(ppattern, 0., colorref_get_r_value(pbrush->m_color1) / 255.0, colorref_get_g_value(pbrush->m_color1) / 255.0, colorref_get_b_value(pbrush->m_color1) / 255.0, colorref_get_a_value(pbrush->m_color1) / 255.0);
 
@@ -4766,7 +4766,7 @@ bool graphics::_set(::write_text::font * pfontParam)
 
 #ifdef ANDROID
 
-   float fDpi = max(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
+   float fDpi = maximum(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
 
    float fDensity = ::oslocal()->m_fDensity;
 

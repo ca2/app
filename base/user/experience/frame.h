@@ -22,19 +22,19 @@ namespace experience
       };
 
 
-      ::color::color                                m_colorFrameBorder;
-      ::color::color                                m_colorMoveableBorderHilight;
-      ::color::color                                m_colorMoveableBorderDkShadow;
-      ::color::color                                m_colorCaptionTextBk;
-      ::color::color                                m_colorActiveCaptionTextBk;
-      ::color::color                                m_colorCaptionText;
+      __status < ::color::color >          m_colorFrameBorder;
+      __status < ::color::color >          m_colorMoveableBorderHilight;
+      __status < ::color::color >          m_colorMoveableBorderDkShadow;
+      __status < ::color::color >          m_colorCaptionTextBk;
+      __status < ::color::color >          m_colorActiveCaptionTextBk;
+      __status < ::color::color >          m_colorCaptionText;
 
       bool                                 m_bHollow;
       string                               m_strLibrary;
       string                               m_strName;
-      ::rectangle_i32                               m_rectCaption;
-      ::rectangle_i32                               m_rectWindowText;
-      int                                 m_iControlBoxPosition;
+      ::rectangle_i32                      m_rectCaption;
+      ::rectangle_i32                      m_rectWindowText;
+      int                                  m_iControlBoxPosition;
       //::rectangle_i32                               m_rectControlBoxFullScreen;
       //::rectangle_i32                               m_rectControlBoxZoomed;
       //::rectangle_i32                               m_rectControlBoxNormal;

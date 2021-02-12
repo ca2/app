@@ -47,6 +47,28 @@ namespace str
    }
 
 
+   inline wstring bstr_to_wstr(BSTR bstr)
+   {
+
+      int len = ::SysStringLen(bstr);
+
+      wstring wstr((wchar_t *)bstr, len);
+
+      return wstr;
+
+   }
+
+
+   inline string bstr_to_str(BSTR bstr)
+   {
+
+      wstring wstr = bstr_to_wstr(bstr);
+
+      return wstr;
+
+   }
+
+
    u32 format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, ansichar * pszBuffer, u32 nSize, va_list * pArguments) noexcept
    {
 

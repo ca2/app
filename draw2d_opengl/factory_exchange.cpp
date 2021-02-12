@@ -2,7 +2,7 @@
 
 
 extern "C"
-void draw2d_opengl_factory_exchange()
+void draw2d_opengl_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::draw2d_opengl::image, ::image >();

@@ -132,7 +132,7 @@
 //   tv.tv_sec = 1;
 //
 //   // Wait for X Event or a Timer
-//   int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+//   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 //
 //   if (num_ready_fds > 0)
 //   {

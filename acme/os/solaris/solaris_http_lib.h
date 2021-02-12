@@ -77,8 +77,8 @@ public:
    http_retcode t_head(i32 *plength);
    http_retcode t_parse_url(const char *url);
 
-   i32 t_read_line (i32 fd,char *buffer, i32 max) ;
-   i32 t_read_buffer (i32 fd,char *buffer, i32 max, void (*callback)(void *, i32, dword_ptr) = nullptr, void * callback_param = nullptr) ;
+   i32 t_read_line (i32 fd,char *buffer, i32 maximum) ;
+   i32 t_read_buffer (i32 fd,char *buffer, i32 maximum, void (*callback)(void *, i32, dword_ptr) = nullptr, void * callback_param = nullptr) ;
 
    http_retcode t_query(const char *command, const char *url, const char *additional_header, querymode mode, char* data, i32 length, i32 *pfd);
 };

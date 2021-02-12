@@ -38,7 +38,7 @@ extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp)
 time_t timegm(tm * point_i32)
 {
 
-   time_t t1 = 60 * 60 * 24 * 2; // (sec * min * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
+   time_t t1 = 60 * 60 * 24 * 2; // (sec * minimum * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
 
    tm tm1;
 

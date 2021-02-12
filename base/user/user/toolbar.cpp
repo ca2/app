@@ -618,9 +618,9 @@ namespace user
 //      //   {
 //      //      // a separator represents either a height or width
 //      //      if (pData[i].fsState & TBSTATE_WRAP)
-//      //         sizeResult.cy = (::i32) max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+//      //         sizeResult.cy = (::i32) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 //      //      else
-//      //         sizeResult.cx = max(cur.x + pData[i].iBitmap, sizeResult.cx);
+//      //         sizeResult.cx = maximum(cur.x + pData[i].iBitmap, sizeResult.cx);
 //      //   }
 //      //   else
 //      //   {
@@ -631,8 +631,8 @@ namespace user
 //      //         // add size_i32 of drop down
 //      //         cx += 2;
 //      //      }
-//      //      sizeResult.cx = max(cur.x + cx, sizeResult.cx);
-//      //      sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
+//      //      sizeResult.cx = maximum(cur.x + cx, sizeResult.cx);
+//      //      sizeResult.cy = maximum(cur.y + m_sizeButton.cy, sizeResult.cy);
 //      //   }
 //
 //      //   if (pData[i].fsStyle & TBSTYLE_SEP)
@@ -1049,8 +1049,8 @@ namespace user
 //         sizeResult.cx -= rectangle.width();
 //
 //         const ::size_i32 & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
-//         sizeResult.cx = max(sizeResult.cx, size.cx);
-//         sizeResult.cy = max(sizeResult.cy, size.cy);
+//         sizeResult.cx = maximum(sizeResult.cx, size.cx);
+//         sizeResult.cy = maximum(sizeResult.cy, size.cy);
 //      }
 //      return sizeResult;
 //#else

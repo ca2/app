@@ -98,7 +98,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          m_bSlide = false;
 
@@ -163,7 +163,7 @@ namespace user
 
       }
 
-      dScalar = min(1.0, max(0.0, dScalar));
+      dScalar = minimum(1.0, maximum(0.0, dScalar));
 
       return dScalar;
 
@@ -255,8 +255,8 @@ namespace user
 
       rectangle.top = rectClient.top;
       rectangle.bottom = rectClient.bottom;
-      rectangle.left = (::i32)min(rectClient.right,m_dRate * (rectClient.width() - iWidth));
-      rectangle.right = (::i32)min(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
 
 
    }

@@ -212,6 +212,10 @@ namespace user
       virtual void mouse_hover_add(::user::interaction * pinterface) override;
       virtual bool mouse_hover_remove(::user::interaction * pinterface) override;
 
+
+      virtual void _task_transparent_mouse_event();
+
+
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
 
@@ -641,8 +645,8 @@ namespace user
 
       //virtual ::i32 get_window_long(i32 nIndex) const override;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual interaction_impl * get_impl() const override;
 

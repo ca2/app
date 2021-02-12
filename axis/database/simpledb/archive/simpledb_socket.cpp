@@ -292,7 +292,7 @@ namespace simpledb
                {
                   if(iEnd >= iStart)
                   {
-                     uRead = min(mem.get_size(), (memsize) (iEnd - iPos + 1));
+                     uRead = minimum(mem.get_size(), (memsize) (iEnd - iPos + 1));
                   }
                   else
                   {
@@ -337,7 +337,7 @@ namespace simpledb
                {
                   if(iEnd != -1 && iEnd >= iStart)
                   {
-                     uRead = min(mem.get_size(), (iEnd - iPos + 1));
+                     uRead = minimum(mem.get_size(), (iEnd - iPos + 1));
                   }
                   else
                   {

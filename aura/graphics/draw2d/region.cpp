@@ -513,13 +513,13 @@ namespace draw2d
    void region::max_bounding_box_rect(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      prectangle->left = min(prectangle->left,m_x1);
+      prectangle->left = minimum(prectangle->left,m_x1);
 
-      prectangle->right = max(prectangle->right,m_x2);
+      prectangle->right = maximum(prectangle->right,m_x2);
 
-      prectangle->top = min(prectangle->left,m_y1);
+      prectangle->top = minimum(prectangle->left,m_y1);
 
-      prectangle->bottom = max(prectangle->right,m_y2);
+      prectangle->bottom = maximum(prectangle->right,m_y2);
 
    }
 
@@ -527,13 +527,13 @@ namespace draw2d
    void region::max_bounding_box_oval(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      prectangle->left = min(prectangle->left,m_x1);
+      prectangle->left = minimum(prectangle->left,m_x1);
 
-      prectangle->right = max(prectangle->right,m_x2);
+      prectangle->right = maximum(prectangle->right,m_x2);
 
-      prectangle->top = min(prectangle->left,m_y1);
+      prectangle->top = minimum(prectangle->left,m_y1);
 
-      prectangle->bottom = max(prectangle->right,m_y2);
+      prectangle->bottom = maximum(prectangle->right,m_y2);
 
    }
 
@@ -551,13 +551,13 @@ namespace draw2d
       for(int i = 0; i < m_nCount; i++)
       {
 
-         prectangle->left = min(prectangle->left,m_lppoints[i].x);
+         prectangle->left = minimum(prectangle->left,m_lppoints[i].x);
 
-         prectangle->right = max(prectangle->right,m_lppoints[i].x);
+         prectangle->right = maximum(prectangle->right,m_lppoints[i].x);
 
-         prectangle->top = min(prectangle->left,m_lppoints[i].y);
+         prectangle->top = minimum(prectangle->left,m_lppoints[i].y);
 
-         prectangle->bottom = max(prectangle->right,m_lppoints[i].y);
+         prectangle->bottom = maximum(prectangle->right,m_lppoints[i].y);
 
       }
 
@@ -577,13 +577,13 @@ namespace draw2d
          for(int j = 0; j < iCount; j++,n++)
          {
 
-            prectangle->left = min(prectangle->left,m_lppoints[n].x);
+            prectangle->left = minimum(prectangle->left,m_lppoints[n].x);
 
-            prectangle->right = max(prectangle->right,m_lppoints[n].x);
+            prectangle->right = maximum(prectangle->right,m_lppoints[n].x);
 
-            prectangle->top = min(prectangle->left,m_lppoints[n].y);
+            prectangle->top = minimum(prectangle->left,m_lppoints[n].y);
 
-            prectangle->bottom = max(prectangle->right,m_lppoints[n].y);
+            prectangle->bottom = maximum(prectangle->right,m_lppoints[n].y);
 
          }
 

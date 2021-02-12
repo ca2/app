@@ -2543,6 +2543,9 @@
     <ClInclude Include="primitive\datetime\system_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\microsecond_sleep.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3741,6 +3744,12 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\id_matter.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\micros.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

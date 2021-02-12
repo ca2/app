@@ -28,7 +28,7 @@
 
 //    }
 
-//    return max(dpiX, dpiY);
+//    return maximum(dpiX, dpiY);
 
 // }
 

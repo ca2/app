@@ -489,7 +489,7 @@ namespace draw2d
                iFilterYUpperBound = iFilterH - 1;
             }
 
-            lpbSource = lpbSrc + (wSrc * max(y2, 0));
+            lpbSource = lpbSrc + (wSrc * maximum(y2, 0));
 
             x1 = xL;
             x2 = (x1 - iFilterHalfW) * 3;
@@ -513,7 +513,7 @@ namespace draw2d
                   iFilterXUpperBound = iFilterH - 1;
                }
 
-               lpbSource_1 = lpbSource + max(x2, 0);
+               lpbSource_1 = lpbSource + maximum(x2, 0);
 
 
                dwR = 0;
@@ -825,7 +825,7 @@ breakFilter:
                      iFilterXUpperBound = xFilterMax;
                   }
 
-                  lpbSource_1 = lpbSource + max(x2, 0) + iChannel;
+                  lpbSource_1 = lpbSource + maximum(x2, 0) + iChannel;
 
 
                   for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
@@ -1185,7 +1185,7 @@ breakFilter2:
       try
       {
 
-         if (!write_text_factory_exchange())
+         if (!write_text_factory_exchange(::factory::get_factory_map()))
          {
 
             message_box("Failed to initialize draw2d library.");
@@ -1248,7 +1248,7 @@ breakFilter2:
    }
 
 
-   ::e_status draw2d::write_text_factory_exchange()
+   ::e_status draw2d::write_text_factory_exchange(::factory_map * pfactorymap)
    {
 
       string strLibrary;
@@ -1380,7 +1380,7 @@ breakFilter2:
 
       //   }
 
-      //   pfn_factory_exchange();
+      //   pfn_factory_exchange(::factory_map * pfactorymap);
 
       //   return true;
 

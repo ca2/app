@@ -845,7 +845,7 @@ static int_bool
       {
          for(long i = 0; i < (long)strlen(tag_value); i+= MAX_BYTES_IN_MARKER)
          {
-            jpeg_write_marker(cinfo, JPEG_COM, (byte*)tag_value + i, (unsigned int) min((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
+            jpeg_write_marker(cinfo, JPEG_COM, (byte*)tag_value + i, (unsigned int) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
          }
          return true;
       }
@@ -874,7 +874,7 @@ static int_bool
 
       for(long i = 0; i < (long)iccProfile->size_i32; i += MAX_DATA_BYTES_IN_MARKER)
       {
-         unsigned length = (unsigned) min((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
+         unsigned length = (unsigned) minimum((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
          // sequence number
          profile[12] = (byte) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
          // number of markers
@@ -914,7 +914,7 @@ static int_bool
          // write the profile
          for(long i = 0; i < (long)profile_size; i += 65517L)
          {
-            unsigned length = (unsigned) min((long)profile_size - i, 65517L);
+            unsigned length = (unsigned) minimum((long)profile_size - i, 65517L);
             unsigned roundup = (unsigned) (length & 0x01);	// needed for Photoshop
             byte *iptc_profile = (byte*)malloc(length + roundup + tag_length);
             if(iptc_profile == nullptr) break;
@@ -973,7 +973,7 @@ static int_bool
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
-            unsigned length = (unsigned) min((long)(tag_length - i), 65504L);
+            unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
             memcpy(profile + xmp_header_size, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, (length + xmp_header_size));
@@ -1021,7 +1021,7 @@ static int_bool
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
-            unsigned length = (unsigned) min((long)(tag_length - i), 65504L);
+            unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
             memcpy(profile, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, length);
@@ -1319,7 +1319,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          {
             // the JPEG codec can perform x2, x4 or x8 scaling on loading
             // try to find the more appropriate scaling according to user's need
-            double scale = max((double)cinfo.image_width, (double)cinfo.image_height) / (double)requested_size;
+            double scale = maximum((double)cinfo.image_width, (double)cinfo.image_height) / (double)requested_size;
             if(scale >= 8)
             {
                scale_denom = 8;

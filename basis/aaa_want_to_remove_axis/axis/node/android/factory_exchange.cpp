@@ -35,7 +35,7 @@ namespace android
 } // namespace android
 
 
-void __node_axis_factory_exchange()
+void __node_axis_factory_exchange(::factory_map * pfactorymap)
 {
 
    ::android::axis::factory_exchange factoryexchange();

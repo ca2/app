@@ -198,7 +198,7 @@ namespace experience
 
       auto pwindowing = puser->windowing();
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       if (!consider_move())
       {

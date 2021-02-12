@@ -3503,7 +3503,7 @@ ExitModal:
    //strsize interaction_impl::GetWindowText(char * lpszString,strsize nMaxCount)
    //{
    //   strncpy(lpszString,m_strWindowText,nMaxCount);
-   //   return min(nMaxCount,m_strWindowText.get_length());
+   //   return minimum(nMaxCount,m_strWindowText.get_length());
    //}
 
    //strsize interaction_impl::get_window_text_length()

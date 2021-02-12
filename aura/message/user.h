@@ -144,7 +144,7 @@ namespace message
    public:
 
 
-      enum_scroll_bar_command    m_ecommand;
+      enum_scroll_command    m_ecommand;
       i32                        m_nPos;
       ::user::primitive * m_pscrollbar;
 

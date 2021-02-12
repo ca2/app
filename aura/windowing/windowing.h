@@ -93,7 +93,7 @@ namespace windowing
 
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
-      virtual ::e_status release_capture();
+      virtual ::e_status release_mouse_capture();
 
 
       

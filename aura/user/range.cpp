@@ -191,7 +191,7 @@ namespace user
    //      m_pmeshheader->set_window_pos(
    //         e_zorder_top,
    //         0,0,
-   //         max(m_iItemWidth + 10,rectClient.width()),
+   //         maximum(m_iItemWidth + 10,rectClient.width()),
    //         m_iItemHeight,
    //         SWP_SHOWWINDOW);
    //   }

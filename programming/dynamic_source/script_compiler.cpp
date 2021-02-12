@@ -3134,7 +3134,7 @@ ch_else:
       string strDest;
       while(strSource.get_length() > 0)
       {
-         strsize iLen = min(4 * 1024, strSource.get_length());
+         strsize iLen = minimum(4 * 1024, strSource.get_length());
          if(strSource.get_length() > iLen)
          {
             if(strSource[iLen] == '\n')

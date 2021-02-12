@@ -280,7 +280,7 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
       //      index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 
-      //      position = max(0, position- m_hsynca.get_size());
+      //      position = maximum(0, position- m_hsynca.get_size());
 
       //      m_synca[position]->wait();
 
@@ -333,7 +333,7 @@ sync_result sync_array::contains( const sync_result& result ) const
 
    //index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 
-   //position = max(0)
+   //position = maximum(0)
    //for ( ++position; position<m_synca.get_size(); ++position )
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)

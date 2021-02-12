@@ -48,7 +48,7 @@ namespace simple_shader
 
       ::size_i32 size;
 
-      size = size1.max(size2);
+      size = size1.maximum(size2);
 
       ::rectangle_i32 rectBack(r);
 

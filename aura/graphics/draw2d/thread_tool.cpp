@@ -178,8 +178,8 @@ restart:
                            pBound = psrc3 + (xEnd << 2);
                            xDistanceToBoundary8 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4));
                            xDistanceToBoundary1 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4));
-                           pBound8 = min(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4 - xDistanceToBoundary8);
-                           pBound1 = min(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE * 4 - xDistanceToBoundary1);
+                           pBound8 = minimum(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4 - xDistanceToBoundary8);
+                           pBound1 = minimum(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE * 4 - xDistanceToBoundary1);
 
                            if (xDistanceToBoundary8 > 0)
                            {
@@ -223,7 +223,7 @@ restart:
                            if (psrc2 == pBound8 && psrc2 != pBound1)
                            {
 
-                              pEnd8 = min(pBound, pBound1);
+                              pEnd8 = minimum(pBound, pBound1);
                               while (psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4 <= pEnd8
                                      && __memcmp(psrc2, craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
                               {
@@ -323,8 +323,8 @@ restart:
 
                            int xDistanceToBoundary8 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4)) / 4;
                            int xDistanceToBoundary1 = (((iptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4)) / 4;
-                           int xBoundary8 = min(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH - xDistanceToBoundary8);
-                           int xBoundary1 = min(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary1);
+                           int xBoundary8 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH - xDistanceToBoundary8);
+                           int xBoundary1 = minimum(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary1);
 
                            if (xDistanceToBoundary8 > 0)
                            {
@@ -368,7 +368,7 @@ restart:
                            if (x == xBoundary8 && x != xBoundary1)
                            {
 
-                              xEnd8 = min(xEnd, xBoundary1);
+                              xEnd8 = minimum(xEnd, xBoundary1);
                               while (x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH <= xEnd8
                                      && __memcmp(&(((color32_t *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
                               {

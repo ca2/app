@@ -497,7 +497,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    index buttonx, buttony;
 
-   auto iC = min(nCount, m_itema.get_size());
+   auto iC = minimum(nCount, m_itema.get_size());
 
    ::rectangle_i32 rectItemPad = get_item_pad();
 
@@ -578,9 +578,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       cur.x += (::i32) buttonx; //  +sPress.cx;
 
-      sizeResult.cx = max(cur.x, sizeResult.cx);
+      sizeResult.cx = maximum(cur.x, sizeResult.cx);
 
-      cur.y = (::i32) max(cur.y, buttony);
+      cur.y = (::i32) maximum(cur.y, buttony);
 
       if (m_itema[i]->m_estate & e_toolbar_item_state_wrap)
       {
@@ -1836,7 +1836,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto iC = min(nCount, m_itema.get_count());
+   auto iC = minimum(nCount, m_itema.get_count());
 
    bool bFirstInRow = true;
 
@@ -2397,9 +2397,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
       const ::size_i32 & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
 
-      sizeResult.cx = max(sizeResult.cx, size.cx);
+      sizeResult.cx = maximum(sizeResult.cx, size.cx);
 
-      sizeResult.cy = max(sizeResult.cy, size.cy);
+      sizeResult.cy = maximum(sizeResult.cy, size.cy);
 
    }
 

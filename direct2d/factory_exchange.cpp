@@ -13,7 +13,7 @@ extern CLASS_DECL_AURA image_array * g_pimagea;
 //{
 
 extern "C"
-void direct2d_factory_exchange()
+void direct2d_factory_exchange(::factory_map * pfactorymap)
    {
 
 
@@ -42,7 +42,7 @@ void direct2d_factory_exchange()
 //
 
 //extern "C"
-//void draw2d_factory_exchange()
+//void draw2d_factory_exchange(::factory_map * pfactorymap)
 //{
 //
 //   System.m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
@@ -53,7 +53,7 @@ void direct2d_factory_exchange()
 //void factory_exchange()
 //{
 //
-//   draw2d_factory_exchange();
+//   draw2d_factory_exchange(::factory_map * pfactorymap);
 //
 //}
 

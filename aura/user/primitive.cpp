@@ -2790,6 +2790,13 @@ namespace user
    }
 
 
+   void primitive::_task_transparent_mouse_event()
+   {
+
+
+   }
+
+
    void primitive::on_set_keyboard_focus()
    {
 

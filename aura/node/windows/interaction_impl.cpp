@@ -1877,7 +1877,7 @@ namespace windows
 
       get_window_text(str);
 
-      ansi_count_copy(pszString, str, (size_t) min(nMaxCount, str.get_length()));
+      ansi_count_copy(pszString, str, (size_t) minimum(nMaxCount, str.get_length()));
 
 
       return str.get_length();

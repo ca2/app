@@ -350,7 +350,7 @@ namespace file
 
          index iFind1 = strPath.find('/', iFind);
          index iFind2 = strPath.find('\\', iFind);
-         index iFind3 = min_non_neg(iFind1, iFind2);
+         index iFind3 = minimum_non_negative(iFind1, iFind2);
          if (iFind3 < 0)
          {
             string str = strPath.Mid(iFind);
@@ -781,7 +781,7 @@ namespace file
 
    index path::find_file_name() const
    {
-      return max(0, reverse_find(sep()) + 1);
+      return maximum(0, reverse_find(sep()) + 1);
    }
 
    string path::ext() const
@@ -797,7 +797,7 @@ namespace file
    path path::relative() const
    {
 
-      return Mid(max(0,m_iRelative));
+      return Mid(maximum(0,m_iRelative));
 
    }
 

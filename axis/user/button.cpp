@@ -390,8 +390,8 @@ namespace user
          {
             ::rectangle_i32 rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = min(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
-            rectDib.right = min(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
+            rectDib.bottom = minimum(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
+            rectDib.right = minimum(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
             //m_pimage->to(pgraphics, rectDib);
             m_pbitmap->m_pimage->bitmap_blend(pgraphics, rectDib);
             rectText.left += m_pbitmap->m_pimage->width();
@@ -757,7 +757,7 @@ namespace user
 
          double dH = (double) rectClient.height() / (double) pimage->height();
 
-         double dMin = min(min(dW, dH), 1.0);
+         double dMin = minimum(minimum(dW, dH), 1.0);
 
          rectAspect.right = (::i32) (pimage->width() * dMin);
 
@@ -823,7 +823,7 @@ namespace user
 
             double dH = (double)rectPadded.height() / (double)pimage->height();
 
-            double dMin = min(min(dW, dH), 1.0);
+            double dMin = minimum(minimum(dW, dH), 1.0);
 
             rectAspect.right = (::i32) (pimage->width() * dMin);
 

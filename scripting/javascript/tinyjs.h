@@ -310,7 +310,7 @@ public:
    /** example:
       \code
           void scRandInt(CScriptVar *ca, void *userdata) { ... }
-          tinyJS->addNative("function randInt(min, max)", scRandInt, 0);
+          tinyJS->addNative("function randInt(minimum, maximum)", scRandInt, 0);
       \endcode
 
       or

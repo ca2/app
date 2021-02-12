@@ -488,7 +488,7 @@ namespace simple_ui
 //
 //      }
 //
-//      i32 iBorderH = min(rectangle.height() / 2, 49);
+//      i32 iBorderH = minimum(rectangle.height() / 2, 49);
 //
 //      ::draw2d::brush_pointer br(e_create);
 //

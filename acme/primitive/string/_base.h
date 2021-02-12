@@ -400,7 +400,7 @@ public:
          if (memsizeOld > 0)
          {
 
-            auto memsizeCopy = min(memsizeOld, memsize);
+            auto memsizeCopy = minimum(memsizeOld, memsize);
 
             memcpy_dup(pNew->get_data(), pOld->get_data(), memsizeCopy);
 

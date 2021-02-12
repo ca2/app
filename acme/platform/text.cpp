@@ -41,7 +41,7 @@ CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const char * psz)
    
    string strGetText(__get_text(psz));
    
-   strncpy(pszText, strGetText, min(iLen, strGetText.get_length()));
+   strncpy(pszText, strGetText, minimum(iLen, strGetText.get_length()));
    
 }
 

@@ -555,10 +555,10 @@ namespace base
 //      //virtual ::e_status process_init();
 //
 //      virtual ::e_status init_draw2d();
-//      virtual bool draw2d_factory_exchange();
+//      virtual bool draw2d_factory_exchange(::factory_map * pfactorymap);
 //      virtual string draw2d_get_default_library_name();
 //
-//      virtual bool imaging_factory_exchange();
+//      virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
 //      virtual string imaging_get_default_library_name();
 //
 //      virtual ::e_status init_thread() override;

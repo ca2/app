@@ -324,16 +324,16 @@ namespace user
             if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (item < min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (item < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item > max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (item > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
 
@@ -398,7 +398,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -529,7 +529,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          set_need_redraw();
 

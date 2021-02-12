@@ -1657,7 +1657,7 @@ namespace filemanager
    //         iItemRange++)
    //   {
    //      auto & itemrange = range.ItemAt(iItemRange);
-   //      for (iItem = max(0, itemrange.get_lower_bound());
+   //      for (iItem = maximum(0, itemrange.get_lower_bound());
    //            iItem <= itemrange.get_upper_bound();
    //            iItem++)
    //      {

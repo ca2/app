@@ -2270,7 +2270,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   sync_array ptra;
 //
-//   ::count iScan = max(1, min(iCount - iStart, pgroup->thread_count()));
+//   ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
 //
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {

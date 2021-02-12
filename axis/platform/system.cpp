@@ -7,7 +7,7 @@
 #include "axis/const/idpool.h"
 
 
-void __node_axis_factory_exchange();
+void __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
 //int GetMainScreenRect(RECTANGLE_I32 * lprect);
@@ -148,7 +148,7 @@ namespace axis
 
       }
 
-      __node_axis_factory_exchange();
+      __node_axis_factory_exchange(::factory::get_factory_map());
 
       return estatus;
 
@@ -530,7 +530,7 @@ namespace axis
 
 
 
-void __node_axis_factory_exchange()
+void __node_axis_factory_exchange(::factory_map * pfactorymap)
 {
    
 }

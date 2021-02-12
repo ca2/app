@@ -4403,7 +4403,7 @@ namespace macos
       
 #endif
 
-      ::size_i32 sizeMin = imageBuffer2->size().min(sizeWindow);
+      ::size_i32 sizeMin = imageBuffer2->size().minimum(sizeWindow);
 
       g->draw(::rectangle_i32(sizeMin), imageBuffer2->g(), sizeMin);
       

@@ -412,7 +412,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //         __throw(memory_exception());
 //      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 //#endif
-//      ::count nAllocSize = max(nNewSize, m_nGrowBy);
+//      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 ////#undef new
 //      m_pData = (TYPE*) new byte[(size_t)nAllocSize * sizeof(TYPE)];
 //      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));

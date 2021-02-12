@@ -824,6 +824,9 @@ namespace windowing
       virtual void track_mouse_hover();
 
 
+      virtual void _task_transparent_mouse_event();
+
+
       virtual float get_dpi_for_window();
 
 

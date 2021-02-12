@@ -354,7 +354,7 @@ namespace windowing
    }
 
    
-   ::e_status windowing::release_capture()
+   ::e_status windowing::release_mouse_capture()
    {
 
       return error_interface_only;

@@ -400,7 +400,9 @@ namespace apex
 
       __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
-      ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+      ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation, bool bContainerized = false);
+
+      ::e_status do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
 
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
@@ -565,10 +567,10 @@ namespace apex
       //virtual ::e_status process_init();
 
       //virtual ::e_status init_draw2d();
-      //virtual ::e_status draw2d_factory_exchange();
+      //virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
       //virtual string draw2d_get_default_library_name();
 
-      //virtual bool imaging_factory_exchange();
+      //virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
       //virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;

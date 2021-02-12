@@ -122,7 +122,7 @@ namespace str
 
       }
 
-      iStart = min(iStart, iLen - iLenFind);
+      iStart = minimum(iStart, iLen - iLenFind);
 
       while (iStart >= 0)
       {
@@ -533,7 +533,7 @@ namespace str
       else
       {
 
-         p = psz + min(iStart, string_safe_length(psz) - 1);
+         p = psz + minimum(iStart, string_safe_length(psz) - 1);
 
       }
 

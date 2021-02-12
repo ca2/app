@@ -147,7 +147,7 @@ namespace helloaxis
 //
 //      double dPeriod = 1000.0 / dFps;
 //
-//      dPeriod = min(max(1.0, dPeriod), 1000.0);
+//      dPeriod = minimum(maximum(1.0, dPeriod), 1000.0);
 //
 //      //#ifdef WINDOWS_DESKTOP
 //      //
@@ -989,7 +989,7 @@ namespace helloaxis
 //
 //               double ratey = fHeight * 0.84 / size.cy;
 //
-//               font->create_pixel_font(os_font_name(e_font_sans), min(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+//               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
 //
 //               m_font = font;
 //
@@ -1100,7 +1100,7 @@ namespace helloaxis
 
       //   byte uchAlpha;
 
-      //   uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+      //   uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*      //   System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1251,9 +1251,9 @@ namespace helloaxis
 //
 //      double ratey = fHeight * 0.84 / size.cy;
 //
-////      font->create_pixel_font(m_pview->m_strFont, min(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+////      font->create_pixel_font(m_pview->m_strFont, minimum(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
 //
-//      m_dMinRadius = max(1.0, min(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx) / 46.0);
+//      m_dMinRadius = maximum(1.0, minimum(m_rectClient.height() * ratey, m_rectClient.width() * size.cy * ratey / size.cx) / 46.0);
 //
 //      m_dMaxRadius = m_dMinRadius * 2.3;
 //

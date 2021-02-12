@@ -194,15 +194,15 @@ CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
 /*
 CLASS_DECL_ACME bool x_intersect_rect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 {
-   prectangle->left = max(prect1->left, prect2->left);
-   prectangle->right = min(prect1->right, prect2->right);
+   prectangle->left = maximum(prect1->left, prect2->left);
+   prectangle->right = minimum(prect1->right, prect2->right);
    return prectangle->right >= prectangle->left;
 }
 
 CLASS_DECL_ACME bool y_intersect_rect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 {
-   prectangle->top = max(prect1->top, prect2->top);
-   prectangle->bottom = min(prect1->bottom, prect2->bottom);
+   prectangle->top = maximum(prect1->top, prect2->top);
+   prectangle->bottom = minimum(prect1->bottom, prect2->bottom);
    return prectangle->bottom >= prectangle->top;
 }
 */
@@ -217,10 +217,10 @@ CLASS_DECL_ACME bool y_intersect_rect(RECTANGLE_I32 * prectangle, const RECTANGL
 //
 //CLASS_DECL_ACME int_bool UnionRect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 //{
-//   prectangle->left = min(prect1->left, prect2->left);
-//   prectangle->top = min(prect1->top, prect2->top);
-//   prectangle->right = max(prect1->right, prect2->right);
-//   prectangle->bottom = max(prect1->bottom, prect2->bottom);
+//   prectangle->left = minimum(prect1->left, prect2->left);
+//   prectangle->top = minimum(prect1->top, prect2->top);
+//   prectangle->right = maximum(prect1->right, prect2->right);
+//   prectangle->bottom = maximum(prect1->bottom, prect2->bottom);
 //   return ((prectangle->right - prectangle->left) > 0) && ((prectangle->bottom - prectangle->top) > 0);
 //}
 //
@@ -296,7 +296,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -427,7 +427,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -586,7 +586,7 @@ int_bool *  pUsedDefaultChar)
      }
   }
 
-  i32 iLen = (i32) min(cbMultiByte, str.get_length());
+  i32 iLen = (i32) minimum(cbMultiByte, str.get_length());
 
   if(pMultiByteStr != nullptr)
 

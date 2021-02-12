@@ -242,7 +242,7 @@ namespace papaya
       inline millis default_value < millis > ()
       {
 
-         // estimate a delay of half of max millis positive value
+         // estimate a delay of half of maximum millis positive value
          return ::get_millis() - (MAXI64 >> 1);
 
       }

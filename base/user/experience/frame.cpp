@@ -706,7 +706,9 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object(this, "control_box"));
+         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object("control_box"));
+
+         m_pcontrolbox->initialize(this);
 
          m_pcontrolbox->m_pframewindow = m_pframewindow;
 
@@ -765,15 +767,18 @@ namespace experience
 
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
-      m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderHilight = color;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
-      m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderShadow = color;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
-      m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderDkShadow = color;
+      m_colorMoveableBorderDkShadow.alpha = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -968,7 +973,7 @@ namespace experience
 
          //auto sizeMinimum = m_pframewindow->get_window_minimum_size();
 
-         //auto sizeMove = m_pframewindow->m_windowrect.m_rectRestored.size().max(sizeMinimum);
+         //auto sizeMove = m_pframewindow->m_windowrect.m_rectRestored.size().maximum(sizeMinimum);
 
          //rectRequest.set(pointMove, sizeMove);
 

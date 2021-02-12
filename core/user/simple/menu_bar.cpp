@@ -625,7 +625,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
       ix += size.cx + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
       m_buttona[iItem].m_rectangle.right = ix;
       m_buttona[iItem].m_rectangle.top   = 0;
-      iy = max(iy, size.cy);
+      iy = maximum(iy, size.cy);
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {

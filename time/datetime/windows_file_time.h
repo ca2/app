@@ -13,7 +13,7 @@ namespace windows
       bool FileTimeToDosTime(const FILETIME & fileTime, ::u32 & dosTime);
       void UnixTimeToFileTime(::u32 unixTime, FILETIME & fileTime);
       bool FileTimeToUnixTime(const FILETIME & fileTime, ::u32 & unixTime);
-      bool GetSecondsSince1601(::u32 year, ::u32 month, ::u32 day, ::u32 hour, ::u32 min, ::u32 sec, ::u3264_t &resSeconds);
+      bool GetSecondsSince1601(::u32 year, ::u32 month, ::u32 day, ::u32 hour, ::u32 minimum, ::u32 sec, ::u3264_t &resSeconds);
 
 #if defined(WINDOWS)
 

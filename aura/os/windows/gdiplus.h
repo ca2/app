@@ -6,15 +6,15 @@
 
 #undef new
 
-#define min min
-#define max max
+#define minimum minimum
+#define maximum maximum
 
 #include <gdiplus.h>
 
 #define new ACME_NEW
 
-#undef min
-#undef max
+#undef minimum
+#undef maximum
 
 //using namespace Gdiplus;
 //

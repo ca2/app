@@ -2391,7 +2391,9 @@ struct plane_system;
 
 #endif
 
-typedef void(*PFN_factory_exchange)();
+class factory_map;
+
+typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 #ifdef WINDOWS
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);

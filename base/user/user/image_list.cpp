@@ -433,7 +433,7 @@ namespace user
 
                   double dH = (double)rectangle.height() / (double)pimageSrc->height();
 
-                  double dMin = min(dW, dH);
+                  double dMin = minimum(dW, dH);
 
                   ::size_i32 szNew = pimageSrc->get_size() * dMin;
 

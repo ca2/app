@@ -132,7 +132,7 @@ namespace str
          iStart = iLen + iStart;
       if (iLenFind > iLen)
          return nullptr;
-      iStart = min(iStart, iLen - iLenFind);
+      iStart = minimum(iStart, iLen - iLenFind);
       while (iStart >= 0)
       {
          if (wd32_ncmp(&psz[iStart], pszFind, iLenFind) == 0)
@@ -450,7 +450,7 @@ namespace str
       else
       {
 
-         p = psz + min(iStart, string_safe_length(psz) - 1);
+         p = psz + minimum(iStart, string_safe_length(psz) - 1);
 
       }
 

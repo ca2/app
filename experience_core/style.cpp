@@ -586,7 +586,7 @@ namespace experience
                if(tab_pane.m_pimage->is_set())
                {
                   size.cx += tab_pane.m_pimage->width() + 2;
-                  size.cy = max(size.cy,tab_pane.m_pimage->height());
+                  size.cy = maximum(size.cy,tab_pane.m_pimage->height());
                }
                cx = size.cx + 2;
 
@@ -679,7 +679,7 @@ namespace experience
                if(::is_ok(tab_pane.m_pimage))
                {
 
-                  size.cy = max(size.cy,tab_pane.m_pimage->size().cy);
+                  size.cy = maximum(size.cy,tab_pane.m_pimage->size().cy);
 
                }
 
@@ -1339,7 +1339,7 @@ namespace experience
 
             ::u32 tickFadeOut = 490;
 
-            byte uchAlpha = max(0u, min(255u, (byte) pbar->find_u32("tracking_alpha")));
+            byte uchAlpha = maximum(0u, minimum(255u, (byte) pbar->find_u32("tracking_alpha")));
 
             if (pbar->m_bTracking)
             {
@@ -1454,7 +1454,7 @@ namespace experience
 
                rectIntersect.intersect(rectMachineThumb, rectTrack);
 
-               i32 iArea = (i32)(max(1, rectIntersect.area()));
+               i32 iArea = (i32)(maximum(1, rectIntersect.area()));
 
                rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 

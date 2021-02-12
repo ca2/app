@@ -667,11 +667,11 @@ namespace draw2d_cairo
          {
             bMax = 0;
             b =(byte)(r1[0]  - r2[0]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[1]  - r2[1]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[2]  - r2[2]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;
@@ -959,9 +959,9 @@ namespace draw2d_cairo
       if (size.cy < 0)
          return true;
 
-      int xEnd = min(size.cx, min(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 
-      int yEnd = min(size.cy, min(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
          return false;

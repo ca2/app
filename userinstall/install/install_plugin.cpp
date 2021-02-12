@@ -7,11 +7,11 @@
 
 #undef new
 #if defined(WINDOWS)
-#define min min
-#define max max
+#define minimum minimum
+#define maximum maximum
 //#include <gdiplus.h>
-#undef min
-#undef max
+#undef minimum
+#undef maximum
 #endif
 
 

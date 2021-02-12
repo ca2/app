@@ -432,7 +432,7 @@ namespace experience_lite
 /*            if(tab_pane.m_pimage->is_set())
             {
 /*               size.cx += tab_pane.m_pimage->width() + 2;
-/*               size.cy = max(size.cy,tab_pane.m_pimage->height());
+/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -525,7 +525,7 @@ namespace experience_lite
 
 /*            if(tab_pane.m_pimage->m_p != NULL)
             {
-/*               size.cy = max(size.cy,tab_pane.m_pimage->size()->cy);
+/*               size.cy = maximum(size.cy,tab_pane.m_pimage->size()->cy);
             }
             cy = size.cy + 2;
 
@@ -688,7 +688,7 @@ namespace experience_lite
 
          ::u32 tickFadeOut = 490;
 
-         byte uchAlpha = max(0, min(255, pbar->prop("tracking_alpha").::u32()));
+         byte uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
 
          if (pbar->m_bTracking)
          {
@@ -734,7 +734,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
             if (dwFade < tickFadeIn)
             {
-               uchAlpha = (byte)min(255, max(0, (dwFade * 255 / tickFadeIn)));
+               uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
             }
             else
             {
@@ -748,7 +748,7 @@ namespace experience_lite
             ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
             if (dwFade < tickFadeOut)
             {
-               uchAlpha = (byte)(255 - min(255, max(0, (dwFade * 255 / tickFadeOut))));
+               uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
             }
             else
             {
@@ -780,7 +780,7 @@ namespace experience_lite
 
             rectIntersect.intersect(rectMachineThumb, rectTrack);
 
-            i32 iArea = (i32)(max(1, rectIntersect.area()));
+            i32 iArea = (i32)(maximum(1, rectIntersect.area()));
 
             rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 

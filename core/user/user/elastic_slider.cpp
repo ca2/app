@@ -271,8 +271,8 @@ namespace user
       i32 iWidth = 16;
       rectangle.top = rectClient.top;
       rectangle.bottom = rectClient.bottom;
-      rectangle.left = (::i32) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
-      rectangle.right = (::i32) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32) minimum(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rectangle.right = (::i32) minimum(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

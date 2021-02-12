@@ -256,15 +256,15 @@ namespace experience
 
          color.set_rgb(cr);
          color.hls_rate(0.0, 0.5, 0.0);
-         m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderHilight = color;
 
          color.set_rgb(cr);
          color.hls_rate(0.0, -0.3, 0.0);
-         m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderShadow = color;
 
          color.set_rgb(cr);
          color.hls_rate(8.0, -0.8, 0.0);
-         m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderDkShadow = color;
 
 
          m_colorCaptionTextBk = m_colorMoveableBorderShadow;
@@ -337,8 +337,7 @@ namespace experience
          m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
          m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
          m_colorDkShadow = crButtonDarkShadow;
-         m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
-
+         m_colorFrameBorder = argb(255, 0, 0, 0);
 
       }
 

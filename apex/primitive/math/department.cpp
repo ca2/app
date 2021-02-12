@@ -449,8 +449,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(i1 == i2)
    return i1;
-   i32 iMin = min(i1, i2);
-   i32 iMax = max(i1, i2);
+   i32 iMin = minimum(i1, i2);
+   i32 iMax = maximum(i1, i2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -473,8 +473,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   i32 iMin = min(ui1, ui2);
-   i32 iMax = max(ui1, ui2);
+   i32 iMin = minimum(ui1, ui2);
+   i32 iMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -498,8 +498,8 @@ namespace math
    //   // dRandRange == 0.0 is impossible event due this next statement;
    //   if (d1 == d2)
    //      return d1;
-   //   double dMin = min(d1, d2);
-   //   double dMax = max(d1, d2);
+   //   double dMin = minimum(d1, d2);
+   //   double dMax = maximum(d1, d2);
    //   double dRange = dMax - dMin;
    //   return (((double)(gen_rand() % (1000000000 + 1)) / 1000000000.0) * dRange) + dMin;
    //}
@@ -511,8 +511,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   u64 uiMin = min(ui1, ui2);
-   u64 uiMax = max(ui1, ui2);
+   u64 uiMin = minimum(ui1, ui2);
+   u64 uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

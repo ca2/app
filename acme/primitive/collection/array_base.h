@@ -84,7 +84,7 @@ public:
 
    TYPE *            m_pData;    // the actual array of data
    ::count   m_nSize;    // # of elements (upperBound - 1)
-   ::count   m_nMaxSize; // max allocated
+   ::count   m_nMaxSize; // maximum allocated
    ::count   m_nGrowBy;  // grow amount
 
    __declare_iterator_struct_ok(array_base, TYPE *, m_pelement, this->m_pelement >= this->m_pcontainer->m_pData && this->m_pelement < this->m_pcontainer->m_pData + this->m_pcontainer->m_nSize);

@@ -153,7 +153,7 @@ namespace user
       strsize data::get_sel_beg()
       {
 
-         return min(max(min_non_neg(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -161,7 +161,7 @@ namespace user
       strsize data::get_sel_end()
       {
 
-         return min(max(max(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -258,7 +258,7 @@ namespace user
             for (auto & pbox : pline->ptra())
             {
 
-               rBox.max(pbox->m_rectDevice);
+               rBox.maximum(pbox->m_rectDevice);
 
                yLast = pbox->m_rectHitTest.top;
 
@@ -491,7 +491,7 @@ namespace user
 
          }
 
-         return min(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
+         return minimum(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
 
       }
 
@@ -499,9 +499,9 @@ namespace user
       void data::_001Delete(strsize i1, strsize i2)
       {
 
-         strsize iSelBeg = min_non_neg(i1, i2);
+         strsize iSelBeg = minimum_non_negative(i1, i2);
 
-         strsize iSelEnd = max(i1, i2);
+         strsize iSelEnd = maximum(i1, i2);
 
          if (iSelBeg == iSelEnd)
          {
@@ -1592,7 +1592,7 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  iMaxCy = max(iMaxCy, (int) pbox->m_sizeBox.cy);
+                  iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy);
 
                   pbox->m_rectBox.top = y;
 
@@ -1659,9 +1659,9 @@ namespace user
                      if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                      {
 
-                        iBoxPosBeg = max(iBoxPosBeg, get_sel_beg());
+                        iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
 
-                        iBoxPosEnd = min(iBoxPosEnd, get_sel_end());
+                        iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
 
                         index iBeg = pline->pred_find_first([&](auto & pbox)
                         {

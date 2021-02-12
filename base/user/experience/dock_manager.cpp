@@ -479,7 +479,7 @@ namespace experience
 
             auto pwindowing = puser->windowing();
 
-            pwindowing->release_capture();
+            pwindowing->release_mouse_capture();
 
          }
 
@@ -527,7 +527,7 @@ namespace experience
 
       auto pwindowing = puser->windowing();
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 

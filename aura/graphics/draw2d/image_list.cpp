@@ -184,10 +184,10 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = min(m_size.cx, sz.cx);
-   sz.cy = min(m_size.cy, sz.cy);
-   pointOffset.x = min(m_size.cx, pointOffset.x);
-   pointOffset.y = min(m_size.cy, pointOffset.y);
+   sz.cx = minimum(m_size.cx, sz.cx);
+   sz.cy = minimum(m_size.cy, sz.cy);
+   pointOffset.x = minimum(m_size.cx, pointOffset.x);
+   pointOffset.y = minimum(m_size.cy, pointOffset.y);
 
    return pgraphics->draw(
       rectangle_f64(point, sz ), 
@@ -230,7 +230,7 @@ i32 image_list::reserve_image(int iItem)
 
    }
 
-   m_iSize = max(iItem + 1, m_iSize);
+   m_iSize = maximum(iItem + 1, m_iSize);
 
    return iItem;
 
@@ -336,7 +336,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   i32 iSize = min(m_size.cx, m_size.cy);
+//   i32 iSize = minimum(m_size.cx, m_size.cy);
 //
 //   ::file::path path = varFile.get_file_path();
 //

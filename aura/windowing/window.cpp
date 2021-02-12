@@ -1419,6 +1419,12 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
+   void window::_task_transparent_mouse_event()
+   {
+
+   }
+
+
    float window::get_dpi_for_window()
    {
 

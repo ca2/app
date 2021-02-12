@@ -118,7 +118,7 @@ namespace experience
       else
       {
 
-         psession->user()->windowing()->release_capture();
+         psession->user()->windowing()->release_mouse_capture();
 
       }
 
@@ -243,7 +243,7 @@ namespace experience
 
       auto pwindowing = puser->windowing();
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       if(pmouse)
       {
@@ -346,8 +346,8 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_top)
       {
@@ -359,7 +359,7 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
          if (pframewindow->find_i32("ysnap") > 1)
          {
@@ -381,8 +381,8 @@ namespace experience
          {
             rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_right)
       {
@@ -395,7 +395,7 @@ namespace experience
             rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
 
          }
-         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
       }
       else if(ehittest == hittest_sizing_bottom_right)
       {
@@ -439,8 +439,8 @@ namespace experience
             {
                rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
             }
-            rectWindow.right = max(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-            rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+            rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+            rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
          }
       }
       else if(ehittest == hittest_sizing_bottom)
@@ -453,7 +453,7 @@ namespace experience
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
 
          if (pframewindow->find_i32("ysnap") > 1)
@@ -478,8 +478,8 @@ namespace experience
          {
             rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_left)
       {
@@ -492,7 +492,7 @@ namespace experience
             rectWindow.left = m_rectWindowOrigin.right - sizeMin.cx;
 
          }
-         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
       }
       else
       {

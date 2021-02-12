@@ -754,7 +754,7 @@ namespace file
 
       __pointer(delete_item) pdelete;
 
-      uiCount = min(uiCount,(memsize) (get_length() - m_position));
+      uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
 
       if (uiCount == 0)
       {

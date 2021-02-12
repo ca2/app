@@ -554,7 +554,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    }
 
-   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
+   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter<i32>(long(iScan)));
 
@@ -598,7 +598,7 @@ template < typename PRED, typename PRED_END >
 
    }
 
-   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
+   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
    auto pobjectTaskEnd = create_task(predEnd);
 
@@ -700,7 +700,7 @@ auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart 
 
    }
 
-   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
+   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter(iScan));
 
@@ -732,7 +732,7 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
 
    }
 
-   ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
+   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
    auto pcounter = __new(::counter(iScan));
 
@@ -776,7 +776,7 @@ __pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index i
 
    }
 
-   iCount = max(1, iCount);
+   iCount = maximum(1, iCount);
 
    if (::get_task() == nullptr || ::get_task()->m_bitAvoidProcFork)
    {

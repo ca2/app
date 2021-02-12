@@ -374,7 +374,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::matter * pobject, ::count nGrowBy) //:
    //::matter(pobject)
 {
-//   this->m_nGrowBy = max(0, nGrowBy);
+//   this->m_nGrowBy = maximum(0, nGrowBy);
 //   this->m_pData = nullptr;
 //   __count(this->m_nSize) = this->m_nMaxSize = 0;
 }

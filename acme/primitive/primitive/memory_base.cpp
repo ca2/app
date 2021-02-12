@@ -203,7 +203,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       if (!m_memory.m_bOwn)
       {
 
-         ::memcpy_dup(pb, m_memory.m_pbStorage, (memsize) min(m_memory.m_iSize, dwAllocation));
+         ::memcpy_dup(pb, m_memory.m_pbStorage, (memsize) minimum(m_memory.m_iSize, dwAllocation));
 
 
       }
@@ -366,7 +366,7 @@ stream & memory_base::read(::stream & stream)
 void memory_base::delete_begin(memsize iSize)
 {
 
-   iSize = max(0,min(get_size(),iSize));
+   iSize = maximum(0,minimum(get_size(),iSize));
 
    m_memory.m_iOffset += iSize;
 
@@ -443,7 +443,7 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
       if (filesize >= 0)
       {
 
-         if (filesize > ::numeric_info < memsize> ::max())
+         if (filesize > ::numeric_info < memsize> ::maximum())
          {
 
             __throw(memory_exception());
@@ -927,7 +927,7 @@ void memory_base::copy_from(const void * pdata, memsize s)
 
    defer_set_size(s);
 
-   ::memcpy_dup(get_data(), pdata, (size_t)min(this->get_size(), s));
+   ::memcpy_dup(get_data(), pdata, (size_t)minimum(this->get_size(), s));
 
 }
 
@@ -942,7 +942,7 @@ void memory_base::copy_to(void * pdata, memsize s) const
 
    }
 
-   ::memcpy_dup(pdata, get_data(), (size_t)min(this->get_size(), s));
+   ::memcpy_dup(pdata, get_data(), (size_t)minimum(this->get_size(), s));
 
 }
 
@@ -1193,7 +1193,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    ::str::base64 base64;
 
-   str = base64.encode({&get_data()[pos], min(get_size() - pos, size)});
+   str = base64.encode({&get_data()[pos], minimum(get_size() - pos, size)});
 
 }
 
@@ -1588,7 +1588,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
 
       memsize iSize = get_size();
 
-      memsize iMove = iSize - min(iSize, iStartDst + iCountDst);
+      memsize iMove = iSize - minimum(iSize, iStartDst + iCountDst);
 
       allocate_add_up(iCountSrc - iCountDst);
 
@@ -1603,7 +1603,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
 
       memsize iSize = get_size();
 
-      memsize iMove = iSize - min(iSize, iStartDst + iCountDst);
+      memsize iMove = iSize - minimum(iSize, iStartDst + iCountDst);
 
       ::__memmov(&get_data()[iStartDst + iCountSrc], &get_data()[iStartDst + iCountDst], iMove);
 

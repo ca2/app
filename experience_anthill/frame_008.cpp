@@ -331,7 +331,7 @@ SizingNone:
 
          }
 
-         //if (m_pframewindow->is_active())
+         //if (m_pframewindow->is_active_window())
          //{
 
          //   ::rectangle_i32 rectA(rectClient);
@@ -516,7 +516,7 @@ SizingNone:
 
                //   }
 
-               //   if (m_pframewindow->is_active())
+               //   if (m_pframewindow->is_active_window())
                //   {
 
                //      ::rectangle_i32 rectA(rectClient);

@@ -25,9 +25,9 @@
 //bool x_intersect_rect(RECTANGLE_I32 * prectangle, const rectangle_i32 & prect1, const rectangle_i32 & prect2)
 //{
 //
-//   prectangle->left   = max(prect1->left, prect2->left);
+//   prectangle->left   = maximum(prect1->left, prect2->left);
 //
-//   prectangle->right  = min(prect1->right, prect2->right);
+//   prectangle->right  = minimum(prect1->right, prect2->right);
 //
 //   if(prectangle->right > prectangle->left)
 //   {
@@ -48,9 +48,9 @@
 //bool y_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & prect1,const rectangle_i32 & prect2)
 //{
 //
-//   prectangle->top     = max(prect1->top,prect2->top);
+//   prectangle->top     = maximum(prect1->top,prect2->top);
 //
-//   prectangle->bottom  = min(prect1->bottom,prect2->bottom);
+//   prectangle->bottom  = minimum(prect1->bottom,prect2->bottom);
 //
 //   if(prectangle->top < prectangle->bottom)
 //   {
@@ -73,9 +73,9 @@
 //bool x_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prectangle->left    = max(rect1.left,rect2.left);
+//   prectangle->left    = maximum(rect1.left,rect2.left);
 //
-//   prectangle->right   = min(rect1.right,rect2.right);
+//   prectangle->right   = minimum(rect1.right,rect2.right);
 //
 //   if(prectangle->right >= prectangle->left)
 //   {
@@ -100,9 +100,9 @@
 //bool y_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prectangle->top     = max(rect1.top,rect2.top);
+//   prectangle->top     = maximum(rect1.top,rect2.top);
 //
-//   prectangle->bottom  = min(rect1.bottom,rect2.bottom);
+//   prectangle->bottom  = minimum(rect1.bottom,rect2.bottom);
 //
 //   if(prectangle->top <= prectangle->bottom)
 //   {
@@ -148,9 +148,9 @@
 //bool x_left_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prectangle->left    = max(rect1.left,rect2.left);
+//   prectangle->left    = maximum(rect1.left,rect2.left);
 //
-//   prectangle->right   = min(rect1.right,rect2.right);
+//   prectangle->right   = minimum(rect1.right,rect2.right);
 //
 //   if(prectangle->right > prectangle->left || (prectangle->right == prectangle->left && rect1.left == rect2.left))
 //   {
@@ -175,9 +175,9 @@
 //bool y_top_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1, const rectangle_i32 & rect2)
 //{
 //
-//   prectangle->top     = max(rect1.top, rect2.top);
+//   prectangle->top     = maximum(rect1.top, rect2.top);
 //
-//   prectangle->bottom  = min(rect1.bottom, rect2.bottom);
+//   prectangle->bottom  = minimum(rect1.bottom, rect2.bottom);
 //
 //   if(prectangle->top < prectangle->bottom || (prectangle->top == prectangle->bottom && rect1.top == rect2.top))
 //   {
@@ -339,8 +339,8 @@
 //
 //bool x_intersect_rect(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
-//   prectangle->left    = max(prect1->left, prect2->left);
-//   prectangle->right   = min(prect1->right, prect2->right);
+//   prectangle->left    = maximum(prect1->left, prect2->left);
+//   prectangle->right   = minimum(prect1->right, prect2->right);
 //   if(prectangle->right > prectangle->left)
 //   {
 //      return true;
@@ -354,8 +354,8 @@
 //
 //bool y_intersect_rect(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
-//   prectangle->top     = max(prect1->top, prect2->top);
-//   prectangle->bottom  = min(prect1->bottom, prect2->bottom);
+//   prectangle->top     = maximum(prect1->top, prect2->top);
+//   prectangle->bottom  = minimum(prect1->bottom, prect2->bottom);
 //   if(prectangle->top < prectangle->bottom)
 //   {
 //      return true;
@@ -372,8 +372,8 @@
 //
 //bool x_null_intersect_rect(RECTANGLE_F64 * prectangle,const RECTANGLE_F64 * prect1,const RECTANGLE_F64 * prect2)
 //{
-//   prectangle->left    = max(prect1->left,prect2->left);
-//   prectangle->right   = min(prect1->right,prect2->right);
+//   prectangle->left    = maximum(prect1->left,prect2->left);
+//   prectangle->right   = minimum(prect1->right,prect2->right);
 //   if(prectangle->right >= prectangle->left)
 //   {
 //      return true;
@@ -387,8 +387,8 @@
 //
 //bool y_null_intersect_rect(RECTANGLE_F64 * prectangle,const RECTANGLE_F64 * prect1,const RECTANGLE_F64 * prect2)
 //{
-//   prectangle->top     = max(prect1->top,prect2->top);
-//   prectangle->bottom  = min(prect1->bottom,prect2->bottom);
+//   prectangle->top     = maximum(prect1->top,prect2->top);
+//   prectangle->bottom  = minimum(prect1->bottom,prect2->bottom);
 //   if(prectangle->top <= prectangle->bottom)
 //   {
 //      return true;
@@ -436,10 +436,10 @@
 //      *prectangle = *prect1;
 //      return true;
 //   }
-//   prectangle->left    = min(prect1->left, prect2->left);
-//   prectangle->right   = max(prect1->right, prect2->right);
-//   prectangle->top     = min(prect1->top, prect2->top);
-//   prectangle->bottom  = max(prect1->bottom, prect2->bottom);
+//   prectangle->left    = minimum(prect1->left, prect2->left);
+//   prectangle->right   = maximum(prect1->right, prect2->right);
+//   prectangle->top     = minimum(prect1->top, prect2->top);
+//   prectangle->bottom  = maximum(prect1->bottom, prect2->bottom);
 //   if(prectangle->right > prectangle->left &&
 //         prectangle->bottom > prectangle->top)
 //   {
@@ -621,8 +621,8 @@
 //bool x_intersect_rect(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
 //
-//   prectangle->left    = max(prect1->left, prect2->left);
-//   prectangle->right   = min(prect1->right, prect2->right);
+//   prectangle->left    = maximum(prect1->left, prect2->left);
+//   prectangle->right   = minimum(prect1->right, prect2->right);
 //
 //   if(prectangle->right > prectangle->left)
 //   {
@@ -638,8 +638,8 @@
 //
 //bool y_intersect_rect(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
-//   prectangle->top     = max(prect1->top, prect2->top);
-//   prectangle->bottom  = min(prect1->bottom, prect2->bottom);
+//   prectangle->top     = maximum(prect1->top, prect2->top);
+//   prectangle->bottom  = minimum(prect1->bottom, prect2->bottom);
 //   if(prectangle->top < prectangle->bottom)
 //   {
 //      return true;
@@ -689,10 +689,10 @@
 //      *prectangle = *prect1;
 //      return true;
 //   }
-//   prectangle->left    = min(prect1->left, prect2->left);
-//   prectangle->right   = max(prect1->right, prect2->right);
-//   prectangle->top     = min(prect1->top, prect2->top);
-//   prectangle->bottom  = max(prect1->bottom, prect2->bottom);
+//   prectangle->left    = minimum(prect1->left, prect2->left);
+//   prectangle->right   = maximum(prect1->right, prect2->right);
+//   prectangle->top     = minimum(prect1->top, prect2->top);
+//   prectangle->bottom  = maximum(prect1->bottom, prect2->bottom);
 //   if(prectangle->right > prectangle->left &&
 //         prectangle->bottom > prectangle->top)
 //   {

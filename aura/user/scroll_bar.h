@@ -32,7 +32,7 @@ namespace user
       //virtual bool create_interaction(enum_orientation eorientation, ::user::interaction * puiParent);
 
 
-      virtual void post_scroll_message(enum_scroll_bar_command ecommand);
+      virtual void post_scroll_message(enum_scroll_command ecommand);
 
       virtual ::point_i32 get_parent_viewport_offset() const override;
       virtual ::point_i32 get_ascendant_viewport_offset() const override;

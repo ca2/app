@@ -365,7 +365,7 @@ namespace draw2d
 //
 //      //  POINT_I32 *             point_i32;         // the bezier buffer
 //      POINTFX             pointStart;    // The starting point_i32 of a curve
-//      u32               dwMaxPts = size_i32/sizeof(POINTFX); // max possible pts.
+//      u32               dwMaxPts = size_i32/sizeof(POINTFX); // maximum possible pts.
 //      u32               dwBuffSize;
 //
 //      dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.

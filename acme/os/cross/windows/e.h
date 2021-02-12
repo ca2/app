@@ -21366,7 +21366,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Failed to query Kerberos package to obtain max token size.
+// Failed to query Kerberos package to obtain maximum token size.
 //
 #define ERROR_IPSEC_IKE_FAILQUERYSSP     13854L
 

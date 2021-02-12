@@ -62,7 +62,7 @@ namespace simple_shader
 
       //rectangle_i32 rectangle;
 
-      //int iSize = min(m_rectangle.width(), m_rectangle.height());
+      //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 

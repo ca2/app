@@ -149,7 +149,7 @@ namespace simple_ui
 
       auto pwindowing = puser->windowing();
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       m_bDrag = false;
 

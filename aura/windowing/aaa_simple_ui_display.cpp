@@ -629,11 +629,11 @@ namespace windowing
 //
 //         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &info);
 //
-//         sizeLine.cx = max(sizeLine.cx, info.x + info.width - infoDummy.width);
+//         sizeLine.cx = maximum(sizeLine.cx, info.x + info.width - infoDummy.width);
 //
-//         m_iTextAscent = max(m_iTextAscent, info.y);
+//         m_iTextAscent = maximum(m_iTextAscent, info.y);
 //
-//         sizeLine.cy = max(sizeLine.cy, info.height);
+//         sizeLine.cy = maximum(sizeLine.cy, info.height);
 //
 //      }
 //
@@ -659,11 +659,11 @@ namespace windowing
 //
 //         }
 //
-//         iMaxButtonTextWidth = max(iMaxButtonTextWidth, infoText.width);
+//         iMaxButtonTextWidth = maximum(iMaxButtonTextWidth, infoText.width);
 //
-//         m_iTextAscent = max(m_iTextAscent, info.y);
+//         m_iTextAscent = maximum(m_iTextAscent, info.y);
 //
-//         sizeLine.cy = max(sizeLine.cy, infoText.height);
+//         sizeLine.cy = maximum(sizeLine.cy, infoText.height);
 //
 //      }
 //
@@ -675,7 +675,7 @@ namespace windowing
 //
 //      ::size_i32 sizeTotal;
 //
-//      sizeTotal.cx = max(m_iMarginLeft + sizeLine.cx + m_iMarginRight,
+//      sizeTotal.cx = maximum(m_iMarginLeft + sizeLine.cx + m_iMarginRight,
 //                         m_iMarginLeft + m_iButtonWidth * m_buttona.get_count() +
 //                         (m_iButtonHSpacing) * (m_buttona.get_count() - 1) + m_iMarginRight);
 //
@@ -695,7 +695,7 @@ namespace windowing
 //
 //      int iButtonWidth = 100;
 //
-//      m_size = m_size.max(sizeTotal);
+//      m_size = m_size.maximum(sizeTotal);
 //
 //      int iScreenCount = 0;
 //

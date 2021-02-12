@@ -315,7 +315,7 @@ inline void copy_colorref(::pixmap * ppixmapDst, const ::size_i32 & size, const 
 inline void copy_colorref(::pixmap * ppixmapDst, const ::pixmap * ppixmapSrc)
 {
 
-   copy_colorref(ppixmapDst, ppixmapDst->size().min(ppixmapSrc->size()), ppixmapSrc);
+   copy_colorref(ppixmapDst, ppixmapDst->size().minimum(ppixmapSrc->size()), ppixmapSrc);
 
 }
 

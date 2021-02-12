@@ -95,7 +95,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
       iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
    }
 
-   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+   iCa2Priority = maximum(iCa2Min, minimum(iCa2Max, iCa2Priority));
 
    return (e_priority) iCa2Priority;
 

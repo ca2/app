@@ -195,7 +195,7 @@ namespace simple_ui
       string strExtent3;
       index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
       index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
-      iLineEnd = min(iLineEnd,straLines.get_upper_bound());
+      iLineEnd = minimum(iLineEnd,straLines.get_upper_bound());
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.remove_all();
@@ -212,8 +212,8 @@ namespace simple_ui
          strsize i1 = iSelStart - lim;
          strsize i2 = iSelEnd - lim;
          strsize i3 = iCursor - lim;
-         strsize iStart = max(0,i1);
-         strsize iEnd = min(i2,strLine.get_length());
+         strsize iStart = maximum(0,i1);
+         strsize iEnd = minimum(i2,strLine.get_length());
          ::str::fill(strLine,'*');
          str1 = strLine.Mid(0,iStart);
          str2 = strLine.Mid(iStart,iEnd - iStart);
@@ -254,8 +254,8 @@ namespace simple_ui
          pgraphics->set(brushText);
          pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
-         //maxcy = max(size1.cy, size2.cy);
-         //maxcy = max(maxcy, size3.cy);
+         //maxcy = maximum(size1.cy, size2.cy);
+         //maxcy = maximum(maxcy, size3.cy);
          if(bFocus && bCaretOn && i3 == str1.get_length())
          {
             

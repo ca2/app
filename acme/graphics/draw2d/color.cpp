@@ -123,13 +123,13 @@ namespace color
       s = 0;
       l = 0;
 
-      v = max(r, g);
+      v = maximum(r, g);
 
-      v = max(v, b);
+      v = maximum(v, b);
 
-      m = min(r, g);
+      m = minimum(r, g);
 
-      m = min(m, b);
+      m = minimum(m, b);
 
       l = (m + v) / 2.0;
 
@@ -184,8 +184,8 @@ namespace color
 
       h /= 6.0;
 
-      /*double dCMin = min(dR, min(dG, dB));;
-      double dCMax = max(dR, max(dG, dB));
+      /*double dCMin = minimum(dR, minimum(dG, dB));;
+      double dCMax = maximum(dR, maximum(dG, dB));
       double dA;
 
       if(dR > dB)
@@ -816,13 +816,13 @@ namespace color
       double dRed = m_bRed;
       double dGreen = m_bGreen;
       double dBlue = m_bBlue;
-      // max and min rgb values
+      // maximum and minimum rgb values
       double dMax, dMin;
-      // intermediate value: % of spread from max
+      // intermediate value: % of spread from maximum
       double dRedDelta, dGreenDelta, dBlueDelta;
       // calculate lightness
-      dMax = max(max(dRed, dGreen), dBlue);
-      dMin = min(min(dRed, dGreen), dBlue);
+      dMax = maximum(maximum(dRed, dGreen), dBlue);
+      dMin = minimum(minimum(dRed, dGreen), dBlue);
       dLightness = (byte) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
       if(dMax == dMin)
       {

@@ -1642,9 +1642,9 @@ void string_array_base < Type, RawType > ::add_lines(const Type & str,bool bAddE
       if(iFindB < 0)
          goto n_only;
 
-      iFind1 = min(iFindA,iFindB);
+      iFind1 = minimum(iFindA,iFindB);
 
-      iFind2 = max(iFindA,iFindB);
+      iFind2 = maximum(iFindA,iFindB);
 
       if(iFind1 > iPos)
       {
@@ -3142,7 +3142,7 @@ add(strMid);
 }
 else
 {
-::index iLen = max(str.get_length(), iMinLength);
+::index iLen = maximum(str.get_length(), iMinLength);
 for(::index i = 0; i < stra.get_size(); i++)
 {
 Type & strMid = stra[i].Left(iLength);

@@ -134,19 +134,19 @@ namespace calculator
             }
             else if (str::ends_eat_ci(strExp, "minute"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "minutes"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
-            else if (str::ends_eat_ci(strExp, "min"))
+            else if (str::ends_eat_ci(strExp, "minimum"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "mins"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "days"))
             {
@@ -154,7 +154,7 @@ namespace calculator
             }
             else if (str::ends_eat_ci(strExp, "minutes"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "hours"))
             {
@@ -282,7 +282,7 @@ namespace calculator
                            m_result.m_dI = 0.0;
                            strVal = m_result.to_string();
                         }
-                        else if (strSource == "min")
+                        else if (strSource == "minimum")
                         {
                            m_result.m_dR = 1.0 / (60.0 * m_result.m_dR);
                            m_result.m_dI = 0.0;

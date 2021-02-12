@@ -182,7 +182,7 @@
          COPYDATASTRUCT cds;
 
          cds.dwData = (unsigned int)message;
-         cds.cbData = (unsigned int)max(0,len);
+         cds.cbData = (unsigned int)maximum(0,len);
          cds.lpData = (void *)pdata;
 
 

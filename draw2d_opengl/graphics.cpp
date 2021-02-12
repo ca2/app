@@ -1881,7 +1881,7 @@ namespace draw2d_opengl
       //lpMetrics->tmDescent             = (::i32) (dSize * family.GetCellDescent(iStyle) / dHeight);
       //lpMetrics->tmHeight              = (::i32)dFontHeight;
 
-      //double dLineSpacing = max(dFontHeight, dSize * family.GetLineSpacing(iStyle) / dHeight);
+      //double dLineSpacing = maximum(dFontHeight, dSize * family.GetLineSpacing(iStyle) / dHeight);
 
       //lpMetrics->tmInternalLeading     = (::i32) (lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight);
       //lpMetrics->tmExternalLeading     = (::i32) (dLineSpacing - (lpMetrics->tmAscent + lpMetrics->tmDescent));
@@ -2684,8 +2684,8 @@ namespace draw2d_opengl
 //
 //         imageWork4.Fill(255, 0, 0, 0);
 //
-//         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-//                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+//         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+//                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 //
 //         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 //
@@ -2811,8 +2811,8 @@ namespace draw2d_opengl
 
          imageWork4.Fill(255, 0, 0, 0);
 
-         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
          imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 

@@ -1363,6 +1363,14 @@ namespace user
    }
 
 
+   void interaction_impl::_task_transparent_mouse_event()
+   {
+
+      m_pwindow->_task_transparent_mouse_event();
+
+   }
+
+
    void interaction_impl::_001OnCaptureChanged(::message::message * pmessage)
    {
 
@@ -2270,35 +2278,20 @@ namespace user
 //   }
 
 
-//   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      return ::GetWindowLongPtr(get_handle(), nIndex);
-//
-//#else
-//
-//      return ::user::primitive_impl::get_window_long_ptr(nIndex);
-//
-//#endif
-//   }
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
+   {
+
+      return m_pwindow->get_window_long_ptr(nIndex);
+
+   }
 
 
-//   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      return ::SetWindowLongPtr(get_handle(), nIndex, lValue);
-//
-//#else
-//
-//      return ::user::primitive_impl::set_window_long_ptr(nIndex, lValue);
-//
-//#endif
-//
-//   }
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+   {
+
+      return m_pwindow->set_window_long_ptr(nIndex, lValue);
+
+   }
 
 
    //bool interaction_impl::ReleaseCapture()
@@ -5469,7 +5462,7 @@ namespace user
 
             int jArea = raTest[j].area();
 
-            int iMinArea = max(iArea, jArea);
+            int iMinArea = maximum(iArea, jArea);
 
             if (raTest[i].intersection(raTest[j]).area() == iMinArea)
             {
@@ -5510,7 +5503,7 @@ namespace user
 
             int jArea = raTest[j].area();
 
-            int iMaxArea = max(iArea, jArea);
+            int iMaxArea = maximum(iArea, jArea);
 
             if (raTest[i].intersection(raTest[j]).area() < iMaxArea / 3)
             {

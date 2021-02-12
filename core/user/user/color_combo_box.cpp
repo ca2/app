@@ -79,7 +79,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      pwindowing->release_capture();
+      pwindowing->release_mouse_capture();
 
       if (m_bMouseDown)
       {

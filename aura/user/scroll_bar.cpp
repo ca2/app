@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(enum_scroll_bar_command ecommand)
+   void scroll_bar::post_scroll_message(enum_scroll_command ecommand)
    {
 
       auto pscroll = __new(::message::scroll);

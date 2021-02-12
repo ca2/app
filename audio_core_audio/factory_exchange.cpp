@@ -30,7 +30,7 @@
 
 
 extern "C"
-void audio_core_audio_factory_exchange()
+void audio_core_audio_factory_exchange(::factory_map * pfactorymap)
 {
 
    //::multimedia::audio_core_audio::factory_exchange factoryexchange();

@@ -123,7 +123,7 @@ const char* matter::debug_note() const
 i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = m_countReference++;
+   auto c = ++m_countReference;
 
 #if OBJ_REF_DBG
 
@@ -139,7 +139,7 @@ i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = m_countReference--;
+   auto c = --m_countReference;
 
 #if OBJ_REF_DBG
 

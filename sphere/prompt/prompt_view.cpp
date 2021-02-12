@@ -133,7 +133,7 @@ namespace prompt
       
       i32 iH = rectClient.height() / 2;
       
-      iH = min(iH, 120);
+      iH = minimum(iH, 120);
       
       double r = (double) iW / (double) iH;
       double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();

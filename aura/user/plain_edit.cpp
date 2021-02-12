@@ -50,7 +50,7 @@ void _001AddPacks(string_to_string & base64map, string & str)
 
       strsize iEncoding2 = str.find(';', iMime + 1);
 
-      strsize iEncoding = min_non_neg(iEncoding1, iEncoding2);
+      strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
 
       if (iEncoding <= iMime)
       {
@@ -470,7 +470,7 @@ namespace user
 
       {
 
-         i32 iEnd = iSelEnd;
+         auto iEnd = iSelEnd;
 
          m_iLastSelEndLine = plain_edit_sel_to_line_x(pgraphics, iEnd, m_iLastSelEndX);
 
@@ -579,8 +579,8 @@ namespace user
                   iErrorEnd = m_errora[0].m_iEnd;
                   iErrorBeg -= lim;
                   iErrorEnd -= lim;
-                  iErrorBeg = max(0, iErrorBeg);
-                  iErrorEnd = min(iErrorEnd, strLine.get_length());
+                  iErrorBeg = maximum(0, iErrorBeg);
+                  iErrorEnd = minimum(iErrorEnd, strLine.get_length());
 
                }
 
@@ -689,8 +689,8 @@ namespace user
                pgraphics->fill_rectangle(
                ::rectd_dim((double)((double)left + x1),
                (double)y,
-               (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
+               (double)minimum(x2-x1, (double)rectClient.right - ((double)left + x1)),
+               (double)minimum((double)m_dLineHeight, (double)rectClient.bottom - y)),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -703,8 +703,8 @@ namespace user
                pgraphics->fill_rectangle(
                   ::rectd_dim((double)((double)left + compose1),
                   (double)y,
-                  (double)min(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
-                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
+                  (double)minimum(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
+                  (double)minimum((double)m_dLineHeight, (double)rectClient.bottom - y)),
                   colorComposeBk);
 
                pgraphics->set(brushTextSel);
@@ -767,7 +767,7 @@ namespace user
 
                double xA = plain_edit_get_line_extent(pgraphics, iLine, iErrorBeg);
 
-               double xB = plain_edit_get_line_extent(pgraphics, iLine, min(iErrorEnd, strExtent1.length()));
+               double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
                ::draw2d::pen_pointer pen(e_create);
 
@@ -1648,13 +1648,13 @@ namespace user
       if (x > 0 && x < get_viewport_offset().x)
       {
 
-         xViewport = max(0, x - rectClient.width() / 2);
+         xViewport = maximum(0, x - rectClient.width() / 2);
 
       }
       else if (x > rectClient.width())
       {
 
-         xViewport = max(0, x - rectClient.width() / 2);
+         xViewport = maximum(0, x - rectClient.width() / 2);
 
       }
 
@@ -1800,7 +1800,7 @@ namespace user
 
          int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectClient.height());
 
-         index iCandidateCursorOffset = (::index) (min((double) max(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
+         index iCandidateCursorOffset = (::index) (minimum((double) maximum(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
 
          if (iCandidateCursorOffset < iCurrentPageOffsetStart)
          {
@@ -2086,13 +2086,13 @@ namespace user
 
       m_iLineCount = (::count) ceil((double)rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
-      m_iLineStart = bLoadFullFile ? 0 : max(0, m_iLineOffset);
+      m_iLineStart = bLoadFullFile ? 0 : maximum(0, m_iLineOffset);
 
-      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
+      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : minimum(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
 
       if (m_iLineOffset < 0)
       {
@@ -2193,7 +2193,7 @@ namespace user
 
          iLen = m_iaLineLen[iLine];
 
-         iStrLen = max(0, iLen - (m_iaLineEnd[iLine] & 255));
+         iStrLen = maximum(0, iLen - (m_iaLineEnd[iLine] & 255));
 
          if (iPos + iStrLen > m_iViewSize)
          {
@@ -2368,7 +2368,7 @@ namespace user
       //if (iLineUpdate < 0)
       //{
 
-      //   m_sizeTotal.cy = (((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight);
+      //   m_sizeTotal.cy = (((i32)m_iaLineLen.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       //   const ::size_i32 & sizePage;
 
@@ -2538,13 +2538,13 @@ namespace user
 
       m_iLineCount = (::count) ceil((double) rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
-      m_iLineStart = bLoadFullFile ? 0 : max(0, m_iLineOffset);
+      m_iLineStart = bLoadFullFile ? 0 : maximum(0, m_iLineOffset);
 
-      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : min(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
+      m_iLineEnd = bLoadFullFile ? m_iaLineLen.get_size() : minimum(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
 
       if (m_iLineOffset < 0)
       {
@@ -2648,7 +2648,7 @@ namespace user
 
          iLen = m_iaLineLen[iLine];
 
-         iStrLen = max(0, iLen - (m_iaLineEnd[iLine] & 255));
+         iStrLen = maximum(0, iLen - (m_iaLineEnd[iLine] & 255));
 
          if (iPos + iStrLen > m_iViewSize)
          {
@@ -2856,7 +2856,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_dLineHeight));
+         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_dLineHeight));
 
          ::size_f64 sizePage;
 
@@ -4513,7 +4513,7 @@ finished_update:
 
                         __memset(buf, 0, sizeof(buf));
 
-                        strsize iProperBegin = max(0, m_ptree->m_iSelEnd - 256);
+                        strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                         m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
                         m_ptree->m_peditfile->read(buf, sizeof(buf));
@@ -4534,7 +4534,7 @@ finished_update:
                            if (psz == nullptr)
                            {
 
-                              psz = max((char *) buf, (char *) &buf[iCur - 1]);
+                              psz = maximum((char *) buf, (char *) &buf[iCur - 1]);
 
                            }
 
@@ -4754,8 +4754,8 @@ finished_update:
                   {
                      char buf[64];
                      char * psz;
-                     m_ptree->m_peditfile->seek(max(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
-                     psz = &buf[min(32, m_ptree->m_iSelEnd)];
+                     m_ptree->m_peditfile->seek(maximum(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
+                     psz = &buf[minimum(32, m_ptree->m_iSelEnd)];
                      memsize uRead = m_ptree->m_peditfile->read(buf, 64);
                      if (uRead == 2 &&
                            psz[0] == '\r' &&
@@ -5470,7 +5470,7 @@ finished_update:
             {
                char buf[512];
                __memset(buf, 0, sizeof(buf));
-               strsize iProperBegin = max(0, m_ptree->m_iSelEnd - 256);
+               strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
                m_ptree->m_peditfile->read(buf, sizeof(buf));

@@ -3148,7 +3148,7 @@ bool payload::array_contains(const char * psz, index find, ::count count) const
       return propset().contains_value(psz, find, count);
    default:
    {
-      index upperbound = min(array_get_upper_bound(), find + count - 1);
+      index upperbound = minimum(array_get_upper_bound(), find + count - 1);
       for(index i = find; i <= upperbound; i++)
       {
          if(at(i) == psz)
@@ -3177,7 +3177,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       return propset().contains_value_ci(psz, find, last);
    default:
    {
-      index upperbound = min(array_get_upper_bound(), last);
+      index upperbound = minimum(array_get_upper_bound(), last);
       for(index i = find; i <= upperbound; i++)
       {
          if(at(i).get_string().compare_ci(psz) == 0)

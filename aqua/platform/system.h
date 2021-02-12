@@ -39,7 +39,7 @@ namespace aqua
 
 
 
-      virtual void defer_audio();
+      virtual ::e_status create_audio();
 
       virtual ::aqua::audio* defer_get_audio();
 

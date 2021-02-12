@@ -324,8 +324,8 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//#undef min
-//#undef max
+//#undef minimum
+//#undef maximum
 //
 //
 //#define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -334,16 +334,16 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 ////#ifdef __cplusplus
-////#define max(a, b) (((b) < (a)) ? (a) : (b))
-////#define min(a, b) (((a) < (b)) ? (a) : (b))
+////#define maximum(a, b) (((b) < (a)) ? (a) : (b))
+////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
 ////#include "aura/primitive/comparison/_c.h"
 ////#else
-////#define max(a, b) (((a) > (b)) ? (a) : (b))
-////#define min(a, b) (((a) < (b)) ? (a) : (b))
+////#define maximum(a, b) (((a) > (b)) ? (a) : (b))
+////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
 ////#endif
 //
 //
-//#define LIM(a, min, max) min(max, max(min, a))
+//#define LIM(a, minimum, maximum) minimum(maximum, maximum(minimum, a))
 //#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 //#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 //
@@ -1162,9 +1162,9 @@ using image_pointer_array = __pointer_array(::image);
 //inline bool is_null(const void * p, size_t s)
 //{
 //
-//   const auto max = (size_t)(-1);
+//   const auto maximum = (size_t)(-1);
 //
-//   return ((size_t)p) <= s || ((size_t)p) >= (max - s);
+//   return ((size_t)p) <= s || ((size_t)p) >= (maximum - s);
 //
 //}
 //
@@ -1174,9 +1174,9 @@ using image_pointer_array = __pointer_array(::image);
 //inline bool is_null(const TYPE * p)
 //{
 //
-//   const auto max = (size_t)(-1) - 65536;
+//   const auto maximum = (size_t)(-1) - 65536;
 //
-//   return ((size_t) p <= 65536) || ((size_t)p) >= (max);
+//   return ((size_t) p <= 65536) || ((size_t)p) >= (maximum);
 //
 //}
 //
@@ -1736,7 +1736,7 @@ class form_document;
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
+//   return (((UINT_PTR)(void *)p) < maximum(4096, sizeof(T)));
 //}
 //
 //

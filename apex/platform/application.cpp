@@ -35,7 +35,7 @@ extern ::app_core * g_pappcore;
 //extern "C"
 //{
 //
-//   typedef void FN_factory_exchange();
+//   typedef void FN_factory_exchange(::factory_map * pfactorymap);
 //
 //   typedef FN_factory_exchange * PFN_factory_exchange;
 //
@@ -44,7 +44,7 @@ extern ::app_core * g_pappcore;
 //PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
 //
 //
-//PFN_factory_exchange get_draw2d_factory_exchange()
+//PFN_factory_exchange get_draw2d_factory_exchange(::factory_map * pfactorymap)
 //{
 //
 //   return g_pfnfactoryDraw2d;

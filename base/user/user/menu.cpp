@@ -740,9 +740,9 @@ namespace user
                   + rectPadding.top + rectPadding.bottom;
 
 
-      m_size.cx = max(m_sizeMinimum.cx, m_size.cx);
+      m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
 
-      m_size.cy = max(m_sizeMinimum.cy, m_size.cy);
+      m_size.cy = maximum(m_sizeMinimum.cy, m_size.cy);
 
       ::count iItemCount = pmenuitema->get_size();
 
@@ -757,7 +757,7 @@ namespace user
 
          pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectUi.right = max(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
+         pitem->m_rectUi.right = maximum(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
 
          pitem->m_puserinteraction->place(pitem->m_rectUi);
 
@@ -1329,9 +1329,9 @@ namespace user
 
       //   prectangle->top = m_pointTrack.y;
 
-      //   prectangle->right = prectangle->left + max(::user::interaction::get_window_minimum_size().cx, m_size.cx);
+      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 
-      //   prectangle->bottom = prectangle->left + max(::user::interaction::get_window_minimum_size().cy, m_size.cy);
+      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy, m_size.cy);
 
       //   pusermessage->m_bRet = true;
       //   pusermessage->set_lresult(0);

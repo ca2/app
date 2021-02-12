@@ -429,7 +429,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      m_ecommand = (enum_scroll_bar_command) (i16)LOWORD(wparam);
+      m_ecommand = (enum_scroll_command) (i16)LOWORD(wparam);
 
       m_nPos = (i16)HIWORD(wparam);
 

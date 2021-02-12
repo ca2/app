@@ -369,7 +369,7 @@ namespace apex
 
       //create_factory < ::draw2d::icon >();
 
-      __node_apex_factory_exchange();
+      __node_apex_factory_exchange(::factory::get_factory_map());
 
       estatus = __compose_new(m_pdatetime);
 
@@ -416,7 +416,7 @@ namespace apex
 
       //m_puserstr = nullptr;
 
-//      __node_axis_factory_exchange();
+//      __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
 
@@ -613,7 +613,7 @@ namespace apex
 
       }
 
-      pfn_factory_exchange();
+      pfn_factory_exchange(::factory::get_factory_map());
 
       return ::success;
 
@@ -1362,7 +1362,7 @@ namespace apex
 //
 //               iSize *= 2;
 //
-//               iSize = max(iSize, 4096);
+//               iSize = maximum(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //

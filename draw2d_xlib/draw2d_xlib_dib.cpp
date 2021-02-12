@@ -1820,11 +1820,11 @@ namespace draw2d_xlib
          {
             bMax = 0;
             b =(byte)(r1[0]  - r2[0]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[1]  - r2[1]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[2]  - r2[2]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;
@@ -1848,12 +1848,12 @@ namespace draw2d_xlib
 //      i32 cx = this->cx;
 //      i32 cy = this->cy;
 //
-//      i32 l = max(cx, cy);
+//      i32 l = maximum(cx, cy);
 //
 //
-//      i32 jmax = min(l, cy / 2);
+//      i32 jmax = minimum(l, cy / 2);
 //      i32 jmin = - jmax;
-//      i32 imax = min(l, cx / 2);
+//      i32 imax = minimum(l, cx / 2);
 //      i32 imin = - imax;
 //
 //
@@ -1933,12 +1933,12 @@ namespace draw2d_xlib
    //   i32 cx = this->cx;
    //   i32 cy = this->cy;
 
-   //   i32 l = max(cx, cy);
+   //   i32 l = maximum(cx, cy);
 
 
-   //   i32 jmax = min(l, cy / 2);
+   //   i32 jmax = minimum(l, cy / 2);
    //   i32 jmin = - jmax;
-   //   i32 imax = min(l, cx / 2);
+   //   i32 imax = minimum(l, cx / 2);
    //   i32 imin = - imax;
 
 
@@ -2013,11 +2013,11 @@ namespace draw2d_xlib
    //   i32 cx = rectangle.width();
    //   i32 cy = rectangle.height();
 
-   //   i32 l = max(cx, cy);
+   //   i32 l = maximum(cx, cy);
 
-   //   i32 jmax = min(l, cy / 2);
+   //   i32 jmax = minimum(l, cy / 2);
    //   i32 jmin = - jmax;
-   //   i32 imax = min(l, cx / 2);
+   //   i32 imax = minimum(l, cx / 2);
    //   i32 imin = - imax;
 
 

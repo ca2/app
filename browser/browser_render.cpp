@@ -243,7 +243,7 @@ namespace browser
 
       u64 uFrameNanos = (u64)(1000000000LL / get_fps());
 
-      uFrameNanos = min(max(100000, uFrameNanos), 1000000000);
+      uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
       u64 uFrameId = uNow / uFrameNanos;
 
@@ -272,7 +272,7 @@ namespace browser
 
             uFrameNanos = (u64)(1000000000ULL / get_fps());
 
-            uFrameNanos = min(max(100000ULL, uFrameNanos), 1000000000ULL);
+            uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
             uFrameId = uNow / uFrameNanos;
 
@@ -1089,7 +1089,7 @@ namespace browser
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(os_font_name(e_font_sans), min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1207,7 +1207,7 @@ namespace browser
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1345,9 +1345,9 @@ namespace browser
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      font->create_pixel_font(m_pview->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-      m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 

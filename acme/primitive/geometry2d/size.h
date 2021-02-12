@@ -69,8 +69,8 @@ public:
    inline UNIT_TYPE width() const noexcept { return this->cx; }
    inline UNIT_TYPE height() const noexcept { return this->cy; }
 
-   inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::min(this->cx, this->cy); }
-   inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::max(this->cx, this->cy); }
+   inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::minimum(this->cx, this->cy); }
+   inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::maximum(this->cx, this->cy); }
 
    inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->cx, this->cy); }
    inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->cx, this->cy); }
@@ -87,11 +87,11 @@ public:
    inline void set(UNIT_TYPE c) noexcept { this->cx = this->cy = c; }
    inline void set(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
 
-   inline size_type min(const size_type & s)const noexcept { return size_type(::min(this->cx, s.cx), ::min(this->cy, s.cy)); }
-   inline size_type max(const size_type& s)const noexcept { return size_type(::max(this->cx, s.cx), ::max(this->cy, s.cy)); }
+   inline size_type minimum(const size_type & s)const noexcept { return size_type(::minimum(this->cx, s.cx), ::minimum(this->cy, s.cy)); }
+   inline size_type maximum(const size_type& s)const noexcept { return size_type(::maximum(this->cx, s.cx), ::maximum(this->cy, s.cy)); }
 
-   inline size_type & ensure_at_most(const size_type & s) noexcept { this->cx = ::min(this->cx, s.cx); this->cy = ::min(this->cy, s.cy); return *this; }
-   inline size_type & ensure_at_least(const size_type & s) noexcept { this->cx = ::max(this->cx, s.cx); this->cy = ::max(this->cy, s.cy); return *this; }
+   inline size_type & ensure_at_most(const size_type & s) noexcept { this->cx = ::minimum(this->cx, s.cx); this->cy = ::minimum(this->cy, s.cy); return *this; }
+   inline size_type & ensure_at_least(const size_type & s) noexcept { this->cx = ::maximum(this->cx, s.cx); this->cy = ::maximum(this->cy, s.cy); return *this; }
 
    inline static size_type unit_size() { return size_type(1, 1); }
 

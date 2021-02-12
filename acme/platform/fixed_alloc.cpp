@@ -308,7 +308,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
       if(pNew == nullptr)
          return nullptr;
 
-      ::memcpy_dup(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
+      ::memcpy_dup(pNew, pOld, minimum(nOldAllocSize, nNewAllocSize));
 
       if(pallocOld != nullptr)
       {

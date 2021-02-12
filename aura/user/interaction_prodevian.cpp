@@ -1205,7 +1205,7 @@ bool prodevian::prodevian_iteration()
 
       m_nanosFrame = (u64)(1'000'000'000.0 / m_pimpl->m_dConfigFps);
 
-      m_nanosPostRedraw = min(m_nanosPostRedraw, m_nanosFrame);
+      m_nanosPostRedraw = minimum(m_nanosPostRedraw, m_nanosFrame);
 
    }
 

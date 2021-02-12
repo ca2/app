@@ -16,7 +16,7 @@
 //} // namespace draw2d_quartz2d
 
 
-extern "C" void draw2d_factory_exchange()
+extern "C" void draw2d_factory_exchange(::factory_map * pfactorymap)
 {
    
    create_factory < ::draw2d_quartz2d::image        , ::image >();

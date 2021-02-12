@@ -4389,7 +4389,7 @@ namespace macos
       
 #endif
 
-      ::size sizeMin = imageBuffer2->size().min(sizeWindow);
+      ::size sizeMin = imageBuffer2->size().minimum(sizeWindow);
 
       g->draw(::rect(sizeMin), imageBuffer2->g(), sizeMin);
       

@@ -97,16 +97,16 @@ namespace serial
     * Structure for setting the timeout of the serial port, times are
     * in milliseconds.
     *
-    * In order to disable the interbyte timeout, set it to Timeout::max().
+    * In order to disable the interbyte timeout, set it to Timeout::maximum().
     */
    struct CLASS_DECL_ACME Timeout
    {
-#ifdef max
-# undef max
+#ifdef maximum
+# undef maximum
 #endif
-      static u32 max()
+      static u32 maximum()
       {
-         return numeric_info<u32>::max();
+         return numeric_info<u32>::maximum();
       }
       /*!
        * Convenience function to generate Timeout structs using a

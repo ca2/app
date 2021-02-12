@@ -38,7 +38,7 @@
 //} // namespace apex
 
 
-void __node_apex_factory_exchange()
+void __node_apex_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::windows::dir_system, ::dir_system >();

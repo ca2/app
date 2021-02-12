@@ -42,7 +42,7 @@
 // The Turbo C function is supposed to return a random number between
 // 0 and num-1.  This function doesn't *exactly* do that since the 
 // distribution is skewed somewhat by the fact that num probably does
-// not exactly divide RAND-max+1.  However, since it's likely RAND_MAX
+// not exactly divide RAND-maximum+1.  However, since it's likely RAND_MAX
 // is much much greather than num, I'm willing to ignore it rather than 
 // correct for it.
 

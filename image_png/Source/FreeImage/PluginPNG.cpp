@@ -142,7 +142,7 @@ static int_bool
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (::u32) max(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif
@@ -553,7 +553,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             png_get_PLTE(png_ptr,info_ptr, &png_palette, &palette_entries);
 
-/*            palette_entries = min((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
+/*            palette_entries = minimum((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
 /*            palette = FreeImage_GetPalette(pimage);
 
             // store the palette

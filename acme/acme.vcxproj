@@ -1629,6 +1629,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
+    <ClCompile Include="primitive\datetime\micros.cpp" />
+    <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\datetime\secs.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
@@ -2025,6 +2027,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\datetime\filetime.h" />
     <ClInclude Include="primitive\datetime\filetime_span.h" />
     <ClInclude Include="primitive\datetime\micros.h" />
+    <ClInclude Include="primitive\datetime\microsecond_sleep.h" />
     <ClInclude Include="primitive\datetime\micro_duration.h" />
     <ClInclude Include="primitive\datetime\millis.h" />
     <ClInclude Include="primitive\datetime\nanos.h" />

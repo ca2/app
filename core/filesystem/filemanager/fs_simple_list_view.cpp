@@ -423,7 +423,7 @@ namespace filemanager
 
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             while(true)
@@ -478,7 +478,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = get_document();
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             i32 iFind = 0;

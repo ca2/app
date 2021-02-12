@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 #include "_windows.h"
 #include "acme/os/windows_common/_file_c.h"
@@ -118,9 +118,11 @@ namespace windows
          break;
       }
 
+      auto eopenShare = eopen & ::file::e_open_share_mask;
+
       // map share mode
       ::u32 dwShareMode = 0;
-      switch (eopen & 0x70)    // map compatibility mode to exclusive
+      switch (eopenShare)    // map compatibility mode to exclusive
       {
       default:
          ASSERT(false);  // invalid share mode?
@@ -193,7 +195,7 @@ namespace windows
             if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && millisStart.elapsed() < m_millisErrorBlockTimeout)
             {
 
-               sleep(max(m_millisErrorBlockTimeout / 10, 50_ms));
+               sleep(maximum(m_millisErrorBlockTimeout / 10, 50_ms));
 
                goto retry;
 

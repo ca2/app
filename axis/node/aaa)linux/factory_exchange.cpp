@@ -10,7 +10,7 @@
 #include "copydesk.h"
 
 
-void __node_aura_factory_exchange()
+void __node_aura_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::linux::dir_system         , ::dir_system             >();

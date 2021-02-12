@@ -886,7 +886,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left);
 
-         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          prectangle->top    = (::i32)(drawitem.m_rectangle.top);
 
@@ -898,7 +898,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
 
          int iHDiff = 0;
@@ -1019,10 +1019,10 @@ namespace user
                   {
 
 
-                     set_viewport_offset_y(pgraphics, (int)max(iNewScroll, 0));
+                     set_viewport_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
 
                   });
-               //            _001SetYScroll(max(iNewScroll, 0), false);
+               //            _001SetYScroll(maximum(iNewScroll, 0), false);
                //m_pscrollbarVertical->_001SetScrollPos(pointOffset.y);
             }
          }
@@ -1517,7 +1517,7 @@ namespace user
 
       if (size.cy > iItemHeight)
       {
-         iItemHeight = max(size.cy, iItemHeight);
+         iItemHeight = maximum(size.cy, iItemHeight);
       }
 
       auto pstyle = get_style(g);
@@ -2162,7 +2162,7 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         int iy = (int)(max(iNewScrollIndex, 0) * m_dItemHeight);
+         int iy = (int)(maximum(iNewScrollIndex, 0) * m_dItemHeight);
 
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {

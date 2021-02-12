@@ -293,13 +293,13 @@ namespace experience
                if (pnode->is_app_dark_mode())
                {
 
-                  return ::color::color::white;
+                  return ::color::white;
 
                }
                else
                {
 
-                  return ::color::color::black;
+                  return ::color::black;
 
                }
 
@@ -339,13 +339,13 @@ namespace experience
                if (pnode->is_app_dark_mode())
                   {
 
-                     return ::color::color::black;
+                     return ::color::black;
 
                   }
                   else
                   {
 
-                     return ::color::color::white;
+                     return ::color::white;
 
                   }
 
@@ -382,13 +382,13 @@ namespace experience
                if (pnode->is_app_dark_mode())
                   {
 
-                     return ::color::color::black;
+                     return ::color::black;
 
                   }
                   else
                   {
 
-                     return ::color::color::white;
+                     return ::color::white;
 
                   }
 
@@ -453,9 +453,9 @@ namespace experience
 
       rcClient.top = rcTabs.bottom;
       
-      ::color::color colorBack = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
+      auto colorBack = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
       
-      if(colorBack.is_set())
+      if(colorBack.is_ok())
       {
 
          pgraphics->fill_rectangle(rcTabs, colorBack);
@@ -464,7 +464,7 @@ namespace experience
 
       colorBack = ptab->get_color(pstyle, ::user::e_element_tab_client_background);
       
-      if(colorBack.is_set())
+      if(colorBack.is_ok())
       {
 
          pgraphics->fill_rectangle(rcClient, colorBack);
@@ -1018,7 +1018,7 @@ namespace experience
             if(tab_pane.m_pimage->is_set())
             {
                size.cx += tab_pane.m_pimage->width() + 2;
-               size.cy = max(size.cy,tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -1113,7 +1113,7 @@ namespace experience
             if(tab_pane.m_pimage)
             {
 
-               size.cy = max(size.cy,tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
 
             }
 

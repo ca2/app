@@ -160,7 +160,7 @@ namespace user
 
          sizeLine = g->GetTextExtent(strLine);
 
-         size.cx = max(size.cx,sizeLine.cx);
+         size.cx = maximum(size.cx,sizeLine.cx);
 
          size.cy += sizeLine.cy;
 

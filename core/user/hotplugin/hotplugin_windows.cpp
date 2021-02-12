@@ -200,8 +200,8 @@ namespace hotplugin
 //else
 //{
 
-//   left = rectangle.left + min(m / 2,width(rectangle) / 2);
-//   right = rectangle.right - min(m / 2,width(rectangle) / 2);
+//   left = rectangle.left + minimum(m / 2,width(rectangle) / 2);
+//   right = rectangle.right - minimum(m / 2,width(rectangle) / 2);
 
 //}
 

@@ -65,7 +65,7 @@ namespace ios
 //
 //            strsize iFind2 = str.reverse_find('\\', iLast);
 //
-//            strsize iFind = max(iFind1, iFind2);
+//            strsize iFind = maximum(iFind1, iFind2);
 //
 //            if(iFind >= iLast)
 //               return false;

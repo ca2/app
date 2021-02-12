@@ -184,9 +184,9 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
       // Scan through line of contributions
       double dCenter = (double)u / dScale;   // Reverse mapping
       // Find the significant edge points that affect the pixel
-      int iLeft = max (0, (int)floor (dCenter - dWidth));
+      int iLeft = maximum (0, (int)floor (dCenter - dWidth));
       res->ContribRow[u].Left = iLeft;
-      int iRight = min ((int)ceil (dCenter + dWidth), int(uSrcSize) - 1);
+      int iRight = minimum ((int)ceil (dCenter + dWidth), int(uSrcSize) - 1);
       res->ContribRow[u].Right = iRight;
 
       // Cut edge points to fit in filter window in case of spill-off

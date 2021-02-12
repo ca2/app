@@ -143,7 +143,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
          pmouse->m_bRet = true;
 

@@ -35,11 +35,9 @@ list(APPEND acme_source
    const/_.h
    const/code_page.h
    const/idpool.cpp
-   exception/-ehrror.cpp
-   exception/-last_ehrror.cpp
-   exception/-overflow_ehrror.cpp
-   exception/-range_ehrror.cpp
-   exception/-runtime_ehrror.cpp
+   exception/overflow.cpp
+   exception/range.cpp
+   exception/runtime.cpp
    exception/archive.cpp
    exception/archive_exception.cpp
    exception/base.cpp
@@ -128,7 +126,7 @@ list(APPEND acme_source
    parallelization/condition.cpp
    parallelization/critical_section.cpp
    parallelization/event.cpp
-   parallelization/file_change_event.cpp
+   #parallelization/file_change_event.cpp
    parallelization/manual_reset_event.cpp
    parallelization/mq.cpp
    parallelization/multi_lock.cpp
@@ -421,7 +419,6 @@ list(APPEND acme_source
    exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
-   exception/error.h
    exception/exception.h
    exception/exception2.h
    exception/exit.h
@@ -434,7 +431,6 @@ list(APPEND acme_source
    exception/invalid_index.h
    exception/invalid_type.h
    exception/io.h
-   exception/last_error.h
    exception/memory.h
    exception/misc.h
    exception/not_implemented.h
@@ -443,12 +439,12 @@ list(APPEND acme_source
    exception/not_supported.h
    exception/operation_canceled.h
    exception/os.h
-   exception/overflow_error.h
+   exception/overflow.h
    exception/parsing.h
-   exception/range_error.h
+   exception/range.h
    exception/resource.h
    exception/result.h
-   exception/runtime_error.h
+   exception/runtime.h
    exception/simple.h
    exception/standard.h
    exception/standard_translator.h
@@ -573,7 +569,7 @@ list(APPEND acme_source
    parallelization/critical_section.h
    parallelization/data.h
    parallelization/event.h
-   parallelization/file_change_event.h
+   #parallelization/file_change_event.h
    parallelization/initial_single_lock.h
    parallelization/manual_reset_event.h
    parallelization/mq.h
@@ -619,7 +615,7 @@ list(APPEND acme_source
    node/android/_android.h
    node/serial.h
    node/_.h
-   node/_node.h
+   node/_node2.h
    os/android/cross_win_file.h
    os/android/cross_win_gdi.h
    os/android/cross_win_gdi_internal.h
@@ -776,11 +772,11 @@ list(APPEND acme_source
    #os/x11/x11_simple_ui_display.h
    #os/xcb/xcb_hook.h
    #os/xcb/_xcb.h
-   os/_.h
+   os/_2.h
    os/_application.h
-   os/_c.h
-   os/_impl.h
-   os/_os.h
+   os/_c2.h
+   os/_impl2.h
+   os/_os2.h
    os/_user.h
    platform/acme_str_pool.h
    platform/all.h

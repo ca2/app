@@ -256,7 +256,7 @@ namespace file
    bool output(::file::file* pfileOut, TRANSFER* ptransfer, bool (TRANSFER::* pfn)(::file::file* pfileOut, ::file::file* pfileIn), ::file::file* pfileIn)
    {
 
-      __throw(not_implemented);
+      __throw(not_implemented());
 
    }
 

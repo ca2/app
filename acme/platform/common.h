@@ -1,5 +1,11 @@
 #pragma once
 
+
+#ifndef WINDOWS
+using errno_t = int;
+#endif
+
+
 CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);
 CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 

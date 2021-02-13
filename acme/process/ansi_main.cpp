@@ -1147,7 +1147,7 @@ void process_set_status(int iStatus)
 int g_argc = 0;
 
 
-TCHAR ** g_argv = nullptr;
+char ** g_argv = nullptr;
 
 
 void process_set_args(int argc, TCHAR ** argv)

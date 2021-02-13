@@ -2,6 +2,15 @@
 #include "acme/operating_system.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #undef new
 
 #define new ACME_NEW
@@ -40,9 +49,9 @@ multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
 multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
 {
 
-   ASSERT(synca.m_hsyncaCache.has_element() && c > 0 && c <= synca.m_hsyncaCache.get_size() && c <= MAXIMUM_WAIT_OBJECTS);
+   ASSERT(synca.has_sync() && c > 0 && c <= synca.sync_count() && c <= MAXIMUM_WAIT_OBJECTS);
 
-   if (synca.m_hsyncaCache.is_empty() || c <= 0 || c > synca.m_hsyncaCache.get_size())
+   if (synca.has_no_sync() || c <= 0 || c > synca.sync_count() || c > MAXIMUM_WAIT_OBJECTS)
    {
 
       __throw(invalid_argument_exception());
@@ -74,7 +83,7 @@ multi_lock::~multi_lock()
 sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
-   if (m_synca.m_hsyncaCache.is_empty())
+   if (m_synca.has_no_sync())
    {
 
       return sync_result(sync_result::result_error);
@@ -86,17 +95,17 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((u32) m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), false);
+      iResult = ::WaitForMultipleObjectsEx((u32) m_synca.sync_count(), m_synca.sync_data(), bWaitForAll, duration.u32_millis(), false);
 
    }
    else
    {
 
-      iResult = ::MsgWaitForMultipleObjects((u32)m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((u32)m_synca.sync_count(), m_synca.sync_data(), bWaitForAll, duration.u32_millis(), dwWakeMask);
 
    }
 
-   ::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synca.m_hsyncaCache.get_count();
+   ::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synca.sync_count();
 
    if(iResult == WAIT_FAILED)
    {
@@ -112,7 +121,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
       if (bWaitForAll)
       {
 
-         for (byte j = 0, i = 0; j < m_synca.m_hsyncaCache.size(); j++)
+         for (byte j = 0, i = 0; j < m_synca.sync_count(); j++)
          {
 
             m_bitsLocked.set(i);
@@ -129,7 +138,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 
    }
 
-   return sync_result(iResult, m_synca.m_hsyncaCache.get_count());
+   return sync_result(iResult, m_synca.sync_count());
 
 }
 
@@ -137,10 +146,10 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 bool multi_lock::unlock()
 {
 
-   for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
+   for (index i=0; i < m_synca.sync_count(); i++)
    {
 
-      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i]->m_hsync)
+      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i])
       {
 
          m_bitsLocked.set(i, !m_synca.m_synca[i]->unlock());
@@ -159,10 +168,10 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
    bool bGotOne = false;
 
-   for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
+   for (index i=0; i < m_synca.sync_count(); i++)
    {
 
-      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i]->m_hsync)
+      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i])
       {
 
          semaphore * pSemaphore = m_synca.sync_at(i).cast < semaphore >();

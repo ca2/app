@@ -21,8 +21,6 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAM
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-
-
 list(APPEND acme_source
    compress/zip/api.cpp
    compress/zip/file.cpp
@@ -124,6 +122,9 @@ list(APPEND acme_source
    memory/plex_heap.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
+   parallelization/condition.h
+   parallelization/condition_variable.cpp
+   parallelization/condition_variable.h
    parallelization/critical_section.cpp
    parallelization/event.cpp
    #parallelization/file_change_event.cpp
@@ -148,6 +149,7 @@ list(APPEND acme_source
    parallelization/thread.cpp
    parallelization/thread_os.cpp
    parallelization/waitable.cpp
+   os/ansios/_pthread.h
    os/ansios/base.cpp
    os/ansios/datetime.cpp
    os/ansios/exception_engine.cpp
@@ -167,7 +169,7 @@ list(APPEND acme_source
    os/file.cpp
    os/http.cpp
    os/process.h
-   process/_.cpp
+   #process/_.cpp
    process/_.h
    process/bidirectional_pipe.cpp
    process/bidirectional_pipe.h
@@ -639,7 +641,7 @@ list(APPEND acme_source
    os/ansios/file.h
    os/ansios/file_c.h
    os/ansios/file_raw.h
-   os/ansios/parallelization.h
+   #os/ansios/parallelization.h
    os/ansios/pmutex_lock.h
    os/ansios/_.h
    os/ansios/_ansios.h
@@ -825,6 +827,8 @@ list(APPEND acme_source
    platform/serial.h
    platform/serial_impl.h
    platform/simple_app.h
+   platform/simple_trace.cpp
+   platform/simple_trace.h
    platform/sprintf.h
    platform/static_start.h
    platform/status.h
@@ -968,8 +972,8 @@ list(APPEND acme_source
    primitive/geometry2d/point.h
    primitive/geometry2d/point_array.h
    primitive/geometry2d/polygon.h
-   primitive/geometry2d/rect.h
-   primitive/geometry2d/rect_array.h
+   primitive/geometry2d/rectangle.h
+   primitive/geometry2d/rectangle_array.h
    primitive/geometry2d/shape.h
    primitive/geometry2d/shape_array.h
    primitive/geometry2d/size.h
@@ -1300,6 +1304,7 @@ if (WIN32)
       node/windows/_node_windows.h
       node/windows/_node_windows_private.h
       node/windows/_windows.h
+      process/wchar_main.cpp
       )
 else ()
 
@@ -1416,7 +1421,10 @@ if (LINUX)
       os/linux/simple_app.cpp
       os/linux/time.cpp
       os/linux/user.cpp
-      os/linux/win_base.cpp)
+      os/linux/win_base.cpp
+      process/ansi_main.cpp
+           )
+
 
    list(APPEND acme_source
       node/linux/application.h
@@ -1724,7 +1732,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} os/ansios/semun.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

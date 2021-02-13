@@ -4,6 +4,15 @@
 #include "common.h"
 
 
+#ifndef WINDOWS
+
+
+#define MAXIMUM_WAIT_OBJECTS 64
+
+
+#endif
+
+
 #ifdef APPLEOS
 #include <semaphore.h>
 #endif

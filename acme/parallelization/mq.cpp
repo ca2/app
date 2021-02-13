@@ -2,6 +2,16 @@
 #include "acme/operating_system.h"
 #include "mq.h"
 
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
 

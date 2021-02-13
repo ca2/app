@@ -10,13 +10,13 @@ CLASS_DECL_ACME void* memmem(const void* l, size_t l_len, const void* s, size_t 
 #endif
 
 
-#if !defined(WINDOWS)
-
-
-#include "pmutex_lock.h"
-
-
-#endif
+//#if !defined(WINDOWS)
+//
+//
+//#include "pmutex_lock.h"
+//
+//
+//#endif
 
 
 #include "datetime_c.h"

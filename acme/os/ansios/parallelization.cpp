@@ -1,4 +1,12 @@
 //
-// Created by camilo on 13/02/2021.
+// Created by camilo on 13/02/2021. <3TBS_!!
 //
+#include "framework.h"
+#undef __restore
+#include <pthread.h>
+
+
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
+
+
 

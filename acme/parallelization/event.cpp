@@ -2,6 +2,15 @@
 #include "acme/operating_system.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
 #include <pthread.h>

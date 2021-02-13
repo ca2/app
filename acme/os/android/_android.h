@@ -49,22 +49,6 @@ CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMes
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
-// based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
-#define MAXIMUM_WAIT_OBJECTS      64
-
-
-#ifndef ANDROID
-
-union semun
-{
-
-   i32 val;
-   struct semid_ds * buf;
-   USHORT * array;
-
-};
-
-#endif
 
 //CLASS_DECL_ACME ::u32 get_last_error();
 //CLASS_DECL_ACME void set_last_error(::u32 dw);

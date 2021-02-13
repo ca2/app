@@ -4,11 +4,7 @@
 #include "acme/platform/app_core.h"
 #include "acme/platform/static_start.h"
 
-//#include <sys/wait.h>
-//
 #include <spawn.h>
-//#include <pthread.h>
-//
 extern char * const * environ;
 
 

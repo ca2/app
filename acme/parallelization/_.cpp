@@ -3,6 +3,11 @@
 #include "acme/const/id.h"
 
 
+#ifdef LINUX
+#include "acme/os/ansios/_pthread.h"
+#endif
+
+
 namespace parallelization
 {
 
@@ -786,8 +791,6 @@ bool thread_get_run()
    return ptask->thread_get_run();
 
 }
-
-
 
 
 #ifdef PARALLELIZATION_PTHREAD

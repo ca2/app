@@ -5,7 +5,7 @@
 #include "_.h"
 
 #include "file.h"
-#include "parallelization.h"
+//#include "parallelization.h"
 
 
 #ifndef WINDOWS

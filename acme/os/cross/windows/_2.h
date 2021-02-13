@@ -203,13 +203,8 @@ typedef ::i32 errno_t;
 
 
 
-#define PM_NOREMOVE 0
-#define PM_REMOVE 1
 
 
-class sync;
-
-using HSYNC = sync *;
 
 
 #define GetRValue(rgb)      (LOBYTE(rgb))

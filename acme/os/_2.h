@@ -21,8 +21,8 @@ CLASS_DECL_ACME bool is_verbose();
 #elif defined(LINUX)
 
 //#include "acme/os/cairo/_.h"
-#include "acme/os/ansios/_.h"
-#include "acme/os/linux/_.h"
+//#include "acme/os/ansios/_.h"
+//#include "acme/os/linux/_.h"
 
 #elif defined(_UWP)
 

@@ -25,8 +25,6 @@ inline bool is_iconic(enum_display edisplay) { return edisplay == ::e_display_ic
 inline bool window_is_minimal(enum_display edisplay) { return edisplay == ::e_display_minimal; }
 
 
-CLASS_DECL_ACME int windows_show_window(enum_display edisplay, enum_activation eactivation);
-CLASS_DECL_ACME enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & eactivation);
 
 
 CLASS_DECL_ACME string __str(enum_display edisplay);

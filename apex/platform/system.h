@@ -77,10 +77,12 @@ namespace apex
       //__composite(::gpu::approach)                       m_pgpu;
 
       ::mutex                                            m_mutexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibrary;
+      ::apex::library_map                                m_mapLibrary;
       string_map < PFN_NEW_APEX_LIBRARY >                m_mapNewApexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibCall;
+      ::apex::library_map                                m_mapLibCall;
 
+      ::mutex                                            m_mutexContainerizedLibrary;
+      ::string_map < ::apex::library_map >               m_mapContainerizedLibrary;
 
 
       // for lesser cooperative GUI applications
@@ -400,9 +402,11 @@ namespace apex
 
       __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
-      ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation, bool bContainerized = false);
+      ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
-      ::e_status do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
+      __pointer(::apex::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
+
+      result_pointer < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
 
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 

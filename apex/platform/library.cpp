@@ -946,7 +946,9 @@ namespace apex
       if (pfactorymap == nullptr)
       {
 
-         pfactorymap = this;
+         __construct_new(m_pfactorymap);
+
+         pfactorymap = m_pfactorymap;
 
       }
 

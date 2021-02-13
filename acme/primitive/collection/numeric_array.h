@@ -110,7 +110,7 @@ public:
 
    TYPE get_total()
    {
-      TYPE t = ::numeric_info < TYPE >:: get_null_value();
+      TYPE t = ::numeric_info < TYPE >:: null();
       for(index i = 0; i < this->get_count(); i++)
       {
          t+= this->element_at(i);
@@ -248,11 +248,11 @@ public:
       {
          find = (iL + iU) / 2;
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info < TYPE > :: get_null_value ())
+         if(tCmp == numeric_info < TYPE > :: null ())
          {
             return true;
          }
-         else if(tCmp > numeric_info < TYPE >::get_null_value())
+         else if(tCmp > numeric_info < TYPE >::null())
          {
             iL = find + 1;
          }
@@ -264,11 +264,11 @@ public:
       for(; find < this->get_size(); find++)
       {
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info < TYPE >::get_null_value())
+         if(tCmp == numeric_info < TYPE >::null())
          {
             return true;
          }
-         else if(tCmp < numeric_info  < TYPE >::get_null_value())
+         else if(tCmp < numeric_info  < TYPE >::null())
          {
             return false;
          }

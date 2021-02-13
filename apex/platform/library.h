@@ -7,12 +7,12 @@ namespace apex
 
 
    class CLASS_DECL_APEX library:
-      virtual public ::factory_map,
       virtual public ::object
    {
    public:
 
-      
+
+      __pointer(::factory_map)      m_pfactorymap;
       string                        m_strFolder;
       string                        m_strName;
       void *                        m_plibrary;
@@ -39,6 +39,9 @@ namespace apex
       virtual bool open_ca2_library(string strTitle = "");
 
       library * get_ca2_library();
+
+
+      virtual ::factory_map * factory_map() { return m_pfactorymap; }
 
 
       virtual bool close();
@@ -79,7 +82,7 @@ namespace apex
       virtual __result(::apex::application) new_application(const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
-
+      
       virtual ::matter* new_object(const char* pszClass);
 
 
@@ -145,6 +148,8 @@ namespace apex
 
    };
 
+   
+   using library_map = string_map < __composite(::apex::library) >;
 
 
 } // namespace apex

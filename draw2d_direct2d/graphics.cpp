@@ -669,35 +669,35 @@ namespace draw2d_direct2d
    //}
 
 
-   int graphics::GetPolyFillMode()
-   {
-      __throw(todo());
-      //return ::GetPolyFillMode(get_handle2());
-   }
+   //int graphics::GetPolyFillMode()
+   //{
+   //   __throw(todo());
+   //   //return ::GetPolyFillMode(get_handle2());
+   //}
 
-   int graphics::GetROP2()
-   {
-      __throw(todo());
-      //return ::GetROP2(get_handle2());
-   }
+   //int graphics::GetROP2()
+   //{
+   //   __throw(todo());
+   //   //return ::GetROP2(get_handle2());
+   //}
 
-   int graphics::GetStretchBltMode()
-   {
-      __throw(todo());
-      //return ::GetStretchBltMode(get_handle2());
-   }
+   //int graphics::GetStretchBltMode()
+   //{
+   //   __throw(todo());
+   //   //return ::GetStretchBltMode(get_handle2());
+   //}
 
-   int graphics::GetMapMode()
-   {
-      __throw(todo());
-      //return ::GetMapMode(get_handle2());
-   }
+   //int graphics::GetMapMode()
+   //{
+   //   __throw(todo());
+   //   //return ::GetMapMode(get_handle2());
+   //}
 
-   int graphics::GetGraphicsMode()
-   {
-      __throw(todo());
-      //return ::GetGraphicsMode(get_handle2());
-   }
+   //int graphics::GetGraphicsMode()
+   //{
+   //   __throw(todo());
+   //   //return ::GetGraphicsMode(get_handle2());
+   //}
 
 
    //bool graphics::GetWorldTransform(XFORM* pXform)
@@ -3549,26 +3549,26 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::SetPolyFillMode(int nPolyFillMode)
-   {
+   //int graphics::SetPolyFillMode(int nPolyFillMode)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-   }
+   //}
 
 
-   int graphics::SetROP2(int nDrawMode)
-   {
+   //int graphics::SetROP2(int nDrawMode)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-      //double dRetVal = 0;
-      //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-      //   nRetVal = ::SetROP2(get_handle1(), nDrawMode);
-      //if(get_handle2() != nullptr)
-      //   nRetVal = ::SetROP2(get_handle2(), nDrawMode);
-      //return nRetVal;
-   }
+   //   //double dRetVal = 0;
+   //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
+   //   //   nRetVal = ::SetROP2(get_handle1(), nDrawMode);
+   //   //if(get_handle2() != nullptr)
+   //   //   nRetVal = ::SetROP2(get_handle2(), nDrawMode);
+   //   //return nRetVal;
+   //}
 
    bool graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode)
    {
@@ -3610,22 +3610,22 @@ namespace draw2d_direct2d
    //return crRetVal;
    //}
 
-   int graphics::SetGraphicsMode(int iMode)
-   {
+   //int graphics::SetGraphicsMode(int iMode)
+   //{
 
-      __throw(todo());
+   //   __throw(todo());
 
-      //double dRetVal = 0;
-      //if(get_handle1() != nullptr && get_handle1() != get_handle2())
-      //{
-      //   nRetVal = ::SetGraphicsMode(get_handle1(), iMode);
-      //}
-      //if(get_handle2() != nullptr)
-      //{
-      //   nRetVal = ::SetGraphicsMode(get_handle2(), iMode);
-      //}
-      //return nRetVal;
-   }
+   //   //double dRetVal = 0;
+   //   //if(get_handle1() != nullptr && get_handle1() != get_handle2())
+   //   //{
+   //   //   nRetVal = ::SetGraphicsMode(get_handle1(), iMode);
+   //   //}
+   //   //if(get_handle2() != nullptr)
+   //   //{
+   //   //   nRetVal = ::SetGraphicsMode(get_handle2(), iMode);
+   //   //}
+   //   //return nRetVal;
+   //}
 
    //bool graphics::SetWorldTransform(const XFORM* pXform)
    //{
@@ -3662,12 +3662,12 @@ namespace draw2d_direct2d
    //}
 
 
-   int graphics::SetMapMode(int nMapMode)
-   {
+   //int graphics::SetMapMode(int nMapMode)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    point_f64 graphics::SetViewportOrg(double x, double y)
@@ -4367,7 +4367,7 @@ namespace draw2d_direct2d
       {
       // these records have effects different for each graphics derived class
       case META_SETMAPMODE:
-         (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SetMapMode((int)(short)pMetaRec->rdParm[0]);
+         //(dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SetMapMode((int)(short)pMetaRec->rdParm[0]);
          break;
       case META_SETWINDOWEXT:
          (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->set_window_ext(

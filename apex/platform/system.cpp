@@ -580,7 +580,7 @@ namespace apex
 
 #else
 
-      auto plibrary = open_component_library(pszComponent, pszImplementation);
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
 
       if (!plibrary)
       {
@@ -588,7 +588,6 @@ namespace apex
          return ::error_failed;
 
       }
-
 
       PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
 
@@ -613,11 +612,84 @@ namespace apex
 
       }
 
-      pfn_factory_exchange(::factory::get_factory_map());
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfn_factory_exchange(pfactorymap);
 
       return ::success;
 
 #endif
+
+   }
+
+
+   result_pointer < ::apex::library > system::do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      plibrary->__construct_new(plibrary->m_pfactorymap);
+
+      pfn_factory_exchange(plibrary->m_pfactorymap);
+
+#endif
+
+      return plibrary;
 
    }
 
@@ -705,6 +777,91 @@ namespace apex
       return plibrary;
 
    }
+
+
+   __pointer(::apex::library) system::open_containerized_component_library(const char * pszComponent, const char * pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      sync_lock sl(&System.m_mutexContainerizedLibrary);
+
+      __pointer(::apex::library) plibrary = System.m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::apex::library);
+
+         plibrary->initialize(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
 
    ::e_status system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
    {

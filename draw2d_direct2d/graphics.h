@@ -159,12 +159,12 @@ namespace draw2d_direct2d
       //::u32 RealizePalette() override;
       //void UpdateColors() override;
 
-      int GetPolyFillMode() override;
-      int GetROP2() override;
-      int GetStretchBltMode() override;
+      //int GetPolyFillMode() override;
+      //int GetROP2() override;
+      //int GetStretchBltMode() override;
 
-      int SetPolyFillMode(int nPolyFillMode) override;
-      int SetROP2(int nDrawMode) override;
+      //int SetPolyFillMode(int nPolyFillMode) override;
+      //int SetROP2(int nDrawMode) override;
       virtual bool set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode) override;
 
 
@@ -179,8 +179,8 @@ namespace draw2d_direct2d
 //#endif
 
       // Graphics mode
-      int SetGraphicsMode(int iMode) override;
-      int GetGraphicsMode() override;
+      //int SetGraphicsMode(int iMode) override;
+      //int GetGraphicsMode() override;
 
 
       virtual bool _get(::draw2d::matrix & matrix) override;
@@ -204,9 +204,9 @@ namespace draw2d_direct2d
       //bool GetWorldTransform(XFORM* pXform) override;
 
       // Mapping Functions
-      virtual int GetMapMode() override;
+      //virtual int GetMapMode() override;
       virtual ::point_f64 GetViewportOrg() override;
-      virtual int SetMapMode(int nMapMode) override;
+      //virtual int SetMapMode(int nMapMode) override;
       // Viewport Origin
       virtual ::point_f64 SetViewportOrg(double x, double y) override;
       virtual ::point_f64 SetViewportOrg(const ::point_f64 & point) override;

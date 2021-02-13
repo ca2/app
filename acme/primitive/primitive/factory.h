@@ -140,6 +140,8 @@ public:
    template < typename TYPE, typename BASE_TYPE = TYPE >
    inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
 
+   template < typename BASE_TYPE >
+   inline __pointer(BASE_TYPE) new_object();
 
 
 };

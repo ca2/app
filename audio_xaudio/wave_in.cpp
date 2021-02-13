@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace multimedia
@@ -55,7 +55,7 @@ namespace multimedia
 
       void in::pre_translate_message(::message::message * pmessage)
       {
-         __pointer(::user::message) pusermessage(pmessage);
+         //__pointer(::user::message) pusermessage(pmessage);
          //ASSERT(GetMainWnd() == nullptr);
          //if(pusermessage->m_id == MM_WIM_OPEN ||
          //   pusermessage->m_id == MM_WIM_CLOSE ||
@@ -65,7 +65,7 @@ namespace multimedia
          //   if(pusermessage->m_bRet)
          //      return;
          //}
-         return thread::pre_translate_message(pusermessage);
+         //return thread::pre_translate_message(pusermessage);
       }
 
       ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
@@ -422,7 +422,7 @@ namespace multimedia
       void in::translate_in_message(::message::message * pmessage)
       {
 
-         __pointer(::user::message) pusermessage(pmessage);
+         //__pointer(::user::message) pusermessage(pmessage);
 
          //ASSERT(pusermessage->m_id == MM_WIM_OPEN || pusermessage->m_id == MM_WIM_CLOSE || pusermessage->m_id == MM_WIM_DATA);
 
@@ -451,7 +451,7 @@ namespace multimedia
 
          //}
 
-         pusermessage->m_bRet = true;
+         //pusermessage->m_bRet = true;
 
       }
 

@@ -99,7 +99,7 @@ template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
 constexpr INTEGER2 maximum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(b, a) ? (INTEGER2)a :  b; }
 
 template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-constexpr INTEGER1 maximum(const int & a, const NATURAL2 & b) { return __lt(b, a) ?  a : (INTEGER1)b; }
+constexpr INTEGER1 maximum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(b, a) ?  a : (INTEGER1)b; }
 
 template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
 constexpr typename largest_type < NATURAL1, NATURAL2 >::type maximum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(b, a) ? (typename largest_type < NATURAL1, NATURAL2 >::type)a : (typename largest_type < NATURAL1, NATURAL2 >::type)b; }

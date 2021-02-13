@@ -381,7 +381,7 @@ CLASS_DECL_ACME memsize hfile_read(hfile hfile, void* p, memsize s)
 
    DWORD dwRead = 0;
 
-   if (!::ReadFile(hfile, p, minimum(INT_MAX, s), &dwRead, nullptr))
+   if (!::ReadFile(hfile, p, (DWORD) minimum(INT_MAX, s), &dwRead, nullptr))
    {
 
       return 0;
@@ -401,7 +401,7 @@ CLASS_DECL_ACME::e_status hfile_write(hfile hfile, const void* p, memsize s)
    while (s > 0)
    {
 
-      int iWrite = minimum(INT_MAX, s);
+      int iWrite = (int) minimum(INT_MAX, s);
 
       DWORD dwWritten = 0;
 

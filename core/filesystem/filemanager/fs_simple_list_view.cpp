@@ -326,7 +326,7 @@ namespace filemanager
             strSql += ";";
 
 
-            /*            critical_section_lock sl(get_document()->m_pcsAlbum1);
+            /*            critical_section_lock synchronizationlock(get_document()->m_pcsAlbum1);
                         get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate(this);

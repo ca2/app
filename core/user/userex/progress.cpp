@@ -81,7 +81,7 @@ namespace userex
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pdocument = m_pdocument;
 

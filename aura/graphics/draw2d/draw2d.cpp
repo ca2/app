@@ -113,7 +113,7 @@ namespace draw2d
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_papi->open())
       {
@@ -192,7 +192,7 @@ namespace draw2d
    void draw2d::term()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {
@@ -289,7 +289,7 @@ namespace draw2d
 
       };
 
-      emboss_pred(
+      emboss_predicate(
       pgraphics,
       rectangle,
       pred,
@@ -348,7 +348,7 @@ namespace draw2d
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -406,7 +406,7 @@ namespace draw2d
 
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       i32 maxx1 = cx;
       i32 maxy1 = cy;
@@ -663,7 +663,7 @@ breakFilter:
       i32 rSquare;
 
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -692,7 +692,7 @@ breakFilter:
          }
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       i32 cx = pimageDst->width();
       i32 cy = pimageDst->height();
@@ -926,7 +926,7 @@ breakFilter2:
 //   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock sl(::aura::g_pcsFont);
+//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
@@ -1212,7 +1212,7 @@ breakFilter2:
       }
 
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 

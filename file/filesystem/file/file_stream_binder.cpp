@@ -137,7 +137,7 @@ namespace file
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();
 
-         sync_array eva(get_object());
+         synchronization_array eva(get_object());
          eva.add(&_allBytesAreWritenEvent);
          eva.add(&_readStreamIsClosedEvent);
          if(!eva.wait(false, duration::infinite()).signaled())

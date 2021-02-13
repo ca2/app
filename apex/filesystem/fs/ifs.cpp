@@ -16,7 +16,7 @@ ifs::ifs(const char * pszRoot)
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    dir_listing & dir = m_map[path];
 
@@ -34,7 +34,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    dir_listing & dir = m_map[path];
 
@@ -45,13 +45,13 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
    ::file::listing listing;
 
    get_context()->dir().ls(listing, path);
 
-   sl.lock();
+   synchronizationlock.lock();
 
    return dir.get_count() > 0;
 
@@ -77,7 +77,7 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::ls(::file::listing & listing)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -284,7 +284,7 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 

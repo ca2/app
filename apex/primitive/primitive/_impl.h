@@ -4,7 +4,7 @@
 #include "acme/primitive/comparison/equals.h"
 
 
-#include "acme/primitive/primitive/trait_pred.h"
+#include "acme/primitive/primitive/trait_predicate.h"
 
 
 
@@ -439,7 +439,7 @@ inline ::e_status object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_
   if (pcomposite)
   {
 
-     sync_lock sl(mutex());
+     synchronization_lock synchronizationlock(mutex());
 
      if (m_pcompositea)
      {
@@ -467,7 +467,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE) & preference OBJ_REF_
   if (preference)
   {
 
-     sync_lock sl(mutex());
+     synchronization_lock synchronizationlock(mutex());
 
      if (m_preferencea)
      {
@@ -1289,7 +1289,7 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
   auto pgroup = System.thread_group(epriority);
 
-  sync_lock slGroup(pgroup->mutex());
+  synchronization_lock slGroup(pgroup->mutex());
 
   ///   auto ptool = System.thread_tool(op_fork_count);
 
@@ -1314,16 +1314,16 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
   }
 
-  sync_array ptra;
+  synchronization_array ptra;
 
   ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
 
   for (index iOrder = 0; iOrder < iScan; iOrder++)
   {
 
-     __pointer(pred_holder_base) pusermessage = __new(forking_count_pred < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
+     __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-     if (!pgroup->add_pred(pusermessage))
+     if (!pgroup->add_predicate(pusermessage))
      {
 
         return -1;

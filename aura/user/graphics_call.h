@@ -21,14 +21,14 @@ namespace user
    {
    public:
 
-      PRED m_pred;
+      PRED m_predicate;
 
-      graphics_call(PRED pred) : m_pred(pred) {}
+      graphics_call(PRED pred) : m_predicate(pred) {}
 
       void call(::draw2d::graphics_pointer & pgraphics)
       {
 
-         m_pred(pgraphics);
+         m_predicate(pgraphics);
 
       }
 

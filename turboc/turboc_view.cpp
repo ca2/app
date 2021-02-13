@@ -271,7 +271,7 @@ namespace turboc
       if(m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-         sync_lock slDraw(&m_mutexDraw);
+         synchronization_lock slDraw(&m_mutexDraw);
 
          if(m_bFast || m_pimageFast->is_null())
          {
@@ -314,9 +314,9 @@ namespace turboc
 
       ::image_pointer pimageFast = m_pimageFast;
 
-      sync_lock sl(&m_mutexDraw);
+      synchronization_lock synchronizationlock(&m_mutexDraw);
 
-      sync_lock slSwap(&m_mutexSwap);
+      synchronization_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -406,7 +406,7 @@ namespace turboc
       if(m_cx <= 0 || m_cy <= 0)
          return;
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
 
@@ -483,7 +483,7 @@ namespace turboc
 
       {
 
-         sync_lock sl(&m_mutexWork);
+         synchronization_lock synchronizationlock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -504,10 +504,10 @@ namespace turboc
       if(m_bNewLayout)
       {
 
-         sync_lock sl1(m_spmutex);
-         sync_lock sl2(&m_mutexWork);
-         sync_lock sl3(&m_mutexDraw);
-         sync_lock sl4(&m_mutexSwap);
+         synchronization_lock sl1(m_spmutex);
+         synchronization_lock sl2(&m_mutexWork);
+         synchronization_lock sl3(&m_mutexDraw);
+         synchronization_lock sl4(&m_mutexSwap);
 
 /*         bool bNewSize = m_pimage->width() < sizeNew.cx || m_pimage->m_size.cy < sizeNew.cy;
 
@@ -583,7 +583,7 @@ namespace turboc
       if(m_bFirstDone)
       {
 
-         sync_lock slUser(m_spmutex);
+         synchronization_lock slUser(m_spmutex);
 
          turboc_draw();
 
@@ -667,7 +667,7 @@ namespace turboc
 
       //_001OnPostProcess(m_pimageWork);
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       if(m_bDib1)
       {
@@ -682,7 +682,7 @@ namespace turboc
 
       }
 
-      sync_lock slSwap(&m_mutexSwap);
+      synchronization_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -830,7 +830,7 @@ namespace turboc
    string view::get_turboc()
    {
 
-      sync_lock sl(&m_mutexText);
+      synchronization_lock synchronizationlock(&m_mutexText);
 
       if(m_strHelloMultiverse != m_strNewHelloMultiverse)
       {

@@ -122,7 +122,7 @@ namespace sockets
    }
 
 
-   //sync & socket_handler::GetMutex() const
+   //synchronization_object & socket_handler::GetMutex() const
    //{
 
    //   return *mutex();
@@ -1166,7 +1166,7 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        sync_lock sl(&System.sockets().m_mutexPool);
+                        synchronization_lock synchronizationlock(&System.sockets().m_mutexPool);
 
                         __pointer(pool_socket) ppoolsocket = __new(pool_socket(*this, psocket));
 
@@ -1633,7 +1633,7 @@ end_processing_adding:
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
    {
 
-      sync_lock sl(&System.sockets().m_mutexPool);
+      synchronization_lock synchronizationlock(&System.sockets().m_mutexPool);
 
       auto p = System.sockets().m_pool.begin();
 

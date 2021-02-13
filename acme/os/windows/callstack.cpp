@@ -1622,7 +1622,7 @@ namespace  windows
 
       const char * psz;
 
-      //sync_lock sl(::callstack().mutex());
+      //synchronization_lock synchronizationlock(::callstack().mutex());
 
    #if defined(LINUX)
 

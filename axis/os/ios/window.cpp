@@ -9,7 +9,7 @@
 #include "framework.h"
 #include "window_impl.h"
 #include "oswindow_data.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 
 
 UIWindow * __uiwindow(oswindow oswindow)

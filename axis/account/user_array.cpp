@@ -55,7 +55,7 @@ namespace account
 
          }
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_map[strHost] = puser;
 
@@ -157,11 +157,11 @@ namespace account
    void user_array::cleanup_users()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto map = m_map;
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       for(auto & pair : map)
       {
@@ -173,11 +173,11 @@ namespace account
 
             psession->on_remove_user(pair.element2());
 
-            sl.lock();
+            synchronizationlock.lock();
 
             m_map.remove_key(pair.element1());
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
          }
 
@@ -203,14 +203,14 @@ namespace account
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto & puser = m_map[strHost];
 
          if (bFetch && (puser.is_null() || !puser->is_authenticated()))
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             _get_user(pathUrl, bInteractive);
 
@@ -246,11 +246,11 @@ namespace account
       if(eclock == e_clock_slow)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto map = m_map;
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          for(auto & pair : map)
          {

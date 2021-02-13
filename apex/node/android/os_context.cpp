@@ -654,7 +654,7 @@ namespace android
 //   void os_context::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock sl(::apex::g_pcsFont);
+//      critical_section_lock synchronizationlock(::apex::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //

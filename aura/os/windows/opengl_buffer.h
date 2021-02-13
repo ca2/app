@@ -20,7 +20,7 @@ namespace opengl
       virtual void destroy_buffer() override;
 
 
-      virtual sync * get_draw_lock() override;
+      virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
 

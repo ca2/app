@@ -2548,7 +2548,7 @@ namespace draw2d_opengl
 //      // bitmap image bottom up. Our Windows DIB wrapper expects images to be
 //      // top down in orientation.
 //
-//      //sync_lock sl(&m);
+//      //synchronization_lock synchronizationlock(&m);
 //
 //      glFlush();
 //

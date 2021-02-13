@@ -50,10 +50,10 @@ namespace apex
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
-      return m_createaPending.pred_contains([&pcreate](auto& p) {return p.get() == pcreate; })
-      || m_createaHistory.pred_contains([&pcreate](auto& p) {return p.get() == pcreate; })
+      return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
+      || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
       || m_pcreate.get() == pcreate;
 
    }
@@ -125,7 +125,7 @@ namespace apex
    void context_thread::add_create(::create* pcreate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -157,7 +157,7 @@ namespace apex
    create * context_thread::get_create()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {

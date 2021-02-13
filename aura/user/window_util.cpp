@@ -68,7 +68,7 @@ namespace user
    bool interaction_ptra::get_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       if (get_count() <= 0)
       {
@@ -124,7 +124,7 @@ namespace user
    bool interaction_ptra::rget_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       if (get_count() <= 0)
       {
@@ -246,7 +246,7 @@ namespace user
    bool primitive_ptra::get_child(__pointer(::user::primitive) & pprimitive)
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       if (get_count() <= 0)
       {
@@ -302,7 +302,7 @@ namespace user
    bool primitive_ptra::rget_child(__pointer(::user::primitive) & pprimitive)
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       if (get_count() <= 0)
       {

@@ -623,8 +623,8 @@ namespace write_text
 //   bool font::AddGlyph(::u32 user)
 //   {
 //
-//      //   single_lock sl(&m_mutex);
-//      //   sl.lock(U32_INFINITE_TIMEOUT);
+//      //   single_lock synchronizationlock(&m_mutex);
+//      //   synchronizationlock.lock(U32_INFINITE_TIMEOUT);
 //
 //      return TRUE;
 //

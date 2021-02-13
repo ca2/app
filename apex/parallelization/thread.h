@@ -1,7 +1,7 @@
 #pragma once
 
 
-class mq;
+class message_queue;
 
 
 namespace user { class frame;  }
@@ -34,7 +34,7 @@ public:
    };
 
 
-   __composite(mq)                                    m_pmq;
+   __composite(message_queue)                                    m_pmq;
    bool                                               m_bClosedMq;
 
 
@@ -130,8 +130,8 @@ public:
    //using task::fork;
    //using channel::fork;
 
-   inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
-   mq* _get_mq();
+   inline message_queue* get_message_queue() { return m_pmq ? m_pmq : _get_mq(); }
+   message_queue* _get_mq();
 
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
    int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
@@ -209,7 +209,7 @@ public:
 
    virtual int get_x_window_count() const;
 
-   virtual sync_result wait(const duration & duration);
+   virtual synchronization_result wait(const duration & duration);
 
    bool set_thread_priority(::e_priority epriority);
 
@@ -247,7 +247,7 @@ public:
    }
 
    template < typename PRED >
-   bool post_pred(PRED pred)
+   bool post_predicate(PRED pred)
    {
       return post_object(e_message_system, e_system_message_method, __routine(pred));
    }
@@ -262,10 +262,10 @@ public:
 
 
    template < typename PRED >
-   bool schedule_pred(PRED pred)
+   bool schedule_predicate(PRED pred)
    {
 
-      return post_pred(pred);
+      return post_predicate(pred);
 
    }
 
@@ -400,7 +400,7 @@ public:
 
    virtual bool kick_thread();
 
-   //virtual void defer_add_thread_run_wait(sync_array & soa);
+   //virtual void defer_add_thread_run_wait(synchronization_array & soa);
 
    virtual void message_queue_message_handler(::message::message * pmessage);
 
@@ -566,14 +566,14 @@ CLASS_DECL_APEX void set_thread_off(ithread_t id);
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(millis millis, sync* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(millis millis, sync* psync = nullptr);
+//CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
 CLASS_DECL_APEX bool app_sleep(millis millis);
 
 
 
 template < typename PRED >
-inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
+inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
 {
 
    iTime += 99;
@@ -588,20 +588,20 @@ inline ::sync_result while_pred_Sleep(int iTime, PRED pred)
       if (!pred())
       {
 
-         return  ::sync_result::result_event0;
+         return  ::e_synchronization_result_signaled_base;
 
       }
 
       if (!::thread_get_run())
       {
 
-         return ::sync_result::result_abandon0;
+         return ::e_synchronization_result_abandoned_base;
 
       }
 
    }
 
-   return ::sync_result::result_timeout;
+   return ::e_synchronization_result_timed_out;
 
 }
 
@@ -612,6 +612,6 @@ CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
 
 
 template < typename PRED >
-auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority);
 
 

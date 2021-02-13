@@ -530,7 +530,7 @@ public:
    }
 
    template < typename PRED >
-   typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * pred_find(PRED pred)
+   typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * predicate_find(PRED pred)
    {
 
       auto point = this->get_start();

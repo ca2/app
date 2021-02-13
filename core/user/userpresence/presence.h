@@ -11,7 +11,7 @@ namespace userpresence
    public:
 
       
-      enum e_predefined_status
+      enum e_predicateefined_status
       {
          
          status_online     = 1000000006,

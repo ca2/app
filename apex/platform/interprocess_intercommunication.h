@@ -39,9 +39,9 @@
 
    //   virtual void post(const ::id& idPid);
 
-   //   __pointer(sync_array) synca();
+   //   __pointer(synchronization_array) synca();
 
-   //   ::sync_result wait();
+   //   ::synchronization_result wait();
 
    //   void announce();
 

@@ -195,7 +195,7 @@ namespace uwp
       //int GetWindowRgn(HRGN hRgn);
 
 
-      //virtual bool set_window_pos(iptr z, int x, int y, int cx, int cy, ::u32 nFlags);
+      //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;

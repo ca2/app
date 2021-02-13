@@ -179,7 +179,7 @@ namespace macos
       i32 GetWindowRgn(HRGN hRgn);
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+      //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows() override;
       //virtual void BringToTop(::e_display edisplay) override;
       //virtual bool BringWindowToTop() override;
@@ -697,7 +697,7 @@ namespace macos
 
       virtual void _thread_prodevian();
 
-//      virtual bool set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags) override;
+//      virtual bool set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags) override;
 
       virtual void show_task(bool bShow) override;
 

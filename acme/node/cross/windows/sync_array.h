@@ -1,18 +1,18 @@
 #pragma once
 
 
-class CLASS_DECL_ACME sync_array :
+class CLASS_DECL_ACME synchronization_array :
    public matter
 {
 public:
 
 
-   DECLARE_ARRAY_OF(sync_array, sync, sync);
+   DECLARE_ARRAY_OF(synchronization_array, synchronization_object, synchronization_object);
 
 
-   sync_array();
-   sync_array(const ::sync_array & array);
-   virtual ~sync_array();
+   synchronization_array();
+   synchronization_array(const ::synchronization_array & array);
+   virtual ~synchronization_array();
 
 
    void	clear();
@@ -21,25 +21,25 @@ public:
 
    bool is_empty() const;
 
-   bool add_item(class sync * psync);
+   bool add_item(class synchronization_object * psync);
 
-   inline bool add(class sync* psync) { return add_item(psync); }
+   inline bool add(class synchronization_object* psync) { return add_item(psync); }
 
-   bool add(const sync_array & waitablea);
+   bool add(const synchronization_array & waitablea);
 
-   void remove(class sync * psync);
+   void remove(class synchronization_object * psync);
 
    void remove(index index);
 
    virtual void wait();
 
-   virtual sync_result wait(const duration & duration);
+   virtual synchronization_result wait(const duration & duration);
 
-   sync_result wait(bool waitForAll, const duration & duration, bool bWaitMessageQueue = false);
+   synchronization_result wait(bool waitForAll, const duration & duration, bool bWaitMessageQueue = false);
 
-   sync_result contains(const sync_result & result) const;
+   synchronization_result contains(const synchronization_result & result) const;
 
-   sync_array & operator = (const sync_array & synca);
+   synchronization_array & operator = (const synchronization_array & synca);
 
 
 };

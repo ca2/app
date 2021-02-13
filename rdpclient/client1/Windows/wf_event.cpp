@@ -326,7 +326,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //					// Workaround: when the window is maximized, the call to "ShowScrollBars" returns true but has no effect.
 //					if (wParam == SIZE_MAXIMIZED && !wfc->fullscreen)
-//						set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, SWP_NOMOVE | SWP_FRAMECHANGED);
+//						set_window_position(wfc->hwnd, HWND_TOP, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, SWP_NOMOVE | SWP_FRAMECHANGED);
 //				}
 //
 //				break;

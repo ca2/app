@@ -535,7 +535,7 @@ namespace apex
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   sync_lock sl(&m_mutexFactory);
+      //   synchronization_lock synchronizationlock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -1018,7 +1018,7 @@ inline void set_enum_text(ENUM e, const char * psz)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -1033,7 +1033,7 @@ inline string enum_text(ENUM e)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1046,7 +1046,7 @@ inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    i64 iValue;
 

@@ -126,7 +126,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectClient;
 
-         sync_lock lock(get_html_data()->mutex());
+         synchronization_lock lock(get_html_data()->mutex());
 
          auto pimage = create_image({ 50,  50 });
 
@@ -184,7 +184,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(get_html_data() == nullptr)
    {
@@ -289,12 +289,12 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(::is_set(get_html_data()))
    {
 
-      sync_lock sl(get_html_data()->mutex());
+      synchronization_lock synchronizationlock(get_html_data()->mutex());
 
       html::element * pelement = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
 
@@ -446,7 +446,7 @@ void html_form::soft_reload()
 
       auto psync = phtmldata->mutex();
 
-      sync_lock lock(psync);
+      synchronization_lock lock(psync);
 
       str = phtmldata->m_pcoredata->m_strSource;
 
@@ -858,7 +858,7 @@ void html_view::on_subject(::promise::subject * psubject, ::promise::context * p
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (get_html_data() == nullptr)
             {

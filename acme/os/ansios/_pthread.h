@@ -9,10 +9,10 @@
 #include <pthread.h>
 
 
-class sync;
+class synchronization_object;
 
 
-using HSYNC = sync *;
+using HSYNC = synchronization_object *;
 
 
 #define PM_NOREMOVE 0

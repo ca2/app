@@ -258,9 +258,6 @@
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\parallelization\service">
-      <UniqueIdentifier>{711bcad9-5239-4e29-8d18-b825f0650185}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node\ansios">
       <UniqueIdentifier>{45cc027c-f817-429c-88fd-79641200900b}</UniqueIdentifier>
     </Filter>
@@ -2163,9 +2160,6 @@
     </ClCompile>
     <ClCompile Include="parallelization\tools.cpp">
       <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\service\plain_service.cpp">
-      <Filter>Source Files\parallelization\service</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
       <Filter>Source Files\os\windows</Filter>

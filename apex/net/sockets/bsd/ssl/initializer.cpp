@@ -273,7 +273,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    UNREFERENCED_PARAMETER(line);
 
-   sync_lock sl(::sockets::g_pmutexMap);
+   synchronization_lock synchronizationlock(::sockets::g_pmutexMap);
 
    ::mutex * pmutex = nullptr;
 
@@ -298,7 +298,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
    if (mode & CRYPTO_LOCK)
    {

@@ -32,8 +32,8 @@ namespace user
 
       virtual void message_handler(::message::message * pusermessage) override;
 
-      //using ::user::primitive::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //using ::user::primitive::set_window_position;
+      //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect

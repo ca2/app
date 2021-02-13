@@ -12,10 +12,10 @@
 
 
 #ifdef RASPBIAN
-#define sync __unistd_sync
+#define synchronization_object __unistd_sync
 #include <sys/types.h>
 #include <unistd.h>
-#undef sync
+#undef synchronization_object
 #endif
 
 
@@ -450,7 +450,7 @@ mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 }
 
 //mutexmutex(const mutex & m):
-//   sync(m.m_pszName)
+//   synchronization_object(m.m_pszName)
 //{
 //   m_bOwner = false;
 //   m_hsync = m.m_hsync;
@@ -463,7 +463,7 @@ mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 
 mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
    ::matter(pobject),
-   sync(pstrName)
+   synchronization_object(pstrName)
 {
 
    m_bOwner       = bOwner;
@@ -479,7 +479,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 
 mutexmutex(const mutex & m):
    matter(m.get_context_application()),
-   sync(m.m_pszName)
+   synchronization_object(m.m_pszName)
 {
 
    m_bOwner       = false;
@@ -508,7 +508,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 
 //mutexmutex(const mutex & m) :
 //   matter(m.get_context_application()),
-//   sync(m.m_pszName)
+//   synchronization_object(m.m_pszName)
 //{
 //
 //   m_bOwner = false;
@@ -523,7 +523,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 
 mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool bOwner):
    ::matter(pobject),
-   sync(pstrName)
+   synchronization_object(pstrName)
 {
 
    m_bOwner       = bOwner;
@@ -535,7 +535,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 //mutexmutex(const mutex & m):
 //   matter(m.get_context_application()),
-//   sync(m.m_pszName)
+//   synchronization_object(m.m_pszName)
 //{
 //
 //   m_bOwner       = false;
@@ -634,13 +634,13 @@ bool mutex::already_exists()
 //      if (!irc)
 //      {
 //
-//         return sync_result(sync_result::Event0);
+//         return synchronization_result(synchronization_result::Event0);
 //
 //      }
 //      else if (irc != EBUSY)
 //      {
 //
-//         return sync_result(sync_result::Failure);
+//         return synchronization_result(synchronization_result::Failure);
 //
 //      }
 //
@@ -648,7 +648,7 @@ bool mutex::already_exists()
 
 #if !defined(WINDOWS)
 
-sync_result mutex::wait(const duration & duration)
+synchronization_result mutex::wait(const duration & duration)
 {
 
    if(duration.is_pos_infinity())
@@ -674,7 +674,7 @@ sync_result mutex::wait(const duration & duration)
       if(ret == 0)
       {
 
-         return sync_result(sync_result::Event0);
+         return synchronization_result(synchronization_result::Event0);
 
       }
       else
@@ -683,13 +683,13 @@ sync_result mutex::wait(const duration & duration)
          if (errno == ETIMEDOUT)
          {
 
-            return sync_result(sync_result::Timeout);
+            return synchronization_result(synchronization_result::Timeout);
 
          }
 
       }
 
-      return sync_result(sync_result::Failure);
+      return synchronization_result(synchronization_result::Failure);
 
 
    }
@@ -705,7 +705,7 @@ sync_result mutex::wait(const duration & duration)
       if (rc < 0)
       {
 
-         return sync_result(sync_result::result_error);
+         return synchronization_result(synchronization_result::result_error);
 
       }
 
@@ -728,7 +728,7 @@ sync_result mutex::wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return sync_result(sync_result::result_event0);
+               return synchronization_result(synchronization_result::result_event0);
 
             }
 
@@ -749,7 +749,7 @@ sync_result mutex::wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return sync_result(sync_result::result_event0);
+               return synchronization_result(synchronization_result::result_event0);
 
             }
             else
@@ -764,7 +764,7 @@ sync_result mutex::wait(const duration & duration)
 
                   ASSERT(iError == 0);
 
-                  return sync_result(sync_result::result_error);
+                  return synchronization_result(synchronization_result::result_error);
 
                }
 
@@ -777,7 +777,7 @@ sync_result mutex::wait(const duration & duration)
 
                ASSERT(false);
 
-               return sync_result(sync_result::result_error);
+               return synchronization_result(synchronization_result::result_error);
 
             }
 
@@ -786,7 +786,7 @@ sync_result mutex::wait(const duration & duration)
             if (tickElapsed >= tickTimeout)
             {
 
-               return sync_result(sync_result::result_timeout);
+               return synchronization_result(synchronization_result::result_timeout);
 
             }
 
@@ -797,7 +797,7 @@ sync_result mutex::wait(const duration & duration)
             if (rc < 0)
             {
 
-               return sync_result(sync_result::result_error);
+               return synchronization_result(synchronization_result::result_error);
 
             }
 
@@ -809,7 +809,7 @@ sync_result mutex::wait(const duration & duration)
 //
 //      ASSERT(iError == 0);
 //
-//      return sync_result(sync_result::Failure);
+//      return synchronization_result(synchronization_result::Failure);
 
    }
    else
@@ -836,7 +836,7 @@ sync_result mutex::wait(const duration & duration)
       if(ret == 0)
       {
 
-         return sync_result(sync_result::Event0);
+         return synchronization_result(synchronization_result::Event0);
 
       }
       else if(ret == -1)
@@ -845,13 +845,13 @@ sync_result mutex::wait(const duration & duration)
          if(errno == EAGAIN)
          {
 
-            return sync_result(sync_result::Timeout);
+            return synchronization_result(synchronization_result::Timeout);
 
          }
 
       }
 
-      return sync_result(sync_result::Failure);
+      return synchronization_result(synchronization_result::Failure);
 
    }
    else
@@ -866,7 +866,7 @@ sync_result mutex::wait(const duration & duration)
       if(rc < 0)
       {
 
-         return sync_result(sync_result::result_error);
+         return synchronization_result(synchronization_result::result_error);
 
       }
 
@@ -956,7 +956,7 @@ sync_result mutex::wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return sync_result(sync_result::result_timeout);
+            return synchronization_result(synchronization_result::result_timeout);
 
          }
          else if(rc != 0)
@@ -966,7 +966,7 @@ sync_result mutex::wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return sync_result(sync_result::result_error);
+            return synchronization_result(synchronization_result::result_error);
 
          }
 
@@ -985,7 +985,7 @@ sync_result mutex::wait(const duration & duration)
 
       ASSERT(iError == 0);
 
-      return sync_result(sync_result::result_event0);
+      return synchronization_result(synchronization_result::result_event0);
 
    }
 
@@ -1014,19 +1014,19 @@ sync_result mutex::wait(const duration & duration)
       if (!rc)
       {
 
-         return sync_result(sync_result::result_event0);
+         return synchronization_result(synchronization_result::result_event0);
 
       }
       else if(rc == ETIMEDOUT)
       {
 
-         return sync_result(sync_result::result_timeout);
+         return synchronization_result(synchronization_result::result_timeout);
 
       }
       else
       {
 
-         return sync_result(sync_result::result_error);
+         return synchronization_result(synchronization_result::result_error);
 
       }
 
@@ -1286,7 +1286,7 @@ bool mutex::lock()
 bool mutex::lock(const duration & duration)
 {
 
-   sync_result result = wait(duration);
+   synchronization_result result = wait(duration);
 
    if (!result.signaled())
    {
@@ -1300,17 +1300,17 @@ bool mutex::lock(const duration & duration)
 }
 
 
-sync_result mutex::wait()
+synchronization_result mutex::wait()
 {
 
    if (!lock())
    {
 
-      return sync_result(sync_result::result_error);
+      return synchronization_result(synchronization_result::result_error);
 
    }
 
-   return sync_result(sync_result::result_event0);
+   return synchronization_result(synchronization_result::result_event0);
 
 }
 
@@ -1709,7 +1709,7 @@ namespace install
    mutex::mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
       ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
-      , sync("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      , synchronization_object("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
       ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif

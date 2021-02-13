@@ -10,7 +10,7 @@
 #include "window_impl.h"
 #include "aura/os/_os.h"
 #include "oswindow_data.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 #include <CoreGraphics/CoreGraphics.h>
 
 oswindow_dataptra * g_poswindowdataptra = nullptr;
@@ -22,7 +22,7 @@ void ns_main_async(dispatch_block_t block);
 int oswindow_find(NSWindow * window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
    {
@@ -39,7 +39,7 @@ int oswindow_find(NSWindow * window)
 oswindow_data * oswindow_get(nswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -119,7 +119,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 bool oswindow_remove(nswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -426,7 +426,7 @@ int_bool session_accepts_first_responder()
 void deactivate_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
    
    if(g_oswindowActive != window)
    {
@@ -446,7 +446,7 @@ void deactivate_window(oswindow window)
 oswindow set_active_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    oswindow windowOld(g_oswindowActive);
 

@@ -48,7 +48,7 @@ namespace uwp
 //
 //         {
 //
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -123,7 +123,7 @@ namespace uwp
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         sync_lock sl(mutex());
+//         }         synchronization_lock synchronizationlock(mutex());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -195,7 +195,7 @@ namespace uwp
 //
 //       }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -217,7 +217,7 @@ namespace uwp
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -239,7 +239,7 @@ namespace uwp
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -259,8 +259,8 @@ namespace uwp
 
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            sync_lock sl1(m_pil48Hover->mutex());
-            sync_lock sl2(m_pil48->mutex());
+            synchronization_lock sl1(m_pil48Hover->mutex());
+            synchronization_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -344,9 +344,9 @@ namespace uwp
 
          {
 
-            sync_lock sl1(m_pilHover[16]->mutex());
+            synchronization_lock sl1(m_pilHover[16]->mutex());
 
-            sync_lock sl2(m_pil[16]->mutex());
+            synchronization_lock sl2(m_pil[16]->mutex());
 
             if (uwp_get_file_image(pimage16, strPath))
             {
@@ -371,9 +371,9 @@ namespace uwp
 
          }
 
-         sync_lock sl1(m_pilHover[48]->mutex());
+         synchronization_lock sl1(m_pilHover[48]->mutex());
 
-         sync_lock sl2(m_pil[48]->mutex());
+         synchronization_lock sl2(m_pil[48]->mutex());
 
          iImage = m_pil[48]->add_image(pimage48, 0, 0);
 

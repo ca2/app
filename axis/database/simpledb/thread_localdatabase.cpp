@@ -24,7 +24,7 @@ namespace simpledb
    ::e_status thread_localdatabase::run()
    {
 
-      single_lock sl(mutex());
+      single_lock synchronizationlock(mutex());
 
       try
       {
@@ -52,12 +52,12 @@ namespace simpledb
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
             if (m_itema.is_empty())
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                sleep(300_ms);
 
@@ -86,7 +86,7 @@ namespace simpledb
             if (bFound)
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                continue;
 
@@ -96,7 +96,7 @@ namespace simpledb
 
             m_itema.remove_at(0);
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             try
             {
@@ -124,7 +124,7 @@ namespace simpledb
 
                string str;
 
-               sync_lock slDatabase(pdatabase->mutex());
+               synchronization_lock slDatabase(pdatabase->mutex());
 
                {
 
@@ -220,7 +220,7 @@ namespace simpledb
    void thread_localdatabase::queue(const char * pszKey, block block)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pitem(__new(queue_item));
 

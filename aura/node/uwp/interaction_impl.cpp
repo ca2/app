@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "_.h"
 #include "_uwp.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 #include "directx_application.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
@@ -208,17 +208,17 @@ namespace uwp
 
       //::size_i32 sizeDrawn;
 
-      //sync_lock slGraphics(m_pgraphics->mutex());
+      //synchronization_lock slGraphics(m_pgraphics->mutex());
 
-      //::sync * psync = m_pgraphics->get_draw_lock();
+      //::synchronization_object * psync = m_pgraphics->get_draw_lock();
 
-      //sync_lock sl(psync);
+      //synchronization_lock synchronizationlock(psync);
 
       ////::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
       //slGraphics.unlock();
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       m_puserinteraction->place(m_rectangle);
 
@@ -287,7 +287,7 @@ namespace uwp
 
    //   //      {
 
-   //   //         sync_lock sl(&m_mutexQueue);
+   //   //         synchronization_lock synchronizationlock(&m_mutexQueue);
 
    //   //         if (m_messageaQueue.has_elements())
    //   //         {
@@ -303,7 +303,7 @@ namespace uwp
 
    //   //            }
 
-   //   //            sl.unlock();
+   //   //            synchronizationlock.unlock();
 
    //   //            m_puserinteraction->message_handler(pmessage);
 
@@ -314,11 +314,11 @@ namespace uwp
    //   //            do
    //   //            {
 
-   //   //               sl.unlock();
+   //   //               synchronizationlock.unlock();
 
    //   //               m_evQueue.wait(millis(300));
 
-   //   //               sl.lock();
+   //   //               synchronizationlock.lock();
 
    //   //            }
    //   //            while (m_messageaQueue.is_empty() && ::thread_get_run());
@@ -500,7 +500,7 @@ namespace uwp
 #endif
 
          // should also be in the permanent or temporary handle ::map
-         //single_lock sl(afxMutexHwnd(),true);
+         //single_lock synchronizationlock(afxMutexHwnd(),true);
          //hwnd_map * pMap = afxMapHWND();
          //if(pMap == nullptr) // inside thread not having windows
          //   return; // let go
@@ -570,7 +570,7 @@ namespace uwp
 
    bool interaction_impl::DestroyWindow()
    {
-      //single_lock sl(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
+      //single_lock synchronizationlock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
       //::user::interaction_impl * pWnd;
       //hwnd_map * pMap;
       //oswindow hWndOrig;
@@ -1943,7 +1943,7 @@ return true;
    //   //         ::rectangle_i32 rectangle;
    //   //         ::get_window_rect(hWndChild, &rectangle);
    //   //         _001ScreenToClient(&rectangle);
-   //   //         ::set_window_pos(hWndChild, nullptr,
+   //   //         ::set_window_position(hWndChild, nullptr,
    //   //            rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
    //   //            SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
    //   //      }
@@ -2055,7 +2055,7 @@ return true;
    {
       return false;
       //// get the ::map, and if no ::map, then this message does not need reflection
-      //single_lock sl(afxMutexHwnd(),true);
+      //single_lock synchronizationlock(afxMutexHwnd(),true);
       //hwnd_map * pMap = afxMapHWND();
       //if(pMap == nullptr)
       //   return false;
@@ -2675,7 +2675,7 @@ return true;
       ////   yTop = rcArea.bottom - rcDlg.height();
 
       ////// ::map screen coordinates to child coordinates
-      ////set_window_pos(nullptr, xLeft, yTop, -1, -1,
+      ////set_window_position(nullptr, xLeft, yTop, -1, -1,
       ////   SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
 
@@ -3055,7 +3055,7 @@ return true;
    }
 
 
-   //bool interaction_impl::set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags)
+   //bool interaction_impl::set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags)
    //{
    //   /*bool b;
    //   bool * pb = &b;
@@ -3064,7 +3064,7 @@ return true;
    //   keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
    //   */
    //   //ASSERT(::is_window(get_handle()));
-   //   ///*   return ::set_window_pos(get_handle(), pWndInsertAfter->get_handle(),
+   //   ///*   return ::set_window_position(get_handle(), pWndInsertAfter->get_handle(),
    //   //x, y, cx, cy, nFlags) != false; */
    //   //rectangle_i64 rectWindowOld = m_rectParentClient;
    //   if(nFlags & SWP_NOMOVE)
@@ -3101,7 +3101,7 @@ return true;
 
    //   ASSERT(::is_window(get_handle()));
 
-   //   set_window_pos(nullptr,x,y,nWidth,nHeight,bRepaint ? SWP_SHOWWINDOW : 0);
+   //   set_window_position(nullptr,x,y,nWidth,nHeight,bRepaint ? SWP_SHOWWINDOW : 0);
 
    //}
 
@@ -3579,7 +3579,7 @@ return true;
 
 //      return ::PostMessageW(get_handle(),message,wParam,lParam) != false;
       //return m_puserinteraction->post_message(message, wParam, lParam);
-      return mq_post_message(get_handle(), id, wParam, lParam) != false;
+      return message_queue_post(get_handle(), id, wParam, lParam) != false;
 
    }
 
@@ -3602,7 +3602,7 @@ return true;
 
       {
 
-         sync_lock sl(m_puserinteraction->mutex());
+         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
          m_strWindowText = lpszString;
 
@@ -3617,7 +3617,7 @@ return true;
 
          {
 
-            sync_lock sl(m_puserinteraction->mutex());
+            synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
             applicationview->Title = m_strWindowText;
 
@@ -5947,7 +5947,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
       {
          // class registered successfully, add to registered list
          __MODULE_STATE* pModuleState = __get_module_state();
-         single_lock sl(&pModuleState->m_mutexRegClassList, true);
+         single_lock synchronizationlock(&pModuleState->m_mutexRegClassList, true);
          if(pModuleState->m_pstrUnregisterList == nullptr)
             pModuleState->m_pstrUnregisterList = new string;
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
@@ -6017,7 +6017,7 @@ namespace uwp
 
       }
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       auto puiptraChild = m_puserinteraction->m_puiptraChild;
 
@@ -6053,7 +6053,7 @@ namespace uwp
 
       //m_puserinteraction->on_after_graphical_update();
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       auto puiptraChild = m_puserinteraction->m_puiptraChild;
 
@@ -6183,7 +6183,7 @@ namespace uwp
 
          //}
 
-         //sync_lock sl(&m_mutexQueue);
+         //synchronization_lock synchronizationlock(&m_mutexQueue);
 
          //m_messageaQueue.add(pusermessage);
 

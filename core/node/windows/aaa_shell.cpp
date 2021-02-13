@@ -459,11 +459,11 @@ namespace windows
 
             HRESULT hrExtract = E_FAIL;
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             auto iaSize = m_iaSize;
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             for (auto iSize : iaSize)
             {
@@ -1100,11 +1100,11 @@ namespace windows
    int shell::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto iaSize = m_iaSize;
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       for (auto iSize : iaSize)
       {
@@ -1121,11 +1121,11 @@ namespace windows
    int shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto iaSize = m_iaSize;
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       path = Context.defer_process_path(path);
 
@@ -1157,9 +1157,9 @@ namespace windows
    int shell::add_icon(int iSize, HICON hicon, color32_t crBk, int iImage)
    {
 
-      sync_lock sl(m_pil[iSize]->mutex());
+      synchronization_lock synchronizationlock(m_pil[iSize]->mutex());
 
-      sync_lock slHover(m_pilHover[iSize]->mutex());
+      synchronization_lock slHover(m_pilHover[iSize]->mutex());
 
       iImage = m_pil[iSize]->add_icon_os_data(hicon, iImage);
 
@@ -1322,11 +1322,11 @@ namespace windows
       if (reserve_image(imagekeyIco, iImage))
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto iaSize = m_iaSize;
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          for (auto iSize : iaSize)
          {

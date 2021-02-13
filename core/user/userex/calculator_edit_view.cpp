@@ -94,7 +94,7 @@ namespace calculator
 
          {
 
-            sync_lock sl(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
+            synchronization_lock synchronizationlock(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
 
             string strExp;
 

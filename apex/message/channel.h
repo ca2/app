@@ -104,7 +104,7 @@ public:
 
 
    template < typename MESSAGE_PRED >
-   void connect_command_pred(const ::id & id, MESSAGE_PRED pred)
+   void connect_command_predicate(const ::id & id, MESSAGE_PRED pred)
    {
 
       add_route(id.compounded(::id::e_type_command), this) = pred;
@@ -113,7 +113,7 @@ public:
 
 
    template < typename RECEIVER, typename MESSAGE_PRED >
-   void add_update_route_pred(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
+   void add_update_route_predicate(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
    {
 
       add_route(id.compounded(::id::e_type_update), preceiver) = pred;
@@ -128,7 +128,7 @@ public:
    void add_update_route(RECEIVER * preceiver, const ::id & id)
    {
 
-      add_update_route_pred(preceiver, id, [preceiver, id](::message::message * pmessage)
+      add_update_route_predicate(preceiver, id, [preceiver, id](::message::message * pmessage)
       {
 
          preceiver->process_subject(id, preceiver);

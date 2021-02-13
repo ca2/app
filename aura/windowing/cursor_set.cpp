@@ -171,7 +171,7 @@ namespace windowing
    __pointer(cursor) cursor_set::get_cursor(enum_cursor ecursor)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -200,7 +200,7 @@ namespace windowing
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pcursor = get_cursor(ecursor);
 
@@ -647,7 +647,7 @@ namespace windowing
    __pointer(cursor) cursor_set::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       cursor * pcursor = get_cursor(ecursor);
 

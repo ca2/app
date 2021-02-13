@@ -75,7 +75,7 @@ namespace multimedia
       ::e_status out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if(m_Queue != nullptr && m_estate != e_state_initial)
          {
@@ -205,7 +205,7 @@ namespace multimedia
 
             {
                
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                status = AudioQueueGetProperty(m_Queue, kAudioQueueProperty_IsRunning, &property_running, &size);
                
@@ -235,7 +235,7 @@ namespace multimedia
          
          {
          
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             status = AudioQueueDispose(m_Queue, false);
             
@@ -262,7 +262,7 @@ namespace multimedia
 
          }
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          AudioQueueBufferRef buffer = audio_buffer(iBuffer);
 
@@ -285,7 +285,7 @@ namespace multimedia
       ::e_status out::out_stop()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if(m_estate != e_state_playing && m_estate != e_state_paused)
          {
@@ -315,7 +315,7 @@ namespace multimedia
       ::e_status out::out_pause()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          ASSERT(m_estate == e_state_playing);
 
@@ -352,7 +352,7 @@ namespace multimedia
       ::e_status out::out_restart()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          ASSERT(m_estate == e_state_paused);
 
@@ -375,7 +375,7 @@ namespace multimedia
       ::e_status out::_out_start()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          OSStatus statusPrime = AudioQueuePrime(m_Queue, 0, nullptr);
 

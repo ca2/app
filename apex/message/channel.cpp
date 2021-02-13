@@ -34,7 +34,7 @@ void channel::install_message_routing(::channel* pchannel)
 void channel::remove_receiver(::object * preceiver)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    for (auto & id_route_array : m_idroute)
    {
@@ -46,7 +46,7 @@ void channel::remove_receiver(::object * preceiver)
 
       }
 
-      id_route_array.element2()->pred_remove([=](auto & pitem)
+      id_route_array.element2()->predicate_remove([=](auto & pitem)
       {
 
          return pitem->m_preceiver == preceiver;
@@ -62,7 +62,7 @@ void channel::remove_receiver(::object * preceiver)
 void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    for (auto & id_route_array : m_idroute)
    {
@@ -74,7 +74,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 
       }
 
-      id_route_array.element2()->pred_each([&](auto & pitem)
+      id_route_array.element2()->predicate_each([&](auto & pitem)
       {
 
          if (pitem->m_preceiver == preceiver)
@@ -95,7 +95,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 
       });
 
-      id_route_array.element2()->pred_remove([&](auto & pitem)
+      id_route_array.element2()->predicate_remove([&](auto & pitem)
       {
 
          return pitem->m_preceiver == preceiver;
@@ -111,7 +111,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { sync_lock sl(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -130,7 +130,7 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
    pmessagemessage->set(
       pmessage->oswindow, 
       nullptr,
-      (enum_message) pmessage->message, 
+      pmessage->m_id, 
       pmessage->wParam, 
       pmessage->lParam);
 
@@ -203,7 +203,7 @@ void channel::remove_all_routes()
    try
    {
 
-      sync_lock sl(channel_mutex());
+      synchronization_lock synchronizationlock(channel_mutex());
 
       if(m_bNewChannel)
       {
@@ -226,13 +226,13 @@ void channel::remove_all_routes()
 //
 //            }
 //
-//            id_route_array.element2()->pred_each([=](auto & route)
+//            id_route_array.element2()->predicate_each([=](auto & route)
 //            {
 //
 //               try
 //               {
 //
-//                  sync_lock sl(route->m_preceiver->m_pmutexChannel);
+//                  synchronization_lock synchronizationlock(route->m_preceiver->m_pmutexChannel);
 //
 //                  route->m_preceiver->m_sendera.remove(this);
 //
@@ -439,7 +439,7 @@ void channel::on_command(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    __restore(pcommand->m_id.m_etype);
 
@@ -509,7 +509,7 @@ void channel::default_toggle_check_handling(const ::id & id)
 
    auto pproperty = fetch_property(id);
 
-   connect_command_pred(id, [this, id, pproperty](::message::message * pmessage)
+   connect_command_predicate(id, [this, id, pproperty](::message::message * pmessage)
       {
 
          __pointer(::message::message) pcommand(pmessage);

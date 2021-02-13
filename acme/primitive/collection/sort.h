@@ -472,7 +472,7 @@ namespace sort
    //}
 
    template < typename PRED_LE, typename ARRAY>
-   void pred_array_quick_sort(ARRAY & a, PRED_LE pred_le)
+   void predicate_array_quick_sort(ARRAY & a, PRED_LE predicate_le)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -497,7 +497,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(pred_le(a.element_at(iMPos), a.element_at(iUPos)))
+                  if(predicate_le(a.element_at(iMPos), a.element_at(iUPos)))
                      iUPos--;
                   else
                   {
@@ -515,7 +515,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(pred_le(a.element_at(iLPos), a.element_at(iMPos)))
+                  if(predicate_le(a.element_at(iLPos), a.element_at(iMPos)))
                      iLPos++;
                   else
                   {
@@ -1274,7 +1274,7 @@ namespace sort
 
 
       template < typename ARRAY_TYPE >
-      void quick_sort(ARRAY_TYPE  & a, less_pred_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
+      void quick_sort(ARRAY_TYPE  & a, less_predicateicate_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
          if (ia.get_size() != a.get_size())
@@ -1424,7 +1424,7 @@ namespace sort
 
 
       template < typename ARRAY_TYPE, typename PRED >
-      void pred_sort(ARRAY_TYPE  & a, PRED pred)
+      void predicate_sort(ARRAY_TYPE  & a, PRED pred)
       {
 
          index_array stackLowerBound;
@@ -1555,7 +1555,7 @@ break_mid_loop:
       }
 
       template < typename ARRAY_TYPE, typename T, typename PRED >
-      iptr pred_binary_search(const ARRAY_TYPE & a, const T & t, PRED pred)
+      iptr predicate_binary_search(const ARRAY_TYPE & a, const T & t, PRED pred)
       {
 
          iptr iLPos, iUPos, iMPos;
@@ -1758,7 +1758,7 @@ break_mid_loop:
 
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
-   void pred_quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
+   void predicate_quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
    {
 
       if (list.get_size() < 2)
@@ -1832,10 +1832,10 @@ break_mid_loop:
 
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
-   void pred_quick_sort_descending(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
+   void predicate_quick_sort_descending(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
    {
 
-      pred_quick_sort(list, [&](auto & a, auto & b) { return pred(b, a); });
+      predicate_quick_sort(list, [&](auto & a, auto & b) { return pred(b, a); });
 
    }
 
@@ -1847,13 +1847,13 @@ break_mid_loop:
       if (bAscendent)
       {
 
-         pred_quick_sort(list, [](auto & a, auto & b) { return a < b; });
+         predicate_quick_sort(list, [](auto & a, auto & b) { return a < b; });
 
       }
       else
       {
 
-         pred_quick_sort(list, [](auto & a, auto & b) { return b < a; });
+         predicate_quick_sort(list, [](auto & a, auto & b) { return b < a; });
 
       }
 
@@ -2031,7 +2031,7 @@ break_mid_loop:
    //https://stackoverflow.com/questions/32937902/sorting-iptr-of-array-using-merge-sort
 
    template < typename ARRAY, typename PRED >
-   void pred_index_merge(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int mid, int hi)
+   void predicate_index_merge(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int mid, int hi)
    {
 
       int i = lo, j = mid + 1;
@@ -2076,7 +2076,7 @@ break_mid_loop:
    }
 
    template < typename ARRAY, typename PRED >
-   void pred_index_merge_sort(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int hi)
+   void predicate_index_merge_sort(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int hi)
    {
 
       if (hi <= lo)
@@ -2084,23 +2084,23 @@ break_mid_loop:
 
       int mid = (hi + lo) / 2;
 
-      pred_merge_sort(a, leq, temp, perm, lo, mid);
+      predicate_merge_sort(a, leq, temp, perm, lo, mid);
 
-      pred_merge_sort(a, leq, temp, perm, mid + 1, hi);
+      predicate_merge_sort(a, leq, temp, perm, mid + 1, hi);
 
-      pred_merge(a, leq, temp, perm, lo, mid, hi);
+      predicate_merge(a, leq, temp, perm, lo, mid, hi);
 
    }
 
    template < typename ARRAY, typename PRED >
-   void pred_stable_index_sort(ARRAY & a, index_array & perm, PRED leq)
+   void predicate_stable_index_sort(ARRAY & a, index_array & perm, PRED leq)
    {
 
       index_array temp;
 
       temp.set_size(a.get_size());
 
-      pred_index_merge_sort(a, leq, temp, perm, 0, a.get_upper_bound());
+      predicate_index_merge_sort(a, leq, temp, perm, 0, a.get_upper_bound());
 
    }
 
@@ -2110,7 +2110,7 @@ break_mid_loop:
    // First subarray is arr[l..m]
    // Second subarray is arr[m+1..r]
    template < typename ARRAY, typename PRED >
-   void pred_merge(ARRAY & a, PRED leq, int l, int m, int r)
+   void predicate_merge(ARRAY & a, PRED leq, int l, int m, int r)
    {
 
       int i, j, k;
@@ -2170,7 +2170,7 @@ break_mid_loop:
    /* l is for left iptr and r is right iptr of the
    sub-array of arr to be sorted */
    template < typename ARRAY, typename PRED >
-   void pred_merge_sort(ARRAY & a, PRED leq, int l, int r)
+   void predicate_merge_sort(ARRAY & a, PRED leq, int l, int r)
    {
 
       if (l < r)
@@ -2182,21 +2182,21 @@ break_mid_loop:
 
          // Sort first and second halves
 
-         pred_merge_sort(a, leq, l, m);
+         predicate_merge_sort(a, leq, l, m);
 
-         pred_merge_sort(a, leq, m + 1, r);
+         predicate_merge_sort(a, leq, m + 1, r);
 
-         pred_merge(a, leq, l, m, r);
+         predicate_merge(a, leq, l, m, r);
 
       }
 
    }
 
    template < typename ARRAY, typename PRED >
-   void pred_stable_sort(ARRAY & a, PRED leq)
+   void predicate_stable_sort(ARRAY & a, PRED leq)
    {
 
-      pred_merge_sort(a, leq, 0, a.get_upper_bound());
+      predicate_merge_sort(a, leq, 0, a.get_upper_bound());
 
    }
 
@@ -2256,20 +2256,20 @@ quick_sort(bool bAscendent)
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 template < typename PRED >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pred_sort(PRED pred)
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::predicate_sort(PRED pred)
 {
 
-   ::sort::array::pred_sort(*this, pred);
+   ::sort::array::predicate_sort(*this, pred);
 
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 template < typename T, typename PRED >
-index array_base < TYPE, ARG_TYPE, ALLOCATOR >::pred_binary_search(const T & t, PRED pred) const
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::predicate_binary_search(const T & t, PRED pred) const
 {
 
-   return ::sort::array::pred_binary_search(*this, t, pred);
+   return ::sort::array::predicate_binary_search(*this, t, pred);
 
 }
 

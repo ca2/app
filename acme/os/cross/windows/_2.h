@@ -53,7 +53,7 @@ using dummy_pointer = void *;
 
 
 /*
-* set_window_pos Flags
+* set_window_position Flags
 */
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002

@@ -26,7 +26,7 @@ namespace draw2d_cairo
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       cy = abs(cy);
 
@@ -116,7 +116,7 @@ namespace draw2d_cairo
       try
       {
 
-         sync_lock ml(cairo_mutex());
+         synchronization_lock ml(cairo_mutex());
 
          destroy();
 
@@ -370,7 +370,7 @@ namespace draw2d_cairo
    void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if(plongWidth != nullptr)
       {
@@ -392,7 +392,7 @@ namespace draw2d_cairo
    bool bitmap::attach(void * psurface)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       destroy();
 
@@ -410,7 +410,7 @@ namespace draw2d_cairo
    void bitmap::destroy()
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if (m_psurface == nullptr)
       {

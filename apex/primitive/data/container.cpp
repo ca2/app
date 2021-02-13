@@ -127,10 +127,10 @@ namespace data
    }
 
 
-   sync_array data_container_base::get_synca()
+   synchronization_array data_container_base::get_synca()
    {
 
-      sync_array synca;
+      synchronization_array synca;
 
       for(auto & pdata : m_datamap.values())
       {

@@ -44,7 +44,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 #endif
 
 
-::e_status timer_task::initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
+::e_status timer_task::initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
 
    auto estatus = initialize(pobjectContext);
@@ -83,7 +83,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 bool timer_task::start(const ::duration& duration, bool bPeriodic)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -278,7 +278,7 @@ void timer_task::finalize()
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {

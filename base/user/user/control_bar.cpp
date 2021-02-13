@@ -648,7 +648,7 @@ namespace user
 //       m_nStateFlags &= ~(delayShow|delayHide);
 //       if (swpFlags != 0)
 //       {
-//          set_window_pos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
+//          set_window_position(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
 //       }
 
 //       // the style must be visible and if it is docked
@@ -749,7 +749,7 @@ namespace user
 //
 //            }
 //
-//            set_window_pos(zorder_none, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
+//            set_window_position(zorder_none, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
 //         }
 //         else
 //         {

@@ -248,7 +248,7 @@ namespace acme
    ::task * system::get_task(ithread_t ithread)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       return m_taskmap[ithread];
 
@@ -258,7 +258,7 @@ namespace acme
    ithread_t system::get_task_id(::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       ithread_t ithread = NULL_ITHREAD;
 
@@ -277,7 +277,7 @@ namespace acme
    void system::set_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -289,7 +289,7 @@ namespace acme
    void system::unset_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 

@@ -174,7 +174,7 @@ void* task::s_os_task(void* p)
 void task::add_notify(::matter* pmatter)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -184,7 +184,7 @@ void task::add_notify(::matter* pmatter)
 void task::remove_notify(::matter* pmatter)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pnotifya)
    {
@@ -271,14 +271,14 @@ void task::term_task()
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    //if (m_pnotifya)
    //{
 
    //   auto notifya = *m_pnotifya;
 
-   //   sl.unlock();
+   //   synchronizationlock.unlock();
 
    //   for (auto & pmatter : notifya)
    //   {
@@ -289,7 +289,7 @@ void task::term_task()
 
    //   }
 
-   //   sl.lock();
+   //   synchronizationlock.lock();
 
    //}
 
@@ -333,7 +333,7 @@ void task::term_task()
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pmatter = m_pmatter.m_p;
 
@@ -580,7 +580,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         sync_lock sl(pthread->mutex());
+         synchronization_lock synchronizationlock(pthread->mutex());
 
          if (pthread->m_pevSleep.is_null())
          {
@@ -629,7 +629,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync)
 {
 
    try
@@ -658,7 +658,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_object* psync)
 {
 
    if (millis.m_i < 1000)
@@ -710,7 +710,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
+CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
 {
 
    auto pthread = ::get_task();

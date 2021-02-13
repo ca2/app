@@ -1076,11 +1076,11 @@ string merge_colon_args(const array < string_array >& str2a)
 
    }
 
-   strCommandLine += ::str::has_char(straBeforeColon.pred_implode(&transform_to_c_arg, " "), " ");
+   strCommandLine += ::str::has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
 
    strCommandLine += " : ";
 
-   strCommandLine += straAfterColon.pred_implode(&transform_to_c_arg, " ");
+   strCommandLine += straAfterColon.predicate_implode(&transform_to_c_arg, " ");
 
    return strCommandLine;
 

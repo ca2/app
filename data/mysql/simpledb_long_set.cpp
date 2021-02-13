@@ -123,7 +123,7 @@ repeat:;
 
        {
 
-          single_lock sl(&m_mutex);
+          single_lock synchronizationlock(&m_mutex);
 
           if(m_itema.get_size() <= 0)
           {
@@ -154,7 +154,7 @@ repeat:;
 
           m_itema.remove_at(0);
 
-          sl.unlock();
+          synchronizationlock.unlock();
 
           set["user"] = psession->account()->get_user();
 
@@ -177,7 +177,7 @@ repeat:;
 void db_long_sync_queue::queue(const char * pszKey,i64 l)
 {
 
-   single_lock sl(&m_mutex, true);
+   single_lock synchronizationlock(&m_mutex, true);
 
    db_long_set_queue_item item;
 
@@ -407,7 +407,7 @@ bool db_long_set::save(const char * lpKey, i64 lValue)
 bool db_long_set::find(const char * lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
-   /*    single_lock sl(&m_CriticalSection, true);
+   /*    single_lock synchronizationlock(&m_CriticalSection, true);
    HRESULT hr;
    if(m_bIndexed)
    {

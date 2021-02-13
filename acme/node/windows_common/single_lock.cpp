@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-single_lock::single_lock(sync * psync, bool bInitialLock)
+single_lock::single_lock(synchronization_object * psync, bool bInitialLock)
 {
 
    m_psync = psync;
@@ -26,10 +26,10 @@ single_lock::~single_lock()
 }
 
 
-sync_result single_lock::wait()
+synchronization_result single_lock::wait()
 {
 
-   ::sync_result result(::sync_result::result_event0);
+   ::synchronization_result result(e_synchronization_result_signaled_base);
 
    if(m_bAcquired)
    {
@@ -54,7 +54,7 @@ sync_result single_lock::wait()
    catch(...)
    {
 
-      result = ::sync_result(::sync_result::result_error);
+      result = ::synchronization_result(::synchronization_result::result_error);
 
    }
 
@@ -65,10 +65,10 @@ sync_result single_lock::wait()
 }
 
 
-::sync_result single_lock::wait(const duration & durationTimeOut)
+::synchronization_result single_lock::wait(const duration & durationTimeOut)
 {
 
-   ::sync_result result(::sync_result::result_event0);
+   ::synchronization_result result(e_synchronization_result_signaled_base);
 
    if(m_bAcquired)
    {
@@ -93,7 +93,7 @@ sync_result single_lock::wait()
    catch(...)
    {
 
-      result = ::sync_result(::sync_result::result_error);
+      result = ::synchronization_result(::synchronization_result::result_error);
 
    }
 

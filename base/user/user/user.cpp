@@ -305,7 +305,7 @@ namespace base
 
          auto & app = App(papp);
 
-         sync_lock sl(&app.m_mutexFrame);
+         synchronization_lock synchronizationlock(&app.m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
@@ -1365,7 +1365,7 @@ namespace base
 
          pstyle->initialize(papp);
 
-         //sync_lock sl(&System.m_mutexLibrary);
+         //synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
          //System.m_mapLibrary[strLibrary] = plibrary;
 

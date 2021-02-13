@@ -279,7 +279,7 @@ void simple_frame_window::SaveWindowRectThreadProcedure()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (!should_save_window_rect())
    {
@@ -511,7 +511,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {
@@ -1214,23 +1214,8 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 }
 
 
-void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsOnHide)
+void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool bLeaveFullScreenBarsOnHide)
 {
-
-   ::u32 nShow;
-
-   if (bShow)
-   {
-
-      nShow = e_display_normal;
-
-   }
-   else
-   {
-
-      nShow = e_display_none;
-
-   }
 
    for(auto & pbar : m_toolbarmap.values())
    {
@@ -1238,14 +1223,18 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
       try
       {
 
-         if(pbar != nullptr && (bShow || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+         if(pbar != nullptr && (is_screen_visible(edisplay) || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
 
             enum_activation eactivation = e_activation_default;
 
-            auto edisplay = windows_show_window_to_edisplay(nShow, eactivation);
-
             pbar->display(edisplay, eactivation);
+
+         }
+         else
+         {
+
+            pbar->hide();
 
          }
 
@@ -1265,7 +1254,7 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
 void simple_frame_window::WfiOnFullScreen()
 {
 
-   ShowControlBars(false, true);
+   show_control_bars(e_display_none, true);
 
    sketch_prepare_window_full_screen();
 
@@ -1324,7 +1313,7 @@ bool simple_frame_window::frame_is_transparent()
 void simple_frame_window::_001OnExitFullScreen()
 {
 
-   ShowControlBars(true);
+   show_control_bars();
 
    ::experience::frame_window::_001OnExitFullScreen();
 
@@ -2301,7 +2290,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pimpl->m_puserinteraction == nullptr)
       {
@@ -3268,7 +3257,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   uia = m_uiptraChild;
 

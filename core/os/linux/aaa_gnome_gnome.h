@@ -21,7 +21,7 @@ template < typename PRED >
 auto gdk_fork(PRED pred, e_priority epriority = priority_normal)
 {
 
-   return async_pred(&gdk_branch, pred, epriority);
+   return async_predicate(&gdk_branch, pred, epriority);
 
 }
 
@@ -30,7 +30,7 @@ template < typename PRED >
 auto gdk_sync(const duration & durationTimeout, PRED pred, e_priority epriority = priority_normal)
 {
 
-   return sync_pred(&gdk_branch, pred, durationTimeout, epriority);
+   return sync_predicate(&gdk_branch, pred, durationTimeout, epriority);
 
 }
 

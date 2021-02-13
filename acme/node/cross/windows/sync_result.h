@@ -18,7 +18,7 @@
 // use 0
 
 /// This class represents results of waiting actions.
-class CLASS_DECL_ACME sync_result
+class CLASS_DECL_ACME synchronization_result
 {
 public:
 
@@ -50,22 +50,22 @@ public:
    ///  \lparam		objectCount number of items in event_collection
 
 
-   explicit sync_result(::u32 uStatus, ::count objectCount = 1);
+   explicit synchronization_result(::u32 uStatus, ::count objectCount = 1);
 
 
 //#endif
    ///  \brief		constructor with result value passed
    ///  \lparam		value waiting result value as passed by Windows API function
-   explicit sync_result(i32 iEvent)
+   explicit synchronization_result(i32 iEvent)
       : m_iEvent(iEvent)
    {}
 
-   sync_result(e_result eresult)
+   synchronization_result(e_result eresult)
       : m_eresult(eresult)
    {}
 
    ///  \brief		default constructor
-   sync_result()
+   synchronization_result()
       : m_eresult(result_error)
    {}
 

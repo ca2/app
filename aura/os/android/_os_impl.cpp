@@ -98,7 +98,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   sync_lock slScreen(pbuffer->get_screen_sync());
+   synchronization_lock slScreen(pbuffer->get_screen_sync());
 
    auto pimage = pbuffer->get_screen_image();
 
@@ -275,7 +275,7 @@ JNIEnv* get_jni_env()
 void android_exchange()
 {
 
-   sync_lock sl(osmutex());
+   synchronization_lock synchronizationlock(osmutex());
 
    auto plocal = g_poslocal;
 
@@ -460,7 +460,7 @@ void android_exchange()
 void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, int iBeg, int iEnd)
 {
 
-   sync_lock sl(osmutex());
+   synchronization_lock synchronizationlock(osmutex());
 
    auto plocal = g_poslocal;
 
@@ -486,7 +486,7 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText,
 void android_edit_on_kill_focus()
 {
 
-   sync_lock sl(osmutex());
+   synchronization_lock synchronizationlock(osmutex());
 
    auto plocal = g_poslocal;
 

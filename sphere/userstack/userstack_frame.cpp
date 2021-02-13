@@ -271,7 +271,7 @@ namespace userstack
             
             display();
             
-            set_window_pos(e_zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+            set_window_position(e_zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
             display(e_display_full_screen);
          }
          else if(pusermessage->m_lparam == 5)

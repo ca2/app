@@ -15,7 +15,7 @@ namespace uwp
       __pointer(::uwp::interaction_impl)                       m_pimpl;
 
       template < typename PRED >
-      void sync(PRED pred)
+      void synchronization_object(PRED pred)
       {
 
          Windows::UI::Core::CoreDispatcher ^ pdispatcher = nullptr;

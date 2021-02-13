@@ -485,7 +485,7 @@ namespace windowing
 
 //      {
 //
-//         sync_lock sl(x11_mutex());
+//         synchronization_lock synchronizationlock(x11_mutex());
 //
 //         Display *pdisplay = x11_get_display();
 //

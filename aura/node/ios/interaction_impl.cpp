@@ -258,7 +258,7 @@ namespace ios
     ::SetWindowLong(hWnd, nStyleOffset, dwNewStyle);
     if (nFlags != 0)
     {
-    ::set_window_pos(hWnd, nullptr, 0, 0, 0, 0,
+    ::set_window_position(hWnd, nullptr, 0, 0, 0, 0,
     SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
     }
     return true;
@@ -358,7 +358,7 @@ namespace ios
 
       if (hWndNew == nullptr)
          return false;
-      //single_lock sl(afxMutexHwnd(), true);
+      //single_lock synchronizationlock(afxMutexHwnd(), true);
       //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
@@ -379,7 +379,7 @@ namespace ios
       oswindow hWnd = (oswindow) get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock sl(afxMutexHwnd(), true);
+         //         single_lock synchronizationlock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->remove_handle(get_handle());
@@ -736,7 +736,7 @@ namespace ios
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
+      single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
 
       //pmessage->m_bRet = true;
 
@@ -811,7 +811,7 @@ namespace ios
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock sl(afxMutexHwnd(), true);
+       single_lock synchronizationlock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -895,7 +895,7 @@ namespace ios
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
+      single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
 
       if(get_handle() == nullptr)
          return false;
@@ -1650,7 +1650,7 @@ namespace ios
 //       ::rectangle_i32 rectangle;
 //       ::get_window_rect(hWndChild, &rectangle);
 //       _001ScreenToClient(&rectangle);
-//       ::set_window_pos(hWndChild, nullptr,
+//       ::set_window_position(hWndChild, nullptr,
 //       rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //       SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
 //       }
@@ -1754,7 +1754,7 @@ namespace ios
    bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
    {
       // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-      /*      single_lock sl(afxMutexHwnd(), true);
+      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if (pMap == nullptr)
        return false;
@@ -2637,7 +2637,7 @@ namespace ios
 //
 //      ASSERT(::is_window(get_handle()));
 //
-//      set_window_pos(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
+//      set_window_position(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
 //
 //   }
 
@@ -3489,7 +3489,7 @@ namespace ios
 //         if (m_rectLastPos != m_rectParentClientRequest)
 //         {
 //
-//            ::set_window_pos(m_oswindow, nullptr,
+//            ::set_window_position(m_oswindow, nullptr,
 //                           (int) m_rectParentClientRequest.left,
 //                           (int) m_rectParentClientRequest.top,
 //                           (int) m_rectParentClientRequest.width(),
@@ -4999,7 +4999,7 @@ namespace ios
 ////      if (m_rectLastPos != m_rectParentClientRequest)
 ////      {
 ////
-////         ::set_window_pos(m_oswindow, nullptr,
+////         ::set_window_position(m_oswindow, nullptr,
 ////                        (int) m_rectParentClientRequest.left,
 ////                        (int) m_rectParentClientRequest.top,
 ////                        (int) m_rectParentClientRequest.width(),
@@ -5055,7 +5055,7 @@ namespace ios
 
       {
 
-         single_lock sl(m_puserinteraction->mutex(), true);
+         single_lock synchronizationlock(m_puserinteraction->mutex(), true);
 
          double sh = status_bar_height();
          
@@ -5084,7 +5084,7 @@ namespace ios
 
       }
       
-      sync_lock sl1(pbuffer->get_screen_sync());
+      synchronization_lock sl1(pbuffer->get_screen_sync());
       
       auto & pimage = pbuffer->get_screen_image();
 
@@ -5684,7 +5684,7 @@ namespace ios
 
       {
 
-         sync_lock sl(m_puserinteraction->mutex());
+         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
          m_puserinteraction->m_stateRequest2.m_point = pointMove;
 
@@ -5742,7 +5742,7 @@ namespace ios
 
       }
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       for (auto p : m_puserinteraction->m_uiptraChild)
       {

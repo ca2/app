@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-//sync::sync(const char * lpszName)
+//synchronization_object::synchronization_object(const char * lpszName)
 //{
 //
 //   m_bOwner = true;
@@ -31,7 +31,7 @@
 //#ifdef WINDOWS
 //
 //
-//sync::sync(HSYNC hsyncobject, const char * lpszName) :
+//synchronization_object::synchronization_object(HSYNC hsyncobject, const char * lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -56,7 +56,7 @@
 //#endif
 
 
-sync::~sync()
+synchronization_object::~synchronization_object()
 {
 
 #ifdef WINDOWS
@@ -82,7 +82,7 @@ sync::~sync()
 }
 
 
-bool sync::lock()
+bool synchronization_object::lock()
 {
 
    return wait().succeeded();
@@ -90,7 +90,7 @@ bool sync::lock()
 }
 
 
-bool sync::lock(const duration & durationTimeout)
+bool synchronization_object::lock(const duration & durationTimeout)
 {
 
    return wait(durationTimeout).succeeded();
@@ -98,7 +98,7 @@ bool sync::lock(const duration & durationTimeout)
 }
 
 
-sync_result sync::wait()
+synchronization_result synchronization_object::wait()
 {
 
    return wait(::duration::infinite());
@@ -106,7 +106,7 @@ sync_result sync::wait()
 }
 
 
-//sync_result sync::wait(const duration & durationTimeout)
+//synchronization_result synchronization_object::wait(const duration & durationTimeout)
 //{
 //
 //   return wait();
@@ -114,7 +114,7 @@ sync_result sync::wait()
 //}
 
 
-//bool sync::is_locked() const
+//bool synchronization_object::is_locked() const
 //{
 //
 //   return false;
@@ -122,7 +122,7 @@ sync_result sync::wait()
 //}
 
 
-bool sync::unlock()
+bool synchronization_object::unlock()
 {
 
    return false;
@@ -130,7 +130,7 @@ bool sync::unlock()
 }
 
 
-bool sync::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
+bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 {
 
    return false;
@@ -138,7 +138,7 @@ bool sync::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 }
 
 
-sync_result sync::wait(const duration & durationTimeout)
+synchronization_result synchronization_object::wait(const duration & durationTimeout)
 {
 
    if (m_hsync)
@@ -146,18 +146,18 @@ sync_result sync::wait(const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-      return sync_result((u32) ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false));
+      return synchronization_result((u32) ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false));
 
 #endif
 
    }
 
-   return sync_result(sync_result::result_error);
+   return synchronization_result(synchronization_result::result_error);
 
 }
 
 
-void sync::acquire_ownership()
+void synchronization_object::acquire_ownership()
 {
 
    m_bOwner = true;
@@ -165,7 +165,7 @@ void sync::acquire_ownership()
 }
 
 
-void sync::release_ownership()
+void synchronization_object::release_ownership()
 {
 
    m_bOwner = false;
@@ -173,7 +173,7 @@ void sync::release_ownership()
 }
 
 
-//void sync::assert_valid() const
+//void synchronization_object::assert_valid() const
 //{
 //
 //   matter::assert_valid();
@@ -181,7 +181,7 @@ void sync::release_ownership()
 //}
 
 
-//void sync::dump(dump_context & dumpcontext) const
+//void synchronization_object::dump(dump_context & dumpcontext) const
 //{
 //
 //#ifdef WINDOWS
@@ -196,7 +196,7 @@ void sync::release_ownership()
 //}
 
 
-//HSYNC sync::hsync() const
+//HSYNC synchronization_object::hsync() const
 //{
 //
 //#ifdef WINDOWS
@@ -205,14 +205,14 @@ void sync::release_ownership()
 //
 //#else
 //
-//   return (sync *) this;
+//   return (synchronization_object *) this;
 //
 //#endif
 //
 //}
 
 
-//bool sync::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool synchronization_object::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //
@@ -221,7 +221,7 @@ void sync::release_ownership()
 //}
 
 
-//bool sync::unlock()
+//bool synchronization_object::unlock()
 //{
 //
 //   return true;
@@ -231,14 +231,14 @@ void sync::release_ownership()
 
 
 
-void sync::init_wait()
+void synchronization_object::init_wait()
 {
 
 
 }
 
 
-void sync::exit_wait()
+void synchronization_object::exit_wait()
 {
 
 
@@ -247,7 +247,7 @@ void sync::exit_wait()
 
 
 
-//sync_result sync::wait()
+//synchronization_result synchronization_object::wait()
 //{
 //
 //   return wait(duration::infinite());
@@ -260,20 +260,20 @@ void sync::exit_wait()
 //}
 
 
-bool sync::is_locked() const
+bool synchronization_object::is_locked() const
 {
 
    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-   ASSERT(dynamic_cast <critical_section *> (const_cast <sync *> (this)) == nullptr);
+   ASSERT(dynamic_cast <critical_section *> (const_cast <synchronization_object *> (this)) == nullptr);
 
-   single_lock sl(const_cast <sync *> (this));
+   single_lock synchronizationlock(const_cast <synchronization_object *> (this));
 
-   bool bWasLocked = !sl.lock(duration::zero());
+   bool bWasLocked = !synchronizationlock.lock(duration::zero());
 
    if (!bWasLocked)
    {
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
    }
 

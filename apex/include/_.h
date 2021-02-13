@@ -914,7 +914,7 @@ namespace core
 #include "apex/parallelization/threading.h"
 
 
-class mq;
+class message_queue;
 
 
 #include "apex/parallelization/thread.h"

@@ -212,7 +212,7 @@ namespace app_shader
    void window::update_shader()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       start_layout();
 

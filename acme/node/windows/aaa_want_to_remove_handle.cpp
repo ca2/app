@@ -13,7 +13,7 @@ namespace windows
       //if(::is_null(pMap))
       //   return;
 
-      //single_lock sl(&pMap->m_mutex, true);
+      //single_lock synchronizationlock(&pMap->m_mutex, true);
 
       array < oswindow > oswindowaRemove;
       array < __pointer(::windows::window) > wndptraRemove;

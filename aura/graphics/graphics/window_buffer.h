@@ -23,7 +23,7 @@ namespace graphics
 
 
       //virtual void initialize(::user::interaction_impl* pimpl) override;
-      ::draw2d::graphics * on_begin_draw(sync ** ppsync) override;
+      ::draw2d::graphics * on_begin_draw(synchronization_object ** ppsync) override;
       virtual bool update_window() override;
       virtual bool round_swap_key_buffers() override;
 

@@ -118,7 +118,7 @@ public:
 
    //virtual bool set_thread_name(const char* pszThreadName);
 
-   virtual bool is_pred() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
+   virtual bool is_predicate() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
 
    //virtual void set_thread_run(bool bRun = true);
 

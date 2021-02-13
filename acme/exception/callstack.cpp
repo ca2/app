@@ -64,7 +64,7 @@ const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
 //
 //   const char * psz;
 //
-//   sync_lock sl(::exception::engine().mutex());
+//   synchronization_lock synchronizationlock(::exception::engine().mutex());
 //
 //#if defined(LINUX)
 //

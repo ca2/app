@@ -223,7 +223,7 @@ void memcnts_inc(T * pthis)
    if (memcnts())
    {
 
-      sync_lock sl(g_pmutexMemoryCounters);
+      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
 
       ::file::path path = memcnts_path(pthis);
 
@@ -243,7 +243,7 @@ void memcnts_dec(T * pthis)
    if (memcnts())
    {
 
-      sync_lock sl(g_pmutexMemoryCounters);
+      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
 
       ::file::path path = memcnts_path(pthis);
 
@@ -266,10 +266,10 @@ void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::mes
 
 
 template < typename RECEIVER, typename MESSAGE_PRED >
-void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
+void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 {
 
-   get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_pred;
+   get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
 
 }
 
@@ -287,7 +287,7 @@ template < typename RECEIVER >
 ::message::route & channel::add_route(const ::id & id, RECEIVER * preceiverDerived)
 {
 
-   sync_lock sl(defer_mutex_channel());
+   synchronization_lock synchronizationlock(defer_mutex_channel());
 
    ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 
@@ -314,7 +314,7 @@ template < typename RECEIVER >
 
       };
 
-      index iFind = proutea->pred_find_first(pred);
+      index iFind = proutea->predicate_find_first(pred);
 
       if (iFind >= 0)
       {
@@ -375,7 +375,7 @@ template < typename RECEIVER, typename MESSAGE >
 ::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 {
 
-   sync_lock sl(s_pmutexChannel);
+   synchronization_lock synchronizationlock(s_pmutexChannel);
 
    ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 
@@ -402,7 +402,7 @@ template < typename RECEIVER, typename MESSAGE >
 
       };
 
-      index iFind = proutea->pred_find_first(pred);
+      index iFind = proutea->predicate_find_first(pred);
 
       if(iFind >= 0)
       {
@@ -510,7 +510,7 @@ inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::object * pobject)
 }
 
 
-inline class ::sync * object::get_mutex()
+inline class ::synchronization_object * object::get_mutex()
 {
 
    return ::is_null(this) ? nullptr : mutex();
@@ -719,7 +719,7 @@ template < typename PRED >
 
    }
 
-   sync_lock sl(::aura::get_image_mutex());
+   synchronization_lock synchronizationlock(::aura::get_image_mutex());
 
    ::image_pointer & pimage = System.m_mapImage[path];
 
@@ -730,7 +730,7 @@ template < typename PRED >
 
       pimage->set_nok();
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
 
@@ -868,7 +868,7 @@ namespace aura
 
       strPath.replace("::", "/");
 
-      sync_lock sl(System.m_spmutexUserAppData);
+      synchronization_lock synchronizationlock(System.m_spmutexUserAppData);
 
       {
 
@@ -911,7 +911,7 @@ namespace aura
 
       strPath.replace("::", "/");
 
-      sync_lock sl(System.m_spmutexUserAppData);
+      synchronization_lock synchronizationlock(System.m_spmutexUserAppData);
 
       {
 

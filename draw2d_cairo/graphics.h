@@ -106,12 +106,12 @@ namespace draw2d_cairo
       //::u32 RealizePalette() override;
       //void UpdateColors() override;
 
-      i32 GetPolyFillMode() override;
-      i32 GetROP2() override;
-      i32 GetStretchBltMode() override;
+      //i32 GetPolyFillMode() override;
+      //i32 GetROP2() override;
+      //i32 GetStretchBltMode() override;
 
-      i32 SetPolyFillMode(i32 nPolyFillMode) override;
-      i32 SetROP2(i32 nDrawMode) override;
+      //i32 SetPolyFillMode(i32 nPolyFillMode) override;
+      //i32 SetROP2(i32 nDrawMode) override;
 
 
       bool set_interpolation_mode(::draw2d::enum_interpolation_mode einterpolationmode) override;
@@ -131,8 +131,8 @@ namespace draw2d_cairo
 //#endif
 
       // Graphics mode
-      i32 SetGraphicsMode(i32 iMode) override;
-      i32 GetGraphicsMode() override;
+      //i32 SetGraphicsMode(i32 iMode) override;
+      //i32 GetGraphicsMode() override;
 
 //      // World transform
 //      bool SetWorldTransform(const XFORM* pXform);
@@ -140,9 +140,9 @@ namespace draw2d_cairo
 //      bool GetWorldTransform(XFORM* pXform);
 
       // Mapping Functions
-      virtual i32 GetMapMode() override;
+      //virtual i32 GetMapMode() override;
       virtual point_f64 GetViewportOrg() override;
-      virtual i32 SetMapMode(i32 nMapMode) override;
+      //virtual i32 SetMapMode(i32 nMapMode) override;
       // Viewport Origin
       virtual point_f64 SetViewportOrg(double x, double y) override;
       virtual point_f64 SetViewportOrg(const ::point_f64 & point_f64) override;

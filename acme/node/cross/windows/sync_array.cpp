@@ -2,16 +2,16 @@
 #include "acme/os/_os.h"
 
 
-sync_array::sync_array()
+synchronization_array::synchronization_array()
 {
 
 }
 
 
-sync_array::sync_array(const ::sync_array & array) :
+synchronization_array::synchronization_array(const ::synchronization_array & array) :
    matter(array),
    m_hsyncaCache(array.m_hsyncaCache),
-   m_synca(array.m_synca)
+   m_synchronizationa(array.m_synchronizationa)
 {
 
    memcpy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
@@ -19,13 +19,13 @@ sync_array::sync_array(const ::sync_array & array) :
 }
 
 
-sync_array::~sync_array()
+synchronization_array::~synchronization_array()
 {
 
 }
 
 
-sync_array & sync_array::operator = (const sync_array & synca)
+synchronization_array & synchronization_array::operator = (const synchronization_array & synca)
 {
 
    if(this != &synca)
@@ -33,7 +33,7 @@ sync_array & sync_array::operator = (const sync_array & synca)
 
       m_hsyncaCache = synca.m_hsyncaCache;
       memcpy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
-      m_synca = synca.m_synca;
+      m_synchronizationa = synca.m_synchronizationa;
 
    }
 
@@ -42,36 +42,36 @@ sync_array & sync_array::operator = (const sync_array & synca)
 }
 
 
-void	sync_array::clear()
+void	synchronization_array::clear()
 {
 
-   m_synca.clear();
+   m_synchronizationa.clear();
 
    m_hsyncaCache.clear();
 
 }
 
 
-::count sync_array::size() const
+::count synchronization_array::size() const
 {
 
-   return m_synca.get_size();
+   return m_synchronizationa.get_size();
 
 }
 
 
-bool sync_array::is_empty() const
+bool synchronization_array::is_empty() const
 {
 
-   return m_synca.is_empty();
+   return m_synchronizationa.is_empty();
 
 }
 
 
-bool sync_array::add_item(sync * psync)
+bool synchronization_array::add_item(synchronization_object * psync)
 {
 
-   if (m_synca.size() >= MAXIMUM_WAIT_OBJECTS)
+   if (m_synchronizationa.size() >= MAXIMUM_WAIT_OBJECTS)
    {
 
       return false;
@@ -83,13 +83,13 @@ bool sync_array::add_item(sync * psync)
    if (hsync != nullptr && hsync != INVALID_HSYNC_VALUE)
    {
 
-      m_byteaSyncIndex[m_hsyncaCache.get_size()] = (byte) m_synca.get_size();
+      m_byteaSyncIndex[m_hsyncaCache.get_size()] = (byte) m_synchronizationa.get_size();
 
       m_hsyncaCache.add(hsync);
 
    }
 
-   m_synca.add(psync);
+   m_synchronizationa.add(psync);
 
 
    return true;
@@ -99,7 +99,7 @@ bool sync_array::add_item(sync * psync)
 
 
 
-bool sync_array::add(const sync_array& synca)
+bool synchronization_array::add(const synchronization_array& synca)
 {
 
    if (m_hsyncaCache.size() + synca.m_hsyncaCache.get_size() > MAXIMUM_WAIT_OBJECTS)
@@ -109,7 +109,7 @@ bool sync_array::add(const sync_array& synca)
 
    }
 
-   for (auto& psync : synca.m_synca)
+   for (auto& psync : synca.m_synchronizationa)
    {
 
       add_item(psync);
@@ -121,10 +121,10 @@ bool sync_array::add(const sync_array& synca)
 }
 
 
-void sync_array::remove(class sync * psync)
+void synchronization_array::remove(class synchronization_object * psync)
 {
 
-   m_synca.remove(psync);
+   m_synchronizationa.remove(psync);
 
    HSYNC hsync = psync->hsync();
 
@@ -138,24 +138,24 @@ void sync_array::remove(class sync * psync)
 }
 
 
-void sync_array::remove(index index)
+void synchronization_array::remove(index index)
 {
 
-   if (index >= m_synca.size())
+   if (index >= m_synchronizationa.size())
    {
 
-      __throw(range_error("sync_array::remove: index out of bounds"));
+      __throw(range_error("synchronization_array::remove: index out of bounds"));
 
    }
 
-   sync* psync = m_synca[index];
+   synchronization_object* psync = m_synchronizationa[index];
 
    remove(psync);
 
 }
 
 
-void sync_array::wait()
+void synchronization_array::wait()
 {
 
    wait(true, duration::infinite());
@@ -163,7 +163,7 @@ void sync_array::wait()
 }
 
 
-sync_result sync_array::wait(const duration & duration)
+synchronization_result synchronization_array::wait(const duration & duration)
 {
 
    return wait(false, duration);
@@ -171,19 +171,19 @@ sync_result sync_array::wait(const duration & duration)
 }
 
 
-sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bWaitMessageQueue)
+synchronization_result synchronization_array::wait(bool waitForAll, const duration & duration, bool bWaitMessageQueue)
 {
 
    if (is_empty())
    {
 
-      return sync_result(sync_result::result_error);
+      return synchronization_result(synchronization_result::result_error);
 
    }
 
    u32 winResult;
 
-   if (m_synca.size() == m_hsyncaCache.size())
+   if (m_synchronizationa.size() == m_hsyncaCache.size())
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -210,12 +210,12 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
       }
 
-      return sync_result(winResult, m_hsyncaCache.size());
+      return synchronization_result(winResult, m_hsyncaCache.size());
 
    }
 
 
-   for(auto & psync : m_synca)
+   for(auto & psync : m_synchronizationa)
    {
 
       psync->init_wait();
@@ -259,15 +259,15 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
       // TODO
 
-      //if(m_synca.has_element() && winResult!=WAIT_TIMEOUT && winResult!=WAIT_FAILED)
+      //if(m_synchronizationa.has_element() && winResult!=WAIT_TIMEOUT && winResult!=WAIT_FAILED)
       //{
 
-      //   sync_result result=sync_result(winResult,m_synca.size());
+      //   synchronization_result result=synchronization_result(winResult,m_synchronizationa.size());
 
       //   if(waitForAll)
       //   {
       //
-      //      for (auto& psync : m_synca)
+      //      for (auto& psync : m_synchronizationa)
       //      {
 
       //         psync->wait();
@@ -282,20 +282,20 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
       //      position = maximum(0, position- m_hsynca.get_size());
 
-      //      m_synca[position]->wait();
+      //      m_synchronizationa[position]->wait();
 
-      //      for ( ++position; position<m_synca.size(); ++position )
+      //      for ( ++position; position<m_synchronizationa.size(); ++position )
       //      {
       //         if(m_waitableelementa[position].m_psynccallback)
       //         {
-      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
+      //            i32 res = ::WaitForSingleObjectEx(m_synchronizationa[position], 0, false);
 
       //            if ( res != WAIT_TIMEOUT )
       //               m_waitableelementa[position].m_psynccallback->on_sync(m_waitableelementa[position].m_psync);
       //         }
       //         else if(!FoundExternal)
       //         {
-      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
+      //            i32 res = ::WaitForSingleObjectEx(m_synchronizationa[position], 0, false);
 
       //            if ( res != WAIT_TIMEOUT )
       //            {
@@ -318,12 +318,12 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
    //for (it = m_waitableelementa.begin(); it != m_waitableelementa.end(); ++it)
    //   (*it).m_psync->exit_wait();
 
-   return sync_result(winResult,m_hsyncaCache.size());
+   return synchronization_result(winResult,m_hsyncaCache.size());
 
 }
 
 
-sync_result sync_array::contains( const sync_result& result ) const
+synchronization_result synchronization_array::contains( const synchronization_result& result ) const
 {
 
    throw todo();
@@ -334,18 +334,18 @@ sync_result sync_array::contains( const sync_result& result ) const
    //index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 
    //position = maximum(0)
-   //for ( ++position; position<m_synca.get_size(); ++position )
+   //for ( ++position; position<m_synchronizationa.get_size(); ++position )
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)
    //   {
-   //      i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
+   //      i32 res = ::WaitForSingleObjectEx(m_synchronizationa[position], 0, false);
    //      if ( res == WAIT_TIMEOUT )
    //         continue;
-   //      return sync_result( static_cast<i32>(position), m_synca.get_size() );
+   //      return synchronization_result( static_cast<i32>(position), m_synchronizationa.get_size() );
    //   }
    //}
 
-   //return sync_result( sync_result::result_error );
+   //return synchronization_result( synchronization_result::result_error );
 
 }
 

@@ -43,7 +43,7 @@
 //
 // The FILE_READ_DATA and FILE_WRITE_DATA constants are also defined in
 // devioctl.h as FILE_READ_ACCESS and FILE_WRITE_ACCESS. The values for these
-// constants *MUST* always be in sync.
+// constants *MUST* always be in synchronization_object.
 // The values are redefined in devioctl.h because they must be available to
 // both DOS and NT.
 //

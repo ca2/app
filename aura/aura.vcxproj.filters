@@ -533,9 +533,6 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="platform\mq.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1054,6 +1051,9 @@
     </ClInclude>
     <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
       <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\message_queue.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

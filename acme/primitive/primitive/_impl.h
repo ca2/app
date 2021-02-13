@@ -152,7 +152,7 @@ inline bool get_memory::get_base64(const string & str)
 //}
 
 
-#include "acme/primitive/primitive/trait_pred.h"
+#include "acme/primitive/primitive/trait_predicate.h"
 
 
 //inline ::payload matter::topic(const ::id & id)
@@ -1360,7 +1360,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //   if (pcomposite)
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_pcompositea)
 //      {
@@ -1390,7 +1390,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //   if (preference)
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_preferencea)
 //      {
@@ -1934,9 +1934,9 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename PRED >
-//inline void matter::add_pred(runnable_array & array, PRED pred)
+//inline void matter::add_predicate(runnable_array & array, PRED pred)
 //{
-//   array.add(__new(pred_holder<PRED>(pred)));
+//   array.add(__new(predicate_holder<PRED>(pred)));
 //}
 
 
@@ -2179,7 +2179,7 @@ inline bool type::operator == (const ::id& id) const
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pmatter = __new(pred_future < PRED > (pred));
+//   m_pmatter = __new(predicate_future < PRED > (pred));
 //
 //}
 //
@@ -2243,7 +2243,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   auto pgroup = System.thread_group(epriority);
 //
-//   sync_lock slGroup(pgroup->mutex());
+//   synchronization_lock slGroup(pgroup->mutex());
 //
 //   ///   auto ptool = System.thread_tool(op_fork_count);
 //
@@ -2268,16 +2268,16 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   }
 //
-//   sync_array ptra;
+//   synchronization_array ptra;
 //
 //   ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
 //
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      __pointer(pred_holder_base) pusermessage = __new(forking_count_pred < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//      __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
 //
-//      if (!pgroup->add_pred(pusermessage))
+//      if (!pgroup->add_predicate(pusermessage))
 //      {
 //
 //         return -1;
@@ -2315,11 +2315,11 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 
 //template < typename PRED >
-//method::method(PRED pred) : function(__new(pred_method < PRED >(pred))) { }
+//method::method(PRED pred) : function(__new(predicate_method < PRED >(pred))) { }
 //
 //
 //template < typename PRED >
-//future::future(PRED pred) : function(__new(pred_future < PRED >(pred))) { }
+//future::future(PRED pred) : function(__new(predicate_future < PRED >(pred))) { }
 
 
 

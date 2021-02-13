@@ -63,7 +63,7 @@ namespace sockets
 
       bool call_on_connect();
 
-//      sync & GetMutex() const override;
+//      synchronization_object & GetMutex() const override;
 
 
       resolv_server * resolver();

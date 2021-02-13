@@ -91,7 +91,7 @@ namespace os
       virtual void release_capture();
 
       virtual bool move_window(i32 x, i32 y);
-      virtual bool set_window_pos(i32 x, i32 y, i32 cx, i32 cy, bool bShow);
+      virtual bool set_window_position(i32 x, i32 y, i32 cx, i32 cy, bool bShow);
 
    };
 

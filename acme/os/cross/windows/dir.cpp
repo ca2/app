@@ -31,7 +31,7 @@
    //if (::get_context_system() != nullptr)
    //{
 
-   //   sync_lock sl(System.mutex());
+   //   synchronization_lock synchronizationlock(System.mutex());
 
    //  System.m_pathConfig = path;
 

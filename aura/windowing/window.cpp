@@ -372,7 +372,7 @@ namespace windowing
    //   pdata->m_pimpl = pinteraction;
    //   pdata->m_osdisplay = nullptr;
    //   pdata->m_parent = 0;
-   //   pdata->m_pmq = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_mq();
+   //   pdata->m_pmq = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
    //   ::window::s_pdataptra->add(pdata);
 
@@ -1502,7 +1502,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 
    //   //m_hthread = pimpl->get_context_application()->get_os_handle();
 
-   //   //m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_mq();
+   //   //m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
    //   //oswindow_assign(this, pimpl);
 
@@ -1819,7 +1819,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::exit_zoomed()
    {
 
-      //sync_lock sl(x11_mutex());
+      //synchronization_lock synchronizationlock(x11_mutex());
 
       //xdisplay d(display());
 
@@ -2101,7 +2101,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 
 #undef SET_WINDOW_POS_LOG
 
-   bool window::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
       bool bOk = false;
@@ -2121,9 +2121,9 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
-//      sync_lock sl(x11_mutex());
+//      synchronization_lock synchronizationlock(x11_mutex());
 //
-//      windowing_output_debug_string("\n::window::set_window_pos 1");
+//      windowing_output_debug_string("\n::window::set_window_position 1");
 //
 //      auto pdisplay = display();
 //
@@ -2136,7 +2136,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //      if (!XGetWindowAttributes(pdisplay, w, &attrs))
 //      {
 //
-//         windowing_output_debug_string("\n::window::set_window_pos 1.1 xgetwindowattr failed");
+//         windowing_output_debug_string("\n::window::set_window_position 1.1 xgetwindowattr failed");
 //
 //         return false;
 //
@@ -2148,7 +2148,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //         if (attrs.map_state == IsUnmapped)
 //         {
 //
-//            windowing_output_debug_string("\n::window::set_window_pos Mapping Window 1.2");
+//            windowing_output_debug_string("\n::window::set_window_position Mapping Window 1.2");
 //
 //            XMapWindow(display(), window());
 //
@@ -2157,7 +2157,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //         if (!XGetWindowAttributes(display(), window(), &attrs))
 //         {
 //
-//            windowing_output_debug_string("\n::window::set_window_pos 1.3 xgetwindowattr failed");
+//            windowing_output_debug_string("\n::window::set_window_position 1.3 xgetwindowattr failed");
 //
 //            return false;
 //
@@ -2175,7 +2175,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //         if (bSize)
 //         {
 //
-//            windowing_output_debug_string("\n::window::set_window_pos Move Resize Window 1.4");
+//            windowing_output_debug_string("\n::window::set_window_position Move Resize Window 1.4");
 //
 //#ifdef SET_WINDOW_POS_LOG
 //
@@ -2204,7 +2204,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //         else
 //         {
 //
-//            windowing_output_debug_string("\n::window::set_window_pos Move Window 1.4.1");
+//            windowing_output_debug_string("\n::window::set_window_position Move Window 1.4.1");
 //
 //            XMoveWindow(display(), window(), x, y);
 //
@@ -2214,7 +2214,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //      else if (bSize)
 //      {
 //
-//         windowing_output_debug_string("\n::window::set_window_pos Resize Window 1.4.2");
+//         windowing_output_debug_string("\n::window::set_window_position Resize Window 1.4.2");
 //
 //         XResizeWindow(display(), window(), cx, cy);
 //
@@ -2253,7 +2253,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //         if (attrs.map_state == IsViewable)
 //         {
 //
-//            windowing_output_debug_string("\n::window::set_window_pos Withdraw Window 1.4.3");
+//            windowing_output_debug_string("\n::window::set_window_position Withdraw Window 1.4.3");
 //
 //            XWithdrawWindow(display(), window(), m_iScreen);
 //
@@ -2264,7 +2264,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //      if (!XGetWindowAttributes(display(), window(), &attrs))
 //      {
 //
-//         windowing_output_debug_string("\n::window::set_window_pos xgetwndattr 1.4.4");
+//         windowing_output_debug_string("\n::window::set_window_position xgetwndattr 1.4.4");
 //
 //         return false;
 //
@@ -2335,7 +2335,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //
 //      //m_pimpl->on_change_visibility();
 //
-//      windowing_output_debug_string("\n::window::set_window_pos 2");
+//      windowing_output_debug_string("\n::window::set_window_position 2");
 
       return 1;
 

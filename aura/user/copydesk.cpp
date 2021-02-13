@@ -235,7 +235,7 @@ namespace user
 
                straLines.add_lines(strPlainText);
 
-               index iFind = straLines.pred_find_first([](auto strLine)
+               index iFind = straLines.predicate_find_first([](auto strLine)
                   {
 
                      return (strLine.begins_ci("http://")

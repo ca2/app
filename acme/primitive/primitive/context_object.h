@@ -224,7 +224,7 @@ public:
 using reference_pointer = __pointer(::context_object);
 
 
-#define __add_runnable(array, ID) add_pred(array, [this]() { ID(); } )
+#define __add_runnable(array, ID) add_predicate(array, [this]() { ID(); } )
 
 
 

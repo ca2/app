@@ -76,7 +76,7 @@ struct CLASS_DECL_APEX oswindow_data
    //RECT32                          m_rect;
    bool                          m_bDestroying;
    bool                          m_bIconic;
-   mq *                          m_pmq;
+   message_queue *                          m_pmq;
 //xx
 
    static oswindow_dataptra * s_pdataptra;

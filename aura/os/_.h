@@ -57,7 +57,7 @@
 
 
 //template < typename PRED >
-//inline bool pred_Sleep(int iTime, PRED pred);
+//inline bool predicate_Sleep(int iTime, PRED pred);
 
 //CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
 

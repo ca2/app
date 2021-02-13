@@ -1200,7 +1200,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\handler.cpp" />
     <ClCompile Include="parallelization\retry_multi_lock.cpp" />
     <ClCompile Include="parallelization\retry_single_lock.cpp" />
-    <ClCompile Include="parallelization\service\plain_service.cpp" />
     <ClCompile Include="parallelization\service_base.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
     <ClCompile Include="parallelization\threading.cpp" />

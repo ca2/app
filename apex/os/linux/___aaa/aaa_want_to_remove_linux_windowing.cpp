@@ -61,7 +61,7 @@ void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
 void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    g_iIgnoreXDisplayError--;
 
@@ -190,7 +190,7 @@ Atom get_window_long_atom(i32 nIndex);
 void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom state1, Atom state2)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    XClientMessageEvent xclient;
 
@@ -217,7 +217,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 void unmapped_net_state_raw(Display * d, Window w, ...)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    XEvent xevent;
 
@@ -324,7 +324,7 @@ oswindow get_capture()
 oswindow set_capture(oswindow window)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    oswindow windowOld(g_oswindowCapture);
 
@@ -367,7 +367,7 @@ oswindow set_capture(oswindow window)
 int_bool release_capture()
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
 //    if(g_oswindowCapture == nullptr)
 //    {
@@ -399,7 +399,7 @@ int_bool release_capture()
 oswindow set_focus(oswindow window)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    if(window == nullptr)
    {
@@ -508,7 +508,7 @@ string x11_get_name(Display * display, Window w)
 oswindow get_active_window()
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    oswindow pwindow = nullptr;
 
@@ -613,7 +613,7 @@ int_bool is_window_occluded(oswindow oswindow)
 {
 
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::GetFocus 1");
 
@@ -696,7 +696,7 @@ int_bool is_window_occluded(oswindow oswindow)
 oswindow get_focus()
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    oswindow pwindow = nullptr;
 
@@ -753,7 +753,7 @@ oswindow get_focus()
 oswindow set_active_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    {
 
@@ -875,7 +875,7 @@ oswindow oswindow_get_previous_found(Window *array, int iStart)
 oswindow get_window(oswindow windowParam, int iParentHood)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    oswindow window = windowParam;
 
@@ -1183,9 +1183,9 @@ oswindow get_window(oswindow windowParam, int iParentHood)
 int_bool destroy_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
-   //single_lock sl(&user_mutex(), true);
+   //single_lock synchronizationlock(&user_mutex(), true);
 
    if(!is_window(window))
       return false;
@@ -1328,7 +1328,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    pgraphics->fill_rectangle(::rect(*psize), rgb(84, 90, 80));
 
@@ -1359,7 +1359,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 void wm_add_remove_state_mapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    Display * display = w->display();
 
@@ -1434,7 +1434,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, const char * pszNetStateFlag, bo
 void wm_add_remove_state_mapped(oswindow w, const char * pszNetStateFlag, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_add_remove_state_mapped 1");
 
@@ -1450,7 +1450,7 @@ void wm_add_remove_state_mapped(oswindow w, const char * pszNetStateFlag, bool b
 void wm_add_remove_state_unmapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    Display * display = w->display();
 
@@ -1490,7 +1490,7 @@ void wm_add_remove_state_unmapped_raw(oswindow w, const char * pszNetStateFlag, 
 void wm_add_remove_state_unmapped(oswindow w, const char * pszNetStateFlag, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_add_remove_state_unmapped 1");
 
@@ -1506,7 +1506,7 @@ void wm_add_remove_state_unmapped(oswindow w, const char * pszNetStateFlag, bool
 void wm_add_remove_state_raw(oswindow w, const char * pszState, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    if(IsWindowVisibleRaw(w))
    {
@@ -1527,7 +1527,7 @@ void wm_add_remove_state_raw(oswindow w, const char * pszState, bool bSet)
 void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_add_remove_state 1");
 
@@ -1543,7 +1543,7 @@ void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 void wm_state_above_raw(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    wm_add_remove_state_raw(w, "_NET_WM_STATE_HIDDEN", false);
 
@@ -1557,7 +1557,7 @@ void wm_state_above_raw(oswindow w, bool bSet)
 void wm_state_below_raw(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    wm_add_remove_state_raw(w, "_NET_WM_STATE_HIDDEN", false);
 
@@ -1571,7 +1571,7 @@ void wm_state_below_raw(oswindow w, bool bSet)
 void wm_state_hidden_raw(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    wm_add_remove_state_raw(w, "_NET_WM_STATE_BELOW", false);
 
@@ -1585,7 +1585,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet)
 void wm_state_above(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_state_above 1");
 
@@ -1601,7 +1601,7 @@ void wm_state_above(oswindow w, bool bSet)
 void wm_state_below(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_state_below 1");
 
@@ -1617,7 +1617,7 @@ void wm_state_below(oswindow w, bool bSet)
 void wm_state_hidden(oswindow w, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_state_hidden 1");
 
@@ -1907,7 +1907,7 @@ void wm_dockwindow(oswindow w, bool bDockWindow)
 void wm_nodecorations(oswindow w, int bMap)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_nodecorations 1");
 
@@ -1955,7 +1955,7 @@ int_bool IsWindowVisibleRaw(Display * display, Window window);
 void wm_iconify_window(oswindow oswindow)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    xdisplay display(oswindow->display());
 
@@ -2002,7 +2002,7 @@ void wm_iconify_window(oswindow oswindow)
 int_bool IsWindowVisibleRaw(Display * display, Window window)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    XWindowAttributes attr;
 
@@ -2021,7 +2021,7 @@ int_bool IsWindowVisibleRaw(Display * display, Window window)
 int_bool IsWindowVisibleRaw(oswindow w)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    Display * display = w->display();
 
@@ -2035,7 +2035,7 @@ int_bool IsWindowVisibleRaw(oswindow w)
 Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * pnum_items)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    if(atomList == None )
    {
@@ -2066,7 +2066,7 @@ Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * pnum_items
 int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    Display * display = w->display();
 
@@ -2113,7 +2113,7 @@ int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag)
 int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    Atom atomFlag = XInternAtom(w->display(), pszNetStateFlag, 1);
 
@@ -2145,7 +2145,7 @@ int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
 int wm_test_state(oswindow w, const char * pszNetStateFlag)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::wm_test_state 1");
 
@@ -2172,7 +2172,7 @@ int wm_test_state(oswindow w, const char * pszNetStateFlag)
 bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    if( atomFlag == None )
    {
@@ -2297,7 +2297,7 @@ extern bool b_prevent_xdisplay_lock_log;
 bool x11_step()
 {
 
-   sync_lock sl(x11_mutex());
+   synchronization_lock synchronizationlock(x11_mutex());
 
    bool bDoneMuchThings = false;
 
@@ -2306,11 +2306,11 @@ bool x11_step()
 
       sp(object) pobject = g_pobjectTaskptrlX11->pop_front();
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       pobject->call();
 
-      sl.lock();
+      synchronizationlock.lock();
 
       bDoneMuchThings = true;
 
@@ -2383,7 +2383,7 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   class ::mq * pmq = pthread->m_pmq;
+   class ::message_queue * pmq = pthread->m_pmq;
 
    if(pmq == nullptr)
    {
@@ -2401,7 +2401,7 @@ bool post_ui_message(const MESSAGE & message)
 
    }
 
-   sync_lock ml(&pmq->m_mutex);
+   synchronization_lock ml(&pmq->m_mutex);
 
    if(message.message == e_message_quit)
    {
@@ -2995,7 +2995,7 @@ bool x11_process_message(Display * pdisplay)
 //
 //      }
 //
-//      sync_lock sl(pdata->m_pmutexInput);
+//      synchronization_lock synchronizationlock(pdata->m_pmutexInput);
 //
 //      pdata->m_messsageaInput.add(msg);
       post_ui_message(msg);
@@ -3146,7 +3146,7 @@ bool x11_process_message(Display * pdisplay)
 //
 //
 //throw "use window thread";
-////   single_lock sl(pdata->m_pmutexInput);
+////   single_lock synchronizationlock(pdata->m_pmutexInput);
 ////
 ////   MESSAGE * pmsg;
 ////
@@ -3167,7 +3167,7 @@ bool x11_process_message(Display * pdisplay)
 ////
 ////      {
 ////
-////         sl.lock();
+////         synchronizationlock.lock();
 ////
 ////restart:
 ////
@@ -3196,7 +3196,7 @@ bool x11_process_message(Display * pdisplay)
 ////
 ////         }
 ////
-////         sl.unlock();
+////         synchronizationlock.unlock();
 ////
 ////      }
 ////
@@ -3216,13 +3216,13 @@ bool x11_process_message(Display * pdisplay)
 ////      if(iArrayPos > 100)
 ////      {
 ////
-////         sl.lock();
+////         synchronizationlock.lock();
 ////
 ////         pdata->m_messsageaInput.remove_at(0, iArrayPos);
 ////
 ////         iArrayPos = 0;
 ////
-////         sl.unlock();
+////         synchronizationlock.unlock();
 ////
 ////      }
 ////
@@ -3331,12 +3331,12 @@ namespace apex
 } // namespace apex
 
 
-int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
-   return hwnd->set_window_pos(hwndInsertAfter, x, y, cx, cy, nFlags);
+   return hwnd->set_window_position(hwndInsertAfter, x, y, cx, cy, nFlags);
 
 }
 
@@ -3348,7 +3348,7 @@ int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::get_window_rect 1");
 
@@ -3374,7 +3374,7 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3420,7 +3420,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 
 {
 
-   sync_lock sl(window->m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(window->m_pimpl->m_puserinteraction->mutex());
 
    __copy(prect, window->m_pimpl->m_puserinteraction->get_window_rect());
 
@@ -3482,7 +3482,7 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
    //sync_x11([&]()
    //{
 
-     // sync_lock sl(g_pmutexX);
+     // synchronization_lock synchronizationlock(g_pmutexX);
 
       //return x11_get_cursor_pos(ppointCursor);
 
@@ -3608,7 +3608,7 @@ i64 oswindow_id(oswindow w)
 int_bool x11_set_cursor(oswindow window, HCURSOR hcursor)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3691,7 +3691,7 @@ HCURSOR imaging::load_default_cursor(e_cursor ecursor)
 
    }
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3742,7 +3742,7 @@ XImage * _x11_create_image({Display * pdisplay,  ::image_pointer pimage})
 XImage * x11_create_image(::image * pimage)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3801,7 +3801,7 @@ Pixmap _x11_create_pixmap(Display * pdisplay, ::image_pointer pimage)
 Pixmap x11_create_pixmap(::image * pimage)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3883,7 +3883,7 @@ Picture _xrender_create_picture(oswindow window, ::image_pointer pimage)
 Picture xrender_create_picture(oswindow window, ::image_pointer pimage)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3905,7 +3905,7 @@ Picture xrender_create_picture(oswindow window, ::image_pointer pimage)
 HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
-   sync_lock sl(g_pmutexX);
+   synchronization_lock synchronizationlock(g_pmutexX);
 
    windowing_output_debug_string("\n::x11_GetWindowRect 1");
 
@@ -3943,7 +3943,7 @@ HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int 
 int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,i32 cx,i32 cy,::u32 uFlags)
 {
 
-   return hWnd->set_window_pos(hWndInsertAfter, X, Y, cx, cy, uFlags);
+   return hWnd->set_window_position(hWndInsertAfter, X, Y, cx, cy, uFlags);
 
 }
 

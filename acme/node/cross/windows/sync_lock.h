@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_ACME sync_lock :
+class CLASS_DECL_ACME synchronization_lock :
    public initial_single_lock
 {
 public:
 
 
-   explicit sync_lock(sync * pobject) :
+   explicit synchronization_lock(synchronization_object * pobject) :
       initial_single_lock(pobject)
    {
 
@@ -15,7 +15,7 @@ public:
    }
 
 
-   sync_lock(matter * pobject) :
+   synchronization_lock(matter * pobject) :
       initial_single_lock(pobject == nullptr ? nullptr : pobject->mutex())
    {
 

@@ -109,6 +109,8 @@ namespace apex
 
       create_factory < ::thread >();
 
+      m_edisplay = e_display_default;
+
       m_papexsystem = this;
 
 #ifdef _UWP
@@ -699,7 +701,7 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       __pointer(::apex::library) plibrary = System.m_mapLibrary[pszComponent];
 
@@ -805,7 +807,7 @@ namespace apex
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      sync_lock sl(&System.m_mutexContainerizedLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexContainerizedLibrary);
 
       __pointer(::apex::library) plibrary = System.m_mapContainerizedLibrary[strComponent][strImplementation];
 
@@ -1061,7 +1063,7 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -1549,12 +1551,12 @@ namespace apex
 
                HINSTANCE hinstance = (HINSTANCE)m_hinstance;
 
-               auto edisplay = m_edisplay;
+               //auto edisplay = m_edisplay;
 
                // handle critical errors and avoid Windows message boxes
                SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
-               m_edisplay = edisplay;
+               //m_edisplay = edisplay;
 
                //SetCurrentHandles();
 
@@ -2650,7 +2652,7 @@ namespace apex
 //   ::mutex * system::get_openweather_city_mutex()
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
@@ -3552,7 +3554,7 @@ namespace apex
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_millisCommandLineLast.Now();
 
@@ -3597,7 +3599,7 @@ namespace apex
 
       ::apex::application * papp = nullptr;
 
-      appptra.pred_remove([](auto & papp)
+      appptra.predicate_remove([](auto & papp)
       {
 
          return papp->is_system() || papp->is_session();
@@ -4696,7 +4698,7 @@ namespace apex
 //   ::thread* system::get_task(ithread_t ithread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //      return m_threadmap[ithread];
 //
@@ -4706,7 +4708,7 @@ namespace apex
 //   ithread_t system::get_thread_id(::thread* pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //      ithread_t ithread = NULL_ITHREAD;
 //
@@ -4725,7 +4727,7 @@ namespace apex
 //   void system::set_thread(ithread_t ithread, ::thread* pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4737,7 +4739,7 @@ namespace apex
 //   void system::unset_thread(ithread_t ithread, ::thread * pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //#if OBJ_REF_DBG
 //
@@ -4762,7 +4764,7 @@ namespace apex
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & threadgroupa = m_threadgroupmap[epriority];
 
@@ -4783,7 +4785,7 @@ namespace apex
    ::thread_tool * system::thread_tool(::enum_thread_tool etool)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto& threadtoola = m_threadtoolmap[etool];
 

@@ -97,7 +97,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::user::interaction_array uia;
 
@@ -425,7 +425,7 @@ namespace user
    void document::disconnect_views()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (index index = 0; index < m_viewa.get_count(); index++)
       {
@@ -473,7 +473,7 @@ namespace user
    __pointer(::user::impact) document::get_view(index index) const
    {
 
-      sync_lock sl(((document *)this)->mutex());
+      synchronization_lock synchronizationlock(((document *)this)->mutex());
 
       if (index < 0 || index >= m_viewa.get_count())
       {
@@ -525,7 +525,7 @@ namespace user
    __pointer(::user::impact) document::get_typed_view(::type info, index indexFind)
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       ::count countView = get_view_count();
 
@@ -565,7 +565,7 @@ namespace user
 
    __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
    {
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
       ::count countView = get_view_count();
       ::count countFind = 0;
       __pointer(::user::impact) pview;
@@ -586,9 +586,11 @@ namespace user
    }
 
 
-   void document::show_all_frames(::u32 nCmdShow)
+   void document::show_all_frames(const ::edisplay & edisplay)
    {
+
       ::count count = get_view_count();
+
       for (index index = 0; index < count; index++)
       {
 
@@ -596,15 +598,13 @@ namespace user
 
          enum_activation eactivation = e_activation_default;
 
-         auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
-
          pview->get_parent_frame()->display(edisplay, eactivation);
 
       }
+
    }
 
 
-   // document
    const string & document::get_title() const
    {
 
@@ -1030,7 +1030,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          for (auto & pview : m_viewa.ptra())
          {
@@ -1061,7 +1061,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_viewa.remove_all();
 
@@ -1077,11 +1077,11 @@ namespace user
 
       __pointer(::object) pthis = this;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto viewptra = m_viewa;
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       for(auto & pview : viewptra.ptra())
       {
@@ -1266,7 +1266,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT_VALID(pframeParam);
 
@@ -1297,7 +1297,7 @@ namespace user
 
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       // otherwise only one frame that we know about
       return save_modified();
@@ -1681,7 +1681,7 @@ namespace user
    ::e_status document::add_view(::user::impact * pview)
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       ASSERT_VALID(pview);
 
@@ -1711,7 +1711,7 @@ namespace user
    ::e_status document::remove_view(::user::impact * pview)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT_VALID(pview);
 

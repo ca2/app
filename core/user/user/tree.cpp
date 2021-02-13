@@ -287,7 +287,7 @@ namespace user
 
          auto pitem = m_pitemFirstVisible;
 
-         sync_lock sl(!pitem ? nullptr : pitem->m_ptree->mutex());
+         synchronization_lock synchronizationlock(!pitem ? nullptr : pitem->m_ptree->mutex());
 
          index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -671,7 +671,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_treeitemaExpand.add_unique(pitem);
 
@@ -681,7 +681,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_treeitemaOpen.add_unique(pitem);
 
@@ -802,7 +802,7 @@ namespace user
 
       }
 
-      sync_lock sl(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
 
       __pointer(::data::tree_item) pitem = get_proper_item(iItem);
 
@@ -1403,7 +1403,7 @@ namespace user
    __pointer(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
-      sync_lock sl(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
 
       index nOffset;
 
@@ -2101,7 +2101,7 @@ namespace user
    index tree::get_proper_item_count()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_ptree)
       {

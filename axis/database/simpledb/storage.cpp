@@ -29,7 +29,7 @@ namespace simpledb
    storage::~storage()
    {
 
-      sync_lock sl(m_pserver.is_set() && m_pserver->m_pdatabaseLocal.is_set() ?
+      synchronization_lock synchronizationlock(m_pserver.is_set() && m_pserver->m_pdatabaseLocal.is_set() ?
          m_pserver->m_pdatabaseLocal->mutex() : nullptr);
 
       if (m_pstmtSelect != nullptr)

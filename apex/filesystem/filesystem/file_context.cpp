@@ -280,7 +280,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   sync_lock lockMachineEvent(
+   synchronization_lock lockMachineEvent(
       !is_null(&System.machine_event_central()) ? &System.machine_event_central().m_machineevent.m_mutex
                                                 : ((::mutex *) nullptr));
 
@@ -2420,10 +2420,10 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    }
 
-   if (while_pred_Sleep(60 * 1000, [&]()
+   if (while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       return Context.http().m_straDownloading.contains(path) || Context.http().m_straExists.contains(path);
 
@@ -2437,12 +2437,12 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       if (!(path & ::file::e_flag_bypass_cache) && ::file_exists(pathCache))
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          auto pfile = file_get_file(pathCache, eopenFlags);
 
@@ -2460,7 +2460,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
    if (bSaveCache)
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       Context.http().m_straDownloading.add(path);
 
@@ -2480,7 +2480,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
    if (bSaveCache)
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       try
       {

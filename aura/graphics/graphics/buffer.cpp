@@ -26,7 +26,7 @@ namespace graphics
    bool buffer::update_window()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       return update_window(m_pimageBuffer);
 
@@ -91,7 +91,7 @@ namespace graphics
    }
 
 
-   sync * buffer::get_screen_sync()
+   synchronization_object * buffer::get_screen_sync()
    {
 
       return mutex();
@@ -99,7 +99,7 @@ namespace graphics
    }
 
 
-   ::sync * buffer::get_draw_lock()
+   ::synchronization_object * buffer::get_draw_lock()
    {
 
       return mutex();

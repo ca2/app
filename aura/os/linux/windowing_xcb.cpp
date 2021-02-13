@@ -20,7 +20,7 @@
 #include <X11/XKBlib.h>
 #define new ACME_NEW
 #include "aura/os/x11/_x11.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 #include "_glib.h"
 #include <xcb/xcb.h>
 
@@ -37,7 +37,7 @@ oswindow _x11_get_active_window();
 bool x11_step();
 
 
-mq * get_mq(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(ithread_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -239,7 +239,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
    try
    {
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
       xdisplay d(pdisplay);
 
@@ -364,7 +364,7 @@ bool xcb_message_loop_step()
 //
 //      g_bInitX11Thread = true;
 //
-//      sync_lock sl(x11_mutex());
+//      synchronization_lock synchronizationlock(x11_mutex());
 //
 //      xdisplay d(pdisplay);
 //
@@ -386,7 +386,7 @@ bool xcb_message_loop_step()
    try
    {
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
       xdisplay d(pdisplay);
 

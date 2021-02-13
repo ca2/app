@@ -7,7 +7,7 @@ namespace windows
 
    /// This class represents events for file changes
    class CLASS_DECL_ACME file_change_event :
-      virtual public sync
+      virtual public synchronization_object
    {
    public:
 
@@ -37,17 +37,17 @@ namespace windows
 
       virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-      using sync::unlock;
+      using synchronization_object::unlock;
       virtual bool unlock();
 
 
       ///  \brief		waits for an file notification forever
-      virtual sync_result wait();
+      virtual synchronization_result wait();
 
       ///  \brief		waits for an file notification for a specified time
       ///  \lparam		duration time period to wait for an file notification
-      ///  \return	waiting action result as sync_result
-      virtual sync_result wait(const duration & duration);
+      ///  \return	waiting action result as synchronization_result
+      virtual synchronization_result wait(const duration & duration);
 
       ///  \brief		requests that the operating system signal a machine
       ///				notification handle the next time it detects an appropriate

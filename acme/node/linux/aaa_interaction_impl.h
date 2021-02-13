@@ -214,7 +214,7 @@ namespace linux
       virtual void _001OnExitZoomed() override;
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+      //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 //      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
 //      virtual bool get_window_rect(RECT64 * prect);

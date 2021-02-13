@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME semaphore :
-   virtual public sync
+   virtual public synchronization_object
 {
 public:
 
@@ -27,7 +27,7 @@ public:
 
 #if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 //   using matter::lock;
-   virtual sync_result wait(const duration & durationTimeout) override;
+   virtual synchronization_result wait(const duration & durationTimeout) override;
 #endif
 
    virtual bool unlock() override;

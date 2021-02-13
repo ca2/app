@@ -761,7 +761,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
 
@@ -984,7 +984,7 @@ namespace user
       void edit_impl::_001OnKeyDown(::message::message * pmessage)
       {
 
-         //sync_lock sl(mutex());
+         //synchronization_lock synchronizationlock(mutex());
 
          {
 
@@ -1285,7 +1285,7 @@ namespace user
 
          {
 
-            sync_lock sl(m_pdata->mutex());
+            synchronization_lock synchronizationlock(m_pdata->mutex());
 
             strsize i1 = m_pdata->get_sel_beg();
 
@@ -1422,7 +1422,7 @@ namespace user
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1504,7 +1504,7 @@ namespace user
                      on_reset_focus_start_tick();
 
                      {
-                        sync_lock sl(m_pdata->mutex());
+                        synchronization_lock synchronizationlock(m_pdata->mutex());
 
                         strsize i1 = m_pdata->get_sel_beg();
 
@@ -1569,7 +1569,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   double x;
 
@@ -1603,7 +1603,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   double x;
 
@@ -1641,7 +1641,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1651,7 +1651,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1661,7 +1661,7 @@ namespace user
                   else
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
                      {
@@ -1700,7 +1700,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1710,7 +1710,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1720,7 +1720,7 @@ namespace user
                   else if (m_pdata->m_iSelEnd > 0)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      string strText;
 
@@ -1751,7 +1751,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   if (bControl)
                   {
@@ -1785,7 +1785,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   if (bControl)
                   {

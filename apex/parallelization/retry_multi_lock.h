@@ -6,7 +6,7 @@ class CLASS_DECL_APEX retry_multi_lock
 public:
 
 
-   sync_array     m_synca;
+   synchronization_array     m_synchronizationa;
    hsync_array    m_hsynca;
    bool_array     m_baLocked;
    duration       m_durationLock;
@@ -14,14 +14,14 @@ public:
    i32            m_iRetry;
 
 
-   retry_multi_lock(const sync_array & synca, duration durationLock, duration durationSleep, i32 iRetry = -1, bool bInitialLock = true);
+   retry_multi_lock(const synchronization_array & synca, duration durationLock, duration durationSleep, i32 iRetry = -1, bool bInitialLock = true);
    ~retry_multi_lock();
 
 
-   void construct(const sync_array & synca, duration durationLock, duration durationSleep, i32 iRetry = -1, bool bInitialLock = true);
+   void construct(const synchronization_array & synca, duration durationLock, duration durationSleep, i32 iRetry = -1, bool bInitialLock = true);
 
 
-   sync_result lock(bool bWaitForAll = true, u32 dwWakeMask = 0);
+   synchronization_result lock(bool bWaitForAll = true, u32 dwWakeMask = 0);
    bool unlock();
    bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked(index dwItem);

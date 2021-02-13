@@ -119,7 +119,7 @@ namespace windows
    bool file_memory_map::close()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pdata != nullptr)
       {

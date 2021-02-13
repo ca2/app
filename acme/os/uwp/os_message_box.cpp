@@ -16,7 +16,7 @@
 //   ::Windows::Foundation::AsyncStatus                 m_status;
 //   T                                                  m_result;
 //   HRESULT                                            m_hresult;
-//   PRED                                               m_pred;
+//   PRED                                               m_predicate;
 //
 //
 //private:
@@ -27,7 +27,7 @@
 //
 //
 //   chain_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext = CallbackContext::Any) :
-//      m_pred(pred)
+//      m_predicate(pred)
 //   {
 //
 //      m_operation = operation;
@@ -40,13 +40,13 @@
 //         if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
 //         {
 //
-//               m_pred(m_operation->GetResults());
+//               m_predicate(m_operation->GetResults());
 //
 //         }
 //         else
 //         {
 //
-//            m_pred(nullptr);
+//            m_predicate(nullptr);
 //
 //         }
 //
@@ -79,7 +79,7 @@
 //void keep_sealed_object(Object ^ o)
 //{
 //
-//   sync_lock sl(&g_mutexSealed);
+//   synchronization_lock synchronizationlock(&g_mutexSealed);
 //
 //   g_setSealed.add(o);
 //
@@ -89,7 +89,7 @@
 //void remove_sealed_object(Object ^ o)
 //{
 //
-//   sync_lock sl(&g_mutexSealed);
+//   synchronization_lock synchronizationlock(&g_mutexSealed);
 //
 //   g_setSealed.remove(o);
 //

@@ -90,7 +90,7 @@
 
 #endif
 
-//CLASS_DECL_APEX __pointer(mq) __get_mq(ithread_t id, bool bCreate);
+//CLASS_DECL_APEX __pointer(message_queue) __get_mq(ithread_t id, bool bCreate);
 
 
 

@@ -44,7 +44,7 @@
 // {
 
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    if(hdc == nullptr)
@@ -62,7 +62,7 @@
 // int_bool get_client_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 //    XWindowAttributes attrs;
 
@@ -90,7 +90,7 @@
 
 
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 //    if(!IsWindow(hwnd))
 //       return false;
@@ -139,7 +139,7 @@
 // i32 FillRect(HDC hdc, const RECTANGLE_I32 * lprc, HBRUSH hbr)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
@@ -170,7 +170,7 @@
 // int_bool GetCursorPos(POINT_I32 * lppointCursor)
 // {
 
-//    //mutex_lock sl(user_mutex(), true);
+//    //mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    Window root_return;
@@ -194,10 +194,10 @@
 
 
 
-// int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
+// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    xdisplay display(hwnd->display());

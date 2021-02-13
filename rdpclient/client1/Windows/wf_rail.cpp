@@ -535,7 +535,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //			railWindow->height = windowState->windowHeight;
 //		}
 //
-//		set_window_pos(railWindow->hWnd, nullptr,
+//		set_window_position(railWindow->hWnd, nullptr,
 //			railWindow->x,
 //			railWindow->y,
 //			railWindow->width,

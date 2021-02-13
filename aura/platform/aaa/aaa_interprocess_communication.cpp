@@ -155,10 +155,10 @@ namespace aura
    }
 
 
-   __pointer(sync_array) interprocess_communication::call::synca()
+   __pointer(synchronization_array) interprocess_communication::call::synca()
    {
 
-      auto psynca = __new(sync_array);
+      auto psynca = __new(synchronization_array);
 
       for (auto & task : this->tasks())
       {
@@ -172,14 +172,14 @@ namespace aura
    }
 
 
-   ::sync_result interprocess_communication::call::wait()
+   ::synchronization_result interprocess_communication::call::wait()
    {
 
       auto psynca = synca();
 
-      sync_lock sl(psynca);
+      synchronization_lock synchronizationlock(psynca);
 
-      return sl.wait(m_duration);
+      return synchronizationlock.wait(m_duration);
 
    }
 
@@ -320,7 +320,7 @@ namespace aura
    bool interprocess_communication::start(const string & strApp)
    {
 
-      sync_lock sl1(mutex());
+      synchronization_lock sl1(mutex());
 
       auto & pmutex = m_mapAppMutex[strApp];
 
@@ -333,7 +333,7 @@ namespace aura
 
       sl1.unlock();
 
-      sync_lock sl(pmutex);
+      synchronization_lock synchronizationlock(pmutex);
 
       auto idaPid = get_pid(strApp);
 
@@ -671,7 +671,7 @@ started:
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -685,7 +685,7 @@ started:
    __pointer(class interprocess_communication::task) interprocess_communication::get_task(i64 iTask)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       return m_mapTask[iTask];
 

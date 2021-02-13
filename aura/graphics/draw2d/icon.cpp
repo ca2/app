@@ -127,7 +127,7 @@ namespace draw2d
 
 #endif
 
-      m_sizea.pred_sort([](auto & size1, auto & size2)
+      m_sizea.predicate_sort([](auto & size1, auto & size2)
          {
 
             return size1.cx < size2.cx;

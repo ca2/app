@@ -40,7 +40,7 @@ public:
 
    }
 
-   inline sync_result wait(const ::duration& duration = duration::infinite())
+   inline synchronization_result wait(const ::duration& duration = duration::infinite())
    {
 
       return m_peventCompletion->wait(duration);

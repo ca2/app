@@ -78,7 +78,7 @@ namespace os
       //virtual bool on_windows_key_up(wparam wparam, lparam lparam);
 
 
-      virtual bool set_window_pos(int x, int y, int cx, int cy, bool bShow);
+      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
       virtual bool move_window(int x, int y);
 
       void viewport_client_to_screen(POINT_I32 * ppt);

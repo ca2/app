@@ -110,7 +110,7 @@ void polygon_base < POINT_TYPE >::sort()
    x /= this->get_count();
    y /= this->get_count();
 
-   this->pred_sort([x, y](auto & point1, auto & point2) { return atan(point1, x, y) >= atan(point2, x, y); });
+   this->predicate_sort([x, y](auto & point1, auto & point2) { return atan(point1, x, y) >= atan(point2, x, y); });
 }
 
 

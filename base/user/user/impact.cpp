@@ -997,16 +997,16 @@ namespace user
 
    //   //spadata.add(get_document()->m_spdata);
 
-   //   object_spa sync;
+   //   object_spa synchronization_object;
 
    //   for (index i = 0; i < spadata.get_count(); i++)
    //   {
 
-   //      sync.add(spadata[i].data_mutex());
+   //      synchronization_object.add(spadata[i].data_mutex());
 
    //   }
 
-   //   retry_multi_lock sl(sync, millis(1), millis(1));
+   //   retry_multi_lock synchronizationlock(synchronization_object, millis(1), millis(1));
 
    //   try
    //   {
@@ -1137,9 +1137,9 @@ namespace user
       return ::user::box::_001CallOnDraw(pgraphics);
       //on_viewport_offset(pgraphics);
 
-      //sync_lock slView(mutex());
+      //synchronization_lock slView(mutex());
 
-      ////sync_lock slDocument(get_document()->mutex());.
+      ////synchronization_lock slDocument(get_document()->mutex());.
 
       //{
 

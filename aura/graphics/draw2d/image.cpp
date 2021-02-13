@@ -1557,11 +1557,11 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    auto pgroup = System.thread_group();
 
-   sync_lock slGroup(pgroup->mutex());
+   synchronization_lock slGroup(pgroup->mutex());
 
    auto ptool = System.thread_tool(::e_thread_tool_draw2d);
 
-   sync_lock slTool(ptool->mutex());
+   synchronization_lock slTool(ptool->mutex());
 
    if(!pgroup || !ptool)
    {

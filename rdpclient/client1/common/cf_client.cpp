@@ -198,7 +198,7 @@
 //	if (wfc->fullscreen != true)
 //	{
 //		if (wfc->hwnd)
-//			set_window_pos(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE);
+//			set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE);
 //	}
 //	else
 //	{
@@ -796,7 +796,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //				width = LOWORD(msg.lParam);
 //				height = HIWORD(msg.lParam);
 //
-//				set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, width, height, SWP_FRAMECHANGED);
+//				set_window_position(wfc->hwnd, HWND_TOP, 0, 0, width, height, SWP_FRAMECHANGED);
 //			}
 //
 //			if ((msg_ret == 0) || (msg_ret == -1))

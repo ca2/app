@@ -9,13 +9,13 @@ void set_defer_process_x_message(bool (* pfn)(hthread_t hthread, MESSAGE * pmess
 
 //#ifdef __cplusplus
 
-//#undef sync
-//class sync;
+//#undef synchronization_object
+//class synchronization_object;
 //
 //#ifdef WINDOWS
 //using HSYNC = HANDLE;
 //#else
-//using HSYNC = sync *;
+//using HSYNC = synchronization_object *;
 //#endif
 
 #ifdef _UWP
@@ -83,7 +83,7 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
 
 // class thread;
-// class mq;
+// class message_queue;
 
 
 // CLASS_DECL_ACME int_bool WINAPI GetMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);

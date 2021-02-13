@@ -70,7 +70,7 @@ namespace draw2d_cairo
    void font::destroy()
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 //      if(m_pdesc != nullptr)
 //      {
 // // the fonts are stored and managed by "font cache"

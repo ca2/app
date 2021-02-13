@@ -106,7 +106,7 @@ namespace macos
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -128,7 +128,7 @@ namespace macos
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -150,7 +150,7 @@ namespace macos
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -166,8 +166,8 @@ namespace macos
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            sync_lock sl1(m_pil48Hover->mutex());
-            sync_lock sl2(m_pil48->mutex());
+            synchronization_lock sl1(m_pil48Hover->mutex());
+            synchronization_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -244,9 +244,9 @@ namespace macos
 
          {
             
-            sync_lock sl1(m_pilHover[16]->mutex());
+            synchronization_lock sl1(m_pilHover[16]->mutex());
             
-            sync_lock sl2(m_pil[16]->mutex());
+            synchronization_lock sl2(m_pil[16]->mutex());
             
             if (macos_get_file_image(pimage16, strPath))
             {
@@ -271,9 +271,9 @@ namespace macos
 
          }
 
-         sync_lock sl1(m_pilHover[48]->mutex());
+         synchronization_lock sl1(m_pilHover[48]->mutex());
 
-         sync_lock sl2(m_pil[48]->mutex());
+         synchronization_lock sl2(m_pil[48]->mutex());
 
          iImage = m_pil[48]->add_image(pimage48, 0, 0);
 
@@ -321,7 +321,7 @@ namespace macos
 
       {
 
-         sync_lock sl(&m_mutexQueue);
+         synchronization_lock synchronizationlock(&m_mutexQueue);
 
          m_keyptra.add(pstore);
 
@@ -333,7 +333,7 @@ namespace macos
 
       iImage = get_foo_image(i2, i2.m_cr);
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -350,7 +350,7 @@ namespace macos
       fork([&]()
       {
 
-         sync_lock sl(&m_mutexQueue);
+         synchronization_lock synchronizationlock(&m_mutexQueue);
 
          while (thread_get_run())
          {
@@ -358,7 +358,7 @@ namespace macos
             if(m_keyptra.is_empty())
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                sleep(100_ms);
 
@@ -370,13 +370,13 @@ namespace macos
 
                m_keyptra.remove_at(0);
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                int iImage = get_image(*pkey, nullptr, pkey->m_cr);
 
                {
 
-                  sync_lock s(mutex());
+                  synchronization_lock s(mutex());
 
                   m_imagemap.set_at(*pkey, iImage);
 
@@ -386,7 +386,7 @@ namespace macos
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
          }
 

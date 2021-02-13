@@ -3,7 +3,7 @@
 
 
 template < typename PRED >
-bool pred_retry(duration durationRetry, ::duration durationTimeout, PRED pred)
+bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pred)
 {
 
    auto tickStart = millis::now();
@@ -79,7 +79,7 @@ public:
    bool operator()(PRED pred)
    {
 
-      return ::pred_retry(m_durationRetry, m_durationTimeout, pred);
+      return ::predicate_retry(m_durationRetry, m_durationTimeout, pred);
 
    }
 

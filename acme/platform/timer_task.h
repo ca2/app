@@ -57,7 +57,7 @@ public:
    void impl_term();
 
 
-   virtual ::e_status initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
+   virtual ::e_status initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
 
    virtual ::e_status on_task() override;
 

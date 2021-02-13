@@ -6,7 +6,7 @@
 
 #define new ACME_NEW
 
-multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
+multi_lock::multi_lock(const synchronization_array & synca,bool bInitialLock)
 {
 
    ASSERT(synca.sync_count() > 0 && synca.sync_count() <= MAXIMUM_WAIT_OBJECTS);
@@ -21,7 +21,7 @@ multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
    for (index i = 0; i < synca.sync_count(); i++)
    {
 
-      m_synca.add_item(synca.m_synca[i]);
+      m_synchronizationa.add_item(synca.m_synchronizationa[i]);
 
    }
 
@@ -37,7 +37,7 @@ multi_lock::multi_lock(const sync_array & synca,bool bInitialLock)
 }
 
 
-multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
+multi_lock::multi_lock(::count c, const synchronization_array & synca, bool bInitialLock)
 {
 
    ASSERT(synca.m_hsyncaCache.has_element() && c > 0 && c <= synca.m_hsyncaCache.get_size() && c <= MAXIMUM_WAIT_OBJECTS);
@@ -49,7 +49,7 @@ multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
 
    }
 
-   m_synca.add(synca);
+   m_synchronizationa.add(synca);
 
    __zero(m_byteaLocked);
 
@@ -71,13 +71,13 @@ multi_lock::~multi_lock()
 }
 
 
-sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+synchronization_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
-   if (m_synca.m_hsyncaCache.is_empty())
+   if (m_synchronizationa.m_hsyncaCache.is_empty())
    {
 
-      return sync_result(sync_result::result_error);
+      return synchronization_result(synchronization_result::result_error);
 
    }
 
@@ -86,17 +86,17 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((u32) m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), false);
+      iResult = ::WaitForMultipleObjectsEx((u32) m_synchronizationa.m_hsyncaCache.get_count(), m_synchronizationa.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), false);
 
    }
    else
    {
 
-      iResult = ::MsgWaitForMultipleObjects((u32)m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((u32)m_synchronizationa.m_hsyncaCache.get_count(), m_synchronizationa.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), dwWakeMask);
 
    }
 
-   ::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synca.m_hsyncaCache.get_count();
+   ::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.m_hsyncaCache.get_count();
 
    if(iResult == WAIT_FAILED)
    {
@@ -112,7 +112,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
       if (bWaitForAll)
       {
 
-         for (index j = 0, i = 0; j < m_synca.m_hsyncaCache.size(); j++)
+         for (index j = 0, i = 0; j < m_synchronizationa.m_hsyncaCache.size(); j++)
          {
 
             m_byteaLocked[i] = true;
@@ -129,7 +129,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 
    }
 
-   return sync_result(iResult, m_synca.m_hsyncaCache.get_count());
+   return synchronization_result(iResult, m_synchronizationa.m_hsyncaCache.get_count());
 
 }
 
@@ -137,13 +137,13 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
 bool multi_lock::unlock()
 {
 
-   for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
+   for (index i=0; i < m_synchronizationa.m_hsyncaCache.get_count(); i++)
    {
 
-      if (m_byteaLocked[i] && m_synca.m_synca[i]->m_hsync)
+      if (m_byteaLocked[i] && m_synchronizationa.m_synchronizationa[i]->m_hsync)
       {
 
-         m_byteaLocked[i] = !m_synca.m_synca[i]->unlock();
+         m_byteaLocked[i] = !m_synchronizationa.m_synchronizationa[i]->unlock();
 
       }
 
@@ -159,20 +159,20 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
    bool bGotOne = false;
 
-   for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
+   for (index i=0; i < m_synchronizationa.m_hsyncaCache.get_count(); i++)
    {
 
-      if (m_byteaLocked[i] && m_synca.m_synca[i]->m_hsync)
+      if (m_byteaLocked[i] && m_synchronizationa.m_synchronizationa[i]->m_hsync)
       {
 
-         semaphore * pSemaphore = m_synca.sync_at(i).cast < semaphore >();
+         semaphore * pSemaphore = m_synchronizationa.sync_at(i).cast < semaphore >();
 
          if (pSemaphore != nullptr)
          {
 
             bGotOne = true;
 
-            m_byteaLocked[i] = !m_synca.m_synca[i]->unlock(lCount, pPrevCount);
+            m_byteaLocked[i] = !m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount);
 
          }
 
@@ -188,7 +188,7 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 bool multi_lock::IsLocked(index dwObject)
 {
 
-   ASSERT(dwObject < m_synca.size());
+   ASSERT(dwObject < m_synchronizationa.size());
 
    return m_byteaLocked[dwObject];
 

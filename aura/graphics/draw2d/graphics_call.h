@@ -20,14 +20,14 @@ namespace draw2d
       virtual public graphics_call_base
    {
 
-      PRED m_pred;
+      PRED m_predicate;
 
-      graphics_call(PRED pred) : m_pred(pred) {}
+      graphics_call(PRED pred) : m_predicate(pred) {}
 
       void call(::draw2d::graphics * pgraphics)
       {
 
-         m_pred(pgraphics);
+         m_predicate(pgraphics);
 
       }
 

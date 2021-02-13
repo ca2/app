@@ -538,7 +538,7 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
-#include "acme/primitive/math/mkint_c.h"
+#include "acme/primitive/mathematics/mkint_c.h"
 
 // C-includes
 #include "acme/_c.h"
@@ -1109,14 +1109,14 @@ inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 #ifdef CPP17
 
 template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+inline bool _returns_true(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 {
    pred(args...);
    return bOnVoid;
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+inline bool _returns_true(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 {
    return (bool)pred(args...);
 }
@@ -1130,14 +1130,14 @@ inline bool returns_true(PRED pred, bool bOnVoid, Args... args)
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+inline bool _returns_false(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 {
    pred(args...);
    return bOnVoid;
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+inline bool _returns_false(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 {
    return !(bool)pred(args...);
 }
@@ -1242,7 +1242,7 @@ class trait;
 class create;
 
 
-class sync;
+class synchronization_object;
 
 
 //CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
@@ -1328,7 +1328,7 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 #include "acme/primitive/primitive/bits.h"
 
-#include "acme/primitive/math/_.h"
+#include "acme/primitive/mathematics/_.h"
 
 //#include "acme/user/_const.h"
 
@@ -2612,7 +2612,7 @@ inline bool is_set(const TYPE & t)
 using matter_pointer = __pointer(::matter);
 
 
-#include "acme/primitive/promise_pred/pred_function_pointer.h"
+#include "acme/primitive/promise_predicate/predicate_function_pointer.h"
 
 
 #include "acme/primitive/promise/routine.h"
@@ -2656,16 +2656,16 @@ inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 #include "acme/primitive/primitive/logic.h"
 
 
-#include "acme/primitive/math/static_numeric_info.h"
-#include "acme/primitive/math/numeric_info.h"
+#include "acme/primitive/mathematics/static_numeric_info.h"
+#include "acme/primitive/mathematics/numeric_info.h"
 
 
-#include "acme/primitive/math/c_number.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 using wparam = c_number<iptr>;
 
 
-#include "acme/primitive/math/math_clip.h"
+#include "acme/primitive/mathematics/math_clip.h"
 
 
 #include "acme/primitive/datetime/_datetime.h"
@@ -2737,7 +2737,7 @@ class memory_base;
 //using size = size_type<SIZE_I32, POINT_I32, RECTANGLE_I32>;
 
 
-#include "acme/primitive/math/cast.h"
+#include "acme/primitive/mathematics/cast.h"
 
 
 #include "acme/primitive/primitive/block.h"
@@ -2819,7 +2819,7 @@ class manual_reset_event;
 #include "acme/primitive/primitive/work.h"
 
 
-#include "acme/primitive/primitive/compare_pred.h"
+#include "acme/primitive/primitive/compare_predicate.h"
 
 
 #include "acme/platform/status.h"
@@ -2962,7 +2962,7 @@ struct MESSAGE
 {
 
    oswindow                oswindow;
-   ::u32                   message;
+   ::id                    m_id;
    wparam                  wParam;
    lparam                  lParam;
    point_i32               pt;
@@ -3019,9 +3019,9 @@ namespace promise
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/promise_pred/pred_routine.h"
+#include "acme/primitive/promise_predicate/predicate_routine.h"
 
-#include "acme/primitive/promise_pred/pred_process.h"
+#include "acme/primitive/promise_predicate/predicate_process.h"
 
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
@@ -3043,9 +3043,9 @@ class message_box;
 
 #include "acme/primitive/primitive/request_interface.h"
 
-#include "acme/parallelization/sync_result.h"
+#include "acme/parallelization/synchronization_result.h"
 
-//#include "acme/parallelization/sync.h"
+//#include "acme/parallelization/synchronization_object.h"
 
 //#include "acme/xml/exportable.h"
 
@@ -3214,10 +3214,10 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/primitive/primitive/id_space.h"
 
 
-#include "acme/primitive/math/scalar_enum.h"
+#include "acme/primitive/mathematics/scalar_enum.h"
 
 
-#include "acme/primitive/math/scalar.h"
+#include "acme/primitive/mathematics/scalar.h"
 
 
 //#include "acme/platform/progress.h"
@@ -3381,7 +3381,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 //#include "acme/primitive/data/_.h"
 
 
-#include "acme/primitive/math/objects.h"
+#include "acme/primitive/mathematics/objects.h"
 
 
 //#include "acme/platform/simple_log.h"
@@ -3398,7 +3398,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 class mq_base;
 
 //#include "acme/platform/live_signal.h"
-//#include "acme/parallelization/pred_holder.h"
+//#include "acme/parallelization/predicate_holder.h"
 //#include "acme/primitive/primitive/command.h"
 //#include "acme/parallelization/handler.h"
 //#include "acme/parallelization/service_base.h"
@@ -3470,7 +3470,7 @@ class mq_base;
 
 
 
-#include "acme/primitive/math/random_number_generator.h"
+#include "acme/primitive/mathematics/random_number_generator.h"
 //#include "acme/primitive/math/department.h"
 #include "acme/primitive/geometry2d/geometry.h"
 
@@ -3679,7 +3679,7 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 //#include "acme/platform/async.h"
 
 
-//#include "acme/platform/mq.h"
+//#include "acme/platform/message_queue.h"
 
 
 #include "acme/platform/international.h"
@@ -3999,7 +3999,7 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/platform/message_box.h"
 
 
-//#include "acme/parallelization/pred_method.h"
+//#include "acme/parallelization/predicate_method.h"
 
 
 
@@ -4088,7 +4088,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_factory_impl.h"
 
 
-#include "acme/primitive/math/_impl.h"
+#include "acme/primitive/mathematics/_impl.h"
 
 
 #include "acme/primitive/collection/_string_array_impl.h"

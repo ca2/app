@@ -65,7 +65,7 @@ namespace user
 
       ::user::font_list& list = *m_plist.cast < ::user::font_list>();
 
-      sync_lock sl(list.mutex());
+      synchronization_lock synchronizationlock(list.mutex());
 
       for (auto& item : list.m_pfontlist->m_pitema->ptra())
       {

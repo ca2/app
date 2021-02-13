@@ -65,7 +65,7 @@ namespace draw2d
    void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array & itema)
    {
 
-      critical_section_lock sl(::aura::g_pcsFont);
+      critical_section_lock synchronizationlock(::aura::g_pcsFont);
 
       __pointer(::write_text::font_enum_item) pitem;
 

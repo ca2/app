@@ -340,26 +340,26 @@ typedef enum sp_scrobbling_state {
 
 
 /**
- * Offline sync status
+ * Offline synchronization_object status
  */
 typedef struct sp_offline_sync_status {
   /**
-   * Queued tracks/bytes is things left to sync in current sync
+   * Queued tracks/bytes is things left to synchronization_object in current synchronization_object
    * operation
    */
   int queued_tracks;
   sp_::u3264 queued_bytes;
 
   /**
-   * Done tracks/bytes is things marked for sync that existed on
-   * device before current sync operation
+   * Done tracks/bytes is things marked for synchronization_object that existed on
+   * device before current synchronization_object operation
    */
   int done_tracks;
   sp_::u3264 done_bytes;
 
   /**
    * Copied tracks/bytes is things that has been copied in
-   * current sync operation
+   * current synchronization_object operation
    */
   int copied_tracks;
   sp_::u3264 copied_bytes;
@@ -377,7 +377,7 @@ typedef struct sp_offline_sync_status {
   int error_tracks;
 
   /**
-   * Set if sync operation is in progress
+   * Set if synchronization_object operation is in progress
    */
   bool syncing;
 
@@ -1029,7 +1029,7 @@ SP_LIBEXPORT(sp_error) sp_session_preferred_bitrate(sp_session *session, sp_bitr
 
 
 /**
- * Set preferred bitrate for offline sync
+ * Set preferred bitrate for offline synchronization_object
  *
  * @param[in]  session        Session object
  * @param[in]  bitrate        Preferred bitrate, see ::sp_bitrate for possible values

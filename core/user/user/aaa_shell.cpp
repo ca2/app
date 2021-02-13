@@ -170,7 +170,7 @@ namespace user
 
          }
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          add_thread();
 
@@ -189,7 +189,7 @@ namespace user
       void shell::add_thread()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto pthread  = __new(thread(this));
 
@@ -239,7 +239,7 @@ namespace user
       bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (contains_image(imagekey, iImage))
          {
@@ -258,7 +258,7 @@ namespace user
       int shell::_reserve_image(const image_key & key)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          int iImage = -1;
 
@@ -281,7 +281,7 @@ namespace user
       bool shell::contains_image(const image_key & imagekey, i32 & iImage)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_imagemap.lookup(imagekey, iImage))
          {
@@ -298,7 +298,7 @@ namespace user
       void shell::add_size_interest(int_array iaSize)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto cAddedCount = m_iaSize.add_unique(iaSize);
 
@@ -317,7 +317,7 @@ namespace user
       void shell::set_size_interest(int_array iaSize)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          iaSize.sort();
 
@@ -336,7 +336,7 @@ namespace user
       void shell::on_update_sizes_interest()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_imagemap.remove_all();
 
@@ -400,7 +400,7 @@ namespace user
 
                m_pevNewImageKey->wait();
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                if (m_imagekeySchedule.has_elements())
                {
@@ -447,7 +447,7 @@ namespace user
       ::image_list * shell::GetImageList(int iSize)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_bPendingUpdate)
          {
@@ -492,7 +492,7 @@ namespace user
       ::image_list * shell::GetImageListHover(int iSize)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_bPendingUpdate)
          {
@@ -557,7 +557,7 @@ namespace user
       i32 shell::get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon, crBk);
 
@@ -602,7 +602,7 @@ namespace user
       i32 shell::get_file_image(const image_key & imagekey)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_bPendingUpdate)
          {
@@ -641,7 +641,7 @@ namespace user
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_imagekeySchedule.add(imagekey);
 
@@ -720,7 +720,7 @@ namespace user
 
                int iImage = m_pshell->impl_get_file_image(imagekey);
 
-               sync_lock sl(m_pshell->mutex());
+               synchronization_lock synchronizationlock(m_pshell->mutex());
 
                if (iImage & 0x80000000)
                {
@@ -781,12 +781,12 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    //{
 
-   //   sync_lock sl(m_pilHover[iSize]->mutex());
+   //   synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
 
    //   if (crBk == 0)
    //   {
 
-   //      return m_pilHover[iSize]->pred_add_image([&](auto pimage)
+   //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
    //            System.imaging().color_blend(pimage, rgb(255, 255, 240), 64);
@@ -839,12 +839,12 @@ namespace user
    int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    {
 
-      sync_lock sl(m_pilHover[iSize]->mutex());
+      synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
 
       if (crBk == 0)
       {
 
-         return m_pilHover[iSize]->pred_add_image([&](auto pimage)
+         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
                System.imaging().color_blend(pimage, rgb(255, 255, 240), 64);

@@ -123,8 +123,8 @@ namespace install
 
       virtual void restart_aura_ipc();
 
-      using ::hotplugin::plugin::set_window_pos;
-      virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
+      using ::hotplugin::plugin::set_window_position;
+      virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
 
       virtual void on_ready();
 

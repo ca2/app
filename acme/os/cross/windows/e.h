@@ -17099,7 +17099,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication synchronization attempt failed because a master replica attempted to sync from a partial replica.
+// The replication synchronization attempt failed because a master replica attempted to synchronization_object from a partial replica.
 //
 #define ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA 8465L
 
@@ -17640,7 +17640,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// While processing a change to the DNS Host Name for an matter, the Service Principal Name values could not be kept in sync.
+// While processing a change to the DNS Host Name for an matter, the Service Principal Name values could not be kept in synchronization_object.
 //
 #define ERROR_DS_COULDNT_UPDATE_SPNS     8525L
 
@@ -42536,7 +42536,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified member is already in-sync with the other active members. It does not need to be regenerated.
+// The specified member is already in-synchronization_object with the other active members. It does not need to be regenerated.
 //
 #define ERROR_VOLMGR_MEMBER_IN_SYNC      _NDIS_ERROR_TYPEDEF_(0xC0380023L)
 
@@ -42725,7 +42725,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified plex is already in-sync with the other active plexes. It does not need to be regenerated.
+// The specified plex is already in-synchronization_object with the other active plexes. It does not need to be regenerated.
 //
 #define ERROR_VOLMGR_PLEX_IN_SYNC        _NDIS_ERROR_TYPEDEF_(0xC0380038L)
 

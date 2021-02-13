@@ -579,7 +579,7 @@ namespace user
 //      {
 //
 //         // recalc non-client area when border styles change
-//         set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+//         set_window_position(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
 //
 //      }
 

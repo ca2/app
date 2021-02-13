@@ -317,7 +317,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      sync_lock sl(pscript->mutex());
+      synchronization_lock synchronizationlock(pscript->mutex());
 
       TRACE("Compiling script \"%s\"\n",pscript->m_strName.c_str());
 
@@ -1612,7 +1612,7 @@ namespace dynamic_source
    void script_compiler::handle_file_action(::file::action * paction)
    {
 
-      sync_lock sl(&m_mutex);
+      synchronization_lock synchronizationlock(&m_mutex);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -1629,7 +1629,7 @@ namespace dynamic_source
 
             property_set set;
 
-            Context.http().get("http://" + m_straSync[i] + "/sync?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            Context.http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
@@ -3228,7 +3228,7 @@ ch_else:
    void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz)
    {
 
-      sync_lock sl(m_pmanager->mutex());
+      synchronization_lock synchronizationlock(m_pmanager->mutex());
 
       System.str().set(pszTopic,idLocale,idSchema,psz);
 

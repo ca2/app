@@ -902,7 +902,7 @@ namespace user
    //}
 
 
-   //bool primitive::set_window_pos(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags)
+   //bool primitive::set_window_position(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags)
 
    //{
 
@@ -3240,7 +3240,7 @@ namespace user
    }
 
 
-   //bool primitive::set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   //bool primitive::set_window_position(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3778,7 +3778,7 @@ namespace user
    //void primitive::add_thread(::thread * pthread)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   m_threadptra.add(pthread);
 
@@ -3788,7 +3788,7 @@ namespace user
    //void primitive::remove_thread(::thread * pthread)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   m_threadptra.remove(pthread);
 

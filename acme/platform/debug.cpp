@@ -23,7 +23,7 @@ CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const
 
 
 
-void debug_object_event_promisse_pred()
+void debug_object_event_promisse_predicate()
 {
 
    //::matter o;

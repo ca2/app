@@ -681,7 +681,7 @@ namespace userex
       //if (pframewindow.is_set())
       //{
 
-      //   pframewindow->post_pred([pframewindow]()
+      //   pframewindow->post_predicate([pframewindow]()
       //   {
 
       //      pframewindow->InitialFramePosition();

@@ -166,7 +166,7 @@ namespace account
 
                {
 
-                  sync_lock slInteractive(m_pcredentials->mutex());
+                  synchronization_lock slInteractive(m_pcredentials->mutex());
 
                   pcredentials = __new(::account::credentials(*m_pcredentials));
 
@@ -329,11 +329,11 @@ namespace account
 
 #if !MOBILE_PLATFORM
 
-      single_lock sl(&psession->account()->m_semaphoreDialog);
+      single_lock synchronizationlock(&psession->account()->m_semaphoreDialog);
 
       bool bWasWaiting = false;
 
-      while (!sl.wait(one_second()).signaled())
+      while (!synchronizationlock.wait(one_second()).signaled())
       {
 
          if (!::thread_get_run())

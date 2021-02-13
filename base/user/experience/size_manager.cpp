@@ -563,7 +563,7 @@ namespace experience
 
       {
 
-         sync_lock sl(pframewindow->mutex());
+         synchronization_lock synchronizationlock(pframewindow->mutex());
 
          pframewindow->place(rectParentClient);
 

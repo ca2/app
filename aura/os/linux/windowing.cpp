@@ -19,6 +19,6 @@
 //!!!#include <X11/XKBlib.h>
 #define new ACME_NEW
 #include "aura/os/x11/_x11.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 #include "_glib.h"
 #include <xcb/xcb.h>

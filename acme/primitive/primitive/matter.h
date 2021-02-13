@@ -7,7 +7,7 @@ class action_context;
 class layered;
 class object;
 class dump_context;
-class sync;
+class synchronization_object;
 class __id;
 class string_exchange;
 
@@ -26,7 +26,7 @@ class CLASS_DECL_ACME matter
 private:
 
 
-   mutable sync *                      m_pmutex;
+   mutable synchronization_object *                      m_pmutex;
 
 
 public:
@@ -83,9 +83,9 @@ public:
 
    inline bool is_set() const { return ::is_set(this); }
 
-   // sync/::mutex
-   inline sync* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
-   void set_mutex(sync* psync);
+   // synchronization_object/::mutex
+   inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
+   void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
 

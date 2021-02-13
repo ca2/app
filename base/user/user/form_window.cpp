@@ -619,7 +619,7 @@ namespace user
    bool form_window::_001GetData(const ::id & id, bool &bData)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       __pointer(interaction) pinteraction = get_child_by_id(id);
 
@@ -738,7 +738,7 @@ namespace user
    //void form_window::_001RemoveControls()
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   //m_controldescriptorset.remove_all();
 
@@ -758,7 +758,7 @@ namespace user
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(psubject != nullptr)
       {
@@ -814,7 +814,7 @@ namespace user
    void form_window::_001UpdateFunctionStatic()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for(auto pinteraction : proper_children())
       {
@@ -1197,7 +1197,7 @@ namespace user
       if(m_bInitialized)
          return true;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       _001InitializeFormPreData();
 

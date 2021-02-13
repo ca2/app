@@ -117,7 +117,7 @@ namespace user
 //      if(!::user::control_bar::create_interaction("ToolbarWindow32",nullptr,uStyle, puiParent,nID))
 //         return false;
 //
-//      // sync up the sizes
+//      // synchronization_object up the sizes
 //      SetSizes(m_sizeButton, m_sizeImage);
 //
 //      // Note: Parent must resize itself for control bar to be resized
@@ -201,7 +201,7 @@ namespace user
       }
 
       // recalculate the non-client region
-      //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
+      //set_window_position(zorder_none, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
       Invalidate();   // just to be nice if called when toolbar is visible
    }
 
@@ -1025,7 +1025,7 @@ namespace user
 //
 //                     auto point = rectangle.origin() + size;
 //
-//                     pwindow->set_window_pos(zorder_none, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+//                     pwindow->set_window_position(zorder_none, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
 //
 //                  }
 //
@@ -1308,7 +1308,7 @@ return { 0,0 };
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
       {
          // recalc non-client area when border styles machine
-         //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+         //set_window_position(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
       }
       m_bDelayedButtonLayout = true;
    }
@@ -1517,7 +1517,7 @@ return { 0,0 };
    void toolbar::assert_valid() const
    {
       // Note: ::user::control_bar::assert_valid is not called because it checks for
-      //  m_nCount and m_pData to be in sync, which they are not in toolbar.
+      //  m_nCount and m_pData to be in synchronization_object, which they are not in toolbar.
 
       /*      ASSERT(m_hbmImageWell == nullptr ||
                (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
@@ -1645,7 +1645,7 @@ return { 0,0 };
 
       const ::size_i32 & size = CalcSimpleLayout(pgraphics);
 
-      /*set_window_pos(
+      /*set_window_position(
       e_zorder_top,
       0, 0,
       size.cx, size.cy,
@@ -1740,7 +1740,7 @@ return { 0,0 };
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_itema.remove_all();
 

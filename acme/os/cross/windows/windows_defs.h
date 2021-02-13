@@ -793,11 +793,11 @@ VARIANT_BOOL BoolToVARIANT_BOOL(int_bool v);
 int_bool VARIANT_BOOLToBool(VARIANT_BOOL v);
 
 
-//#define INVALID_HSYNC_VALUE ((::sync *) nullptr)
+//#define INVALID_HSYNC_VALUE ((::synchronization_object *) nullptr)
 
-class sync;
+class synchronization_object;
 
-typedef ::sync * HSYNC;
+typedef ::synchronization_object * HSYNC;
 
 
 

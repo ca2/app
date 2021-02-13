@@ -162,7 +162,7 @@ bool condition::pulse()
 #endif
 }
 
-sync_result condition::wait()
+synchronization_result condition::wait()
 {
 #ifdef WINDOWS
 
@@ -199,20 +199,20 @@ sync_result condition::wait()
 
 #endif
 
-   return sync_result(sync_result::result_event0);
+   return synchronization_result(synchronization_result::result_event0);
 }
 
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-sync_result condition::wait(const duration& duration)
+synchronization_result condition::wait(const duration& duration)
 {
 
 #ifdef WINDOWS
 
    u32 timeout = duration.u32_millis();
 
-   return sync_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
+   return synchronization_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 
 #elif defined(ANDROID)
 
@@ -236,7 +236,7 @@ sync_result condition::wait(const duration& duration)
 
          m_iHold--;
 
-         return ::sync_result(::sync_result::result_timeout);
+         return ::synchronization_result(e_synchronization_result_timed_out);
 
       }
 
@@ -246,7 +246,7 @@ sync_result condition::wait(const duration& duration)
 
    pthread_mutex_unlock(&m_mutex);
 
-   return ::sync_result(::sync_result::result_event0);
+   return ::synchronization_result(e_synchronization_result_signaled_base);
 
 #else
 
@@ -281,7 +281,7 @@ sync_result condition::wait(const duration& duration)
          else
          {
 
-            return ::sync_result::result_error;
+            return ::synchronization_result::result_error;
 
          }
 
@@ -289,13 +289,13 @@ sync_result condition::wait(const duration& duration)
       else
       {
 
-         return ::sync_result::result_event0;
+         return e_synchronization_result_signaled_base;
 
       }
 
    }
 
-   return sync_result(sync_result::result_timeout);
+   return synchronization_result(synchronization_result::result_timeout);
 
 #endif
 

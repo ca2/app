@@ -196,7 +196,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      return m_rectaMonitor.get_count();
 //
@@ -256,7 +256,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (iMonitor < 0 || iMonitor >= get_monitor_count())
 //      {
@@ -416,7 +416,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
 //      {
@@ -588,7 +588,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {

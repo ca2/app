@@ -300,7 +300,7 @@ namespace axis
 //
 //
 //         }
-//         sync_lock sl(&System.m_mutexLibrary);
+//         synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //         __pointer(::apex::library) & plibrary = &System.m_mapLibrary[pszAppId];
 //

@@ -153,7 +153,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return m_applicationa;
 
@@ -170,7 +170,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if (papp == this)
 //   {
@@ -187,7 +187,7 @@ application_array application_container::get_applicationa()
 //void application_container::app_remove(::aura::application * papp)
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if (m_applicationa.is_set())
 //   {
@@ -334,7 +334,7 @@ __pointer(::aura::application) application_container::assert_running(const char 
 
   {
 
-     sync_lock sl(mutex());
+     synchronization_lock synchronizationlock(mutex());
 
      papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 

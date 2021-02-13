@@ -63,7 +63,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 
    defer_create_mutex();
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_iSize = 0;
    m_iGrow = nGrow;
@@ -83,7 +83,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 bool image_list::realize(::draw2d::graphics * pgraphics) const
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return m_pimage->realize(pgraphics);
 
@@ -93,7 +93,7 @@ bool image_list::realize(::draw2d::graphics * pgraphics) const
 image_list & image_list::operator=(const image_list & imagelist)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(this != &imagelist)
    {
@@ -118,7 +118,7 @@ i32 image_list::get_image_count() const
 bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    try
    {
@@ -145,7 +145,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, byte alpha)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    UNREFERENCED_PARAMETER(iFlag);
 
@@ -173,7 +173,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(iImage >= get_image_count())
    {
@@ -214,7 +214,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 i32 image_list::reserve_image(int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (iItem < 0)
    {
@@ -248,7 +248,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -290,7 +290,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -373,7 +373,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 i32 image_list::add_file(::payload varFile, int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -405,7 +405,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -461,7 +461,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 {
 
-   sync_lock sl(pil->mutex());
+   synchronization_lock synchronizationlock(pil->mutex());
 
    return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
 
@@ -515,7 +515,7 @@ i32 image_list::_get_alloc_count()
 bool image_list::_grow(int iAddUpHint)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    i32 cx = m_size.cx;
 

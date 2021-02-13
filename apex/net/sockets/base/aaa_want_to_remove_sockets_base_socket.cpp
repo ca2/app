@@ -2557,7 +2557,7 @@ namespace sockets
    void base_socket::free_ssl_session()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_psslcontext->m_pclientcontext->m_psession != nullptr)
       {
@@ -2572,7 +2572,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_psslcontext->m_pclientcontext->m_psession == nullptr)
       {

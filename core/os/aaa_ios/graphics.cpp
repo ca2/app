@@ -17,7 +17,7 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
 
    }
 
-   sync_lock sl(pmutex);
+   synchronization_lock synchronizationlock(pmutex);
 
 
    return mm1_get_file_image(pcr, cx, cy, iScan, psz);

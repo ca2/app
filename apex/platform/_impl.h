@@ -77,10 +77,10 @@ void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::mes
 
 
 template < typename RECEIVER, typename MESSAGE_PRED >
-void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_pred)
+void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 {
 
-  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_pred;
+  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
 
 }
 
@@ -107,7 +107,7 @@ template < typename RECEIVER >
 
    }
 
-  sync_lock sl(channel_mutex());
+  synchronization_lock synchronizationlock(channel_mutex());
 
   ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 
@@ -134,7 +134,7 @@ template < typename RECEIVER >
 
      };
 
-     index iFind = proutea->pred_find_first(pred);
+     index iFind = proutea->predicate_find_first(pred);
 
      if (iFind >= 0)
      {
@@ -195,7 +195,7 @@ template < typename RECEIVER, typename MESSAGE >
 ::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 {
 
-  sync_lock sl(s_pmutexChannel);
+  synchronization_lock synchronizationlock(s_pmutexChannel);
 
   ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 
@@ -222,7 +222,7 @@ template < typename RECEIVER, typename MESSAGE >
 
      };
 
-     index iFind = proutea->pred_find_first(pred);
+     index iFind = proutea->predicate_find_first(pred);
 
      if(iFind >= 0)
      {

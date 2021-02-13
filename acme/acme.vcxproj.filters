@@ -14,9 +14,6 @@
     <Filter Include="Source Files\primitive\datetime">
       <UniqueIdentifier>{f2480041-dd34-48a1-9e82-8e15ce73c20f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\math">
-      <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\collection">
       <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
     </Filter>
@@ -41,9 +38,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\collection">
       <UniqueIdentifier>{7e5df079-6758-4436-8485-fc7e4af8ea59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\math">
-      <UniqueIdentifier>{8af08836-1f48-488b-bc62-eed638f784e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\comparison">
       <UniqueIdentifier>{dc0acada-9c74-46ee-b8d3-4e0427a32162}</UniqueIdentifier>
@@ -222,9 +216,6 @@
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{c4748186-680d-41a0-ae59-396a54f55895}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\promise_pred">
-      <UniqueIdentifier>{37db675b-0a8c-4517-ba8c-5336318f1c14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\process">
       <UniqueIdentifier>{0c4f9178-4c9b-4b9f-993c-d99fda73a182}</UniqueIdentifier>
     </Filter>
@@ -258,6 +249,18 @@
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{77e2d591-68ae-463a-a9ba-f6b32cf164fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\promise_predicate">
+      <UniqueIdentifier>{7608eaa1-ccb5-4c11-a897-cf0c4fce30c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\mathematics">
+      <UniqueIdentifier>{8af08836-1f48-488b-bc62-eed638f784e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\mathematics">
+      <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\promise_predicate">
+      <UniqueIdentifier>{8bc2295b-574c-462d-bdf9-586b2e7a22e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -268,9 +271,6 @@
     </ClInclude>
     <ClInclude Include="primitive\api\api_rotate.h">
       <Filter>Header Files\primitive\api</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\complex.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\application_bias.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -348,9 +348,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\traits.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\trait_pred.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\trait.h">
@@ -511,78 +508,6 @@
     </ClInclude>
     <ClInclude Include="primitive\string\string_wide_conversion.h">
       <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\_math.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\binary_operation.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\c_number.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\cast.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\classes.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\count.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\filestream.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\index.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_clip.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_int_biunique.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\mkint_c.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\natural.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\number.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\number_double.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\number_float.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\number_integer.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\objects.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\random_number_generator.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\scalar.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\scalar_enum.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\static_numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\std_template.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\value.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_base_impl.h">
       <Filter>Header Files\primitive\string</Filter>
@@ -1577,9 +1502,6 @@
     <ClInclude Include="primitive\primitive\block.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\compare_pred.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\estatus.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1684,9 +1606,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\match.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\_.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\layered.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -2189,12 +2108,6 @@
     <ClInclude Include="parallelization\manual_reset_event.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\mq.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\multi_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\mutex.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -2217,24 +2130,6 @@
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\sync.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_array.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_process.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_result.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_routine.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\sync_task.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\task.h">
@@ -2429,9 +2324,6 @@
     <ClInclude Include="node\windows\sync_options.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\sync_options.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows_common\condition.h">
       <Filter>Header Files\node\windows_common</Filter>
     </ClInclude>
@@ -2528,9 +2420,6 @@
     <ClInclude Include="exception\runtime.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\number_limits.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="os\microsecond_sleep.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -2545,6 +2434,135 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\microsecond_sleep.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronization_array.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronization_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronization_result.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronized_task.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronized_routine.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronized_process.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\message_queue.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\multiple_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\synchronized_predicate_routine.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\predicate_routine.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\predicate_process.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\predicate_holder.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\predicate_function_pointer.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\value.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\std_template.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\static_numeric_info.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\scalar_enum.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\scalar.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\random_number_generator.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\objects.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\numeric_info.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\number_limits.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\number_integer.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\number_float.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\number_double.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\number.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\natural.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\mkint_c.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\math_int_biunique.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\math_clip.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\index.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\filestream.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\count.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\complex.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\classes.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\cast.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\c_number.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\binary_operation.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\_impl.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\mathematics\_.h">
+      <Filter>Header Files\primitive\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\compare_predicate.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronization_object.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\trait_predicate.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2685,48 +2703,6 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry3d\location.cpp">
       <Filter>Source Files\primitive\geometry3d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\binary_operation.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\cvt.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\cvt_g.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\int_biunique.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\mkint_c.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\natural.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\number.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\number_double.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\number_float.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\number_integer.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\random_number_generator.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\scalar.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\value.cpp">
-      <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\string_ansi.cpp">
       <Filter>Source Files\primitive\string</Filter>
@@ -3511,12 +3487,6 @@
     <ClCompile Include="parallelization\manual_reset_event.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\mq.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\multi_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\mutex.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -3530,24 +3500,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\socket_event.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync_array.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync_process.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync_result.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync_routine.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\sync_task.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\task.cpp">
@@ -3589,19 +3541,10 @@
     <ClCompile Include="os\windows_common\parallelization.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise_pred\pred_function.cpp">
-      <Filter>Source Files\primitive\promise_pred</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise_pred\pred_holder.cpp">
-      <Filter>Source Files\primitive\promise_pred</Filter>
-    </ClCompile>
     <ClCompile Include="process\bidirectional_pipe.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="process\pipe.cpp">
-      <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="process\_.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="process\exit_status.cpp">
@@ -3751,11 +3694,83 @@
     <ClCompile Include="primitive\datetime\micros.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="parallelization\message_queue.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\multiple_lock.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronization_object.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronization_array.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronization_result.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronized_routine.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronized_process.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\synchronized_task.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\binary_operation.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\cvt.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\cvt_g.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\int_biunique.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\math.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\mkint_c.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\natural.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\number.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\number_double.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\number_float.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\number_integer.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\random_number_generator.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\scalar.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\value.cpp">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise_predicate\predicate_function.cpp">
+      <Filter>Source Files\primitive\promise_predicate</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise_predicate\predicate_holder.cpp">
+      <Filter>Source Files\primitive\promise_predicate</Filter>
+    </ClCompile>
+    <ClCompile Include="process\wchar_main.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\math\cast.inl">
-      <Filter>Header Files\primitive\math</Filter>
-    </None>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">
       <Filter>Header Files\primitive\string</Filter>
     </None>
@@ -3830,9 +3845,6 @@
     </None>
     <None Include="primitive\primitive\_factory_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </None>
-    <None Include="primitive\math\_impl.h">
-      <Filter>Header Files\primitive\math</Filter>
     </None>
     <None Include="acme.def">
       <Filter>Source Files</Filter>

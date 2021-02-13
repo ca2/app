@@ -7,7 +7,7 @@ inline void copy(MESSAGE * pmessage, const MSG * pmsg)
 {
 
    pmessage->oswindow = (oswindow)(pmsg->hwnd);
-   pmessage->message = pmsg->message;
+   pmessage->m_id = (enum_message) pmsg->message;
    pmessage->wParam = pmsg->wParam;
    pmessage->lParam = pmsg->lParam;
    pmessage->pt = pmsg->pt;
@@ -20,7 +20,7 @@ inline void copy(MSG * pmsg, const MESSAGE * pmessage)
 {
 
    pmsg->hwnd = (HWND)(pmessage->oswindow);
-   pmsg->message = pmessage->message;
+   pmsg->message = (UINT) pmessage->m_id.i64();
    pmsg->wParam = pmessage->wParam;
    pmsg->lParam = pmessage->lParam;
    pmsg->pt.x = pmessage->pt.x;

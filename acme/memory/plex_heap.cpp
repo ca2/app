@@ -643,7 +643,7 @@ void plex_heap_alloc_array::_free(void * p,memsize size)
 void * plex_heap_alloc_sync::Alloc()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    if (m_pnodeFree == nullptr)
    {
@@ -710,7 +710,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    node * pnode = (node *)pParam;
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
 #ifdef MEMDFREE // Free Debug - duplicate freeing ?
 
@@ -842,7 +842,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 void plex_heap_alloc_sync::FreeAll()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    try
    {
@@ -865,7 +865,7 @@ void plex_heap_alloc_sync::FreeAll()
 void plex_heap_alloc_sync::NewBlock()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    ::u32 nAllocSize = m_nAllocSize;
 

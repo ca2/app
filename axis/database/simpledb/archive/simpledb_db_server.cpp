@@ -289,7 +289,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::key k
 bool db_server::data_server_save(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    UNREFERENCED_PARAMETER(pobject);
 
@@ -355,7 +355,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(get_db_str_set() == nullptr)
    {
@@ -373,7 +373,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 bool db_server::save(const ::database::key & key, memory & mem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string str;
 

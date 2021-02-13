@@ -154,10 +154,10 @@ virtual bool setWMClass(const char * psz);
       //virtual bool SizeWindow(const size_i32 & sz,::u32 nFlags = SWP_SHOWWINDOW) override;
       //virtual bool ResizeWindow(i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
       //virtual bool set_size(const size_i32 & sz) override;
-      //virtual bool set_window_pos(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
 
-      //virtual bool set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_window_pos(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
       //virtual bool defer_set_window_pos(zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
 
       //virtual bool defer_set_window_pos(zorder zorder, i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);

@@ -296,7 +296,7 @@ namespace helloaxis
 //
 //      {
 //
-//         sync_lock slText(m_pmutexText);
+//         synchronization_lock slText(m_pmutexText);
 //
 //         strHelloAXIS = get_helloaura().c_str(); // rationale : string allocation fork *for parallelization*
 //
@@ -327,7 +327,7 @@ namespace helloaxis
 //
 //            {
 //
-//               sync_lock slDib(&m_mutexDib);
+//               synchronization_lock slDib(&m_mutexDib);
 //
 //               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
 //               {
@@ -370,7 +370,7 @@ namespace helloaxis
 //
 //      {
 //
-//         sync_lock slText(m_pmutexText);
+//         synchronization_lock slText(m_pmutexText);
 //
 //         if (strHelloAXIS != get_helloaura() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
 //            return;
@@ -473,7 +473,7 @@ namespace helloaxis
 //      if(!m_bFirstDone)
 //      {
 //
-//         sync_lock slText(m_pmutexText);
+//         synchronization_lock slText(m_pmutexText);
 //
 //         if (strHelloAXIS == get_helloaura() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
 //         {
@@ -576,7 +576,7 @@ namespace helloaxis
 //
 //      {
 //
-//         sync_lock slDib(&m_mutexDib);
+//         synchronization_lock slDib(&m_mutexDib);
 //
 //         if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //         {
@@ -698,7 +698,7 @@ namespace helloaxis
 //      if (Application.m_iErrorAiFont == 0)
 //      {
 //
-//         sync_lock slAiFont(&Application.m_mutexAiFont);
+//         synchronization_lock slAiFont(&Application.m_mutexAiFont);
 //
 //         FT_Face & face = (FT_Face &)Application.m_faceAi;
 //
@@ -895,7 +895,7 @@ namespace helloaxis
 //               if (m_strLast23.has_char())
 //               {
 //
-//                  sync_lock sl(&m_mutexDib23);
+//                  synchronization_lock synchronizationlock(&m_mutexDib23);
 //
 //                  auto & pimage = image23(m_strLast23);
 //
@@ -913,7 +913,7 @@ namespace helloaxis
 //               if (m_strCurrent23.has_char())
 //               {
 //
-//                  sync_lock sl(&m_mutexDib23);
+//                  synchronization_lock synchronizationlock(&m_mutexDib23);
 //
 //                  auto & pimage = image23(m_strCurrent23);
 //
@@ -932,7 +932,7 @@ namespace helloaxis
 //            else if (m_strCurrent23.has_char())
 //            {
 //
-//               sync_lock sl(&m_mutexDib23);
+//               synchronization_lock synchronizationlock(&m_mutexDib23);
 //
 //               auto & pimage = image23(m_strCurrent23);
 //
@@ -964,7 +964,7 @@ namespace helloaxis
 //
 //            {
 //
-//               //sync_lock slText(&m_pview->m_mutexText);
+//               //synchronization_lock slText(&m_pview->m_mutexText);
 //
 //               //strHelloAXIS = m_pview->get_processed_helloaura().c_str();
 //
@@ -1030,9 +1030,9 @@ namespace helloaxis
 //      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
 //      {
 //
-////         sync_lock sl1(m_pview->get_wnd()->mutex());
+////         synchronization_lock sl1(m_pview->get_wnd()->mutex());
 //
-//         sync_lock slDraw(&m_mutexDraw);
+//         synchronization_lock slDraw(&m_mutexDraw);
 //
 //         if (m_bFast || m_pimageFast->is_null())
 //         {
@@ -1041,7 +1041,7 @@ namespace helloaxis
 //
 //            {
 //
-//               //sync_lock slText(&m_pview->m_mutexText);
+//               //synchronization_lock slText(&m_pview->m_mutexText);
 //
 //               //helloaura_fast_render(m_pview->get_processed_helloaura());
 //               helloaura_fast_render("Hello Axis!!");
@@ -1084,9 +1084,9 @@ namespace helloaxis
 
       //::image_pointer pimageFast = m_pimageFast;
 
-      //sync_lock sl(&m_mutexDraw);
+      //synchronization_lock synchronizationlock(&m_mutexDraw);
 
-      //sync_lock slSwap(&m_mutexSwap);
+      //synchronization_lock slSwap(&m_mutexSwap);
 
       //pimage = m_pimageOut;
 
@@ -1156,7 +1156,7 @@ namespace helloaxis
    void render::defer_update_bilbo()
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      for (auto & bilbo : m_bilboa)
 //      {
@@ -1187,7 +1187,7 @@ namespace helloaxis
 //      for (auto str23 : m_stra23)
 //      {
 //
-//         sync_lock sl(&m_mutexDib23);
+//         synchronization_lock synchronizationlock(&m_mutexDib23);
 //
 //         image23(str23);
 //
@@ -1220,7 +1220,7 @@ namespace helloaxis
 //      if (m_rectClient.width() <= 0 || m_rectClient.height() <= 0)
 //         return;
 //
-//      sync_lock slDraw(&m_mutexDraw);
+//      synchronization_lock slDraw(&m_mutexDraw);
 //
 //      ::size_i32 sizeNew = ::size_i32(m_rectClient.width(), m_rectClient.height());
 //

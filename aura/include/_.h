@@ -718,14 +718,14 @@ CLASS_DECL_AURA void aura_ref();
 //#ifdef CPP17
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//inline bool _returns_true(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 //{
 //   pred(args...);
 //   return bOnVoid;
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//inline bool _returns_true(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 //{
 //   return (bool)pred(args...);
 //}
@@ -739,14 +739,14 @@ CLASS_DECL_AURA void aura_ref();
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//inline bool _returns_false(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 //{
 //   pred(args...);
 //   return bOnVoid;
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//inline bool _returns_false(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 //{
 //   return !(bool)pred(args...);
 //}
@@ -824,7 +824,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //class trait;
 //class create;
-//class sync;
+//class synchronization_object;
 //
 //
 ////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
@@ -2573,7 +2573,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //#include "aura/primitive/primitive/matter.h"
 //#include "aura/primitive/primitive/task.h"
-//#include "aura/primitive/primitive/compare_pred.h"
+//#include "aura/primitive/primitive/compare_predicate.h"
 //
 //
 //#include "aura/platform/status.h"
@@ -2745,8 +2745,6 @@ namespace draw2d
 #include "aura/platform/node.h"
 
 #include "aura/platform/system.h"
-
-#include "aura/platform/mq.h"
 
 #include "aura/graphics/graphics/graphics.h"
 

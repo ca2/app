@@ -1076,11 +1076,11 @@ string merge_colon_args(const array < string_array >& str2a)
 
    }
 
-   strCommandLine += ::str::has_char(straBeforeColon.pred_implode(&transform_to_c_arg, " "), " ");
+   strCommandLine += ::str::has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
 
    strCommandLine += " : ";
 
-   strCommandLine += straAfterColon.pred_implode(&transform_to_c_arg, " ");
+   strCommandLine += straAfterColon.predicate_implode(&transform_to_c_arg, " ");
 
    return strCommandLine;
 
@@ -1147,10 +1147,10 @@ void process_set_status(int iStatus)
 int g_argc = 0;
 
 
-char ** g_argv = nullptr;
+wchar_t ** g_argv = nullptr;
 
 
-void process_set_args(int argc, TCHAR ** argv)
+void process_set_args(int argc, wchar_t ** argv)
 {
 
    g_argc = argc;
@@ -1176,7 +1176,7 @@ int process_get_argc()
 }
 
 
-TCHAR *** process_get_pargv()
+wchar_t *** process_get_pargv()
 {
 
    return &g_argv;

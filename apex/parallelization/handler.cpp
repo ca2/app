@@ -28,7 +28,7 @@ handler_manager::~handler_manager()
    if (bSync)
    {
 
-      return sync(routine);
+      return synchronization_object(routine);
 
    }
    else
@@ -41,7 +41,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::sync(const ::promise::routine & routine)
+::e_status handler_manager::synchronization_object(const ::promise::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
@@ -80,7 +80,7 @@ handler_manager::~handler_manager()
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_routinea.add(routine);
 
@@ -112,16 +112,16 @@ handler_manager::~handler_manager()
 ::promise::routine handler_manager::pick_new_task()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_routinea.is_empty())
    {
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       m_pevTaskOnQueue->wait(1_s);
 
-      sl.lock();
+      synchronizationlock.lock();
 
    }
 

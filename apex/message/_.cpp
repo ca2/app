@@ -55,15 +55,14 @@ namespace message
          return false;
 
       // redundant e_message_mouse_move and e_message_non_client_mouse_move
-      if(pmsg->message == e_message_mouse_move || pmsg->message == e_message_non_client_mouse_move)
+      if(pmsg->m_id == e_message_mouse_move || pmsg->m_id == e_message_non_client_mouse_move)
 
       {
          return true;
       }
 
       // e_message_paint and WM_SYSTIMER (caret blink)
-      return pmsg->message != e_message_paint && pmsg->message != 0x0118;
-
+      return pmsg->m_id != e_message_paint && pmsg->m_id != 0x0118;
 
    }
 

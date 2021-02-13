@@ -46,7 +46,7 @@ namespace user
       {
       public:
 
-         virtual sync * get_mutex()
+         virtual synchronization_object * get_mutex()
          {
 
             return mutex();

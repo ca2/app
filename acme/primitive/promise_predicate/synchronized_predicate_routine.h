@@ -6,24 +6,24 @@ namespace promise
 
 
    template<typename PRED>
-   class pred_sync_routine :
+   class predicate_sync_routine :
            virtual public ::matter
    {
    public:
 
 
-      PRED                 m_pred;
+      PRED                 m_predicate;
       manual_reset_event   m_ev;
 
 
-      pred_sync_routine(PRED pred) : m_pred(pred) {}
-      virtual ~pred_sync_routine() {}
+      predicate_sync_routine(PRED pred) : m_predicate(pred) {}
+      virtual ~predicate_sync_routine() {}
 
 
       virtual ::e_status run() override
       {
 
-         m_pred();
+         m_predicate();
 
          m_ev.SetEvent();
 
@@ -58,6 +58,6 @@ template < typename PRED >
 ::promise::routine __sync_routine(PRED pred)
 {
 
-   return __new(::promise::pred_sync_routine<PRED>(pred));
+   return __new(::promise::predicate_sync_routine<PRED>(pred));
 
 }

@@ -65,56 +65,56 @@ inline constexpr auto __gt(const T1 & a, const T2 & b) { return __lt(b, a); }
 
 
 template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-constexpr typename largest_type < INTEGER1, INTEGER2 >::type minimum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(a, b) ? (typename largest_type < INTEGER1, INTEGER2 >::type)a : (typename largest_type < INTEGER1, INTEGER2 >::type)b; }
+constexpr typename largest_type < INTEGER1, INTEGER2 >::type minimum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(a, b) ? ((typename largest_type < INTEGER1, INTEGER2 >::type)a ): ((typename largest_type < INTEGER1, INTEGER2 >::type)b); }
 
 template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-constexpr INTEGER2 minimum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(a, b) ? (INTEGER2) a : b; }
+constexpr INTEGER2 minimum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(a, b) ? ((INTEGER2) a) : b; }
 
 template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-constexpr INTEGER1 minimum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(a, b) ? a : (INTEGER1) b; }
+constexpr INTEGER1 minimum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(a, b) ? a : ((INTEGER1) b); }
 
 template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-constexpr typename largest_type < NATURAL1, NATURAL2 >::type minimum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(a, b) ? (typename largest_type < NATURAL1, NATURAL2 >::type)a : (typename largest_type < NATURAL1, NATURAL2 >::type)b; }
+constexpr typename largest_type < NATURAL1, NATURAL2 >::type minimum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(a, b) ? ((typename largest_type < NATURAL1, NATURAL2 >::type)a) : ((typename largest_type < NATURAL1, NATURAL2 >::type)b); }
 
 
 template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
-constexpr FLOATING2 minimum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(a, b) ? (FLOATING2)a : b; }
+constexpr FLOATING2 minimum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((FLOATING2)a) : b; }
 
 template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
-constexpr FLOATING1 minimum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(a, b) ? a : (FLOATING1)b; }
+constexpr FLOATING1 minimum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(a, b) ? a : ((FLOATING1)b); }
 
 template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-constexpr typename largest_type < FLOATING1, FLOATING2 >::type minimum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(a, b) ? (typename largest_type < FLOATING1, FLOATING2 >::type)a : (typename largest_type < FLOATING1, FLOATING2 >::type)b; }
+constexpr typename largest_type < FLOATING1, FLOATING2 >::type minimum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(a, b) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
 
 
 template < typename TYPE1, typename TYPE2 >
-constexpr TYPE1 minimum(const TYPE1 & a, const TYPE2 & b) { return __lt(a, b) ? a : (TYPE1)b; }
+constexpr TYPE1 minimum(const TYPE1 & a, const TYPE2 & b) { return __lt(a, b) ? a : ((TYPE1)b); }
 
 
 
 template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-constexpr typename largest_type < INTEGER1, INTEGER2 >::type maximum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(b, a) ? (typename largest_type < INTEGER1, INTEGER2 >::type)a : (typename largest_type < INTEGER1, INTEGER2 >::type)b; }
+constexpr typename largest_type < INTEGER1, INTEGER2 >::type maximum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(b, a) ? ((typename largest_type < INTEGER1, INTEGER2 >::type)a) : ((typename largest_type < INTEGER1, INTEGER2 >::type)b); }
 
 template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-constexpr INTEGER2 maximum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(b, a) ? (INTEGER2)a :  b; }
+constexpr INTEGER2 maximum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(b, a) ? ((INTEGER2)a) :  b; }
 
 template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-constexpr INTEGER1 maximum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(b, a) ?  a : (INTEGER1)b; }
+constexpr INTEGER1 maximum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(b, a) ?  a : ((INTEGER1)b); }
 
 template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-constexpr typename largest_type < NATURAL1, NATURAL2 >::type maximum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(b, a) ? (typename largest_type < NATURAL1, NATURAL2 >::type)a : (typename largest_type < NATURAL1, NATURAL2 >::type)b; }
+constexpr typename largest_type < NATURAL1, NATURAL2 >::type maximum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(b, a) ? ((typename largest_type < NATURAL1, NATURAL2 >::type)a) : ((typename largest_type < NATURAL1, NATURAL2 >::type)b); }
 
 template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
-constexpr FLOATING2 maximum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(b, a) ? (FLOATING2)a : b; }
+constexpr FLOATING2 maximum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((FLOATING2)a) : b; }
 
 template < primitive_floating FLOATING1, primitive_integral INTEGRAL2 >
-constexpr FLOATING1 maximum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(b, a) ? a : (FLOATING1)b; }
+constexpr FLOATING1 maximum(const FLOATING1 & a, const INTEGRAL2 & b) { return __lt(b, a) ? a : ((FLOATING1)b); }
 
 template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-constexpr typename largest_type < FLOATING1, FLOATING2 >::type maximum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(b, a) ? (typename largest_type < FLOATING1, FLOATING2 >::type)a : (typename largest_type < FLOATING1, FLOATING2 >::type)b; }
+constexpr typename largest_type < FLOATING1, FLOATING2 >::type maximum(const FLOATING1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((typename largest_type < FLOATING1, FLOATING2 >::type)a) : ((typename largest_type < FLOATING1, FLOATING2 >::type)b); }
 
 template < typename TYPE1, typename TYPE2 >
-constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? a : (TYPE1)b; }
+constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? a : ((TYPE1)b); }
 
 
 #include "count.h"

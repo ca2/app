@@ -2,7 +2,7 @@
 
 
 template < typename ARG_TYPE >
-class less_pred_base :
+class less_predicateicate_base :
    virtual public matter
 {
 public:
@@ -13,21 +13,21 @@ public:
 
 
 template < typename ARG_TYPE, typename PRED >
-class less_pred :
-   public less_pred_base < ARG_TYPE >
+class less_predicate :
+   public less_predicateicate_base < ARG_TYPE >
 {
 public:
 
 
-   PRED m_pred;
+   PRED m_predicate;
 
 
-   less_pred(PRED pred) : m_pred(pred) {}
+   less_predicate(PRED pred) : m_predicate(pred) {}
 
    virtual int less(ARG_TYPE a1, ARG_TYPE a2)
    {
 
-      return m_pred(a1, a2);
+      return m_predicate(a1, a2);
 
    }
 

@@ -6,7 +6,7 @@ using hsync = void *;
 #endif
 
 
-class CLASS_DECL_ACME sync :
+class CLASS_DECL_ACME synchronization_object :
    virtual public matter
 {
 public:
@@ -18,19 +18,19 @@ public:
    bool                    m_bOwner;
 
 #ifdef WINDOWS
-   sync() { m_hsync = nullptr; m_bOwner = true; }
-   sync(hsync hsync) : m_hsync(hsync) { m_bOwner = true; }
+   synchronization_object() { m_hsync = nullptr; m_bOwner = true; }
+   synchronization_object(hsync hsync) : m_hsync(hsync) { m_bOwner = true; }
 #else
-   sync() { m_bOwner = true; }
+   synchronization_object() { m_bOwner = true; }
 #endif
-   virtual ~sync();
+   virtual ~synchronization_object();
 
 
    virtual bool lock();
    virtual bool lock(const duration & durationTimeout);
 
-   virtual sync_result wait();
-   virtual sync_result wait(const duration & durationTimeout);
+   virtual synchronization_result wait();
+   virtual synchronization_result wait(const duration & durationTimeout);
 
    virtual bool is_locked() const;
 

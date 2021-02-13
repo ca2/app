@@ -9,23 +9,23 @@
 //
 //
 //template < typename PRED >
-//class pred_method :
+//class predicate_method :
 //   virtual public ::matter
 //{
 //public:
 //
 //
-//   PRED   m_pred;
+//   PRED   m_predicate;
 //
 //
-//   pred_method(PRED pred) :
-//      m_pred(pred)
+//   predicate_method(PRED pred) :
+//      m_predicate(pred)
 //   {
 //
 //   }
 //
 //
-//   virtual ~pred_method()
+//   virtual ~predicate_method()
 //   {
 //
 //
@@ -35,7 +35,7 @@
 //   virtual ::e_status run() override
 //   {
 //
-//      m_pred();
+//      m_predicate();
 //
 //      return ::success;
 //
@@ -57,17 +57,17 @@
 
 
 template < typename PRED >
-class pred_routine :
+class predicate_routine :
    virtual public ::matter
 {
 public:
 
 
-   PRED m_pred;
+   PRED m_predicate;
 
 
-   pred_routine(PRED pred) : m_pred(pred) { }
-   virtual ~pred_routine() {}
+   predicate_routine(PRED pred) : m_predicate(pred) { }
+   virtual ~predicate_routine() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -77,7 +77,7 @@ public:
    virtual ::e_status run() override
    {
 
-      m_pred();
+      m_predicate();
 
       return ::success;
 
@@ -99,7 +99,7 @@ template < typename PRED >
 ::promise::routine __routine(PRED pred)
 {
 
-   return __new(pred_routine<PRED>(pred));
+   return __new(predicate_routine<PRED>(pred));
 
 }
 
@@ -123,7 +123,7 @@ template < typename PRED >
 inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = priority_normal)
 {
 
-   auto pobjectTask = create_pred(pred);
+   auto pobjectTask = create_predicate(pred);
 
    pprocessor->schedule(pobjectTask, epriority);
 
@@ -133,7 +133,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 //
 //template < typename PRED >
-//auto sync_pred(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
+//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
 
 
 

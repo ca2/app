@@ -2,23 +2,23 @@
 
 
 //template < typename PRED >
-//class pred_future :
+//class predicate_future :
 //   virtual public ::matter
 //{
 //public:
 //
 //
-//   PRED     m_pred;
+//   PRED     m_predicate;
 //
 //
-//   pred_future(PRED pred) :
-//      m_pred(pred)
+//   predicate_future(PRED pred) :
+//      m_predicate(pred)
 //   {
 //
 //   }
 //
 //
-//   virtual ~pred_future()
+//   virtual ~predicate_future()
 //   {
 //
 //
@@ -38,7 +38,7 @@
 //   void receive_response(const ::payload & payload) override
 //   {
 //
-//      m_pred(payload);
+//      m_predicate(payload);
 //
 //   }
 //
@@ -48,23 +48,23 @@
 
 
 template < typename PRED >
-class pred_process :
+class predicate_process :
    virtual public matter
 {
 public:
 
-   PRED m_pred;
+   PRED m_predicate;
    //future() {}
 
    //future(const ::future& future) : function((const ::function &) future) { }
    //future(::future * pfuture) : function((const ::function &) *pfuture) { }
-   pred_process(PRED pred) : m_pred(pred) { }
+   predicate_process(PRED pred) : m_predicate(pred) { }
 
 
    virtual void operator()(const ::payload & payload)  override
    {
 
-      m_pred(payload);
+      m_predicate(payload);
 
    }
 
@@ -83,7 +83,7 @@ template < typename PRED >
 ::promise::process __process(PRED pred)
 {
 
-    return __new(pred_process< PRED >(pred));
+    return __new(predicate_process< PRED >(pred));
 
 }
 

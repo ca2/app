@@ -14,9 +14,13 @@ public:
 
 
 #ifdef WINDOWS
+
+
    hsync_array          m_hsyncaCache;
-#endif
    byte                 m_byteaSyncIndex[MAXIMUM_SYNC_OBJECTS];
+
+
+#endif
 
 
    DECLARE_ARRAY_OF(sync_array, sync, sync);

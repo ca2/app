@@ -63,19 +63,19 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 // based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
 #define MAXIMUM_WAIT_OBJECTS      64
 
-
-#if !defined(__APPLE__) && !defined(ANDROID)
-
-union semun
-{
-   int val; /* Value for SETVAL */
-   struct semid_ds *buf; /* Buffer for IPC_STAT, IPC_SET */
-   unsigned short *array; /* Array for GETALL, SETALL */
-   struct seminfo *__buf; /* Buffer for IPC_INFO
-                                (Linux-specific) */
-};
-
-#endif
+//
+//#if !defined(__APPLE__) && !defined(ANDROID)
+//
+//union semun
+//{
+//   int val; /* Value for SETVAL */
+//   struct semid_ds *buf; /* Buffer for IPC_STAT, IPC_SET */
+//   unsigned short *array; /* Array for GETALL, SETALL */
+//   struct seminfo *__buf; /* Buffer for IPC_INFO
+//                                (Linux-specific) */
+//};
+//
+//#endif
 
 #define MWMO_WAITALL        0x0001
 #define MWMO_ALERTABLE      0x0002

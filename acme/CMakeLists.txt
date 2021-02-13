@@ -21,8 +21,6 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAM
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
-
-
 list(APPEND acme_source
    compress/zip/api.cpp
    compress/zip/file.cpp
@@ -124,9 +122,12 @@ list(APPEND acme_source
    memory/plex_heap.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
+   parallelization/condition.h
+   parallelization/condition_variable.cpp
+   parallelization/condition_variable.h
    parallelization/critical_section.cpp
    parallelization/event.cpp
-   parallelization/file_change_event.cpp
+   #parallelization/file_change_event.cpp
    parallelization/manual_reset_event.cpp
    parallelization/mq.cpp
    parallelization/multi_lock.cpp
@@ -148,6 +149,7 @@ list(APPEND acme_source
    parallelization/thread.cpp
    parallelization/thread_os.cpp
    parallelization/waitable.cpp
+   os/ansios/_pthread.h
    os/ansios/base.cpp
    os/ansios/datetime.cpp
    os/ansios/exception_engine.cpp
@@ -167,7 +169,7 @@ list(APPEND acme_source
    os/file.cpp
    os/http.cpp
    os/process.h
-   process/_.cpp
+   #process/_.cpp
    process/_.h
    process/bidirectional_pipe.cpp
    process/bidirectional_pipe.h
@@ -419,7 +421,6 @@ list(APPEND acme_source
    exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
-   exception/error.h
    exception/exception.h
    exception/exception2.h
    exception/exit.h
@@ -432,7 +433,6 @@ list(APPEND acme_source
    exception/invalid_index.h
    exception/invalid_type.h
    exception/io.h
-   exception/last_error.h
    exception/memory.h
    exception/misc.h
    exception/not_implemented.h
@@ -441,12 +441,12 @@ list(APPEND acme_source
    exception/not_supported.h
    exception/operation_canceled.h
    exception/os.h
-   exception/overflow_error.h
+   exception/overflow.h
    exception/parsing.h
-   exception/range_error.h
+   exception/range.h
    exception/resource.h
    exception/result.h
-   exception/runtime_error.h
+   exception/runtime.h
    exception/simple.h
    exception/standard.h
    exception/standard_translator.h
@@ -571,7 +571,7 @@ list(APPEND acme_source
    parallelization/critical_section.h
    parallelization/data.h
    parallelization/event.h
-   parallelization/file_change_event.h
+   #parallelization/file_change_event.h
    parallelization/initial_single_lock.h
    parallelization/manual_reset_event.h
    parallelization/mq.h
@@ -617,7 +617,7 @@ list(APPEND acme_source
    node/android/_android.h
    node/serial.h
    node/_.h
-   node/_node.h
+   node/_node2.h
    os/android/cross_win_file.h
    os/android/cross_win_gdi.h
    os/android/cross_win_gdi_internal.h
@@ -641,7 +641,7 @@ list(APPEND acme_source
    os/ansios/file.h
    os/ansios/file_c.h
    os/ansios/file_raw.h
-   os/ansios/parallelization.h
+   #os/ansios/parallelization.h
    os/ansios/pmutex_lock.h
    os/ansios/_.h
    os/ansios/_ansios.h
@@ -774,11 +774,11 @@ list(APPEND acme_source
    #os/x11/x11_simple_ui_display.h
    #os/xcb/xcb_hook.h
    #os/xcb/_xcb.h
-   os/_.h
+   os/_2.h
    os/_application.h
-   os/_c.h
-   os/_impl.h
-   os/_os.h
+   os/_c2.h
+   os/_impl2.h
+   os/_os2.h
    os/_user.h
    platform/acme_str_pool.h
    platform/all.h
@@ -827,6 +827,8 @@ list(APPEND acme_source
    platform/serial.h
    platform/serial_impl.h
    platform/simple_app.h
+   platform/simple_trace.cpp
+   platform/simple_trace.h
    platform/sprintf.h
    platform/static_start.h
    platform/status.h
@@ -970,8 +972,8 @@ list(APPEND acme_source
    primitive/geometry2d/point.h
    primitive/geometry2d/point_array.h
    primitive/geometry2d/polygon.h
-   primitive/geometry2d/rect.h
-   primitive/geometry2d/rect_array.h
+   primitive/geometry2d/rectangle.h
+   primitive/geometry2d/rectangle_array.h
    primitive/geometry2d/shape.h
    primitive/geometry2d/shape_array.h
    primitive/geometry2d/size.h
@@ -1302,6 +1304,7 @@ if (WIN32)
       node/windows/_node_windows.h
       node/windows/_node_windows_private.h
       node/windows/_windows.h
+      process/wchar_main.cpp
       )
 else ()
 
@@ -1418,7 +1421,10 @@ if (LINUX)
       os/linux/simple_app.cpp
       os/linux/time.cpp
       os/linux/user.cpp
-      os/linux/win_base.cpp)
+      os/linux/win_base.cpp
+      process/ansi_main.cpp
+           )
+
 
    list(APPEND acme_source
       node/linux/application.h
@@ -1726,7 +1732,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} os/ansios/semun.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

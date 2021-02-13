@@ -142,16 +142,16 @@ bool sync::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 sync_result sync::wait(const duration & durationTimeout)
 {
 
+#ifdef WINDOWS
+
    if (m_hsync)
    {
 
-#ifdef WINDOWS
-
       return sync_result((u32) ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false));
 
-#endif
-
    }
+
+#endif
 
    return sync_result(sync_result::result_error);
 

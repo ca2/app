@@ -2,6 +2,15 @@
 #include "acme/operating_system.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #ifdef LINUX
 #include "acme/os/ansios/_ansios.h"
 #endif

@@ -510,8 +510,6 @@ list(APPEND core_source
    user/user/mesh_data.cpp
    user/user/mesh_data.h
    user/user/mesh_item.h
-   user/user/shell.cpp
-   user/user/shell.h
    user/user/statusbar.cpp
    user/user/statusbar.h
    user/user/step_slider.cpp

@@ -2950,7 +2950,7 @@ using oswindow_t = hwnd;
 
 #else
 
-using oswindow_ = ::windowing::window;
+using oswindow_t = ::windowing::window;
 
 #endif
 
@@ -3226,6 +3226,22 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/platform/enum.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+#define CRITICAL_SECTION_FUNCTION_RETURN int
+
+CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
+
+#else
+
+#define CRITICAL_SECTION_FUNCTION_RETURN void
+
+#endif
+
+
+#include "acme/parallelization/critical_section.h"
+
+
 #include "acme/primitive/primitive/factory.h"
 
 
@@ -3300,7 +3316,7 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 #if defined(LINUX)
 
-#include "acme/os/ansios/_.h"
+//#include "acme/os/ansios/_.h"
 
 
 #elif defined(_UWP)

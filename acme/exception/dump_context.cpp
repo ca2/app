@@ -63,7 +63,7 @@ void dump_context::output_string(const char * psz)
    if (psz == nullptr)
    {
 
-      __throw(user_exception());
+      __throw(user_exception(error_failed));
 
    }
 
@@ -127,7 +127,7 @@ void dump_context::write(const char * psz)
    if (psz == nullptr)
    {
 
-      __throw(user_exception());
+      __throw(user_exception(error_failed));
 
    }
 

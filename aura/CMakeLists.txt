@@ -94,14 +94,6 @@ list(APPEND aura_source
    graphics/draw2d/draw2d.h
    graphics/draw2d/fastblur.cpp
    graphics/draw2d/fastblur.h
-   graphics/draw2d/font.cpp
-   graphics/draw2d/font.h
-   graphics/draw2d/font_department.cpp
-   graphics/draw2d/font_department.h
-   graphics/draw2d/font_enumeration.cpp
-   graphics/draw2d/font_enumeration.h
-   graphics/draw2d/font_list.cpp
-   graphics/draw2d/font_list.h
    graphics/draw2d/fwd.h
    graphics/draw2d/glyph.cpp
    graphics/draw2d/glyph.h
@@ -163,8 +155,6 @@ list(APPEND aura_source
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
-   graphics/draw2d/text_box.cpp
-   graphics/draw2d/text_box.h
    graphics/draw2d/thread_tool.cpp
    graphics/draw2d/thread_tool.h
    graphics/draw2d/ttf_util.cpp
@@ -202,12 +192,22 @@ list(APPEND aura_source
    graphics/graphics/window_dc.h
    graphics/snippet/close_button.h
    graphics/snippet/close_icon.h
-   graphics/text/_.h
-   graphics/text/bounding_rect.h
-   graphics/text/contains.h
-   graphics/text/draw_text.h
-   graphics/text/text.h
-   graphics/text/text_out.h
+   graphics/write_text/_.h
+   graphics/write_text/bounding_rect.h
+   graphics/write_text/contains.h
+   graphics/write_text/draw_text.h
+   graphics/write_text/font.cpp
+   graphics/write_text/font.h
+   graphics/write_text/font_department.cpp
+   graphics/write_text/font_department.h
+   graphics/write_text/font_enumeration.cpp
+   graphics/write_text/font_enumeration.h
+   graphics/write_text/font_list.cpp
+   graphics/write_text/font_list.h
+   graphics/write_text/text.h
+   graphics/write_text/text_box.cpp
+   graphics/write_text/text_box.h
+   graphics/write_text/text_out.h
    graphics/_.h
    graphics/_impl.h
    include/_.cpp
@@ -262,7 +262,7 @@ list(APPEND aura_source
    os/_application.h
    os/_c.h
    os/_impl.h
-   os/_os.h
+   os/_os2.h
    os/_user.h
    os/argcargv.cpp
    os/binreloc.cpp
@@ -363,6 +363,10 @@ list(APPEND aura_source
    user/message_queue_listener.h
    user/mouse.cpp
    user/mouse.h
+   user/notify_icon.cpp
+   user/notify_icon.h
+   user/notify_icon_listener.cpp
+   user/notify_icon_listener.h
    user/plain_edit.cpp
    user/plain_edit.h
    user/plain_text_data.cpp
@@ -381,6 +385,8 @@ list(APPEND aura_source
    user/scroll_bar.cpp
    user/scroll_bar.h
    user/scroll_info.h
+   user/shell.cpp
+   user/shell.h
    user/style.cpp
    user/style.h
    user/style_base.cpp

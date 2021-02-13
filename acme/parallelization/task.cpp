@@ -1,8 +1,14 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "task.h"
-#ifdef LINUX
-#include <pthread.h>
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
 #endif
 
 

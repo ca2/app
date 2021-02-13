@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/cross.h"
+//#include "acme/os/cross.h"
 
 
 colorref_array::colorref_array()

@@ -39,7 +39,7 @@ public:
    point_type(const SIZE & size) noexcept { ::copy(this, &size); }
 
    template < primitive_size SIZE >
-   point_type(const SIZE * psize) noexcept { ::copy_point(this, psize); }
+   point_type(const SIZE * psize) noexcept { ::copy(this, psize); }
 
 #ifdef WINDOWS
    //rect_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }

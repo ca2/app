@@ -24,7 +24,7 @@
 #include "acme/os/linux/_linux.h"
 //#include "acme/os/linux/_user.h"
 #include "acme/os/ansios/_ansios.h"
-#include "acme/os/cross/_cross.h"
+//#include "acme/os/cross/_cross.h"
 
 #elif defined(_UWP)
 

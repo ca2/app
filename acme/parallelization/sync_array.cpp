@@ -2,6 +2,15 @@
 #include "acme/operating_system.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 sync_array::sync_array()
 {
 
@@ -10,11 +19,15 @@ sync_array::sync_array()
 
 sync_array::sync_array(const ::sync_array & array) :
    matter(array),
+#ifdef WINDOWS
    m_hsyncaCache(array.m_hsyncaCache),
+#endif
    m_synca(array.m_synca)
 {
 
+#ifdef WINDOWS
    memcpy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+#endif
 
 }
 
@@ -31,8 +44,10 @@ sync_array & sync_array::operator = (const sync_array & synca)
    if(this != &synca)
    {
 
+#ifdef WINDOWS
       m_hsyncaCache = synca.m_hsyncaCache;
       memcpy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+#endif
       m_synca = synca.m_synca;
 
    }
@@ -46,8 +61,9 @@ void	sync_array::clear()
 {
 
    m_synca.clear();
-
+#ifdef WINDOWS
    m_hsyncaCache.clear();
+#endif
 
 }
 
@@ -78,6 +94,8 @@ bool sync_array::add_item(sync * psync)
 
    }
 
+#ifdef WINDOWS
+
    auto hsync = psync->hsync();
 
    if (hsync != nullptr)
@@ -88,6 +106,8 @@ bool sync_array::add_item(sync * psync)
       m_hsyncaCache.add(hsync);
 
    }
+
+#endif
 
    m_synca.add(psync);
 
@@ -101,12 +121,16 @@ bool sync_array::add_item(sync * psync)
 bool sync_array::add(const sync_array& synca)
 {
 
+#ifdef WINDOWS
+
    if (m_hsyncaCache.size() + synca.m_hsyncaCache.get_size() > MAXIMUM_WAIT_OBJECTS)
    {
 
       return false;
 
    }
+
+#endif
 
    for (auto& psync : synca.m_synca)
    {
@@ -125,6 +149,8 @@ void sync_array::remove(class sync * psync)
 
    m_synca.remove(psync);
 
+#ifdef WINDOWS
+
    auto hsync = psync->hsync();
 
    if (hsync != nullptr)
@@ -133,6 +159,8 @@ void sync_array::remove(class sync * psync)
       m_hsyncaCache.remove(hsync);
 
    }
+
+#endif
 
 }
 
@@ -182,10 +210,10 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
    u32 winResult;
 
+#ifdef WINDOWS_DESKTOP
+
    if (m_synca.size() == m_hsyncaCache.size())
    {
-
-#ifdef WINDOWS_DESKTOP
 
       if (bWaitMessageQueue)
       {
@@ -196,7 +224,6 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
       }
       else
-#endif
       {
 
          auto millis = duration.u32_millis();
@@ -212,7 +239,6 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
       return sync_result(winResult, m_hsyncaCache.size());
 
    }
-
 
    for(auto & psync : m_synca)
    {
@@ -238,7 +264,6 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
       do
       {
 
-#ifdef WINDOWS_DESKTOP
          if (bWaitMessageQueue)
          {
 
@@ -246,7 +271,6 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
          }
          else
-#endif
          {
 
             winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, __os(duration - start.elapsed()), true);
@@ -318,6 +342,55 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
    //   (*it).m_psync->exit_wait();
 
    return sync_result(winResult,m_hsyncaCache.size());
+
+#else
+
+   for(auto & psync : m_synca)
+   {
+
+      psync->init_wait();
+
+   }
+
+   auto start = ::millis::now();
+
+   bool FoundExternal=false;
+
+   do
+   {
+
+      if (start.elapsed() > duration)
+      {
+
+         winResult = WAIT_TIMEOUT;
+
+      }
+
+      do
+      {
+
+         if (bWaitMessageQueue)
+         {
+
+            winResult = ::MsgWaitForMultipleObjectsEx((u32)sync_count(), sync_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
+
+         }
+         else
+         {
+
+            winResult = ::WaitForMultipleObjectsEx((u32)sync_count(), sync_data(), waitForAll, __os(duration - start.elapsed()), true);
+
+         }
+
+      }
+      while (winResult == WAIT_IO_COMPLETION);
+
+   }
+   while (winResult != WAIT_TIMEOUT && winResult != WAIT_FAILED);
+
+   return sync_result(winResult, sync_count());
+
+#endif
 
 }
 

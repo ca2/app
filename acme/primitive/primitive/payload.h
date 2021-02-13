@@ -570,7 +570,9 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (::u64 * pi);
    payload & operator = (float f);
    payload & operator = (double d);
+#ifdef WINDOWS
    payload & operator = (long l);
+#endif
    payload & operator = (const ::datetime::time & time);
    inline payload & operator = (const char * psz);
    inline payload & operator = (const string & str);

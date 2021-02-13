@@ -4,6 +4,15 @@
 #include "common.h"
 
 
+#ifndef WINDOWS
+
+
+#define MAXIMUM_WAIT_OBJECTS 64
+
+
+#endif
+
+
 #ifdef APPLEOS
 #include <semaphore.h>
 #endif
@@ -15,17 +24,6 @@ using hsync = void *;
 
 #define INVALID_HSYNC_VALUE ((hsync)nullptr)
 
-#ifdef PARALLELIZATION_PTHREAD
-
-#define CRITICAL_SECTION_FUNCTION_RETURN int
-
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
-
-#else
-
-#define CRITICAL_SECTION_FUNCTION_RETURN void
-
-#endif
 
 
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);

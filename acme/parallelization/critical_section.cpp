@@ -5,6 +5,9 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
+#include "acme/os/ansios/_pthread.h"
+
+
 critical_section::construct * critical_section::s_pconstruct = (critical_section::construct *)&::pthread_recursive_mutex_init;
 critical_section::destruct * critical_section::s_pdestruct = (critical_section::destruct *)&::pthread_mutex_destroy;
 critical_section::enter * critical_section::s_penter = (critical_section::enter *)::pthread_mutex_lock;

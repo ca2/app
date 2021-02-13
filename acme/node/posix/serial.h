@@ -41,7 +41,7 @@
 #define SERIAL_IMPL_UNIX_H
 
 
-#include <pthread.h>
+//#include <pthread.h>
 
 
    using serial::SerialException;

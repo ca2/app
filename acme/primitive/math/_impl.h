@@ -172,9 +172,9 @@ inline FLOATING_RESULT __random(FLOATING1 f1, FLOATING2 f2)
 
    if (f1 == f2) return f1;
 
-   auto fMin = min(f1, f2);
+   auto fMin = minimum(f1, f2);
 
-   auto fMax = max(f1, f2);
+   auto fMax = maximum(f1, f2);
 
    FLOATING_RESULT dRange = fMax - fMin;
 
@@ -192,9 +192,9 @@ inline FLOATING_RESULT __random(FLOATING1 f1, FLOATING2 f2)
 //
 //   if (d1 == d2) return d1;
 //
-//   auto dMin = min(d1, d2);
+//   auto dMin = minimum(d1, d2);
 //
-//   auto dMax = max(d1, d2);
+//   auto dMax = maximum(d1, d2);
 //
 //   auto dRange = dMax - dMin;
 //
@@ -213,9 +213,9 @@ INTEGRAL3 __random(INTEGRAL1 i1, INTEGRAL2 i2)
 
    if (i1 == i2) return i1;
 
-   auto iMin = min(i1, i2);
+   auto iMin = minimum(i1, i2);
 
-   auto iMax = max(i1, i2);
+   auto iMax = maximum(i1, i2);
 
    auto iRange = iMax - iMin;
 
@@ -266,7 +266,7 @@ inline bool clip_convert(T1& t1, const T2& t2)
 
       t1 = ::numeric_info < T1 >::get_maximum_value();
 
-      output_debug_string("\nclip::assign max clipped");
+      output_debug_string("\nclip::assign maximum clipped");
 
       return false;
 
@@ -277,7 +277,7 @@ inline bool clip_convert(T1& t1, const T2& t2)
 
       t1 = ::numeric_info < T1 >::get_minimum_value();
 
-      output_debug_string("\nclip::assign min clipped");
+      output_debug_string("\nclip::assign minimum clipped");
 
       return false;
 
@@ -297,7 +297,7 @@ inline T1 clip_convert(const T2& t2)
    if (::comparison::gt(t2, ::numeric_info < T1 >::get_maximum_value()))
    {
 
-      output_debug_string("\nclip::convert max clipped");
+      output_debug_string("\nclip::convert maximum clipped");
 
       return ::numeric_info < T1 >::get_maximum_value();
 
@@ -306,7 +306,7 @@ inline T1 clip_convert(const T2& t2)
    if (::comparison::lt(t2, ::numeric_info < T1 >::get_minimum_value()))
    {
 
-      output_debug_string("\nclip::convert min clipped");
+      output_debug_string("\nclip::convert minimum clipped");
 
       return ::numeric_info < T1 >::get_minimum_value();
 
@@ -384,18 +384,18 @@ inline bool clip_convert_divide(T1& t1, const T2& t2)
 
 
 template < typename TMIN, typename TMAX, typename T  >
-inline T& clip(const TMIN& min, const TMAX& max, T& t)
+inline T& clip(const TMIN& minimum, const TMAX& maximum, T& t)
 {
-   if (t < min)
+   if (t < minimum)
    {
 
-      t = (T)min;
+      t = (T)minimum;
 
    }
-   else if (t > max)
+   else if (t > maximum)
    {
 
-      t = (T)max;
+      t = (T)maximum;
 
    }
 

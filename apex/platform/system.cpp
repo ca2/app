@@ -182,16 +182,23 @@ namespace apex
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      auto pnode = node();
+
+      if (pnode)
       {
 
-         set_simple_ui_darkness(0);
+         if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+         {
 
-      }
-      else
-      {
+            pnode->set_simple_ui_darkness(0);
 
-         set_simple_ui_darkness(255);
+         }
+         else
+         {
+
+            pnode->set_simple_ui_darkness(255);
+
+         }
 
       }
 
@@ -362,7 +369,7 @@ namespace apex
 
       //create_factory < ::draw2d::icon >();
 
-      __node_apex_factory_exchange();
+      __node_apex_factory_exchange(::factory::get_factory_map());
 
       estatus = __compose_new(m_pdatetime);
 
@@ -409,7 +416,7 @@ namespace apex
 
       //m_puserstr = nullptr;
 
-//      __node_axis_factory_exchange();
+//      __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
 
@@ -573,7 +580,7 @@ namespace apex
 
 #else
 
-      auto plibrary = open_component_library(pszComponent, pszImplementation);
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
 
       if (!plibrary)
       {
@@ -581,7 +588,6 @@ namespace apex
          return ::error_failed;
 
       }
-
 
       PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
 
@@ -606,11 +612,84 @@ namespace apex
 
       }
 
-      pfn_factory_exchange();
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfn_factory_exchange(pfactorymap);
 
       return ::success;
 
 #endif
+
+   }
+
+
+   result_pointer < ::apex::library > system::do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      plibrary->__construct_new(plibrary->m_pfactorymap);
+
+      pfn_factory_exchange(plibrary->m_pfactorymap);
+
+#endif
+
+      return plibrary;
 
    }
 
@@ -698,6 +777,91 @@ namespace apex
       return plibrary;
 
    }
+
+
+   __pointer(::apex::library) system::open_containerized_component_library(const char * pszComponent, const char * pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      sync_lock sl(&System.m_mutexContainerizedLibrary);
+
+      __pointer(::apex::library) plibrary = System.m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::apex::library);
+
+         plibrary->initialize(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
 
    ::e_status system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
    {
@@ -1228,6 +1392,13 @@ namespace apex
 
       }
 
+      if (m_bWriteText.undefined())
+      {
+
+         m_bWriteText = m_bDraw2d;
+
+      }
+
       if (m_bUser.undefined())
       {
 
@@ -1348,7 +1519,7 @@ namespace apex
 //
 //               iSize *= 2;
 //
-//               iSize = max(iSize, 4096);
+//               iSize = maximum(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //
@@ -3456,41 +3627,6 @@ namespace apex
    }
 
 
-   bool system::on_application_menu_action(const char * pszCommand)
-   {
-
-      sync_lock sl(mutex());
-
-      auto psession = Session;
-
-      auto applicationa = psession->m_applicationa;
-
-      sl.unlock();
-
-      for(auto & papp : applicationa)
-      {
-
-         ASSERT(papp != this);
-
-         if(papp == this)
-         {
-
-            continue;
-
-         }
-
-         if(papp->on_application_menu_action(pszCommand))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
 
 
    bool system::merge_accumulated_on_open_file(::create * pcreate)
@@ -3655,7 +3791,7 @@ namespace apex
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //

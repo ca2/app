@@ -3,8 +3,8 @@
 
 
 #undef new
-#define min min
-#define max max
+#define minimum minimum
+#define maximum maximum
 #include <GdiPlus.h>
 
 

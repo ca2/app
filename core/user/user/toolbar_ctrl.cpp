@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -24,51 +22,51 @@ namespace user
    //}
 
 
-   i32 toolbar_control::AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap)
-   {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window());
-      TBADDBITMAP tbab;
-      tbab.hInst = nullptr;
-      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
-      return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
-         (LPARAM)&tbab);
-#else
-      __throw(todo());
-#endif
-   }
+//   i32 toolbar_control::AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap)
+//   {
+////#ifdef WINDOWS_DESKTOP
+////      ASSERT(is_window());
+////      TBADDBITMAP tbab;
+////      tbab.hInst = nullptr;
+////      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
+////      return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
+////         (LPARAM)&tbab);
+////#else
+////      __throw(todo());
+////#endif
+//   }
 
-#ifdef WINDOWS_DESKTOP
-   void toolbar_control::SaveState(HKEY hKeyRoot, const char * pszSubKey,
-
-      const char * pszValueName)
-
-   {
-      ASSERT(is_window());
-      TBSAVEPARAMSW tbs;
-      tbs.hkr = hKeyRoot;
-      tbs.pszSubKey = wstring(pszSubKey);
-
-      tbs.pszValueName = wstring(pszValueName);
-
-      send_message( TB_SAVERESTOREW, (WPARAM)true, (LPARAM)&tbs);
-   }
-
-   void toolbar_control::RestoreState(HKEY hKeyRoot, const char * pszSubKey,
-
-      const char * pszValueName)
-
-   {
-      ASSERT(is_window());
-      TBSAVEPARAMSW tbs;
-      tbs.hkr = hKeyRoot;
-      tbs.pszSubKey = wstring(pszSubKey);
-
-      tbs.pszValueName =wstring( pszValueName);
-
-      send_message( TB_SAVERESTOREW, (WPARAM)false, (LPARAM)&tbs);
-   }
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   void toolbar_control::SaveState(HKEY hKeyRoot, const char * pszSubKey,
+//
+//      const char * pszValueName)
+//
+//   {
+//      ASSERT(is_window());
+//      TBSAVEPARAMSW tbs;
+//      tbs.hkr = hKeyRoot;
+//      tbs.pszSubKey = wstring(pszSubKey);
+//
+//      tbs.pszValueName = wstring(pszValueName);
+//
+//      send_message( TB_SAVERESTOREW, (WPARAM)true, (LPARAM)&tbs);
+//   }
+//
+//   void toolbar_control::RestoreState(HKEY hKeyRoot, const char * pszSubKey,
+//
+//      const char * pszValueName)
+//
+//   {
+//      ASSERT(is_window());
+//      TBSAVEPARAMSW tbs;
+//      tbs.hkr = hKeyRoot;
+//      tbs.pszSubKey = wstring(pszSubKey);
+//
+//      tbs.pszValueName =wstring( pszValueName);
+//
+//      send_message( TB_SAVERESTOREW, (WPARAM)false, (LPARAM)&tbs);
+//   }
+//#endif
 
 
    void toolbar_control::_001OnCreate(::message::message * pmessage)
@@ -76,11 +74,11 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-#ifdef WINDOWS_DESKTOP
-      SetButtonStructSize(sizeof(TBBUTTON));
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      SetButtonStructSize(sizeof(TBBUTTON));
+//#else
+//      __throw(todo());
+//#endif
 
    }
 
@@ -92,11 +90,14 @@ namespace user
    {
       ASSERT(is_window());
       ASSERT(ppDropTarget);
-#ifdef WINDOWS_DESKTOP
-      return (HRESULT) send_message( TB_GETOBJECT, (WPARAM)&IID_IDropTarget, (LPARAM)ppDropTarget);
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      return (HRESULT) send_message( TB_GETOBJECT, (WPARAM)&IID_IDropTarget, (LPARAM)ppDropTarget);
+//#else
+//      __throw(todo());
+//#endif
+
+      return 0;
+
    }
 
 
@@ -229,30 +230,33 @@ namespace user
 
    i32 toolbar_control::GetButtonText(::u32 uId, string &str)
    {
-#ifdef WINDOWS_DESKTOP
-      UNREFERENCED_PARAMETER(uId);
-      UNREFERENCED_PARAMETER(str);
-      TBBUTTONINFOW tbbi;
-      tbbi.cbSize = sizeof(tbbi);
-      tbbi.dwMask = TBIF_TEXT;
+      
+      return 0;
 
-      //      i32 nSize = 256;
-      while(true)
-      {
-         /*         tbbi.pszText = str.GetBuffer(nSize);
-         if(!tbbi.pszText)
-         return 0;
-         tbbi.cchText = nSize;
-         if(GetButtonInfo(uId, &tbbi) != -1)
-         {
-         str.ReleaseBuffer();
-         return 1;
-         }
-         nSize += 256;*/
-      }
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      UNREFERENCED_PARAMETER(uId);
+//      UNREFERENCED_PARAMETER(str);
+//      TBBUTTONINFOW tbbi;
+//      tbbi.cbSize = sizeof(tbbi);
+//      tbbi.dwMask = TBIF_TEXT;
+//
+//      //      i32 nSize = 256;
+//      while(true)
+//      {
+//         /*         tbbi.pszText = str.GetBuffer(nSize);
+//         if(!tbbi.pszText)
+//         return 0;
+//         tbbi.cchText = nSize;
+//         if(GetButtonInfo(uId, &tbbi) != -1)
+//         {
+//         str.ReleaseBuffer();
+//         return 1;
+//         }
+//         nSize += 256;*/
+//      }
+//#else
+//      __throw(todo());
+//#endif
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -261,295 +265,350 @@ namespace user
    { }
    bool toolbar_control::EnableButton(i32 nID, bool bEnable)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
 
    }
    bool toolbar_control::CheckButton(i32 nID, bool bCheck)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
 
    }
    bool toolbar_control::PressButton(i32 nID, bool bPress)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::HideButton(i32 nID, bool bHide)
    {
 
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return true;
+
    }
 
 
    bool toolbar_control::Indeterminate(i32 nID, bool bIndeterminate)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::IsButtonEnabled(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
 
    bool toolbar_control::IsButtonChecked(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::IsButtonPressed(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::IsButtonHidden(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::IsButtonIndeterminate(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    bool toolbar_control::set_state(i32 nID, ::u32 nState)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); 
-      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != false;
-#else
-      __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); 
+//      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != false;
+//#else
+//      __throw(todo());
+//#endif
+
+      return false;
+
    }
 
 
    i32 toolbar_control::GetState(i32 nID)
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return (i32) send_message( TB_GETSTATE, nID);
-#else
-      __throw(todo());
-#endif
-   }
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return (i32) send_message( TB_GETSTATE, nID);
+//#else
+//      __throw(todo());
+//#endif
 
-
-#ifdef WINDOWS_DESKTOP
-   bool toolbar_control::AddButtons(i32 nNumButtons, LPTBBUTTON pButtons)
-
-   {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)pButtons) != false;
-
-#else
-      __throw(todo());
-#endif
-   }
-   bool toolbar_control::InsertButton(i32 nIndex, LPTBBUTTON pButton)
-
-   {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)pButton) != false;
-
-#else
-      __throw(todo());
-#endif
-   }
-#endif
-
-
-   bool toolbar_control::DeleteButton(i32 nIndex)
-   {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != false;
-#else
-      __throw(todo());
-#endif
-   }
-
-
-
-#ifdef WINDOWS_DESKTOP
-
-   bool toolbar_control::GetButton(i32 nIndex, LPTBBUTTON pButton)
-
-   {
-
-      ASSERT(is_window()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)pButton) != false;
-
+      return -1;
 
    }
 
-#endif
+
+//#ifdef WINDOWS_DESKTOP
+//   bool toolbar_control::AddButtons(i32 nNumButtons, LPTBBUTTON pButtons)
+//
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)pButtons) != false;
+//
+//#else
+//      __throw(todo());
+//#endif
+//   }
+//   bool toolbar_control::InsertButton(i32 nIndex, LPTBBUTTON pButton)
+//
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)pButton) != false;
+//
+//#else
+//      __throw(todo());
+//#endif
+//   }
+//#endif
+//
+//
+//   bool toolbar_control::DeleteButton(i32 nIndex)
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != false;
+//#else
+//      __throw(todo());
+//#endif
+//   }
+//
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool toolbar_control::GetButton(i32 nIndex, LPTBBUTTON pButton)
+//
+//   {
+//
+//      ASSERT(is_window()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)pButton) != false;
+//
+//
+//   }
+//
+//#endif
 
 
 
 
    i32 toolbar_control::GetButtonCount()
    {
-#ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return (i32) send_message( TB_BUTTONCOUNT);
+//#ifdef WINDOWS_DESKTOP
+//      ASSERT(is_window()); return (i32) send_message( TB_BUTTONCOUNT);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-#else
+      return -1;
 
-      __throw(todo());
-
-#endif
    }
+
+
+
    ::u32 toolbar_control::CommandToIndex(::u32 nID)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (::u32) send_message( TB_COMMANDTOINDEX, nID);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (::u32) send_message( TB_COMMANDTOINDEX, nID);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
+
 
    void toolbar_control::Customize()
    {
 
-#ifdef WINDOWS_DESKTOP
-
-   ASSERT(is_window()); send_message( TB_CUSTOMIZE);
-
-#else
-
-      __throw(todo());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_CUSTOMIZE);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
    }
+
 
    // pszStrings are separated by zeroes, last one is marked by two zeroes
 
    i32 toolbar_control::AddStrings(const char * pszStrings)
-
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (i32) send_message( TB_ADDSTRING, 0, (LPARAM)pszStrings);
+//
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (i32) send_message( TB_ADDSTRING, 0, (LPARAM)pszStrings);
-
-
-#else
-
-      __throw(todo());
-
-#endif
+      return -1;
 
    }
+
 
    bool toolbar_control::GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle)
-
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prectangle) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prectangle) != false;
-
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
 
    void toolbar_control::SetButtonStructSize(i32 nSize)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_BUTTONSTRUCTSIZE, nSize);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); send_message( TB_BUTTONSTRUCTSIZE, nSize);
-
-#else
-
-      __throw(todo());
-
-#endif
+//      return -;
 
    }
+
 
    bool toolbar_control::SetButtonSize(const ::size_i32 & size)
    {
 
-#ifdef WINDOWS_DESKTOP
+      return false;
 
-   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
    }
+
 
    bool toolbar_control::SetBitmapSize(const ::size_i32 & size)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+         return true;
 
    }
 
@@ -557,15 +616,17 @@ namespace user
    void toolbar_control::AutoSize()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_AUTOSIZE);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); send_message( TB_AUTOSIZE);
-
-#else
-
-      __throw(todo());
-
-#endif
+      //return false;
 
    }
 
@@ -573,16 +634,18 @@ namespace user
    __pointer(::user::interaction)  toolbar_control::set_owner(__pointer(::user::interaction) pwindow)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_SETPARENT, (WPARAM)pwindow.m_p);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
+      //return pwindow;
 
-   ASSERT(is_window()); send_message( TB_SETPARENT, (WPARAM)pwindow.m_p);
-
-#else
-
-      __throw(todo());
-
-#endif
-      return pwindow;
+      return nullptr;
 
    }
 
@@ -591,16 +654,16 @@ namespace user
 
    {
 
-#ifdef WINDOWS_DESKTOP
-
-   ASSERT(is_window()); send_message( TB_SETROWS, MAKELPARAM(nRows, bLarger), (LPARAM)prectangle);
-
-
-#else
-
-      __throw(todo());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_SETROWS, MAKELPARAM(nRows, bLarger), (LPARAM)prectangle);
+//
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
    }
 
@@ -608,15 +671,18 @@ namespace user
    i32 toolbar_control::GetRows()
    {
 
-#ifdef WINDOWS_DESKTOP
+      return 0;
 
-   ASSERT(is_window()); return (i32) send_message( TB_GETROWS);
-
-#else
-
-      __throw(todo());
-
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (i32) send_message( TB_GETROWS);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
    }
 
@@ -624,15 +690,17 @@ namespace user
    bool toolbar_control::SetCmdID(i32 nIndex, ::u32 nID)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); return send_message(TB_SETCMDID, nIndex, (lparam) nID) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window()); return send_message(TB_SETCMDID, nIndex, (LPARAM) nID) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
 
@@ -640,15 +708,17 @@ namespace user
    ::u32 toolbar_control::GetBitmapFlags()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (::u32) send_message( TB_GETBITMAPFLAGS);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (::u32) send_message( TB_GETBITMAPFLAGS);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -656,15 +726,17 @@ namespace user
    i32 toolbar_control::hit_test(POINT_I32 * ppt)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (i32) send_message( TB_HITTEST, 0, (LPARAM)ppt);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (i32) send_message( TB_HITTEST, 0, (LPARAM)ppt);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return -1;
 
    }
 
@@ -672,15 +744,17 @@ namespace user
    u32 toolbar_control::GetExtendedStyle()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (u32) send_message( TB_GETEXTENDEDSTYLE);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (u32) send_message( TB_GETEXTENDEDSTYLE);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -688,15 +762,18 @@ namespace user
    u32 toolbar_control::SetExtendedStyle(u32 dwExStyle)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); return (u32) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window()); return (u32) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
+      return 0;
 
-#else
-
-      __throw(todo());
-
-#endif
 
    }
 
@@ -704,15 +781,17 @@ namespace user
    color32_t toolbar_control::GetInsertMarkColor()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (color32_t) send_message( TB_GETINSERTMARKCOLOR);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (color32_t) send_message( TB_GETINSERTMARKCOLOR);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -720,15 +799,17 @@ namespace user
    color32_t toolbar_control::SetInsertMarkColor(color32_t clrNew)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (color32_t) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (color32_t) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -737,15 +818,17 @@ namespace user
    u32 toolbar_control::get_button_size()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (u32) send_message( TB_GETBUTTONSIZE);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (u32) send_message( TB_GETBUTTONSIZE);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -753,15 +836,17 @@ namespace user
    ::image_list* toolbar_control::GetDisabledImageList()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -769,15 +854,17 @@ namespace user
    ::image_list* toolbar_control::GetHotImageList()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -785,15 +872,17 @@ namespace user
    ::image_list* toolbar_control::GetImageList()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return nullptr;
 
    }
 
@@ -801,15 +890,17 @@ namespace user
    u32 toolbar_control::GetStyle()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (u32) send_message( TB_GETSTYLE);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (u32) send_message( TB_GETSTYLE);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -817,17 +908,19 @@ namespace user
    ::i32 toolbar_control::GetMaxTextRows()
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); 
+//      
+//      return (::i32) send_message(TB_GETTEXTROWS);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window()); 
-      
-      return (::i32) send_message(TB_GETTEXTROWS);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -836,16 +929,18 @@ namespace user
 
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prectangle) != false;
+//
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prectangle) != false;
-
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
@@ -853,87 +948,95 @@ namespace user
    bool toolbar_control::IsButtonHighlighted(i32 nID)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-
-   void toolbar_control::LoadImages(i32 iBitmapID, HINSTANCE hinst)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-   ASSERT(is_window()); send_message( TB_LOADIMAGES, iBitmapID, (LPARAM)hinst);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
 
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   void toolbar_control::LoadImages(i32 iBitmapID, HINSTANCE hinst)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); send_message( TB_LOADIMAGES, iBitmapID, (LPARAM)hinst);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
+//
+//   }
+//
+//
+//#endif
 
 
    bool toolbar_control::SetButtonWidth(i32 cxMin, i32 cxMax)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
 
 
    ::image_list* toolbar_control::SetDisabledImageList(::image_list* pImageList)
    {
-      UNREFERENCED_PARAMETER(pImageList);
-#ifdef WINDOWS_DESKTOP
+//      UNREFERENCED_PARAMETER(pImageList);
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window());
+//      return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window());
       return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
 
    }
 
 
    ::image_list* toolbar_control::SetHotImageList(::image_list* pImageList)
    {
-      UNREFERENCED_PARAMETER(pImageList);
-#ifdef WINDOWS_DESKTOP
+//      UNREFERENCED_PARAMETER(pImageList);
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window());
+//      return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window());
       return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
 
    }
 
@@ -941,59 +1044,69 @@ namespace user
    ::image_list* toolbar_control::SetImageList(::image_list* pImageList)
    {
 
-      UNREFERENCED_PARAMETER(pImageList);
+//      UNREFERENCED_PARAMETER(pImageList);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window());
+//      return nullptr;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-#ifdef WINDOWS_DESKTOP
-
-      ASSERT(is_window());
       return nullptr;
-
-#else
-
-      __throw(todo());
-
-#endif
 
    }
 
 
    bool toolbar_control::SetIndent(i32 iIndent)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETINDENT, iIndent) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_SETINDENT, iIndent) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    bool toolbar_control::SetMaxTextRows(i32 iMaxRows)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETMAXTEXTROWS, iMaxRows) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_SETMAXTEXTROWS, iMaxRows) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    void toolbar_control::SetStyle(u32 dwStyle)
    {
-#ifdef WINDOWS_DESKTOP
-
-      ASSERT(is_window()); send_message( TB_SETSTYLE, 0, (LPARAM) dwStyle);
-
-#else
-
-      __throw(todo());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); send_message( TB_SETSTYLE, 0, (LPARAM) dwStyle);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
    }
 
@@ -1009,16 +1122,16 @@ namespace user
 //#endif
 //
 
-#ifdef WINDOWS_DESKTOP
-
-   bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
-   {
-
-      ASSERT(is_window()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
+//   {
+//
+//      ASSERT(is_window()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
+//
+//   }
+//
+//#endif
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1033,179 +1146,213 @@ namespace user
 //#endif
 
 
-#ifdef WINDOWS_DESKTOP
-
-   bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
-   {
-
-      ASSERT(is_window()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
-
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
+//   {
+//
+//      ASSERT(is_window()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
+//
+//
+//   }
+//
+//#endif
 
 
    u32 toolbar_control::SetDrawTextFlags(u32 dwMask, u32 dwDTFlags)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); return (u32) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window()); return (u32) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return 0;
 
    }
+
+
    bool toolbar_control::GetAnchorHighlight()
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_GETANCHORHIGHLIGHT) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_GETANCHORHIGHLIGHT) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    bool toolbar_control::SetAnchorHighlight(bool fAnchor)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    i32 toolbar_control::GetHotItem()
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (i32) send_message( TB_GETHOTITEM);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (i32) send_message( TB_GETHOTITEM);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    i32 toolbar_control::SetHotItem(i32 nHot)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return (i32) send_message( TB_SETHOTITEM, nHot);
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return (i32) send_message( TB_SETHOTITEM, nHot);
-
-#else
-
-      __throw(todo());
-
-#endif
+      return -1;
 
    }
 
-#ifdef WINDOWS_DESKTOP
 
-   void toolbar_control::GetInsertMark(TBINSERTMARK* ptbim)
+//#ifdef WINDOWS_DESKTOP
+//
+//   void toolbar_control::GetInsertMark(TBINSERTMARK* ptbim)
+//   {
+//
+//
+//      ASSERT(is_window());
+//
+//      send_message( TB_GETINSERTMARK, 0, (LPARAM)ptbim);
+//
+//   }
+//
+//
+//   void toolbar_control::SetInsertMark(TBINSERTMARK* ptbim)
+//   {
+//
+//      ASSERT(is_window());
+//
+//      send_message( TB_SETINSERTMARK, 0, (LPARAM)ptbim);
+//
+//   }
+//
+//
+//#endif
+
+
+   bool toolbar_control::GetMaxSize(::SIZE_I32 * pSize)
    {
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-
-      ASSERT(is_window());
-
-      send_message( TB_GETINSERTMARK, 0, (LPARAM)ptbim);
-
-   }
-
-
-   void toolbar_control::SetInsertMark(TBINSERTMARK* ptbim)
-   {
-
-      ASSERT(is_window());
-
-      send_message( TB_SETINSERTMARK, 0, (LPARAM)ptbim);
+      return false;
 
    }
 
 
-#endif
-
-
-   bool toolbar_control::GetMaxSize(LPSIZE32 pSize)
-   {
-#ifdef WINDOWS_DESKTOP
-
-   ASSERT(is_window()); return send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-   bool toolbar_control::InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim)
-   {
-
-   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != false;
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool toolbar_control::InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim)
+//   {
+//
+//   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != false;
+//
+//   }
+//
+//#endif
 
 
    bool toolbar_control::MapAccelerator(char chAccel, ::u32* pIDBtn)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    bool toolbar_control::MarkButton(i32 nID, bool bHighlight)
    {
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   ASSERT(is_window()); return send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-   ASSERT(is_window()); return send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
+
+
    bool toolbar_control::MoveButton(::u32 nOldPos, ::u32 nNewPos)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      ASSERT(is_window()); return send_message( TB_MOVEBUTTON, nOldPos, (LPARAM) nNewPos) != false;
+//
+//#else
+//
+//      __throw(todo());
+//
+//#endif
 
-      ASSERT(is_window()); return send_message( TB_MOVEBUTTON, nOldPos, (LPARAM) nNewPos) != false;
-
-#else
-
-      __throw(todo());
-
-#endif
+      return false;
 
    }
 
 
 } // namespace user
+
+
+

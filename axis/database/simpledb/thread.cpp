@@ -132,7 +132,7 @@ namespace simpledb
 
                   sync_lock slDatabase(mutex());
 
-                  Context.http().get(strUrl, set);
+                  get_context()->http().get(strUrl, set);
 
                }
 

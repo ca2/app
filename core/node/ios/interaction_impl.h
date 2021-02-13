@@ -51,7 +51,7 @@ namespace ios
 
       virtual ::user::interaction * get_wnd() const override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -114,9 +114,9 @@ namespace ios
 
       virtual bool _is_window() const override;
       
-      virtual void queue_message_handler(::message::base * pbase) override;
+      virtual void queue_message_handler(::user::message * pusermessage) override;
       
-      virtual void on_host_message_handler(::message::base * pbase);
+      virtual void on_host_message_handler(::user::message * pusermessage);
 
 
 #if(WINVER >= 0x0500)
@@ -140,8 +140,8 @@ namespace ios
       //strsize GetWindowText(char * lpszStringBuf, strsize nMaxCount);
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength() override;
-      //      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      //    ::draw2d::font* GetFont();
+      //      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      //    ::write_text::font* GetFont();
 
       virtual void defer_update_text_view();
 
@@ -334,7 +334,7 @@ namespace ios
 
       // oswindow Access Functions
 //      virtual ::user::interaction *  child_window_from_point(POINT_I32 point_i32) override;
-  //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags) override;
+  //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags) override;
       static ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
@@ -576,7 +576,7 @@ namespace ios
 
 
       // for processing oswindows messages
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
       //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -650,8 +650,8 @@ namespace ios
       
       virtual void round_window_become_key() override;
 
-      virtual bool round_window_key_down(::user::e_key ekey) override;
-      virtual bool round_window_key_up(::user::e_key ekey) override;
+      virtual bool round_window_key_down(::user::enum_key ekey) override;
+      virtual bool round_window_key_up(::user::enum_key ekey) override;
       virtual bool round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd) override;
       virtual bool round_window_on_sel_text(long iBeg, long iEnd) override;
       virtual long round_window_edit_hit_test(int x, int y) override;

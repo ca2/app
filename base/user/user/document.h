@@ -300,15 +300,15 @@ namespace user
       virtual void call_initial_update();
 
 
-#ifdef WINDOWS_DESKTOP
-      // overridables for implementation
-      virtual HMENU GetDefaultMenu(); // get menu depending on state
-      virtual HACCEL GetDefaultAccelerator();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      // overridables for implementation
+//      virtual HMENU GetDefaultMenu(); // get menu depending on state
+//      virtual HACCEL GetDefaultAccelerator();
+//#endif
       virtual void on_idle();
       virtual void on_final_release();
 
-      //virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::message::command * pcommand) override;
 
       friend class impact_system;
 
@@ -317,7 +317,7 @@ namespace user
       void on_file_save();
       void on_file_save_as();
       void on_file_send_mail();
-      void on_update_file_send_mail(::user::command* pCmdUI);
+      void on_update_file_send_mail(::message::command* pCmdUI);
 
       //virtual void on_request(::create * pcreate) override;
 

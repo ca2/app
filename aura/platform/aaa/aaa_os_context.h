@@ -136,7 +136,7 @@
 
       virtual ::icon_result load_icon(const ::payload & varFile);
 
-      virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
+      virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
 
 
    };

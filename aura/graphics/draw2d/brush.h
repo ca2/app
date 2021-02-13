@@ -23,12 +23,12 @@ namespace draw2d
       };
 
 
-      color                m_color;
+      ::color::color                m_color;
       enum_type               m_etype;
       point_f64               m_point1;
       point_f64               m_point2;
-      color                m_color1;
-      color                m_color2;
+      ::color::color                m_color1;
+      ::color::color                m_color2;
       point_f64               m_point;
       size_f64                m_size;
       ::image_pointer      m_pimage;
@@ -43,8 +43,8 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
-      virtual bool create_solid(color color);
-      virtual bool CreateHatchBrush(i32 nIndex, color color);
+      virtual bool create_solid(::color::color color);
+      virtual bool CreateHatchBrush(i32 nIndex, ::color::color color);
       //virtual bool CreateBrushIndirect(const LOGBRUSH* pLogBrush);
 
       virtual bool CreatePatternBrush(::image * pimage);
@@ -55,10 +55,10 @@ namespace draw2d
 
       virtual bool CreateSysColorBrush(i32 nIndex);
 
-      virtual bool CreateLinearGradientBrush(const point_i32 & point1, const point_i32 & point2, const color & color1, const color & color2);
-      virtual bool CreateRadialGradientBrush(const ::point_i32 & point,size_i32 s,const color & color1,const color & color2);
-      virtual bool CreateLinearGradientBrush(point_f64 point1,point_f64 point2,const color & color1,const color & color2);
-      virtual bool CreateRadialGradientBrush(point_f64 point,size_f64 s,const color & color1,const color & color2);
+      virtual bool CreateLinearGradientBrush(const point_i32 & point1, const point_i32 & point2, const ::color::color & color1, const ::color::color & color2);
+      virtual bool CreateRadialGradientBrush(const ::point_i32 & point,size_i32 s,const ::color::color & color1,const ::color::color & color2);
+      virtual bool CreateLinearGradientBrush(point_f64 point1,point_f64 point2,const ::color::color & color1,const ::color::color & color2);
+      virtual bool CreateRadialGradientBrush(point_f64 point,size_f64 s,const ::color::color & color1,const ::color::color & color2);
 
       //virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
 

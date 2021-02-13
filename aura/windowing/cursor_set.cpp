@@ -1,8 +1,81 @@
 #include "framework.h"
 
 
+
+::e_status _003CountStatus(::count countSuccess, ::count countFailed)
+{
+
+   ::count countTotal = countFailed + countSuccess;
+
+   if (countTotal <= 0)
+   {
+
+      return error_failed;
+
+   }
+   else if (countSuccess <= 0)
+   {
+
+      return error_all_failed;
+
+   }
+   else if (countSuccess == countTotal)
+   {
+
+      return success;
+
+   }
+   else if (countFailed <= countTotal / 3)
+   {
+
+      return partial_one_third_or_less_has_failed;
+
+   }
+   else if (countFailed >= 2 * countTotal / 3)
+   {
+
+      return partial_two_thirds_or_more_but_not_all_has_failed;
+
+   }
+   else
+   {
+
+      return partial_sorf_of_half_has_failed;
+
+   }
+
+
+}
+
 namespace windowing
 {
+
+   struct cursor_pair
+   {
+      enum_cursor m_ecursor;
+      const char * m_pszName;
+
+   };
+
+   cursor_pair g_pcursorpaira[] =
+   {
+      { e_cursor_arrow              ,  "arrow"},
+      { e_cursor_hand               ,  "hand"},
+      { e_cursor_text_select        ,  "text_select"},
+      { e_cursor_size_top_left      ,  "size_top_left"},
+      { e_cursor_size_top           ,  "size_top"},
+      { e_cursor_size_top_right     ,  "size_top_right"},
+      { e_cursor_size_right         ,  "size_top_right"},
+      { e_cursor_size_bottom_right  ,  "size_bottom_right"},
+      { e_cursor_size_bottom        ,  "size_bottom"},
+      { e_cursor_size_bottom_left   ,  "size_bottom_left"},
+      { e_cursor_size_left          ,  "size_left"},
+      { e_cursor_size_vertical      ,  "size_vertical"},
+      { e_cursor_size_horizontal    ,  "size_horizontal"},
+      { e_cursor_move               ,  "size_top_right"},
+      { e_cursor_none               ,  nullptr},
+
+   };
 
 
    cursor_set::cursor_set()
@@ -38,41 +111,26 @@ namespace windowing
    string cursor_set::cursor_name(enum_cursor ecursor)
    {
 
-      switch (ecursor)
+      auto pcursorpair = g_pcursorpaira;
+
+      while (pcursorpair->m_ecursor != e_cursor_none)
       {
-      case e_cursor_arrow:
-         return "arrow";
-      case e_cursor_hand:
-         return "hand";
-      case e_cursor_text_select:
-         return "text_select";
-      case e_cursor_size_top_left:
-         return "size_top_left";
-      case e_cursor_size_top:
-         return "size_top";
-      case e_cursor_size_top_right:
-         return "size_top_right";
-      case e_cursor_size_right:
-         return "size_top_right";
-      case e_cursor_size_bottom_right:
-         return "size_bottom_right";
-      case e_cursor_size_bottom:
-         return "size_bottom";
-      case e_cursor_size_bottom_left:
-         return "size_bottom_left";
-      case e_cursor_size_left:
-         return "size_left";
-      case e_cursor_size_vertical:
-         return "size_vertical";
-      case e_cursor_size_horizontal:
-         return "size_horizontal";
-      case e_cursor_move:
-         return "size_top_right";
-      default:
-         return "(unknown)";
+
+         if (pcursorpair->m_ecursor == ecursor)
+         {
+
+            return pcursorpair->m_pszName;
+
+         }
+
+         pcursorpair++;
+
       }
 
+      return "";
+
    }
+
 
    enum_cursor cursor_set::cursor_enum(string strCursor)
    {
@@ -124,7 +182,7 @@ namespace windowing
 
       }
 
-      __construct_new(pcursor);
+      __construct(pcursor);
 
       pcursor->m_ecursor = ecursor;
 
@@ -245,7 +303,9 @@ namespace windowing
       }
 
    }
-   ::count cursor_set::set_cursor_set_from_matter(const ::file::path & pathMatter)
+   
+   
+   ::e_status cursor_set::set_cursor_set_from_matter(const ::file::path & pathMatter)
    {
 
       // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
@@ -259,202 +319,327 @@ namespace windowing
    }
 
 
-   ::count cursor_set::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
+   ::e_status cursor_set::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
    {
 
-      ::count count = 0;
+      ::count countSuccess = 0;
 
-      if (set_cursor_file(e_cursor_arrow, pathDir / "arrow.png", bFromCache))
+      ::count countFailed = 0;
+
+      auto pcursorpair = g_pcursorpaira;
+
+      while (pcursorpair->m_ecursor != e_cursor_none)
       {
-         count++;
+
+         string strCursorName;
+
+         strCursorName.Format("%s.png", pcursorpair->m_pszName);
+
+         if (set_cursor_file(pcursorpair->m_ecursor, pathDir / strCursorName, bFromCache))
+         {
+
+            countSuccess++;
+
+         }
+         else
+         {
+
+            countFailed++;
+
+         }
+
+         pcursorpair++;
+
       }
-      else
-      {
-         return 0;
-      }
-      if (set_cursor_file(e_cursor_hand, pathDir / "hand.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_hand, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_text_select, pathDir / "text_select.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_text_select, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_top_left, pathDir / "size_top_left.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_top_left, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_top, pathDir / "size_top.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_top, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_top_right, pathDir / "size_top_right.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_top_right, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_right, pathDir / "size_right.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_right, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_bottom_right, pathDir / "size_bottom_right.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_bottom_right, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_bottom, pathDir / "size_bottom.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_bottom, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_bottom_left, pathDir / "size_bottom_left.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_bottom_left, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_left, pathDir / "size_left.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_left, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_vertical, pathDir / "size_vertical.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_vertical, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_size_horizontal, pathDir / "size_horizontal.png", bFromCache))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_size_horizontal, pathDir / "arrow.png", bFromCache);
-      }
-      if (set_cursor_file(e_cursor_move, pathDir / "move.png", false))
-      {
-         count++;
-      }
-      else
-      {
-         set_cursor_file(e_cursor_move, pathDir / "arrow.png", bFromCache);
-      }
+
+      //if (set_cursor_file(e_cursor_arrow, pathDir / "arrow.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_hand, pathDir / "hand.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_text_select, pathDir / "text_select.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_top_left, pathDir / "size_top_left.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_top, pathDir / "size_top.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_top_right, pathDir / "size_top_right.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_right, pathDir / "size_right.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+
+      //if (set_cursor_file(e_cursor_size_bottom_right, pathDir / "size_bottom_right.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_bottom, pathDir / "size_bottom.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_bottom_left, pathDir / "size_bottom_left.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_left, pathDir / "size_left.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_vertical, pathDir / "size_vertical.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+
+      //if (set_cursor_file(e_cursor_size_horizontal, pathDir / "size_horizontal.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_move, pathDir / "move.png", false))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
 
       load_hotspot(pathDir);
 
-      return count;
+      return _003CountStatus(countFailed, countSuccess);
 
    }
 
 
-   ::count cursor_set::set_cursor_set_system_default()
+   ::e_status cursor_set::set_cursor_set_system_default()
    {
 
-      ::count count = 0;
 
-      if (set_system_default_cursor(e_cursor_arrow))
+      ::count countSuccess = 0;
+
+      ::count countFailed = 0;
+
+      auto pcursorpair = g_pcursorpaira;
+
+      while (pcursorpair->m_ecursor != e_cursor_none)
       {
-         count++;
-      }
 
-      if (set_system_default_cursor(e_cursor_hand))
-      {
-         count++;
-      }
+         if (set_system_default_cursor(pcursorpair->m_ecursor))
+         {
 
-      if (set_system_default_cursor(e_cursor_text_select))
-      {
-         count++;
-      }
+            countSuccess++;
 
-      if (set_system_default_cursor(e_cursor_size_top_left))
-      {
-         count++;
-      }
+         }
+         else
+         {
 
-      if (set_system_default_cursor(e_cursor_size_top))
-      {
-         count++;
-      }
+            countFailed++;
 
-      if (set_system_default_cursor(e_cursor_size_top_right))
-      {
-         count++;
-      }
+         }
 
-      if (set_system_default_cursor(e_cursor_size_right))
-      {
-         count++;
-      }
+         pcursorpair++;
 
-      if (set_system_default_cursor(e_cursor_size_bottom_right))
-      {
-         count++;
       }
+      //::count count = 0;
 
-      if (set_system_default_cursor(e_cursor_size_bottom))
-      {
-         count++;
-      }
+      //if (set_system_default_cursor(e_cursor_arrow))
+      //{
+      //   count++;
+      //}
 
-      if (set_system_default_cursor(e_cursor_size_bottom_left))
-      {
-         count++;
-      }
+      //if (set_system_default_cursor(e_cursor_hand))
+      //{
+      //   count++;
+      //}
 
-      if (set_system_default_cursor(e_cursor_size_left))
-      {
-         count++;
-      }
+      //if (set_system_default_cursor(e_cursor_text_select))
+      //{
+      //   count++;
+      //}
 
-      if (set_system_default_cursor(e_cursor_size_vertical))
-      {
-         count++;
-      }
+      //if (set_system_default_cursor(e_cursor_size_top_left))
+      //{
+      //   count++;
+      //}
 
-      if (set_system_default_cursor(e_cursor_size_horizontal))
-      {
-         count++;
-      }
+      //if (set_system_default_cursor(e_cursor_size_top))
+      //{
+      //   count++;
+      //}
 
-      return count;
+      //if (set_system_default_cursor(e_cursor_size_top_right))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_right))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_bottom_right))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_bottom))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_bottom_left))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_left))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_vertical))
+      //{
+      //   count++;
+      //}
+
+      //if (set_system_default_cursor(e_cursor_size_horizontal))
+      //{
+      //   count++;
+      //}
+
+      return _003CountStatus(countFailed, countSuccess);
 
    }
 

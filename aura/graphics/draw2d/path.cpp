@@ -206,10 +206,10 @@ namespace draw2d
    //bool path::line::get_bounding_rect(RECTANGLE_F64* prectangle) const
    //{
 
-   //   prectangle->left = min(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->right = max(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->top = min(m_pointBeg.y, m_pointEnd.y);
-   //   prectangle->bottom = max(m_pointBeg.y, m_pointEnd.y);
+   //   prectangle->left = minimum(m_pointBeg.x, m_pointEnd.x);
+   //   prectangle->right = maximum(m_pointBeg.x, m_pointEnd.x);
+   //   prectangle->top = minimum(m_pointBeg.y, m_pointEnd.y);
+   //   prectangle->bottom = maximum(m_pointBeg.y, m_pointEnd.y);
 
    //   return true;
 
@@ -780,7 +780,7 @@ namespace draw2d
    }
 
 
-   bool path::add_text_out(const ::point_f64 & point, const string & strText,::draw2d::font_pointer pfont)
+   bool path::add_text_out(const ::point_f64 & point, const string & strText,::write_text::font_pointer pfont)
    {
 
       auto ptextout = __new(text_out_shape);
@@ -798,7 +798,7 @@ namespace draw2d
    }
 
 
-   bool path::add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::draw2d::font_pointer pfont)
+   bool path::add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
       auto pdrawtext = __new(draw_text_shape);
@@ -1740,7 +1740,7 @@ namespace draw2d
 
       rectRect.deflate(0, 0, 1.0, 1.0);
 
-      ::size_f64 size_i32(dDiameter, dDiameter);
+      ::size_f64 size(dDiameter, dDiameter);
 
       ::rectangle_f64 rectCorner(rectRect);
 

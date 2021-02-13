@@ -60,17 +60,17 @@ public:
 
 
    POINT_TYPE random_point() {  return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
-   POINT_TYPE random_point(double dRate) { ::rectangle_i32 rectangle(this); rectangle.rate(dRate); return rectangle.random_point(); }
+   POINT_TYPE random_point(double dRate) { auto rectangle= *this; rectangle.rate(dRate); return rectangle.random_point(); }
 
 
    template < typename RECT_TYPE >
-   rect_type & max(const RECT_TYPE & rectangle)
+   rect_type & maximum(const RECT_TYPE & rectangle)
    {
 
-      this->left = (decltype(RECT_TYPE::left))::min(this->left, rectangle.left);
-      this->top = (decltype(RECT_TYPE::top))::min(this->top, rectangle.top);
-      this->right = (decltype(RECT_TYPE::right))::max(this->right, rectangle.right);
-      this->bottom = (decltype(RECT_TYPE::bottom))::max(this->bottom, rectangle.bottom);
+      this->left = (decltype(RECT_TYPE::left))::minimum(this->left, rectangle.left);
+      this->top = (decltype(RECT_TYPE::top))::minimum(this->top, rectangle.top);
+      this->right = (decltype(RECT_TYPE::right))::maximum(this->right, rectangle.right);
+      this->bottom = (decltype(RECT_TYPE::bottom))::maximum(this->bottom, rectangle.bottom);
 
       return *this;
 
@@ -97,23 +97,23 @@ public:
  inline POINT_TYPE top_right() const { return POINT_TYPE(this->right, this->top); }
  inline POINT_TYPE bottom_left() const { return POINT_TYPE(this->left, this->bottom); }
 
-// void assign(const rect_type& rect_type, e_orientation eorientation) noexcept;
- //void assign_normal(const rect_type& rect_type, e_orientation eorientation) noexcept;
+// void assign(const rect_type& rect_type, enum_orientation eorientation) noexcept;
+ //void assign_normal(const rect_type& rect_type, enum_orientation eorientation) noexcept;
 
- UNIT_TYPE minimum_dimension() const noexcept { return ::min(width(), height()); }
- UNIT_TYPE maximum_dimension() const noexcept { return ::max(width(), height()); }
+ UNIT_TYPE minimum_dimension() const noexcept { return ::minimum(width(), height()); }
+ UNIT_TYPE maximum_dimension() const noexcept { return ::maximum(width(), height()); }
  UNIT_TYPE min_dimension() const noexcept { return minimum_dimension(); }
  UNIT_TYPE max_dimension() const noexcept { return maximum_dimension(); }
  UNIT_TYPE min_dim() const noexcept { return min_dimension(); }
  UNIT_TYPE max_dim() const noexcept { return max_dimension(); }
 
- UNIT_TYPE max_border() const noexcept { return ::max(::max(this->top, this->left), ::max(this->bottom, this->right)); }
+ UNIT_TYPE max_border() const noexcept { return ::maximum(::maximum(this->top, this->left), ::maximum(this->bottom, this->right)); }
 
- UNIT_TYPE minimum_natural_dimension() const noexcept { return ::min(::max((UNIT_TYPE) 0, width()), ::max((UNIT_TYPE)0, height())); }
- UNIT_TYPE maximum_natural_dimension() const noexcept { return ::max(::max((UNIT_TYPE) 0, width()), ::max((UNIT_TYPE)0, height())); }
+ UNIT_TYPE minimum_natural_dimension() const noexcept { return ::minimum(::maximum((UNIT_TYPE) 0, width()), ::maximum((UNIT_TYPE)0, height())); }
+ UNIT_TYPE maximum_natural_dimension() const noexcept { return ::maximum(::maximum((UNIT_TYPE) 0, width()), ::maximum((UNIT_TYPE)0, height())); }
 
- UNIT_TYPE minimum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
- UNIT_TYPE maximum_absolute_dimension() const noexcept { return ::min(abs(width()), abs(height())); }
+ UNIT_TYPE minimum_absolute_dimension() const noexcept { return ::minimum(abs(width()), abs(height())); }
+ UNIT_TYPE maximum_absolute_dimension() const noexcept { return ::minimum(abs(width()), abs(height())); }
 
  //UNIT_TYPE minimum_signed_absolute_dimension(bool bNegativePreference = true) const noexcept;
  //UNIT_TYPE maximum_signed_absolute_dimension(bool bPositivePreference = true) const noexcept;
@@ -423,7 +423,7 @@ public:
 
       double dx = ::width(rectangle);
       double dy = ::height(rectangle);
-      double dr = ::max(dx / cx, dy / cy);
+      double dr = ::maximum(dx / cx, dy / cy);
 
       UNIT_TYPE cw = (UNIT_TYPE)(cx * dr);
       UNIT_TYPE ch = (UNIT_TYPE)(cy * dr);
@@ -443,7 +443,7 @@ public:
 
       double dx = ::width(rectangle);
       double dy = ::height(rectangle);
-      double dr = ::min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+      double dr = ::minimum(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
       UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)dx : ((UNIT_TYPE)(cx * dr));
       UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)dy : ((UNIT_TYPE)(cy * dr));
@@ -1002,13 +1002,13 @@ public:
     else if (bNegativePreference) // absolutely equal, prefer negative ...
     {
 
-       return ::min(w, h);
+       return ::minimum(w, h);
 
     }
     else // ... otherwise prefer positive
     {
 
-       return ::max(w, h);
+       return ::maximum(w, h);
 
     }
 
@@ -1038,13 +1038,13 @@ public:
     else if (bPositivePreference) // absolutely equal, prefer positive ...
     {
 
-       return ::max(w, h);
+       return ::maximum(w, h);
 
     }
     else // ... otherwise prefer negative
     {
 
-       return ::min(w, h);
+       return ::minimum(w, h);
 
     }
 
@@ -1052,17 +1052,17 @@ public:
  }
 
 
- inline void assign(const rect_type & rectangle, e_orientation eorientation) noexcept
+ inline void assign(const rect_type & rectangle, enum_orientation eorientation) noexcept
  {
 
-    if (eorientation == orientation_horizontal)
+    if (eorientation == e_orientation_horizontal)
     {
 
        this->left = rectangle.left;
        this->right = rectangle.right;
 
     }
-    else if (eorientation == orientation_vertical)
+    else if (eorientation == e_orientation_vertical)
     {
 
        this->top = rectangle.top;
@@ -1073,17 +1073,17 @@ public:
  }
 
 
- inline void assign_normal(const rect_type & rectangle, e_orientation eorientation) noexcept
+ inline void assign_normal(const rect_type & rectangle, enum_orientation eorientation) noexcept
  {
 
-    if (eorientation == orientation_horizontal)
+    if (eorientation == e_orientation_horizontal)
     {
 
        this->top = rectangle.top;
        this->bottom = rectangle.bottom;
 
     }
-    else if (eorientation == orientation_vertical)
+    else if (eorientation == e_orientation_vertical)
     {
 
        this->left = rectangle.left;

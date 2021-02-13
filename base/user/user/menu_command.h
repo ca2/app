@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE menu_command :
-      virtual public ::user::command,
+      virtual public ::message::command,
       virtual public ::user::check,
       virtual public ::user::text
    {

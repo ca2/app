@@ -460,7 +460,7 @@ namespace sockets
       // IP options
       //@{
 
-      bool SetIpOptions(const void *point_i32, socklen_t len);
+      bool SetIpOptions(const void *point, socklen_t len);
       bool SetIpTOS(unsigned char tos);
       unsigned char IpTOS();
       bool SetIpTTL(int ttl);

@@ -1145,12 +1145,12 @@ namespace sockets
    }
 
 
-   bool base_socket::SetIpOptions(const void *point_i32, socklen_t len)
+   bool base_socket::SetIpOptions(const void *point, socklen_t len)
    {
 
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point_i32, len) == -1)
+      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
       {
 
          FATAL(log_this, "setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, __cstr(bsd_socket_error(Errno)));

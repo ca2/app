@@ -110,8 +110,8 @@ namespace user
          DECL_GEN_SIGNAL(_001OnChar);
          DECL_GEN_SIGNAL(_001OnKeyDown);
          DECL_GEN_SIGNAL(_001OnKeyUp);
-         DECL_GEN_SIGNAL(_001OnSetFocus);
-         DECL_GEN_SIGNAL(_001OnKillFocus);
+         // DECL_GEN_SIGNAL(_001OnSetFocus);
+         //DECL_GEN_SIGNAL(_001OnKillFocus);
 
 
          virtual void _001OnTimer(::timer * ptimer) override;
@@ -124,6 +124,12 @@ namespace user
 
 
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
+
+
+         virtual void on_set_keyboard_focus() override;
+
+
+         virtual void on_kill_keyboard_focus() override;
 
 
          virtual void on_control_event(::user::control_event * pevent) override;

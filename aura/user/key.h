@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA key :
-      public ::message::base
+      public ::user::message
    {
    public:
 

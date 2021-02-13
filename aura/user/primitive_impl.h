@@ -51,7 +51,7 @@ namespace user
       virtual void last_install_message_routing(::channel * pchannel);
 
 
-      virtual void queue_message_handler(::message::base * pbase);
+      virtual void queue_message_handler(::message::message * pmessage);
 
 
       virtual bool enable_window(bool bEnable = true) override;
@@ -257,7 +257,7 @@ virtual bool setWMClass(const char * psz);
 
 
       virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam) override;
-      virtual lresult message_call(::message::base * pbase) override;
+      virtual lresult message_call(::message::message * pmessage) override;
 
 
 
@@ -274,9 +274,9 @@ virtual bool setWMClass(const char * psz);
       //virtual bool set_capture(::user::interaction * pinteraction = nullptr) override;
       //virtual ::user::interaction * get_capture() const override;
 
-      //virtual bool has_focus() const override;
-      //virtual bool set_focus(::user::interaction * pinteraction = nullptr) override;
-      //virtual ::user::interaction * get_focus() const override;
+      //virtual bool has_keyboard_focus() const override;
+      //virtual bool set_keyboard_focus(::user::interaction * pinteraction = nullptr) override;
+      //virtual ::user::interaction * get_keyboard_focus() const override;
 
 
 

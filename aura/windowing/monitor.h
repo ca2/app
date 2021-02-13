@@ -30,7 +30,7 @@ namespace windowing
    };
 
 
-   using monitor_map = iptr_map < __pointer(monitor) >;
+   //using monitor_map = iptr_map < __pointer(monitor) >;
 
 
 } // namespace windowing

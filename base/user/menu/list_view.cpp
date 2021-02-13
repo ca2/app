@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/menu/_menu.h"
-#endif
 
 
 namespace user
@@ -52,7 +50,7 @@ namespace user
    }
 
 
-   void menu_list_view::route_command_message(::user::command * pcommand)
+   void menu_list_view::route_command_message(::message::command * pcommand)
    {
 
       if (m_puiMenuNotify != nullptr

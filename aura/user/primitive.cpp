@@ -1,8 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "aura/message/timer.h"
 
@@ -1031,27 +1030,20 @@ namespace user
    }
 
 
-   lresult primitive::send(::message::base * pbase)
+   lresult primitive::send(::message::message * pmessage)
    {
 
-      if(pbase->userprimitive() == nullptr)
-      {
+      message_handler(pmessage);
 
-         pbase->m_playeredUserPrimitive = this;
-
-      }
-
-      message_handler(pbase);
-
-      return pbase->m_lresult;
+      return pmessage->m_lresult;
 
    }
 
 
-   // pbase object should be allocated with new in
+   // pmessage object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool primitive::post(::message::base * pbase)
+   bool primitive::post(::message::message * pmessage)
    {
 
       ::exception::throw_interface_only();
@@ -1077,7 +1069,7 @@ namespace user
    }
 
 
-   lresult primitive::message_call(::message::base * pbase)
+   lresult primitive::message_call(::message::message * pmessage)
    {
 
       return 0;
@@ -1235,29 +1227,31 @@ namespace user
    }
 
 
-   bool primitive::create_child(::user::interaction * puserinteractionParent)
+   ::e_status primitive::create_child(::user::interaction * puserinteractionParent)
    {
 
       ::exception::throw_interface_only();
 
-      return true;
+      return ::success;
 
    }
 
    
-   bool primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
+   ::e_status primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
       m_id = id;
 
-      if (!create_child(puserinteractionParent))
+      auto estatus = create_child(puserinteractionParent);
+
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      return estatus;
 
    }
 
@@ -1280,7 +1274,7 @@ namespace user
    //}
 
 
-   bool primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   ::e_status primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
       if (!id.is_empty())
@@ -1290,41 +1284,40 @@ namespace user
 
       }
 
+      ::e_status estatus;
+
       if (!puserinteractionParent)
       {
 
-         if (!create_host())
-         {
-
-            return false;
-
-         }
+         estatus = create_host();
 
       }
       else
       {
 
-         if (!create_child(puserinteractionParent))
-         {
-
-            return false;
-
-         }
+         estatus = create_child(puserinteractionParent);
 
       }
 
-      return true;
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
    //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
-   bool primitive::create_host()
+   ::e_status primitive::create_host()
    {
 
-      //::exception::throw_interface_only();
+      __throw(interface_only_exception());
 
-      return true;
+      return ::error_no_interface;
 
    }
 
@@ -1750,13 +1743,13 @@ namespace user
    }
 
 
-   void primitive::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
+   //void primitive::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
 
-   {
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
    void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectClient, bool bStretch)
@@ -1994,14 +1987,14 @@ namespace user
    }
 
 
-   void primitive::default_message_handler(::message::base * pbase)
+   void primitive::default_message_handler(::message::message * pmessage)
    {
 
 
    }
 
 
-   void primitive::message_handler(::message::base * pbase)
+   void primitive::message_handler(::message::message * pmessage)
    {
 
       ::exception::throw_interface_only();
@@ -2071,7 +2064,7 @@ namespace user
 
       //::user::interaction * puiActive = puiTopLevel->GetActiveWindow();
 
-      return puiTopLevel->is_active();
+      return puiTopLevel->is_active_window();
 
       //return  puiActive == puiTopLevel;
 
@@ -2325,7 +2318,7 @@ namespace user
    }
 
 
-   //bool primitive::has_focus() const
+   //bool primitive::has_keyboard_focus() const
    //{
 
    //   ::exception::throw_interface_only();
@@ -2352,7 +2345,7 @@ namespace user
 
 
 
-   //bool primitive::set_focus(::user::interaction * pinteraction)
+   //bool primitive::set_keyboard_focus(::user::interaction * pinteraction)
    //{
 
    //   return false;
@@ -2360,7 +2353,7 @@ namespace user
    //}
 
 
-   //::user::interaction * primitive::get_focus() const
+   //::user::interaction * primitive::get_keyboard_focus() const
    //{
 
    //   return nullptr;
@@ -2589,12 +2582,12 @@ namespace user
 
    }
 
-   ::point_i32 primitive::get_cursor_pos() const
-   {
+   //::point_i32 primitive::get_cursor_pos() const
+   //{
 
-      return ::point_i32();
+   //   return ::point_i32();
 
-   }
+   //}
 
    
    ::size_f64 primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
@@ -2797,12 +2790,21 @@ namespace user
    }
 
 
-   bool primitive::on_keyboard_focus(::user::primitive * pfocus)
+   void primitive::_task_transparent_mouse_event()
    {
 
-      //set_need_redraw();
 
-      return true;
+   }
+
+
+   void primitive::on_set_keyboard_focus()
+   {
+
+   }
+
+
+   void primitive::on_kill_keyboard_focus()
+   {
 
    }
 
@@ -2822,30 +2824,30 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::get_keyboard_focus()
-   {
+   //::user::primitive * primitive::get_keyboard_focus()
+   //{
 
-      auto puserinteractionHost = get_host_window();
+   //   auto puserinteractionHost = get_host_window();
 
-      if (::is_null(puserinteractionHost))
-      {
+   //   if (::is_null(puserinteractionHost))
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      ::user::primitive * pprimitive = puserinteractionHost->get_keyboard_focus();
+   //   ::user::primitive * pprimitive = puserinteractionHost->get_keyboard_focus();
 
-      if(pprimitive == nullptr)
-      {
+   //   if(pprimitive == nullptr)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return dynamic_cast < ::user::interaction * > (pprimitive);
+   //   return dynamic_cast < ::user::interaction * > (pprimitive);
 
-   }
+   //}
 
 
    i32 primitive::get_descendant_level(const ::user::primitive * pinteraction) const
@@ -2965,7 +2967,7 @@ namespace user
 
 
 
-   bool primitive::OnCommand(::message::base * pbase)
+   bool primitive::OnCommand(::message::message * pmessage)
    {
 
       ::exception::throw_interface_only();
@@ -2975,7 +2977,7 @@ namespace user
    }
 
 
-   bool primitive::OnNotify(::message::base * pbase)
+   bool primitive::OnNotify(::message::message * pmessage)
    {
 
       ::exception::throw_interface_only();
@@ -2985,7 +2987,7 @@ namespace user
    }
 
 
-   bool primitive::OnChildNotify(::message::base * pbase)
+   bool primitive::OnChildNotify(::message::message * pmessage)
    {
 
       ::exception::throw_interface_only();
@@ -2998,7 +3000,7 @@ namespace user
 
 
 
-   void primitive::on_command(::user::command * pcommand)
+   void primitive::on_command(::message::command * pcommand)
    {
 
       channel::on_command(pcommand);
@@ -3016,7 +3018,7 @@ namespace user
    }
 
 
-   bool primitive::has_command_handler(::user::command * pcommand)
+   bool primitive::has_command_handler(::message::command * pcommand)
    {
 
       ::exception::throw_interface_only();
@@ -3268,29 +3270,29 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   bool primitive::open_clipboard()
-   {
-
-      __throw(interface_only_exception());
-
-      return false;
-
-   }
-
-
-   bool primitive::close_clipboard()
-   {
-
-      __throw(interface_only_exception());
-
-      return false;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool primitive::open_clipboard()
+//   {
+//
+//      __throw(interface_only_exception());
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool primitive::close_clipboard()
+//   {
+//
+//      __throw(interface_only_exception());
+//
+//      return false;
+//
+//   }
+//
+//
+//#endif
 
 
    //oswindow primitive::get_safe_handle() const
@@ -3457,7 +3459,7 @@ namespace user
 {
 
 
-   bool primitive::post_simple_command(const e_simple_command & ecommand, lparam lparam)
+   bool primitive::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
    {
 
       post_message(e_message_simple_command, (wparam)ecommand, lparam);
@@ -3470,7 +3472,7 @@ namespace user
    void primitive::on_simple_command(::message::simple_command * psimplecommand)
    {
 
-      if (psimplecommand->m_esimplecommand == simple_command_full_screen)
+      if (psimplecommand->command() == e_simple_command_full_screen)
       {
 
          get_wnd()->display(e_display_full_screen);
@@ -3482,10 +3484,10 @@ namespace user
    }
 
 
-   __pointer(::message::base) primitive::get_message_base(const ::id & id, wparam wparam, lparam lparam)
+   __pointer(::message::message) primitive::get_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
-      __pointer(::message::base) pbase;
+      __pointer(::message::message) pmessage;
 
       auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
 
@@ -3494,28 +3496,28 @@ namespace user
       case ::message::PrototypeNone:
       {
 
-         pbase = __new(::message::base);
+         pmessage = __new(::user::message);
 
       }
       break;
       case ::message::PrototypeCreate:
       {
-         pbase = __new(::message::create);
+         pmessage = __new(::message::create);
       }
       break;
       case ::message::PrototypeEnable:
       {
-         pbase = __new(::message::enable);
+         pmessage = __new(::message::enable);
       }
       break;
       case ::message::PrototypeNcActivate:
       {
-         pbase = __new(::message::nc_activate);
+         pmessage = __new(::message::nc_activate);
       }
       break;
       case ::message::PrototypeKey:
       {
-         pbase = __new(::message::key);
+         pmessage = __new(::message::key);
       }
       break;
       case ::message::PrototypeTimer:
@@ -3523,109 +3525,109 @@ namespace user
          
          //__throw(::exception::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
          
-         pbase = __new(::message::timer);
+         pmessage = __new(::message::timer);
 
       }
       break;
       case ::message::PrototypeShowWindow:
       {
-         pbase = __new(::message::show_window);
+         pmessage = __new(::message::show_window);
       }
       break;
       case ::message::PrototypeSetCursor:
       {
-         pbase = __new(::message::set_cursor);
+         pmessage = __new(::message::set_cursor);
       }
       break;
       case ::message::PrototypeNcHitTest:
       {
-         pbase = __new(::message::nchittest);
+         pmessage = __new(::message::nc_hit_test);
       }
       break;
       case ::message::PrototypeMove:
       {
-         pbase = __new(::message::move);
+         pmessage = __new(::message::move);
       }
       break;
       case ::message::PrototypeEraseBkgnd:
       {
-         pbase = __new(::message::erase_bkgnd);
+         pmessage = __new(::message::erase_bkgnd);
       }
       break;
       case ::message::PrototypeScroll:
       {
-         pbase = __new(::message::scroll);
+         pmessage = __new(::message::scroll);
       }
       break;
       case ::message::PrototypeSetFocus:
       {
-         pbase = __new(::message::set_focus);
+         pmessage = __new(::message::set_keyboard_focus);
       }
       break;
       case ::message::PrototypeKillFocus:
       {
-         pbase = __new(::message::kill_focus);
+         pmessage = __new(::message::kill_keyboard_focus);
       }
       break;
 #if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
       case ::message::PrototypeWindowPos:
       {
-         pbase = __new(::message::window_pos);
+         pmessage = __new(::message::window_pos);
       }
       break;
       case ::message::PrototypeNcCalcSize:
       {
-         pbase = __new(::message::nc_calc_size);
+         pmessage = __new(::message::nc_calc_size);
       }
       break;
 #endif
       case ::message::PrototypeMouse:
       {
-         pbase = __new(::message::mouse);
+         pmessage = __new(::message::mouse);
       }
       break;
       case ::message::PrototypeMouseWheel:
       {
-         pbase = __new(::message::mouse_wheel);
+         pmessage = __new(::message::mouse_wheel);
       }
       break;
       case ::message::PrototypeSize:
       {
-         pbase = __new(::message::size);
+         pmessage = __new(::message::size);
       }
       break;
       case ::message::PrototypeActivate:
       {
-         pbase = __new(::message::activate);
+         pmessage = __new(::message::activate);
       }
       break;
       case ::message::PrototypeMouseActivate:
       {
-         pbase = __new(::message::mouse_activate);
+         pmessage = __new(::message::mouse_activate);
       }
       break;
       case ::message::PrototypeSimpleCommand:
       {
-         pbase = __new(::message::simple_command);
+         pmessage = __new(::message::simple_command);
       }
       break;
       default:
       {
-         pbase = __new(::message::base);
+         pmessage = __new(::message::message);
       }
       break;
       }
 
-      if (pbase.is_null())
+      if (pmessage.is_null())
       {
 
          return nullptr;
 
       }
 
-      pbase->set(get_oswindow(), get_window(), id, wparam, lparam);
+      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
 
-      return pbase;
+      return pmessage;
 
    }
 
@@ -3633,12 +3635,12 @@ namespace user
    bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, lresult * plresult)
    {
 
-      auto pbase = get_message_base(id, wparam, lparam);
+      auto pmessage = get_message(id, wparam, lparam);
 
       try
       {
 
-         message_handler(pbase);
+         message_handler(pmessage);
 
       }
       catch (exception_pointer pe)
@@ -3657,7 +3659,7 @@ namespace user
 
       }
 
-      if (!pbase->m_bRet)
+      if (!pmessage->m_bRet)
       {
 
          return false;
@@ -3670,7 +3672,7 @@ namespace user
          try
          {
 
-            *plresult = pbase->m_lresult;
+            *plresult = pmessage->m_lresult;
 
          }
          catch (...)
@@ -4367,7 +4369,7 @@ namespace user
    }
 
 
-   bool primitive::set_icon(::draw2d::icon * picon, bool bSmall)
+   ::e_status primitive::set_icon(::windowing::icon * picon)
    {
 
       return false;

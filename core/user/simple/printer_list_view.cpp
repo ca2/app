@@ -1,12 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple/_simple.h"
-#endif
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
-#ifdef WINDOWS_DESKTOP
-#include <winspool.h>
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#include <winspool.h>
+//#endif
 
 
 simple_printer_list_view::simple_printer_list_view()
@@ -38,14 +36,14 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   DWORD cbNeeded = 0;
+   //DWORD cbNeeded = 0;
 
-   DWORD cbReturned = 0;
+   //DWORD cbReturned = 0;
 
-   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, nullptr, 0, &cbNeeded, &cbReturned);
+   //::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, nullptr, 0, &cbNeeded, &cbReturned);
 
-   if(cbNeeded <= 0)
-      return;
+   //if(cbNeeded <= 0)
+   //   return;
 
 #else
 
@@ -53,24 +51,24 @@ void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
-   PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
-   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (byte *) infoa, cbNeeded, &cbNeeded, &cbReturned);
-
-   string_array stra;
-
-   for(u32 i = 0; i < cbReturned; i++)
-   {
-
-      stra.add(string(infoa[i].pName));
-   }
-
-   m_psimplelistdata->set_data(this, stra);
-
-   free(infoa);
-#else
-   //__throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
+//   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (byte *) infoa, cbNeeded, &cbNeeded, &cbReturned);
+//
+//   string_array stra;
+//
+//   for(u32 i = 0; i < cbReturned; i++)
+//   {
+//
+//      stra.add(string(infoa[i].pName));
+//   }
+//
+//   m_psimplelistdata->set_data(this, stra);
+//
+//   free(infoa);
+//#else
+//   //__throw(todo());
+//#endif
 
 
    auto pcolumn = new_list_column();

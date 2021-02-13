@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -381,9 +379,9 @@ namespace user
 
       rectClient.offset(m_pointScroll);
 
-      pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
+      pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_rect(rectClient, ARGB(255, 192, 192, 192));
+      pgraphics->draw_rectangle(rectClient, argb(255, 192, 192, 192));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -435,7 +433,7 @@ namespace user
 
                   double dH = (double)rectangle.height() / (double)pimageSrc->height();
 
-                  double dMin = min(dW, dH);
+                  double dMin = minimum(dW, dH);
 
                   ::size_i32 szNew = pimageSrc->get_size() * dMin;
 
@@ -484,9 +482,9 @@ namespace user
                   if (m_itemHover == item)
                   {
 
-                     crBorder = ARGB(255, 100, 180, 240);
+                     crBorder = argb(255, 100, 180, 240);
 
-                     crSel = ARGB(108, 100, 180, 240);
+                     crSel = argb(108, 100, 180, 240);
 
                      bHover = true;
 
@@ -494,9 +492,9 @@ namespace user
                   else
                   {
 
-                     crBorder = ARGB(255, 80, 140, 200);
+                     crBorder = argb(255, 80, 140, 200);
 
-                     crSel = ARGB(108, 80, 140, 200);
+                     crSel = argb(108, 80, 140, 200);
 
                      bHover = false;
 
@@ -511,9 +509,9 @@ namespace user
                   if (m_itemHover == item)
                   {
 
-                     crBorder = ARGB(255, 80, 130, 180);
+                     crBorder = argb(255, 80, 130, 180);
 
-                     crSel = ARGB(108, 80, 130, 180);
+                     crSel = argb(108, 80, 130, 180);
 
                      bHover = true;
 
@@ -521,7 +519,7 @@ namespace user
                   else
                   {
 
-                     crBorder = ARGB(255, 100, 100, 100);
+                     crBorder = argb(255, 100, 100, 100);
 
                      bHover = false;
 
@@ -532,7 +530,7 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_rect(rectSel, crSel);
+                  pgraphics->fill_rectangle(rectSel, crSel);
 
                }
 
@@ -544,11 +542,11 @@ namespace user
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw_rect(rectSel, crBorder);
+                  pgraphics->draw_rectangle(rectSel, crBorder);
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw_rect(rectSel, crBorder);
+                  pgraphics->draw_rectangle(rectSel, crBorder);
 
                }
 

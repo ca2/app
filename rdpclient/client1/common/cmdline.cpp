@@ -152,7 +152,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "glyph-cache", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "glyph cache" },
 	{ "codec-cache", COMMAND_LINE_VALUE_REQUIRED, "<rfx|nsc|jpeg>", nullptr, nullptr, -1, nullptr, "bitmap codec cache" },
 	{ "fast-path", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "fast-path input/output" },
-	{ "max-fast-path-size_i32", COMMAND_LINE_VALUE_OPTIONAL, "<size_i32>", nullptr, nullptr, -1, nullptr, "maximum fast-path update size_i32" },
+	{ "maximum-fast-path-size_i32", COMMAND_LINE_VALUE_OPTIONAL, "<size_i32>", nullptr, nullptr, -1, nullptr, "maximum fast-path update size_i32" },
 	{ "async-input", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous input" },
 	{ "async-update", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous update" },
 	{ "async-transport", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous transport (unstable)" },
@@ -2191,7 +2191,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 			settings->FastPathInput = arg->Value ? true : false;
 			settings->FastPathOutput = arg->Value ? true : false;
 		}
-		CommandLineSwitchCase(arg, "max-fast-path-size_i32")
+		CommandLineSwitchCase(arg, "maximum-fast-path-size_i32")
 		{
 			settings->MultifragMaxRequestSize = atoi(arg->Value);
 		}

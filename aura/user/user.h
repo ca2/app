@@ -47,16 +47,19 @@ namespace user
       virtual ~user();
 
 
+      virtual ::e_status initialize(::layered * pobjectContext) override;
+
+
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
+      virtual ::user::interaction * interaction(oswindow oswindow);
 
+      virtual ::user::interaction * get_mouse_capture(::thread * pthread);
 
-      virtual ::user::interaction * get_capture();
+      virtual ::user::interaction * get_keyboard_focus(::thread * pthread);
 
-      virtual ::user::interaction * get_focus();
+      virtual ::user::interaction * get_active_window(::thread * pthread);
 
-
-      virtual ::user::interaction * get_active_window();
       virtual ::e_status set_active_window(::user::interaction *);
 
       
@@ -76,7 +79,7 @@ namespace user
       virtual ::e_status init() override;
 
 
-      virtual ::e_status create_os_windowing();
+      virtual ::e_status create_windowing();
 
 
 

@@ -142,7 +142,7 @@ static int_bool
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (::u32) max(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif
@@ -447,7 +447,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          case PNG_COLOR_TYPE_RGB:
          case PNG_COLOR_TYPE_RGB_ALPHA:
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip the RGB pixels to BGR (or RGBA to BGRA)
+            // flip the rgb pixels to BGR (or RGBA to BGRA)
 
             if(image_type == FIT_BITMAP)
             {
@@ -553,7 +553,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             png_get_PLTE(png_ptr,info_ptr, &png_palette, &palette_entries);
 
-/*            palette_entries = min((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
+/*            palette_entries = minimum((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
 /*            palette = FreeImage_GetPalette(pimage);
 
             // store the palette
@@ -903,7 +903,7 @@ static int_bool DLL_CALLCONV
          }
          else
          {
-            // 16-bit greyscale or 16-bit RGB(A)
+            // 16-bit greyscale or 16-bit rgb(A)
             bit_depth = 16;
          }
 
@@ -968,7 +968,7 @@ static int_bool DLL_CALLCONV
                          PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip BGR pixels to RGB
+            // flip BGR pixels to rgb
             if(image_type == FIT_BITMAP)
             {
                png_set_bgr(png_ptr);
@@ -982,7 +982,7 @@ static int_bool DLL_CALLCONV
                          PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip BGR pixels to RGB
+            // flip BGR pixels to rgb
             if(image_type == FIT_BITMAP)
             {
                png_set_bgr(png_ptr);

@@ -242,7 +242,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      iStart = iLen + iStart;
 //   if(iLenFind > iLen)
 //      return nullptr;
-//   iStart = min(iStart,iLen - iLenFind);
+//   iStart = minimum(iStart,iLen - iLenFind);
 //   while(iStart >= 0)
 //   {
 //      if(ansi_count_compare(&psz[iStart],pszFind,iLenFind) == 0)
@@ -322,7 +322,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strFinal += ::str::ch::to_upper_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point_i32,strFinal);
+//   strcpy(point,strFinal);
 //   return psz;
 //
 //
@@ -346,7 +346,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strFinal += ::str::ch::to_lower_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point_i32,strFinal);
+//   strcpy(point,strFinal);
 //   return psz;
 //
 //   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -1680,7 +1680,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
-//      char * pszBuffer = GetBuffer(max(nNewLength,nOldLength));
+//      char * pszBuffer = GetBuffer(maximum(nNewLength,nOldLength));
 //
 //      char * pszStart = pszBuffer + iStart;
 //      char * pszEnd = pszBuffer + nOldLength;
@@ -1746,7 +1746,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
-//      char * pszBuffer = GetBuffer(max(nNewLength, nOldLength));
+//      char * pszBuffer = GetBuffer(maximum(nNewLength, nOldLength));
 //
 //      char * pszStart = pszBuffer + iStart;
 //      char * pszEnd = pszBuffer + nOldLength;

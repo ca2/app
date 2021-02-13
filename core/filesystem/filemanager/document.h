@@ -97,7 +97,7 @@ namespace filemanager
       virtual void on_file_manager_open(const ::file::item_array & itema, const ::action_context & action_context);
       virtual void on_file_manager_open_folder(__pointer(::file::item)  str, const ::action_context & action_context);
 
-      virtual void on_file_manager_item_update(::user::command * pcommand, const ::file::item_array & itema);
+      virtual void on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema);
       virtual void on_file_manager_item_command(const char * pszId, const ::file::item_array & itema);
 
       //critical_section * GetItemIdListCriticalSection();
@@ -130,13 +130,13 @@ namespace filemanager
       operation_document * get_operation_doc(bool bSwitch);
 
 
-      virtual void on_command(::user::command * pcommand) override;
-      virtual void on_command_probe(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
+      virtual void on_command_probe(::message::command * pcommand) override;
 
       virtual bool on_new_document() override;
       virtual bool on_open_document(const ::payload & varFile) override;
 
-      virtual bool HandleDefaultFileManagerItemCmdMsg(::user::command * pcommand,::file::item_array & itema);
+      virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);
 
       void PopViews();
       void CreateViews();

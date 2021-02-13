@@ -556,14 +556,14 @@ Serial::SerialImpl::read (::u328_t *buf, size_t size)
     }
     // Timeout for the next select is whichever is less of the remaining
     // total read timeout and the inter-byte timeout.
-    ::u32 timeout = std::min(static_cast<::u32> (timeout_remaining_ms),
+    ::u32 timeout = std::minimum(static_cast<::u32> (timeout_remaining_ms),
                                 timeout_.inter_byte_timeout);
     // Wait for the device to be readable, and then attempt to read.
     if (waitReadable(timeout)) {
       // If it's a fixed-length multi-byte read, insert a wait here so that
       // we can attempt to grab the whole thing in a single IO call. Skip
-      // this wait if a non-max inter_byte_timeout is specified.
-      if (size > 1 && timeout_.inter_byte_timeout == Timeout::max()) {
+      // this wait if a non-maximum inter_byte_timeout is specified.
+      if (size > 1 && timeout_.inter_byte_timeout == Timeout::maximum()) {
         size_t bytes_available = available();
         if (bytes_available + bytes_read < size) {
           waitByteTimes(size - (bytes_available + bytes_read));

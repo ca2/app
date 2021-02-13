@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #include "bz.h"
 #include <bzlib.h>
 
@@ -71,9 +72,9 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
 
    i64 uRead             = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
 
-   iBlockSize                 = max(1, min(9, iBlockSize));
-   iVerbosity                 = max(0, min(4, iVerbosity));
-   iWorkFactor                = max(0, min(250, iWorkFactor));
+   iBlockSize                 = maximum(1, minimum(9, iBlockSize));
+   iVerbosity                 = maximum(0, minimum(4, iVerbosity));
+   iWorkFactor                = maximum(0, minimum(250, iWorkFactor));
 
    m_CurrentBufferSize        = 1024 * 1024 * 8;
    i32 blockSize100k      = iBlockSize; // 900k

@@ -438,7 +438,7 @@ string x11_keyboard_get_current_group_symbol()
 namespace user
 {
 
-   CLASS_DECL_CORE ::user::e_key keysym_to_userkey(const lparam & lparam)
+   CLASS_DECL_CORE ::user::enum_key keysym_to_userkey(const lparam & lparam)
    {
 
       KeySym keysym = (KeySym) (iptr)lparam.m_lparam;
@@ -488,13 +488,13 @@ namespace user
       if(keysym >= 'a' && keysym <= 'z')
       {
 
-         return (::user::e_key) ((int)(::user::e_key_a) + keysym - 'a');
+         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'a');
 
       }
       else if(keysym >= 'A' && keysym <= 'Z')
       {
 
-         return (::user::e_key) ((int)(::user::e_key_a) + keysym - 'A');
+         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'A');
 
       }
 

@@ -786,7 +786,7 @@ extern "C" {
 
 #if(WINVER >= 0x0500)
 #define CAL_SYEARMONTH            0x0000002f  // year month format string
-#define CAL_ITWODIGITYEARMAX      0x00000030  // two digit year max
+#define CAL_ITWODIGITYEARMAX      0x00000030  // two digit year maximum
 #endif /* WINVER >= 0x0500 */
 
 #if (WINVER >= 0x0600)
@@ -935,14 +935,14 @@ typedef ::u32 CALID;
 
 typedef struct _cpinfo
 {
-   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
    byte    DefaultChar[MAX_DEFAULTCHAR];   // default character
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
 } CPINFO, *LPCPINFO;
 
 typedef struct _cpinfoexA
 {
-   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
    byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
@@ -951,7 +951,7 @@ typedef struct _cpinfoexA
 } CPINFOEXA, *LPCPINFOEXA;
 typedef struct _cpinfoexW
 {
-   ::u32    MaxCharSize;                    // max length (in bytes) of a char
+   ::u32    MaxCharSize;                    // maximum length (in bytes) of a char
    byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)

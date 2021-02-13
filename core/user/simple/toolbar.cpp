@@ -1,12 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+//#include "aura/operating_system.h"
 #include "core/user/simple/_simple.h"
-#endif
 
 
 #define TIMER_HOVER 321654
 
-class simple_tool_command : public ::user::command        // class private to this file !
+class simple_tool_command : public ::message::command        // class private to this file !
 {
 public: // re-implementations only
 
@@ -244,7 +243,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_rect(rectClient, get_color(pstyle, ::user::e_element_background));
+   pgraphics->fill_rectangle(rectClient, get_color(pstyle, ::user::e_element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -310,7 +309,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //         rectWindow.top,
 //         rectWindow.width(),
 //         rectWindow.height(),
-//         RGB(215, 215, 210),
+//         rgb(215, 215, 210),
 //         220);
 //      }
 //      else
@@ -321,16 +320,16 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //         rectWindow.top,
 //         rectWindow.width(),
 //         rectWindow.height(),
-//         RGB(215, 215, 210),
+//         rgb(215, 215, 210),
 //         180);
 //      }
 //   }
 //   else
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      pgraphics->fill_rect(rectWindow, psession->get_default_color(COLOR_3DFACE));
+//      pgraphics->fill_rectangle(rectWindow, psession->get_default_color(COLOR_3DFACE));
 //#else
-//      pgraphics->fill_rect(rectWindow, ARGB(255, 190, 184, 177));
+//      pgraphics->fill_rectangle(rectWindow, argb(255, 190, 184, 177));
 //#endif
 //   }
 //
@@ -372,10 +371,10 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   // draw borders in non-client area
 //   DrawBorders(pgraphics, rectWindow);
-//   /*   pgraphics->fill_rect(
+//   /*   pgraphics->fill_rectangle(
 //   rectWindow.left + 7, rectWindow.top,
 //   rectWindow.right, rectWindow.top + 1,
-//   RGB(128, 128, 123));*/
+//   rgb(128, 128, 123));*/
 //
 //   // erase parts not drawn
 //   //pgraphics->IntersectClipRect(rectWindow);
@@ -424,7 +423,7 @@ void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisa
 
          // allow reflections
          //if (::user::interaction::on_command(0,
-         //   MAKELONG((index)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
+         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
          //   &state, nullptr))
          //   continue;
 
@@ -498,7 +497,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    index buttonx, buttony;
 
-   auto iC = min(nCount, m_itema.get_size());
+   auto iC = minimum(nCount, m_itema.get_size());
 
    ::rectangle_i32 rectItemPad = get_item_pad();
 
@@ -579,9 +578,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       cur.x += (::i32) buttonx; //  +sPress.cx;
 
-      sizeResult.cx = max(cur.x, sizeResult.cx);
+      sizeResult.cx = maximum(cur.x, sizeResult.cx);
 
-      cur.y = (::i32) max(cur.y, buttony);
+      cur.y = (::i32) maximum(cur.y, buttony);
 
       if (m_itema[i]->m_estate & e_toolbar_item_state_wrap)
       {
@@ -712,7 +711,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       rectSeparator.bottom = rectImage.bottom;
 
-      pgraphics->draw_3drect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+      pgraphics->draw_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
 
    }
    else
@@ -736,9 +735,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
                rectItem.top,
                rectItem.width(),
                rectItem.height(),
-               RGB(255, 255, 250), 208);
+               rgb(255, 255, 250), 208);
 
-               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -775,11 +774,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ARGB(190, 92, 184, 92));
+               pen->create_solid(1, argb(190, 92, 184, 92));
 
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ARGB(123, 180, 184, 255));
+               brush->create_solid(argb(123, 180, 184, 255));
 
                pgraphics->set(pen);
 
@@ -823,11 +822,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(1, ARGB(255, 92, 92, 92));
+            pen->create_solid(1, argb(255, 92, 92, 92));
 
             ::draw2d::brush_pointer brush(e_create);
 
-            brush->create_solid(ARGB(255, 255, 255, 255));
+            brush->create_solid(argb(255, 255, 255, 255));
 
             pgraphics->set(pen);
 
@@ -863,14 +862,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-            pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
+            pgraphics->fill_rectangle(rectItem, argb(190, 255, 255, 255));
 
          }
 
          if (estate & ::user::e_state_checked)
          {
 
-            pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+            pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
          }
 
@@ -932,13 +931,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       if (!(estate & ::user::e_state_disabled))
       {
 
-         brushText->create_solid(ARGB(255, 0, 0, 0));
+         brushText->create_solid(argb(255, 0, 0, 0));
 
       }
       else
       {
 
-         brushText->create_solid(ARGB(255, 120, 120, 118));
+         brushText->create_solid(argb(255, 120, 120, 118));
 
       }
 
@@ -977,7 +976,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
    if ((item.m_estyle & e_toolbar_item_style_separator) != 0)
    {
 
-      rectangle_i32 = item.m_rectangle;
+      rectangle = item.m_rectangle;
 
    }
    else
@@ -987,7 +986,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
       {
          case ::user::e_element_item:
 
-         rectangle_i32 = item.m_rectangle;
+         rectangle = item.m_rectangle;
 
          break;
       case ::user::e_element_image:
@@ -999,7 +998,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
 
          }
 
-         rectangle_i32 = item.m_rectangle;
+         rectangle = item.m_rectangle;
 
          rectangle.left += rectItemPad.left;
          rectangle.bottom -= rectItemPad.bottom;
@@ -1010,7 +1009,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
       case ::user::e_element_text:
       {
 
-         rectangle_i32 = item.m_rectangle;
+         rectangle = item.m_rectangle;
 
          rectangle.left += rectItemPad.left;
 
@@ -1129,7 +1128,7 @@ m_pimagelist->create(
 
    m_sizeImage.cx,
    1,
-   RGB(192, 192, 192)
+   rgb(192, 192, 192)
    );
 
 _001OnImageListAttrib();
@@ -1374,7 +1373,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 
    auto psession = Session;
 
-   if (psession->GetCapture() == this)
+   if (has_mouse_capture())
    {
 
       item = ::user::e_element_none;
@@ -1485,7 +1484,7 @@ bool simple_toolbar::on_click(const ::user::item & item)
 
    }
 
-   ::user::command command(m_itema[item]->m_id);
+   ::message::command command(m_itema[item]->m_id);
 
    pwnd->_001SendCommand(&command);
 
@@ -1561,7 +1560,7 @@ void simple_toolbar::_001OnImageListAttrib()
       &spgraphics,
       m_pimagelistHue,
       m_pimagelist,
-      RGB(192, 192, 180),
+      rgb(192, 192, 180),
       0.50
    );
 
@@ -1575,7 +1574,7 @@ void simple_toolbar::_001OnImageListAttrib()
    System.imaging().Createcolor_blend_ImageList(
       m_pimagelistBlend,
       m_pimagelist,
-      RGB(255, 255, 240),
+      rgb(255, 255, 240),
       64
    );
 
@@ -1590,7 +1589,7 @@ void simple_toolbar::_001OnImageListAttrib()
       &spgraphics,
       m_pimagelistHueLight,
       m_pimagelist,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.50
       );
 
@@ -1603,7 +1602,7 @@ void simple_toolbar::_001OnImageListAttrib()
 // simple_toolbar idle update through simple_tool_command class
 
 simple_tool_command::simple_tool_command(::layered * pobjectContext) :
-   ::user::command(pobjectContext)
+   ::message::command(pobjectContext)
 {
 
 }
@@ -1773,14 +1772,18 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
    ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
-   // adjust non-client area for border space
-   pnccalcsize->m_pparams->rgrc[0].left += rectangle.left;
+   __throw(todo());
 
-   pnccalcsize->m_pparams->rgrc[0].top += rectangle.top;
+   //auto pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
 
-   pnccalcsize->m_pparams->rgrc[0].right += rectangle.right;
+   //// adjust non-client area for border space
+   //pparams->rgrc[0].left += rectangle.left;
 
-   pnccalcsize->m_pparams->rgrc[0].bottom += rectangle.bottom;
+   //pparams->rgrc[0].top += rectangle.top;
+
+   //pparams->rgrc[0].right += rectangle.right;
+
+   //pparams->rgrc[0].bottom += rectangle.bottom;
 
 #else
 
@@ -1833,7 +1836,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto iC = min(nCount, m_itema.get_count());
+   auto iC = minimum(nCount, m_itema.get_count());
 
    bool bFirstInRow = true;
 
@@ -2394,9 +2397,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
       const ::size_i32 & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
 
-      sizeResult.cx = max(sizeResult.cx, size.cx);
+      sizeResult.cx = maximum(sizeResult.cx, size.cx);
 
-      sizeResult.cy = max(sizeResult.cy, size.cy);
+      sizeResult.cy = maximum(sizeResult.cy, size.cy);
 
    }
 
@@ -2475,7 +2478,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 //void simple_toolbar::_001OnMouseLeave(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::base) pbase(pmessage);
+//   __pointer(::user::message) pusermessage(pmessage);
 //
 //   m_itemHover = ::user::e_element_none;
 //
@@ -2483,7 +2486,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 //
 //   set_need_redraw();
 //
-//   pbase->set_lresult(0);
+//   pusermessage->set_lresult(0);
 //
 //}
 
@@ -2521,7 +2524,7 @@ void simple_toolbar::RemoveAllTools()
 rectangle_i32 simple_toolbar::get_item_pad()
 {
 
-   auto rectangle_i32 = m_rectItemPad;
+   auto rectangle = m_rectItemPad;
 
    if (rectangle.left < 0)
    {
@@ -2559,7 +2562,7 @@ rectangle_i32 simple_toolbar::get_item_pad()
 rectangle_i32 simple_toolbar::get_bar_border()
 {
 
-   auto rectangle_i32 = m_rectBorder;
+   auto rectangle = m_rectBorder;
 
    if (rectangle.left < 0)
    {

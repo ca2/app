@@ -21,7 +21,7 @@ namespace ftp
 
       m_strFileName = strFileName;
 
-      m_file = Context.file().get_file(strFileName, eopen);
+      m_file = get_context()->file().get_file(strFileName, eopen);
 
       return m_file.is_set();
 

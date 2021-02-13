@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "apex/user/menu_shared.h"
+#include "aura/windowing/menu_item.h"
+#include "aura/windowing/menu.h"
 
 
 #ifndef TBSTYLE_FLAT
@@ -89,13 +90,13 @@ namespace user
       enum_display                                 m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
-      ::size_i32                                       m_sizeMinimum;
+      ::size_i32                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __reference(::user::style)                   m_puserstyle;
       bool                                         m_bShowControlBox;
       
       
-      __pointer(menu_shared)                       m_pmenushared;
+      __pointer(::windowing::menu)                 m_pmenushared;
       string_array                                 m_straMenuParent;
       string_array                                 m_straMenuName;
       string_array                                 m_straMenuId;
@@ -121,7 +122,7 @@ namespace user
       
       virtual bool is_translucid_user_style(enum_style estyle);
       virtual ::user::enum_style translate_user_style(const char * pszStyle);
-      virtual ::color get_moveable_border_color();
+      virtual ::color::color get_moveable_border_color();
 
       virtual void set_user_style(enum_style estyle);
       virtual void set_user_style(const char * pszStyle);
@@ -137,7 +138,7 @@ namespace user
 
       virtual bool on_create_bars();
 
-      virtual ::color get_border_main_body_color();
+      virtual ::color::color get_border_main_body_color();
 
       ::e_status add_menu_item(const string & strPath, const string & strText, const string & strId);
 

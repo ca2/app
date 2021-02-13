@@ -69,25 +69,25 @@ namespace html
          if(m_border.left == 0.f && bTableBorder)
          {
             m_border.left = m_iBorder;
-            m_border.crLeft = ARGB(255, 192, 192, 192);
+            m_border.crLeft = argb(255, 192, 192, 192);
             m_border.styleLeft = ::html::border::style_solid;
          }
          if(m_border.top == 0.f && bTableBorder)
          {
             m_border.top = m_iBorder;
-            m_border.crTop = ARGB(255, 192, 192, 192);
+            m_border.crTop = argb(255, 192, 192, 192);
             m_border.styleTop = ::html::border::style_solid;
          }
          if(m_border.right == 0.f && bTableBorder)
          {
             m_border.right = m_iBorder;
-            m_border.crRight = ARGB(255, 90, 90, 90);
+            m_border.crRight = argb(255, 90, 90, 90);
             m_border.styleRight = ::html::border::style_solid;
          }
          if(m_border.bottom == 0.f && bTableBorder)
          {
             m_border.bottom = m_iBorder;
-            m_border.crBottom = ARGB(255, 90, 90, 90);
+            m_border.crBottom = argb(255, 90, 90, 90);
             m_border.styleBottom = ::html::border::style_solid;
          }
 
@@ -148,9 +148,9 @@ namespace html
          for(index i = 0; i < m_cellholdera.get_size(); i++)
          {
 
-            cxMax += max(0, m_columna[i].m_cxMax);
+            cxMax += maximum(0, m_columna[i].m_cxMax);
 
-            cxMin += max(0, m_columna[i].m_cxMin);
+            cxMin += maximum(0, m_columna[i].m_cxMin);
 
          }
 
@@ -198,7 +198,7 @@ namespace html
                if (iCol >= m_columna.get_size())
                   continue;
 
-               m_columna[iCol].m_cx = max(pcell->m_box.width(), m_columna[iCol].m_cx);
+               m_columna[iCol].m_cx = maximum(pcell->m_box.width(), m_columna[iCol].m_cx);
 
             }
 
@@ -252,7 +252,7 @@ namespace html
 
          pdata->m_pcoredata->m_layoutstate1.m_cya.last() = m_box.height();
 
-         pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = max(m_box.width(), pdata->m_pcoredata->m_layoutstate1.m_cxMax.last());
+         pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = maximum(m_box.width(), pdata->m_pcoredata->m_layoutstate1.m_cxMax.last());
 
       }
 
@@ -348,7 +348,7 @@ namespace html
          {
 
          pdata->m_pcoredata->m_pdc->draw3d_rect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
-         get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), ARGB(255, 190, 184, 184), ARGB(255, 90, 90, 90));
+         get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), argb(255, 190, 184, 184), argb(255, 90, 90, 90));
 
          }*/
       }

@@ -223,7 +223,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditCopy(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       pcommand->enable(true);
    }
 
@@ -235,7 +235,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       pcommand->enable(true);
    }
 

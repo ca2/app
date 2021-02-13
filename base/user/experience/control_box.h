@@ -44,7 +44,7 @@ namespace experience
       i32                                       m_iDefaultButtonMargin;
       i32                                       m_iDefaultButtonSize;
       ::size_i32                                    m_sizeButtonDefault;
-      ::draw2d::font_pointer                    m_fontMarlett;
+      ::write_text::font_pointer                    m_fontMarlett;
 
       ::draw2d::brush_pointer                   m_brushButtonBack;
       ::draw2d::brush_pointer                   m_brushButtonBackSel;
@@ -56,15 +56,15 @@ namespace experience
       ::draw2d::pen_pointer                     m_penButtonBackFocus;
       ::draw2d::pen_pointer                     m_penButtonBackDisabled;
 
-      ::color                                   m_colorButtonFore;
-      ::color                                   m_colorButtonForeSel;
-      ::color                                   m_colorButtonForeFocus;
-      ::color                                   m_colorButtonForeDisabled;
+      ::color::color                                   m_colorButtonFore;
+      ::color::color                                   m_colorButtonForeSel;
+      ::color::color                                   m_colorButtonForeFocus;
+      ::color::color                                   m_colorButtonForeDisabled;
 
       enum_button_item_map                      m_itemmap;
       id_map < enum_button >                    m_idmap;
             
-      ::color                                   m_colorBackground;
+      __status < ::color::color  >              m_colorBackground;
 
 
       control_box();
@@ -129,7 +129,7 @@ namespace experience
 
       virtual ::count get_visible_control_box_button() const;
 
-      virtual bool get_font(::draw2d::font_pointer & font);
+      virtual bool get_font(::write_text::font_pointer & font);
 
 
    };

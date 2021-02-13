@@ -186,7 +186,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool tint(::image * pimage, const rgb & rgb)= 0;
 //   virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)= 0;
 //   virtual bool rgb_from(::image * pimage)= 0;
-//   virtual bool paint_rgb(color c)= 0;
+//   virtual bool paint_rgb(::color::color color)= 0;
 //
 //
 //   virtual bool saturation(double dRate)= 0;
@@ -210,8 +210,8 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //   virtual u32 GetPixel(i32 x, i32 y)= 0;
 //   virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)= 0;
-//   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel)= 0;
-//   virtual bool transparent_color(color color)= 0;
+//   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel)= 0;
+//   virtual bool transparent_color(::color::color color)= 0;
 //
 //   virtual bool create_thumbnail(const char * pszPath) = 0;
 //
@@ -262,8 +262,8 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   virtual bool fill_channel(i32 C, color::e_channel echannel)= 0;
-//   virtual bool white_fill_channel(i32 C, color::e_channel echannel)= 0;
+//   virtual bool fill_channel(i32 C, ::color::enum_channel echannel)= 0;
+//   virtual bool white_fill_channel(i32 C, ::color::enum_channel echannel)= 0;
 //   virtual bool fill_byte(uchar uch)= 0;
 //   virtual bool fill(color32_t level)= 0;
 //   virtual bool fill(i32 A, i32 R, i32 G, i32 B)= 0;
@@ -272,18 +272,18 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool fill_glass(i32 R, i32 G, i32 B, i32 A)= 0;
 //   virtual bool fill_stippled_glass(i32 R, i32 G, i32 B)= 0;
 //   virtual bool invert()= 0;
-//   virtual bool channel_invert(color::e_channel echannel)= 0;
-//   virtual bool channel_multiply(double dRate, color::e_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
-//   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
-//   virtual bool channel_lighten(color::e_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_darken(color::e_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_from(color::e_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
+//   virtual bool channel_invert(::color::enum_channel echannel)= 0;
+//   virtual bool channel_multiply(double dRate, ::color::enum_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
+//   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
+//   virtual bool channel_lighten(::color::enum_channel echannel, ::image * pimage)= 0;
+//   virtual bool channel_darken(::color::enum_channel echannel, ::image * pimage)= 0;
+//   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage)= 0;
+//   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
 //
-//   virtual bool channel_from(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle)= 0;
+//   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle)= 0;
 //
-//   virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc)= 0;
-//   virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc, ::image * pimage)= 0;
+//   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc)= 0;
+//   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage)= 0;
 //
 //   virtual bool Map(i32 ToRgb, i32 FromRgb)= 0;
 //
@@ -306,9 +306,9 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool copy(::image * pimage, i32 x, i32 y)= 0;
 //   virtual bool PasteRect(::image * pimage, i32 x, i32 y)= 0;
 //
-//   virtual bool fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)= 0;
+//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, color32_t cr)= 0;
 //
-//   virtual bool fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
+//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
 //
 //
 //   virtual bool fill_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B, i32 A)= 0;
@@ -350,10 +350,10 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, color32_t cr) { return fill_rect(::rect_dim(x, y, w, h), cr); }
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rect(::rect_dim(x, y, w, h), R, G, B); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, color32_t cr) { return fill_rect(::rectangle_i32(x1, y1, x2, y2), cr); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rect(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
+//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, color32_t cr) { return fill_rectangle(::rect_dim(x, y, w, h), cr); }
+//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rectangle(::rect_dim(x, y, w, h), R, G, B); }
+//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, color32_t cr) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), cr); }
+//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
 //
 //
 //   //virtual void defer_save_to_cache()= 0;

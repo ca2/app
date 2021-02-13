@@ -188,7 +188,7 @@
 //
 //   wstring wstr = "/::payload/aura/time/";
 //
-//   ::count iLen = min(nBufferLength, wstr.get_length());
+//   ::count iLen = minimum(nBufferLength, wstr.get_length());
 //
 //   unincpy(pBuffer, wstr, iLen);
 

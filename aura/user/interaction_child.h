@@ -30,15 +30,15 @@ namespace user
 
       ::user::interaction_child * get_user_interaction_child() override;
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pusermessage) override;
 
       //using ::user::primitive::set_window_pos;
       //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect
-      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual bool start_window_visual() override;
 

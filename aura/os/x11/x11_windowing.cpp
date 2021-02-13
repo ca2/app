@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/os/linux/_user.h"
 //!!!#include <X11/extensions/Xinerama.h>
 

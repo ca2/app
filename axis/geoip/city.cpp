@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/net/_net.h"
 #include <stdio.h>
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"
@@ -281,7 +282,7 @@ char * _iso_8859_1__utf8(const char * iso)
 
    signed char ca;
    char k;
-   char * point_i32;
+   char * p;
    char * t = (char *)iso;
    strsize len = 0;
    while ( ( ca = *t++) )
@@ -290,9 +291,9 @@ char * _iso_8859_1__utf8(const char * iso)
          len++;
    }
    len += t - iso;
-   t = point = (char *) malloc( (size_t) len );
+   t = p = (char *) malloc( (size_t) len );
 
-   if ( point_i32 )
+   if ( p )
    {
       while ( ( ca = *iso++ ) )
       {
@@ -308,5 +309,5 @@ char * _iso_8859_1__utf8(const char * iso)
       }
       *t++ = 0x00;
    }
-   return point;
+   return p;
 }

@@ -124,13 +124,13 @@ extern "C"
    }
 
 
-   /* Yield the difference between (YEAR-YDAY HOUR:min:SEC) and (*TP),
+   /* Yield the difference between (YEAR-YDAY HOUR:minimum:SEC) and (*TP),
    measured in seconds, ignoring leap seconds.
    YEAR uses the same numbering as TM->tm_year.
    All values are in range, except possibly YEAR.
    If overflow occurs, yield the low order bits of the correct answer.  */
    static time_t
-      ydhms_tm_diff(int year,int yday,int hour,int min,int sec,const struct tm * tp)
+      ydhms_tm_diff(int year,int yday,int hour,int minimum,int sec,const struct tm * tp)
    {
       /* Compute intervening leap days correctly even if year is negative.
       Take care to avoid int overflow.  time_t overflow is OK, since
@@ -148,7 +148,7 @@ extern "C"
       time_t days = (365 * years + intervening_leap_days
          + (yday - tp->tm_yday));
       return (60 * (60 * (24 * days + (hour - tp->tm_hour))
-         + (min - tp->tm_min))
+         + (minimum - tp->tm_min))
          + (sec - tp->tm_sec));
    }
 
@@ -190,7 +190,7 @@ extern "C"
       /* Time requested.  Copy it in case CONVERT modifies *TP; this can
       occur if TP is localtime's returned value and CONVERT is localtime.  */
       int sec = tp->tm_sec;
-      int min = tp->tm_min;
+      int minimum = tp->tm_min;
       int hour = tp->tm_hour;
       int mday = tp->tm_mday;
       int mon = tp->tm_mon;
@@ -229,10 +229,10 @@ extern "C"
 
       tm.tm_year = EPOCH_YEAR - TM_YEAR_BASE;
       tm.tm_yday = tm.tm_hour = tm.tm_min = tm.tm_sec = 0;
-      t0 = ydhms_tm_diff(year,yday,hour,min,sec,&tm);
+      t0 = ydhms_tm_diff(year,yday,hour,minimum,sec,&tm);
 
       for(t = t0 + *offset;
-         (dt = ydhms_tm_diff(year,yday,hour,min,sec,(*convert) (&t,&tm)));
+         (dt = ydhms_tm_diff(year,yday,hour,minimum,sec,(*convert) (&t,&tm)));
          t += dt)
          if(--remaining_probes == 0)
             return -1;
@@ -251,7 +251,7 @@ extern "C"
             while(--remaining_probes != 0)
             {
                struct tm otm;
-               if(! (dt = ydhms_tm_diff(year,yday,hour,min,sec,
+               if(! (dt = ydhms_tm_diff(year,yday,hour,minimum,sec,
                   (*convert) (&ot,&otm))))
                {
                   t = ot;
@@ -286,7 +286,7 @@ extern "C"
 
          double dyear = (double)year_requested + mon_years - tm.tm_year;
          double dday = 366 * dyear + mday;
-         double dsec = 60 * (60 * (24 * dday + hour) + min) + sec_requested;
+         double dsec = 60 * (60 * (24 * dday + hour) + minimum) + sec_requested;
 
          if(TIME_T_MAX / 3 - TIME_T_MIN / 3 < (dsec < 0 ? - dsec : dsec))
             return -1;

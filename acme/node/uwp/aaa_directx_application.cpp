@@ -343,7 +343,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -374,7 +374,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -384,7 +384,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
          || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
@@ -423,7 +423,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::key * pkey = new  ::message::key;
 
@@ -439,7 +439,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if (bSpecialKey || !bTextFocus)
       {
@@ -532,7 +532,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new ::message::mouse;
 
@@ -568,7 +568,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -632,7 +632,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 

@@ -29,7 +29,7 @@ float g_DPIScaleY = 1.0f;
 
    }
 
-   return max(dpiX, dpiY);
+   return maximum(dpiX, dpiY);
 
 }
 

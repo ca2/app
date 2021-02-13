@@ -159,7 +159,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const char* name, 
 		file->AdministrativeSession = value;
 	else if (_stricmp(name, "autoreconnection enabled") == 0)
 		file->AutoReconnectionEnabled = value;
-	else if (_stricmp(name, "autoreconnect max retries") == 0)
+	else if (_stricmp(name, "autoreconnect maximum retries") == 0)
 		file->AutoReconnectMaxRetries = value;
 	else if (_stricmp(name, "public mode") == 0)
 		file->PublicMode = value;

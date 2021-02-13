@@ -46,17 +46,17 @@ namespace dami
 #  define ID3_PATH_LENGTH   (2048 + 1)
 #endif  /* !MAXPATHLEN && !PATH_MAX */
 
-#ifndef min
+#ifndef minimum
    template<typename T>
-   const T& min(const T& a, const T& b)
+   const T& minimum(const T& a, const T& b)
    {
       return (a < b) ? a : b;
    }
 #endif
 
-#ifndef max
+#ifndef maximum
    template<typename T>
-   const T& max(const T& a, const T& b)
+   const T& maximum(const T& a, const T& b)
    {
       return (b < a) ? a : b;
    }
@@ -66,7 +66,7 @@ namespace dami
    template<typename T>
    const T& mid(const T& lo, const T& mid, const T& hi)
    {
-      return max(lo, min(mid, hi));
+      return maximum(lo, minimum(mid, hi));
    }
 #endif
 

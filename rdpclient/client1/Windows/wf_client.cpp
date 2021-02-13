@@ -636,7 +636,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	/* Perform an auto-reconnect. */
 //	for (;;)
 //	{
-//		/* Quit retrying if max retries has been exceeded */
+//		/* Quit retrying if maximum retries has been exceeded */
 //		if (num_retries++ >= max_retries)
 //			return false;
 //
@@ -1012,8 +1012,8 @@ void wf_size_scrollbars(wfContext* wfc, ::u32 client_width, ::u32 client_height)
 			// The horizontal scrolling range is defined by
 			// (bitmap_width) - (client_width). The current horizontal
 			// scroll value remains within the horizontal scrolling range.
-			wfc->xMaxScroll = max(wfc->instance->settings->DesktopWidth - client_width, 0);
-			wfc->xCurrentScroll = min(wfc->xCurrentScroll, wfc->xMaxScroll);
+			wfc->xMaxScroll = maximum(wfc->instance->settings->DesktopWidth - client_width, 0);
+			wfc->xCurrentScroll = minimum(wfc->xCurrentScroll, wfc->xMaxScroll);
 			si.cbSize = sizeof(si);
 			si.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
 			si.nMin   = wfc->xMinScroll;
@@ -1028,8 +1028,8 @@ void wf_size_scrollbars(wfContext* wfc, ::u32 client_width, ::u32 client_height)
 			// The vertical scrolling range is defined by
 			// (bitmap_height) - (client_height). The current vertical
 			// scroll value remains within the vertical scrolling range.
-			wfc->yMaxScroll = max(wfc->instance->settings->DesktopHeight - client_height, 0);
-			wfc->yCurrentScroll = min(wfc->yCurrentScroll, wfc->yMaxScroll);
+			wfc->yMaxScroll = maximum(wfc->instance->settings->DesktopHeight - client_height, 0);
+			wfc->yCurrentScroll = minimum(wfc->yCurrentScroll, wfc->yMaxScroll);
 			si.cbSize = sizeof(si);
 			si.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
 			si.nMin   = wfc->yMinScroll;

@@ -96,7 +96,7 @@ public:
    color32_t getColorValue(::lite_html_reader * preader) const;
 
    /**
-    * Returns the RGB value of the attribute in hexadecimal format
+    * Returns the rgb value of the attribute in hexadecimal format
     * @return hexadecimal string representing the color value
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -118,12 +118,12 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   u16 getPercentValue(u16 max = USHRT_MAX) const
+   u16 getPercentValue(u16 maximum = USHRT_MAX) const
    {
-      ASSERT(max > 0);
+      ASSERT(maximum > 0);
       if (!isPercentValue())   return (0);
       u16   percentVal = (u16)((i16)*this);
-      return ((percentVal > max ? max : percentVal));
+      return ((percentVal > maximum ? maximum : percentVal));
    }
 
    /**

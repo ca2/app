@@ -155,10 +155,19 @@ public:
    }
 
    template < class T >
-   payload(const __pointer(T) & sp)
+   payload(const __pointer(T) & p)
    {
       m_etype = e_type_new;
-      operator = (sp.m_p);
+      operator = (p.m_p);
+   }
+
+   template < class T >
+   payload(const result_pointer<T> & resultpointer)
+   {
+      m_etype = e_type_new;
+
+      operator = (resultpointer);
+
    }
 
    template < typename BLOCK_TYPE >
@@ -175,6 +184,12 @@ public:
       operator = (eflag);
    }
 
+   template < a_enum ENUM >
+   payload(const ENUM & eenum)
+   {
+      m_etype = e_type_new;
+      operator = (eenum);
+   }
 
 
    template < typename T >
@@ -521,6 +536,13 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
       return operator =(eflag.m_eenum);
    }
 
+   template < a_enum ENUM >
+   payload & operator = (const ENUM & eenum)
+   {
+      return operator =((::i64) eenum);
+   }
+
+
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
    payload& operator = (const ::e_status & estatus)
@@ -599,22 +621,33 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
    template < class T >
-   payload & operator = (const __pointer(T) & sp)
+   payload & operator = (const __pointer(T) & p)
    {
 
-      return this->operator = (sp.m_p);
+      return this->operator = (p.m_p);
 
    }
 
-   template < a_pointer POINTER >
-   payload & operator = (POINTER p)
+   template < class T >
+   payload & operator = (const result_pointer < T > & resultpointer)
    {
 
-      return this->operator = ((::matter *) p);
+      if (!resultpointer)
+      {
+         
+         return operator=(resultpointer.m_estatus);
+
+      }
+      else
+      {
+         
+         return operator = (resultpointer.m_p);
+
+      }
 
    }
 
-   template < not_pointer T >
+   template < an_object T >
    payload & operator = (const T & t)
    {
 

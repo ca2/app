@@ -68,7 +68,7 @@ namespace linux
 
       virtual oswindow get_handle() const override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -201,8 +201,8 @@ namespace linux
 
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
-      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      ::draw2d::font* GetFont();
+      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      ::write_text::font* GetFont();
 
 
       // oswindow size_i32 and position Functions
@@ -479,9 +479,9 @@ namespace linux
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
 
-      virtual void default_window_procedure(::message::base * pbase);
+      virtual void default_window_procedure(::user::message * pusermessage);
 
       virtual void PostNcDestroy() override;
 

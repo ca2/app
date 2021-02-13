@@ -22,19 +22,19 @@ typedef unsigned char         byte;
 #ifdef __cplusplus
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-inline TYPE minimummax(const TYPE & value, const MINIMUM & min, const MAXIMUM & max)
+inline TYPE minimummax(const TYPE & value, const MINIMUM & minimum, const MAXIMUM & maximum)
 {
 
-   if (value < (TYPE)min)
+   if (value < (TYPE)minimum)
    {
 
-      return (TYPE)min;
+      return (TYPE)minimum;
 
    }
-   else if ((TYPE)max < value)
+   else if ((TYPE)maximum < value)
    {
 
-      return (TYPE)max;
+      return (TYPE)maximum;
 
    }
 

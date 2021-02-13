@@ -64,7 +64,7 @@
 
                   if (egrip & e_grip_top_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.bottom = rectangle.top + 5;
                      if (rectangle.contains(pointHitTest))
@@ -72,7 +72,7 @@
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.bottom = rectangle.top + 16;
                      if (rectangle.contains(pointHitTest))
@@ -83,7 +83,7 @@
                   }
                   if (egrip & e_grip_top_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.bottom = rectangle.top + 5;
                      if (rectangle.contains(pointHitTest))
@@ -91,7 +91,7 @@
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.bottom = rectangle.top + 16;
                      if (rectangle.contains(pointHitTest))
@@ -102,7 +102,7 @@
                   }
                   if (egrip & e_grip_bottom_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.top = rectangle.bottom - 5;
                      if (rectangle.contains(pointHitTest))
@@ -110,7 +110,7 @@
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.top = rectangle.bottom - 16;
                      if (rectangle.contains(pointHitTest))
@@ -121,7 +121,7 @@
                   }
                   if (egrip & e_grip_bottom_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.top = rectangle.bottom - 5;
                      if (rectangle.contains(pointHitTest))
@@ -129,7 +129,7 @@
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.top = rectangle.bottom - 16;
                      if (rectangle.contains(pointHitTest))
@@ -489,12 +489,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                }
                break;
@@ -505,12 +505,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                case e_grip_bottom_left:
@@ -520,12 +520,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                case e_grip_bottom_right:
@@ -535,12 +535,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                case e_grip_top:
@@ -551,7 +551,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
 
                }
                break;
@@ -563,7 +563,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                case e_grip_left:
@@ -574,7 +574,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                case e_grip_right:
@@ -585,7 +585,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_rect(rectA, RGB(0x60, 0x65, 0x55));
+                  pgraphics->fill_rectangle(rectA, rgb(0x60, 0x65, 0x55));
                }
                break;
                default:
@@ -616,7 +616,7 @@ SizingNone:;
                rectangle.left++;
                rectangle.right--;
 
-               pgraphics->fill_rect(rectangle, crButtonFace);
+               pgraphics->fill_rectangle(rectangle, crButtonFace);
 
             }
 

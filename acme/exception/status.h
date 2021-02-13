@@ -13,6 +13,8 @@ public:
     ::e_status          m_estatus;
 
 
+    __status() { }
+
     __status(const TYPE & type) :
         TYPE(type)
     {
@@ -43,6 +45,21 @@ public:
 
     }
 
+    __status(const ::e_status & estatus, TYPE && type) :
+       TYPE(::move(type))
+    {
+
+
+
+    }
+
+    __status(nullptr_t)
+    {
+
+       m_estatus = error_null_result;
+
+    }
+
     __status(::enum_status estatus)
     {
 
@@ -60,6 +77,8 @@ public:
     operator TYPE & () { return *this; }
 
     operator ::e_status & () { return m_estatus; }
+
+    bool is_ok() const { return ::succeeded(m_estatus); }
 
 };
 

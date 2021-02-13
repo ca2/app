@@ -52,7 +52,7 @@ namespace draw2d_cairo
       //::draw2d::pen *     get_current_pen() override;
       //::draw2d::brush *   get_current_brush() override;
       //::draw2d::palette * get_current_palette() override;
-      //::draw2d::font *    get_current_font() override;
+      //::write_text::font *    get_current_font() override;
       //::draw2d::bitmap *  get_current_bitmap() override;
 
 
@@ -68,8 +68,8 @@ namespace draw2d_cairo
       virtual double get_dpix() override;
 
       // Constructors
-      bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
-      bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
+      //bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
+      //bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
       bool CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       bool DeleteDC() override;
@@ -94,14 +94,14 @@ namespace draw2d_cairo
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
       //virtual ::e_status set(::draw2d::pen* ppen) override;
       //virtual ::e_status set(::draw2d::brush* pbrush) override;
-      //virtual ::e_status set(::draw2d::font* pfont) override;
+      //virtual ::e_status set(::write_text::font* pfont) override;
       virtual ::e_status set(::draw2d::bitmap* pbitmap) override;
       virtual ::e_status set(::draw2d::region* pregion) override;       // special return for regions
       //::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
       // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
 // color and color Palette Functions
-      //color32_t GetNearestColor(const ::color & color) override;
+      //color32_t GetNearestColor(const ::color::color & color) override;
       //::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
       //::u32 RealizePalette() override;
       //void UpdateColors() override;
@@ -123,10 +123,10 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //      color32_t GetDCBrushColor() override;
-//      color32_t SetDCBrushColor(const ::color & color) override;
+//      color32_t SetDCBrushColor(const ::color::color & color) override;
 //
 //      color32_t GetDCPenColor() override;
-//      color32_t SetDCPenColor(const ::color & color) override;
+//      color32_t SetDCPenColor(const ::color::color & color) override;
 //
 //#endif
 
@@ -243,10 +243,10 @@ namespace draw2d_cairo
       bool poly_bezier_to(const ::point_f64* lpPoints, count nCount) override;
 
       // Simple Drawing Functions
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle_f64, ::draw2d::pen * ppen) override;
-      //virtual bool frame_rect(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
-      virtual bool invert_rect(const ::rectangle_f64 & rectangle_f64) override;
+      virtual bool fill_rectangle(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
+      virtual bool draw_rectangle(const ::rectangle_f64 & rectangle_f64, ::draw2d::pen * ppen) override;
+      //virtual bool frame_rectangle(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
+      virtual bool invert_rectangle(const ::rectangle_f64 & rectangle_f64) override;
 
       //bool DrawIcon(double x, double y, ::draw2d::icon * picon) override;
       //virtual bool draw(const ::point_f64 & point_f64, ::draw2d::icon * picon, const ::size_f64 & size_f64) override;
@@ -288,14 +288,14 @@ namespace draw2d_cairo
       virtual bool draw_polygon(const POINT_F64 * lpPoints, count nCount) override;
 
 
-      bool polygon_i32(const POINT_F64 * lpPoints, count nCount) override;
-      bool rectangle_i32(const ::rectangle_f64 & rectangle_f64) override;
-      //virtual bool draw_rect(double x1, double y1, double x2, double y2) override;
+      bool polygon(const POINT_F64 * lpPoints, count nCount) override;
+      bool rectangle(const ::rectangle_f64 & rectangle_f64) override;
+      //virtual bool draw_rectangle(double x1, double y1, double x2, double y2) override;
       //virtual bool DrawRectangle(const ::rectangle_f64 & rectangle_f64) override;
       //virtual bool FillRectangle(double x1, double y1, double x2, double y2) override;
       //virtual bool FillRectangle(const ::rectangle_f64 & rectangle_f64) override;
       //bool roundRect(double x1, double y1, double x2, double y2, double x3, double y3) override;
-      bool round_rect(const ::rectangle_f64 & rectangle_f64, double dRadius) override;
+      bool round_rectangle(const ::rectangle_f64 & rectangle_f64, double dRadius) override;
 
       // Bitmap Functions
       //bool PatBlt(double x, double y, double nWidth, double nHeight) override;
@@ -307,19 +307,19 @@ namespace draw2d_cairo
       //bool _stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc) override;
 
 
-      ::color GetPixel(double x, double y) override;
-      ::color GetPixel(const ::point_f64 & point_f64) override;
-      ::color SetPixel(double x, double y, const ::color & color) override;
-      ::color SetPixel(const ::point_f64 & point_f64, const ::color & color) override;
-//      bool FloodFill(double x, double y, const ::color & color) override;
-//      bool ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType) override;
+      ::color::color GetPixel(double x, double y) override;
+      ::color::color GetPixel(const ::point_f64 & point_f64) override;
+      ::color::color SetPixel(double x, double y, const ::color::color & color) override;
+      ::color::color SetPixel(const ::point_f64 & point_f64, const ::color::color & color) override;
+//      bool FloodFill(double x, double y, const ::color::color & color) override;
+//      bool ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType) override;
 //      bool MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
 //                   u32 dwRop) override;
 //      bool PlgBlt(::point_f64 * lpPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
 //                  double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask) override;
-      bool SetPixelV(double x, double y, const ::color & color) override;
-      bool SetPixelV(const ::point_f64 & point_f64, const ::color & color) override;
+      bool SetPixelV(double x, double y, const ::color::color & color) override;
+      bool SetPixelV(const ::point_f64 & point_f64, const ::color::color & color) override;
 //      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
 //                        void * pMesh, WINULONG nMeshElements, u32 dwMode) override;
 //      bool TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
@@ -339,8 +339,8 @@ namespace draw2d_cairo
       ///virtual bool text_out(double x, double y, const string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const char * lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const string & str, int * lpDxWidths) override;
-      virtual size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
-      virtual size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
       //virtual bool internal_draw_text_cairo(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
@@ -365,17 +365,17 @@ namespace draw2d_cairo
       bool GetTextExtent(size_f64 & size_f64, const string & str) override;
       size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       size_f64 GetOutputTextExtent(const string & str) override;
-      size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
-      size_f64 GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
       size_f64 GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       size_f64 GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;
-      i32 GetTextFace(count nCount, char * lpszFacename) override;
-      i32 GetTextFace(string & rString) override;
-      bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
-      bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
+      //i32 GetTextFace(count nCount, char * lpszFacename) override;
+      //i32 GetTextFace(string & rString) override;
+      bool get_text_metrics(::write_text::text_metric * lpMetrics) override;
+      bool get_output_text_metrics(::write_text::text_metric * lpMetrics) override;
 //      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
 //      i32 GetTextCharacterExtra() override;
 //      i32 SetTextCharacterExtra(i32 nCharExtra) override;
@@ -431,7 +431,7 @@ namespace draw2d_cairo
 //      i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData) override;
 //
       // Escape helpers
-      i32 StartDoc(const char * lpszDocName) override;  // old Win3.0 version
+      //i32 StartDoc(const char * lpszDocName) override;  // old Win3.0 version
 //xxx      i32 StartDoc(LPDOCINFO lpDocInfo) override;
       i32 StartPage() override;
       i32 EndPage() override;
@@ -472,11 +472,11 @@ namespace draw2d_cairo
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
 //                        const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      //void fill_rect(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
-      //void fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color & color) override;
-      bool fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color & color) override;
-      //void fill_rect(double x, double y, double cx, double cy, color32_t clr) override;
-      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //void fill_rectangle(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
+      //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
+      bool fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
+      //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;
+      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw3d_rect(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 
@@ -492,7 +492,7 @@ namespace draw2d_cairo
 
       virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode) override;
 
-      virtual bool set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint) override;
+      virtual bool set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint) override;
 
 //      virtual void * get_os_data() const override;
       //      virtual HDC get_handle() override;
@@ -516,7 +516,7 @@ namespace draw2d_cairo
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);
 #if !defined(USE_PANGO)
-      bool _set(::draw2d::font * pfont);
+      bool _set(::write_text::font * pfont);
 #endif
       bool _set(::draw2d::path * ppath);
 
@@ -550,14 +550,14 @@ namespace draw2d_cairo
 
       virtual bool flush() override;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
-      virtual bool attach_hdc(HDC hdc) override;
-      virtual HDC detach_hdc() override;
+  //    virtual bool attach_hdc(HDC hdc) override;
+    //  virtual HDC detach_hdc() override;
 
-#endif
+//#endif
 
-      virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
+      //virtual void enum_fonts(::write_text::font_enum_item_array & itema) override;
 
       virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
 

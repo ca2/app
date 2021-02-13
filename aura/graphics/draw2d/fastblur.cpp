@@ -245,7 +245,7 @@ namespace draw2d
       for(index x = 0; x < c; x++)
       {
          
-         vxmin[x] = (int) min(x + r1,wm);
+         vxmin[x] = (int) minimum(x + r1,wm);
 
       }
 
@@ -258,7 +258,7 @@ namespace draw2d
       //}
       for(index y = 0; y < c; y++)
       {
-         vymin[y] = (int)(min(y + r1,hm)*s);
+         vymin[y] = (int)(minimum(y + r1,hm)*s);
       }
 
 #endif // VECTOR3_SSE
@@ -279,7 +279,7 @@ namespace draw2d
       for(i32 i = 0; i < m_uchaDiv.get_count(); i++)
       {
 
-         dv[i]= min(255,i / div);
+         dv[i]= minimum(255,i / div);
 
       }
 
@@ -577,7 +577,7 @@ auto tickC0 = ::millis::now();
 
 #else
 
-//      ::count cCount = max(2,m_iRadius / 8);
+//      ::count cCount = maximum(2,m_iRadius / 8);
 
       ::count cCount = 2;
 
@@ -671,7 +671,7 @@ auto tick2 = ::millis::now();
             float32x4_t sum = vdupq_n_f32(0);
 
             // Fill the kernel
-            int maxKernelSize = min(dxRight,effectWidth);
+            int maxKernelSize = minimum(dxRight,effectWidth);
 
             for(int i = 0; i < maxKernelSize; ++i)
             {
@@ -727,7 +727,7 @@ auto tick2 = ::millis::now();
             float32x4_t sum = vdupq_n_f32(0);
 
             // Fill the kernel
-            int maxKernelSize = min(dxRight,effectWidth);
+            int maxKernelSize = minimum(dxRight,effectWidth);
 
             for(int i = 0; i < maxKernelSize; ++i)
             {
@@ -901,7 +901,7 @@ auto tick2 = ::millis::now();
             vector4 sum = vector4();
 
             // Fill the kernel
-            int maxKernelSize = min(dxRight,effectWidth);
+            int maxKernelSize = minimum(dxRight,effectWidth);
 
             for(int i = 0; i < maxKernelSize; ++i)
             {
@@ -949,7 +949,7 @@ auto tick2 = ::millis::now();
             vector4 sum = vector4();
 
             // Fill the kernel
-            int maxKernelSize = min(dxRight,effectWidth);
+            int maxKernelSize = minimum(dxRight,effectWidth);
 
             for(int i = 0; i < maxKernelSize; ++i)
             {
@@ -1067,7 +1067,7 @@ auto tick2 = ::millis::now();
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = new int[max(w,h)];
+      //int* const vmin = new int[maximum(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.
@@ -1106,13 +1106,13 @@ auto tick2 = ::millis::now();
 
          // preload the kernel(stack)
          // pixels before the left edge of the image are
-         // samples of [0] (max()).  min() handles
+         // samples of [0] (maximum()).  minimum() handles
          // images which are smaller than the kernel.
          for(int i=-radius; i <= radius; i++)
          {
 
             // calcualte address of source pixel
-            const vector4& p = pix[yi + min(wm,max(i,0))];
+            const vector4& p = pix[yi + minimum(wm,maximum(i,0))];
 
             // put pixel in the stack
             vector4& sir = stack[i + radius];
@@ -1152,8 +1152,8 @@ auto tick2 = ::millis::now();
             //
             // on first pass, make a lut to handle access
             // past the right edge of the width pimage->
-            // min() will cause the last pixel to repeat.
-            //if(y == 0) vmin[x] = min(x + radius + 1,wm);
+            // minimum() will cause the last pixel to repeat.
+            //if(y == 0) vmin[x] = minimum(x + radius + 1,wm);
             //vector4& p = pix[yw + vmin[x]];
             vector4& p = pix[yw + vxmin[x]];
 
@@ -1205,7 +1205,7 @@ auto tick2 = ::millis::now();
 
             vector4& sir = stack[i + radius];
 
-            yi = max(0,yp) + x;
+            yi = maximum(0,yp) + x;
             const vector4& p = tsurface[yi];
 
             sir = point;
@@ -1244,7 +1244,7 @@ auto tick2 = ::millis::now();
             sum -= outsum;
             outsum -= sir;
 
-            //if(x == 0) vmin[y] = min(y + r1,hm)*w;
+            //if(x == 0) vmin[y] = minimum(y + r1,hm)*w;
             //sir = tsurface[x + vmin[y]];
             sir = tsurface[x + vymin[y]];
 
@@ -1348,16 +1348,16 @@ auto tick2 = ::millis::now();
       u8 * pu8_2;
       i32 wm = w - 1;
       //      i32 hm = h - 1;
-      i32 wr = min(w,cx) - 1 - radius;
-      i32 hr = min(h,cy) - 1 - radius;
+      i32 wr = minimum(w,cx) - 1 - radius;
+      i32 hr = minimum(h,cy) - 1 - radius;
       //   i32 div        = radius + radius + 1;
       u8 * p;
 
       yw = 0;
 
-      h = min(h,cy);
+      h = minimum(h,cy);
 
-      w = min(w,cx);
+      w = minimum(w,cx);
 
       if(bottomup)
       {
@@ -1401,7 +1401,7 @@ auto tick2 = ::millis::now();
          for(i = -radius; i <= radius; i++)
          {
 
-            p = &pb[yw + (min(wm,max(i,0)) * 4)];
+            p = &pb[yw + (minimum(wm,maximum(i,0)) * 4)];
             rsum += p[0];
             gsum += p[1];
             bsum += p[2];
@@ -1487,7 +1487,7 @@ auto tick2 = ::millis::now();
 
          for(i = -radius; i <= radius; i++)
          {
-            p = &pwk[max(0,yp) + x * 4];
+            p = &pwk[maximum(0,yp) + x * 4];
             rsum += p[0];
             gsum += p[1];
             bsum += p[2];
@@ -1593,8 +1593,8 @@ auto tick2 = ::millis::now();
 
             for (x = 0; x < w; x++)
             {
-               vmin[x] = min(x + radius + 1, wm);
-               vmax[x] = max(x - radius, 0);
+               vmin[x] = minimum(x + radius + 1, wm);
+               vmax[x] = maximum(x - radius, 0);
             }
 
             for (y = 0; y < h; y++)
@@ -1603,7 +1603,7 @@ auto tick2 = ::millis::now();
                yi = y * s;
                for (i = -radius; i <= radius; i++)
                {
-                  p = pix[yi + min(wm, max(i, 0))];
+                  p = pix[yi + minimum(wm, maximum(i, 0))];
                   asum += ((point_i32 & 0xff000000) >> 24);
                   rsum += ((point_i32 & 0xff0000) >> 16);
                   gsum += ((point_i32 & 0x00ff00) >> 8);
@@ -1629,8 +1629,8 @@ auto tick2 = ::millis::now();
             }
             for (y = 0; y < h; y++)
             {
-               vmin[y] = min(y + radius + 1, hm) * s;
-               vmax[y] = max(y - radius, 0) * s;
+               vmin[y] = minimum(y + radius + 1, hm) * s;
+               vmax[y] = maximum(y - radius, 0) * s;
             }
 
             for (x = 0; x < w; x++)
@@ -1639,7 +1639,7 @@ auto tick2 = ::millis::now();
                yp = -radius*s;
                for (i = -radius; i <= radius; i++)
                {
-                  yi = max(0, yp) + x;
+                  yi = maximum(0, yp) + x;
                   rsum += rectangle[yi];
                   gsum += g[yi];
                   bsum += b[yi];

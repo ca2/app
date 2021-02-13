@@ -18,7 +18,7 @@ public:
    union
    {
 
-      color32_t      color32;
+      ::u32       u32;
 
       struct
       {

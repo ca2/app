@@ -651,12 +651,12 @@ namespace android
 
    //}
 
-   void os_context::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   void os_context::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
    {
 
       cslock sl(::acme::g_pcsFont);
 
-      __pointer(::draw2d::font_enum_item) pitem;
+      __pointer(::write_text::font_enum_item) pitem;
 
       double dAndroid = 4.4;
 
@@ -721,7 +721,7 @@ namespace android
 
                         path /= strFile;
 
-                        pitem = __new(::draw2d::font_enum_item);
+                        pitem = __new(::write_text::font_enum_item);
 
                         if (::file_exists(path))
                         {
@@ -767,7 +767,7 @@ namespace android
             for (auto& path : patha)
             {
 
-               pitem = __new(::draw2d::font_enum_item);
+               pitem = __new(::write_text::font_enum_item);
 
                pitem->m_strFile = path;
 
@@ -798,7 +798,7 @@ namespace android
 
 #ifdef os_font_name(e_font_mono)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_mono);
 
@@ -811,7 +811,7 @@ namespace android
 
 #ifdef os_font_name(e_font_sans)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_sans);
 
@@ -824,7 +824,7 @@ namespace android
 
 #ifdef os_font_name(e_font_serif)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_serif);
 
@@ -837,7 +837,7 @@ namespace android
 
 #ifdef os_font_name(e_font_sans_ex)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_sans_ex);
 
@@ -850,7 +850,7 @@ namespace android
 
 #ifdef os_font_name(e_font_serif_ex)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_serif_ex);
 
@@ -863,7 +863,7 @@ namespace android
 
 #ifdef os_font_name(e_font_sans_fx)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_sans_fx);
 
@@ -876,7 +876,7 @@ namespace android
 
 #ifdef os_font_name(e_font_serif_fx)
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = os_font_name(e_font_serif_fx);
 
@@ -889,7 +889,7 @@ namespace android
 
 #ifdef FONT_SANS_FX2
 
-         pitem = __new(::draw2d::font_enum_item);
+         pitem = __new(::write_text::font_enum_item);
 
          pitem->m_strFile = FONT_SANS_FX2;
 

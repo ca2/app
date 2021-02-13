@@ -116,7 +116,7 @@ __pointer(::str::range_array) pcre_code_impl::matches_ranges(const char* psz, st
 bool pcre_code_impl::replace(string& str, const string& strPrefix, string& strRet)
 {
 
-   size_t s = max(256, str.get_length() + strPrefix.get_length() * 3);
+   size_t s = maximum(256, str.get_length() + strPrefix.get_length() * 3);
 
    int err;
 

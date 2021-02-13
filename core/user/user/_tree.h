@@ -1,14 +1,10 @@
 ﻿#pragma once
 
 
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 #include "apex/filesystem/file/_data.h"

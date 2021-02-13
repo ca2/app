@@ -1796,7 +1796,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    sync_lock sl(x11_mutex());
 
-   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
+   pgraphics->fill_rectangle(::rect(*psize), rgb(84, 90, 80));
 
    ::draw2d::brush_pointer pen(e_create_new);
 
@@ -2900,7 +2900,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
          tv.tv_sec = 1;
 
          // Wait for X Event or a Timer
-         int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+         int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 
          if (num_ready_fds > 0)
          {
@@ -4066,7 +4066,7 @@ namespace user
 
       XEvent * pevent = (XEvent *) pvoidEvent;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
 
@@ -4133,7 +4133,7 @@ namespace user
 //{
 //
 //
-   __pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
       __throw(todo());

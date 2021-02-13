@@ -1,12 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "apex/platform/static_setup.h"
 #include "base/const/idpool.h"
 
 
-void __node_base_factory_exchange();
+void __node_base_factory_exchange(::factory_map * pfactorymap);
 
 
 namespace base
@@ -120,7 +118,7 @@ namespace base
 
       }
 
-      __node_base_factory_exchange();
+      __node_base_factory_exchange(::factory::get_factory_map());
 
       return estatus;
 
@@ -136,7 +134,7 @@ namespace base
 
 
 
-void __node_base_factory_exchange()
+void __node_base_factory_exchange(::factory_map * pfactorymap)
 {
 
 

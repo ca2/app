@@ -118,7 +118,7 @@ namespace user
 
 
       virtual void on_idle();             // for all documents
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
 
       bool on_open_document(::user::document * pdocument, ::create * pcreate);

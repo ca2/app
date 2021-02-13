@@ -28,6 +28,9 @@
 #include "acme/primitive/primitive/context_object.h"
 
 
+#include "acme/primitive/primitive/layered.h"
+
+
 #if OBJ_REF_DBG
 
 

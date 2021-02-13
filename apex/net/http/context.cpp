@@ -1149,7 +1149,7 @@ namespace http
       if (!psession->open(bConfigProxy))
       {
 
-         TRACE("Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -1582,7 +1582,7 @@ namespace http
                if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
-                  TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+                  TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
                   string strLocation;
                   
@@ -1608,7 +1608,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         TRACE("Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
       }
       catch (...)
@@ -2053,7 +2053,7 @@ namespace http
 
             auto tick2 = ::millis::now();
 
-            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             return false;
 
@@ -2065,7 +2065,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -2137,11 +2137,11 @@ namespace http
 
          iEnteredLoop = 1;
 
-         auto iSelectTimeoutMillis = min(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
+         auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
 
          auto iSelectTimeoutSeconds = iSelectTimeoutMillis.seconds();
 
-         iSelectTimeoutSeconds = max(1, iSelectTimeoutSeconds);
+         iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
 
          iContentLength = psocket->m_content_length;
 
@@ -2331,7 +2331,7 @@ namespace http
 
             auto tick2 = ::millis::now();
 
-            TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             string strLocation;
             

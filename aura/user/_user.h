@@ -7,6 +7,8 @@
 #include "aura/platform/_platform.h"
 
 
+
+
 class prodevian;
 
 
@@ -194,7 +196,7 @@ namespace user
 //#include "command.h"
 
 
-#include "aura/message/user.h"
+
 //#include "style_base.h"
 
 
@@ -202,14 +204,15 @@ namespace user
 #include "system.h"
 
 #include "window_util.h"
-#include "aura/graphics/draw2d/text_box.h"
-#include "aura/graphics/draw2d/font_list.h"
+#include "aura/graphics/write_text/text_box.h"
+#include "aura/graphics/write_text/font_list.h"
 #include "window_state.h"
 #include "primitive_impl.h"
 
 
 //#include "aura/database/key.h"
 
+#include "notify_icon_listener.h"
 
 #include "control_descriptor.h"
 
@@ -229,6 +232,15 @@ namespace user
 
 
 #include "interaction.h"
+
+
+#include "notify_icon.h"
+
+
+#include "aura/windowing/menu_item.h"
+
+
+#include "aura/windowing/menu.h"
 
 
 //using window_pointer = __pointer(::user::interaction_impl);
@@ -752,7 +764,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-#include "aura/message/user.h"
+//#include "aura/message/user.h"
 //#include "aura/message/timer.h"
 
 #include "main_window.h"

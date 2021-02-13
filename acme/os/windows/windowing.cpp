@@ -537,7 +537,7 @@ namespace str
 
          auto tickStart = ::millis::now();
 
-         tickTimeout = max(tickTimeout, 10);
+         tickTimeout = maximum(tickTimeout, 10);
 
          if (!::SendMessageTimeoutW(__hwnd(oswindow), WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG, __os(tickTimeout), &lresult))
             return "";
@@ -546,7 +546,7 @@ namespace str
 
          wstring wstr;
 
-         tickTimeout = min(tickTimeout, 10);
+         tickTimeout = minimum(tickTimeout, 10);
 
          if (!::SendMessageTimeoutW(__hwnd(oswindow), WM_GETTEXT, (LPARAM)wstr.get_string_buffer(lresult + 1), lresult + 1, SMTO_ABORTIFHUNG, __os(tickTimeout), &lresult))
             return "";

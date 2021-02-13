@@ -790,7 +790,7 @@ namespace uwp
 
    //   //      ::draw2d::graphics_pointer & pgraphics = pbuffer->get_buffer().get_graphics();
 
-   //   //      //pgraphics->fill_solid_rect_dim(300, 300, 100, 100, ARGB(255, 200, 60, 80));
+   //   //      //pgraphics->fill_solid_rect_dim(300, 300, 100, 100, argb(255, 200, 60, 80));
 
    //   //      dc->from(sz, pgraphics);
 

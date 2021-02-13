@@ -13,8 +13,9 @@ namespace windowing
    public:
 
 
-      enum_cursor          m_ecursor;
-      ::size_i32           m_szHotspotOffset;
+      enum_cursor                   m_ecursor;
+      ::size_i32                    m_szHotspotOffset;
+      __pointer(::draw2d::cursor)   m_pcursor;
 
 
       cursor();

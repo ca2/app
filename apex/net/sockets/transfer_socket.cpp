@@ -547,7 +547,7 @@ namespace sockets
    //   }
    //   do
    //   { // now pass the rest of the data directly to the caller
-   //      nBytesToRead = std::min(static_cast<int>(nSizeRecv), nSize - nBytesRead);
+   //      nBytesToRead = std::minimum(static_cast<int>(nSizeRecv), nSize - nBytesRead);
    //      nBytesThisTime = receive(pch, nBytesToRead, nSecs);
    //      if (nBytesThisTime <= 0)
    //         break; // sender closed the socket

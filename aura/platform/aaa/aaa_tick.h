@@ -194,7 +194,7 @@ namespace papaya
       template <  >
       inline millis default_value < millis > ()
       {
-         // estimate a delay of half of max millis positive value
+         // estimate a delay of half of maximum millis positive value
          return ::get_tick() - (MAXI64 >> 1);
 
       }

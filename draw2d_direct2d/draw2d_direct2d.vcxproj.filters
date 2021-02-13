@@ -106,6 +106,9 @@
     <ClInclude Include="region.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="draw2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="draw2d_direct2d.def">

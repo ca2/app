@@ -29,7 +29,7 @@
 
 
 
-void __node_aura_factory_exchange()
+void __node_aura_factory_exchange(::factory_map * pfactorymap)
 {
 
 //   create_factory < ::macos::stdio_file         , ::file::text_file  > ();

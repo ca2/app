@@ -129,9 +129,9 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    auto window_stride = info->stride;
 
-   auto transfer_width = min(buffer_width, window_width);
+   auto transfer_width = minimum(buffer_width, window_width);
 
-   auto transfer_height = min(buffer_height, window_height);
+   auto transfer_height = minimum(buffer_height, window_height);
 
    ::copy_colorref_swap_red_blue(
       window_data,

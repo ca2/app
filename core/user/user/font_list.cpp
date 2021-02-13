@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "aura/procedure.h"
 
@@ -70,26 +68,26 @@ namespace user
    }
 
 
-   void font_list::set_font_list_type(::draw2d::font_list::enum_type etype)
+   void font_list::set_font_list_type(::write_text::font_list::enum_type etype)
    {
 
       auto psession = Session;
 
-      if (etype == ::draw2d::font_list::type_single_column)
+      if (etype == ::write_text::font_list::type_single_column)
       {
 
          m_pfontlist = psession->get_single_column_font_list();
 
       }
-      else if (etype == ::draw2d::font_list::type_wide)
+      else if (etype == ::write_text::font_list::type_wide)
       {
 
-         if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
+         if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
          {
 
-            m_pfontlist = __create_new < ::draw2d::font_list >();
+            m_pfontlist = __create_new < ::write_text::font_list >();
 
-            m_pfontlist->set_font_list_type(::draw2d::font_list::type_wide);
+            m_pfontlist->set_font_list_type(::write_text::font_list::type_wide);
 
          }
 
@@ -300,18 +298,18 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
       {
 
          auto pstyle = get_style(pgraphics);
 
-         color colorBackground = get_color(pstyle, ::user::e_element_background);
+         ::color::color colorBackground = get_color(pstyle, ::user::e_element_background);
 
          auto rectBackground(rectClient);
 
          rectBackground += m_pointScroll;
 
-         pgraphics->fill_rect(rectBackground, colorBackground);
+         pgraphics->fill_rectangle(rectBackground, colorBackground);
 
       }
 
@@ -326,7 +324,7 @@ namespace user
    }
 
 
-   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, LPSIZE32 psize)
+   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::SIZE_I32 * psize)
    {
 
       *psize = m_pfontlist->m_size;
@@ -397,7 +395,7 @@ namespace user
 
       int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
       {
 
          rectFontList.right -= iScrollBarWidth;

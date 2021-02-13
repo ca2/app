@@ -411,7 +411,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rectangle_i32 = RECTANGLE_I32{ 0 };
+               //auto rectangle = RECTANGLE_I32{ 0 };
                //get_client_rect(&rectangle);
 
                //auto hwnd2 = get_handle();
@@ -836,7 +836,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rectangle_i32 = RECTANGLE_I32{ 0 };
+   //         auto rectangle = RECTANGLE_I32{ 0 };
    //         get_client_rect(&rectangle);
 
    //         ::set_window_pos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
@@ -900,7 +900,7 @@ namespace browser
 
 /*      m_pimageBrowser->create_image(this, ::size_i32(width, height));
 
-      //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, ARGB(155, 255, 255, 0)) ;
+      //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 
       m_pimageBrowser->map();
 

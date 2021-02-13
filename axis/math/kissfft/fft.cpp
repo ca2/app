@@ -15,7 +15,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <math.h>
 
 /* The guts header contains all the multiplication and addition macros that are defined for
- fixed or doubleing point_i32 complex numbers.  It also delares the kf_ internal functions.
+ fixed or doubleing p complex numbers.  It also delares the kf_ internal functions.
  */
 
 static COMPLEXD *scratchbuf=nullptr;
@@ -213,7 +213,7 @@ static void kf_bfly_generic(
         const size_t fstride,
         const kiss_fft_cfg st,
         i32 m,
-        i32 point_i32
+        i32 p
         )
 {
     i32 u,k,q1,q;
@@ -221,21 +221,21 @@ static void kf_bfly_generic(
     COMPLEXD t;
     i32 Norig = st->nfft;
 
-    CHECKBUF(scratchbuf,nscratchbuf,point_i32);
+    CHECKBUF(scratchbuf,nscratchbuf,p);
 
     for ( u=0; u<m; ++u ) {
         k=u;
-        for ( q1=0 ; q1<point_i32 ; ++q1 ) {
+        for ( q1=0 ; q1<p ; ++q1 ) {
             scratchbuf[q1] = Fout[ k  ];
-            C_FIXDIV(scratchbuf[q1],point_i32);
+            C_FIXDIV(scratchbuf[q1],p);
             k += m;
         }
 
         k=u;
-        for ( q1=0 ; q1<point_i32 ; ++q1 ) {
+        for ( q1=0 ; q1<p ; ++q1 ) {
             i32 twidx=0;
             Fout[ k ] = scratchbuf[0];
-            for (q=1;q<point_i32;++q ) {
+            for (q=1;q<p;++q ) {
                 twidx += (i32) (fstride * k);
                 if (twidx>=Norig) twidx-=Norig;
                 C_MUL(t,scratchbuf[q] , twiddles[twidx] );
@@ -257,9 +257,9 @@ void kf_work(
         )
 {
     COMPLEXD * Fout_beg=Fout;
-    const i32 point_i32=*factors++; /* the ca2  */
-    const i32 m=*factors++; /* stage's fft length/point_i32 */
-    const COMPLEXD * Fout_end = Fout + point_i32*m;
+    const i32 p=*factors++; /* the ca2  */
+    const i32 m=*factors++; /* stage's fft length/p */
+    const COMPLEXD * Fout_end = Fout + p*m;
 
     if (m==1) {
         do{
@@ -268,46 +268,46 @@ void kf_work(
         }while(++Fout != Fout_end );
     }else{
         do{
-            kf_work( Fout , f, fstride*point_i32, in_stride, factors,st);
+            kf_work( Fout , f, fstride*p, in_stride, factors,st);
             f += fstride*in_stride;
         }while( (Fout += m) != Fout_end );
     }
 
     Fout=Fout_beg;
 
-    switch (point) {
+    switch (p) {
         case 2: kf_bfly2(Fout,fstride,st,m); break;
         case 3: kf_bfly3(Fout,fstride,st,m); break; 
         case 4: kf_bfly4(Fout,fstride,st,m); break;
         case 5: kf_bfly5(Fout,fstride,st,m); break; 
-        default: kf_bfly_generic(Fout,fstride,st,m,point_i32); break;
+        default: kf_bfly_generic(Fout,fstride,st,m,p); break;
     }
 }
 
 /*  facbuf is populated by point1,m1,point2,m2, ...
     where 
-    point_i32[i] * m[i] = m[i-1]
+    p[i] * m[i] = m[i-1]
     m0 = n                  */
 static 
 void kf_factor(i32 n,i32 * facbuf)
 {
-    i32 point_i32=4;
+    i32 p=4;
     double floor_sqrt;
     floor_sqrt = floor( sqrt((double)n) );
 
     /*factor out powers of 4, powers of 2, then any remaining primes */
     do {
-        while (n % point_i32) {
-            switch (point) {
-                case 4: point = 2; break;
-                case 2: point = 3; break;
-                default: point_i32 += 2; break;
+        while (n % p) {
+            switch (p) {
+                case 4: p = 2; break;
+                case 2: p = 3; break;
+                default: p += 2; break;
             }
-            if (point_i32 > floor_sqrt)
-                point = n;          /* no more factors, skip to end */
+            if (p > floor_sqrt)
+                p = n;          /* no more factors, skip to end */
         }
-        n /= point;
-        *facbuf++ = point;
+        n /= p;
+        *facbuf++ = p;
         *facbuf++ = n;
     } while (n > 1);
 }

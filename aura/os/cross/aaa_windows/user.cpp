@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #if defined(LINUX)
 #include "aura/os/linux/_user.h"
 #elif defined(ANDROID)
@@ -26,13 +24,13 @@ CLASS_DECL_AURA color32_t GetSysColor(::u32 dw)
    switch(dw)
    {
    case COLOR_HIGHLIGHT:
-      return ARGB(255, 200, 200, 196);
+      return argb(255, 200, 200, 196);
    case COLOR_BTNSHADOW:
-      return ARGB(90, 192, 192, 187);
+      return argb(90, 192, 192, 187);
    case COLOR_BTNTEXT:
-      return ARGB(255, 0, 0, 0);
+      return argb(255, 0, 0, 0);
    default:
-      return ARGB(255, 0, 0, 0);
+      return argb(255, 0, 0, 0);
    };
 
 }
@@ -129,15 +127,15 @@ CLASS_DECL_AURA int_bool OffsetRect(RECT32 * prect, i32 x, i32 y)
 /*
 CLASS_DECL_AURA bool x_intersect_rect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
 {
-   prect->left = max(prect1->left, prect2->left);
-   prect->right = min(prect1->right, prect2->right);
+   prect->left = maximum(prect1->left, prect2->left);
+   prect->right = minimum(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
 CLASS_DECL_AURA bool y_intersect_rect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
 {
-   prect->top = max(prect1->top, prect2->top);
-   prect->bottom = min(prect1->bottom, prect2->bottom);
+   prect->top = maximum(prect1->top, prect2->top);
+   prect->bottom = minimum(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 */
@@ -152,10 +150,10 @@ CLASS_DECL_AURA int_bool IntersectRect(RECT32 * prect, const RECT32 * prect1, co
 
 CLASS_DECL_AURA int_bool UnionRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
 {
-   prect->left = min(prect1->left, prect2->left);
-   prect->top = min(prect1->top, prect2->top);
-   prect->right = max(prect1->right, prect2->right);
-   prect->bottom = max(prect1->bottom, prect2->bottom);
+   prect->left = minimum(prect1->left, prect2->left);
+   prect->top = minimum(prect1->top, prect2->top);
+   prect->right = maximum(prect1->right, prect2->right);
+   prect->bottom = maximum(prect1->bottom, prect2->bottom);
    return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
 }
 
@@ -231,7 +229,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -362,7 +360,7 @@ i32      cchWideChar)
         }
      }
 
-     i32 iLen = (i32) min(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
 
      if(pWideCharStr != nullptr)
      {
@@ -521,7 +519,7 @@ int_bool *  pUsedDefaultChar)
      }
   }
 
-  i32 iLen = (i32) min(cbMultiByte, str.get_length());
+  i32 iLen = (i32) minimum(cbMultiByte, str.get_length());
 
   if(pMultiByteStr != nullptr)
 

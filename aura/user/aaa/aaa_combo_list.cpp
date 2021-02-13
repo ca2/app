@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -111,11 +109,11 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      brBk->create_solid(ARGB(230, 255, 255, 255));
+      brBk->create_solid(argb(230, 255, 255, 255));
 
       pgraphics->set(brBk);
 
-      pgraphics->fill_rect(rectClient);
+      pgraphics->fill_rectangle(rectClient);
 
       ::rect rectItem;
 
@@ -169,9 +167,9 @@ namespace user
 
                //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
-               crBk = ARGB(255, 120, 190, 220);
+               crBk = argb(255, 120, 190, 220);
 
-               cr = ARGB(255, 255, 255, 255);
+               cr = argb(255, 255, 255, 255);
 
                strDebug += "sel;";
 
@@ -179,9 +177,9 @@ namespace user
             else
             {
 
-               crBk = ARGB(255, 235, 245, 255);
+               crBk = argb(255, 235, 245, 255);
 
-               cr = ARGB(255, 0, 0, 0);
+               cr = argb(255, 0, 0, 0);
 
             }
 
@@ -191,17 +189,17 @@ namespace user
 
             strDebug += "sel;";
 
-            crBk = ARGB(255, 120, 150, 190);
+            crBk = argb(255, 120, 150, 190);
 
-            cr = ARGB(255, 255, 255, 255);
+            cr = argb(255, 255, 255, 255);
 
          }
          else
          {
 
-            crBk = ARGB(255, 255, 255, 255);
+            crBk = argb(255, 255, 255, 255);
 
-            cr = ARGB(255, 0, 0, 0);
+            cr = argb(255, 0, 0, 0);
 
          }
 
@@ -211,7 +209,7 @@ namespace user
 
          pgraphics->set(brBk);
 
-         pgraphics->fill_rect(rectItem);
+         pgraphics->fill_rectangle(rectItem);
 
          m_pcombo->_001GetListText(iItem, strItem);
 
@@ -233,7 +231,7 @@ namespace user
 
       //color32_t crBorder = _001GetColor(::user::color_border);
 
-      color32_t crBorder = ARGB(255, 0, 0, 0);
+      color32_t crBorder = argb(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -243,12 +241,12 @@ namespace user
 
       rectClient.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rect(rectClient);
+      pgraphics->draw_rectangle(rectClient);
 
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -297,7 +295,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strItem;
 
@@ -372,7 +370,7 @@ namespace user
 
       auto rectComboClient = m_pcombo->get_client_rect();
 
-      psize->cx = max(psize->cx, rectComboClient.width());
+      psize->cx = maximum(psize->cx, rectComboClient.width());
 
    }
 
@@ -684,13 +682,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_itemHover = min(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
+         m_pcombo->m_itemHover = minimum(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_itemHover = max(m_pcombo->m_itemHover - 1, 0);
+         m_pcombo->m_itemHover = maximum(m_pcombo->m_itemHover - 1, 0);
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -990,7 +988,7 @@ namespace user
       ::rect rectList;
 
       rectList.left = rectWindow.left;
-      rectList.right = rectWindow.left + max(rectWindow.width(), sizeFull.cx);
+      rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
       rectList.top = rectWindow.bottom;
       rectList.bottom = rectWindow.bottom + sizeFull.cy;
 

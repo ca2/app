@@ -48,10 +48,8 @@ public:
 
    };
 
-   ::count                             m_countReference;
+   ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
-
-
 
 
 #if OBJ_REF_DBG
@@ -167,7 +165,7 @@ public:
    virtual ::layered * taskpool();
 
 
-   virtual ::task* defer_start_task(const ::id & id, const ::promise::routine & routine);
+   virtual ::task * defer_fork(const ::id & id, const ::promise::routine & routine);
 
 
    virtual void delete_this();

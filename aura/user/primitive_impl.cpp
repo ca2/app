@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
@@ -287,7 +285,7 @@ namespace user
          if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
 
-            puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
+            //puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
 
             puiLeft->place(sizeparentparams.rectangle);
 
@@ -1003,63 +1001,67 @@ namespace user
    lresult primitive_impl::message_call(const ::id & id, wparam wparam, lparam lparam)
    {
 
-      ___pointer < ::message::base > pbase;
+      ___pointer < ::message::message > pmessage;
 
-      if (m_puserinteraction == nullptr)
+      if (m_puserinteraction)
       {
 
-         pbase = get_message_base(id, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(id, wparam, lparam);
 
       }
       else
       {
 
-         pbase = m_puserinteraction->get_message_base(id, wparam, lparam);
+         pmessage = get_message(id, wparam, lparam);
 
       }
 
-      return message_call(pbase);
+      return message_call(pmessage);
 
    }
 
 
-   lresult primitive_impl::message_call(::message::base * pbase)
+   lresult primitive_impl::message_call(::message::message * pmessage)
    {
 
       if (m_puserinteraction == nullptr)
       {
 
-         message_handler(pbase);
+         message_handler(pmessage);
 
-         return pbase->m_lresult;
+         return pmessage->m_lresult;
 
       }
 
       if (m_puserinteraction->layout().is_moving())
       {
+         
          TRACE("moving: skip walk pre translate tree");
+
       }
       else if (m_puserinteraction->layout().is_sizing())
       {
+         
          TRACE("sizing: skip walk pre translate tree");
+
       }
       else
       {
 
-         m_puserinteraction->walk_pre_translate_tree(pbase);
+         m_puserinteraction->walk_pre_translate_tree(pmessage);
 
-         if (pbase->m_bRet)
+         if (pmessage->m_bRet)
          {
 
-            return pbase->m_lresult;
+            return pmessage->m_lresult;
 
          }
 
       }
 
-      message_handler(pbase);
+      message_handler(pmessage);
 
-      return pbase->m_lresult;
+      return pmessage->m_lresult;
 
    }
 
@@ -1105,15 +1107,15 @@ namespace user
    //}
 
 
-   //bool primitive_impl::set_focus(::user::interaction * pinteraction)
+   //bool primitive_impl::set_keyboard_focus(::user::interaction * pinteraction)
    //{
 
-   //   return get_host_window()->set_focus(pinteraction);
+   //   return get_host_window()->set_keyboard_focus(pinteraction);
 
    //}
 
 
-   //::user::interaction * primitive_impl::get_focus() const
+   //::user::interaction * primitive_impl::get_keyboard_focus() const
    //{
 
    //   ::user::interaction * pinteraction = get_wnd();
@@ -1125,7 +1127,7 @@ namespace user
 
    //   }
 
-   //   return pinteraction->get_focus();
+   //   return pinteraction->get_keyboard_focus();
 
    //}
 
@@ -1203,7 +1205,7 @@ namespace user
    //void primitive_impl::defer_start_prodevian()
    //{
 
-   //   m_puserinteraction->post_simple_command(simple_command_defer_start_prodevian);
+   //   m_puserinteraction->post_simple_command(e_simple_command_defer_start_prodevian);
 
    //}
 
@@ -1237,7 +1239,7 @@ namespace user
 
                sync_lock sl(pimpl2->mutex());
 
-               pimpl2->m_guieptraMouseHover.remove(m_puserinteraction);
+               pimpl2->m_uiptraMouseHover.remove(m_puserinteraction);
 
             }
 
@@ -1616,15 +1618,15 @@ namespace user
    }
 
 
-   void primitive_impl::queue_message_handler(::message::base * pbase)
+   void primitive_impl::queue_message_handler(::message::message * pmessage)
    {
 
-      return m_puserinteraction->message_handler(pbase);
+      return m_puserinteraction->message_handler(pmessage);
 
    }
 
 
-   //bool primitive_impl::has_focus() const
+   //bool primitive_impl::has_keyboard_focus() const
    //{
 
    //   if (m_puserinteraction == nullptr)
@@ -1650,7 +1652,7 @@ namespace user
 
    //   }
 
-   //   if (!pinteraction->has_focus())
+   //   if (!pinteraction->has_keyboard_focus())
    //   {
 
    //      return false;

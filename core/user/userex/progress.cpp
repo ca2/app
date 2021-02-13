@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "acme/const/timer.h"
 #include "core/user/userex/progress.h"
 
@@ -264,7 +262,13 @@ namespace userex
 
          auto psession = Session;
 
-         psession->get_main_monitor(rectangle);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectangle);
 
          rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
 
@@ -307,7 +311,7 @@ namespace userex
 
       }
 
-      pgraphics->set_text_color(ARGB(255, 80, 80, 80));
+      pgraphics->set_text_color(argb(255, 80, 80, 80));
 
       pgraphics->draw_text(m_pprogresscontrol->m_strStatus, m_rectStatus, e_align_center);
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -23,7 +21,7 @@ namespace user
          m_bUnderline = false;
          m_strFontFamily = os_font_name(e_font_sans);
          m_dFontSize = 12.0;
-         m_colorForeground = ARGB(255, 0, 0, 0);
+         m_colorForeground = argb(255, 0, 0, 0);
          m_colorBackground = 0;
          m_escript = script_normal;
          m_elineheight = line_height_single;
@@ -217,7 +215,7 @@ namespace user
       }
 
 
-      ::draw2d::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
+      ::write_text::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
       {
 
          if (!m_bUpdated || m_font.is_null())

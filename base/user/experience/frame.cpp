@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 
 
 namespace experience
@@ -67,17 +65,17 @@ namespace experience
    void frame::frame_on_attach()
    {
 
-      if (m_pframewindow)
-      {
+      //if (m_pframewindow)
+      //{
 
-         if (m_pframewindow->size_manager() != nullptr)
-         {
+      //   if (m_pframewindow->size_manager() != nullptr)
+      //   {
 
-            m_pframewindow->size_manager()->SetSWPFlags(0);
+      //      m_pframewindow->size_manager()->SetSWPFlags(0);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -120,21 +118,21 @@ namespace experience
 
    void frame::OnActivate()
    {
-   }
-
-
-   bool frame::_001OnCommand(wparam wparam, lparam lparam, LRESULT & lresult)
-
-   {
-
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
-
-      UNREFERENCED_PARAMETER(lresult);
-
-      return false;
 
    }
+
+
+   //bool frame::_001OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   //{
+
+   //   UNREFERENCED_PARAMETER(wparam);
+   //   UNREFERENCED_PARAMETER(lparam);
+
+   //   UNREFERENCED_PARAMETER(lresult);
+
+   //   return false;
+
+   //}
 
 
    void frame::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -190,7 +188,7 @@ namespace experience
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra,
                                  &rectBorder, &rectangle, true);
             pframewindow->SetBorderRect(rectBorder);
-            pframewindow->CalcWindowRect(&rectangle);
+            //pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
             //::rectangle_i32 rectSnap(0, 0, 0, 0);
             //CalcWndClient(rectSnap, rectSnap);
@@ -470,13 +468,14 @@ namespace experience
    }
 
 
-   bool frame::_001OnNcHitTest(const ::point_i32 & point,LRESULT & nHitTest)
+   bool frame::_001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest)
    {
 
       UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(nHitTest);
 
-      return false;
+      ehittest = e_hit_test_client;
+
+      return true;
 
    }
 
@@ -524,7 +523,7 @@ namespace experience
    i32 frame::calc_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangle_i32 = get_control_box()->get_button_margin(e_button_close);
+      auto rectangle = get_control_box()->get_button_margin(e_button_close);
 
       auto iButtonSize = get_control_box()->calc_button_size(pgraphics);
 
@@ -707,7 +706,9 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object(this, "control_box"));
+         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object("control_box"));
+
+         m_pcontrolbox->initialize(this);
 
          m_pcontrolbox->m_pframewindow = m_pframewindow;
 
@@ -757,24 +758,27 @@ namespace experience
    }
 
 
-   void frame::set_moveable_border_color(const ::color & colorParam)
+   void frame::set_moveable_border_color(const ::color::color & colorParam)
    {
 
       m_colorMoveableBorder = colorParam;
 
-      ::color color;
+      ::color::color color;
 
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
-      m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderHilight = color;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
-      m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderShadow = color;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
-      m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+      m_colorMoveableBorderDkShadow = color;
+      m_colorMoveableBorderDkShadow.alpha = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -969,7 +973,7 @@ namespace experience
 
          //auto sizeMinimum = m_pframewindow->get_window_minimum_size();
 
-         //auto sizeMove = m_pframewindow->m_windowrect.m_rectRestored.size().max(sizeMinimum);
+         //auto sizeMove = m_pframewindow->m_windowrect.m_rectRestored.size().maximum(sizeMinimum);
 
          //rectRequest.set(pointMove, sizeMove);
 

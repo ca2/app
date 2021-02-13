@@ -19,10 +19,11 @@ namespace windowing
 
 
    class CLASS_DECL_AURA keyboard :
-      virtual public ::matter
+      virtual public ::user::keyboard
    {
    public:
 
+      //i64_map < ::user::enum_key >     m_mapKey;
 
       keyboard();
       virtual ~keyboard();

@@ -41,7 +41,7 @@ namespace experience
 
          millis t1 = millis::now();
 
-         if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
+         if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
 
             return;
@@ -66,7 +66,7 @@ namespace experience
 
          }
 
-         color32_t crText = ARGB(255, 255, 255, 255);
+         color32_t crText = argb(255, 255, 255, 255);
 
          pgraphics->set_smooth_mode(::draw2d::smooth_mode_anti_alias_8x4);
 
@@ -93,7 +93,7 @@ namespace experience
                crText = m_pcontrolbox->m_colorButtonForeSel;
 
             }
-            else if (has_focus())
+            else if (has_keyboard_focus())
             {
 
                pgraphics->set(m_pcontrolbox->m_brushButtonBackFocus);

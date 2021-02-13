@@ -401,7 +401,7 @@ namespace dir
 
 //       strsize iFind2 = str.reverse_find('\\', iLast);
 
-//       strsize iFind = max(iFind1, iFind2);
+//       strsize iFind = maximum(iFind1, iFind2);
 
 //       if(iFind >= iLast)
 //          return false;
@@ -1107,7 +1107,7 @@ namespace dir
 
       strsize iPos2 = path.reverse_find('\\',iEnd);
 
-      strsize iPos = max(max(iPos1, iPos2), 0);
+      strsize iPos = maximum(maximum(iPos1, iPos2), 0);
 
       if (iPos == iSecondSlash)
       {

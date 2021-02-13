@@ -51,12 +51,12 @@ namespace filemanager
 
       //void FileSize();
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void on_command_probe(::user::command * pcommand) override;
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command_probe(::message::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
       DECL_GEN_SIGNAL(_001OnUpdateOpenWith);
       DECL_GEN_SIGNAL(_001OnEditCopy);

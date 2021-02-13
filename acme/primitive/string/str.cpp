@@ -1903,7 +1903,7 @@ namespace str
 //      if(pszEnd == psz)
 //         return false;
 //
-//      if(iConversion > numeric_info< i32 >::max ())
+//      if(iConversion > numeric_info< i32 >::maximum ())
 //         return false;
 //
 //      i = (i32) iConversion;
@@ -1938,7 +1938,7 @@ namespace str
 //      if(pszEnd == psz)
 //         return false;
 //
-//      if(uiConversion > numeric_info < u32 > ::max())
+//      if(uiConversion > numeric_info < u32 > ::maximum())
 //         return false;
 //
 //      u = (u32) uiConversion;
@@ -1980,7 +1980,7 @@ namespace str
 //      if(pszEnd == psz)
 //         return false;
 //
-//      if(uiConversion > numeric_info< u32 >::max ())
+//      if(uiConversion > numeric_info< u32 >::maximum ())
 //         return false;
 //
 //      u = uiConversion;
@@ -2789,7 +2789,7 @@ namespace str
       if(uMax < uMin)
       {
 
-         __throw(invalid_argument_exception("max should be greater than min"));
+         __throw(invalid_argument_exception("maximum should be greater than minimum"));
 
       }
 
@@ -2820,13 +2820,13 @@ namespace str
       if(u < uMin)
       {
 
-         throw_parsing_exception("natural less than min");
+         throw_parsing_exception("natural less than minimum");
 
       }
       else if(u > uMax)
       {
 
-         throw_parsing_exception("natural greater than max");
+         throw_parsing_exception("natural greater than maximum");
 
       }
 
@@ -3797,7 +3797,7 @@ skip:
 
       auto iFind2 = str.find('\n');
 
-      auto iFind = min_non_neg(iFind1, iFind2);
+      auto iFind = minimum_non_negative(iFind1, iFind2);
 
       string strToken;
 

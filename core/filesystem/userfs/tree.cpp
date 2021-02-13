@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_data.h"
 #include "aura/update.h"
 #include "_userfs.h"
@@ -26,7 +26,7 @@ namespace userfs
    i64 tree::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      auto c = atomic_increment(&m_countReference);
+      auto c = m_countReference++;
 
 #if OBJ_REF_DBG
 
@@ -42,7 +42,7 @@ namespace userfs
    i64 tree::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      auto c = atomic_decrement(&m_countReference);
+      auto c = m_countReference--;
 
 #if OBJ_REF_DBG
 
@@ -403,15 +403,15 @@ namespace userfs
    {
       if (get_document() == nullptr)
       {
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
       }
       /*      else if(get_filemanager_template()->get_filemanager_data()->is_saving())
       {
-      return RGB(255, 180, 90);
+      return rgb(255, 180, 90);
       }*/
       else
       {
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
       }
    }
 
@@ -420,13 +420,25 @@ namespace userfs
 
       ::data::tree_item * pitem;
 
-      if(pitemStart == nullptr)
+      if (pitemStart == nullptr)
+      {
+
          pitem = get_base_item();
+
+      }
       else
+      {
+
          pitem = pitemStart;
 
+      }
+
       if (path.get_length() <= 0)
+      {
+
          return nullptr;
+
+      }
 
       while (pitem != nullptr)
       {
@@ -434,12 +446,12 @@ namespace userfs
          if (pitem->m_pdataitem)
          {
 
-            ::userfs::item * point = pitem->m_pdataitem.cast < ::userfs::item >();
+            ::userfs::item * puserfsitem = pitem->m_pdataitem.cast < ::userfs::item >();
 
-            if (point != nullptr)
+            if (puserfsitem != nullptr)
             {
 
-               ::file::path & pathTreeItem = point_i32->m_filepathFinal;
+               ::file::path & pathTreeItem = puserfsitem->m_filepathFinal;
 
                if (bPointerFromPathFromItemFromOwnTree)
                {
@@ -470,8 +482,12 @@ namespace userfs
 
          pitem = pitem->get_child_next_or_parent();
 
-         if(pitem == pitemStart)
+         if (pitem == pitemStart)
+         {
+
             break;
+
+         }
 
       }
 
@@ -511,12 +527,12 @@ namespace userfs
          if (pitem->m_pdataitem)
          {
 
-            ::userfs::item * point = pitem->m_pdataitem.cast < ::userfs::item >();
+            ::userfs::item * puserfsitem = pitem->m_pdataitem.cast < ::userfs::item >();
 
-            if (point != nullptr)
+            if (puserfsitem != nullptr)
             {
 
-               ::file::path & pathTreeItem = point_i32->m_filepathUser;
+               ::file::path & pathTreeItem = puserfsitem->m_filepathUser;
 
                if (bPointerFromPathFromItemFromOwnTree)
                {

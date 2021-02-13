@@ -59,7 +59,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 	glEnableClientState(GL_COLOR_ARRAY);
 		line ( 20,100,110,300,		//coordinates
 			1.2,			//thickness in px
-			0.5, 0.0, 1.0,		//line color *RGB*
+			0.5, 0.0, 1.0,		//line color *rgb*
 			1.0, 1.0, 1.0,		//background color
 			false);			//not using alphablend
 
@@ -72,7 +72,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 */
 void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	float w,			//width/thickness of the line in pixel
-	float Cr, float Cg, float Cb,	//RGB color components
+	float Cr, float Cg, float Cb,	//rgb color components
 	float Br, float Bg, float Bb,	//color of background when alphablend=false,
 					//  Br=alpha of color when alphablend=true
 	bool alphablend)		//use alpha blend or not

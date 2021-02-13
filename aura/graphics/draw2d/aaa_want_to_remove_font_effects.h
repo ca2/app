@@ -16,15 +16,15 @@ namespace draw2d
          EffectEmbossed = 1
       };
 
-      ::draw2d::text_metric			m_tm;
+      ::write_text::text_metric			m_tm;
 
       i32						m_iFontHiHeight;
       ::draw2d::graphics *			m_pDC;
 
       glyph_set						m_glyphset;
 
-      ::draw2d::font_pointer				m_pfont;
-      ::draw2d::font *				m_pfontOld;
+      ::write_text::font_pointer				m_pfont;
+      ::write_text::font *				m_pfontOld;
 
       byte *						m_lpBitmap;
 
@@ -98,7 +98,7 @@ namespace draw2d
       i32                  iOffset,
       i32                  iEffect);
 
-      ::draw2d::font * GetFont();
+      ::write_text::font * GetFont();
       void clear();
 
    };

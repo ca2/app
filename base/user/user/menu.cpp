@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/id.h"
 #include "aqua/xml.h"
 #include "acme/const/timer.h"
@@ -41,8 +39,6 @@ namespace user
       m_pmenuitemSub = nullptr;
 
    }
-
-
 
 
    menu::menu(::user::menu_item * pitem)
@@ -448,13 +444,15 @@ namespace user
          if (puiParent == nullptr)
          {
 
-#ifdef WINDOWS_DESKTOP
-
-            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+//
+//#endif
 
          }
+
+         set_tool_window();
 
          //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
@@ -579,13 +577,21 @@ namespace user
 
          auto psession = Session;
 
-         psession->get_cursor_pos(m_pointPositionHint);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+         
+         m_pointPositionHint = pointCursor;
 
       }
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
-      layout_menu(pgraphics, m_pointPositionHint);
+      m_pointTrack = m_pointPositionHint;
+
+      layout_menu(pgraphics);
 
       m_bMenuOk = true;
 
@@ -609,10 +615,10 @@ namespace user
    }
 
 
-   void menu::layout_menu(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point)
+   void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_pointTrack = point;
+      ::point_i32 point = m_pointTrack;
 
       if (get_parent() != nullptr)
       {
@@ -734,9 +740,9 @@ namespace user
                   + rectPadding.top + rectPadding.bottom;
 
 
-      m_size.cx = max(m_sizeMinimum.cx, m_size.cx);
+      m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
 
-      m_size.cy = max(m_sizeMinimum.cy, m_size.cy);
+      m_size.cy = maximum(m_sizeMinimum.cy, m_size.cy);
 
       ::count iItemCount = pmenuitema->get_size();
 
@@ -751,7 +757,7 @@ namespace user
 
          pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectUi.right = max(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
+         pitem->m_rectUi.right = maximum(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
 
          pitem->m_puserinteraction->place(pitem->m_rectUi);
 
@@ -781,7 +787,13 @@ namespace user
 
       auto psession = Session;
 
-      if (psession->get_best_monitor(rectMonitor, rectWindow) >= 0)
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      if (pdisplay->get_best_monitor(rectMonitor, rectWindow) >= 0)
       {
 
          rectMonitor.deflate(16, 16);
@@ -814,7 +826,7 @@ namespace user
 
       }
 
-      order(e_zorder_top_most);
+      layout().sketch() = e_zorder_top_most;
 
       place(rectWindow);
 
@@ -836,14 +848,14 @@ namespace user
 
       color32_t crBackground = get_color(pstyle, e_element_background);
 
-      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      if ((crBackground & argb(255, 0, 0, 0)) != 0)
       {
 
          ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       }
 
@@ -918,7 +930,7 @@ namespace user
                   if (puiTarget != nullptr)
                   {
 
-                     ::user::command command(pevent->m_puie->m_id);
+                     ::message::command command(pevent->m_puie->m_id);
 
                      puiTarget->_001SendCommand(&command);
 
@@ -941,7 +953,7 @@ namespace user
                   if (puiNotify != nullptr)
                   {
 
-                     ::user::command command(idCommand);
+                     ::message::command command(idCommand);
 
                      command.m_actioncontext = pevent->m_actioncontext;
 
@@ -1123,7 +1135,7 @@ namespace user
 
          //if(pmenuitema != nullptr)
          //{
-         //   ::user::command commandui(get_object());
+         //   ::message::command commandui(get_object());
          //   commandui.m_pitema          = pmenuitema;
          //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
          //   {
@@ -1137,7 +1149,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(pwndParent->on_command(0,
-         //          MAKELONG((i32)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1151,8 +1163,6 @@ namespace user
    }
 
 
-
-
    void menu::_001OnCreate(::message::message * pmessage)
    {
 
@@ -1162,7 +1172,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //create_color(color_background, ARGB(84 + 77, 185, 184, 177));
+      //create_color(color_background, argb(84 + 77, 185, 184, 177));
       //create_translucency(::user::e_translucency_present;
 
 
@@ -1174,7 +1184,7 @@ namespace user
    //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
    //    {
    //       UNREFERENCED_PARAMETER(pmessage);
-   //       //      __pointer(::message::base) pbase(pmessage);
+   //       //      __pointer(::user::message) pusermessage(pmessage);
 
    //       __pointer(::user::menu_item) pitemThis = get_item();
 
@@ -1182,7 +1192,7 @@ namespace user
 
    //       if(pmenuitema != nullptr)
    //       {
-   //          ::user::command commandui(get_object());
+   //          ::message::command commandui(get_object());
    //          commandui.m_pitema          = pmenuitema;
    //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
    //          {
@@ -1196,7 +1206,7 @@ namespace user
    //             {
    //                /*
    //                 if(pwndParent->on_command(0,
-   //                 MAKELONG((i32)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -1219,11 +1229,11 @@ namespace user
    void menu::_001OnNcCreate(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
 
-      pbase->m_lresult = 1;
+      pusermessage->m_lresult = 1;
 
    }
 
@@ -1297,34 +1307,34 @@ namespace user
    void menu::_001OnNcCalcSize(::message::message * pmessage)
    {
 
-      ///__pointer(::message::base) pbase(pmessage);
+      ///__pointer(::user::message) pusermessage(pmessage);
 
       pmessage->previous();
 
       return;
 
-      //if (pbase->m_wparam == true)
+      //if (pusermessage->m_wparam == true)
       //{
 
-      //   pbase->m_bRet = true;
-      //   pbase->set_lresult(0);
+      //   pusermessage->m_bRet = true;
+      //   pusermessage->set_lresult(0);
 
       //}
       //else
       //{
 
-      //   RECTANGLE_I32 * prectangle = (RECTANGLE_I32 *)pbase->m_lparam.m_lparam;
+      //   RECTANGLE_I32 * prectangle = (RECTANGLE_I32 *)pusermessage->m_lparam.m_lparam;
 
       //   prectangle->left = m_pointTrack.x;
 
       //   prectangle->top = m_pointTrack.y;
 
-      //   prectangle->right = prectangle->left + max(::user::interaction::get_window_minimum_size().cx, m_size.cx);
+      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 
-      //   prectangle->bottom = prectangle->left + max(::user::interaction::get_window_minimum_size().cy, m_size.cy);
+      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy, m_size.cy);
 
-      //   pbase->m_bRet = true;
-      //   pbase->set_lresult(0);
+      //   pusermessage->m_bRet = true;
+      //   pusermessage->set_lresult(0);
 
       //}
 
@@ -1357,13 +1367,13 @@ namespace user
    bool menu::pre_create_window(::user::system * pusersystem)
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      pusersystem->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
-
-      pusersystem->m_createstruct.style &= ~WS_VISIBLE;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      pusersystem->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+//
+//      pusersystem->m_createstruct.style &= ~WS_VISIBLE;
+//
+//#endif
 
       return true;
 

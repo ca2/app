@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -177,16 +174,22 @@ namespace simple_ui
 
       get_window_rect(&rectWindow);
 
-      ::point_i32 pointCursor;
-
       auto psession = Session;
 
-      psession->get_cursor_pos(&pointCursor);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       bool bHover = rectWindow.contains(pointCursor);
 
       if (!bHover)
+      {
+
          m_bMouseMove = false;
+
+      }
 
       return bHover;
 
@@ -208,11 +211,11 @@ namespace simple_ui
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         br->create_solid(ARGB(190, 255, 184, 240));
+         br->create_solid(argb(190, 255, 184, 240));
 
 #else
 
-         br->create_solid(ARGB(190, 190, 255, 177));
+         br->create_solid(argb(190, 190, 255, 177));
 
 #endif
 
@@ -220,7 +223,7 @@ namespace simple_ui
 
          get_client_rect(rectClient);
 
-         pgraphics->fill_rect(rectClient, br);
+         pgraphics->fill_rectangle(rectClient, br);
 
       }
 
@@ -260,25 +263,25 @@ namespace simple_ui
             if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
             {
 
-               crOut = ARGB(1140, 255, 230, 255);
+               crOut = argb(114, 255, 230, 255);
 
-               crIn = ARGB(255, 255, 133, 255);
+               crIn = argb(255, 255, 133, 255);
 
-               crBorderOut = ARGB(190, 150, 100, 150);
+               crBorderOut = argb(190, 150, 100, 150);
 
-               crBorderIn = ARGB(190, 255, 240, 255);
+               crBorderIn = argb(190, 255, 240, 255);
 
             }
             else
             {
 
-               crOut = ARGB(1140, 205, 180, 205);
+               crOut = argb(114, 205, 180, 205);
 
-               crIn = ARGB(255, 205, 83, 205);
+               crIn = argb(255, 205, 83, 205);
 
-               crBorderOut = ARGB(190, 100, 50, 100);
+               crBorderOut = argb(190, 100, 50, 100);
 
-               crBorderIn = ARGB(190, 205, 190, 205);
+               crBorderIn = argb(190, 205, 190, 205);
 
             }
 
@@ -289,23 +292,23 @@ namespace simple_ui
             {
 
 
-               crOut = ARGB(1140, 230, 255, 225);
+               crOut = argb(1140, 230, 255, 225);
 
-               crIn = ARGB(255, 133, 255, 80 + 49);
+               crIn = argb(255, 133, 255, 80 + 49);
 
-               crBorderOut = ARGB(190, 100, 150, 100);
+               crBorderOut = argb(190, 100, 150, 100);
 
-               crBorderIn = ARGB(190, 240, 255, 235);
+               crBorderIn = argb(190, 240, 255, 235);
             }
             else
             {
-               crOut = ARGB(1140, 230, 255, 225);
+               crOut = argb(1140, 230, 255, 225);
 
-               crIn = ARGB(255, 133, 255, 80 + 49);
+               crIn = argb(255, 133, 255, 80 + 49);
 
-               crBorderOut = ARGB(190, 100, 150, 100);
+               crBorderOut = argb(190, 100, 150, 100);
 
-               crBorderIn = ARGB(190, 240, 255, 235);
+               crBorderIn = argb(190, 240, 255, 235);
 
             }
 
@@ -320,37 +323,37 @@ namespace simple_ui
             if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
             {
 
-               crOut = ARGB(190, 255, 210, 255);
+               crOut = argb(190, 255, 210, 255);
 
-               crIn = ARGB(255, 255, 1140, 255);
+               crIn = argb(255, 255, 114, 255);
 
-               crBorderOut = ARGB(190, 90, 20, 90);
+               crBorderOut = argb(190, 90, 20, 90);
 
-               crBorderIn = ARGB(190, 255, 240, 255);
+               crBorderIn = argb(190, 255, 240, 255);
 
             }
             else
             {
 
-               crOut = ARGB(190, 205, 120, 205);
+               crOut = argb(190, 205, 120, 205);
 
-               crIn = ARGB(255, 205, 134, 205);
+               crIn = argb(255, 205, 134, 205);
 
-               crBorderOut = ARGB(190, 40, 0, 40);
+               crBorderOut = argb(190, 40, 0, 40);
 
-               crBorderIn = ARGB(190, 205, 120, 205);
+               crBorderIn = argb(190, 205, 120, 205);
 
             }
 
 #else
 
-            crOut = ARGB(190, 210, 255, 205);
+            crOut = argb(190, 210, 255, 205);
 
-            crIn = ARGB(255, 133, 255, 80 + 49);
+            crIn = argb(255, 133, 255, 80 + 49);
 
-            crBorderOut = ARGB(190, 20, 90, 20);
+            crBorderOut = argb(190, 20, 90, 20);
 
-            crBorderIn = ARGB(190, 240, 255, 235);
+            crBorderIn = argb(190, 240, 255, 235);
 
 #endif
 
@@ -367,7 +370,7 @@ namespace simple_ui
 
             pgraphics->set(br);
 
-            pgraphics->fill_rect(rectClient,br);
+            pgraphics->fill_rectangle(rectClient,br);
 
             ::draw2d::pen_pointer pen(e_create);
 
@@ -387,11 +390,11 @@ namespace simple_ui
 
          br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top - 1), point_i32(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
 
          br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top + iBorderH - 1), point_i32(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -401,7 +404,7 @@ namespace simple_ui
 
          pen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
+         pgraphics->draw_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
 
       }
 
@@ -433,13 +436,13 @@ namespace simple_ui
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         crText = ARGB(223, 74, 39, 67);
+         crText = argb(223, 74, 39, 67);
 
       }
       else
       {
 
-         crText = ARGB(223, 255, 255, 255);
+         crText = argb(223, 255, 255, 255);
 
       }
 
@@ -449,13 +452,13 @@ namespace simple_ui
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         crText = ARGB(223, 49, 90, 23);
+         crText = argb(223, 49, 90, 23);
 
       }
       else
       {
 
-         crText = ARGB(223, 49, 90, 23);
+         crText = argb(223, 49, 90, 23);
       }
 
 #endif
@@ -472,7 +475,7 @@ namespace simple_ui
 
       rectClient.deflate((i32) fMargin, (i32) fMargin);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
 
@@ -488,7 +491,7 @@ namespace simple_ui
 
       __pointer(::message::key) pkey(pmessage);
 
-      ::user::e_key iKey = pkey->m_ekey;
+      ::user::enum_key iKey = pkey->m_ekey;
 
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {

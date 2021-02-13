@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <math.h>
 
 
@@ -144,7 +144,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool path::internal_add_string(::draw2d_direct2d::graphics * pgraphics, double x, double y, const string & strText, ::draw2d::font * pfont)
+   bool path::internal_add_string(::draw2d_direct2d::graphics * pgraphics, double x, double y, const string & strText, ::write_text::font * pfont)
    {
 
       HRESULT hr;
@@ -158,7 +158,7 @@ namespace draw2d_direct2d
 
       wstring szOutline(strText);
 
-      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = ::direct2d::direct2d()->dwrite_factory();
 
       Microsoft::WRL::ComPtr < IDWriteTextLayout> textLayout;
 
@@ -313,7 +313,7 @@ namespace draw2d_direct2d
 
          }
 
-         hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&m_ppathHollow);
+         hr = ::direct2d::direct2d()->d2d1_factory1()->CreatePathGeometry(&m_ppathHollow);
 
          m_ppath = m_ppathHollow;
 
@@ -330,7 +330,7 @@ namespace draw2d_direct2d
 
          }
 
-         hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&m_ppathFilled);
+         hr = ::direct2d::direct2d()->d2d1_factory1()->CreatePathGeometry(&m_ppathFilled);
          
          m_ppath = m_ppathFilled;
 

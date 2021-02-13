@@ -104,7 +104,7 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
    else
    {
 
-      m_cCount = min(m_threada.get_count(), cIteration);
+      m_cCount = minimum(m_threada.get_count(), cIteration);
 
    }
 
@@ -112,7 +112,7 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
 
    m_cIteration = cIteration;
 
-   m_cSpan = max(1, cIteration / get_count());
+   m_cSpan = maximum(1, cIteration / get_count());
 
    return true;
 

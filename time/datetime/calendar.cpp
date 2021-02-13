@@ -108,7 +108,7 @@ namespace datetime
       }
 
 
-      void calendar::set_pos(point_i32 point_i32, size_i32 sz)
+      void calendar::set_pos(point_i32 point, size_i32 sz)
       {
 
          UNREFERENCED_PARAMETER(point);

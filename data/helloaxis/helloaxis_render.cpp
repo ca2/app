@@ -228,7 +228,7 @@ namespace helloaxis
 
       double dPeriod = 1000.0 / dFps;
 
-      dPeriod = min(max(1.0, dPeriod), 1000.0);
+      dPeriod = minimum(maximum(1.0, dPeriod), 1000.0);
 
       //#ifdef WINDOWS_DESKTOP
       //
@@ -426,7 +426,7 @@ namespace helloaxis
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectClient,ARGB(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectClient,argb(0, 0, 0, 0));
 
       //      i32 iCount = 30;
 
@@ -508,11 +508,11 @@ namespace helloaxis
 
 /*                  m_pimage->g()->set_font(m_font);
 
-/*                  m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  brushText->create_solid(ARGB(255, 255, 255, 255));
+                  brushText->create_solid(argb(255, 255, 255, 255));
 
 /*                  m_pimage->g()->SelectObject(brushText);
 
@@ -528,7 +528,7 @@ namespace helloaxis
 
                   m_pimageTemplate->Fill(0, 0, 0, 0);
 
-/*                  m_pimageTemplate->channel_copy(::color::channel_alpha, ::color::channel_green, m_pimage);
+/*                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
 
                }
 
@@ -550,7 +550,7 @@ namespace helloaxis
 
 
 
-      ::color ca;
+      ::color::color ca;
 
 
 //      if (false)
@@ -602,12 +602,12 @@ namespace helloaxis
 
       pgraphics->set_font(m_font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 
       }
       else
@@ -616,13 +616,13 @@ namespace helloaxis
          if (m_bAlternate)
          {
 
-            brushText->create_solid(ARGB(255, 184, 184, 177));
+            brushText->create_solid(argb(255, 184, 184, 177));
 
          }
          else
          {
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
          }
 
@@ -636,9 +636,9 @@ namespace helloaxis
          pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloAxis);
 
       }
-      //      pgraphics->FillSolidRect(200,00,100,100,ARGB(128,128,128,255));
+      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 
-      //    pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
       if(!m_bFirstDone)
       {
@@ -710,7 +710,7 @@ namespace helloaxis
 
       double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      ::color ca;
+      ::color::color ca;
 
 //      if (false)
 //      {
@@ -774,11 +774,11 @@ namespace helloaxis
 
 /*            m_pimage->Fill(0, 0, 0, 0);
 
-/*            m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
 /*            m_pimage->g()->SelectObject(brushText);
 
@@ -807,7 +807,7 @@ namespace helloaxis
             if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
-/*               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
+/*               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
 
 /*               m_pimageTint->tint(m_pimage, ca->m_iR, ca->m_iG, ca->m_iB);
 
@@ -823,12 +823,12 @@ namespace helloaxis
 
       }
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 
       }
       else
@@ -837,13 +837,13 @@ namespace helloaxis
          if (m_bAlternate)
          {
 
-            brushText->create_solid(ARGB(255, 184, 184, 177));
+            brushText->create_solid(argb(255, 184, 184, 177));
 
          }
          else
          {
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
          }
 
@@ -1149,19 +1149,19 @@ auto m_tick23 = ::millis::now();
 
                float fHeight = 100.0;
 
-               ::draw2d::font_pointer font(e_create);
+               ::write_text::font_pointer font(e_create);
 
                font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(os_font_name(e_font_sans), min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1169,7 +1169,7 @@ auto m_tick23 = ::millis::now();
 
             }
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (500) * 11;
 
@@ -1177,7 +1177,7 @@ auto m_tick23 = ::millis::now();
 
             ::draw2d::brush_pointer brush(e_create);
 
-            brush->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+            brush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 
             pgraphics->SelectObject(brush);
 
@@ -1185,7 +1185,7 @@ auto m_tick23 = ::millis::now();
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
             ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
 
@@ -1235,7 +1235,7 @@ auto m_tick23 = ::millis::now();
 
          pgraphics->BitBlt(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
 
-         //pgraphics->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
+         //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
 //         m_pview->m_bOkPending = true;
 
@@ -1272,7 +1272,7 @@ auto m_tick23 = ::millis::now();
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1401,21 +1401,21 @@ auto m_tick23 = ::millis::now();
 
       float fHeight = 100.0;
 
-      ::draw2d::font_pointer font(e_create);
+      ::write_text::font_pointer font(e_create);
 
 //      font->create_pixel_font(m_pview->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
 
       double ratey = fHeight * 0.84 / size.cy;
 
-//      font->create_pixel_font(m_pview->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+//      font->create_pixel_font(m_pview->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-      m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -1433,21 +1433,21 @@ auto m_tick23 = ::millis::now();
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, ARGB(255, 90, 90, 80));
+      pen->create_solid(1.0, argb(255, 90, 90, 80));
 
       ::draw2d::pen_pointer penW(e_create);
 
-      penW->create_solid(3.0, ARGB(84, 255, 255, 255));
+      penW->create_solid(3.0, argb(84, 255, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, ARGB(255,255,200,240));
+      //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, argb(255,255,200,240));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->draw_path(path, penW);
       pgraphics->draw_path(path, pen);
-      //pgraphics->FillSolidRect(00,00,100,100,ARGB(128,128,0,0));
+      //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }
 

@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -155,7 +153,7 @@ namespace user
       strsize data::get_sel_beg()
       {
 
-         return min(max(min_non_neg(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -163,7 +161,7 @@ namespace user
       strsize data::get_sel_end()
       {
 
-         return min(max(max(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -260,7 +258,7 @@ namespace user
             for (auto & pbox : pline->ptra())
             {
 
-               rBox.max(pbox->m_rectDevice);
+               rBox.maximum(pbox->m_rectDevice);
 
                yLast = pbox->m_rectHitTest.top;
 
@@ -493,7 +491,7 @@ namespace user
 
          }
 
-         return min(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
+         return minimum(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
 
       }
 
@@ -501,9 +499,9 @@ namespace user
       void data::_001Delete(strsize i1, strsize i2)
       {
 
-         strsize iSelBeg = min_non_neg(i1, i2);
+         strsize iSelBeg = minimum_non_negative(i1, i2);
 
-         strsize iSelEnd = max(i1, i2);
+         strsize iSelEnd = maximum(i1, i2);
 
          if (iSelBeg == iSelEnd)
          {
@@ -1096,7 +1094,7 @@ namespace user
 
          sync_lock sl(mutex());
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          if (m_spana.is_empty())
          {
@@ -1118,7 +1116,7 @@ namespace user
 
          bool bLineWrap = false;
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
          rectangle_f64 rectClient(rectangle);
 
@@ -1492,15 +1490,15 @@ namespace user
          if (m_pedit->is_picture_enabled())
          {
 
-            rectangle_i32 = m_pedit->m_ppictureimpl->m_rectDrawing;
+            rectangle = m_pedit->m_ppictureimpl->m_rectDrawing;
 
-            rectangle_i32 -= rectangle.origin();
+            rectangle -= rectangle.origin();
 
          }
          else
          {
 
-            rectangle_i32 = m_pedit->get_client_rect();
+            rectangle = m_pedit->get_client_rect();
 
          }
 
@@ -1517,25 +1515,25 @@ namespace user
          if (pgraphics->m_bPrinting)
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
          else
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
 
          //rectangle_f64 rectClient(rectangle);
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, ARGB(255, 0, 127, 0));
+         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
-         if (m_pedit->has_focus())
+         if (m_pedit->has_keyboard_focus())
          {
 
             bHasFocus = true;
@@ -1594,7 +1592,7 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  iMaxCy = max(iMaxCy, (int) pbox->m_sizeBox.cy);
+                  iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy);
 
                   pbox->m_rectBox.top = y;
 
@@ -1626,13 +1624,13 @@ namespace user
             if (bHasFocus && m_pedit->is_text_editable())
             {
 
-               crBkSel = ARGB(192, 175, 200, 240);
+               crBkSel = argb(192, 175, 200, 240);
 
             }
             else
             {
 
-               crBkSel = ARGB(127, 192, 210, 225);
+               crBkSel = argb(127, 192, 210, 225);
 
             }
 
@@ -1661,9 +1659,9 @@ namespace user
                      if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                      {
 
-                        iBoxPosBeg = max(iBoxPosBeg, get_sel_beg());
+                        iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
 
-                        iBoxPosEnd = min(iBoxPosEnd, get_sel_end());
+                        iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
 
                         index iBeg = pline->pred_find_first([&](auto & pbox)
                         {
@@ -1724,7 +1722,7 @@ namespace user
                                  r = pboxEnd->get_pos_left(iBoxPosEnd);
                               }
 
-                              pgraphics->fill_rect(
+                              pgraphics->fill_rectangle(
                                  ::rectd_dim(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
@@ -1822,11 +1820,11 @@ namespace user
 
                   auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
 
-                  pgraphics->fill_rect(::rectangle_f64(r,
+                  pgraphics->fill_rectangle(::rectangle_f64(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
                      pbox->m_rectBox.bottom - dDescent),
-                     ARGB(255, 0, 0, 0));
+                     argb(255, 0, 0, 0));
 
                }
 
@@ -1951,7 +1949,7 @@ namespace user
 
          sync_lock sl(mutex());
 
-         if (m_spana.isEmpty())
+         if (m_spana.is_empty())
          {
 
             return 0;
@@ -2185,7 +2183,7 @@ namespace user
 
                   ::draw2d::brush_pointer brush(e_create);
 
-                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, color(m_pedit->m_ppictureimpl->m_hlsOutline));
+                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, ::color::color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
                   brush->create_solid(pformat->m_colorForeground);
 

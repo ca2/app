@@ -123,7 +123,7 @@ public:
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :
-   public ::matter
+   virtual public ::matter
 {
 public:
 

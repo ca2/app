@@ -658,7 +658,7 @@ namespace aura
 //   ::user::primitive * session::get_keyboard_focus()
 //   {
 //
-//      ::windowing::window * pwindowFocus = ::get_focus();
+//      ::windowing::window * pwindowFocus = ::get_keyboard_focus();
 //
 //      if (oswindowFocus == nullptr)
 //      {
@@ -714,39 +714,6 @@ namespace aura
 //   }
 
 
-   ::user::keyboard& session::keyboard()
-   {
-
-      if (!m_pkeyboard)
-      {
-
-         auto estatus = __compose_new(m_pkeyboard);
-
-         if (!m_pkeyboard)
-         {
-
-            __throw(::exception::exception("Could not create keyboard"));
-
-         }
-//
-//#if !defined(WINDOWS) && !defined(__APPLE__)
-//
-//         if (!m_pkeyboard->initialize())
-//         {
-//
-//            __throw(::exception::exception("Could not initialize keyboard"));
-//
-//         }
-//
-//#endif
-
-         //Application.on_create_keyboard();
-
-      }
-
-      return *m_pkeyboard;
-
-   }
 
 
 //   bool session::set_keyboard_focus(::user::primitive * pprimitive)
@@ -783,7 +750,7 @@ namespace aura
 ////
 ////      }
 ////
-////      bool bHasFocus = pinteraction->has_focus();
+////      bool bHasFocus = pinteraction->has_keyboard_focus();
 ////
 ////      if (!pimpl->set_keyboard_focus(pprimitive))
 ////      {
@@ -811,7 +778,7 @@ namespace aura
 ////#endif
 ////      {
 ////
-////         ::set_focus(pimpl->m_oswindow);
+////         ::set_keyboard_focus(pimpl->m_oswindow);
 ////
 ////      }
 ////
@@ -948,7 +915,7 @@ namespace aura
 //
 //      }
 //
-//      bool bHasFocus = puiImpl->has_focus();
+//      bool bHasFocus = puiImpl->has_keyboard_focus();
 //
 //      if (!pimpl->remove_keyboard_focus(pprimitive))
 //      {
@@ -1106,7 +1073,7 @@ namespace aura
 //
 //      }
 //
-//      bool bHasFocus = puiImpl->has_focus();
+//      bool bHasFocus = puiImpl->has_keyboard_focus();
 //
 //      if (!pimpl->clear_keyboard_focus())
 //      {
@@ -1250,7 +1217,7 @@ namespace aura
    //::user::primitive * session::get_focus_ui()
    //{
 
-   //   auto window = ::get_focus();
+   //   auto window = ::get_keyboard_focus();
 
    //   if (!window)
    //   {
@@ -1299,7 +1266,7 @@ namespace aura
       if (puiFocus.is_set())
       {
 
-         if (!puiFocus->get_wnd()->is_active())
+         if (!puiFocus->get_wnd()->is_active_window())
          {
 
             auto pwindow = puiFocus->get_window();
@@ -1313,15 +1280,10 @@ namespace aura
 
          }
 
-         if (puiFocus->get_keyboard_focus() != puiFocus->get_wnd())
+         if (!puiFocus->has_keyboard_focus())
          {
 
-            if (puiFocus->get_wnd()->has_focus())
-            {
-
-               puiFocus->get_wnd()->set_focus();
-
-            }
+            puiFocus->get_wnd()->set_keyboard_focus();
 
          }
 
@@ -1516,10 +1478,10 @@ namespace aura
    //}
 
 
-   color32_t session::get_default_color(u64 u)
+   ::color::color session::get_default_color(u64 u)
    {
 
-      return ARGB(255, 255, 255, 255);
+      return argb(255, 255, 255, 255);
 
    }
 
@@ -1892,31 +1854,10 @@ ret:
 
          }
 
-         auto pwindowing = m_puser->m_pwindowing;
-
-         bool bCreateSessionWindow = pwindowing->defer_create_system_window();
-
-         if (!bCreateSessionWindow)
-         {
-
-            WARN("Could not create session window");
-
-         }
 
       }
 
-      if (System.m_bDraw2d)
-      {
-
-         auto psession = Session;
-
-         auto puser = psession->m_puser;
-
-         auto pwindowing = puser->m_pwindowing;
-
-         pwindowing->enum_draw2d_fonts(m_fontenumitema);
-
-      }
+     
 
       return true;
 
@@ -2148,9 +2089,14 @@ ret:
 
       auto puser = m_puser;
 
-      auto pwindowing = puser->m_pwindowing;
+      if (puser)
+      {
 
-      pwindowing->defer_term_ui();
+         auto pwindowing = puser->m_pwindowing;
+
+         pwindowing->defer_term_ui();
+
+      }
 
    }
 
@@ -2504,7 +2450,7 @@ namespace aura
    }
 
 
-   ::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (eelement == ::user::e_element_background)
@@ -2512,16 +2458,18 @@ namespace aura
 
          color32_t crBk;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crBk = ARGB(255, 0x40, 0x40, 0x40);
+            crBk = argb(255, 0x40, 0x40, 0x40);
 
          }
          else
          {
 
-            crBk = ARGB(255, 255, 255, 255);
+            crBk = argb(255, 255, 255, 255);
 
          }
 
@@ -2533,16 +2481,18 @@ namespace aura
 
          color32_t crBk;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crBk = ARGB(255, 127, 127, 127);
+            crBk = argb(255, 127, 127, 127);
 
          }
          else
          {
 
-            crBk = ARGB(255, 192, 192, 192);
+            crBk = argb(255, 192, 192, 192);
 
          }
 
@@ -2554,16 +2504,18 @@ namespace aura
 
          color32_t crText;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crText = ARGB(255, 255, 255, 255);
+            crText = argb(255, 255, 255, 255);
 
          }
          else
          {
 
-            crText = ARGB(255, 49, 50, 42);
+            crText = argb(255, 49, 50, 42);
 
          }
 
@@ -2571,7 +2523,7 @@ namespace aura
 
       }
 
-      return ::color();
+      return ::color::color();
 
    }
 

@@ -452,7 +452,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //
 //   }
 //
-//   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+//   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 //
 //   CGContextDrawImage(cgctx, rectangle, inImage);
 //
@@ -526,7 +526,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //   //
 //   //   __memset(bitmapData, 0, bitmapByteCount);
 //
-//   // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+//   // Create the bitmap context. We want pre-multiplied argb, 8-bits
 //   // per component. Regardless of what the source image format is
 //   // (CMYK, Grayscale, and so on) it will be converted over to the format
 //   // specified here by CGBitmapContextCreate.
@@ -669,7 +669,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 //     hdc->m_cgcolorrefText = cg_create_color(0);
-//     hdc->m_cgcolorrefBk = cg_create_color(RGB(255, 255, 255));
+//     hdc->m_cgcolorrefBk = cg_create_color(rgb(255, 255, 255));
 
 //     return hdc;
 

@@ -366,7 +366,7 @@
  m_hFont = hNewFont;         // save the new one
  }
  
- ::draw2d::font* preview_dc::SelectObject(::draw2d::font* pFont)
+ ::write_text::font* preview_dc::SelectObject(::write_text::font* pFont)
  {
  if (pFont == nullptr)
  return nullptr;
@@ -374,7 +374,7 @@
  ASSERT(get_handle2() != nullptr);
  ASSERT_VALID(pFont);
  
- ::draw2d::font* pOldFont = (::draw2d::font*) ::draw2d_quartz2d::object::from_handle(
+ ::write_text::font* pOldFont = (::write_text::font*) ::draw2d_quartz2d::object::from_handle(
  ::SelectObject(get_handle2(), pFont->get_handle()));
  
  // If same as already selected, don't re-mirror screen font

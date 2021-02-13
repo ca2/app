@@ -7,11 +7,11 @@
 
 #undef new
 #if defined(WINDOWS)
-#define min min
-#define max max
+#define minimum minimum
+#define maximum maximum
 //#include <gdiplus.h>
-#undef min
-#undef max
+#undef minimum
+#undef maximum
 #endif
 
 
@@ -871,7 +871,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -888,7 +888,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -906,7 +906,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_kill_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_kill_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -923,7 +923,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_set_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_set_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -1030,9 +1030,9 @@ run_install:
 
          m_bPendingRestartCa2 = true;
 
-         /* HPEN hpen = (HPEN) ::create_solid(1, RGB(0, 0, 0));
+         /* HPEN hpen = (HPEN) ::create_solid(1, rgb(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
-         HBRUSH hbrush = (HBRUSH) ::create_solid(RGB(255, 0, 255));
+         HBRUSH hbrush = (HBRUSH) ::create_solid(rgb(255, 0, 255));
          HBRUSH hbrushOld = (HBRUSH) ::SelectObject(hdc, hbrush);
 
          ::Ellipse(hdc, 23, 23, 49, 49);
@@ -1045,8 +1045,8 @@ run_install:
          rectangle.top       = 0;
          rectangle.bottom    = cx;
          rectangle.right     = cy;
-         ::FillSolidRect_dup(hdc, &rectangle, RGB(255, 255, 255));
-         ::SetTextColor(hdc, RGB(255, 0, 255));
+         ::FillSolidRect_dup(hdc, &rectangle, rgb(255, 255, 255));
+         ::SetTextColor(hdc, rgb(255, 0, 255));
          const char * psz = "ca is not installed! You may try to install using low level spaboot_install.exe.";
          ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(psz));*/
       }
@@ -1105,20 +1105,20 @@ run_install:
 
 
 
-   void plugin::message_handler(::message::base * pbase)
+   void plugin::message_handler(::user::message * pusermessage)
    {
 
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System.install().is_ca2_installed())
          //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System.install().is_ca2_installed())
       {
 
-         ::hotplugin::plugin::message_handler(pbase);
+         ::hotplugin::plugin::message_handler(pusermessage);
 
       }
       else
       {
 
-         ::user::interaction::message_handler(pbase);
+         ::user::interaction::message_handler(pusermessage);
 
       }
 
@@ -1626,7 +1626,7 @@ restart:
 
          get_window_rect(rectangle);
 
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle_i32)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle)
          {
 
             m_phost->m_pbasecomposer->m_bRectSent = true;

@@ -243,12 +243,12 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pmessage) override;
 
 
       //virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
-      virtual u32 RecalcDelayShow(SIZEPARENTPARAMS * pLayout);
+      virtual u32 RecalcDelayShow(void * pLayoutSIZEPARENTPARAMS);
 
 
       virtual bool IsDockBar();

@@ -122,7 +122,7 @@ namespace async
 
 
       template < class T >
-      registration_token register_callback(T * point_i32, void(T::*pfnCancel)())
+      registration_token register_callback(T * point, void(T::*pfnCancel)())
       {
          m_pcallback = (callback *) point_i32;
          m_pfnCancel = (void(callback ::*)()) pfnCancel;

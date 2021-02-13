@@ -560,19 +560,20 @@ namespace draw2d
       long R;
       long G;
       long B;
-      long ir;
-      long ig;
-      long ib;
+      byte ir;
+      byte ig;
+      byte ib;
 
       R = ::red(color)-shift;
       G = ::green(color)-shift;
       B = ::blue(color)-shift;
 
-      ir = (R < 0) ? 0 : (R > 255) ? 255 : R;
-      ig = (G < 0) ? 0 : (G > 255) ? 255 : G;
-      ib = (B < 0) ? 0 : (B > 255) ? 255 : B;
+      ir = (byte) ((R < 0) ? 0 : (R > 255) ? 255 : R);
+      ig = (byte) ((G < 0) ? 0 : (G > 255) ? 255 : G);
+      ib = (byte) ((B < 0) ? 0 : (B > 255) ? 255 : B);
 
-      return RGB(ir,ig,ib);
+      return rgba(ir, ig, ib, 255);
+
    }
 
 } // namespace draw2d

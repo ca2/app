@@ -1,8 +1,5 @@
 #include "framework.h" 
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -24,46 +21,48 @@ namespace simple_ui
    string style::calc_locale()
    {
 
-#if defined(WINDOWS_DESKTOP)
-      string strLocale;
-      LANGID langid = ::GetUserDefaultLangID();
-#define SPR_DEUTSCH LANG_GERMAN
-      if (langid == LANG_SWEDISH)
-      {
-         strLocale = "se";
-      }
-      else if (langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-         strLocale = "point_i32-br";
-      }
-      else if (PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-         strLocale = "de";
-      }
-      else if (PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-         strLocale = "en";
-      }
-      else if (PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-         strLocale = "jp";
-      }
-      else if (PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-         strLocale = "pl";
-      }
-      else
-      {
+      return "da";
 
-         strLocale = "_std";
-         
-      }
-
-      return strLocale;
-#else
-
-      return "se";
-#endif
+//#if defined(WINDOWS_DESKTOP)
+//      string strLocale;
+//      LANGID langid = ::GetUserDefaultLangID();
+//#define SPR_DEUTSCH LANG_GERMAN
+//      if (langid == LANG_SWEDISH)
+//      {
+//         strLocale = "se";
+//      }
+//      else if (langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
+//      {
+//         strLocale = "point_i32-br";
+//      }
+//      else if (PRIMARYLANGID(langid) == SPR_DEUTSCH)
+//      {
+//         strLocale = "de";
+//      }
+//      else if (PRIMARYLANGID(langid) == LANG_ENGLISH)
+//      {
+//         strLocale = "en";
+//      }
+//      else if (PRIMARYLANGID(langid) == LANG_JAPANESE)
+//      {
+//         strLocale = "jp";
+//      }
+//      else if (PRIMARYLANGID(langid) == LANG_POLISH)
+//      {
+//         strLocale = "pl";
+//      }
+//      else
+//      {
+//
+//         strLocale = "_std";
+//         
+//      }
+//
+//      return strLocale;
+//#else
+//
+//      return "se";
+//#endif
 
    }
 

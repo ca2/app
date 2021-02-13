@@ -1,13 +1,12 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#endif
 #include "aqua/xml.h"
-#include "acme/os/_os.h"
+//#include "acme/os/_os.h"
 #include "acme/os/cross.h"
 #include "toolbar.h"
 
-#define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
+#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
 
 struct __COLORMAP
 {
@@ -74,13 +73,13 @@ namespace user
 
       MESSAGE_LINK(e_message_nchittest, pchannel, this, &toolbar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &toolbar::_001OnNcCalcSize);
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
-      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
-      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-      MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-      MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
+//      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
+//      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
+//#endif
 
    }
 
@@ -207,62 +206,62 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   bool toolbar::from(HBITMAP hbmImageWell)
-   {
-      ASSERT_VALID(this);
-      ASSERT(hbmImageWell != nullptr);
-
-      // the caller must manage changing system colors
-//      m_hInstImageWell = nullptr;
-      //    m_hRsrcImageWell = nullptr;
-
-      // tell common control toolbar about the new bitmap
-      return AddReplaceBitmap(hbmImageWell);
-   }
-
-   bool toolbar::AddReplaceBitmap(HBITMAP hbmImageWell)
-   {
-      bool bResult = false;
-
-      // need complete bitmap size_i32 to determine number of images
-      /*#ifdef WINDOWS_DESKTOP
-            BITMAP bitmap;
-            VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
-
-            // add the bitmap to the common control toolbar
-            if (m_hbmImageWell == nullptr)
-            {
-               TBADDBITMAP addBitmap;
-               addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
-               addBitmap.nID = (::u32)hbmImageWell;
-               bResult =  default_window_procedure(TB_ADDBITMAP,
-                  bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
-            }
-            else
-            {
-               TBREPLACEBITMAP replaceBitmap;
-               replaceBitmap.hInstOld = nullptr;
-               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
-               replaceBitmap.hInstNew = nullptr;
-               replaceBitmap.nIDNew = (::u32)hbmImageWell;
-               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
-               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
-            }
-            // remove old bitmap, if present
-            if (bResult)
-            {
-               ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
-               m_hbmImageWell = hbmImageWell;
-            }
-      #else
-            __throw(todo());
-      #endif*/
-      return bResult;
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   bool toolbar::from(HBITMAP hbmImageWell)
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(hbmImageWell != nullptr);
+//
+//      // the caller must manage changing system colors
+////      m_hInstImageWell = nullptr;
+//      //    m_hRsrcImageWell = nullptr;
+//
+//      // tell common control toolbar about the new bitmap
+//      return AddReplaceBitmap(hbmImageWell);
+//   }
+//
+//   bool toolbar::AddReplaceBitmap(HBITMAP hbmImageWell)
+//   {
+//      bool bResult = false;
+//
+//      // need complete bitmap size_i32 to determine number of images
+//      /*#ifdef WINDOWS_DESKTOP
+//            BITMAP bitmap;
+//            VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
+//
+//            // add the bitmap to the common control toolbar
+//            if (m_hbmImageWell == nullptr)
+//            {
+//               TBADDBITMAP addBitmap;
+//               addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
+//               addBitmap.nID = (::u32)hbmImageWell;
+//               bResult =  default_window_procedure(TB_ADDBITMAP,
+//                  bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
+//            }
+//            else
+//            {
+//               TBREPLACEBITMAP replaceBitmap;
+//               replaceBitmap.hInstOld = nullptr;
+//               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
+//               replaceBitmap.hInstNew = nullptr;
+//               replaceBitmap.nIDNew = (::u32)hbmImageWell;
+//               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
+//               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
+//            }
+//            // remove old bitmap, if present
+//            if (bResult)
+//            {
+//               ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
+//               m_hbmImageWell = hbmImageWell;
+//            }
+//      #else
+//            __throw(todo());
+//      #endif*/
+//      return bResult;
+//   }
+//
+//#endif
 
    bool toolbar::SetButtons(const ::u32* pIDArray, index nIDCount)
    {
@@ -619,9 +618,9 @@ namespace user
 //      //   {
 //      //      // a separator represents either a height or width
 //      //      if (pData[i].fsState & TBSTATE_WRAP)
-//      //         sizeResult.cy = (::i32) max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+//      //         sizeResult.cy = (::i32) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 //      //      else
-//      //         sizeResult.cx = max(cur.x + pData[i].iBitmap, sizeResult.cx);
+//      //         sizeResult.cx = maximum(cur.x + pData[i].iBitmap, sizeResult.cx);
 //      //   }
 //      //   else
 //      //   {
@@ -632,8 +631,8 @@ namespace user
 //      //         // add size_i32 of drop down
 //      //         cx += 2;
 //      //      }
-//      //      sizeResult.cx = max(cur.x + cx, sizeResult.cx);
-//      //      sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
+//      //      sizeResult.cx = maximum(cur.x + cx, sizeResult.cx);
+//      //      sizeResult.cy = maximum(cur.y + m_sizeButton.cy, sizeResult.cy);
 //      //   }
 //
 //      //   if (pData[i].fsStyle & TBSTYLE_SEP)
@@ -1018,7 +1017,7 @@ namespace user
 //                  if (pwindow != nullptr)
 //                  {
 //
-//                     auto rectangle_i32 = pwindow->get_window_rect();
+//                     auto rectangle = pwindow->get_window_rect();
 //
 //                     auto size = rectangle.origin() - pControl[i].rectOldPos.top_left();
 //
@@ -1050,8 +1049,8 @@ namespace user
 //         sizeResult.cx -= rectangle.width();
 //
 //         const ::size_i32 & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
-//         sizeResult.cx = max(sizeResult.cx, size.cx);
-//         sizeResult.cy = max(sizeResult.cy, size.cy);
+//         sizeResult.cx = maximum(sizeResult.cx, size.cx);
+//         sizeResult.cy = maximum(sizeResult.cy, size.cy);
 //      }
 //      return sizeResult;
 //#else
@@ -1253,11 +1252,11 @@ return { 0,0 };
    void toolbar::_001OnNcHitTest(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      pbase->m_lresult = HTCLIENT;
+      //pusermessage->m_lresult = HTCLIENT;
 
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
 
    }
 
@@ -1279,12 +1278,14 @@ return { 0,0 };
 
       ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
+
+      NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space
-      pnccalcsize->m_pparams->rgrc[0].left += rectangle.left;
-      pnccalcsize->m_pparams->rgrc[0].top += rectangle.top;
+      pparams->rgrc[0].left += rectangle.left;
+      pparams->rgrc[0].top += rectangle.top;
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
-      pnccalcsize->m_pparams->rgrc[0].right += rectangle.right;
-      pnccalcsize->m_pparams->rgrc[0].bottom += rectangle.bottom;
+      pparams->rgrc[0].right += rectangle.right;
+      pparams->rgrc[0].bottom += rectangle.bottom;
 #else
       __throw(todo());
 #endif
@@ -1335,8 +1336,13 @@ return { 0,0 };
       if (uStyle & CBRS_SIZE_DYNAMIC)
       {
          // And we are resizing
-         if (pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
+         WINDOWPOS * pWINDOWPOS = (WINDOWPOS *)pwindowpos->m_pWINDOWPOS;
+         if (pWINDOWPOS->flags & SWP_NOSIZE)
+         {
+
             return;
+
+         }
 
          // Then redraw the buttons
          Invalidate();
@@ -1377,9 +1383,9 @@ return { 0,0 };
    void toolbar::_001OnSetButtonSize(::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
-      //pbase->m_lresult = OnSetSizeHelper(m_sizeButton, pbase.m_lparam);
+      //pusermessage->m_lresult = OnSetSizeHelper(m_sizeButton, pusermessage.m_lparam);
 
    }
 
@@ -1387,9 +1393,9 @@ return { 0,0 };
    void toolbar::_001OnSetBitmapSize(::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
-      //pbase->m_lresult = OnSetSizeHelper(m_sizeImage, pbase.m_lparam);
+      //pusermessage->m_lresult = OnSetSizeHelper(m_sizeImage, pusermessage.m_lparam);
 
    }
 
@@ -1431,7 +1437,7 @@ return { 0,0 };
 //
 //      LRESULT lResult = 0;
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
 //#ifdef LRESULT
 //
@@ -1448,7 +1454,7 @@ return { 0,0 };
 //      //__throw(todo());
 //#endif
 
-//      pbase->set_lresult(lResult);
+//      pusermessage->set_lresult(lResult);
 
    //   return  0;
    }
@@ -1486,12 +1492,12 @@ return { 0,0 };
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 
             // allow the toolbar itself to have update handlers
-            if (::user::interaction::on_command(state.m_nID, CN_UPDATE_::user::command, &state, nullptr))
+            if (::user::interaction::on_command(state.m_nID, CN_UPDATE_::message::command, &state, nullptr))
                continue;
 
             // allow the owner to process the update

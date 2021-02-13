@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -27,6 +25,8 @@ namespace user
    {
 
       defer_create_mutex();
+
+      m_bTransparent = true;
 
       m_bPendingKillFocusHiding = false;
 
@@ -187,11 +187,13 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      brBk->create_solid(ARGB(230, 255, 255, 255));
+      brBk->create_solid(argb(230, 255, 255, 255));
 
       pgraphics->set(brBk);
 
-      pgraphics->fill_rect(rectClient);
+      pgraphics->fill_rectangle(rectClient);
+
+      auto pstyle = get_style(pgraphics);
 
       ::rectangle_i32 rectItem;
 
@@ -208,7 +210,11 @@ namespace user
 
       auto psession = Session;
 
-      auto pointCursor = psession->get_cursor_pos();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
@@ -227,63 +233,43 @@ namespace user
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         color32_t crBk;
+         ::color::color colorBackground;
 
-         color32_t cr;
+         ::color::color colorText;
 
          string strDebug;
+
+         ::user::e_state estate = ::user::e_state_none;
 
          if (itemHover == iItem)
          {
 
             strDebug += "hover;";
 
-            if (iItem == iCurSel)
-            {
-
-               crBk = ARGB(255, 120, 190, 220);
-
-               cr = ARGB(255, 255, 255, 255);
-
-               strDebug += "sel;";
-
-            }
-            else
-            {
-
-               crBk = ARGB(255, 235, 245, 255);
-
-               cr = ARGB(255, 0, 0, 0);
-
-            }
+            estate += ::user::e_state_hover;
 
          }
-         else if (iItem == iCurSel)
+
+         if (iItem == iCurSel)
          {
 
-            strDebug += "sel;";
+            strDebug += "selected;";
 
-            crBk = ARGB(255, 120, 150, 190);
-
-            cr = ARGB(255, 255, 255, 255);
-
-         }
-         else
-         {
-
-            crBk = ARGB(255, 255, 255, 255);
-
-            cr = ARGB(255, 0, 0, 0);
+            estate += ::user::e_state_selected;
 
          }
 
-         brBk->create_solid(crBk);
+         colorBackground = get_color(pstyle, ::user::e_element_item_background, estate);
 
-         br->create_solid(cr);
+         colorText = get_color(pstyle, ::user::e_element_item_text, estate);
+
+         brBk->create_solid(colorBackground);
+
+         br->create_solid(colorText);
 
          pgraphics->set(brBk);
 
-         pgraphics->fill_rect(rectItem);
+         pgraphics->fill_rectangle(rectItem);
 
          m_pcombo->_001GetListText(iItem, strItem);
 
@@ -303,7 +289,7 @@ namespace user
 
       }
 
-      color32_t crBorder = ARGB(255, 0, 0, 0);
+      color32_t crBorder = argb(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -313,12 +299,12 @@ namespace user
 
       rectClient.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rect(rectClient);
+      pgraphics->draw_rectangle(rectClient);
 
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pcombo)
@@ -340,14 +326,14 @@ namespace user
    }
 
 
-   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
+   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
       sync_lock sl(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strItem;
 
@@ -422,7 +408,7 @@ namespace user
 
       auto rectComboClient = m_pcombo->get_client_rect();
 
-      psize->cx = max(psize->cx, rectComboClient.width());
+      psize->cx = maximum(psize->cx, rectComboClient.width());
 
    }
 
@@ -514,7 +500,7 @@ namespace user
          if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::e_layout_sketch))
          {
 
-            m_pcombo->SetFocus();
+            m_pcombo->set_keyboard_focus();
 
          }
 
@@ -528,22 +514,22 @@ namespace user
    bool combo_list::pre_create_window(::user::system * pusersystem)
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      if (pusersystem->m_createstruct.style & WS_BORDER)
-      {
-
-         pusersystem->m_createstruct.style &= ~WS_BORDER;
-
-      }
-
-      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-
-      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
-
-#endif
-
-      pusersystem->m_createstruct.dwExStyle |= WS_EX_LAYERED;
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pusersystem->m_createstruct.style & WS_BORDER)
+//      {
+//
+//         pusersystem->m_createstruct.style &= ~WS_BORDER;
+//
+//      }
+//
+//      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+//
+//      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
+//
+//#endif
+//
+//      pusersystem->m_createstruct.dwExStyle |= WS_EX_LAYERED;
       
       //pusersystem->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
@@ -667,7 +653,11 @@ namespace user
 
          auto psession = Session;
 
-         auto pointCursor = psession->get_cursor_pos();
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
 
@@ -701,7 +691,7 @@ namespace user
       else
       {
 
-         set_keyboard_focus(this);
+         set_keyboard_focus();
 
 
       }
@@ -752,13 +742,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_itemHover = min(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
+         m_pcombo->m_itemHover = minimum(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_itemHover = max(m_pcombo->m_itemHover - 1, 0);
+         m_pcombo->m_itemHover = maximum(m_pcombo->m_itemHover - 1, 0);
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -810,7 +800,7 @@ namespace user
 
          m_itemLButtonDown = hit_test(pmouse);
 
-         SetCapture();
+         set_mouse_capture();
 
       }
 
@@ -832,7 +822,11 @@ namespace user
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
-      ReleaseCapture();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       if (rectClient.contains(point))
       {
@@ -1059,12 +1053,18 @@ namespace user
 
       auto psession = Session;
 
-      ::index i = psession->get_best_monitor(rectMonitor, rectWindow);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      ::index i = pdisplay->get_best_monitor(rectMonitor, rectWindow);
 
       ::rectangle_i32 rectList;
 
       rectList.left = rectWindow.left;
-      rectList.right = rectWindow.left + max(rectWindow.width(), sizeFull.cx);
+      rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
       rectList.top = rectWindow.bottom;
       rectList.bottom = rectWindow.bottom + sizeFull.cy;
 
@@ -1133,14 +1133,22 @@ namespace user
       if (!is_window())
       {
 
-         auto pusersystem = __new(::user::system(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
+         //auto pusersystem = __new(::user::system(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
 
-         pusersystem->m_puserinteractionOwner = m_pcombo;
+         m_puserinteractionOwner = m_pcombo;
 
-         pusersystem->set_rect(::rectangle_i32(rectList).inflate(m_iBorder));
+         order_top_most();
 
-         //if (!create_window_ex(pusersystem, i >= 0 ? nullptr : m_pcombo->get_parent()))
-         if(!create_host())
+         set_tool_window();
+
+         m_bTransparent = true;
+
+         display();
+
+         place(::rectangle_i32(rectList).inflate(m_iBorder));
+
+         if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
+         //if(!create_host())
          {
 
             m_pcombo->m_plist.release();

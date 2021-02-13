@@ -67,77 +67,77 @@ namespace user
    };
    //// Use Good Variable Names instead of the following
 
-   //using color_text = ::color;
-   //   using color_text_highlight = ::color;
-   //   using color_text_selected = ::color;
-   //   using color_text_selected_highlight = ::color;
-   //   using color_text_focused = ::color;
-   //   using color_background = ::color;
-   //   using color_background_highlight = ::color;
-   //   using color_background_selected = ::color;
-   //   using color_background_selected_highlight = ::color;
-   //   using color_background_selected_hover = ::color;
-   //   using color_border = ::color;
-   //   using color_border_hover = ::color;
-   //   using color_border_press = ::color;
-   //   using color_border_disabled = ::color;
-   //   using color_background_hover = ::color;
-   //   using color_background_press = ::color;
-   //   using color_background_press_hover = ::color;
-   //   using color_background_disabled = ::color;
-   //   using color_text_normal = ::color;
-   //   using color_text_hover = ::color;
-   //   using color_text_press = ::color;
-   //   using color_text_press_hover = ::color;
-   //   using color_text_disabled = ::color;
-   //   using color_button_background = ::color;
-   //   using color_button_background_hover = ::color;
-   //   using color_button_background_press = ::color;
-   //   using color_button_background_disabled = ::color;
-   //   using color_button_text = ::color;
-   //   using color_button_text_hover = ::color;
-   //   using color_button_text_press = ::color;
-   //   using color_button_text_disabled = ::color;
-   //   using color_face = ::color;
-   //   using color_face_lite = ::color;
-   //   using color_list_header = ::color;
-   //   using color_list_header_background = ::color;
-   //   using color_list_header_separator = ::color;
-   //   using color_list_item_background = ::color;
-   //   using color_list_item_background_hover = ::color;
-   //   using color_list_item_background_selected = ::color;
-   //   using color_list_item_background_selected_hover = ::color;
-   //   using color_list_item_text = ::color;
-   //   using color_list_item_text_hover = ::color;
-   //   using color_list_item_text_selected = ::color;
-   //   using color_list_item_text_selected_hover = ::color;
-   //   using color_list_background = ::color;
-   //   using color_edit_text = ::color;
-   //   using color_edit_background = ::color;
-   //   using color_edit_text_selected = ::color;
-   //   using color_edit_background_selected = ::color;
-   //   using color_edit_text_empty = ::color;
-   //   using color_tree_background = ::color;
-   //   using color_view_background = ::color;
-   //   using color_toolbar_background = ::color;
-   //   using color_toolbar_separator = ::color;
-   //   using color_split_layout_background = ::color;
-   //   using color_tab_client_background = ::color;
-   //   using color_tab_layout_background = ::color;
-   //   using color_action_hover_border_color = ::color;
-   //   using color_scrollbar = ::color;
-   //   using color_scrollbar_hover = ::color;
-   //   using color_scrollbar_draw = ::color;
-   //   using color_scrollbar_draw_hover = ::color;
-   //   using color_scrollbar_strong = ::color;
-   //   using color_scrollbar_strong_hover = ::color;
-   //   using color_scrollbar_border = ::color;
-   //   using color_scrollbar_border_hover = ::color;
-   //   using color_scrollbar_lite_border = ::color;
-   //   using color_scrollbar_lite_border_hover = ::color;
-   //   using color_scrollbar_background = ::color;
-   //   using color_scrollbar_background_hover = ::color;
-   //   using color_menu_background = ::color;
+   //using color_text = ::color::color;
+   //   using color_text_highlight = ::color::color;
+   //   using color_text_selected = ::color::color;
+   //   using color_text_selected_highlight = ::color::color;
+   //   using color_text_focused = ::color::color;
+   //   using color_background = ::color::color;
+   //   using color_background_highlight = ::color::color;
+   //   using color_background_selected = ::color::color;
+   //   using color_background_selected_highlight = ::color::color;
+   //   using color_background_selected_hover = ::color::color;
+   //   using color_border = ::color::color;
+   //   using color_border_hover = ::color::color;
+   //   using color_border_press = ::color::color;
+   //   using color_border_disabled = ::color::color;
+   //   using color_background_hover = ::color::color;
+   //   using color_background_press = ::color::color;
+   //   using color_background_press_hover = ::color::color;
+   //   using color_background_disabled = ::color::color;
+   //   using color_text_normal = ::color::color;
+   //   using color_text_hover = ::color::color;
+   //   using color_text_press = ::color::color;
+   //   using color_text_press_hover = ::color::color;
+   //   using color_text_disabled = ::color::color;
+   //   using color_button_background = ::color::color;
+   //   using color_button_background_hover = ::color::color;
+   //   using color_button_background_press = ::color::color;
+   //   using color_button_background_disabled = ::color::color;
+   //   using color_button_text = ::color::color;
+   //   using color_button_text_hover = ::color::color;
+   //   using color_button_text_press = ::color::color;
+   //   using color_button_text_disabled = ::color::color;
+   //   using color_face = ::color::color;
+   //   using color_face_lite = ::color::color;
+   //   using color_list_header = ::color::color;
+   //   using color_list_header_background = ::color::color;
+   //   using color_list_header_separator = ::color::color;
+   //   using color_list_item_background = ::color::color;
+   //   using color_list_item_background_hover = ::color::color;
+   //   using color_list_item_background_selected = ::color::color;
+   //   using color_list_item_background_selected_hover = ::color::color;
+   //   using color_list_item_text = ::color::color;
+   //   using color_list_item_text_hover = ::color::color;
+   //   using color_list_item_text_selected = ::color::color;
+   //   using color_list_item_text_selected_hover = ::color::color;
+   //   using color_list_background = ::color::color;
+   //   using color_edit_text = ::color::color;
+   //   using color_edit_background = ::color::color;
+   //   using color_edit_text_selected = ::color::color;
+   //   using color_edit_background_selected = ::color::color;
+   //   using color_edit_text_empty = ::color::color;
+   //   using color_tree_background = ::color::color;
+   //   using color_view_background = ::color::color;
+   //   using color_toolbar_background = ::color::color;
+   //   using color_toolbar_separator = ::color::color;
+   //   using color_split_layout_background = ::color::color;
+   //   using color_tab_client_background = ::color::color;
+   //   using color_tab_layout_background = ::color::color;
+   //   using color_action_hover_border_color = ::color::color;
+   //   using color_scrollbar = ::color::color;
+   //   using color_scrollbar_hover = ::color::color;
+   //   using color_scrollbar_draw = ::color::color;
+   //   using color_scrollbar_draw_hover = ::color::color;
+   //   using color_scrollbar_strong = ::color::color;
+   //   using color_scrollbar_strong_hover = ::color::color;
+   //   using color_scrollbar_border = ::color::color;
+   //   using color_scrollbar_border_hover = ::color::color;
+   //   using color_scrollbar_lite_border = ::color::color;
+   //   using color_scrollbar_lite_border_hover = ::color::color;
+   //   using color_scrollbar_background = ::color::color;
+   //   using color_scrollbar_background_hover = ::color::color;
+   //   using color_menu_background = ::color::color;
 
    //   // Use Good Variable Names instead of the following
 
@@ -604,4 +604,67 @@ enum enum_toolbar_item_style
 };
 
 
+enum enum_scroll_command
+{
 
+   e_scroll_command_line_closer = 0,
+   e_scroll_command_line_up = e_scroll_command_line_closer,
+   e_scroll_command_line_left = e_scroll_command_line_closer,
+   e_scroll_command_line_farther = 1,
+   e_scroll_command_line_down = e_scroll_command_line_farther,
+   e_scroll_command_line_right = e_scroll_command_line_farther,
+   e_scroll_command_page_near = 2,
+   e_scroll_command_page_up = e_scroll_command_page_near,
+   e_scroll_command_page_left = e_scroll_command_page_near,
+   e_scroll_command_page_far = 3,
+   e_scroll_command_page_down = e_scroll_command_page_far,
+   e_scroll_command_page_right = e_scroll_command_page_far,
+   e_scroll_command_thumb_position = 4,
+   e_scroll_command_thumb_track = 5,
+   e_scroll_command_home = 6,
+   e_scroll_command_top = e_scroll_command_home,
+   e_scroll_command_left = e_scroll_command_home,
+   e_scroll_command_end = 7,
+   e_scroll_command_bottom = e_scroll_command_end,
+   e_scroll_command_right = e_scroll_command_end,
+   e_scroll_command_end_scroll = 8,
+
+};
+
+
+
+
+
+enum enum_hit_test
+{
+   e_hit_test_error =-2,
+   e_hit_test_transparent = -1,
+   e_hit_test_nowhere = 0,
+   e_hit_test_client = 1,
+   e_hit_test_caption = 2,
+   e_hit_test_sysmenu = 3,
+   e_hit_test_grow_box = 4,
+   e_hit_test_size = e_hit_test_grow_box,
+   e_hit_test_menu            =  5,
+   e_hit_test_hscroll         =  6,
+   e_hit_test_vscroll         =  7,
+   e_hit_test_minimize_button       =  8,
+   e_hit_test_maximize_button       =  9,
+   e_hit_test_left            =  10,
+   e_hit_test_right           =  11,
+   e_hit_test_top             =  12,
+   e_hit_test_top_left         =  13,
+   e_hit_test_top_right        =  14,
+   e_hit_test_bottom          =  15,
+   e_hit_test_bottom_left      =  16,
+   e_hit_test_bottom_right     =  17,
+   e_hit_test_border          =  18,
+   e_hit_test_reduce            = e_hit_test_minimize_button,
+   e_hit_test_zoom = e_hit_test_maximize_button,
+   e_hit_test_size_first = e_hit_test_left,
+   e_hit_test_size_last = e_hit_test_bottom_right,
+   e_hit_test_object        =   19,
+   e_hit_test_close         =   20,
+   e_hit_test_help          =   21,
+
+};

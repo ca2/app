@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 /// Base class for implementing the notification stuff.
@@ -17,13 +17,13 @@ public:
    virtual ~observer()
    {
 
-      for (auto point_i32 : *this)
+      for (auto p : *this)
       {
 
          try
          {
 
-            point_i32->detach_observer(m_point2This);
+            p->detach_observer(m_point2This);
 
          }
          catch (...)
@@ -36,21 +36,21 @@ public:
 
    }
 
-   bool attach_observer(T * point_i32)
+   bool attach_observer(T * p)
    {
-      if (this->contains(point))
+      if (this->contains(p))
          return false;
-      this->add(point);
+      this->add(p);
       m_point2This = dynamic_cast <T2 *>(this);
-      point_i32->attach_observer(m_point2This);
+      p->attach_observer(m_point2This);
       return true;
    }
-   bool detach_observer(T * point_i32)
+   bool detach_observer(T * p)
    {
-      if (!this->contains(point))
+      if (!this->contains(p))
          return false;
-      this->remove(point);
-      point_i32->detach_observer(m_point2This);
+      this->remove(p);
+      p->detach_observer(m_point2This);
       return true;
    }
 };

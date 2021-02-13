@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/node/windows/_windows.h"
 #include "file_os_watcher.h"
@@ -38,7 +38,7 @@
 //} // namespace apex
 
 
-void __node_apex_factory_exchange()
+void __node_apex_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::windows::dir_system, ::dir_system >();
@@ -56,6 +56,12 @@ void __node_apex_factory_exchange()
    //create_factory < ::windows::console, ::console::console >();
    create_factory < ::windows::crypto, ::crypto::crypto >();
    create_factory < ::windows::ip_enum, ::net::ip_enum >();
+
+
+   create_factory < ::windows::interprocess_communication_base, ::interprocess_communication::base >();
+   create_factory < ::windows::interprocess_communication_rx, ::interprocess_communication::rx >();
+   create_factory < ::windows::interprocess_communication_tx, ::interprocess_communication::tx >();
+   //create_factory < ::windows::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 
    //create_factory < ::windows::buffer, ::graphics::graphics >();

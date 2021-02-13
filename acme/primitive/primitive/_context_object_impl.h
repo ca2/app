@@ -1,9 +1,15 @@
 #pragma once
 
 
+inline id_matter::id_matter(const id_matter & idmatter) :
+   matter(idmatter),
+   m_id(idmatter.m_id)
+{
+
+}
+
 inline context_object::context_object(const context_object & object) :
-      matter(object),
-      m_id(object.m_id),
+      id_matter(object),
       m_pia(__new(::i64_array(*object.m_pia))),
       m_estatus(object.m_estatus),
       m_pset(__new(::property_set(*object.m_pset)))

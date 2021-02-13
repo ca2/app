@@ -65,7 +65,7 @@
 //      }
 //
 //
-//      node * min() const
+//      node * minimum() const
 //      {
 //         if(left == nullptr)
 //            return (node *) this;
@@ -73,7 +73,7 @@
 //      }
 //
 //
-//      node * max() const
+//      node * maximum() const
 //      {
 //         if(right == nullptr)
 //            return (node *) this;
@@ -438,18 +438,18 @@
 //   void    add_pair(ARG_KEY key, ARG_VALUE value);
 //   void    insert(const pair < KEY, VALUE  > & pair);
 //
-//   node * min() const
+//   node * minimum() const
 //   {
 //      if(m_pnode == nullptr)
 //         return nullptr;
-//      return m_pnode->min();
+//      return m_pnode->minimum();
 //   }
 //
-//   node * max() const
+//   node * maximum() const
 //   {
 //      if(m_pnode == nullptr)
 //         return nullptr;
-//      return m_pnode->max();
+//      return m_pnode->maximum();
 //   }
 //
 //
@@ -556,7 +556,7 @@
 //const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_start() const
 //{
 //
-//   return min();
+//   return minimum();
 //
 //}
 //
@@ -565,7 +565,7 @@
 //typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_start()
 //{
 //
-//   return min();
+//   return minimum();
 //
 //}
 //
@@ -802,7 +802,7 @@
 //   {
 //      if(pnode->right != nullptr)
 //      {
-//         node * succ = pnode->right->min();
+//         node * succ = pnode->right->minimum();
 //         pnode->copy_value(*succ);
 //         return remove_node(succ);
 //      }
@@ -1227,7 +1227,7 @@
 //{
 //
 //   if(pnode->right != nullptr)
-//      return pnode->right->min();
+//      return pnode->right->minimum();
 //
 //   node * pnodeNext = nullptr;
 //
@@ -1288,7 +1288,7 @@
 //{
 //
 //   if(pnode->right != nullptr)
-//      return pnode->left->max();
+//      return pnode->left->maximum();
 //
 //   node * pnodePrev = nullptr;
 //

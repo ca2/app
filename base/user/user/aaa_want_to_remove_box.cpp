@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/message.h"
 
 
@@ -468,7 +466,7 @@ namespace user
 
 
 
-   void box::on_command(::user::command * pcommand)
+   void box::on_command(::message::command * pcommand)
    {
 
       ::user::interaction::on_command(pcommand);
@@ -572,7 +570,7 @@ namespace user
 
       switch (psimplecommand->m_esimplecommand)
       {
-         case simple_command_load_window_rect:
+         case e_simple_command_load_window_rect:
 
             WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
 

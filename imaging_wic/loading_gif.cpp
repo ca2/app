@@ -42,7 +42,7 @@ namespace imaging_wic
 
          }
 
-         auto pinputstream = pmemory->create_istream();
+         auto pinputstream = ::create_istream(*pmemory);
 
          hr = pwicstream->InitializeFromIStream(pinputstream);
 
@@ -923,13 +923,13 @@ namespace imaging_wic
       else
       {
 
-         pframe->m_colorTransparent = ARGB(255, 255, 255, 255);
+         pframe->m_colorTransparent = argb(255, 255, 255, 255);
 
       }
 
       colorref_array colorrefa;
 
-      cra_from_quada(colorrefa, (RGBQUAD *)rgColors, iUsed);
+      cra_from_quada(colorrefa, (WINRGBQUAD *)rgColors, iUsed);
 
       if (uFrameIndex == 0)
       {
@@ -1037,10 +1037,10 @@ namespace imaging_wic
 
       if (SUCCEEDED(hr))
       {
-         // Get the color in ARGB format
+         // Get the color in argb format
          dwBGColor = rgColors[backgroundIndex];
 
-         // The background color is in ARGB format, and we want to
+         // The background color is in argb format, and we want to
          // extract the alpha value and convert it to float
          crBk = dwBGColor;
       }

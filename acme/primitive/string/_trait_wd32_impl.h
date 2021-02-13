@@ -132,7 +132,7 @@ namespace str
          iStart = iLen + iStart;
       if (iLenFind > iLen)
          return nullptr;
-      iStart = min(iStart, iLen - iLenFind);
+      iStart = minimum(iStart, iLen - iLenFind);
       while (iStart >= 0)
       {
          if (wd32_ncmp(&psz[iStart], pszFind, iLenFind) == 0)
@@ -187,7 +187,7 @@ namespace str
    //      strFinal += ::str::ch::to_upper_case(point);
    //      point = (wd32char *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point_i32,strFinal);
+   //   strcpy(point,strFinal);
    //   return psz;
    //
    //
@@ -211,7 +211,7 @@ namespace str
    //      strFinal += ::str::ch::to_lower_case(point);
    //      point = (wd32char *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point_i32,strFinal);
+   //   strcpy(point,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< wd32char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -450,7 +450,7 @@ namespace str
       else
       {
 
-         p = psz + min(iStart, string_safe_length(psz) - 1);
+         p = psz + minimum(iStart, string_safe_length(psz) - 1);
 
       }
 

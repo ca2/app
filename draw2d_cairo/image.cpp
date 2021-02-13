@@ -287,7 +287,7 @@ namespace draw2d_cairo
 
    //void image::Fill ( i32 R, i32 G, i32 B )
    //{
-   //   color32_t color=RGB ( B, G, R );
+   //   color32_t color=rgb ( B, G, R );
    //   i32 size=cx*cy;
 
    //   color32_t * pcr;
@@ -348,7 +348,7 @@ namespace draw2d_cairo
 
    //   i32 i;
    //   i32 j;
-   //   i32 rectangle_i32 = scan - cx * sizeof(color32_t);
+   //   i32 rectangle = scan - cx * sizeof(color32_t);
    //   for (i=0; i<cy; i++ )
    //   {
    //      for (j=0; j<cx; j++ )
@@ -412,9 +412,9 @@ namespace draw2d_cairo
 
    //   imageWork.FillByte(0);
 
-   //   imageWork.channel_from(::color::channel_alpha, this);
+   //   imageWork.channel_from(::color::e_channel_alpha, this);
 
-   //   imageWork.channel_invert(::color::channel_alpha);
+   //   imageWork.channel_invert(::color::e_channel_alpha);
 
 
    //   BLENDFUNCTION bf;
@@ -429,9 +429,9 @@ namespace draw2d_cairo
    //   if(bPreserveAlpha)
    //   {
 
-   //      imageWork.channel_invert(::color::channel_alpha);
+   //      imageWork.channel_invert(::color::e_channel_alpha);
 
-   //      color::channel_from(::color::channel_alpha, imageWork);
+   //      ::color::e_channel_from(::color::e_channel_alpha, imageWork);
 
    //   }
 
@@ -667,11 +667,11 @@ namespace draw2d_cairo
          {
             bMax = 0;
             b =(byte)(r1[0]  - r2[0]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[1]  - r2[1]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             b =(byte)(r1[2]  - r2[2]);
-            bMax = max(b, bMax);
+            bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;
@@ -737,18 +737,18 @@ namespace draw2d_cairo
 //   bool image::print_window(::aura::draw_interface * pwnd, ::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
-//      if(pbase->m_wparam == 0)
+//      if(pusermessage->m_wparam == 0)
 //         return false;
 //
-//      m_spgraphics->attach((HDC) pbase->m_wparam);
+//      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
 //      ::rectangle_i32 rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
-//      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+//      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
 //      //      u32 dw = ::get_last_error();
 //      ::size_i32 size = pbitmap->get_size();
@@ -808,9 +808,9 @@ namespace draw2d_cairo
 //      catch(...)
 //      {
 //      }
-//      m_spgraphics->fill_rect(rectx, RGB(255, 255, 255));
+//      m_spgraphics->fill_rectangle(rectx, rgb(255, 255, 255));
 //      pmessage->m_bRet = true;
-//      pbase->set_lresult(0);
+//      pusermessage->set_lresult(0);
 //
 //      return true;
 //   }
@@ -959,9 +959,9 @@ namespace draw2d_cairo
       if (size.cy < 0)
          return true;
 
-      int xEnd = min(size.cx, min(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 
-      int yEnd = min(size.cy, min(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
          return false;

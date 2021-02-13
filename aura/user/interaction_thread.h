@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/operating_system.h"
@@ -49,10 +49,10 @@ namespace user
       oswindow                               m_oswindow;
 
       manual_reset_event                     m_evApplyVisual;
-      __pointer_array(::message::base)       m_messagebasea;
+      __pointer_array(::message::message)    m_messagebasea;
 
 
-      //bool                                   m_bCreateNativeWindowOnInteractionThread;
+      //bool                                 m_bCreateNativeWindowOnInteractionThread;
 
       thread();
       virtual ~thread();
@@ -89,7 +89,7 @@ namespace user
 
       virtual ::e_status process_message() override;
 
-      virtual ::e_status process_base_message(::message::base * pbase) override;
+      virtual ::e_status process_user_message(::user::message * pusermessage);
 
       virtual ::e_status run() override;
 

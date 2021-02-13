@@ -35,7 +35,7 @@ namespace app_net
       double                  m_dBreathPeriod;
       double                  m_dStartTime;
       double                  m_dPhaseShift;
-      ::draw2d::font_pointer  m_pfont;
+      ::write_text::font_pointer  m_pfont;
       string                  m_strGet;
       bool                    m_bGettingUrl;
       millis                    m_millisStartGettingUrl;

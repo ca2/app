@@ -57,9 +57,9 @@ static _Unwind_Reason_Code unwindCallback(struct _Unwind_Context* context,void* 
    return _URC_NO_REASON;
 }
 
-size_t captureBacktrace(void** buffer,size_t max)
+size_t captureBacktrace(void** buffer,size_t maximum)
 {
-   BacktraceState state = {buffer, buffer + max};
+   BacktraceState state = {buffer, buffer + maximum};
    _Unwind_Backtrace(unwindCallback,&state);
 
    return state.current - buffer;
@@ -1136,13 +1136,13 @@ namespace exception
 
 #elif defined(ANDROID)
 
-      const size_t max = 30;
+      const size_t maximum = 30;
 
-      void* buffer[max];
+      void* buffer[maximum];
 
-      int iSkip = min(uiSkip, max - 1);
+      int iSkip = minimum(uiSkip, maximum - 1);
 
-      if (iSkip == max - 1)
+      if (iSkip == maximum - 1)
       {
 
          strcpy(_strS, "");
@@ -1151,7 +1151,7 @@ namespace exception
 
       }
 
-      int iCount = captureBacktrace(buffer, max);
+      int iCount = captureBacktrace(buffer, maximum);
 
       ansi_count_copy(_strS, dumpBacktrace(&buffer[iSkip], iCount - iSkip), sizeof(_strS));
 
@@ -1259,7 +1259,7 @@ namespace exception
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, min(c*sizeof(*pinteraction), sizeof(m_uia)));
+      ::memcpy_dup(m_uia, pinteraction, minimum(c*sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

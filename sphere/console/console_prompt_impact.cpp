@@ -294,7 +294,7 @@ namespace console
 
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Consolas",16.0);
 
@@ -307,7 +307,7 @@ namespace console
       if(m_millisLastError.elapsed() < 84 && !m_bOk)
       {
 
-         crTopic = ARGB(255,255,0,210);
+         crTopic = argb(255,255,0,210);
 
       }
       else
@@ -315,7 +315,7 @@ namespace console
 
          m_bOk = true;
 
-         crTopic = ARGB(255,100,210,84);
+         crTopic = argb(255,100,210,84);
 
       }
 
@@ -325,9 +325,9 @@ namespace console
 
       m_sizeChar = pgraphics.GetTextExtent("M");
       
-      m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
+      m_sizeChar = m_sizeChar.maximum(pgraphics.GetTextExtent("p"));
 
-      pgraphics->fill_rect(rectClient,ARGB(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectClient,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 
@@ -354,7 +354,7 @@ namespace console
 
 
 
-         pgraphics->fill_rect(rectCaret,crTopic);
+         pgraphics->fill_rectangle(rectCaret,crTopic);
 
       }
 

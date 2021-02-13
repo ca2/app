@@ -679,7 +679,7 @@ namespace linux
                   System.imaging().Createcolor_blend_ImageList(
                      m_pil48,
                      m_pil48Hover,
-                     RGB(255, 255, 240),
+                     rgb(255, 255, 240),
                      64);
                }
                else
@@ -696,7 +696,7 @@ namespace linux
          strsize iFind2 = imagekey.m_strPath.find_ci(":");
          if (iFind >= 0 || iFind2 >= 2)
          {
-            string strProtocol = string(imagekey.m_strPath).Left(max(iFind, iFind2));
+            string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
             i32 i = 0;
 
             while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
@@ -834,7 +834,7 @@ namespace linux
             if (imagekey.m_cr == 0)
             {
 
-               System.imaging().color_blend(m_pil[48], m_pilHover[48], RGB(255, 255, 240), 64);
+               System.imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
 
             }
             else
@@ -1076,7 +1076,7 @@ namespace linux
 //            return m_pilHover[iSize]->pred_add_image([&](auto pimage)
 //            {
 //
-//               System.imaging().color_blend(pimage, RGB(255, 255, 240), 64);
+//               System.imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 //
 //            }
 //            , m_pil[iSize], iImage);
@@ -1109,7 +1109,7 @@ namespace linux
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //               pimage->get_graphics()->draw(::point_i32(), d->size(), d->get_graphics());
-//               pimage->get_graphics()->fill_rect(rectangle_i32(d->size()), ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//               pimage->get_graphics()->fill_rectangle(rectangle_i32(d->size()), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //               m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);

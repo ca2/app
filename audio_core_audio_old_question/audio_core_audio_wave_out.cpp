@@ -478,9 +478,9 @@ Opened:
        void out::OnMultimediaDone(::message::message * pmessage)
        {
 
-       __pointer(::message::base) pbase(pmessage);
+       __pointer(::user::message) pusermessage(pmessage);
 
-       LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam.m_lparam;
+       LPWAVEHDR lpwavehdr = (LPWAVEHDR) pusermessage->m_lparam.m_lparam;
 
        out_out_buffer_done(lpwavehdr->dwUser);
 

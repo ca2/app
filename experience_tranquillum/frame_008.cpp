@@ -76,7 +76,7 @@
 
                   if(egrip & e_grip_top_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -84,7 +84,7 @@
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -95,7 +95,7 @@
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -103,7 +103,7 @@
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -114,7 +114,7 @@
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -122,7 +122,7 @@
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -133,7 +133,7 @@
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -141,7 +141,7 @@
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -231,7 +231,7 @@ SizingNone:
                color32_t    crMoveableBorderHilight;
                color32_t    crMoveableBorderShadow;
 
-               if(pframewindow->is_active())
+               if(pframewindow->is_active_window())
                {
                   crMoveableBorder = m_colorMoveableBorder;
                   crMoveableBorderHilight = m_colorMoveableBorderHilight;
@@ -416,7 +416,7 @@ SizingNone:
                      for (index i = 0; i < iMaxBorder; i++)
                      {
 
-                        pgraphics->draw_rect(rectA, ARGB(0, 0, 0, 0), eborder);
+                        pgraphics->draw_rectangle(rectA, argb(0, 0, 0, 0), eborder);
 
                         rectA.deflate(rectDeflate);
 
@@ -426,7 +426,7 @@ SizingNone:
 
                      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-                     if (m_pframewindow->is_active())
+                     if (m_pframewindow->is_active_window())
                      {
 
                         ::rectangle_i32 rectA(rectClient);
@@ -436,8 +436,8 @@ SizingNone:
 
                            ::draw2d::pen_pointer pen(e_create);
 
-                           pen->create_solid(1.0, ARGB((i+1) * 5, 0, 0, 0));
-//                           pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+                           pen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
+//                           pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                            pgraphics->draw_round_rect(rectA, pen, (int)(10 - i), eborder);
 
@@ -455,19 +455,19 @@ SizingNone:
                         if (estyle == ::user::StyleRedOrange)
                         {
 
-                           pgraphics->draw_rect(rectA, ARGB(255, 255, 170, 136), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 255, 170, 136), eborder);
 
                         }
                         else if (estyle == ::user::StyleLightGreen)
                         {
 
-                           pgraphics->draw_rect(rectA, ARGB(255, 128, 230, 150), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 128, 230, 150), eborder);
 
                         }
                         else
                         {
 
-                           pgraphics->draw_rect(rectA, ARGB(255, 0x07, 0x6D, 0x91), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 0x07, 0x6D, 0x91), eborder);
 
                         }
 
@@ -476,7 +476,7 @@ SizingNone:
                      {
 
                         //rectA.deflate(9, 9, 9, 9);
-                        pgraphics->draw_rect(rectA, ARGB(255, 128, 128, 128));
+                        pgraphics->draw_rectangle(rectA, argb(255, 128, 128, 128));
 
                      }
 
@@ -568,33 +568,33 @@ SizingNone:
 
                if (estyle == ::user::StyleDarkRed)
                {
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 165, 32, 32);
+                  //m_penHollow1->create_solid(1.0, argb(20, 0, 0, 0));
+                  //m_penHollow2->create_solid(1.0, argb(60, 20, 20, 20));
+                  //m_penHollow3->create_solid(1.0, argb(100, 40, 40, 40));
+                  //m_penHollow4->create_solid(1.0, argb(140, 60, 60, 60));
+                  //m_penHollow5->create_solid(1.0, argb(255, 90, 220, 100));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 165, 32, 32);
                }
                else if (estyle == ::user::StyleLightGreen)
                {
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 140, 200, 160);
+                  //m_penHollow1->create_solid(1.0, argb(20, 0, 0, 0));
+                  //m_penHollow2->create_solid(1.0, argb(60, 20, 20, 20));
+                  //m_penHollow3->create_solid(1.0, argb(100, 40, 40, 40));
+                  //m_penHollow4->create_solid(1.0, argb(140, 60, 60, 60));
+                  //m_penHollow5->create_solid(1.0, argb(255, 90, 220, 100));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 140, 200, 160);
                }
                else
                {
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 50, 100, 200));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 50, 100, 200));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 50, 100, 200));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 50, 100, 200));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 50, 100, 200));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 0x07, 0x6D, 0x91);
+                  //m_penHollow1->create_solid(1.0, argb(20, 50, 100, 200));
+                  //m_penHollow2->create_solid(1.0, argb(60, 50, 100, 200));
+                  //m_penHollow3->create_solid(1.0, argb(100, 50, 100, 200));
+                  //m_penHollow4->create_solid(1.0, argb(140, 50, 100, 200));
+                  //m_penHollow5->create_solid(1.0, argb(255, 50, 100, 200));
                }
 
                if (m_pcontrolbox.is_set())
@@ -615,13 +615,13 @@ SizingNone:
             //   if (m_estyle == StyleRedOrange)
             //   {
 
-            //      return ARGB(255, 255, 170, 136);
+            //      return argb(255, 255, 170, 136);
 
             //   }
             //   else
             //   {
 
-            //      return ARGB(255, 50, 100, 200);
+            //      return argb(255, 50, 100, 200);
 
             //   }
 

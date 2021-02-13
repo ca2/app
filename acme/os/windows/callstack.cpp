@@ -418,7 +418,7 @@ namespace windows
    {
 
 #if FAST_STACK_TRACE
-      ::u32 maxframes = min_non_neg(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
+      ::u32 maxframes = minimum_non_negative(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
       ULONG BackTraceHash;
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&m_uia), &BackTraceHash);
 #else
@@ -1276,7 +1276,7 @@ namespace windows
 
    //   *_strS = '\0';
 
-   //   ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
+   //   ::memcpy_dup(m_uia, pinteraction, minimum(c * sizeof(*pinteraction), sizeof(m_uia)));
 
    //   m_iAddressWrite = c;
    //   m_iAddressRead = 0;
@@ -1465,7 +1465,7 @@ namespace  windows
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
+      ::memcpy_dup(m_uia, pinteraction, minimum(c * sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

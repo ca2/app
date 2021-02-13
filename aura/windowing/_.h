@@ -15,6 +15,20 @@ namespace windowing
    class windowing;
 
 
+   enum enum_status
+   {
+
+      e_status_none = 0,
+      e_status_checked = 1 << 0,
+      e_status_disabled = 1 << 1,
+      e_status_set_checked = 1 << 8,
+      e_status_set_disabled = 1 << 9,
+
+
+   };
+
+   DECLARE_ENUMERATION(e_status, enum_status);
+
 } // namespace windowing
 
 

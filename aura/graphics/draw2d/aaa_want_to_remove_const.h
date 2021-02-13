@@ -142,7 +142,7 @@ namespace draw2d
    };
 
 
-   enum e_text_rendering_hint
+   enum ::write_text::enum_rendering
    {
 
       text_rendering_hint_undefined,

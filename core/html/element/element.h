@@ -80,13 +80,13 @@ namespace html
       virtual void on_layout(html_data * pdocument);
 
       virtual void _001OnDraw(html_data * pdocument);
-      virtual void load(html_data * pdocument, base * pbase);
+      virtual void load(html_data * pdocument, base * pusermessage);
 
       //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
-      //virtual bool get_font(::draw2d::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
+      //virtual bool get_font(::write_text::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
 
-      virtual ::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
-      virtual ::draw2d::font_pointer get_font();
+      virtual ::color::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
+      virtual ::write_text::font_pointer get_font();
 
       void initialize();
 
@@ -96,7 +96,7 @@ namespace html
       virtual void implement_phase1(html_data * pdocument);
       virtual void implement_phase2(html_data * pdocument);
 
-      virtual void layout_phase0(html_data * pdata); // cx min/max
+      virtual void layout_phase0(html_data * pdata); // cx minimum/maximum
       virtual void layout_phase1(html_data * pdata); // cxy
       virtual void layout_phase2(html_data * pdata); // adjust
       virtual void layout_phase3(html_data * pdata); // final on_layout

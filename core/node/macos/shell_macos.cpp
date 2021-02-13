@@ -176,7 +176,7 @@ namespace macos
                System.imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
-                  RGB(255, 255, 240),
+                  rgb(255, 255, 240),
                   64);
             }
             else
@@ -193,7 +193,7 @@ namespace macos
       strsize iFind2 = ::str::find_ci(":", imagekey.m_strPath);
       if (iFind >= 0 || iFind2 >= 2)
       {
-         string strProtocol = string(imagekey.m_strPath).Left(max(iFind, iFind2));
+         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
          while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
@@ -285,7 +285,7 @@ namespace macos
             System.imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
-            RGB(255, 255, 240),
+            rgb(255, 255, 240),
             64);
 
          }

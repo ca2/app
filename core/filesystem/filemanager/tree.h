@@ -41,9 +41,9 @@ namespace filemanager
       context_menu            m_contextmenu;
 
 
-#ifdef WINDOWS_DESKTOP
-      map < EFolder, IShellFolder * > m_mapFolder;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      map < EFolder, IShellFolder * > m_mapFolder;
+//#endif
 
 
       tree();
@@ -71,13 +71,13 @@ namespace filemanager
 
       virtual void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context) override;
 
-#ifdef WINDOWS_DESKTOP
-
-      i32 MapToCSIDL(EFolder efolder);
-
-      IShellFolder * _001GetFolder(EFolder efolder);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      i32 MapToCSIDL(EFolder efolder);
+//
+//      IShellFolder * _001GetFolder(EFolder efolder);
+//
+//#endif
 
 
       void TakeAnimationSnapshot();

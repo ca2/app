@@ -33,7 +33,7 @@ namespace experience
 
          bool set_frame_window(frame_window * pframewindow);
 
-         void message_handler(::user::interaction * pframewindow, ::message::base * pbase);
+         void message_handler(::user::interaction * pframewindow, ::user::message * pusermessage);
 
 
       };

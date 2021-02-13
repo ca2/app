@@ -86,7 +86,7 @@ namespace sockets
       virtual void set_logger(::apex::log * plog);
 
       /** Log error to log class for print out / storage. */
-      //virtual void log(base_socket *point_i32,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
+      //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
 
       // -------------------------------------------------------------------------
       // socket stuff

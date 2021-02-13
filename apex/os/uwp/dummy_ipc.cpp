@@ -253,7 +253,7 @@
 //
 //         //ATOM atom = register_class(hinstance);
 //
-//         //m_oswindow = ::CreateWindowExA(0,"small_ipc_rx_color::channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
+//         //m_oswindow = ::CreateWindowExA(0,"small_ipc_rx_::color::e_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
 //
 //         //if(m_oswindow == nullptr)
 //         //{
@@ -381,7 +381,7 @@
 //      //   //wcex.hCursor		   = nullptr;
 //      //   //wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW + 1);
 //      //   //wcex.lpszMenuName	   = nullptr;
-//      //   //wcex.lpszClassName	= "small_ipc_rx_color::channel_message_queue_class";
+//      //   //wcex.lpszClassName	= "small_ipc_rx_::color::e_channel_message_queue_class";
 //      //   //wcex.hIconSm		   = nullptr;
 //
 //      //   //return RegisterClassEx(&wcex);

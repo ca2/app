@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "_data.h"
 #include "_tree.h"
 #include "acme/const/timer.h"
@@ -209,12 +207,16 @@ namespace user
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_rect(rectClient, m_colorTreeBackground);
+         //pgraphics->fill_rectangle(rectClient, m_colorTreeBackground);
 
 
          auto psession = Session;
 
-         auto pointCursor=      psession->get_cursor_pos();
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          ::u32 dwHoverIn = 384;
          ::u32 dwHoverOut = 1284;
@@ -427,7 +429,7 @@ namespace user
 
          auto rectFill = ::rectangle_f64(data.m_rectClient.left, data.m_rectangle.top, data.m_rectClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rect(rectFill, ARGB(127, 125, 166, 228));
+         data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
 
       }
 
@@ -437,7 +439,7 @@ namespace user
          //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
-            data.m_pdc->fill_rect(data.m_rectangle, ARGB(127, 96,96,96));
+            data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96,96,96));
 
          //}
          //else
@@ -461,7 +463,7 @@ namespace user
 
          //   class imaging & imaging = System.imaging();
 
-         //   color32_t crTranslucid = RGB(0, 0, 0);
+         //   color32_t crTranslucid = rgb(0, 0, 0);
 
          //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
          //   rectUnion.width(), rectUnion.height(),
@@ -698,7 +700,7 @@ namespace user
 
       //_001OnRightClick(nFlags, pointCursor);
 
-      auto point_i32(pointCursor);
+      auto point(pointCursor);
 
       __pointer(::data::tree_item) pitem;
 
@@ -884,7 +886,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left);
 
-         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          prectangle->top    = (::i32)(drawitem.m_rectangle.top);
 
@@ -896,7 +898,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
 
          int iHDiff = 0;
@@ -1017,10 +1019,10 @@ namespace user
                   {
 
 
-                     set_viewport_offset_y(pgraphics, (int)max(iNewScroll, 0));
+                     set_viewport_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
 
                   });
-               //            _001SetYScroll(max(iNewScroll, 0), false);
+               //            _001SetYScroll(maximum(iNewScroll, 0), false);
                //m_pscrollbarVertical->_001SetScrollPos(pointOffset.y);
             }
          }
@@ -1165,7 +1167,13 @@ namespace user
 
       auto psession = Session;
 
-      update_hover(psession->get_cursor_pos());
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_hover(pointCursor);
 
       set_need_redraw();
 
@@ -1264,14 +1272,18 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      update_tree_hover(point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_tree_hover(pointCursor);
 
    }
 
 
-   void tree::update_tree_hover(point_i32 point_i32)
+   void tree::update_tree_hover(point_i32 point)
    {
 
       _001ScreenToClient(point);
@@ -1488,10 +1500,10 @@ namespace user
 
       g->CreateCompatibleDC(nullptr);
 
-      //::draw2d::font_pointer font(e_create);
+      //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*System.draw2d().fonts().GetListCtrlFont());
+      //font->operator=(*System.draw2d()->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 
@@ -1505,7 +1517,7 @@ namespace user
 
       if (size.cy > iItemHeight)
       {
-         iItemHeight = max(size.cy, iItemHeight);
+         iItemHeight = maximum(size.cy, iItemHeight);
       }
 
       auto pstyle = get_style(g);
@@ -2150,7 +2162,7 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         int iy = (int)(max(iNewScrollIndex, 0) * m_dItemHeight);
+         int iy = (int)(maximum(iNewScrollIndex, 0) * m_dItemHeight);
 
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {

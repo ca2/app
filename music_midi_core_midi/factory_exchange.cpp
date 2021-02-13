@@ -39,7 +39,7 @@
 //} // namespace music
 //
 
-extern "C" void music_midi_core_midi_factory_exchange()
+extern "C" void music_midi_core_midi_factory_exchange(::factory_map * pfactorymap)
 {
 
    //::music::midi::core_midi::factory_exchange factoryexchange();

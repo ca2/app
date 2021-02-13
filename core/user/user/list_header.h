@@ -67,7 +67,7 @@ namespace user
          ::image     m_image;
          i32         cchTextMax;
          i32         fmt;
-         LPARAM      lParam;
+         lparam      lParam;
          i32         iImage;        // index of bitmap in ImageList
          i32         iOrder;
          ::u32       type;           // [in] filter type (defined what pvFilter is a pointer to)
@@ -84,7 +84,7 @@ namespace user
       };
 
       int                           m_iImageSpacing;
-      //::draw2d::font_pointer                 m_font;
+      //::write_text::font_pointer                 m_font;
       string                        m_strBuffer;
       draw2d::graphics_extension    m_dcextension;
 

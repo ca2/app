@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 
 
 namespace experience
@@ -54,7 +52,7 @@ namespace experience
 
       m_sizeOrigin = rectWindow.size();
 
-      m_pframewindow->SetCapture();
+      m_pframewindow->set_mouse_capture();
 
       m_edisplayOrigin = m_pframewindow->layout().design().display();
 
@@ -110,12 +108,18 @@ namespace experience
 
       auto psession = Session;
 
-      int iMonitor = (int)psession->get_best_monitor(screen, rectCursor);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      int iMonitor = (int)pdisplay->get_best_monitor(screen, rectCursor);
 
       if (!m_mapWorkspaceRect.lookup(iMonitor, rectWork))
       {
 
-         psession->get_wkspace_rect(iMonitor, rectWork);
+         pdisplay->get_wkspace_rect(iMonitor, rectWork);
 
          m_mapWorkspaceRect.set_at(iMonitor, rectWork);
 
@@ -443,17 +447,19 @@ namespace experience
 
       auto psession = Session;
 
-      __pointer(::user::interaction) puieCapture = psession->GetCapture();
+      auto puser = psession->user();
 
-      if (puieCapture == nullptr)
+      auto puserinteractionCapture = puser->get_mouse_capture(m_pframewindow->m_pthreadUserInteraction);
+
+      if (!puserinteractionCapture)
       {
-
-#ifdef LINUX
-
-         // for safety in Linux
-         ::release_capture();
-
-#endif
+//
+//#ifdef LINUX
+//
+//         // for safety in Linux
+//         ::release_capture();
+//
+//#endif
 
          m_bDocking = false;
 
@@ -461,19 +467,19 @@ namespace experience
 
       }
 
-      __pointer(::user::interaction) puieEventWindow = m_pframewindow;
+      auto puserinteractionEventWindow = m_pframewindow;
 
-      if (puieCapture != puieEventWindow)
+      if (puserinteractionCapture != puserinteractionEventWindow)
       {
 
-         if (puieCapture != nullptr && puieCapture == m_pframewindow)
+         if (puserinteractionCapture != nullptr && puserinteractionCapture == m_pframewindow)
          {
 
-            TRACE("dock_manager::message_handler oswindow ReleaseCapture %x\n", psession->GetCapture().m_p);
+            TRACE("dock_manager::message_handler oswindow ReleaseCapture %x\n", puserinteractionCapture);
 
-            auto psession = Session;
+            auto pwindowing = puser->windowing();
 
-            psession->ReleaseCapture();
+            pwindowing->release_mouse_capture();
 
          }
 
@@ -509,13 +515,19 @@ namespace experience
 
       auto psession = Session;
 
-      TRACE("dock_manager::message_handler oswindow ReleaseCapture 2 %x\n", psession->GetCapture().m_p);
+      auto puser = psession->user();
+
+      auto puserinteractionCapture = puser->get_mouse_capture(m_pframewindow->m_pthreadUserInteraction);
+
+      TRACE("dock_manager::message_handler oswindow ReleaseCapture 2 %x\n", puserinteractionCapture);
 
       m_bDocking = false;
 
       dock_window(pmouse);
 
-      psession->ReleaseCapture();
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 

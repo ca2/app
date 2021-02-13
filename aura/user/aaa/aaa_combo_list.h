@@ -46,7 +46,7 @@ namespace user
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize);
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual i32 _001GetItemHeight() const;
@@ -95,7 +95,7 @@ namespace user
       void on_drop_down(const ::rect & rectWindow, const ::size & sizeFull);
 
 
-      //virtual bool get_font(::draw2d::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;
+      //virtual bool get_font(::write_text::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;
 
       virtual void _on_show_window() override;
 

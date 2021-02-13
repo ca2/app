@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
-#include "core/user/user/shell.h"
+#include "aura/user/shell.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();

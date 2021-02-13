@@ -9,7 +9,7 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
    strsize iRead;
    while(pos < body.get_length())
    {
-      iRead = min(chunklen,body.get_length() - pos);
+      iRead = minimum(chunklen,body.get_length() - pos);
       strRet += body.Mid(pos,iRead);
       strRet += end;
       pos += iRead;
@@ -442,7 +442,7 @@ namespace account
 
             auto authenticationDoneElapsed = ::datetime::time::get_current_time() - m_timeAuthentication;
 
-            auto authenticationElapsed = min(authenticationRequestElapsed, authenticationDoneElapsed);
+            auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
             auto psession = Session;
 

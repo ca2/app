@@ -119,7 +119,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 /* 1601 to 1980 is 379 years plus 91 leap days */
 #define SECS_1601_TO_1980  ((379 * 365 + 91) * (ULONGLONG)SECSPERDAY)
 #define TICKS_1601_TO_1980 (SECS_1601_TO_1980 * TICKSPERSEC)
-/* max ticks that can be represented as Unix time */
+/* maximum ticks that can be represented as Unix time */
 #define TICKS_1601_TO_UNIX_MAX ((SECS_1601_TO_1970 + INT_MAX) * TICKSPERSEC)
 
 
@@ -325,7 +325,7 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point_i32, %point_i32)\n", LocalTime, SystemTime);
+//xxx    TRACE("(%point, %point_i32)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
    SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
@@ -350,7 +350,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point_i32, %point_i32)\n", SystemTime, LocalTime);
+//xxx    TRACE("(%point, %point_i32)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
    LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;
@@ -686,27 +686,27 @@ static int_bool reg_query_value(HKEY hkey, const widechar * name, ::u32 type, vo
 */
 
 
-static time_t find_dst_change(time_t min, time_t max, i32 *is_dst)
+static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
 {
    time_t start;
    struct tm *tm;
 
-   start = min;
+   start = minimum;
    tm = localtime(&start);
    *is_dst = !tm->tm_isdst;
 // xxx    TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
 
-   while (min <= max)
+   while (minimum <= maximum)
    {
-      time_t pos = (min + max) / 2;
+      time_t pos = (minimum + maximum) / 2;
       tm = localtime(&pos);
 
       if (tm->tm_isdst != *is_dst)
-         min = pos + 1;
+         minimum = pos + 1;
       else
-         max = pos - 1;
+         maximum = pos - 1;
    }
-   return min;
+   return minimum;
 }
 
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)

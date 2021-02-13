@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -63,7 +61,7 @@ namespace experience
 
          _001ScreenToClient(&m_pointDrag);
 
-         SetCapture();
+         set_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -90,7 +88,13 @@ namespace experience
 
          m_bDrag = false;
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -230,7 +234,11 @@ namespace experience
 
          auto psession = Session;
 
-         psession->get_cursor_pos(pointCursor);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pointCursor = pwindowing->get_cursor_pos();
 
          if (is_window_visible())
          {
@@ -293,8 +301,8 @@ namespace experience
 
                      get_window_rect(rectWindow);
 
-                     rectWindow.left = min(rectWindow.left, rectWindow.right);
-                     rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
+                     rectWindow.left = minimum(rectWindow.left, rectWindow.right);
+                     rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
 
 
                      if (pointCursor.x >= rectWindow.left && pointCursor.y <= rectWindow.right && pointCursor.y == 0)
@@ -324,8 +332,8 @@ namespace experience
 
                get_window_rect(rectWindow);
 
-               rectWindow.left = min(rectWindow.left, rectWindow.right);
-               rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
+               rectWindow.left = minimum(rectWindow.left, rectWindow.right);
+               rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
 
                ::point_i32 point;
 
@@ -644,7 +652,9 @@ namespace experience
 
       auto & pbutton = pitem->m_pbutton;
 
-      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object(this, "button");
+      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object("button");
+
+      pbutton->initialize(this);
 
       pbutton->display(e_display_none);
 
@@ -1037,20 +1047,20 @@ namespace experience
    void control_box::set_button_color_system_default_001()
    {
 
-      m_brushButtonBack->create_solid(ARGB(0, 0, 0, 0));
-      m_brushButtonBackSel->create_solid(ARGB(255, 150, 220, 145));
-      m_brushButtonBackFocus->create_solid(ARGB(255, 150, 220, 145));
-      m_brushButtonBackDisabled->create_solid(ARGB(255, 180, 180, 175));
+      m_brushButtonBack->create_solid(argb(0, 0, 0, 0));
+      m_brushButtonBackSel->create_solid(argb(255, 150, 220, 145));
+      m_brushButtonBackFocus->create_solid(argb(255, 150, 220, 145));
+      m_brushButtonBackDisabled->create_solid(argb(255, 180, 180, 175));
 
-      m_penButtonBack->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackSel->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackFocus->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackDisabled->create_solid(2, ARGB(255, 220, 220, 215));
+      m_penButtonBack->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackFocus->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackDisabled->create_solid(2, argb(255, 220, 220, 215));
 
-      m_colorButtonFore = ARGB(255, 255, 255, 255);
-      m_colorButtonForeSel = ARGB(255, 255, 255, 255);
-      m_colorButtonForeFocus = ARGB(255, 255, 255, 255);
-      m_colorButtonForeDisabled = ARGB(255, 220, 220, 215);
+      m_colorButtonFore = argb(255, 255, 255, 255);
+      m_colorButtonForeSel = argb(255, 255, 255, 255);
+      m_colorButtonForeFocus = argb(255, 255, 255, 255);
+      m_colorButtonForeDisabled = argb(255, 220, 220, 215);
 
    }
 
@@ -1103,7 +1113,7 @@ namespace experience
    }
 
 
-   bool control_box::get_font(::draw2d::font_pointer & font)
+   bool control_box::get_font(::write_text::font_pointer & font)
    {
 
       font = m_fontMarlett;

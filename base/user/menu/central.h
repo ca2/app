@@ -18,7 +18,7 @@ namespace user
       __pointer(::image_list)      m_pilHue;
       __pointer(::image_list)      m_pilBlend;
       __pointer(::image_list)      m_pilHueLight;
-      ::draw2d::font_pointer       m_fontMenu;
+      ::write_text::font_pointer       m_fontMenu;
 
 
       menu_central();
@@ -41,8 +41,8 @@ namespace user
       id image_command(int iImage);
 
 
-      ::draw2d::font * MenuV033GetFont();
-      ::draw2d::font * GetMenuFont();
+      ::write_text::font * MenuV033GetFont();
+      ::write_text::font * GetMenuFont();
 
 
    };

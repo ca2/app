@@ -407,7 +407,7 @@ namespace sockets
       return;
       }
       int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-      int q = m_retries; // receive max 10 at one cycle
+      int q = m_retries; // receive maximum 10 at one cycle
       while (n > 0)
       {
       if (sa_len != sizeof(sa))

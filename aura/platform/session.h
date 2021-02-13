@@ -20,8 +20,6 @@ namespace aura
 //#endif
 
 
-      __composite(::user::keyboard)                         m_pkeyboard;
-
       bool                                                  m_bAcceptsFirstResponder;
 
       ::user::interaction_impl *                            m_pimplPendingFocus2;
@@ -35,8 +33,6 @@ namespace aura
       ::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      ::draw2d::font_enum_item_array                        m_fontenumitema;
-
       __composite(::apex::savings)                          m_psavings;
 
       //index                                                 m_iMainMonitor;
@@ -44,7 +40,7 @@ namespace aura
 
       id_map < ::user::interaction * >                      m_mapboundui;
 
-      __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
+      __composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
 
 
@@ -195,7 +191,6 @@ namespace aura
 
       virtual void process_term() override;
 
-      ::user::keyboard& keyboard();
 
       virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr) override;
 
@@ -207,7 +202,7 @@ namespace aura
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
-      virtual color32_t get_default_color(u64 u) override;
+      virtual ::color::color get_default_color(u64 u) override;
 
       //virtual ::size_i32 get_window_minimum_size();
 
@@ -308,13 +303,13 @@ namespace aura
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -325,7 +320,7 @@ namespace aura
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::message::command * pcommand) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -343,7 +338,7 @@ namespace aura
 
       //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
-      virtual ::draw2d::font_list* get_single_column_font_list();
+      virtual ::write_text::font_list* get_single_column_font_list();
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
@@ -416,7 +411,7 @@ namespace aura
       inline ::user::user* user() { return m_puser; }
 
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
       virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
       virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
 

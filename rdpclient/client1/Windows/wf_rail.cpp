@@ -228,7 +228,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 		for (index = 0; index < windowState->numWindowRects; index++)
 		{
-			rectangle_i32 = &windowState->windowRects[index];
+			rectangle = &windowState->windowRects[index];
 
 			WLog_INFO(TAG, "\twindowRect[%d]: left: %d top: %d right: %d bottom: %d",
 				index, rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
@@ -250,7 +250,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 		for (index = 0; index < windowState->numVisibilityRects; index++)
 		{
-			rectangle_i32 = &windowState->visibilityRects[index];
+			rectangle = &windowState->visibilityRects[index];
 
 			WLog_INFO(TAG, "\tvisibilityRect[%d]: left: %d top: %d right: %d bottom: %d",
 				index, rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
@@ -616,12 +616,12 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //		if (windowState->numWindowRects > 0)
 //		{
-//			rectangle_i32 = &(windowState->windowRects[0]);
+//			rectangle = &(windowState->windowRects[0]);
 //			hWndRects = CreateRectRgn(rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
 //
 //			for (index = 1; index < windowState->numWindowRects; index++)
 //			{
-//				rectangle_i32 = &(windowState->windowRects[index]);
+//				rectangle = &(windowState->windowRects[index]);
 //				hWndRect = CreateRectRgn(rectangle_i32->left, rectangle_i32->top, rectangle_i32->right, rectangle_i32->bottom);
 //				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
 //				DeleteObject(hWndRect);

@@ -6,7 +6,7 @@ namespace draw2d_quartz2d
    
    
    class CLASS_DECL_DRAW2D_QUARTZ2D font :
-      virtual public ::draw2d::font
+      virtual public ::write_text::font
    {
    public:
    

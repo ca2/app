@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 
 
@@ -38,7 +36,7 @@ namespace userex
    }
 
 
-   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)

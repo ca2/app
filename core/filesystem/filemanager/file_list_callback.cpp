@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -44,13 +42,13 @@ namespace filemanager
       System.imaging().change_hue(
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.50);
 
       System.imaging().color_blend(
       m_pimagelistItemHover,
       m_pimagelistSubItemHover,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       127);
 
       return true;
@@ -101,7 +99,7 @@ namespace filemanager
    }
 
 
-   void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::user::command * pcommand)
+   void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
       UNREFERENCED_PARAMETER(iId);

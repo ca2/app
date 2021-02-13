@@ -12,7 +12,7 @@ ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 
    m_pclient = pclient;
 
-   m_varFile = Context.file().time(Context.dir().time());
+   m_varFile = get_context()->file().time(get_context()->dir().time());
 
 }
 

@@ -28,7 +28,7 @@ namespace http
       message();
 
 
-      void want_memory_response(memory_base * pbase = nullptr);
+      void want_memory_response(memory_base * pusermessage = nullptr);
       void want_string_response();
 
       memory_pointer get_memory_response();

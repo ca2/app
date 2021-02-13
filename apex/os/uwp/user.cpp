@@ -252,7 +252,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-::user::e_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
+::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
 {
    bSpecialKey = false;
    switch (e)
@@ -419,7 +419,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       }
    }
 
-   return (::user::e_key) e;
+   return (::user::enum_key) e;
 
 }
 
@@ -578,7 +578,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 // namespace user
 // {
 
-//    /*::color g_colorSystemAppBackground;
+//    /*::color::color g_colorSystemAppBackground;
 
 //    CLASS_DECL_APEX color32_t set_system_app_background_color()
 
@@ -593,7 +593,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 //       auto b = color.B;
 
-//       return ARGB(255, r, g, b);
+//       return argb(255, r, g, b);
 
 //    }*/
 
@@ -628,7 +628,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 //    //      auto b = color.B;
 
-//    //      set_system_app_background_color(::color(r, g, b));
+//    //      set_system_app_background_color(::color::color(r, g, b));
 
 //    //   }
 

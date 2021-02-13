@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -106,21 +104,21 @@ namespace user
 
       ::draw2d::brush_pointer b(e_create);
 
-      b->create_solid(ARGB(190, 255, 255, 123));
+      b->create_solid(argb(190, 255, 255, 123));
 
       pgraphics->set(b);
 
       pgraphics->fill_path(path);
 
-      ::draw2d::pen_pointer point_i32(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
 
-      pgraphics->set(point);
+      pgraphics->set(ppen);
 
-      point_i32->create_solid(1.0, ARGB(190, 120, 120, 255));
+      ppen->create_solid(1.0, argb(190, 120, 120, 255));
 
       pgraphics->draw_path(path);
 
-      pgraphics->set_text_color(ARGB(255, 120, 120, 255));
+      pgraphics->set_text_color(argb(255, 120, 120, 255));
 
       //::rectangle_i32 rectangle;
 
@@ -162,7 +160,7 @@ namespace user
 
          sizeLine = g->GetTextExtent(strLine);
 
-         size.cx = max(size.cx,sizeLine.cx);
+         size.cx = maximum(size.cx,sizeLine.cx);
 
          size.cy += sizeLine.cy;
 

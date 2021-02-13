@@ -151,13 +151,13 @@ namespace calculator
    void view::_001OnWavePlayerEvent(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
    }
 
    void view::_001OnUpdateViewEncoding(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::user::command) pcommand(pmessage);
+      //__pointer(::message::command) pcommand(pmessage);
    }
    void view::_001OnViewEncoding(::message::message * pmessage)
    {

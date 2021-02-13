@@ -104,7 +104,7 @@ namespace draw2d_xlib
 
       // IMPLEMENT_DYNAMIC(pen, object)
       // IMPLEMENT_DYNAMIC(::draw2d::brush, object)
-      // IMPLEMENT_DYNAMIC(::draw2d::font, object)
+      // IMPLEMENT_DYNAMIC(::write_text::font, object)
       // IMPLEMENT_DYNAMIC(::draw2d::bitmap, object)
       // IMPLEMENT_DYNAMIC(::draw2d::palette, object)
       // IMPLEMENT_DYNAMIC(::aura::rgn, object)

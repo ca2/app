@@ -5,7 +5,7 @@ namespace user
 {
 
    class tool_command :
-      public ::user::command        // class private to this file !
+      public ::message::command        // class private to this file !
    {
    public: // re-implementations only
 

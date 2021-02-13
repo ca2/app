@@ -1277,7 +1277,7 @@ namespace android
                System.imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
-                  RGB(255, 255, 240),
+                  rgb(255, 255, 240),
                   64);
             }
             else
@@ -1294,7 +1294,7 @@ namespace android
       strsize iFind2 = imagekey.m_strPath.find_ci(":");
       if (iFind >= 0 || iFind2 >= 2)
       {
-         string strProtocol = string(imagekey.m_strPath).Left(max(iFind, iFind2));
+         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
          while (i < strProtocol.get_length() && ansi_char_is_alphanumeric(strProtocol[i]))
@@ -1388,7 +1388,7 @@ namespace android
             System.imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
-            RGB(255, 255, 240),
+            rgb(255, 255, 240),
             64);
 
          }
@@ -1640,7 +1640,7 @@ namespace android
 
    //      return m_pilHover[iSize]->pred_add_image([&](::image_pointer & pimage)
    //      {
-   //            System.imaging().color_blend(pimage, RGB(255, 255, 240), 64); 
+   //            System.imaging().color_blend(pimage, rgb(255, 255, 240), 64); 
    //         }
    //      , m_pil[iSize], iImage);
 
@@ -1674,7 +1674,7 @@ namespace android
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
    //         pimage->get_graphics()->draw(::point(), d.size(), d.get_graphics());
-   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
    //         m_pil[iSize]->m_pimage->g()->draw(::point(), d.size(), pimage->get_graphics());
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);

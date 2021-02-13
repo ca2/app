@@ -14,7 +14,7 @@ namespace windowing
    public:
 
 
-      monitor_map                   m_monitormap;
+      __pointer_array(monitor)      m_monitora;
 
 
       __pointer(windowing)          m_pwindowing;
@@ -36,7 +36,7 @@ namespace windowing
       virtual window * default_root_window();
 
 
-
+      virtual float get_dpi();
 
 
 
@@ -60,6 +60,8 @@ namespace windowing
 
       //virtual ::count get_desk_monitor_count() ;
       //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
+
+      virtual monitor *  get_monitor(index iMonitor);
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rectangle_i32 & rectangle) ;
 
@@ -86,6 +88,7 @@ namespace windowing
       virtual void enum_display_monitors() ;
 
       virtual ::index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) ;
+      virtual ::size_i32 get_main_monitor_size();
 
       virtual ::count get_monitor_count() ;
       virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
@@ -105,6 +108,28 @@ namespace windowing
       virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
 
+
+      virtual string get_wallpaper(index iScreen);
+      virtual bool set_wallpaper(index iScreen, string strWallpaper);
+
+
+      virtual string_array get_wallpaper();
+      virtual void set_wallpaper(const string_array & strWallpaper);
+
+
+      virtual string impl_get_wallpaper(index iScreen);
+      virtual bool impl_set_wallpaper(index iScreen, string strWallpaper);
+
+
+      virtual string os_get_user_theme();
+      virtual bool set_os_desktop_theme(string strTheme);
+
+
+      virtual string impl_get_os_desktop_theme();
+      virtual bool impl_set_os_desktop_theme(string strTheme);
+
+
+      virtual void enable_wallpaper_change_notification();
 
 
 

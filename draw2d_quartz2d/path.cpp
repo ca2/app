@@ -150,7 +150,7 @@ namespace draw2d_quartz2d
       
    }
 
-   bool path::internal_add_text_out(int x, int y, const string & strText, ::draw2d::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
+   bool path::internal_add_text_out(int x, int y, const string & strText, ::write_text::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
    {
       
       x+= m_pointOffset.x;

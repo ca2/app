@@ -26,7 +26,7 @@
 
 
 extern "C"
-void imaging_factory_exchange()
+void imaging_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::coreimage_imaging::context_image, ::context_image >();

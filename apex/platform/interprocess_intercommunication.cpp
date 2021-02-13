@@ -48,7 +48,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    call_routine(CREATE_ROUTINE);
 
-   estatus = __construct_new(m_prx);
+   estatus = __construct(m_prx);
 
    if (!estatus)
    {
@@ -195,7 +195,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
 
    }
 
@@ -212,7 +212,7 @@ bool interprocess_intercommunication::connect(const string & strApp, const ::id 
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create<::interprocess_communication::tx>();
 
    }
 
@@ -240,7 +240,7 @@ bool interprocess_intercommunication::connect(const string & strApp, const ::id 
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
 
    }
 

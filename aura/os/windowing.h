@@ -14,8 +14,8 @@
 //CLASS_DECL_AURA i64 oswindow_id(oswindow w);
 
 //CLASS_DECL_AURA int_bool is_window(::windowing::window * pwindow);
-//CLASS_DECL_AURA oswindow get_focus();
-//CLASS_DECL_AURA oswindow set_focus(::windowing::window * pwindow);
+//CLASS_DECL_AURA oswindow get_keyboard_focus();
+//CLASS_DECL_AURA oswindow set_keyboard_focus(::windowing::window * pwindow);
 //CLASS_DECL_AURA bool remove_focus(::windowing::window * pwindow);
 //CLASS_DECL_AURA bool clear_focus();
 //CLASS_DECL_AURA oswindow get_active_window();

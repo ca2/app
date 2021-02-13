@@ -22,7 +22,7 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      virtual bool _001IsPointInside(interaction * pinteraction, point_i64 point_i32) override;
+      virtual bool _001IsPointInside(interaction * pinteraction, point_i64 point) override;
       virtual void control_get_window_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
 
       virtual void control_get_client_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
@@ -41,7 +41,7 @@ namespace user
       //virtual void _001RemoveControls() override;
       virtual bool _001Validate(interaction * pinteraction, ::payload & payload);
       virtual bool _001SaveEdit(interaction * pinteraction);
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
       DECL_GEN_SIGNAL(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key, ::database::selection & selection) override;

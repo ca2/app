@@ -44,7 +44,7 @@ void os_trace(enum_trace_level elevel, const char* pszTag, const char* psz)
 
    strTag = strTag.Left(23);
 
-   strTag = string(' ', max(0, 23 - strTag.get_length()));
+   strTag = string(' ', maximum(0, 23 - strTag.get_length()));
 
    strMessage.Format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), psz);
 
@@ -79,7 +79,7 @@ void simple_debug_print(const char* psz)
 //
 //   strTag = strTag.Left(23);
 //
-//   strTag = string(' ', max(0, 23 - strTag.get_length()));
+//   strTag = string(' ', maximum(0, 23 - strTag.get_length()));
 //
 //   strMessage.Format("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
 //

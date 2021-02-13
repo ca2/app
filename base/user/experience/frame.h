@@ -22,27 +22,27 @@ namespace experience
       };
 
 
-      ::color                                m_colorFrameBorder;
-      ::color                                m_colorMoveableBorderHilight;
-      ::color                                m_colorMoveableBorderDkShadow;
-      ::color                                m_colorCaptionTextBk;
-      ::color                                m_colorActiveCaptionTextBk;
-      ::color                                m_colorCaptionText;
+      __status < ::color::color >          m_colorFrameBorder;
+      __status < ::color::color >          m_colorMoveableBorderHilight;
+      __status < ::color::color >          m_colorMoveableBorderDkShadow;
+      __status < ::color::color >          m_colorCaptionTextBk;
+      __status < ::color::color >          m_colorActiveCaptionTextBk;
+      __status < ::color::color >          m_colorCaptionText;
 
       bool                                 m_bHollow;
       string                               m_strLibrary;
       string                               m_strName;
-      ::rectangle_i32                               m_rectCaption;
-      ::rectangle_i32                               m_rectWindowText;
-      int                                 m_iControlBoxPosition;
+      ::rectangle_i32                      m_rectCaption;
+      ::rectangle_i32                      m_rectWindowText;
+      int                                  m_iControlBoxPosition;
       //::rectangle_i32                               m_rectControlBoxFullScreen;
       //::rectangle_i32                               m_rectControlBoxZoomed;
       //::rectangle_i32                               m_rectControlBoxNormal;
       point_i32                                m_pointWindowIcon;
       ///point_i32                                m_pointMoveGripMinimal;
 
-      ::color                             m_colorMoveableBorder;
-      ::color                             m_colorMoveableBorderShadow;
+      ::color::color                             m_colorMoveableBorder;
+      ::color::color                             m_colorMoveableBorderShadow;
 
 
       ::experience::experience *           m_pexperience;
@@ -101,7 +101,7 @@ namespace experience
       virtual string get_default_user_style() const;
 
 
-      virtual void set_moveable_border_color(const ::color & color);
+      virtual void set_moveable_border_color(const ::color::color & color);
 
 
 
@@ -160,11 +160,11 @@ namespace experience
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
-      virtual bool _001OnNcHitTest(const ::point_i32 & point, LRESULT & nHitTest);
+      virtual bool _001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest);
       virtual bool _001OnTimer(::u32 uEvent);
       //virtual bool _001OnSize(::u32 nType, i32 cx, i32 cy);
       //virtual bool _001OnMove(i32 x, i32 y);
-      virtual bool _001OnCommand(wparam wparam, lparam lparam, LRESULT & lresult);
+      //virtual bool _001OnCommand(wparam wparam, lparam lparam, lresult & lresult);
 
 
 

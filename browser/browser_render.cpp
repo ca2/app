@@ -30,7 +30,7 @@ namespace browser
       if (m_bAlternate)
       {
 
-         color c(ARGB(255, 200, 200, 180));
+         ::color::color color(argb(255, 200, 200, 180));
 
          c.get_hls(m_hlsForeground);
 
@@ -243,7 +243,7 @@ namespace browser
 
       u64 uFrameNanos = (u64)(1000000000LL / get_fps());
 
-      uFrameNanos = min(max(100000, uFrameNanos), 1000000000);
+      uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
       u64 uFrameId = uNow / uFrameNanos;
 
@@ -272,7 +272,7 @@ namespace browser
 
             uFrameNanos = (u64)(1000000000ULL / get_fps());
 
-            uFrameNanos = min(max(100000ULL, uFrameNanos), 1000000000ULL);
+            uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
             uFrameId = uNow / uFrameNanos;
 
@@ -512,11 +512,11 @@ namespace browser
 
 /*                  m_pimage->g()->set_font(m_font);
 
-/*                  m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  brushText->create_solid(ARGB(255, 255, 255, 255));
+                  brushText->create_solid(argb(255, 255, 255, 255));
 
 /*                  m_pimage->g()->SelectObject(brushText);
 
@@ -532,7 +532,7 @@ namespace browser
 
                   m_pimageTemplate->fill(0, 0, 0, 0);
 
-/*                  m_pimageTemplate->channel_copy(::color::channel_alpha, ::color::channel_green, m_pimage);
+/*                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
 
                }
 
@@ -566,7 +566,7 @@ namespace browser
 
 
 
-      ::color ca;
+      ::color::color ca;
 
 
 //      if (false)
@@ -618,18 +618,18 @@ namespace browser
 
       pgraphics->set_font(m_font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(A_RGB(255, ca));
+         brushText->create_solid(a_rgb(255, ca));
 
       }
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -645,9 +645,9 @@ namespace browser
          pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
       }
-      //      pgraphics->FillSolidRect(200,00,100,100,ARGB(128,128,128,255));
+      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 
-      //    pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
       if(!m_bFirstDone)
       {
@@ -727,7 +727,7 @@ namespace browser
 
       double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      ::color ca;
+      ::color::color ca;
 
 //      if (false)
 //      {
@@ -799,11 +799,11 @@ namespace browser
 
 /*            m_pimage->fill(0, 0, 0, 0);
 
-/*            m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
 /*            m_pimage->g()->SelectObject(brushText);
 
@@ -832,7 +832,7 @@ namespace browser
             if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
-/*               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
+/*               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
 
 /*               m_pimageTint->tint(m_pimage, ca);
 
@@ -848,18 +848,18 @@ namespace browser
 
       }
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(A_RGB(255, ca));
+         brushText->create_solid(a_rgb(255, ca));
 
       }
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -1077,19 +1077,19 @@ namespace browser
 
                float fHeight = 100.0;
 
-               ::draw2d::font_pointer font(e_create);
+               ::write_text::font_pointer font(e_create);
 
                font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(os_font_name(e_font_sans), min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1097,7 +1097,7 @@ namespace browser
 
             }
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (500) * 11;
 
@@ -1105,7 +1105,7 @@ namespace browser
 
             ::draw2d::brush_pointer brush(e_create);
 
-            brush->create_solid(A_RGB(255, ca));
+            brush->create_solid(a_rgb(255, ca));
 
             pgraphics->SelectObject(brush);
 
@@ -1113,7 +1113,7 @@ namespace browser
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
             ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
@@ -1207,7 +1207,7 @@ namespace browser
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1333,21 +1333,21 @@ namespace browser
 
       float fHeight = 100.0;
 
-      ::draw2d::font_pointer font(e_create);
+      ::write_text::font_pointer font(e_create);
 
       font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      font->create_pixel_font(m_pview->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-      m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -1365,11 +1365,11 @@ namespace browser
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, ARGB(255, 90, 90, 80));
+      pen->create_solid(1.0, argb(255, 90, 90, 80));
 
       ::draw2d::pen_pointer penW(e_create);
 
-      penW->create_solid(3.0, ARGB(84, 255, 255, 255));
+      penW->create_solid(3.0, argb(84, 255, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 

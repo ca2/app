@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 template < typename POINTER_TYPE >
 class cotaskptr
 {
@@ -25,6 +24,7 @@ public:
 
    }
 
+
    void alloc(SIZE_T size)
    {
 
@@ -43,6 +43,7 @@ public:
 
    }
 
+
    bool is_null() const
    {
 
@@ -50,12 +51,14 @@ public:
 
    }
 
+
    bool is_set() const
    {
 
       return m_p != nullptr;
 
    }
+
 
    virtual void free()
    {

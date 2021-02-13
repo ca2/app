@@ -57,17 +57,17 @@ namespace multimedia
 
       void in::pre_translate_message(::message::message * pmessage)
       {
-         __pointer(::message::base) pbase(pmessage);
+         __pointer(::user::message) pusermessage(pmessage);
          //ASSERT(GetMainWnd() == nullptr);
-         /*         if(pbase->m_id == MM_WIM_OPEN ||
-                     pbase->m_id == MM_WIM_CLOSE ||
-                     pbase->m_id == MM_WIM_DATA)
+         /*         if(pusermessage->m_id == MM_WIM_OPEN ||
+                     pusermessage->m_id == MM_WIM_CLOSE ||
+                     pusermessage->m_id == MM_WIM_DATA)
                   {
-                     translate_in_message(pbase);
-                     if(pbase->m_bRet)
+                     translate_in_message(pusermessage);
+                     if(pusermessage->m_bRet)
                         return;
                   }*/
-         return thread::pre_translate_message(pbase);
+         return thread::pre_translate_message(pusermessage);
       }
 
       ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)

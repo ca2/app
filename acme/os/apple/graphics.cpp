@@ -347,7 +347,7 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
    }
 
-   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 
    CGContextDrawImage(cgctx, rectangle, inImage);
 
@@ -421,7 +421,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    //
    //   __memset(bitmapData, 0, bitmapByteCount);
 
-   // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+   // Create the bitmap context. We want pre-multiplied argb, 8-bits
    // per component. Regardless of what the source image format is
    // (CMYK, Grayscale, and so on) it will be converted over to the format
    // specified here by CGBitmapContextCreate.

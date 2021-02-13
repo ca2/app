@@ -537,103 +537,30 @@ public:
 
    typedef numeric_info_internal::numeric_info < T > INTERNAL_INFO;
 
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum()
-   {
-      return INTERNAL_INFO::maximum();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum()
-   {
-      return INTERNAL_INFO::minimum();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE null()
+   static inline auto null()
    {
       return INTERNAL_INFO::null();
    }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary()
+   static inline auto unitary()
    {
       return INTERNAL_INFO::unitary();
    }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE allset()
+   static inline auto allset()
    {
       return INTERNAL_INFO::allset();
    }
-
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_maximum_value()
+   static inline auto minimum()
    {
-      return maximum();
+      return INTERNAL_INFO::minimum();
    }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_minimum_value()
+   static inline auto maximum()
    {
-      return minimum();
+      return INTERNAL_INFO::maximum();
    }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_null_value()
-   {
-      return null();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_unitary_value()
-   {
-      return unitary();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_allset_value()
-   {
-      return allset();
-   }
-
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_maximum()
-   {
-      return get_maximum_value();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_minimum()
-   {
-      return get_minimum_value();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_null()
-   {
-      return get_null_value();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_unitary()
-   {
-      return get_unitary_value();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_allset()
-   {
-      return get_allset_value();
-   }
-
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum_value()
-   {
-      return get_maximum();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum_value()
-   {
-      return get_minimum();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE null_value()
-   {
-      return get_null();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary_value()
-   {
-      return get_unitary();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE allset_value()
-   {
-      return get_allset();
-   }
-
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE min()
-   {
-      return get_minimum_value();
-   }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE max()
-   {
-      return get_maximum_value();
-   }
-
    template < typename T2 >
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE natural(const T2 & t2)
+   static inline auto natural(const T2 & t2)
    {
-      return min(max(), max(null(), (T) t2));
+      return minimum(maximum(), maximum(null(), (T) t2));
    }
 
 };
@@ -642,13 +569,13 @@ public:
 //template < typename T, typename T2 >
 //inline T clip_assign(T & t, const T2 & t2)
 //{
-//   t = min(::numeric_info < T >::max(),max(::numeric_info < T >::min(),(T)t2));
+//   t = minimum(::numeric_info < T >::maximum(),maximum(::numeric_info < T >::minimum(),(T)t2));
 //}
 
 template < typename T,typename T2 >
 inline T natural_assign(T & t,const T2 & t2)
 {
-   t = min(::numeric_info < T >::max(),max(::numeric_info < T >::null(),(T)t2));
+   t = minimum(::numeric_info < T >::maximum(),maximum(::numeric_info < T >::null(),(T)t2));
 }
 
 

@@ -19,15 +19,15 @@ namespace filemanager
       ::file::path               m_strBase;
       double                     m_dSize;
       double                     m_dRead;
-      file_pointer          m_fileSrc;
-      file_pointer          m_fileDst;
-      i32                    m_iFile;
+      file_pointer               m_fileSrc;
+      file_pointer               m_fileDst;
+      i32                        m_iFile;
       bool                       m_bReplaceAll;
       char *                     m_pchBuffer;
-      i32                    m_iBufferSize;
-      ::user::interaction *    m_oswindowCallback;
-      id                       m_id;
-      WPARAM                     m_wparamCallback;
+      i32                        m_iBufferSize;
+      ::user::interaction *      m_oswindowCallback;
+      id                         m_id;
+      wparam                     m_wparamCallback;
 
 
       operation();

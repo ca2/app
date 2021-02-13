@@ -1262,7 +1262,7 @@ end_processing_adding:
 
       }
 
-      // calculate max file descriptor for select() call
+      // calculate maximum file descriptor for select() call
       if (check_max_fd)
       {
 

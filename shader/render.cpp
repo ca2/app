@@ -190,7 +190,7 @@ namespace app_shader
 
       }
 
-      color32_t crText = ARGB(255, 55, 210, 120);
+      color32_t crText = argb(255, 55, 210, 120);
 
       string strProjection = m_strProjection;
 
@@ -218,7 +218,7 @@ namespace app_shader
 
       }
 
-      color color(crText);
+      ::color::color color(crText);
 
       string strDataId;
 
@@ -280,9 +280,15 @@ namespace app_shader
 
                auto psession = Session;
 
-               float x = (float) psession->get_cursor_pos().x;
+               auto puser = psession->user();
 
-               float y = (float) psession->get_cursor_pos().y;
+               auto pwindowing = puser->windowing();
+
+               auto pointCursor = pwindowing->get_cursor_pos();
+
+               float x = (float) pointCursor.x;
+
+               float y = (float) pointCursor.y;
 
                m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
                m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -352,7 +358,7 @@ namespace app_shader
 
       //::draw2d::brush_pointer brush(e_create);
 
-      //::draw2d::font_pointer font(e_create);
+      //::write_text::font_pointer font(e_create);
 
       //if (m_iDrawing == 3)
       //{
@@ -396,7 +402,7 @@ namespace app_shader
 
       //rectangle_i32 rectangle;
 
-      //int iSize = min(m_rectangle.width(), m_rectangle.height());
+      //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 
@@ -408,7 +414,7 @@ namespace app_shader
 
       //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::size_f64 size_i32(0., 0.);
+      //::size_f64 size(0., 0.);
       //
       //bool bDrawText = true;
       //
@@ -460,7 +466,7 @@ namespace app_shader
       //else
       //{
 
-      //   pen->create_solid(4.0, ARGB(255, 50, 180, 255));
+      //   pen->create_solid(4.0, argb(255, 50, 180, 255));
 
       //}
 
@@ -476,13 +482,13 @@ namespace app_shader
       //   if (__bool(Application.m_echeckSimple))
       //   {
 
-      //      brush->create_solid(ARGB(255, 255, 255, 200));
+      //      brush->create_solid(argb(255, 255, 255, 200));
 
       //   }
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), ARGB(255, 255, 255, 200), ARGB(255, 255, 125, 100));
+      //      brush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), argb(255, 255, 255, 200), argb(255, 255, 125, 100));
 
       //   }
 
@@ -550,7 +556,7 @@ namespace app_shader
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rectText.top_left(), rectText.bottom_right(), m_hlsText, ARGB(255, 255, 255, 200));
+      //      brush->CreateLinearGradientBrush(rectText.top_left(), rectText.bottom_right(), m_hlsText, argb(255, 255, 255, 200));
 
       //   }
 

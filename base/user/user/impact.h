@@ -94,11 +94,11 @@ namespace user
 
 
 
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void PostNcDestroy() override;
@@ -125,9 +125,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMButtonDown);
 
 
-      void OnUpdateSplitCmd(::user::command* pCmdUI);
+      void OnUpdateSplitCmd(::message::command* pCmdUI);
       bool OnSplitCmd(::u32 nID);
-      void OnUpdateNextPaneMenu(::user::command* pCmdUI);
+      void OnUpdateNextPaneMenu(::message::command* pCmdUI);
       bool OnNextPaneCmd(::u32 nID);
 
       // not mapped commands - must be mapped in derived class
@@ -181,14 +181,14 @@ namespace user
 
 
 
-      //      virtual void route_command_message(::user::command * pcommand);
+      //      virtual void route_command_message(::message::command * pcommand);
 
       //      virtual bool pre_create_window(::user::system * pusersystem);
 
 
       //         virtual void install_message_routing(::channel * pchannel);
 
-      virtual bool has_command_handler(::user::command * pcommand) override;
+      virtual bool has_command_handler(::message::command * pcommand) override;
 
       virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
 
@@ -276,7 +276,7 @@ namespace user
       }
 
 
-      virtual void route_command_message(::user::command * pcommand) override
+      virtual void route_command_message(::message::command * pcommand) override
       {
 
          ::user::impact::route_command_message(pcommand);
@@ -284,7 +284,7 @@ namespace user
       }
 
 
-      virtual void on_command(::user::command* pcommand) override
+      virtual void on_command(::message::command* pcommand) override
       {
 
          VIEW::on_command(pcommand);

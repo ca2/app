@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
@@ -168,7 +166,16 @@ namespace user
 
       }
 
-      ::set_thread_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
+      string strType = ::str::demangle(m_puserinteraction->type_name());
+
+      ::set_thread_name("prodevian," + strType);
+
+      if (strType.contains_ci("combo_list"))
+      {
+
+         output_debug_string("combo_list");
+
+      }
 
       while (thread_get_run())
       {
@@ -305,12 +312,12 @@ bool prodevian::prodevian_iteration()
 
    string strType;
 
+   strType = ::str::demangle(m_puserinteraction->type_name());
+
    try
    {
 
       sync_lock sl(m_puserinteraction->mutex());
-
-      strType = ::str::demangle(m_puserinteraction->type_name());
 
       if (strType.contains_ci("filemanager"))
       {
@@ -365,6 +372,13 @@ bool prodevian::prodevian_iteration()
          {
 
             return false;
+
+         }
+
+         if (strType.contains_ci("combo_list"))
+         {
+
+            output_debug_string("combo_list");
 
          }
 
@@ -1191,7 +1205,7 @@ bool prodevian::prodevian_iteration()
 
       m_nanosFrame = (u64)(1'000'000'000.0 / m_pimpl->m_dConfigFps);
 
-      m_nanosPostRedraw = min(m_nanosPostRedraw, m_nanosFrame);
+      m_nanosPostRedraw = minimum(m_nanosPostRedraw, m_nanosFrame);
 
    }
 

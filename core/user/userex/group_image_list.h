@@ -61,7 +61,7 @@ namespace userex
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
       virtual ::userex::image_list_view * add_group(::id idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
 

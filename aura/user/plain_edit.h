@@ -148,7 +148,7 @@ namespace user
       //{
       //public:
 
-      //   call_set_sel_end_on_point(point_i32 point_i32)
+      //   call_set_sel_end_on_point(point_i32 point)
       //   {
 
       //      m_ecall = e_call_set_sel_end;
@@ -174,7 +174,8 @@ namespace user
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
       int                                 m_iInputConnectionBatch;
-
+      index                               m_iLastSelEndLine;
+      int                                 m_iLastSelEndX;
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
       ::index                             m_iLineStart;
@@ -279,7 +280,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual ::rectangle_f64 get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual __status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -293,8 +294,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnUniChar);
 
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnKillFocus);
+      //DECL_GEN_SIGNAL(_001OnSetFocus);
+      //DECL_GEN_SIGNAL(_001OnKillFocus);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCut);
@@ -316,6 +317,11 @@ namespace user
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
+
+
+      virtual void on_set_keyboard_focus() override;
+      virtual void on_kill_keyboard_focus() override;
+
 
 
       virtual enum_input_type preferred_input_type() const override;

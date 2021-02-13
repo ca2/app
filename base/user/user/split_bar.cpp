@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -67,7 +65,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, ARGB(255, 180, 180, 180));
+      pgraphics->fill_rectangle(rectClient, argb(255, 180, 180, 180));
 
 
    }
@@ -78,7 +76,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      pusersystem->m_createstruct.style &= ~WS_BORDER;
+      //pusersystem->m_createstruct.style &= ~WS_BORDER;
 
 #endif
 
@@ -116,7 +114,7 @@ namespace user
 
          m_pparent->m_iState = split_layout::stateDragging;
 
-         SetCapture();
+         set_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -141,7 +139,11 @@ namespace user
 
          auto psession = Session;
 
-         psession->ReleaseCapture();
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -166,16 +168,16 @@ namespace user
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
       {
 
-         if(m_pparent->GetSplitOrientation() == orientation_horizontal)
+         if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)
          {
 
-            pmouse->m_ecursor = cursor_size_vertical;
+            pmouse->m_ecursor = e_cursor_size_vertical;
 
          }
          else
          {
 
-            pmouse->m_ecursor = cursor_size_horizontal;
+            pmouse->m_ecursor = e_cursor_size_horizontal;
 
          }
 

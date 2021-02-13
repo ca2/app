@@ -100,7 +100,7 @@ namespace console
       virtual void SetCursorPosition(int y,int x) = 0;
       virtual void SetTextColor(int color) = 0;
       inline int GetTextColor() { return m_iTextColor; }
-      virtual void SetScreenColor(enum_dos_color color,int iLineStart = 0,int iLineCount = -1) = 0;
+      virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1) = 0;
       virtual void write(const char * psz) = 0;
 
 

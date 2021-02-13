@@ -12,37 +12,37 @@ namespace message
    }
 
 
-
-
-
    CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage)
    {
-
-      __pointer(::message::base) pbase(pmessage);
 
       // Return false if the message just dispatched should _not_
       // cause on_idle to be run.  Messages which do not usually
       // affect the state of the ::account::user interface and happen very
       // often are checked for.
 
-      if(pbase == nullptr)
+      if (pmessage == nullptr)
+      {
+
          return false;
 
+      }
+
       // redundant e_message_mouse_move and e_message_non_client_mouse_move
-      if(pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move)
+      if(pmessage->m_id == e_message_mouse_move || pmessage->m_id == e_message_non_client_mouse_move)
       {
+
          return true;
+
       }
 
       // e_message_paint and WM_SYSTIMER (caret blink)
-      return pbase->m_id != e_message_paint && pbase->m_id != 0x0118;
+      return pmessage->m_id != e_message_paint && pmessage->m_id != 0x0118;
 
    }
 
 
 
    CLASS_DECL_APEX bool is_idle_message(MESSAGE * pmsg)
-
    {
 
       // Return false if the message just dispatched should _not_
@@ -129,7 +129,7 @@ namespace message
          //{
          //switch (uiCode)
          //{
-         //case CN_UPDATE_::user::command:
+         //case CN_UPDATE_::message::command:
          //    return PrototypeUpdateCommandUserInterface;
          //default:
          //return PrototypeCommand;

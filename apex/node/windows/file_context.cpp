@@ -141,10 +141,10 @@ namespace windows
 
       ::payload varRet;
 
-      varRet = ::file_context::length(path);
+      //varRet = ::file_context::length(path);
 
-      if (!varRet.is_null())
-         return varRet;
+      //if (!varRet.is_null())
+      //   return varRet;
 
 
 #ifdef WINDOWS
@@ -176,6 +176,17 @@ namespace windows
 #endif
 
       return varRet;
+
+   }
+
+
+   ::payload file_context::length(const ::file::path & path, ::payload * pvarQuery)
+   {
+
+      // TODO: I don't remember what pvarQuery is used for, in the time of reimplementation
+      // of this function. Maybe you should consider it in some case(s).
+
+      return length(path);
 
    }
 

@@ -53,7 +53,7 @@ namespace draw2d_xlib
    void font::dump(dump_context & dumpcontext) const
    {
 
-      ::draw2d::font::dump(dumpcontext);
+      ::write_text::font::dump(dumpcontext);
 
    }
 

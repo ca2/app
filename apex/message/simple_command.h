@@ -6,20 +6,16 @@ namespace message
 
 
    class CLASS_DECL_APEX simple_command :
-      public base
+      public ::message::message
    {
    public:
 
 
-      e_simple_command  m_esimplecommand;
-
-
       simple_command();
 
+      void set(enum_simple_command esimplecommand) { m_wparam.m_number = esimplecommand; }
 
-      using ::message::base::set;
-
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      inline enum_simple_command command() { return (enum_simple_command) m_wparam.m_number; }
 
 
    };

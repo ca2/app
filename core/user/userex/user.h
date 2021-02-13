@@ -55,7 +55,7 @@ namespace core
       //__composite(::user::keyboard)              m_pkeyboard;
 
       //index                                      m_iEdge;
-      //::map < ::user::e_key, ::user::e_key, bool, bool > *  m_pmapKeyPressed;
+      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
 
       //bool                                       m_bProgrammerMode;
 
@@ -84,7 +84,7 @@ namespace core
       //::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      //::draw2d::font_enum_item_array                        m_fontenumitema;
+      //::write_text::font_enum_item_array                        m_fontenumitema;
 
       ////index                                               m_iEdge;
 
@@ -129,7 +129,7 @@ namespace core
 
       //__composite(::userex::userex)                         m_puserex;
       //bool                                                  m_bFontSelInitialized;
-      //__composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
+      //__composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       //__composite(::user::user)                             m_puser;
       
 
@@ -172,14 +172,14 @@ namespace core
 
       class keyboard & keyboard();
 
-      virtual bool modal_get_color(::user::interaction * puiOwner, ::hls & hls);
+      virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
       virtual void AddToRecentFileList(const char * pszPathName);
 
       virtual ::e_status initialize_html();
 
 
-      virtual void route_command_message(::user::command * pcommand);
+      virtual void route_command_message(::message::command * pcommand);
 
 
       virtual void _001OnFileNew();
@@ -206,11 +206,11 @@ namespace core
       __pointer(::user::impact_system) get_template(index index) const;
 
 
-      __pointer(::form_document)   create_form(::object * pobject, ::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
 
       template < typename FORM >
@@ -226,28 +226,6 @@ namespace core
 
       virtual ::e_status create_user_shell();
 
-
-      virtual string get_wallpaper(index iScreen);
-      virtual bool set_wallpaper(index iScreen, string strWallpaper);
-
-
-      virtual string_array get_wallpaper();
-      virtual void set_wallpaper(const string_array & strWallpaper);
-
-
-      virtual string impl_get_wallpaper(index iScreen);
-      virtual bool impl_set_wallpaper(index iScreen, string strWallpaper);
-
-
-      virtual string os_get_user_theme();
-      virtual bool set_os_desktop_theme(string strTheme);
-
-
-      virtual string impl_get_os_desktop_theme();
-      virtual bool impl_set_os_desktop_theme(string strTheme);
-
-
-      virtual void enable_wallpaper_change_notification();
 
 
 
@@ -424,9 +402,9 @@ namespace core
 
       //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
-      //virtual bool is_key_pressed(::user::e_key ekey);
+      //virtual bool is_key_pressed(::user::enum_key ekey);
 
-      //virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
+      //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 
       //virtual ::user::primitive * get_keyboard_focus();
       //virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
@@ -539,13 +517,13 @@ namespace core
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
 
 
@@ -560,7 +538,7 @@ namespace core
 
       //void _001OnFileNew();
 
-      ////virtual void route_command_message(::user::command * pcommand) override;
+      ////virtual void route_command_message(::message::command * pcommand) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -578,7 +556,7 @@ namespace core
 
       ////virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
-      //virtual ::draw2d::font_list* get_single_column_font_list();
+      //virtual ::write_text::font_list* get_single_column_font_list();
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 

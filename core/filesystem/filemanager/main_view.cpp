@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -61,14 +59,14 @@ namespace filemanager
 
       //color32_t crBackground = get_color(pstyle, ::user::e_element_background);
 
-      //if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
 
       //   ::rectangle_i32 rectClient;
 
       //   get_client_rect(rectClient);
 
-      //   pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       //}
 
@@ -87,7 +85,7 @@ namespace filemanager
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_vertical);
+      SetSplitOrientation(e_orientation_vertical);
 
       set_position_rate(0,0.3);
 
@@ -144,7 +142,7 @@ namespace filemanager
    }
 
 
-   void main_view::on_command(::user::command * pcommand)
+   void main_view::on_command(::message::command * pcommand)
    {
 
       if(pcommand->m_id == "change_view")

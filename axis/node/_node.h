@@ -29,7 +29,7 @@
 #endif
 
 
-CLASS_DECL_AXIS void __node_axis_factory_exchange();
+CLASS_DECL_AXIS void __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
 

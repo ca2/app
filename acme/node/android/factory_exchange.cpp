@@ -38,7 +38,7 @@
 //} // namespace android
 
 
-void __node_acme_factory_exchange()
+void __node_acme_factory_exchange(::factory_map * pfactorymap)
 {
 
 

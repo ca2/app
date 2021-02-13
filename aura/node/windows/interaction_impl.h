@@ -89,7 +89,7 @@ namespace windows
       //virtual ::user::interaction * get_owner();
       //virtual void set_owner(::user::interaction * pOwnerWnd);
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       //void _002OnDraw(::image * pimage);
 
@@ -384,7 +384,7 @@ namespace windows
       //virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 
       //virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-      //   const RECTANGLE_I32 * rectangle_i32 = nullptr,
+      //   const RECTANGLE_I32 * rectangle = nullptr,
 
       //   const RECTANGLE_I32 * pClipRect = nullptr);
 
@@ -495,8 +495,8 @@ namespace windows
       //virtual void EndAllModalLoops(id nResult);
 
       // Window-Management message handler member functions
-      //virtual bool OnCommand(::message::base * pbase);
-      //virtual bool OnNotify(::message::base * pbase);
+      //virtual bool OnCommand(::message::message * pmessage);
+      //virtual bool OnNotify(::message::message * pmessage);
 
       //void OnActivate(::u32 nState, ::user::interaction_impl * pWndOther, bool bMinimized);
       //void OnActivateApp(bool bActive, u32 dwThreadID);
@@ -658,8 +658,8 @@ namespace windows
       //virtual void pre_translate_message(::message::message * pmessage);
 
 
-      //virtual void default_message_handler(::message::base * pbase) override;
-      //virtual void message_handler(::message::base * pbase);
+      //virtual void default_message_handler(::message::message * pmessage) override;
+      //virtual void message_handler(::message::message * pmessage);
 
 
       //virtual bool OnWndMsg(const ::id & id, wparam wParam, lparam lParam, lresult* pResult);
@@ -672,10 +672,10 @@ namespace windows
       virtual void post_nc_destroy();
 
       // for notifications from parent
-      //virtual bool OnChildNotify(::message::base * pbase);
+      //virtual bool OnChildNotify(::message::message * pmessage);
       // return true if parent should not process this message
-      //virtual bool ReflectChildNotify(::message::base * pbase);
-      //virtual bool ReflectMessage(::windowing::window * pwindow_Child, ::message::base * pbase);
+      //virtual bool ReflectChildNotify(::message::message * pmessage);
+      //virtual bool ReflectMessage(::windowing::window * pwindow_Child, ::message::message * pmessage);
 
       // Implementation
       //virtual bool CheckAutoCenter();

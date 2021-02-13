@@ -2,7 +2,7 @@
 #include "apex/platform/static_setup.h"
 
 
-typedef  void(*PFN_create_factory)();
+//typedef  void(*PFN_create_factory)();
 
 
 namespace apex
@@ -12,7 +12,7 @@ namespace apex
    const char * psz_empty_app_id = "";
 
 
-   ::e_status     library::initialize(::layered * pobjectContext)
+   ::e_status library::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -99,6 +99,19 @@ namespace apex
    {
 
       close();
+
+   }
+
+
+   void library::assert_valid() const
+   {
+
+   }
+   
+
+   void library::dump(dump_context & dumpcontext) const
+   {
+
 
    }
 
@@ -311,7 +324,7 @@ namespace apex
 
       m_pca2library->initialize_apex_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
 
-      m_pca2library->initialize_factory();
+      m_pca2library->factory_exchange(::factory::get_factory_map());
 
       m_pca2library->set_context_object(get_context_object());
 
@@ -735,18 +748,11 @@ namespace apex
    }
 
 
-   __pointer(::matter) library::create_object(::layered * pobjectContext, const char * pszClass)
+   __pointer(::matter) library::create_object(const char * pszClass)
    {
 
       sync_lock sl(&System.m_mutexLibrary);
 
-      if (factory_has_object_class(pszClass))
-      {
-
-         return factory_create(pobjectContext, pszClass);
-
-      }
-      
       ::matter * p = nullptr;
 
       if(get_ca2_library() != nullptr)
@@ -771,8 +777,6 @@ namespace apex
 
       }
 
-      pobject->initialize(pobjectContext);
-
       return pobject;
 
    }
@@ -782,13 +786,6 @@ namespace apex
    {
 
       sync_lock sl(&System.m_mutexLibrary);
-
-      if (factory_has_object_class(pszClassId))
-      {
-
-         return false;
-
-      }
 
       if (get_ca2_library() == nullptr)
       {
@@ -879,87 +876,128 @@ namespace apex
    //}
 
 
-   __pointer(::matter) library::factory_create(::layered * pobjectContext, const char * lpszClass)
+   //__pointer(::matter) library::factory_create(const char * lpszClass)
+   //{
+
+   //   library_object_allocator_base * pallocator = find_allocator(lpszClass);
+
+   //   if (pallocator == nullptr)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto p = pallocator->new_object();
+
+   //   auto pobject = ::move(p);
+
+   //   if (!pobject)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return pobject;
+
+   //}
+
+
+   //bool library::factory_has_object_class(const char * lpszClass)
+   //{
+
+   //   return find_allocator(lpszClass) != nullptr;
+
+   //}
+
+
+   //library_object_allocator_base * library::find_allocator(const char * lpszClass)
+   //{
+
+   //   index iFind = m_allocatorptra.pred_find_first([&](auto & pallocator)
+   //   {
+
+   //      return pallocator->m_strName == lpszClass;
+
+   //   });
+
+   //   if (iFind < 0)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return m_allocatorptra[iFind];
+
+   //}
+
+
+   //void library::initialize_factory()
+   //{
+
+   //}
+
+
+   ::e_status library::factory_exchange(::factory_map * pfactorymap)
    {
 
-      library_object_allocator_base * pallocator = find_allocator(lpszClass);
-
-      if (pallocator == nullptr)
+      if (pfactorymap == nullptr)
       {
 
-         return nullptr;
+         __construct_new(m_pfactorymap);
+
+         pfactorymap = m_pfactorymap;
 
       }
 
-      auto p = pallocator->new_object(pobjectContext);
+      string strFactoryExchange;
 
-      auto pobject = ::move(p);
+      string strName = m_strName;
 
-      if (!pobject)
+      if (strName.is_empty())
       {
 
-         return nullptr;
+         strName = ::file::path(m_strPath).name();
 
       }
 
-      return pobject;
+      strFactoryExchange = strName + "_factory_exchange";
 
-   }
+      auto pfn_create_factory = get < PFN_factory_exchange >(strFactoryExchange);
 
-
-   bool library::factory_has_object_class(const char * lpszClass)
-   {
-
-      return find_allocator(lpszClass) != nullptr;
-
-   }
-
-
-   library_object_allocator_base * library::find_allocator(const char * lpszClass)
-   {
-
-      index iFind = m_allocatorptra.pred_find_first([&](auto & pallocator)
+      if (!pfn_create_factory)
       {
 
-         return pallocator->m_strName == lpszClass;
-
-      });
-
-      if (iFind < 0)
-      {
-
-         return nullptr;
+         return error_failed;
 
       }
 
-      return m_allocatorptra[iFind];
+      pfn_create_factory(pfactorymap);
+
+      return ::success;
 
    }
 
 
-   void library::initialize_factory()
-   {
+   //bool library::create_factory()
+   //{
 
-   }
+   //   auto pfn_create_factory = get < PFN_create_factory >("create_factory");
 
+   //   if (pfn_create_factory == nullptr)
+   //   {
 
-   bool library::create_factory()
-   {
+   //      return false;
 
-      auto pfn_create_factory = get < PFN_create_factory >("create_factory");
+   //   }
 
-      if (pfn_create_factory == nullptr)
-      {
+   //   pfn_create_factory();
 
-         return false;
+   //   return true;
 
-      }
-
-      pfn_create_factory();
-
-      return true;
-
-   }
+   //}
 
 } // namespace apex
 

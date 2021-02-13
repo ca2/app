@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "_data.h"
 #include "core/user/user/_tree.h"
 
@@ -51,7 +49,7 @@ namespace filemanager
 
       SetPaneCount(1);
 
-      SetSplitOrientation(orientation_horizontal);
+      SetSplitOrientation(e_orientation_horizontal);
 
       initialize_split_layout();
 

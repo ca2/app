@@ -623,19 +623,19 @@ namespace os
 
          ::rectangle_i32 rectangle;
 
-         rectangle_i32 = rectWindow;
+         rectangle = rectWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::alpha_mode_set);
 
 /*         m_pimage->g()->SetViewportOrg(0, 0);
 
-/*         m_pimage->g()->FillSolidRect(&rectClient, ARGB(255, 255, 255, 255));
+/*         m_pimage->g()->FillSolidRect(&rectClient, argb(255, 255, 255, 255));
 
 /*         draw(m_pimage->g());
 
          //m_pimage->map();
 
-/*         m_pimage->fill_channel(255, ::color::channel_alpha);
+/*         m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          //m_pimage->Fill(255, 184, 184, 177);
 

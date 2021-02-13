@@ -1,7 +1,5 @@
 #include "framework.h" // previously aura/user/user.h
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace aura

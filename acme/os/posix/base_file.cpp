@@ -206,7 +206,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    ::count iSize = FILE_get_size(f);
 
-   iReadAtMostByteCount = min_non_neg(iSize, iReadAtMostByteCount);
+   iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 
    char * psz = str.get_string_buffer(iReadAtMostByteCount);
 
@@ -270,7 +270,7 @@ bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMost
       if (iReadAtMostByteCount >= 0)
       {
 
-         while ((iRead = (int)fread(mem.get_data(), 1, min(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
+         while ((iRead = (int)fread(mem.get_data(), 1, minimum(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
          {
 
             memory.append(mem.get_data(), iRead);
@@ -295,7 +295,7 @@ bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMost
    else
    {
 
-      iReadAtMostByteCount = min_non_neg(iSize, iReadAtMostByteCount);
+      iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 
       memory.set_size(iReadAtMostByteCount);
 

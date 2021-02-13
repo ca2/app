@@ -7,7 +7,7 @@
 
 
 
-extern "C" void * small_ipc_rx_color::channel_receive_proc(void * param);
+extern "C" void * small_ipc_rx_::color::e_channel_receive_proc(void * param);
 
 namespace axis
 {
@@ -116,9 +116,9 @@ namespace axis
          while(c > 0)
          {
 
-            cSend = min(c,511);
+            cSend = minimum(c,511);
 
-            ::memcpy_dup(data.data,&pszMessage[cPos],min(c,511));
+            ::memcpy_dup(data.data,&pszMessage[cPos],minimum(c,511));
 
             c -= cSend;
 
@@ -217,7 +217,7 @@ namespace axis
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,nullptr,&small_ipc_rx_color::channel_receive_proc,this) != 0)
+         if(pthread_create(&m_thread,nullptr,&small_ipc_rx_::color::e_channel_receive_proc,this) != 0)
          {
 
             m_bRunning = false;
@@ -233,7 +233,7 @@ namespace axis
       }
 
 
-      extern "C" void * small_ipc_rx_color::channel_receive_proc(void * param)
+      extern "C" void * small_ipc_rx_::color::e_channel_receive_proc(void * param)
       {
 
          small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *)param;

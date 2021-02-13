@@ -284,18 +284,23 @@ namespace html
 
       m_element.implement(this);
 
-      for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+      if (m_pform->m_puiptraChild)
       {
 
-         ::user::control_event event;
+         for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+         {
 
-         event.m_eevent = ::user::e_event_initialize_control;
+            ::user::control_event event;
 
-         event.m_puie = pinteraction;
+            event.m_eevent = ::user::e_event_initialize_control;
 
-         event.m_id = pinteraction->m_id;
+            event.m_puie = pinteraction;
 
-         m_pform->route_control_event(&event);
+            event.m_id = pinteraction->m_id;
+
+            m_pform->route_control_event(&event);
+
+         }
 
       }
 
@@ -392,7 +397,7 @@ namespace html
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_rect(100,100,100,100,ARGB(190, 255, 0, 0));
+      //   pgraphics->fill_rectangle(100,100,100,100,argb(190, 255, 0, 0));
 
       //}
 
@@ -403,7 +408,7 @@ namespace html
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pgraphics->fill_rect(200,200,100,100,ARGB(190, 0, 255, 0));
+      //   pgraphics->fill_rectangle(200,200,100,100,argb(190, 0, 255, 0));
 
       //}
 
@@ -710,7 +715,7 @@ namespace html
       //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
             //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
       //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      varFile["http_set"]["headers"].propset()["Cache-Control"] = "max-age=0";
+      varFile["http_set"]["headers"].propset()["Cache-Control"] = "maximum-age=0";
 
       string str;
 

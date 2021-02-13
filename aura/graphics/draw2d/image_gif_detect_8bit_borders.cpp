@@ -200,7 +200,7 @@
 ////   if (cTransparent <= 0)
 ////   {
 ////
-////      crBack = ARGB(255, 127, 127, 127);
+////      crBack = argb(255, 127, 127, 127);
 ////
 ////      pimagepointera->m_bTransparent = false;
 ////
@@ -217,7 +217,7 @@
 ////      if (bAverage > bLite) // Light
 ////      {
 ////
-////         crBack = ARGB(255, 255, 255, 255);
+////         crBack = argb(255, 255, 255, 255);
 ////
 ////         pimagepointera->m_bTransparent = true;
 ////
@@ -225,7 +225,7 @@
 ////      else if (bAverage < bDark)
 ////      {
 ////
-////         crBack = ARGB(255, 0, 0, 0);
+////         crBack = argb(255, 0, 0, 0);
 ////
 ////         pimagepointera->m_bTransparent = true;
 ////
@@ -233,7 +233,7 @@
 ////      else
 ////      {
 ////
-////         crBack = ARGB(255, 127, 127, 127);
+////         crBack = argb(255, 127, 127, 127);
 ////
 ////         pimagepointera->m_bTransparent = false;
 ////

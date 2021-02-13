@@ -82,6 +82,11 @@ namespace windowing
    }
 
 
+   void window::message_handler(::message::message * pmessage)
+   {
+
+
+   }
 
 
    ::e_status window::create_window(::user::interaction_impl * pimpl)
@@ -104,7 +109,7 @@ namespace windowing
    //}
 
 
-   bool window::has_capture() const
+   bool window::has_mouse_capture() const
    {
 
       return false;
@@ -112,7 +117,7 @@ namespace windowing
    }
 
 
-   bool window::has_focus() const
+   bool window::has_keyboard_focus() const
    {
 
       return false;
@@ -128,7 +133,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_capture()
+   ::e_status window::set_mouse_capture()
    {
 
       __throw(interface_only_exception());
@@ -830,7 +835,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 //}
 //
 
-   void window::route_command_message(class ::user::command *)
+   void window::route_command_message(class ::message::command *)
    {
 
       __throw(interface_only_exception());
@@ -842,6 +847,32 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    {
 
       __throw(interface_only_exception());
+
+   }
+
+
+   void window::set_oswindow(oswindow oswindow)
+   { 
+      
+      set_os_data(oswindow); 
+
+      auto pimpl = m_pimpl;
+   
+      if (pimpl)
+      {
+
+         auto puserinteraction = pimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            puserinteraction->m_oswindow = oswindow;
+
+         }
+
+      }
+
+
 
    }
 
@@ -1073,7 +1104,15 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
-   bool window::has_focus()
+   //bool window::has_keyboard_focus()
+   //{
+
+   //   __throw(interface_only_exception());
+
+   //   return false;
+
+   //}
+   bool window::is_active_window() const
    {
 
       __throw(interface_only_exception());
@@ -1081,22 +1120,14 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
       return false;
 
    }
-   bool window::is_active()
-   {
+   //::user::interaction * window::GetFocus()
+   //{
 
-      __throw(interface_only_exception());
+   //   __throw(interface_only_exception());
 
-      return false;
+   //   return nullptr;
 
-   }
-   ::user::interaction * window::GetFocus()
-   {
-
-      __throw(interface_only_exception());
-
-      return nullptr;
-
-   }
+   //}
    ::user::interaction * window::get_desktop_window()
    {
 
@@ -1355,10 +1386,13 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
         __throw(interface_only_exception());
      }
 
-     void window::non_top_most_upper_window_rects(::rect_array & recta) {
+   
+   void window::non_top_most_upper_window_rects(::rect_array & recta)
+   {
 
-        __throw(interface_only_exception());
-     }
+      __throw(interface_only_exception());
+
+   }
 
    void window::post_nc_destroy()
    {
@@ -1373,10 +1407,83 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
-   void window::default_message_handler(::message::base * pbase)
+   void window::default_message_handler(::message::message * pmessage)
    {
 
    }
+
+
+   void window::track_mouse_hover()
+   {
+
+   }
+
+
+   void window::_task_transparent_mouse_event()
+   {
+
+   }
+
+
+   float window::get_dpi_for_window()
+   {
+
+      return 96.0f;
+
+   }
+
+
+
+   float window::dpiy(float y)
+   {
+
+      float fDpi = get_dpi_for_window();
+
+      return y * fDpi / 96.f;
+
+   }
+
+
+   float window::dpix(float x)
+   {
+
+      float fDpi = get_dpi_for_window();
+
+      return x * fDpi / 96.f;
+
+   }
+
+
+   float window::point_dpi(float points)
+   {
+
+      float fDpi = get_dpi_for_window();
+
+      return points * fDpi / 72.f;
+
+   }
+
+
+   float window::y_dpi(float y)
+   {
+
+      float fDpi = get_dpi_for_window();
+
+      return y / fDpi;
+
+   }
+
+
+   float window::x_dpi(float x)
+   {
+
+      float fDpi = get_dpi_for_window();
+
+      return x / fDpi;
+
+   }
+
+
 
 
    //void window::set_user_interaction(::user::interaction_impl * pimpl)
@@ -1750,7 +1857,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
-   ::e_status window::set_focus()
+   ::e_status window::set_keyboard_focus()
    {
 
       __throw(interface_only_exception());

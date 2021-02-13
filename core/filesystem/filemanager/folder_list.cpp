@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -28,9 +26,9 @@ namespace filemanager
 
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::_001OnLButtonDblClk);
 
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
+//#endif
 
    }
 
@@ -164,11 +162,11 @@ namespace filemanager
          //if(pil->GetSafeHandle() != nullptr)
          //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))
-#ifdef WINDOWS_DESKTOP
-         if (pil->create(16, 16, ILC_COLOR32, 0, 1))
-#else
+//#ifdef WINDOWS_DESKTOP
+//         if (pil->create(16, 16, ILC_COLOR32, 0, 1))
+//#else
          if (pil->create(16, 16, 0, 0, 1))
-#endif
+//#endif
          {
 
             string str;
@@ -264,27 +262,27 @@ namespace filemanager
    }
 
 
-#ifdef WINDOWS_DESKTOP
-   void folder_list::FolderArray::clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST piidlPreserve2)
-
-   {
-      UNREFERENCED_PARAMETER(piidlPreserve1);
-
-      UNREFERENCED_PARAMETER(piidlPreserve2);
-
-      //Folder folder;
-
-
-      //for(i32 i = 0; i < this->get_size(); i++)
-      //{
-      //Folder & folder = this->element_at(i);
-      //}
-      remove_all();
-
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   void folder_list::FolderArray::clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST piidlPreserve2)
+//
+//   {
+//      UNREFERENCED_PARAMETER(piidlPreserve1);
+//
+//      UNREFERENCED_PARAMETER(piidlPreserve2);
+//
+//      //Folder folder;
+//
+//
+//      //for(i32 i = 0; i < this->get_size(); i++)
+//      //{
+//      //Folder & folder = this->element_at(i);
+//      //}
+//      remove_all();
+//
+//
+//   }
+//
+//#endif
 
    void folder_list::FolderArray::clear()
    {
@@ -348,25 +346,25 @@ namespace filemanager
          if (filemanager_document()->m_emode == ::userfs::mode_saving)
          {
 
-            cr = ARGB(190, 255, 180, 90);
+            cr = argb(190, 255, 180, 90);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = ARGB(190, 90, 177, 255);
+            cr = argb(190, 90, 177, 255);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_export)
          {
 
-            cr = ARGB(190, 255, 255, 177);
+            cr = argb(190, 255, 255, 177);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = ARGB(190, 180, 255, 90);
+            cr = argb(190, 180, 255, 90);
 
          }
 
@@ -376,7 +374,7 @@ namespace filemanager
       else
       {
 
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
 
       }
 

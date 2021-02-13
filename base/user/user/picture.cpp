@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include <math.h>
 
 
@@ -569,7 +567,7 @@ namespace user
    bool picture::intersects(const ::rectangle_f64 & rectParam) const
    {
 
-      rectangle_f64 rectangle_i32(rectParam);
+      rectangle_f64 rectangle(rectParam);
 
       polygon_f64 polygon_i32;
 
@@ -601,7 +599,7 @@ namespace user
    rectangle_f64 picture::drawing_bounds() const
    {
 
-      rectangle_f64 rectangle_i32(0.0, 0.0, 0.0, 0.0);
+      rectangle_f64 rectangle(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -657,7 +655,7 @@ namespace user
    point_f64_array & picture::drawing_polygon() const
    {
 
-      rectangle_f64 rectangle_i32(0.0, 0.0, 0.0, 0.0);
+      rectangle_f64 rectangle(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -906,7 +904,7 @@ namespace user
       size = ::size_f64(pointDrag.x * m_ppictureimpl->m_rectDrawing.width(),
          pointDrag.y * m_ppictureimpl->m_rectDrawing.height()) - size;
 
-      rectangle_f64 rectangle_i32(__pointd(size), ::size_f64(m_ppictureimpl->m_rectDrawing.size()));
+      rectangle_f64 rectangle(__pointd(size), ::size_f64(m_ppictureimpl->m_rectDrawing.size()));
 
       return rectangle;
 
@@ -1006,7 +1004,7 @@ namespace user
       __EXCHANGE(bDrag);
       __EXCHANGE(dRotate);
       __EXCHANGE(rectBounding);
-      __EXCHANGE(polygon_i32);
+      __EXCHANGE(polygon);
       __EXCHANGE(polygonDrawing);
       __EXCHANGE(ptaCursor);
       __EXCHANGE(dZoom);

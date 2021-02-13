@@ -4,9 +4,7 @@
 #include "apex/node/linux/_linux.h"
 
 
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 
 
 string get_error_message(::u32 dwError);

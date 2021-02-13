@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -59,14 +57,14 @@ namespace user
 
       //get_slider_rect(rectangle);
 
-      //auto point_i32(pmouse->m_point);
+      //auto point(pmouse->m_point);
 
       //_001ScreenToClient(point);
 
       //if(rectangle.contains(point))
       //{
 
-      SetCapture();
+      set_mouse_capture();
 
       m_bSlide = true;
 
@@ -94,7 +92,13 @@ namespace user
       if(m_bSlide)
       {
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          m_bSlide = false;
 
@@ -140,7 +144,11 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto point = pwindowing->get_cursor_pos();
 
       _001ScreenToClient(point, e_layout_design);
 
@@ -155,7 +163,7 @@ namespace user
 
       }
 
-      dScalar = min(1.0, max(0.0, dScalar));
+      dScalar = minimum(1.0, maximum(0.0, dScalar));
 
       return dScalar;
 
@@ -211,7 +219,7 @@ namespace user
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      imaging.color_blend(pgraphics, rectClient, RGB(250,255,255), bAlpha1);
+      imaging.color_blend(pgraphics, rectClient, rgb(250,255,255), bAlpha1);
 
       ::rectangle_i32 rectangle;
 
@@ -219,13 +227,13 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,150,120,150),ARGB(bAlpha,60,80,150));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->fill_rect(rectangle,ARGB(bAlpha1,140,108,120));
+      pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rectangle.center());
@@ -247,8 +255,8 @@ namespace user
 
       rectangle.top = rectClient.top;
       rectangle.bottom = rectClient.bottom;
-      rectangle.left = (::i32)min(rectClient.right,m_dRate * (rectClient.width() - iWidth));
-      rectangle.right = (::i32)min(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
 
 
    }

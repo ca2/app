@@ -78,7 +78,7 @@ namespace filemanager
    }
 
    
-   void callback::on_file_manager_item_update(::filemanager::data * pdata, ::user::command * pcommand, const ::file::item_array & itema)
+   void callback::on_file_manager_item_update(::filemanager::data * pdata, ::message::command * pcommand, const ::file::item_array & itema)
    {
    
       UNREFERENCED_PARAMETER(pdata);

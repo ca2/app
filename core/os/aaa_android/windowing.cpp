@@ -649,7 +649,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE32 * psize)
 {
 
-   pgraphics->fill_solid_rect_dim(0, 0, psize->cx, psize->cy, RGB(84, 90, 80));
+   pgraphics->fill_solid_rect_dim(0, 0, psize->cx, psize->cy, rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(e_create_new);
 
@@ -1295,7 +1295,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    if(!bOk)
    {
 
-      //pkey->m_ekey = (::user::e_key) ((int) ::user::e_key_a + keyCode - 29);
+      //pkey->m_ekey = (::user::enum_key) ((int) ::user::e_key_a + keyCode - 29);
       pkey->m_ekey = ::user::e_key_refer_to_text_member;
 
       wd32char u32sz[2];
@@ -1308,7 +1308,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    //else if (keyCode >= 7 && keyCode <= 16)
    //{
 
-   //   pkey->m_ekey = (::user::e_key) ((int) ::user::e_key_0 + keyCode - 7);
+   //   pkey->m_ekey = (::user::enum_key) ((int) ::user::e_key_0 + keyCode - 7);
 
    //   pkey->m_ekey = ::user::e_key_refer_to_text_member;
 

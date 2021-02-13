@@ -5,8 +5,8 @@
 #define XFM_RETURN_LOADED_IMAGE 13
 
 
-#define RGB_TO_RGBQUAD(rectangle,g,b)   (RGB(b,g,rectangle_i32))
-#define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
+#define RGB_TO_RGBQUAD(rectangle,g,b)   (rgb(b,g,rectangle_i32))
+#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
 
 
 class image_list;

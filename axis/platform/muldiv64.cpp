@@ -375,7 +375,7 @@ startDIV:
       mov      cl, al                  // Store number of 32 blocks in counter
       mov      char ptr[rshift], ah      // Store remaining number of shifts
       // Test shift not equal or larger than 4*32 already done at the begining
-      // Do dword shift cl times (max = 3)
+      // Do dword shift cl times (maximum = 3)
       xor      ch, ch
       xor      edx, edx
       jcxz   bitShift

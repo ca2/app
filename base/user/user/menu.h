@@ -14,19 +14,16 @@ namespace user
    public:
 
 
-
-      
-
-      ::size_i32                                 m_sizeMinimum;
+      ::size_i32                             m_sizeMinimum;
       __pointer(menu)                        m_pmenuParent;
       __pointer(menu_item)                   m_pmenuitem;
-      __pointer(::user::interaction)   m_puserinteractionParent;
-      __pointer(::user::interaction)   m_puiMenuNotify;
-#ifdef WINDOWS_DESKTOP
-      HMENU                                  m_hmenu;
-#endif
+      __pointer(::user::interaction)         m_puserinteractionParent;
+      __pointer(::user::interaction)         m_puiMenuNotify;
+//#ifdef WINDOWS_DESKTOP
+//      HMENU                                  m_hmenu;
+//#endif
       bool                                   m_bOwnItem;
-      ::size_i32                                 m_size;
+      ::size_i32                             m_size;
       double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
@@ -36,8 +33,8 @@ namespace user
       u32                                    m_dwOut;
       __pointer(menu)                        m_psubmenu;
       id                                     m_idTimerMenu;
-      point_i32                                  m_pointTrack;
-      point_i32                                  m_pointPositionHint;
+      point_i32                              m_pointTrack;
+      point_i32                              m_pointPositionHint;
       int                                    m_iFlags;
       bool                                   m_bPositionHint;
       bool                                   m_bInline;
@@ -74,7 +71,7 @@ namespace user
 
       ::user::menu_item * GetSubMenu(i32 i);
 
-      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & point);
+      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 

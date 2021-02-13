@@ -26,7 +26,7 @@ namespace draw2d_quartz2d
       virtual bool internal_add_line(int x1, int y1, int x2, int y2);
       virtual bool internal_add_line(int x, int y);
       virtual bool internal_add_move(int x, int y);
-      virtual bool internal_add_text_out(int x, int y, const string & strText, ::draw2d::font_pointer pfont, ::draw2d_quartz2d::graphics * p);
+      virtual bool internal_add_text_out(int x, int y, const string & strText, ::write_text::font_pointer pfont, ::draw2d_quartz2d::graphics * p);
       
       //virtual void * get_os_data() const;
       

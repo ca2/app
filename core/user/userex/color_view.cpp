@@ -1,20 +1,18 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
 #include "aura/os/windows_common/graphics.h"
 
 
 //#if defined(APPLEOS)
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, R, G, B)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_r_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
 //#define COLORREF_get_b_value(cr) colorref_get_b_value(cr)
 //#else
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, B, G, R)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_b_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
@@ -29,21 +27,21 @@ namespace flag
    void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h)
    {
 
-      color32_t crDenmarkRoed = ARGB(255, 200, 16, 46);
+      color32_t crDenmarkRoed = argb(255, 200, 16, 46);
 
       double dx = w / 90.0;
 
       double dy = h / 70.0;
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), ARGB(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
 
    }
 
@@ -168,7 +166,7 @@ namespace visual
 
       int b = image_b_value(cr);
 
-      cr = ARGB(a, r, g, b);
+      cr = argb(a, r, g, b);
 
       return cr;
 
@@ -222,7 +220,7 @@ namespace visual
 
       ::count h = pimage->height();
 
-      color c;
+      ::color::color color;
 
       double dh = (double) h;
 
@@ -439,7 +437,7 @@ namespace userex
 
       //::draw2d::pen_pointer pen(e_create);
 
-      //pen->create_solid(1.0, ARGB(255, 255, 255, 255));
+      //pen->create_solid(1.0, argb(255, 255, 255, 255));
 
       //m_pimageBeam->g()->set(pen);
 
@@ -474,21 +472,21 @@ namespace userex
    }
 
 
-   color color_view::get_color()
+   ::color::color color_view::get_color()
    {
 
-      color color;
+      ::color::color color;
 
       color.set_hls(m_hls);
 
-      color.m_iA = 255;
+      color.alpha = 255;
 
       return color.get_rgba();
 
    }
 
 
-   void color_view::set_color(color color)
+   void color_view::set_color(::color::color color)
    {
 
       m_bMouseColorBeam = false;
@@ -504,8 +502,6 @@ namespace userex
 
    void color_view::on_mouse(const ::point_i32 & point)
    {
-
-      //sync_lock sl(mutex());
 
       if (point.y >= m_rectColors.bottom)
       {
@@ -549,11 +545,11 @@ namespace userex
             x, y,
             iColorsWidth, m_rectColors.height());
 
-         color c(cr);
+         ::color::color color(cr);
 
-         ::hls hls;
+         ::color::hls hls;
 
-         c.get_hls(hls);
+         color.get_hls(hls);
 
          m_hls.m_dH = hls.m_dH;
 
@@ -575,11 +571,13 @@ namespace userex
 
          set_need_redraw();
 
+         post_redraw();
+
       }
       else if (point.x < m_rectColors.center().x + m_rectColors.width() / 8)
       {
 
-         auto pointLuminance = point_i32 - ::size_i32(m_rectColors.center().x, m_rectColors.top);
+         auto pointLuminance = point - ::size_i32(m_rectColors.center().x, m_rectColors.top);
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
 
@@ -596,6 +594,8 @@ namespace userex
          route_control_event(&ev);
 
          set_need_redraw();
+
+         post_redraw();
 
       }
 
@@ -629,7 +629,7 @@ namespace userex
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(255, 0, 0, 0));
+      br->create_solid(argb(255, 0, 0, 0));
 
       pgraphics->set(br);
 
@@ -701,7 +701,7 @@ namespace userex
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(255, 0, 0, 0));
+      br->create_solid(argb(255, 0, 0, 0));
 
       pgraphics->set(br);
 
@@ -797,7 +797,7 @@ namespace userex
 
       r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
 
-      pgraphics->fill_rect(r1, get_color());
+      pgraphics->fill_rectangle(r1, get_color());
 
       int y = (int) (rectLum1.top + (1.0 - m_hls.m_dL)  * rectLum1.height());
 
@@ -819,7 +819,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      SetCapture();
+      set_mouse_capture();
 
       m_bLButtonPressed = true;
 
@@ -839,7 +839,13 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       m_bLButtonPressed = false;
 

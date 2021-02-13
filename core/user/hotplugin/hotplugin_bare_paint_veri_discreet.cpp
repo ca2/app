@@ -58,8 +58,8 @@ namespace hotplugin
       else
       {
 
-         left = rectangle.left + min(m / 2,::width(rectangle) / 2);
-         right = rectangle.right - min(m / 2,::width(rectangle) / 2);
+         left = rectangle.left + minimum(m / 2,::width(rectangle) / 2);
+         right = rectangle.right - minimum(m / 2,::width(rectangle) / 2);
 
       }
 
@@ -74,7 +74,7 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create);
 
-      brush->create_solid(ARGB(190, 49, 50, 49));
+      brush->create_solid(argb(190, 49, 50, 49));
 
       pgraphics->SelectObject(pen);
 
@@ -87,7 +87,7 @@ namespace hotplugin
 
       ::rectangle_i32 rectProgress(rectBar);
 
-      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * min(1.0, max(0.0, dRate)));
+      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
       ::rectangle_i32 rectProgressComplement(rectBar);
 
@@ -100,16 +100,16 @@ namespace hotplugin
          byte uchR,uchG,uchB;
          ::draw2d::brush_pointer br(e_create);
          get_progress_color(uchR,uchG,uchB,dRate,0);
-         br->create_solid(ARGB(184,uchR,uchG,uchB));
-         pgraphics->fill_rect(rectProgress,br);
+         br->create_solid(argb(184,uchR,uchG,uchB));
+         pgraphics->fill_rectangle(rectProgress,br);
 
       }
 
-      pen->create_solid(1.0,ARGB(149, 150, 149, 142));
+      pen->create_solid(1.0,argb(149, 150, 149, 142));
 
-      pgraphics->draw_rect(rectBar, pen);
+      pgraphics->draw_rectangle(rectBar, pen);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri",18);
 
@@ -123,9 +123,9 @@ namespace hotplugin
 
       rectBar.top += 5;
 
-      pgraphics->set_text_color(ARGB(255, 255, 255, 255));
+      pgraphics->set_text_color(argb(255, 255, 255, 255));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_clear_type_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
       pgraphics->text_out(rectBar.left, rectBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 

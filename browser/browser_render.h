@@ -61,12 +61,12 @@ namespace browser
       ::image_pointer                            m_pimageTemplate;
       ::image_pointer                            m_pimageTemplate2;
 
-      ::color::hls                     m_hlsForeground;
+      ::color::color::color::hls                     m_hlsForeground;
 
       bool                             m_bVoidTransfer;
       bool                             m_bFirstDone;
 
-      ::draw2d::font_pointer                m_font;
+      ::write_text::font_pointer                m_font;
 
       double                           m_dMinRadius;
       double                           m_dMaxRadius;

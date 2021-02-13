@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/rich_text/_rich_text.h"
 #include "core/user/userex/_userex.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -115,14 +113,17 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::_001OnMouseLeave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
-         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
-#ifdef WINDOWS_DESKTOP
 
-         imm_client::install_message_routing(pchannel);
+         text_composition_composite::install_message_routing(pchannel);
 
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//         imm_client::install_message_routing(pchannel);
+//
+//#endif
 
       }
 
@@ -154,9 +155,9 @@ namespace user
 
             });
 
-#if !defined(APPLE_IOS) && !defined(ANDROID)
-         psession->keyboard(); // trigger keyboard creationg
-#endif
+//#if !defined(APPLE_IOS) && !defined(ANDROID)
+//         psession->keyboard(); // trigger keyboard creationg
+//#endif
 
 
          SetTimer(100, 100, nullptr);
@@ -205,11 +206,11 @@ namespace user
       }
 
 
-      void edit_impl::_001OnSetFocus(::message::message * pmessage)
+      void edit_impl::on_set_keyboard_focus()
       {
 
 
-         UNREFERENCED_PARAMETER(pmessage);
+         //UNREFERENCED_PARAMETER(pmessage);
 
          //__pointer(::message::set_focus) psetfocus(pmessage);
 
@@ -224,32 +225,35 @@ namespace user
 
          pformattool->show_for_ui(this);
 
+         //::user::rich_text::edit::on_set_keyboard_focus();
+
       }
 
 
-      void edit_impl::_001OnKillFocus(::message::message * pmessage)
+      void edit_impl::on_kill_keyboard_focus()
       {
-
-         __pointer(::message::kill_focus) pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            ::user::primitive_impl * pimplNew = oswindow_interaction_impl(pkillfocus->m_oswindowNew);
+            auto psession = Session;
+
+            auto puser = psession->user();
+
+            //auto puserinteractionFocusNew = puser->interaction(pkillfocus->m_oswindowNew);
 
             ::user::interaction * pinteraction = nullptr;
 
-            if (pimplNew != nullptr)
+            /*if (puserinteractionFocusNew != nullptr)
             {
 
-               pinteraction = pimplNew->m_puserinteraction;
+               pinteraction = puserinteractionFocusNew;
 
-            }
+            }*/
 
-            if (pkillfocus->m_oswindowNew == pformattool->get_safe_handle()
-                  || pformattool->is_ascendant_or_owner_of(pinteraction, true))
+            if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
                output_debug_string("Window winning focus is own font format tool");
@@ -261,6 +265,8 @@ namespace user
             pformattool->hide();
 
          }
+
+         ::user::rich_text::edit::on_kill_keyboard_focus();
 
       }
 
@@ -315,19 +321,19 @@ namespace user
 
             m_bSelDrag = true;
 
-            if (psession->is_key_pressed(key_shift))
+            if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (item < min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (item < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item > max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (item > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
 
@@ -343,7 +349,7 @@ namespace user
 
             m_pdata->internal_update_sel_char();
 
-            SetCapture();
+            set_mouse_capture();
 
             set_keyboard_focus();
 
@@ -386,7 +392,13 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -398,8 +410,6 @@ namespace user
          m_bSelDrag = false;
 
          auto item = hit_test(pmouse);
-
-         auto psession = Session;
 
          if (item.is_set() && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
@@ -446,7 +456,7 @@ namespace user
          if (m_itemHover.is_set())
          {
 
-            pmouse->m_ecursor = cursor_text_select;
+            pmouse->m_ecursor = e_cursor_text_select;
 
             pmouse->m_bRet = true;
 
@@ -477,7 +487,7 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            pmouse->m_ecursor = cursor_text_select;
+            pmouse->m_ecursor = e_cursor_text_select;
 
             pmouse->m_bRet = true;
 
@@ -513,7 +523,13 @@ namespace user
       void edit_impl::_001OnMouseLeave(::message::message * pmessage)
       {
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          set_need_redraw();
 
@@ -670,7 +686,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -679,12 +695,12 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 100, 200, 255);
+         //   //crBackground = argb(255, 100, 200, 255);
 
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_rect(rectClient, crBackground);
+         //      pgraphics->fill_rectangle(rectClient, crBackground);
 
          //   }
 
@@ -694,7 +710,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -703,9 +719,9 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 255, 200, 100);
+         //   //crBackground = argb(255, 255, 200, 100);
 
-         //   pgraphics->fill_rect(rectClient, crBackground);
+         //   pgraphics->fill_rectangle(rectClient, crBackground);
 
          //}
 
@@ -733,7 +749,7 @@ namespace user
 
             get_client_rect(rectClient);
 
-            pgraphics->fill_rect(rectClient, ARGB(40, 255, 255, 255));
+            pgraphics->fill_rectangle(rectClient, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 
@@ -791,7 +807,7 @@ namespace user
 
             }
 
-            if(has_focus())
+            if(has_keyboard_focus())
             {
 
                keyboard_set_focus_next();
@@ -843,11 +859,11 @@ namespace user
 
             copy(rectWindow, rectWindow);
 
-            point_i32 += rectWindow.top_left();
+            point += rectWindow.top_left();
 
             _rtransform_point(point);
 
-            point_i32 -= rectWindow.top_left();
+            point -= rectWindow.top_left();
 
             auto rectClient = get_client_rect();
 
@@ -908,7 +924,7 @@ namespace user
 
                post_redraw();
 
-               SetFocus();
+               set_keyboard_focus();
 
                //pevent->Ret();
 
@@ -1175,7 +1191,7 @@ namespace user
 
          if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
          {
-            if (has_focus())
+            if (has_keyboard_focus())
             {
 
                //_001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
@@ -1196,7 +1212,7 @@ namespace user
 
             // Caret
 
-            if (is_text_editable() && is_window_visible() && has_focus())
+            if (is_text_editable() && is_window_visible() && has_keyboard_focus())
             {
 
                set_need_redraw();

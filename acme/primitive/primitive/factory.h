@@ -17,7 +17,7 @@ namespace factory
 
       virtual __pointer(::matter) call_new() = 0;
 
-      virtual void return_back(::matter* pmatter) = 0;
+      virtual void return_back(::matter * pmatter) = 0;
 
 
    };
@@ -39,7 +39,7 @@ namespace factory
 
       }
 
-      virtual void return_back(::matter* pmatter) override
+      virtual void return_back(::matter * pmatter) override
       {
 
          delete pmatter;
@@ -76,7 +76,7 @@ namespace factory
 
       critical_section   m_criticalsection;
 
-      BASE_TYPE* m_pfree;
+      BASE_TYPE * m_pfree;
 
       ~reusable_factory()
       {
@@ -85,13 +85,13 @@ namespace factory
 
       }
 
-      
+
 
       virtual __pointer(BASE_TYPE) _call_new();
-      
+
 
       void return_back(BASE_TYPE * p);
-      
+
       void free_all()
       {
 
@@ -119,13 +119,48 @@ namespace factory
 
    };
 
-   using factory_map = id_map < __pointer(factory_interface) >;
+
+
+   using factory_map_base = id_map < __pointer(factory_interface) >;
+
+}
+
+
+class CLASS_DECL_ACME factory_map :
+   virtual public ::factory::factory_map_base
+{
+public:
+
+
+   inline __pointer(::factory::factory_interface) & get_factory(const ::id & id);
+
+   template < typename BASE_TYPE >
+   inline __pointer(::factory::factory_interface) & get_factory();
+
+   template < typename TYPE, typename BASE_TYPE = TYPE >
+   inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
+
+   template < typename BASE_TYPE >
+   inline __pointer(BASE_TYPE) new_object();
+
+
+};
+
+
+namespace factory
+{
+
+
+
+   CLASS_DECL_ACME critical_section * get_factory_critical_section();
+
+
+
 
    using factory_array = __pointer_array(factory_interface);
 
 
    CLASS_DECL_ACME factory_array * get_factory_array();
-   CLASS_DECL_ACME critical_section * get_factory_critical_section();
    CLASS_DECL_ACME factory_map * get_factory_map();
 
 

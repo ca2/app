@@ -1,113 +1,113 @@
 #include "framework.h"
 
 
-typedef ::u32 FN_GetDpiForWindow(HWND hwnd);
+// typedef ::u32 FN_GetDpiForWindow(HWND hwnd);
 
 
-float g_DPIScaleX = 1.0f;
-float g_DPIScaleY = 1.0f;
+// float g_DPIScaleX = 1.0f;
+// float g_DPIScaleY = 1.0f;
 
 
-::u32 legacy_get_dpi_for_system()
-{
+// ::u32 legacy_get_dpi_for_system()
+// {
 
-   HDC hdc = ::GetDC(nullptr);
+//    HDC hdc = ::GetDC(nullptr);
 
-   ::u32 dpiX = 72;
+//    ::u32 dpiX = 72;
 
-   ::u32 dpiY = 72;
+//    ::u32 dpiY = 72;
 
-   if (hdc)
-   {
+//    if (hdc)
+//    {
 
-      dpiX = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSX));
+//       dpiX = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSX));
 
-      dpiY = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSY));
+//       dpiY = static_cast<::u32>(::GetDeviceCaps(hdc, LOGPIXELSY));
 
-      ::ReleaseDC(nullptr, hdc);
+//       ::ReleaseDC(nullptr, hdc);
 
-   }
+//    }
 
-   return max(dpiX, dpiY);
+//    return maximum(dpiX, dpiY);
 
-}
-
-
-void dpi_os_initialize()
-{
-
-   ::u32 uDpi = legacy_get_dpi_for_system();
-
-   g_DPIScaleX = uDpi / 72.0f;
-
-   g_DPIScaleY = uDpi / 72.0f;
-
-}
+// }
 
 
-::u32 get_dpi_for_window(oswindow hwnd)
-{
+// void dpi_os_initialize()
+// {
 
-   static auto pfn_get_dpi_for_window = ::windows::api < FN_GetDpiForWindow* >::get_address("User32.dll", "GetDPiForWindow");
+//    ::u32 uDpi = legacy_get_dpi_for_system();
 
-   if (pfn_get_dpi_for_window)
-   {
+//    g_DPIScaleX = uDpi / 72.0f;
 
-      return pfn_get_dpi_for_window(hwnd);
+//    g_DPIScaleY = uDpi / 72.0f;
 
-   }
-
-   return legacy_get_dpi_for_system();
-
-}
+// }
 
 
-CLASS_DECL_AURA float point_dpi(oswindow hwnd, float points)
-{
+// ::u32 get_dpi_for_window(oswindow hwnd)
+// {
 
-   float fDpi = (float)get_dpi_for_window(hwnd);
+//    static auto pfn_get_dpi_for_window = ::windows::api < FN_GetDpiForWindow* >::get_address("User32.dll", "GetDPiForWindow");
 
-   return points * fDpi / 72.f;
+//    if (pfn_get_dpi_for_window)
+//    {
 
-}
+//       return pfn_get_dpi_for_window(hwnd);
 
+//    }
 
-CLASS_DECL_AURA float dpiy(oswindow hwnd, float y)
-{
+//    return legacy_get_dpi_for_system();
 
-   float fDpi = (float)get_dpi_for_window(hwnd);
-
-   return y * fDpi / 96.f;
-
-}
+// }
 
 
-CLASS_DECL_AURA float dpix(HWND hwnd, float x)
-{
+// CLASS_DECL_AURA float point_dpi(oswindow hwnd, float points)
+// {
 
-   float fDpi = (float)get_dpi_for_window(hwnd);
+//    float fDpi = (float)get_dpi_for_window(hwnd);
 
-   return x * fDpi / 96.f;
+//    return points * fDpi / 72.f;
 
-}
-
-
-CLASS_DECL_AURA float y_dpi(HWND hwnd, float y)
-{
-
-   float fDpi = (float)get_dpi_for_window(hwnd);
-
-   return y / fDpi;
-
-}
+// }
 
 
-CLASS_DECL_AURA float x_dpi(HWND hwnd, float x)
-{
+// CLASS_DECL_AURA float dpiy(oswindow hwnd, float y)
+// {
 
-   float fDpi = (float)get_dpi_for_window(hwnd);
+//    float fDpi = (float)get_dpi_for_window(hwnd);
 
-   return x / fDpi;
+//    return y * fDpi / 96.f;
 
-}
+// }
+
+
+// CLASS_DECL_AURA float dpix(HWND hwnd, float x)
+// {
+
+//    float fDpi = (float)get_dpi_for_window(hwnd);
+
+//    return x * fDpi / 96.f;
+
+// }
+
+
+// CLASS_DECL_AURA float y_dpi(HWND hwnd, float y)
+// {
+
+//    float fDpi = (float)get_dpi_for_window(hwnd);
+
+//    return y / fDpi;
+
+// }
+
+
+// CLASS_DECL_AURA float x_dpi(HWND hwnd, float x)
+// {
+
+//    float fDpi = (float)get_dpi_for_window(hwnd);
+
+//    return x / fDpi;
+
+// }
 

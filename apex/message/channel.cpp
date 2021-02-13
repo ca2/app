@@ -122,24 +122,41 @@ void channel::route_message(::message::message * pmessage)
 
 }
 
-__pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
+__pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagebase = __new(::message::base);
+   auto pmessagemessage = __new(::message::message);
 
-   pmessagebase->set(
+   pmessagemessage->set(
       pmessage->oswindow, 
       nullptr,
-      pmessage->message, 
+      (enum_message) pmessage->message, 
       pmessage->wParam, 
       pmessage->lParam);
 
-   return pmessagebase;
+   return pmessagemessage;
 
 }
 
 
-//__pointer(::message::base) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
+__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam)
+{
+
+   auto pmessagemessage = __new(::message::message);
+
+   pmessagemessage->set(
+      nullptr,
+      nullptr,
+      id,
+      wparam,
+      lparam);
+
+   return pmessagemessage;
+
+}
+
+
+//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 //{
 //
 //   if (id.m_etype != ::id::e_type_message)
@@ -165,7 +182,7 @@ __pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
 #ifdef LINUX
 
 
-__pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
 {
 
    __throw(todo());
@@ -283,7 +300,7 @@ void channel::finalize()
 }
 
 
-bool channel::handle(::user::command * pcommand)
+::e_status channel::handle(::message::command * pcommand)
 {
 
    return pcommand->handle(this);
@@ -309,37 +326,10 @@ void channel::RestoreWaitCursor()
 }
 
 
-void channel::default_toggle_check_handling(const ::id & id)
-{
-
-   auto pproperty = fetch_property(id);
-
-   connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
-      {
-
-         __pointer(::user::command) pcommand(pmessage);
-
-         if (pproperty->get_bool())
-         {
-
-            *pproperty = ::check_unchecked;
-
-         }
-         else
-         {
-
-            *pproperty = ::check_checked;
-
-         }
-
-         this->process_subject(pproperty->m_id, pcommand->m_actioncontext);
-
-   });
-
-}
 
 
-void channel::_001SendCommand(::user::command * pcommand)
+
+void channel::_001SendCommand(::message::command * pcommand)
 {
 
    pcommand->m_pchannel = this;
@@ -347,7 +337,7 @@ void channel::_001SendCommand(::user::command * pcommand)
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
       route_command_message(pcommand);
@@ -357,7 +347,7 @@ void channel::_001SendCommand(::user::command * pcommand)
 }
 
 
-void channel::_001SendCommandProbe(::user::command * pcommand)
+void channel::_001SendCommandProbe(::message::command * pcommand)
 {
 
    pcommand->m_pcommandtargetSource = this;
@@ -365,7 +355,7 @@ void channel::_001SendCommandProbe(::user::command * pcommand)
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_command_message(pcommand);
@@ -375,7 +365,7 @@ void channel::_001SendCommandProbe(::user::command * pcommand)
 }
 
 
-void channel::route_command_message(::user::command * pcommand)
+void channel::route_command_message(::message::command * pcommand)
 {
 
    on_command_message(pcommand);
@@ -383,7 +373,7 @@ void channel::route_command_message(::user::command * pcommand)
 }
 
 
-void channel::on_command_message(::user::command* pcommand)
+void channel::on_command_message(::message::command * pcommand)
 {
 
    if (pcommand->is_command())
@@ -430,13 +420,13 @@ void channel::on_command_message(::user::command* pcommand)
 }
 
 
-void channel::on_command(::user::command * pcommand)
+void channel::on_command(::message::command * pcommand)
 {
 
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
       route_message(pcommand);
@@ -446,13 +436,13 @@ void channel::on_command(::user::command * pcommand)
 }
 
 
-bool channel::has_command_handler(::user::command * pcommand)
+bool channel::has_command_handler(::message::command * pcommand)
 {
 
    sync_lock sl(channel_mutex());
 
    __restore(pcommand->m_id.m_etype);
-   
+
    pcommand->m_id.set_compounded_type(::id::e_type_command);
 
    if (m_idaHandledCommands.contains(pcommand->m_id))
@@ -490,13 +480,13 @@ bool channel::has_command_handler(::user::command * pcommand)
 }
 
 
-void channel::on_command_probe(::user::command * pcommand)
+void channel::on_command_probe(::message::command * pcommand)
 {
 
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_message(pcommand);
@@ -511,6 +501,39 @@ void channel::on_command_probe(::user::command * pcommand)
    }
 
 }
+
+
+
+void channel::default_toggle_check_handling(const ::id & id)
+{
+
+   auto pproperty = fetch_property(id);
+
+   connect_command_pred(id, [this, id, pproperty](::message::message * pmessage)
+      {
+
+         __pointer(::message::message) pcommand(pmessage);
+
+         if (pproperty->get_bool())
+         {
+
+            *pproperty = ::check_unchecked;
+
+         }
+         else
+         {
+
+            *pproperty = ::check_checked;
+
+         }
+
+         process_subject(pproperty->m_id, pcommand->m_actioncontext);
+
+      });
+
+}
+
+
 
 
 

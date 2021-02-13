@@ -61,6 +61,7 @@ namespace windowing
 
 
 #include "exception.h"
+#include "aura/user/keyboard.h"
 #include "keyboard.h"
 //#include "hook.h"
 //#include "button.h"

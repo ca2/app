@@ -19,11 +19,11 @@
 
 
                //e_style                             m_pframewindow->m_estyle;
-               color32_t                            m_colorFrameBorder;
-               color32_t                            m_colorMoveableBorderHilight;
-               color32_t                            m_colorMoveableBorderDkShadow;
-               color32_t                            m_colorCaptionTextBk;
-               color32_t                            m_colorCaptionText;
+               __status < ::color::color >         m_colorFrameBorder;
+               __status < ::color::color >         m_colorMoveableBorderHilight;
+               __status < ::color::color >         m_colorMoveableBorderDkShadow;
+               __status < ::color::color >         m_colorCaptionTextBk;
+               __status < ::color::color >         m_colorCaptionText;
                ::draw2d::pen_pointer               m_penText1;
                ::draw2d::pen_pointer               m_penFace1;
                ::draw2d::pen_pointer               m_penHilight1;

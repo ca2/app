@@ -42,19 +42,19 @@ public:
    //using ::simple_toolbar::create_window_ex;
    //bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::id id = __IDW_TOOLBAR);
 
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   LRESULT CALLBACK MessageProc(
+//   index code,  // hook code
+//   WPARAM wParam,  // undefined
+//   LPARAM lParam   // address of structure with message data
+//   );
+//
+//#endif
 
-#ifdef WINDOWS_DESKTOP
 
-   LRESULT CALLBACK MessageProc(
-   index code,  // hook code
-   WPARAM wParam,  // undefined
-   LPARAM lParam   // address of structure with message data
-   );
-
-#endif
-
-
-   virtual void route_command_message(::user::command * pcommand) override;
+   virtual void route_command_message(::message::command * pcommand) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
 
@@ -82,7 +82,7 @@ protected:
    __pointer(::image_list) imagelist,
    __pointer(::image_list) imagelistDisabled,
    ::i32_spreadset * prel,
-   ::draw2d::font * pfont);
+   ::write_text::font * pfont);
 
    //size_i32 CalcLayout(u32 dwMode, index nLength);
 

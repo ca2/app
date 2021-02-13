@@ -86,8 +86,8 @@ namespace simpledb
 
    void socket_thread::OnApp(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_wparam == 0)
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_wparam == 0)
       {
 
          while(m_pservice->thread_get_run())
@@ -129,12 +129,12 @@ namespace simpledb
             }
          }
       }
-      if(pbase->m_wparam == 0)
+      if(pusermessage->m_wparam == 0)
       {
          m_bInitialized = true;
          m_evInitialized.SetEvent();
       }
-      else if(pbase->m_wparam == 1)
+      else if(pusermessage->m_wparam == 1)
       {
 
 

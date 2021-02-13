@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -81,7 +79,7 @@ namespace user
       {
 
          CalcTension(point);
-         SetCapture();
+         set_mouse_capture();
          m_millisLastTime= ::millis::now();
          m_daScalar.set(0.0);
          m_iScalar = 0;
@@ -141,11 +139,15 @@ namespace user
       
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      _001ScreenToClient(point);
+      auto pwindowing = puser->windowing();
 
-      CalcTension(point);
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      _001ScreenToClient(pointCursor);
+
+      CalcTension(pointCursor);
 
    }
 
@@ -159,14 +161,14 @@ namespace user
    {
       auto tickNow = ::millis::now();
       if(tickNow - m_millisLastTime < 30)
-         return m_daScalar.GetMean();
+         return m_daScalar.simple_total_mean();
       CalcTension();
       double dScalar;
       if(m_bSlide)
       {
          double dForce = GetForce();
          auto dDeltaTime = tickNow - m_millisLastTime;
-         double dFilterLastScalar = m_daScalar.GetMean();
+         double dFilterLastScalar = m_daScalar.simple_total_mean();
          double dRate = 1.0 / 100.0;
          dScalar = dForce * __double(dDeltaTime) * dRate + dFilterLastScalar;
       }
@@ -177,7 +179,7 @@ namespace user
       m_daScalar[m_iScalar] =  dScalar;
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
       m_millisLastTime = tickNow;
-      return m_daScalar.GetMean(); // Low Pass Filter
+      return m_daScalar.simple_total_mean(); // Low Pass Filter
    }
 
    void elastic_slider::SetStreamingVelocityMode(scalar_base * pscalarVelocity,scalar_base * pscalarPosition)
@@ -225,17 +227,17 @@ namespace user
       imaging.color_blend(
       pgraphics,
       rectClient,
-      RGB(250, 255, 255),
+      rgb(250, 255, 255),
       bAlpha);
 
       ::rectangle_i32 rectangle;
       GetSliderRect(rectangle);
 
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,255));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,0));
+      pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,0));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,255));
 
       if(m_bSlide)
       {
@@ -244,11 +246,15 @@ namespace user
          
          auto psession = Session;
 
-         auto point = psession->get_cursor_pos();
+         auto puser = psession->user();
 
-         _001ScreenToClient(point);
+         auto pwindowing = puser->windowing();
 
-         pgraphics->line_to(point);
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         _001ScreenToClient(pointCursor);
+
+         pgraphics->line_to(pointCursor);
 
       }
 
@@ -265,8 +271,8 @@ namespace user
       i32 iWidth = 16;
       rectangle.top = rectClient.top;
       rectangle.bottom = rectClient.bottom;
-      rectangle.left = (::i32) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
-      rectangle.right = (::i32) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32) minimum(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rectangle.right = (::i32) minimum(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

@@ -528,7 +528,7 @@ i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
 
    __construct_new(prowa);
 
-   if (pfielda->isEmpty())
+   if (pfielda->is_empty())
    {
 
       pfielda->set_size(ncol);
@@ -581,7 +581,7 @@ i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
 
       ::payload payload;
 
-      ::count iMaxColumn = min_non_neg((::count) ncol, presultset->m_iMaxColumnCount);
+      ::count iMaxColumn = minimum_non_negative((::count) ncol, presultset->m_iMaxColumnCount);
 
       for (i32 i = 0; i < iMaxColumn; i++)
       {

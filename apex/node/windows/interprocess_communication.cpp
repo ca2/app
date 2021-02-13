@@ -172,7 +172,7 @@ namespace windows
       COPYDATASTRUCT cds;
 
       cds.dwData = (unsigned int)message;
-      cds.cbData = (unsigned int)max(0, len);
+      cds.cbData = (unsigned int)maximum(0, len);
       cds.lpData = (void *)pdata;
 
 
@@ -270,7 +270,7 @@ namespace windows
 
       wstring wstrKey(pszKey);
 
-      set_hwnd(::CreateWindowExW(0, L"small_ipc_rx_color::channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr));
+      set_hwnd(::CreateWindowExW(0, L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr));
 
       if (get_hwnd() == nullptr)
       {
@@ -429,7 +429,7 @@ namespace windows
       wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       wcex.lpszMenuName = nullptr;
 
-      wcex.lpszClassName = L"small_ipc_rx_color::channel_message_queue_class";
+      wcex.lpszClassName = L"small_ipc_rx_::color::e_channel_message_queue_class";
 
       wcex.hIconSm = nullptr;
 
@@ -508,100 +508,110 @@ namespace windows
    }
 
 
-   interprocess_communication::interprocess_communication()
-   {
+   //interprocess_communication::interprocess_communication()
+   //{
 
-      m_millisTimeout = (5000) * 11;
+   //   m_millisTimeout = (5000) * 11;
 
-   }
-
-
-   interprocess_communication::~interprocess_communication()
-   {
+   //}
 
 
-   }
+   //interprocess_communication::~interprocess_communication()
+   //{
 
 
-   bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
-   {
-
-      m_strChannel = pszKey;
-
-      m_prx->m_preceiver = this;
-
-      string strChannelRx = m_strChannel + "-a";
-      string strChannelTx = m_strChannel + "-b";
-
-      if (!::IsWindow((HWND) m_prx->get_os_data()))
-      {
-
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-   bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
-   {
-
-      m_strChannel = pszKey;
-
-      m_prx->m_preceiver = this;
-
-      string strChannelRx = m_strChannel + "-b";
-      string strChannelTx = m_strChannel + "-a";
+   //}
 
 
-      if (!::IsWindow((HWND) m_prx->get_os_data()))
-      {
+   //bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
+   //{
 
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
+   //   m_strChannel = pszKey;
 
-            return false;
+   //   m_prx->m_preceiver = this;
 
-         }
+   //   string strChannelRx = m_strChannel + "-a";
+   //   string strChannelTx = m_strChannel + "-b";
 
-      }
+   //   if (!::IsWindow((HWND) m_prx->get_os_data()))
+   //   {
 
-      if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-      {
+   //      if (!m_prx->create(strChannelRx.c_str()))
+   //      {
 
-         return false;
+   //         return false;
 
-      }
+   //      }
 
-      return true;
+   //   }
 
-   }
+   //   if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
 
 
-   bool interprocess_communication::is_rx_tx_ok()
-   {
+   //bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
+   //{
 
-      return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+   //   m_strChannel = pszKey;
 
-   }
+   //   m_prx->m_preceiver = this;
 
-   void interprocess_communication::restart_apex_ipc()
-   {
-   }
+   //   string strChannelRx = m_strChannel + "-b";
+   //   string strChannelTx = m_strChannel + "-a";
 
+
+   //   if (!::IsWindow((HWND) m_prx->get_os_data()))
+   //   {
+
+   //      if (!m_prx->create(strChannelRx.c_str()))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool interprocess_communication::is_rx_tx_ok()
+   //{
+
+   //   return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+
+   //}
+
+
+   //void interprocess_communication::restart_apex_ipc()
+   //{
+
+   //}
+
+
+   //bool interprocess_communication::close()
+   //{
+
+   //   return false;
+
+   //}
 
 } // namespace windows
 

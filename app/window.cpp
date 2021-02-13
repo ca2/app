@@ -81,7 +81,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-      pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(127, 255, 255, 255));
 
       //return;
 
@@ -91,18 +91,18 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rect(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ARGB(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
 
       rectClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rect(rectClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_rectangle(rectClient, __acolor(255, 127, 127, 127));
 
          rectClient.deflate(1, 1);
 
@@ -132,13 +132,13 @@ namespace app_app
 
          }
 
-         auto time = m_millisStart.elapsed();
+         double time = m_millisStart.elapsed().m_i / 1'000.0;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
          double omega = 2.0 * System.math().GetPi() * dFrequency;
 
-         double angle = omega * time.m_i;
+         double angle = omega * time;
 
          angle += m_dPhaseShift;
 
@@ -166,7 +166,7 @@ namespace app_app
 
             omega = 2.0 * System.math().GetPi() * dFrequency;
 
-            double angleNew = omega * time.m_i;
+            double angleNew = omega * time;
 
             m_dPhaseShift = angle - angleNew;
 
@@ -184,7 +184,13 @@ namespace app_app
 
          auto psession = Session;
 
-         update_hover(get_cursor_pos());
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         update_hover(pointCursor);
 
       }
 

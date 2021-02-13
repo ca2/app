@@ -184,10 +184,10 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = min(m_size.cx, sz.cx);
-   sz.cy = min(m_size.cy, sz.cy);
-   pointOffset.x = min(m_size.cx, pointOffset.x);
-   pointOffset.y = min(m_size.cy, pointOffset.y);
+   sz.cx = minimum(m_size.cx, sz.cx);
+   sz.cy = minimum(m_size.cy, sz.cy);
+   pointOffset.x = minimum(m_size.cx, pointOffset.x);
+   pointOffset.y = minimum(m_size.cy, pointOffset.y);
 
    return pgraphics->draw(
       rectangle_f64(point, sz ), 
@@ -230,7 +230,7 @@ i32 image_list::reserve_image(int iItem)
 
    }
 
-   m_iSize = max(iItem + 1, m_iSize);
+   m_iSize = maximum(iItem + 1, m_iSize);
 
    return iItem;
 
@@ -256,7 +256,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
    
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   m_pimage->g()->fill_rect(rectangle, 0);
+   m_pimage->g()->fill_rectangle(rectangle, 0);
 
 
 //#ifdef _UWP
@@ -298,7 +298,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   m_pimage->g()->fill_rect(rectangle, 0);
+   m_pimage->g()->fill_rectangle(rectangle, 0);
 
    auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
 
@@ -336,7 +336,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   i32 iSize = min(m_size.cx, m_size.cy);
+//   i32 iSize = minimum(m_size.cx, m_size.cy);
 //
 //   ::file::path path = varFile.get_file_path();
 //
@@ -420,7 +420,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    auto rectangle = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
-   m_pimage->get_graphics()->fill_rect(rectangle, ARGB(0, 0, 0, 0));
+   m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 

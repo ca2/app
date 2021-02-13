@@ -30,10 +30,16 @@ namespace experience
          }
 
 #if !defined(CUBE)
-         fork([]()
+         fork([this]()
             {
 
-               System.draw2d().set_cursor_set_from_matter("cursor/antialiased-classic");
+               auto psession = Session;
+
+               auto puser = psession->user();
+
+               auto pwindowing = puser->windowing();
+
+               pwindowing->set_cursor_set_from_matter("cursor/antialiased-classic");
 
             });
 #endif

@@ -1,8 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
-#include <shellapi.h>
-#include <wincrypt.h>
+//#include <shellapi.h>
+//#include <wincrypt.h>
 
 //#include "parallelization.h"
 //#include "utils.h"

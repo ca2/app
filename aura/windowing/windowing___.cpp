@@ -54,7 +54,7 @@
 //
 //   GC gc = XCreateGC(pdisplay, window, 0, 0);
 //
-//   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+//   color32_t cr = argb(a, r * a / 255, g * a / 255, b * a / 255);
 //
 //   XSetForeground (pdisplay, gc, cr);
 //
@@ -132,7 +132,7 @@
 //   tv.tv_sec = 1;
 //
 //   // Wait for X Event or a Timer
-//   int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+//   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 //
 //   if (num_ready_fds > 0)
 //   {

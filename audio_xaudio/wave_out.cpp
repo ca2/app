@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/message.h"
 
 
@@ -104,7 +104,7 @@ namespace multimedia
          m_pwaveformat->m_waveformat.nBlockAlign = m_pwaveformat->m_waveformat.wBitsPerSample  * uiChannelCount / 8;
          m_pwaveformat->m_waveformat.nAvgBytesPerSec = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
          //m_pwaveformat->cbSize = 0;
-         __pointer(::wave::wave) audiowave = Audio.audiowave();
+         __pointer(::wave::wave) audiowave = Au(get_context()).audiowave();
 
          //if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
          if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),0,1.0f,this)))
@@ -151,7 +151,7 @@ namespace multimedia
 
          auto uiBufferSize = iBufferSampleCount * m_pwaveformat->m_waveformat.nChannels * 2;
 
-         uiBufferSize = max(uiBufferSize,2048);
+         uiBufferSize = maximum(uiBufferSize,2048);
 
          ASSERT((uiBufferSize % 2048) == 0);// Streaming size_i32 must be 2K aligned to use for async I/O
 
@@ -491,7 +491,7 @@ namespace multimedia
             i64 i = s.SamplesPlayed;
             i *= 1000;
             i /= m_pwaveformat->m_waveformat.nSamplesPerSec;
-            return i;
+            return (double) i;
 
          }
          else

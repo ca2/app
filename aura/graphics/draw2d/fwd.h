@@ -12,7 +12,6 @@ namespace draw2d
    class graphics;
    class bitmap;
    class brush;
-   class font;
    class palette;
    class region;
 

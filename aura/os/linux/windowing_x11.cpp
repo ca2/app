@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/os/x11/_x11.h"
 #include "_linux.h"
 #include "acme/const/id.h"
@@ -1682,7 +1680,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //   sync_lock sl(x11_mutex());
 //
-//   pgraphics->fill_rect(::rectangle_i32(*psize), RGB(84, 90, 80));
+//   pgraphics->fill_rectangle(::rectangle_i32(*psize), rgb(84, 90, 80));
 //
 //   ::draw2d::brush_pointer pen(e_create_new);
 //
@@ -4518,7 +4516,7 @@ namespace user
 
       XEvent * pevent = (XEvent *) pvoidEvent;
 
-      ___pointer < ::message::base > spbase;
+      ___pointer < ::user::message > spbase;
 
       spbase = Session->get_message_base(pvoidEvent, m_puserinteraction);
 
@@ -4585,7 +4583,7 @@ namespace user
 //{
 //
 //
-   __pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
       __throw(todo());

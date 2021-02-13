@@ -18,7 +18,7 @@ namespace user
       };
 
 
-      ::draw2d::font_pointer              m_pfont;
+      ::write_text::font_pointer              m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rectangle_i32                              m_rectMargin;
       //::rectangle_i32                              m_rectBorder;
@@ -31,7 +31,7 @@ namespace user
 
       ::rectangle_i32                              m_rectCheckBox;
       string                              m_strLink;
-      //::draw2d::font_pointer              m_pfont;
+      //::write_text::font_pointer              m_pfont;
       
 
       still();
@@ -44,7 +44,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent) override;
 
-      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -60,7 +60,7 @@ namespace user
 
       //virtual bool is_pressed();
 
-      //virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
+      //virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
 
 
 

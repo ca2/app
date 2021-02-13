@@ -38,12 +38,14 @@ enum enum_mouse_activate
 #define MESSAGE_OLE_DRAGLEAVE WM_APP + 326
 #define MESSAGE_OLE_DRAGDROP WM_APP + 327
 
+
 namespace message
 {
 
 
-   class CLASS_DECL_AURA create:
-      public ::message::base
+   
+   class CLASS_DECL_AURA create :
+      public ::user::message
    {
    public:
 
@@ -54,7 +56,7 @@ namespace message
       create() { }
 
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
       virtual void error(const char * pcszErrorMessage);
 
@@ -70,7 +72,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA activate: public ::message::base
+   class CLASS_DECL_AURA activate : public ::user::message
    {
    public:
 
@@ -82,9 +84,9 @@ namespace message
 
       activate();
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
       inline bool is_active() const
       {
@@ -103,7 +105,7 @@ namespace message
 
    };
 
-   class CLASS_DECL_AURA move: public ::message::base
+   class CLASS_DECL_AURA move : public ::user::message
    {
    public:
 
@@ -112,15 +114,15 @@ namespace message
 
       move() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
-   class CLASS_DECL_AURA size: public ::message::base
+   class CLASS_DECL_AURA size : public ::user::message
    {
    public:
 
@@ -130,35 +132,35 @@ namespace message
 
       size() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
 
-   class CLASS_DECL_AURA scroll: public ::message::base
+   class CLASS_DECL_AURA scroll : public ::user::message
    {
    public:
 
 
-      ::u32                    m_nSBCode;
-      i32                     m_nPos;
-      ::user::primitive *     m_pScrollBar;
+      enum_scroll_command    m_ecommand;
+      i32                        m_nPos;
+      ::user::primitive * m_pscrollbar;
 
 
       scroll() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
-   class CLASS_DECL_AURA mouse:
-      public ::message::base,
+   class CLASS_DECL_AURA mouse :
+      public ::user::message,
       public ::user::mouse
    {
    public:
@@ -168,23 +170,26 @@ namespace message
       mouse();
       virtual ~mouse();
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+
+
+
 
       static mouse * cast(::message::message * pmessage)
       {
-         return dynamic_cast < mouse * > (pmessage);
+         return dynamic_cast <mouse *> (pmessage);
       }
 
       virtual unsigned int get_message() override
       {
-         return (unsigned int) m_id.i64();
+         return (unsigned int)m_id.i64();
       }
 
    };
 
-   class CLASS_DECL_AURA mouse_wheel:
+   class CLASS_DECL_AURA mouse_wheel :
       public mouse
    {
    public:
@@ -198,14 +203,14 @@ namespace message
 
       point_i32 GetPoint();
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
 
-   class CLASS_DECL_AURA mouse_activate: public ::message::base
+   class CLASS_DECL_AURA mouse_activate : public ::user::message
    {
    public:
 
@@ -221,7 +226,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA context_menu: public ::message::base
+   class CLASS_DECL_AURA context_menu : public ::user::message
    {
    public:
 
@@ -234,12 +239,12 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_cursor: public ::message::base
+   class CLASS_DECL_AURA set_cursor : public ::user::message
    {
    public:
 
 
-      ::user::primitive *     m_pWnd;
+      ::user::primitive * m_pWnd;
       ::u32                    m_nHitTest;
       ::u32                    m_message;
 
@@ -250,43 +255,43 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA show_window: public ::message::base
+   class CLASS_DECL_AURA show_window : public ::user::message
    {
    public:
 
-      
+
       bool m_bShow;
       ::u32  m_nStatus;
 
 
       show_window() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
-   class CLASS_DECL_AURA kill_focus : public ::message::base
+   class CLASS_DECL_AURA kill_keyboard_focus : public ::user::message
    {
    public:
 
-      
+
       oswindow       m_oswindowNew;
 
-      kill_focus() { }
+      kill_keyboard_focus() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
-   class CLASS_DECL_AURA on_draw: public ::message::base
+   class CLASS_DECL_AURA on_draw : public ::user::message
    {
    public:
 
@@ -298,7 +303,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA erase_bkgnd: public ::message::base
+   class CLASS_DECL_AURA erase_bkgnd : public ::user::message
    {
    public:
 
@@ -318,19 +323,23 @@ namespace message
    // e_message_mouse_leave -> aura
 
 
-   class CLASS_DECL_AURA nchittest: public ::message::base
+   class CLASS_DECL_AURA nc_hit_test : public ::user::message
    {
    public:
 
 
       point_i32 m_point;
 
-      nchittest() { }
+      nc_hit_test() { }
+
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+
+      void set_hit_test(enum_hit_test ehittest) { m_lresult = ehittest; }
 
    };
 
 
-   class CLASS_DECL_AURA key:
+   class CLASS_DECL_AURA key :
       public ::user::key
    {
    public:
@@ -338,14 +347,14 @@ namespace message
 
       key();
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
 
-   class CLASS_DECL_AURA nc_activate: public ::message::base
+   class CLASS_DECL_AURA nc_activate : public ::user::message
    {
    public:
 
@@ -355,53 +364,50 @@ namespace message
 
       nc_activate();
 
-      using ::message::base::set;
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      using ::user::message::set;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
 
-   class CLASS_DECL_AURA notify: public ::message::base
+   class CLASS_DECL_AURA notify : public ::user::message
    {
    public:
 
 
       notify() { }
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      LPNMHDR get_lpnmhdr();
-//
-//#endif
+      //
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      LPNMHDR get_lpnmhdr();
+      //
+      //#endif
 
       i32 get_ctrl_id();
 
    };
 
+   // use ::user::message
+   //class CLASS_DECL_AURA command : public ::user::message
+   //{
+   //public:
 
-   class CLASS_DECL_AURA command: public ::message::base
+
+   //   command() { }
+
+
+
+
+   //};
+
+
+   class CLASS_DECL_AURA ctl_color : public ::user::message
    {
    public:
 
 
-      command() { }
-
-      ::u32 GetNotifyCode();
-
-      ::u32 GetId();
-
-      oswindow get_oswindow();
-
-   };
-
-
-   class CLASS_DECL_AURA ctl_color: public ::message::base
-   {
-   public:
-
-
-      void *                     m_hbrush;
-      ::draw2d::graphics *       m_pdc;
+      void * m_hbrush;
+      ::draw2d::graphics * m_pdc;
       ::u32                      m_nCtlType;
 
       ctl_color() { }
@@ -410,16 +416,16 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_focus: public ::message::base
+   class CLASS_DECL_AURA set_keyboard_focus : public ::user::message
    {
    public:
 
 
-      set_focus() { }
+      set_keyboard_focus() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -427,7 +433,7 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   class CLASS_DECL_AURA window_pos: public ::message::base
+   class CLASS_DECL_AURA window_pos : public ::user::message
    {
    public:
 
@@ -437,21 +443,21 @@ namespace message
 
       window_pos() {}
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
-   class CLASS_DECL_AURA measure_item: public ::message::base
+   class CLASS_DECL_AURA measure_item : public ::user::message
    {
    public:
 
 
       i32 m_i;
-       void  * m_LPMEASUREITEMSTRUCT;
+      void * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }
 
@@ -459,30 +465,30 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA nc_calc_size: public ::message::base
+   class CLASS_DECL_AURA nc_calc_size : public ::user::message
    {
    public:
 
 
-       void * m_pNCCALCSIZE_PARAMS;
+      void * m_pNCCALCSIZE_PARAMS;
 
 
       nc_calc_size() { }
 
       bool GetCalcValidRects();
 
-      using ::message::base::set;
+      using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
 
 
 #endif
-   
 
-   class CLASS_DECL_AURA enable: public ::message::base
+
+   class CLASS_DECL_AURA enable : public ::user::message
    {
    public:
 
@@ -494,31 +500,33 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA drag_and_drop : public ::message::base
+   class CLASS_DECL_AURA drag_and_drop : public ::user::message
    {
    public:
 
-      
-      drag_and_drop(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id)
+
+      drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, const ::id & id)
       {
 
          m_lresult = 0;
 
-         set(oswindow,playeredUserPrimitive,id,0,0);
+         set(oswindow, pwindow, id, 0, 0);
 
       }
-//
-//#ifdef WINDOWS
-//
-//      IDataObject *  pDataObj;// [in] DragEnter, Drop
-//      POINTL         point_i32; // [in] DragEnter, DragOver, Drop
-//      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
-//      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
-//
-//#endif
+      //
+      //#ifdef WINDOWS
+      //
+      //      IDataObject *  pDataObj;// [in] DragEnter, Drop
+      //      POINTL         point_i32; // [in] DragEnter, DragOver, Drop
+      //      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
+      //      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
+      //
+      //#endif
 
    };
 
+
 } // namespace message
+
 
 

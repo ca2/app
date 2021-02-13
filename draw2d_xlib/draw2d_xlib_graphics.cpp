@@ -25,7 +25,7 @@ namespace draw2d_xlib
             m_ppath           = nullptr;
             m_ppathPaint      = nullptr;
             */
-      m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+      m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
 
       m_pfont.create(this);
       m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
@@ -46,7 +46,7 @@ namespace draw2d_xlib
 //      m_hdc             = nullptr;
 //      m_ppath           = nullptr;
 //      m_ppathPaint      = nullptr;*/
-//      m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+//      m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
 //
 //
 //      m_nStretchBltMode = e_interpolation_mode_high_quality_bicubic;
@@ -330,7 +330,7 @@ namespace draw2d_xlib
 
       m_pdc->m_gc          = ::XCreateGC(m_pdc->m_pdisplay, m_pdc->m_drawable, GCBackground | GCFillRule, &values);
 
-      set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       m_pbitmap = pbitmap;
 
@@ -372,7 +372,7 @@ namespace draw2d_xlib
 
             m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_pbitmap->get_os_data());
 
-            set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+            set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
             return hbitmap;
 
@@ -1436,17 +1436,17 @@ namespace draw2d_xlib
 
          imageWork4.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                               ::size_i32(max(0, m_pimageAlphaBlend->width() - max(0, x - m_pointAlphaBlend.x)), max(0, m_pimageAlphaBlend->height() - max(0, y - m_pointAlphaBlend.y))));
+         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                               ::size_i32(maximum(0, m_pimageAlphaBlend->width() - maximum(0, x - m_pointAlphaBlend.x)), maximum(0, m_pimageAlphaBlend->height() - maximum(0, y - m_pointAlphaBlend.y))));
 
-         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
          /*imageWork.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         imageWork.from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                               ::size_i32(max(0, size.cx - max(0, x - m_pointAlphaBlend.x)), max(0, size.cy - max(0, y - m_pointAlphaBlend.y))));*/
+         imageWork.from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                               ::size_i32(maximum(0, size.cx - maximum(0, x - m_pointAlphaBlend.x)), maximum(0, size.cy - maximum(0, y - m_pointAlphaBlend.y))));*/
 
          //keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
@@ -1673,7 +1673,7 @@ namespace draw2d_xlib
                         /* p::image_pointer pimage0(get_object());
                         image0 = create_image(rectText.size());
                         image0.Fill(0, 0, 0, 0);
-                        image0.get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
+                        image0.get_graphics()->SetTextColor(argb(255, 255, 255, 255));
                         image0.get_graphics()->SelectObject(&get_current_font());
                         image0.get_graphics()->SetBkMode(TRANSPARENT);
                         image0.get_graphics()->text_out(0, 0, str);
@@ -1685,16 +1685,16 @@ namespace draw2d_xlib
                       pimage1->get_graphics()->SelectObject(&get_current_font());
                       pimage1->get_graphics()->SetBkMode(TRANSPARENT);
                       pimage1->get_graphics()->text_out(0, 0, str);
-                      //pimage1->channel_from(::color::channel_alpha, image0);
+                      //pimage1->channel_from(::color::e_channel_alpha, image0);
                       ::image_pointer pimage2(get_object());
                       pimage2 = create_image(rectText.size());
                       pimage2->Fill(255, 0, 0, 0);
                       pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-                      pimage2->from(point_i32(max(0, m_pointAlphaBlend.x - x), max(0, m_pointAlphaBlend.y - y)),
-                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, x - m_pointAlphaBlend.x), max(0, y - m_pointAlphaBlend.y)),
-                         size_i32(max(0, m_pimageAlphaBlend->width()-max(0, x - m_pointAlphaBlend.x)),
-                               max(0, m_pimageAlphaBlend->height()-max(0, y - m_pointAlphaBlend.y))));
-                      pimage1->channel_multiply(::color::channel_alpha, pimage2);
+                      pimage2->from(point_i32(maximum(0, m_pointAlphaBlend.x - x), maximum(0, m_pointAlphaBlend.y - y)),
+                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, x - m_pointAlphaBlend.x), maximum(0, y - m_pointAlphaBlend.y)),
+                         size_i32(maximum(0, m_pimageAlphaBlend->width()-maximum(0, x - m_pointAlphaBlend.x)),
+                               maximum(0, m_pimageAlphaBlend->height()-maximum(0, y - m_pointAlphaBlend.y))));
+                      pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
                       /* p::image_pointer pimage3(get_object());
                       pimage1->mult_alpha(image3);*/
 
@@ -1733,7 +1733,7 @@ namespace draw2d_xlib
             {
                ::image_pointer pimage0;
                image0 = create_image(rectText.size());
-               ::draw2d::brush_pointer brush(e_create_new, this,ARGB(255, 255, 255, 255));
+               ::draw2d::brush_pointer brush(e_create_new, this,argb(255, 255, 255, 255));
                image0.get_graphics()->SelectObject(get_current_font());
                image0.get_graphics()->SelectObject(brush);
                image0.get_graphics()->text_out(0, 0, str);
@@ -1743,13 +1743,13 @@ namespace draw2d_xlib
                brush->create_solid(m_pbrush->m_color);
                pimage1->get_graphics()->SelectObject(get_current_font());
                pimage1->get_graphics()->text_out(0, 0, str);
-               pimage1->channel_from(::color::channel_alpha, image0);
+               pimage1->channel_from(::color::e_channel_alpha, image0);
                ::image_pointer pimage2;
                pimage2 = create_image(rectText.size());
                pimage2->Fill(255, 0, 0, 0);
-               pimage2->from(point_i32((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
-                           m_pimageAlphaBlend->get_graphics(), point_i32((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
-               pimage1->channel_multiply(::color::channel_alpha, pimage2->m_p);
+               pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
+                           m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
+               pimage1->channel_multiply(::color::e_channel_alpha, pimage2->m_p);
                /* p::image_pointer pimage3(get_object());
                pimage1->mult_alpha(image3);*/
 
@@ -1909,7 +1909,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics) const
+   bool graphics::get_text_metrics(::write_text::text_metric * lpMetrics) const
    {
       //ASSERT(get_handle2() != nullptr); return ::GetTextMetrics(get_handle2(), lpMetrics);
 
@@ -1966,7 +1966,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics) const
+   bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics) const
    {
 
       __throw(not_implemented());
@@ -2377,7 +2377,7 @@ namespace draw2d_xlib
 
    }
 
-   ::draw2d::font_pointer graphics::get_current_font() const
+   ::write_text::font_pointer graphics::get_current_font() const
    {
 
       return m_pfont;
@@ -2776,10 +2776,10 @@ namespace draw2d_xlib
 
                   imageWork4.Fill(255, 0, 0, 0);
 
-                  imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-                     m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+                  imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+                     m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
-                  imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+                  imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
                   keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2909,10 +2909,10 @@ namespace draw2d_xlib
 
          imageWork4.Fill(255, 0, 0, 0);
 
-         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-            m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+            m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
-         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
          keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3227,7 +3227,7 @@ namespace draw2d_xlib
                // find difference between new region and old region
                rgnLast.CreateRectRgn(0, 0, 0, 0);
                rgnOutside.SetRectRgn(lpRectLast);
-               rectangle_i32 = *lpRectLast;
+               rectangle = *lpRectLast;
                rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
                rectangle.intersect(rectangle, lpRectLast);
                rgnInside.SetRectRgn(rectangle);
@@ -3342,7 +3342,7 @@ namespace draw2d_xlib
 
             m_pgraphics = new ::Gdiplus::Graphics(hdc);
 
-            set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+            set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
             m_hdc = hdc;
 
@@ -3547,7 +3547,7 @@ namespace draw2d_xlib
 
    }
 
-   ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
+   ::write_text::font* graphics::SelectObject(::write_text::font* pfont)
    {
       /*      HGDIOBJ hOldObj = nullptr;
             if(pFont == nullptr)
@@ -3556,7 +3556,7 @@ namespace draw2d_xlib
                hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
             if(get_handle2() != nullptr)
                hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-            return dynamic_cast < ::draw2d::font * > (::win::object::from_handle(get_context_application(), hOldObj));*/
+            return dynamic_cast < ::write_text::font * > (::win::object::from_handle(get_context_application(), hOldObj));*/
 
       /*ASSERT(pFont != nullptr);
 
@@ -4431,7 +4431,7 @@ namespace draw2d_xlib
                }
                else if (nObjType == OBJ_FONT)
                {
-                  // play back as graphics::SelectObject(::draw2d::font*)
+                  // play back as graphics::SelectObject(::write_text::font*)
    //               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
                   __throw(not_implemented());
                   break;  // don't play the default record
@@ -4591,7 +4591,7 @@ namespace draw2d_xlib
       if(pbitmap == nullptr)
          return false;
 
-      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_pfont.m_p);
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::write_text::font *) m_pfont.m_p);
 
       if(pfont == nullptr)
          return false;
@@ -4670,7 +4670,7 @@ namespace draw2d_xlib
 
       ((graphics *) this)->set(m_pfont);
 
-      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_pfont.m_p);
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::write_text::font *) m_pfont.m_p);
 
       if(pfont == nullptr)
          return size_i32(0, 0);
@@ -4910,7 +4910,7 @@ namespace draw2d_xlib
 
    // IMPLEMENT_DYNAMIC(pen, object)
    // IMPLEMENT_DYNAMIC(::draw2d::brush, object)
-   // IMPLEMENT_DYNAMIC(::draw2d::font, object)
+   // IMPLEMENT_DYNAMIC(::write_text::font, object)
    // IMPLEMENT_DYNAMIC(::draw2d::bitmap, object)
    // IMPLEMENT_DYNAMIC(::draw2d::palette, object)
    // IMPLEMENT_DYNAMIC(::draw2d::region, object)
@@ -4977,7 +4977,7 @@ namespace draw2d_xlib
       if(pbitmap == nullptr)
          return false;
 
-      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_pfont.m_p);
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::write_text::font *) m_pfont.m_p);
 
       if(pfont == nullptr)
          return false;
@@ -5072,9 +5072,9 @@ namespace draw2d_xlib
    }
 
 
-   void graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint_hint etextrendering)
+   void graphics::set_text_rendering_hint(::draw2d::::write_text::enum_rendering_hint etextrendering)
    {
-      m_etextrenderinghint = etextrendering;
+      m_ewritetextrendering = etextrendering;
 
    }
 
@@ -5223,7 +5223,7 @@ namespace draw2d_xlib
                    for (x=(i32) radius;x<width-radius;x++) {
                        i32 l = (i32) (x < radius ? 0 : x - radius);
                        i32 t = (i32) (y < radius ? 0 : y - radius);
-                       i32 rectangle_i32 = (i32) (x + radius >= width ? width - 1 : x + radius);
+                       i32 rectangle = (i32) (x + radius >= width ? width - 1 : x + radius);
                        i32 b = (i32) (y + radius >= height ? height - 1 : y + radius);
                        i32 tot = precalc[rectangle_i32+b*width] + precalc[l+t*width] -
                            precalc[l+b*width] - precalc[rectangle_i32+t*width];
@@ -5362,7 +5362,7 @@ namespace draw2d_xlib
    }
 
 
-   bool graphics::set(const ::draw2d::font * pfontParam)
+   bool graphics::set(const ::write_text::font * pfontParam)
    {
 
       if(pfontParam == nullptr)
@@ -5370,7 +5370,7 @@ namespace draw2d_xlib
 
       string strFont;
 
-      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) pfontParam);
+      ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::write_text::font *) pfontParam);
 
       if(pfont == nullptr)
          return false;
@@ -5709,7 +5709,7 @@ ok:
             if(pbitmap == nullptr)
                return false;
 
-            ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::draw2d::font *) m_pfont.m_p);
+            ::draw2d_xlib::font * pfont = dynamic_cast < ::draw2d_xlib::font * > ((::write_text::font *) m_pfont.m_p);
 
             if(pfont == nullptr)
                return false;

@@ -25,7 +25,7 @@ HBITMAP hbitmap_from_image(const ::image & image, const ::size_i32 & size);
 
 #ifdef WINDOWS
 
-bool GetLogFont(LOGFONTW * pfontw, const ::draw2d::font * pfont);
+bool GetLogFont(LOGFONTW * pfontw, const ::write_text::font * pfont);
 
 #endif
 

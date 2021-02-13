@@ -119,40 +119,47 @@ namespace aqua
 
    }
 
-   void system::defer_audio()
+
+   ::e_status system::create_audio()
    {
 
       auto plibrary = get_library("audio");
 
-      bool bOk = true;
-
-      bOk = !!plibrary;
-
-      if (bOk)
+      if (!plibrary)
       {
 
-         auto pgetnewaudio = plibrary->get<PFUNCTION_GET_NEW_AUDIO>("get_new_audio");
-
-         bOk = !!pgetnewaudio;
-
-         if (bOk)
-         {
-
-            auto estatus = __compose(m_paudio, ::move_transfer(pgetnewaudio()));
-
-            bOk = !!estatus;
-
-            if (bOk)
-            {
-
-               bOk = !!m_paudio->init3();
-
-            }
-
-         }
+         return error_failed;
 
       }
 
+      auto estatus = plibrary->factory_exchange(::factory::get_factory_map());
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose(m_paudio);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_paudio->init3();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -220,7 +227,7 @@ namespace aqua
       if (!m_paudio)
       {
 
-         defer_audio();
+         create_audio();
 
       }
 

@@ -981,7 +981,7 @@ inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
    if (p->natural_is_shared() || iChar >= p->length())
    {
 
-      fork_string(max(p->length(), iChar + 1));
+      fork_string(maximum(p->length(), iChar + 1));
 
    }
 
@@ -1032,7 +1032,7 @@ inline void std_string_assign(string& t, const widechar* psz)
 template < >
 inline void std_string_bassign(string& t, const u8* psz, strsize nsize)
 {
-   t = (const ansichar*)string((const ansichar*)psz, min(nsize, strlen_s_dup((const ansichar*)psz, nsize)));
+   t = (const ansichar*)string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize)));
 }
 
 template < >
@@ -1050,7 +1050,7 @@ inline void std_string_assign(string& t, const wstring* pwstr)
 //template < >
 //inline void std_string_assign(string & t,const bstring * pbstr)
 //{
-//   t = string((const ansichar *)pbstr->get_data(),min(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length())));
+//   t = string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length())));
 //}
 
 //template < >
@@ -1072,7 +1072,7 @@ inline void std_string_assign(string& t, const wstring* pwstr)
 template < >
 inline void std_string_bassign(wstring& t, const u8* psz, strsize nsize)
 {
-   t = ::str::international::utf8_to_unicode(string((const ansichar*)psz, min(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
+   t = ::str::international::utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
 }
 
 template < >
@@ -1096,7 +1096,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //template < >
 //inline void std_string_assign(wstring & t,const bstring * pbstr)
 //{
-//   t = ::str::international::utf8_to_unicode(string((const ansichar *)pbstr->get_data(),min(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length()))));
+//   t = ::str::international::utf8_to_unicode(string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length()))));
 //}
 
 
@@ -1115,7 +1115,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //template < >
 //inline void std_string_bassign(bstring & t,const u8 * psz,strsize nsize)
 //{
-//   t.assign(string((const ansichar *)psz,min(nsize,strlen_s_dup((const ansichar *)psz,nsize))));
+//   t.assign(string((const ansichar *)psz,minimum(nsize,strlen_s_dup((const ansichar *)psz,nsize))));
 //}
 //
 //template < >

@@ -268,7 +268,7 @@ namespace gpu
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);\n"
+         "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x, resolution.y);\n"
          "\n"
          "gl_FragColor = vec4(uv, uv/2.0);\n"
          "}\n";

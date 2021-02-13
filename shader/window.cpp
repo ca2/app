@@ -11,6 +11,8 @@ namespace app_shader
    window::window()
    {
 
+      m_bTransparent = true;
+
       m_iShader = 0;
 
       payload(FONTSEL_IMPACT) = true;
@@ -68,8 +70,6 @@ namespace app_shader
       auto pitem = get_user_item(::user::e_element_close_button);
 
       *pitem = ::user::e_element_close_icon;
-
-      ModifyStyleEx(0, WS_EX_LAYERED);
 
       get_top_level()->set_prodevian();
 

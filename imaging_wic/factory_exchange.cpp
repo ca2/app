@@ -36,7 +36,7 @@ namespace imaging_wic
 //
 
 extern "C"
-void imaging_wic_factory_exchange()
+void imaging_wic_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::imaging_wic::context_image, ::context_image >();

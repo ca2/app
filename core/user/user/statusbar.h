@@ -76,10 +76,10 @@ namespace user
       // for direct access to the underlying common control
       status_bar_control& GetStatusBarCtrl();
 
-   // Overridables
-#ifdef WINDOWS_DESKTOP
-      virtual void DrawItem(LPDRAWITEMSTRUCT);
-#endif
+//   // Overridables
+//#ifdef WINDOWS_DESKTOP
+//      virtual void DrawItem(LPDRAWITEMSTRUCT);
+//#endif
 
       virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       bool pre_create_window(::user::system * pusersystem) override;
@@ -97,7 +97,7 @@ namespace user
 
       __STATUSPANE * _GetPanePtr(index nIndex);
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
-      virtual bool OnChildNotify(::message::base * pbase) override;
+      virtual bool OnChildNotify(::message::message * pmessage) override;
 
       DECL_GEN_SIGNAL(_001OnNcHitTest);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);

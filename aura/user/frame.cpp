@@ -1,8 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
-#include "apex/user/menu_shared_command.h"
+#include "aura/windowing/menu_item.h"
+#include "aura/windowing/menu.h"
+#include "aura/windowing/menu_command.h"
 
 
 namespace user
@@ -54,7 +54,7 @@ namespace user
    void frame::_001OnAppExit(::message::message* pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
       if (get_parent() != nullptr)
       {
@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   ::color frame::get_border_main_body_color()
+   ::color::color frame::get_border_main_body_color()
    {
 
       return 0;
@@ -174,13 +174,13 @@ namespace user
    }
 
    
-   ::color frame::get_moveable_border_color()
+   ::color::color frame::get_moveable_border_color()
    {
 
       if (!m_puserstyle)
       {
 
-         return ::color();
+         return ::color::color();
 
       }
 
@@ -448,7 +448,7 @@ namespace user
 void menu_shared_idle(::user::frame * pframe)
 {
 
-   menu_shared * pmenushared = pframe->m_pmenushared;
+   auto pmenushared = pframe->m_pmenushared;
 
    if(::is_null(pmenushared))
    {
@@ -457,17 +457,17 @@ void menu_shared_idle(::user::frame * pframe)
 
    }
 
-   for(int i = 0; i < pmenushared->m_iCount; i++)
+   for(int i = 0; i < pmenushared->m_itema.get_count(); i++)
    {
 
-      void * pitem = pmenushared->m_ositema[i];
+      auto pitem = pmenushared->m_itema[i];
 
       if(pitem)
       {
 
-         ::id id(::id::e_type_command_probe, pmenushared->m_ppszId[i]);
+         ::id id(::id::e_type_command_probe, pitem->m_id);
 
-         menu_shared_command command(&pmenushared->m_statusa[i]);
+         ::windowing::menu_command command(pitem);
 
          command.m_id = id;
 

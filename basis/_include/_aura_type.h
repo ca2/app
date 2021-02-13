@@ -45,20 +45,20 @@ inline int is_i32(i64 i)
 
 #ifdef __cplusplus
 
-template < typename TYPE, typename min, typename max >
-inline TYPE minimummax(const TYPE & value, const min & min, const max & max)
+template < typename TYPE, typename minimum, typename maximum >
+inline TYPE minimummax(const TYPE & value, const minimum & minimum, const maximum & maximum)
 {
 
-   if (value < (TYPE)min)
+   if (value < (TYPE)minimum)
    {
 
-      return (TYPE)min;
+      return (TYPE)minimum;
 
    }
-   else if ((TYPE)max < value)
+   else if ((TYPE)maximum < value)
    {
 
-      return (TYPE)max;
+      return (TYPE)maximum;
 
    }
 

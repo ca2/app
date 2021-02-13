@@ -40,10 +40,10 @@ namespace filemanager
 
          void AddFolder(Folder & folder);
          ::count GetFolderCount();
-#ifdef WINDOWS_DESKTOP
-         void clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//         void clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
+//
+//#endif
          void clear();
          Folder & GetFolder(index i);
 

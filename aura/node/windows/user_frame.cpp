@@ -9,17 +9,17 @@ namespace user
    void frame::_001OnSysCommand(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      //if (pbase->m_wparam == SC_SCREENSAVE)
+      //if (pusermessage->m_wparam == SC_SCREENSAVE)
       //{
 
       //   if (!_001CanEnterScreenSaver())
       //   {
 
-      //      pbase->m_bRet = true;
+      //      pusermessage->m_bRet = true;
 
-      //      pbase->m_lresult = 0;
+      //      pusermessage->m_lresult = 0;
 
       //      return;
 
@@ -30,7 +30,7 @@ namespace user
       ////if (m_bWindowFrame)
       //{
 
-      //   if (pbase->m_wparam == SC_MAXIMIZE)
+      //   if (pusermessage->m_wparam == SC_MAXIMIZE)
       //   {
 
       //      INFO("SC_MAXIMIZE");
@@ -39,12 +39,12 @@ namespace user
 
       //      set_need_redraw();
 
-      //      pbase->m_bRet = true;
+      //      pusermessage->m_bRet = true;
 
-      //      pbase->m_lresult = 0;
+      //      pusermessage->m_lresult = 0;
 
       //   }
-         //else if (pbase->m_wparam == SC_RESTORE)
+         //else if (pusermessage->m_wparam == SC_RESTORE)
          //{
 
          //   INFO("SC_RESTORE");
@@ -64,12 +64,12 @@ namespace user
 
          //   set_need_redraw();
 
-         //   pbase->m_bRet = true;
+         //   pusermessage->m_bRet = true;
 
-         //   pbase->m_lresult = 0;
+         //   pusermessage->m_lresult = 0;
 
          //}
-         //else if (pbase->m_wparam == SC_MINIMIZE)
+         //else if (pusermessage->m_wparam == SC_MINIMIZE)
          //{
 
             //INFO("SC_MINIMIZE");
@@ -78,9 +78,9 @@ namespace user
 
             //set_need_redraw();
 
-            //pbase->m_bRet = true;
+            //pusermessage->m_bRet = true;
 
-           // pbase->m_lresult = 0;
+           // pusermessage->m_lresult = 0;
 
          //}
 

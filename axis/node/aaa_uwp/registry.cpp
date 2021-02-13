@@ -171,7 +171,7 @@ namespace uwp
       nullptr,
       nullptr,
       nullptr);
-      int iSize = max(dwMaxSubKeyLen, 1024);
+      int iSize = maximum(dwMaxSubKeyLen, 1024);
       char *buf = (char *) malloc(iSize);
       int iKey = 0;
       while(::RegEnumKey(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)

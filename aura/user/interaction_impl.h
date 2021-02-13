@@ -72,8 +72,8 @@ namespace user
       //HIMC                                    m_himc;
 #endif
 
-      ::rectangle_i32                                    m_rectWindowScreen;
-      ::rectangle_i32                                    m_rectClientScreen;
+      ::rectangle_i32                           m_rectWindowScreen;
+      ::rectangle_i32                           m_rectClientScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
@@ -90,15 +90,16 @@ namespace user
       double                                    m_dConfigFps;
       double                                    m_dOutputFps;
       bool                                      m_bLockWindowUpdate;
-      point_i32                                     m_pointCursor;
+      point_i32                                 m_pointCursor;
       bool                                      m_bOkToUpdateScreen;
-      ::size_i32                                    m_sizeDrawn;
+      ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;
 
-      ::rectangle_i32                                    m_rectUpdateBuffer;
+      ::rectangle_i32                           m_rectUpdateBuffer;
+      ::thread_pointer                          m_pthreadMouseLeave;
 
       bool                                      m_bPointInside;
-      ::point_i32                                   m_pointInside;
+      ::point_i32                               m_pointInside;
       ::user::primitive *                       m_pprimitiveFocus;
       ::user::primitive *                       m_pprimitiveSoftwareKeyboard;
 
@@ -108,8 +109,8 @@ namespace user
       bool                                      m_bComposite;
       bool                                      m_bUpdateGraphics;
 
-      point_i32                                     m_point;
-      size_i32                                      m_size;
+      point_i32                                 m_point;
+      size_i32                                  m_size;
 
       //native_window *                         m_pwindow;
 
@@ -118,7 +119,7 @@ namespace user
       __pointer(::mutex)                        m_pmutexDraw;
       __pointer(::mutex)                        m_pmutexRedraw;
 
-      ::user::interaction_ptra                  m_guieptraMouseHover;
+      ::user::interaction_ptra                  m_uiptraMouseHover;
 
       ::u32                                     m_uiMessage;
       wparam                                    m_wparam;
@@ -126,7 +127,9 @@ namespace user
       lparam                                    m_lparamLastMouseMove;
 
       __pointer(::user::interaction)            m_puserinteractionCapture;
-      __pointer(::user::interaction)            m_puserinteractionFocus;
+      __pointer(::user::interaction)            m_puserinteractionFocus1;
+      __pointer(::user::interaction)            m_puserinteractionFocusRequest;
+      __pointer(::user::interaction)            m_puserinteractionToKillFocus;
 
       bool                                      m_bPendingRedraw;
       millis                                    m_millisLastRedraw;
@@ -152,7 +155,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void default_message_handler(::message::base * pbase) override;
+      virtual void default_message_handler(::message::message * pusermessage) override;
 
       virtual void on_tsf_activate(bool bActivate);
 
@@ -160,7 +163,7 @@ namespace user
 
       virtual ::user::interaction_impl * get_user_interaction_impl() override;
 
-      virtual bool post(::message::base* pbase) override;
+      virtual bool post(::message::message* pusermessage) override;
 
       virtual ::e_status update_graphics_resources();
 
@@ -171,10 +174,13 @@ namespace user
       virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
       // call these from window
-      //virtual ::e_status set_focus();
+      //virtual ::e_status set_keyboard_focus();
       //virtual ::e_status set_capture();
       //virtual ::e_status set_active_window();
       //virtual ::e_status set_foreground_window();
+
+      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
+      virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
 
       virtual bool has_pending_focus();
 
@@ -188,7 +194,7 @@ namespace user
       virtual void set_destroying();
 
       virtual void _000OnMouseLeave(::message::message * pmessage) override;
-      virtual void _008OnMouse(::message::mouse * pmouse);
+      //virtual void _008OnMouse(::message::mouse * pmouse);
       //virtual void _001BaseWndInterfaceMap();
 
       virtual void prio_install_message_routing(::channel * pchannel) override;
@@ -205,6 +211,18 @@ namespace user
 
       virtual void mouse_hover_add(::user::interaction * pinterface) override;
       virtual bool mouse_hover_remove(::user::interaction * pinterface) override;
+
+
+      virtual void _task_transparent_mouse_event();
+
+
+      virtual void track_mouse_hover();
+      virtual void track_mouse_leave();
+
+      virtual void MouseLeaveThreadProcedure();
+
+      virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
+
 
       virtual bool add_prodevian(::context_object * pobject) override;
       virtual bool remove_prodevian(::context_object * pobject) override;
@@ -227,13 +245,13 @@ namespace user
 
       virtual void finalize() override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       DECL_GEN_SIGNAL(_002OnDraw);
 
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnApplyVisual);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
@@ -299,7 +317,7 @@ namespace user
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
 
 
@@ -415,9 +433,11 @@ namespace user
 //#endif
 
 
-      virtual ::point_i32 get_cursor_pos() const override;
+      //virtual ::point_i32 get_cursor_pos() const override;
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor) override;
+
+      virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
@@ -489,7 +509,7 @@ namespace user
       //virtual i32 GetScrollPos(i32 nBar) const;
       //virtual void GetScrollRange(i32 nBar, int * pMinPos, int * lpMaxPos) const;
       //virtual void ScrollWindow(i32 xAmount,i32 yAmount,
-      //   const RECTANGLE_I32 * rectangle_i32 = nullptr,
+      //   const RECTANGLE_I32 * rectangle = nullptr,
       //   const RECTANGLE_I32 * pClipRect = nullptr);
 
       //virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = true);
@@ -584,14 +604,14 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pusermessage) override;
       //virtual lresult default_window_procedure() override;
       virtual void default_window_procedure(::message::message * pmessage);
 
 
       virtual void PostNcDestroy() override;
-      virtual bool OnChildNotify(::message::base * pbase) override;
-      virtual bool ReflectChildNotify(::message::base * pbase);
+      virtual bool OnChildNotify(::message::message * pusermessage) override;
+      virtual bool ReflectChildNotify(::message::message * pusermessage);
       virtual bool CheckAutoCenter() override;
 
 
@@ -625,8 +645,8 @@ namespace user
 
       //virtual ::i32 get_window_long(i32 nIndex) const override;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual interaction_impl * get_impl() const override;
 
@@ -731,6 +751,9 @@ namespace user
       virtual void non_top_most_upper_window_rects(::rect_array& recta);
 
 
+      virtual ::windowing::window * get_window() const override;
+
+
    };
 
 
@@ -746,7 +769,7 @@ namespace user
       guie_message_wnd(::layered * pobjectContext);
 
 
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::message::message * pusermessage);
 
    }; // guie_message_wnd
 

@@ -82,7 +82,7 @@ void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
       MidFree(address);
       return nullptr;
    }
-   ::memcpy_dup(pnew, address, min(sizeOld, sizeNew));
+   ::memcpy_dup(pnew, address, minimum(sizeOld, sizeNew));
    MidFree(address);
    return pnew;
 }

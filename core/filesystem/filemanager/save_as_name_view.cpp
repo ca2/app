@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -401,7 +399,7 @@ namespace filemanager
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_vertical);
+      SetSplitOrientation(e_orientation_vertical);
 
       set_position_rate(0, 0.8);
 

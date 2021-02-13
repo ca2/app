@@ -29,7 +29,7 @@ namespace user
 
       ::rect                              m_rectCheckBox;
       string                              m_strLink;
-      ::draw2d::font_pointer              m_pfont;
+      ::write_text::font_pointer              m_pfont;
       
 
       still();
@@ -38,7 +38,7 @@ namespace user
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
-      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 

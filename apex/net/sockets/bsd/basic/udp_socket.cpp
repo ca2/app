@@ -194,22 +194,22 @@ namespace sockets
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const string & h, port_t point_i32, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(h, point_i32), data, len, flags);
+      SendToBuf(::net::address(h, p), data, len, flags);
    }
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const in_addr & a, port_t point_i32, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(a, point_i32), data, len, flags);
+      SendToBuf(::net::address(a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const in6_addr & a, port_t point_i32, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(a, point_i32), data, len, flags);
+      SendToBuf(::net::address(a, p), data, len, flags);
    }
 
 
@@ -314,7 +314,7 @@ namespace sockets
 #ifdef __DARWIN_UNIX03
 #define ALIGNBYTES __DARWIN_ALIGNBYTES
 #endif
-#define myALIGN(point) (((u32)(point) + ALIGNBYTES) &~ ALIGNBYTES)
+#define myALIGN(p) (((u32)(p) + ALIGNBYTES) &~ ALIGNBYTES)
 #define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
          char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
 #else
@@ -426,7 +426,7 @@ namespace sockets
          }
 
          memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-         i32 q = m_retries; // receive max 10 at one cycle
+         i32 q = m_retries; // receive maximum 10 at one cycle
          while (n > 0)
          {
             if (sa_len != sizeof(sa))

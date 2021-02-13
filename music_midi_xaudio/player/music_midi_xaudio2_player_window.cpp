@@ -38,34 +38,34 @@ namespace music
 
             void window::_001OnMmsgDone(::message::message * pmessage)
             {
-               __pointer(::message::base) pbase(pmessage);
+               __pointer(::user::message) pusermessage(pmessage);
                if(get_callback() != nullptr)
                {
-                  ::music::midi::sequence * pseq = (::music::midi::sequence *) pbase->m_wparam;
-                  ::music::midi::LPMIDIDONEDATA lpmdd = (::music::midi::LPMIDIDONEDATA) pbase->m_lparam.m_lparam;
+                  ::music::midi::sequence * pseq = (::music::midi::sequence *) pusermessage->m_wparam;
+                  ::music::midi::LPMIDIDONEDATA lpmdd = (::music::midi::LPMIDIDONEDATA) pusermessage->m_lparam.m_lparam;
 
 
                   get_callback()->OnMmsgDone(pseq, lpmdd);
-                  pbase->set_lresult(0);
+                  pusermessage->set_lresult(0);
                }
                else
                {
-                  pbase->set_lresult(-1);
+                  pusermessage->set_lresult(-1);
                }
             }
 
             void window::_001OnNotifyEvent(::message::message * pmessage)
             {
-               __pointer(::message::base) pbase(pmessage);
-               ::music::midi::player::notify_event * pdata = (::music::midi::player::notify_event *) pbase->m_lparam.m_lparam;
+               __pointer(::user::message) pusermessage(pmessage);
+               ::music::midi::player::notify_event * pdata = (::music::midi::player::notify_event *) pusermessage->m_lparam.m_lparam;
                if(get_callback() != nullptr)
                {
                   get_callback()->OnMidiPlayerNotifyEvent(pdata);
-                  pbase->set_lresult(0);
+                  pusermessage->set_lresult(0);
                }
                else
                {
-                  pbase->set_lresult(-1);
+                  pusermessage->set_lresult(-1);
                }
                if(pdata != nullptr)
                   delete pdata;
@@ -94,27 +94,27 @@ namespace music
 
             void window::_001OnUserMessage(::message::message * pmessage)
             {
-               __pointer(::message::base) pbase(pmessage);
-               switch(pbase->m_wparam)
+               __pointer(::user::message) pusermessage(pmessage);
+               switch(pusermessage->m_wparam)
                {
                case 3388:
                {
                   // Lyric ::view Event
                   if(get_callback() != nullptr)
                   {
-                     get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam);
-                     delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam;
+                     get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pusermessage->m_lparam.m_lparam);
+                     delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pusermessage->m_lparam.m_lparam;
                   }
                }
                break;
                }
-               pbase->set_lresult(0);
+               pusermessage->set_lresult(0);
             }
 
             void window::_001OnApp3388Message(::message::message * pmessage)
             {
                __throw(not_implemented());
-               __pointer(::message::base) pbase(pmessage);
+               __pointer(::user::message) pusermessage(pmessage);
                /*            MSG msg;
 
                while(PeekMessage(
@@ -124,29 +124,29 @@ namespace music
                WM_APP + 3388,
                PM_REMOVE))
                {
-               if(pbase->m_wparam == 3388)
+               if(pusermessage->m_wparam == 3388)
                {
-               delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> * ) pbase->m_lparam.m_lparam;
+               delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> * ) pusermessage->m_lparam.m_lparam;
                }
 
-               pbase->m_wparam = msg.wParam;
-               pbase->m_lparam = msg.lParam;
+               pusermessage->m_wparam = msg.wParam;
+               pusermessage->m_lparam = msg.lParam;
                }
-               switch(pbase->m_wparam)
+               switch(pusermessage->m_wparam)
                {
                case 3388:
                {
                // Lyric ::view Event
                if(get_callback() != nullptr)
                {
-               get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam);
-               delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam;
+               get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pusermessage->m_lparam.m_lparam);
+               delete (array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pusermessage->m_lparam.m_lparam;
                }
                }
                break;
                }*/
 
-               pbase->set_lresult(0);
+               pusermessage->set_lresult(0);
             }
 
 

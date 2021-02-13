@@ -304,7 +304,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    dwSize = (DWORD) FILE_get_size(file);
 
-   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  min(iReadAtMostByteCount, (::strsize)dwSize);
+   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize :  minimum(iReadAtMostByteCount, (::strsize)dwSize);
 
    char * psz = str.get_string_buffer(iReadAtMostByteCount);
 
@@ -397,7 +397,7 @@ bool file_as_memory(memory_base & memory, const char * path, memsize iReadAtMost
 
    }
 
-   iReadAtMostByteCount = min_non_neg(iReadAtMostByteCount, (::strsize) iSize);
+   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize) iSize);
 
    memory.set_size(iReadAtMostByteCount);
 
@@ -1464,7 +1464,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DW
 
       pResource = (DWORD *) LockResource(hglobalResource);
 
-      auto iSize = min_non_neg(dwResourceSize, iReadAtMostByteCount);
+      auto iSize = minimum_non_negative(dwResourceSize, iReadAtMostByteCount);
 
       m.assign(pResource, iSize);
 

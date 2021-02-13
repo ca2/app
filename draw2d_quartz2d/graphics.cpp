@@ -47,7 +47,7 @@ namespace draw2d_quartz2d
       m_iSaveDC         = 0;
       m_bPrinting       = false;
       //m_pimageimplAlphaBlend  = nullptr;
-      m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+      m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
       m_bOwnDC          = true;
       m_pdc             = nullptr;
       m_layer           = nullptr;
@@ -587,7 +587,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectParam, ::draw2d::brush * pbrush)
+   bool graphics::fill_rectangle(const ::rectangle_f64 & rectParam, ::draw2d::brush * pbrush)
    {
 
       CGRect rectangle_i32;
@@ -603,15 +603,15 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectangle)
+   bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return fill_rect(rectangle, m_pbrush);
+      return fill_rectangle(rectangle, m_pbrush);
       
    }
    
    
-   void graphics::frame_rect(const ::rectangle_i32 & rectParam, ::draw2d::brush* pBrush)
+   void graphics::frame_rectangle(const ::rectangle_i32 & rectParam, ::draw2d::brush* pBrush)
    {
 
       CGRect rectangle_i32;
@@ -627,7 +627,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64 & rectParam, ::draw2d::pen* ppen)
+   bool graphics::draw_rectangle(const ::rectangle_f64 & rectParam, ::draw2d::pen* ppen)
    {
 
       CGRect rectangle_i32;
@@ -643,15 +643,15 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64 & rectangle)
+   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return draw_rect(rectangle, m_ppen);
+      return draw_rectangle(rectangle, m_ppen);
 
    }
    
   
-   void graphics::invert_rect(const ::rectangle_i32 & rectangle)
+   void graphics::invert_rectangle(const ::rectangle_i32 & rectangle)
    {
 
       __throw(not_implemented());
@@ -1237,10 +1237,10 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::round_rect(const ::rectangle_f64 & rectangle, const ::point_f64 & point)
+   bool graphics::round_rectangle(const ::rectangle_f64 & rectangle, const ::point_f64 & point)
    {
 
-      return ::draw2d::graphics::round_rect(rectangle, point);
+      return ::draw2d::graphics::round_rectangle(rectangle, point);
       
    }
    
@@ -1527,7 +1527,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::GetPixel(i32 x, i32 y)
+   ::color::color graphics::GetPixel(i32 x, i32 y)
    {
 
       __throw(not_implemented());
@@ -1539,7 +1539,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::GetPixel(const ::point_i32 & point)
+   ::color::color graphics::GetPixel(const ::point_i32 & point)
    {
 
       __throw(not_implemented());
@@ -1549,22 +1549,22 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
+   ::color::color graphics::SetPixel(i32 x, i32 y, const ::color::color & color)
    {
 
       __throw(not_implemented());
 
-      return ::color();
+      return ::color::color();
 
    }
 
 
-   ::color graphics::SetPixel(const ::point_i32 & point, const ::color & color)
+   ::color::color graphics::SetPixel(const ::point_i32 & point, const ::color::color & color)
    {
 
       __throw(not_implemented());
 
-      return ::color();
+      return ::color::color();
 
    }
 
@@ -1613,7 +1613,7 @@ namespace draw2d_quartz2d
 
             }
 
-            pimage1->blend(::point_i32(), m_pimageAlphaBlend, point_i32((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectBlt.size());
+            pimage1->blend(::point_i32(), m_pimageAlphaBlend, point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectBlt.size());
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -1658,7 +1658,7 @@ namespace draw2d_quartz2d
             pimage1->get_graphics()->set(get_current_brush());
             pimage1->get_graphics()->text_out(0, 0, str);
 
-            pimage1->blend(::point_i32(), m_pimageAlphaBlend, point_i32((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
+            pimage1->blend(::point_i32(), m_pimageAlphaBlend, point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -1699,7 +1699,7 @@ namespace draw2d_quartz2d
 
 //               ::image_pointer pimage0;
 //               image0 = create_image(rectText.size());
-//               image0.get_graphics()->set_text_color(RGB(255, 255, 255));
+//               image0.get_graphics()->set_text_color(rgb(255, 255, 255));
 //               image0.get_graphics()->SelectObject(get_current_font());
 //
 //               image0.get_graphics()->text_out(0, 0, str);
@@ -1712,13 +1712,13 @@ namespace draw2d_quartz2d
 //
 //               pimage1->get_graphics()->text_out(0, 0, str);
 //
-//               pimage1->channel_from(::color::channel_alpha, image0);
+//               pimage1->channel_from(::color::e_channel_alpha, image0);
 //               ::image_pointer pimage2;
 //               pimage2 = create_image(rectText.size());
 //               pimage2->Fill(255, 0, 0, 0);
-//               pimage2->from(point_i32((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
-//                          m_pimageAlphaBlend->get_graphics(), point_i32((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
-//               pimage1->channel_multiply(::color::channel_alpha, pimage2);
+//               pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
+//                          m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
+//               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 //               /* p::image_pointer pimage3(get_object());
 //                pimage1->mult_alpha(image3);*/
 //
@@ -1875,7 +1875,7 @@ namespace draw2d_quartz2d
    }
 
    
-   bool graphics::get_text_metrics(::draw2d::text_metric * pmetric)
+   bool graphics::get_text_metrics(::write_text::text_metric * pmetric)
    {
 
       if(!m_pfont)
@@ -1973,7 +1973,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
+   bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
       __throw(not_implemented());
@@ -2199,7 +2199,7 @@ namespace draw2d_quartz2d
 //
 //   }
 
-   bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
+   bool graphics::SetPixelV(i32 x, i32 y, const ::color::color & color)
    {
 
       __throw(not_implemented());
@@ -2210,7 +2210,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::SetPixelV(const ::point_i32 & point, const ::color & color)
+   bool graphics::SetPixelV(const ::point_i32 & point, const ::color::color & color)
    {
 
       __throw(not_implemented());
@@ -2302,7 +2302,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::draw2d::font * graphics::get_current_font()
+   ::write_text::font * graphics::get_current_font()
    {
 
       return m_pfont;
@@ -2762,10 +2762,10 @@ namespace draw2d_quartz2d
 //
 //         imageWork4.Fill(255, 0, 0, 0);
 //
-//         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDst), max(0, m_pointAlphaBlend.y - yDst)),
-//                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDst - m_pointAlphaBlend.x), max(0, yDst - m_pointAlphaBlend.y)), size);
+//         imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDst), maximum(0, m_pointAlphaBlend.y - yDst)),
+//                         m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDst - m_pointAlphaBlend.x), maximum(0, yDst - m_pointAlphaBlend.y)), size);
 //
-//         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+//         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 //
 //
 //         ::keep < image > keep2(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2852,10 +2852,10 @@ namespace draw2d_quartz2d
 
     imageWork4.Fill(255, 0, 0, 0);
 
-    imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
-    m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
+    imageWork4.from(point_i32(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+    m_pimageAlphaBlend->get_graphics(), point_i32(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
-    imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+    imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
     keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3058,7 +3058,7 @@ namespace draw2d_quartz2d
 //       // find difference between new region and old region
 //       rgnLast.CreateRectRgn(0, 0, 0, 0);
 //       rgnOutside.SetRectRgn(rectLast);
-//       rectangle_i32 = *rectLast;
+//       rectangle = *rectLast;
 //       rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
 //       rectangle.intersect(rectangle, rectLast);
 //       rgnInside.SetRectRgn(rectangle);
@@ -3097,14 +3097,14 @@ namespace draw2d_quartz2d
 //
 //   }
 
-   /*void graphics::FillSolidRect(const ::rectangle_i32 & rectangle, const ::color & color)
+   /*void graphics::FillSolidRect(const ::rectangle_i32 & rectangle, const ::color::color & color)
     {
     ::SetBkColor(get_handle1(), clr);
     ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, rectangle, nullptr, 0, nullptr);
     }*/
 
 
-   void graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
       ::i32 x = rectangle.left;
       ::i32 y = rectangle.top;
@@ -3159,7 +3159,7 @@ namespace draw2d_quartz2d
 
     m_pgraphics = new ::Gdiplus::Graphics(hdc);
 
-    set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+    set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
     m_hdc = hdc;
 
@@ -3235,7 +3235,7 @@ namespace draw2d_quartz2d
 
       m_pimage = nullptr;
 
-      m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+      m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
 
       return true;
 
@@ -3326,7 +3326,7 @@ namespace draw2d_quartz2d
 
       bool bRestored = false;
 
-      while(m_iSaveDC >= max(1, nSavedDC))
+      while(m_iSaveDC >= maximum(1, nSavedDC))
       {
 
          CGContextRestoreGState(m_pdc);
@@ -4453,7 +4453,7 @@ namespace draw2d_quartz2d
 
       string_array stra;
 
-      stra.add_lines(string(lpszString, min(iIndex, nCount), 0));
+      stra.add_lines(string(lpszString, minimum(iIndex, nCount), 0));
 
       size.cy = 0;
 
@@ -4473,7 +4473,7 @@ namespace draw2d_quartz2d
 //
 //         }
 
-         size.cx = max(size.cx, width);
+         size.cx = maximum(size.cx, width);
 
       }
 
@@ -4498,7 +4498,7 @@ namespace draw2d_quartz2d
    }
 
 
-   void graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color & color)
+   void graphics::fill_rectangle(const ::rectangle_f64 & rectParam, const ::color::color & color)
    {
 
       CGRect rectangle_i32;
@@ -4528,7 +4528,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::internal_show_text(double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::draw2d::font * pfont)
+   bool graphics::internal_show_text(double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::write_text::font * pfont)
    {
 
       if(pfont == nullptr)
@@ -4641,7 +4641,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint)
+   bool graphics::set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint)
    {
 
       return ::draw2d::graphics::set_text_rendering_hint(etextrenderinghint);
@@ -5075,7 +5075,7 @@ namespace draw2d_quartz2d
 
          __keep(m_bPat);
 
-         CGRect rectangle_i32 = CGContextGetClipBoundingBox(pgraphics);
+         CGRect rectangle = CGContextGetClipBoundingBox(pgraphics);
 
          BitBlt(rectangle.origin.x, rectangle.origin.y, rectangle.size.width, rectangle.size.height, pbrush->m_pimage->g(), 0,0, 0);
 
@@ -5652,7 +5652,7 @@ namespace draw2d_quartz2d
 
    }
 
-   void graphics::internal_set_fill_color(const ::color & color)
+   void graphics::internal_set_fill_color(const ::color::color & color)
    {
 
       CGContextSetRGBFillColor(m_pdc, color.dr(), color.dg(), color.db(), color.da());
@@ -5660,7 +5660,7 @@ namespace draw2d_quartz2d
    }
 
 
-   void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
+   void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
    {
 
       char ** p;
@@ -5673,7 +5673,7 @@ namespace draw2d_quartz2d
          for(unsigned long u = 0; u < c; u++)
          {
 
-            itema.add(__new(::draw2d::font_enum_item(p[u], p[u])));
+            itema.add(__new(::write_text::font_enum_item(p[u], p[u])));
 
             free(p[u]);
 
@@ -5909,7 +5909,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+   bool graphics::internal_show_text(::write_text::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
    {
 
       sync_lock sl(mutex());
@@ -5982,7 +5982,7 @@ namespace draw2d_quartz2d
 
                bFill = true;
 
-               crFill = spbrush.is_null() ? ARGB(255, 0, 0, 0) : spbrush->m_color.operator unsigned int();
+               crFill = spbrush.is_null() ? argb(255, 0, 0, 0) : spbrush->m_color.operator unsigned int();
 
             }
 
@@ -5993,7 +5993,7 @@ namespace draw2d_quartz2d
 
             bStroke = true;
 
-            crStroke = sppen.is_null() ? ARGB(255, 0, 0, 0) : sppen->m_color.operator color32_t();
+            crStroke = sppen.is_null() ? argb(255, 0, 0, 0) : sppen->m_color.operator color32_t();
 
          }
 

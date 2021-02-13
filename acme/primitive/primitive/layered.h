@@ -6,7 +6,7 @@
 
 
 class CLASS_DECL_ACME layered :
-   virtual public ::matter
+   virtual public ::context_object
 {
 private:
 

@@ -5,6 +5,7 @@
 
 
 #include "aura/_.h"
+#include "aura/operating_system.h"
 #include <wincodec.h>
 
 

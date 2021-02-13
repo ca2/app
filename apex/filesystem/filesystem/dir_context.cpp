@@ -998,7 +998,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            index iFind2 = path.find('\\', iFind0);
 //
-//            iFind3 = min_non_neg(iFind1, iFind2);
+//            iFind3 = minimum_non_negative(iFind1, iFind2);
 //
 //            if (iFind3 < 0)
 //            {
@@ -1235,7 +1235,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            index iFind1 = strPath.find('/', iFind0);
 //            index iFind2 = strPath.find('\\', iFind0);
-//            iFind3 = min_non_neg(iFind1, iFind2);
+//            iFind3 = minimum_non_negative(iFind1, iFind2);
 //            if (iFind3 < 0)
 //            {
 //               pfind->m_str = strPath.Mid(iFind0);
@@ -1260,7 +1260,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  index iFind1 = strPath.find('/', iFind0);
 //                  index iFind2 = strPath.find('\\', iFind0);
-//                  iFind3 = min_non_neg(iFind1, iFind2);
+//                  iFind3 = minimum_non_negative(iFind1, iFind2);
 //                  if (iFind3 < 0)
 //                  {
 //                     pfind->m_str = strPath.Mid(iFind0);
@@ -1488,7 +1488,7 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          strsize iFind2 = strMatter.find_ci("\\matter\\");
 
-         strsize iFind = min_non_neg(iFind1, iFind2);
+         strsize iFind = minimum_non_negative(iFind1, iFind2);
 
          if (iFind > 0)
          {
@@ -2154,7 +2154,7 @@ ret:
 
       strsize iFind2 = strRelative.reverse_find("/", iFind);
 
-      strsize iStart = max(iFind1 + 1, iFind2 + 1);
+      strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
       strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
 

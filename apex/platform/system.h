@@ -77,10 +77,12 @@ namespace apex
       //__composite(::gpu::approach)                       m_pgpu;
 
       ::mutex                                            m_mutexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibrary;
+      ::apex::library_map                                m_mapLibrary;
       string_map < PFN_NEW_APEX_LIBRARY >                m_mapNewApexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibCall;
+      ::apex::library_map                                m_mapLibCall;
 
+      ::mutex                                            m_mutexContainerizedLibrary;
+      ::string_map < ::apex::library_map >               m_mapContainerizedLibrary;
 
 
       // for lesser cooperative GUI applications
@@ -402,6 +404,10 @@ namespace apex
 
       ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
+      __pointer(::apex::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
+
+      result_pointer < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
+
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
       // apex commented
@@ -538,7 +544,7 @@ namespace apex
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const char * pszCommand);
+      //bool on_application_menu_action(const char * pszCommand);
 
 
       virtual ::e_status initialize_sockets();
@@ -565,10 +571,10 @@ namespace apex
       //virtual ::e_status process_init();
 
       //virtual ::e_status init_draw2d();
-      //virtual ::e_status draw2d_factory_exchange();
+      //virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
       //virtual string draw2d_get_default_library_name();
 
-      //virtual bool imaging_factory_exchange();
+      //virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
       //virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;

@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -135,7 +133,7 @@ namespace filemanager
    }
 
 
-   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,const ::id & id,WPARAM wparamCallback)
+   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,const ::id & id,wparam wparamCallback)
    {
 
       auto poperation  = __new(::filemanager::operation);

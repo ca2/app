@@ -83,7 +83,7 @@ namespace imaging_wic
 
             }
 
-            Context.file().as_memory(payload, *pmemory);
+            get_context()->file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 
@@ -725,7 +725,7 @@ namespace imaging_wic
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;
-            varValue.fltVal = max(0.f, min(1.f, psaveimage->m_iQuality / 100.0f));
+            varValue.fltVal = maximum(0.f, minimum(1.f, psaveimage->m_iQuality / 100.0f));
 
             if (SUCCEEDED(hr))
             {

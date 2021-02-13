@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aqua/xml.h"
 
 
@@ -81,7 +79,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemId;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
                */
                pcolumn->m_iWidth = 170;
@@ -89,7 +87,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemTitle;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
 
 
@@ -425,7 +423,7 @@ namespace filemanager
 
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             while(true)
@@ -480,7 +478,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = get_document();
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             i32 iFind = 0;
@@ -569,9 +567,9 @@ namespace filemanager
 
          void list_view::_001OnFillTaskResponse(::message::message * pmessage)
          {
-            __pointer(::message::base) pbase(pmessage);
+            __pointer(::user::message) pusermessage(pmessage);
             m_bKickActive = true;
-            if(pbase->m_wparam == 0)
+            if(pusermessage->m_wparam == 0)
             {
 
                m_cache._001Invalidate(this);
@@ -593,17 +591,17 @@ namespace filemanager
                }
 
             }
-            else if(pbase->m_wparam == 1)
+            else if(pusermessage->m_wparam == 1)
             {
 
                m_cache._001Invalidate(this);
                set_need_redraw();
             }
-            else if(pbase->m_wparam == 2)
+            else if(pusermessage->m_wparam == 2)
             {
                _001OnUpdateItemCount();
             }
-            else if(pbase->m_wparam == 3)
+            else if(pusermessage->m_wparam == 3)
             {
                m_cache._001Invalidate(this);
             }

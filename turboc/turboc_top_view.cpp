@@ -51,7 +51,7 @@ namespace turboc
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_vertical);
+      SetSplitOrientation(e_orientation_vertical);
 
       set_position_rate(0,0.84);
 

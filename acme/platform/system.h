@@ -54,7 +54,7 @@ namespace acme
       virtual string os_get_user_theme();
 
 
-      virtual void defer_calc_os_dark_mode();
+      //virtual void defer_calc_os_dark_mode();
 
 
       virtual ::user::enum_desktop get_edesktop();

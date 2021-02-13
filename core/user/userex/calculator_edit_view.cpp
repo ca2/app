@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "axis/math/calculator/_.h"
 #include "calculator_edit_view.h"
 #include "aura/update.h"
@@ -136,19 +134,19 @@ namespace calculator
             }
             else if (str::ends_eat_ci(strExp, "minute"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "minutes"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
-            else if (str::ends_eat_ci(strExp, "min"))
+            else if (str::ends_eat_ci(strExp, "minimum"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "mins"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "days"))
             {
@@ -156,7 +154,7 @@ namespace calculator
             }
             else if (str::ends_eat_ci(strExp, "minutes"))
             {
-               strSource = "min";
+               strSource = "minimum";
             }
             else if (str::ends_eat_ci(strExp, "hours"))
             {
@@ -220,14 +218,13 @@ namespace calculator
                //__throw(::exception::exception("now a simple exception here"));
 
             }
-            catch (numeric_parser_exception *p)
+            catch (const numeric_parser_exception & exception)
             {
 
-               e.m_strMessage = p->get_message();
+               e.m_strMessage = exception.get_message();
                e.m_iStart = 0;
                e.m_iEnd = strExp.length();
 
-               ::release(p);
 
             }
 
@@ -285,7 +282,7 @@ namespace calculator
                            m_result.m_dI = 0.0;
                            strVal = m_result.to_string();
                         }
-                        else if (strSource == "min")
+                        else if (strSource == "minimum")
                         {
                            m_result.m_dR = 1.0 / (60.0 * m_result.m_dR);
                            m_result.m_dI = 0.0;

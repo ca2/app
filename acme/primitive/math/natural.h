@@ -106,40 +106,40 @@ inline i64 mkint(i64 ll)
    return ll;
 }
 
+//
+////// if a == b, minimum returns first argument
+//template < typename A, typename B >
+//constexpr const auto minimum(const A & a, const B & b)
+//{
+//
+//   return a < b ? a : (A) b;
+//
+//}
 
-//// if a == b, min returns first argument
+//
+//template < primitive_integral A, primitive_integral B >
+//constexpr const auto maximum(const A & a, const B & b)
+//{
+//
+//   return b < a ? a : (A)b;
+//
+//}
+//
+
+//// if a == b, maximum returns first argument
+//template < typename A, typename B >
+//constexpr const auto maximum(const A & a, const B & b)
+//{
+//
+//   return b < a ? a : (A) b;
+//
+//}
+
+//#define maximum(a, b) ((a) < (b) ? (b) : (a))
+//#define minimum(a, b) ((a) < (b) ? (a) : (b))
+
 template < typename A, typename B >
-constexpr const auto min(const A & a, const B & b)
-{
-
-   return a < b ? a : (A) b;
-
-}
-
-
-template < primitive_integral A, primitive_integral B >
-constexpr const auto max(const A & a, const B & b)
-{
-
-   return b < a ? a : (A)b;
-
-}
-
-
-// if a == b, max returns first argument
-template < typename A, typename B >
-constexpr const auto max(const A & a, const B & b)
-{
-
-   return b < a ? a : (A) b;
-
-}
-
-//#define max(a, b) ((a) < (b) ? (b) : (a))
-//#define min(a, b) ((a) < (b) ? (a) : (b))
-
-template < typename A, typename B >
-constexpr auto min_non_neg(A a, B b)
+constexpr auto minimum_non_negative(A a, B b)
 {
 
    if(a < (A) 0)
@@ -148,7 +148,7 @@ constexpr auto min_non_neg(A a, B b)
       if (b < (B) 0)
       {
 
-         return min(a, b);
+         return minimum(a, b);
 
       }
       else 
@@ -168,7 +168,7 @@ constexpr auto min_non_neg(A a, B b)
    else 
    {
 
-      return min(a, b);
+      return minimum(a, b);
 
    }
 
@@ -176,7 +176,7 @@ constexpr auto min_non_neg(A a, B b)
 
 
 template < typename t >
-t min_non_null(const t & t1, const t & t2)
+t minimum_non_null(const t & t1, const t & t2)
 {
    if (t1 == (t) 0)
    {
@@ -199,7 +199,7 @@ t min_non_null(const t & t1, const t & t2)
 
 
 template < typename T, typename L, typename H >
-constexpr auto min_max(T t, L l, H h)
+constexpr auto minimum_maximum(T t, L l, H h)
 {
 
    if (t < (T)l)
@@ -226,25 +226,25 @@ constexpr auto min_max(T t, L l, H h)
 
 
 //template <  >
-//constexpr const auto min(const U & u, const I & i)
+//constexpr const auto minimum(const U & u, const I & i)
 //{
 //
 //   return i < 0 ? 0 : (u < (::u32) i ? u : (::u32)i);
 //
 //}
-template <  > constexpr const auto min(const ::u64 & u, const ::i64 & i){  return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-template <  > constexpr const auto min(const ::u64 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-template <  > constexpr const auto min(const ::u64 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-template <  > constexpr const auto min(const ::u64 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-template <  > constexpr const auto min(const ::u32 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
-template <  > constexpr const auto min(const ::u32 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
-template <  > constexpr const auto min(const ::u32 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
-template <  > constexpr const auto min(const ::u32 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
-template <  > constexpr const auto min(const ::u16 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-template <  > constexpr const auto min(const ::u16 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-template <  > constexpr const auto min(const ::u16 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-template <  > constexpr const auto min(const ::u16 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-template <  > constexpr const auto min(const ::u8 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-template <  > constexpr const auto min(const ::u8 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-template <  > constexpr const auto min(const ::u8 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-template <  > constexpr const auto min(const ::u8 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const ::i64 & i){  return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u16 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
+//template <  > constexpr const auto minimum(const ::u16 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
+//template <  > constexpr const auto minimum(const ::u16 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
+//template <  > constexpr const auto minimum(const ::u16 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
+//template <  > constexpr const auto minimum(const ::u8 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
+//template <  > constexpr const auto minimum(const ::u8 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
+//template <  > constexpr const auto minimum(const ::u8 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
+//template <  > constexpr const auto minimum(const ::u8 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }

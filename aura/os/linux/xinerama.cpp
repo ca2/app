@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/os/linux/_user.h"
 //!!!#define pointer x11_pointer
 //!!!#include <X11/extensions/Xrandr.h>
@@ -47,7 +45,7 @@ int xinerama_get_monitor_count()
 
    }
 
-   return max(1, heads);
+   return maximum(1, heads);
 
 }
 
@@ -238,7 +236,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_
    if(rectangle_i32 == nullptr)
    {
 
-      rectangle_i32 = prectRet;
+      rectangle = prectRet;
 
    }
 
@@ -289,7 +287,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 &
    if(rectangle_i32 == nullptr)
    {
 
-      rectangle_i32 = rNull;
+      rectangle = rNull;
 
    }
 

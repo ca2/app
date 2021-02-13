@@ -1,11 +1,11 @@
 #pragma once
 
 
-#ifdef WINDOWS_DESKTOP
-
-#include <ShlObj.h>
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include <ShlObj.h>
+//
+//#endif
 
 namespace filemanager
 {
@@ -17,12 +17,12 @@ namespace filemanager
    public:
 
 
-#ifdef WINDOWS_DESKTOP
-
-      comptr < IContextMenu >    m_pcontextmenu;
-      comptr < IContextMenu2 >   m_pcontextmenu2;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      comptr < IContextMenu >    m_pcontextmenu;
+//      comptr < IContextMenu2 >   m_pcontextmenu2;
+//
+//#endif
       ::u32              m_uiMinId;
 
 

@@ -60,7 +60,7 @@ namespace opengl
    inline void color(color32_t cr)
    {
 
-      ::opengl::color(
+      ::opengl::color::color(
          colorref_get_r_value(cr),
          colorref_get_g_value(cr),
          colorref_get_b_value(cr),
@@ -69,10 +69,10 @@ namespace opengl
    }
 
 
-   inline void color(const ::color & color)
+   inline void color(const ::color::color & color)
    {
 
-      ::opengl::color(color.m_iR, color.m_iG, color.m_iB, color.m_iA);
+      ::opengl::color::color(color.m_iR, color.m_iG, color.m_iB, color.m_iA);
 
    }
 

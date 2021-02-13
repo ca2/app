@@ -210,6 +210,16 @@ enum enum_normalize
 };
 
 
+namespace message
+{
+
+ 
+   class command;
+
+
+} // namespace message
+
+
 enum enum_null
 {
 
@@ -246,6 +256,8 @@ concept a_pointer = std::is_pointer < T >::value;
 template < typename T >
 concept non_pointer = !std::is_pointer < T >::value;
 
+template < typename T >
+concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
 concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value;
@@ -482,11 +494,11 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 #define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 #define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
+//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define argb(a, r, g, b)      RGBA(r, g, b, a)
 
 
-#define __acolor(a, r, g, b)      ::color(r, g, b, a)
+#define __acolor(a, r, g, b)      ::color::color(r, g, b, a)
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -978,10 +990,10 @@ namespace core
 class eimpact;
 
 
-enum e_simple_command : ::i64;
-enum e_message : ::i64;
-enum e_impact : ::i64;
-enum e_id : ::u64;
+enum enum_simple_command : ::i64;
+enum enum_message : ::i64;
+enum enum_impact : ::i64;
+enum enum_id : ::u64;
 enum enum_check : ::i32;
 
 template<typename TYPE>
@@ -1459,15 +1471,17 @@ class task_pool;
 
 
 
-namespace draw2d
+namespace write_text
 {
 
+   
    class font_enum_item;
 
 
    using font_enum_item_array = __pointer_array(font_enum_item);
 
-} // namespace draw2d
+
+} // namespace write_text
 
 template<typename T>
 class result_pointer;
@@ -1764,33 +1778,6 @@ namespace message
 } // namespace message
 
 
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-   class icon;
-
-
-   class cursor;
-
-
-   class region;
-
-
-   class brush;
-
-
-   class font;
-
-
-   using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
-
-
-} // namespace draw2d
 
 
 template < typename ARGUMENT >
@@ -2404,7 +2391,9 @@ struct plane_system;
 
 #endif
 
-typedef void(*PFN_factory_exchange)();
+class factory_map;
+
+typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 #ifdef WINDOWS
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
@@ -2535,6 +2524,12 @@ namespace primitive
 
 template < typename T >
 concept not_pointer = !std::is_pointer < T >::value;
+
+template < typename T >
+concept an_object = !std::is_pointer < T >::value 
+&& !std::is_integral < T >::value
+&& !std::is_enum < T >::value
+&& !std::is_floating_point < T >::value;
 
 
 template<typename TYPE>
@@ -2690,9 +2685,12 @@ namespace status
 namespace message
 {
 
+   
    class message;
 
+
 } // namespace status
+
 
 class parents;
 
@@ -2807,7 +2805,8 @@ namespace factory
 
 
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/layered.h"
+#include "acme/primitive/primitive/id_matter.h"
+
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -2900,9 +2899,6 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 
 
-
-
-
 //#include "acme/primitive/collection/_papaya_array_decl.h"
 #include "acme/primitive/collection/_papaya_heap.h"
 
@@ -2915,23 +2911,12 @@ using element_address_array = ::address_array<matter *>;
 
 #include "acme/primitive/collection/_papaya.h"
 
-
-//#include "acme/primitive/collection/pointer2_array.h"
-
 class sticker;
-
 
 inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
 
-
 template<typename POINTER_TYPE>
 class ptr_array;
-
-//using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
-
-//using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
-
-//using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
 using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
@@ -2956,23 +2941,6 @@ namespace http
 } // namespace http
 
 
-
-
-//class context;
-
-//namespace draw2d
-//{
-//
-//   class graphics;
-//   class pen;
-//
-//   using graphics_pointer = __pointer(graphics);
-//   using pen_pointer = __pointer(pen);
-//
-//
-//
-//
-//} // namespace draw2d
 
 #ifdef WINDOWS_DESKTOP
 
@@ -3003,18 +2971,8 @@ struct MESSAGE
 };
 
 
-//class create_thread;
-
 using generic_pointer = __pointer(::matter);
 
-
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//#include "acme/os/windows/itemidlist.h"
-//
-//
-//#endif
 
 
 namespace core
@@ -3050,6 +3008,8 @@ namespace promise
 
 
 #include "acme/primitive/primitive/context_object.h"
+#include "acme/primitive/primitive/layered.h"
+
 
 #include "acme/primitive/comparison/var_strict.h"
 
@@ -3283,6 +3243,8 @@ CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * 
 
 
 #include "acme/primitive/primitive/factory.h"
+
+
 
 
 #include "acme/parallelization/_.h"
@@ -4049,7 +4011,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 #include "acme/graphics/draw2d/_.h"

@@ -6,12 +6,13 @@ namespace message
 
 
    class simple_command;
+   class command;
 
 
    inline ::u32 translate_to_os_message(const ::id& id) { return id.u32(); }
 
 
-   class base;
+   //class base;
 
 
    enum e_prototype

@@ -206,7 +206,7 @@ typedef enum sp_bitrate {
  */
 typedef enum sp_playlist_type {
   SP_PLAYLIST_TYPE_PLAYLIST     = 0, ///< A normal playlist.
-  SP_PLAYLIST_TYPE_START_FOLDER = 1, ///< Marks a folder starting point_i32,
+  SP_PLAYLIST_TYPE_START_FOLDER = 1, ///< Marks a folder starting point,
   SP_PLAYLIST_TYPE_END_FOLDER   = 2, ///< and ending point.
   SP_PLAYLIST_TYPE_PLACEHOLDER  = 3, ///< Unknown entry.
 } sp_playlist_type;
@@ -251,7 +251,7 @@ typedef enum sp_track_offline_status {
   SP_TRACK_OFFLINE_DONE           = 3, ///< Downloaded OK and can be played
   SP_TRACK_OFFLINE_ERROR          = 4, ///< Error during download
   SP_TRACK_OFFLINE_DONE_EXPIRED   = 5, ///< Downloaded OK but not playable due to expiery
-  SP_TRACK_OFFLINE_LIMIT_EXCEEDED = 6, ///< Waiting because device have reached max number of allowed tracks
+  SP_TRACK_OFFLINE_LIMIT_EXCEEDED = 6, ///< Waiting because device have reached maximum number of allowed tracks
   SP_TRACK_OFFLINE_DONE_RESYNC    = 7, ///< Downloaded OK and available but scheduled for re-download
 } sp_track_offline_status;
 
@@ -654,7 +654,7 @@ typedef struct sp_session_config {
             */
   const void *application_key;           ///< Your application key
   size_t application_key_size;           ///< The size_i32 of the application key in bytes
-  const char *user_agent;                /**< "User-Agent" for your application - max 255 characters long
+  const char *user_agent;                /**< "User-Agent" for your application - maximum 255 characters long
                  The User-Agent should be a relevant, customer facing identification of your application
                  */
 
@@ -783,7 +783,7 @@ SP_LIBEXPORT(sp_error) sp_session_relogin(sp_session *session);
  *
  * @param[in]   session      Your session object
  * @param[out]  buffer       The buffer to hold the username
- * @param[in]   buffer_size  The max size_i32 of the buffer that will hold the username.
+ * @param[in]   buffer_size  The maximum size_i32 of the buffer that will hold the username.
  *                           The resulting string is guaranteed to always be null terminated if
  *                           buffer_size > 0
  *
@@ -1416,7 +1416,7 @@ SP_LIBEXPORT(sp_link *) sp_link_create_from_image(sp_image * pimage);
  *
  * @param[in]   link         The Spotify link whose string representation you are interested in
  * @param[out]  buffer       The buffer to hold the string representation of link
- * @param[in]   buffer_size  The max size_i32 of the buffer that will hold the string representation
+ * @param[in]   buffer_size  The maximum size_i32 of the buffer that will hold the string representation
  *                           The resulting string is guaranteed to always be null terminated if
  *                           buffer_size > 0
  *

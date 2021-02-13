@@ -252,7 +252,7 @@ namespace interprocess_communication
 
          //wstring wstrKey(pszKey);
 
-         //m_oswindow = ::CreateWindowExW(0, L"small_ipc_rx_color::channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr);
+         //m_oswindow = ::CreateWindowExW(0, L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr);
 
          //if (m_oswindow == nullptr)
          //{
@@ -429,7 +429,7 @@ namespace interprocess_communication
       //   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       //   wcex.lpszMenuName = nullptr;
 
-      //   wcex.lpszClassName = L"small_ipc_rx_color::channel_message_queue_class";
+      //   wcex.lpszClassName = L"small_ipc_rx_::color::e_channel_message_queue_class";
 
       //   wcex.hIconSm = nullptr;
 

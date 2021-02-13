@@ -85,11 +85,11 @@ byte * shared_memory::detach_shared_memory(HGLOBAL & hglobal)
    if (m_memory.m_iOffset > 0)
    {
 
-      __pointer(shared_memory) pbase = clone();
+      __pointer(shared_memory) pusermessage = clone();
 
       impl_free(m_memory.m_pbStorage);
 
-      pbase->detach_shared_memory(hglobal);
+      pusermessage->detach_shared_memory(hglobal);
 
    }
    else
@@ -251,7 +251,7 @@ void shared_memory::set_data(void *pdata, memsize uiSize)
 
 /*void shared_memory::To(string & str, memsize iStart, memsize iEnd)
 {
-   iStart = max(iStart, 0);
+   iStart = maximum(iStart, 0);
    if(iEnd == -1)
       iEnd = this->get_size() - 1;
    char * pch = (char *) get_data();

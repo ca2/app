@@ -1300,7 +1300,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 //   ::rectangle_i32 rectangle;
 //
-//   rectangle_i32 = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
+//   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
 //
 //   ::rectangle_i32 rectTest;
 //
@@ -1350,7 +1350,7 @@ int_bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude
          
       }
 
-      auto rectangle_i32 = recta[i];
+      auto rectangle = recta[i];
 
       ::rectangle_i32 rectHitTest;
       

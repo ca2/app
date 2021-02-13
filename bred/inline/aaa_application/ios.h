@@ -2,8 +2,8 @@
 //
 //extern ::aura::aura g_aura;
 
-extern "C" void draw2d_factory_exchange();
-extern "C" void imaging_factory_exchange();
+extern "C" void draw2d_factory_exchange(::factory_map * pfactorymap);
+extern "C" void imaging_factory_exchange(::factory_map * pfactorymap);
 
 
 int main(int argc, char * argv[])

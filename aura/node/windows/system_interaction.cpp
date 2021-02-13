@@ -57,7 +57,7 @@
 //   void system_interaction::_001OnDestroy(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
 //      ::output_debug_string("system_interaction::_001OnDestroy");
 //

@@ -165,7 +165,7 @@ namespace draw2d
       //public:
 
       //   string                        m_strText;
-      //   ::draw2d::font_pointer        m_pfont;
+      //   ::write_text::font_pointer        m_pfont;
 
       //};
 
@@ -270,8 +270,8 @@ namespace draw2d
       virtual bool add_line(const point_f64 & point1, const point_f64 & point2);
 
 
-      virtual bool add_text_out(const ::point_f64& point, const string& strText, ::draw2d::font_pointer spfont);
-      virtual bool add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::draw2d::font_pointer pfont);
+      virtual bool add_text_out(const ::point_f64& point, const string& strText, ::write_text::font_pointer spfont);
+      virtual bool add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
 
 
       virtual void * detach();

@@ -82,7 +82,7 @@ namespace datetime
       {
          return strCandidate;
       }
-      else if(strCandidate == "min")
+      else if(strCandidate == "minimum")
       {
          return strCandidate;
       }

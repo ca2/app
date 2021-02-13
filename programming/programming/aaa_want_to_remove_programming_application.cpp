@@ -6,7 +6,7 @@ namespace programming
 
 
    application::application() :
-      m_semCompiler(max(1, ::get_processor_count()), max(1, ::get_processor_count()))
+      m_semCompiler(maximum(1, ::get_processor_count()), maximum(1, ::get_processor_count()))
    {
 
    }

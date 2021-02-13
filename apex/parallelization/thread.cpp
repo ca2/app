@@ -1085,61 +1085,38 @@ bool thread::raw_pump_message()
 }
 
 
-void thread::process_message(::message::base * pbase)
+::e_status thread::process_message(::message::message * pmessage)
 {
 
-   if (pbase->m_playeredUserPrimitive == nullptr)
-   {
-
-      process_thread_message(pbase);
-
-   }
-   else
-   {
-
-      __throw(todo("apex"));
-      // apex commented
-      //process_window_message(pbase);
-
-   }
+   return process_thread_message(pmessage);
 
 }
 
 
-void thread::process_thread_message(::message::base * pbase)
+::e_status thread::process_thread_message(::message::message * pmessage)
 {
-
-   ASSERT(pbase->m_playeredUserPrimitive == nullptr);
-
-   if (pbase->m_playeredUserPrimitive != nullptr)
-   {
-
-      __throw(todo("apex"));
-      // apex commented
-
-//      process_window_message(pbase);
-
-      return;
-
-   }
 
    try
    {
 
-      message_handler(pbase);
+      message_handler(pmessage);
+
+      return ::success;
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
-      if (!handle_exception(pe))
+      if (!handle_exception(&e))
       {
 
          __post_quit_message(-1);
 
-         pbase->m_lresult = -1;
+         pmessage->m_lresult = -1;
 
       }
+
+      return e.m_estatus;
 
    }
    catch (...)
@@ -1149,19 +1126,21 @@ void thread::process_thread_message(::message::base * pbase)
 
    }
 
+   return ::error_exception;
+
 }
 
 
 // apex commented
-//void thread::process_window_message(::message::base * pbase)
+//void thread::process_window_message(::user::message * pusermessage)
 //{
 //
-//   ASSERT(pbase->m_puserinteraction != nullptr);
+//   ASSERT(pusermessage->m_puserinteraction != nullptr);
 //
-//   if (pbase->m_puserinteraction == nullptr)
+//   if (pusermessage->m_puserinteraction == nullptr)
 //   {
 //
-//      process_thread_message(pbase);
+//      process_thread_message(pusermessage);
 //
 //      return;
 //
@@ -1170,13 +1149,13 @@ void thread::process_thread_message(::message::base * pbase)
 //   try
 //   {
 //
-//      pbase->m_puserinteraction->m_puiThis->message_handler(pbase);
+//      pusermessage->m_puserinteraction->m_puiThis->message_handler(pusermessage);
 //
 //   }
 //   catch (::exception_pointer pe)
 //   {
 //
-//      process_window_procedure_exception(pe, pbase);
+//      process_window_procedure_exception(pe, pusermessage);
 //
 //      TRACE("application::process_window_message : ::status::result processing window message (const ::exception::exception & )");
 //
@@ -1185,7 +1164,7 @@ void thread::process_thread_message(::message::base * pbase)
 //
 //         __post_quit_message(-1);
 //
-//         pbase->m_lresult = -1;
+//         pusermessage->m_lresult = -1;
 //
 //      }
 //
@@ -1672,10 +1651,10 @@ bool thread::thread_get_run() const
 }
 
 
-void thread::message_queue_message_handler(::message::base * pbase)
+void thread::message_queue_message_handler(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pbase);
+   UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -1833,6 +1812,10 @@ u32 __thread_entry(void * p);
 //
 //#endif
 
+   m_hthread = nullptr;
+
+   m_bitIsRunning = false;
+
    return estatus;
 
 }
@@ -1942,10 +1925,10 @@ u32 __thread_entry(void * p);
 }
 
 
-void thread::dispatch_thread_message(::message::message * pbase)
+void thread::dispatch_thread_message(::message::message * pusermessage)
 {
 
-   route_message(pbase);
+   route_message(pusermessage);
 
 }
 
@@ -1999,7 +1982,7 @@ sync_result thread::wait(const duration & duration)
 
          auto millisDelay = duration.millis();
 
-         auto dwStep = min(max(millisDelay / 10, 1), 100);
+         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
 
          while(is_thread_on(ithread))
          {
@@ -2128,24 +2111,22 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 void thread::process_window_procedure_exception(::exception_pointer pe,::message::message * pmessage)
 {
 
-   __pointer(::message::base) pbase(pmessage);
-
-   if(pbase->m_id == e_message_create)
+   if(pmessage->m_id == e_message_create)
    {
 
-      pbase->m_lresult = -1;
+      pmessage->m_lresult = -1;
 
    }
-   else if(pbase->m_id == e_message_paint)
+   else if(pmessage->m_id == e_message_paint)
    {
 
       // force validation of interaction_impl to prevent getting e_message_paint again
 
 #ifdef WIDOWSEX
-      ValidateRect(pbase->m_puserinteraction->get_safe_handle(),nullptr);
+      ValidateRect(pusermessage->m_puserinteraction->get_safe_handle(),nullptr);
 #endif
 
-      pbase->m_lresult = 0;
+      pmessage->m_lresult = 0;
 
    }
 
@@ -2157,14 +2138,12 @@ namespace thread_util
 
    inline bool IsEnterKey(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      return pbase->m_id == e_message_key_down && pbase->m_wparam == VK_RETURN;
+      return pmessage->m_id == e_message_key_down && pmessage->m_wparam == VK_RETURN;
    }
 
    inline bool IsButtonUp(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      return pbase->m_id == e_message_left_button_up;
+      return pmessage->m_id == e_message_left_button_up;
    }
 
 }
@@ -2228,65 +2207,65 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
    ENSURE(m_hthread == (hthread_t) nullptr);
 
-   if(m_id.is_empty())
-   {
+   //if(m_id.is_empty())
+   //{
 
-      m_id = type_name();
+   //   m_id = type_name();
 
-   }
+   //}
 
-#ifdef __DEBUG
-
-   string strId = m_id;
-
-   if (strId.contains_ci("forking_thread"))
-   {
-
-#if 0
-
-#ifdef WINDOWS_DESKTOP
-
-      ::exception::engine().reset();
-
-      OS_DWORD                dwDisplacement;
-
-      OS_DWORD                uia[4096];
-
-      dwDisplacement = 0;
-
-      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
-
-      ULONG BackTraceHash;
-
-      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
-
-      char sz[1024];
-
-      __zero(sz);
-
-      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
-
-      u32 uiLine = 0;
-
-      {
-         critical_section_lock csl(&::exception::engine().m_criticalsection);
-
-         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
-
-      }
-
-      strId =  string(sz) + "(" + __str(uiLine) + ") :: forking_thread";
-
-#endif
-
-#endif
-
-   }
-
-   m_pszDebug = strdup(strId);
-
-#endif
-
+//#ifdef __DEBUG
+//
+//   string strId = m_id;
+//
+//   if (strId.contains_ci("forking_thread"))
+//   {
+//
+//#if 0
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::exception::engine().reset();
+//
+//      OS_DWORD                dwDisplacement;
+//
+//      OS_DWORD                uia[4096];
+//
+//      dwDisplacement = 0;
+//
+//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+//
+//      ULONG BackTraceHash;
+//
+//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+//
+//      char sz[1024];
+//
+//      __zero(sz);
+//
+//      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+//
+//      u32 uiLine = 0;
+//
+//      {
+//         critical_section_lock csl(&::exception::engine().m_criticalsection);
+//
+//         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+//
+//      }
+//
+//      strId =  string(sz) + "(" + __str(uiLine) + ") :: forking_thread";
+//
+//#endif
+//
+//#endif
+//
+//   }
+//
+//   m_pszDebug = strdup(strId);
+//
+//#endif
+//
    auto pobject = get_context_object();
 
    if (::is_set(pobject) && pobject != this)
@@ -2581,7 +2560,7 @@ void thread::__os_finalize()
 ::e_status thread::osthread_init()
 {
 
-   set_current_handles();
+   //set_current_handles();
 
    m_bDedicated = true;
 
@@ -3965,12 +3944,12 @@ bool thread::initialize_message_queue()
 }
 
 
-void thread::message_handler(::message::base * pbase)
+void thread::message_handler(::message::message * pmessage)
 {
 
-   pre_translate_message(pbase);
+   pre_translate_message(pmessage);
 
-   route_message(pbase);
+   route_message(pmessage);
 
 }
 
@@ -3990,7 +3969,7 @@ void thread::message_handler(::message::base * pbase)
 
          MSG msg;
 
-         __copy(msg, message);
+         copy(&msg, &message);
 
          ::TranslateMessage(&msg);
 
@@ -4088,25 +4067,25 @@ void thread::message_handler(::message::base * pbase)
 
       }
 
-      __pointer(::message::base) pbase;
+      __pointer(::message::message) pmessage;
 
       if (get_context_application())
       {
 
-         pbase = get_context_application()->get_message_base(&message);
+         pmessage = get_context_application()->get_message(&message);
 
       }
       else if(get_context_session())
       {
 
-         pbase = get_context_session()->get_message_base(&message);
+         pmessage = get_context_session()->get_message(&message);
 
       }
 
-      if(pbase.is_set())
+      if(pmessage)
       {
 
-         process_base_message(pbase);
+         process_message(pmessage);
 
       }
 
@@ -4134,14 +4113,14 @@ void thread::message_handler(::message::base * pbase)
 }
 
 
-::e_status thread::process_base_message(::message::base * pbase)
-{
-
-   message_handler(pbase);
-
-   return true;
-
-}
+//::e_status thread::process_base_message(::message::message * pmessage)
+//{
+//
+//   message_handler(pmessage);
+//
+//   return true;
+//
+//}
 
 
 ::e_status thread::raw_process_message()
@@ -4150,14 +4129,14 @@ void thread::message_handler(::message::base * pbase)
    try
    {
 
-      ___pointer < ::message::message > spbase;
+      ___pointer < ::message::message > pmessage;
 
-      spbase = get_message_base(&m_message);
+      pmessage = get_message(&m_message);
 
-      if (spbase.is_set())
+      if (pmessage)
       {
 
-         route_message(spbase);
+         route_message(pmessage);
 
       }
 
@@ -4357,7 +4336,7 @@ bool thread::kick_thread()
 //void thread::_001OnThreadMessage(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::base) pbase(pmessage);
+//   __pointer(::user::message) pusermessage(pmessage);
 //
 //
 //

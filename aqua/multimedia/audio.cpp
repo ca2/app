@@ -101,31 +101,31 @@ namespace aqua
 
 } // namespace aura
 
-
-static PFUNCTION_GET_NEW_AUDIO g_pgetnewaudio = nullptr;
-
-
-CLASS_DECL_AQUA void set_get_new_audio(PFUNCTION_GET_NEW_AUDIO pgetnewaudio)
-{
-
-   g_pgetnewaudio = pgetnewaudio;
-
-}
-
-
-CLASS_DECL_AQUA ::aqua::audio * get_new_audio()
-{
-
-   if ((iptr)g_pgetnewaudio < 65536)
-   {
-
-      return nullptr;
-
-   }
-
-   return g_pgetnewaudio();
-
-}
+//
+//static PFUNCTION_GET_NEW_AUDIO g_pgetnewaudio = nullptr;
+//
+//
+//CLASS_DECL_AQUA void set_get_new_audio(PFUNCTION_GET_NEW_AUDIO pgetnewaudio)
+//{
+//
+//   g_pgetnewaudio = pgetnewaudio;
+//
+//}
+//
+//
+//CLASS_DECL_AQUA ::aqua::audio * get_new_audio()
+//{
+//
+//   if ((iptr)g_pgetnewaudio < 65536)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return g_pgetnewaudio();
+//
+//}
 
 
 CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext)

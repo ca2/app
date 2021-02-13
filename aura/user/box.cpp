@@ -1,8 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 //#include "apex/platform/pred_procedure.h"
 
@@ -576,7 +575,7 @@ namespace user
 
 
 
-   void box::on_command(::user::command * pcommand)
+   void box::on_command(::message::command * pcommand)
    {
 
       ::user::interaction::on_command(pcommand);
@@ -678,9 +677,9 @@ namespace user
    void box::on_simple_command(::message::simple_command * psimplecommand)
    {
 
-      switch (psimplecommand->m_esimplecommand)
+      switch (psimplecommand->command())
       {
-         case simple_command_load_window_rect:
+         case e_simple_command_load_window_rect:
 
             WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
 

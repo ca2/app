@@ -1,10 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "apex/platform/static_setup.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 
 
@@ -28,7 +27,33 @@ namespace user
    }
 
 
-   ::user::interaction * user::get_capture()
+   ::e_status user::initialize(::layered * pobjectContext)
+   {
+
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = create_windowing();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::user::interaction * user::interaction(oswindow oswindow)
    {
 
       auto pwindowing = windowing();
@@ -40,9 +65,44 @@ namespace user
 
       }
 
-      auto pwindow = pwindowing->get_capture();
+      auto pwindow = pwindowing->window(oswindow);
 
       if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::user::interaction * user::get_mouse_capture(::thread * pthread)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_mouse_capture(pthread);
+
+      if (::is_null(pwindow))
       {
 
          return nullptr;
@@ -63,7 +123,7 @@ namespace user
    }
 
 
-   ::user::interaction * user::get_focus()
+   ::user::interaction * user::get_keyboard_focus(::thread * pthread)
    {
 
       auto pwindowing = windowing();
@@ -75,7 +135,7 @@ namespace user
 
       }
 
-      auto pwindow = pwindowing->get_focus();
+      auto pwindow = pwindowing->get_keyboard_focus(pthread);
 
       if (::is_null(pwindowing))
       {
@@ -93,12 +153,12 @@ namespace user
 
       }
 
-      return pimpl->m_puserinteractionFocus;
+      return pimpl->m_puserinteractionFocus1;
 
    }
 
 
-   ::user::interaction * user::get_active_window()
+   ::user::interaction * user::get_active_window(::thread * pthread)
    {
 
       auto pwindowing = windowing();
@@ -110,7 +170,7 @@ namespace user
 
       }
 
-      auto pwindow = pwindowing->get_active_window();
+      auto pwindow = pwindowing->get_active_window(pthread);
 
       if (::is_null(pwindowing))
       {
@@ -347,7 +407,7 @@ namespace user
 
       }
 
-      estatus = create_os_windowing();
+      estatus = create_windowing();
 
       if (!estatus)
       {
@@ -733,15 +793,15 @@ namespace aura
    //}
 
 
-   ::draw2d::font_list * session::get_single_column_font_list()
+   ::write_text::font_list * session::get_single_column_font_list()
    {
 
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         __compose(m_pfontlistSingleColumn, __create_new < ::draw2d::font_list > ());
+         __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
-         m_pfontlistSingleColumn->set_font_list_type(::draw2d::font_list::type_single_column);
+         m_pfontlistSingleColumn->set_font_list_type(::write_text::font_list::type_single_column);
 
          // m_pfontlistSingleColumn->set_need_layout();
 
@@ -1124,7 +1184,7 @@ namespace user
    }
 
 
-   ::e_status user::create_os_windowing()
+   ::e_status user::create_windowing()
    {
 
       ::e_status estatus = ::success;

@@ -15,6 +15,17 @@ namespace graphics
 
 
 
+namespace user
+{
+
+
+   class plain_edit;
+
+   class message;
+
+
+} // namespace user
+
 
 //// like ON_MESSAGE but no return value
 //#define ON_MESSAGE_VOID(message, memberFxn) \
@@ -29,15 +40,6 @@ namespace graphics
 #include "aura/user/callback.h"
 #include "aura/user/primitive.h"
 
-
-namespace user
-{
-
-   
-   class plain_edit;
-
-
-} // namespace user
 
 
 #include "aura/user/style_control.h"
@@ -91,10 +93,15 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 
 #include "system.h"
 
+#include "mouse.h"
+
+#include "aura/user/message.h"
 
 #include "windowing.h"
+
 #include "key.h"
-#include "mouse.h"
+
+#include "aura/message/user.h"
 
 
 

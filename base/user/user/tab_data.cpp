@@ -1,8 +1,6 @@
 // Created by Camilo 2021-01-08 <3TBS!!
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -24,15 +22,15 @@ namespace user
    {
 
       m_bNoClient = false;
-      //m_brushTextHover->create_solid(ARGB(255, 0, 127, 255));
-      //m_brushTextSel->create_solid(ARGB(255, 0, 0, 0));
-      //m_brushText->create_solid(ARGB(163, 0, 0, 0));
-      m_brushCloseHover->create_solid(ARGB(255, 255, 127, 0));
-      m_brushCloseSel->create_solid(ARGB(255, 0, 0, 0));
-      m_brushClose->create_solid(ARGB(163, 0, 0, 0));
-      //m_penBorderHover->create_solid(1.0, ARGB(255, 0, 0, 0));
-      //m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
-      //m_penBorder->create_solid(1.0, ARGB(163, 90, 90, 80));
+      //m_brushTextHover->create_solid(argb(255, 0, 127, 255));
+      //m_brushTextSel->create_solid(argb(255, 0, 0, 0));
+      //m_brushText->create_solid(argb(163, 0, 0, 0));
+      m_brushCloseHover->create_solid(argb(255, 255, 127, 0));
+      m_brushCloseSel->create_solid(argb(255, 0, 0, 0));
+      m_brushClose->create_solid(argb(163, 0, 0, 0));
+      //m_penBorderHover->create_solid(1.0, argb(255, 0, 0, 0));
+      //m_penBorderSel->create_solid(1.0, argb(255, 0, 0, 0));
+      //m_penBorder->create_solid(1.0, argb(163, 90, 90, 80));
 
       m_bEnableCloseAll = false;
       m_rectTabClient.set(0, 0, 0, 0);

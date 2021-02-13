@@ -59,7 +59,7 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       item                             m_itemClick;
-      ::draw2d::font_pointer           m_pfontTab;
+      ::write_text::font_pointer           m_pfontTab;
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
@@ -111,7 +111,7 @@ namespace user
       virtual ::user::interaction * pane_window(::index iTab);
       virtual ::user::place_holder * pane_holder(::index iTab);
 
-      virtual void _000OnMouse(::message::mouse * pmouse) override;
+      //virtual void _000OnMouse(::message::mouse * pmouse) override;
 
       virtual ::user::interaction * get_view_uie();
 

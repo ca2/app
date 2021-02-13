@@ -1081,7 +1081,7 @@ strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
-      CHAR_TYPE* pszBuffer = get_string_buffer(max(nNewLength, nOldLength));
+      CHAR_TYPE* pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
 
       CHAR_TYPE* pszStart = pszBuffer + iStart;
       CHAR_TYPE* pszEnd = pszBuffer + nOldLength;
@@ -1147,7 +1147,7 @@ strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strs
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
-      CHAR_TYPE * pszBuffer = get_string_buffer(max(nNewLength, nOldLength));
+      CHAR_TYPE * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
 
       CHAR_TYPE * pszStart = pszBuffer + iStart;
       CHAR_TYPE * pszEnd = pszBuffer + nOldLength;
@@ -1215,7 +1215,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
-      CHAR_TYPE* pszBuffer = get_string_buffer(max(nNewLength, nOldLength));
+      CHAR_TYPE* pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
 
       const CHAR_TYPE* pszStart = pszBuffer + iStart;
       const CHAR_TYPE* pszEnd = pszBuffer + nOldLength;
@@ -1296,7 +1296,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
-      CHAR_TYPE * pszBuffer = get_string_buffer(max(nNewLength, nOldLength));
+      CHAR_TYPE * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
 
       CHAR_TYPE * pszStart = pszBuffer + iStart;
       CHAR_TYPE * pszEnd = pszBuffer + nOldLength;

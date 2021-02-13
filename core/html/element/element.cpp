@@ -540,7 +540,7 @@ namespace html
 
                x = pdata->m_pcoredata->m_layoutstate1.m_cxa.pop();
 
-               fLastX = max(xMax, x);
+               fLastX = maximum(xMax, x);
 
                pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = fLastX;
 
@@ -573,13 +573,13 @@ namespace html
          {
 
             //pdata->m_pcoredata->m_layoutstate1.m_cya.last() += m_pimpl->m_box.get_cy();
-            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = max(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
+            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = maximum(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
 
          }
          else
          {
 
-            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = max(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
+            pdata->m_pcoredata->m_layoutstate1.m_cya.last() = maximum(pdata->m_pcoredata->m_layoutstate1.m_cya.last(), pdata->m_pcoredata->m_layoutstate1.m_cy);
 
             pdata->m_pcoredata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
 
@@ -589,7 +589,7 @@ namespace html
 
          x = pdata->m_pcoredata->m_layoutstate1.m_cxa.last();
 
-         fLastX = max(xMax, x);
+         fLastX = maximum(xMax, x);
 
          pdata->m_pcoredata->m_layoutstate1.m_cxMax.last() = fLastX;
 
@@ -621,7 +621,7 @@ namespace html
 
             }
 
-            m_pimpl->set_x(pdata, max(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
+            m_pimpl->set_x(pdata, maximum(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
 
 
    }
@@ -853,7 +853,7 @@ namespace html
    }
 
 
-   void element::load(html_data * pdata, base * pbase)
+   void element::load(html_data * pdata, base * pusermessage)
    {
 
       if (pdata == nullptr)
@@ -870,7 +870,7 @@ namespace html
 
       }
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return;
@@ -879,7 +879,7 @@ namespace html
 
       sync_lock lock(pdata->m_pcoredata->mutex());
 
-      m_pbase = pbase;
+      m_pbase = pusermessage;
 
       m_elementalptra.remove_all();
 
@@ -1251,7 +1251,7 @@ namespace html
       if (m_pimpl != nullptr)
       {
 
-         if (m_pimpl->hit_test(pdata, point_i32))
+         if (m_pimpl->hit_test(pdata, point))
          {
 
             element * pelemental;
@@ -1679,7 +1679,7 @@ namespace html
    //}
 
 
-   ::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
+   ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
    {
 
       color32_t cr;
@@ -1716,14 +1716,14 @@ namespace html
 
       }
 
-      return ::color();
+      return ::color::color();
 
       //return m_pdata->m_pcoredata->m_pform->get_color(cr, ecolor);
 
    }
 
 
-   ::draw2d::font_pointer element::get_font()
+   ::write_text::font_pointer element::get_font()
    {
 
       //font = m_pdata->get_font(this)->m_font;

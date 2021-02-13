@@ -21,7 +21,7 @@ namespace user
       using ::user::list::_001HitTest_;
       virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
-      void _000OnMouse(::message::mouse * pmouse) override;
+      //void _000OnMouse(::message::mouse * pmouse) override;
 
       void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
@@ -68,7 +68,7 @@ namespace user
       virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
       virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult) override;
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult) override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;

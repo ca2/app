@@ -37,7 +37,7 @@ string_to_string * g_pmapFontPath;
 //public:
 //
 //   string_array                    m_stra;
-//   ::draw2d::font::csa        m_csa;
+//   ::write_text::font::csa        m_csa;
 //
 //};
 //
@@ -149,7 +149,7 @@ graphics::graphics()
 
    m_bPrinting = false;
    m_pdc = nullptr;
-   m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+   m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
 
    m_pfont.create();
    m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
@@ -204,20 +204,20 @@ bool graphics::IsPrinting()
 }
 
 
-bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
-{
+//bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+//{
+//
+//    __throw(not_supported_exception());
+//
+//}
 
-    __throw(not_supported_exception());
 
-}
-
-
-bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
-{
-
-    __throw(not_supported_exception());
-
-}
+//bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+//{
+//
+//    __throw(not_supported_exception());
+//
+//}
 
 
 bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
@@ -454,7 +454,7 @@ point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
 
     m_pdc = cairo_create((cairo_surface_t *)pbitmap->get_os_data());
 
-    set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+    set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
     m_pbitmap = pbitmap;
 
@@ -811,7 +811,7 @@ bool graphics::polyline(const ::point_f64* lpPoints, count nCount)
 }
 
 
-bool graphics::fill_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
+bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
 {
 
     sync_lock ml(cairo_mutex());
@@ -832,7 +832,7 @@ bool graphics::fill_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pb
 }
 
 
-bool graphics::draw_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
+bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
 {
 
     sync_lock ml(cairo_mutex());
@@ -853,7 +853,7 @@ bool graphics::draw_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen
 }
 
 
-bool graphics::invert_rect(const ::rectangle_f64 & rectangle)
+bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 {
 
     ::exception::throw_not_implemented();
@@ -1275,7 +1275,7 @@ bool graphics::draw_polygon(const POINT_F64 * pa, count nCount)
 }
 
 
-bool graphics::polygon_i32(const POINT_F64 * pa, count nCount)
+bool graphics::polygon(const POINT_F64 * pa, count nCount)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1302,7 +1302,7 @@ bool graphics::polygon_i32(const POINT_F64 * pa, count nCount)
 
 
 
-bool graphics::rectangle_i32(const ::rectangle_f64 & rectangle)
+bool graphics::rectangle(const ::rectangle_f64 & rectangle)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1314,7 +1314,7 @@ bool graphics::rectangle_i32(const ::rectangle_f64 & rectangle)
 }
 
 
-bool graphics::round_rect(const ::rectangle_f64 & rectangle, double dRadius)
+bool graphics::round_rectangle(const ::rectangle_f64 & rectangle, double dRadius)
 {
 
     ::exception::throw_not_implemented();
@@ -1615,7 +1615,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::GetPixel(double x, double y)
+::color::color graphics::GetPixel(double x, double y)
 {
 
     ::exception::throw_not_implemented();
@@ -1625,7 +1625,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::GetPixel(const ::point_f64 & point)
+::color::color graphics::GetPixel(const ::point_f64 & point)
 {
 
     ::exception::throw_not_implemented();
@@ -1635,7 +1635,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::SetPixel(double x, double y, const ::color & color)
+::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1645,7 +1645,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::SetPixel(const ::point_f64 & point, const ::color & color)
+::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1655,7 +1655,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-//bool graphics::FloodFill(double x, double y, const ::color & color)
+//bool graphics::FloodFill(double x, double y, const ::color::color & color)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1665,7 +1665,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 //
 //
-//bool graphics::ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType)
+//bool graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1700,44 +1700,44 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 
 
-size_f64 graphics::TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::size_f64(0, 0);
-
-}
-
-
-size_f64 graphics::TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::size_f64(0, 0);
-
-}
-
-
-size_f64 graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::size_f64(0, 0);
-
-}
-
-
-size_f64 graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::size_f64(0, 0);
-
-}
+//size_f64 graphics::TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
+//
+//size_f64 graphics::TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
+//
+//size_f64 graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
+//
+//size_f64 graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return ::size_f64(0, 0);
+//
+//}
 
 
 size_f64 graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
@@ -1780,27 +1780,27 @@ size_f64 graphics::GetOutputTabbedTextExtent(const string & str, count nTabPosit
 }
 
 
-i32 graphics::GetTextFace(count nCount, char * lpszFacename)
-{
+//i32 graphics::GetTextFace(count nCount, char * lpszFacename)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//i32 graphics::GetTextFace(string & rString)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
-    ::exception::throw_not_implemented();
 
-    return 0;
-
-}
-
-
-i32 graphics::GetTextFace(string & rString)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
+bool graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
     sync_lock sl(cairo_mutex());
@@ -1915,7 +1915,7 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 }
 
 
-bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
+bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
     ::exception::throw_not_implemented();
@@ -2343,7 +2343,7 @@ i32 graphics::EndDoc()
 //}
 
 
-bool graphics::SetPixelV(double x, double y, const ::color & color)
+bool graphics::SetPixelV(double x, double y, const ::color::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -2353,7 +2353,7 @@ bool graphics::SetPixelV(double x, double y, const ::color & color)
 }
 
 
-bool graphics::SetPixelV(const ::point_f64 & point, const ::color & color)
+bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -2427,7 +2427,7 @@ bool graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPo
 //}
 
 
-//::draw2d::font * graphics::get_current_font()
+//::write_text::font * graphics::get_current_font()
 //{
 //
 //    return m_pfont;
@@ -2981,14 +2981,14 @@ bool graphics::DeleteDC()
 }
 
 
-i32 graphics::StartDoc(const char * lpszDocName)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
+//i32 graphics::StartDoc(const char * lpszDocName)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
 
 
 i32 graphics::SaveDC()
@@ -3063,7 +3063,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-//::e_status graphics::set(::draw2d::font* pfont)
+//::e_status graphics::set(::write_text::font* pfont)
 //{
 //
 //    if (!::draw2d::graphics::set(pfont))
@@ -3547,7 +3547,7 @@ bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectPa
 
     cairo_keep keep(m_pdc);
 
-    rectangle_f64 rectangle_i32;
+    rectangle_f64 rectangle;
 
     __copy(rectangle, rectParam);
 
@@ -3927,7 +3927,7 @@ size_f64 graphics::GetOutputTextExtent(const string & str)
 bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
-   string str(lpszString, min_non_neg(iIndex, nCount));
+   string str(lpszString, minimum_non_negative(iIndex, nCount));
 
    str = ::str::q_valid(str);
 
@@ -4040,7 +4040,7 @@ bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize n
 
       GetTextExtent(s0, strLine, str.get_length(), str.get_length());
 
-      size.cx = max(size.cx, s0.cx);
+      size.cx = maximum(size.cx, s0.cx);
 
       size.cy += s0.cy;
 
@@ -4061,7 +4061,7 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 
     }
 
-    string str(lpszString, min(iIndex, nCount));
+    string str(lpszString, minimum(iIndex, nCount));
 
     str = ::str::q_valid(str);
 
@@ -4192,7 +4192,7 @@ bool graphics::GetTextExtent(size_f64 & size_f64, const string & str)
 }
 
 
-bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4215,7 +4215,7 @@ bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & colo
 }
 
 
-//bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+//bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
 //{
 //
 //    sync_lock ml(cairo_mutex());
@@ -4255,7 +4255,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
 #if defined(USE_PANGO)
 
-    auto rectangle_i32 = ::rectangle_f64(point_f64(x, y), size_f64(65535.0, 65535.0));
+    auto rectangle = ::rectangle_f64(point_f64(x, y), size_f64(65535.0, 65535.0));
 
     internal_draw_text(block, rectangle, e_align_none);
 
@@ -4385,7 +4385,7 @@ bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
 }
 
 
-bool graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint)
+bool graphics::set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint)
 {
 
    return ::draw2d::graphics::set_text_rendering_hint(etextrenderinghint);
@@ -4509,12 +4509,12 @@ void cairo_image_surface_blur(cairo_surface_t* surface, double radius)
 
                     i32 t = (i32)(y < radius ? 0 : y - radius);
 
-                    i32 rectangle_i32 = (i32)(x + radius >= width ? width - 1 : x + radius);
+                    i32 r = (i32)(x + radius >= width ? width - 1 : x + radius);
 
                     i32 b = (i32)(y + radius >= height ? height - 1 : y + radius);
 
-                    i32 tot = precalc[rectangle_i32 + b*width] + precalc[l + t*width] -
-                              precalc[l + b*width] - precalc[rectangle_i32 + t*width];
+                    i32 tot = precalc[r + b*width] + precalc[l + t*width] -
+                              precalc[l + b*width] - precalc[r + t*width];
 
                     *pix = (unsigned char)(tot*mul);
 
@@ -4586,7 +4586,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
    if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
    {
 
-      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, max(pbrush->m_size.cx, pbrush->m_size.cy));
+      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
       cairo_pattern_add_color_stop_rgba(ppattern, 0., colorref_get_r_value(pbrush->m_color1) / 255.0, colorref_get_g_value(pbrush->m_color1) / 255.0, colorref_get_b_value(pbrush->m_color1) / 255.0, colorref_get_a_value(pbrush->m_color1) / 255.0);
 
@@ -4725,7 +4725,7 @@ bool graphics::_set(::draw2d::pen * ppen)
 #if !defined(USE_PANGO)
 
 
-bool graphics::_set(::draw2d::font * pfontParam)
+bool graphics::_set(::write_text::font * pfontParam)
 {
 
    sync_lock ml(cairo_mutex());
@@ -4766,7 +4766,7 @@ bool graphics::_set(::draw2d::font * pfontParam)
 
 #ifdef ANDROID
 
-   float fDpi = max(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
+   float fDpi = maximum(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
 
    float fDensity = ::oslocal()->m_fDensity;
 
@@ -5492,7 +5492,7 @@ bool graphics::_set(const ::text_out & textout)
 
     sync_lock ml(cairo_mutex());
 
-    auto rectangle_i32 = ::rectangle_f64(textout.m_point, size_f64(65535.0, 65535.0));
+    auto rectangle = ::rectangle_f64(textout.m_point, size_f64(65535.0, 65535.0));
 
 #if defined(USE_PANGO)
 
@@ -5525,7 +5525,7 @@ bool graphics::_set(const ::draw_text & drawtext)
 
    sync_lock ml(cairo_mutex());
 
-   auto rectangle_i32 = drawtext.m_rectangle;
+   auto rectangle = drawtext.m_rectangle;
 
 #if defined(USE_PANGO)
 
@@ -5650,79 +5650,79 @@ bool graphics::flush()
 }
 
 
-#ifdef WINDOWS
-
-
-bool graphics::attach_hdc(HDC hdc)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    if (m_hdcAttach != nullptr)
-    {
-
-        detach_hdc();
-
-    }
-
-    m_psurfaceAttach = cairo_win32_surface_create(hdc);
-
-    if (m_psurfaceAttach == nullptr)
-    {
-
-        return false;
-
-    }
-
-    m_pdc = cairo_create(m_psurfaceAttach);
-
-    if (m_pdc == nullptr)
-    {
-
-        cairo_surface_destroy(m_psurfaceAttach);
-
-        return false;
-
-    }
-
-    m_hdcAttach = hdc;
-
-    m_osdata[0] = m_pdc;
-
-    return false;
-
-}
-
-HDC graphics::detach_hdc()
-{
-
-    sync_lock ml(cairo_mutex());
-
-    if (m_hdcAttach == nullptr)
-    {
-
-        return nullptr;
-
-    }
-
-    HDC hdc = m_hdcAttach;
-
-    cairo_surface_destroy(m_psurfaceAttach);
-
-    m_psurfaceAttach = nullptr;
-
-    return hdc;
-
-}
-
-
-#endif // WINDOWS
+//#ifdef WINDOWS
+//
+//
+//bool graphics::attach_hdc(HDC hdc)
+//{
+//
+//    sync_lock ml(cairo_mutex());
+//
+//    if (m_hdcAttach != nullptr)
+//    {
+//
+//        detach_hdc();
+//
+//    }
+//
+//    m_psurfaceAttach = cairo_win32_surface_create(hdc);
+//
+//    if (m_psurfaceAttach == nullptr)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//    m_pdc = cairo_create(m_psurfaceAttach);
+//
+//    if (m_pdc == nullptr)
+//    {
+//
+//        cairo_surface_destroy(m_psurfaceAttach);
+//
+//        return false;
+//
+//    }
+//
+//    m_hdcAttach = hdc;
+//
+//    m_osdata[0] = m_pdc;
+//
+//    return false;
+//
+//}
+//
+//HDC graphics::detach_hdc()
+//{
+//
+//    sync_lock ml(cairo_mutex());
+//
+//    if (m_hdcAttach == nullptr)
+//    {
+//
+//        return nullptr;
+//
+//    }
+//
+//    HDC hdc = m_hdcAttach;
+//
+//    cairo_surface_destroy(m_psurfaceAttach);
+//
+//    m_psurfaceAttach = nullptr;
+//
+//    return hdc;
+//
+//}
+//
+//
+//#endif // WINDOWS
 
 
 #if defined(USE_PANGO)
 
 
-void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
+void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
 {
 
     sync_lock ml(cairo_mutex());
@@ -5737,12 +5737,12 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
     printf("Total fonts: %d", n_families);
 
-    __pointer(::draw2d::font_enum_item) item;
+    __pointer(::write_text::font_enum_item) item;
 
     for (int i = 0; i < n_families; i++)
     {
 
-        item = __new(::draw2d::font_enum_item);
+        item = __new(::write_text::font_enum_item);
 
         PangoFontFamily * pfamily = families[i];
 
@@ -5764,164 +5764,164 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
 #else
 
-
-void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
-{
-
-   __pointer(::draw2d::font_enum_item) pitem;
-
-#if DEBUG_WINDOWS_C_ANDROID_FONTS
-
-   ::file::listing listing(get_context());
-
-   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
-
-   __pointer(ttf_util) putil;
-
-   ::e_status estatus = __construct_new(putil);
-
-   for (auto& path : listing)
-   {
-
-      pitem = __new(::draw2d::font_enum_item);
-
-      pitem->m_strFile = path;
-
-      string strName = putil->GetFontNameFromFile(path);
-
-      if (strName.is_empty())
-      {
-
-         strName = path.title();
-
-      }
-
-      pitem->m_strName = strName;
-
-      itema.add(pitem);
-
-      g_pmapFontFaceName->set_at(strName, path);
-
-
-   }
-
-
-#elif defined(LINUX)
-
-   sync_lock ml(cairo_mutex());
-
-   FcPattern *    pat;
-
-   FcObjectSet *  os;
-
-   FcFontSet *    fs;
-
-   FcChar8 *      s;
-
-   FcChar8 *      file;
-
-   int            i;
-
-   if (!g_fcResult)
-   {
-
-      g_fcResult = FcInit();
-
-   }
-
-   if (!g_fcConfig)
-   {
-
-      g_fcConfig = FcConfigGetCurrent();
-
-      FcConfigSetRescanInterval(g_fcConfig, 30);
-
-   }
-
-   pat = FcPatternCreate();
-
-   os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, FC_FILE, nullptr);
-
-   fs = FcFontList(g_fcConfig, pat, os);
-
-   printf("Total fonts: %d", fs->nfont);
-
-   for (i = 0; fs && i < fs->nfont; i++)
-   {
-
-      pitem = __new(::draw2d::font_enum_item);
-
-      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
-
-      //FcPatternPrint(font);
-
-      s = FcNameUnparse(font);
-
-      string str((const char *)s);
-
-      int iFind = str.find(":");
-
-      if (iFind > 0)
-      {
-
-         str = str.Left(iFind);
-
-      }
-
-      if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
-      {
-
-         //printf("Filename: %s", file);
-
-         pitem->m_strFile = (const char *)file;
-
-      }
-      else
-      {
-
-         pitem->m_strFile = str;
-
-      }
-
-      //printf("Font: %s\n", str.c_str());
-
-      //printf("Font: %s\n", s);
-
-      pitem->m_strName = str;
-
-      pitem->m_ecs = ::draw2d::font::cs_default;
-
-      itema.add(pitem);
-
-      free(s);
-
-   }
-
-   if (fs != nullptr)
-   {
-
-      FcFontSetDestroy(fs);
-
-   }
-
-#elif defined(WINDOWS)
-
-
-   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
-
-#elif defined(ANDROID)
-
-   auto psession = Session;
-
-   itema.add(psession->m_fontenumitema);
-
-#else
-
-    __throw(not_implemented());
-
-#endif
-
-}
+//
+//void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+//{
+//
+//   __pointer(::write_text::font_enum_item) pitem;
+//
+//#if DEBUG_WINDOWS_C_ANDROID_FONTS
+//
+//   ::file::listing listing(get_context());
+//
+//   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
+//
+//   __pointer(ttf_util) putil;
+//
+//   ::e_status estatus = __construct_new(putil);
+//
+//   for (auto& path : listing)
+//   {
+//
+//      pitem = __new(::write_text::font_enum_item);
+//
+//      pitem->m_strFile = path;
+//
+//      string strName = putil->GetFontNameFromFile(path);
+//
+//      if (strName.is_empty())
+//      {
+//
+//         strName = path.title();
+//
+//      }
+//
+//      pitem->m_strName = strName;
+//
+//      itema.add(pitem);
+//
+//      g_pmapFontFaceName->set_at(strName, path);
+//
+//
+//   }
+//
+//
+//#elif defined(LINUX)
+//
+//   sync_lock ml(cairo_mutex());
+//
+//   FcPattern *    pat;
+//
+//   FcObjectSet *  os;
+//
+//   FcFontSet *    fs;
+//
+//   FcChar8 *      s;
+//
+//   FcChar8 *      file;
+//
+//   int            i;
+//
+//   if (!g_fcResult)
+//   {
+//
+//      g_fcResult = FcInit();
+//
+//   }
+//
+//   if (!g_fcConfig)
+//   {
+//
+//      g_fcConfig = FcConfigGetCurrent();
+//
+//      FcConfigSetRescanInterval(g_fcConfig, 30);
+//
+//   }
+//
+//   pat = FcPatternCreate();
+//
+//   os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, FC_FILE, nullptr);
+//
+//   fs = FcFontList(g_fcConfig, pat, os);
+//
+//   printf("Total fonts: %d", fs->nfont);
+//
+//   for (i = 0; fs && i < fs->nfont; i++)
+//   {
+//
+//      pitem = __new(::write_text::font_enum_item);
+//
+//      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
+//
+//      //FcPatternPrint(font);
+//
+//      s = FcNameUnparse(font);
+//
+//      string str((const char *)s);
+//
+//      int iFind = str.find(":");
+//
+//      if (iFind > 0)
+//      {
+//
+//         str = str.Left(iFind);
+//
+//      }
+//
+//      if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
+//      {
+//
+//         //printf("Filename: %s", file);
+//
+//         pitem->m_strFile = (const char *)file;
+//
+//      }
+//      else
+//      {
+//
+//         pitem->m_strFile = str;
+//
+//      }
+//
+//      //printf("Font: %s\n", str.c_str());
+//
+//      //printf("Font: %s\n", s);
+//
+//      pitem->m_strName = str;
+//
+//      pitem->m_ecs = ::write_text::font::cs_default;
+//
+//      itema.add(pitem);
+//
+//      free(s);
+//
+//   }
+//
+//   if (fs != nullptr)
+//   {
+//
+//      FcFontSetDestroy(fs);
+//
+//   }
+//
+//#elif defined(WINDOWS)
+//
+//
+//   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
+//
+//#elif defined(ANDROID)
+//
+//   auto psession = Session;
+//
+//   itema.add(psession->m_fontenumitema);
+//
+//#else
+//
+//    __throw(not_implemented());
+//
+//#endif
+//
+//}
 
 
 #endif
@@ -5957,7 +5957,7 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
         string_array stra;
 
-        ::draw2d::font_enum_item_array itema;
+        ::write_text::font_enum_item_array itema;
 
         enum_fonts(itema);
 

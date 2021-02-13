@@ -31,7 +31,7 @@
  } // namespace base
 
 
- void __node_base_factory_exchange()
+ void __node_base_factory_exchange(::factory_map * pfactorymap)
  {
 
     ::base::windows::factory_exchange factoryexchange;

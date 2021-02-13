@@ -54,7 +54,7 @@ namespace userstack
       DECL_GEN_SIGNAL(_001OnApp2000);
 
 
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::user::message * pusermessage);
 
 
       virtual void message_queue_message_handler(::message::message * pmessage);

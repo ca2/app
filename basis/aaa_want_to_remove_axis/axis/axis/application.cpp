@@ -1198,7 +1198,7 @@ m_millisHeartBeat.Now();
    void application::process_message_filter(i32 code,::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
       UNREFERENCED_PARAMETER(code);
 
@@ -1418,7 +1418,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   //__pointer(::message::base) application::get_message_base(LPMESSAGE pmsg)
+   //__pointer(::user::message) application::get_message_base(LPMESSAGE pmsg)
 
    //{
 

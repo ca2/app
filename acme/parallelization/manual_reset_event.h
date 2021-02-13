@@ -34,22 +34,23 @@ public:
 };
 
 
-class CLASS_DECL_ACME i32_counter :
+template < primitive_integral INTEGRAL >
+class counter :
    public manual_reset_event
 {
 public:
 
 
-   interlocked_i32      m_i;
-
-   
-   i32_counter(long lCount) : m_i(lCount) {}
+   interlocked < INTEGRAL >      m_interlocked;
 
 
-   long operator ++()
+   counter(long lCount) : m_interlocked(lCount) {}
+
+
+   INTEGRAL operator ++()
    {
 
-      auto i = --m_i;
+      INTEGRAL i = --m_interlocked;
 
       if (i <= 0)
       {
@@ -63,10 +64,10 @@ public:
    }
 
 
-   long operator ++(int)
+   INTEGRAL operator ++(int)
    {
 
-      auto i = m_i;
+      INTEGRAL i = m_interlocked;
    
       ++(*this);
 
@@ -77,43 +78,4 @@ public:
 };
 
 
-class CLASS_DECL_ACME counter :
-   public manual_reset_event
-{
-public:
 
-
-   interlocked_count       m_count;
-
-
-   counter(::count lCount) : m_count(lCount) {}
-
-
-   ::count operator ++()
-   {
-
-      ::count c = --m_count;
-
-      if (c <= 0)
-      {
-
-         SetEvent();
-
-      }
-
-      return c;
-
-   }
-
-   ::count operator ++(int)
-   {
-
-      ::count c = m_count;
-
-      ++(*this);
-
-      return c;
-
-   }
-
-};

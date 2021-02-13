@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "acme/const/timer.h"
 #include "aqua/xml.h"
@@ -440,7 +438,11 @@ namespace user
 
             auto psession = Session;
 
-            auto pointCursor = psession->get_cursor_pos();
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
 
             bool bShowTabs = rectTab.contains(pointCursor);
 
@@ -494,7 +496,11 @@ namespace user
 
             auto psession = Session;
 
-            auto pointCursor = psession->get_cursor_pos();
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
 
             if(get_data()->m_bVertical)
             {
@@ -609,9 +615,9 @@ namespace user
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
-      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
+      get_data()->m_pen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -670,7 +676,7 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -699,7 +705,7 @@ namespace user
                   if (m_itemHover == iTab && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -719,7 +725,7 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -772,7 +778,7 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -805,7 +811,7 @@ namespace user
                   if (m_itemHover == iTab  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -823,7 +829,7 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -907,13 +913,13 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      get_data()->m_pen->create_solid(1,RGB(32,32,32));
+      get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->fill_rect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
+      pgraphics->fill_rectangle(get_data()->m_rectTab, argb(0xc0, 250, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -965,7 +971,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -987,7 +993,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1040,7 +1046,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1054,7 +1060,7 @@ namespace user
 
                pgraphics->set(get_font(pstyle, e_state_selected));
 
-               brushText->create_solid(ARGB(255, 0, 0, 0));
+               brushText->create_solid(argb(255, 0, 0, 0));
 
             }
             else
@@ -1062,7 +1068,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1113,13 +1119,13 @@ namespace user
 
                brushText = get_data()->m_brushCloseSel;
 
-               brushText->create_solid(ARGB(0xff, 255, 127, 0));
+               brushText->create_solid(argb(0xff, 255, 127, 0));
 
             }
             else
             {
 
-               brushText->create_solid(ARGB(0xff, 0, 0, 0));
+               brushText->create_solid(argb(0xff, 0, 0, 0));
 
             }
 
@@ -1277,7 +1283,7 @@ namespace user
 
                size.cx += tab_pane.m_pimage->width()+ 2;
 
-               size.cy = max(size.cy, tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy, tab_pane.m_pimage->height());
 
             }
 
@@ -1384,7 +1390,7 @@ namespace user
             if(tab_pane.m_pimage->is_ok())
             {
 
-               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = maximum(size.cy, tab_pane.m_pimage->size().cy);
 
             }
 
@@ -1605,7 +1611,7 @@ namespace user
 
             m_bMouseDown = true;
 
-            SetCapture();
+            set_mouse_capture();
 
             return;
 
@@ -1628,7 +1634,7 @@ namespace user
 
             m_bMouseDown = true;
 
-            SetCapture();
+            set_mouse_capture();
 
             return;
 
@@ -1658,7 +1664,7 @@ namespace user
 
             get_data()->m_iClickTab = m_itemClick.m_iItem;
 
-            SetCapture();
+            set_mouse_capture();
 
             //SetTimer(e_timer_drag_start, 300, nullptr);
 
@@ -1687,7 +1693,13 @@ namespace user
 
          m_bMouseDown = false;
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
       }
 
@@ -1700,7 +1712,13 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          KillTimer(e_timer_drag_start);
 
@@ -1812,7 +1830,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
    }
 
@@ -2408,7 +2426,7 @@ namespace user
 
       m_bNoTabs = System.has_property("no_tabs");
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
       if(pmessage->previous())
          return;
@@ -2421,7 +2439,7 @@ namespace user
 
       get_data()->m_bCreated = true;
 
-      pbase->m_lresult = 0;
+      pusermessage->m_lresult = 0;
 
       SetTimer(e_timer_defer_handle_auto_hide_tabs, 300);
 
@@ -3364,13 +3382,17 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         ReleaseCapture();
-
          auto psession = Session;
 
-         ::point_i32 point = psession->get_cursor_pos();
+         auto puser = psession->user();
 
-         auto item = hit_test(point);
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         auto item = hit_test(pointCursor);
 
          index iClickTab = get_data()->m_iClickTab;
 
@@ -3417,102 +3439,102 @@ namespace user
    }
 
 
-   void tab::_000OnMouse(::message::mouse * pmouse)
-   {
+   //void tab::_000OnMouse(::message::mouse * pmouse)
+   //{
 
-      if(m_bShowTabs)
-      {
+   //   if(m_bShowTabs)
+   //   {
 
-         // these try catchs are needed for multi threading supporting: multi threaded windows: an endeavour
-         // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-         // to debug, enable catch exceptions in debugger
-         try
-         {
+   //      // these try catchs are needed for multi threading supporting: multi threaded windows: an endeavour
+   //      // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
+   //      // to debug, enable catch exceptions in debugger
+   //      try
+   //      {
 
-            ::rectangle_i32 rectTabScreen(get_data()->m_rectTab);
+   //         ::rectangle_i32 rectTabScreen(get_data()->m_rectTab);
 
-            _001ClientToScreen(rectTabScreen);
+   //         _001ClientToScreen(rectTabScreen);
 
-            if ((pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_left_button_up) && rectTabScreen.contains(pmouse->m_point))
-            {
+   //         if ((pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_left_button_up) && rectTabScreen.contains(pmouse->m_point))
+   //         {
 
-               route_message(pmouse);
+   //            route_message(pmouse);
 
-               if (pmouse->m_lresult != 0)
-               {
+   //            if (pmouse->m_lresult != 0)
+   //            {
 
-                  return;
+   //               return;
 
-               }
+   //            }
 
-            }
-            else if (pmouse->m_id == e_message_mouse_move)
-            {
+   //         }
+   //         else if (pmouse->m_id == e_message_mouse_move)
+   //         {
 
-               route_message(pmouse);
+   //            route_message(pmouse);
 
-               if (pmouse->m_lresult != 0)
-               {
+   //            if (pmouse->m_lresult != 0)
+   //            {
 
-                  return;
+   //               return;
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
-         catch(...)
-         {
+   //      }
+   //      catch(...)
+   //      {
 
-         }
+   //      }
 
-      }
-      else if(pmouse->m_id == e_message_mouse_move)
-      {
+   //   }
+   //   else if(pmouse->m_id == e_message_mouse_move)
+   //   {
 
-      }
+   //   }
 
-      __pointer(::user::interaction) pinteraction;
+   //   __pointer(::user::interaction) pinteraction;
 
 
-      while(rget_child(pinteraction))
-      {
+   //   while(rget_child(pinteraction))
+   //   {
 
-         try
-         {
+   //      try
+   //      {
 
-            if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
-            {
+   //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
+   //         {
 
-               try
-               {
+   //            try
+   //            {
 
-                  pinteraction->_000OnMouse(pmouse);
+   //               pinteraction->_000OnMouse(pmouse);
 
-                  if (pmouse->m_bRet)
-                  {
+   //               if (pmouse->m_bRet)
+   //               {
 
-                     return;
+   //                  return;
 
-                  }
+   //               }
 
-               }
-               catch(...)
-               {
+   //            }
+   //            catch(...)
+   //            {
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
-         catch(...)
-         {
+   //      }
+   //      catch(...)
+   //      {
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    tab_data * tab::get_data()

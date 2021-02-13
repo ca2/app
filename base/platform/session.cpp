@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 #include "apex/platform/static_setup.h"
 
 
@@ -37,16 +35,6 @@ namespace base
 
       }
 
-      m_ecursorDefault                 = cursor_arrow;
-
-      m_ecursor                        = cursor_default;
-
-      m_ecursorDefault                 = cursor_arrow;
-
-      m_ecursor                        = cursor_default;
-
-      m_bDrawCursor                    = false;
-
       m_puiLastLButtonDown             = nullptr;
 
       m_pmapKeyPressed                 = nullptr;
@@ -56,14 +44,6 @@ namespace base
       m_bShowPlatform                  = false;
 
       m_pappCurrent                    = nullptr;
-
-      m_puiCapture = nullptr;
-
-      m_puiMouseMoveCapture = nullptr;
-
-      m_ecursorDefault = cursor_arrow;
-
-      m_ecursor = cursor_default;
 
       m_puiMouseMoveCapture = nullptr;
 

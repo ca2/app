@@ -47,7 +47,7 @@
 //
 
 
-void __node_apex_factory_exchange()
+void __node_apex_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::ios::file              , ::file::file             >();

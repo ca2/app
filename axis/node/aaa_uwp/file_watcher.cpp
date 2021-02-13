@@ -109,7 +109,7 @@ namespace file
    #			if defined(UNICODE)
    			{
    				lstrcpynW(szFile, pNotify->FileName,
-   					min(MAX_PATH, pNotify->FileNameLength / sizeof(WCHAR) + 1));
+   					minimum(MAX_PATH, pNotify->FileNameLength / sizeof(WCHAR) + 1));
    			}
    #			else
    			{

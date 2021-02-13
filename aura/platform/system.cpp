@@ -22,7 +22,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect);
 const char * get_main_app_id();
 #endif
 
-void __node_aura_factory_exchange();
+void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
@@ -202,7 +202,7 @@ namespace aura
 
       }
  
-      __node_aura_factory_exchange();
+      __node_aura_factory_exchange(::factory::get_factory_map());
 
       m_bGudoNetCache = true;
 
@@ -640,7 +640,7 @@ namespace aura
 //
 //               iSize *= 2;
 //
-//               iSize = max(iSize, 4096);
+//               iSize = maximum(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //
@@ -902,7 +902,7 @@ namespace aura
       if(m_bDraw2d)
       {
 
-         if (!init_draw2d())
+         if (!initialize_draw2d())
          {
 
             return false;
@@ -911,6 +911,8 @@ namespace aura
 
       }
 
+   
+      
       on_update_matter_locator();
 
 //
@@ -1003,7 +1005,7 @@ namespace aura
 //   }
 
 
-   ::e_status system::init_draw2d()
+   ::e_status system::initialize_draw2d()
    {
 
       ::e_status estatus = ::success;
@@ -1011,7 +1013,7 @@ namespace aura
       try
       {
 
-         if (!draw2d_factory_exchange())
+         if (!draw2d_factory_exchange(::factory::get_factory_map()))
          {
 
             message_box("Failed to initialize draw2d library.");
@@ -1043,7 +1045,7 @@ namespace aura
          try
          {
 
-            if (!imaging_factory_exchange())
+            if (!imaging_factory_exchange(::factory::get_factory_map()))
             {
 
                WARN("Failed to initialize imaging library.");
@@ -1150,7 +1152,7 @@ namespace aura
    }
 
 
-   ::e_status system::draw2d_factory_exchange()
+   ::e_status system::draw2d_factory_exchange(::factory_map * pfactorymap)
    {
 
       string strLibrary;
@@ -1282,7 +1284,7 @@ namespace aura
 
    //   }
 
-   //   pfn_factory_exchange();
+   //   pfn_factory_exchange(::factory_map * pfactorymap);
 
    //   return true;
 
@@ -1291,7 +1293,7 @@ namespace aura
    }
 
 
-   bool system::imaging_factory_exchange()
+   bool system::imaging_factory_exchange(::factory_map * pfactorymap)
    {
 
 
@@ -1414,7 +1416,7 @@ namespace aura
 //
 //      }
 //
-//      pfn_factory_exchange();
+//      pfn_factory_exchange(::factory_map * pfactorymap);
 //
 //      return true;
 //
@@ -3259,7 +3261,7 @@ namespace aura
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -6333,7 +6335,7 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-            draw2d().fonts().defer_create_font_enumeration(psubject);
+            draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
 
          }
          else if (psubject->m_id == id_os_dark_mode)
@@ -6740,6 +6742,43 @@ namespace aura
       return m_typePaneTabView;
 
    }
+
+
+   //bool system::on_application_menu_action(const char * pszCommand)
+   //{
+
+   //   sync_lock sl(mutex());
+
+   //   auto psession = Session;
+
+   //   auto applicationa = psession->m_applicationa;
+
+   //   sl.unlock();
+
+   //   for (auto & papp : applicationa)
+   //   {
+
+   //      ASSERT(papp != this);
+
+   //      if (papp == this)
+   //      {
+
+   //         continue;
+
+   //      }
+
+   //      if (papp->on_application_menu_action(pszCommand))
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //   }
+
+   //   return false;
+
+   //}
 
 
    void system::finalize()

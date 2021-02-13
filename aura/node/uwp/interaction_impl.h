@@ -38,7 +38,7 @@ namespace uwp
       iptr_to_iptr                                                m_mapLong;
       ::mutex                                                           m_mutexQueue;
       manual_reset_event                                                m_evQueue;
-      __pointer_array(::message::base)                                  m_messageaQueue;
+      __pointer_array(::user::message)                                  m_messageaQueue;
 
 
       interaction_impl();
@@ -87,7 +87,7 @@ namespace uwp
 
       virtual oswindow _get_handle();
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -198,8 +198,8 @@ namespace uwp
       //strsize get_window_text(char * lpszStringBuf, strsize nMaxCount) override;
       void get_window_text(string & rString) override;
       //strsize get_window_text_length() override;
-      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      ::draw2d::font* GetFont();
+      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      ::write_text::font* GetFont();
 
 
       // Window size_i32 and position Functions
@@ -372,7 +372,7 @@ namespace uwp
 
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags);
       static __pointer(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
@@ -603,7 +603,7 @@ namespace uwp
 
 
       // for processing Windows messages
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::user::message * pusermessage);
       //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -642,7 +642,7 @@ namespace uwp
       static const ::u32 m_nMsgDragList;
       int m_nModalResult; // for return values from ::user::interaction_impl::RunModalLoop
 
-      ::draw2d::font * m_pfont;
+      ::write_text::font * m_pfont;
 
       friend class frame_window;
 
@@ -692,7 +692,7 @@ namespace uwp
 
       void offset_view_port_org(RECTANGLE_I32 * lprectScreen);
 
-      virtual void queue_message_handler(::message::base * pbase) override;
+      virtual void queue_message_handler(::user::message * pusermessage) override;
 
       virtual bool _is_window() const override;
 

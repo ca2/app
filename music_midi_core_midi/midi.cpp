@@ -415,7 +415,7 @@ namespace music
                if (!pmessageout)
                {
                   
-                  auto pmidiout = __new(message_out(this, max(0, (int) iPort)));
+                  auto pmidiout = __new(message_out(this, maximum(0, (int) iPort)));
                   
                   pmessageout = pmidiout;
                   
@@ -450,7 +450,7 @@ namespace music
             if (!pmessagein)
             {
                
-               auto pmidiin = __new(message_in(this, max(0, (int) iPort)));
+               auto pmidiin = __new(message_in(this, maximum(0, (int) iPort)));
                
                pmessagein = pmidiin;
                

@@ -148,7 +148,7 @@ namespace aura
    }
 
 
-   void theme::get_theme_text_color(::color & colorText, ::color & colorBack)
+   void theme::get_theme_text_color(::color::color & colorText, ::color::color & colorBack)
    {
 
       colorText = get_theme_text_color();
@@ -406,29 +406,29 @@ namespace aura
       
       m_pcolors = lite;
 
-      dark->m_colorBg = ARGB(160, 0x16, 0x19, 0x1e);
-      blue->m_colorBg = ARGB(160, 0x50, 0x58, 0x88);
-      lite->m_colorBg = ARGB(160, 0xff, 0xff, 0xff);
+      dark->m_colorBg = argb(160, 0x16, 0x19, 0x1e);
+      blue->m_colorBg = argb(160, 0x50, 0x58, 0x88);
+      lite->m_colorBg = argb(160, 0xff, 0xff, 0xff);
 
-      dark->m_colorIconGlow = ARGB(255, 0x16, 0x19, 0x1e);
-      blue->m_colorIconGlow = ARGB(255, 0x40, 0x58, 0x68);
-      lite->m_colorIconGlow = ARGB(255, 0xff, 0xff, 0xff);
+      dark->m_colorIconGlow = argb(255, 0x16, 0x19, 0x1e);
+      blue->m_colorIconGlow = argb(255, 0x40, 0x58, 0x68);
+      lite->m_colorIconGlow = argb(255, 0xff, 0xff, 0xff);
 
-      dark->m_colorMg = ARGB(151, 0x16, 0x19, 0x1e);
-      blue->m_colorMg = ARGB(151, 0xA0, 0xA8, 0xB8);
-      lite->m_colorMg = ARGB(140, 255, 255, 255);
+      dark->m_colorMg = argb(151, 0x16, 0x19, 0x1e);
+      blue->m_colorMg = argb(151, 0xA0, 0xA8, 0xB8);
+      lite->m_colorMg = argb(140, 255, 255, 255);
 
-      dark->m_colorFg = ARGB(255, 223, 223, 208);
-      blue->m_colorFg = ARGB(255, 255, 255, 255);
-      lite->m_colorFg = ARGB(255, 0, 0, 0);
+      dark->m_colorFg = argb(255, 223, 223, 208);
+      blue->m_colorFg = argb(255, 255, 255, 255);
+      lite->m_colorFg = argb(255, 0, 0, 0);
 
-      dark->m_colorText = ARGB(255, 155, 155, 155);
-      blue->m_colorText = ARGB(255, 55, 50, 80);
-      lite->m_colorText = ARGB(255, 0, 0, 0);
+      dark->m_colorText = argb(255, 155, 155, 155);
+      blue->m_colorText = argb(255, 55, 50, 80);
+      lite->m_colorText = argb(255, 0, 0, 0);
 
-      dark->m_colorBack = ARGB(160, 0, 0, 0);
-      blue->m_colorBack = ARGB(160, 205, 200, 250);
-      lite->m_colorBack = ARGB(160, 255, 255, 255);
+      dark->m_colorBack = argb(160, 0, 0, 0);
+      blue->m_colorBack = argb(160, 205, 200, 250);
+      lite->m_colorBack = argb(160, 255, 255, 255);
 
       //__throw(todo("core"));
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("google-android.ico");

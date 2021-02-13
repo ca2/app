@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 #if defined(LINUX)
@@ -30,12 +28,33 @@ namespace message
 {
 
 
-   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+
+   //base::base(::layered * pobjectContext) :
+   //   ::message::message(psignal)
+   //{
+
+   //   m_lresult = 0;
+   //   m_bDestroyed = false;
+   //   m_puserinteraction = nullptr;
+   //   m_plresult = &m_lresult;
+   //   m_bDoSystemDefault = true;
+
+   //}
+
+
+
+
+
+
+
+
+
+   void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      //m_pusersystem = __user_interaction(playeredUserPrimitive)->payload("user_create").cast < ::user::system >();
+      //m_pusersystem = __user_interaction(pwindow)->payload("user_create").cast < ::user::system >();
 
       //CREATESTRUCT * pusersystem = (CREATESTRUCT *)lparam.m_lparam;
 
@@ -158,10 +177,10 @@ namespace message
    }
 
 
-   void activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void activate::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 
       m_eactivate = (enum_activate)(LOWORD(wparam));
 
@@ -217,10 +236,10 @@ namespace message
    }
 
 
-   void key::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void key::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_nChar = static_cast<::u32>(wparam);
 
@@ -241,30 +260,30 @@ namespace message
    }
 
 
-   void nc_activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_bActive = wparam != false;
 
    }
 
 
-   void move::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   void move::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 
       m_point = __point(lparam);
 
    }
 
 
-   void size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void size::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_nType     = static_cast < ::u32 > (wparam);
 
@@ -291,30 +310,24 @@ namespace message
       try
       {
 
-         if(userinteraction())
+         auto puserinteraction = userinteraction();
+
+         if(puserinteraction)
          {
 
-            auto papplication = userinteraction()->get_context_application();
+            auto pwindow = puserinteraction->get_window();
 
-            if (papplication)
+            if (pwindow)
             {
 
-               if (m_pcursor != nullptr && papplication->get_context_session() != nullptr)
+               if (m_pcursor)
                {
 
-                  auto psession = Sess(userinteraction()->get_context_session());
-
-                  auto puserinteraction = dynamic_cast <::user::interaction *> (userinteraction());
-
-                  puserinteraction->set_cursor(m_pcursor->get_cursor());
+                  pwindow->set_cursor(m_pcursor);
 
                }
-               else if (m_ecursor != e_cursor_unmodified && papplication->get_context_session() != nullptr)
+               else if (m_ecursor != e_cursor_unmodified)
                {
-
-                  auto psession = Sess(userinteraction()->get_context_session());
-
-                  auto puserinteraction = dynamic_cast <::user::interaction *> (userinteraction());
 
                   puserinteraction->set_cursor(m_ecursor);
 
@@ -333,10 +346,10 @@ namespace message
    }
 
 
-   void mouse::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void mouse::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_nFlags   = wparam;
 
@@ -361,10 +374,10 @@ namespace message
    }
 
 
-   void mouse_wheel::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_nFlags    = wparam;
 
@@ -411,24 +424,24 @@ namespace message
    }
 
 
-   void scroll::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void scroll::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      m_nSBCode = (i16)LOWORD(wparam);
+      m_ecommand = (enum_scroll_command) (i16)LOWORD(wparam);
 
       m_nPos = (i16)HIWORD(wparam);
 
-      m_pScrollBar = lparam.cast < ::user::primitive > ();
+      m_pscrollbar = lparam.cast < ::user::primitive > ();
 
    }
 
 
-   void show_window::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void show_window::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_bShow = wparam != false;
 
@@ -437,20 +450,32 @@ namespace message
    }
 
 
-   void kill_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 
       m_oswindowNew = (::oswindow) wparam.m_number;
 
    }
 
 
-   void set_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+
+      m_point.x = GET_X_LPARAM(m_lparam);
+      
+      m_point.y = GET_Y_LPARAM(m_lparam);
+
+   }
+
+
+   void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
+   {
+
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       //m_puserinteraction = System.ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
@@ -461,20 +486,20 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   void window_pos::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void window_pos::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
 
    }
 
 
-   void nc_calc_size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
-      base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
+      ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
       m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
 
@@ -515,35 +540,7 @@ namespace message
       return point_i32(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
    }
 
-   ::u32 command::GetNotifyCode()
-   {
-      return HIWORD(m_wparam);
-   }
 
-   ::u32 command::GetId()
-   {
-      return LOWORD(m_wparam);
-   }
-
-#ifdef WINDOWS
-
-   oswindow command::get_oswindow()
-   {
-      return (oswindow)m_lparam.m_lparam;
-   }
-
-#endif
-
-#ifdef WINDOWS_DESKTOP
-
-   //LPNMHDR notify::get_lpnmhdr()
-   //{
-
-   //   return (LPNMHDR)m_lparam.m_lparam;
-
-   //}
-
-#endif
 
    i32 notify::get_ctrl_id()
    {
@@ -558,6 +555,15 @@ namespace message
 
 
 
+
+
+
+
+
+#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+#define ROUND4(x) ROUND(x, 4)
+
+#define IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(class_name) IMPLEMENT_FIXED_ALLOC(class_name, ROUND4(sizeof(class_name) * 32))
 
 
 

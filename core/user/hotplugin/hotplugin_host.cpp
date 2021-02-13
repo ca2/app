@@ -551,7 +551,7 @@ namespace hotplugin
    void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectOut)
    {
 
-      auto rectangle_i32 = get_window_rect();
+      auto rectangle = get_window_rect();
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -607,20 +607,20 @@ namespace hotplugin
    //}
 
 
-   void host::message_handler(::message::base * pbase)
+   void host::message_handler(::user::message * pusermessage)
    {
 
-      if(pbase == nullptr)
+      if(pusermessage == nullptr)
          return;
 
       if(m_pplugin != nullptr)
       {
 
-         m_pplugin->message_handler(pbase);
+         m_pplugin->message_handler(pusermessage);
 
       }
 
-      ::user::interaction::message_handler(pbase);
+      ::user::interaction::message_handler(pusermessage);
 
    }
 

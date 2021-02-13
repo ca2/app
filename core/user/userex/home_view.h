@@ -50,8 +50,8 @@ namespace userex
       virtual void on_mouse(const ::point_i32 & point);
       virtual void rebuild_luminance();
 
-//      virtual color get_color();
-//      virtual void set_color(color color);
+//      virtual ::color::color get_color();
+//      virtual void set_color(::color::color color);
 
    };
 

@@ -38,7 +38,7 @@
 //} // namespace android
 
 
-void __node_apex_factory_exchange()
+void __node_apex_factory_exchange(::factory_map * pfactorymap)
 {
 
 

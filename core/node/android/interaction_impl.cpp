@@ -603,9 +603,9 @@ namespace android
    void interaction_impl::_001OnNcCalcSize(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      pbase->set_lresult(0);
+      pusermessage->set_lresult(0);
 
       pmessage->m_bRet = true;
 
@@ -1019,7 +1019,7 @@ namespace android
 
 
 
-   void interaction_impl::route_command_message(::user::command * pcommand)
+   void interaction_impl::route_command_message(::message::command * pcommand)
    {
 
       channel::route_command_message(pcommand);
@@ -1052,7 +1052,7 @@ namespace android
    }
 
 
-   void interaction_impl::message_handler(::message::base * pmessage)
+   void interaction_impl::message_handler(::user::message * pmessage)
    {
 
 
@@ -1142,13 +1142,13 @@ namespace android
          //bool bIconic = ::IsIconic(get_handle()) != false;
          psession->m_puiLastLButtonDown = m_puserinteraction;
       }
-      /*      else if(pbase->m_id == CA2M_BERGEDGE)
+      /*      else if(pusermessage->m_id == CA2M_BERGEDGE)
       {
-      if(pbase->m_wparam == BERGEDGE_GETAPP)
+      if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
-      __pointer(::aura::application)* ppapp= (__pointer(::aura::application)*) pbase->m_lparam;
+      __pointer(::aura::application)* ppapp= (__pointer(::aura::application)*) pusermessage->m_lparam;
       *ppapp = get_context_application();
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
       return;
       }
       }*/
@@ -1235,13 +1235,13 @@ namespace android
 
       }
 
-      //if(pbase->m_id == MESSAGE_OLE_DRAGENTER ||
-      //   pbase->m_id == MESSAGE_OLE_DRAGOVER ||
-      //   pbase->m_id == MESSAGE_OLE_DRAGLEAVE ||
-      //   pbase->m_id == MESSAGE_OLE_DRAGDROP)
+      //if(pusermessage->m_id == MESSAGE_OLE_DRAGENTER ||
+      //   pusermessage->m_id == MESSAGE_OLE_DRAGOVER ||
+      //   pusermessage->m_id == MESSAGE_OLE_DRAGLEAVE ||
+      //   pusermessage->m_id == MESSAGE_OLE_DRAGDROP)
       //{
 
-      //   message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
+      //   message::drag_and_drop * pdrag = (::message::drag_and_drop *) pusermessage;
 
 
       //   user::oswindow_array oswindowa;
@@ -1329,18 +1329,18 @@ namespace android
    }
 
 
-   bool interaction_impl::OnCommand(::message::base * pbase)
+   bool interaction_impl::OnCommand(::user::message * pusermessage)
    {
-      UNREFERENCED_PARAMETER(pbase);
+      UNREFERENCED_PARAMETER(pusermessage);
       return false;
    }
 
 
-   bool interaction_impl::OnNotify(::message::base * pbase)
+   bool interaction_impl::OnNotify(::user::message * pusermessage)
    {
 
-      ASSERT(pbase != nullptr);
-      NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
+      ASSERT(pusermessage != nullptr);
+      NMHDR* pNMHDR = (NMHDR*)pusermessage->m_lparam.m_lparam;
       oswindow oswindow_Ctrl = pNMHDR->hwndFrom;
 
       // get the child ID from the interaction_impl itself
@@ -1354,13 +1354,13 @@ namespace android
       //       return true;        // locked out - ignore control notification
 
       // reflect notification to child interaction_impl control
-      //if(ReflectMessage(oswindow_Ctrl,pbase))
+      //if(ReflectMessage(oswindow_Ctrl,pusermessage))
       // return true;        // eaten by child
 
       //      __NOTIFY notify;
       //    notify.pResult = pResult;
       //  notify.pNMHDR = pNMHDR;
-      //xxx   return _001OnCommand(pbase);
+      //xxx   return _001OnCommand(pusermessage);
 
       return false;
 
@@ -1568,11 +1568,11 @@ namespace android
    //   ASSERT(puiStop == nullptr || puiStop->is_window());
    //   ASSERT(pmessage != nullptr);
 
-   //   __pointer(::message::base) pbase(pmessage);
+   //   __pointer(::user::message) pusermessage(pmessage);
    //   // walk from the target interaction_impl up to the hWndStop interaction_impl checking
    //   //  if any interaction_impl wants to translate this message
 
-   //   for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+   //   for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
    //   {
 
    //      pinteraction->pre_translate_message(pmessage);
@@ -1981,16 +1981,16 @@ namespace android
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      __pointer(::message::base) pbase(pmessage);
+      //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if(pbase->m_wparam == nullptr)
+      //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
       //      ::draw2d::graphics_pointer graphics(get_object());
-      //      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
+      //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
-      //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+      //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
       //      //      ::u32 dw = ::get_last_error();
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
@@ -2044,10 +2044,10 @@ namespace android
       //      catch(...)
       //      {
       //      }
-      //      pgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      //      pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //      WIN_DC(graphics.m_p)->Detach();
       //      pmessage->m_bRet = true;
-      //      pbase->set_lresult(0);
+      //      pusermessage->set_lresult(0);
    }
 
 
@@ -2281,7 +2281,7 @@ namespace android
 
       //UNREFERENCED_PARAMETER(bDisableIfNoHndler);
 
-      //::user::command state(get_object());
+      //::message::command state(get_object());
 
    }
 
@@ -2880,17 +2880,17 @@ namespace android
 
 
 //void interaction_impl::RedrawWindo
-   void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
+   void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
       UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::draw2d::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
    }
 
 
-   ::draw2d::font* interaction_impl::GetFont()
+   ::write_text::font* interaction_impl::GetFont()
    {
 
       //ASSERT(::is_window((oswindow) get_handle()));
@@ -2951,7 +2951,7 @@ namespace android
 
       strncpy(lpszStringBuf, m_strWindowText, nMaxCount);
 
-      return min(nMaxCount, m_strWindowText.get_length());
+      return minimum(nMaxCount, m_strWindowText.get_length());
 
    }
 
@@ -3684,7 +3684,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags)
    {
 
       __throw(not_implemented());
@@ -4008,7 +4008,7 @@ namespace android
 
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
       if (psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != ::cursor_system)
       {
@@ -4016,8 +4016,8 @@ namespace android
          __throw(not_implemented());
          //         ::SetCursor(nullptr);
       }
-      pbase->set_lresult(1);
-      pbase->m_bRet = true;
+      pusermessage->set_lresult(1);
+      pusermessage->m_bRet = true;
       //(bool)Default();
    }
 

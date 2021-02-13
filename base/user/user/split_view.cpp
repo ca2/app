@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -121,7 +119,7 @@ namespace user
 
    void split_view::_001OnSize(::message::message * pmessage)
    {
-      __pointer(::message::size_i32) psize(pmessage);
+      __pointer(::message::size) psize(pmessage);
       psize->previous();
       //on_layout(::draw2d::graphics_pointer & pgraphics);
    }
@@ -166,7 +164,7 @@ namespace user
 
       //::rectangle_i32 rectangle;
 
-      //color32_t cr = ARGB(190, 92, 92, 80);
+      //color32_t cr = argb(190, 92, 92, 80);
 
       //for(i = 0; i < get_pane_count(); i++)
       //{
@@ -174,7 +172,7 @@ namespace user
       //   CalcPaneRect(i, &rectangle);
 
       //   // Top
-      //   pgraphics->fill_rect(
+      //   pgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.top,
       //      rectangle.width(),
@@ -182,7 +180,7 @@ namespace user
       //      cr);
 
       //   // Right
-      //   pgraphics->fill_rect(
+      //   pgraphics->fill_rectangle(
       //      rectangle.right - m_cxBorder,
       //      rectangle.top,
       //      m_cxBorder,
@@ -190,7 +188,7 @@ namespace user
       //      cr);
 
       //   // Bottom
-      //   pgraphics->fill_rect(
+      //   pgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.bottom - m_cyBorder,
       //      rectangle.width(),
@@ -198,7 +196,7 @@ namespace user
       //      cr);
 
       //   // Left
-      //   pgraphics->fill_rect(
+      //   pgraphics->fill_rectangle(
       //      rectangle.left,
       //      rectangle.top,
       //      m_cxBorder,

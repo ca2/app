@@ -24,8 +24,8 @@
  */
 
 #include "framework.h"
-#include "_windows.h"
-#include "windows_internals.h"
+//#include "_windows.h"
+//#include "windows_internals.h"
 
 
 #if !defined(WINDOWS)

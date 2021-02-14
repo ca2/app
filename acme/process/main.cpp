@@ -1123,8 +1123,6 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order()
 #endif
 
 
-
-
 int g_iProcessStatus = 0;
 
 
@@ -1147,10 +1145,10 @@ void process_set_status(int iStatus)
 int g_argc = 0;
 
 
-wchar_t ** g_argv = nullptr;
+platform_char ** g_argv = nullptr;
 
 
-void process_set_args(int argc, wchar_t ** argv)
+void process_set_args(int argc, platform_char ** argv)
 {
 
    g_argc = argc;
@@ -1176,7 +1174,7 @@ int process_get_argc()
 }
 
 
-wchar_t *** process_get_pargv()
+platform_char *** process_get_pargv()
 {
 
    return &g_argv;
@@ -1184,7 +1182,7 @@ wchar_t *** process_get_pargv()
 }
 
 
-TCHAR ** process_get_argv()
+platform_char ** process_get_argv()
 {
 
    return *process_get_pargv();

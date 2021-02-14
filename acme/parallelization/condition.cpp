@@ -305,7 +305,7 @@ synchronization_result condition::wait(const duration& duration)
          else
          {
 
-            return ::synchronization_result::result_error;
+            return e_synchronization_result_error;
 
          }
 
@@ -319,7 +319,7 @@ synchronization_result condition::wait(const duration& duration)
 
    }
 
-   return synchronization_result(synchronization_result::result_timeout);
+   return synchronization_result(e_synchronization_result_timed_out);
 
 #endif
 

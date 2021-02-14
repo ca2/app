@@ -702,7 +702,7 @@ auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart 
 
    ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-   auto pcounter = __new(::counter(iScan));
+   auto pcounter = __new(::counter < ::i32 >(iScan));
 
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
@@ -734,7 +734,7 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
 
    ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-   auto pcounter = __new(::counter(iScan));
+   auto pcounter = __new(::counter < ::i32 > (iScan));
 
    auto pobjectTaskEnd = __runnable(predEnd);
 

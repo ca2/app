@@ -212,9 +212,6 @@ inline comptr < IStream > create_istream(const memory_base & memory)
 
 
 
-CLASS_DECL_ACME time_t __time(const SYSTEMTIME & st, i32 nDST = -1);
-CLASS_DECL_ACME time_t __time(const FILETIME & ft, i32 nDST = -1);
-CLASS_DECL_ACME SYSTEMTIME __systemtime(const ::datetime::time & time);
 inline filetime __filetime(const FILETIME & filetime) { return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); }
 
 

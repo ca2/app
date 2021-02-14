@@ -20,7 +20,7 @@
 #include <sysexits.h>
 #include <termios.h>
 #include <sys/param.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #if defined(__linux__)
 # include <linux/serial.h>

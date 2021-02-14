@@ -33,6 +33,7 @@ namespace aura
       virtual ~node();
 
 
+
 #ifdef LINUX
 
       virtual ::linux::appindicator * appindicator_allocate();

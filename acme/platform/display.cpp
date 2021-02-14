@@ -19,12 +19,6 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-
-
-
-
-
-
 CLASS_DECL_ACME string __str(enum_display edisplay)
 {
 

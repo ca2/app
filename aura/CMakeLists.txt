@@ -290,7 +290,7 @@ list(APPEND aura_source
    platform/draw_context2.h
    platform/drawable.cpp
    platform/drawable.h
-   platform/mq.h
+   platform/message_queue.h
    platform/node.cpp
    platform/node.h
    platform/session.cpp

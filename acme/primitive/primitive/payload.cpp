@@ -402,24 +402,6 @@ payload::payload(const ::datetime::time & time)
 
 
 
-void __copy(payload * ppayload, const FILETIME * pfiletime)
-{
-
-   ppayload->set_type(type_filetime, false);
-
-   ppayload->m_filetime = make64_from32(pfiletime->dwLowDateTime, pfiletime->dwHighDateTime);
-
-}
-
-
-void __copy(payload * ppayload, const SYSTEMTIME * psystemtime)
-{
-
-   ppayload->set_type(type_time, false);
-   
-   ppayload->m_time = __time(*psystemtime);
-
-}
 
 
 

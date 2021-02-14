@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #endif
 

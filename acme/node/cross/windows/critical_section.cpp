@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #endif
 
 #ifdef WINDOWS

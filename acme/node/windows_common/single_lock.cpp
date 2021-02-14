@@ -54,7 +54,7 @@ synchronization_result single_lock::wait()
    catch(...)
    {
 
-      result = ::synchronization_result(::synchronization_result::result_error);
+      result = ::synchronization_result(::e_synchronization_result_error);
 
    }
 
@@ -93,7 +93,7 @@ synchronization_result single_lock::wait()
    catch(...)
    {
 
-      result = ::synchronization_result(::synchronization_result::result_error);
+      result = ::synchronization_result(::e_synchronization_result_error);
 
    }
 

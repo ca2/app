@@ -59,11 +59,11 @@ public:
    ///virtual __pointer(::user::message) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 
 
-#ifdef LINUX
-
-   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
-
-#endif
+//#ifdef LINUX
+//
+//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
+//
+//#endif
 
 
 

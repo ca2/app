@@ -1,8 +1,5 @@
 
 
-#include <pthread.h>
-
-
 #include <sys/ptrace.h>
 #include <sys/wait.h>
 

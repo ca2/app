@@ -77,7 +77,7 @@ synchronization_result multi_lock::lock(const duration & duration, bool bWaitFor
    if (m_synchronizationa.m_hsyncaCache.is_empty())
    {
 
-      return synchronization_result(synchronization_result::result_error);
+      return synchronization_result(e_synchronization_result_error);
 
    }
 

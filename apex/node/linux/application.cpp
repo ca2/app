@@ -7,7 +7,7 @@
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 
 namespace apex

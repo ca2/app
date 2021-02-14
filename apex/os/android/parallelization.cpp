@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include <sched.h>
 //#include <time.h>
-//#include <pthread.h>
+//#include "acme/os/ansios/_pthread.h"
 
 
 

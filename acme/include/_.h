@@ -2961,7 +2961,7 @@ using oswindow = oswindow_t *;
 struct MESSAGE
 {
 
-   oswindow                oswindow;
+   ::oswindow              oswindow;
    ::id                    m_id;
    wparam                  wParam;
    lparam                  lParam;

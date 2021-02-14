@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #ifdef LINUX
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #endif
 
 

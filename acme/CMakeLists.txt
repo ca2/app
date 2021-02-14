@@ -51,6 +51,7 @@ list(APPEND acme_source
    exception/exception_engine.cpp
    exception/exit.cpp
    exception/hresult.cpp
+   exception/index_out_of_bounds.cpp
    exception/installing.cpp
    exception/interface_only.cpp
    exception/invalid_argument.cpp
@@ -129,22 +130,15 @@ list(APPEND acme_source
    parallelization/event.cpp
    #parallelization/file_change_event.cpp
    parallelization/manual_reset_event.cpp
-   parallelization/mq.cpp
-   parallelization/multi_lock.cpp
+   parallelization/multiple_lock.cpp
+   parallelization/multiple_lock.h
    parallelization/mutex.cpp
    parallelization/pool.cpp
-   primitive/promise_pred/pred_holder.cpp
    primitive/promise/routine_array.cpp
    primitive/promise/_.h
    parallelization/semaphore.cpp
    parallelization/single_lock.cpp
    parallelization/socket_event.cpp
-   parallelization/sync.cpp
-   parallelization/sync_array.cpp
-   parallelization/sync_process.cpp
-   parallelization/sync_routine.cpp
-   parallelization/sync_result.cpp
-   parallelization/sync_task.cpp
    parallelization/task.cpp
    parallelization/thread.cpp
    parallelization/thread_os.cpp
@@ -270,21 +264,21 @@ list(APPEND acme_source
    primitive/geometry2d/types.cpp
    primitive/geometry3d/box.cpp
    primitive/geometry3d/location.cpp
-   primitive/math/binary_operation.cpp
-   primitive/math/cast.inl
-   primitive/math/cvt.cpp
-   primitive/math/cvt_g.cpp
-   primitive/math/int_biunique.cpp
-   primitive/math/math.cpp
-   primitive/math/mkint_c.cpp
-   primitive/math/natural.cpp
-   primitive/math/number.cpp
-   primitive/math/number_double.cpp
-   primitive/math/number_float.cpp
-   primitive/math/number_integer.cpp
-   primitive/math/random_number_generator.cpp
-   primitive/math/scalar.cpp
-   primitive/math/value.cpp
+   primitive/mathematics/binary_operation.cpp
+   primitive/mathematics/cast.inl
+   primitive/mathematics/cvt.cpp
+   primitive/mathematics/cvt_g.cpp
+   primitive/mathematics/int_biunique.cpp
+   primitive/mathematics/math.cpp
+   primitive/mathematics/mkint_c.cpp
+   primitive/mathematics/natural.cpp
+   primitive/mathematics/number.cpp
+   primitive/mathematics/number_double.cpp
+   primitive/mathematics/number_float.cpp
+   primitive/mathematics/number_integer.cpp
+   primitive/mathematics/random_number_generator.cpp
+   primitive/mathematics/scalar.cpp
+   primitive/mathematics/value.cpp
    primitive/primitive/_.cpp
    primitive/promise/subject.cpp
    primitive/primitive/application_bias.cpp
@@ -299,11 +293,13 @@ list(APPEND acme_source
    primitive/primitive/estatus.cpp
    primitive/primitive/element_array.cpp
    primitive/primitive/factory.cpp
-   primitive/promise_pred/pred_function.cpp
+   primitive/promise_predicate/predicate_function.cpp
    primitive/promise/process.cpp
    primitive/primitive/handler.cpp
    primitive/primitive/id.cpp
    primitive/primitive/id_array.cpp
+   primitive/primitive/id_matter.cpp
+   primitive/primitive/id_matter.h
    primitive/primitive/id_space.cpp
    primitive/primitive/interlocked_long.cpp
    primitive/primitive/interlocked_long_pulse.cpp
@@ -373,15 +369,35 @@ list(APPEND acme_source
 
 
 list(APPEND acme_source
+   "os/ios/window_boot 2.h"
+   #exception/debug.h
+   #node/android/buffer.h
+   #os/ansios/parallelization.h
+   #os/x11/_.h
+   #os/x11/x11_button.h
+   #os/x11/x11_exception.h
+   #os/x11/x11_hook.h
+   #os/x11/x11_keyboard.h
+   #os/x11/x11_message_box.h
+   #os/x11/x11_simple_ui_display.h
+   #os/xcb/_xcb.h
+   #os/xcb/xcb_hook.h
+   #parallelization/file_change_event.h
+   _.h
+   _defer.h
+   _start.h
    application.h
    astr.h
+   axispolicy/_.h
+   axispolicy/_c.h
    axispolicy/policy_objc.h
    axispolicy/policy_objcpp.h
    axispolicy/policy_winrt.h
-   axispolicy/_.h
-   axispolicy/_c.h
    callback.h
+   compress/_.h
    compress/gz.h
+   compress/zip/_.h
+   compress/zip/_internal.h
    compress/zip/api.h
    compress/zip/crypt.h
    compress/zip/file.h
@@ -391,15 +407,13 @@ list(APPEND acme_source
    compress/zip/iowin32.h
    compress/zip/memory_buffer.h
    compress/zip/unzip.h
-   compress/zip/_.h
-   compress/zip/_internal.h
-   compress/_.h
    console.h
+   const/GLOBAL_ID.h
+   const/_const.h
    const/charset.h
    const/check.h
    const/context.h
    const/future.h
-   const/GLOBAL_ID.h
    const/id.h
    const/idpool.h
    const/impact.h
@@ -411,13 +425,15 @@ list(APPEND acme_source
    const/status_range_authentication.h
    const/thread.h
    const/timer.h
-   const/_const.h
+   exception/_.h
+   exception/_c.h
+   exception/_const.h
+   exception/_dump_context.h
    exception/assert.h
    exception/base.h
-   exception/callstack.h
    exception/call_stack.h
+   exception/callstack.h
    exception/cancel.h
-   #exception/debug.h
    exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
@@ -458,10 +474,22 @@ list(APPEND acme_source
    exception/unhandled_report.h
    exception/user.h
    exception/void_implementation.h
-   exception/_.h
-   exception/_c.h
-   exception/_const.h
-   exception/_dump_context.h
+   filesystem/_impl.h
+   filesystem/file/_.h
+   filesystem/file/___serialization_draft.h
+   filesystem/file/___serialization_draft001.h
+   filesystem/file/_c.h
+   filesystem/file/_const.h
+   filesystem/file/_defer.h
+   filesystem/file/_defer_var_stream.h
+   filesystem/file/_file.h
+   filesystem/file/_impl.h
+   filesystem/file/_papaya.h
+   filesystem/file/_papaya_impl.h
+   filesystem/file/_serializable_impl.h
+   filesystem/file/_stream_process_impl.h
+   filesystem/file/_text_stream_impl.h
+   filesystem/file/_var_stream_impl.h
    filesystem/file/binary_stream.h
    filesystem/file/buffer.h
    filesystem/file/buffered_file.h
@@ -494,59 +522,44 @@ list(APPEND acme_source
    filesystem/file/text_stream.h
    filesystem/file/transfer_file.h
    filesystem/file/var_stream.h
-   filesystem/file/_.h
-   filesystem/file/_c.h
-   filesystem/file/_const.h
-   filesystem/file/_defer.h
-   filesystem/file/_defer_var_stream.h
-   filesystem/file/_file.h
-   filesystem/file/_impl.h
-   filesystem/file/_papaya.h
-   filesystem/file/_papaya_impl.h
-   filesystem/file/_serializable_impl.h
-   filesystem/file/_stream_process_impl.h
-   filesystem/file/_text_stream_impl.h
-   filesystem/file/_var_stream_impl.h
-   filesystem/file/___serialization_draft.h
-   filesystem/file/___serialization_draft001.h
+   filesystem/filesystem.h
+   filesystem/filesystem/_.h
+   filesystem/filesystem/_impl.h
    filesystem/filesystem/listing.h
    filesystem/filesystem/path.h
    filesystem/filesystem/path_object.h
-   filesystem/filesystem/_.h
-   filesystem/filesystem/_impl.h
-   filesystem/filesystem.h
-   filesystem/_impl.h
    framework.h
    framework_c.h
-   graphics/draw2d/color.h
-   graphics/draw2d/colorref_array.h
    graphics/draw2d/_.h
    graphics/draw2d/_const.h
+   graphics/draw2d/color.h
+   graphics/draw2d/colorref_array.h
    id.h
-   include/objc.h
-   include/objcpp.h
-   include/winrt.h
    include/_.h
    include/_c.h
    include/_c_bridge.h
    include/_include.h
    include/_no_templates.h
    include/_setup.h
+   include/objc.h
+   include/objcpp.h
+   include/winrt.h
+   inline/__debug_box_clear_impl.h
+   inline/__debug_box_set_impl.h
+   inline/_acid_app_impl.h
+   inline/_app_impl1.h
+   inline/_application.h
+   inline/_console_old.h
+   inline/_draw2d_impl.h
+   inline/_new_impl.h
    inline/application.h
    inline/application_common.h
    inline/console.h
    inline/console_common.h
    inline/library.h
-   inline/_acid_app_impl.h
-   inline/_application.h
-   inline/_app_impl1.h
-   inline/_console_old.h
-   inline/_draw2d_impl.h
-   inline/_new_impl.h
-   inline/__debug_box_clear_impl.h
-   inline/__debug_box_set_impl.h
    ios_aura/ios_aura.h
    library.h
+   memory/_heap.h
    memory/align_byte_count.h
    memory/allocate.h
    memory/allocate_processor_cache_oriented.h
@@ -564,60 +577,33 @@ list(APPEND acme_source
    memory/plex.h
    memory/plex_heap1.h
    memory/plex_heap_impl1.h
-   memory/_heap.h
-   parallelization/common.h
-   parallelization/condition.h
-   parallelization/create_thread.h
-   parallelization/critical_section.h
-   parallelization/data.h
-   parallelization/event.h
-   #parallelization/file_change_event.h
-   parallelization/initial_single_lock.h
-   parallelization/manual_reset_event.h
-   parallelization/mq.h
-   parallelization/multi_lock.h
-   parallelization/mutex.h
-   parallelization/pool.h
-   primitive/promise_pred/pred_holder.h
-   primitive/promise_pred/pred_sync_routine.h
-   primitive/promise/routine_array.h
-   parallelization/semaphore.h
-   parallelization/set_event_on_exit.h
-   parallelization/single_lock.h
-   parallelization/socket_event.h
-   parallelization/sync.h
-   parallelization/sync_array.h
-   parallelization/sync_process.h
-   parallelization/sync_lock.h
-   parallelization/sync_routine.h
-   parallelization/sync_result.h
-   parallelization/sync_task.h
-   parallelization/task.h
-   parallelization/thread_impl.h
-   parallelization/thread_os.h
-   parallelization/thread_parameter.h
-   parallelization/zaa_update_task.h
-   parallelization/zaa_update_task_item.h
-   parallelization/zaa_update_task_item_array.h
-   parallelization/_.h
-   parallelization/_impl.h
-   parallelization/_thread_os_create_impl.h
-   parallelization/_types.h
+   node/_.h
+   node/_node2.h
+   node/android/Kerr/LocalMemory.h
+   node/android/Kerr/kerr.h
+   node/android/_.h
+   node/android/_android.h
    node/android/android1.h
    node/android/application.h
-   #node/android/buffer.h
    node/android/factory_exchange.h
    node/android/file.h
    node/android/implementation.h
    node/android/internal.h
-   node/android/Kerr/kerr.h
-   node/android/Kerr/LocalMemory.h
    node/android/thread.h
-   node/android/_.h
-   node/android/_android.h
    node/serial.h
-   node/_.h
-   node/_node2.h
+   os/_2.h
+   os/_application.h
+   os/_c2.h
+   os/_impl2.h
+   os/_os2.h
+   os/_user.h
+   os/android/_.h
+   os/android/_android.h
+   os/android/_c.h
+   os/android/_os_impl.h
+   os/android/_os_local.h
+   os/android/_os_object.h
+   os/android/_os_remote.h
    os/android/cross_win_file.h
    os/android/cross_win_gdi.h
    os/android/cross_win_gdi_internal.h
@@ -626,13 +612,9 @@ list(APPEND acme_source
    os/android/graphics.h
    os/android/internal.h
    os/android/process.h
-   os/android/_.h
-   os/android/_android.h
-   os/android/_c.h
-   os/android/_os_impl.h
-   os/android/_os_local.h
-   os/android/_os_object.h
-   os/android/_os_remote.h
+   os/ansios/_.h
+   os/ansios/_ansios.h
+   os/ansios/_c.h
    os/ansios/ansios_file.h
    os/ansios/binreloc.h
    os/ansios/callstack.h
@@ -641,28 +623,31 @@ list(APPEND acme_source
    os/ansios/file.h
    os/ansios/file_c.h
    os/ansios/file_raw.h
-   #os/ansios/parallelization.h
    os/ansios/pmutex_lock.h
-   os/ansios/_.h
-   os/ansios/_ansios.h
-   os/ansios/_c.h
+   os/ansios/pthread.cpp
+   os/ansios/semun.h
    os/apple/DDInvocationGrabber.h
-   os/apple/debug.h
-   os/apple/graphics.h
-   os/apple/main.h
    os/apple/NSObject+DDExtensions.h
    os/apple/NSString+SymlinksAndAliases.h
-   os/apple/ns_exception.h
-   os/apple/time.h
    os/apple/UncaughtExceptionHandler.h
    os/apple/_.h
    os/apple/_apple.h
    os/apple/_c_mm.h
    os/apple/_mm.h
    os/apple/_mm_common.h
+   os/apple/debug.h
+   os/apple/graphics.h
+   os/apple/main.h
+   os/apple/ns_exception.h
+   os/apple/time.h
    os/chronometer.h
    os/file.h
    os/graphics.h
+   os/ios/_.h
+   os/ios/_c.h
+   os/ios/_ios.h
+   os/ios/_m.h
+   os/ios/_mm.h
    os/ios/base_internal.h
    os/ios/cross_win_gdi.h
    os/ios/exception_engine.h
@@ -671,20 +656,15 @@ list(APPEND acme_source
    os/ios/internal.h
    os/ios/mm_graphics.h
    os/ios/mm_oswindow.h
-   os/ios/parallelization.h
    os/ios/oswindow_data.h
+   os/ios/parallelization.h
    os/ios/process.h
    os/ios/window.h
-   os/ios/windowing.h
-   "os/ios/window_boot 2.h"
    os/ios/window_boot.h
    os/ios/window_impl.h
-   os/ios/_.h
-   os/ios/_c.h
-   os/ios/_ios.h
-   os/ios/_m.h
-   os/ios/_mm.h
+   os/ios/windowing.h
    os/os_windowing2.h
+   os/parallelization.h
    os/posix/mq_base.h
    os/posix/time.h
    os/solaris/linux_internal.h
@@ -706,9 +686,11 @@ list(APPEND acme_source
    os/solaris/solaris_user_impl.h
    os/solaris/solaris_window_xlib.h
    os/text.h
-   os/parallelization.h
    os/time.h
    os/user.h
+   os/uwp/_.h
+   os/uwp/_uwp.h
+   os/uwp/_winrt.h
    os/uwp/base_file.h
    os/uwp/exception_engine.h
    os/uwp/file_winrt.h
@@ -721,9 +703,10 @@ list(APPEND acme_source
    os/uwp/simple_hold_handle.h
    os/uwp/simple_ui.h
    os/uwp/sockets.h
-   os/uwp/_.h
-   os/uwp/_uwp.h
-   os/uwp/_winrt.h
+   os/windows/_.h
+   os/windows/_c.h
+   os/windows/_windows.h
+   os/windows/_windows_impl.h
    os/windows/api.h
    os/windows/callstack.h
    os/windows/d2d1_1.h
@@ -736,21 +719,22 @@ list(APPEND acme_source
    os/windows/implementation.h
    os/windows/internal.h
    os/windows/itemidlist.h
+   os/windows/parallelization.h
    os/windows/port_forward.h
-   os/windows/printer.h
    os/windows/print_job.h
+   os/windows/printer.h
    os/windows/process.h
    os/windows/process_data.h
    os/windows/registry.h
    os/windows/shell1.h
    os/windows/simple_hold_handle.h
-   os/windows/parallelization.h
    os/windows/utils.h
    os/windows/windowing.h
-   os/windows/_.h
-   os/windows/_c.h
-   os/windows/_windows.h
-   os/windows/_windows_impl.h
+   os/windows_common/_.h
+   os/windows_common/_c.h
+   os/windows_common/_default_dll_impl.h
+   os/windows_common/_file_c.h
+   os/windows_common/_unicode_c.h
    os/windows_common/bstring.h
    os/windows_common/comptr.h
    os/windows_common/cotaskptr.h
@@ -759,27 +743,52 @@ list(APPEND acme_source
    os/windows_common/new_api.h
    os/windows_common/parallelization.h
    os/windows_common/variant.h
-   os/windows_common/_.h
-   os/windows_common/_c.h
-   os/windows_common/_default_dll_impl.h
-   os/windows_common/_file_c.h
-   os/windows_common/_unicode_c.h
    os/winpr_input.h
-   #os/x11/_.h
-   #os/x11/x11_button.h
-   #os/x11/x11_exception.h
-   #os/x11/x11_hook.h
-   #os/x11/x11_keyboard.h
-   #os/x11/x11_message_box.h
-   #os/x11/x11_simple_ui_display.h
-   #os/xcb/xcb_hook.h
-   #os/xcb/_xcb.h
-   os/_2.h
-   os/_application.h
-   os/_c2.h
-   os/_impl2.h
-   os/_os2.h
-   os/_user.h
+   parallelization/_.h
+   parallelization/_impl.h
+   parallelization/_thread_os_create_impl.h
+   parallelization/_types.h
+   parallelization/common.h
+   parallelization/condition.h
+   parallelization/create_thread.h
+   parallelization/critical_section.h
+   parallelization/data.h
+   parallelization/event.h
+   parallelization/initial_single_lock.h
+   parallelization/manual_reset_event.h
+   parallelization/message_queue.cpp
+   parallelization/message_queue.h
+   parallelization/mutex.h
+   parallelization/pool.h
+   parallelization/semaphore.h
+   parallelization/set_event_on_exit.h
+   parallelization/single_lock.h
+   parallelization/socket_event.h
+   parallelization/synchronization_array.cpp
+   parallelization/synchronization_array.h
+   parallelization/synchronization_lock.h
+   parallelization/synchronization_object.cpp
+   parallelization/synchronization_object.h
+   parallelization/synchronization_result.cpp
+   parallelization/synchronization_result.h
+   parallelization/synchronized_process.cpp
+   parallelization/synchronized_process.h
+   parallelization/synchronized_routine.cpp
+   parallelization/synchronized_routine.h
+   parallelization/synchronized_task.cpp
+   parallelization/synchronized_task.h
+   parallelization/task.h
+   parallelization/thread_impl.h
+   parallelization/thread_os.h
+   parallelization/thread_parameter.h
+   parallelization/zaa_update_task.h
+   parallelization/zaa_update_task_item.h
+   parallelization/zaa_update_task_item_array.h
+   platform/_features.h
+   platform/_generic_object_constructor_impl.h
+   platform/_global.h
+   platform/_impl.h
+   platform/_platform.h
    platform/acme_str_pool.h
    platform/all.h
    platform/aura_aura.h
@@ -835,7 +844,6 @@ list(APPEND acme_source
    platform/string_exchange.h
    platform/system.h
    platform/text.h
-   primitive/datetime/millis.h
    platform/timeout.h
    platform/timer.h
    platform/timer_array.h
@@ -847,13 +855,32 @@ list(APPEND acme_source
    platform/trace_category.h
    platform/user_parent.h
    platform/version.h
-   platform/_features.h
-   platform/_generic_object_constructor_impl.h
-   platform/_global.h
-   platform/_impl.h
-   platform/_platform.h
    primitive/api/api.h
    primitive/api/api_rotate.h
+   primitive/collection/_.h
+   primitive/collection/_array_base_impl.h
+   primitive/collection/_array_impl.h
+   primitive/collection/_array_impl2.h
+   primitive/collection/_collection_impl1.h
+   primitive/collection/_collection_impl2.h
+   primitive/collection/_fifo_map_impl.h
+   primitive/collection/_list_impl.h
+   primitive/collection/_map_impl.h
+   primitive/collection/_papaya.h
+   primitive/collection/_papaya_array.h
+   primitive/collection/_papaya_array2d_impl.h
+   primitive/collection/_papaya_array_impl.h
+   primitive/collection/_papaya_heap.h
+   primitive/collection/_papaya_impl.h
+   primitive/collection/_papaya_map.h
+   primitive/collection/_papaya_map_impl.h
+   primitive/collection/_papaya_weak.h
+   primitive/collection/_point_array.h
+   primitive/collection/_raw_array_impl.h
+   primitive/collection/_raw_array_impl2.h
+   primitive/collection/_sort_array_impl.h
+   primitive/collection/_sort_map_impl.h
+   primitive/collection/_string_array_impl.h
    primitive/collection/address_array.h
    primitive/collection/array.h
    primitive/collection/array_base.h
@@ -861,8 +888,8 @@ list(APPEND acme_source
    primitive/collection/back_insert_iterator.h
    primitive/collection/base_2array.h
    primitive/collection/base_enum.h
-   primitive/collection/bitset.h
    primitive/collection/bit_array.h
+   primitive/collection/bitset.h
    primitive/collection/common.h
    primitive/collection/comparable_array.h
    primitive/collection/comparable_eq_array.h
@@ -906,39 +933,17 @@ list(APPEND acme_source
    primitive/collection/std_iterator.h
    primitive/collection/std_pair.h
    primitive/collection/strid_map.h
-   primitive/collection/stringl.h
    primitive/collection/string_array_base.h
    primitive/collection/string_iterable.h
    primitive/collection/string_list.h
    primitive/collection/string_map.h
    primitive/collection/string_to_string_map.h
+   primitive/collection/stringl.h
    primitive/collection/template.h
    primitive/collection/unique_array.h
    primitive/collection/var_array.h
-   primitive/collection/_.h
-   primitive/collection/_array_base_impl.h
-   primitive/collection/_array_impl.h
-   primitive/collection/_array_impl2.h
-   primitive/collection/_collection_impl1.h
-   primitive/collection/_collection_impl2.h
-   primitive/collection/_fifo_map_impl.h
-   primitive/collection/_list_impl.h
-   primitive/collection/_map_impl.h
-   primitive/collection/_papaya.h
-   primitive/collection/_papaya_array.h
-   primitive/collection/_papaya_array2d_impl.h
-   primitive/collection/_papaya_array_impl.h
-   primitive/collection/_papaya_heap.h
-   primitive/collection/_papaya_impl.h
-   primitive/collection/_papaya_map.h
-   primitive/collection/_papaya_map_impl.h
-   primitive/collection/_papaya_weak.h
-   primitive/collection/_point_array.h
-   primitive/collection/_raw_array_impl.h
-   primitive/collection/_raw_array_impl2.h
-   primitive/collection/_sort_array_impl.h
-   primitive/collection/_sort_map_impl.h
-   primitive/collection/_string_array_impl.h
+   primitive/comparison/_.h
+   primitive/comparison/_c.h
    primitive/comparison/binary.h
    primitive/comparison/compare.h
    primitive/comparison/equals.h
@@ -947,18 +952,27 @@ list(APPEND acme_source
    primitive/comparison/md5.h
    primitive/comparison/sign.h
    primitive/comparison/var_strict.h
-   primitive/comparison/_.h
-   primitive/comparison/_c.h
+   primitive/datetime/_.h
+   primitive/datetime/_c.h
+   primitive/datetime/_impl.h
    primitive/datetime/date_span.h
    primitive/datetime/duration.h
    primitive/datetime/filetime.h
    primitive/datetime/filetime_span.h
+   primitive/datetime/millis.h
+   primitive/datetime/system_time.cpp
    primitive/datetime/time.h
    primitive/datetime/time_span.h
    primitive/datetime/zonetime.h
-   primitive/datetime/_.h
-   primitive/datetime/_c.h
-   primitive/datetime/_impl.h
+   primitive/geometry2d/_.h
+   primitive/geometry2d/_collection.h
+   primitive/geometry2d/_collection_bounding_rect.h
+   primitive/geometry2d/_collection_contains.h
+   primitive/geometry2d/_defer.h
+   primitive/geometry2d/_impl.h
+   primitive/geometry2d/_rect_impl.h
+   primitive/geometry2d/_size_impl.h
+   primitive/geometry2d/_struct.h
    primitive/geometry2d/align.h
    primitive/geometry2d/angle.h
    primitive/geometry2d/arc.h
@@ -979,66 +993,66 @@ list(APPEND acme_source
    primitive/geometry2d/size.h
    primitive/geometry2d/size_array.h
    primitive/geometry2d/types.h
-   primitive/geometry2d/_.h
-   primitive/geometry2d/_collection.h
-   primitive/geometry2d/_collection_bounding_rect.h
-   primitive/geometry2d/_collection_contains.h
-   primitive/geometry2d/_defer.h
-   primitive/geometry2d/_impl.h
-   primitive/geometry2d/_rect_impl.h
-   primitive/geometry2d/_size_impl.h
-   primitive/geometry2d/_struct.h
+   primitive/geometry3d/_.h
    primitive/geometry3d/box.h
    primitive/geometry3d/dimension.h
    primitive/geometry3d/location.h
    primitive/geometry3d/quaternions.h
-   primitive/geometry3d/_.h
-   primitive/math/binary_operation.h
-   primitive/math/cast.h
-   primitive/math/classes.h
-   primitive/math/complex.h
-   primitive/math/count.h
-   primitive/math/c_number.h
-   primitive/math/filestream.h
-   primitive/math/index.h
-   primitive/math/math_clip.h
-   primitive/math/math_int_biunique.h
-   primitive/math/mkint_c.h
-   primitive/math/natural.h
-   primitive/math/number.h
-   primitive/math/number_double.h
-   primitive/math/number_float.h
-   primitive/math/number_integer.h
-   primitive/math/numeric_info.h
-   primitive/math/objects.h
-   primitive/math/random_number_generator.h
-   primitive/math/scalar.h
-   primitive/math/scalar_enum.h
-   primitive/math/static_numeric_info.h
-   primitive/math/std_template.h
-   primitive/math/value.h
-   primitive/math/_.h
-   primitive/math/_impl.h
-   primitive/promise/subject.h
+   primitive/mathematics/_.h
+   primitive/mathematics/_impl.h
+   primitive/mathematics/binary_operation.h
+   primitive/mathematics/c_number.h
+   primitive/mathematics/cast.h
+   primitive/mathematics/classes.h
+   primitive/mathematics/complex.h
+   primitive/mathematics/count.h
+   primitive/mathematics/filestream.h
+   primitive/mathematics/index.h
+   primitive/mathematics/math_clip.h
+   primitive/mathematics/math_int_biunique.h
+   primitive/mathematics/mkint_c.h
+   primitive/mathematics/natural.h
+   primitive/mathematics/number.h
+   primitive/mathematics/number_double.h
+   primitive/mathematics/number_float.h
+   primitive/mathematics/number_integer.h
+   primitive/mathematics/numeric_info.h
+   primitive/mathematics/objects.h
+   primitive/mathematics/random_number_generator.h
+   primitive/mathematics/scalar.h
+   primitive/mathematics/scalar_enum.h
+   primitive/mathematics/static_numeric_info.h
+   primitive/mathematics/std_template.h
+   primitive/mathematics/value.h
+   primitive/primitive/_.h
+   primitive/primitive/_c_memory.h
+   primitive/primitive/_context_object_impl.h
+   primitive/primitive/_defer.h
+   primitive/primitive/_factory_impl.h
+   primitive/primitive/_factory_prefix.h
+   primitive/primitive/_id_impl.h
+   primitive/primitive/_impl.h
+   primitive/primitive/_memory.h
+   primitive/primitive/_papaya.h
+   primitive/primitive/_papaya_impl.h
+   primitive/primitive/_payload_impl.h
    primitive/primitive/action_context.h
    primitive/primitive/application_bias.h
    primitive/primitive/atomic.h
    primitive/primitive/bit.h
    primitive/primitive/block.h
-   primitive/primitive/enumeration.h
-   primitive/promise/context.h
    primitive/primitive/collection.h
    primitive/primitive/collection_file.h
    primitive/primitive/command.h
-   primitive/primitive/compare_pred.h
+   primitive/primitive/compare_predicate.h
    primitive/primitive/context_object.h
    primitive/primitive/edit.h
    primitive/primitive/element_array.h
    primitive/primitive/enumeration.h
+   primitive/primitive/enumeration.h
    primitive/primitive/eobject.h
    primitive/primitive/estatus.h
    primitive/primitive/factory.h
-   primitive/promise_pred/pred_function_pointer.h
    primitive/primitive/id.h
    primitive/primitive/id_array.h
    primitive/primitive/id_space.h
@@ -1058,14 +1072,10 @@ list(APPEND acme_source
    primitive/primitive/natural.h
    primitive/primitive/number.h
    primitive/primitive/papaya.h
+   primitive/primitive/payload.h
    primitive/primitive/pointer.h
    primitive/primitive/pointer2.h
-   primitive/promise_pred/pred_process.h
-   primitive/promise_pred/pred_routine.h
    primitive/primitive/primitive_update.h
-   primitive/promise/routine.h
-   primitive/promise/promise.h
-   primitive/promise/promise1.h
    primitive/primitive/property.h
    primitive/primitive/property_set.h
    primitive/primitive/property_set_papaya.h
@@ -1077,65 +1087,41 @@ list(APPEND acme_source
    primitive/primitive/stick.h
    primitive/primitive/str.h
    primitive/primitive/trait.h
+   primitive/primitive/trait_predicate.h
    primitive/primitive/traits.h
-   primitive/primitive/trait_pred.h
    primitive/primitive/type.h
    primitive/primitive/uid.h
-   primitive/promise/handler.h
    primitive/primitive/util.h
    primitive/primitive/value.h
-   primitive/primitive/payload.h
    primitive/primitive/var2.h
    primitive/primitive/virtual_memory.h
    primitive/primitive/work.h
-   primitive/primitive/_.h
-   primitive/primitive/_context_object_impl.h
-   primitive/primitive/_c_memory.h
-   primitive/primitive/_defer.h
-   primitive/primitive/_factory_impl.h
-   primitive/primitive/_factory_prefix.h
-   primitive/primitive/_id_impl.h
-   primitive/primitive/_impl.h
-   primitive/primitive/_memory.h
-   primitive/primitive/_papaya.h
-   primitive/primitive/_papaya_impl.h
-   primitive/primitive/_payload_impl.h
-   primitive/string/base64.h
-   primitive/string/bstr.h
-   primitive/string/bstring.h
-   primitive/string/ch.h
-   primitive/string/ch_class.h
-   primitive/string/composite.h
-   primitive/string/from_integer.h
-   primitive/string/hex.h
-   primitive/string/international.h
-   primitive/string/international2.h
-   primitive/string/parse.h
-   primitive/string/static_string.h
-   primitive/string/stdstring.h
-   primitive/string/stringtow.h
-   primitive/string/string_file.h
-   primitive/string/string_inst.h
-   primitive/string/string_wide_conversion.h
-   primitive/string/sz.h
-   primitive/string/tokenizer.h
-   primitive/string/to_integer.h
-   primitive/string/x/x_charcategory.h
-   primitive/string/x/x_charcategory2.h
-   primitive/string/x/x_charcategory_names.h
-   primitive/string/x/x_defines.h
-   primitive/string/x/x_encodings.h
-   primitive/string/x/x_tables.h
-   primitive/string/x.h
+   primitive/promise/context.h
+   primitive/promise/handler.h
+   primitive/promise/promise.h
+   primitive/promise/promise1.h
+   primitive/promise/routine.h
+   primitive/promise/routine_array.h
+   primitive/promise/subject.h
+   primitive/promise_predicate/predicate_function_pointer.h
+   primitive/promise_predicate/predicate_process.h
+   primitive/promise_predicate/predicate_function.cpp
+   primitive/promise_predicate/predicate_holder.cpp
+   primitive/promise_predicate/predicate_holder.h
+   primitive/promise_predicate/synchronized_predicate_routine.h
    primitive/string/_.h
+   primitive/string/___ch_impl.h
+   primitive/string/__c_ansi.h
+   primitive/string/__c_ansi_impl.h
+   primitive/string/__c_wd16.h
+   primitive/string/__c_wd16_impl.h
+   primitive/string/__c_wd32.h
+   primitive/string/__c_wd32_impl.h
+   primitive/string/__c_wide.h
+   primitive/string/__c_wide_impl.h
    primitive/string/_base.h
    primitive/string/_base_impl.h
    primitive/string/_c.h
-   primitive/string/_compare.h
-   primitive/string/_compare_impl.h
-   primitive/string/_conv.h
-   primitive/string/_conv_ansi.h
-   primitive/string/_conv_ansi_impl.h
    primitive/string/_c_impl.h
    primitive/string/_c_inline.h
    primitive/string/_c_str.h
@@ -1151,14 +1137,19 @@ list(APPEND acme_source
    primitive/string/_c_trait_wide.h
    primitive/string/_c_trait_wide_impl.h
    primitive/string/_c_unicode.h
+   primitive/string/_compare.h
+   primitive/string/_compare_impl.h
+   primitive/string/_conv.h
+   primitive/string/_conv_ansi.h
+   primitive/string/_conv_ansi_impl.h
    primitive/string/_defer.h
    primitive/string/_impl.h
    primitive/string/_impl_prio.h
    primitive/string/_international.h
    primitive/string/_natural.h
    primitive/string/_str.h
-   primitive/string/_string_wide.h
    primitive/string/_str_impl.h
+   primitive/string/_string_wide.h
    primitive/string/_trait.h
    primitive/string/_trait_ansi.h
    primitive/string/_trait_ansi_impl.h
@@ -1170,27 +1161,43 @@ list(APPEND acme_source
    primitive/string/_uhash.h
    primitive/string/_unicode.h
    primitive/string/_unicode_impl.h
-   primitive/string/__c_ansi.h
-   primitive/string/__c_ansi_impl.h
-   primitive/string/__c_wd16.h
-   primitive/string/__c_wd16_impl.h
-   primitive/string/__c_wd32.h
-   primitive/string/__c_wd32_impl.h
-   primitive/string/__c_wide.h
-   primitive/string/__c_wide_impl.h
-   primitive/string/___ch_impl.h
+   primitive/string/base64.h
+   primitive/string/bstr.h
+   primitive/string/bstring.h
+   primitive/string/ch.h
+   primitive/string/ch_class.h
+   primitive/string/composite.h
+   primitive/string/from_integer.h
+   primitive/string/hex.h
+   primitive/string/international.h
+   primitive/string/international2.h
+   primitive/string/parse.h
+   primitive/string/static_string.h
+   primitive/string/stdstring.h
+   primitive/string/string_file.h
+   primitive/string/string_inst.h
+   primitive/string/string_wide_conversion.h
+   primitive/string/stringtow.h
+   primitive/string/sz.h
+   primitive/string/to_integer.h
+   primitive/string/tokenizer.h
+   primitive/string/x.h
+   primitive/string/x/x_charcategory.h
+   primitive/string/x/x_charcategory2.h
+   primitive/string/x/x_charcategory_names.h
+   primitive/string/x/x_defines.h
+   primitive/string/x/x_encodings.h
+   primitive/string/x/x_tables.h
    procedure.h
+   process/main.cpp
    template/list.h
    update.h
-   user/os_colors.h
    user/_.h
    user/_const.h
    user/_const_key.h
+   user/os_colors.h
    version/version.config.h
    version/version.h
-   _.h
-   _defer.h
-   _start.h
    )
 
 
@@ -1304,14 +1311,14 @@ if (WIN32)
       node/windows/_node_windows.h
       node/windows/_node_windows_private.h
       node/windows/_windows.h
-      process/wchar_main.cpp
       )
 else ()
 
    list(APPEND acme_source
       os/cross/windows/user.cpp
-      os/cross/windows/datetime.cpp
-
+      os/cross/windows/file.cpp
+      os/cross/windows/dir.cpp
+      #os/cross/windows/datetime.cpp
       #os/cross/windows/crt.cpp
       #os/cross/windows/crt_debug.cpp
       #os/cross/windows/datetime.cpp
@@ -1390,8 +1397,8 @@ if (LINUX)
       node/linux/factory_exchange.cpp
       node/linux/file.cpp
       node/linux/linux.cpp
-      node/linux/node.cpp
-      node/linux/node.h
+      #node/linux/node.cpp
+      #node/linux/node.h
       node/linux/root_tools.cpp
       #        node/linux/shell.cpp
       #        node/linux/shell_linux.cpp
@@ -1422,8 +1429,7 @@ if (LINUX)
       os/linux/time.cpp
       os/linux/user.cpp
       os/linux/win_base.cpp
-      process/ansi_main.cpp
-           )
+      )
 
 
    list(APPEND acme_source
@@ -1732,7 +1738,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} os/ansios/semun.h)
+add_library(acme SHARED ${acme_source} graphics/draw2d/_system_color.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

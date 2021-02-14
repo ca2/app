@@ -146,7 +146,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
    sem_timedwait(m_psem, &ts);
 
-   return synchronization_result(synchronization_result::result_event0);
+   return synchronization_result(e_synchronization_result_signaled_base);
 
 
 }
@@ -183,7 +183,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(iRet == EINTR || iRet == EAGAIN)
       {
 
-         return synchronization_result::result_timeout;
+         return e_synchronization_result_timed_out;
 
       }
 
@@ -192,13 +192,13 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    if(iRet == 0)
    {
 
-      return synchronization_result::result_event0;
+      return e_synchronization_result_signaled_base;
 
    }
    else
    {
 
-      return synchronization_result::result_error;
+      return e_synchronization_result_error;
 
    }
 
@@ -262,7 +262,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
 
-      return i == 0 ? synchronization_result::result_event0 : synchronization_result::result_error;
+      return i == 0 ? e_synchronization_result_signaled_base : e_synchronization_result_error;
 
    }
 
@@ -285,7 +285,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(i == 0)
       {
 
-         return synchronization_result::result_event0;
+         return e_synchronization_result_signaled_base;
 
       }
 
@@ -301,7 +301,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
          if(tRemaining > durationTimeout)
          {
 
-            return synchronization_result::result_timeout;
+            return e_synchronization_result_timed_out;
 
          }
 
@@ -309,7 +309,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       else
       {
 
-         return synchronization_result::result_error;
+         return e_synchronization_result_error;
 
       }
 

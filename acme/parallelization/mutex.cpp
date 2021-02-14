@@ -23,7 +23,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #undef USE_MISC
 
 
@@ -31,7 +31,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #endif
 
 
@@ -705,7 +705,7 @@ synchronization_result mutex::wait(const duration & duration)
       if (rc < 0)
       {
 
-         return synchronization_result(synchronization_result::result_error);
+         return e_synchronization_result_error;
 
       }
 
@@ -728,7 +728,7 @@ synchronization_result mutex::wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return synchronization_result(synchronization_result::result_event0);
+               return e_synchronization_result_signaled_base;
 
             }
 
@@ -749,7 +749,7 @@ synchronization_result mutex::wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return synchronization_result(synchronization_result::result_event0);
+               return e_synchronization_result_signaled_base;
 
             }
             else
@@ -764,7 +764,7 @@ synchronization_result mutex::wait(const duration & duration)
 
                   ASSERT(iError == 0);
 
-                  return synchronization_result(synchronization_result::result_error);
+                  return e_synchronization_result_error;
 
                }
 
@@ -777,7 +777,7 @@ synchronization_result mutex::wait(const duration & duration)
 
                ASSERT(false);
 
-               return synchronization_result(synchronization_result::result_error);
+               return e_synchronization_result_error;
 
             }
 
@@ -786,7 +786,7 @@ synchronization_result mutex::wait(const duration & duration)
             if (tickElapsed >= tickTimeout)
             {
 
-               return synchronization_result(synchronization_result::result_timeout);
+               return e_synchronization_result_timed_out;
 
             }
 
@@ -797,7 +797,7 @@ synchronization_result mutex::wait(const duration & duration)
             if (rc < 0)
             {
 
-               return synchronization_result(synchronization_result::result_error);
+               return e_synchronization_result_error;
 
             }
 
@@ -866,7 +866,7 @@ synchronization_result mutex::wait(const duration & duration)
       if(rc < 0)
       {
 
-         return synchronization_result(synchronization_result::result_error);
+         return e_synchronization_result_error;
 
       }
 
@@ -956,7 +956,7 @@ synchronization_result mutex::wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return synchronization_result(synchronization_result::result_timeout);
+            return e_synchronization_result_timed_out;
 
          }
          else if(rc != 0)
@@ -966,7 +966,7 @@ synchronization_result mutex::wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return synchronization_result(synchronization_result::result_error);
+            return e_synchronization_result_error;
 
          }
 
@@ -985,7 +985,7 @@ synchronization_result mutex::wait(const duration & duration)
 
       ASSERT(iError == 0);
 
-      return synchronization_result(synchronization_result::result_event0);
+      return e_synchronization_result_signaled_base;
 
    }
 
@@ -1014,19 +1014,19 @@ synchronization_result mutex::wait(const duration & duration)
       if (!rc)
       {
 
-         return synchronization_result(synchronization_result::result_event0);
+         return e_synchronization_result_signaled_base;
 
       }
       else if(rc == ETIMEDOUT)
       {
 
-         return synchronization_result(synchronization_result::result_timeout);
+         return e_synchronization_result_timed_out;
 
       }
       else
       {
 
-         return synchronization_result(synchronization_result::result_error);
+         return e_synchronization_result_error;
 
       }
 
@@ -1306,11 +1306,11 @@ synchronization_result mutex::wait()
    if (!lock())
    {
 
-      return synchronization_result(synchronization_result::result_error);
+      return synchronization_result(e_synchronization_result_error);
 
    }
 
-   return synchronization_result(synchronization_result::result_event0);
+   return synchronization_result(e_synchronization_result_signaled_base);
 
 }
 

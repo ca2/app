@@ -7,7 +7,7 @@
 //#include <sys/wait.h>
 //
 #include <spawn.h>
-//#include <pthread.h>
+//#include "acme/os/ansios/_pthread.h"
 //
 extern char * const * environ;
 

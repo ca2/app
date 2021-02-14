@@ -26,7 +26,7 @@ namespace acme
 
       ::logic::bit            m_bLastDarkModeSystem;
 
-      ::color::color                 m_colorSystemAppBackground;
+      ::color::color          m_colorSystemAppBackground;
       double                  m_dSystemLuminance;
       int                     m_iWeatherDarkness;
 
@@ -35,9 +35,24 @@ namespace acme
       virtual ~node();
 
 
+
+      virtual enum_operating_system get_operating_system() const;
+
+#ifdef LINUX
+
+      virtual enum_linux_distribution get_linux_distribution() const;
+
+#endif
+
       virtual int node_init_check(int * pi, char *** ppz);
 
       virtual void os_application_system_run();
+
+      virtual ::color::color get_system_color(enum_system_color esystemcolor);
+
+      virtual ::user::enum_desktop get_edesktop();
+
+      virtual ::user::enum_desktop calc_edesktop();
 
       virtual ::e_status set_system_dark_mode1(bool bSet = true);
 
@@ -153,12 +168,29 @@ namespace acme
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
+      virtual ::e_status open_folder(::file::path & pathFolder);
+
+
+
       virtual double get_time_zone();
 
       virtual ::e_status get_system_time(system_time_t * psystemtime);
 
+      virtual time_t system_time_to_time(const system_time_t & st, i32 nDST = -1);
 
-      virtual ::e_status open_folder(::file::path & pathFolder);
+      virtual time_t file_time_to_time(const filetime & ft, i32 nDST = -1);
+
+      virtual system_time_t time_to_system_time(const ::datetime::time & time);
+
+      virtual ::e_status get_system_time_as_file_time(filetime_t * pfiletime);
+
+      virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime);
+
+      virtual ::e_status file_time_to_local_file_time(filetime * pfiletimeLocal, const filetime * pfiletime);
+
+      virtual ::e_status is_valid_filetime(const filetime & filetime);
+
+      virtual filetime get_filetime_now();
 
 
    };

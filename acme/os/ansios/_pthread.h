@@ -1,6 +1,7 @@
 //
 // Created by camilo on 13/02/2021. <3TBS_!!
 //
+#pragma once
 
 
 #undef __restore
@@ -19,14 +20,14 @@ using HSYNC = synchronization_object *;
 #define PM_REMOVE 1
 
 
-#define WAIT_TIMEOUT                         258L    // dderror
-#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
-
-#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
-
-#define WAIT_IO_COMPLETION                   STATUS_USER_APC
+//#define WAIT_TIMEOUT                         258L    // dderror
+//#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+//#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
+//
+//#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+//#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+//
+//#define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
 
 // based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call

@@ -5,6 +5,9 @@
 ::acme::system * g_psystem = nullptr;
 
 
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
+
+
 namespace acme
 {
 
@@ -315,30 +318,21 @@ namespace acme
    ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox , const ::promise::process & process)
    {
 
-      printf("\n%s\n%s", pszTitle, pszText);
+      auto result = message_box_for_console(pszText, pszTitle, emessagebox);
 
-      getchar();
+      process(result);
 
-      getchar();
+      //printf("\n%s\n%s", pszTitle, pszText);
+
+      //getchar();
+
+      //getchar();
 
       return ::success;
 
    }
 
 
-   ::user::enum_desktop system::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calc_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
 
 
 

@@ -56,10 +56,8 @@ namespace acme
 #else
 
 
-   exclusive::exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
+   exclusive::exclusive(string strId ARG_SEC_ATTRS)
    {
-
-      UNREFERENCED_PARAMETER(psa);
 
       m_strId = strId;
 

@@ -152,7 +152,7 @@ synchronization_result synchronization_object::wait(const duration & durationTim
 
    }
 
-   return synchronization_result(synchronization_result::result_error);
+   return synchronization_result(e_synchronization_result_error);
 
 }
 

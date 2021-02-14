@@ -28,6 +28,7 @@ namespace apex
 
 
 
+
 #ifdef WINDOWS_DESKTOP
 
       virtual ::e_status register_dll(const ::file::path & pathDll);

@@ -240,39 +240,42 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    bool FoundExternal=false;
 
+   ::synchronization_result result;
+
    do
    {
 
       if (start.elapsed() > duration)
       {
 
-         winResult = WAIT_TIMEOUT;
+         result = e_synchronization_result_timed_out;
 
       }
 
       do
       {
 
-         if (bWaitMessageQueue)
+         if (uWakeMask)
          {
 
-            winResult = ::MsgWaitForMultipleObjectsEx((u32)sync_count(), sync_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
+            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
          {
 
-            winResult = ::WaitForMultipleObjectsEx((u32)sync_count(), sync_data(), waitForAll, __os(duration - start.elapsed()), true);
+            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, __os(duration - start.elapsed()), true);
 
          }
 
       }
-      while (winResult == WAIT_IO_COMPLETION);
+      while (result == e_synchronization_result_io_completion);
 
    }
-   while (winResult != WAIT_TIMEOUT && winResult != WAIT_FAILED);
+   while (result != e_synchronization_result_timed_out
+   && result != e_synchronization_result_error);
 
-   return synchronization_result(winResult, sync_count());
+   return result;
 
 #endif
 
@@ -301,7 +304,7 @@ synchronization_result synchronization_array::contains( const synchronization_re
    //   }
    //}
 
-   //return synchronization_result( synchronization_result::result_error );
+   //return synchronization_result( e_synchronization_result_error );
 
 }
 

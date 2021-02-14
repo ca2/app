@@ -177,7 +177,7 @@ synchronization_result synchronization_array::wait(bool waitForAll, const durati
    if (is_empty())
    {
 
-      return synchronization_result(synchronization_result::result_error);
+      return synchronization_result(e_synchronization_result_error);
 
    }
 
@@ -345,7 +345,7 @@ synchronization_result synchronization_array::contains( const synchronization_re
    //   }
    //}
 
-   //return synchronization_result( synchronization_result::result_error );
+   //return synchronization_result( e_synchronization_result_error );
 
 }
 

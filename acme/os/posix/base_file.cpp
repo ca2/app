@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_.h"
+#include "acme/os/_c2.h"
+#include "acme/os/_2.h"
 #ifdef WINDOWS
 #include <io.h>
 #include <stdio.h>

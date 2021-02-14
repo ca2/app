@@ -545,7 +545,11 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+#ifdef WINDOWS
+
       ::windows::callstack::s_pcriticalsection = new critical_section();
+
+#endif
 
       //::update::g_pcs = new critical_section();
 
@@ -970,7 +974,11 @@ namespace acme
 
       delete_all_release_on_end();
 
+#ifdef WINDOWS
+
       ::acme::del(::windows::callstack::s_pcriticalsection);
+
+#endif
 
       ::acme::del(g_pcsGlobal);
 

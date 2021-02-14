@@ -10,7 +10,7 @@
  * more information and how to use this.
  */
 #include "framework.h"
-
+#include "binreloc.h"
 
 #ifndef __BINRELOC_C__
 #define __BINRELOC_C__
@@ -96,7 +96,7 @@ _br_find_exe (BrInitError *error)
       }
 
       /* readlink() success. */
-      path[size_i32] = '\0';
+      path[size] = '\0';
 
       /* Check whether the symlink's target is also a symlink.
        * We want to get the final target. */
@@ -760,7 +760,7 @@ br_strndup (const char *str, size_t size)
 
    result = (char *) malloc (len + 1);
    ::memcpy_dup (result, str, size);
-   result[size_i32] = '\0';
+   result[size] = '\0';
    return result;
 }
 

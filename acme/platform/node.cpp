@@ -2,7 +2,6 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
-#include "node.h"
 #include "acme/id.h"
 
 
@@ -40,6 +39,56 @@ namespace acme
 
 
    }
+
+
+   ::color::color node::get_system_color(enum_system_color esystemcolor)
+   {
+
+      __throw(interface_only_exception());
+
+      return argb(0, 0, 0, 0);
+
+   }
+
+
+   enum_operating_system node::get_operating_system() const
+   {
+
+      return e_operating_system_none;
+
+   }
+
+
+   enum_linux_distribution node::get_linux_distribution() const
+   {
+
+      return e_linux_distribution_unknown;
+
+   }
+
+
+   ::user::enum_desktop node::calc_edesktop()
+   {
+
+      return user::e_desktop_none;
+
+   }
+
+
+   ::user::enum_desktop node::get_edesktop()
+   {
+
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         m_edesktop = calc_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
+
 
 
    bool node::_os_calc_app_dark_mode()
@@ -447,52 +496,78 @@ namespace acme
 
      }
 
-     return color;
+      return color;
 
-  }
-
-
-  ::color::color node::get_default_color(::u64 u )
-  {
-
-     return argb(255, 0, 0, 0);
-
-  }
+   }
 
 
-  void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
-  {
+   ::color::color node::get_default_color(::u64 u )
+   {
+
+      return argb(255, 0, 0, 0);
+
+   }
 
 
-  }
+   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+   {
 
 
-  double node::get_time_zone()
-  {
-
-     return 0.;
-
-  }
+   }
 
 
-  ::e_status node::get_system_time(system_time_t * psystemtime)
-  {
+   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   {
 
-     __throw(interface_only_exception());
+      return ::error_interface_only;
 
-     return error_interface_only;
-
-  }
+   }
 
 
-  ::e_status node::open_folder(::file::path & pathFolder)
-  {
+   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime)
+   {
 
-     __throw(interface_only_exception());
+      return ::error_interface_only;
+
+   }
+
+
+   double node::get_time_zone()
+   {
+
+      return 0.;
+
+   }
+
+
+   ::e_status node::get_system_time(system_time_t * psystemtime)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::file_time_to_local_file_time(filetime*, filetime const*)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::open_folder(::file::path & pathFolder)
+   {
+
+      __throw(interface_only_exception());
      
-     return ::error_interface_only;
+      return ::error_interface_only;
 
-  }
+   }
 
 
 } // namespace acme

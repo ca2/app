@@ -59,11 +59,11 @@ namespace windows
       if (::WaitForSingleObject(hsync(), U32_INFINITE_TIMEOUT) != WAIT_OBJECT_0)
       {
 
-         return synchronization_result(synchronization_result::result_error);
+         return synchronization_result(e_synchronization_result_error);
 
       }
 
-      return synchronization_result(synchronization_result::result_event0);
+      return synchronization_result(e_synchronization_result_signaled_base);
 
    }
 

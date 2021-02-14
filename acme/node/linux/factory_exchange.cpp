@@ -5,8 +5,8 @@
 #include "acme/node/posix/pipe.h"
 //#include "acme/node/linux/process.h"
 #include "_linux.h"
-#include "acme/node/_node.h"
-#include "acme/os/_os.h"
+#include "acme/node/_node2.h"
+#include "acme/os/_os2.h"
 //#include "copydesk.h"
 
 

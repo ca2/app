@@ -2,7 +2,7 @@
 #include "_c.h"
 //#include "_ansios.h"
 //#include <time.h>
-//#include <pthread.h>
+//#include "acme/os/ansios/_pthread.h"
 //
 //
 //CLASS_DECL_APEX void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
@@ -1369,7 +1369,7 @@
 //
 //
 //
-////#include <pthread.h>
+////#include "acme/os/ansios/_pthread.h"
 
 
 #ifndef WINDOWS

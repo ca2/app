@@ -3,7 +3,7 @@
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -405,7 +405,7 @@ synchronization_result event::wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         return synchronization_result(synchronization_result::result_event0);
+         return synchronization_result(e_synchronization_result_signaled_base);
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -422,7 +422,7 @@ synchronization_result event::wait ()
       else
       {
 
-         return synchronization_result(synchronization_result::result_error);
+         return synchronization_result(e_synchronization_result_error);
 
       }
 
@@ -503,7 +503,7 @@ synchronization_result event::wait ()
 
    //}
 
-   return synchronization_result(synchronization_result::result_event0);
+   return synchronization_result(e_synchronization_result_signaled_base);
 
 }
 
@@ -578,7 +578,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
    pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-   result =  m_bSignaled ? synchronization_result(synchronization_result::result_event0) : synchronization_result(synchronization_result::result_timeout);
+   result =  m_bSignaled ? synchronization_result(e_synchronization_result_signaled_base) : synchronization_result(e_synchronization_result_timed_out);
 
 
 #else
@@ -612,9 +612,9 @@ synchronization_result event::wait (const duration & durationTimeout)
          pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
          if(m_bSignaled)
-            result = synchronization_result(synchronization_result::result_event0);
+            result = synchronization_result(e_synchronization_result_signaled_base);
          else
-            result = synchronization_result(synchronization_result::result_error);
+            result = synchronization_result(e_synchronization_result_error);
 
       }
       else
@@ -654,7 +654,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
                pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-               return synchronization_result(synchronization_result::result_timeout);
+               return synchronization_result(e_synchronization_result_timed_out);
 
             }
 
@@ -663,9 +663,9 @@ synchronization_result event::wait (const duration & durationTimeout)
          pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
          if(m_bSignaled)
-            result = synchronization_result(synchronization_result::result_event0);
+            result = synchronization_result(e_synchronization_result_signaled_base);
          else
-            result = synchronization_result(synchronization_result::result_error);
+            result = synchronization_result(e_synchronization_result_error);
 
       }
 
@@ -703,17 +703,17 @@ synchronization_result event::wait (const duration & durationTimeout)
             }
             else
             {
-               return synchronization_result(synchronization_result::result_error);
+               return synchronization_result(e_synchronization_result_error);
             }
          }
          else
          {
-            return synchronization_result(synchronization_result::result_event0);
+            return synchronization_result(e_synchronization_result_signaled_base);
          }
 
       }
 
-      result= synchronization_result(synchronization_result::result_timeout);
+      result= synchronization_result(e_synchronization_result_timed_out);
 
    }
 

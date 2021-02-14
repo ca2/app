@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 #undef USE_MISC
 
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 
 

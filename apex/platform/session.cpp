@@ -3,9 +3,7 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -2741,17 +2739,17 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-      if (pmessage->m_id == WM_GETTEXT
-         || pmessage->m_id == WM_GETTEXTLENGTH
-         )
-      {
-
-         pmessage->m_uiMessageFlags |= 3; // message considered pre translated
-         pmessage->m_uiMessageFlags |= 16384; //  by early optmization
-
-         return;
-
-      }
+//      if (pmessage->m_id == WM_GETTEXT
+//         || pmessage->m_id == WM_GETTEXTLENGTH
+//         )
+//      {
+//
+//         pmessage->m_uiMessageFlags |= 3; // message considered pre translated
+//         pmessage->m_uiMessageFlags |= 16384; //  by early optmization
+//
+//         return;
+//
+//      }
       //else if (pmessage->m_id == e_message_mouse_move)
       //{
 

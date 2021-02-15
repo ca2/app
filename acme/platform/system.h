@@ -53,9 +53,19 @@ namespace acme
 
       virtual string os_get_user_theme();
 
+      //virtual enum_linux_distribution get_linux_distribution() const;
+
+      virtual enum_operating_system get_operating_system() const;
+
+      virtual ::user::enum_desktop get_edesktop();
+
+      virtual ::user::enum_desktop calc_edesktop();
+
+#ifdef LINUX
+      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+#endif
 
       //virtual void defer_calc_os_dark_mode();
-
 
       //virtual ::user::enum_desktop calc_edesktop();
 

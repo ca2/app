@@ -224,11 +224,11 @@ public:
 //#include "socket_event.h"
 //#include "critical_section.h"
 //#include "single_lock.h"
-#include "retry_single_lock.h"
+//#include "retry_single_lock.h"
 //#include "initial_single_lock.h"
 //#include "synchronization_lock.h"
 //#include "multi_lock.h"
-#include "retry_multi_lock.h"
+//#include "retry_multi_lock.h"
 
 //#include "synch_index_ptr_array.h"
 //#include "synch_index_iterator.h"

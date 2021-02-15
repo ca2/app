@@ -248,7 +248,7 @@ list(APPEND aura_source
    os/ansios/_ansios.h
    os/ansios/_c.h
    os/ansios/ansios_file.h
-   os/ansios/callstack.h
+   #os/ansios/callstack.h
    os/ansios/datetime_c.h
    os/ansios/exception_engine.h
    os/ansios/file.h
@@ -265,8 +265,8 @@ list(APPEND aura_source
    os/_os2.h
    os/_user.h
    os/argcargv.cpp
-   os/binreloc.cpp
-   os/binreloc.h
+   #os/binreloc.cpp
+   #os/binreloc.h
    os/chronometer.h
    os/cross.h
    os/file.h
@@ -658,8 +658,8 @@ if (LINUX)
       node/linux/_linux.h
       node/linux/application.cpp
       node/linux/application.h
-      node/linux/console_window.cpp
-      node/linux/console_window.h
+      node/linux/console.cpp
+      node/linux/console.h
       #node/linux/copydesk.cpp
       #node/linux/copydesk.h
       node/linux/factory_exchange.cpp
@@ -688,8 +688,8 @@ if (LINUX)
       os/linux/debug.h
       os/linux/desktop_file.cpp
       os/linux/desktop_file.h
-      os/linux/exception_engine.cpp
-      os/linux/exception_engine.h
+      #os/linux/exception_engine.cpp
+      #os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
       os/linux/graphics.cpp
@@ -703,7 +703,7 @@ if (LINUX)
       os/linux/list_serial_ports.cpp
       os/linux/lock.cpp
       os/linux/message_loop.cpp
-      os/linux/monitor.cpp
+      #os/linux/monitor.cpp
       os/linux/multithreading.cpp
       os/linux/os.cpp
       #os/linux/osdisplay.cpp

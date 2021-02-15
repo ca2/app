@@ -2,9 +2,12 @@
 #include "_linux.h"
 #include "apex/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
-//!!!#include <X11/Xatom.h>
-#include "third/sn/sn.h"
-//#include <gdk/gdkx.h>
+#include "acme/os/_user.h"
+//#include "third/sn/sn.h"
+
+
+//#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
+
 
 #define TEST 0
 
@@ -36,7 +39,7 @@ void wm_state_above_raw(oswindow w, bool bSet);
 
 void windowing_output_debug_string(const char * pszDebugString);
 
-Display * x11_get_display();
+//Display * x11_get_display();
 
 void wm_state_above_raw(oswindow w, bool bSet);
 
@@ -63,7 +66,7 @@ void wm_state_hidden(oswindow w, bool bSet);
 
 //#include "sal.h"
 
-extern SnLauncheeContext* g_psncontext;
+//extern SnLauncheeContext* g_psncontext;
 
 CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
 CLASS_DECL_AURA bool unhook_window_create();
@@ -144,12 +147,12 @@ namespace linux
    void interaction_impl::linux_interaction_impl_common_construct()
    {
 
-      set_handle(nullptr);
+      set_os_data(nullptr);
+
       m_bExposing    = false;
       m_bEnabled     = true;
       m_bMoveEvent   = false;
       m_bSizeEvent   = false;
-
 
    }
 
@@ -167,12 +170,13 @@ namespace linux
 
    }
 
-   void * interaction_impl::get_os_data() const
-   {
 
-      return m_oswindow;
-
-   }
+//   void * interaction_impl::get_os_data() const
+//   {
+//
+//      return m_oswindow;
+//
+//   }
 
 
 //   const MESSAGE* PASCAL interaction_impl::GetCurrentMessage()
@@ -223,15 +227,20 @@ namespace linux
 
    }
 
+
    bool interaction_impl::Attach(oswindow hWndNew)
    {
 
-      ASSERT(get_handle() == nullptr);
+      ASSERT(get_os_data() == nullptr);
 
       if (hWndNew == nullptr)
+      {
+
          return false;
 
-      m_oswindow = hWndNew;
+      }
+
+      set_os_data(hWndNew);
 
       return true;
 
@@ -241,24 +250,23 @@ namespace linux
    bool interaction_impl::setWMClass(const char * psz)
    {
 
-    string str(psz);
+      string str(psz);
 
-        m_oswindow->set_wm_class(str);
+      m_pwindow->set_wm_class(str);
 
-
-    return true;
+      return true;
 
    }
 
    oswindow interaction_impl::Detach()
    {
 
-      oswindow hwnd = (oswindow) get_handle();
+      oswindow hwnd = (oswindow) get_os_data();
 
       if (hwnd != nullptr)
       {
 
-         m_oswindow = nullptr;
+         set_os_data(nullptr);
 
       }
 
@@ -274,7 +282,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::native_create_host()
+   ::e_status interaction_impl::native_create_host()
    {
 
       __pointer(::user::system) pusersystem;
@@ -309,38 +317,48 @@ namespace linux
 
       bool bOk = true;
 
-      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
-      {
-
-         auto pwindowing = System.windowing();
-
-         m_oswindow = pwindowing->new_message_window(this);
-
-         m_puserinteraction->m_bMessageWindow = true;
-
-         //send_message(e_message_create, 0, (LPARAM) &cs);
-
-      }
-      else
+//      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+//      {
+//
+//         auto pwindowing = m_pwindowwindowing();
+//
+//         m_oswindow = pwindowing->new_message_window(this);
+//
+//         m_puserinteraction->m_bMessageWindow = true;
+//
+//         //send_message(e_message_create, 0, (LPARAM) &cs);
+//
+//      }
+//      else
       {
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         x11_sync([&]()
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->user_sync(__routine([&]()
          {
 
-            auto pwindowing = System.windowing();
+            auto psession = Session;
 
-            m_oswindow = pwindowing->new_window(this);
+            auto puser = psession->user();
 
-         });
+            auto pwindowing = puser->windowing();
+
+            m_pwindow = pwindowing->new_window(this);
+
+         }));
 
       }
 
       if(bOk)
       {
 
-         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &pusersystem->m_createstruct);
+         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
 
          m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -417,7 +435,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_start_task("delayed_placement", __routine([this]()
+            defer_fork("delayed_placement", __routine([this]()
             {
 
                _thread_delayed_placement();
@@ -590,9 +608,11 @@ namespace linux
 
          INFO("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=%s", __cstr(m_puserinteraction->layout().design().display().m_eenum));
 
-         m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
+         //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_oswindow->is_iconic())
+         m_puserinteraction->m_bVisible = true;
+
+         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
          {
 
             m_puserinteraction->hide();
@@ -706,10 +726,10 @@ namespace linux
 
       Detach();
 
-      if (!::is_null(m_oswindow))
+      if (m_pwindow)
       {
 
-         m_oswindow->post_nc_destroy();
+         m_pwindow->post_nc_destroy();
 
       }
 
@@ -721,7 +741,7 @@ namespace linux
    void interaction_impl::on_final_release()
    {
 
-      if (get_handle() != nullptr)
+      if (get_os_data() != nullptr)
       {
 
          DestroyWindow();
@@ -740,7 +760,7 @@ namespace linux
    void interaction_impl::assert_valid() const
    {
 
-      if (((interaction_impl *) this)->get_handle() == nullptr)
+      if (get_os_data() == nullptr)
       {
 
          return;
@@ -755,7 +775,7 @@ namespace linux
 
       ::object::dump(dumpcontext);
 
-      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_handle();
+      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_os_data();
 
       /*
 
@@ -793,7 +813,7 @@ namespace linux
 
       ::rectangle_i32 rectangle;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
-      dumpcontext << "\nrect = " << rectangle_i32;
+      dumpcontext << "\nrect = " << rectangle;
       dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
@@ -803,41 +823,42 @@ namespace linux
       dumpcontext << "\n";
    }
 
+
    bool interaction_impl::DestroyWindow()
    {
 
-      if((get_handle() == nullptr))
+      if(!m_pwindow)
       {
 
          return true;
 
       }
 
-      if(m_oswindow->m_bMessageOnlyWindow)
-      {
-
-         ::user::interaction * pinteraction = m_puserinteraction;
-
-         send_message(e_message_destroy, 0, 0);
-
-         send_message(e_message_ncdestroy, 0, 0);
-
-         auto pwindowing = System.windowing();
-
-         pwindowing->remove_window(this);
-
-         return true;
-
-      }
+//      if(m_oswindow->m_bMessageOnlyWindow)
+//      {
+//
+//         ::user::interaction * pinteraction = m_puserinteraction;
+//
+//         send_message(e_message_destroy, 0, 0);
+//
+//         send_message(e_message_ncdestroy, 0, 0);
+//
+//         auto pwindowing = System.windowing();
+//
+//         pwindowing->remove_window(this);
+//
+//         return true;
+//
+//      }
 
       bool bResult = false;
 
-      oswindow window = get_handle();
+      oswindow window = get_oswindow();
 
       if (window != nullptr)
       {
 
-         bResult = ::destroy_window(window) != false;
+         bResult = m_pwindow->destroy_window();
 
          //Detach();
 
@@ -851,7 +872,7 @@ namespace linux
    // Default interaction_impl implementation
 
 
-   void interaction_impl::default_window_procedure(::user::message * pusermessage)
+   void interaction_impl::default_window_procedure(::message::message * pusermessage)
 
    {
       /*  if (m_pfnSuper != nullptr)
@@ -1025,7 +1046,7 @@ namespace linux
    millis     tickLastPaint;
 
 
-   void interaction_impl::message_handler(::user::message * pusermessage)
+   void interaction_impl::message_handler(::message::message * pusermessage)
    {
 
       if(pusermessage->m_id == e_message_timer)
@@ -2215,17 +2236,24 @@ namespace linux
    bool interaction_impl::_is_window() const
    {
 
-      return ::is_window(m_oswindow) != false;
+      if(::is_null(m_pwindow))
+      {
+
+         return false;
+
+      }
+
+      return m_pwindow->is_window();
 
    }
 
 
-   oswindow interaction_impl::get_handle() const
-   {
-
-      return m_oswindow;
-
-   }
+//   oswindow interaction_impl::get_handle() const
+//   {
+//
+//      return m_oswindow;
+//
+//   }
 
 
    void interaction_impl::_001OnExitIconic()
@@ -2238,15 +2266,19 @@ namespace linux
 
       }
 
-      auto pnode = Node;
+      auto psession = Session;
 
-      if(pnode)
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      if(pwindowing)
       {
 
-         pnode->user_fork([this]()
+         pwindowing->user_fork([this]()
                           {
 
-                             m_oswindow->exit_iconify();
+                             m_pwindow->exit_iconify();
 
                           });
 
@@ -2273,7 +2305,7 @@ namespace linux
    void interaction_impl::_001OnExitZoomed()
    {
 
-      if(::is_null(m_oswindow))
+      if(!m_pwindow)
       {
 
          return;

@@ -861,7 +861,7 @@ namespace apex
       virtual ::id translate_property_id(const ::id & id) override;
       //virtual property fetch_property(const ::id & id) override;
 
-      virtual void get_time(micro_duration * pmicroduration);
+      //virtual void get_time(micro_duration * pmicroduration);
 
 
       virtual void close(::apex::enum_end eend);

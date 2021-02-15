@@ -55,7 +55,7 @@ namespace uwp
 #include "aura/graphics/draw2d/_.h"
 
 
-#include "message/_.h"
+#include "aura/message/_.h"
 
 
 //#include "aura/primitive/primitive/estatus.h"

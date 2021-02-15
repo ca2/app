@@ -53,7 +53,7 @@ namespace windowing
 
 
 
-      virtual display * display();
+      virtual class display * display();
 
       oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
       void set_oswindow(oswindow oswindow);

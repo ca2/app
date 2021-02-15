@@ -1315,6 +1315,7 @@ if (WIN32)
 else ()
 
    list(APPEND acme_source
+      os/ansios/parallelization.cpp
       os/cross/windows/user.cpp
       os/cross/windows/file.cpp
       os/cross/windows/dir.cpp
@@ -1727,7 +1728,8 @@ endif ()
 
 if (LINUX)
    list(APPEND acme_source
-      os/ansios/binreloc.cpp)
+      os/ansios/binreloc.cpp
+           )
 endif ()
 
 

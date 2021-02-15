@@ -1,7 +1,11 @@
 #pragma once
 
 
+#include "acme/os/ansios/_pthread.h"
+
+
 #if defined(HAVE_OPENSSL)
+
 
 #include <openssl/rsa.h>
 #include <openssl/md5.h>
@@ -15,20 +19,12 @@
 #include <openssl/whrlpool.h>
 
 
-
-
 #include <openssl/ssl.h>
 
 
 #endif
 
 
-
-
-
-
-
-
 namespace crypto
 {
 
@@ -47,12 +43,6 @@ namespace crypto
 #include "rsa.h"
 
 
-
-
-
-
-
-
 namespace crypto
 {
 
@@ -69,19 +59,21 @@ namespace crypto
 #include "hasher_algorithm.h"
 #include "hasher.h"
 #include "rsa.h"
-
 
 
 namespace openssl
 {
 
    template < typename CTX, enum_hash m_ehash >
-__pointer(::crypto::hasher) hasher_algorithm<CTX, m_ehash>::create_hasher()
-{
+   __pointer(::crypto::hasher) hasher_algorithm<CTX, m_ehash>::create_hasher()
+   {
 
-   return __new(::openssl::hasher< CTX, m_ehash>(this));
+      return __new(::openssl::hasher< CTX, m_ehash>(this));
 
-}
+   }
 
 
-}
+} // namespace openssl
+
+
+

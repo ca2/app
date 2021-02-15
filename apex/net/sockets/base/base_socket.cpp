@@ -40,6 +40,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////#include <ctype.h>
 #include <time.h>
 
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
 #endif

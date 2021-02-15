@@ -70,6 +70,8 @@ namespace windowing
       virtual void finalize();
 
 
+      virtual ::e_status os_application_system_run();
+      
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);
       virtual ::e_status set_cursor_set_from_matter(const ::file::path & pathDir);
@@ -88,6 +90,8 @@ namespace windowing
       virtual ::windowing::window * get_foreground_window();
 
       virtual ::windowing::window * get_active_window(::thread * pthread);
+
+      virtual void clear_active_window();
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
@@ -180,6 +184,9 @@ namespace windowing
 
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
+
+      virtual ::e_status user_sync(const ::promise::routine & routine);
+      virtual ::e_status user_fork(const ::promise::routine & routine);
 
 
    };

@@ -51,43 +51,6 @@ namespace acme
    }
 
 
-   enum_operating_system node::get_operating_system() const
-   {
-
-      return e_operating_system_none;
-
-   }
-
-
-   enum_linux_distribution node::get_linux_distribution() const
-   {
-
-      return e_linux_distribution_unknown;
-
-   }
-
-
-   ::user::enum_desktop node::calc_edesktop()
-   {
-
-      return user::e_desktop_none;
-
-   }
-
-
-   ::user::enum_desktop node::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calc_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
 
 
 

@@ -247,9 +247,9 @@ ScaleRow (  color32_t           *pSrc,
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetRValue(pSrcRow[i])));
-         g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetGValue(pSrcRow[i])));
-         b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetBValue(pSrcRow[i])));
+         r += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(red(pSrcRow[i])));
+         g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(green(pSrcRow[i])));
+         b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(blue(pSrcRow[i])));
       }
       pDstRow[x] = rgb(r,g,b); // Place result in destination pixel
    }
@@ -326,9 +326,9 @@ ScaleCol (  color32_t           *pSrc,
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
          color32_t pCurSrc = pSrc[i * uSrcWidth + uCol];
-         r += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetRValue(pCurSrc)));
-         g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetGValue(pCurSrc)));
-         b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetBValue(pCurSrc)));
+         r += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(red(pCurSrc)));
+         g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(green(pCurSrc)));
+         b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(blue(pCurSrc)));
       }
       pRes[y * uResWidth + uCol] = rgb (r,g,b);   // Place result in destination pixel
    }

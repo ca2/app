@@ -9,9 +9,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/compress/zip/_.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 #include "apex/platform/node.h"
 
 
@@ -3892,11 +3890,11 @@ retry_license:
 
       bool bSetOk;
 
-      LPSECURITY_ATTRIBUTES psa = nullptr;
-
       bool bResourceException = false;
 
 #ifdef WINDOWS_DESKTOP
+
+      LPSECURITY_ATTRIBUTES psa = nullptr;
 
       bSetOk = false;
 
@@ -3938,7 +3936,7 @@ retry_license:
       if (bSetOk)
       {
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psa);
+         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() ADD_PARAM_SEC_ATTRS);
 
          if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
          {
@@ -3968,7 +3966,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
          {
 
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psa);
+            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() ADD_PARAM_SEC_ATTRS);
 
             if (bGlobalIdExclusiveFail)
             {
@@ -3997,7 +3995,7 @@ retry_license:
 
          }
 
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psa);
+         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  ADD_PARAM_SEC_ATTRS);
 
          if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
          {
@@ -4027,7 +4025,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
          {
 
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psa);
+            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() ADD_PARAM_SEC_ATTRS);
 
             if (bLocalIdExclusiveFail)
             {

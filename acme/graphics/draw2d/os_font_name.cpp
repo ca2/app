@@ -106,9 +106,7 @@ string os_font_name(enum_font efont)
 
 #elif defined(LINUX)
 
-   auto pnode = Node;
-
-   auto elinuxdistribution = pnode->get_linux_distribution();
+   auto elinuxdistribution = System.get_linux_distribution();
 
    return linux_font_name(elinuxdistribution, efont);
 

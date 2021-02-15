@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "acme/os/console.h"
-#include "console_window.h"
+#include "console.h"
 #include "_linux.h"
 #include "aura/node/_node.h"
-#include "aura/os/_os.h"
+#include "aura/os/_os2.h"
 //#include "copydesk.h"
 
 

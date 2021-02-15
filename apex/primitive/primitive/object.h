@@ -595,7 +595,7 @@ public:
    inline auto async(void (TYPE:: * pfnMemberProcedure)())
    {
 
-      return fork([=]()
+      return fork([this,pfnMemberProcedure]()
          {
 
             TYPE * ptype = dynamic_cast <TYPE *> (this);

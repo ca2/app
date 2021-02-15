@@ -182,6 +182,8 @@ list(APPEND apex_source
    message/command_target.cpp
    message/command_ui_probe.cpp
    message/command_ui_probe.h
+   message/command.cpp
+   message/command.h
    message/const.h
    message/cross_windows.h
    message/debug.cpp
@@ -209,10 +211,10 @@ list(APPEND apex_source
    parallelization/handler.cpp
    parallelization/handler.h
    parallelization/retry.h
-   parallelization/retry_multi_lock.cpp
-   parallelization/retry_multi_lock.h
-   parallelization/retry_single_lock.cpp
-   parallelization/retry_single_lock.h
+   # parallelization/retry_multi_lock.cpp
+   # parallelization/retry_multi_lock.h
+   # parallelization/retry_single_lock.cpp
+   # parallelization/retry_single_lock.h
    parallelization/service_base.cpp
    parallelization/service_base.h
    parallelization/service_status.h
@@ -368,11 +370,11 @@ list(APPEND apex_source
    os/ansios/_c.h
    os/ansios/ansios_file.h
    os/ansios/base.cpp
-   os/ansios/callstack.h
+   # os/ansios/callstack.h
    os/ansios/datetime.cpp
    os/ansios/datetime_c.h
-   os/ansios/exception_engine.cpp
-   os/ansios/exception_engine.h
+   # os/ansios/exception_engine.cpp
+   # os/ansios/exception_engine.h
    os/ansios/file.cpp
    os/ansios/file.h
    os/ansios/file_c.h
@@ -646,7 +648,7 @@ if (WIN32)
       os/windows/library.cpp
       os/windows/main.cpp
       os/windows/menu.cpp
-      os/windows/simple_shell_launcher.cpp
+      os/windows/shell_launcher.cpp
       os/windows/thread.cpp
       os/windows/user.cpp
       os/windows/windowing.cpp
@@ -887,8 +889,8 @@ if (LINUX)
       os/linux/cross_win_gdi_internal.h
       os/linux/debug.cpp
       os/linux/debug.h
-      os/linux/exception_engine.cpp
-      os/linux/exception_engine.h
+      # os/linux/exception_engine.cpp
+      # os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
       os/linux/graphics.cpp
@@ -907,8 +909,10 @@ if (LINUX)
       #os/linux/process.h
       #os/linux/process_pid.cpp
       os/linux/simple_app.cpp
-      os/linux/simple_shell_launcher.cpp
-      os/linux/interprocess_communication.cpp
+      os/linux/shell_launcher.cpp
+      os/linux/shell_launcher.h
+      os/linux/standard_exception.cpp
+      node/linux/interprocess_communication.cpp
       os/linux/time.cpp
       os/linux/user.cpp
       os/linux/user.h
@@ -1326,7 +1330,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} )
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 

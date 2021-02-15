@@ -1765,12 +1765,12 @@ end_processing_adding:
 
          }
 
-         if (!::contains_value(m_delete, *p))
-         {
-
-            TRACE("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p);
-
-         }
+//         if (!::contains_value(m_delete, *p))
+//         {
+//
+//            TRACE("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p);
+//
+//         }
 
       }
 

@@ -35,24 +35,17 @@ namespace acme
       virtual ~node();
 
 
-
-      virtual enum_operating_system get_operating_system() const;
-
-#ifdef LINUX
-
-      virtual enum_linux_distribution get_linux_distribution() const;
-
-#endif
+//#ifdef LINUX
+//
+//      virtual enum_linux_distribution get_linux_distribution() const;
+//
+//#endif
 
       virtual int node_init_check(int * pi, char *** ppz);
 
       virtual void os_application_system_run();
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
-
-      virtual ::user::enum_desktop get_edesktop();
-
-      virtual ::user::enum_desktop calc_edesktop();
 
       virtual ::e_status set_system_dark_mode1(bool bSet = true);
 
@@ -191,6 +184,8 @@ namespace acme
       virtual ::e_status is_valid_filetime(const filetime & filetime);
 
       virtual filetime get_filetime_now();
+
+      //virtual ::file::path module_path();
 
 
    };

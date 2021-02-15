@@ -278,11 +278,11 @@ namespace aura
       virtual ::e_status inline_term() override;
 
 
-#ifdef LINUX
-
-      virtual ::e_status os_application_system_run() override;
-
-#endif
+//#ifdef LINUX
+//
+//      virtual ::e_status os_application_system_run() override;
+//
+//#endif
 
 
 //      virtual ::e_status init_system() override;

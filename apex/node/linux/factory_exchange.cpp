@@ -7,7 +7,7 @@
 #include "apex/node/linux/process.h"
 #include "_linux.h"
 #include "apex/node/_node.h"
-#include "apex/os/_os.h"
+#include "apex/os/_os2.h"
 //#include "copydesk.h"
 
 
@@ -33,6 +33,10 @@ void __node_apex_factory_exchange(::factory_map * pfactorymap)
 
 
    //create_factory < ::linux::shell              , ::user::shell            >();
+
+   create_factory< ::linux::interprocess_communication_base, ::interprocess_communication::base >();
+   create_factory< ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
+   create_factory< ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
 
 }
 

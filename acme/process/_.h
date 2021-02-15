@@ -6,13 +6,13 @@
 
 #if !defined(_UWP)
 
-CLASS_DECL_ACME i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+CLASS_DECL_ACME ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
 typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 
 typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+CLASS_DECL_ACME ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 #endif
 
@@ -24,6 +24,7 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 CLASS_DECL_ACME string expand_env(string str);
 CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+CLASS_DECL_ACME string ca2_command_line();
 
 
 CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);

@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "_user.h"
-#include "third/sn/sn.h"
-#include "apex/platform/app_core.h"
+//#include "_user.h"
+//#include "third/sn/sn.h"
+//#include "apex/platform/app_core.h"
 //#include "gnome_apex_application.h"
 
+/*
 extern ::app_core * g_pappcore;
 
 void os_post_quit();
@@ -11,42 +12,43 @@ Display * x11_get_display();
 
 CLASS_DECL_APEX i32 ca2_main();
 
+*/
 
 
 //gboolean linux_start_system(gpointer data);
 
 
 
-void CLASS_DECL_APEX __cdecl _ca2_purecall()
-{
+//void CLASS_DECL_APEX __cdecl _ca2_purecall()
+//{
+//
+//   __throw(::exception::exception());
+//
+//}
 
-   __throw(::exception::exception());
-
-}
-
-
-#ifdef WINDOWS
-
-
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-
-   UNREFERENCED_PARAMETER(uiCode);
-
-   UNREFERENCED_PARAMETER(ppointers);
-
-}
-
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//{
+//
+//   UNREFERENCED_PARAMETER(uiCode);
+//
+//   UNREFERENCED_PARAMETER(ppointers);
+//
+//}
+//
+//
+//#endif
 
 
-string ca2_command_line()
-{
-
-   return "";
-
-}
+//s/*tring ca2_command_line()
+//{
+//
+//   return "";
+//
+//}*/
 
 //
 //
@@ -119,9 +121,9 @@ string ca2_command_line()
 //   return estatus;
 //
 //}
-#ifdef LINUX
-i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
-#endif
+//#ifdef LINUX
+//i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
+//#endif
 
 
 namespace apex
@@ -209,7 +211,7 @@ namespace apex
 } // namespace apex
 
 
-void sn_start_context();
+//void sn_start_context();
 
 
  bool os_init_application()

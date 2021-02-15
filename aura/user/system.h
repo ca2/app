@@ -10,18 +10,18 @@ namespace user
    public:
 
 
-      void *         lpCreateParams;
-      hinstance      hInstance;
-      void *         hMenu;
-      oswindow       hwndParent;
-      int            cy;
-      int            cx;
-      int            y;
-      int            x;
-      long           style;
-      wchar_t *      lpszName;
-      wchar_t *      lpszClass;
-      u32            dwExStyle;
+      void *               lpCreateParams;
+      hinstance            hInstance;
+      void *               hMenu;
+      oswindow             hwndParent;
+      int                  cy;
+      int                  cx;
+      int                  y;
+      int                  x;
+      long                 style;
+      platform_char *      lpszName;
+      platform_char *      lpszClass;
+      u32                  dwExStyle;
 
 
    };
@@ -34,11 +34,11 @@ namespace user
 
       create_struct        m_createstruct;
 #ifdef WINDOWS
-      wstring     m_strClassName;
-      wstring     m_strWindowName;
+      wstring              m_strClassName;
+      wstring              m_strWindowName;
 #else
-      string      m_strClassName;
-      string      m_strWindowName;
+      string               m_strClassName;
+      string               m_strWindowName;
 #endif
 
       ::user::interaction *                  m_puserinteractionOwner;

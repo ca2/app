@@ -56,7 +56,7 @@ using thread_data_index = ::u32;
 
 class sync_object;
 class semaphore;
-class ::mutex;
+class mutex;
 class event;
 class critical_section;
 class manual_reset_event;

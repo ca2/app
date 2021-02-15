@@ -8,7 +8,8 @@
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
-#include "acme/os/cross/windows/_windows.h"
+#include "acme/os/_user.h"
+//#include "acme/os/cross/windows/_windows.h"
 
 
 #define TEST_PRINT_BUFFER
@@ -1904,7 +1905,15 @@ namespace user
       if (get_context_application() != nullptr && get_context_system() != nullptr && System.get_active_ui() == this)
       {
 
-         ::set_active_window(nullptr);
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->clear_active_window();
+
+         //::set_active_window(nullptr);
 
       }
 
@@ -11562,7 +11571,7 @@ restart:
 
       ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty((RECT *) &rectangle))
+      if (!::is_empty(rectangle))
       {
 
          rectWindow = rectangle;
@@ -11591,7 +11600,7 @@ restart:
 
       pdisplay->get_wkspace_rect(iMatchingMonitor, rectWkspace);
 
-      if (bSet && (!::IsRectEmpty((RECT *) &rectangle) || iMatchingMonitor >= 0))
+      if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
 #if !MOBILE_PLATFORM
@@ -11834,7 +11843,7 @@ restart:
 
       ::rectangle_i32 rectWindow;
 
-      if (IsRectEmpty((RECT *) &rectangle))
+      if (is_empty(rectangle))
       {
 
          get_window_rect(rectWindow);
@@ -11851,7 +11860,7 @@ restart:
 
       index iMatchingMonitor = get_zoneing(&rectNew, rectWindow, *pedisplay);
 
-      if (bSet && !::IsRectEmpty((RECT *) &rectNew) && iMatchingMonitor >= 0)
+      if (bSet && !is_empty(rectNew) && iMatchingMonitor >= 0)
       {
 
          synchronization_lock slUserMutex(mutex());
@@ -11960,7 +11969,7 @@ restart:
 
       }
 
-      if (bSet && (!::IsRectEmpty((RECT *) &rectangle) || iMatchingMonitor >= 0))
+      if (bSet && (!is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
          synchronization_lock slUserMutex(mutex());
@@ -11992,7 +12001,7 @@ restart:
 
       ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty((RECT *) &rectangle))
+      if (!::is_empty(rectangle))
       {
 
          rectWindow = rectangle;
@@ -12068,7 +12077,7 @@ restart:
 
       ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty((RECT *) &rectangle))
+      if (!is_empty(rectangle))
       {
 
          rectWindow = rectangle;
@@ -12093,7 +12102,7 @@ restart:
 
       index iMatchingMonitor = pdisplay->get_good_iconify(&rectNew, rectWindow);
 
-      if (bSet && (!::IsRectEmpty((RECT *) &rectNew) || iMatchingMonitor >= 0))
+      if (bSet && (!::is_empty(rectNew) || iMatchingMonitor >= 0))
       {
 
          synchronization_lock slUserMutex(mutex());
@@ -12119,7 +12128,7 @@ restart:
 
       ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty((RECT *) &rectangle))
+      if (!::is_empty(rectangle))
       {
 
          rectWindow = rectangle;
@@ -12144,7 +12153,7 @@ restart:
 
       index iMatchingMonitor = pdisplay->get_good_move(rectNew, rectWindow, this);
 
-      if (!::IsRectEmpty((RECT *) &rectNew) || iMatchingMonitor >= 0)
+      if (!is_empty(rectNew) || iMatchingMonitor >= 0)
       {
 
          order(zorderParam);
@@ -16132,6 +16141,8 @@ restart:
    //}
 
 
+#ifdef WINDOWS_DESKTOP
+
    void interaction::_task_transparent_mouse_event()
    {
 
@@ -16145,6 +16156,9 @@ restart:
       m_pimpl->_task_transparent_mouse_event();
 
    }
+
+
+#endif
 
 
 } // namespace user

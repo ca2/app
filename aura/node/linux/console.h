@@ -24,7 +24,7 @@ namespace linux
       void SetCursorVisibility(bool show);
       void SetCursorPosition(int y,int x);
       void SetTextColor(int color);
-      void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1);
+      void SetScreenColor(enum_dos_color color, int iLineStart = 0, int iLineCount = -1);
       void write(const char * psz);
 
    };

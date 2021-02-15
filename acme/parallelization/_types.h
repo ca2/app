@@ -1,50 +1,25 @@
 #pragma once
 
 
-
-
-
-#ifdef WINDOWS
-
-typedef u32 ithread_t;
-typedef ::u32 thread_data_index;
-
-#else
-
-using thread_data_index = ::u32;
-
-#endif
-
-
-#ifdef WINDOWS
-
-
 using hthread_t = void *;
 
 
-//typedef ::u32 ithread_t;
+using ithread_t = iptr;
 
 
-#define NULL_HTHREAD ((hthread_t)0)
-#define NULL_ITHREAD ((ithread_t)0)
+using thread_data_index = ::u32;
 
 
-inline int ithread_equals(ithread_t a, ithread_t b) { return a == b; }
-
-#else
+CLASS_DECL_ACME int ithread_equals(ithread_t a, ithread_t b);
 
 
-
-#define hthread_t pthread_t
-
-#define ithread_t pthread_t
-
-#define NULL_HTHREAD ((hthread_t)0)
-#define NULL_ITHREAD ((ithread_t)0)
+CLASS_DECL_ACME int hthread_equals(ithread_t a, ithread_t b);
 
 
-int ithread_equals(ithread_t a, ithread_t b);
+#define null_hthread ((hthread_t)0)
 
 
-#endif
+#define null_ithread ((ithread_t)0)
+
+
 

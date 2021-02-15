@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+//#ifndef WINDOWS
+//#include "acme/os/cross/windows/_windows.h"
+//#endif
 
 
 int_bool delete_hcursor(hcursor hcursor);

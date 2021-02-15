@@ -563,6 +563,27 @@ namespace windowing
     
    }
 
+
+   ::e_status windowing::user_sync(const ::promise::routine & routine)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status windowing::user_fork(const ::promise::routine & routine)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
    //void windowing::top_windows_by_z_order(oswindow_array & a)
    //{
 

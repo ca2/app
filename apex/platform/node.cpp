@@ -29,6 +29,9 @@ namespace apex
    }
 
 
+#ifdef WINDOWS
+
+
    ::e_status node::register_dll(const ::file::path & pathDll)
    {
 
@@ -37,6 +40,9 @@ namespace apex
       return error_interface_only;
 
    }
+
+
+#endif
 
 
 } // namespace apex

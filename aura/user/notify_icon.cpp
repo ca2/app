@@ -28,7 +28,7 @@ namespace user
 
 #elif defined(LINUX)
 
-      m_pindicator = nullptr;
+//      m_pindicator = nullptr;
 
 #endif
 
@@ -40,7 +40,7 @@ namespace user
    notify_icon::~notify_icon()
    {
 
-      DestroyWindow();
+      //DestroyWindow();
 
       if(g_pnotifyiconLast== this)
       {
@@ -134,56 +134,56 @@ namespace user
 
 #elif defined(LINUX) && !defined(RASPBIAN)
 
-      {
-
-         string strAppId = pvisualicon->get_tray_icon_name();
-
-         string strId(strAppId);
-
-         string strMatterRoot = ::str::token(strId, "/");
-
-         if(strMatterRoot.is_empty())
-         {
-
-            strMatterRoot = "app";
-
-         }
-
-         ::file::path pathFolder("appmatter://" + strMatterRoot);
-
-         pathFolder /= "_matter" / strId / "_std/_std/main" ;
-
-         string strNotifyIcon = _002Underscore(strAppId);
-
-         ::file::path path = pathFolder / (strNotifyIcon + "_128.png");
-
-         path = Context.defer_process_path(path);
-
-         pathFolder = path.folder();
-
-         auto pnode = Node;
-
-         pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
-         {
-
-            m_pindicator = pnode->appindicator_allocate();
-
-            m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
-
-         }));
-
-      }
-
-      if(m_pindicator == nullptr)
-      {
-
-         m_plistener = nullptr;
-
-         //DestroyWindow();
-
-         return false;
-
-      }
+//      {
+//
+//         string strAppId = picon->get_tray_icon_name();
+//
+//         string strId(strAppId);
+//
+//         string strMatterRoot = ::str::token(strId, "/");
+//
+//         if(strMatterRoot.is_empty())
+//         {
+//
+//            strMatterRoot = "app";
+//
+//         }
+//
+//         ::file::path pathFolder("appmatter://" + strMatterRoot);
+//
+//         pathFolder /= "_matter" / strId / "_std/_std/main" ;
+//
+//         string strNotifyIcon = _002Underscore(strAppId);
+//
+//         ::file::path path = pathFolder / (strNotifyIcon + "_128.png");
+//
+//         path = Context.defer_process_path(path);
+//
+//         pathFolder = path.folder();
+//
+//         auto pnode = Node;
+//
+//         pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
+//         {
+//
+//            m_pindicator = pnode->appindicator_allocate();
+//
+//            m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
+//
+//         }));
+//
+//      }
+//
+//      if(m_pindicator == nullptr)
+//      {
+//
+//         m_plistener = nullptr;
+//
+//         //DestroyWindow();
+//
+//         return false;
+//
+//      }
 
 #elif defined(MACOS)
 

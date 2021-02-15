@@ -123,6 +123,7 @@ namespace user
             bool              m_bCompositedFrameWindow : 1;
 
             bool              m_bEdgeGestureDisableTouchWhenFullscreen : 1;
+            bool              m_bVisible : 1;
 
             //bool              m_bIsWindow : 1;
             //bool              m_bEnable : 1;
@@ -1672,7 +1673,7 @@ namespace user
 
       virtual bool get_rect(::user::item& item);
 
-      inline auto rectangle_i32(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rectangle; }
+      inline auto rectangle(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rectangle; }
 
       virtual __pointer(::user::item) add_user_item(const ::user::item & item);
 

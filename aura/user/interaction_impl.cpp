@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "acme/os/cross.h"
+//#include "acme/os/cross.h"
 #include "aura/platform/message_queue.h"
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/node/_node.h"
+#include "acme/os/_user.h"
 #ifdef _UWP
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 #endif
@@ -1397,12 +1398,16 @@ namespace user
 
       m_puserinteraction->install_message_routing(pchannel);
 
+#ifdef WINDOWS
+
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
          MESSAGE_LINK(WM_CAPTURECHANGED, pchannel, this, &interaction_impl::_001OnCaptureChanged);
 
       }
+
+#endif
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
@@ -2103,16 +2108,16 @@ namespace user
 
    }
 
-   bool interaction_impl::ExecuteDlgInit(LPVOID pResource)
-
-   {
-      UNREFERENCED_PARAMETER(pResource);
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+//   bool interaction_impl::ExecuteDlgInit(LPVOID pResource)
+//
+//   {
+//      UNREFERENCED_PARAMETER(pResource);
+//
+//      ::exception::throw_interface_only();
+//
+//      return false;
+//
+//   }
 
    void interaction_impl::UpdateDialogControls(channel * pTarget,bool bDisableIfNoHndler)
    {

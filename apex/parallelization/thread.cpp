@@ -5,6 +5,15 @@
 #include "acme/parallelization/message_queue.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCreate);
 
 
@@ -2134,21 +2143,6 @@ void thread::process_window_procedure_exception(::exception_pointer pe,::message
 }
 
 
-namespace thread_util
-{
-
-   inline bool IsEnterKey(::message::message * pmessage)
-   {
-      return pmessage->m_id == e_message_key_down && pmessage->m_wparam == VK_RETURN;
-   }
-
-   inline bool IsButtonUp(::message::message * pmessage)
-   {
-      return pmessage->m_id == e_message_left_button_up;
-   }
-
-}
-
 void thread::process_message_filter(i32 code,::message::message * pmessage)
 {
 
@@ -2303,7 +2297,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
 #ifndef WINDOWS
 
-   if(m_hthread == m_ithread)
+   if(pthread_equal((pthread_t) m_hthread, (pthread_t) m_ithread))
    {
 
       INFO("create_thread success");
@@ -2346,7 +2340,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(false, epriority, nStackSize, uiCreateFlags, PARAM_SEC_ATTRS))
+   if(!begin_thread(false, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS))
    {
 
       return false;
@@ -2361,7 +2355,7 @@ bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags A
 bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(true, epriority, nStackSize, uiCreateFlags, PARAM_SEC_ATTRS))
+   if(!begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS))
    {
 
       return false;
@@ -2473,7 +2467,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_hthread, (DWORD_PTR) m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_hthread, (unsigned int) m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -4192,7 +4186,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 ::e_priority thread::thread_priority()
 {
 
-   ASSERT(m_hthread != NULL_HTHREAD);
+   ASSERT(m_hthread != null_hthread);
 
    i32 nPriority = ::GetThreadPriority(m_hthread);
 
@@ -4245,7 +4239,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 //u32 thread::ResumeThread()
 //{
 //
-//   ASSERT(m_hthread != NULL_HTHREAD);
+//   ASSERT(m_hthread != null_hthread);
 //
 //#if defined (WINDOWS_DESKTOP)
 //

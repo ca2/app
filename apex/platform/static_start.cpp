@@ -5,9 +5,7 @@
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
 //#include "apex/os/_os.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 
 
 CLASS_DECL_APEX string __apex_get_text(string str);
@@ -95,7 +93,7 @@ namespace apex
 //
 //#else
 
-   DWORD_PTR g_tlsindexLastError;
+   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -257,7 +255,7 @@ namespace apex
 
 #if !defined(WINDOWS)
 
-      g_tlsindexLastError = 0;
+//      g_tlsindexLastError = 0;
 
       g_pszDemangle = nullptr;
 

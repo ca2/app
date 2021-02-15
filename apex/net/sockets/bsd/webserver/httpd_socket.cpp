@@ -29,6 +29,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "apex/id.h"
 #include "apex/net/sockets/_sockets.h"
 #include "apex/platform/static_start.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include <openssl/ssl.h>
 
 //extern ::mutex * get_globals_mutex();

@@ -10,7 +10,11 @@
 
 
 #ifdef BSD_STYLE_SOCKETS
+
+
 CLASS_DECL_APEX string bsd_socket_error(i32 x);
+
+
 #endif
 
 
@@ -25,7 +29,6 @@ namespace net
 
 
 #include "sockets_base.h"
-
 
 
 #if defined(BSD_STYLE_SOCKETS)
@@ -69,11 +72,7 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 #include "websocket_client.h"
 
 
-
 CLASS_DECL_APEX string ip_reverse(string str);
-
-
-//#include "http_base_socket.h"
 
 
 

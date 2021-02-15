@@ -2,6 +2,7 @@
 #include "_linux.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "acme/os/ansios/file_raw.h"
 
 
 struct PROCESS_INFO_t

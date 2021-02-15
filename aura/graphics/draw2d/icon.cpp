@@ -110,22 +110,22 @@ namespace draw2d
 
       }
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
 
       m_picon->get_sizes(m_sizea);
 
-#else
+//#else
 
       // building icon not supported (size > 512 :-)
-      if (m_size.cx <= 0 || m_size.cy <= 0 || m_size.cx >= 512 || m_size.cy >= 512)
-      {
+  //    if (m_size.cx <= 0 || m_size.cy <= 0 || m_size.cx >= 512 || m_size.cy >= 512)
+  //    {
 
-         m_size.cx = 22;
-         m_size.cy = 22;
+  //       m_size.cx = 22;
+  //       m_size.cy = 22;
 
-      }
+  //    }
 
-#endif
+//#endif
 
       m_sizea.predicate_sort([](auto & size1, auto & size2)
          {

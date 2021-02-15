@@ -68,7 +68,7 @@ namespace linux
       //virtual ::user::interaction * get_owner();
       virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
-      virtual oswindow get_handle() const override;
+      //virtual oswindow get_handle() const override;
 
       virtual void route_command_message(::message::command * pcommand) override;
 
@@ -87,7 +87,7 @@ namespace linux
 
 
       virtual ::user::interaction_impl * from_os_data(void * pdata) override;
-      virtual void * get_os_data() const override;
+      //virtual void * get_os_data() const override;
 
       static user::interaction_impl * from_handle(oswindow hWnd);
       static user::interaction_impl * FromHandlePermanent(oswindow hWnd);
@@ -131,7 +131,7 @@ namespace linux
 //      id id = ::id()) override;
 
 
-         virtual bool native_create_host() override;
+         virtual ::e_status native_create_host() override;
 
 
 //      virtual bool native_create_window_ex(
@@ -174,9 +174,9 @@ namespace linux
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
+      //LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
 
-      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
+      //bool post_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
 
 
 //      bool SendNotifyMessage(const ::id & id, WPARAM wParam, lparam lParam);
@@ -201,7 +201,7 @@ namespace linux
 
 
       // oswindow size_i32 and position Functions
-      virtual bool node_is_iconic() override;
+      //virtual bool node_is_iconic() override;
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
@@ -228,8 +228,8 @@ namespace linux
       //virtual bool get_client_rect(RECTANGLE_I64 * prectangle);
 
 
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
+      //virtual bool has_focus() override;
+      //virtual bool is_active() override;
 
       //virtual ::point_i32 client_screen_top_left() override;
 
@@ -337,11 +337,11 @@ namespace linux
       virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow() override;
-      virtual ::user::interaction * SetActiveWindow() override;
+      //virtual ::user::interaction * GetActiveWindow() override;
+      //virtual ::user::interaction * SetActiveWindow() override;
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow() override;
+      //virtual bool SetForegroundWindow() override;
       //static::user::interaction * PASCAL GetForegroundWindow();
 //
 //      virtual id SetDlgCtrlId(id id);
@@ -459,9 +459,9 @@ namespace linux
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual void message_handler(::user::message * pusermessage) override;
+      virtual void message_handler(::message::message * pusermessage) override;
 
-      virtual void default_window_procedure(::user::message * pusermessage);
+      virtual void default_window_procedure(::message::message * pusermessage) override;
 
       virtual void PostNcDestroy() override;
 

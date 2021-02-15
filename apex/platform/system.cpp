@@ -9,9 +9,7 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "apex/id.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 
 
 //extern ::apex::system* g_papexsystem;
@@ -1896,6 +1894,7 @@ namespace apex
    void system::get_time(micro_duration * pmicroduration)
    {
 
+
 #ifdef _WIN32
       
       FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
@@ -1913,8 +1912,18 @@ namespace apex
       pmicroduration->m_micros = (long)tt % 1'000'000;
 
 #else
-      gettimeofday(point, nullptr);
+
+      struct timeval timeval;
+
+      gettimeofday(&timeval, nullptr);
+
+      pmicroduration->m_secs = timeval.tv_sec;
+
+      pmicroduration->m_micros = timeval.tv_usec;
+
 #endif
+
+
    }
 
 
@@ -2856,7 +2865,10 @@ namespace apex
    void system::appa_set_locale(const char * pszLocale, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      single_lock rsl(mutex());
+
+      rsl.lock(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
@@ -2870,7 +2882,10 @@ namespace apex
    void system::appa_set_schema(const char * pszStyle, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      single_lock rsl(mutex());
+
+      rsl.lock(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
@@ -4710,7 +4725,7 @@ namespace apex
 //
 //      synchronization_lock synchronizationlock(&m_mutexThread);
 //
-//      ithread_t ithread = NULL_ITHREAD;
+//      ithread_t ithread = null_ithread;
 //
 //      if (!m_threadidmap.lookup(pthread, ithread))
 //      {

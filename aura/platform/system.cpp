@@ -2305,7 +2305,11 @@ namespace aura
    void system::appa_set_locale(const char * pszLocale, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+
+      single_lock sl(mutex());
+
+      sl.wait(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
@@ -2319,7 +2323,11 @@ namespace aura
    void system::appa_set_schema(const char * pszStyle, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+
+      single_lock sl(mutex());
+
+      sl.wait(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
@@ -4576,7 +4584,7 @@ namespace aura
 //
 //      synchronization_lock synchronizationlock(&m_mutexTask);
 //
-//      ithread_t ithread = NULL_ITHREAD;
+//      ithread_t ithread = null_ithread;
 //
 //      if (!m_threadidmap.lookup(pthread, ithread))
 //      {

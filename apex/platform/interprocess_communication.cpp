@@ -333,7 +333,7 @@ namespace interprocess_communication
          else
          {
 
-            get_context_application()->fork([=]()
+            get_context_application()->fork([this,prx,strMessage]()
                {
 
                   if (m_preceiver != nullptr)
@@ -371,7 +371,7 @@ namespace interprocess_communication
       }
 
 
-      void * rx::on_interprocess_post(rx * prx, long long int a, long long int b)
+      void * rx::on_interprocess_post(rx * prx, i64 a, i64 b)
       {
 
          if (m_preceiver != nullptr)
@@ -524,78 +524,154 @@ namespace interprocess_communication
 
       }
 
+#ifdef WINDOWS
 
       bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
       {
 
-         //m_strChannel = pszKey;
+         m_strChannel = pszKey;
 
-         //m_prx->m_preceiver = this;
+         m_prx->m_preceiver = this;
 
-         //string strChannelRx = m_strChannel + "-a";
-         //string strChannelTx = m_strChannel + "-b";
+         string strChannelRx = m_strChannel + "-a";
+         string strChannelTx = m_strChannel + "-b";
 
          //if (!::IsWindow(m_rx.m_oswindow))
          //{
 
-         //   if (!m_rx.create(strChannelRx.c_str()))
-         //   {
+            if (!m_prx->create(strChannelRx.c_str()))
+            {
 
-         //      return false;
+               return false;
 
-         //   }
-
-         //}
-
-         //if (!tx::open(strChannelTx.c_str(), plauncher))
-         //{
-
-         //   return false;
+            }
 
          //}
+
+         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+         {
+
+            return false;
+
+         }
 
          return true;
 
       }
+
 
       bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
       {
 
-         //m_strChannel = pszKey;
+         m_strChannel = pszKey;
 
-         //m_rx.m_preceiver = this;
+         m_prx->m_preceiver = this;
 
-         //string strChannelRx = m_strChannel + "-b";
-         //string strChannelTx = m_strChannel + "-a";
+         string strChannelRx = m_strChannel + "-b";
+         string strChannelTx = m_strChannel + "-a";
 
 
          //if (!::IsWindow(m_rx.m_oswindow))
          //{
 
-         //   if (!m_rx.create(strChannelRx.c_str()))
-         //   {
+            if (!m_prx->create(strChannelRx.c_str()))
+            {
 
-         //      return false;
+               return false;
 
-         //   }
+            }
 
          //}
 
-         //if (!tx::open(strChannelTx.c_str(), plauncher))
-         //{
-         //   return false;
-         //}
+         if (!m_ptx::open(strChannelTx.c_str(), plauncher))
+         {
+            return false;
+         }
 
          return true;
 
       }
+
+#else
+
+
+      bool interprocess_communication::open_ab(const char * pszKey, launcher * plauncher)
+      {
+
+         m_strChannel = pszKey;
+
+         m_prx->m_preceiver = this;
+
+         string strChannelRx = m_strChannel + "-a";
+         string strChannelTx = m_strChannel + "-b";
+
+         //if (!::IsWindow(m_rx.m_oswindow))
+         //{
+
+            if (!m_prx->create(strChannelRx.c_str()))
+            {
+
+               return false;
+
+            }
+
+         //}
+
+         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+         {
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+
+      bool interprocess_communication::open_ba(const char * pszKey, launcher * plauncher)
+      {
+
+         m_strChannel = pszKey;
+
+         m_prx->m_preceiver = this;
+
+         string strChannelRx = m_strChannel + "-b";
+         string strChannelTx = m_strChannel + "-a";
+
+
+         //if (!::IsWindow(m_rx.m_oswindow))
+         //{
+
+            if (!m_prx->create(strChannelRx.c_str()))
+            {
+
+               return false;
+
+            }
+
+         //}
+
+         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+         {
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+
+#endif
 
 
       bool interprocess_communication::is_rx_tx_ok()
       {
 
-         //return m_rx.is_rx_ok() && is_tx_ok();
-         return false;
+         return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+         //return false;
 
       }
 

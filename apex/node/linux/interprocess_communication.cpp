@@ -1,26 +1,29 @@
 #include "framework.h"
+#include "interprocess_communication.h"
 
 
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-namespace interprocess_communication
+namespace linux
 {
 
 
-      base::base()
+   interprocess_communication_base::interprocess_communication_base()
+   {
+
+      m_key = 0;
+      m_iQueue = -1;
+
+   }
+
+      interprocess_communication_base::~interprocess_communication_base()
       {
-         m_key = 0;
-         m_iQueue = -1;
       }
 
-      base::~base()
-      {
-      }
 
-
-      tx::tx()
+      interprocess_communication_tx::interprocess_communication_tx()
       {
 
          //mutex() = new ::mutex(pobject);
@@ -28,12 +31,12 @@ namespace interprocess_communication
       }
 
 
-      tx::~tx()
+      interprocess_communication_tx::~interprocess_communication_tx()
       {
 
       }
 
-      bool tx::open(const char * pszChannel,launcher * plauncher)
+      bool interprocess_communication_tx::open(const char * pszChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -65,7 +68,7 @@ namespace interprocess_communication
       }
 
 
-      bool tx::close()
+      bool interprocess_communication_tx::close()
       {
 
          if(m_iQueue < 0)
@@ -84,7 +87,7 @@ namespace interprocess_communication
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool interprocess_communication_tx::send(const char * pszMessage, duration durationTimeout)
       {
 
          memory m;
@@ -99,7 +102,7 @@ namespace interprocess_communication
 
          pdata->request       = 1024;
 
-         pdata->size_i32          = iLen;
+         pdata->size          = iLen;
 
          ::memcpy_dup(pdata->data, pszMessage, iLen);
 
@@ -118,7 +121,7 @@ namespace interprocess_communication
 
          }
 
-         ::output_debug_string("functon: \"tx::send\"\n");
+         ::output_debug_string("functon: \"interprocess_communication_tx::send\"\n");
 
          ::output_debug_string("channel: \"" +m_strBaseChannel+ "\"\n");
 
@@ -129,7 +132,7 @@ namespace interprocess_communication
       }
 
 
-      bool tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
+      bool interprocess_communication_tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
       {
 
          if(message == 1024)
@@ -146,7 +149,7 @@ namespace interprocess_communication
          data_struct * pdata = (data_struct *)m.get_data();
          pdata->mtype        = 20170101;
          pdata->request      = 1024;
-         pdata->size_i32         = iLen;
+         pdata->size         = iLen;
          //if(data.size_i32 > 512)
          // return false;
 
@@ -182,7 +185,7 @@ namespace interprocess_communication
 
 
 
-      bool tx::is_tx_ok()
+      bool interprocess_communication_tx::is_tx_ok()
       {
 
          return m_iQueue != -1;
@@ -190,7 +193,7 @@ namespace interprocess_communication
       }
 
 
-      rx::rx()
+      interprocess_communication_rx::interprocess_communication_rx()
       {
 
          m_preceiver    = nullptr;
@@ -198,13 +201,13 @@ namespace interprocess_communication
       }
 
 
-      rx::~rx()
+      interprocess_communication_rx::~interprocess_communication_rx()
       {
 
       }
 
 
-      bool rx::create(const char * pszChannel)
+      bool interprocess_communication_rx::create(const char * pszChannel)
       {
 
 
@@ -236,7 +239,7 @@ namespace interprocess_communication
       }
 
 
-      bool rx::destroy()
+      bool interprocess_communication_rx::destroy()
       {
 
          i32 iRetry = 23;
@@ -262,7 +265,7 @@ namespace interprocess_communication
       }
 
 
-      bool rx::start_receiving()
+      bool interprocess_communication_rx::start_receiving()
       {
 
          m_bRunning = true;
@@ -281,25 +284,25 @@ namespace interprocess_communication
       }
 
 
-//      void rx::receiver::on_ipc_receive(rx * prx,const char * pszMessage)
+//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,const char * pszMessage)
 //      {
 //
 //      }
 //
 //
-//      void rx::receiver::on_ipc_receive(rx * prx,i32 message,void * pdata,memsize len)
+//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,i32 message,void * pdata,memsize len)
 //      {
 //
 //      }
 //
 
-//      void rx::receiver::on_ipc_post(rx * prx, i64 a, i64 b)
+//      void interprocess_communication_rx::receiver::on_ipc_post(interprocess_communication_rx * prx, i64 a, i64 b)
 //      {
 //
 //      }
 
 
-      void * rx::on_interprocess_receive(rx * prx,const char * pszMessage)
+      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const char * pszMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -316,7 +319,7 @@ namespace interprocess_communication
       }
 
 
-      void * rx::on_interprocess_receive(rx * prx,i32 message,void * pdata,memsize len)
+      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,i32 message,void * pdata,memsize len)
       {
 
          if(m_preceiver != nullptr)
@@ -333,9 +336,7 @@ namespace interprocess_communication
       }
 
 
-
-
-      void * rx::on_interprocess_post(rx * prx, i64 a, i64 b)
+      void * interprocess_communication_rx::on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b)
       {
 
          if(m_preceiver != nullptr)
@@ -352,8 +353,7 @@ namespace interprocess_communication
       }
 
 
-
-      bool rx::on_idle()
+      bool interprocess_communication_rx::on_idle()
       {
 
          return false;
@@ -361,7 +361,7 @@ namespace interprocess_communication
       }
 
 
-      bool rx::is_rx_ok()
+      bool interprocess_communication_rx::is_rx_ok()
       {
 
          return m_iQueue != -1;
@@ -369,7 +369,7 @@ namespace interprocess_communication
       }
 
 
-      void * rx::receive()
+      void * interprocess_communication_rx::receive()
       {
 
          memory mem;
@@ -411,7 +411,7 @@ namespace interprocess_communication
 
             }
 
-            mem.assign(pdata->data,pdata->size_i32);
+            mem.assign(pdata->data,pdata->size);
 
             long lRequest = pdata->request;
 
@@ -444,79 +444,79 @@ namespace interprocess_communication
       }
 
 
-      interprocess_communication::interprocess_communication()
-      {
-
-         m_millisTimeout = (5000) * 11;
-
-      }
-
-
-      interprocess_communication::~interprocess_communication()
-      {
-
-
-      }
-
-      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
-      {
-
-         m_strChannel = pszChannel;
-
-         m_rx.m_preceiver = this;
-
-         string strChannelRx = m_strChannel + "-a";
-         string strChannelTx = m_strChannel + "-b";
-
-
-         if(!m_rx.create(strChannelRx))
-         {
-            return false;
-         }
-
-         if(!tx::open(strChannelTx,plauncher))
-         {
-            return false;
-         }
-
-         return true;
-
-      }
-
-
-      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
-      {
-
-         m_strChannel = pszChannel;
-
-         m_rx.m_preceiver = this;
-
-         string strChannelRx = m_strChannel + "-b";
-         string strChannelTx = m_strChannel + "-a";
+//      interprocess_communication::interprocess_communication()
+//      {
+//
+//         m_millisTimeout = (5000) * 11;
+//
+//      }
+//
+//
+//      interprocess_communication::~interprocess_communication()
+//      {
+//
+//
+//      }
+//
+//      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
+//      {
+//
+//         m_strChannel = pszChannel;
+//
+//         m_rx.m_preceiver = this;
+//
+//         string strChannelRx = m_strChannel + "-a";
+//         string strChannelTx = m_strChannel + "-b";
+//
+//
+//         if(!m_rx.create(strChannelRx))
+//         {
+//            return false;
+//         }
+//
+//         if(!interprocess_communication_tx::open(strChannelTx,plauncher))
+//         {
+//            return false;
+//         }
+//
+//         return true;
+//
+//      }
 
 
-         if(!m_rx.create(strChannelRx))
-         {
-            return false;
-         }
+//      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
+//      {
+//
+//         m_strChannel = pszChannel;
+//
+//         m_rx.m_preceiver = this;
+//
+//         string strChannelRx = m_strChannel + "-b";
+//         string strChannelTx = m_strChannel + "-a";
+//
+//
+//         if(!m_rx.create(strChannelRx))
+//         {
+//            return false;
+//         }
+//
+//         if(!interprocess_communication_tx::open(strChannelTx,plauncher))
+//         {
+//            return false;
+//         }
+//
+//         return true;
+//
+//      }
 
-         if(!tx::open(strChannelTx,plauncher))
-         {
-            return false;
-         }
-
-         return true;
-
-      }
 
 
-
-      bool interprocess_communication::is_rx_tx_ok()
-      {
-
-         return m_rx.is_rx_ok() && is_tx_ok();
-
-      }
+//      bool interprocess_communication::is_rx_tx_ok()
+//      {
+//
+//         return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+//
+//      }
 
 
    } // namespace interprocess_intercommunication

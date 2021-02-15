@@ -179,20 +179,20 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 //}
 
 
-#ifdef LINUX
-
-
-__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
-{
-
-   __throw(todo());
-
-   return nullptr;
-
-}
-
-
-#endif
+//#ifdef LINUX
+//
+//
+//__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+//{
+//
+//   __throw(todo());
+//
+//   return nullptr;
+//
+//}
+//
+//
+//#endif
 
 
 

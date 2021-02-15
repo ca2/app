@@ -8,7 +8,6 @@ namespace user
    class interaction_array;
 
 
-
    class CLASS_DECL_AURA interaction_ptra:
       public address_array < ::user::interaction * >
    {
@@ -66,6 +65,7 @@ namespace user
 
 
    };
+
 
    class CLASS_DECL_AURA interaction_array :
       virtual public matter
@@ -141,10 +141,6 @@ namespace user
       }
 
    };
-
-
-
-
 
 
 } // namespace user

@@ -115,10 +115,6 @@ namespace acme
    }
 
 
-
-
-
-
    string system::os_get_user_theme()
    {
 
@@ -127,12 +123,19 @@ namespace acme
    }
 
 
-   //void system::defer_calc_os_dark_mode()
-   //{
+   ::user::enum_desktop system::get_edesktop()
+   {
 
-   //   node()->os_calc_dark_mode();
+      if (m_edesktop == ::user::e_desktop_none)
+      {
 
-   //}
+         m_edesktop = calc_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
 
 
    void system::on_subject(::promise::subject *psubject)
@@ -173,6 +176,7 @@ namespace acme
                psubject->m_esubject = e_subject_not_modified;
 
             }
+
          }
 
       }
@@ -207,7 +211,6 @@ namespace acme
    {
 
 
-
    }
 
 
@@ -216,7 +219,6 @@ namespace acme
 
 
    }
-
 
 
    ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
@@ -263,7 +265,7 @@ namespace acme
 
       synchronization_lock synchronizationlock(&m_mutexTask);
 
-      ithread_t ithread = NULL_ITHREAD;
+      ithread_t ithread = null_ithread;
 
       if (!m_taskidmap.lookup(ptask, ithread))
       {
@@ -333,18 +335,15 @@ namespace acme
    }
 
 
-
-
-
 } // namespace acme
 
 
-   string __get_text(const string & str)
-   {
+string __get_text(const string & str)
+{
 
-      return ::g_psystem->__get_text(str);
+   return ::g_psystem->__get_text(str);
 
-   }
+}
 
 
 CLASS_DECL_ACME ::acme::system * get_context_system()
@@ -355,15 +354,12 @@ CLASS_DECL_ACME ::acme::system * get_context_system()
 }
 
 
-
-
 CLASS_DECL_ACME void acme_system_init()
 {
 
    g_psystem = new acme::system();
 
 }
-
 
 
 CLASS_DECL_ACME void acme_system_term()

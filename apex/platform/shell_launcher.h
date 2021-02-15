@@ -27,11 +27,13 @@ namespace apex
       ::e_display          m_edisplay;
       ::e_activation       m_eactivation;
       duration             m_durationTimeout;
+      ::e_status           m_estatus;
+
 
    protected:
 
 
-      i32         m_iMode;
+      i32                  m_iMode;
 
 
    public:
@@ -46,7 +48,7 @@ namespace apex
       virtual ::e_status launch();
 
 
-      virtual bool succeeded();
+      inline ::e_status status() const {return m_estatus;}
 
 
    };

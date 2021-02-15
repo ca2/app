@@ -2294,7 +2294,6 @@ namespace base
 }
 
 
-
 class app_core;
 
 

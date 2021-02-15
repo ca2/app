@@ -68,7 +68,6 @@ inline ___shape* __new_shape(const ::draw_text& drawtext)
 
 #include "bounding_rect.h"
 
-
 #include "contains.h"
 
 #include "font.h"

@@ -1,6 +1,6 @@
 #include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
-//#include "aura/user/_user.h"
+#include "aura/user/_user.h"
 //#endif
 //#include "acme/const/id.h"
 //#include "apex/platform/app_core.h"
@@ -1204,7 +1204,9 @@ namespace aura
    void session::on_finally_focus_set(::user::primitive * pprimitiveFocus)
    {
 
-      user()->set_mouse_focus_LButtonDown(pprimitiveFocus);
+      auto puser = User;
+
+      puser->set_mouse_focus_LButtonDown(pprimitiveFocus);
 
       if (pprimitiveFocus == nullptr)
       {

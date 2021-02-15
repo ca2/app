@@ -1,8 +1,8 @@
-// created by Camilo 2021-01-31 05:26 BRT <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo 2021-02-14 16:56 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
@@ -57,8 +57,8 @@ namespace windows
       virtual ~interprocess_communication_base();
 
 
-      HWND get_hwnd() const { return (HWND) get_os_data(); }
-      void set_hwnd(HWND hwnd) { set_os_data((void *) hwnd); }
+      //HWND get_hwnd() const { return (HWND) get_os_data(); }
+      //void set_hwnd(HWND hwnd) { set_os_data((void *) hwnd); }
 
    };
 
@@ -118,7 +118,11 @@ namespace windows
       virtual bool on_idle();
 
 
-      LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
+      virtual bool start_receiving();
+
+      virtual void * receive();
+
+      //LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
 
 
       bool is_rx_ok();

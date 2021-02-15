@@ -243,7 +243,7 @@ enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 CLASS_DECL_ACME hthread_t get_current_hthread()
 {
 
-   return ::pthread_self();
+   return (hthread_t) ::pthread_self();
 
 }
 
@@ -251,7 +251,7 @@ CLASS_DECL_ACME hthread_t get_current_hthread()
 CLASS_DECL_ACME ithread_t get_current_ithread()
 {
 
-   return ::pthread_self();
+   return (ithread_t) ::pthread_self();
 
 }
 

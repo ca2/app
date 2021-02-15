@@ -48,9 +48,4 @@ namespace str
 } // namespace str
 
 
-//inline void __exchange(::stream & s, in6_addr & addr);
-
-//inline void __exchange(::stream & s, in_addr & addr);
-
-
 

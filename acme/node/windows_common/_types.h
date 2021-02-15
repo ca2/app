@@ -24,8 +24,8 @@ typedef iptr hthread_t;
 //typedef ::u32 ithread_t;
 
 
-#define NULL_HTHREAD ((hthread_t)0)
-#define NULL_ITHREAD ((ithread_t)0)
+#define null_hthread ((hthread_t)0)
+#define null_ithread ((ithread_t)0)
 
 
 inline int ithread_equals(ithread_t a, ithread_t b) { return a == b; }
@@ -38,8 +38,8 @@ inline int ithread_equals(ithread_t a, ithread_t b) { return a == b; }
 
 #define ithread_t pthread_t
 
-#define NULL_HTHREAD ((hthread_t)0)
-#define NULL_ITHREAD ((ithread_t)0)
+#define null_hthread ((hthread_t)0)
+#define null_ithread ((ithread_t)0)
 
 inline int ithread_equals(ithread_t a, ithread_t b) { return pthread_equal(a, b); }
 

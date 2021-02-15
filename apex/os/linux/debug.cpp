@@ -9,7 +9,7 @@
 //#include <stdbool.h
 #include <sys/ptrace.h>
 #include <sys/wait.h>
-
+   int   gdb_check(   )   ;
 i32 __node_is_debugger_attached()
 {
 

@@ -11,7 +11,7 @@ task::task()
    m_bitCoInitialize = false;
    m_bitIsRunning = false;
    m_bitIsPred = true;
-   m_hthread = NULL_HTHREAD;
+   m_hthread = null_hthread;
    m_ithread = 0;
 
 }

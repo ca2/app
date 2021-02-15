@@ -43,8 +43,7 @@ typedef struct _tagTT_NAME_RECORD
    u16	uStringOffset;	//from start of storage area
 } TT_NAME_RECORD;
 
-#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), LOBYTE(x))
-#define SWAPLONG(x)		MAKELONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+
 
 
 

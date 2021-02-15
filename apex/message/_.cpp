@@ -1,15 +1,15 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/message.h"
-#include "acme/os/cross/windows/_windows.h"
+//#include "acme/os/cross/windows/_windows.h"
 
 namespace message
 {
 
-   class ::channel * CreateSignal()
-   {
-      return new class ::channel();
-   }
+//   class ::channel * CreateSignal()
+//   {
+//      return new class ::channel();
+//   }
 
 
    CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage)

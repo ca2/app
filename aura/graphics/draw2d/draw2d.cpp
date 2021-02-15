@@ -1392,7 +1392,15 @@ breakFilter2:
    string draw2d::write_text_get_default_library_name()
    {
 
+#ifdef LINUX
+
+      return "linux";
+
+#else
+
       return PLATFORM_COMMON_STRING;
+
+#endif
 
    }
 

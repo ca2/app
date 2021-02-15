@@ -2,7 +2,7 @@
 
 
 #include "aura/_.h"
-#include "aura/operating_system.h.h"
+#include "aura/operating_system.h"
 
 
 #if defined(_NODE_ANSIOS_LIBRARY)

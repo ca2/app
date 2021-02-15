@@ -7,6 +7,73 @@
 #pragma once
 
 
+#ifndef WINDOWS
+
+
+/*
+* e_message_size message wParam values
+*/
+#define SIZE_RESTORED       0
+#define SIZE_MINIMIZED      1
+#define SIZE_MAXIMIZED      2
+#define SIZE_MAXSHOW        3
+#define SIZE_MAXHIDE        4
+
+
+/*
+* Identifiers for the e_message_show_window message
+*/
+#define SW_PARENTCLOSING    1
+#define SW_OTHERZOOM        2
+#define SW_PARENTOPENING    3
+
+
+#define GWL_STYLE           (-16)
+#define GWL_EXSTYLE         (-20)
+
+
+#define WS_CHILD            0x40000000L
+#define WS_VISIBLE          0x10000000L
+#define WS_EX_LAYERED       0x00080000
+
+
+#define WHEEL_DELTA         120
+
+
+/*
+* set_window_position Flags
+*/
+#define SWP_NOSIZE          0x0001
+#define SWP_NOMOVE          0x0002
+#define SWP_NOZORDER        0x0004
+#define SWP_NOREDRAW        0x0008
+#define SWP_NOACTIVATE      0x0010
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+#define SWP_SHOWWINDOW      0x0040
+#define SWP_HIDEWINDOW      0x0080
+#define SWP_NOCOPYBITS      0x0100
+#define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
+
+#define SWP_DRAWFRAME       SWP_FRAMECHANGED
+#define SWP_NOREPOSITION    SWP_NOOWNERZORDER
+#define SWP_DEFERERASE      0x2000
+#define SWP_ASYNCWINDOWPOS  0x4000
+
+
+#endif
+
+
+struct SIZEPARENTPARAMS
+{
+
+   RECTANGLE_I32  rectangle;     // parent client rectangle (trim as appropriate)
+   SIZE_I32       sizeTotal;     // total size on each side as on_layout proceeds
+   bool           bStretch;      // should stretch to fill all space
+
+};
+
+
 //CLASS_DECL_ACME i64 oswindow_id(oswindow w);
 
 

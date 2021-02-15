@@ -18,7 +18,7 @@ task::task()
    m_bitCoInitialize = false;
    m_bitIsRunning = false;
    m_bitIsPred = true;
-   m_hthread = NULL_HTHREAD;
+   m_hthread = null_hthread;
    m_ithread = 0;
 
 }
@@ -528,7 +528,7 @@ void task::term_task()
    pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
    pthread_create(
-      &m_hthread,
+      (pthread_t *) &m_hthread,
       &taskAttr,
       &task::s_os_task,
       this);

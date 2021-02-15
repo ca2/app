@@ -194,7 +194,9 @@ void apex_main_data::system_construct(os_local * poslocal, const ::e_display & e
 
 #endif
 
-   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+   m_edisplay = edisplay;
+
+   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
 
    //m_poslocal = poslocal;
 

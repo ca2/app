@@ -1,10 +1,10 @@
 #include "framework.h"
 
-#include "_os.h"
+//#include "_os.h"
 
-#ifndef WINDOWS
-extern thread_data_index g_tlsindexLastError;
-#endif
+//#ifndef WINDOWS
+//extern thread_data_index g_tlsindexLastError;
+//#endif
 
 // namespace parallelization
 // {
@@ -73,6 +73,7 @@ property_set& _thread_property_set()
    return *ppropertyset;
 
 }
+
 
 property_set& thread_property_set()
 {

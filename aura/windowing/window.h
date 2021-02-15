@@ -106,6 +106,15 @@ namespace windowing
       virtual iptr get_window_long_ptr(i32 nIndex) const;
       virtual bool set_window_long_ptr(i32 nIndex, iptr l);
 
+      virtual iptr get_style() const;
+      virtual iptr get_ex_style() const;
+
+      virtual bool set_style(iptr nStyle);
+      virtual bool set_ex_style(iptr nExStyle);
+
+      virtual bool modify_style(uptr dwRemove, uptr dwAdd, ::u32 nFlags);
+      virtual bool modify_ex_style(uptr dwRemove, uptr dwAdd, ::u32 nFlags);
+
 
       virtual bool _001ClientToScreen(POINT_I32 * ppoint);
 

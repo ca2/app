@@ -122,7 +122,7 @@ namespace filemanager
    void file_list::RenameFile(i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::path filepath = fs_list_item(iLine)->m_filepathFinal;
 
@@ -140,7 +140,7 @@ namespace filemanager
 
       __pointer(::message::mouse) pcontextmenu(pmessage);
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       index iItem;
 
@@ -384,7 +384,7 @@ namespace filemanager
 
       __pointer(::message::command) pcommand(pmessage);
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -826,7 +826,7 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   sync_lock sl(fs_list()->mutex());
+   //   synchronization_lock synchronizationlock(fs_list()->mutex());
 
    //   __pointer(::userfs::list_data) pdata = fs_list();
    //
@@ -973,7 +973,7 @@ namespace filemanager
 
          Application.data_get(filemanager_data()->m_dataidStatic, stra);
 
-         sync_lock lock(fs_list()->mutex());
+         synchronization_lock lock(fs_list()->mutex());
 
          fs_list()->m_itema.remove_all();
 
@@ -1056,9 +1056,9 @@ namespace filemanager
 
       {
 
-         sync * pm = fs_list()->mutex();
+         synchronization_object * pm = fs_list()->mutex();
 
-         sync_lock lock(pm);
+         synchronization_lock lock(pm);
 
          ::file::listing & listingUser = get_document()->m_listingUser2;
 
@@ -1118,7 +1118,7 @@ namespace filemanager
 
       {
 
-         sync_lock lock(fs_list()->mutex());
+         synchronization_lock lock(fs_list()->mutex());
 
          if (m_eview == impact_icon)
          {
@@ -1529,7 +1529,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -1646,7 +1646,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   sync_lock sl(fs_list()->mutex());
+   //   synchronization_lock synchronizationlock(fs_list()->mutex());
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1713,7 +1713,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::userfs::list_item item;
 
@@ -1772,7 +1772,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   single_lock sl(pset->m_table.mutex(), true);
+   //   single_lock synchronizationlock(pset->m_table.mutex(), true);
 
    //   for (i32 i = 0; i < fs_list()->m_itema.get_count(); i++)
    //   {
@@ -1797,7 +1797,7 @@ namespace filemanager
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       if (iDisplayDrag < 0)
          return false;
@@ -1838,7 +1838,7 @@ namespace filemanager
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       index strict = _001DisplayToStrict(iDisplayDrop);
 
@@ -2014,7 +2014,7 @@ namespace filemanager
 
             {
 
-               sync_lock sl(mutex_draw());
+               synchronization_lock synchronizationlock(mutex_draw());
 
                if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
                {

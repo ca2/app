@@ -72,7 +72,7 @@ namespace file
 
       __pointer(listener) plistener(plistenerParam);
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       i32 wd = inotify_add_watch (mFD, pathFolder, IN_MODIFY | IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 

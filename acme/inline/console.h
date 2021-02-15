@@ -7,8 +7,10 @@ void acme_system_init();
 void acme_system_term();
 
 
+CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
 
-int main(int argc, TCHAR ** argv)
+
+int main(int argc, platform_char ** argv)
 {
 
    process_set_args(argc, argv);

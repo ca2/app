@@ -42,7 +42,7 @@
 
 //#include "serial/serial.h"
 
-#include <pthread.h>
+//#include <pthread.h>
 
 namespace serial {
 

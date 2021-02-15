@@ -131,9 +131,9 @@ namespace helloworld
       if (m_bNewLayout)
       {
 
-         sync_lock sl2(&m_mutexWork);
-         sync_lock sl3(&m_mutexDraw);
-         sync_lock sl4(&m_mutexSwap);
+         synchronization_lock sl2(&m_mutexWork);
+         synchronization_lock sl3(&m_mutexDraw);
+         synchronization_lock sl4(&m_mutexSwap);
 
 /*         bool bNewSize = m_pimage->width() != sizeNew.cx || m_pimage->m_size.cy != sizeNew.cy;
 
@@ -306,7 +306,7 @@ namespace helloworld
 
       {
 
-         sync_lock sl(&m_mutexWork);
+         synchronization_lock synchronizationlock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -351,7 +351,7 @@ namespace helloworld
 
       //_001OnPostProcess(m_pimageWork);
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       if (m_bDib1)
       {
@@ -368,7 +368,7 @@ namespace helloworld
 
       }
 
-      sync_lock slSwap(&m_mutexSwap);
+      synchronization_lock slSwap(&m_mutexSwap);
 
       if (m_bDib1)
       {
@@ -445,7 +445,7 @@ namespace helloworld
 
       {
 
-         sync_lock slText(m_pmutexText);
+         synchronization_lock slText(m_pmutexText);
 
          strHelloWorld = get_helloworld().c_str(); // rationale : string allocation fork *for parallelization*
 
@@ -476,7 +476,7 @@ namespace helloworld
 
             {
 
-               sync_lock slDib(&m_mutexDib);
+               synchronization_lock slDib(&m_mutexDib);
 
 /*               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
                {
@@ -519,7 +519,7 @@ namespace helloworld
 
       {
 
-         sync_lock slText(m_pmutexText);
+         synchronization_lock slText(m_pmutexText);
 
          if (strHelloWorld != get_helloworld() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
             return;
@@ -622,7 +622,7 @@ namespace helloworld
       if(!m_bFirstDone)
       {
 
-         sync_lock slText(m_pmutexText);
+         synchronization_lock slText(m_pmutexText);
 
          if (strHelloWorld == get_helloworld() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
          {
@@ -731,7 +731,7 @@ namespace helloworld
 
       {
 
-         sync_lock slDib(&m_mutexDib);
+         synchronization_lock slDib(&m_mutexDib);
 
          if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -853,7 +853,7 @@ namespace helloworld
       if (Application.m_iErrorAiFont == 0)
       {
 
-         sync_lock slAiFont(&Application.m_mutexAiFont);
+         synchronization_lock slAiFont(&Application.m_mutexAiFont);
 
          FT_Face & face = (FT_Face &)Application.m_faceAi;
 
@@ -1046,7 +1046,7 @@ namespace helloworld
    //            if (m_strLast23.has_char())
    //            {
 
-   //               sync_lock sl(&m_mutexDib23);
+   //               synchronization_lock synchronizationlock(&m_mutexDib23);
 
    //               auto & pimage = image23(m_strLast23);
 
@@ -1064,7 +1064,7 @@ namespace helloworld
    //            if (m_strCurrent23.has_char())
    //            {
 
-   //               sync_lock sl(&m_mutexDib23);
+   //               synchronization_lock synchronizationlock(&m_mutexDib23);
 
    //               auto & pimage = image23(m_strCurrent23);
 
@@ -1083,7 +1083,7 @@ namespace helloworld
    //         else if (m_strCurrent23.has_char())
    //         {
 
-   //            sync_lock sl(&m_mutexDib23);
+   //            synchronization_lock synchronizationlock(&m_mutexDib23);
 
    //            auto & pimage = image23(m_strCurrent23);
 
@@ -1115,7 +1115,7 @@ namespace helloworld
 
    //         {
 
-   //            sync_lock slText(&m_pview->m_mutexText);
+   //            synchronization_lock slText(&m_pview->m_mutexText);
 
    //            strHelloWorld = m_pview->get_processed_helloworld().c_str();
 
@@ -1179,9 +1179,9 @@ namespace helloworld
    //   if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
    //   {
 
-   //      sync_lock sl1(m_pview->get_wnd()->mutex());
+   //      synchronization_lock sl1(m_pview->get_wnd()->mutex());
 
-   //      sync_lock slDraw(&m_mutexDraw);
+   //      synchronization_lock slDraw(&m_mutexDraw);
 
    //      if (m_bFast || m_pimageFast->is_null())
    //      {
@@ -1190,7 +1190,7 @@ namespace helloworld
 
    //         {
 
-   //            sync_lock slText(&m_pview->m_mutexText);
+   //            synchronization_lock slText(&m_pview->m_mutexText);
 
    //            helloworld_fast_render(m_pview->get_processed_helloworld());
 
@@ -1232,9 +1232,9 @@ namespace helloworld
 
    //   ::image_pointer pimageFast = m_pimageFast;
 
-   //   sync_lock sl(&m_mutexDraw);
+   //   synchronization_lock synchronizationlock(&m_mutexDraw);
 
-   //   sync_lock slSwap(&m_mutexSwap);
+   //   synchronization_lock slSwap(&m_mutexSwap);
 
    //   pimage = m_pimageOut;
 
@@ -1304,7 +1304,7 @@ namespace helloworld
    void render::defer_update_bilbo()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (auto & bilbo : m_bilboa)
       {
@@ -1335,7 +1335,7 @@ namespace helloworld
       for (auto str23 : m_stra23)
       {
 
-         sync_lock sl(&m_mutexDib23);
+         synchronization_lock synchronizationlock(&m_mutexDib23);
 
          image23(str23);
 
@@ -1358,7 +1358,7 @@ namespace helloworld
       if (m_cx <= 0 || m_cy <= 0)
          return;
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 
@@ -1431,7 +1431,7 @@ namespace helloworld
    string render::get_helloaura()
    {
 
-      sync_lock slText(&m_pview->m_mutexText);
+      synchronization_lock slText(&m_pview->m_mutexText);
 
       return strHelloWorld = m_pview->get_processed_helloworld();
 

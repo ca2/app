@@ -61,7 +61,7 @@ namespace opengl
 
       };
 
-      //sync_lock sl(x11_mutex());
+      //synchronization_lock synchronizationlock(x11_mutex());
 
       //xdisplay display(x11_get_display());
 

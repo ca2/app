@@ -307,7 +307,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_messagebasea.has_elements())
          {
@@ -316,7 +316,7 @@ namespace user
 
             m_messagebasea.remove_at(0);
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             m_pimpl->m_puserinteraction->message_handler(pusermessage);
 
@@ -382,7 +382,7 @@ namespace user
 
          }
 
-         if (m_message.message == e_message_quit)
+         if (m_message.m_id == e_message_quit)
          {
 
             if (m_pimpl 
@@ -397,24 +397,23 @@ namespace user
          }
 
 
-         if(m_message.message == e_message_left_button_down)
+         if(m_message.m_id == e_message_left_button_down)
          {
 
             ::output_debug_string("::user::thread::LBUTTONDOWN\n");
 
          }
-         else if(m_message.message == e_message_left_button_up)
+         else if(m_message.m_id == e_message_left_button_up)
          {
 
             ::output_debug_string("::user::thread::LBUTTONUP\n");
 
          }
 
-         if (m_message.message != WM_KICKIDLE
-            && m_message.message != e_message_quit)
+         if (m_message.m_id != WM_KICKIDLE && m_message.m_id != e_message_quit)
          {
 
-            if (m_message.message == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+            if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
             {
 
                INFO("notify_icon");
@@ -474,7 +473,7 @@ namespace user
 
       MESSAGE & msg = m_message;
 
-      if (msg.message == ::e_message_redraw)
+      if (msg.m_id == ::e_message_redraw)
       {
 
          auto pimpl = m_pimpl->m_pwindow->m_pwindowing->window(msg.oswindow)->m_pimpl;
@@ -907,7 +906,7 @@ catch(...)
    void thread::finalize()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pimpl)
       {
@@ -953,7 +952,7 @@ catch(...)
          INFO("notify_icon");
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_pimpl.release();
 

@@ -366,8 +366,8 @@ namespace user
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
-      //using ::user::primitive::set_window_pos;
-      //virtual bool set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx,i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //using ::user::primitive::set_window_position;
+      //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx,i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
       virtual ::u32 ArrangeIconicWindows() override;
       //virtual bool BringWindowToTop() override;
 

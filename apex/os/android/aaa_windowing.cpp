@@ -90,7 +90,7 @@ i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 
    }
 
-   sync_lock slOsWindow(oswindow_data::s_pmutex);
+   synchronization_lock slOsWindow(oswindow_data::s_pmutex);
 
    for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -114,7 +114,7 @@ i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 i32 oswindow_find(::user::interaction_impl * pimpl)
 {
 
-   sync_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
 
    for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -135,7 +135,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
    if (pimpl == nullptr)
       return nullptr;
 
-   sync_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find_message_only_window(pimpl);
 
@@ -162,7 +162,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
 oswindow_data * oswindow_get(::user::interaction_impl * pimpl)
 {
 
-   sync_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find(pimpl);
 
@@ -193,7 +193,7 @@ m_pdata = nullptr;
 oswindow::oswindow(::user::interaction * pinteraction)
 {
 
-sync_lock slOsWindow(s_pmutex);
+synchronization_lock slOsWindow(s_pmutex);
 
 m_pdata = get_message_only_window(pinteraction);
 
@@ -204,7 +204,7 @@ m_pdata = get_message_only_window(pinteraction);
 oswindow::oswindow(Display * pdisplay, Window interaction_impl, Visual * pvisual)
 {
 
-sync_lock slOsWindow(s_pmutex);
+synchronization_lock slOsWindow(s_pmutex);
 
 m_pdata = get(pdisplay, interaction_impl);
 
@@ -277,7 +277,7 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 //int_bool oswindow_remove(::user::interaction * pinteraction)
 //{
 //
-//   sync_lock slOsWindow(::oswindow_data::s_pmutex);
+//   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
 //
 //   iptr iFind = oswindow_find(pinteraction);
 //
@@ -294,7 +294,7 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction)
 {
 
-   sync_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find_message_only_window(pinteraction);
 
@@ -311,9 +311,9 @@ bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction
 i32 oswindow_data::store_name(const char * psz)
 {
 
-   sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -331,9 +331,9 @@ i32 oswindow_data::store_name(const char * psz)
 i32 oswindow_data::select_input(i32 iInput)
 {
 
-   sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -369,9 +369,9 @@ i32 oswindow_data::map_window()
 
    /*
 
-   sync_lock sl(m_puserinteraction == nullptr ? nullptr : m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_puserinteraction == nullptr ? nullptr : m_puserinteraction->mutex());
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    xdisplay d(display());
 
@@ -387,7 +387,7 @@ i32 oswindow_data::map_window()
 void oswindow_data::post_nc_destroy()
 {
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    oswindow_remove(this);
 
@@ -397,7 +397,7 @@ void oswindow_data::post_nc_destroy()
 void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 {
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    if (::is_null(this))
    {
@@ -493,9 +493,9 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    oswindow = oswindow->get_parent();
 
@@ -529,9 +529,9 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(::e_display edisplay)
 {
 
-   sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   sync_lock slOsWindow(s_pmutex);
+   synchronization_lock slOsWindow(s_pmutex);
 
    if(is_visible(edisplay))
    {
@@ -601,7 +601,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
    if (m_pimpl == nullptr)
    {
@@ -756,7 +756,7 @@ int_bool show_window(oswindow_data * pdata, int nCmdShow)
 int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uFlags)
 {
 
-   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uFlags);
+   return pdata->m_pimpl->m_puserinteraction->set_window_position((iptr)pdataAfter, x, y, cx, cy, uFlags);
 
 }
 
@@ -831,7 +831,7 @@ oswindow set_active_window(oswindow oswindow)
 oswindow get_window(oswindow windowParam, int iParentHood)
 {
 
-   sync_lock sl(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
+   synchronization_lock synchronizationlock(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
 
    oswindow interaction_impl = windowParam;
 
@@ -851,7 +851,7 @@ oswindow get_window(oswindow windowParam, int iParentHood)
 int_bool destroy_window(oswindow w)
 {
 
-   sync_lock sl(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->mutex());
+   synchronization_lock synchronizationlock(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->mutex());
 
    if (!is_window(w))
    {
@@ -1178,7 +1178,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
-   System.get_context_session()->m_puiHost->set_window_pos(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   System.get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1231,7 +1231,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_pred([=]()
+   System.get_context_session()->m_puiHost->post_predicate([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1337,7 +1337,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    //System.fork([=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_pred([=]()
+   System.get_context_session()->m_puiHost->post_predicate([=]()
       {
 
          System.on_os_text(etext, strText);

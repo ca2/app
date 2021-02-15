@@ -63,7 +63,7 @@
 //// {
 //
 //
-////    //single_lock sl(&user_mutex(), true);
+////    //single_lock synchronizationlock(&user_mutex(), true);
 //
 //
 ////    if(hdc == nullptr)
@@ -84,7 +84,7 @@
 //
 //// {
 //
-////    //single_lock sl(&user_mutex(), true);
+////    //single_lock synchronizationlock(&user_mutex(), true);
 //
 //
 ////    XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, prc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);

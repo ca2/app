@@ -20,7 +20,7 @@
 //#else
 //
 //   static ::mutex m;
-//   sync_lock sl(&m);
+//   synchronization_lock synchronizationlock(&m);
 //   struct tm *tmp;
 //   tmp = gmtime(timep);
 //   *result = *tmp;

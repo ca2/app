@@ -108,7 +108,7 @@ void * system_heap_realloc_dbg(void * p,  memsize size, i32 nBlockUse, const cha
 
    //memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
 
-   //sync_lock lock(g_pmutgen);
+   //synchronization_lock lock(g_pmutgen);
 
    //if(s_pmemdleakList == pblock)
    //{
@@ -224,7 +224,7 @@ else
       if(s_pmemdleakList != nullptr)
       {
 
-         sync_lock lock(g_pmutgen);
+         synchronization_lock lock(g_pmutgen);
 
          if(s_pmemdleakList == pblock)
          {
@@ -262,7 +262,7 @@ else
    __throw(::exception::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
 
 
-   sync_lock lock(g_pmutgen);
+   synchronization_lock lock(g_pmutgen);
 
    memdleak_block * pblock = s_pmemdleakList;
 
@@ -328,7 +328,7 @@ else
 //
 //#endif
 //
-//   sync_lock lock(g_pmutgen);
+//   synchronization_lock lock(g_pmutgen);
 //
 //   memdleak_block * pblock = s_pmemdleakList;
 //

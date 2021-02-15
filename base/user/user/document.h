@@ -90,7 +90,7 @@ namespace user
       template < class T >
       ::count get_typed_view_count() const
       {
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
          ::count count = 0;
          for (index index = 0; index < m_viewa.get_count(); index++)
          {
@@ -109,7 +109,7 @@ namespace user
       __pointer(T) get_typed_view(index indexFind = 0) const
       {
 
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
 
          if (indexFind < 0 || indexFind >= m_viewa.get_count())
          {
@@ -161,7 +161,7 @@ namespace user
       __pointer(T) get_typed_view_with_id(id id) const
       {
 
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
 
          ::count count = 0;
 
@@ -235,7 +235,7 @@ namespace user
 
       virtual __pointer(::user::impact) get_typed_view_with_id(::type info,id id);
 
-      virtual void show_all_frames(::u32 nCmdShow);
+      virtual void show_all_frames(const ::edisplay & edisplay = e_display_normal);
 
 
       //class update

@@ -86,7 +86,7 @@ namespace windowing
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pcursorset.is_null())
       {
@@ -112,7 +112,7 @@ namespace windowing
    ::e_status windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_bSettingCursorMatter)
       {
@@ -123,7 +123,7 @@ namespace windowing
 
       __keep(m_bSettingCursorMatter);
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       auto estatus = __construct(m_pcursorset);
 

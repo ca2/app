@@ -13,7 +13,7 @@
 
 
 
-void debug_object_event_promisse_pred()
+void debug_object_event_promisse_predicate()
 {
 
    //::object o;

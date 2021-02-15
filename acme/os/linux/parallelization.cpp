@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/os/ansios/_pthread.h"
 
 
 bool set_thread_name(hthread_t hthread, const char * psz)

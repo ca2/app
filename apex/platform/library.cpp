@@ -119,7 +119,7 @@ namespace apex
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -195,7 +195,7 @@ namespace apex
    bool library::open_ca2_library(string strTitle)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -366,7 +366,7 @@ namespace apex
    string library::get_library_name()
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -411,7 +411,7 @@ namespace apex
    bool library::close()
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       try
       {
@@ -461,7 +461,7 @@ namespace apex
    string library::get_app_id(const char * pszAppName)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -515,7 +515,7 @@ namespace apex
    string library::get_app_name(const char * pszAppId)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -575,7 +575,7 @@ namespace apex
    __result(::apex::application) library::new_application(const char * pszAppId)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       try
       {
@@ -682,7 +682,7 @@ namespace apex
    void library::get_app_list(string_array & stra)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -751,7 +751,7 @@ namespace apex
    __pointer(::matter) library::create_object(const char * pszClass)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       ::matter * p = nullptr;
 
@@ -785,7 +785,7 @@ namespace apex
    bool library::has_object_class(const char * pszClassId)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if (get_ca2_library() == nullptr)
       {
@@ -802,7 +802,7 @@ namespace apex
    bool library::contains_app(const char * pszAppId)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       string_array stra;
 
@@ -816,7 +816,7 @@ namespace apex
    string library::get_root()
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -833,7 +833,7 @@ namespace apex
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -843,7 +843,7 @@ namespace apex
    bool library::is_opened()
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -861,7 +861,7 @@ namespace apex
    void * library::raw_get(const char * pszEntryName)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -915,7 +915,7 @@ namespace apex
    //library_object_allocator_base * library::find_allocator(const char * lpszClass)
    //{
 
-   //   index iFind = m_allocatorptra.pred_find_first([&](auto & pallocator)
+   //   index iFind = m_allocatorptra.predicate_find_first([&](auto & pallocator)
    //   {
 
    //      return pallocator->m_strName == lpszClass;

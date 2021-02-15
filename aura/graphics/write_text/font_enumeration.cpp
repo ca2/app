@@ -76,7 +76,7 @@ namespace write_text
    bool font_enumeration::has_font_name(const string& str)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (auto& pitem : *m_pitema)
       {
@@ -98,7 +98,7 @@ namespace write_text
    __pointer(::write_text::font_enum_item) font_enumeration::similar_font(const char* psz)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       __pointer(::write_text::font_enum_item) pitemFound;
 

@@ -8,13 +8,13 @@ void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,LPMESSAGE pMsg,o
 
 #ifdef __cplusplus
 
-//#undef sync
-//class sync;
+//#undef synchronization_object
+//class synchronization_object;
 //
 //#ifdef WINDOWS
 //using HSYNC = HANDLE;
 //#else
-//using HSYNC = sync *;
+//using HSYNC = synchronization_object *;
 //#endif
 
 #ifdef _UWP
@@ -92,7 +92,7 @@ union semun
 
 
 // class thread;
-// class mq;
+// class message_queue;
 
 
 // CLASS_DECL_AXIS int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);

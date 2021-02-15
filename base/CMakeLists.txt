@@ -187,10 +187,6 @@ list(APPEND base_source
         user/user/network_configuration.h
         user/user/notification_area.cpp
         user/user/notification_area.h
-        user/user/notify_icon.cpp
-        user/user/notify_icon.h
-        user/user/notify_icon_listener.cpp
-        user/user/notify_icon_listener.h
         user/user/picture.cpp
         user/user/picture.h
         user/user/picture_interaction.cpp

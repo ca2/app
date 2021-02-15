@@ -1767,9 +1767,9 @@ namespace dir
    ::file::path program_files_x86()
    {
 
-      ::file::path point_i32("/opt/ca2");
+      ::file::path path("/opt/ca2");
 
-      return point;
+      return path;
 
    }
 
@@ -1777,9 +1777,9 @@ namespace dir
    ::file::path program_files()
    {
 
-      ::file::path point_i32("/opt/ca2");
+      ::file::path path("/opt/ca2");
 
-      return point;
+      return path;
 
    }
 

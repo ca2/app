@@ -134,7 +134,7 @@ namespace linux
 //
 //         {
 //
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //            if (m_imagemap.lookup(imagekey, iImage))
 //            {
@@ -209,7 +209,7 @@ namespace linux
 ////         if (!b48 && shfi48.hIcon != nullptr)
 ////         {
 ////            ::DestroyIcon(shfi48.hIcon);
-////         }         sync_lock sl(mutex());
+////         }         synchronization_lock synchronizationlock(mutex());
 ////
 ////         m_imagemap.set_at(imagekey, iImage);
 ////
@@ -233,7 +233,7 @@ namespace linux
       //   HICON * phicon48)
       //{
 
-      //   single_lock sl(mutex(), true);
+      //   single_lock synchronizationlock(mutex(), true);
 
       //   if (lpsf == nullptr)
       //      return false;
@@ -496,7 +496,7 @@ namespace linux
 //      bool linux::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock sl(mutex(), true);
+//         single_lock synchronizationlock(mutex(), true);
 //
 //         per_fork fork;
 //         LPITEMIDLIST lpiidlAbsolute;
@@ -510,7 +510,7 @@ namespace linux
 //      bool linux::get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock sl(mutex(), true);
+//         single_lock synchronizationlock(mutex(), true);
 //
 //         wstring wstr;
 //
@@ -570,7 +570,7 @@ namespace linux
       void shell::on_update_sizes_interest()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_iaSize.remove_all();
 
@@ -605,7 +605,7 @@ namespace linux
 
             }
 
-            single_lock sl(mutex(), true);
+            single_lock synchronizationlock(mutex(), true);
 
             m_imagemap.set_at(imagekey, iImage);
 
@@ -627,7 +627,7 @@ namespace linux
 
             }
 
-            single_lock sl(mutex(), true);
+            single_lock synchronizationlock(mutex(), true);
 
             m_imagemap.set_at(imagekey, iImage);
 
@@ -649,7 +649,7 @@ namespace linux
 
             }
 
-            single_lock sl(mutex(), true);
+            single_lock synchronizationlock(mutex(), true);
 
             m_imagemap.set_at(imagekey, iImage);
 
@@ -669,8 +669,8 @@ namespace linux
                str.trim();
                /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
                HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-               sync_lock sl1(m_pil48Hover->mutex());
-               sync_lock sl2(m_pil48->mutex());
+               synchronization_lock sl1(m_pil48Hover->mutex());
+               synchronization_lock sl2(m_pil48->mutex());
                iImage = m_pil16->add_icon_os_data(hicon16);
                m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -823,9 +823,9 @@ namespace linux
 
             pimage->get_graphics()->stretch(::size_i32(48, 48), pimage->get_graphics(), pimage->rectangle());
 
-            sync_lock sl1(m_pilHover[48]->mutex());
+            synchronization_lock sl1(m_pilHover[48]->mutex());
 
-            sync_lock sl2(m_pil[48]->mutex());
+            synchronization_lock sl2(m_pil[48]->mutex());
 
             iImage = m_pil[16]->add_image(image16, 0, 0);
 
@@ -893,7 +893,7 @@ namespace linux
 //
 //
 //
-//         sync_lock sl(&m_mutexQueue);
+//         synchronization_lock synchronizationlock(&m_mutexQueue);
 //
 //         while (thread_get_run())
 //         {
@@ -901,7 +901,7 @@ namespace linux
 //            if(m_keyptra.is_empty())
 //            {
 //
-//               sl.unlock();
+//               synchronizationlock.unlock();
 //
 //               sleep(100_ms);
 //
@@ -913,13 +913,13 @@ namespace linux
 //
 //               m_keyptra.remove_at(0);
 //
-//               sl.unlock();
+//               synchronizationlock.unlock();
 //
 //               int iImage = get_image(&fork, pkey->m_oswindow, *pkey, nullptr, pkey->m_cr);
 //
 //               {
 //
-//                  sync_lock s(mutex());
+//                  synchronization_lock s(mutex());
 //
 //                  m_imagemap.set_at(*pkey, iImage);
 //
@@ -929,7 +929,7 @@ namespace linux
 //
 //            }
 //
-//            sl.lock();
+//            synchronizationlock.lock();
 //
 //         }
 //
@@ -972,7 +972,7 @@ namespace linux
 //
 //            {
 //
-//               sync_lock sl(mutex());
+//               synchronization_lock synchronizationlock(mutex());
 //
 //               if (m_imagemap.lookup(imagekey, iImage))
 //               {
@@ -987,7 +987,7 @@ namespace linux
 //
 //            {
 //
-//               sync_lock sl(&m_mutexQueue);
+//               synchronization_lock synchronizationlock(&m_mutexQueue);
 //
 //               m_keyptra.add(pstore);
 //
@@ -997,7 +997,7 @@ namespace linux
 //
 //            iImage = get_foo_image(nullptr, oswindow, imagekey, imagekey.m_cr);
 //
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //            m_imagemap.set_at(imagekey, iImage);
 //
@@ -1043,7 +1043,7 @@ namespace linux
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                if (m_imagemap.lookup(imagekey, iImage))
                {
@@ -1056,7 +1056,7 @@ namespace linux
 
             iImage = get_file_image(imagekey);
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_imagemap.set_at(imagekey, iImage);
 
@@ -1073,7 +1073,7 @@ namespace linux
 //         if (crBk == 0)
 //         {
 //
-//            return m_pilHover[iSize]->pred_add_image([&](auto pimage)
+//            return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
 //            {
 //
 //               System.imaging().color_blend(pimage, rgb(255, 255, 240), 64);

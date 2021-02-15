@@ -148,7 +148,7 @@ namespace app_net
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                m_strGet = strGet;
 

@@ -84,7 +84,7 @@ namespace draw2d
 
 
       template < typename PRED >
-      bool emboss_pred(
+      bool emboss_predicate(
       ::draw2d::graphics_pointer & pgraphics,
       const ::rectangle_i32 & rectangle,
       PRED pred,

@@ -198,9 +198,6 @@ list(APPEND apex_source
    message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
-   parallelization/service/plain_service.cpp
-   parallelization/service/plain_service.h
-   parallelization/service/pool.h
    parallelization/_.cpp
    parallelization/_.h
    parallelization/_impl.h
@@ -383,12 +380,12 @@ list(APPEND apex_source
    os/ansios/parallelization.h
    #os/ansios/process.cpp
    os/ansios/win.cpp
-   os/_.h
+   os/_2.h
    os/_application.cpp
    os/_application.h
-   os/_c.h
+   os/_c2.h
    os/_impl.h
-   os/_os.h
+   os/_os2.h
    os/apex.h
    os/argcargv.cpp
    os/binreloc.h
@@ -503,8 +500,6 @@ list(APPEND apex_source
    platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
-   ../acme/platform/simple_trace.cpp
-   ../acme/platform/simple_trace.h
    platform/static_setup.cpp
    platform/static_setup.h
    platform/static_start.cpp
@@ -560,7 +555,6 @@ list(APPEND apex_source
    primitive/primitive/object.h
    primitive/primitive/object_meta.cpp
    primitive/primitive/object_meta.h
-   primitive/string/_.h
    process/_.h
    process/department.cpp
    process/department.h
@@ -578,9 +572,6 @@ list(APPEND apex_source
    user/language.h
    user/language_map.cpp
    user/language_map.h
-   user/menu_shared.cpp
-   user/menu_shared.h
-   user/menu_shared_command.h
    user/menu_shared_commnand.cpp
    user/notify_icon_bridge.h
    user/text.cpp

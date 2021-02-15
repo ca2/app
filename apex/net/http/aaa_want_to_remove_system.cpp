@@ -152,7 +152,7 @@ namespace http
    system::pac * system::get_pac(const char * pszUrl)
    {
 
-      single_lock sl(m_pmutexPac, true);
+      single_lock synchronizationlock(m_pmutexPac, true);
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
@@ -215,7 +215,7 @@ namespace http
    ::http::system::proxy * system::get_proxy(const char * pszUrl)
    {
 
-      single_lock sl(m_pmutexProxy, true);
+      single_lock synchronizationlock(m_pmutexProxy, true);
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
@@ -249,7 +249,7 @@ namespace http
    bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy)
    {
 
-      single_lock sl(m_pmutexPac, true);
+      single_lock synchronizationlock(m_pmutexPac, true);
 
       string strProxyServer;
 
@@ -2087,7 +2087,7 @@ retry_session:
    bool system::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
    {
 
-      single_lock sl(m_pmutexDownload, true);
+      single_lock synchronizationlock(m_pmutexDownload, true);
 
       i32 iStatusCode = 0;
 
@@ -2097,17 +2097,17 @@ retry_session:
          while (m_straExists.contains(pszUrl))
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             sleep(100_ms);
 
-            sl.lock();
+            synchronizationlock.lock();
 
          }
 
          m_straExists.add(pszUrl);
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          ::sockets::socket_handler handler(get_object());
 
@@ -2129,7 +2129,7 @@ retry_session:
          if (!http_get(handler, psocket, pszUrl, set))
          {
 
-            sl.lock();
+            synchronizationlock.lock();
 
             m_straExists.remove(pszUrl);
 
@@ -2146,7 +2146,7 @@ retry_session:
 
          iStatusCode = psocket->outattr("http_status_code");
 
-         sl.lock();
+         synchronizationlock.lock();
 
       }
       catch(...)

@@ -66,7 +66,7 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //sync_lock sl(mutex_children());
+      //synchronization_lock synchronizationlock(mutex_children());
 
       if (!can_merge(pinteraction))
       {

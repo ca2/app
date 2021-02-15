@@ -675,7 +675,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 //
 //   }
 //
-//   // sync up the sizes
+//   // synchronization_object up the sizes
 ////   SetSizes(m_sizeButton, m_sizeImage);
 //
 //   // Note: Parent must resize itself for control bar to be resized

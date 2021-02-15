@@ -75,7 +75,7 @@ namespace browser
 
          {
 
-            sync_lock sl(pview->mutex());
+            synchronization_lock synchronizationlock(pview->mutex());
 
 /*            pview->m_prender->m_pimageImage = pimage;
 
@@ -87,7 +87,7 @@ namespace browser
 
          {
 
-            sync_lock slText(&pview->m_mutexText);
+            synchronization_lock slText(&pview->m_mutexText);
 
             pview->m_strHelloBrowser = "image:" + pview->m_strImage + "," + pview->m_strHelloBrowser;
 

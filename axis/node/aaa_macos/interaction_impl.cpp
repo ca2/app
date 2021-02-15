@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/macos/oswindow_data.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 #include "aura/message.h"
 
 
@@ -235,7 +235,7 @@ namespace macos
 
       }
 
-      //single_lock sl(afxMutexHwnd(), true);
+      //single_lock synchronizationlock(afxMutexHwnd(), true);
       //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
@@ -256,7 +256,7 @@ namespace macos
       oswindow hWnd = (oswindow)get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock sl(afxMutexHwnd(), true);
+         //         single_lock synchronizationlock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->remove_handle(get_handle());
@@ -736,7 +736,7 @@ namespace macos
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock sl(afxMutexHwnd(), true);
+       single_lock synchronizationlock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -1619,7 +1619,7 @@ namespace macos
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock sl(afxMutexHwnd(), true);
+//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
 //       hwnd_map * pMap = afxMapHWND();
 //       if (pMap == nullptr)
 //       return false;
@@ -2449,7 +2449,7 @@ namespace macos
 //
 //      ASSERT(::is_window(get_handle()));
 //
-//      set_window_pos(zorder_none, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
+//      set_window_position(zorder_none, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
 //
 //   }
 
@@ -2705,7 +2705,7 @@ namespace macos
 
       }
       
-      auto pmq = m_puserinteraction->m_pthreadUserInteraction->get_mq();
+      auto pmq = m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
       return pmq->post_message(m_oswindow, message, wparam, lparam);
 
@@ -3082,7 +3082,7 @@ namespace macos
 //      if (m_bZ)
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        0,
 //                        0,
 //                        0,
@@ -3112,7 +3112,7 @@ namespace macos
 //      if (m_rectLastOsPlacement.top_left() != m_puserinteraction.m_rectParentClientRequest.top_left())
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.left,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.top,
 //                        0,
@@ -3141,7 +3141,7 @@ namespace macos
 //      if (m_rectLastOsPlacement != m_puserinteraction.m_rectParentClientRequest)
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.left,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.top,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.width(),
@@ -4330,9 +4330,9 @@ namespace macos
 
       g->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      sync_lock slGraphics(pmultiplebuffer->mutex());
+      synchronization_lock slGraphics(pmultiplebuffer->mutex());
       
-      sync_lock sl1(pmultiplebuffer->get_screen_sync());
+      synchronization_lock sl1(pmultiplebuffer->get_screen_sync());
 
       ::image_pointer & imageBuffer2 = pmultiplebuffer->get_screen_image();
 
@@ -4949,7 +4949,7 @@ namespace macos
 ////
 ////      {
 ////
-////         sync_lock sl(m_puserinteraction->mutex());
+////         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 ////
 ////         if (pt != m_puserinteraction->m_rectParentClient.top_left())
 ////         {

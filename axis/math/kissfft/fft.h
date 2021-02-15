@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/math/complex.h"
+#include "acme/primitive/mathematics/complex.h"
 
 
 #ifdef __cplusplus

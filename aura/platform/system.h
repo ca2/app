@@ -546,7 +546,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   sync_lock sl(&m_mutexFactory);
+      //   synchronization_lock synchronizationlock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 

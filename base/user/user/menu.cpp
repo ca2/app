@@ -143,7 +143,7 @@ namespace user
 //
 //         {
 //
-//            sync_lock sl(mutex_children());
+//            synchronization_lock synchronizationlock(mutex_children());
 //
 //            m_uiptraChild.remove_all();
 //
@@ -176,7 +176,7 @@ namespace user
 //
       {
 
-        // sync_lock sl(mutex_children());
+        // synchronization_lock synchronizationlock(mutex_children());
 
          // m_uiptraChild.interactiona().remove_all();
 
@@ -1127,7 +1127,7 @@ namespace user
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             update_command(m_pmenuitem);
 

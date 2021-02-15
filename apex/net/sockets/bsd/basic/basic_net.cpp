@@ -239,7 +239,7 @@ namespace sockets
       if(str.is_empty())
          return false;
 
-      single_lock sl(&m_mutexCache, true);
+      single_lock synchronizationlock(&m_mutexCache, true);
       dns_cache_item item;
       if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_millisLastChecked.elapsed()) < (5 * 60 * 1000)))))
       {
@@ -884,7 +884,7 @@ bool net::reverse(string & number, const string & hostname)
 bool net::reverse_schedule(reverse_cache_item * pitem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_reversecacheaRequest.add(pitem);
 
@@ -896,12 +896,12 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
 
             ::set_thread_name("reverse_dns");
 
-            single_lock sl(mutex());
+            single_lock synchronizationlock(mutex());
 
             while (thread_get_run())
             {
 
-               sl.lock();
+               synchronizationlock.lock();
 
                if (m_reversecacheaRequest.has_elements())
                {
@@ -910,7 +910,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
 
                   m_reversecacheaRequest.remove_at(0);
 
-                  sl.unlock();
+                  synchronizationlock.unlock();
 
                   reverse_sync(pitem);
 
@@ -918,7 +918,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
                else
                {
 
-                  sl.unlock();
+                  synchronizationlock.unlock();
 
                   if (!task_sleep(100_ms))
                   {
@@ -945,7 +945,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
 bool net::reverse(string & hostname, const ::net::address & address)
 {
 
-   single_lock sl(&m_mutexReverseCache, true);
+   single_lock synchronizationlock(&m_mutexReverseCache, true);
 
    auto & pitem = m_mapReverseCache[address.get_display_number()];
 
@@ -1096,13 +1096,13 @@ bool net::reverse_sync(reverse_cache_item * pitem)
 
 //   reverse_cache_item item;
 
-   single_lock sl(&m_mutexReverseCache, true);
+   single_lock synchronizationlock(&m_mutexReverseCache, true);
 
    pitem->m_strReverse = host;
    //item.m_strService = serv;
    pitem->m_millisLastChecked.Now();
 
-   //single_lock sl(&m_mutexCache, true);
+   //single_lock synchronizationlock(&m_mutexCache, true);
 
    //m_mapReverseCache.set_at(strIpString, item);
 

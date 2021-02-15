@@ -653,7 +653,7 @@ namespace user
       //__pointer(format) find_existing_format(__pointer_array(format) & formata, format * pformat)
       //{
 
-      //   index iFind = spana.pred_find_first([&](auto & pitem)
+      //   index iFind = spana.predicate_find_first([&](auto & pitem)
       //   {
 
       //      return *pitem->m_pformat == *pformat;

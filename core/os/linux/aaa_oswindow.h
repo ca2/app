@@ -127,7 +127,7 @@ public:
    int                                    m_iScreen;
    bool                                   m_bMessageOnlyWindow;
    __pointer(::user::interaction_impl)    m_pimpl;
-   __pointer(mq)                          m_pmq;
+   __pointer(message_queue)                          m_pmq;
    hthread_t                                m_hthread;
    Colormap                               m_colormap;
    millis                                   m_millisLastMouseMove;
@@ -264,7 +264,7 @@ public:
       return ::is_null(this);
    }
 
-   bool set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+   bool set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
    bool _set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 
    bool is_destroying();

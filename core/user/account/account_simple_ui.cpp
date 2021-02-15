@@ -438,7 +438,7 @@ namespace account
                get_parent()->_001ScreenToClient(rectFontopus);
 
 
-            set_window_pos(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
+            set_window_position(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
 
          }
 

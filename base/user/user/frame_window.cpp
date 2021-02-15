@@ -487,7 +487,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //sync_lock sl(pimpl->m_spgraphics->mutex());
+                  //synchronization_lock synchronizationlock(pimpl->m_spgraphics->mutex());
 
                   ::image_pointer pimage1;
 
@@ -497,11 +497,11 @@ namespace user
 
                   pimage1 = create_image(rectangle.size());
 
-                  sync * psync = pimpl->m_pgraphics->get_draw_lock();
+                  synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
 
                   ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
 
-                  sync_lock sl(psync);
+                  synchronization_lock synchronizationlock(psync);
 
                   auto rectDst = ::rectangle_f64(rectangle.size());
 
@@ -1814,7 +1814,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// sync floating windows to the new state
+      //// synchronization_object floating windows to the new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -2587,7 +2587,7 @@ namespace user
 
       }
 
-      // =set_window_pos(TOP)
+      // =set_window_position(TOP)
       //BringToTop(e_display_normal);
 
       if (edisplay != e_display_default)

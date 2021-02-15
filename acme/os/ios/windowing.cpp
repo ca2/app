@@ -413,7 +413,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   sync_lock sl(g_poswindowdataptra->mutex());
+   synchronization_lock synchronizationlock(g_poswindowdataptra->mutex());
 
    if(window == g_oswindowActive)
    {
@@ -453,7 +453,7 @@ int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, 
       return false;
    if(hwnd->m_pimpl == nullptr)
       return false;
-      return  hwnd->m_pimpl->m_puserinteraction->set_window_pos((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? true : false;
+      return  hwnd->m_pimpl->m_puserinteraction->set_window_position((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? true : false;
       
    });
    

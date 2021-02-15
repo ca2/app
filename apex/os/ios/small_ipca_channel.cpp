@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 
 

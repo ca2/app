@@ -808,7 +808,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(m_bTopText)
       {
@@ -908,7 +908,7 @@ namespace user
    bool mesh::_001OnUpdateItemCount(u32 dwFlags)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       UNREFERENCED_PARAMETER(dwFlags);
 
@@ -1168,7 +1168,7 @@ namespace user
 
       return;
 
-//      sync_lock sl(&m_mutexData);
+//      synchronization_lock synchronizationlock(&m_mutexData);
 
 //      index iColumn;
 
@@ -2519,7 +2519,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto psession = Session;
 
@@ -5007,7 +5007,7 @@ namespace user
 
       pmessage->previous();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(m_eview == impact_grid)
       {

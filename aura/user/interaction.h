@@ -418,7 +418,7 @@ namespace user
       void queue_graphics_call(PRED pred)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          __defer_construct_new(m_pgraphicscalla);
 
@@ -550,7 +550,7 @@ namespace user
       inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
-      virtual ::sync * mutex_draw();
+      virtual ::synchronization_object * mutex_draw();
 
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);
@@ -1779,7 +1779,7 @@ namespace user
 
 
    /*   template < typename PRED >
-      void post_pred(PRED pred)
+      void post_predicate(PRED pred)
       {
 
          post_method(__routine(pred));
@@ -1788,7 +1788,7 @@ namespace user
 
 
  /*     template < typename PRED >
-      void prodevian_post_pred(PRED pred)
+      void prodevian_post_predicate(PRED pred)
       {
 
          prodevian_schedule(__routine(pred));
@@ -1800,13 +1800,13 @@ namespace user
       //void pred(PRED pred)
       //{
 
-      //   post_pred(pred);
+      //   post_predicate(pred);
 
       //}
 
 
    /*   template < typename PRED >
-      void send_pred(PRED pred, ::duration durationTimeout = ::duration::infinite())
+      void send_predicate(PRED pred, ::duration durationTimeout = ::duration::infinite())
       {
 
          send_method(__routine(pred), durationTimeout);

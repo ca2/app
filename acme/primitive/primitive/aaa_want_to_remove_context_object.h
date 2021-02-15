@@ -12,7 +12,7 @@ struct CLASS_DECL_ACME matter :
 {
 
 
-   mutable __pointer(sync)                mutex();
+   mutable __pointer(synchronization_object)                mutex();
    ::sticker *                            m_psticker;
    ::matter *                             get_object(); // Context Object
    ::acme::application *                  get_context_application(); // Context Application
@@ -112,7 +112,7 @@ struct CLASS_DECL_ACME matter :
    virtual __pointer(::matter) clone() const;
 
 
-   virtual sync * get_mutex() const;
+   virtual synchronization_object * get_mutex() const;
 
 
    inline i64 get_ref_count()
@@ -227,7 +227,7 @@ struct CLASS_DECL_ACME matter :
 
 
    template < typename TYPE, typename PRED >
-   inline ::e_status     pred_create(__pointer(TYPE) & p, PRED predNew);
+   inline ::e_status     predicate_create(__pointer(TYPE) & p, PRED predNew);
 
    inline ::e_status     preserve_resize(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
    {
@@ -241,7 +241,7 @@ struct CLASS_DECL_ACME matter :
    }
 
    template < typename TYPE, typename PRED >
-   inline ::e_status     pred_compose(__composite(TYPE) & p, PRED predNew);
+   inline ::e_status     predicate_compose(__composite(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
    inline ::e_status     compose(__composite(TYPE) & p);
@@ -254,7 +254,7 @@ struct CLASS_DECL_ACME matter :
 
 
    //template < typename TYPE, typename PRED >
-   //inline ::e_status     pred_create(__pointer(TYPE) & p, PRED predNew);
+   //inline ::e_status     predicate_create(__pointer(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
    inline ::e_status     create(__pointer(TYPE) & p);
@@ -266,7 +266,7 @@ struct CLASS_DECL_ACME matter :
    //inline ::e_status     create_new(__pointer(TYPE) & p);
 
    //template < typename TYPE, typename PRED >
-   //inline ::e_status     pred_create(TYPE *& p, PRED predNew);
+   //inline ::e_status     predicate_create(TYPE *& p, PRED predNew);
 
    //template < typename TYPE >
    //inline ::e_status     realize(TYPE *& p);

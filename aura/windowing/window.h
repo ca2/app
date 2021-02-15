@@ -23,7 +23,7 @@ namespace windowing
       __pointer(display)                           m_pdisplay;
       __pointer(::user::interaction_impl)          m_pimpl;
       string                                       m_strDebug;
-      __pointer(mq)                                m_pmq;
+      __pointer(message_queue)                                m_pmq;
       millis                                       m_millisLastMouseMove;
       __pointer(window)                            m_pwindowParent;
       ::rectangle_i32                              m_rectangle;
@@ -123,7 +123,7 @@ namespace windowing
 
 
 
-      virtual bool set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      virtual bool set_window_position(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
       virtual bool _set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
 
       virtual bool is_destroying();
@@ -140,7 +140,7 @@ namespace windowing
 
       void user_common_construct();
 
-      //virtual bool set_window_pos(::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
 
 
 
@@ -307,7 +307,7 @@ namespace windowing
       //virtual void clear_need_zorder();
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
 
 
       // Window size_i32 and position Functions
@@ -768,7 +768,7 @@ namespace windowing
       //virtual bool GrayCtlColor(HDC hDC, ::windowing::window * pwindow, ::u32 nCtlColor,
       //                          HBRUSH hbrGray, color32_t clrText);
 
-      //virtual ::e_status set_window_pos(::zorder zorder, int x, int y, int cx, int cy, ::u32 uFlags);
+      //virtual ::e_status set_window_position(::zorder zorder, int x, int y, int cx, int cy, ::u32 uFlags);
 
       // helper routines for implementation
       //bool HandleFloatingSysCommand(::u32 nID, lparam lParam);

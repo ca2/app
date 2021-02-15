@@ -994,7 +994,7 @@ string context::load_string(const char * psz)
 void context::on_update_matter_locator()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_straMatterLocator.remove_all();
 
@@ -1045,7 +1045,7 @@ string context::matter_locator(::apex::application * papp)
 void context::add_matter_locator(string strApp)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string strMatterLocator = matter_locator(strApp);
 
@@ -1062,7 +1062,7 @@ void context::add_matter_locator(string strApp)
 void context::add_matter_locator(::apex::application * papp)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string strMatterLocator = matter_locator(papp);
 

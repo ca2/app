@@ -61,7 +61,7 @@ namespace simpledb
 
       }
 
-      sync_lock sl(pdatabase->mutex());
+      synchronization_lock synchronizationlock(pdatabase->mutex());
 
       estatus = pdatabase->connect(pszDatabase);
 
@@ -180,7 +180,7 @@ namespace simpledb
       try
       {
 
-         sync_lock sl(pdatabase->mutex());
+         synchronization_lock synchronizationlock(pdatabase->mutex());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

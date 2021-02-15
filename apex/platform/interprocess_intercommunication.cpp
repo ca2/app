@@ -108,7 +108,7 @@ void interprocess_intercommunication::finalize()
 bool interprocess_intercommunication::start(const string & strApp)
 {
 
-   sync_lock sl1(mutex());
+   synchronization_lock sl1(mutex());
 
    auto & pmutex = m_mapAppMutex[strApp];
 
@@ -121,7 +121,7 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    sl1.unlock();
 
-   sync_lock sl(pmutex);
+   synchronization_lock synchronizationlock(pmutex);
 
    auto idaPid = get_pid(strApp);
 
@@ -467,7 +467,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 
    auto pobjectTask = __new(interprocess_task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -481,7 +481,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 __pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return m_mapTask[iTask];
 

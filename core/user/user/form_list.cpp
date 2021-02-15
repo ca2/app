@@ -346,7 +346,7 @@ namespace user
    interaction * form_list::_001GetControl(index iItem, index iSubItem)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
@@ -1261,7 +1261,7 @@ break_click:;
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          for (index i = 0; i < m_columna.get_size(); i++)
          {
@@ -2209,7 +2209,7 @@ break_click:;
             //if (rectWindow != pdrawitem->m_rectClient)
             {
 
-               // pinteraction->set_window_pos(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 

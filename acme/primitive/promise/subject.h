@@ -77,7 +77,7 @@ namespace promise
 
          return false;
 
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         return m_mattercontext.is_empty();
 

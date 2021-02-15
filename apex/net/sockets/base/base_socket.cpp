@@ -2695,7 +2695,7 @@ namespace sockets
 
 #ifdef BSD_STYLE_SOCKETS
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_psslcontext->m_pclientcontext->get_context_session() != nullptr)
       {
@@ -2712,7 +2712,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

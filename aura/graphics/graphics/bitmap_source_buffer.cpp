@@ -92,7 +92,7 @@ namespace graphics
 
       }
 
-      sync_lock sl(m_memorymap.mutex());
+      synchronization_lock synchronizationlock(m_memorymap.mutex());
 
       try
       {

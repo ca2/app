@@ -251,7 +251,7 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
 
-      //inline bool set_window_pos(::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      //inline bool set_window_position(::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       //{
       //   order(zorder); set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       //}
@@ -268,9 +268,9 @@ namespace user
       //{
       //   set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       //}
-      //inline bool set_window_pos(::zorder zorder, const ::point_i32 & point, const ::size_i32 & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      //inline bool set_window_position(::zorder zorder, const ::point_i32 & point, const ::size_i32 & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       //{
-      //   return set_window_pos(zorder, point.x, point.y, size.cx, size.cy, edisplay, eactivation);
+      //   return set_window_position(zorder, point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       //}
       //inline bool window_move(const ::point_i32 & point)
       //{
@@ -284,9 +284,9 @@ namespace user
       //{
       //   return window_place(point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       //}
-      //inline bool set_window_pos(::zorder zorder, const ::rectangle_i32 & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      //inline bool set_window_position(::zorder zorder, const ::rectangle_i32 & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       //{
-      //   return set_window_pos(zorder, rectangle.origin(), rectangle.size(), edisplay, eactivation);
+      //   return set_window_position(zorder, rectangle.origin(), rectangle.size(), edisplay, eactivation);
       //}
       //inline bool window_place(const ::rectangle_i32 & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       //{
@@ -330,7 +330,7 @@ namespace user
    //inline void visual_state::set_busy()
    //{
 
-   //   sync_lock sl(m_playout->mutex());
+   //   synchronization_lock synchronizationlock(m_playout->mutex());
 
    //   m_bBusy = true;
 
@@ -340,7 +340,7 @@ namespace user
    //inline bool visual_state::set_ready()
    //{
 
-   //   sync_lock sl(m_playout->mutex());
+   //   synchronization_lock synchronizationlock(m_playout->mutex());
 
    //   if (!m_bBusy)
    //   {

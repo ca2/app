@@ -567,7 +567,7 @@ namespace user
 
       }
 
-      sync_lock sl(m_formata[0]->mutex());
+      synchronization_lock synchronizationlock(m_formata[0]->mutex());
 
       if (bSaveAndValidate)
       {
@@ -711,7 +711,7 @@ namespace user
 //::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
 //
@@ -722,7 +722,7 @@ namespace user
 //
 //      m_ptoolwindowFont = pfontformattool;
 //
-//      sl.unlock();
+//      synchronizationlock.unlock();
 //
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;

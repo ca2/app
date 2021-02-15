@@ -39,7 +39,7 @@ namespace aura
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_bOk)
       {
@@ -58,7 +58,7 @@ namespace aura
 
       m_map.set_at(uEvent, ptimer);
 
-      //sl.unlock();
+      //synchronizationlock.unlock();
 
       bool bOk = true;
 
@@ -110,7 +110,7 @@ namespace aura
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -135,7 +135,7 @@ namespace aura
    bool timer_array::remove_timer(::timer * ptimer)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {
@@ -237,7 +237,7 @@ namespace aura
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          __keep(m_bOk, false);
 
@@ -251,7 +251,7 @@ namespace aura
             try
             {
 
-               sync_lock sl(ptimer->mutex());
+               synchronization_lock synchronizationlock(ptimer->mutex());
 
                ptimer->m_eobject -= e_object_success;
 
@@ -276,7 +276,7 @@ namespace aura
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          __keep(m_bOk, false);
 

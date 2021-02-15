@@ -14,7 +14,7 @@ namespace windows
 {
 
    template < typename PRED >
-   bool pred_process_module(u32 processid, PRED pred)
+   bool predicate_process_module(u32 processid, PRED pred)
    {
 
       HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
@@ -65,7 +65,7 @@ namespace windows
 
 
    template < typename PRED >
-   bool pred_process(PRED pred)
+   bool predicate_process(PRED pred)
    {
 
       HANDLE hProcessSnap;

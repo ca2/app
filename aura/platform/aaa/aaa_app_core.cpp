@@ -1568,11 +1568,11 @@ string merge_colon_args(const array < string_array > & str2a)
 
    }
 
-   strCommandLine += ::str::has_char(straBeforeColon.pred_implode(&transform_to_c_arg, " "), " ");
+   strCommandLine += ::str::has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
 
    strCommandLine += " : ";
 
-   strCommandLine += straAfterColon.pred_implode(&transform_to_c_arg, " ");
+   strCommandLine += straAfterColon.predicate_implode(&transform_to_c_arg, " ");
 
    return strCommandLine;
 
@@ -1816,7 +1816,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 
    string strAppId = pszAppId;
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    __pointer(::apex::library)& plibrary = System.m_mapLibrary[strAppId];
 

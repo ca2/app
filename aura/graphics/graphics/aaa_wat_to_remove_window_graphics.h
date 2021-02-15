@@ -38,7 +38,7 @@ namespace graphics
 
       //virtual bool is_buffer_okx();
 
-      virtual ::draw2d::graphics * on_begin_draw(sync ** ppsync);
+      virtual ::draw2d::graphics * on_begin_draw(synchronization_object ** ppsync);
       virtual void on_end_draw();
 
 

@@ -63,7 +63,7 @@
 
 
 
-class sync;
+class synchronization_object;
 class semaphore;
 //class ::mutex;
 class event;
@@ -136,7 +136,7 @@ class tool_thread;
 class thread_tool;
 class thread_tools;
 //class thread_toolset;
-//class pred_set;
+//class predicate_set;
 //class replace_thread;
 
 
@@ -174,7 +174,7 @@ namespace parallelization
 
 
 class sync_interface;
-class sync_lock;
+class synchronization_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
@@ -190,7 +190,7 @@ class sync_lock;
 //
 //   virtual ::count get_count_except_current_thread();
 //   virtual void finish();
-//   virtual void wait(const duration & duration, ::sync_lock & sl);
+//   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
 //
 //   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
 //   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -198,11 +198,11 @@ class sync_lock;
 //};
 
 
-#include "acme/primitive/promise_pred/pred_holder.h"
+#include "acme/primitive/promise_predicate/predicate_holder.h"
 
 
-#include "sync.h"
-#include "sync_array.h"
+#include "synchronization_object.h"
+#include "synchronization_array.h"
 #include "semaphore.h"
 #include "mutex.h"
 #include "event.h"
@@ -213,7 +213,7 @@ class sync_lock;
 #include "single_lock.h"
 //#include "retry_single_lock.h"
 #include "initial_single_lock.h"
-#include "sync_lock.h"
+#include "synchronization_lock.h"
 #include "multi_lock.h"
 //#include "retry_multi_lock.h"
 
@@ -325,15 +325,15 @@ CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
 
-//typedef bool task_sleep(millis millis, ::sync* psync);
+//typedef bool task_sleep(millis millis, ::synchronization_object* psync);
 //using PFN_task_sleep = task_sleep*;
 
 CLASS_DECL_ACME bool __simple_task_sleep();
 CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
-CLASS_DECL_ACME bool __simple_task_sleep(::sync* psync);
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::sync* psync);
-CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync* psync = nullptr);
+CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef _UWP
@@ -372,11 +372,11 @@ CLASS_DECL_ACME bool __task_sleep(task* task);
 
 CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
 
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, sync* psync);
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, sync* psync);
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync);
 
-CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync);
+CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
 
 
 #include "sync_routine.h"
@@ -385,7 +385,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync);
 #include "sync_process.h"
 
 
-#include "acme/primitive/promise_pred/pred_sync_routine.h"
+#include "acme/primitive/promise_predicate/predicate_sync_routine.h"
 
 
 

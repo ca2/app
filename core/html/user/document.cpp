@@ -262,7 +262,7 @@ void html_document::soft_reload()
 
    auto psync = get_html_data()->mutex();
 
-   sync_lock lock(psync);
+   synchronization_lock lock(psync);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
 

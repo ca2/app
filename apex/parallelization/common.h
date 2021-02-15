@@ -120,12 +120,12 @@ CLASS_DECL_APEX bool do_events();
 
 
 
-//class pred_holder_base :
+//class predicate_holder_base :
 //   virtual public object
 //{
 //public:
 //
-//   pred_holder_base(::layered * pobjectContext) :
+//   predicate_holder_base(::layered * pobjectContext) :
 //      ::object(pobject),
 //      m_pholdref(pholdref)
 //   {
@@ -137,22 +137,22 @@ CLASS_DECL_APEX bool do_events();
 //};
 
 //template < typename PRED >
-//class pred_holder :
-//   virtual public pred_holder_base
+//class predicate_holder :
+//   virtual public predicate_holder_base
 //{
 //public:
 //
-//   PRED m_pred;
+//   PRED m_predicate;
 //
-//   pred_holder(::object * pobject, PRED pred) :
+//   predicate_holder(::object * pobject, PRED pred) :
 //      ::object(pobject),
-//      pred_holder_base(pobject),
-//      m_pred(pred)
+//      predicate_holder_base(pobject),
+//      m_predicate(pred)
 //   {
 //
 //   }
 //
-//   virtual void run() { m_pred(); }
+//   virtual void run() { m_predicate(); }
 //
 //};
 

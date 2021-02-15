@@ -23,7 +23,7 @@
 #include <sysexits.h>
 #include <termios.h>
 #include <sys/param.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #if defined(__linux__)
 #include <unistd.h>
@@ -586,7 +586,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
       }
    }
 
-   while (bytes_read < size_i32)
+   while (bytes_read < size)
    {
       auto millisRemaining = millisStart.remaining(total_timeout_ms);
       if (millisRemaining <= 0)
@@ -606,7 +606,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          if (size > 1 && m_timeout.m_millisInterByteTimeout == Timeout::maximum())
          {
             size_t bytes_available = available();
-            if (bytes_available + bytes_read < size_i32)
+            if (bytes_available + bytes_read < size)
             {
                waitByteTimes(size - (bytes_available + bytes_read));
             }
@@ -631,13 +631,13 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          {
             break;
          }
-         // If bytes_read < size_i32 then we have more to read
-         if (bytes_read < size_i32)
+         // If bytes_read < size then we have more to read
+         if (bytes_read < size)
          {
             continue;
          }
-         // If bytes_read > size_i32 then we have over read, which shouldn't happen
-         if (bytes_read > size_i32)
+         // If bytes_read > size then we have over read, which shouldn't happen
+         if (bytes_read > size)
          {
             __throw( SerialException("read over read, too many bytes where "
                "read, this shouldn't happen, might be "
@@ -730,12 +730,12 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
             {
                break;
             }
-            // If bytes_written < size_i32 then we have more to write
+            // If bytes_written < size then we have more to write
             if (bytes_written < length)
             {
                continue;
             }
-            // If bytes_written > size_i32 then we have over written, which shouldn't happen
+            // If bytes_written > size then we have over written, which shouldn't happen
             if (bytes_written > length)
             {
                __throw( SerialException("write over wrote, too many bytes where "

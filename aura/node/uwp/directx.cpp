@@ -942,7 +942,7 @@ namespace uwp
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
 
-   //   ////sl.lock();
+   //   ////synchronizationlock.lock();
 
    //   //dc->detach();
 

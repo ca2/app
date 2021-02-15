@@ -61,7 +61,9 @@ void apex_main_data::system_construct(int argc, char** argv)
 
    m_hPrevInstance = nullptr;
 
-   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
+   m_nCmdShow = SW_SHOWDEFAULT;
+
+   //m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
 
 #elif defined(LINUX)
 
@@ -93,45 +95,15 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
 
    m_hPrevInstance = nullptr;
 
-   m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
+   //m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
+
+   m_nCmdShow = SW_SHOWDEFAULT;
 
 #elif defined(LINUX)
 
    m_bGtkApp = false;
 
 #endif
-
-}
-
-
-void apex_main_data::system_construct(const char* pszCommandLine, const ::e_display& edisplay)
-{
-
-   m_strCommandLine = pszCommandLine;
-
-   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
-
-   //m_poslocal = nullptr;
-
-   //__zero(m_mainrunnera);
-
-}
-
-
-void apex_main_data::system_construct(os_local* poslocal, const ::e_display& edisplay)
-{
-
-#ifdef ANDROID
-
-   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
-
-#endif
-
-   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
-
-   //m_poslocal = poslocal;
-
-   //__zero(m_mainrunnera);
 
 }
 
@@ -152,7 +124,9 @@ void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevIn
 
    m_strCommandLine = pCmdLine;
 
-   m_edisplay = windows_show_window_to_edisplay(nCmdShow, m_eactivation);
+   //m_edisplay = windows_show_window_to_edisplay(nCmdShow, m_eactivation);
+
+   m_nCmdShow = nCmdShow;
 
    m_argc = __argc;
 
@@ -190,6 +164,41 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
    m_edisplay = e_display_default;
 
    __zero(m_mainrunnera);
+
+}
+
+
+#else
+
+
+void apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
+{
+
+   m_strCommandLine = pszCommandLine;
+
+   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+
+   //m_poslocal = nullptr;
+
+   //__zero(m_mainrunnera);
+
+}
+
+
+void apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
+{
+
+#ifdef ANDROID
+
+   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
+
+#endif
+
+   m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+
+   //m_poslocal = poslocal;
+
+   //__zero(m_mainrunnera);
 
 }
 

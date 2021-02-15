@@ -225,7 +225,7 @@
 //
 //      return true;
 //
-////      sync_lock sl(mutex());
+////      synchronization_lock synchronizationlock(mutex());
 ////
 ////      string strMain = pszBaseDir;
 ////
@@ -1042,7 +1042,7 @@
 //   bool str_context::match(string_array & stra, const char * psz, id idExpression, id idRoot) const
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      string_array straCandidate;
 //

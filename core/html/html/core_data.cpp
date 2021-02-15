@@ -186,7 +186,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      sync_lock lock(mutex());
+      synchronization_lock lock(mutex());
 
       destroy();
 
@@ -347,7 +347,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_bImplemented)
       {
@@ -390,7 +390,7 @@ namespace html
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_pgraphics = pgraphics;
 
@@ -556,7 +556,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      sync_lock lockImage(pimage->mutex());
+      synchronization_lock lockImage(pimage->mutex());
 
       bool bRet = false;
 
@@ -661,7 +661,7 @@ namespace html
 
       //i32 iRetry = 0;
 
-      sync_lock lock(mutex());
+      synchronization_lock lock(mutex());
 
    //restart:
 
@@ -887,7 +887,7 @@ namespace html
 
       }
 
-      sync_lock lock(mutex());
+      synchronization_lock lock(mutex());
 
       m_puserinteraction = pform;
 
@@ -936,7 +936,7 @@ namespace html
 
       }
 
-      sync_lock lock(mutex());
+      synchronization_lock lock(mutex());
 
       m_puserinteraction = pform;
 
@@ -974,7 +974,7 @@ namespace html
 
       }
 
-      sync_lock lock(mutex());
+      synchronization_lock lock(mutex());
 
       m_puserinteraction = pform;
 

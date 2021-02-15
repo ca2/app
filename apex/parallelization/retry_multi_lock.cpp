@@ -2,7 +2,7 @@
 #include "acme/operating_system.h"
 
 
-retry_multi_lock::retry_multi_lock(const sync_array & synca, duration durationLock, duration durationSleep, i32 iRetry, bool bInitialLock)
+retry_multi_lock::retry_multi_lock(const synchronization_array & synca, duration durationLock, duration durationSleep, i32 iRetry, bool bInitialLock)
 {
 
    if (synca.is_empty())
@@ -16,9 +16,9 @@ retry_multi_lock::retry_multi_lock(const sync_array & synca, duration durationLo
 
    m_durationSleep   = durationSleep;
 
-   m_synca           = synca;
+   m_synchronizationa           = synca;
 
-   m_baLocked.set_size(m_synca.sync_count());
+   m_baLocked.set_size(m_synchronizationa.synchronization_object_count());
 
    if (bInitialLock)
    {
@@ -37,13 +37,13 @@ retry_multi_lock::~retry_multi_lock()
 }
 
 
-sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
+synchronization_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
 {
 
    if (m_hsynca.is_empty())
    {
 
-      return sync_result(sync_result::result_error);
+      return e_synchronization_result_error;
 
    }
 
@@ -118,7 +118,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
 
    }
 
-   return sync_result(iResult);
+   return (enum_synchronization_result) (e_synchronization_result_signaled_base + iResult);
 
 }
 
@@ -131,7 +131,7 @@ bool retry_multi_lock::unlock()
       if (m_baLocked[i])
       {
 
-         m_baLocked[i] = !m_synca.sync_at(i)->unlock();
+         m_baLocked[i] = !m_synchronizationa.synchronization_object_at(i)->unlock();
 
       }
 
@@ -153,14 +153,14 @@ bool retry_multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
       if (m_baLocked[i])
       {
          
-         semaphore* pSemaphore = m_synca.sync_at(i).cast < semaphore >();
+         semaphore* pSemaphore = m_synchronizationa.synchronization_object_at(i).cast < semaphore >();
          
          if (pSemaphore != nullptr)
          {
             
             bGotOne = true;
 
-            m_baLocked[i] = !m_synca.m_synca[i]->unlock(lCount, pPrevCount);
+            m_baLocked[i] = !m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount);
 
          }
 

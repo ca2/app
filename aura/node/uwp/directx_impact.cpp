@@ -235,7 +235,7 @@ namespace uwp
 
       set_input_text(text);
       
-      sync([this, iBeg, iEnd, text]()
+      synchronization_object([this, iBeg, iEnd, text]()
       {
             
          CoreTextRange sel;

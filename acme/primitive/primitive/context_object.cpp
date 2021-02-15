@@ -85,7 +85,7 @@ void context_object::on_finish()
 
    id_matter::on_finish();
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pnotifya)
    {
@@ -100,7 +100,7 @@ void context_object::on_finish()
          if (pmatter && pmatter->m_bFinishing)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             sleep(10_ms);
 
@@ -109,7 +109,7 @@ void context_object::on_finish()
             if (estatus == ::success)
             {
 
-               sl.lock();
+               synchronizationlock.lock();
 
                pnotifya->remove(pmatter);
 
@@ -117,7 +117,7 @@ void context_object::on_finish()
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
          }
 

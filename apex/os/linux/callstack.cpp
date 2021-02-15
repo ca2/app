@@ -32,7 +32,7 @@
 //   //
 //   //   const char * psz;
 //   //
-//   //   sync_lock sl(::exception::engine().mutex());
+//   //   synchronization_lock synchronizationlock(::exception::engine().mutex());
 //   //
 //   //   ::exception::engine().stack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
 //   //

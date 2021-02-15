@@ -519,7 +519,7 @@ namespace account
 
    void account::boot_window_mouse_dragged(double x, double y)
    {
-      set_window_pos(m_oswindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+      set_window_position(m_oswindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
    }
 
    bool account::boot_window_key_down(::user::enum_key ekey)
@@ -610,7 +610,7 @@ namespace account
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
-            set_window_pos(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            set_window_position(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;

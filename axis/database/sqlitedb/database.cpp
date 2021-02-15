@@ -221,7 +221,7 @@ namespace sqlite
    ::e_status     database::_connect()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       disconnect();
 
@@ -275,7 +275,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_psqlite != nullptr)
       {
@@ -309,7 +309,7 @@ namespace sqlite
    ::e_status      database::drop()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       disconnect();
 
@@ -341,7 +341,7 @@ namespace sqlite
    //long database::nextid(const char* sname)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   if(!m_bActive)
    //   {
@@ -404,7 +404,7 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_bActive)
       {
@@ -417,7 +417,7 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_bActive)
       {
@@ -430,7 +430,7 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_bActive)
       {
@@ -452,14 +452,14 @@ namespace sqlite
    //void database::create_long_set(const string & strTable)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      sync_lock sl(mutex());
+   //      synchronization_lock synchronizationlock(mutex());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -481,14 +481,14 @@ namespace sqlite
    //void database::create_string_set(const string & strTable)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      sync_lock sl(mutex());
+   //      synchronization_lock synchronizationlock(mutex());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

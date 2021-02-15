@@ -3,7 +3,7 @@
 #include "_linux.h"
 #include "_user.h"
 #include "third/sn/sn.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 
 
 extern SnLauncheeContext* g_psncontext;
@@ -321,7 +321,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pint
    pdata->m_pimpl                   = pinteraction;
    pdata->m_osdisplay               = nullptr;
    pdata->m_parent                  = 0;
-   pdata->m_pmq                     = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_mq();
+   pdata->m_pmq                     = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -718,7 +718,7 @@ void oswindow_data::set_user_interaction(::user::interaction_impl * pimpl)
 
    m_hthread = pimpl->get_context_application()->get_os_handle();
 
-   m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_mq();
+   m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
    oswindow_assign(this, pimpl);
 
@@ -1061,7 +1061,7 @@ void oswindow_data::exit_full_screen()
 void oswindow_data::exit_zoomed()
 {
 
-   sync_lock sl(x11_mutex());
+   synchronization_lock synchronizationlock(x11_mutex());
 
    xdisplay d(display());
 
@@ -1297,7 +1297,7 @@ bool oswindow_data::is_destroying()
 
 #undef SET_WINDOW_POS_LOG
 
-bool oswindow_data::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+bool oswindow_data::set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
    bool bOk = false;
@@ -1317,9 +1317,9 @@ bool oswindow_data::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, 
 bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
-   sync_lock sl(x11_mutex());
+   synchronization_lock synchronizationlock(x11_mutex());
 
-   windowing_output_debug_string("\n::oswindow_data::set_window_pos 1");
+   windowing_output_debug_string("\n::oswindow_data::set_window_position 1");
 
    auto pdisplay = display();
 
@@ -1332,7 +1332,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    if(!XGetWindowAttributes(pdisplay, w, &attrs))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_pos 1.1 xgetwindowattr failed");
+      windowing_output_debug_string("\n::oswindow_data::set_window_position 1.1 xgetwindowattr failed");
 
       return false;
 
@@ -1344,7 +1344,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(attrs.map_state == IsUnmapped)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_pos Mapping Window 1.2");
+         windowing_output_debug_string("\n::oswindow_data::set_window_position Mapping Window 1.2");
 
          XMapWindow(display(), window());
 
@@ -1353,7 +1353,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(!XGetWindowAttributes(display(), window(), &attrs))
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_pos 1.3 xgetwindowattr failed");
+         windowing_output_debug_string("\n::oswindow_data::set_window_position 1.3 xgetwindowattr failed");
 
          return false;
 
@@ -1371,7 +1371,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(bSize)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_pos Move Resize Window 1.4");
+         windowing_output_debug_string("\n::oswindow_data::set_window_position Move Resize Window 1.4");
 
          #ifdef SET_WINDOW_POS_LOG
 
@@ -1400,7 +1400,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       else
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_pos Move Window 1.4.1");
+         windowing_output_debug_string("\n::oswindow_data::set_window_position Move Window 1.4.1");
 
          XMoveWindow(display(), window(), x, y);
 
@@ -1410,7 +1410,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    else if(bSize)
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_pos Resize Window 1.4.2");
+      windowing_output_debug_string("\n::oswindow_data::set_window_position Resize Window 1.4.2");
 
       XResizeWindow(display(), window(), cx, cy);
 
@@ -1449,7 +1449,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(attrs.map_state == IsViewable)
       {
 
-         windowing_output_debug_string("\n::oswindow_data::set_window_pos Withdraw Window 1.4.3");
+         windowing_output_debug_string("\n::oswindow_data::set_window_position Withdraw Window 1.4.3");
 
          XWithdrawWindow(display(), window(), m_iScreen);
 
@@ -1460,7 +1460,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
    if(!XGetWindowAttributes(display(), window(), &attrs))
    {
 
-      windowing_output_debug_string("\n::oswindow_data::set_window_pos xgetwndattr 1.4.4");
+      windowing_output_debug_string("\n::oswindow_data::set_window_position xgetwndattr 1.4.4");
 
       return false;
 
@@ -1531,7 +1531,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
    //m_pimpl->on_change_visibility();
 
-   windowing_output_debug_string("\n::oswindow_data::set_window_pos 2");
+   windowing_output_debug_string("\n::oswindow_data::set_window_position 2");
 
    return 1;
 

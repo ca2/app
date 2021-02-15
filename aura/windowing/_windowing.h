@@ -20,7 +20,7 @@
 //!!!#include <X11/Xlib.h>
 
 
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 namespace windowing

@@ -167,7 +167,7 @@ size_t
 Serial::read(string& buffer, size_t size)
 {
    ScopedReadLock lock(this->pimpl_);
-   u8* buffer_ = new u8[size_i32];
+   u8* buffer_ = new u8[size];
    size_t bytes_read = this->pimpl_->read(buffer_, size);
    buffer.append(reinterpret_cast<const char*>(buffer_), bytes_read);
    delete[] buffer_;
@@ -234,7 +234,7 @@ Serial::readlines(size_t size, string eol)
       (alloca(size * sizeof(u8)));
    size_t read_so_far = 0;
    size_t start_of_line = 0;
-   while (read_so_far < size_i32)
+   while (read_so_far < size)
    {
       size_t bytes_read = this->read_(buffer_ + read_so_far, 1);
       read_so_far += bytes_read;

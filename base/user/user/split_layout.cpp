@@ -242,11 +242,8 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       ::point_i32 pointCursor = pMsg->pt;
 
-      if(pMsg->message == e_message_left_button_down)
-
+      if(pMsg->m_id == e_message_left_button_down)
       {
-
-//         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
          auto psession = Session;
 
@@ -258,8 +255,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->message == e_message_left_button_up)
-
+      else if(pMsg->m_id == e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -278,13 +274,7 @@ namespace user
          }
 
       }
-//#ifdef WINDOWS_DESKTOP
-//      else if(pMsg->message == WM_CAPTURECHANGED)
-//      {
-//
-//      }
-//#endif
-      else if(pMsg->message == e_message_mouse_move)
+      else if(pMsg->m_id == e_message_mouse_move)
       {
 
          i32   fwKeys = (i32) pMsg->wParam;        // key flags
@@ -297,8 +287,8 @@ namespace user
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{
 
-         //   sync_lock sl(mutex());
-         //   //critical_section_lock sl(&m_mutex);
+         //   synchronization_lock synchronizationlock(mutex());
+         //   //critical_section_lock synchronizationlock(&m_mutex);
          //   {
          //      //      TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
@@ -979,7 +969,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT(iIndex >= 0);
 
@@ -1213,7 +1203,7 @@ namespace user
 //         {
 //            //critical_section_lock lock(&m_mutex);
 //
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //            {
 //               TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

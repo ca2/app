@@ -22,7 +22,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 
    }
 
-   __pointer(mq) pmq;
+   __pointer(message_queue) pmq;
 
    if(dwWakeMask > 0)
    {
@@ -57,7 +57,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               sync_lock sl(&pmq->m_mutex);
+               synchronization_lock synchronizationlock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -116,7 +116,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               sync_lock sl(&pmq->m_mutex);
+               synchronization_lock synchronizationlock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -367,7 +367,7 @@ int g_iDebug_post_thread_msg_time;
 CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ithread_t iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   __pointer(mq) pmq = __get_mq(iThreadId);
+   __pointer(message_queue) pmq = __get_mq(iThreadId);
 
    if(pmq == nullptr)
    {
@@ -376,7 +376,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ithread_t iThreadId,::u32 Msg,
 
    }
 
-   sync_lock ml(&pmq->m_mutex);
+   synchronization_lock ml(&pmq->m_mutex);
 
    MESSAGE msg;
 

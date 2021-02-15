@@ -1084,7 +1084,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		case WM_CLIPBOARDUPDATE:
 //			DEBUG_CLIPRDR("info: WM_CLIPBOARDUPDATE");
-//			if (clipboard->sync)
+//			if (clipboard->synchronization_object)
 //			{
 //				if ((GetClipboardOwner() != clipboard->hwnd) &&
 //					(S_FALSE == OleIsCurrentClipboard(clipboard->data_obj)))
@@ -1447,7 +1447,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //{
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
-//	clipboard->sync = true;
+//	clipboard->synchronization_object = true;
 //	wf_cliprdr_send_client_capabilities(clipboard);
 //	cliprdr_send_format_list(clipboard);
 //
@@ -1960,7 +1960,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	clipboard->context = cliprdr;
 //		
 //	clipboard->channels = context->channels;
-//	clipboard->sync = false;
+//	clipboard->synchronization_object = false;
 //
 //	clipboard->map_capacity = 32;
 //	clipboard->map_size = 0;

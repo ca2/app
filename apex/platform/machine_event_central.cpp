@@ -69,7 +69,7 @@ machine_event_central::~machine_event_central()
    {
 
       {
-         sync_lock lockMachineEvent(&m_machineevent.m_mutex);
+         synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
 
          //machine_event_data data;
 
@@ -92,7 +92,7 @@ machine_event_central::~machine_event_central()
 bool machine_event_central::is_close_application()
 {
 
-   sync_lock lockMachineEvent(&m_machineevent.m_mutex);
+   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
 
    machine_event_data data;
 
@@ -108,7 +108,7 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(__pointer(::xml::node) pnode)
 //{
 //
-//   sync_lock lockMachineEvent(&m_machineevent.m_mutex);
+//   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
 //
 //   machine_event_data data;
 //

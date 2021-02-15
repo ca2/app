@@ -49,7 +49,7 @@ _AFXMT_INLINE int_bool critical_section::Init()
    return true;
 }
 
-_AFXMT_INLINE critical_sectioncritical_section() : sync < HANDLE > (nullptr)
+_AFXMT_INLINE critical_sectioncritical_section() : synchronization_object < HANDLE > (nullptr)
 {
    int_bool bSuccess;
 
@@ -83,45 +83,84 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 
+inline bool synchronization_result::abandoned() const
+{ 
+   
+   return m_esynchronizationresult >= e_synchronization_result_abandoned_base
+      && m_esynchronizationresult < (e_synchronization_result_abandoned_base + MAXIMUM_SYNCHRONIZING_OBJECTS);
 
-
-
-
-inline bool sync_result::abandoned() const
-{ return m_iEvent <= (::index)result_abandon0; }
-
-inline ::index sync_result::abandoned_index() const
-{
-   if ( !abandoned() )
-      __throw(range_exception("abandoned index out of range"));
-   return -(m_iEvent + (::index)result_abandon0);
 }
 
-inline bool sync_result::error() const
-{ return m_eresult == result_error; }
 
-inline bool sync_result::bad_thread() const
-{ return m_eresult == result_bad_thread; }
-
-inline bool sync_result::timeout() const
-{ return m_eresult == result_timeout; }
-
-inline bool sync_result::signaled() const
-{ return m_iEvent >= (::index)result_event0; }
-
-inline bool sync_result::succeeded() const
+inline ::index synchronization_result::abandoned_index() const
 {
+   
+   if (!abandoned())
+   {
+
+      return -1;
+
+   }
+
+   return m_esynchronizationresult - e_synchronization_result_abandoned_base;
+
+}
+
+
+inline bool synchronization_result::error() const
+{ 
+   
+   return m_esynchronizationresult == e_synchronization_result_error;
+
+}
+
+
+inline bool synchronization_result::bad_thread() const
+{ 
+   
+   return m_esynchronizationresult == e_synchronization_result_bad_thread;
+
+}
+
+
+inline bool synchronization_result::timed_out() const
+{ 
+   
+   return m_esynchronizationresult == e_synchronization_result_timed_out;
+
+}
+
+
+inline bool synchronization_result::signaled() const
+{ 
+   
+   return m_esynchronizationresult >= e_synchronization_result_signaled_base &&
+      m_esynchronizationresult < (e_synchronization_result_signaled_base + MAXIMUM_SYNCHRONIZING_OBJECTS);
+
+}
+
+
+inline bool synchronization_result::succeeded() const
+{
+   
    return signaled();
+
 }
 
-inline ::index sync_result::signaled_index() const
+
+inline ::index synchronization_result::signaled_index() const
 {
-   if ( !signaled() )
-      __throw(range_exception("signaled index out of range"));
-   return m_iEvent;
+
+   if (!signaled())
+   {
+
+      return -1;
+
+   }
+
+   return m_esynchronizationresult - e_synchronization_result_signaled_base;
+
 }
-
-
 
 
 
@@ -146,7 +185,7 @@ inline ::index sync_result::signaled_index() const
 
 
 template < typename PRED >
-inline bool pred_Sleep(int iTime, PRED pred)
+inline bool predicate_Sleep(int iTime, PRED pred)
 {
 
    if(iTime < 100)
@@ -200,10 +239,10 @@ inline bool pred_Sleep(int iTime, PRED pred)
 
 
 //template < typename PRED >
-//auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 //{
 //
-//   auto pobjectTask = __sync_pred(pred);
+//   auto pobjectTask = __sync_predicate(pred);
 //
 //   pfnBranch(pobjectTask, epriority);
 //
@@ -227,7 +266,7 @@ inline bool pred_Sleep(int iTime, PRED pred)
 
 
 template < typename PRED >
-void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
+void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 {
 
    auto pobjectTask = __routine(pred);

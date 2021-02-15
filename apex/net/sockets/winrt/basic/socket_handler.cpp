@@ -136,7 +136,7 @@ namespace sockets
    }
 
 
-   ::sync& socket_handler::GetMutex() const
+   ::synchronization_object& socket_handler::GetMutex() const
    {
       
       return *mutex();

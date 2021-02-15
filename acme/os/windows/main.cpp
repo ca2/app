@@ -150,7 +150,7 @@ void os_post_quit()
 //
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System.post_pred([pobjectTask]()
+//   System.post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -165,7 +165,7 @@ void os_post_quit()
 //   
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System.send_pred([pobjectTask]()
+//   System.send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

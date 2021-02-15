@@ -89,7 +89,7 @@ namespace account
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_map[strAppId] = __new(::account::product(get_context_object()));
 

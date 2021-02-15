@@ -484,7 +484,7 @@ namespace account
    void view::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //single_lock sl(mutex(), true);
+      //single_lock synchronizationlock(mutex(), true);
 
       //int i = 5;
 
@@ -522,7 +522,7 @@ namespace account
 
       pcredentials->m_estatus = error_credentials;
 
-      sync_lock sl(&m_mutexResponse);
+      synchronization_lock synchronizationlock(&m_mutexResponse);
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 

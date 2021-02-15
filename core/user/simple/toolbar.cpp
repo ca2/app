@@ -1810,7 +1810,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index nCount, index nWidth)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    index nResult = 0;
 
@@ -2366,7 +2366,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                point = rectangle.top_left() + point_i32;
 
-               pwindow->set_window_pos(0, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+               pwindow->set_window_position(0, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
 
                }*/
 
@@ -2450,7 +2450,7 @@ void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
    {
 
       // recalc non-client area when border styles change
-      //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+      //set_window_position(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
 
    }
 

@@ -26,7 +26,7 @@ namespace promise
    ::promise::subject * handler::subject(const ::id & id)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_pmapSubject)
       {
@@ -258,7 +258,7 @@ namespace promise
    void handler::remove(::matter *pmatter)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (auto &pupdate : m_pmapSubject->values())
       {
@@ -273,7 +273,7 @@ namespace promise
    void handler::__remove(::matter *pmatter)
    {
 
-      critical_section_lock sl(&s_criticalsection);
+      critical_section_lock synchronizationlock(&s_criticalsection);
 
       for (auto & handler : s_handlerset)
       {

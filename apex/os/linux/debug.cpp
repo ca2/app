@@ -2,7 +2,7 @@
 #include "apex/platform/static_start.h"
 
 
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #undef USE_MISC
 
 

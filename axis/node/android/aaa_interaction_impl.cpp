@@ -414,7 +414,7 @@ namespace android
 
    //   install_message_routing(this);
 
-   //   m_puserinteraction->set_window_pos(e_zorder_top, pinitialize->m_rect, SWP_SHOWWINDOW);
+   //   m_puserinteraction->set_window_position(e_zorder_top, pinitialize->m_rect, SWP_SHOWWINDOW);
 
    //   m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -546,9 +546,9 @@ namespace android
    void interaction_impl::win_update_graphics()
    {
 
-      single_lock sl(m_puserinteraction->mutex(),false);
+      single_lock synchronizationlock(m_puserinteraction->mutex(),false);
 
-      if(!sl.lock())
+      if(!synchronizationlock.lock())
       {
          m_bUpdateGraphics = true;
          return;
@@ -615,7 +615,7 @@ namespace android
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock sl(m_puserinteraction->get_context_application()->mutex(), true);
+      single_lock synchronizationlock(m_puserinteraction->get_context_application()->mutex(), true);
 
       ::user::interaction_impl * pwindow;
 
@@ -765,7 +765,7 @@ namespace android
    //bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    //{
 
-   //   //sync_lock sl(&user_mutex());
+   //   //synchronization_lock synchronizationlock(&user_mutex());
 
    //   //ASSERT(::is_window(get_handle()));
 
@@ -1495,7 +1495,7 @@ namespace android
       //         ::rect rect;
       //         ::get_window_rect(oswindow_Child,&rect);
       //         _001ScreenToClient(&rect);
-      //         ::set_window_pos(oswindow_Child,nullptr,rect.left + xAmount,rect.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
+      //         ::set_window_position(oswindow_Child,nullptr,rect.left + xAmount,rect.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
       //      }
       //   }
       //}
@@ -1600,7 +1600,7 @@ namespace android
 //bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //{
 //   // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//   /*      single_lock sl(afxMutexHwnd(), true);
+//   /*      single_lock synchronizationlock(afxMutexHwnd(), true);
 //   hwnd_map * pMap = afxMapHWND();
 //   if (pMap == nullptr)
 //   return false;
@@ -2210,7 +2210,7 @@ namespace android
       //         yTop = rcarea.bottom - rcDlg.height();
       //
       //      // ::collection::map screen coordinates to child coordinates
-      //      set_window_pos(nullptr, xLeft, yTop, -1, -1,
+      //      set_window_position(nullptr, xLeft, yTop, -1, -1,
       //         SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
 
@@ -2362,12 +2362,12 @@ namespace android
 
 //#define SWP_IGNOREPALACEGUARD 0x80000000
 //
-//   bool interaction_impl::set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+//   bool interaction_impl::set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 //   {
 //
-//      return ::user::interaction_impl::set_window_pos(z, x, y, cx, cy, nFlags);
+//      return ::user::interaction_impl::set_window_position(z, x, y, cx, cy, nFlags);
 //
-//      //      single_lock sl(&user_mutex(), true);
+//      //      single_lock synchronizationlock(&user_mutex(), true);
 //
 //      //xdisplay d(m_oswindow->display());
 //
@@ -2406,14 +2406,14 @@ namespace android
 //
 //
 //      ASSERT(::is_window((oswindow)get_handle()));
-//      /*   return ::set_window_pos(get_handle(), pWndInsertAfter->get_handle(),
+//      /*   return ::set_window_position(get_handle(), pWndInsertAfter->get_handle(),
 //      x, y, cx, cy, nFlags) != false; */
 //
 //      //__throw(not_implemented());
 //
 //      //XSizeHints hints;
 //
-//      ::set_window_pos((oswindow) get_handle(), 0, x, y, cx, cy, nFlags);
+//      ::set_window_position((oswindow) get_handle(), 0, x, y, cx, cy, nFlags);
 //      if (nFlags & SWP_NOMOVE)
 //      {
 //         if (nFlags & SWP_NOSIZE)
@@ -4628,7 +4628,7 @@ namespace android
    bool interaction_impl::has_pending_graphical_update()
    {
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       for (auto p : m_puserinteraction->m_uiptraChild)
       {

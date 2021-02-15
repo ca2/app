@@ -1064,7 +1064,7 @@ namespace experience
          ptab->get_data()->m_rectTab.right      = ptab->get_data()->m_rectTab.left + ptab->get_data()->m_iTabWidth;
          ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
 
-         /*      m_puserinteraction->set_window_pos(
+         /*      m_puserinteraction->set_window_position(
          e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
@@ -1185,7 +1185,7 @@ namespace experience
          ptab->get_data()->m_rectTab.right      = rectClient.right;
          ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
-         /*      set_window_pos(
+         /*      set_window_position(
          e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,

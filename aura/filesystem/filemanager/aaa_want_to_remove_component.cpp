@@ -405,7 +405,7 @@ namespace filemanager
 
             ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-            sync_lock sl(&m);
+            synchronization_lock synchronizationlock(&m);
 
             stra.add_lines(Context.file().as_string(m_pathFilemanagerProject), true);
 
@@ -566,7 +566,7 @@ namespace filemanager
 
       //   ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-      //   sync_lock sl(&m);
+      //   synchronization_lock synchronizationlock(&m);
 
       //   Context.file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 

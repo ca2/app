@@ -7,7 +7,7 @@ inline void copy(MESSAGE * pmessage, const MSG * pmsg)
 {
 
    pmessage->oswindow = (oswindow)(pmsg->hwnd);
-   pmessage->message = pmsg->message;
+   pmessage->m_id = (enum_message) pmsg->message;
    pmessage->wParam = pmsg->wParam;
    pmessage->lParam = pmsg->lParam;
    pmessage->pt = pmsg->pt;
@@ -20,7 +20,7 @@ inline void copy(MSG * pmsg, const MESSAGE * pmessage)
 {
 
    pmsg->hwnd = (HWND)(pmessage->oswindow);
-   pmsg->message = pmessage->message;
+   pmsg->message = (UINT) pmessage->m_id.i64();
    pmsg->wParam = pmessage->wParam;
    pmsg->lParam = pmessage->lParam;
    pmsg->pt.x = pmessage->pt.x;
@@ -212,9 +212,6 @@ inline comptr < IStream > create_istream(const memory_base & memory)
 
 
 
-CLASS_DECL_ACME time_t __time(const SYSTEMTIME & st, i32 nDST = -1);
-CLASS_DECL_ACME time_t __time(const FILETIME & ft, i32 nDST = -1);
-CLASS_DECL_ACME SYSTEMTIME __systemtime(const ::datetime::time & time);
 inline filetime __filetime(const FILETIME & filetime) { return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); }
 
 

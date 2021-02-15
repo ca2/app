@@ -117,7 +117,7 @@ namespace userex
    group_image_list_view::group * group_image_list_view::get_group(::id idGroup)
    {
 
-      index iFind = m_groupa.pred_find_first([=](auto & item)
+      index iFind = m_groupa.predicate_find_first([=](auto & item)
       {
 
          return item->m_idGroup == idGroup;

@@ -203,7 +203,7 @@ namespace experience
    void button::on_hit_test(::user::item & item)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_spregion.is_null())
       {

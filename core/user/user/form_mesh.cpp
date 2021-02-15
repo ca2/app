@@ -302,7 +302,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(_001GetEditControl() != nullptr)
       {
@@ -681,7 +681,7 @@ namespace user
    bool form_mesh::_001OnControlSetFocus(::user::interaction * pinteraction)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //index iItem;
 
@@ -706,7 +706,7 @@ namespace user
    bool form_mesh::_001OnControlKillFocus(::user::interaction * pinteraction)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //index iItem;
 

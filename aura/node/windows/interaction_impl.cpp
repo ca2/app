@@ -3683,7 +3683,7 @@ namespace windows
    void interaction_impl::show_task(bool bShow)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       // https://www.daniweb.com/programming/software-development/threads/457564/mfc-application-disablehide-taskbar-icon
 
@@ -3729,10 +3729,10 @@ namespace windows
    }
 
 
-   /*bool interaction_impl::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   /*bool interaction_impl::set_window_position(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
-      if (!::user::interaction_impl::set_window_pos(zorder, x, y, cx, cy, nFlags))
+      if (!::user::interaction_impl::set_window_position(zorder, x, y, cx, cy, nFlags))
       {
 
          return false;
@@ -3743,7 +3743,7 @@ namespace windows
       {
 
 
-         if (!::set_window_pos(get_handle(), zorder, x, y, cx, cy, nFlags))
+         if (!::set_window_position(get_handle(), zorder, x, y, cx, cy, nFlags))
          {
 
             return false;

@@ -14,7 +14,7 @@ namespace windows
    ///  \lparam		filter filter conditions that satisfy a machine notification wait
    ///				can take values described by enum filter
    file_change_event::file_change_event(::matter * pobject, const char * path, bool watchsubtree, u32 filter) :
-      sync(::FindFirstChangeNotificationW(::str::international::utf8_to_unicode(path), watchsubtree, filter))
+      synchronization_object(::FindFirstChangeNotificationW(::str::international::utf8_to_unicode(path), watchsubtree, filter))
    {
       if (hsync() == nullptr)
          __throw(runtime_error("file_change_event: failed to create event"));
@@ -53,28 +53,28 @@ namespace windows
    }
 
    ///  \brief		waits for an file notification forever
-   sync_result file_change_event::wait()
+   synchronization_result file_change_event::wait()
    {
 
       if (::WaitForSingleObject(hsync(), U32_INFINITE_TIMEOUT) != WAIT_OBJECT_0)
       {
 
-         return sync_result(sync_result::result_error);
+         return synchronization_result(e_synchronization_result_error);
 
       }
 
-      return sync_result(sync_result::result_event0);
+      return synchronization_result(e_synchronization_result_signaled_base);
 
    }
 
 
    ///  \brief		waits for an file notification for a specified time
    ///  \lparam		duration time period to wait for an file notification
-   ///  \return	waiting action result as sync_result
-   sync_result file_change_event::wait(const duration & duration)
+   ///  \return	waiting action result as synchronization_result
+   synchronization_result file_change_event::wait(const duration & duration)
    {
 
-      return sync_result((u32) ::WaitForSingleObject(hsync(), duration.u32_millis()));
+      return synchronization_result((u32) ::WaitForSingleObject(hsync(), duration.u32_millis()));
 
    }
 

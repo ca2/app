@@ -93,10 +93,10 @@ void interprocess_call::post(const ::id& idPid)
 }
 
 
-__pointer(sync_array) interprocess_call::synca()
+__pointer(synchronization_array) interprocess_call::synca()
 {
 
-   auto psynca = __new(sync_array);
+   auto psynca = __new(synchronization_array);
 
    for (auto& ptask : this->m_mapTask.values())
    {
@@ -110,14 +110,14 @@ __pointer(sync_array) interprocess_call::synca()
 }
 
 
-::sync_result interprocess_call::wait()
+::synchronization_result interprocess_call::wait()
 {
 
    auto psynca = synca();
 
-   sync_lock sl(psynca);
+   synchronization_lock synchronizationlock(psynca);
 
-   return sl.wait(m_duration);
+   return synchronizationlock.wait(m_duration);
 
 }
 

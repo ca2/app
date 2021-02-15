@@ -60,7 +60,7 @@ class CLASS_DECL_ACME mq_message_array :
 };
 
 
-class CLASS_DECL_ACME mq :
+class CLASS_DECL_ACME message_queue :
    virtual public matter
 {
 public:
@@ -73,8 +73,8 @@ public:
    bool                    m_bQuit;
 
 
-   mq();
-   virtual ~mq();
+   message_queue();
+   virtual ~message_queue();
 
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
    int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
@@ -85,8 +85,8 @@ public:
 };
 
 
-CLASS_DECL_ACME mq * get_mq(ithread_t id, bool bCreate);
-CLASS_DECL_ACME void clear_mq(ithread_t idthread);
+CLASS_DECL_ACME message_queue * get_message_queue(ithread_t id, bool bCreate);
+CLASS_DECL_ACME void clear_message_queue(ithread_t idthread);
 
 void _c_simple_message_loop();
 

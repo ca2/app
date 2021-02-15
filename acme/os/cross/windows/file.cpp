@@ -1,5 +1,9 @@
 #include "framework.h"
-
+#include "acme/os/console.h"
+#ifdef LINUX
+#include "acme/os/ansios/binreloc.h"
+#include <sys/stat.h>
+#endif
 
 
 namespace file
@@ -39,8 +43,6 @@ namespace file
    }
 
 
-#endif
-
 
 }
 
@@ -71,10 +73,18 @@ int_bool file_exists_raw(const char * path1)
    struct stat st;
 
    if (stat(path1, &st))
+   {
+
       return false;
 
+   }
+
    if ((st.st_mode & S_IFDIR))
+   {
+
       return false;
+
+   }
 
    return true;
 

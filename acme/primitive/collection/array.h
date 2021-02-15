@@ -157,10 +157,10 @@ public:
 
 
    template < typename PRED >
-   bool pred_add_unique(TYPE t, PRED pred)
+   bool predicate_add_unique(TYPE t, PRED pred)
    {
 
-      if (this->pred_contains(pred))
+      if (this->predicate_contains(pred))
       {
 
          return false;

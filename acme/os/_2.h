@@ -21,8 +21,8 @@ CLASS_DECL_ACME bool is_verbose();
 #elif defined(LINUX)
 
 //#include "acme/os/cairo/_.h"
-#include "acme/os/ansios/_.h"
-#include "acme/os/linux/_.h"
+//#include "acme/os/ansios/_.h"
+//#include "acme/os/linux/_.h"
 
 #elif defined(_UWP)
 
@@ -53,7 +53,7 @@ CLASS_DECL_ACME bool is_verbose();
 #endif
 
 template < typename PRED >
-inline bool pred_Sleep(int iTime, PRED pred);
+inline bool predicate_Sleep(int iTime, PRED pred);
 
 CLASS_DECL_ACME void press_any_key_to_exit(const char* psz = nullptr);
 

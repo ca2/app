@@ -276,7 +276,7 @@ string ca2_command_line()
 
    stra.explode(".", strAppId);
 
-   stra.pred_each([](auto & str)
+   stra.predicate_each([](auto & str)
    {
 
       str.replace("-", "_");

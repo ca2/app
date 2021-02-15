@@ -16,7 +16,7 @@
 //#include "atom/iconv/include/iconv.h"
 #endif
 //#include "_.h"
-#include "_windows.h"
+//#include "_windows.h"
 
 
 
@@ -83,24 +83,6 @@
 
 
 
-
-
-CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
-{
-
-   switch(dw)
-   {
-   case COLOR_HIGHLIGHT:
-      return argb(255, 200, 200, 196);
-   case COLOR_BTNSHADOW:
-      return argb(90, 192, 192, 187);
-   case COLOR_BTNTEXT:
-      return argb(255, 0, 0, 0);
-   default:
-      return argb(255, 0, 0, 0);
-   };
-
-}
 
 
 

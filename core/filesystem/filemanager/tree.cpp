@@ -54,7 +54,7 @@ namespace filemanager
    void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
-      sync_lock sl(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
+      synchronization_lock synchronizationlock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
 
       string_array stra;
 
@@ -150,7 +150,7 @@ namespace filemanager
 
       }
 
-      m_usertreea.pred_each([](auto & ptree)
+      m_usertreea.predicate_each([](auto & ptree)
       {
 
          ptree->set_need_layout();
@@ -166,9 +166,9 @@ namespace filemanager
    void tree::browse_sync(const ::action_context & context)
    {
 
-      sync *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
+      synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
 
-      sync_lock sl(pm);
+      synchronization_lock synchronizationlock(pm);
 
       auto pointOffset = get_viewport_offset();
 
@@ -435,7 +435,7 @@ namespace filemanager
 
       __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
 
-      m_usertreea.pred_each([](auto & ptree)
+      m_usertreea.predicate_each([](auto & ptree)
       {
 
          ptree->set_need_layout();
@@ -674,7 +674,7 @@ namespace filemanager
       else if (ptimer->m_uEvent == 123)
       {
 
-         m_usertreea.pred_each([](auto & ptree)
+         m_usertreea.predicate_each([](auto & ptree)
             {
 
                ptree->set_need_redraw();

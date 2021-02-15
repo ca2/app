@@ -57,10 +57,7 @@ namespace acme
       //virtual void defer_calc_os_dark_mode();
 
 
-      virtual ::user::enum_desktop get_edesktop();
-
-      virtual ::user::enum_desktop calc_edesktop();
-
+      //virtual ::user::enum_desktop calc_edesktop();
 
       //virtual void defer_calc_os_user_theme();
 
@@ -68,13 +65,6 @@ namespace acme
       virtual ::e_status os_application_system_run();
       virtual ::e_status run_system();
 
-      enum_operating_system get_operating_system() const;
-
-#ifdef LINUX
-
-      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
-
-#endif
 
       using ::promise::handler::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;

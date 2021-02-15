@@ -437,7 +437,7 @@ namespace ios
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock sl(&m_mutex, true);
+//      single_lock synchronizationlock(&m_mutex, true);
 //
 //      return m_strCa2;
 //

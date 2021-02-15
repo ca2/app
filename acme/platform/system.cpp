@@ -5,6 +5,9 @@
 ::acme::system * g_psystem = nullptr;
 
 
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
+
+
 namespace acme
 {
 
@@ -248,7 +251,7 @@ namespace acme
    ::task * system::get_task(ithread_t ithread)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       return m_taskmap[ithread];
 
@@ -258,7 +261,7 @@ namespace acme
    ithread_t system::get_task_id(::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       ithread_t ithread = NULL_ITHREAD;
 
@@ -277,7 +280,7 @@ namespace acme
    void system::set_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -289,7 +292,7 @@ namespace acme
    void system::unset_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 
@@ -315,30 +318,21 @@ namespace acme
    ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox , const ::promise::process & process)
    {
 
-      printf("\n%s\n%s", pszTitle, pszText);
+      auto result = message_box_for_console(pszText, pszTitle, emessagebox);
 
-      getchar();
+      process(result);
 
-      getchar();
+      //printf("\n%s\n%s", pszTitle, pszText);
+
+      //getchar();
+
+      //getchar();
 
       return ::success;
 
    }
 
 
-   ::user::enum_desktop system::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calc_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
 
 
 

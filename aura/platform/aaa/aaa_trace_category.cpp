@@ -38,7 +38,7 @@ void trace_category_static_init()
       "map",
       "util",
       "security",
-      "sync",
+      "synchronization_object",
       "isapi",
       "user",
       "user2",

@@ -879,14 +879,14 @@ bool memory_base::operator == (const memory_base & s)
 
    bool b = false;
 
-   //single_lock sl(m_spmutex);
+   //single_lock synchronizationlock(m_spmutex);
 
-   //sl.lock();
+   //synchronizationlock.lock();
 
    if (this->get_size() == s.get_size())
       b = __memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
 
-   //sl.unlock();
+   //synchronizationlock.unlock();
 
    return b;
 
@@ -897,14 +897,14 @@ bool memory_base::operator == (const struct block & s)
 
    bool b = false;
 
-   //single_lock sl(m_spmutex);
+   //single_lock synchronizationlock(m_spmutex);
 
-   //sl.lock();
+   //synchronizationlock.lock();
 
    if (this->get_size() == s.get_size())
       b = __memcmp(get_data(), s.get_data(), (size_t)this->get_size()) == 0;
 
-   //sl.unlock();
+   //synchronizationlock.unlock();
 
    return b;
 

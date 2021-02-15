@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_user.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 /*
@@ -101,7 +101,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 //int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 //{
 //
-//   return mq_post_message(oswindow, message, wparam, lparam);
+//   return message_queue_post(oswindow, message, wparam, lparam);
 //
 //}
 //

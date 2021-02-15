@@ -141,7 +141,7 @@ namespace promise
    ::promise::context * handler::context(::matter *pmatter)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & pcontext = m_mattercontext[pmatter];
 
@@ -160,7 +160,7 @@ namespace promise
    void handler::deliver()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (auto &pair : m_mattercontext)
       {
@@ -268,7 +268,7 @@ namespace promise
    void handler::add(::matter *pmatter, bool bForkWhenNotify)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //bool bShouldFork = false;
 
@@ -317,7 +317,7 @@ namespace promise
    void handler::remove(::matter *pmatter)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_mattercontext.remove_key(pmatter);
 
@@ -327,7 +327,7 @@ namespace promise
    void handler::set_modified()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_bModified = true;
 
@@ -346,7 +346,7 @@ namespace promise
    void handler::post_destroy_all()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_mattercontext.remove_all();
 

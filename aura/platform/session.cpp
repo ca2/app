@@ -185,54 +185,6 @@ namespace aura
    }
 
 
-
-
-
-
-
-
-
-   //::e_status session::init_thread()
-   //{
-
-   //   auto estatus = process_init();
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   estatus = init_session();
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   // // now there is attempt here
-   //   //estatus = defer_initialize_host_window();
-
-   //   //if(!estatus)
-   //   //{
-
-   //   //   __throw(::exception::exception(estatus));
-
-   //   //}
-
-
-   //   INFO(".1");
-
-   //   return true;
-
-   //   return estatus;
-
-   //}
-
-
    ::e_status session::process_init()
    {
 
@@ -1359,7 +1311,7 @@ namespace aura
 
    //         {
 
-   //            sync_lock sl(mutex());
+   //            synchronization_lock synchronizationlock(mutex());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1696,7 +1648,7 @@ ret:
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {

@@ -20,7 +20,7 @@ namespace message
 
 
    template < typename MESSAGE_PRED, typename MESSAGE >
-   class pred_route :
+   class predicate_route :
       virtual public messageable
    {
    public:
@@ -29,7 +29,7 @@ namespace message
       MESSAGE_PRED m_messagepred;
 
 
-      pred_route(MESSAGE_PRED messagepred) : m_messagepred(messagepred) { }
+      predicate_route(MESSAGE_PRED messagepred) : m_messagepred(messagepred) { }
 
 
       void on_message(message * pobject)
@@ -99,7 +99,7 @@ namespace message
       route & operator = (MESSAGE_PRED pred)
       {
 
-         m_pmessageable = __new(pred_route<MESSAGE_PRED, ::message::message >(pred));
+         m_pmessageable = __new(predicate_route<MESSAGE_PRED, ::message::message >(pred));
 
          return *this;
 
@@ -140,7 +140,7 @@ namespace message
       typed_route& operator = (MESSAGE_PRED pred)
       {
 
-         m_pmessageable = __new(pred_route<MESSAGE_PRED, MESSAGE >(pred));
+         m_pmessageable = __new(predicate_route<MESSAGE_PRED, MESSAGE >(pred));
 
          return *this;
 

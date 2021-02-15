@@ -3,7 +3,7 @@
 #include "aura/message.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
-//#include "apex/platform/pred_procedure.h"
+//#include "apex/platform/predicate_procedure.h"
 
 
 namespace user
@@ -524,7 +524,7 @@ namespace user
    string box::calc_display()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       string strDisplay;
 
@@ -553,7 +553,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -566,7 +566,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_strDisplay = calc_display();
 

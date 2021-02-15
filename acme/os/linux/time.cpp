@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <sys/time.h>
-
+#include <time.h>
 
 
 CLASS_DECL_ACME i64 get_nanos()

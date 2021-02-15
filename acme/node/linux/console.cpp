@@ -29,16 +29,17 @@ namespace linux
       init_color(COLOR_YELLOW, 1000, 1000, 0);
       init_color(COLOR_BLACK, 0, 0, 0);
 
-      init_pair(::console::WHITE, COLOR_WHITE, COLOR_BLACK);
-      init_pair(::console::RED, COLOR_RED, COLOR_BLACK);
-      init_pair(::console::BLUE, COLOR_GREEN, COLOR_BLACK);
-      init_pair(::console::DARKBLUE, COLOR_BLUE, COLOR_BLACK);
-      init_pair(::console::CYAN, COLOR_CYAN, COLOR_BLACK);
-      init_pair(::console::MAGENTA, COLOR_MAGENTA, COLOR_BLACK);
-      init_pair(::console::YELLOW, COLOR_YELLOW, COLOR_BLACK);
-      init_pair(::console::BLACK, COLOR_BLACK, COLOR_BLACK);
+      init_pair(e_dos_color_foreground_white       , COLOR_WHITE     , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_red         , COLOR_RED       , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_blue        , COLOR_GREEN     , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_dark_blue   , COLOR_BLUE      , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_cyan        , COLOR_CYAN      , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_magenta     , COLOR_MAGENTA   , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_yellow      , COLOR_YELLOW    , COLOR_BLACK);
+      init_pair(e_dos_color_foreground_black       , COLOR_BLACK     , COLOR_BLACK);
 
       m_iColor = -1;
+
    }
 
 
@@ -163,8 +164,10 @@ namespace linux
       attron(COLOR_PAIR(m_iColor));
    }
 
-   void console::SetScreenColor(int color, int iLineStart, int iLineCount)
+
+   void console::SetScreenColor(enum_dos_color color, int iLineStart, int iLineCount)
    {
+
 //      COORD coord ={0,iLineStart};
 //      ::u32 dwWritten;
 //      if(iLineCount < 0)
@@ -172,7 +175,9 @@ namespace linux
 //      if(iLineCount > m_iH - iLineStart)
 //         iLineCount = m_iH - iLineStart;
 //      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,iLineCount * m_iW,coord,&dwWritten);
+
    }
+
 
    void console::write(const char * psz)
    {

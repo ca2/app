@@ -76,7 +76,7 @@
 //   display * find_display(iptr i)
 //   {
 //
-//      sync_lock sl(get_display_map_mutex());
+//      synchronization_lock synchronizationlock(get_display_map_mutex());
 //
 //      return m_pdisplaymap[i];
 //

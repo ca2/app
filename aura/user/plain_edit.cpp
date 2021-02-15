@@ -974,7 +974,7 @@ namespace user
 
       //{
 
-      //   sync_lock sl(mutex());
+      //   synchronization_lock synchronizationlock(mutex());
 
       //   strsize iSelStart = -1;
 
@@ -1449,7 +1449,7 @@ namespace user
    strsize plain_edit::_001GetTextLength() const
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       return strsize (m_ptree->m_peditfile->get_length());
 
@@ -1474,7 +1474,7 @@ namespace user
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       filesize iSize = m_ptree->m_peditfile->get_length();
 
@@ -1511,7 +1511,7 @@ namespace user
    void plain_edit::_001GetText(string & str, index iBegParam, index iEndParam) const
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::sort::sort_non_negative(iBegParam, iEndParam);
 
@@ -1589,7 +1589,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
 
@@ -1709,7 +1709,7 @@ namespace user
    void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_ptree->m_iSelBeg = iBeg;
 
@@ -1874,7 +1874,7 @@ namespace user
                m_pointLastCursor = point;
 
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                ::rectangle_i32 rectWindow;
 
@@ -1929,7 +1929,7 @@ namespace user
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_bLMouseDown = true;
 
@@ -2027,7 +2027,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -2395,7 +2395,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_bMultiLine)
       {
@@ -2447,7 +2447,7 @@ namespace user
          if (strTextPrevious != strText)
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             m_ptree->m_peditfile->seek(0, ::file::seek_begin);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
@@ -2881,7 +2881,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       strsize i1;
 
@@ -2913,7 +2913,7 @@ namespace user
    index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iChar)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (index iLine = 0; iLine < m_iaLineBeg.get_size(); iLine++)
       {
@@ -2994,7 +2994,7 @@ namespace user
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (iLine >= m_iaLineLen.get_size())
       {
@@ -3045,7 +3045,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3085,7 +3085,7 @@ namespace user
    strsize plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       while (iLine < 0)
       {
@@ -3167,7 +3167,7 @@ namespace user
    strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       pgraphics.defer_create();
 
@@ -3189,7 +3189,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3231,7 +3231,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //string_array & straLines = m_plines->lines;
 
@@ -3339,7 +3339,7 @@ namespace user
    strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 px, index iLine)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3454,7 +3454,7 @@ end:
    void plain_edit::_001GetViewSel(strsize & iSelBeg, strsize & iSelEnd) const
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
 
 
@@ -3508,7 +3508,7 @@ end:
    void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd) const
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       iBeg = m_ptree->m_iSelBeg;
 
@@ -3522,7 +3522,7 @@ end:
    void plain_edit::FileSave()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
 
 
@@ -3546,7 +3546,7 @@ end:
    void plain_edit::plain_edit_create_line_index(::draw2d::graphics_pointer& pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       memory m;
 
@@ -3711,7 +3711,7 @@ end:
    void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, index iLine)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       memory m;
 
@@ -3937,7 +3937,7 @@ finished_update:
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       bool bFullUpdate = false;
 
@@ -4084,7 +4084,7 @@ finished_update:
    bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -4185,7 +4185,7 @@ finished_update:
    bool plain_edit::_001ReplaceSel(const char * pszText, bool & bFullUpdate, index & iLineUpdate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -4358,7 +4358,7 @@ finished_update:
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
             bool bShift = psession->is_key_pressed(::user::e_key_shift);
@@ -5206,7 +5206,7 @@ finished_update:
    void plain_edit::InputConnectionBeginBatchEdit()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       MacroBegin();
 
@@ -5218,7 +5218,7 @@ finished_update:
    void plain_edit::InputConnectionEndBatchEdit()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       MacroEnd();
 
@@ -5444,7 +5444,7 @@ finished_update:
    void plain_edit::_001OnSysChar(::message::message * pmessage)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       __pointer(::message::key) pkey(pmessage);
 
@@ -5636,7 +5636,7 @@ finished_update:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //string str;
          //_001GetText(str);
@@ -5709,7 +5709,7 @@ finished_update:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //string str;
          //_001GetText(str);
@@ -5775,7 +5775,7 @@ finished_update:
 
    void plain_edit::MacroEnd()
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
       if (m_ptree->m_pgroupcommand == nullptr)
       {
          ASSERT(false);
@@ -5791,7 +5791,7 @@ finished_update:
 
    void plain_edit::MacroRecord(__pointer(plain_text_command) pcommand)
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
       if (m_ptree->m_pgroupcommand != nullptr && m_ptree->m_pgroupcommand != pcommand)
       {
          m_ptree->m_pgroupcommand->m_commanda.add(pcommand);
@@ -5808,7 +5808,7 @@ finished_update:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          {
             if (!CanUndo())
@@ -5857,7 +5857,7 @@ finished_update:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_ptreeitem == nullptr)
          {
@@ -5914,20 +5914,20 @@ finished_update:
 
    bool plain_edit::CanUndo()
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
       return m_ptreeitem != m_ptree->get_base_item();
    }
 
    bool plain_edit::CanRedo()
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
       return m_ptree->m_iBranch < m_ptreeitem->get_expandable_children_count()
              || m_ptreeitem->get_next() != nullptr;
    }
 
    ::count plain_edit::GetRedoBranchCount()
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       return m_ptreeitem->get_expandable_children_count()
              + (m_ptreeitem->get_next() != nullptr ? 1 : 0)
@@ -5943,7 +5943,7 @@ finished_update:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (m_bParseDataPacks)
          {
@@ -6306,7 +6306,7 @@ finished_update:
    void plain_edit::set_root(plain_text_tree * pdata, bool bOwnData)
    {
 
-      sync_lock lockRoot(mutex());
+      synchronization_lock lockRoot(mutex());
 
       if (m_ptree != nullptr && m_bOwnData)
       {
@@ -6544,7 +6544,7 @@ finished_update:
    string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, index iLine)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       string strLine;
 
@@ -6616,7 +6616,7 @@ finished_update:
 
       ::output_debug_string("plain_edit::insert_text: \"" + strText.Left(64) + "\" \n");
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       on_before_change_text();
 

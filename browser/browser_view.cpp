@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            sync_lock sl(&m_mutexText);
+            synchronization_lock synchronizationlock(&m_mutexText);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            sync_lock sl(&m_mutexText);
+            synchronization_lock synchronizationlock(&m_mutexText);
 
             if (m_bPendingImageChange)
             {
@@ -180,7 +180,7 @@ namespace browser
 
                   string strFork = m_strImage.c_str();
 
-                  sl.unlock();
+                  synchronizationlock.unlock();
 
                   fork([this, strFork]()
                   {
@@ -210,11 +210,11 @@ namespace browser
    void view::on_layout()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       {
 
-         sync_lock slText(&m_mutexText);
+         synchronization_lock slText(&m_mutexText);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -420,7 +420,7 @@ namespace browser
 
                //::SetWindowPos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
 
-               //::set_window_pos(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
+               //::set_window_position(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
                //               rectangle.left,
                //               rectangle.top,
                //               rectangle.width(),
@@ -473,7 +473,7 @@ namespace browser
    void view::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      sync_lock slText(&m_mutexText);
+      synchronization_lock slText(&m_mutexText);
 
       string str;
 
@@ -600,7 +600,7 @@ namespace browser
    string view::get_browser()
    {
 
-      sync_lock sl(&m_mutexText);
+      synchronization_lock synchronizationlock(&m_mutexText);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -664,14 +664,14 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
 
             m_prender->m_strHelloBrowser = m_strProcessedHellomultiverse.c_str(); // rationale : string allocation fork *for parallelization*
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             set_need_layout();
 
@@ -685,7 +685,7 @@ namespace browser
    void view::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -722,7 +722,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  sync_lock sl(mutex());
+                  synchronization_lock synchronizationlock(mutex());
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -751,7 +751,7 @@ namespace browser
 
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          m_strNewHelloBrowser = strText;
 
@@ -839,7 +839,7 @@ namespace browser
    //         auto rectangle = RECTANGLE_I32{ 0 };
    //         get_client_rect(&rectangle);
 
-   //         ::set_window_pos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
+   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
    //      }
    //   }
    //}
@@ -892,7 +892,7 @@ namespace browser
                       int height)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       pixmap p;
 

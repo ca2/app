@@ -12,7 +12,7 @@ namespace promise
 
 
    class CLASS_DECL_ACME sync_routine :
-           public ::sync
+           public ::synchronization_object
    {
    protected:
 
@@ -52,7 +52,7 @@ namespace promise
       }
 
 
-      virtual sync_result wait(const duration &durationTimeout) override
+      virtual synchronization_result wait(const duration &durationTimeout) override
       {
 
          return m_peventCompletion->wait(durationTimeout);

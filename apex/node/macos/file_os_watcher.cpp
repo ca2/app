@@ -26,7 +26,7 @@ namespace file
       
       m_stream = nullptr;
       
-      m_pwatcher->m_pthread->send_pred([&]()
+      m_pwatcher->m_pthread->send_predicate([&]()
       {
 
          CFStringRef mypath = CFStringCreateWithCString(kCFAllocatorDefault, pathFolder, kCFStringEncodingUTF8);

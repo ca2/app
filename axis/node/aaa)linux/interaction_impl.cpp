@@ -620,7 +620,7 @@ namespace linux
                      // initial (XCreateWindow) size_i32 and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size_i32 and position.
 
-                     m_oswindow->set_window_pos(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 
                   }
 
@@ -994,7 +994,7 @@ namespace linux
 
       {
 
-         single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
+         single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
 
          ::thread* pThread = ::get_task();
 
@@ -1017,7 +1017,7 @@ namespace linux
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
 //
-//         sync_lock sl(m_puserinteraction->m_pthread->mutex());
+//         synchronization_lock synchronizationlock(m_puserinteraction->m_pthread->mutex());
 //
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
@@ -1970,7 +1970,7 @@ namespace linux
 //                     ::rectangle_i32 rectangle;
 //                     ::get_window_rect(hWndChild, &rectangle);
 //                     _001ScreenToClient(&rectangle);
-//                     ::set_window_pos(hWndChild, nullptr,
+//                     ::set_window_position(hWndChild, nullptr,
 //                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //                        SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
 //                  }
@@ -2082,7 +2082,7 @@ namespace linux
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock sl(afxMutexHwnd(), true);
+//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
 //            hwnd_map * pMap = afxMapHWND();
 //            if (pMap == nullptr)
 //               return false;
@@ -2598,7 +2598,7 @@ namespace linux
 
 
 
-//   bool interaction_impl::set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+//   bool interaction_impl::set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 //   {
 //
 //      if(!(nFlags & SWP_NOMOVE))
@@ -2615,7 +2615,7 @@ namespace linux
 //
 //      }
 //
-//      if(!::set_window_pos(get_handle(), (oswindow)z, x, y, cx, cy, nFlags))
+//      if(!::set_window_position(get_handle(), (oswindow)z, x, y, cx, cy, nFlags))
 //      {
 //
 //         return false;
@@ -2633,7 +2633,7 @@ namespace linux
 //   void interaction_impl::MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight, bool bRepaint)
 //   {
 //
-//      set_window_pos(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
+//      set_window_position(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
 //
 //   }
 
@@ -3147,7 +3147,7 @@ namespace linux
       if(nFlags != 0)
       {
 
-         //set_window_pos(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
+         //set_window_position(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
          set_need_redraw();
 
       }
@@ -3165,7 +3165,7 @@ namespace linux
       if(nFlags != 0)
       {
 
-         //set_window_pos(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
+         //set_window_position(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
          set_need_redraw();
 
       }
@@ -4902,7 +4902,7 @@ namespace linux
          //x11_sync([&]()
          //{
 
-         sync_lock sl(x11_mutex());
+         synchronization_lock synchronizationlock(x11_mutex());
 
             _001UpdateScreen();
 

@@ -2,10 +2,10 @@
 
 
 template < typename CONTAINER, typename LIST_ITEM >
-void list_pred_add(CONTAINER& a, LIST_ITEM&& pitem)
+void list_predicateicate_add(CONTAINER& a, LIST_ITEM&& pitem)
 {
 
-   list_pred(pitem, [&a](auto& p) { a.add(p); });
+   list_predicate(pitem, [&a](auto& p) { a.add(p); });
 
 }
 
@@ -55,7 +55,7 @@ template < typename LIST_ITEM >
 
 
 template < typename LIST_ITEM, typename PRED >
-LIST_ITEM list_pred_find(LIST_ITEM&& plist, PRED pred)
+LIST_ITEM list_predicateicate_find(LIST_ITEM&& plist, PRED pred)
 {
 
    for (auto p = plist->m_phead; ::is_set(p); p = p->m_pnext)
@@ -286,7 +286,7 @@ void list_remove(LIST_ITEM&& pitem, LIST_ITEM2&& pitemRemove)
 
 
 template < typename LIST_ITEM, typename PRED  >
-void list_pred(LIST_ITEM* pitem, PRED pred)
+void list_predicate(LIST_ITEM* pitem, PRED pred)
 {
 
    for (auto p = pitem->m_phead; ::is_set(p); p = p->m_pnext)
@@ -299,7 +299,7 @@ void list_pred(LIST_ITEM* pitem, PRED pred)
 }
 
 template < typename LIST_ITEM, typename PRED  >
-void list_pred_with_index(LIST_ITEM* pitem, PRED pred)
+void list_predicateicate_with_index(LIST_ITEM* pitem, PRED pred)
 {
 
    ::index i = 0;
@@ -321,7 +321,7 @@ void tree_sort(TREE_ITEM* pitem, PRED pred)
 
    list_sort(pitem);
 
-   list_pred(pitem, [pred](auto p) {tree_sort(p, pred); });
+   list_predicate(pitem, [pred](auto p) {tree_sort(p, pred); });
 
 }
 

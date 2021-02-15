@@ -19,7 +19,7 @@ template < typename PRED >
 inline void main_async(PRED pred, e_priority epriority = priority_normal)
 {
 
-   async_pred(&main_branch, pred, epriority);
+   async_predicate(&main_branch, pred, epriority);
 
 }
 
@@ -28,7 +28,7 @@ template < typename PRED >
 inline void main_sync(PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal)
 {
 
-   sync_pred(&main_branch, pred, durationTimeout, epriority);
+   sync_predicate(&main_branch, pred, durationTimeout, epriority);
 
 }
 

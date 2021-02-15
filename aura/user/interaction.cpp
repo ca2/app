@@ -567,7 +567,7 @@ namespace user
 
       bool bDuplicate = true;
 
-      //sync_lock slChildren(::user::mutex_children());
+      //synchronization_lock slChildren(::user::mutex_children());
 
       auto puiptraChild = m_puiptraChild;
 
@@ -709,7 +709,7 @@ namespace user
    void interaction::set_reposition(bool bSetThis)
    {
 
-      //sync_lock sl(mutex_children());
+      //synchronization_lock synchronizationlock(mutex_children());
 
       _set_reposition(bSetThis);
 
@@ -728,7 +728,7 @@ namespace user
 
       }
 
-      //sync_lock slChildren(::user::mutex_children());
+      //synchronization_lock slChildren(::user::mutex_children());
 
 //      if (m_puiptraChild)
 //      {
@@ -1751,7 +1751,7 @@ namespace user
          if (!m_pimpl->m_bDestroying)
          {
 
-            //sync_lock slChildren(::user::mutex_children());
+            //synchronization_lock slChildren(::user::mutex_children());
 
             auto puiptraChild = m_puiptraChild;
 
@@ -1949,7 +1949,7 @@ namespace user
 
          {
 
-            sync_lock sl(psession->mutex());
+            synchronization_lock synchronizationlock(psession->mutex());
 
             try
             {
@@ -2108,7 +2108,7 @@ namespace user
          if(pimpl)
          {
 
-            sync_lock sl(pimpl->mutex());
+            synchronization_lock synchronizationlock(pimpl->mutex());
 
             pimpl->m_uiptraMouseHover.remove(this);
 
@@ -2118,7 +2118,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          ::thread * pthread = ::get_thread();
 
@@ -2144,7 +2144,7 @@ namespace user
          try
          {
 
-            //sync_lock slChildren(::user::mutex_children());
+            //synchronization_lock slChildren(::user::mutex_children());
 
             auto puiptraChild = __new(::user::interaction_array(*puiParent->m_puiptraChild));
 
@@ -2243,7 +2243,7 @@ namespace user
 
       }
 
-      //sync_lock sl(mutex_children());
+      //synchronization_lock synchronizationlock(mutex_children());
 
       if (m_puiptraChild)
       {
@@ -2300,7 +2300,7 @@ namespace user
       if(this == psession->m_puiHost)
       {
 
-         //sync_lock slChildren(::user::mutex_children());
+         //synchronization_lock slChildren(::user::mutex_children());
 
          auto puiptraChild = m_puiptraChild;
 
@@ -2523,7 +2523,7 @@ namespace user
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             {
 
@@ -2682,7 +2682,7 @@ namespace user
 
 #endif
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       {
 
@@ -2767,7 +2767,7 @@ namespace user
 
          set_viewport_org(pgraphics);
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          _008OnDraw(pgraphics);
 
@@ -2801,7 +2801,7 @@ namespace user
    }
 
 
-   sync* interaction::mutex_draw()
+   synchronization_object* interaction::mutex_draw()
    {
 
       auto puserinteraction = get_wnd();
@@ -3056,7 +3056,7 @@ namespace user
       try
       {
 
-         //sync_lock slChildren(::user::mutex_children());
+         //synchronization_lock slChildren(::user::mutex_children());
 
          //if (0) // abcxxx
          {
@@ -3394,7 +3394,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pgraphicscalla)
       {
@@ -3404,7 +3404,7 @@ namespace user
 
             auto pcall = m_pgraphicscalla->pick_first();
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             try
             {
@@ -3417,7 +3417,7 @@ namespace user
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
          }
 
@@ -3837,7 +3837,7 @@ namespace user
       if (is_top_level_window() && !is_message_only_window())
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //if (get_context_application()->get_context_system() != nullptr)
          //{
@@ -3881,7 +3881,7 @@ namespace user
             //{
 
             //   // A Copy Paste error (the commented out code below)?
-            //   //single_lock sl(puiParent->mutex(),true);
+            //   //single_lock synchronizationlock(puiParent->mutex(),true);
             //   //single_lock sl2(mutex(),true);
 
             //   if (!pholder->is_place_holding(this))
@@ -4456,7 +4456,7 @@ namespace user
    ::user::interaction * interaction::get_child_by_id(id id, i32 iLevel)
    {
 
-      //sync_lock sl(::user::mutex_children());
+      //synchronization_lock synchronizationlock(::user::mutex_children());
 
       auto puiptraChild = m_puiptraChild;
 
@@ -4769,14 +4769,14 @@ namespace user
 
       }
 
-      //sync_lock sl(::user::mutex_children());
+      //synchronization_lock synchronizationlock(::user::mutex_children());
 
       if (m_puiptraChild)
       {
 
          auto puiptraChild = m_puiptraChild;
 
-         //sl.unlock();
+         //synchronizationlock.unlock();
 
          for (auto & pinteraction : puiptraChild->interactiona())
          {
@@ -4839,7 +4839,7 @@ namespace user
 
       {
 
-         //sync_lock slChildren(::user::mutex_children());
+         //synchronization_lock slChildren(::user::mutex_children());
 
 
 
@@ -4996,7 +4996,7 @@ namespace user
    bool interaction::subclass_window(oswindow posdata)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (is_window())
       {
@@ -5365,7 +5365,7 @@ namespace user
 
             //}
 
-            //sync_lock sl(puiParent == nullptr ? nullptr : puiParent->mutex());
+            //synchronization_lock synchronizationlock(puiParent == nullptr ? nullptr : puiParent->mutex());
 
             m_pimpl = __create_new < ::user::interaction_child > ();
 
@@ -5963,7 +5963,7 @@ namespace user
    void interaction::get_window_text(string & rectString)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       rectString = m_strWindowText;
 
@@ -5973,7 +5973,7 @@ namespace user
    strsize interaction::get_window_text_length()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pimpl == nullptr)
       {
@@ -6354,7 +6354,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          try
          {
@@ -7056,7 +7056,7 @@ namespace user
 
       };
 
-      uia.interactiona().pred_sort(predZ);
+      uia.interactiona().predicate_sort(predZ);
 
    }
 
@@ -7069,7 +7069,7 @@ namespace user
   //    if (get_parent() != NULL)
       {
 
-         //sync_lock slChildren(::user::mutex_children());
+         //synchronization_lock slChildren(::user::mutex_children());
 
          string strType = type_name();
 
@@ -7225,7 +7225,7 @@ namespace user
    bool interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pimpl->m_puserinteraction == nullptr)
       {
@@ -9153,7 +9153,7 @@ namespace user
    void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       bUpdateBuffer = false;
 
@@ -9661,7 +9661,7 @@ namespace user
 
       __pointer(::user::interaction) puiThis = this;
 
-      //sync_lock slChildren(::user::mutex_children());
+      //synchronization_lock slChildren(::user::mutex_children());
 
       try
       {
@@ -10229,7 +10229,7 @@ namespace user
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pinteraction)
    {
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
       try
       {
          auto puiptraChild = m_puiptraChild;
@@ -11854,7 +11854,7 @@ restart:
       if (bSet && !::IsRectEmpty((RECT *) &rectNew) && iMatchingMonitor >= 0)
       {
 
-         sync_lock slUserMutex(mutex());
+         synchronization_lock slUserMutex(mutex());
 
          order(zorderParam);
 
@@ -11963,7 +11963,7 @@ restart:
       if (bSet && (!::IsRectEmpty((RECT *) &rectangle) || iMatchingMonitor >= 0))
       {
 
-         sync_lock slUserMutex(mutex());
+         synchronization_lock slUserMutex(mutex());
 
          order(zorderParam);
 
@@ -12096,7 +12096,7 @@ restart:
       if (bSet && (!::IsRectEmpty((RECT *) &rectNew) || iMatchingMonitor >= 0))
       {
 
-         sync_lock slUserMutex(mutex());
+         synchronization_lock slUserMutex(mutex());
 
          display(e_display_iconic, eactivation);
 
@@ -12530,7 +12530,7 @@ restart:
 //3
 //The window's owner window is being restored.
 
-      //sync_lock sl(mutex_children());
+      //synchronization_lock synchronizationlock(mutex_children());
 
       //if(m_uiptraChild.has_element())
       //{
@@ -12764,7 +12764,7 @@ restart:
    bool interaction::rget_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       auto puiptraChild = m_puiptraChild;
 
@@ -13194,7 +13194,7 @@ restart:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          for (index i = 0; i < m_uiptraChild.get_size(); i++)
          {
@@ -13203,7 +13203,7 @@ restart:
 
             if(pinteraction)
             {
-            sl.unlock();
+            synchronizationlock.unlock();
 
 
             if (pinteraction->has_pending_graphical_update())
@@ -13213,7 +13213,7 @@ restart:
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
                }
 
@@ -13262,7 +13262,7 @@ restart:
 
       }
 
-      sync_lock sl(puiTop->mutex());
+      synchronization_lock synchronizationlock(puiTop->mutex());
 
       __pointer(::user::interaction_impl) pimpl = puiTop->m_pimpl;
 
@@ -14352,7 +14352,7 @@ restart:
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       pmouse->m_ecursor = get_cursor();
 
@@ -14372,7 +14372,7 @@ restart:
    bool interaction::update_hover(const ::point_i32& point, bool bAvoidRedraw)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pointClient = point;
 
@@ -14411,7 +14411,7 @@ restart:
    bool interaction::update_hover(::message::mouse * pmouse, bool bAvoidRedraw)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       bool bAnyHoverChange = update_hover(pmouse->m_point, false);
 
@@ -14470,7 +14470,7 @@ restart:
    void interaction::_001OnMouseLeave(::message::message * pmessage)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto itemOldHover = m_itemHover;
 
@@ -14513,7 +14513,7 @@ restart:
    void interaction::on_hit_test(::user::item & item)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (auto & pitem : m_itema)
       {

@@ -21,6 +21,7 @@ using thread_data_index = ::u32;
 
 using hthread_t = void *;
 
+
 //typedef ::u32 ithread_t;
 
 
@@ -41,7 +42,8 @@ inline int ithread_equals(ithread_t a, ithread_t b) { return a == b; }
 #define NULL_HTHREAD ((hthread_t)0)
 #define NULL_ITHREAD ((ithread_t)0)
 
-inline int ithread_equals(ithread_t a, ithread_t b) { return pthread_equal(a, b); }
+
+int ithread_equals(ithread_t a, ithread_t b);
 
 
 #endif

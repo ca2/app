@@ -138,8 +138,8 @@ CLASS_DECL_ACME bool thread_get_run();
 ///  \brief    global function to wait on a matter item for a specified time
 ///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-inline sync_result wait(sync * psync,const duration & duration = duration::infinite())
+///  \return   result of waiting action as defined in synchronization_result
+inline synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }
@@ -147,22 +147,22 @@ inline sync_result wait(sync * psync,const duration & duration = duration::infin
 ///  \brief    global function to wait on a matter item for a specified time
 ///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(i32 numberOfItems, sync * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
+///  \return   result of waiting action as defined in synchronization_result
+synchronization_result wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
 
 #else
 
 ///  \brief    global function to wait on a matter item for a specified time
 ///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(sync * psync,const duration & duration = duration::infinite());
+///  \return   result of waiting action as defined in synchronization_result
+synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite());
 
 ///  \brief    global function to wait on a matter item for a specified time
 ///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in sync_result
-sync_result wait(size_t numberOfItems, sync ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
+///  \return   result of waiting action as defined in synchronization_result
+synchronization_result wait(size_t numberOfItems, synchronization_object ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
 
 #endif
 

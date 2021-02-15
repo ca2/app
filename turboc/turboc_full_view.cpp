@@ -294,7 +294,7 @@ namespace turboc
       if(Application.m_iErrorAiFont == 0)
       {
 
-         sync_lock slAiFont(&Application.m_mutexAiFont);
+         synchronization_lock slAiFont(&Application.m_mutexAiFont);
 
          FT_Face & face = (FT_Face &)Application.m_faceAi;
 

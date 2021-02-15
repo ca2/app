@@ -43,7 +43,7 @@ namespace turboc
 
       {
 
-         sync_lock sl(&m_ptopview->m_pview->m_mutexText);
+         synchronization_lock synchronizationlock(&m_ptopview->m_pview->m_mutexText);
 
          _001GetText(m_ptopview->m_pview->m_strNewHelloMultiverse);
 

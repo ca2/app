@@ -58,12 +58,12 @@ class multi_lock;
 
 
 
-//class pred_holder_base :
+//class predicate_holder_base :
 //   virtual public matter
 //{
 //public:
 //
-//   pred_holder_base(::matter * pobject) :
+//   predicate_holder_base(::matter * pobject) :
 //      ::matter(pobject),
 //      m_pholdref(pholdref)
 //   {
@@ -75,22 +75,22 @@ class multi_lock;
 //};
 
 //template < typename PRED >
-//class pred_holder :
-//   virtual public pred_holder_base
+//class predicate_holder :
+//   virtual public predicate_holder_base
 //{
 //public:
 //
-//   PRED m_pred;
+//   PRED m_predicate;
 //
-//   pred_holder(::matter * pobject, PRED pred) :
+//   predicate_holder(::matter * pobject, PRED pred) :
 //      ::matter(pobject),
-//      pred_holder_base(pobject),
-//      m_pred(pred)
+//      predicate_holder_base(pobject),
+//      m_predicate(pred)
 //   {
 //
 //   }
 //
-//   virtual void run() { m_pred(); }
+//   virtual void run() { m_predicate(); }
 //
 //};
 

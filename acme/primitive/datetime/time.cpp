@@ -120,7 +120,9 @@ namespace datetime
    time::time(const filetime & filetime)
    {
 
-      m_time = __time((FILETIME &) filetime);
+      auto pnode = Node;
+
+      m_time = pnode->file_time_to_time(filetime);
 
    }
 
@@ -135,13 +137,15 @@ namespace datetime
    }
 
    
-
    ::datetime::time & time::operator+=( time_span span ) noexcept
    {
+
       m_time += span.GetTimeSpan();
 
       return *this;
+
    }
+
 
    ::datetime::time & time::operator-=( time_span span ) noexcept
    {
@@ -808,80 +812,6 @@ FILETIME __FILETIME(const ::datetime::time & time)
 
 
 
-
-
-bool is_valid_FILETIME(const FILETIME & fileTime) noexcept
-{
-
-   FILETIME localTime;
-
-   if (!FileTimeToLocalFileTime(&fileTime, &localTime))
-   {
-
-      return false;
-
-   }
-
-   // then convert that time to system time
-   SYSTEMTIME sysTime;
-
-   if (!FileTimeToSystemTime(&localTime, &sysTime))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-CLASS_DECL_ACME time_t __time(const SYSTEMTIME & systemtime, i32 nDST)
-{
-
-   if (systemtime.wYear < 1900)
-   {
-
-      __throw(::exception::exception("invalid datetime::time"));
-
-   }
-
-   struct tm tm;
-   tm.tm_sec = systemtime.wSecond;
-   tm.tm_min = systemtime.wMinute;
-   tm.tm_hour = systemtime.wHour;
-
-   tm.tm_wday = systemtime.wDayOfWeek;
-   tm.tm_mday = systemtime.wDay;
-   tm.tm_mon = systemtime.wMonth - 1;
-   tm.tm_year = systemtime.wYear - 1900;
-   tm.tm_isdst = nDST;
-
-   return _mkgmtime(&tm);
-
-}
-
-
-time_t __time(const FILETIME & filetime, i32 nDST)
-{
-
-   SYSTEMTIME systemtime;
-
-   if (!FileTimeToSystemTime(&filetime, &systemtime))
-   {
-      
-      __throw(invalid_argument_exception());
-
-      return 0;
-
-   }
-
-   return __time(systemtime);
-
-}
-
-
 #define INTEL 1
 
 //
@@ -904,34 +834,5 @@ time_t __time(const FILETIME & filetime, i32 nDST)
 //}
 
 
-CLASS_DECL_ACME SYSTEMTIME __systemtime(const ::datetime::time & time)
-{
-
-   SYSTEMTIME systemtime{};
-
-   struct tm ttm;
-   struct tm * ptm;
-
-   ptm = time.GetGmtTm(&ttm);
-
-   if (!ptm)
-   { 
-      
-      return systemtime; 
-   
-   }
-
-   systemtime.wYear = (::u16)(1900 + ptm->tm_year);
-   systemtime.wMonth = (::u16)(1 + ptm->tm_mon);
-   systemtime.wDayOfWeek = (::u16)ptm->tm_wday;
-   systemtime.wDay = (::u16)ptm->tm_mday;
-   systemtime.wHour = (::u16)ptm->tm_hour;
-   systemtime.wMinute = (::u16)ptm->tm_min;
-   systemtime.wSecond = (::u16)ptm->tm_sec;
-   systemtime.wMilliseconds = 0;
-
-   return systemtime;
-
-}
 
 

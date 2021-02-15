@@ -13,7 +13,7 @@ struct NSWindow;
 typedef NSWindow * nswindow;
 
 
-class mq;
+class message_queue;
 
 
 class CLASS_DECL_APEX oswindow_data
@@ -23,7 +23,7 @@ public:
 
    nswindow                      m_nswindow;
    ::user::interaction_impl *    m_pimpl;
-   __pointer(::mq)               m_pmq;
+   __pointer(::message_queue)               m_pmq;
 
    iptr_to_iptr *          m_plongmap;
 

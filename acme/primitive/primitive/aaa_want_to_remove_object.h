@@ -17,9 +17,9 @@ public:
    virtual ~matter();
 
 
-   virtual class sync * get_mutex() const override;
+   virtual class synchronization_object * get_mutex() const override;
 
-   inline class ::sync * get_mutex();
+   inline class ::synchronization_object * get_mutex();
 
    virtual ::e_status finalize() override;
 
@@ -205,7 +205,7 @@ public:
 
 
    template < typename PRED >
-   inline auto new_pred_thread(PRED pred);
+   inline auto new_predicateicate_thread(PRED pred);
 
 
 
@@ -225,7 +225,7 @@ public:
    }
 
    template < typename PRED >
-   inline ::thread * pred_run(bool bSync, PRED pred);
+   inline ::thread * predicate_run(bool bSync, PRED pred);
 
 
 

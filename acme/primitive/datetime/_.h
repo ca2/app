@@ -19,7 +19,15 @@
 //} // namespace datetime
 
 
+#ifdef WINDOWS
+
+
 extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
+
+
+#endif
+
+
 extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 

@@ -23,16 +23,16 @@ public:
 
 
 template < typename PRED >
-class pred_on_exit
+class predicate_on_exit
 {
 public:
    
    
-   PRED m_pred;
+   PRED m_predicate;
    
    
-   pred_on_exit(PRED pred) : m_pred(pred) { }
-   ~pred_on_exit() { m_pred(); }
+   predicate_on_exit(PRED pred) : m_predicate(pred) { }
+   ~predicate_on_exit() { m_predicate(); }
    
    
 };

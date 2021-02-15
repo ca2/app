@@ -103,7 +103,7 @@ namespace user
             if (pimpl)
             {
 
-               sync_lock sl(pimpl->mutex());
+               synchronization_lock synchronizationlock(pimpl->mutex());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -136,7 +136,7 @@ namespace user
             if (pimpl)
             {
 
-               sync_lock sl(pimpl->mutex());
+               synchronization_lock synchronizationlock(pimpl->mutex());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
 
@@ -329,7 +329,7 @@ namespace user
    void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -1192,7 +1192,7 @@ namespace user
 
             auto psession = Session;
 
-            sync_lock sl(psession->mutex());
+            synchronization_lock synchronizationlock(psession->mutex());
 
             auto pinteraction = __create_new < ::user::interaction >();
 
@@ -1212,11 +1212,11 @@ namespace user
 
             auto psession = Session;
 
-            sync_lock sl(psession->mutex());
+            synchronization_lock synchronizationlock(psession->mutex());
 
             auto puser = User;
 
-            ::index iFind = puser->m_uiptraToolWindow.pred_find_first([this](auto& p) {return p.get() == this; });
+            ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {

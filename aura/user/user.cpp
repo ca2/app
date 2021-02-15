@@ -407,14 +407,14 @@ namespace user
 
       }
 
-      estatus = create_windowing();
+      //estatus = create_windowing();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       return estatus;
 
@@ -456,7 +456,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -466,7 +466,7 @@ namespace user
    void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -502,7 +502,7 @@ namespace user
       for (auto& papp : psession->m_applicationa)
       {
 
-         sync_lock sl(&App(papp).m_mutexFrame);
+         synchronization_lock synchronizationlock(&App(papp).m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
@@ -1146,7 +1146,7 @@ namespace user
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 

@@ -654,7 +654,7 @@ namespace android
    void os_context::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
    {
 
-      cslock sl(::acme::g_pcsFont);
+      cslock synchronizationlock(::acme::g_pcsFont);
 
       __pointer(::write_text::font_enum_item) pitem;
 

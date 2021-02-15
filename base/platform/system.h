@@ -514,7 +514,7 @@ namespace base
 //      //   if(idType.is_empty())
 //      //      return nullptr;
 //
-//      //   sync_lock sl(&m_mutexFactory);
+//      //   synchronization_lock synchronizationlock(&m_mutexFactory);
 //
 //      //   return m_typemap[idType].m_p;
 //
@@ -1010,7 +1010,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock sl(&psystem->m_csEnumText);
+//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 //
 //   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 //
@@ -1025,7 +1025,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock sl(&psystem->m_csEnumText);
+//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 //
 //   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 //
@@ -1038,7 +1038,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock sl(&psystem->m_csEnumText);
+//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 //
 //   i64 iValue;
 //

@@ -93,7 +93,7 @@ namespace user
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (iPane < 0)
       {
@@ -159,7 +159,7 @@ namespace user
       ppane->m_bPermanent        = bPermanent;
       ppane->m_pplaceholder      = pholder;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (id.is_empty())
       {
@@ -256,7 +256,7 @@ namespace user
       ppane->set_title(pcszTitle);
 
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(id.is_empty())
          id = get_data()->m_panea.get_size();
@@ -277,7 +277,7 @@ namespace user
    void tab::remove_tab(::index iPane, bool bVisible)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (iPane < 0 || iPane >= get_data()->m_panea.get_size())
       {
@@ -340,7 +340,7 @@ namespace user
    void tab::remove_all_tabs()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       get_data()->m_panea.remove_all();
 
@@ -2175,7 +2175,7 @@ namespace user
    ::count tab::get_tab_count()
    {
 
-      return get_data()->m_panea.pred_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
+      return get_data()->m_panea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
 
    }
 
@@ -2183,7 +2183,7 @@ namespace user
    index tab::find_child_pane(::user::interaction * pinteraction)
    {
 
-      index iPane = get_data()->m_panea.pred_find_first([=](auto & pane)
+      index iPane = get_data()->m_panea.predicate_find_first([=](auto & pane)
       {
 
          return pane->m_pplaceholder && pane->m_pplaceholder->is_ascendant_of(pinteraction, true);
@@ -2198,7 +2198,7 @@ namespace user
    void tab::defer_remove_child_pane(::user::interaction * pinteraction)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       index iPane = find_child_pane(pinteraction);
 
@@ -2265,7 +2265,7 @@ namespace user
    void tab::on_hit_test(::user::item & item)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::rectangle_i32 rectScroll;
 
@@ -2522,7 +2522,7 @@ namespace user
 
       {
 
-         sync_lock lock(get_data()->mutex());
+         synchronization_lock lock(get_data()->mutex());
 
          get_data()->m_idaSel.remove_all();
 
@@ -3283,7 +3283,7 @@ namespace user
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       *prectangle = get_data()->m_rectTabClient;
 

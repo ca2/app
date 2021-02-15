@@ -477,7 +477,7 @@ namespace hotplugin
 
       }
 
-      sync_lock ml(m_pmutexBitmap);
+      synchronization_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -517,7 +517,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      sync_lock ml(m_pmutexBitmap);
+      synchronization_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -560,7 +560,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      sync_lock ml(m_pmutexBitmap);
+      synchronization_lock ml(m_pmutexBitmap);
 
       m_pimage = create_image(m_sizeBitmap);
 
@@ -703,10 +703,10 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_pos(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   //bool host::set_window_position(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    //{
 
-   //   bool bOk = ::hotplugin::plugin::set_window_pos(zorder, x, y, cx, cy, nFlags);
+   //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);
 
    //   for(index i = 0; i < m_uiptraChild.get_count(); i++)
    //   {
@@ -721,7 +721,7 @@ namespace hotplugin
    //      if(m_pplugin != nullptr)
    //      {
 
-   //         m_pplugin->set_window_pos(zorder, x, y, cx, cy, nFlags);
+   //         m_pplugin->set_window_position(zorder, x, y, cx, cy, nFlags);
 
    //      }
 

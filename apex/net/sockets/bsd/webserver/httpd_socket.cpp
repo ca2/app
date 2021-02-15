@@ -181,7 +181,7 @@ namespace sockets
    map < int, DH * > * dh_map()
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       if (g_pmapdh == nullptr)
       {
@@ -198,7 +198,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       return dh_map()->operator[](keylength);
 
@@ -208,7 +208,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       dh_map()->operator[](keylength) = pdh;
 

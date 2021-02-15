@@ -692,7 +692,7 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -706,7 +706,7 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   &System.g_mapLibrary.remove_all();
 

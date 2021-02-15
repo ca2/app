@@ -25,7 +25,7 @@ osdisplay_data::osdisplay_data()
 i32 osdisplay_find(Display * pdisplay)
 {
 
-   single_lock sl(user_mutex(), true);
+   single_lock synchronizationlock(user_mutex(), true);
 
    for(i32 i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
    {
@@ -42,7 +42,7 @@ i32 osdisplay_find(Display * pdisplay)
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   mutex_lock synchronizationlock(user_mutex(), true);
 
    iptr iFind = osdisplay_find(pdisplay);
 
@@ -67,7 +67,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 bool osdisplay_remove(Display * pdisplay)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   mutex_lock synchronizationlock(user_mutex(), true);
 
    iptr iFind = osdisplay_find(pdisplay);
 

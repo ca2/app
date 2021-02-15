@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "aura/os/ansios/_ansios.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 #ifdef LINUX
 #include "aura/os/linux/_user.h"
 
 #endif
 
 
-__pointer(mq) get_mq(ithread_t idthread, bool bCreate);
+__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate);
 
 
 CLASS_DECL_CORE void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -31,12 +31,12 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
 
    }
 
-   __pointer(mq) pmq;
+   __pointer(message_queue) pmq;
 
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_mq(get_current_ithread(), false);
+      pmq = ::get_message_queue(get_current_ithread(), false);
 
    }
 
@@ -63,7 +63,7 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               synchronization_lock synchronizationlock(pmq->mutex());
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -419,11 +419,11 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_CORE int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_CORE int_bool WINAPI mq_post(mq * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_CORE int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_CORE int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   sync_lock ml(pmq->mutex());
+//   synchronization_lock ml(pmq->mutex());
 //
 //   MESSAGE msg;
 //

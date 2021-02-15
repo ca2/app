@@ -361,7 +361,7 @@ namespace exception
 
          index i = 0;
 
-         a.pred_each(
+         a.predicate_each(
 
          [&](auto & pe)
          {

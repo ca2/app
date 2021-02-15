@@ -140,7 +140,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      sync_lock sl(pframewindow->mutex());
+      synchronization_lock synchronizationlock(pframewindow->mutex());
 
       ::rectangle_i32 rectWindow;
 
@@ -299,7 +299,7 @@ namespace experience
 
                __pointer(::message::mouse) pmouseHold = pmouse;
 
-               //m_pframewindow->prodevian_pred([this, pmouseHold->()
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
                   m_pframewindow->dock_manager()->_001OnMouseMove(pmouseHold);
@@ -331,7 +331,7 @@ namespace experience
 
                __pointer(::message::mouse) pmouseHold = pmouse;
 
-               //m_pframewindow->prodevian_pred([this, pmouseHold->()
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
                   m_pframewindow->move_manager()->_001OnMouseMove(pmouseHold);
@@ -360,7 +360,7 @@ namespace experience
 
             __pointer(::message::mouse) pmouseHold = pmouse;
 
-            //m_pframewindow->prodevian_pred([this, pmouseHold->()
+            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
             //{
 
                m_pframewindow->size_manager()->_001OnMouseMove(pmouseHold);

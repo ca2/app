@@ -93,16 +93,16 @@ namespace file
 
 
    template < typename PRED >
-   class pred_listener :
+   class predicate_listener :
       virtual public listener
    {
    public:
 
 
-      PRED m_pred;
+      PRED m_predicate;
 
-      pred_listener(PRED pred) :
-         m_pred(pred)
+      predicate_listener(PRED pred) :
+         m_predicate(pred)
       {
       }
 
@@ -114,7 +114,7 @@ namespace file
       virtual void handle_file_action(::file::action * paction) override
       {
 
-         m_pred(paction);
+         m_predicate(paction);
 
       }
 
@@ -182,10 +182,10 @@ namespace file
 
 
       template < typename PRED >
-      watch_id pred_add_watch(const ::file::path & pathFolder, PRED pred, bool bRecursive)
+      watch_id predicate_add_watch(const ::file::path & pathFolder, PRED pred, bool bRecursive)
       {
 
-         return add_watch(pathFolder, __new(pred_listener < PRED >(pred)), bRecursive);
+         return add_watch(pathFolder, __new(predicate_listener < PRED >(pred)), bRecursive);
 
       }
 

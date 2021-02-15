@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::id & id)
    {
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       __pointer(string_to_string) pmap;
 

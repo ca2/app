@@ -167,7 +167,7 @@ namespace os
       if(bShow)
       {
 
-         set_window_pos(m_window, nullptr, m_point.x, m_point.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
+         set_window_position(m_window, nullptr, m_point.x, m_point.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
       else
@@ -257,7 +257,7 @@ namespace os
       KeySym keysym;
       XComposeStatus compose;
 
-      single_lock sl(&user_mutex(), false);
+      single_lock synchronizationlock(&user_mutex(), false);
 
       xdisplay x(m_window->display(), false);
 
@@ -268,7 +268,7 @@ namespace os
 
          {
 
-            sl.lock();
+            synchronizationlock.lock();
 
             x.lock();
 
@@ -280,7 +280,7 @@ namespace os
 
                   x.unlock();
 
-                  sl.unlock();
+                  synchronizationlock.unlock();
 
                   if(e.xany.window == m_window->window())
                   {
@@ -476,7 +476,7 @@ namespace os
 
                x.unlock();
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                if(bEnableFB && m_bVisible)
                {
@@ -771,7 +771,7 @@ namespace os
    bool simple_ui::move_window(i32 x, i32 y)
    {
 
-      ::set_window_pos(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+      ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
       m_rectangle.left = x;
       m_rectangle.top = y;
@@ -786,10 +786,10 @@ namespace os
    }
 
 
-   bool simple_ui::set_window_pos(i32 x, i32 y, i32 cx, i32 cy, bool bShow)
+   bool simple_ui::set_window_position(i32 x, i32 y, i32 cx, i32 cy, bool bShow)
    {
 
-      ::set_window_pos(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
+      ::set_window_position(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
 
       return true;
 
@@ -810,7 +810,7 @@ void wm_nodecorations(oswindow w, int map)
    int set;
 
 
-   single_lock sl(&user_mutex(), true);
+   single_lock synchronizationlock(&user_mutex(), true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

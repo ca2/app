@@ -754,7 +754,7 @@ namespace aura
 
    //   }
 
-   //   sync_lock sl(&m_mutexStr);
+   //   synchronization_lock synchronizationlock(&m_mutexStr);
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -781,7 +781,7 @@ namespace aura
    //   else if (bLoadStringTable)
    //   {
 
-   //      sl.unlock();
+   //      synchronizationlock.unlock();
 
    //      load_string_table(strTable, "");
 
@@ -1806,7 +1806,7 @@ retry_license:
 
    //   }
 
-   //   sync_lock sl(System.m_spmutexSystemAppData);
+   //   synchronization_lock synchronizationlock(System.m_spmutexSystemAppData);
 
    //   string strId(pszId);
    //   string strSystemLocale = System.m_strLocale;
@@ -3264,7 +3264,7 @@ retry_license:
    //}
 
 
-//  void application::defer_add_thread_run_wait(sync_array & soa)
+//  void application::defer_add_thread_run_wait(synchronization_array & soa)
 //  {
 //
 ////      soa.add(&axiom()->m_ev);
@@ -3371,7 +3371,7 @@ retry_license:
 //
 //      {
 //
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         Context.file().add_contents(Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt"), strMessage);
 //
@@ -3552,7 +3552,7 @@ retry_license:
    //void application::install_trace(const string & str)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3562,7 +3562,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3825,9 +3825,9 @@ retry_license:
 
 #endif
 
-      //sync_lock sl(&m_mutexFrame);
+      //synchronization_lock synchronizationlock(&m_mutexFrame);
 
-      //sync_lock slChildren(::user::mutex_children2());
+      //synchronization_lock slChildren(::user::mutex_children2());
 
       auto puiptraFrame = m_puiptraFrame;
 
@@ -3864,7 +3864,7 @@ retry_license:
 
       }
 
-      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
       if (m_puiptraFrame->add_unique_interaction(pwnd))
       {
@@ -3914,7 +3914,7 @@ retry_license:
    void application::remove_frame(::user::interaction * pwnd)
    {
 
-      sync_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
 
       //if(get_active_uie() == pwnd)
@@ -4108,7 +4108,7 @@ retry_license:
       if (pinteraction == nullptr && pmsg->oswindow != nullptr)
       {
 
-        if (pmsg->message == 126)
+        if (pmsg->m_id == 126)
         {
 
            TRACE("e_message_display_change");
@@ -4155,7 +4155,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4168,7 +4168,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       return pusermessage;
 
@@ -4288,7 +4288,7 @@ retry_license:
 ////
 ////      {
 ////
-////         sync_lock sl(mutex());
+////         synchronization_lock synchronizationlock(mutex());
 ////
 ////         ptra = m_objectptraEventHook;
 ////
@@ -4449,7 +4449,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4586,7 +4586,7 @@ retry_license:
    //string application::load_string(const ::id & id)
    //{
 
-   //   sync_lock sl(&m_mutexStr);
+   //   synchronization_lock synchronizationlock(&m_mutexStr);
 
    //   string str;
 
@@ -4694,7 +4694,7 @@ retry_license:
 
    //   }
 
-   //   sync_lock sl(&m_mutexStr);
+   //   synchronization_lock synchronizationlock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -7592,13 +7592,13 @@ namespace aura
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -7777,7 +7777,7 @@ namespace aura
 //      __throw(todo());
 //      /*#elif defined(LINUX)
 //
-//      //      sync_lock sl(&user_mutex());
+//      //      synchronization_lock synchronizationlock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -8928,7 +8928,7 @@ namespace aura
            }
            else
            {
-              //               sl.unlock();
+              //               synchronizationlock.unlock();
               try
               {
                  pinteraction->send_message(WM_IDLEUPDATECMDUI, (wparam)true);
@@ -8937,7 +8937,7 @@ namespace aura
               {
 
               }
-              //             sl.lock();
+              //             synchronizationlock.lock();
            }
         }
 

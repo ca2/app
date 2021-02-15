@@ -1,7 +1,6 @@
 #include "framework.h"
 
 
-
 CLASS_DECL_ACME bool __simple_task_sleep()
 {
 
@@ -52,7 +51,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
 {
 
    while (thread_get_run())
@@ -72,7 +71,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, sync* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* psync)
 {
 
    auto i = millis.m_i;
@@ -117,7 +116,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool acme_task_sleep(millis millis, sync* psync)
+CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psync)
 {
 
    if (::is_null(psync))
@@ -159,7 +158,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, sync* psync)
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(millis millis, sync* psync)
+//CLASS_DECL_ACME bool tas_sleep(millis millis, synchronization_object* psync)
 //{
 //
 //   return g_pfnThreadSleep(millis, psync);

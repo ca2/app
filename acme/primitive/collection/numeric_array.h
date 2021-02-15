@@ -1060,7 +1060,7 @@ namespace papaya
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_pred_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
 
       template<class ARRAY>
       index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)

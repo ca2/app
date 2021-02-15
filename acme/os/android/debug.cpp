@@ -9,7 +9,7 @@
 void output_debug_string(const char * lpOutputString)
 {
 
-   sync_lock sl(g_pmutexOutputDebugStringA);
+   synchronization_lock synchronizationlock(g_pmutexOutputDebugStringA);
 
    //if (m_pstrOutputDebugStringA == nullptr)
    //{

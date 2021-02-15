@@ -265,7 +265,7 @@ void CLASS_DECL_APEX __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 
 //    stra.explode(".", strAppId);
 
-//    stra.pred_each([](auto & str)
+//    stra.predicate_each([](auto & str)
 //    {
 
 //       str.replace("-", "_");

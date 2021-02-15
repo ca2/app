@@ -568,7 +568,7 @@ public:
 
       auto ptask = ::get_task();
 
-      sync_lock sl(ptask->mutex());
+      synchronization_lock synchronizationlock(ptask->mutex());
 
       if (ptask && ptask->m_bitIsPred)
       {
@@ -589,7 +589,7 @@ public:
 
 
    template < typename PRED >
-   inline auto new_pred_thread(PRED pred);
+   inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
    inline auto async(void (TYPE:: * pfnMemberProcedure)())
@@ -607,7 +607,7 @@ public:
    }
 
    template < typename PRED >
-   inline ::thread_pointer pred_run(bool bSync, PRED pred);
+   inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
    ::thread_pointer begin(
       ::e_priority epriority = ::priority_normal,

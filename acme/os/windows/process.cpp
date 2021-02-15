@@ -154,7 +154,7 @@ struct shell_execute :
    }
 
 
-   bool sync(::duration durationTimeout)
+   bool synchronization_object(::duration durationTimeout)
    {
 
       fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
@@ -223,7 +223,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    shell_execute execute(pszFile, pszParams);
 
-   return execute.sync(durationTimeout);
+   return execute.synchronization_object(durationTimeout);
 
 }
 
@@ -249,7 +249,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
    execute.lpVerb = L"RunAs";
 
 
-   return execute.sync(durationTimeout);
+   return execute.synchronization_object(durationTimeout);
 
 }
 
@@ -668,7 +668,7 @@ id_array module_path_get_pid(const char * pszModulePath, bool bModuleNameIsPrope
 
    ::mutex veri_global_ca2(e_create_new, NULL, "Global\\the_veri_global_ca2");
 
-   sync_lock lock_the_veri_global_ca2(&veri_global_ca2);
+   synchronization_lock lock_the_veri_global_ca2(&veri_global_ca2);
 
    HANDLE process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
@@ -813,7 +813,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & 
 
    straSuffix.surround("\\");
 
-   return ::windows::pred_process_module(processid, [&](auto & me32)
+   return ::windows::predicate_process_module(processid, [&](auto & me32)
    {
 
       return !straSuffix.suffixes_ci(string(me32.szModule)) && !stra.contains_ci(string(me32.szModule));
@@ -826,7 +826,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & 
 CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 {
 
-   return ::windows::pred_process([&](auto pid)
+   return ::windows::predicate_process([&](auto pid)
    {
 
       return !is_shared_library_busy(pid, stra);

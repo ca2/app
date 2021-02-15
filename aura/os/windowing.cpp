@@ -2,14 +2,14 @@
 #include "aura/user/_user.h"
 //#include "_os.h"
 #include <stdio.h>
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
+CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;
@@ -110,7 +110,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   auto & system = System;
 //
-//   sync_lock slSystem(system.mutex());
+//   synchronization_lock slSystem(system.mutex());
 //
 //   auto pmap = system.m_pwindowmap;
 //
@@ -121,7 +121,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   }
 //
-//   //sync_lock slMap(pmap->mutex());
+//   //synchronization_lock slMap(pmap->mutex());
 //
 //   ::user::primitive * pusermessage;
 //
@@ -248,7 +248,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
 //
-//   mq * pmq = get_mq(idthread, false);
+//   message_queue * pmq = get_message_queue(idthread, false);
 //
 //   if(pmq == nullptr)
 //   {
@@ -257,9 +257,9 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   }
 //
-//   sync_lock ml(pmq->mutex());
+//   synchronization_lock ml(pmq->mutex());
 //
-//   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;

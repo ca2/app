@@ -141,8 +141,8 @@ namespace android
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 
-      //using ::user::interaction_impl::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
+      //using ::user::interaction_impl::set_window_position;
+      //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
       //virtual ::u32 ArrangeIconicWindows();
       //virtual void BringToTop(int nCmdShow);
       //virtual bool BringWindowToTop();

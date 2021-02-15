@@ -27,7 +27,7 @@ namespace user
 
       defer_initialize();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       i32 iIndex;
 
@@ -134,7 +134,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pil.is_set())
       {

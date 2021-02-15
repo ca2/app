@@ -3,7 +3,7 @@
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 #ifdef LINUX
@@ -151,7 +151,7 @@ namespace user
 
       //m_pimpl->m_puserinteraction->task_add(this);
 
-      m_synca.add(&m_evUpdateScreen);
+      m_synchronizationa.add(&m_evUpdateScreen);
 
    #ifdef WINDOWS_DESKTOP
 
@@ -162,7 +162,7 @@ namespace user
       if (m_bAuraMessageQueue)
       {
 
-         m_synca.add(&get_mq()->m_eventNewMessage);
+         m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
 
       }
 
@@ -293,7 +293,7 @@ void prodevian::finalize()
 
    m_pimpl.release(OBJ_REF_DBG_THIS);
 
-   m_synca.clear();
+   m_synchronizationa.clear();
    
    ::thread::finalize();
 
@@ -317,7 +317,7 @@ bool prodevian::prodevian_iteration()
    try
    {
 
-      sync_lock sl(m_puserinteraction->mutex());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       if (strType.contains_ci("filemanager"))
       {
@@ -350,7 +350,7 @@ bool prodevian::prodevian_iteration()
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
-         //sync_lock sl(m_pimpl->mutex());
+         //synchronization_lock synchronizationlock(m_pimpl->mutex());
 
       }
 
@@ -389,8 +389,7 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
          {
 
-            if (m_message.message == e_message_redraw ||
-               m_message.message == WM_KICKIDLE)
+            if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
             {
 
                iSkipped++;
@@ -413,13 +412,13 @@ bool prodevian::prodevian_iteration()
 
 #endif
 
-         if (m_message.message == e_message_null)
+         if (m_message.m_id == e_message_null)
          {
 
             return true;
 
          }
-         else if (m_message.message != e_message_redraw)
+         else if (m_message.m_id != e_message_redraw)
          {
 
             return true;
@@ -441,13 +440,13 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
          {
 
-            if (m_message.message == e_message_null)
+            if (m_message.m_id == e_message_null)
             {
 
                return true;
 
             }
-            else if (m_message.message != e_message_redraw)
+            else if (m_message.m_id != e_message_redraw)
             {
 
                return true;
@@ -622,7 +621,7 @@ bool prodevian::prodevian_iteration()
 
                millis.Now();
 
-               m_synca.wait(false, ::millis(msToWaitForNextFrame - 1));
+               m_synchronizationa.wait(::millis(msToWaitForNextFrame - 1));
 
                //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
@@ -859,7 +858,7 @@ bool prodevian::prodevian_iteration()
       try
       {
 
-         sync_lock sl(m_puserinteraction->mutex());
+         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
          if(!m_puserinteraction)
          {
@@ -925,7 +924,7 @@ bool prodevian::prodevian_iteration()
          if (!m_puserinteraction->m_bLockWindowUpdate)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
@@ -933,7 +932,7 @@ bool prodevian::prodevian_iteration()
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
-            sl.lock();
+            synchronizationlock.lock();
 
             if(!m_puserinteraction)
             {
@@ -1038,7 +1037,7 @@ bool prodevian::prodevian_iteration()
          if (bDraw && m_pimpl)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             m_millisBeforeDrawing.Now();
 

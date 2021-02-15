@@ -366,14 +366,14 @@ namespace userstack
       get_client_rect(rectClient);
       if(m_ppaneview != nullptr)
       {
-         m_ppaneview->set_window_pos(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+         m_ppaneview->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pinteraction = get_top_child();
          if(pinteraction != nullptr)
          {
-            pinteraction->set_window_pos(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+            pinteraction->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
       ::user::show < ::user::interaction >::on_layout(pgraphics);

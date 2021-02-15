@@ -8,7 +8,7 @@ struct CLASS_DECL_AURA oswindow_data
 public:
 
 
-   ::mq *                        m_pmq;
+   ::message_queue *                        m_pmq;
 
    ::user::interaction_impl *    m_pimpl;
 

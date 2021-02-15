@@ -536,7 +536,7 @@ public:
    }
 
    template < typename PRED >
-   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * pred_find(PRED pred)
+   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * predicate_find(PRED pred)
    {
 
       auto point = this->get_start();

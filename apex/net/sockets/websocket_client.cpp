@@ -701,7 +701,7 @@ namespace sockets
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      sync_lock sl(&m_mutexWebsocketWrite);
+      synchronization_lock synchronizationlock(&m_mutexWebsocketWrite);
 
       http_client_socket::write(buf, c);
 

@@ -61,7 +61,7 @@ property_set & thread_property_set();
 
 
 
-class sync;
+class synchronization_object;
 class semaphore;
 //class ::mutex;
 class event;
@@ -139,7 +139,7 @@ class tool_thread;
 class thread_tool;
 class thread_tools;
 //class thread_toolset;
-//class pred_set;
+//class predicate_set;
 //class replace_thread;
 
 namespace user
@@ -185,7 +185,7 @@ namespace parallelization
 
 
 class sync_interface;
-class sync_lock;
+class synchronization_lock;
 
 
 class CLASS_DECL_APEX thread_ptra :
@@ -201,7 +201,7 @@ public:
 
    virtual ::count get_count_except_current_thread();
    virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
-   virtual void wait(const duration & duration, ::sync_lock & sl);
+   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -211,10 +211,10 @@ public:
 
 
 
-//#include "pred_holder.h"
+//#include "predicate_holder.h"
 
-//#include "sync.h"
-//#include "sync_array.h"
+//#include "synchronization_object.h"
+//#include "synchronization_array.h"
 //#include "semaphore.h"
 //#include "::mutex.h"
 //#include "event.h"
@@ -226,7 +226,7 @@ public:
 //#include "single_lock.h"
 #include "retry_single_lock.h"
 //#include "initial_single_lock.h"
-//#include "sync_lock.h"
+//#include "synchronization_lock.h"
 //#include "multi_lock.h"
 #include "retry_multi_lock.h"
 

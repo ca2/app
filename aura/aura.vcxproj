@@ -1450,7 +1450,7 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\drawable.h" />
     <ClInclude Include="platform\draw_context2.h" />
-    <ClInclude Include="platform\mq.h" />
+    <ClInclude Include="platform\message_queue.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_open.h" />

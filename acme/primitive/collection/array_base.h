@@ -7,6 +7,8 @@
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 __pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
 const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
+TYPE ** ITEM ## _data() { return (TYPE **) CONTAINER.get_data(); } \
+TYPE * const * ITEM ## _data() const { return (TYPE * const *) CONTAINER.get_data(); } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
@@ -39,12 +41,12 @@ DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
-#define _DECLARE_ARRAY_OF(ARRAY, ITEM, CONTAINER, TYPE) \
+#define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
 ARRAY(const ::std::initializer_list < TYPE * > & list) : CONTAINER(list) { } \
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
-_DECLARE_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
+DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 
 template < typename CONTAINER >
@@ -565,7 +567,7 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
-   ::count pred_each(PRED pred, ::index iStart = 0, ::count c = -1)
+   ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1)
    {
 
       ::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
@@ -586,10 +588,10 @@ public:
    }
 
    template < typename PRED >
-   ::count pred_each(PRED pred, ::index iStart = 0, ::count c = -1) const
+   ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1) const
    {
 
-      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR >*)this)->pred_each(pred, iStart, c);
+      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR >*)this)->predicate_each(pred, iStart, c);
 
    }
 
@@ -597,10 +599,10 @@ public:
    inline bool is_valid_index(::index i) const { return i >= 0 && i < get_count(); }
 
    template < typename PRED >
-   bool pred_contains(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
+   bool predicate_contains(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
    {
 
-      return this->pred_find_first(pred, iStart, iEnd) >= 0;
+      return this->predicate_find_first(pred, iStart, iEnd) >= 0;
 
    }
 
@@ -662,7 +664,7 @@ public:
 
 
    template < typename PRED >
-   ::index pred_find_first(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
+   ::index predicate_find_first(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
    {
 
       if (iEnd < 0)
@@ -696,7 +698,7 @@ public:
    }
 
    template < typename PRED >
-   ::index pred_find_last(PRED pred, ::index iLast = -1)
+   ::index predicate_find_last(PRED pred, ::index iLast = -1)
    {
 
       if (iLast < 0)
@@ -723,7 +725,7 @@ public:
    }
 
    template < typename PRED >
-   TYPE * pred_get_first(PRED pred)
+   TYPE * predicate_get_first(PRED pred)
    {
       for (int i = 0; i < get_count(); i++)
       {
@@ -746,7 +748,7 @@ public:
 
 
    template < typename PRED >
-   ::count pred_get_count(PRED pred)
+   ::count predicate_get_count(PRED pred)
    {
 
       ::count c = 0;
@@ -783,7 +785,7 @@ public:
 
 
    template < typename PRED >
-   ::count pred_remove(PRED pred)
+   ::count predicate_remove(PRED pred)
    {
       ::count cTotal = 0;
       for (int i = 0; i < get_count();)
@@ -843,10 +845,10 @@ public:
 
 
    template < typename PRED >
-   void pred_sort(PRED pred);
+   void predicate_sort(PRED pred);
 
    template < typename T, typename PRED >
-   ::index pred_binary_search(const T & t, PRED pred) const;
+   ::index predicate_binary_search(const T & t, PRED pred) const;
 
    inline bool valid_iter(iterator first, iterator last)
    {

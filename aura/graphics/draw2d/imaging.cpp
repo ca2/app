@@ -345,7 +345,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, color32_t crHue,
 bool imaging::color_blend(image_list * pilBlend, image_list * pil, color32_t cr, byte bAlpha)
 {
 
-   //sync_lock ml(&user_mutex());
+   //synchronization_lock ml(&user_mutex());
 
    try
    {
@@ -1646,7 +1646,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    return false;
 
-   //    single_lock sl(&m_csMem, true);
+   //    single_lock synchronizationlock(&m_csMem, true);
 
    /*i32 iOriginalMapMode ;
 
@@ -4460,7 +4460,7 @@ i32 w3)
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
-//   //   single_lock sl(&m_csMem, true);
+//   //   single_lock synchronizationlock(&m_csMem, true);
 //
 //
 //   ::u32 user;
@@ -5057,7 +5057,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
 
 
-   sync_lock sl(System.draw2d()->mutex());
+   synchronization_lock synchronizationlock(System.draw2d()->mutex());
 
    auto & pmemory = System.draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -5103,7 +5103,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
    byte * pFilterData = pmemory->get_data();
 
@@ -6918,12 +6918,12 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 ::image_pointer imaging::get_work_image()
 {
 
-   sync_lock sl(&m_mutexWork);
+   synchronization_lock synchronizationlock(&m_mutexWork);
 
    if (m_imageaWork.is_empty())
    {
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       return create_image();
 
@@ -6931,7 +6931,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
    auto pimpl = m_imageaWork.pop();
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
    if (pimpl.is_null())
    {
@@ -6955,7 +6955,7 @@ void imaging::free_work_image(::image * pimage)
 
    }
 
-   sync_lock sl(&m_mutexWork);
+   synchronization_lock synchronizationlock(&m_mutexWork);
 
    m_imageaWork.push(pimage);
 

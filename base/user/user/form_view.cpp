@@ -181,7 +181,7 @@ namespace user
    ::e_status form_view::open_html(const string & str)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pformOld = m_pform;
 

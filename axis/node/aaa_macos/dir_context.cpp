@@ -1030,7 +1030,7 @@ try1:
    ::file::path dir_context::install()
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       return m_pdirsystem->m_pathCa2;
 

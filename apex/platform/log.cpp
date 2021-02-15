@@ -160,7 +160,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_bInitialized)
       {
@@ -204,7 +204,7 @@ namespace apex
 
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       print("<log>Log Initialized!!</log>");
 
@@ -313,7 +313,7 @@ namespace apex
 
       const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;
 
-      sync_lock sl2(&m_mutexTrace);
+      synchronization_lock sl2(&m_mutexTrace);
 
       ::trace::category * pcategory = nullptr;
 
@@ -449,7 +449,7 @@ namespace apex
 
       }
 
-      //sl.lock();
+      //synchronizationlock.lock();
       if (m_bTrace &&
          (m_pfile == nullptr
             || m_iYear != time.GetYear()
@@ -714,7 +714,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    void log::finalize()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_bInitialized)
       {

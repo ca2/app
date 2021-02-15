@@ -187,7 +187,7 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-void matter::set_mutex(sync* psync)
+void matter::set_mutex(synchronization_object* psync)
 {
 
    ::release(m_pmutex);

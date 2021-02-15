@@ -530,7 +530,7 @@ namespace introjection
 
 
 
-      sync_lock slCompiler(mutex());
+      synchronization_lock slCompiler(mutex());
 
       auto & plibrary = m_lib[strFilePath];
 
@@ -550,12 +550,12 @@ namespace introjection
 
       }
 
-      single_lock sl(plibrary->mutex());
+      single_lock synchronizationlock(plibrary->mutex());
 
-      if (!sl.lock(millis(0)))
+      if (!synchronizationlock.lock(millis(0)))
       {
 
-         sl.lock();
+         synchronizationlock.lock();
 
          if (plibrary->m_plibrary.is_set())
          {

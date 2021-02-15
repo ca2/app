@@ -70,7 +70,7 @@ application_array::~application_array()
 ::apex::application * application_array::find_by_app_name(string strAppName)
 {
 
-   //sync_lock sl(mutex());
+   //synchronization_lock synchronizationlock(mutex());
 
 restart:
 

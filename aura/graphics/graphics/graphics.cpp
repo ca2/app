@@ -108,7 +108,7 @@ namespace graphics
    }
 
 
-   ::sync * graphics::get_draw_lock()
+   ::synchronization_object * graphics::get_draw_lock()
    {
 
       return mutex();
@@ -167,7 +167,7 @@ namespace graphics
    }
 
 
-   sync * graphics::get_buffer_sync()
+   synchronization_object * graphics::get_buffer_sync()
    {
 
       return mutex();
@@ -185,7 +185,7 @@ namespace graphics
    }
 
 
-   sync * graphics::get_screen_sync()
+   synchronization_object * graphics::get_screen_sync()
    {
 
       return mutex();
@@ -196,7 +196,7 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect)
    {
 
-      sync_lock sl(get_screen_sync());
+      synchronization_lock synchronizationlock(get_screen_sync());
 
       ::color::color colorTransparent(0);
 

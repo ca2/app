@@ -21,7 +21,7 @@ enum enum_thread_op :i64
 
    e_thread_op_none,
    e_thread_op_tool,
-   e_thread_op_pred,
+   e_thread_op_predicate,
    e_thread_op_fork_count,
 
 };

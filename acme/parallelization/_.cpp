@@ -3,6 +3,11 @@
 #include "acme/const/id.h"
 
 
+#ifdef LINUX
+#include "acme/os/ansios/_pthread.h"
+#endif
+
+
 namespace parallelization
 {
 
@@ -120,7 +125,7 @@ namespace parallelization
 
    //   }
 
-   //   sync_lock sl(&System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(&System.m_mutexThread);
 
    //   for (auto & pair : System.m_threadidmap)
    //   {
@@ -151,7 +156,7 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   sync_lock sl(&System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(&System.m_mutexThread);
 
    //   for (auto& pair : System.m_threadidmap)
    //   {
@@ -175,7 +180,7 @@ namespace parallelization
    //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //{
 
-   //   sync_lock sl(&System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(&System.m_mutexThread);
 
    //   for (auto& pair : System.m_threadidmap)
    //   {
@@ -786,8 +791,6 @@ bool thread_get_run()
    return ptask->thread_get_run();
 
 }
-
-
 
 
 #ifdef PARALLELIZATION_PTHREAD

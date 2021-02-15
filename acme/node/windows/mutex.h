@@ -22,7 +22,7 @@ namespace windows
 
 
 
-      using sync::unlock;
+      using synchronization_object::unlock;
       virtual bool unlock();
 
 

@@ -85,7 +85,7 @@ int get_proc_stat_core_count()
 
    stra.add_lines(str);
 
-   return stra.pred_get_count([](auto str) { return ::str::begins(str, "cpu"); });
+   return stra.predicate_get_count([](auto str) { return ::str::begins(str, "cpu"); });
 
 }
 
@@ -169,6 +169,14 @@ int get_proc_cpuinfo_core_count()
    }
 
    return 0;
+
+}
+
+
+void debug_break()
+{
+
+   asm("int $3");
 
 }
 

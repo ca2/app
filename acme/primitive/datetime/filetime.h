@@ -50,6 +50,7 @@ public:
    filetime_t get_time() const noexcept;
    void SetTime(filetime_t nTime) noexcept;
 
+
    //filetime UTCToLocal() const noexcept;
    //filetime LocalToUTC() const noexcept;
 
@@ -69,7 +70,7 @@ const i32 maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;
 
 
-CLASS_DECL_ACME filetime_t get_filetime_now();
+//CLASS_DECL_ACME filetime_t get_filetime_now();
 
 
 struct CLASS_DECL_ACME filetime_set
@@ -101,7 +102,8 @@ struct CLASS_DECL_ACME filetime_set
    }
 
 
-   bool modified_timeout(const filetime_t & current, int iSeconds)
+
+   bool modified_timeout(const filetime & current, int iSeconds) const
    {
 
       if (current - m_filetimeModified > (natural(iSeconds) * 1000 * 1000 * 10))
@@ -116,14 +118,7 @@ struct CLASS_DECL_ACME filetime_set
    }
 
 
-   bool modified_timeout(int iSeconds)
-   {
-
-      filetime_t current = get_filetime_now();
-
-      return modified_timeout(current, iSeconds);
-
-   }
+   bool modified_timeout(int iSeconds) const;
 
 };
 
@@ -159,7 +154,6 @@ inline filetime_set get_filetime_set(const char * psz)
 
 
 CLASS_DECL_ACME filetime __filetime(const ::datetime::time & time);
-
 
 
 

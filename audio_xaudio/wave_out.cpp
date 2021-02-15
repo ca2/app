@@ -277,7 +277,7 @@ namespace multimedia
       void out::out_filled(index iBuffer)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if(out_get_state() != e_state_playing)
          {
@@ -407,7 +407,7 @@ namespace multimedia
       ::e_status     out::out_start(const imedia_time & position)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //if(m_estate == e_state_playing)
          //   return ::success;

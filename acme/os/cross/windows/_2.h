@@ -53,7 +53,7 @@ using dummy_pointer = void *;
 
 
 /*
-* set_window_pos Flags
+* set_window_position Flags
 */
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002
@@ -203,13 +203,8 @@ typedef ::i32 errno_t;
 
 
 
-#define PM_NOREMOVE 0
-#define PM_REMOVE 1
 
 
-class sync;
-
-using HSYNC = sync *;
 
 
 #define GetRValue(rgb)      (LOBYTE(rgb))

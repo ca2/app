@@ -2,6 +2,15 @@
 #include "acme/operating_system.h"
 
 
+#ifdef LINUX
+
+
+#include <time.h>
+
+
+#endif
+
+
 nano_timer::nano_timer()
 {
 

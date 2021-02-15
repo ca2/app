@@ -66,7 +66,7 @@ namespace html
 
       m_pdata = pdata;
 
-      sync_lock lock(pdata->mutex());
+      synchronization_lock lock(pdata->mutex());
 
       implement_phase1(pdata);
 
@@ -877,7 +877,7 @@ namespace html
 
       }
 
-      sync_lock lock(pdata->m_pcoredata->mutex());
+      synchronization_lock lock(pdata->m_pcoredata->mutex());
 
       m_pbase = pusermessage;
 

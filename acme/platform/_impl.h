@@ -223,7 +223,7 @@ void memcnts_inc(T * pthis)
    if (memcnts())
    {
 
-      sync_lock sl(g_pmutexMemoryCounters);
+      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
 
       ::file::path path = memcnts_path(pthis);
 
@@ -243,7 +243,7 @@ void memcnts_dec(T * pthis)
    if (memcnts())
    {
 
-      sync_lock sl(g_pmutexMemoryCounters);
+      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
 
       ::file::path path = memcnts_path(pthis);
 
@@ -311,7 +311,7 @@ inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::matter * pobject)
 }
 
 //
-//inline class ::sync * matter::get_mutex()
+//inline class ::synchronization_object * matter::get_mutex()
 //{
 //
 //   return ::is_null(this) ? nullptr : mutex();

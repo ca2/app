@@ -3,7 +3,7 @@
 
 
 //template < typename TYPE, typename PRED >
-//class future_pred :
+//class future_predicate :
 //   virtual public ::t_runnable
 //{
 //public:
@@ -14,14 +14,14 @@
 //   /// that will hold the final built matter as result?
 //   /// (a pointer is smart and safe solution)
 //   TYPE        m_result;
-//   PRED        m_pred;
+//   PRED        m_predicate;
 //
-//   future_pred(const TYPE & t, PRED pred) : m_result(t), m_pred(pred) { }
+//   future_predicate(const TYPE & t, PRED pred) : m_result(t), m_predicate(pred) { }
 //
 //   virtual ::e_status     run() override
 //   {
 //
-//      return m_pred(m_result);
+//      return m_predicate(m_result);
 //
 //   }
 //
@@ -31,6 +31,6 @@
 //inline __pointer(::count_runnable) __process(const TYPE & t, PRED pred)
 //{
 //
-//   return __new(future_pred < TYPE, PRED >(t, pred));
+//   return __new(future_predicate < TYPE, PRED >(t, pred));
 //
 //}

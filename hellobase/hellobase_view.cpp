@@ -122,11 +122,11 @@ namespace hellobase
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       {
 
-         sync_lock slText(&m_mutexText);
+         synchronization_lock slText(&m_mutexText);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -239,7 +239,7 @@ namespace hellobase
    string view::get_processed_hellobase()
    {
 
-      sync_lock slText(&m_mutexText);
+      synchronization_lock slText(&m_mutexText);
 
       string str = get_hellobase();
 
@@ -340,7 +340,7 @@ namespace hellobase
    string view::get_hellobase()
    {
 
-      sync_lock sl(&m_mutexText);
+      synchronization_lock synchronizationlock(&m_mutexText);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -398,14 +398,14 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {
 
             m_prender->m_strHelloBase = get_processed_hellobase().c_str(); // rationale : string allocation fork *for parallelization*
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             set_need_layout();
 

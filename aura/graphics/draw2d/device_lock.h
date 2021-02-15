@@ -32,14 +32,14 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA lock :
-      public sync_lock
+      public synchronization_lock
    {
    public:
 
       static ::mutex * g_pmutex;
 
       lock() :
-         sync_lock(g_pmutex)
+         synchronization_lock(g_pmutex)
       {
 
       }

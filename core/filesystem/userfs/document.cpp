@@ -75,7 +75,7 @@ namespace userfs
 
       {
 
-         sync_lock sl(fs_data()->mutex());
+         synchronization_lock synchronizationlock(fs_data()->mutex());
 
          m_pathFolder = pitem->m_filepathUser;
 
@@ -90,7 +90,7 @@ namespace userfs
 
          {
 
-            sync_lock sl(fs_data()->mutex());
+            synchronization_lock synchronizationlock(fs_data()->mutex());
 
             m_listingRoot = listing;
 
@@ -240,7 +240,7 @@ namespace userfs
 
       {
 
-         sync_lock sl(fs_data()->mutex());
+         synchronization_lock synchronizationlock(fs_data()->mutex());
 
          m_listingUser2 = listingUser;
 

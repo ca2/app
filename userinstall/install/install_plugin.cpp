@@ -1344,10 +1344,10 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
+   bool plugin::set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
    {
 
-      bool bOk = ::hotplugin::plugin::set_window_pos(z, x, y, cx, cy, nFlags);
+      bool bOk = ::hotplugin::plugin::set_window_position(z, x, y, cx, cy, nFlags);
 
       return bOk;
 
@@ -1644,7 +1644,7 @@ restart:
          else
          {
 
-            // TRACE("probably very healthly ignoring install::plugin::set_window_pos");
+            // TRACE("probably very healthly ignoring install::plugin::set_window_position");
 
          }
 

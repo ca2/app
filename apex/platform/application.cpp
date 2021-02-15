@@ -86,7 +86,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #endif
 #define _GNU_SOURCE
@@ -479,7 +479,7 @@ namespace apex
    bool application::enable_application_events(::object * pobject, bool bEnable)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(bEnable)
       {
@@ -1073,7 +1073,7 @@ namespace apex
 
       }
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       if (m_stringtableStd.lookup(strTable, pmap))
       {
@@ -1100,7 +1100,7 @@ namespace apex
       else if (bLoadStringTable)
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          load_string_table(strTable, "");
 
@@ -1840,7 +1840,7 @@ namespace apex
 
       ::thread::on_pos_run_thread();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //try
       //{
@@ -2804,7 +2804,7 @@ retry_license:
 
       }
 
-      sync_lock sl(System.m_pmutexSystemAppData);
+      synchronization_lock synchronizationlock(System.m_pmutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;
@@ -4904,7 +4904,7 @@ retry_license:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          get_context()->file().add_contents(get_context()->dir().appdata() / (get_context()->file().module().name() + "_log_error.txt"), strMessage);
 
@@ -5081,7 +5081,7 @@ retry_license:
    void application::install_trace(const string & str)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -5091,7 +5091,7 @@ retry_license:
    void application::install_trace(double dRate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5596,7 +5596,7 @@ retry_license:
 //
 //      {
 //
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         ptra = m_objectptraEventHook;
 //
@@ -5767,7 +5767,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5897,7 +5897,7 @@ retry_license:
    string application::load_string(const ::id & id)
    {
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       string str;
 
@@ -6005,7 +6005,7 @@ retry_license:
 
    //   }
 
-   //   sync_lock sl(&m_mutexStr);
+   //   synchronization_lock synchronizationlock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -9118,13 +9118,13 @@ retry_license:
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -9299,7 +9299,7 @@ retry_license:
 //      __throw(todo());
 //      /*#elif defined(LINUX)
 //
-//      //      sync_lock sl(&user_mutex());
+//      //      synchronization_lock synchronizationlock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -10523,7 +10523,7 @@ retry_license:
       //      }
       //      else
       //      {
-      //         //               sl.unlock();
+      //         //               synchronizationlock.unlock();
       //         try
       //         {
       //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
@@ -10532,7 +10532,7 @@ retry_license:
       //         {
 
       //         }
-      //         //             sl.lock();
+      //         //             synchronizationlock.lock();
       //      }
       //   }
 

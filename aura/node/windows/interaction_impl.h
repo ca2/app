@@ -222,7 +222,7 @@ namespace windows
       //virtual void clear_need_zorder() override;
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
 
 
       // Window size_i32 and position Functions

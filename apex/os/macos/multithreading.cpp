@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <sys/resource.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 //#elif MACOS
 #include <sys/param.h>

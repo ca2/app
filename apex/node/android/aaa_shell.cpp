@@ -213,7 +213,7 @@ namespace android
 //                        if (m_straThemeableIconName.get_count() > 0)
 //                        {
 //
-//                           index i = m_straThemeableIconName.pred_find_first(
+//                           index i = m_straThemeableIconName.predicate_find_first(
 //                              [=](auto & str)
 //                           {
 //                              return ::str::ends_ci(imagekey.m_strPath, str);
@@ -354,12 +354,12 @@ namespace android
 //
 //         }
 //
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         if (!m_pimagemap->lookup(imagekey, iImage))
 //         {
 //
-//            sl.unlock();
+//            synchronizationlock.unlock();
 //
 //            if (imagekey.m_iIcon == 0x80000000)
 //            {
@@ -384,7 +384,7 @@ namespace android
 //
 //                     {
 //
-//                        sync_lock sl(mutex());
+//                        synchronization_lock synchronizationlock(mutex());
 //
 //                        if (m_pimagemap->lookup(imagekey, iImage))
 //                           return iImage;
@@ -406,7 +406,7 @@ namespace android
 //
 //                     }
 //
-//                     sync_lock sl(mutex());
+//                     synchronization_lock synchronizationlock(mutex());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -462,7 +462,7 @@ namespace android
 //                           ::DestroyIcon(shfi48.hIcon);
 //                        }
 //                        //                        iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
-//                        sync_lock sl(mutex());
+//                        synchronization_lock synchronizationlock(mutex());
 //
 //                        m_pimagemap->set_at(imagekey, iImage);
 //
@@ -525,7 +525,7 @@ namespace android
 //                        ::DestroyIcon(shfi48.hIcon);
 //                     }                     //iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
 //
-//                     sync_lock sl(mutex());
+//                     synchronization_lock synchronizationlock(mutex());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -606,7 +606,7 @@ namespace android
 //                     if (!b48 && shfi48.hIcon != nullptr)
 //                     {
 //                        ::DestroyIcon(shfi48.hIcon);
-//                     }                     sync_lock sl(mutex());
+//                     }                     synchronization_lock synchronizationlock(mutex());
 //
 //                     m_pimagemap->set_at(imagekey, iImage);
 //
@@ -620,7 +620,7 @@ namespace android
 //         }
 //         else
 //         {
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //
 //         }
@@ -647,7 +647,7 @@ namespace android
 //
 //         {
 //
-//            sync_lock sl(mutex());
+//            synchronization_lock synchronizationlock(mutex());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -722,7 +722,7 @@ namespace android
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         sync_lock sl(mutex());
+//         }         synchronization_lock synchronizationlock(mutex());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -746,7 +746,7 @@ namespace android
    //   HICON * phicon48)
    //{
 
-   //   single_lock sl(mutex(), true);
+   //   single_lock synchronizationlock(mutex(), true);
 
    //   if (lpsf == nullptr)
    //      return false;
@@ -1009,7 +1009,7 @@ namespace android
 //      bool shell::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock sl(mutex(), true);
+//         single_lock synchronizationlock(mutex(), true);
 //
 //         per_fork fork;
 //         LPITEMIDLIST lpiidlAbsolute;
@@ -1023,7 +1023,7 @@ namespace android
 //      bool shell::get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock sl(mutex(), true);
+//         single_lock synchronizationlock(mutex(), true);
 //
 //         wstring wstr;
 //
@@ -1117,7 +1117,7 @@ namespace android
 
    //            {
 
-   //               sync_lock sl(mutex());
+   //               synchronization_lock synchronizationlock(mutex());
 
    //               for (auto & folder : m_mapFolder)
    //               {
@@ -1206,7 +1206,7 @@ namespace android
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1228,7 +1228,7 @@ namespace android
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1250,7 +1250,7 @@ namespace android
 //
 //            }
 
-         single_lock sl(mutex(), true);
+         single_lock synchronizationlock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1267,8 +1267,8 @@ namespace android
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            sync_lock sl1(m_pil48Hover->mutex());
-            sync_lock sl2(m_pil48->mutex());
+            synchronization_lock sl1(m_pil48Hover->mutex());
+            synchronization_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -1345,9 +1345,9 @@ namespace android
 
          {
 
-            sync_lock sl1(m_pilHover[16]->mutex());
+            synchronization_lock sl1(m_pilHover[16]->mutex());
 
-            sync_lock sl2(m_pil[16]->mutex());
+            synchronization_lock sl2(m_pil[16]->mutex());
 
             if (android_get_file_image(pimage16, strPath))
             {
@@ -1373,9 +1373,9 @@ namespace android
 
          }
 
-         sync_lock sl1(m_pilHover[48]->mutex());
+         synchronization_lock sl1(m_pilHover[48]->mutex());
 
-         sync_lock sl2(m_pil[48]->mutex());
+         synchronization_lock sl2(m_pil[48]->mutex());
 
          iImage = m_pil[48]->add_image(pimage48, 0, 0);
 
@@ -1454,7 +1454,7 @@ namespace android
 
 
 
-      sync_lock sl(&m_mutexQueue);
+      synchronization_lock synchronizationlock(&m_mutexQueue);
 
       while (thread_get_run())
       {
@@ -1462,7 +1462,7 @@ namespace android
          if(m_keyptra.is_empty())
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             sleep(100_ms);
 
@@ -1474,13 +1474,13 @@ namespace android
 
             m_keyptra.remove_at(0);
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             int iImage = get_image(&fork, *pkey, nullptr, pkey->m_cr);
 
             {
 
-               sync_lock s(mutex());
+               synchronization_lock s(mutex());
 
                m_imagemap.set_at(*pkey, iImage);
 
@@ -1490,7 +1490,7 @@ namespace android
 
          }
 
-         sl.lock();
+         synchronizationlock.lock();
 
       }
 
@@ -1532,7 +1532,7 @@ namespace android
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (m_imagemap.lookup(imagekeyFileExtension, iImage))
             {
@@ -1547,7 +1547,7 @@ namespace android
 
          {
 
-            sync_lock sl(&m_mutexQueue);
+            synchronization_lock synchronizationlock(&m_mutexQueue);
 
             m_keyptra.add(pstore);
 
@@ -1559,7 +1559,7 @@ namespace android
             imagekeyFileExtension.m_eicon,
             imagekeyFileExtension.m_cr);
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1607,7 +1607,7 @@ namespace android
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (m_imagemap.lookup(imagekey, iImage))
             {
@@ -1622,7 +1622,7 @@ namespace android
 
          iImage = get_image(&f, imagekey, nullptr, crBk);
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -1638,7 +1638,7 @@ namespace android
    //   if (crBk == 0)
    //   {
 
-   //      return m_pilHover[iSize]->pred_add_image([&](::image_pointer & pimage)
+   //      return m_pilHover[iSize]->predicate_add_image([&](::image_pointer & pimage)
    //      {
    //            System.imaging().color_blend(pimage, rgb(255, 255, 240), 64); 
    //         }

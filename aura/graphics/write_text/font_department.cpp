@@ -153,7 +153,7 @@ void font_department::sorted_fonts(::write_text::font_enum_item_array & itema)
 
    enum_fonts(itema);
 
-   ::sort::array::pred_sort(itema, [&](auto & a, auto & b)
+   ::sort::array::predicate_sort(itema, [&](auto & a, auto & b)
       {
 
          return a->m_strName < b->m_strName;

@@ -272,12 +272,12 @@ void wf_resize_window(wfContext* wfc)
 			int h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
 			SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_POPUP);
-			set_window_pos(wfc->hwnd, HWND_TOP, x, y, w, h, SWP_FRAMECHANGED);
+			set_window_position(wfc->hwnd, HWND_TOP, x, y, w, h, SWP_FRAMECHANGED);
 		}
 		else
 		{
 			SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_POPUP);
-			set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
+			set_window_position(wfc->hwnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
 		}
 	}
 	else if (!wfc->instance->settings->Decorations)
@@ -285,10 +285,10 @@ void wf_resize_window(wfContext* wfc)
 		SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_CHILD);
 
 		/* Now resize to get full canvas size_i32 and room for caption and borders */
-		set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
+		set_window_position(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
-		set_window_pos(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE | SWP_FRAMECHANGED);
+		set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE | SWP_FRAMECHANGED);
 	}
 	else
 	{
@@ -309,7 +309,7 @@ void wf_resize_window(wfContext* wfc)
 //		wf_update_canvas_diff(wfc);
 
 		/* Now resize to get full canvas size_i32 and room for caption and borders */
-		set_window_pos(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
+		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
 	wf_update_offset(wfc);

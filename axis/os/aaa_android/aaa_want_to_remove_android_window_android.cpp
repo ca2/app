@@ -22,7 +22,7 @@ void window_android::create(oswindow interaction_impl, i64 cxParam, i64 cyParam,
    destroy();
 
 
-   sync_lock sl(&user_mutex());
+   synchronization_lock synchronizationlock(&user_mutex());
 
    //if(m_cairoSource != nullptr)
    //{

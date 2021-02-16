@@ -1911,7 +1911,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->clear_active_window();
+         pwindowing->clear_active_window(m_pthreadUserInteraction);
 
          //::set_active_window(nullptr);
 

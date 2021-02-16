@@ -2094,19 +2094,19 @@ namespace user
 
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Dialog initialization support
-
-   bool interaction_impl::ExecuteDlgInit(const char * pszResourceName)
-
-   {
-      UNREFERENCED_PARAMETER(pszResourceName);
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+//   /////////////////////////////////////////////////////////////////////////////
+//   // Dialog initialization support
+//
+//   bool interaction_impl::ExecuteDlgInit(const char * pszResourceName)
+//
+//   {
+//      UNREFERENCED_PARAMETER(pszResourceName);
+//
+//      ::exception::throw_interface_only();
+//
+//      return false;
+//
+//   }
 
 //   bool interaction_impl::ExecuteDlgInit(LPVOID pResource)
 //
@@ -2282,20 +2282,20 @@ namespace user
 //   }
 
 
-   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
-   {
-
-      return m_pwindow->get_window_long_ptr(nIndex);
-
-   }
-
-
-   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
-
-      return m_pwindow->set_window_long_ptr(nIndex, lValue);
-
-   }
+//   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
+//   {
+//
+//      return m_pwindow->get_window_long_ptr(nIndex);
+//
+//   }
+//
+//
+//   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   {
+//
+//      return m_pwindow->set_window_long_ptr(nIndex, lValue);
+//
+//   }
 
 
    //bool interaction_impl::ReleaseCapture()

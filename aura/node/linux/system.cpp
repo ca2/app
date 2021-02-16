@@ -315,7 +315,11 @@ namespace aura
    ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      auto pwindowing = System.windowing();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
 
       if(!pwindowing)
       {

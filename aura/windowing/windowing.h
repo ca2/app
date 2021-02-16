@@ -91,7 +91,7 @@ namespace windowing
 
       virtual ::windowing::window * get_active_window(::thread * pthread);
 
-      virtual void clear_active_window();
+      virtual ::e_status clear_active_window(::thread * pthread);
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
@@ -185,7 +185,7 @@ namespace windowing
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status user_sync(const ::promise::routine & routine);
+      virtual ::e_status user_sync(const ::duration & duration, const ::promise::routine & routine);
       virtual ::e_status user_fork(const ::promise::routine & routine);
 
 

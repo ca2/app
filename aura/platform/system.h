@@ -864,12 +864,12 @@ namespace aura
       //::filehandler::handler& filehandler();
 
 
-#ifdef LINUX
-
-      virtual ::e_status defer_initialize_x11() ;
-      virtual bool sn_start_context();
-
-#endif
+//#ifdef LINUX
+//
+//      virtual ::e_status defer_initialize_x11() ;
+//      virtual bool sn_start_context();
+//
+//#endif
 
       //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
       bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);

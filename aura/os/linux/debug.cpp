@@ -2,7 +2,16 @@
 #include "aura/platform/static_start.h"
 
 
-#include <pthread.h>
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
+//#include <pthread.h>
 #undef USE_MISC
 
 

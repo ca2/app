@@ -208,6 +208,8 @@ list(APPEND aura_source
    graphics/write_text/text_box.cpp
    graphics/write_text/text_box.h
    graphics/write_text/text_out.h
+   graphics/write_text/write_text.cpp
+   graphics/write_text/write_text.h
    graphics/_.h
    graphics/_impl.h
    include/_.cpp
@@ -358,6 +360,8 @@ list(APPEND aura_source
    user/keyboard.h
    user/main_window.cpp
    user/main_window.h
+   user/message.cpp
+   user/message.h
    user/message_queue.cpp
    user/message_queue.h
    user/message_queue_listener.h
@@ -393,6 +397,8 @@ list(APPEND aura_source
    user/style_base.h
    user/style_control.cpp
    user/style_control.h
+   user/text_composition.cpp
+   user/text_composition.h
    user/tool_window.cpp
    user/tool_window.h
    user/user.cpp
@@ -407,6 +413,28 @@ list(APPEND aura_source
    user/window_util.h
    user/windowing.cpp
    user/windowing.h
+   windowing/buffer.cpp
+   windowing/buffer.h
+   windowing/cursor.cpp
+   windowing/cursor.h
+   windowing/cursor_set.cpp
+   windowing/cursor_set.h
+   windowing/display.h
+   windowing/display.h
+   windowing/icon.cpp
+   windowing/icon.h
+   windowing/keyboard.cpp
+   windowing/keyboard.h
+   windowing/menu.cpp
+   windowing/menu.h
+   windowing/menu_command.cpp
+   windowing/menu_command.h
+   windowing/menu_item.cpp
+   windowing/menu_item.h
+   windowing/window.cpp
+   windowing/window.h
+   windowing/windowing.cpp
+   windowing/windowing.h
    version/version.config.h
    version/version.h
    _.cpp
@@ -704,12 +732,12 @@ if (LINUX)
       os/linux/lock.cpp
       os/linux/message_loop.cpp
       #os/linux/monitor.cpp
-      os/linux/multithreading.cpp
       os/linux/os.cpp
       #os/linux/osdisplay.cpp
       #os/linux/osdisplay.h
       #os/linux/oswindow.cpp
       #os/linux/oswindow.h
+      os/linux/parallelization.cpp
       #os/linux/process.cpp
       #os/linux/process.h
       #os/linux/process_pid.cpp

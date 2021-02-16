@@ -83,6 +83,14 @@ namespace windowing
    }
 
 
+   ::e_status windowing::os_application_system_run()
+   {
+
+      return ::success;
+
+   }
+
+
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
@@ -220,6 +228,16 @@ namespace windowing
    {
 
       return nullptr;
+
+   }
+
+
+   ::e_status windowing::clear_active_window(::thread *)
+   {
+
+      __throw(interface_only_exception);
+
+      return error_interface_only;
 
    }
 
@@ -564,12 +582,16 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_sync(const ::promise::routine & routine)
+   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
    {
 
-      __throw(interface_only_exception());
+      auto proutine = __sync_routine(routine);
 
-      return error_interface_only;
+      user_fork(proutine);
+
+      proutine->sync_wait(durationTimeout);
+
+      return ::success;
 
    }
 

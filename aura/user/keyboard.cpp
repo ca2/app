@@ -2,12 +2,12 @@
 #include "aura/user/_user.h"
 
 
-#if defined(LINUX) || defined(SOLARIS)
-//#include "base/base/os/x11/x11_keyboard.h"
-string x11_keyboard_get_current_group_symbol();
-#elif defined(MACOS)
-string keyboard_input_source();
-#endif
+//#if defined(LINUX) || defined(SOLARIS)
+////#include "base/base/os/x11/x11_keyboard.h"
+//string x11_keyboard_get_current_group_symbol();
+//#elif defined(MACOS)
+//string keyboard_input_source();
+//#endif
 
 
 
@@ -254,7 +254,6 @@ namespace user
 //      return estatus;
 
    }
-
 
 
    bool keyboard::load_os_layout(const ::file::path & pszPath)
@@ -763,7 +762,6 @@ namespace user
 
 
 
-
    void keyboard::translate_os_key_message(key * pkey)
    {
 
@@ -792,17 +790,17 @@ namespace user
 
 
    #else
-
-     auto ekey = keysym_to_userkey(pkey->m_lparam);
-
-     if(ekey != ::user::e_key_none)
-     {
-
-         pkey->m_ekey = ekey;
-
-         return;
-
-     }
+//
+//     auto ekey = keysym_to_userkey(pkey->m_lparam);
+//
+//     if(ekey != ::user::e_key_none)
+//     {
+//
+//         pkey->m_ekey = ekey;
+//
+//         return;
+//
+//     }
 
    #endif
 

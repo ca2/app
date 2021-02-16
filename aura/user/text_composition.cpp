@@ -1,5 +1,7 @@
 // created by Camilo 2021-02-02 05:58 BRT <3CamiloSasukeThomasBorregaardSoerensen
 #include "framework.h"
+#include "aura/user/_user.h"
+#include "text_composition.h"
 
 
 namespace user

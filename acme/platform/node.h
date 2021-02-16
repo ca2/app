@@ -119,25 +119,25 @@ namespace acme
 
       virtual void node_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
 
-      template < typename PRED >
-      void user_fork(PRED pred)
-      {
+//      template < typename PRED >
+//      void user_fork(PRED pred)
+//      {
+//
+//         user_fork(__routine(pred));
+//
+//      }
 
-         user_fork(__routine(pred));
+      //virtual void user_fork(const ::promise::routine & routine);
 
-      }
+//      template < typename PRED >
+//      void user_sync(const ::duration & durationTimeout, PRED pred)
+//      {
+//
+//         user_sync(durationTimeout, __routine(pred));
+//
+//      }
 
-      virtual void user_fork(const ::promise::routine & routine);
-
-      template < typename PRED >
-      void user_sync(const ::duration & durationTimeout, PRED pred)
-      {
-
-         user_sync(durationTimeout, __routine(pred));
-
-      }
-
-      virtual void user_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
+      //virtual void user_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
 
 
       virtual void node_post_quit();

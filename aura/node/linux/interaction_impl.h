@@ -60,13 +60,13 @@ namespace linux
 
 //      ::u32 GetStyle() const override;
       //::u32 GetExStyle() const override;
-      bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
-      bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
+      //bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
+      //bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
-      virtual ::e_status set_tool_window(bool bSet = true) override;
+      //virtual ::e_status set_tool_window(bool bSet = true) override;
 
       //virtual ::user::interaction * get_owner();
-      virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
+      //virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
       //virtual oswindow get_handle() const override;
 
@@ -354,10 +354,10 @@ namespace linux
       //virtual bool SetCapture(::user::interaction * pinterface = nullptr) override;
       //virtual bool ReleaseCapture() override;
       //virtual ::user::interaction * get_capture();
-      virtual ::user::interaction * get_keyboard_focus() override;
-      virtual ::e_status set_keyboard_focus() override;
+//      virtual ::user::interaction * get_keyboard_focus() override;
+//      virtual ::e_status set_keyboard_focus() override;
 
-      static::user::interaction * get_desktop_window();
+      //static::user::interaction * get_desktop_window();
 
       // Obsolete and non-portable APIs - not recommended for new code
 //      virtual void CloseWindow();
@@ -477,7 +477,7 @@ namespace linux
 
       //::user::interaction * get_next(bool bIgnoreChildren, i32 * piLevel);
 
-      void show_task(bool bShow) override;
+      //void show_task(bool bShow) override;
 
       virtual void non_top_most_upper_window_rects(::rect_array& recta) override;
 

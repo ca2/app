@@ -40,7 +40,7 @@ namespace aura
    void node::appindicator_destroy(::linux::appindicator * pappindicator)
    {
 
-      return nullptr;
+      //return nullptr;
 
    }
 
@@ -62,21 +62,21 @@ namespace aura
 //   }
 
 
-   void node::user_fork(const ::promise::routine & routine)
-   {
-
-#ifdef LINUX
-
-      x11_fork([routine]()
-               {
-
-                  routine();
-
-               });
-
-#endif
-
-   }
+//   void node::user_fork(const ::promise::routine & routine)
+//   {
+//
+//#ifdef LINUX
+//
+//      x11_fork([routine]()
+//               {
+//
+//                  routine();
+//
+//               });
+//
+//#endif
+//
+//   }
 
 
 

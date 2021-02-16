@@ -92,7 +92,7 @@ namespace windowing
 
 #else
 
-      m_strAppTrayIcon = strApp;
+      //m_strAppTrayIcon = strApp;
 
       return true;
 

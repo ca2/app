@@ -36,7 +36,7 @@ namespace linux
 
       void write();
 
-      bool bamf_set_icon(oswindow oswindow);
+      //bool bamf_set_icon(oswindow oswindow);
 
    };
 

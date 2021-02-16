@@ -329,23 +329,23 @@ namespace acme
    }
 
 
-   void node::user_fork(const ::promise::routine & routine)
-   {
+//   void node::user_fork(const ::promise::routine & routine)
+//   {
+//
+//
+//   }
 
 
-   }
-
-
-   void node::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
-   {
-
-      auto proutine = __sync_routine(routine);
-
-      user_fork(proutine);
-
-      proutine->sync_wait(durationTimeout);
-
-   }
+//   void node::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
+//   {
+//
+//      auto proutine = __sync_routine(routine);
+//
+//      user_fork(proutine);
+//
+//      proutine->sync_wait(durationTimeout);
+//
+//   }
 
 
    void node::node_post_quit()

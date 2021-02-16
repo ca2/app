@@ -274,9 +274,9 @@ namespace user
       //virtual oswindow unsubclass_window() override;
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      virtual bool ExecuteDlgInit(const char * pszResourceName);
+      //virtual bool ExecuteDlgInit(const char * pszResourceName);
 
-      virtual bool ExecuteDlgInit(void * pResource);
+      //virtual bool ExecuteDlgInit(void * pResource);
 
 
 
@@ -645,8 +645,8 @@ namespace user
 
       //virtual ::i32 get_window_long(i32 nIndex) const override;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual interaction_impl * get_impl() const override;
 

@@ -1,6 +1,8 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
+#include "aura/user/_user.h"
+#include "acme/os/_user.h"
 
 
 namespace windowing
@@ -1890,70 +1892,70 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //}
 
 
-   iptr window::get_window_long_ptr(i32 nIndex) const
-   {
-
-      return m_pimpl->get_window_long_ptr(nIndex);
-
-   }
-
-
-   bool window::set_window_long_ptr(i32 nIndex, iptr i)
-   {
-
-      return m_pimpl->set_window_long_ptr(nIndex, i);
-
-      //iptr iOld = m_plongmap->operator[](nIndex);
-
-//   if(nIndex == GWL_EXSTYLE)
+//   iptr window::get_window_long_ptr(i32 nIndex) const
 //   {
 //
-//      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
-//      {
-//
-//         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
-//
-//      }
+//      return m_pimpl->get_window_long_ptr(nIndex);
 //
 //   }
-
-      //m_plongmap->operator[](nIndex) = i;
-
-      //return iOld;
-
-   }
-
-
-   iptr window::_get_style() const
-   {
-
-      return get_window_long_ptr(GWL_STYLE);
-
-   }
-
-
-   iptr window::_get_ex_style() const
-   {
-
-      return get_window_long_ptr(GWL_EXSTYLE);
-
-   }
-
-
-   bool window::_set_style(iptr nStyle)
-   {
-
-      return set_window_long_ptr(GWL_STYLE, nStyle);
-
-   }
-
-
-   bool window::_set_ex_style(iptr nExStyle)
-   {
-
-      return set_window_long_ptr(GWL_EXSTYLE, nExStyle);
-
-   }
+//
+//
+//   bool window::set_window_long_ptr(i32 nIndex, iptr i)
+//   {
+//
+//      return m_pimpl->set_window_long_ptr(nIndex, i);
+//
+//      //iptr iOld = m_plongmap->operator[](nIndex);
+//
+////   if(nIndex == GWL_EXSTYLE)
+////   {
+////
+////      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
+////      {
+////
+////         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
+////
+////      }
+////
+////   }
+//
+//      //m_plongmap->operator[](nIndex) = i;
+//
+//      //return iOld;
+//
+//   }
+//
+//
+//   iptr window::get_style() const
+//   {
+//
+//      return get_window_long_ptr(GWL_STYLE);
+//
+//   }
+//
+//
+//   iptr window::get_ex_style() const
+//   {
+//
+//      return get_window_long_ptr(GWL_EXSTYLE);
+//
+//   }
+//
+//
+//   bool window::set_style(iptr nStyle)
+//   {
+//
+//      return set_window_long_ptr(GWL_STYLE, nStyle);
+//
+//   }
+//
+//
+//   bool window::set_ex_style(iptr nExStyle)
+//   {
+//
+//      return set_window_long_ptr(GWL_EXSTYLE, nExStyle);
+//
+//   }
 
 
    bool window::_001ClientToScreen(POINT_I32 *ppoint)

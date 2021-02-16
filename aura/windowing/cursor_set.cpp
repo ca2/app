@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "aura/user/_user.h"
 
 
 ::e_status _003CountStatus(::count countSuccess, ::count countFailed)

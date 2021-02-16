@@ -164,7 +164,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSysCommand);
 #endif
 
-      virtual bool _001Restore() override;
+      //virtual bool _001Restore() override;
 
 
    };

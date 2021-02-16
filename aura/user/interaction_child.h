@@ -53,11 +53,11 @@ namespace user
       //virtual lresult default_window_procedure() override;
 
 
-#ifdef LINUX
-
-      virtual lresult send_x11_event(void * pevent) override; // XEvent *
-
-#endif
+//#ifdef LINUX
+//
+//      virtual lresult send_x11_event(void * pevent) override; // XEvent *
+//
+//#endif
 
 
       virtual void rects_from_system();

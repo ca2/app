@@ -235,7 +235,7 @@ namespace windowing
    ::e_status windowing::clear_active_window(::thread *)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return error_interface_only;
 

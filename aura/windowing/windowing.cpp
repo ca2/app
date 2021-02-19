@@ -91,6 +91,13 @@ namespace windowing
    }
 
 
+   void windowing::windowing_main()
+   {
+
+
+   }
+
+
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
@@ -263,7 +270,6 @@ namespace windowing
    void windowing::message_loop_step()
    {
 
-
    }
 
 
@@ -304,8 +310,9 @@ namespace windowing
    void windowing::get_cursor_pos(POINT_I32 * ppoint)
    {
 
-   }
+      *ppoint = m_pointCursor;
 
+   }
 
 
    ::windowing::window * windowing::get_keyboard_focus(::thread *)

@@ -848,6 +848,10 @@ namespace windowing
       virtual float dpix(float x);
 
 
+      virtual void update_screen();
+      virtual void window_show();
+
+
       //virtual void activate_top_parent();
 
       ///virtual bool is_same_window(const ::windowing::window * pwindow) const;

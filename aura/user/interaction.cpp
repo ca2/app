@@ -14003,11 +14003,11 @@ restart:
       m_bSimpleUIDefaultMouseHandling = true;
 
       MESSAGE_LINK((enum_message) e_message_left_button_down, pchannel, this, &interaction::_001OnLButtonDown);
-      MESSAGE_LINK((enum_message)e_message_left_button_up, pchannel, this, &interaction::_001OnLButtonUp);
-      MESSAGE_LINK((enum_message)e_message_middle_button_down, pchannel, this, &interaction::_001OnMButtonDown);
-      MESSAGE_LINK((enum_message)e_message_middle_button_up, pchannel, this, &interaction::_001OnMButtonUp);
+      MESSAGE_LINK((enum_message) e_message_left_button_up, pchannel, this, &interaction::_001OnLButtonUp);
+      MESSAGE_LINK((enum_message) e_message_middle_button_down, pchannel, this, &interaction::_001OnMButtonDown);
+      MESSAGE_LINK((enum_message) e_message_middle_button_up, pchannel, this, &interaction::_001OnMButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);
-      MESSAGE_LINK((enum_message)e_message_mouse_leave, pchannel, this, &interaction::_001OnMouseLeave);
+      MESSAGE_LINK((enum_message) e_message_mouse_leave, pchannel, this, &interaction::_001OnMouseLeave);
 
    }
 
@@ -14209,7 +14209,7 @@ restart:
 
          bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-         TRACE("interaction::_001OnLButtonUp item=%d, SameIntAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
+         TRACE("interaction::_001OnLButtonUp item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
 
          if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
          {

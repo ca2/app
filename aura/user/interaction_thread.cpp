@@ -334,7 +334,6 @@ namespace user
    bool thread::pump_message()
    {
 
-
       try
       {
 
@@ -468,158 +467,201 @@ namespace user
    ::e_status thread::process_message()
    {
 
-   try
-   {
-
-      MESSAGE & msg = m_message;
-
-      if (msg.m_id == ::e_message_redraw)
+      try
       {
 
-         auto pimpl = m_pimpl->m_pwindow->m_pwindowing->window(msg.oswindow)->m_pimpl;
+         MESSAGE & msg = m_message;
 
-         if (pimpl)
+         auto oswindow = msg.oswindow;
+
+         if(oswindow)
          {
 
-            auto pinteraction = pimpl->m_puserinteraction;
+            auto pimpl = oswindow->m_pimpl;
 
-            if (::is_set(pinteraction))
+            if(pimpl)
             {
 
-               string strType = ::str::demangle(pinteraction->type_name());
+               auto puserinteraction = pimpl->m_puserinteraction;
 
-               if (strType.contains_ci("filemanager"))
+               if(puserinteraction)
                {
 
-                  //INFO("filemanager");
+                  if (msg.m_id == ::e_message_redraw)
+                  {
+
+                     string strType = ::str::demangle(puserinteraction->type_name());
+
+                     if (strType.contains_ci("filemanager"))
+                     {
+
+                        //INFO("filemanager");
+
+                     }
+
+                     puserinteraction->prodevian_redraw(msg.wParam & 1);
+
+                     return true;
+
+                  }
+                  else
+                  {
+
+                     auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
+
+                     if (pmessage)
+                     {
+
+                        puserinteraction->message_handler(pmessage);
+
+                     }
+
+                  }
 
                }
-
-               pinteraction->prodevian_redraw(msg.wParam & 1);
 
             }
 
          }
 
-         return true;
+      }
+      catch(...)
+      {
 
       }
 
-}
-catch(...)
-{
-}
-
       return ::thread::process_message();
 
-//      MESSAGE & msg = m_message;
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (msg.hwnd != nullptr)
-//      {
-//
-//         ::TranslateMessage(&msg);
-//
-//         ::DispatchMessage(&msg);
-//
-//         return true;
-//
-//      }
-//      else
-//      {
-//
-//         ::TranslateMessage(&msg);
-//
-//         lresult lresult = ::DispatchMessageW(&msg);
-//
-//         return true;
-//
-//      }
-//
-//#endif
-//
-//      return true;
+   //      MESSAGE & msg = m_message;
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      if (msg.hwnd != nullptr)
+   //      {
+   //
+   //         ::TranslateMessage(&msg);
+   //
+   //         ::DispatchMessage(&msg);
+   //
+   //         return true;
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         ::TranslateMessage(&msg);
+   //
+   //         lresult lresult = ::DispatchMessageW(&msg);
+   //
+   //         return true;
+   //
+   //      }
+   //
+   //#endif
+   //
+   //      return true;
 
    }
 
 
-   ::e_status thread::process_user_message(::user::message * pusermessage)
+
+   ::e_status thread::process_message(::message::message * pmessage)
    {
 
-      if(::is_set(pusermessage->userinteraction()))
+      if(pmessage->m_oswindow)
       {
 
-         ::i64 iMessage = pusermessage->m_id;
+         return process_user_message(pmessage);
+
+      }
+      else
+      {
+
+         return process_thread_message(pmessage);
+
+      }
+
+   }
+
+
+   ::e_status thread::process_user_message(::message::message * pmessage)
+   {
+
+      __pointer(::user::message) pusermessage(pmessage);
+
+      if(::is_set(pusermessage))
+      {
+
+         auto puserinteraction = pusermessage->userinteraction();
+
+         if (::is_set(puserinteraction))
+         {
+
+            ::i64 iMessage = pmessage->m_id;
+
             //__throw(todo("interaction"));
             //__throw(todo("thread"));
 
-             //short circuit for frequent messages
-         if (iMessage == e_message_apply_visual)
-         {
+            //short circuit for frequent messages
+            if (iMessage == e_message_apply_visual)
+            {
 
                //__throw(todo("interaction"));
                //__throw(todo("thread"));
 
-            auto pinteraction = pusermessage->userinteraction();
+               if (puserinteraction->m_pimpl2)
+               {
 
-            if(pinteraction)
+                  puserinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
+
+                  return true;
+
+               }
+
+            }
+            else if (iMessage == e_message_update_notify_icon)
             {
 
-               pinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
+               puserinteraction->route_message(pusermessage);
+
+               return true;
+
+            }
+            else if (iMessage == e_message_simple_command)
+            {
+
+               puserinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
 
                return true;
 
             }
 
-         }
-         else if (iMessage == e_message_update_notify_icon)
-         {
+            //if (iMessage > e_message_midi_sequence_event)
+            //{
 
-            pusermessage->userinteraction()->route_message(pusermessage);
+            //   return true;
+
+            //   ::i64 iApp = iMessage - WM_APP;
+
+            //   pusermessage->m_puserinteraction->message_handler(pusermessage);
+
+            //}
+            //else
+            //{
+
+            //      //return true;
+            //   //__throw(todo("interaction"));
+            //   //__throw(todo("thread"));
+
+            puserinteraction->message_handler(pusermessage);
 
             return true;
 
          }
-         else if (iMessage == e_message_simple_command)
-         {
-
-            auto pinteraction = pusermessage->userinteraction();
-
-            pinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
-
-            return true;
-
-         }
-
-         //if (iMessage > e_message_midi_sequence_event)
-         //{
-
-         //   return true;
-
-         //   ::i64 iApp = iMessage - WM_APP;
-
-         //   pusermessage->m_puserinteraction->message_handler(pusermessage);
-
-         //}
-         //else
-         //{
-
-         //      //return true;
-         //   //__throw(todo("interaction"));
-         //   //__throw(todo("thread"));
-
-         pusermessage->userinteraction()->message_handler(pusermessage);
-
-         //}
-
-         return true;
 
       }
 
-      return ::thread::process_message(pusermessage);
-
-      
+      return ::thread::process_message(pmessage);
 
    }
 

@@ -192,7 +192,7 @@ namespace linux
 
          int iError = errno;
 
-         ::e_status estatus = ::get_last_status();
+         ::e_status estatus = ::errno_to_status(iError);
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 

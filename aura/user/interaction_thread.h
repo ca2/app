@@ -89,7 +89,9 @@ namespace user
 
       virtual ::e_status process_message() override;
 
-      virtual ::e_status process_user_message(::user::message * pusermessage);
+      virtual ::e_status process_message(::message::message * pmessage) override;
+
+      virtual ::e_status process_user_message(::message::message * pmessage);
 
       virtual ::e_status run() override;
 

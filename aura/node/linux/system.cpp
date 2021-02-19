@@ -11,14 +11,6 @@
 #include "aura/user/message_box.h"
 
 
-//extern ::app_core * g_pappcore;
-//void x11_main();
-//void os_post_quit();
-//Display * x11_get_display();
-
-//CLASS_DECL_AURA i32 ca2_main();
-
-
 
 
 //#ifndef RASPBIAN

@@ -2,19 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-   set(LINUX TRUE)
-   set(PLATFORM_NAME "linux")
-   include(FindPkgConfig)
-elseif (WIN32)
-   set(PLATFORM_NAME "windows")
-endif ()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)

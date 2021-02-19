@@ -136,9 +136,9 @@ bool is_space_key(XIRawEvent *event)
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * g_pmutexX11Runnable = nullptr;
 list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
-::mutex * g_pmutexX11Sync = nullptr;
-manual_reset_event * g_peventX11Sync = nullptr;
-__pointer(::matter) g_prunnableX11Sync;
+//::mutex * g_pmutexX11Sync = nullptr;
+//manual_reset_event * g_peventX11Sync = nullptr;
+//__pointer(::matter) g_prunnableX11Sync;
 Display * g_pdisplayX11= nullptr;
 int g_fdX11[2] = {};
 
@@ -2777,24 +2777,24 @@ bool x11_step()
 
    bool bDoneMuchThings = false;
 
-   {
-
-      synchronization_lock synchronizationlock(g_pmutexX11Sync);
-
-      if(g_prunnableX11Sync)
-      {
-
-         g_prunnableX11Sync->call();
-
-         g_prunnableX11Sync.release();
-
-         g_peventX11Sync->SetEvent();
-
-         bDoneMuchThings = true;
-
-      }
-
-   }
+//   {
+//
+//      synchronization_lock synchronizationlock(g_pmutexX11Sync);
+//
+//      if(g_prunnableX11Sync)
+//      {
+//
+//         g_prunnableX11Sync->call();
+//
+//         g_prunnableX11Sync.release();
+//
+//         g_peventX11Sync->SetEvent();
+//
+//         bDoneMuchThings = true;
+//
+//      }
+//
+//   }
 
    {
 
@@ -4429,9 +4429,9 @@ int_bool os_init_windowing()
 
    g_prunnableptrlX11 = new list < __pointer(::matter) >();
 
-   g_pmutexX11Sync = new ::mutex();
+//   g_pmutexX11Sync = new ::mutex();
 
-   g_peventX11Sync = new manual_reset_event();
+//   g_peventX11Sync = new manual_reset_event();
 
    oswindow_data::s_pdataptra = new oswindow_dataptra;
 
@@ -4478,7 +4478,7 @@ void os_term_windowing()
 
    ::acme::del(g_peventX11Sync);
 
-   ::acme::del(g_pmutexX11Sync);
+//   ::acme::del(g_pmutexX11Sync);
 
 }
 
@@ -4860,9 +4860,9 @@ void x11_kick_idle()
 
 extern ::mutex * g_pmutexX11Runnable;
 extern list < __pointer(::matter) > * g_prunnableptrlX11;
-extern ::mutex * g_pmutexX11Sync;
-extern manual_reset_event * g_peventX11Sync;
-extern __pointer(::matter) g_prunnableX11Sync;
+//extern ::mutex * g_pmutexX11Sync;
+//extern manual_reset_event * g_peventX11Sync;
+//extern __pointer(::matter) g_prunnableX11Sync;
 
 
 void x11_async_runnable(::matter * prunnable)

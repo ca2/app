@@ -763,7 +763,8 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_routine(m_routineWindowShow);
+         m_pimpl->m_pwindow->window_show();
+         //m_puserinteraction->post_routine(m_routineWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -839,21 +840,23 @@ bool prodevian::prodevian_iteration()
       else
       {
 
+         m_millisLastScreenUpdate.Now();
+
+         m_bUpdatingScreen = true;
+
+         m_pimpl->m_pwindow->update_screen();
+
          //if (!m_bUpdatingScreen || m_millisLastScreenUpdate.elapsed() > 200_ms)
-         {
-
-            m_millisLastScreenUpdate.Now();
-
-            m_bUpdatingScreen = true;
-
-            if (m_puserinteraction)
-            {
-
-               m_puserinteraction->post_routine(m_routineUpdateScreen);
-
-            }
-
-         }
+//         {
+//
+//            if (m_puserinteraction)
+//            {
+//
+//               m_puserinteraction->post_routine(m_routineUpdateScreen);
+//
+//            }
+//
+//         }
 
       }
 

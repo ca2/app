@@ -219,7 +219,7 @@ namespace app_app
          if (m_iCloseButtonDraw > 1)
          {
 
-            ::output_debug_string("output");
+            //::output_debug_string("output");
 
          }
 

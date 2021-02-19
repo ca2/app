@@ -838,12 +838,6 @@ GdkFilterReturn x11_gdk_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data
 
 }
 
-void x11_add_gdk_filter()
-{
-
-   gdk_window_add_filter(NULL, &x11_gdk_filter, NULL);
-
-}
 
 
 

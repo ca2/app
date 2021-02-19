@@ -71,6 +71,8 @@ namespace windowing
 
 
       virtual ::e_status os_application_system_run();
+
+      virtual void windowing_main();
       
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);

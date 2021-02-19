@@ -519,7 +519,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
          if (m_pnotifyicon)
          {
 
-            m_pnotifyicon->DestroyWindow();
+            m_pnotifyicon->destroy_notify_icon();
 
             m_pnotifyicon.release();
 
@@ -2742,7 +2742,7 @@ void simple_frame_window::defer_create_notification_icon()
    if (m_pnotifyicon)
    {
 
-      m_pnotifyicon->DestroyWindow();
+      m_pnotifyicon->destroy_notify_icon();
 
    }
 

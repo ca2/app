@@ -64,11 +64,11 @@ namespace graphics
 
       char szName[] = "Local\\bitmap-source-%s";
 
-      string strPath;
+      string strName;
 
-      strPath.Format(szName, m_strBitmapSource.c_str());
+      strName.Format(szName, m_strBitmapSource.c_str());
 
-      m_memorymap.open(strPath, false, true, true, 8192 * 4096 * 4);
+      m_memorymap.open_name(strName, false, true, true, 128_mb);
 
    }
 

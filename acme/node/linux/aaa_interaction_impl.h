@@ -21,7 +21,6 @@ namespace linux
       string                        m_strWindowText;
       ::user::primitive *    m_pbasewnd;
       bool                          m_bExposing;
-      __pointer(x11data)                   m_px11data;
       i32                           m_iDepth;
       i32                           m_iScreen;
       bool                          m_bEnabled;

@@ -29,6 +29,14 @@ namespace apex
    }
 
 
+   ::file::path node::get_desktop_file_path(::apex::application * papplication)
+   {
+
+      return "";
+
+   }
+
+
 #ifdef WINDOWS
 
 

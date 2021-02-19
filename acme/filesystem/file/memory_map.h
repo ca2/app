@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 namespace file
 {
 
@@ -13,6 +12,7 @@ namespace file
 
 
       string                     m_strName;
+      string                     m_strPath;
       void *                     m_pdata;
       bool                       m_bRead;
       bool                       m_bWrite;
@@ -26,27 +26,21 @@ namespace file
       
 
       virtual bool open();
-      virtual bool open(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open_name(const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open_path(const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open(const char * pszName, const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size);
       virtual bool close();
 
       virtual void * get_data();
 
       virtual bool is_mapped();
 
-      inline string get_name();
-      string get_path();
+      virtual string get_path();
+
+      virtual string calculate_path_from_name(const string & strName);
+
 
    };
-
-
-
-
-   inline string memory_map::get_name()
-   {
-
-      return m_strName;
-
-   }
 
 
    inline void * memory_map::get_data()
@@ -58,3 +52,6 @@ namespace file
 
 
 } // namespace file
+
+
+

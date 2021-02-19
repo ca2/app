@@ -419,7 +419,7 @@ list(APPEND aura_source
    windowing/cursor.h
    windowing/cursor_set.cpp
    windowing/cursor_set.h
-   windowing/display.h
+   windowing/display.cpp
    windowing/display.h
    windowing/icon.cpp
    windowing/icon.h
@@ -431,6 +431,8 @@ list(APPEND aura_source
    windowing/menu_command.h
    windowing/menu_item.cpp
    windowing/menu_item.h
+   windowing/monitor.cpp
+   windowing/monitor.h
    windowing/window.cpp
    windowing/window.h
    windowing/windowing.cpp

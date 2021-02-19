@@ -53,7 +53,7 @@ int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask)
 
    }
 
-   pthread_setaffinity_np(h, sizeof(c), &c);
+   pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
 
    return 1;
 

@@ -480,7 +480,7 @@ i32 _check_mtime(GeoIP *gi)
                {
 #if !defined(_WIN32)
                   /* MMAP is only avail on UNIX */
-                  munmap(gi->cache, gi->size_i32);
+                  munmap(gi->cache, gi->size);
                   gi->cache = nullptr;
 #endif
                }
@@ -953,7 +953,7 @@ void GeoIP_delete (GeoIP *gi)
       if ( gi->flags & GEOIP_MMAP_CACHE )
       {
 #if !defined(_WIN32)
-         munmap(gi->cache, gi->size_i32);
+         munmap(gi->cache, gi->size);
 #endif
       }
       else

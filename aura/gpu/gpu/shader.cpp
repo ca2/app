@@ -75,10 +75,10 @@ namespace gpu
    }
 
 
-   void shader::setVec2(const char * pszName, const glm::vec2& value)
-   {
-
-   }
+//   void shader::setVec2(const char * pszName, const glm::vec2& value)
+//   {
+//
+//   }
 
 
    void shader::setVec2(const char * pszName, float x, float y)
@@ -87,11 +87,11 @@ namespace gpu
    }
 
 
-   void shader::setVec3(const char * pszName, const glm::vec3& value)
-   {
-
-
-   }
+//   void shader::setVec3(const char * pszName, const glm::vec3& value)
+//   {
+//
+//
+//   }
 
 
    void shader::setVec3(const char * pszName, float x, float y, float z)
@@ -100,10 +100,10 @@ namespace gpu
    }
 
 
-   void shader::setVec4(const char * pszName, const glm::vec4& value)
-   {
-
-   }
+//   void shader::setVec4(const char * pszName, const glm::vec4& value)
+//   {
+//
+//   }
 
 
    void shader::setVec4(const char * pszName, float x, float y, float z, float w)
@@ -112,19 +112,19 @@ namespace gpu
    }
 
 
-   void shader::setMat2(const char * pszName, const glm::mat2& mat)
+   void shader::setMat2(const char * pszName, const float p[2*2])
    {
 
    }
 
 
-   void shader::setMat3(const char * pszName, const glm::mat3& mat)
+   void shader::setMat3(const char * pszName, const float p[3*3])
    {
 
    }
 
 
-   void shader::setMat4(const char * pszName, const glm::mat4& mat)
+   void shader::setMat4(const char * pszName, const float p[4*4])
    {
 
    }

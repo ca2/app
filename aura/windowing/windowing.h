@@ -29,35 +29,35 @@ namespace windowing
    public:
 
 
-      ::point_i32                            m_pointCursor;
+      ::point_i32                               m_pointCursor;
 
-      display_map                            m_displaymap;
+      display_map                               m_displaymap;
 
-      ::mutex                                m_mutexDisplay;
-      ::mutex                                m_mutexWindow;
-      ::mutex                                m_mutexMonitor;
-
-
-      bool                                   m_bSettingCursorMatter;
-      __pointer(cursor_set)                  m_pcursorset;
-      __composite(keyboard)          m_pkeyboard;
+      ::mutex                                   m_mutexDisplay;
+      ::mutex                                   m_mutexWindow;
+      ::mutex                                   m_mutexMonitor;
 
 
+      bool                                      m_bSettingCursorMatter;
+      __pointer(::windowing::cursor_set)   m_pcursorset;
+      __composite(::windowing::keyboard)   m_pkeyboard;
 
-      __pointer(::windowing::cursor)         m_pcursor;
-      __pointer(::windowing::cursor)         m_pcursorCursor;
-      enum_cursor                            m_ecursorDefault;
-      enum_cursor                            m_ecursor;
 
-      bool                                   m_bDrawCursor;
-      __reference(::user::user)              m_puser;
+
+      __pointer(::windowing::cursor)       m_pcursor;
+      __pointer(::windowing::cursor)       m_pcursorCursor;
+      enum_cursor                               m_ecursorDefault;
+      enum_cursor                               m_ecursor;
+
+      bool                                      m_bDrawCursor;
+      __reference(::user::user)            m_puser;
 
 
       windowing();
       virtual ~windowing();
 
-      ::windowing::keyboard * keyboard();
 
+      ::windowing::keyboard * keyboard();
 
 
       virtual ::e_status initialize_windowing(::user::user * puser);
@@ -100,8 +100,6 @@ namespace windowing
       virtual ::e_status release_mouse_capture();
 
 
-      
-
 
       virtual result_pointer < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
@@ -120,6 +118,8 @@ namespace windowing
 
       virtual void __hook_on_idle(class display * pdisplay);
 
+      virtual void message_loop_step();
+
       //virtual ::mutex * mutex();
 
       virtual ::e_status defer_initialize_x11();
@@ -127,9 +127,6 @@ namespace windowing
       virtual void defer_handle_just_hooks();
       //virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
-
-
-      virtual bool sn_start_context();
 
 
       virtual __pointer(::windowing::cursor) load_default_cursor(enum_cursor ecursor);
@@ -187,6 +184,23 @@ namespace windowing
 
       virtual ::e_status user_sync(const ::duration & duration, const ::promise::routine & routine);
       virtual ::e_status user_fork(const ::promise::routine & routine);
+
+
+      virtual void _main_loop();
+
+      // MSG * for windows
+      // XEvent * for X11 (Gnome)
+      // xcb_event * for xcb (KDE)
+      virtual void _message_handler(void * p);
+
+
+#ifdef LINUX
+
+
+      virtual void _libsn_start_context();
+
+
+#endif
 
 
    };

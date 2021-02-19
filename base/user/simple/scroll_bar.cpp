@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/simple/_simple.h"
-#include "acme/os/cross.h"
+//#include "acme/os/cross.h"
 
 
 simple_scroll_bar::simple_scroll_bar() :

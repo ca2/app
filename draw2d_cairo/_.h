@@ -14,6 +14,10 @@
 
 #endif
 
+
+#include "acme/os/ansios/_pthread.h"
+
+
 #include "cairo/cairo-features.h"
 #include "cairo/cairo.h"
 #include "cairo/cairo-ft.h"
@@ -101,6 +105,10 @@ inline void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
 
 
 #include "graphics.h"
+
+
+
+#include "draw2d.h"
 
 
 

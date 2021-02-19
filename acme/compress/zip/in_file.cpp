@@ -4,9 +4,9 @@
 
 #define UNZ_FILE_INFO ((unz_file_info *) m_punzfileinfo)
 
-#ifndef WINDOWS
-#define _MAX_PATH 260
-#endif
+//#ifndef WINDOWS
+//#define _MAX_PATH 260
+//#endif
 
 
 namespace zip

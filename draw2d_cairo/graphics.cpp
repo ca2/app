@@ -3609,7 +3609,7 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
     //pango_cairo_update_layout(m_pdc, playout);                  // if the target surface or transformation properties of the cairo instance
 
-    PangoRectangle rectangle_i32;
+    PangoRectangle rectangle;
 
     pango_layout_get_pixel_extents (playout, nullptr, &rectangle);
 
@@ -5719,323 +5719,323 @@ bool graphics::flush()
 //#endif // WINDOWS
 
 
-#if defined(USE_PANGO)
-
-
-void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
-{
-
-    synchronization_lock ml(cairo_mutex());
-
-    PangoFontMap * pfontmap = pango_cairo_font_map_get_default();
-
-    PangoFontFamily ** families;
-
-    int n_families = 0;
-
-    pango_font_map_list_families(pfontmap, &families, &n_families);
-
-    printf("Total fonts: %d", n_families);
-
-    __pointer(::write_text::font_enum_item) item;
-
-    for (int i = 0; i < n_families; i++)
-    {
-
-        item = __new(::write_text::font_enum_item);
-
-        PangoFontFamily * pfamily = families[i];
-
-        string strFileName = pango_font_family_get_name(pfamily);
-
-        item->m_mapFileName[0] = strFileName;
-
-        item->m_strName = strFileName;
-
-        itema.add(item);
-
-    }
-
-    g_free(families);
-
-}
-
-
-
-#else
-
+//#if defined(USE_PANGO)
+//
 //
 //void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
 //{
 //
-//   __pointer(::write_text::font_enum_item) pitem;
+//    synchronization_lock ml(cairo_mutex());
 //
-//#if DEBUG_WINDOWS_C_ANDROID_FONTS
+//    PangoFontMap * pfontmap = pango_cairo_font_map_get_default();
 //
-//   ::file::listing listing(get_context());
+//    PangoFontFamily ** families;
 //
-//   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
+//    int n_families = 0;
 //
-//   __pointer(ttf_util) putil;
+//    pango_font_map_list_families(pfontmap, &families, &n_families);
 //
-//   ::e_status estatus = __construct_new(putil);
+//    printf("Total fonts: %d", n_families);
 //
-//   for (auto& path : listing)
-//   {
+//    __pointer(::write_text::font_enum_item) item;
 //
-//      pitem = __new(::write_text::font_enum_item);
+//    for (int i = 0; i < n_families; i++)
+//    {
 //
-//      pitem->m_strFile = path;
+//        item = __new(::write_text::font_enum_item);
 //
-//      string strName = putil->GetFontNameFromFile(path);
+//        PangoFontFamily * pfamily = families[i];
 //
-//      if (strName.is_empty())
-//      {
+//        string strFileName = pango_font_family_get_name(pfamily);
 //
-//         strName = path.title();
+//        item->m_mapFileName[0] = strFileName;
 //
-//      }
+//        item->m_strName = strFileName;
 //
-//      pitem->m_strName = strName;
+//        itema.add(item);
 //
-//      itema.add(pitem);
+//    }
 //
-//      g_pmapFontFaceName->set_at(strName, path);
+//    g_free(families);
 //
+//}
 //
-//   }
 //
-//
-//#elif defined(LINUX)
-//
-//   synchronization_lock ml(cairo_mutex());
-//
-//   FcPattern *    pat;
-//
-//   FcObjectSet *  os;
-//
-//   FcFontSet *    fs;
-//
-//   FcChar8 *      s;
-//
-//   FcChar8 *      file;
-//
-//   int            i;
-//
-//   if (!g_fcResult)
-//   {
-//
-//      g_fcResult = FcInit();
-//
-//   }
-//
-//   if (!g_fcConfig)
-//   {
-//
-//      g_fcConfig = FcConfigGetCurrent();
-//
-//      FcConfigSetRescanInterval(g_fcConfig, 30);
-//
-//   }
-//
-//   pat = FcPatternCreate();
-//
-//   os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, FC_FILE, nullptr);
-//
-//   fs = FcFontList(g_fcConfig, pat, os);
-//
-//   printf("Total fonts: %d", fs->nfont);
-//
-//   for (i = 0; fs && i < fs->nfont; i++)
-//   {
-//
-//      pitem = __new(::write_text::font_enum_item);
-//
-//      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
-//
-//      //FcPatternPrint(font);
-//
-//      s = FcNameUnparse(font);
-//
-//      string str((const char *)s);
-//
-//      int iFind = str.find(":");
-//
-//      if (iFind > 0)
-//      {
-//
-//         str = str.Left(iFind);
-//
-//      }
-//
-//      if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
-//      {
-//
-//         //printf("Filename: %s", file);
-//
-//         pitem->m_strFile = (const char *)file;
-//
-//      }
-//      else
-//      {
-//
-//         pitem->m_strFile = str;
-//
-//      }
-//
-//      //printf("Font: %s\n", str.c_str());
-//
-//      //printf("Font: %s\n", s);
-//
-//      pitem->m_strName = str;
-//
-//      pitem->m_ecs = ::write_text::font::cs_default;
-//
-//      itema.add(pitem);
-//
-//      free(s);
-//
-//   }
-//
-//   if (fs != nullptr)
-//   {
-//
-//      FcFontSetDestroy(fs);
-//
-//   }
-//
-//#elif defined(WINDOWS)
-//
-//
-//   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
-//
-//#elif defined(ANDROID)
-//
-//   auto psession = Session;
-//
-//   itema.add(psession->m_fontenumitema);
 //
 //#else
 //
-//    __throw(not_implemented());
+////
+////void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+////{
+////
+////   __pointer(::write_text::font_enum_item) pitem;
+////
+////#if DEBUG_WINDOWS_C_ANDROID_FONTS
+////
+////   ::file::listing listing(get_context());
+////
+////   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
+////
+////   __pointer(ttf_util) putil;
+////
+////   ::e_status estatus = __construct_new(putil);
+////
+////   for (auto& path : listing)
+////   {
+////
+////      pitem = __new(::write_text::font_enum_item);
+////
+////      pitem->m_strFile = path;
+////
+////      string strName = putil->GetFontNameFromFile(path);
+////
+////      if (strName.is_empty())
+////      {
+////
+////         strName = path.title();
+////
+////      }
+////
+////      pitem->m_strName = strName;
+////
+////      itema.add(pitem);
+////
+////      g_pmapFontFaceName->set_at(strName, path);
+////
+////
+////   }
+////
+////
+////#elif defined(LINUX)
+////
+////   synchronization_lock ml(cairo_mutex());
+////
+////   FcPattern *    pat;
+////
+////   FcObjectSet *  os;
+////
+////   FcFontSet *    fs;
+////
+////   FcChar8 *      s;
+////
+////   FcChar8 *      file;
+////
+////   int            i;
+////
+////   if (!g_fcResult)
+////   {
+////
+////      g_fcResult = FcInit();
+////
+////   }
+////
+////   if (!g_fcConfig)
+////   {
+////
+////      g_fcConfig = FcConfigGetCurrent();
+////
+////      FcConfigSetRescanInterval(g_fcConfig, 30);
+////
+////   }
+////
+////   pat = FcPatternCreate();
+////
+////   os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, FC_FILE, nullptr);
+////
+////   fs = FcFontList(g_fcConfig, pat, os);
+////
+////   printf("Total fonts: %d", fs->nfont);
+////
+////   for (i = 0; fs && i < fs->nfont; i++)
+////   {
+////
+////      pitem = __new(::write_text::font_enum_item);
+////
+////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
+////
+////      //FcPatternPrint(font);
+////
+////      s = FcNameUnparse(font);
+////
+////      string str((const char *)s);
+////
+////      int iFind = str.find(":");
+////
+////      if (iFind > 0)
+////      {
+////
+////         str = str.Left(iFind);
+////
+////      }
+////
+////      if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
+////      {
+////
+////         //printf("Filename: %s", file);
+////
+////         pitem->m_strFile = (const char *)file;
+////
+////      }
+////      else
+////      {
+////
+////         pitem->m_strFile = str;
+////
+////      }
+////
+////      //printf("Font: %s\n", str.c_str());
+////
+////      //printf("Font: %s\n", s);
+////
+////      pitem->m_strName = str;
+////
+////      pitem->m_ecs = ::write_text::font::cs_default;
+////
+////      itema.add(pitem);
+////
+////      free(s);
+////
+////   }
+////
+////   if (fs != nullptr)
+////   {
+////
+////      FcFontSetDestroy(fs);
+////
+////   }
+////
+////#elif defined(WINDOWS)
+////
+////
+////   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
+////
+////#elif defined(ANDROID)
+////
+////   auto psession = Session;
+////
+////   itema.add(psession->m_fontenumitema);
+////
+////#else
+////
+////    __throw(not_implemented());
+////
+////#endif
+////
+////}
+//
+//
+//#endif
+//
+//
+//::file::path graphics::get_font_path(const string & str, int iWeight, bool bItalic)
+//{
+//
+//#ifdef LINUX
+//
+//    synchronization_lock ml(cairo_mutex());
+//
+//    if (str.find("/") >= 0)
+//    {
+//
+//        return str;
+//
+//    }
+//
+//    if (str == "TakaoPGothic")
+//    {
+//
+//        output_debug_string("searching TakaoPGothic");
+//
+//    }
+//
+//    string strPath;
+//
+//    if (!g_pmapFontPath->lookup(str, strPath))
+//    {
+//
+//        string_array straPath;
+//
+//        string_array stra;
+//
+//        ::write_text::font_enum_item_array itema;
+//
+//        enum_fonts(itema);
+//
+//        if (str == "TakaoPGothic")
+//        {
+//
+//            output_debug_string("searching TakaoPGothic");
+//
+//        }
+//
+//        int iFind = stra.find_first_ci(str);
+//
+//        if (iFind >= 0)
+//        {
+//
+//            strPath = straPath[iFind];
+//
+//        }
+//        else
+//        {
+//
+//            iFind = stra.find_first_begins_ci(str + " Regular");
+//
+//            if (iFind >= 0)
+//            {
+//
+//                strPath = straPath[iFind];
+//
+//            }
+//            else
+//            {
+//
+//                iFind = stra.find_first_begins_ci(str + ",");
+//
+//                if (iFind >= 0)
+//                {
+//
+//                    strPath = straPath[iFind];
+//
+//                }
+//                else
+//                {
+//
+//                    iFind = stra.find_first_begins_ci(str + " ");
+//
+//                    if (iFind >= 0)
+//                    {
+//
+//                        strPath = straPath[iFind];
+//
+//                    }
+//                    else
+//                    {
+//
+//                        strPath = str;
+//
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        g_pmapFontPath->set_at(str, strPath);
+//
+//    }
+//
+//    return strPath;
+//
+//#else
+//
+//   return ::draw2d::graphics::get_font_path(str, iWeight, bItalic);
 //
 //#endif
 //
 //}
-
-
-#endif
-
-
-::file::path graphics::get_font_path(const string & str, int iWeight, bool bItalic)
-{
-
-#ifdef LINUX
-
-    synchronization_lock ml(cairo_mutex());
-
-    if (str.find("/") >= 0)
-    {
-
-        return str;
-
-    }
-
-    if (str == "TakaoPGothic")
-    {
-
-        output_debug_string("searching TakaoPGothic");
-
-    }
-
-    string strPath;
-
-    if (!g_pmapFontPath->lookup(str, strPath))
-    {
-
-        string_array straPath;
-
-        string_array stra;
-
-        ::write_text::font_enum_item_array itema;
-
-        enum_fonts(itema);
-
-        if (str == "TakaoPGothic")
-        {
-
-            output_debug_string("searching TakaoPGothic");
-
-        }
-
-        int iFind = stra.find_first_ci(str);
-
-        if (iFind >= 0)
-        {
-
-            strPath = straPath[iFind];
-
-        }
-        else
-        {
-
-            iFind = stra.find_first_begins_ci(str + " Regular");
-
-            if (iFind >= 0)
-            {
-
-                strPath = straPath[iFind];
-
-            }
-            else
-            {
-
-                iFind = stra.find_first_begins_ci(str + ",");
-
-                if (iFind >= 0)
-                {
-
-                    strPath = straPath[iFind];
-
-                }
-                else
-                {
-
-                    iFind = stra.find_first_begins_ci(str + " ");
-
-                    if (iFind >= 0)
-                    {
-
-                        strPath = straPath[iFind];
-
-                    }
-                    else
-                    {
-
-                        strPath = str;
-
-                    }
-
-
-                }
-
-            }
-
-        }
-
-        g_pmapFontPath->set_at(str, strPath);
-
-    }
-
-    return strPath;
-
-#else
-
-   return ::draw2d::graphics::get_font_path(str, iWeight, bItalic);
-
-#endif
-
-}
 
 
 bool graphics::_get(::draw2d::matrix & matrix)

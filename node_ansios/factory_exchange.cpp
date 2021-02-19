@@ -33,7 +33,7 @@ extern "C"
 void node_ansios_factory_exchange()
 {
 
-   create_factory < ::node_ansios::file_memory_map, ::file::memory_map > ();
+   create_factory < ::node_ansios::node, ::acme::node > ();
 
 }
 

@@ -7945,23 +7945,23 @@ namespace aura
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
-      if (pusermessage->m_id == WM_USER + 124 && pusermessage->userinteraction() == nullptr)
-      {
-
-         /*
-
-         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
-         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
-
-         */
-
-         pusermessage->m_bRet = true;
-
-         return;
-
-      }
+//      if (pmessage->m_id == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+//      {
+//
+//         /*
+//
+//         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
+//         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
+//
+//         */
+//
+//         pmessage->m_bRet = true;
+//
+//         return;
+//
+//      }
 
       return thread::pre_translate_message(pmessage);
 

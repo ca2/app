@@ -142,7 +142,7 @@ namespace acme
 
       virtual void node_post_quit();
 
-      virtual void enum_display_monitors(::aura::session * psession);
+      //virtual void enum_display_monitors(::aura::session * psession);
 
       virtual void os_post_quit();
 
@@ -165,9 +165,9 @@ namespace acme
 
 
 
-      virtual double get_time_zone();
-
       virtual ::e_status get_system_time(system_time_t * psystemtime);
+
+      virtual double get_time_zone();
 
       virtual time_t system_time_to_time(const system_time_t & st, i32 nDST = -1);
 
@@ -175,7 +175,9 @@ namespace acme
 
       virtual system_time_t time_to_system_time(const ::datetime::time & time);
 
-      virtual ::e_status get_system_time_as_file_time(filetime_t * pfiletime);
+      virtual ::e_status get_system_time_as_file_time(filetime * pfiletime);
+
+      virtual ::e_status system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime);
 
       virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime);
 

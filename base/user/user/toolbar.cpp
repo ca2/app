@@ -3,7 +3,8 @@
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
 //#include "acme/os/_os.h"
-#include "acme/os/cross.h"
+//#include "acme/os/cross.h"
+#include "aura/os/_user.h"
 #include "toolbar.h"
 
 #define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))

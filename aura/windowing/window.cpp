@@ -2135,7 +2135,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 
 #undef SET_WINDOW_POS_LOG
 
-   bool window::set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
       bool bOk = false;
@@ -2152,7 +2152,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
-   bool window::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   bool window::_set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    {
 
 //      synchronization_lock synchronizationlock(x11_mutex());

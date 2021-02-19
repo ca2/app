@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "aura/operating_system.h"
+#include "acme/_.h"
+#include "acme/operating_system.h"
 
 
 #if defined(_NODE_ANSIOS_LIBRARY)
@@ -22,7 +22,7 @@ namespace node_ansios
 } // namespace node_gnome
 
 
-#include "file_memory_map.h"
+#include "app/acme/node/posix/file_memory_map.h"
 
 
 #include "node.h"

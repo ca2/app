@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace node_ansios
+namespace posix
 {
 
 
@@ -18,45 +18,22 @@ namespace node_ansios
 
 
       file_memory_map();
-      file_memory_map(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
       virtual ~file_memory_map();
 
 
-      void construct();
+      virtual bool open() override;
+      virtual bool close() override;
 
-      bool open();
-      bool open(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
-      bool close();
+      virtual bool is_mapped() override;
 
-      void * get_data();
 
-      bool is_mapped();
+      virtual string calculate_path_from_name(const string & strName) override;
 
-      inline string get_name();
-      string get_path();
 
    };
 
 
-
-
-   inline string memory_map::get_name()
-   {
-
-      return m_strName;
-
-   }
-
-
-   inline void * memory_map::get_data()
-   {
-
-      return m_pdata;
-
-   }
-
-
-} // namespace node_ansios
+} // namespace posix
 
 
 

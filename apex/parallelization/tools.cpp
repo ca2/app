@@ -26,7 +26,7 @@ thread_group::thread_group(::object * pobject, ::e_priority epriority) :
    if (!estatus)
    {
 
-      throw ::exception::exception(estatus);
+      throw ::exception::exception(nullptr, estatus);
 
    }
 

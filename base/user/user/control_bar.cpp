@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
+#include "aura/os/_user.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -678,7 +679,6 @@ namespace user
 
 
    u32 control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
-
    {
 
       SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
@@ -838,7 +838,7 @@ namespace user
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
 
-         __reposition_window(playout, this, &rectangle);
+         ::user::__reposition_window(playout, this, &rectangle);
 
       }
 

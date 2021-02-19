@@ -22,6 +22,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 
 
 list(APPEND app_app_source
+        _.cpp
         _.h
         _user.h
         application.cpp
@@ -56,9 +57,11 @@ elseif(LINUX)
 
     if(EXISTS $ENV{HOME}/__config/gnome.txt)
         add_dependencies(app_app node_gnome windowing_x11)
+        message(STATUS "Adding GNOME/X11 dependency.")
     endif()
     if(EXISTS $ENV{HOME}/__config/kde.txt)
         add_dependencies(app_app node_kde windowing_xcb)
+        message(STATUS "Adding KDE/xcb dependency.")
     endif()
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
@@ -71,7 +74,6 @@ elseif(LINUX)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
     add_dependencies(app_app draw2d_cairo)
-
 endif()
 
 

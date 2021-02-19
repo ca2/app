@@ -864,7 +864,7 @@ void x11_add_gdk_filter()
 //////
 //////      g_bInitX11Thread = true;
 //////
-//////      sync_lock sl(x11_mutex());
+//////      synchronization_lock sl(x11_mutex());
 //////
 //////      xdisplay d(pdisplay);
 //////
@@ -886,7 +886,7 @@ void x11_add_gdk_filter()
 ////   try
 ////   {
 ////
-////      sync_lock sl(x11_mutex());
+////      synchronization_lock sl(x11_mutex());
 ////
 ////      xdisplay d(pdisplay);
 ////

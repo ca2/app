@@ -10,23 +10,23 @@ __pointer(::apex::application)     linux_instantiate_application(__pointer(::ape
 
 
 
-#pragma once
-
-
-namespace linux
-{
-
-
-//   class thread;
-
-   class linux
-   {
-      i32 function();
-   };
-
-
-
-} // namespace linux
+//#pragma once
+//
+//
+//namespace linux
+//{
+//
+//
+////   class thread;
+//
+//   class linux
+//   {
+//      i32 function();
+//   };
+//
+//
+//
+//} // namespace linux
 
 
 

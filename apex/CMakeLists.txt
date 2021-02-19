@@ -89,7 +89,7 @@ list(APPEND apex_source
    database/server.h
    database/stringhelper.cpp
    database/stringhelper.h
-   filesystem/file/_.h
+   #filesystem/file/_.h
    filesystem/file/_data.h
    filesystem/file/_file.h
    filesystem/file/edit_file.cpp
@@ -367,7 +367,7 @@ list(APPEND apex_source
    node/_node.h
    os/ansios/_.h
    os/ansios/_ansios.h
-   os/ansios/_c.h
+   #os/ansios/_c.h
    os/ansios/ansios_file.h
    os/ansios/base.cpp
    # os/ansios/callstack.h
@@ -377,7 +377,7 @@ list(APPEND apex_source
    # os/ansios/exception_engine.h
    os/ansios/file.cpp
    os/ansios/file.h
-   os/ansios/file_c.h
+   #os/ansios/file_c.h
    os/ansios/language.cpp
    os/ansios/parallelization.h
    #os/ansios/process.cpp

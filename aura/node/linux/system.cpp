@@ -108,14 +108,14 @@ namespace aura
    ::e_status system::os_application_system_run()
    {
 
-      auto estatus = do_factory_exchange("windowing", "x11");
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+//      auto estatus = do_factory_exchange("windowing", "x11");
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
 //      estatus = __construct(m_pwindowing);
 //
@@ -206,7 +206,7 @@ namespace aura
 
       auto pwindowing = puser->windowing();
 
-      estatus = pwindowing->os_application_system_run();
+      auto estatus = pwindowing->os_application_system_run();
 
 //      if (m_bUser)
 //      {
@@ -355,11 +355,11 @@ void sn_start_context();
 bool os_init_application()
 {
 
-#ifndef RASPBIAN
-
-   sn_start_context();
-
-#endif
+//#ifndef RASPBIAN
+//
+//   sn_start_context();
+//
+//#endif
 
    return true;
 

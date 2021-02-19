@@ -20,10 +20,10 @@ namespace windowing
       void *                                       m_posdata;
 #endif
 
-      __pointer(display)                           m_pdisplay;
-      __pointer(::user::interaction_impl)          m_pimpl;
+      __pointer(::windowing::display)         m_pdisplay;
+      __pointer(::user::interaction_impl)     m_pimpl;
       string                                       m_strDebug;
-      __pointer(message_queue)                                m_pmq;
+      __pointer(message_queue)                     m_pmessagequeue;
       millis                                       m_millisLastMouseMove;
       __pointer(window)                            m_pwindowParent;
       ::rectangle_i32                              m_rectangle;
@@ -53,7 +53,7 @@ namespace windowing
 
 
 
-      virtual class display * display();
+      virtual ::windowing::display * display();
 
       oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
       void set_oswindow(oswindow oswindow);
@@ -123,8 +123,8 @@ namespace windowing
 
 
 
-      virtual bool set_window_position(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      virtual bool _set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      virtual bool _set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
 
       virtual bool is_destroying();
 

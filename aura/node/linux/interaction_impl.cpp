@@ -12,50 +12,50 @@
 #define TEST 0
 
 
-string FormatMessageFromSystem(::u32 dwLastError)
-{
-
-   string str;
-
-   str.Format("system error message %d", dwLastError);
-
-   return str;
-
-}
-
-
-void x11_store_name(oswindow oswindow, const char * pszName);
-void x11_defer_check_configuration(oswindow oswindow);
-void upper_window_rects(oswindow oswindow, rect_array & ra);
-#undef ALOG_CONTEXT
-#define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
+//string FormatMessageFromSystem(::u32 dwLastError)
+//{
+//
+//   string str;
+//
+//   str.Format("system error message %d", dwLastError);
+//
+//   return str;
+//
+//}
 
 
-void wm_add_remove_state(oswindow w, e_net_wm_state estate, bool bSet);
+//void x11_store_name(oswindow oswindow, const char * pszName);
+//void x11_defer_check_configuration(oswindow oswindow);
+//void upper_window_rects(oswindow oswindow, rect_array & ra);
+//#undef ALOG_CONTEXT
+//#define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
-void wm_iconify_window(oswindow w);
 
-void wm_state_above_raw(oswindow w, bool bSet);
+//void wm_add_remove_state(oswindow w, enum_net_wm_state estate, bool bSet);
 
-void windowing_output_debug_string(const char * pszDebugString);
+//void wm_iconify_window(oswindow w);
+
+//void wm_state_above_raw(oswindow w, bool bSet);
+
+//void windowing_output_debug_string(const char * pszDebugString);
 
 //Display * x11_get_display();
 
-void wm_state_above_raw(oswindow w, bool bSet);
+//void wm_state_above_raw(oswindow w, bool bSet);
 
-void wm_arbitrarypositionwindow(oswindow w, bool bSet);
+//void wm_arbitrarypositionwindow(oswindow w, bool bSet);
 
-void wm_toolwindow(oswindow w, bool bSet);
+//void wm_toolwindow(oswindow w, bool bSet);
 
-void wm_centerwindow(oswindow w, bool bSet);
+//void wm_centerwindow(oswindow w, bool bSet);
 
-void wm_splashwindow(oswindow w, bool bSet);
+//void wm_splashwindow(oswindow w, bool bSet);
 
-void wm_desktopwindow(oswindow w, bool bSet);
+//void wm_desktopwindow(oswindow w, bool bSet);
 
-void wm_dockwindow(oswindow w, bool bSet);
+//void wm_dockwindow(oswindow w, bool bSet);
 
-void wm_state_hidden(oswindow w, bool bSet);
+//void wm_state_hidden(oswindow w, bool bSet);
 
 //#include <X11/extensions/Xcomposite.h>
 
@@ -68,45 +68,44 @@ void wm_state_hidden(oswindow w, bool bSet);
 
 //extern SnLauncheeContext* g_psncontext;
 
-CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_AURA bool unhook_window_create();
-void CLASS_DECL_AURA __pre_init_dialog(
-::user::interaction * pWnd, RECTANGLE_I32 * pRectOld, ::u32* pdwStyleOld);
+//CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
 
-void CLASS_DECL_AURA __post_init_dialog(
-::user::interaction * pWnd, const rectangle_i32 & rectOld, ::u32 dwStyleOld);
+//CLASS_DECL_AURA bool unhook_window_create();
 
-//LRESULT CALLBACK
-//__activation_window_procedure(oswindow hWnd, ::u32 nMsg, wparam wparam, lparam lparam);
+//void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, RECTANGLE_I32 * pRectOld, ::u32* pdwStyleOld);
+
+//void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const rectangle_i32 & rectOld, ::u32 dwStyleOld);
+
+//LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, ::u32 nMsg, wparam wparam, lparam lparam);
 
 
-const char gen_OldWndProc[] = "::ca2::OldWndProc423";
+// const char gen_OldWndProc[] = "::ca2::OldWndProc423";
+// const char gen_WndControlBar[] = __WNDCONTROLBAR;
+// const char gen_WndMDIFrame[] = __WNDMDIFRAME;
+// const char gen_WndFrameOrView[] = __WNDFRAMEORVIEW;
+// const char gen_WndOleControl[] = __WNDOLECONTROL;
 
-/*const char gen_WndControlBar[] = __WNDCONTROLBAR;
-const char gen_WndMDIFrame[] = __WNDMDIFRAME;
-const char gen_WndFrameOrView[] = __WNDFRAMEORVIEW;
-const char gen_WndOleControl[] = __WNDOLECONTROL;
-*/
-struct __CTLCOLOR
-{
-   oswindow hWnd;
-   HDC hDC;
-   ::u32 nCtlType;
-};
+
+//struct __CTLCOLOR
+//{
+//   oswindow hWnd;
+//   HDC hDC;
+//   ::u32 nCtlType;
+//};
+
 
 //extern cairo_surface_t *  g_cairosurface;
 //extern cairo_t *  g_cairo;
 
-// int_bool PeekMessage(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
+// int_bool PeekMessage(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
 
 // int_bool GetMessage(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 
-/*
-const char gen_Wnd[] = __WND;
-*/
+//const char gen_Wnd[] = __WND;
+
 
 namespace linux
 {
@@ -4297,7 +4296,13 @@ namespace linux
    void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
    {
 
-      upper_window_rects(get_oswindow(), recta);
+//      auto psession = Session;
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      pwindowing->upper_window_rects(get_oswindow(), recta);
 
    }
 

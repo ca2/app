@@ -28,8 +28,8 @@ list(APPEND audio_alsa_source
    factory_exchange.h
    framework.cpp
    framework.h
-   application.cpp
-   application.h
+   #application.cpp
+   #application.h
    node.cpp
    node.h
    )
@@ -37,9 +37,6 @@ list(APPEND audio_alsa_source
 
 list(APPEND library_references
    acme
-   apex
-   aqua
-   aura
    )
 
 
@@ -50,7 +47,7 @@ else ()
 endif ()
 
 
-add_library(node_ansios SHARED ${audio_alsa_source} system_time.cpp system_color.cpp file_memory_map.cpp file_memory_map.h)
+add_library(node_ansios SHARED ${audio_alsa_source} system_time.cpp system_color.cpp ../acme/node/posix/file_memory_map.cpp ../acme/node/posix/file_memory_map.h datetime.h)
 
 target_precompile_headers(node_ansios PRIVATE framework.h)
 
@@ -71,11 +68,11 @@ elseif (LINUX)
    target_link_libraries(node_ansios PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(node_ansios PRIVATE asound)
    target_link_options(node_ansios PRIVATE -Wl,-z,defs)
-   add_dependencies(node_ansios acme)
+   #add_dependencies(node_ansios acme)
 endif ()
 
 
-add_dependencies(node_ansios experience_core)
+#add_dependencies(node_ansios experience_core)
 
 
 target_link_directories(node_ansios PRIVATE ${LIBRARY_OUTPUT_PATH})

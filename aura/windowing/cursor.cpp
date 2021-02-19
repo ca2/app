@@ -49,6 +49,14 @@ namespace windowing
    }
 
 
+   ::file::path cursor::get_file_path() const
+   {
+
+      return "";
+
+   }
+
+
 } // namespace windowing
 
 

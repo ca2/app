@@ -1201,7 +1201,7 @@ property_set& property_set::operator = (const ::payload & payload)
    else
    {
 
-      __throw(::exception::exception(error_wrong_type));
+      __throw(::exception::exception(nullptr, error_wrong_type));
 
    }
 

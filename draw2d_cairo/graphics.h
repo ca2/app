@@ -559,7 +559,7 @@ namespace draw2d_cairo
 
       //virtual void enum_fonts(::write_text::font_enum_item_array & itema) override;
 
-      virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
+      //virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
 
 
       FT_Face ftface(const char* pszFontName, int iWeight, bool bItalic);

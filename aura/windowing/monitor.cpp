@@ -44,6 +44,14 @@ namespace windowing
    }
 
 
+   bool monitor::get_monitor_rect(::rectangle_i32 * prectangle)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace windowing
 
 

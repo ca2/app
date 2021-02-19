@@ -25,7 +25,7 @@ namespace account
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 
@@ -76,7 +76,7 @@ namespace account
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 

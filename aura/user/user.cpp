@@ -1189,55 +1189,62 @@ namespace user
 
       ::e_status estatus = ::success;
 
-#ifdef LINUX
-
-      auto edesktop = System.get_edesktop();
-
-      if (edesktop & ::user::e_desktop_kde)
-      {
-
-         estatus = System.do_factory_exchange("node", "kde");
-
-      }
-      else if (edesktop & ::user::e_desktop_gnome)
-      {
-
-         estatus = System.do_factory_exchange("node", "gnome");
-
-      }
-      else
-      {
-
-         estatus = System.do_factory_exchange("node", "kde");
-
-         if (!estatus)
-         {
-
-            estatus = System.do_factory_exchange("node", "gnome");
-
-         }
-
-      }
-
-#elif defined(WINDOWS_DESKTOP)
-
-      estatus = System.do_factory_exchange("windowing", "win32");
-
-#endif
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       estatus = ::__construct(m_pwindowing);
 
       if (!estatus)
       {
 
-         return estatus;
+#ifdef LINUX
+
+         auto edesktop = System.get_edesktop();
+
+         if (edesktop & ::user::e_desktop_kde)
+         {
+
+            estatus = System.do_factory_exchange("windowing", "xcb");
+
+         }
+         else if (edesktop & ::user::e_desktop_gnome)
+         {
+
+            estatus = System.do_factory_exchange("windowing", "x11");
+
+         }
+         else
+         {
+
+            estatus = System.do_factory_exchange("windowing", "xcb");
+
+            //if (!estatus)
+            {
+
+               estatus = System.do_factory_exchange("windowing", "x11");
+
+            }
+
+         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         estatus = System.do_factory_exchange("windowing", "win32");
+
+#endif
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = ::__construct(m_pwindowing);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
 
@@ -1249,6 +1256,10 @@ namespace user
          return estatus;
 
       }
+
+      auto pnode = Node;
+
+      pnode->m_pwindowing = m_pwindowing;
 
       return estatus;
 

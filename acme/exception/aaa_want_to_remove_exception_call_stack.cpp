@@ -16,7 +16,7 @@ callstack::callstack(const char * pszFormat, i32 iSkip, void * address, int iCou
 
    m_pszCallStack = nullptr;
 
-   if (iSkip == callstack_DEFAULT_SKIP_TRIGGER)
+   if (iSkip == CALLSTACK_DEFAULT_SKIP_TRIGGER)
    {
 
       iSkip = 1;

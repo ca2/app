@@ -844,7 +844,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 
@@ -853,7 +853,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 

@@ -263,6 +263,14 @@ namespace user
    }
 
 
+   ::e_status notify_icon::destroy_notify_icon()
+   {
+
+      return ::success;
+
+   }
+
+
    bool notify_icon::modify_icon(::windowing::icon * picon)
    {
 

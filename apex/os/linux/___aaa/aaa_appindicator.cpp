@@ -3,7 +3,7 @@
 #if !defined(RASPBIAN)
 
 
-#include "appindicator.h"
+#include "gtk_things/appindicator.h"
 
 
 namespace linux

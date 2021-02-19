@@ -30,7 +30,7 @@ public:
 };
 
 
-#include "gnome_shared.h"
+#include "gtk_things/gnome_shared.h"
 
 
 

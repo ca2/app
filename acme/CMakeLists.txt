@@ -1315,6 +1315,8 @@ if (WIN32)
 else ()
 
    list(APPEND acme_source
+      node/posix/file_memory_map.cpp
+      node/posix/file_memory_map.h
       os/ansios/parallelization.cpp
       os/cross/windows/user.cpp
       os/cross/windows/file.cpp

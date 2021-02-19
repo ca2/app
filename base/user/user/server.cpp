@@ -39,7 +39,7 @@ namespace user
          if (!estatus)
          {
 
-            __throw(exception::exception(estatus));
+            __throw(::status_exception(estatus));
 
          }
 
@@ -48,7 +48,7 @@ namespace user
          if (!estatus)
          {
 
-            __throw(exception::exception(estatus));
+            __throw(::status_exception(estatus));
 
          }
 

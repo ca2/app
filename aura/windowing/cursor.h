@@ -27,6 +27,9 @@ namespace windowing
 
       virtual ::e_status load_default_cursor(enum_cursor ecursor);
 
+      virtual ::file::path get_file_path() const;
+
+
    };
 
 

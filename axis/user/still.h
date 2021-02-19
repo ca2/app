@@ -10,28 +10,33 @@ namespace user
    {
    public:
 
+
       enum e_style
       {
+
+
          style_none,
          style_text,
          style_image
+
+
       };
 
 
-      ::write_text::font_pointer              m_pfont;
+      ::write_text::font_pointer          m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::rectangle_i32                              m_rectMargin;
-      //::rectangle_i32                              m_rectBorder;
-      //::rectangle_i32                              m_rectPadding;
+      //::rectangle_i32                   m_rectMargin;
+      //::rectangle_i32                   m_rectBorder;
+      //::rectangle_i32                   m_rectPadding;
       ::e_align                           m_ealignText;
       e_style                             m_estyle;
-      ::rectangle_i32                              m_rectText;
+      ::rectangle_i32                     m_rectText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
-      ::rectangle_i32                              m_rectCheckBox;
+      ::rectangle_i32                     m_rectCheckBox;
       string                              m_strLink;
-      //::write_text::font_pointer              m_pfont;
+      //::write_text::font_pointer        m_pfont;
       
 
       still();

@@ -2972,7 +2972,7 @@ retry_license:
       if (!is_serviceable())
       {
 
-         __throw(::exception::exception(error_unsupported_function));
+         __throw(::status_exception(error_unsupported_function));
 
       }
 

@@ -311,7 +311,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::exception::exception(error_composite_not_composer_member));
+//    //   __throw(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -353,7 +353,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 // //   if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 // //   {
 // //
-// //      __throw(::exception::exception(error_composite_not_composer_member));
+// //      __throw(::status_exception(error_composite_not_composer_member));
 // //
 // //   }
 
@@ -369,7 +369,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::exception::exception(error_composite_not_composer_member));
+//    //   __throw(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -439,7 +439,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -481,7 +481,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 
@@ -508,7 +508,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -524,7 +524,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -540,7 +540,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //

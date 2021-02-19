@@ -65,6 +65,7 @@ namespace app_app
       //rectangle_i32 rectWindow;
 
       //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
+      m_pwindow->display(e_display_normal);
 
       m_pwindow->create_main_window();
 
@@ -74,7 +75,6 @@ namespace app_app
 
          m_pwindow->start_layout();
 
-         m_pwindow->display(e_display_normal);
 
     //     m_pwindow->place(rectWindow);
 

@@ -4360,7 +4360,7 @@ payload::operator block ()
    if (get_type() != e_type_memory)
    {
 
-      __throw(exception::exception(error_wrong_type));
+      __throw(exception::exception(nullptr, error_wrong_type));
 
    }
 

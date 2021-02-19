@@ -16,6 +16,10 @@ void draw2d_cairo_factory_exchange(::factory_map * pfactorymap)
    create_factory < ::draw2d_cairo::region, ::draw2d::region >();
    create_factory < ::draw2d_cairo::font, ::write_text::font >();
    create_factory < ::draw2d_cairo::path, ::draw2d::path >();
+
+   create_factory < ::draw2d_cairo::draw2d, ::draw2d::draw2d >();
+
+
 }
 
 

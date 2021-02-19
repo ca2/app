@@ -38,7 +38,12 @@
 #define STATUS_SUCCESS 0
 #define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
 #endif
-//#include <time.h>
+#include <time.h>
+
+using DWORD = unsigned int;
+using LPDWORD = DWORD *;
+
+using ULONGLONG = unsigned long int;
 
 
 #define server_start_time 0
@@ -77,8 +82,21 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 #endif*/
 
 
+typedef short CSHORT;
+typedef CSHORT *PCSHORT;
 
 
+typedef struct _TIME_FIELDS
+{
+   CSHORT Year;
+   CSHORT Month;
+   CSHORT Day;
+   CSHORT Hour;
+   CSHORT Minute;
+   CSHORT Second;
+   CSHORT Milliseconds;
+   CSHORT Weekday;
+} TIME_FIELDS, *PTIME_FIELDS;
 //#ifdef _UWP
 //#define STATUS_SUCCESS 0
 //#define STATUS_PRIVILEGE_NOT_HELD 1
@@ -90,6 +108,37 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 ////#include "ca/ca/ca_mutex.h"
 ////#include "ca/ca/ca_synch_lock.h"
 
+/*
+ * RTL_SYSTEM_TIME and RTL_TIME_ZONE_INFORMATION are the same as
+ * the SYSTEMTIME and TIME_ZONE_INFORMATION structures defined
+ * in winbase.h, however we need to define them separately so
+ * winternl.h doesn't depend on winbase.h.  They are used by
+ * RtlQueryTimeZoneInformation and RtlSetTimeZoneInformation.
+ * The names are guessed; if anybody knows the real names, let me know.
+ */
+typedef struct _RTL_SYSTEM_TIME
+{
+   ::u16 wYear;
+   ::u16 wMonth;
+   ::u16 wDayOfWeek;
+   ::u16 wDay;
+   ::u16 wHour;
+   ::u16 wMinute;
+   ::u16 wSecond;
+   ::u16 wMilliseconds;
+} RTL_SYSTEM_TIME, *PRTL_SYSTEM_TIME;
+
+
+typedef struct _RTL_TIME_ZONE_INFORMATION
+{
+   ::i32 Bias;
+   char StandardName[64];
+   RTL_SYSTEM_TIME StandardDate;
+   ::i32 StandardBias;
+   char DaylightName[64];
+   RTL_SYSTEM_TIME DaylightDate;
+   ::i32 DaylightBias;
+} RTL_TIME_ZONE_INFORMATION, *PRTL_TIME_ZONE_INFORMATION;
 
 static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
@@ -148,7 +197,7 @@ static inline i32 IsLeapYear(i32 Year)
  *   Nothing.
  */
 CLASS_DECL_ACME void WINAPI RtlTimeToTimeFields(
-   const LARGE_INTEGER *liTime,
+   const u64 *liTime,
    PTIME_FIELDS TimeFields)
 {
    i32 SecondsInDay;
@@ -158,8 +207,8 @@ CLASS_DECL_ACME void WINAPI RtlTimeToTimeFields(
 
    /* Extract millisecond from time and convert time into seconds */
    TimeFields->Milliseconds =
-      (CSHORT) (( liTime->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
-   Time = liTime->QuadPart / TICKSPERSEC;
+      (CSHORT) (( *liTime % TICKSPERSEC) / TICKSPERMSEC);
+   Time = *liTime / TICKSPERSEC;
 
    /* The native version of RtlTimeToTimeFields does not take leap seconds
     * into account */
@@ -218,7 +267,7 @@ CLASS_DECL_ACME void WINAPI RtlTimeToTimeFields(
  */
 int_bool WINAPI RtlTimeFieldsToTime(
    PTIME_FIELDS tfTimeFields,
-   PLARGE_INTEGER Time)
+   u64 * Time)
 {
    i32 month, year, cleaps, day;
 
@@ -259,7 +308,7 @@ int_bool WINAPI RtlTimeFieldsToTime(
           584817 ;                      /* zero that on 1601-01-01 */
    /* done */
 
-   Time->QuadPart = (((((::i64) day * HOURSPERDAY +
+   *Time = (((((::i64) day * HOURSPERDAY +
                         tfTimeFields->Hour) * MINSPERHOUR +
                        tfTimeFields->Minute) * SECSPERMIN +
                       tfTimeFields->Second ) * 1000 +
@@ -321,16 +370,16 @@ int_bool WINAPI RtlTimeFieldsToTime(
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
-                                          PLARGE_INTEGER SystemTime)
+int WINAPI RtlLocalTimeToSystemTime( const ::u64 *LocalTime,
+                                          ::u64 * SystemTime)
 {
    ::i32 bias;
 
 //xxx    TRACE("(%point, %point_i32)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
-   SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
-   return STATUS_SUCCESS;
+   *SystemTime = *LocalTime + bias * (::i64)TICKSPERSEC;
+   return 0;
 }
 
 /******************************************************************************
@@ -346,16 +395,16 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
-                                          PLARGE_INTEGER LocalTime )
+int WINAPI RtlSystemTimeToLocalTime( const ::u64 *SystemTime,
+                                          ::u64 * LocalTime )
 {
    ::i32 bias;
 
 //xxx    TRACE("(%point, %point_i32)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
-   LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;
-   return STATUS_SUCCESS;
+   *LocalTime = *SystemTime - bias * (::i64)TICKSPERSEC;
+   return 0;
 }
 
 /******************************************************************************
@@ -371,9 +420,9 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Success: true.
  *   Failure: false, if the resulting value will not fit in a ::u32.
  */
-int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
+int_bool WINAPI RtlTimeToSecondsSince1970( const u64 *Time, LPDWORD Seconds )
 {
-   ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
+   ULONGLONG tmp = *Time;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
    if (tmp > 0xffffffff) return false;
    *Seconds = (::u32)tmp;
@@ -393,9 +442,9 @@ int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Se
  *   Success: true.
  *   Failure: false, if the resulting value will not fit in a ::u32.
  */
-int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
+int_bool WINAPI RtlTimeToSecondsSince1980( const u64 *Time, LPDWORD Seconds )
 {
-   ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
+   ULONGLONG tmp = *Time;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
    if (tmp > 0xffffffff) return false;
    *Seconds = (::u32)tmp;
@@ -414,11 +463,10 @@ int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Se
  * RETURNS
  *   Nothing.
  */
-void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
+void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, u64 *Time )
 {
    ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->u.LowPart  = (::u32)secs;
-   Time->u.HighPart = (::u32)(secs >> 32);
+   *Time = secs;
 }
 
 /******************************************************************************
@@ -433,11 +481,10 @@ void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
  * RETURNS
  *   Nothing.
  */
-void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
+void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, u64 *Time )
 {
    ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-   Time->u.LowPart  = (::u32)secs;
-   Time->u.HighPart = (::u32)(secs >> 32);
+   *Time = secs;
 }
 
 /******************************************************************************
@@ -452,13 +499,13 @@ void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
  * RETURNS
  *   Nothing.
  */
-void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
+void WINAPI RtlTimeToElapsedTimeFields( const u64 *Time, PTIME_FIELDS TimeFields )
 {
    ::i64 time;
    ::i32 rem;
 
-   time = Time->QuadPart / TICKSPERSEC;
-   TimeFields->Milliseconds = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
+   time = *Time / TICKSPERSEC;
+   TimeFields->Milliseconds = (CSHORT) ((*Time % TICKSPERSEC) / TICKSPERMSEC);
 
    /* time is now in seconds */
    TimeFields->Year  = 0;
@@ -537,18 +584,20 @@ struct timezone2
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-NTSTATUS WINAPI NtQuerySystemTime( PLARGE_INTEGER Time )
+int WINAPI NtQuerySystemTime( u64 * Time )
 {
 
    struct timeval now;
 
    gettimeofday( &now, 0 );
-   Time->QuadPart = now.tv_sec * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->QuadPart += now.tv_usec * 10;
+   *Time = now.tv_sec * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+   *Time += now.tv_usec * 10;
 
-   return STATUS_SUCCESS;
+   return 0;
 
 }
+
+#define STATUS_ACCESS_VIOLATION          (0xC0000005)
 
 /******************************************************************************
  *  NtQueryPerformanceCounter	[NTDLL.@]
@@ -558,9 +607,9 @@ NTSTATUS WINAPI NtQuerySystemTime( PLARGE_INTEGER Time )
  *  lower or higher than what Windows gives. Also too high counter values are
  *  reported to give problems.
  */
-NTSTATUS WINAPI NtQueryPerformanceCounter( PLARGE_INTEGER Counter, PLARGE_INTEGER Frequency )
+int WINAPI NtQueryPerformanceCounter( u64 * Counter, u64 * Frequency )
 {
-   LARGE_INTEGER now;
+   u64 now;
 
    if (!Counter) return STATUS_ACCESS_VIOLATION;
 
@@ -568,9 +617,9 @@ NTSTATUS WINAPI NtQueryPerformanceCounter( PLARGE_INTEGER Counter, PLARGE_INTEGE
     * to one of 1.193182 MHz, with some care for arithmetic
     * overflow and good accuracy (21/176 = 0.11931818) */
    NtQuerySystemTime( &now );
-   Counter->QuadPart = ((now.QuadPart - server_start_time) * 21) / 176;
-   if (Frequency) Frequency->QuadPart = 1193182;
-   return STATUS_SUCCESS;
+   *Counter = ((now - server_start_time) * 21) / 176;
+   if (Frequency) *Frequency = 1193182;
+   return 0;
 }
 
 
@@ -578,12 +627,12 @@ NTSTATUS WINAPI NtQueryPerformanceCounter( PLARGE_INTEGER Counter, PLARGE_INTEGE
  * NtGetTickCount   (NTDLL.@)
  * ZwGetTickCount   (NTDLL.@)
  */
-WINULONG WINAPI NtGetTickCount(void)
+ULONGLONG WINAPI NtGetTickCount(void)
 {
-   LARGE_INTEGER now;
+   u64 now;
 
    NtQuerySystemTime( &now );
-   return (CSHORT) ((now.QuadPart - server_start_time) / 10000);
+   return (CSHORT) ((now - server_start_time) / 10000);
 }
 
 /* calculate the mday of dst machine date, so that for instance Sun 5 Oct 2007
@@ -838,11 +887,11 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-NTSTATUS WINAPI RtlQueryTimeZoneInformation(RTL_TIME_ZONE_INFORMATION *tzinfo)
+int WINAPI RtlQueryTimeZoneInformation(RTL_TIME_ZONE_INFORMATION *tzinfo)
 {
    init_tz_info( tzinfo );
 
-   return STATUS_SUCCESS;
+   return 0;
 }
 
 /***********************************************************************
@@ -858,7 +907,8 @@ NTSTATUS WINAPI RtlQueryTimeZoneInformation(RTL_TIME_ZONE_INFORMATION *tzinfo)
  *   Failure: An NTSTATUS error code indicating the problem.
  *
  */
-NTSTATUS WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzinfo )
+#define STATUS_PRIVILEGE_NOT_HELD        (0xC0000061)
+int WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzinfo )
 {
    return STATUS_PRIVILEGE_NOT_HELD;
 }
@@ -877,13 +927,18 @@ NTSTATUS WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzin
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
+
+
+#define STATUS_INVALID_PARAMETER         (0xC000000D)
+
+
 #ifndef _UWP
-NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
+int WINAPI NtSetSystemTime(const u64 *NewTime, u64 *OldTime)
 {
    struct timeval tv;
    //time_t tm_t;
    ::u32 sec, oldsec;
-   LARGE_INTEGER tm;
+   u64 tm;
 
    /* Return the old time if necessary */
    if (!OldTime) OldTime = &tm;
@@ -899,7 +954,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 
 #ifdef HAVE_SETTIMEOFDAY
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
-      return STATUS_SUCCESS;
+      return 0;
    //tm_t = sec;
    // xxx ERR("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
@@ -918,19 +973,12 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_ACME int_bool WINAPI LocalFileTimeToFileTime( const filetime_t *localft, filetime_t * utcft )
 {
-   NTSTATUS status;
-   LARGE_INTEGER local, utc;
 
-   local.u.LowPart = localft->dwLowDateTime;
-   local.u.HighPart = localft->dwHighDateTime;
-   if (!(status = RtlLocalTimeToSystemTime( &local, &utc )))
-   {
-      utcft->dwLowDateTime = utc.u.LowPart;
-      utcft->dwHighDateTime = utc.u.HighPart;
-   }
-   else
+   int status;
+
+   if (status = RtlLocalTimeToSystemTime( localft, utcft ))
    {
       //set_last_error( RtlNtStatusToDosError(status) );
       set_last_status(1);
@@ -943,19 +991,10 @@ CLASS_DECL_ACME int_bool WINAPI LocalFileTimeToFileTime( const FILETIME *localft
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_ACME int_bool WINAPI FileTimeToLocalFileTime( const filetime_t *utcft, filetime_t * localft )
 {
-   NTSTATUS status;
-   LARGE_INTEGER local, utc;
-
-   utc.u.LowPart = utcft->dwLowDateTime;
-   utc.u.HighPart = utcft->dwHighDateTime;
-   if (!(status = RtlSystemTimeToLocalTime( &utc, &local )))
-   {
-      localft->dwLowDateTime = local.u.LowPart;
-      localft->dwHighDateTime = local.u.HighPart;
-   }
-   else
+   int status;
+   if (status = RtlSystemTimeToLocalTime( utcft, localft ))
    {
       //set_last_error( RtlNtStatusToDosError(status) );
       set_last_status( 1);
@@ -971,14 +1010,12 @@ CLASS_DECL_ACME int_bool WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, 
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-int_bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
+int_bool WINAPI FileTimeToSystemTime( const filetime_t *ft, system_time_t * syst )
 {
-   TIME_FIELDS tf;
-   LARGE_INTEGER t;
 
-   t.u.LowPart = ft->dwLowDateTime;
-   t.u.HighPart = ft->dwHighDateTime;
-   RtlTimeToTimeFields(&t, &tf);
+   TIME_FIELDS tf;
+
+   RtlTimeToTimeFields(ft, &tf);
 
    syst->wYear = tf.Year;
    syst->wMonth = tf.Month;
@@ -995,10 +1032,10 @@ int_bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
+int_bool WINAPI SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
 {
    TIME_FIELDS tf;
-   LARGE_INTEGER t;
+   u64 t;
 
    tf.Year = syst->wYear;
    tf.Month = syst->wMonth;
@@ -1017,8 +1054,7 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 
    }
 
-   ft->dwLowDateTime = t.u.LowPart;
-   ft->dwHighDateTime = t.u.HighPart;
+   *ft = t;
    return true;
 }
 
@@ -1032,12 +1068,11 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *   Nothing.
  */
 CLASS_DECL_ACME void GetSystemTimeAsFileTime(
-   LPFILETIME time) /* [out] Destination for the current utc time */
+   filetime_t * time) /* [out] Destination for the current utc time */
 {
-   LARGE_INTEGER t;
+   u64 t;
    NtQuerySystemTime( &t );
-   time->dwLowDateTime = t.u.LowPart;
-   time->dwHighDateTime = t.u.HighPart;
+   *time = t;
 }
 
 
@@ -1053,57 +1088,238 @@ CLASS_DECL_ACME void GetSystemTimeAsFileTime(
  * RETURNS
  *  Nothing.
  */
-CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
+CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 {
-   FILETIME ft;
-   LARGE_INTEGER t;
+   filetime_t ft;
+   u64 t;
 
    NtQuerySystemTime(&t);
-   ft.dwLowDateTime = t.u.LowPart;
-   ft.dwHighDateTime = t.u.HighPart;
-   FileTimeToSystemTime(&ft, systime);
+   //ft.dwLowDateTime = t.u.LowPart;
+   //ft.dwHighDateTime = t.u.HighPart;
+   FileTimeToSystemTime(&t, systime);
 }
 
 
 #endif // !defined(_UWP)
 
 
-::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+
+
+
+namespace node_ansios
 {
 
-   SYSTEMTIME systemtime;
 
-   if (!FileTimeToSystemTime((FILETIME *) &filetime, &systemtime))
+
+
+   ::e_status node::get_system_time(system_time_t * psystemtime)
    {
 
-      time = 0;
+      GetSystemTime(psystemtime);
 
-      return ::error_failed;
+      return success;
 
    }
 
-   struct tm tm = {};
 
-   tm.tm_hour = systemtime.wHour;
-   tm.tm_min = systemtime.wMinute;
-   tm.tm_sec = systemtime.wSecond;
-   tm.tm_mon = systemtime.wMonth;
-   tm.tm_mday = systemtime.wDay;
-   tm.tm_year = systemtime.wYear;
+   double node::get_time_zone()
+   {
 
-#ifdef WINDOWS
+      return TIME_GetBias() / 3'600.0;
 
-   time = _mkgmtime64(&tm);
+   }
 
-#else
 
-   time = timegm(&tm);
+   time_t node::system_time_to_time(const system_time_t & systemtime, i32 nDST)
+   {
 
-#endif
+      struct tm tm;
 
-   return ::success;
+      system_time_to_tm(&tm, &systemtime);
 
-}
+//
+//      ::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+//      {
+//
+//         system_time_t systemtime;
+//
+//         if (!FileTimeToSystemTime(&filetime, &systemtime))
+//         {
+//
+//            time = 0;
+//
+//            return ::error_failed;
+//
+//         }
+//
+//         struct tm tm = {};
+//
+//         tm.tm_hour = systemtime.wHour;
+//         tm.tm_min = systemtime.wMinute;
+//         tm.tm_sec = systemtime.wSecond;
+//         tm.tm_mon = systemtime.wMonth;
+//         tm.tm_mday = systemtime.wDay;
+//         tm.tm_year = systemtime.wYear;
+//
+////#ifdef WINDOWS
+//
+//  //       time = _mkgmtime64(&tm);
+//
+////#else
+
+      auto time = timegm(&tm);
+
+//#endif
+
+      return time;
+
+      //}
+
+
+   }
+
+
+   ::e_status node::system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
+   {
+
+      ptm->tm_hour   = psystemtime->wHour;
+      ptm->tm_min    = psystemtime->wMinute;
+      ptm->tm_sec    = psystemtime->wSecond;
+      ptm->tm_mon    = psystemtime->wMonth;
+      ptm->tm_mday   = psystemtime->wDay;
+      ptm->tm_year   = psystemtime->wYear;
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
+   {
+
+      psystemtime->wHour      = ptm->tm_hour    ;
+      psystemtime->wMinute    = ptm->tm_min     ;
+      psystemtime->wSecond    = ptm->tm_sec     ;
+      psystemtime->wMonth     = ptm->tm_mon     ;
+      psystemtime->wDay       = ptm->tm_mday    ;
+      psystemtime->wYear      = ptm->tm_year    ;
+
+      return ::success;
+
+   }
+
+
+   time_t node::file_time_to_time(const filetime & filetime, i32 nDST)
+   {
+
+      system_time_t systemtime;
+
+      file_time_to_system_time(&systemtime, &filetime);
+
+      struct tm tm;
+
+      system_time_to_tm(&tm, &systemtime);
+
+      auto time = timegm(&tm);
+
+      return time;
+
+   }
+
+
+   system_time_t node::time_to_system_time(const ::datetime::time & time)
+   {
+
+      struct tm tm;
+
+      gmtime_r(&time.m_time, &tm);
+
+      system_time_t systemtime;
+
+      tm_to_system_time(&systemtime, &tm);
+
+      return systemtime;
+
+   }
+
+
+   ::e_status node::get_system_time_as_file_time(filetime * pfiletime)
+   {
+
+      return ::acme::node::get_system_time_as_file_time(pfiletime);
+
+   }
+
+
+   ::e_status node::system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime)
+   {
+
+      if(!SystemTimeToFileTime(psystemtime, &pfiletime->m_filetime))
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime)
+   {
+
+      if(!FileTimeToSystemTime(&pfiletime->m_filetime, psystemtime))
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::file_time_to_local_file_time(filetime * pfiletimeLocal, const filetime * pfiletime)
+   {
+
+      if(!FileTimeToLocalFileTime(&pfiletime->m_filetime, &pfiletimeLocal->m_filetime))
+      {
+
+         return error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::is_valid_filetime(const filetime & filetime)
+   {
+
+
+
+      return ::success;
+
+
+   }
+
+
+   filetime node::get_filetime_now()
+   {
+
+      filetime filetime;
+
+      GetSystemTimeAsFileTime(&filetime.m_filetime);
+
+      return filetime;
+
+   }
+
+
+} // namespace node_ansios
 
 
 

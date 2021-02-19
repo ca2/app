@@ -170,7 +170,7 @@ namespace acme
    filetime node::get_filetime_now()
    {
 
-      filetime_t filetime = {};
+      filetime filetime;
 
       auto pnode = Node;
 

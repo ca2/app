@@ -74,6 +74,8 @@ namespace user
 
       //#endif
 
+      virtual ::e_status destroy_notify_icon();
+
       bool modify_icon(::windowing::icon * picon);
 
       virtual bool create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);

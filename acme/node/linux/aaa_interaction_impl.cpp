@@ -94,17 +94,6 @@ namespace linux
 
    i64 g_iMouseMove = 0;
 
-   class x11data :
-      virtual public matter
-   {
-   public:
-
-      XWindowAttributes             m_attr;
-      XVisualInfo                   m_visualinfo;
-      GdkWindow *                   m_pgdkwindow;
-
-   };
-
 
    interaction_impl::interaction_impl()
    {

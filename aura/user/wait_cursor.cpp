@@ -11,7 +11,7 @@ wait_cursor::wait_cursor(::layered * pobjectContext)
    if (!estatus)
    {
 
-      throw ::exception::exception(estatus);
+      throw ::status_exception(estatus);
 
    }
 

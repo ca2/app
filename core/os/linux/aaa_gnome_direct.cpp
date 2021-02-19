@@ -3,8 +3,8 @@
 #include <limits.h>
 #include "__standard_type.h"
 #include "gnome.h"
-#include "gnome_gnome.h"
-#include "gnome_internal_glue.h"
+#include "gtk_things/gnome_gnome.h"
+#include "gtk_things/gnome_internal_glue.h"
 #include "aura/message/global.h"
 #include "aura/const/_const.h"
 #include "acme/const/id.h"

@@ -57,7 +57,7 @@ namespace acme
    bool node::_os_calc_app_dark_mode()
    {
 
-      return false;
+      return _os_calc_system_dark_mode();
 
    }
 
@@ -65,7 +65,7 @@ namespace acme
    bool node::_os_calc_system_dark_mode()
    {
 
-      return false;
+      return _os_calc_app_dark_mode();
 
    }
 
@@ -355,11 +355,11 @@ namespace acme
    }
 
 
-   void node::enum_display_monitors(::aura::session * psession)
-   {
-
-
-   }
+//   void node::enum_display_monitors(::aura::session * psession)
+//   {
+//
+//
+//   }
 
 
    void node::os_post_quit()
@@ -479,7 +479,35 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   ::e_status node::get_system_time_as_file_time(filetime * pfiletime)
+   {
+
+      system_time_t systemtime;
+
+      auto estatus = get_system_time(&systemtime);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime)
    {
 
       return ::error_interface_only;

@@ -9,7 +9,7 @@ namespace windowing
    // X11 contribution : a display may contain more than one monitor
 
    class CLASS_DECL_AURA display :
-      virtual public ::matter
+      virtual public ::layered
    {
    public:
 
@@ -38,7 +38,7 @@ namespace windowing
 
       virtual float get_dpi();
 
-
+      virtual ::e_status open();
 
       virtual bool set_main_monitor(index iMonitor) ;
       //virtual ::count get_monitor_count() //;

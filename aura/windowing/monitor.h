@@ -27,6 +27,9 @@ namespace windowing
       virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
+      virtual bool get_monitor_rect(::rectangle_i32 * prectangle);
+
+
    };
 
 

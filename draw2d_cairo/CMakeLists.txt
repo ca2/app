@@ -31,6 +31,8 @@ list(APPEND draw2d_cairo_source
         brush.cpp
         brush.h
         cairo.cpp
+        draw2d.cpp
+        draw2d.h
         factory_exchange.cpp
         factory_exchange.h
         font.cpp

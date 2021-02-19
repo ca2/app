@@ -260,6 +260,13 @@ namespace windowing
    }
 
 
+   void windowing::message_loop_step()
+   {
+
+
+   }
+
+
     ::e_status windowing::defer_initialize_x11()
    {
 
@@ -363,13 +370,13 @@ namespace windowing
    //}
 
 
-   bool windowing::sn_start_context()
-   {
-
-
-      return false;
-
-   }
+//   bool windowing::sn_start_context()
+//   {
+//
+//
+//      return false;
+//
+//   }
 
    
    ::e_status windowing::release_mouse_capture()
@@ -567,6 +574,20 @@ namespace windowing
    }
 
 
+   void windowing::set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   {
+
+
+   }
+
+
+   void windowing::set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   {
+
+
+   }
+
+
    void windowing::initialize_keyboard(::windowing::keyboard * pkeyboard)
    {
 
@@ -599,7 +620,7 @@ namespace windowing
    ::e_status windowing::user_fork(const ::promise::routine & routine)
    {
 
-      __throw(interface_only_exception());
+      //__throw(interface_only_exception());
 
       return error_interface_only;
 
@@ -611,6 +632,8 @@ namespace windowing
 
 
    //}
+
+
 
 
    ::windowing::keyboard * windowing::keyboard()
@@ -650,6 +673,32 @@ namespace windowing
       return m_pkeyboard;
 
    }
+
+
+   void windowing::_main_loop()
+   {
+
+   }
+
+
+   void windowing::_message_handler(void * p)
+   {
+
+   }
+
+
+#ifdef LINUX
+
+
+   void windowing::_libsn_start_context()
+   {
+
+
+   }
+
+
+#endif
+
 
 
 } // namespace windowing

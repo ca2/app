@@ -47,6 +47,7 @@ public:
 #define LAYERED_TASK_POOL 5
 #define LAYERED_OS_USER_INTERACTION_IMPL 6
 #define LAYERED_IMPL 7
+#define LAYERED_X11 6
 
 
 class object;

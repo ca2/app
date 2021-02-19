@@ -27,6 +27,8 @@ namespace windowing
 
    }
 
+
+
    
    ::e_status display::initialize_display(::windowing::windowing * pwindowing)
    {
@@ -70,10 +72,19 @@ namespace windowing
    }
 
 
+
    float display::get_dpi()
    {
 
       return 96.0;
+
+   }
+
+
+   ::e_status display::open()
+   {
+
+      return ::success;
 
    }
 
@@ -130,44 +141,21 @@ namespace windowing
    ::index display::get_main_monitor(RECTANGLE_I32 * prectangle)
    {
 
-      return -1;
+      index iMainMonitor = 0;
 
-//      index iMainMonitor = 0;
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-//
-//      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-//      {
-//
-//         if (m_hmonitora[iMonitor] == hmonitorPrimary)
-//         {
-//
-//            iMainMonitor = iMonitor;
-//
-//            break;
-//
-//         }
-//
-//      }
-//
-//
-//#endif
-//
-//      if (prectangle != nullptr)
-//      {
-//
-//         if (!get_monitor_rect(iMainMonitor, prectangle))
-//         {
-//
-//            return -1;
-//
-//         }
-//
-//      }
-//
-//      return iMainMonitor;
+      if (prectangle != nullptr)
+      {
+
+         if (!get_monitor_rect(iMainMonitor, prectangle))
+         {
+
+            return -1;
+
+         }
+
+      }
+
+      return iMainMonitor;
 
    }
 
@@ -215,88 +203,28 @@ namespace windowing
    bool display::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
    {
 
-//#ifdef _UWP
-//
-//      return false;
-//
-//      //prectangle->left = 0;
-//
-//      //prectangle->top = 0;
-//
-//      //auto puserinteraction = __user_interaction(m_puiHost);
-//
-//      //prectangle->right = puserinteraction->layout().sketch().width();
-//
-//      //prectangle->bottom = puserinteraction->layout().sketch().height();
-//
-//      //return true;
-//
-//#elif MOBILE_PLATFORM
-//
-//      GetMainScreenRect(prectangle);
-//
-//      return true;
-//
-//#elif defined(WINDOWS_DESKTOP)
-//
-//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      *prectangle = m_monitorinfoa[iMonitor].rcMonitor;
-//
-//
-//#elif defined(_UWP)
-//
-//
-//      return false;
-//
-//
-//#elif defined(LINUX)
-//
-//      synchronization_lock synchronizationlock(mutex());
-//
-//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      *prectangle = m_rectaMonitor[iMonitor];
-//
-//
-//#elif defined(__APPLE__)
-//
-//      if (iMonitor < 0 || iMonitor >= get_monitor_count())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      GetScreenRect(prectangle, (int)iMonitor);
-//
-//
-//#else
-//
-//      prectangle->left = 0;
-//
-//      prectangle->top = 0;
-//
-//      prectangle->right = oslocal().m_iScreenWidth;
-//
-//      prectangle->bottom = oslocal().m_iScreenHeight;
-//
-//
-//#endif
-//
-//      return true;
+      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+      {
 
-      return false;
+         return false;
+
+      }
+
+      auto & pmonitor = m_monitora.element_at_grow(iMonitor);
+
+      if(!pmonitor)
+      {
+
+         __construct(pmonitor);
+
+         pmonitor->m_iIndex = iMonitor;
+
+      }
+
+      auto bOk = pmonitor->get_monitor_rect(prectangle);
+
+      return bOk;
+
 
    }
 

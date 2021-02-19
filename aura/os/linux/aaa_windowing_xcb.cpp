@@ -34,7 +34,7 @@ osdisplay_data * x11_main_display();
 oswindow _x11_get_active_window();
 
 
-bool x11_step();
+bool x11_runnable_step();
 
 
 message_queue * get_message_queue(ithread_t idthread, bool bCreate);
@@ -310,7 +310,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
       try
       {
 
-         if(!x11_step())
+         if(!x11_runnable_step())
          {
 
             break;
@@ -469,7 +469,7 @@ bool xcb_message_loop_step()
       try
       {
 
-         if(!x11_step())
+         if(!x11_runnable_step())
          {
 
             break;

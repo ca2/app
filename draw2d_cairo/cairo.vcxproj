@@ -931,6 +931,7 @@
   <ItemGroup>
     <ClInclude Include="bitmap.h" />
     <ClInclude Include="brush.h" />
+    <ClInclude Include="draw2d.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="framework.h" />
@@ -949,6 +950,7 @@
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="cairo.cpp" />
+    <ClCompile Include="draw2d.cpp" />
     <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="framework.cpp">

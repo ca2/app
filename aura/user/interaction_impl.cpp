@@ -4781,6 +4781,13 @@ namespace user
 
       }
 
+      if (eactivationOutput & e_activation_no_activate)
+      {
+
+         uFlags |= SWP_NOACTIVATE;
+
+      }
+
       bool bZ = zOutput.is_change_request();
 
       if (!bZ)
@@ -4819,6 +4826,9 @@ namespace user
          }
 
       }
+
+
+      bool bHasSetWindowPosition = false;
 
       if (shouldGetVisible
 #ifdef WINDOWS_DESKTOP
@@ -4877,7 +4887,7 @@ namespace user
 
 //#if !defined(_UWP) && !defined(ANDROID)
 
-         m_pwindow->set_window_position(
+         bHasSetWindowPosition = m_pwindow->set_window_position(
              zorderNew, 
              pointOutput.x, 
              pointOutput.y,
@@ -4907,7 +4917,9 @@ namespace user
 
       }
 
-      if (edisplayOutput != edisplayWindow)
+      if (edisplayOutput != edisplayWindow
+        && !::conditional(bLayered, bHasSetWindowPosition)
+        )
       {
 
 //#ifdef WINDOWS

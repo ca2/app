@@ -116,6 +116,18 @@ namespace windows
    }
 
 
+   string file_memory_map::calculate_path_from_name(const string & strName)
+   {
+
+      auto pathFolder = System.get_memory_map_base_folder_path();
+
+      auto path = pathFolder / (strName + ".filememorymap");
+
+      return path;
+
+   }
+
+
    bool file_memory_map::close()
    {
 

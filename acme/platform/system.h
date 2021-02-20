@@ -107,6 +107,9 @@ namespace acme
       virtual ::e_status message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
 
+      ::file::path get_memory_map_base_folder_path() const;
+
+
    };
 
 

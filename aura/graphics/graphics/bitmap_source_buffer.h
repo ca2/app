@@ -11,7 +11,7 @@ namespace graphics
    public:
 
 
-      file::memory_map              m_memorymap;
+      __pointer(file::memory_map)   m_pmemorymap;
       string                        m_strBitmapSource;
 
 

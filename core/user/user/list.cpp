@@ -1772,7 +1772,7 @@ namespace user
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = maximum(1, dHeight / m_dItemHeight);
+            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -2222,7 +2222,7 @@ namespace user
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = maximum(1, dHeight / m_dItemHeight);
+            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -2665,7 +2665,7 @@ namespace user
          if (dHeight != 0 && m_dItemHeight != 0)
          {
 
-            int iViewRowCount = maximum(1, dHeight / m_dItemHeight);
+            int iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
             int iColumn = (int) (pdrawitem->m_iItem / iViewRowCount);
 
@@ -5919,7 +5919,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      index iyScroll = pointOffset.y / maximum(1, m_dItemHeight);
+      index iyScroll = (index) ( pointOffset.y / maximum(1, m_dItemHeight));
 
       if (iItem < iyScroll)
       {

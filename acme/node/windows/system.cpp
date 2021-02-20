@@ -51,6 +51,18 @@ namespace acme
    }
 
 
+   ::file::path system::get_memory_map_base_folder_path() const
+   {
+      
+      auto path = get_known_folder(FOLDERID_RoamingAppData);
+
+      path /= "ca2/memory_map";
+
+      return path;
+
+   }
+
+
 } // namespace acme
 
 

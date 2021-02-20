@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_AURA draw2d  :
+   class CLASS_DECL_DRAW2D_CAIRO draw2d  :
       virtual public ::draw2d::draw2d
    {
    public:

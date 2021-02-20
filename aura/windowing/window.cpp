@@ -2387,7 +2387,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::window_show()
    {
 
-
+      
 
    }
 

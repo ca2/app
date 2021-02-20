@@ -1114,8 +1114,6 @@ namespace user
 
       auto psession = Session;
 
-
-
       INFO("_001OnKeyDown (1)");
 
       {

@@ -1678,7 +1678,7 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
    if(estyle & e_toolbar_item_style_separator)
    {
 
-      __throw(::exception::exception(::error_failed));
+      __throw(::status_exception(::error_failed));
 
    }
 

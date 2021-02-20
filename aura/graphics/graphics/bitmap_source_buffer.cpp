@@ -32,6 +32,15 @@ namespace graphics
 
       }
 
+      estatus = __construct(m_pmemorymap);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       if (m_strBitmapSource.is_empty())
       {
 
@@ -53,7 +62,7 @@ namespace graphics
 
       }
 
-      if (m_memorymap.is_mapped())
+      if (m_pmemorymap->is_mapped())
       {
 
          return;
@@ -68,7 +77,7 @@ namespace graphics
 
       strName.Format(szName, m_strBitmapSource.c_str());
 
-      m_memorymap.open_name(strName, false, true, true, 128_mb);
+      m_pmemorymap->open_name(strName, false, true, true, 128_mb);
 
    }
 
@@ -76,14 +85,14 @@ namespace graphics
    bool bitmap_source_buffer::ipc_copy(const pixmap * ppixmap)
    {
 
-      if (!m_memorymap.is_mapped())
+      if (!m_pmemorymap->is_mapped())
       {
 
          return false;
 
       }
 
-      void * pdata = m_memorymap.get_data();
+      void * pdata = m_pmemorymap->get_data();
 
       if (pdata == nullptr)
       {
@@ -92,7 +101,7 @@ namespace graphics
 
       }
 
-      synchronization_lock synchronizationlock(m_memorymap.mutex());
+      synchronization_lock synchronizationlock(m_pmemorymap->mutex());
 
       try
       {

@@ -5,6 +5,7 @@
 //#include "acme/node/windows/buffer.h"
 #include "acme/os/console.h"
 #include "console.h"
+#include "file_memory_map.h"
 
 
 
@@ -41,31 +42,31 @@
 void __node_acme_factory_exchange(::factory_map * pfactorymap)
 {
 
-   //create_factory < ::windows::dir_system, ::dir_system >();
-   //create_factory < ::windows::file_system, ::file_system >();
+   //pfactorymap->create_factory < ::windows::dir_system, ::dir_system >();
+   //pfactorymap->create_factory < ::windows::file_system, ::file_system >();
 
-   //create_factory < ::windows::dir_context, ::dir_context >();
-   //create_factory < ::windows::file_context, ::file_context >();
+   //pfactorymap->create_factory < ::windows::dir_context, ::dir_context >();
+   //pfactorymap->create_factory < ::windows::file_context, ::file_context >();
 
-   //create_factory < ::windows::stdio_file, ::file::text_file >();
-   create_factory < ::windows::file, ::file::file >();
-   //create_factory < ::windows::os_context, ::os_context >();
-   create_factory < ::windows::pipe, ::process::pipe >();
-   //create_factory < ::windows::promise::process, ::process::process >();
+   //pfactorymap->create_factory < ::windows::stdio_file, ::file::text_file >();
+   pfactorymap->create_factory < ::windows::file, ::file::file >();
+   //pfactorymap->create_factory < ::windows::os_context, ::os_context >();
+   pfactorymap->create_factory < ::windows::pipe, ::process::pipe >();
+   //pfactorymap->create_factory < ::windows::promise::process, ::process::process >();
 
-   create_factory < ::windows::console, ::console::console >();
-   //create_factory < ::windows::crypto, ::crypto::crypto >();
-   //create_factory < ::windows::ip_enum, ::net::ip_enum >();
+   pfactorymap->create_factory < ::windows::console, ::console::console >();
+   //pfactorymap->create_factory < ::windows::crypto, ::crypto::crypto >();
+   //pfactorymap->create_factory < ::windows::ip_enum, ::net::ip_enum >();
 
+   pfactorymap->create_factory < ::windows::file_memory_map, ::file::memory_map >();
+   //pfactorymap->create_factory < ::windows::buffer, ::graphics::graphics >();
+   //pfactorymap->create_factory < ::windows::interaction_impl, ::user::interaction_impl >();
 
-   //create_factory < ::windows::buffer, ::graphics::graphics >();
-   //create_factory < ::windows::interaction_impl, ::user::interaction_impl >();
+   //pfactorymap->create_factory < ::file::os_watcher, ::file::watcher >();
+   //pfactorymap->create_factory < ::file::os_watch, ::file::watch >();
 
-   //create_factory < ::file::os_watcher, ::file::watcher >();
-   //create_factory < ::file::os_watch, ::file::watch >();
-
-   //create_factory < ::windows::copydesk, ::user::copydesk >();
-   //create_factory < ::windows::shell, ::user::shell >();
+   //pfactorymap->create_factory < ::windows::copydesk, ::user::copydesk >();
+   //pfactorymap->create_factory < ::windows::shell, ::user::shell >();
 
 
 }

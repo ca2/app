@@ -1206,7 +1206,7 @@ namespace windows
       {
 
 
-         if (!iSkip && !bSkip || iSkip == DEFAULT_SE_EXCEPTION_callstack_SKIP)
+         if (!iSkip && !bSkip || iSkip == DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP)
          {
 
             iLine = 0;
@@ -1220,7 +1220,7 @@ namespace windows
 
             }
 
-            if (iSkip == DEFAULT_SE_EXCEPTION_callstack_SKIP)
+            if (iSkip == DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP)
             {
 
                if (::str::find_ci("KiUserExceptionDispatcher", psz) >= 0)
@@ -1233,7 +1233,7 @@ namespace windows
                continue;
 
             }
-            else if (uiSkipStart == DEFAULT_SE_EXCEPTION_callstack_SKIP)
+            else if (uiSkipStart == DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP)
             {
 
                if (iLine == 0)

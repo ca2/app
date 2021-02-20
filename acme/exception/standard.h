@@ -27,11 +27,11 @@
 
 #if OSBIT == 64
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 3000
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
 
 #else
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 0
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
 
 #endif
 
@@ -42,11 +42,11 @@
 
 #if OSBIT == 64
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 3000
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
 
 #else
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 0
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
 
 #endif
 
@@ -75,11 +75,11 @@
 
 #if OSBIT == 64
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 3000
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
 
 #else
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 0
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
 
 #endif
 
@@ -91,11 +91,11 @@
 
 #if OSBIT == 64
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 3000
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
 
 #else
 
-#define DEFAULT_SE_EXCEPTION_callstack_SKIP 0
+#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
 
 #endif
 
@@ -145,7 +145,7 @@ public:
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
 
-   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_callstack_SKIP, void * caller_address = nullptr) :
+   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP, void * caller_address = nullptr) :
       exception(nullptr, error_exception, iSkip, caller_address),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))

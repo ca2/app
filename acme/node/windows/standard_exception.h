@@ -49,7 +49,7 @@ namespace windows
 
 
       standard_exception(EXCEPTION_POINTERS * ppointers) :
-         exception(error_exception, DEFAULT_SE_EXCEPTION_callstack_SKIP),
+         exception(nullptr, error_exception, DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP),
          m_ppointers(ppointers)
       {
 
@@ -60,7 +60,7 @@ namespace windows
 
 
       //standard_exception(EXCEPTION_POINTERS * ppointers) :
-      //   exception(error_exception, DEFAULT_SE_EXCEPTION_callstack_SKIP),
+      //   exception(error_exception, DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP),
       //   m_ppointers(ppointers)
       //{
 
@@ -71,7 +71,7 @@ namespace windows
       static void * siginfodup(void * psiginfo);
       static void siginfofree(void * psiginfo);
 
-      standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_callstack_SKIP, void * caller_address = nullptr) :
+      standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP, void * caller_address = nullptr) :
          exception(error_exception, iSkip, caller_address),
          m_iSignal(iSignal),
          m_psiginfo(siginfodup(psiginfo))

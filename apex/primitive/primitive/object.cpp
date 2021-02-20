@@ -9,7 +9,7 @@
 #ifdef DEBUG
 
 
-CLASS_DECL_APEX void object_on_add_composite(const matter* pbase);
+CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
 
 
 #endif
@@ -42,7 +42,7 @@ object::~object()
 i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_increment(&m_countReference);
+   auto c = m_countReference++;
 
 #if OBJ_REF_DBG
 
@@ -58,7 +58,7 @@ i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_decrement(&m_countReference);
+   auto c = m_countReference--;
 
 #if OBJ_REF_DBG
 
@@ -119,7 +119,7 @@ void object::to_string(const class string_exchange & str) const
 ::e_status object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_pcompositea.defer_create_new();
 
@@ -142,7 +142,7 @@ void object::to_string(const class string_exchange & str) const
 ::e_status object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_preferencea.defer_create_new();
 
@@ -175,7 +175,7 @@ void object::to_string(const class string_exchange & str) const
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pcompositea)
    {
@@ -204,7 +204,7 @@ void object::to_string(const class string_exchange & str) const
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pcompositea)
    {
@@ -212,11 +212,11 @@ void object::to_string(const class string_exchange & str) const
       if(m_pcompositea->contains(pmatter))
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          pmatter->finalize();
 
-         sl.lock();
+         synchronizationlock.lock();
 
          if (m_pcompositea)
          {
@@ -246,7 +246,7 @@ void object::to_string(const class string_exchange & str) const
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_preferencea)
    {
@@ -366,7 +366,7 @@ void object::call_routine(const ::id & id)
    if(proutinea)
    {
 
-      proutinea->pred_each([](auto& procedure) { procedure(); });
+      proutinea->predicate_each([](auto& procedure) { procedure(); });
 
    }
 
@@ -381,7 +381,7 @@ void object::send_payload(const ::id & idProcess, const ::payload & payload)
    if(pprocessa)
    {
 
-      pprocessa->pred_each([&payload](auto & process) { process(payload); });
+      pprocessa->predicate_each([&payload](auto & process) { process(payload); });
 
    }
 
@@ -662,7 +662,7 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
 
       string strTag(pszTag);
 
-      pred_Sleep(duration,
+      predicate_Sleep(duration,
                  [this, strTag]()
       {
 
@@ -844,7 +844,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 
@@ -853,7 +853,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 
@@ -965,7 +965,7 @@ void object::on_finish()
 
    finalize();
 
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 
    //if (m_pcompositea)
    //{
@@ -981,11 +981,11 @@ void object::on_finish()
    //         if (pcontextobject && pcontextobject->m_pnotifya)
    //         {
 
-   //            sl.unlock();
+   //            synchronizationlock.unlock();
 
    //            pcontextobject->m_pnotifya->remove(this);
 
-   //            sl.lock();
+   //            synchronizationlock.lock();
 
    //         }
 
@@ -1053,7 +1053,7 @@ void object::copy_from(const object & o)
 
    ::e_status estatus = ::success;
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string strTypeName = type_name();
 
@@ -1106,11 +1106,11 @@ void object::copy_from(const object & o)
             }
          }
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          auto estatusComposite = pcomposite->finish(pcontextobjectFinish);
 
-         sl.lock();
+         synchronizationlock.lock();
 
          if (estatusComposite == ::error_pending)
          {
@@ -1240,7 +1240,7 @@ void object::copy_from(const object & o)
 
       //      auto & ptask = m_ptaska->element_at(iTask);
 
-      //      sl.unlock();
+      //      synchronizationlock.unlock();
 
       //      auto estatus = ptask->finish();
 
@@ -1251,7 +1251,7 @@ void object::copy_from(const object & o)
 
       //      }
 
-      //      sl.lock();
+      //      synchronizationlock.lock();
 
       //      if (countTask != m_ptaska->get_count())
       //      {
@@ -1360,7 +1360,7 @@ void object::copy_from(const object & o)
 void object::release_references()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    while(m_pcompositea && m_pcompositea->has_element())
    {
@@ -1369,7 +1369,7 @@ void object::release_references()
 
       m_pcompositea->remove_last();
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       try
       {
@@ -1382,7 +1382,7 @@ void object::release_references()
 
       }
 
-      sl.lock();
+      synchronizationlock.lock();
 
    }
 
@@ -1416,7 +1416,7 @@ bool object::___is_reference(::matter * pmatter) const
 
    }
 
-   sync_lock sl(get_children_mutex());
+   synchronization_lock synchronizationlock(get_children_mutex());
 
    if (!m_preferencea)
    {
@@ -1710,7 +1710,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 //::index object::task_add(::task * ptask)
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   return meta()->task_add(this, ptask);
 //
@@ -1720,7 +1720,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 void object::task_remove(::task* ptask)
 {
 
-   //sync_lock sl(mutex());
+   //synchronization_lock synchronizationlock(mutex());
 
    //if (m_pmeta)
    //{
@@ -1740,7 +1740,7 @@ void object::task_remove(::task* ptask)
 
          string strThreadChild = ptask->type_name();
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (::is_null(ptask))
          {
@@ -1749,7 +1749,7 @@ void object::task_remove(::task* ptask)
 
          }
 
-         sync_lock slChild(ptask->mutex());
+         synchronization_lock slChild(ptask->mutex());
 
          if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
          {
@@ -1805,7 +1805,7 @@ void object::task_remove(::task* ptask)
 //void object::task_remove_all()
 //{
 //
-//   /*sync_lock sl(mutex());
+//   /*synchronization_lock synchronizationlock(mutex());
 //
 //   if (m_pmeta)
 //   {
@@ -1819,7 +1819,7 @@ void object::task_remove(::task* ptask)
 //::task_array * object::task_array_get()
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if (!m_pmeta)
 //   {
@@ -1836,7 +1836,7 @@ void object::task_remove(::task* ptask)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if (!m_pmeta)
 //   {
@@ -1853,7 +1853,7 @@ void object::task_remove(::task* ptask)
 //bool object::task_is_empty() const
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   auto pthreada = task_array_get();
 //
@@ -2110,10 +2110,10 @@ void debug_context_object(::layered * pobjectContext)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const matter * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 {
 
-   string strType = ::str::demangle(pbase->type_name());
+   string strType = ::str::demangle(pusermessage->type_name());
 
    if (strType.contains_ci("user::thread"))
    {
@@ -2227,7 +2227,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 ::e_status object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   ::e_status estatus = Application.message_box(pszMessage, pszTitle, emessagebox, process);
+   ::e_status estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
 
    //auto psession = get_context_session();
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -150,7 +148,7 @@ namespace user
 
       {
 
-         int iSize = min(15 * w / 15, 15 * h / 15);
+         int iSize = minimum(15 * w / 15, 15 * h / 15);
 
          rectCheckBox.left = 0;
          rectCheckBox.top = 0;
@@ -164,20 +162,20 @@ namespace user
          if (echeck == ::check_tristate)
          {
 
-            pgraphics->fill_rect(rectCheckBox, ARGB(255, 220, 220, 220));
+            pgraphics->fill_rectangle(rectCheckBox, argb(255, 220, 220, 220));
 
          }
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_rect(rectCheckBox, ARGB(255, 60, 120, 200));
+            pgraphics->draw_rectangle(rectCheckBox, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_rect(rectCheckBox, ARGB(255, 128, 128, 128));
+            pgraphics->draw_rectangle(rectCheckBox, argb(255, 128, 128, 128));
 
          }
 
@@ -210,13 +208,13 @@ namespace user
          if (drawcontext.m_bListItemHover)
          {
 
-            crText = ARGB(255, 0, 0, 0);
+            crText = argb(255, 0, 0, 0);
 
          }
          else
          {
 
-            crText = ARGB(255, 0, 0, 0);
+            crText = argb(255, 0, 0, 0);
 
          }
 
@@ -334,13 +332,13 @@ namespace user
 
       ::draw2d::brush_pointer br1(e_create);
 
-      point1->create_solid(2.0, ARGB(255, 0, 0, 0));
+      point1->create_solid(2.0, argb(255, 0, 0, 0));
 
-      p0->create_solid(2.0, ARGB(255, 90, 150, 255));
+      p0->create_solid(2.0, argb(255, 90, 150, 255));
 
       point1->m_ealign = draw2d::pen::e_align_center;
 
-      br1->create_solid(ARGB(255, 90, 150, 255));
+      br1->create_solid(argb(255, 90, 150, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -364,7 +362,7 @@ namespace user
 
          }
 
-         color32_t cr = ARGB(255, 255, 255, 255);
+         color32_t cr = argb(255, 255, 255, 255);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -392,7 +390,7 @@ namespace user
 
          pgraphics->path(point);
 
-         br->create_solid(ARGB(255,
+         br->create_solid(argb(255,
                                (byte)((double) colorref_get_r_value(cr) * dRate),
                                (byte)((double) colorref_get_g_value(cr) * dRate),
                                (byte)((double) colorref_get_b_value(cr) * dRate)));
@@ -407,7 +405,7 @@ namespace user
 
          byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
 
-         color32_t crP1 = ARGB(bAlphaP1, 0, 0, 0);
+         color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
 
          point1->create_solid(2.0, crP1);
 
@@ -433,13 +431,13 @@ namespace user
 
             ::draw2d::brush_pointer br(e_create);
 
-            br->create_solid(ARGB(255, 0, 0, 0));
+            br->create_solid(argb(255, 0, 0, 0));
 
             pgraphics->set(br);
 
             pgraphics->fill_ellipse(rectEllipse);
 
-            point1->create_solid(2.0, ARGB(255, 0, 0, 0));
+            point1->create_solid(2.0, argb(255, 0, 0, 0));
 
             pgraphics->set(point1);
 
@@ -464,7 +462,7 @@ namespace user
 
             ::draw2d::brush_pointer br(e_create);
 
-            br->create_solid(ARGB(255, 255, 255, 255));
+            br->create_solid(argb(255, 255, 255, 255));
 
             pgraphics->set(br);
 
@@ -484,7 +482,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      int iMin = max(rectClient.min_dim() -1, 1);
+      int iMin = maximum(rectClient.min_dim() -1, 1);
 
       ::rect rectCheckBox;
       rectCheckBox.left = 1;
@@ -492,25 +490,25 @@ namespace user
       rectCheckBox.right = iMin + 1;
       rectCheckBox.bottom = iMin + 1;
 
-      color32_t crPen = ARGB(255, 0, 0, 0);
+      color32_t crPen = argb(255, 0, 0, 0);
       color32_t crBrush;
 
       if (echeck() == ::check_checked)
       {
 
-         crBrush = ARGB(255, 100, 220, 120);
+         crBrush = argb(255, 100, 220, 120);
 
       }
       else if (echeck() == ::check_unchecked)
       {
 
-         crBrush = ARGB(255, 220, 220, 100);
+         crBrush = argb(255, 220, 220, 100);
 
       }
       else
       {
 
-         crBrush = ARGB(255, 128, 128, 128);
+         crBrush = argb(255, 128, 128, 128);
 
       }
 
@@ -527,12 +525,12 @@ namespace user
       pgraphics->set(brush);
 
       pgraphics->ellipse(rectCheckBox);
-      //   pgraphics->draw3d_rect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+      //   pgraphics->draw3d_rect(rectCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   if (m_echeck == check_tristate
       //      || m_echeck == check_checked)
       //   {
       //      ::draw2d::pen_pointer pen(e_create);
-      //      pen->create_solid(1, m_echeck == check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+      //      pen->create_solid(1, m_echeck == check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(pen);
       //      pgraphics->move_to(2, 8);
       //      pgraphics->line_to(6, 12);
@@ -604,7 +602,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_space)
+      if(pkey->m_ekey == ::user::e_key_space)
       {
 
          _001ToggleCheck(::e_source_user);

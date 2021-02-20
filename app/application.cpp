@@ -1,6 +1,4 @@
 #include "framework.h"
-#define NO_IMAGING
-#include "aura/application.h"
 #include "aura/update.h"
 
 
@@ -18,6 +16,10 @@ namespace app_app
       m_strBaseSupportId = "app_app";
 
       m_bLicense = false;
+
+      m_bImaging = false;
+
+      m_bWriteText = false;
 
    }
 
@@ -60,9 +62,10 @@ namespace app_app
 
       __compose_new(m_pwindow);
 
-      //::rectangle_i32 rectWindow;
+      //rectangle_i32 rectWindow;
 
       //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
+      m_pwindow->display(e_display_normal);
 
       m_pwindow->create_main_window();
 
@@ -72,7 +75,6 @@ namespace app_app
 
          m_pwindow->start_layout();
 
-         m_pwindow->display(e_display_normal);
 
     //     m_pwindow->place(rectWindow);
 
@@ -112,10 +114,7 @@ namespace app_app
 
 #endif
 
-
-   __namespace_application_factory("app/app");
-
-
+  
 } // namespace app_app
 
 

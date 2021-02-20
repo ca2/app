@@ -97,7 +97,7 @@ void html_view::_001OnSetCursor(::message::message * pmessage)
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   pmouse->m_ecursor = cursor_arrow;
+   pmouse->m_ecursor = e_cursor_arrow;
 
    pmessage->previous();
 

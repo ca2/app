@@ -327,7 +327,7 @@ namespace aura
 
       virtual string get_mutex_name_gen() override;
 
-      //virtual ::user::interaction * user_interaction_from_oswindow(oswindow oswindow);
+      //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
       //virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
@@ -493,7 +493,7 @@ namespace aura
       //virtual ::file::path full_process_path(::file::path path);
 
       //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void ShowWaitCursor(bool bShow = true) override;
+      //virtual void show_wait_cursor(bool bShow = true) override;
 
 
 
@@ -509,7 +509,7 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      virtual bool on_application_menu_action(const char * pszCommand) override;
+      virtual bool on_application_menu_action(const char * pszCommand);
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -683,9 +683,9 @@ namespace aura
       virtual ::e_status     call_request(::create * pcreate) override;
 
 
-      //virtual void process_message(::message::base * base) override;
+      //virtual void process_message(::user::message * base) override;
 
-      //virtual void message_handler(::message::base * pbase) override;
+      //virtual void message_handler(::user::message * pusermessage) override;
 
 
 
@@ -789,7 +789,7 @@ namespace aura
 
       virtual ::user::interaction * main_window();
 
-      virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
+      virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
       virtual void add_frame(::user::interaction * pwnd);
@@ -906,7 +906,7 @@ namespace aura
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
 
-      virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
+      //virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
 
       //virtual bool on_application_menu_action(const char* pszCommand) override;
 
@@ -945,10 +945,10 @@ namespace aura
       //virtual lresult GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam) override;
 
 
-      void OnUpdateRecentFileMenu(::user::command* pcommand);
+      void OnUpdateRecentFileMenu(::message::command* pcommand);
 
       //virtual void send_app_language_changed();
-      virtual void route_command_message(::user::command* pcommand) override;
+      virtual void route_command_message(::message::command* pcommand) override;
 
 
 
@@ -1047,23 +1047,23 @@ namespace aura
       void on_file_open();
 
       // map to the following to enable print setup
-      void OnFilePrintSetup();
+      //void OnFilePrintSetup();
 
       // map to the following to enable help
-      void OnContextHelp();   // shift-F1
-      void OnHelp();          // F1 (uses current action_context)
-      void OnHelpIndex();     // ID_HELP_INDEX
-      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      void OnHelpUsing();     // ID_HELP_USING
+      //void OnContextHelp();   // shift-F1
+      //void OnHelp();          // F1 (uses current action_context)
+      //void OnHelpIndex();     // ID_HELP_INDEX
+      //void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
+      //void OnHelpUsing();     // ID_HELP_USING
 
       // Implementation
 
-      void UpdatePrinterSelection(bool bForceDefaults);
-      void SaveStdProfileSettings();  // save options to .INI file
+      //void UpdatePrinterSelection(bool bForceDefaults);
+      //void SaveStdProfileSettings();  // save options to .INI file
 
 
 
-      void DevModeChange(char * pDeviceName);
+      //void DevModeChange(char * pDeviceName);
 
 
       // Finds number of opened document items owned by templates
@@ -1072,13 +1072,13 @@ namespace aura
 
       //virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
 
-      void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
+      //void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 
       // helper for message boxes; can work when no application can be found
       //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
-      static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
+      //static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 //#ifdef WINDOWS_DESKTOP
 //      // helpers for registration
@@ -1087,11 +1087,11 @@ namespace aura
 //      HKEY GetAppRegistryKey();
 //#endif
 
-      void OnAppExit();
-      // System Policy Settings
-      virtual bool LoadSysPolicies() override; // Override to load policies other than the system policies that aura API loads.
-      bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
-      bool _LoadSysPolicies() noexcept; // Implementation helper
+      //void OnAppExit();
+      //// System Policy Settings
+      //virtual bool LoadSysPolicies() override; // Override to load policies other than the system policies that aura API loads.
+      //bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
+      //bool _LoadSysPolicies() noexcept; // Implementation helper
       static const char gen_FileSection[];
       static const char gen_FileEntry[];
       static const char gen_PreviewSection[];
@@ -1139,7 +1139,7 @@ namespace aura
       //virtual string get_version();
 
 
-      virtual ::user::interaction * get_desktop_window();
+      //virtual ::user::interaction * get_desktop_window();
 
       //virtual ::e_status     run() override;
 
@@ -1178,7 +1178,7 @@ namespace aura
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, lparam lParam);
+//      static BOOL CALLBACK GetAppsEnumWindowsProc(::windowing::window * pwindow, lparam lParam);
 //
 //#endif
 
@@ -1186,15 +1186,15 @@ namespace aura
       void ensure_app_interest();
 
 
-      virtual oswindow get_ca2_app_wnd(const char* psz) override;
+      //virtual oswindow get_ca2_app_wnd(const char* psz) override;
 
 
       //virtual void request_create(::create * pcreate);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
-      virtual i32 send_simple_command(const char* psz, void* osdataSender) override;
-      virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender) override;
+      //virtual i32 send_simple_command(const char* psz, void* osdataSender) override;
+      //virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender) override;
 
       //virtual ::aura::printer* get_printer(const char* pszDeviceName) override;
 
@@ -1416,17 +1416,17 @@ namespace aura
       virtual string get_default_playlist_path() override;
 
       //virtual int_bool window_set_mouse_cursor(oswindow window, hcursor hcursor);
-      virtual icon_result load_icon(const ::payload& varFile);
+//      virtual icon_result load_icon(const ::payload& varFile);
 
 //#ifdef WINDOWS_DESKTOP
-//      virtual TCHAR * windows_get_system_cursor(e_cursor ecursor);
+//      virtual TCHAR * windows_get_system_cursor(enum_cursor ecursor);
 //#endif
 
 #ifdef LINUX
       virtual bool os_on_start_application() override;
 #endif
 
-
+      //virtual bool on_application_menu_action(const char * pszCommand);
 
    };
 

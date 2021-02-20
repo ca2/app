@@ -152,7 +152,7 @@ inline bool get_memory::get_base64(const string & str)
 //}
 
 
-#include "acme/primitive/primitive/trait_pred.h"
+#include "acme/primitive/primitive/trait_predicate.h"
 
 
 //inline ::payload matter::topic(const ::id & id)
@@ -1000,10 +1000,10 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pbase)
+//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pusermessage)
 //{
 //
-//   if (!pbase)
+//   if (!pusermessage)
 //   {
 //
 //      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -1024,16 +1024,16 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //      }
 //
-//      pbase = ptypeNew;
+//      pusermessage = ptypeNew;
 //
-//      if (!pbase)
+//      if (!pusermessage)
 //      {
 //
 //         return error_wrong_type;
 //
 //      }
 //
-//      auto estatus = pbase->initialize(this);
+//      auto estatus = pusermessage->initialize(this);
 //
 //      if (!estatus)
 //      {
@@ -1042,7 +1042,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //      }
 //
-//      estatus = add_composite(pbase);
+//      estatus = add_composite(pusermessage);
 //
 //      if (!estatus)
 //      {
@@ -1059,10 +1059,10 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE >
-//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pbase)
+//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pusermessage)
 //{
 //
-//   if (!pbase)
+//   if (!pusermessage)
 //   {
 //
 //      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -1083,16 +1083,16 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //      }
 //
-//      pbase = ptypeNew;
+//      pusermessage = ptypeNew;
 //
-//      if (!pbase)
+//      if (!pusermessage)
 //      {
 //
 //         return error_wrong_type;
 //
 //      }
 //
-//      auto estatus = add_composite(pbase);
+//      auto estatus = add_composite(pusermessage);
 //
 //      if (!estatus)
 //      {
@@ -1109,19 +1109,19 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource)
 //{
 //
-//   pbase = psource;
+//   pusermessage = psource;
 //
-//   if (!pbase)
+//   if (!pusermessage)
 //   {
 //
 //      return error_wrong_type;
 //
 //   }
 //
-//   auto estatus = pbase->initialize(this);
+//   auto estatus = pusermessage->initialize(this);
 //
 //   if (!estatus)
 //   {
@@ -1130,52 +1130,52 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //   }
 //
-//   m_estatus = add_composite(pbase);
+//   m_estatus = add_composite(pusermessage);
 //
 //   return m_estatus;
 //
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource)
 //{
 //
-//   pbase = psource;
+//   pusermessage = psource;
 //
-//   if (!pbase)
+//   if (!pusermessage)
 //   {
 //
 //      return error_wrong_type;
 //
 //   }
 //
-//   m_estatus = add_composite(pbase);
+//   m_estatus = add_composite(pusermessage);
 //
 //   return m_estatus;
 //
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::e_status matter::__compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource)
 //{
 //
-//   return __compose(pbase, psource.get());
+//   return __compose(pusermessage, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+//inline ::e_status matter::__raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource)
 //{
 //
-//   return __raw_compose(pbase, psource.get());
+//   return __raw_compose(pusermessage, psource.get());
 //
 //}
 //
 //
 //
 //template < typename BASE_TYPE >
-//inline ::e_status matter::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
+//inline ::e_status matter::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id)
 //{
 //
 //   auto & pfactory = ::factory::get_factory(id);
@@ -1196,16 +1196,16 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //   }
 //
-//   pbase = ptypeNew;
+//   pusermessage = ptypeNew;
 //
-//   if (!pbase)
+//   if (!pusermessage)
 //   {
 //
 //      return ::error_wrong_type;
 //
 //   }
 //
-//   auto estatus = pbase->initialize(this);
+//   auto estatus = pusermessage->initialize(this);
 //
 //   if (!estatus)
 //   {
@@ -1214,7 +1214,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //
 //   }
 //
-//   estatus = add_composite(pbase);
+//   estatus = add_composite(pusermessage);
 //
 //   if (!estatus)
 //   {
@@ -1360,7 +1360,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //   if (pcomposite)
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_pcompositea)
 //      {
@@ -1390,7 +1390,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //   if (preference)
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_preferencea)
 //      {
@@ -1428,7 +1428,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCr
 //}
 //
 //
-//CLASS_DECL_ACME void object_on_add_composite(const matter * pbase);
+//CLASS_DECL_ACME void object_on_add_composite(const matter * pusermessage);
 //
 //
 //template < typename BASE_TYPE >
@@ -1685,7 +1685,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 inline i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return atomic_increment(&m_countReference);
+   return m_countReference++;
 
 }
 
@@ -1693,7 +1693,7 @@ inline i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 inline i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   return atomic_decrement(&m_countReference);
+   return m_countReference--;
 
 }
 
@@ -1934,9 +1934,9 @@ IMPL_VAR_REF3(double, d);
 
 
 //template < typename PRED >
-//inline void matter::add_pred(runnable_array & array, PRED pred)
+//inline void matter::add_predicate(runnable_array & array, PRED pred)
 //{
-//   array.add(__new(pred_holder<PRED>(pred)));
+//   array.add(__new(predicate_holder<PRED>(pred)));
 //}
 
 
@@ -2179,7 +2179,7 @@ inline bool type::operator == (const ::id& id) const
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pmatter = __new(pred_future < PRED > (pred));
+//   m_pmatter = __new(predicate_future < PRED > (pred));
 //
 //}
 //
@@ -2243,7 +2243,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   auto pgroup = System.thread_group(epriority);
 //
-//   sync_lock slGroup(pgroup->mutex());
+//   synchronization_lock slGroup(pgroup->mutex());
 //
 //   ///   auto ptool = System.thread_tool(op_fork_count);
 //
@@ -2268,16 +2268,16 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   }
 //
-//   sync_array ptra;
+//   synchronization_array ptra;
 //
-//   ::count iScan = max(1, min(iCount - iStart, pgroup->thread_count()));
+//   ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
 //
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      __pointer(pred_holder_base) pbase = __new(forking_count_pred < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//      __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
 //
-//      if (!pgroup->add_pred(pbase))
+//      if (!pgroup->add_predicate(pusermessage))
 //      {
 //
 //         return -1;
@@ -2315,11 +2315,11 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 
 //template < typename PRED >
-//method::method(PRED pred) : function(__new(pred_method < PRED >(pred))) { }
+//method::method(PRED pred) : function(__new(predicate_method < PRED >(pred))) { }
 //
 //
 //template < typename PRED >
-//future::future(PRED pred) : function(__new(pred_future < PRED >(pred))) { }
+//future::future(PRED pred) : function(__new(predicate_future < PRED >(pred))) { }
 
 
 

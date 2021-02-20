@@ -264,7 +264,7 @@ void enum_display_monitors(::apex::system * psystem)
    main_async([psystem]
    {
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
       xdisplay d(x11_get_display());
 
@@ -277,7 +277,7 @@ void enum_display_monitors(::apex::system * psystem)
 
       }
 
-      sync_lock slSystem(psystem->mutex());
+      synchronization_lock slSystem(psystem->mutex());
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 

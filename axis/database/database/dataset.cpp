@@ -46,7 +46,7 @@ namespace database
          m_strSqlDelete = pszSql;
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
 
       }
@@ -78,7 +78,7 @@ namespace database
          m_strSqlDelete.remove_all();
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
 
       }
@@ -100,7 +100,7 @@ namespace database
          return m_strSqlSelect;
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
 
       }

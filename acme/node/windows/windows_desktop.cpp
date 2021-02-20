@@ -72,7 +72,7 @@ CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance)
    wcex.lpfnWndProc = WndProc;
    //wcex.lpfnWndProc = get_window_procedure();
    wcex.cbClsExtra = 0;
-   wcex.cbWndExtra = 0;
+   wcex.cbWndExtra = 40;
    wcex.hInstance = hInstance;
    //wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINDOWSDESKTOP1));
     //wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);

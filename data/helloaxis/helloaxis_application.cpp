@@ -94,13 +94,13 @@ namespace helloaxis
 
       output_debug_string("_DEBUG build? (basis)");
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
 #else
 
       output_debug_string("RELEASE build? (stage)");
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
 #endif
 
@@ -152,7 +152,7 @@ namespace helloaxis
       ::get_client_rect(hwnd, rcClient);
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(255, 255, 0, 0));
+      br->create_solid(argb(255, 255, 0, 0));
       pgraphics->SelectObject(br);
       pgraphics->FillEllipse(rcClient);
    }

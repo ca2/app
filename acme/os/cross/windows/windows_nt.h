@@ -2390,7 +2390,6 @@ NTSYSAPI void WINAPI RtlCaptureContext(CONTEXT*);
 #define IS_TEXT_UNICODE_NULL_BYTES         0x1000
 #define IS_TEXT_UNICODE_NOT_ASCII_MASK     0xF000
 
-#define MAXIMUM_WAIT_OBJECTS 64
 #define MAXIMUM_SUSPEND_COUNT 127
 
 #define WT_EXECUTEDEFAULT              0x00
@@ -3950,7 +3949,7 @@ typedef struct _SID {
 #endif /* !defined(SID_DEFINED) */
 
 #define	SID_REVISION			(1)	/* Current revision */
-#define	SID_MAX_SUB_AUTHORITIES		(15)	/* current max subauths */
+#define	SID_MAX_SUB_AUTHORITIES		(15)	/* current maximum subauths */
 #define	SID_RECOMMENDED_SUB_AUTHORITIES	(1)	/* recommended subauths */
 
 #define SECURITY_MAX_SID_SIZE (sizeof(SID) - sizeof(::u32) + (SID_MAX_SUB_AUTHORITIES * sizeof(::u32)))
@@ -4453,8 +4452,8 @@ typedef enum _SECURITY_IMPERSONATION_LEVEL {
   SecurityDelegation
 } SECURITY_IMPERSONATION_LEVEL, *PSECURITY_IMPERSONATION_LEVEL;
 
-#define SECURITY_DYNAMIC_TRACKING   (TRUE)
-#define SECURITY_STATIC_TRACKING    (FALSE)
+#define SECURITY_DYNAMIC_TRACKING   (true)
+#define SECURITY_STATIC_TRACKING    (false)
 
 typedef WINBOOLEAN SECURITY_CONTEXT_TRACKING_MODE,
 	* PSECURITY_CONTEXT_TRACKING_MODE;

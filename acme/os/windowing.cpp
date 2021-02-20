@@ -1,31 +1,31 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
-#include "os/cross/windows/_windows.h"
+//#include "os/cross/windows/_windows.h"
 
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-
-static oswindow g_oswindowSplash = nullptr;
-
-
-void set_splash(oswindow oswindow)
-{
-
-   g_oswindowSplash = oswindow;
-
-}
-
-
-oswindow get_splash()
-{
-
-   return g_oswindowSplash;
-
-}
+//
+//static oswindow g_oswindowSplash = nullptr;
+//
+//
+//void set_splash(::windowing::window * pwindow)
+//{
+//
+//   g_oswindowSplash = oswindow;
+//
+//}
+//
+//
+//oswindow get_splash()
+//{
+//
+//   return g_oswindowSplash;
+//
+//}
 
 
 
@@ -128,51 +128,6 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
    }
 
    return strResult;
-
-}
-
-
-CLASS_DECL_ACME color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate)
-{
-
-   ::color color;
-
-   if(eelement == ::user::e_element_background)
-   {
-
-      if (::user::is_app_dark_mode())
-      {
-
-         color = ARGB(255, 0x50, 0x50, 0x58);
-
-      }
-      else
-      {
-
-         color = ARGB(255, 0xcd, 0xcd, 0xc8);
-
-      }
-
-   }
-   else
-   {
-
-      if (::user::is_app_dark_mode())
-      {
-
-         color = ARGB(255, 255, 255, 255);
-
-      }
-      else
-      {
-
-         color = ARGB(255, 49, 50, 42);
-
-      }
-
-   }
-
-   return color;
 
 }
 

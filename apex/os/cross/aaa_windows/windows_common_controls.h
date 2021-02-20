@@ -312,7 +312,7 @@ typedef struct tagTBSAVEPARAMSW {
 #define TB_GETOBJECT            (WM_USER + 62)  // wParam == IID, lParam void **ppv
 #define TB_GETHOTITEM           (WM_USER + 71)
 #define TB_SETHOTITEM           (WM_USER + 72)  // wParam == iHotItem
-#define TB_SETANCHORHIGHLIGHT   (WM_USER + 73)  // wParam == TRUE/FALSE
+#define TB_SETANCHORHIGHLIGHT   (WM_USER + 73)  // wParam == true/false
 #define TB_GETANCHORHIGHLIGHT   (WM_USER + 74)
 #define TB_MAPACCELERATORA      (WM_USER + 78)  // wParam == ch, lParam int * pidBtn
 
@@ -320,8 +320,8 @@ typedef struct {
    int   iButton;
    ::u32 dwFlags;
 } TBINSERTMARK,* LPTBINSERTMARK;
-#define TBIMHT_AFTER      0x00000001 // TRUE = insert After iButton, otherwise before
-#define TBIMHT_BACKGROUND 0x00000002 // TRUE iff missed buttons completely
+#define TBIMHT_AFTER      0x00000001 // true = insert After iButton, otherwise before
+#define TBIMHT_BACKGROUND 0x00000002 // true iff missed buttons completely
 
 #define TB_GETINSERTMARK        (WM_USER + 79)  // lParam == LPTBINSERTMARK
 #define TB_SETINSERTMARK        (WM_USER + 80)  // lParam == LPTBINSERTMARK
@@ -1183,7 +1183,7 @@ typedef struct tagTOOLINFOW {
 #define TTM_GETCURRENTTOOLA     (WM_USER + 15)
 #define TTM_GETCURRENTTOOLW     (WM_USER + 59)
 #define TTM_WINDOWFROMPOINT     (WM_USER + 16)
-#define TTM_TRACKACTIVATE       (WM_USER + 17)  // wParam = TRUE/FALSE start end  lparam = LPTOOLINFO
+#define TTM_TRACKACTIVATE       (WM_USER + 17)  // wParam = true/false start end  lparam = LPTOOLINFO
 #define TTM_TRACKPOSITION       (WM_USER + 18)  // lParam = dwPos
 #define TTM_SETTIPBKCOLOR       (WM_USER + 19)
 #define TTM_SETTIPTEXTCOLOR     (WM_USER + 20)
@@ -1431,7 +1431,7 @@ typedef struct tagNMTTDISPINFOW {
 
 //WINCOMMCTRLAPI void WINAPI MenuHelp(::u32 uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) ::u32 *lpwIDs);
 //WINCOMMCTRLAPI int_bool WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
-//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT32 lprc,_In_z_ const ::i32 *lpInfo);
+//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ RECTANGLE_I32 * lprc,_In_z_ const ::i32 *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE
 

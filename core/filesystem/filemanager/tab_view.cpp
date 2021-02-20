@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -316,7 +314,7 @@ namespace filemanager
             if (pframe.is_set())
             {
 
-               pframe->InitialUpdateFrame(nullptr, TRUE);
+               pframe->InitialUpdateFrame(nullptr, true);
 
                pframe->display(e_display_normal);
 

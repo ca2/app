@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/cross.h"
+//#include "acme/os/cross.h"
 
 
 colorref_array::colorref_array()
@@ -30,7 +30,7 @@ void colorref_array::create_web_palette()
       {
          for(i32 nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
          {
-            this->element_at(nColorMapIdx) = ARGB(255, (byte) STANDARD_PALETTE[nRedIdx],
+            this->element_at(nColorMapIdx) = argb(255, (byte) STANDARD_PALETTE[nRedIdx],
              (byte) STANDARD_PALETTE[nGreenIdx],
                (byte) STANDARD_PALETTE[nBlueIdx]);
             ++nColorMapIdx;
@@ -53,12 +53,12 @@ CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prg
    {
 
 #if defined(ANDROID) && defined(__arm__)
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
+      colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
 #else
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
+      colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
 #endif
 
-      if (colorrefa[i] == ARGB(255, 255, 255, 255))
+      if (colorrefa[i] == argb(255, 255, 255, 255))
       {
 
          output_debug_string("completely white");

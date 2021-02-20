@@ -274,7 +274,7 @@ namespace uwp
       CoreTextTextRequest ^ request = args->Request;
       request->Text = m_strText.Mid(
          request->Range.StartCaretPosition,
-         min(request->Range.EndCaretPosition, m_strText.length()) - request->Range.StartCaretPosition);
+         minimum(request->Range.EndCaretPosition, m_strText.length()) - request->Range.StartCaretPosition);
    }
 
    // Return the current selection.
@@ -294,7 +294,7 @@ namespace uwp
       // Modify the internal text store.
       m_strText = m_strText.Left( range.StartCaretPosition) +
          newText +
-         m_strText.Mid(min(m_strText.length(), range.EndCaretPosition));
+         m_strText.Mid(minimum(m_strText.length(), range.EndCaretPosition));
 
       // You can set the proper font or direction for the updated text based on the language by checking
       // args.InputLanguage.  We will not do that in this sample.
@@ -323,7 +323,7 @@ namespace uwp
 
 
 
-            pointer < ::message::base > spbase;
+            pointer < ::user::message > spbase;
 
             auto pkey = __new(::message::key);
 
@@ -336,7 +336,7 @@ namespace uwp
             pkey->m_id = e_message_key_down;
             pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
             pkey->m_nChar = 0;
-            pkey->m_ekey = ::user::key_refer_to_text_member;
+            pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
             pkey->m_nFlags = 0;
             pkey->m_lparam = pkey->m_nFlags << 16;
@@ -517,7 +517,7 @@ namespace uwp
          //   // Delete the character to the left of the caret, if one exists,
          //   // by creating a range that encloses the character to the left
          //   // of the caret, and setting the contents of that range to nothing.
-         //   range.StartCaretPosition = max(0, range.StartCaretPosition - 1);
+         //   range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //   ReplaceText(range, "");
          //}
          //m_strNewText.Empty();
@@ -549,7 +549,7 @@ namespace uwp
          //   else
          //   {
          //      // There was no selection. Move the caret left one code unit if possible.
-         //      range.StartCaretPosition = max(0, range.StartCaretPosition - 1);
+         //      range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //      range.EndCaretPosition = range.StartCaretPosition;
          //      SetSelectionAndNotify(range);
          //   }
@@ -583,7 +583,7 @@ namespace uwp
          //   else
          //   {
          //      // There was no selection. Move the caret right one code unit if possible.
-         //      range.StartCaretPosition = min(m_strText.length(), range.StartCaretPosition + 1);
+         //      range.StartCaretPosition = minimum(m_strText.length(), range.StartCaretPosition + 1);
          //      range.EndCaretPosition = range.StartCaretPosition;
          //      SetSelectionAndNotify(range);
          //   }
@@ -599,11 +599,11 @@ namespace uwp
       CoreTextRange range = _selection;
       if (_extendingLeft)
       {
-         range.StartCaretPosition = max(0, range.StartCaretPosition + direction);      
+         range.StartCaretPosition = maximum(0, range.StartCaretPosition + direction);      
       }
       else
       {
-         range.EndCaretPosition = min(m_strText.length(), range.EndCaretPosition + direction);
+         range.EndCaretPosition = minimum(m_strText.length(), range.EndCaretPosition + direction);
       }
 
       SetSelectionAndNotify(range);

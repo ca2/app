@@ -1,4 +1,7 @@
-﻿#pragma once
+#pragma once
+
+
+#include "aura/operating_system.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -46,10 +49,10 @@ namespace user
       oswindow                               m_oswindow;
 
       manual_reset_event                     m_evApplyVisual;
-      __pointer_array(::message::base)       m_messagebasea;
+      __pointer_array(::message::message)    m_messagebasea;
 
 
-      //bool                                   m_bCreateNativeWindowOnInteractionThread;
+      //bool                                 m_bCreateNativeWindowOnInteractionThread;
 
       thread();
       virtual ~thread();
@@ -76,9 +79,9 @@ namespace user
       virtual ::e_status init_thread() override;
       virtual void term_thread() override;
 
-#ifdef WINDOWS_DESKTOP
-      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
+//#endif
 
       virtual bool pump_message() override;
 
@@ -86,7 +89,9 @@ namespace user
 
       virtual ::e_status process_message() override;
 
-      virtual ::e_status process_base_message(::message::base * pbase) override;
+      virtual ::e_status process_message(::message::message * pmessage) override;
+
+      virtual ::e_status process_user_message(::message::message * pmessage);
 
       virtual ::e_status run() override;
 

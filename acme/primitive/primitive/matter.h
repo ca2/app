@@ -7,7 +7,7 @@ class action_context;
 class layered;
 class object;
 class dump_context;
-class sync;
+class synchronization_object;
 class __id;
 class string_exchange;
 
@@ -26,7 +26,7 @@ class CLASS_DECL_ACME matter
 private:
 
 
-   mutable sync *                      m_pmutex;
+   mutable synchronization_object *                      m_pmutex;
 
 
 public:
@@ -48,10 +48,8 @@ public:
 
    };
 
-   ::count                             m_countReference;
+   ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
-
-
 
 
 #if OBJ_REF_DBG
@@ -85,9 +83,9 @@ public:
 
    inline bool is_set() const { return ::is_set(this); }
 
-   // sync/::mutex
-   inline sync* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
-   void set_mutex(sync* psync);
+   // synchronization_object/::mutex
+   inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
+   void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
 
@@ -167,7 +165,7 @@ public:
    virtual ::layered * taskpool();
 
 
-   virtual ::task* defer_start_task(const ::id & id, const ::promise::routine & routine);
+   virtual ::task * defer_fork(const ::id & id, const ::promise::routine & routine);
 
 
    virtual void delete_this();

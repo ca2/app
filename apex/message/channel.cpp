@@ -34,7 +34,7 @@ void channel::install_message_routing(::channel* pchannel)
 void channel::remove_receiver(::object * preceiver)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    for (auto & id_route_array : m_idroute)
    {
@@ -46,7 +46,7 @@ void channel::remove_receiver(::object * preceiver)
 
       }
 
-      id_route_array.element2()->pred_remove([=](auto & pitem)
+      id_route_array.element2()->predicate_remove([=](auto & pitem)
       {
 
          return pitem->m_preceiver == preceiver;
@@ -62,7 +62,7 @@ void channel::remove_receiver(::object * preceiver)
 void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    for (auto & id_route_array : m_idroute)
    {
@@ -74,7 +74,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 
       }
 
-      id_route_array.element2()->pred_each([&](auto & pitem)
+      id_route_array.element2()->predicate_each([&](auto & pitem)
       {
 
          if (pitem->m_preceiver == preceiver)
@@ -95,7 +95,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 
       });
 
-      id_route_array.element2()->pred_remove([&](auto & pitem)
+      id_route_array.element2()->predicate_remove([&](auto & pitem)
       {
 
          return pitem->m_preceiver == preceiver;
@@ -111,7 +111,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { sync_lock sl(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -122,24 +122,41 @@ void channel::route_message(::message::message * pmessage)
 
 }
 
-__pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
+__pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagebase = __new(::message::base);
+   auto pmessagemessage = __new(::message::message);
 
-   pmessagebase->set(
-      pmessage->hwnd, 
-      System.get_layered_window(pmessage->hwnd),
-      pmessage->message, 
+   pmessagemessage->set(
+      pmessage->oswindow, 
+      nullptr,
+      pmessage->m_id, 
       pmessage->wParam, 
       pmessage->lParam);
 
-   return pmessagebase;
+   return pmessagemessage;
 
 }
 
 
-//__pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam)
+{
+
+   auto pmessagemessage = __new(::message::message);
+
+   pmessagemessage->set(
+      nullptr,
+      nullptr,
+      id,
+      wparam,
+      lparam);
+
+   return pmessagemessage;
+
+}
+
+
+//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 //{
 //
 //   if (id.m_etype != ::id::e_type_message)
@@ -162,20 +179,20 @@ __pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
 //}
 
 
-#ifdef LINUX
-
-
-__pointer(::message::base) channel::get_message_base(void * pevent,::user::interaction * pwnd)
-{
-
-   __throw(todo());
-
-   return nullptr;
-
-}
-
-
-#endif
+//#ifdef LINUX
+//
+//
+//__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+//{
+//
+//   __throw(todo());
+//
+//   return nullptr;
+//
+//}
+//
+//
+//#endif
 
 
 
@@ -186,7 +203,7 @@ void channel::remove_all_routes()
    try
    {
 
-      sync_lock sl(channel_mutex());
+      synchronization_lock synchronizationlock(channel_mutex());
 
       if(m_bNewChannel)
       {
@@ -209,13 +226,13 @@ void channel::remove_all_routes()
 //
 //            }
 //
-//            id_route_array.element2()->pred_each([=](auto & route)
+//            id_route_array.element2()->predicate_each([=](auto & route)
 //            {
 //
 //               try
 //               {
 //
-//                  sync_lock sl(route->m_preceiver->m_pmutexChannel);
+//                  synchronization_lock synchronizationlock(route->m_preceiver->m_pmutexChannel);
 //
 //                  route->m_preceiver->m_sendera.remove(this);
 //
@@ -283,7 +300,7 @@ void channel::finalize()
 }
 
 
-bool channel::handle(::user::command * pcommand)
+::e_status channel::handle(::message::command * pcommand)
 {
 
    return pcommand->handle(this);
@@ -309,37 +326,10 @@ void channel::RestoreWaitCursor()
 }
 
 
-void channel::default_toggle_check_handling(const ::id & id)
-{
-
-   auto pproperty = fetch_property(id);
-
-   connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
-      {
-
-         __pointer(::user::command) pcommand(pmessage);
-
-         if (pproperty->get_bool())
-         {
-
-            *pproperty = ::check_unchecked;
-
-         }
-         else
-         {
-
-            *pproperty = ::check_checked;
-
-         }
-
-         this->process_subject(pproperty->m_id, pcommand->m_actioncontext);
-
-   });
-
-}
 
 
-void channel::_001SendCommand(::user::command * pcommand)
+
+void channel::_001SendCommand(::message::command * pcommand)
 {
 
    pcommand->m_pchannel = this;
@@ -347,7 +337,7 @@ void channel::_001SendCommand(::user::command * pcommand)
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
       route_command_message(pcommand);
@@ -357,7 +347,7 @@ void channel::_001SendCommand(::user::command * pcommand)
 }
 
 
-void channel::_001SendCommandProbe(::user::command * pcommand)
+void channel::_001SendCommandProbe(::message::command * pcommand)
 {
 
    pcommand->m_pcommandtargetSource = this;
@@ -365,7 +355,7 @@ void channel::_001SendCommandProbe(::user::command * pcommand)
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_command_message(pcommand);
@@ -375,7 +365,7 @@ void channel::_001SendCommandProbe(::user::command * pcommand)
 }
 
 
-void channel::route_command_message(::user::command * pcommand)
+void channel::route_command_message(::message::command * pcommand)
 {
 
    on_command_message(pcommand);
@@ -383,7 +373,7 @@ void channel::route_command_message(::user::command * pcommand)
 }
 
 
-void channel::on_command_message(::user::command* pcommand)
+void channel::on_command_message(::message::command * pcommand)
 {
 
    if (pcommand->is_command())
@@ -430,13 +420,13 @@ void channel::on_command_message(::user::command* pcommand)
 }
 
 
-void channel::on_command(::user::command * pcommand)
+void channel::on_command(::message::command * pcommand)
 {
 
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
       route_message(pcommand);
@@ -446,13 +436,13 @@ void channel::on_command(::user::command * pcommand)
 }
 
 
-bool channel::has_command_handler(::user::command * pcommand)
+bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   sync_lock sl(channel_mutex());
+   synchronization_lock synchronizationlock(channel_mutex());
 
    __restore(pcommand->m_id.m_etype);
-   
+
    pcommand->m_id.set_compounded_type(::id::e_type_command);
 
    if (m_idaHandledCommands.contains(pcommand->m_id))
@@ -490,13 +480,13 @@ bool channel::has_command_handler(::user::command * pcommand)
 }
 
 
-void channel::on_command_probe(::user::command * pcommand)
+void channel::on_command_probe(::message::command * pcommand)
 {
 
    {
 
       __restore(pcommand->m_id.m_etype);
-      
+
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
       route_message(pcommand);
@@ -511,6 +501,39 @@ void channel::on_command_probe(::user::command * pcommand)
    }
 
 }
+
+
+
+void channel::default_toggle_check_handling(const ::id & id)
+{
+
+   auto pproperty = fetch_property(id);
+
+   connect_command_predicate(id, [this, id, pproperty](::message::message * pmessage)
+      {
+
+         __pointer(::message::message) pcommand(pmessage);
+
+         if (pproperty->get_bool())
+         {
+
+            *pproperty = ::check_unchecked;
+
+         }
+         else
+         {
+
+            *pproperty = ::check_checked;
+
+         }
+
+         process_subject(pproperty->m_id, pcommand->m_actioncontext);
+
+      });
+
+}
+
+
 
 
 

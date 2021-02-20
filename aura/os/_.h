@@ -51,13 +51,13 @@
 #endif
 
 
-//CLASS_DECL_AURA iptr get_window_long_ptr(oswindow oswindow, int iIndex);
-//CLASS_DECL_AURA iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+//CLASS_DECL_AURA iptr get_window_long_ptr(::windowing::window * pwindow, int iIndex);
+//CLASS_DECL_AURA iptr set_window_long_ptr(::windowing::window * pwindow, int iIndex, iptr i);
 
 
 
 //template < typename PRED >
-//inline bool pred_Sleep(int iTime, PRED pred);
+//inline bool predicate_Sleep(int iTime, PRED pred);
 
 //CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
 
@@ -67,7 +67,7 @@
 //namespace str
 //{
 //
-//   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+//   string CLASS_DECL_AURA get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
 //
 //} // namespace str
 //

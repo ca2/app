@@ -40,7 +40,7 @@ public:
       
       UNIT_TYPE i = 0; 
       
-      this->pred_each([&i](auto& r)
+      this->predicate_each([&i](auto& r)
          {
 
             i += r.area();

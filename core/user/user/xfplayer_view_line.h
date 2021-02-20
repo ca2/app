@@ -58,9 +58,9 @@ public:
    // 08, May 2004 attributes
    ::draw2d::graphics_pointer                m_dc1;
    ::draw2d::bitmap_pointer                  m_bmp1;
-   ::draw2d::font_pointer                    m_font;
-   ::draw2d::font_pointer                    m_fontPrefix;
-   ::draw2d::font_pointer                    m_fontLink;
+   ::write_text::font_pointer                    m_font;
+   ::write_text::font_pointer                    m_fontPrefix;
+   ::write_text::font_pointer                    m_fontLink;
    color32_t                         m_cr;
    color32_t                         m_colorOutline;
    ::rectangle_i32                           m_rectClient;
@@ -103,7 +103,7 @@ public:
 
 
    void set_blend(double d);
-   ::draw2d::font * GetFont();
+   ::write_text::font * GetFont();
    bool CalcChar(const ::point_i32 & point, strsize &iChar);
    index GetCharLink(strsize iChar);
    bool GetCharLink(string & str, strsize iChar);
@@ -114,11 +114,11 @@ public:
    bool is_hover();
    void update_hover(point_i32 & pointCursor);
    void PrepareURLLinks();
-   void SetFont(::draw2d::font * pfont);
+   void SetFont(::write_text::font * pfont);
 
-#ifdef WINDOWS_DESKTOP
-   void GetLogFont(LOGFONTW & lf);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   void GetLogFont(LOGFONTW & lf);
+//#endif
 
    user::enum_line_hit hit_test(const point_i32 &pointCursorParam, strsize &iChar);
 
@@ -163,7 +163,7 @@ public:
    bool IsVisible();
    void Validate(const ::rectangle_i32 & rectangle = nullptr);
    void Invalidate(const ::rectangle_i32 & rectangle = nullptr);
-   //void AddVmsFont(draw2d::font * pfont);
+   //void AddVmsFont(::write_text::font * pfont);
    //i32 GetVmsFontCount();
    void SetPlacement(const ::rectangle_i32 & rectangle);
    i32 SetLyricColors(color32_t crLeft, color32_t crRight);
@@ -200,7 +200,7 @@ public:
 
    void add_char(widechar wch, strsize &index);
 
-   void add_char(widechar wch, strsize &index, draw2d::font * pFont);
+   void add_char(widechar wch, strsize &index, ::write_text::font * pFont);
 
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rect_array & rectaModified, bool bRecalcLayout);
 

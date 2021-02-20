@@ -250,7 +250,7 @@ namespace macos
 
 //            file_find file_find;
 
-         //          bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         //          bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != false;
 
          for(auto & strPath : straPath)
          {
@@ -295,7 +295,7 @@ namespace macos
 
          // file_find file_find;
 
-         // bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         // bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != false;
 
          for(auto & strPath : straPath)
          {
@@ -591,7 +591,7 @@ try1:
 //            }
 //         }
 //      }
-//      return ::rmdir(psz) != FALSE;
+//      return ::rmdir(psz) != false;
 //   }
 //
 //
@@ -754,7 +754,7 @@ try1:
 //       nullptr,
 //       str,
 //       CSIDL_APPDATA,
-//       FALSE);
+//       false);
 //       return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
 //   }
 //
@@ -766,7 +766,7 @@ try1:
 //       nullptr,
 //       str,
 //       CSIDL_APPDATA,
-//       FALSE);*/
+//       false);*/
 //      str = path(getenv("HOME"), "Microsoft\\Internet Explorer\\Quick Launch");
 //      return path(str, lpcszRelativePath, lpcsz2);
 //   }
@@ -779,7 +779,7 @@ try1:
 //       nullptr,
 //       str,
 //       CSIDL_PROGRAMS,
-//       FALSE);*/
+//       false);*/
 //
 //      str = "/usr/bin";
 //      return path(str, lpcszRelativePath, lpcsz2);
@@ -792,7 +792,7 @@ try1:
 //       nullptr,
 //       str,
 //       CSIDL_COMMON_PROGRAMS,
-//       FALSE);*/
+//       false);*/
 //      str = "/usr/share/";
 //      return path(str, lpcszRelativePath, lpcsz2);
 //   }
@@ -1030,7 +1030,7 @@ try1:
    ::file::path dir_context::install()
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       return m_pdirsystem->m_pathCa2;
 
@@ -1387,14 +1387,14 @@ try1:
    //   if(!vfxFullPath(wstrFullName,wstrFileName))
    //   {
    //      rStatus.m_strFullName.Empty();
-   //      return FALSE;
+   //      return false;
    //   }
    //   ::str::international::unicode_to_utf8(rStatus.m_strFullName,wstrFullName);
 
    //   WIN32_FIND_DATA findFileData;
    //   HANDLE hFind = FindFirstFile((char *)lpszFileName,&findFileData);
    //   if(hFind == INVALID_HANDLE_VALUE)
-   //      return FALSE;
+   //      return false;
    //   VERIFY(FindClose(hFind));
 
    //   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
@@ -1415,7 +1415,7 @@ try1:
    //   if(rStatus.m_atime.get_time() == 0)
    //      rStatus.m_atime = rStatus.m_mtime;
 
-   //   return TRUE;
+   //   return true;
    //}
 
 

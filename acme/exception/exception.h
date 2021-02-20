@@ -35,13 +35,7 @@ namespace exception
       int                     m_iErr;
 
 
-      exception(const ::enum_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr) :
-         exception(nullptr, estatus, iSkip, caller_address)
-      {
-
-      }
-
-      exception(const char * pszMessage, const ::enum_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      exception(const char * pszMessage = nullptr, const ::e_status & estatus = error_exception, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 
@@ -121,3 +115,23 @@ inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
    return ::__move_transfer(pexceptionNew);
 
 }
+
+
+class CLASS_DECL_ACME status_exception :
+   public ::exception::exception
+{
+public:
+
+
+   status_exception(const ::e_status & estatus, const char * pszStatus = nullptr) :
+      ::exception::exception(pszStatus, estatus)
+   {
+
+   }
+   virtual ~status_exception(){}
+
+
+};
+
+
+

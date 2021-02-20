@@ -194,7 +194,7 @@ namespace uwp
       if (!vfxFullPath(wstrFullName, wstrnative_bufferName))
       {
          rStatus.m_strFullName.Empty();
-         return FALSE;
+         return false;
       }
       ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
@@ -202,7 +202,7 @@ namespace uwp
       HANDLE hFind = FindFirstnative_buffer((char *)pszfileName, &findnative_bufferData);
 
       if (hFind == INVALID_HANDLE_VALUE)
-         return FALSE;
+         return false;
       VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
@@ -223,14 +223,14 @@ namespace uwp
       if (rStatus.m_atime.get_time() == 0)
          rStatus.m_atime = rStatus.m_mtime;
 #endif
-      return TRUE;
+      return true;
    }
 
 
    native_buffer::native_buffer()
    {
 
-      m_bCloseOnDelete = TRUE;
+      m_bCloseOnDelete = true;
 
    }
 
@@ -240,7 +240,7 @@ namespace uwp
 
       m_file = file;
 
-      m_bCloseOnDelete = TRUE;
+      m_bCloseOnDelete = true;
 
    }
 
@@ -340,7 +340,7 @@ namespace uwp
 
       }
 
-      m_bCloseOnDelete = FALSE;
+      m_bCloseOnDelete = false;
       //m_hnative_buffer = (::u32)hnative_bufferNull;
       m_strFileName.Empty();
 
@@ -374,7 +374,7 @@ namespace uwp
       //switch(nOpenFlags & 0x70)    // ::map compatibility mode to exclusive
       //{
       //default:
-      //   ASSERT(FALSE);  // invalid share mode?
+      //   ASSERT(false);  // invalid share mode?
       //case ::file::e_open_share_compat:
       //case ::file::e_open_share_exclusive:
       //   dwShareMode = 0;
@@ -474,7 +474,7 @@ namespace uwp
 
       }
 
-      m_bCloseOnDelete = TRUE;
+      m_bCloseOnDelete = true;
 
       m_efileopen = efileopen;
 
@@ -490,7 +490,7 @@ namespace uwp
 
       ::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::Windows::Storage::Streams::InputStreamOptions::None));
 
-      auto read = min(nCount, (memsize) buffer->Length);
+      auto read = minimum(nCount, (memsize) buffer->Length);
 
       read_buffer(pdata, buffer, read);
 

@@ -167,7 +167,7 @@ namespace os
       if(bShow)
       {
 
-         set_window_pos(m_window, nullptr, m_point.x, m_point.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
+         set_window_position(m_window, nullptr, m_point.x, m_point.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
       else
@@ -257,7 +257,7 @@ namespace os
       KeySym keysym;
       XComposeStatus compose;
 
-      single_lock sl(&user_mutex(), false);
+      single_lock synchronizationlock(&user_mutex(), false);
 
       xdisplay x(m_window->display(), false);
 
@@ -268,7 +268,7 @@ namespace os
 
          {
 
-            sl.lock();
+            synchronizationlock.lock();
 
             x.lock();
 
@@ -280,7 +280,7 @@ namespace os
 
                   x.unlock();
 
-                  sl.unlock();
+                  synchronizationlock.unlock();
 
                   if(e.xany.window == m_window->window())
                   {
@@ -369,27 +369,27 @@ namespace os
                            if(keysym == XK_Tab)
                            {
                               //on_key_down(VK_TAB);
-                              on_char(::user::key_tab, "");
+                              on_char(::user::e_key_tab, "");
 
                            }
                            else if(keysym == XK_Return)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_return, "");
+                              on_char(::user::e_key_return, "");
                            }
                            else if(keysym == XK_BackSpace)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_back, "");
+                              on_char(::user::e_key_back, "");
                            }
                            else if(keysym == XK_Delete)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_delete, "");
+                              on_char(::user::e_key_delete, "");
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_down(::user::key_shift);
+                              on_key_down(::user::e_key_shift);
                            }
                            else
                            {
@@ -417,7 +417,7 @@ namespace os
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_up(::user::key_shift);
+                              on_key_up(::user::e_key_shift);
                            }
 
                         }
@@ -476,7 +476,7 @@ namespace os
 
                x.unlock();
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                if(bEnableFB && m_bVisible)
                {
@@ -539,9 +539,9 @@ namespace os
 
       baState[uiKey & 0xff] = 0x80;
 
-      /*if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
+      /*if((GetAsyncKeyState(::user::e_key_shift) & 0x80000000) != 0)
       {
-      baState[::user::key_shift] |= 0x80;
+      baState[::user::e_key_shift] |= 0x80;
       }
       */
       if (m_bShiftKey)
@@ -623,19 +623,19 @@ namespace os
 
          ::rectangle_i32 rectangle;
 
-         rectangle_i32 = rectWindow;
+         rectangle = rectWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::alpha_mode_set);
 
 /*         m_pimage->g()->SetViewportOrg(0, 0);
 
-/*         m_pimage->g()->FillSolidRect(&rectClient, ARGB(255, 255, 255, 255));
+/*         m_pimage->g()->FillSolidRect(&rectClient, argb(255, 255, 255, 255));
 
 /*         draw(m_pimage->g());
 
          //m_pimage->map();
 
-/*         m_pimage->fill_channel(255, ::color::channel_alpha);
+/*         m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          //m_pimage->Fill(255, 184, 184, 177);
 
@@ -771,7 +771,7 @@ namespace os
    bool simple_ui::move_window(i32 x, i32 y)
    {
 
-      ::set_window_pos(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+      ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
       m_rectangle.left = x;
       m_rectangle.top = y;
@@ -786,10 +786,10 @@ namespace os
    }
 
 
-   bool simple_ui::set_window_pos(i32 x, i32 y, i32 cx, i32 cy, bool bShow)
+   bool simple_ui::set_window_position(i32 x, i32 y, i32 cx, i32 cy, bool bShow)
    {
 
-      ::set_window_pos(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
+      ::set_window_position(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));
 
       return true;
 
@@ -810,7 +810,7 @@ void wm_nodecorations(oswindow w, int map)
    int set;
 
 
-   single_lock sl(&user_mutex(), true);
+   single_lock synchronizationlock(&user_mutex(), true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

@@ -20,7 +20,7 @@
 color32_t SetAValue(byte a, color32_t cr)
 {
 
-   return ARGB(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
+   return argb(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
 
 }
 
@@ -70,7 +70,7 @@ namespace experience
 
                   if(egrip & e_grip_top_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointCursor))
@@ -78,7 +78,7 @@ namespace experience
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointCursor))
@@ -89,7 +89,7 @@ namespace experience
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointCursor))
@@ -97,7 +97,7 @@ namespace experience
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointCursor))
@@ -108,7 +108,7 @@ namespace experience
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointCursor))
@@ -116,7 +116,7 @@ namespace experience
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointCursor))
@@ -127,7 +127,7 @@ namespace experience
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointCursor))
@@ -135,7 +135,7 @@ namespace experience
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointCursor))
@@ -216,7 +216,7 @@ SizingNone:;
                color32_t    crMoveableBorderHilight;
                color32_t    crMoveableBorderShadow;
 
-               if(pframewindow->is_active())
+               if(pframewindow->is_active_window())
                {
                   crMoveableBorder = m_colorMoveableBorder;
                   crMoveableBorderHilight = m_colorMoveableBorderHilight;
@@ -243,10 +243,10 @@ SizingNone:;
                      || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
@@ -265,10 +265,10 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
@@ -279,16 +279,16 @@ SizingNone:;
 
                   rectClient.deflate(1, 1);
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       200);
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   ::rectangle_i32 rectClientB = rectA;
 
@@ -418,7 +418,7 @@ SizingNone:;
 
             void frame_002::GetBorderRect(
             const ::rectangle_i32 & rectClient,
-            LPRECT32 lprect,
+            RECTANGLE_I32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectBig(rectClient);
@@ -453,7 +453,7 @@ SizingNone:;
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
             }
 
 
@@ -990,7 +990,7 @@ SizingNone:;
                rectangle.left++;
                rectangle.right--;
 
-               pgraphics->fill_rect(rectangle, crButtonFace);
+               pgraphics->fill_rectangle(rectangle, crButtonFace);
 
             }
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -24,7 +22,7 @@ namespace user
    //bool step_slider::create_window(::user::interaction * pwndParent, id id)
    //{
 
-   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != FALSE;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != false;
 
    //}
 
@@ -114,7 +112,7 @@ namespace user
       imaging.color_blend(
          pgraphics,
          rectClient,
-         RGB(150, 200, 255),
+         rgb(150, 200, 255),
          bAlpha);
 
       i64 iMin = m_scalar.minimum();
@@ -131,16 +129,16 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
-                  RGB(255, 255, 240),
+                  rectangle,
+                  rgb(255, 255, 240),
                   bAlpha);
             }
             else
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
-                  RGB(255, 255, 150),
+                  rectangle,
+                  rgb(255, 255, 150),
                   bAlpha);
             }
          }
@@ -150,16 +148,16 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
-                  RGB(255, 180, 180),
+                  rectangle,
+                  rgb(255, 180, 180),
                   bAlpha);
             }
             else
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
-                  RGB(100, 100, 255),
+                  rectangle,
+                  rgb(100, 100, 255),
                   bAlpha);
             }
          }
@@ -238,9 +236,13 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
-      
-      m_itemHover = hit_test(point);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      m_itemHover = hit_test(pointCursor);
 
       set_need_redraw();
 
@@ -248,7 +250,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      m_itemHover = rectClient.contains(point) != FALSE;
+      m_itemHover = rectClient.contains(pointCursor) != false;
 
    }
 

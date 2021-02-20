@@ -157,7 +157,7 @@ namespace status
             if (::failed(m_estatus))
             {
 
-               return __new(::exception::exception(m_estatus, get_skip_callstack()));
+               return __new(::exception::exception(nullptr, m_estatus, get_skip_callstack()));
 
             }
 

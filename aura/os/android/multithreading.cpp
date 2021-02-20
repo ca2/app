@@ -13,7 +13,7 @@ bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow intera
    if(hthread == nullptr || hthread->m_pthread == nullptr || hthread->get_x_window_count() <= 0)
       return false;
 
-   sync_lock sl(&user_mutex());
+   synchronization_lock synchronizationlock(&user_mutex());
 
    bool bRet = false;
 
@@ -288,7 +288,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
      iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
   }
 
-  iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+  iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
 
   *piPolicy = iOsPolicy;
 
@@ -346,7 +346,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //      iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
 //   }
 //
-//   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+//   iCa2Priority = maximum(iCa2Min, minimum(iCa2Max, iCa2Priority));
 //
 //   return iCa2Priority;
 //

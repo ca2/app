@@ -93,7 +93,7 @@ namespace parallelization
 
       }
 
-      sync_lock sl(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System.m_mutexTask);
 
       for (auto & pair : System.m_taskidmap)
       {
@@ -126,7 +126,7 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      sync_lock sl(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System.m_mutexTask);
 
       for (auto& pair : System.m_taskidmap)
       {
@@ -150,7 +150,7 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
-      sync_lock sl(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System.m_mutexTask);
 
       for (auto& pair : System.m_taskidmap)
       {
@@ -657,7 +657,7 @@ bool do_events()
    try
    {
 
-      //sync_lock sl(mutex());
+      //synchronization_lock synchronizationlock(mutex());
 
       for (index i = 0; i < get_count(); i++)
       {
@@ -668,7 +668,7 @@ bool do_events()
          {
 
             /// this is quite dangerous
-            //sync_lock slThread(pthread->mutex());
+            //synchronization_lock slThread(pthread->mutex());
 
             pthread->finish(pcontextobjectFinish);
 
@@ -724,15 +724,15 @@ bool do_events()
 }
 
 
-void thread_ptra::wait(const duration & duration, sync_lock & sl)
+void thread_ptra::wait(const duration & duration, synchronization_lock & synchronizationlock)
 {
 
-   ::datetime::time timeEnd = ::datetime::time::get_current_time() + max(seconds(2), duration);
+   ::datetime::time timeEnd = ::datetime::time::get_current_time() + maximum(seconds(2), duration);
 
    try
    {
 
-//      sync_lock sl(psyncParent);
+//      synchronization_lock synchronizationlock(psyncParent);
 //
       ::count cCount = get_count_except_current_thread();
 
@@ -741,7 +741,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
       while (cCount > 0 &&  timeNow < timeEnd)
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          timeNow = ::datetime::time::get_current_time();
 
@@ -749,7 +749,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 
          sleep(500_ms);
 
-         sl.lock();
+         synchronizationlock.lock();
 
       }
 

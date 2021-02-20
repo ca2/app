@@ -266,7 +266,7 @@ namespace music
                
                // the frame size_i32 is the I/O size_i32 to the device
                // the device is going to run at a sample rate it is set at
-               // so, when we set this, we also have to set the max frames for the graph nodes
+               // so, when we set this, we also have to set the maximum frames for the graph nodes
                ::u32 nodeCount;
                result = AUGraphGetNodeCount (inGraph, &nodeCount);
                if (result != 0)

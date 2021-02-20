@@ -139,7 +139,7 @@ namespace hotplugin
       using ::user::interaction::message_handler;
       virtual i32 x11_message_handler(void * pevent);
 #endif
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
       virtual void plugin_message_handler(const ::id & id, wparam wparam, lparam lparam, bool bEnsureTx);
 
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);

@@ -14,34 +14,21 @@
 //#include <glib.h> // gtk3-devel
 
 
-enum e_net_wm_state
-{
-
-   net_wm_state_above,
-   net_wm_state_below,
-   net_wm_state_hidden,
-   net_wm_state_maximized_horz,
-   net_wm_state_maximized_vert,
-   net_wm_state_fullscreen,
-   net_wm_state_skip_taskbar,
-   net_wm_state_count,
-
-};
-
-
-e_net_wm_state net_wm_state(const char * pszText);
-const char * net_wm_state_text(e_net_wm_state estate);
+//enum e_net_wm_state
+//{
+//
+//   net_wm_state_above,
+//   net_wm_state_below,
+//   net_wm_state_hidden,
+//   net_wm_state_maximized_horz,
+//   net_wm_state_maximized_vert,
+//   net_wm_state_fullscreen,
+//   net_wm_state_skip_taskbar,
+//   net_wm_state_count,
+//
+//};
 
 
-CLASS_DECL_ACME int xinerama_get_monitor_count();
-CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
-
-CLASS_DECL_ACME int xinerama_get_screen_size(int& width, int& height);
-
-
-int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet);
-
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, RECTANGLE_I32 * lprectRet);
 
 
 

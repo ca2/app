@@ -1,8 +1,6 @@
 #include <shobjidl.h>
 
 #include "windows.h"
-//#include "windows_factory_exchange.h"
-//#include "windows_interaction_impl.h"
 
 #include "windows_print_job.cpp"
 #include "windows_copydesk.cpp"

@@ -163,7 +163,7 @@ namespace multimedia
       ::e_status     out::out_open(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount)
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_Queue != nullptr &&
                m_estate != e_state_initial)
@@ -302,7 +302,7 @@ Opened:
       ::e_status     out::out_open_ex(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::audio::e_purpose epurpose)
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_Queue != nullptr && m_estate != e_state_initial)
             return ::success;
@@ -424,7 +424,7 @@ Opened:
       ::e_status     out::out_close()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate == e_state_playing)
          {
@@ -478,9 +478,9 @@ Opened:
        void out::OnMultimediaDone(::message::message * pmessage)
        {
 
-       __pointer(::message::base) pbase(pmessage);
+       __pointer(::user::message) pusermessage(pmessage);
 
-       LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam.m_lparam;
+       LPWAVEHDR lpwavehdr = (LPWAVEHDR) pusermessage->m_lparam.m_lparam;
 
        out_out_buffer_done(lpwavehdr->dwUser);
 
@@ -518,7 +518,7 @@ Opened:
 
          }
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          buf->mAudioDataByteSize = out_get_buffer_size();
 
@@ -539,7 +539,7 @@ Opened:
       ::e_status     out::out_stop()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate != e_state_playing && m_estate != e_state_paused)
             return error_failed;
@@ -570,7 +570,7 @@ Opened:
       ::e_status     out::out_pause()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_playing);
 
@@ -599,7 +599,7 @@ Opened:
       ::e_status     out::out_restart()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_paused);
 
@@ -638,7 +638,7 @@ Opened:
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          OSStatus                status;
 
@@ -678,7 +678,7 @@ Opened:
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          OSStatus                status;
 

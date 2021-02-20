@@ -18,16 +18,16 @@ namespace simpledb
    {
       if(m_pbase != nullptr)
          close();
-      class base * pbase = new class base(get_object());
-      if(pbase == nullptr)
+      class base * pusermessage = new class base(get_object());
+      if(pusermessage == nullptr)
          return false;
-      pbase->setDatabase(pszDatabase);
-      if(pbase->connect())
+      pusermessage->setDatabase(pszDatabase);
+      if(pusermessage->connect())
       {
-         delete pbase;
+         delete pusermessage;
          return false;
       }
-      m_pbase = pbase;
+      m_pbase = pusermessage;
       return true;
    }
 

@@ -4,7 +4,7 @@
 //int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 //{
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -12,7 +12,7 @@
 //HCURSOR CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 //{
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //
@@ -49,6 +49,6 @@ namespace draw2d
 int_bool delete_hcursor(HCURSOR hcursor)
 {
 
-   return TRUE;
+   return true;
 
 }

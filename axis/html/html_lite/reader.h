@@ -261,7 +261,7 @@ public:
    strsize read_form_document(const string & str);
 #ifdef WINDOWS
    // parses an HTML document from a file given its HANDLE
-   strsize read_html_file(HANDLE hFile);
+   //strsize read_html_file(HANDLE hFile);
 #else
    // parses an HTML document from a file given its file descriptor
    strsize read_html_file(i32 fd);

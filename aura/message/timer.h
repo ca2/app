@@ -6,7 +6,7 @@ namespace message
 
 
    class CLASS_DECL_AURA timer :
-      virtual public base
+      virtual public ::user::message
    {
    public:
 
@@ -16,8 +16,8 @@ namespace message
 
       timer() {}
 
-      using ::message::base::set;
-      virtual void set(oswindow oswindow, ::user::primitive* pwnd, const ::id & id, wparam wparam, ::lparam lparam);
+      using ::user::message::set;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
 

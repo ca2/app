@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -11,8 +9,8 @@ namespace user
    //
    //   return nok rules
    //
-   //   m_iMin - integer min
-   //   m_iMax - integer max
+   //   m_iMin - integer minimum
+   //   m_iMax - integer maximum
    //
    //string_array validate::nok(const ::payload & val)
    //{

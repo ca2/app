@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -68,7 +66,7 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //sync_lock sl(mutex_children());
+      //synchronization_lock synchronizationlock(mutex_children());
 
       if (!can_merge(pinteraction))
       {
@@ -220,7 +218,7 @@ namespace user
    //bool place_holder::create_interaction(::user::place_holder_container * pcontainer,id id)
    //{
 
-   //   return ::user::interaction::create_interaction(pcontainer, id) != FALSE;
+   //   return ::user::interaction::create_interaction(pcontainer, id) != false;
 
    //}
 
@@ -388,7 +386,7 @@ namespace user
    }
 
 
-   void place_holder::route_command_message(::user::command * pcommand)
+   void place_holder::route_command_message(::message::command * pcommand)
    {
 
       // then pump through frame

@@ -30,16 +30,16 @@ public:
    //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)__u64x(u), (UNIT_TYPE)__u64y(u)) {}
    //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
    template < primitive_point POINT >
-   point_type(const POINT & point) noexcept { ::copy_point(this, &point); }
+   point_type(const POINT & point) noexcept { ::copy(this, &point); }
 
    template < primitive_point POINT >
-   point_type(const POINT * ppoint) noexcept { ::copy_point(this, ppoint); }
+   point_type(const POINT * ppoint) noexcept { ::copy(this, ppoint); }
 
    template < primitive_size SIZE >
    point_type(const SIZE & size) noexcept { ::copy(this, &size); }
 
    template < primitive_size SIZE >
-   point_type(const SIZE * psize) noexcept { ::copy_point(this, psize); }
+   point_type(const SIZE * psize) noexcept { ::copy(this, psize); }
 
 #ifdef WINDOWS
    //rect_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
@@ -61,7 +61,7 @@ public:
 
    ::u32 u32() const noexcept { return __u32(this->x, this->y); }
    ::u64 u64() const noexcept { return __u64(this->x, this->y); }
-   ::lparam lparam() const noexcept { return MAKELPARAM(this->x, this->y); }
+   ::lparam lparam() const noexcept { return { this->x, this->y }; }
 
    point_type& Null() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
 
@@ -73,18 +73,18 @@ public:
 
 
 
-   inline UNIT_TYPE get_dimension(e_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->x, this->y); }
-   inline UNIT_TYPE get_orthogonal_dimension(e_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->x, this->y); }
-   inline UNIT_TYPE get_orthogonal(e_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal_dimension(e_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal(e_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->x, this->y); }
+   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->x, this->y); }
+   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
 
 
-   inline UNIT_TYPE set_dimension(e_orientation eorientation, UNIT_TYPE l) noexcept;
-   inline UNIT_TYPE set_orthogonal_dimension(e_orientation eorientation, UNIT_TYPE l) noexcept;
-   inline UNIT_TYPE set_orthogonal(e_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
-   inline UNIT_TYPE set_normal_dimension(e_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
-   inline UNIT_TYPE set_normal(e_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
+   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
+   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept;
+   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
+   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
+   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
 
 

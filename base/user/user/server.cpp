@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -41,7 +39,7 @@ namespace user
          if (!estatus)
          {
 
-            __throw(exception::exception(estatus));
+            __throw(::status_exception(estatus));
 
          }
 
@@ -50,7 +48,7 @@ namespace user
          if (!estatus)
          {
 
-            __throw(exception::exception(estatus));
+            __throw(::status_exception(estatus));
 
          }
 

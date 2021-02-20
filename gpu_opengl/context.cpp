@@ -251,12 +251,12 @@ namespace opengl
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "float base_res = min(resolution.x, resolution.y);\n"
+         "float base_res = minimum(resolution.x, resolution.y);\n"
          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
          "\n"
          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-         "float posx = max(0.f, uv.x);\n"
-         "float posy = max(0.f, uv.y);\n"
+         "float posx = maximum(0.f, uv.x);\n"
+         "float posy = maximum(0.f, uv.y);\n"
          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
          "}\n";
 

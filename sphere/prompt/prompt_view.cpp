@@ -133,7 +133,7 @@ namespace prompt
       
       i32 iH = rectClient.height() / 2;
       
-      iH = min(iH, 120);
+      iH = minimum(iH, 120);
       
       double r = (double) iW / (double) iH;
       double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
@@ -231,7 +231,7 @@ namespace prompt
 
    void view::_001OnOp(::message::message * pmessage)
    {
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 

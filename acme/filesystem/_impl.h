@@ -407,7 +407,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -447,7 +447,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::matter * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;
@@ -508,7 +508,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pathOut, point_i32, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -517,7 +517,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, point_i32, pfnOuput, pathIn);
+//   return Context.file().output(get_context_application(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -560,11 +560,11 @@ namespace file
 
 
 //template < class T >
-//bool application::output(::file::file& os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
+//bool application::output(::file::file& os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
 
 //{
 
-//   return Context.file().output(get_context_application(), os, point_i32, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), os, point, pfnOuput, istream);
 
 
 //}

@@ -71,11 +71,11 @@ namespace userstack
    {
 
       if( !simple_frame_window::pre_create_window(pusersystem) )
-         return FALSE;
+         return false;
 
       pusersystem->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -203,7 +203,7 @@ namespace userstack
 
    void frame::pre_translate_message(::message::message * pmessage)
    {
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
       simple_frame_window::pre_translate_message(pmessage);
    }
 
@@ -221,27 +221,27 @@ namespace userstack
    }
 
 
-   void frame::message_handler(::message::base * pbase)
+   void frame::message_handler(::user::message * pusermessage)
    {
 
-      simple_frame_window::message_handler(pbase);
+      simple_frame_window::message_handler(pusermessage);
 
    }
 
 
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_id == (WM_APP + 2000))
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_id == (WM_APP + 2000))
       {
-         _001OnApp2000(pbase);
-         pbase->m_bRet = true;
+         _001OnApp2000(pusermessage);
+         pusermessage->m_bRet = true;
       }
-      else if(pbase->m_id == WM_COPYDATA)
+      else if(pusermessage->m_id == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
          i32 iEdge = 0;
-         COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
+         COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
          if(pstruct->dwData == 2000)
          {
             ::memory_file file(pstruct->lpData, pstruct->cbData);
@@ -259,22 +259,22 @@ namespace userstack
 
    void frame::_001OnApp2000(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
 
-      if(pbase->m_wparam == 0)
+      if(pusermessage->m_wparam == 0)
       {
-         if(pbase->m_lparam == 2)
+         if(pusermessage->m_lparam == 2)
          {
             //OnHoverAction(true);
             //display(e_display_normal);
             
             display();
             
-            set_window_pos(zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+            set_window_position(e_zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
             display(e_display_full_screen);
          }
-         else if(pbase->m_lparam == 5)
+         else if(pusermessage->m_lparam == 5)
          {
 #ifdef WINDOWS_DESKTOP
             ::rectangle_i32 rectangle;
@@ -294,24 +294,24 @@ namespace userstack
 #endif
          }
       }
-      /*         else if(pbase->m_lparam == 1)
+      /*         else if(pusermessage->m_lparam == 1)
                {
                   m_bTimerOn = true;
                   SetTimer(1000, 23, nullptr);
                }
-               else if(pbase->m_lparam == 0)
+               else if(pusermessage->m_lparam == 0)
                {
                   KillTimer(1000);
                   m_bTimerOn = false;
                }
-               else if(pbase->m_lparam == 3)
+               else if(pusermessage->m_lparam == 3)
                {
                  hide();
                }
         */
       /*  }
       */
-      else if(pbase->m_wparam == 33)
+      else if(pusermessage->m_wparam == 33)
       {
          string str = System.get_local_mutex_id();
          ::str::begins_eat_ci(str, "bergedge");
@@ -320,60 +320,60 @@ namespace userstack
             iEdge = 77;
          else
             iEdge += 2000;
-         pbase->m_lresult = iEdge;
+         pusermessage->m_lresult = iEdge;
       }
-      else if(pbase->m_wparam == 25)
+      else if(pusermessage->m_wparam == 25)
       {
 #ifdef WINDOWS_DESKTOP
-         pbase->m_lresult = (LRESULT) top_level_frame()->get_safe_handle();
+         pusermessage->m_lresult = (LRESULT) top_level_frame()->get_safe_handle();
 #else
          __throw(todo());
 #endif
       }
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
    }
 
-   /*else if(pbase->m_wparam == 1)
+   /*else if(pusermessage->m_wparam == 1)
    {
-      pbase->set_lresult(2);
+      pusermessage->set_lresult(2);
    }
-   else if(pbase->m_wparam == 2)
+   else if(pusermessage->m_wparam == 2)
    {
-      pbase->set_lresult(4);
+      pusermessage->set_lresult(4);
    }
-   else if(pbase->m_wparam == 3)
+   else if(pusermessage->m_wparam == 3)
    {
-      if(pbase->m_lparam == 6)
+      if(pusermessage->m_lparam == 6)
       {
          top_level_frame()->hide();
          __post_quit_message(36);
       }
    }
-   else if(pbase->m_wparam == 4)
+   else if(pusermessage->m_wparam == 4)
    {
-      pbase->set_lresult(5);
+      pusermessage->set_lresult(5);
    }
-   else if(pbase->m_wparam == 5)
+   else if(pusermessage->m_wparam == 5)
    {
-      pbase->set_lresult(8);
+      pusermessage->set_lresult(8);
    }
-   else if(pbase->m_wparam == 8)
+   else if(pusermessage->m_wparam == 8)
    {
-      pbase->set_lresult(11);
+      pusermessage->set_lresult(11);
    }
-   else if(pbase->m_wparam == 11)
+   else if(pusermessage->m_wparam == 11)
    {
-      pbase->set_lresult(23);
+      pusermessage->set_lresult(23);
    }
-   else if(pbase->m_wparam == 23)
+   else if(pusermessage->m_wparam == 23)
    {
-      pbase->set_lresult(33);
+      pusermessage->set_lresult(33);
    }
-   else if(pbase->m_wparam == 33)
+   else if(pusermessage->m_wparam == 33)
    {
-      pbase->set_lresult(68);
+      pusermessage->set_lresult(68);
    }
-   pbase->m_bRet = true;*/
+   pusermessage->m_bRet = true;*/
    //}
 
 
@@ -382,9 +382,9 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
+      MESSAGE * pmsg = (MESSAGE *) pusermessage->m_lparam.m_lparam;
 
       pmsg->hwnd = get_safe_handle();
 
@@ -394,7 +394,7 @@ namespace userstack
          if(pmsg->message != WM_KICKIDLE)
          {
 
-            ::pointer < ::message::base > spbase;
+            ::pointer < ::user::message > spbase;
 
             spbase = Application.get_message_base(pmsg);
 

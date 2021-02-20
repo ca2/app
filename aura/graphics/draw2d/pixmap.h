@@ -184,17 +184,17 @@ struct pixmap
    //   inline bool is_ok() const { return m_pbitmapMap->is_ok(); }
    //
    //
-   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle_i32(); }
+   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle(); }
    //
    //
    //   pixmap& operator = (const ::rectangle_i32& rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
    //
    //
-   //   inline ::rectangle_i32 rectangle(const point_i32& point = nullptr) const { return m_pbitmapMap->rectangle_i32(point); }
+   //   inline ::rectangle_i32 rectangle(const point_i32& point = nullptr) const { return m_pbitmapMap->rectangle(point); }
    //
    //   pixmap& operator =(const pixmap& pixmap);
    //
-   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle_i32(); }
+   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle(); }
    //
    //
    //   inline ::point_i32 top_left() const noexcept { return m_pbitmapMap->top_left(); }
@@ -315,7 +315,7 @@ inline void copy_colorref(::pixmap * ppixmapDst, const ::size_i32 & size, const 
 inline void copy_colorref(::pixmap * ppixmapDst, const ::pixmap * ppixmapSrc)
 {
 
-   copy_colorref(ppixmapDst, ppixmapDst->size().min(ppixmapSrc->size()), ppixmapSrc);
+   copy_colorref(ppixmapDst, ppixmapDst->size().minimum(ppixmapSrc->size()), ppixmapSrc);
 
 }
 

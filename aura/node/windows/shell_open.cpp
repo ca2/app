@@ -77,7 +77,7 @@ namespace windows
                return (HDDEDATA)true;
             }
          }
-         return (HDDEDATA)FALSE;
+         return (HDDEDATA)false;
       }
 
       case XTYP_DISCONNECT:

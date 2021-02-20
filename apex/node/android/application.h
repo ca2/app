@@ -43,7 +43,7 @@
 //
 //      virtual bool win_init(::create * pdata);
 //
-//      virtual void ShowWaitCursor(bool bShow = true);
+//      virtual void show_wait_cursor(bool bShow = true);
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);

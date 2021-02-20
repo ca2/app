@@ -203,7 +203,7 @@ public:
    virtual bool tint(::image * pimage, const rgb & rgb) override;
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A) override;
    virtual bool rgb_from(::image * pimage) override;
-   virtual bool paint_rgb(color c) override;
+   virtual bool paint_rgb(::color::color color) override;
 
 
    virtual bool saturation(double dRate) override;
@@ -228,7 +228,7 @@ public:
    inline u32 GetPixel(const ::point & point) { return GetPixel(point.x, point.y); }
    virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask) override;
    virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel) override;
-   virtual bool transparent_color(color color) override;
+   virtual bool transparent_color(::color::color color) override;
 
    virtual bool create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1) override;
    virtual bool create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1) override;
@@ -325,9 +325,9 @@ public:
    virtual bool copy(::image * pimage, i32 x, i32 y) override;
    virtual bool PasteRect(::image * pimage, i32 x, i32 y) override;
 
-   virtual bool fill_rect(const ::rect & rect, color32_t cr) override;
+   virtual bool fill_rectangle(const ::rect & rect, color32_t cr) override;
 
-   virtual bool fill_rect(const ::rect & rect, i32 R, i32 G, i32 B) override;
+   virtual bool fill_rectangle(const ::rect & rect, i32 R, i32 G, i32 B) override;
 
 
    virtual bool fill_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B, i32 A) override;

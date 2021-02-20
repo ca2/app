@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "appindicator.h"
+#include "gtk_things/appindicator.h"
 
 
 namespace linux

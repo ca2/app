@@ -127,7 +127,7 @@ namespace uwp
 
                //auto pchanged = ref new Windows::UI::Core::WindowSizeChangedEventArgs();
 
-               ::size_i32 size_i32((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
+               ::size_i32 size((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
 
                //pchanged->Size.Height = m_window->Bounds.Height;
 
@@ -288,7 +288,7 @@ namespace uwp
    void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      ::size_i32 size_i32((LONG) args->Size.Width, (LONG) args->Size.Height);
+      ::size_i32 size((LONG) args->Size.Width, (LONG) args->Size.Height);
 
       on_window_size_changed(sender, size);
 
@@ -398,17 +398,17 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       auto pkey  = __new(::message::key);
 
-      pbase = pkey;
+      pusermessage = pkey;
 
       pkey->m_id = e_message_char;
       pkey->m_playeredUserPrimitive = puiHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
-      puiHost->m_pimpl->queue_message_handler(pbase);
+      puiHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -431,20 +431,20 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       auto pkey  = __new(::message::key);
 
-      pbase = pkey;
+      pusermessage = pkey;
 
       bool bTextFocus = m_puserinteraction->get_keyboard_focus() != nullptr;
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
@@ -457,12 +457,12 @@ namespace uwp
          //pkey->m_strText            = m_strNewText;
          //if (pkey->m_strText.has_char())
          //{
-           // pkey->m_ekey = ::user::key_refer_to_text_member;
+           // pkey->m_ekey = ::user::e_key_refer_to_text_member;
          //}
    //      pkey->m_key = args;
 
 
-         puiHost->m_pimpl->queue_message_handler(pbase);
+         puiHost->m_pimpl->queue_message_handler(pusermessage);
 
       }
 
@@ -482,11 +482,11 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       ::message::key * pkey = new  ::message::key;
 
-      pbase = pkey;
+      pusermessage = pkey;
 
 
       if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
@@ -498,7 +498,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if (bSpecialKey || !bTextFocus)
       {
@@ -542,7 +542,7 @@ namespace uwp
                //}
                //else
                //{
-         puiHost->m_pimpl->queue_message_handler(pbase);
+         puiHost->m_pimpl->queue_message_handler(pusermessage);
          //}
 
       }
@@ -624,7 +624,7 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
@@ -632,7 +632,7 @@ namespace uwp
 
       ::message::mouse * pmouse = new ::message::mouse;
 
-      pbase = pmouse;
+      pusermessage = pmouse;
 
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
@@ -647,7 +647,7 @@ namespace uwp
          (LONG) pointerPoint->RawPosition.X, 
          (LONG) pointerPoint->RawPosition.Y);
 
-      puiHost->m_pimpl->queue_message_handler(pbase);
+      puiHost->m_pimpl->queue_message_handler(pusermessage);
 
       m_millisLastMouseMove= ::millis::now();
 
@@ -680,7 +680,7 @@ namespace uwp
 
       }
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
@@ -688,7 +688,7 @@ namespace uwp
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
-      pbase = pmouse;
+      pusermessage = pmouse;
 
       pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
@@ -729,7 +729,7 @@ namespace uwp
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      puiHost->m_pimpl->queue_message_handler(pbase);
+      puiHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -756,11 +756,11 @@ namespace uwp
       if (puiHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::message::base) pbase;
+      __pointer(::user::message) pusermessage;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
-      pbase = pmouse;
+      pusermessage = pmouse;
 
       pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
@@ -792,7 +792,7 @@ namespace uwp
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      puiHost->m_pimpl->queue_message_handler(pbase);
+      puiHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -850,7 +850,7 @@ namespace uwp
 
       }
 
-      rectangle_i32 = m_rectInputContentRect;
+      rectangle = m_rectInputContentRect;
 
       return rectangle;
 
@@ -860,7 +860,7 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
-      Windows::Foundation::Rect rectangle_i32 = m_rectInputSelectionRect;
+      Windows::Foundation::Rect rectangle = m_rectInputSelectionRect;
 
       return rectangle;
 
@@ -926,7 +926,7 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
-      Windows::Foundation::Rect rectangle_i32 = m_rectLastWindowRect;
+      Windows::Foundation::Rect rectangle = m_rectLastWindowRect;
 
       /*      rectangle.X = 0;
             rectangle.Y = 0;
@@ -940,7 +940,7 @@ namespace uwp
             {
                try
                {
-                  rectangle_i32 = m_window->Bounds;
+                  rectangle = m_window->Bounds;
                }
                catch(...)
                {
@@ -954,7 +954,7 @@ namespace uwp
    Windows::Foundation::Point directx_framework_view::get_cursor_pos()
    {
 
-      single_lock sl(&m_mutex, true);
+      single_lock synchronizationlock(&m_mutex, true);
 
       Windows::Foundation::Point p = m_pointLastCursor;
 

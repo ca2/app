@@ -15,7 +15,7 @@ char * lpBuffer
 
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
-      strncpy(lpBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+      strncpy(lpBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
       return (::u32) strlen(ptmpdir);
    }
 
@@ -23,11 +23,11 @@ char * lpBuffer
 
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
-      strncpy(lpBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+      strncpy(lpBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
       return (::u32) strlen(ptmpdir);
    }
 
-   strncpy(lpBuffer, "/tmp", min(nBufferLength, 5));
+   strncpy(lpBuffer, "/tmp", minimum(nBufferLength, 5));
    return 5;
 
 

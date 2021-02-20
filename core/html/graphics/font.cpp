@@ -40,7 +40,7 @@ namespace html
       }
       else
       {
-         iWeight = max(100, atoi(m_strWeight));
+         iWeight = maximum(100, atoi(m_strWeight));
       }
 
       double dSize;
@@ -78,7 +78,7 @@ namespace html
       if(stra.get_count() > 0)
       {
          strName = stra[0];
-//         iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
+//         iLen = minimum(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
          //       ansi_count_copy(lf.lfFaceName, stra[0], iLen);
          //     lf.lfFaceName[iLen] = '\0';
          strName.trim();

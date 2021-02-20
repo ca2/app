@@ -164,7 +164,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendPolyLineToBezier( POINT_I32 * point_i32, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendPolyLineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendPolyLineToBezier(
 //   point_i32_array      &pointsset,
@@ -224,7 +224,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendQuadBSplineToBezier( POINT_I32 * point_i32, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendQuadBSplineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendQuadBSplineToBezier(
 //   point_i32_array & pointset,
@@ -305,7 +305,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of points aded to the point_i32 const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 CloseContour( POINT_I32 * point_i32, ::u32 cTotal )
+//   //::u32 CloseContour( POINT_I32 * point, ::u32 cTotal )
 //   ::u32 CloseContour(
 //   point_i32_array & pointset,
 //   ::u32 cTotal )
@@ -365,7 +365,7 @@ namespace draw2d
 //
 //      //  POINT_I32 *             point_i32;         // the bezier buffer
 //      POINTFX             pointStart;    // The starting point_i32 of a curve
-//      u32               dwMaxPts = size_i32/sizeof(POINTFX); // max possible pts.
+//      u32               dwMaxPts = size_i32/sizeof(POINTFX); // maximum possible pts.
 //      u32               dwBuffSize;
 //
 //      dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.
@@ -392,7 +392,7 @@ namespace draw2d
 //         {
 //            point_i32_array pointset;
 //            //pPoints = new CPoints();
-//            //         pPoints->m_lpPoints = point_i32;
+//            //         pPoints->m_lpPoints = point;
 //
 //            //point = (POINT_I32 *)malloc( dwBuffSize );
 //            //         point = (POINT_I32 *) new byte(dwBuffSize);
@@ -480,7 +480,7 @@ namespace draw2d
 //            if (pointset.last().x != pointset.first().x ||
 //                  pointset.last().y != pointset.first().y)
 //            {
-//               //cTotal += CloseContour( point_i32, cTotal );
+//               //cTotal += CloseContour(point, cTotal );
 //               cTotal = CloseContour(pointset, cTotal );
 //            }
 //
@@ -493,7 +493,7 @@ namespace draw2d
 //
 //            // draw the contour
 //
-//            //poly_bezier( hDC, point_i32, cTotal );
+//            //poly_bezier( hDC, point, cTotal );
 //            //pPoints->m_dwCount = cTotal;
 //            m_pointsets.add(pointset);
 //         }
@@ -569,7 +569,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(ppointOffset);
 
 
-      //System.draw2d().api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
+      //System.draw2d()->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
 
 
    }

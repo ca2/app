@@ -175,26 +175,26 @@ namespace linux
    }
 
 
-   ::file::path desktop_file::get_file_path()
-   {
-
-      ::file::path path;
-
-      path = ::dir::home();
-
-      path /= ".local/share/applications";
-
-      string strPrgName = Application.m_strAppId;
-
-      strPrgName.replace("/", ".");
-
-      strPrgName.replace("_", "-");
-
-      path /= ("com." + strPrgName + ".desktop");
-
-      return path;
-
-   }
+//   ::file::path desktop_file::get_file_path()
+//   {
+//
+//      ::file::path path;
+//
+//      path = ::dir::home();
+//
+//      path /= ".local/share/applications";
+//
+//      string strPrgName = Application.m_strAppId;
+//
+//      strPrgName.replace("/", ".");
+//
+//      strPrgName.replace("_", "-");
+//
+//      path /= ("com." + strPrgName + ".desktop");
+//
+//      return path;
+//
+//   }
 
 
    void desktop_file::create_default()
@@ -400,48 +400,48 @@ namespace linux
 
    }
 
-
-   bool desktop_file::bamf_set_icon(oswindow oswindow)
-   {
-
-      ::file::path path = get_file_path();
-
-      output_debug_string("\nlinux::interaction_impl::set_window_text");
-
-      fflush(stdout);
-
-      xdisplay d(oswindow->display());
-
-      Atom net_wm_icon = XInternAtom(oswindow->display(), "_BAMF_DESKTOP_FILE", False);
-
-      Atom cardinal = XInternAtom(oswindow->display(), "STRING", False);
-
-      int ixa = XA_STRING;
-
-      int status = XChangeProperty(
-                     oswindow->display(),
-                     oswindow->window(),
-                     net_wm_icon,
-                     ixa,
-                     8,
-                     PropModeReplace,
-                     (const unsigned char*) (const char *) path,
-                     path.get_length());
-
-      output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
-
-      fflush(stdout);
-
-      if(status != 0)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//
+//   bool desktop_file::bamf_set_icon(oswindow oswindow)
+//   {
+//
+//      ::file::path path = get_file_path();
+//
+//      output_debug_string("\nlinux::interaction_impl::set_window_text");
+//
+//      fflush(stdout);
+//
+//      xdisplay d(oswindow->display());
+//
+//      Atom net_wm_icon = XInternAtom(oswindow->display(), "_BAMF_DESKTOP_FILE", False);
+//
+//      Atom cardinal = XInternAtom(oswindow->display(), "STRING", False);
+//
+//      int ixa = XA_STRING;
+//
+//      int status = XChangeProperty(
+//                     oswindow->display(),
+//                     oswindow->window(),
+//                     net_wm_icon,
+//                     ixa,
+//                     8,
+//                     PropModeReplace,
+//                     (const unsigned char*) (const char *) path,
+//                     path.get_length());
+//
+//      output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
+//
+//      fflush(stdout);
+//
+//      if(status != 0)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
 } // namespace linux

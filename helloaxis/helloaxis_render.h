@@ -58,7 +58,7 @@ namespace helloaxis
                bool                             m_bVoidTransfer;
                bool                             m_bFirstDone;
 
-               ::draw2d::font_pointer                m_font;
+               ::write_text::font_pointer                m_font;
 
                double                           m_dMinRadius;
                double                           m_dMaxRadius;
@@ -97,7 +97,7 @@ namespace helloaxis
       virtual ~render();
 
 
-      string get_helloaura() { sync_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaura() { synchronization_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual ::e_status     run() override;

@@ -76,7 +76,7 @@ namespace hellobase
 
          {
 
-            sync_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
+            synchronization_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
 
             get_typed_view < view >()->m_strHelloBase = "image:" + get_typed_view < view >()->m_strImage + "," + get_typed_view < view >()->m_strHelloBase;
 

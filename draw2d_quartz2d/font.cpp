@@ -32,7 +32,7 @@ namespace draw2d_quartz2d
    void font::dump(dump_context & dumpcontext) const
    {
       
-      ::draw2d::font::dump(dumpcontext);
+      ::write_text::font::dump(dumpcontext);
       
    }
 

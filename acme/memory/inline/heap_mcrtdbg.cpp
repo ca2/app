@@ -27,14 +27,14 @@ struct heap_memory
 
    }
 
-   inline static void * unaligned(void * pbase, memsize size, i32 blockuse)
+   inline static void * unaligned(void * pusermessage, memsize size, i32 blockuse)
    {
 
-      void * pmemory = (void *)((iptr)pbase + sizeof(heap_memory));
+      void * pmemory = (void *)((iptr)pusermessage + sizeof(heap_memory));
 
       heap_memory * pheap = heap_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pbase));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
 
       pheap->m_blockuse = blockuse;
 
@@ -45,14 +45,14 @@ struct heap_memory
    }
 
 
-   inline static void * aligned(void * pbase, memsize size, i32 blockuse)
+   inline static void * aligned(void * pusermessage, memsize size, i32 blockuse)
    {
 
-      void * pmemory = (void *)((((iptr)pbase) + sizeof(heap_memory) + ALIGN_BYTE_COUNT - 1) & ((~((iptr)ALIGN_BYTE_COUNT - 1))));
+      void * pmemory = (void *)((((iptr)pusermessage) + sizeof(heap_memory) + ALIGN_BYTE_COUNT - 1) & ((~((iptr)ALIGN_BYTE_COUNT - 1))));
 
       heap_memory * pheap = heap_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pbase));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
 
       pheap->m_blockuse = blockuse;
 
@@ -173,16 +173,16 @@ void * aligned_memory_alloc(memsize size, memsize align)
    if(g_pheap == nullptr)
    {
 
-      void * pbase = system_heap_alloc(heap_memory::aligned_provision_get_size(size, align));
+      void * pusermessage = system_heap_alloc(heap_memory::aligned_provision_get_size(size, align));
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return nullptr;
 
       }
 
-      p = heap_memory::aligned(pbase, size, 128, align);
+      p = heap_memory::aligned(pusermessage, size, 128, align);
 
    }
    else
@@ -194,16 +194,16 @@ void * aligned_memory_alloc(memsize size, memsize align)
          output_debug_string("*");
       }
 
-      void * pbase = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size, align));
+      void * pusermessage = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size, align));
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return nullptr;
 
       }
 
-      p = heap_memory::aligned(pbase, size, 0, align);
+      p = heap_memory::aligned(pusermessage, size, 0, align);
 
    }
 
@@ -253,7 +253,7 @@ void * unaligned_memory_alloc(memsize size)
 
    pblock->m_size = nAllocSize;
 
-   sync_lock lock(g_pmutgen);
+   synchronization_lock lock(g_pmutgen);
 
    pblock->m_pprevious = nullptr;
 
@@ -283,9 +283,9 @@ void * unaligned_memory_alloc(memsize size)
 
 #else
 
-   void * pbase = g_pheap->_alloc(heap_memory::unaligned_provision_get_size(size));
+   void * pusermessage = g_pheap->_alloc(heap_memory::unaligned_provision_get_size(size));
 
-   if (pbase == nullptr)
+   if (pusermessage == nullptr)
    {
 
       return nullptr;
@@ -294,7 +294,7 @@ void * unaligned_memory_alloc(memsize size)
    else
    {
 
-      p = heap_memory::unaligned(pbase, size, 2);
+      p = heap_memory::unaligned(pusermessage, size, 2);
 
    }
 
@@ -337,31 +337,31 @@ void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFile
    if(g_pheap == nullptr)
    {
 
-      void * pbase = system_heap_alloc(heap_memory::aligned_provision_get_size(size, align));
+      void * pusermessage = system_heap_alloc(heap_memory::aligned_provision_get_size(size, align));
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return nullptr;
 
       }
 
-      p = heap_memory::aligned(pbase, size, 129, align);
+      p = heap_memory::aligned(pusermessage, size, 129, align);
 
    }
    else
    {
 
-      void * pbase = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size, align), nBlockUse, szFileName, nLine);
+      void * pusermessage = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size, align), nBlockUse, szFileName, nLine);
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return nullptr;
 
       }
 
-      p = heap_memory::aligned(pbase, size, 1, align);
+      p = heap_memory::aligned(pusermessage, size, 1, align);
 
    }
 
@@ -402,16 +402,16 @@ void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFi
 
    //TODO: to do the dbg version
    //byte * p = (byte *) _system_heap_alloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * pbase = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   void * pusermessage = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
-   if (pbase == nullptr)
+   if (pusermessage == nullptr)
    {
 
       return nullptr;
 
    }
 
-   p = heap_memory::unaligned(pbase, size, 3);
+   p = heap_memory::unaligned(pusermessage, size, 3);
 
 #endif
 
@@ -534,7 +534,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   sync_lock lock(g_pmutgen);
+   synchronization_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {
@@ -605,12 +605,12 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
    memsize sizeOld = heap_memory::heap_get_size(pmemory);
 
-   void * pbase = nullptr;
+   void * pusermessage = nullptr;
 
    if(blockuse == 0) // aligned
    {
 
-      pbase = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT);
+      pusermessage = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT);
 
    }
    else if(blockuse == 1) // aligned
@@ -618,13 +618,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT,nBlockUse,szFileName,nLine);
+      pusermessage = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT,nBlockUse,szFileName,nLine);
 
    }
    else if(blockuse == 128) // aligned
    {
 
-      pbase = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
+      pusermessage = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
 
    }
    else if(blockuse == 129) // aligned
@@ -632,13 +632,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
       //TODO: to do the dbg version
 
-      pbase = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
+      pusermessage = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
 
    }
    else if(blockuse == 2) // unaligned
    {
 
-      pbase = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0);
+      pusermessage = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0);
 
    }
    else if(blockuse == 3) // unaligned
@@ -646,7 +646,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
+      pusermessage = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
 
    }
    else
@@ -656,7 +656,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
    }
 
-   if(pbase == nullptr)
+   if(pusermessage == nullptr)
    {
 
       return nullptr;
@@ -666,13 +666,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
    if(blockuse == 0 || blockuse == 1 || blockuse == 128 || blockuse == 129) // aligned
    {
 
-      return heap_memory::aligned(pbase, size,blockuse);
+      return heap_memory::aligned(pusermessage, size,blockuse);
 
    }
    else
    {
 
-      return heap_memory::unaligned(pbase, size,blockuse);
+      return heap_memory::unaligned(pusermessage, size,blockuse);
 
    }
 
@@ -707,7 +707,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 #elif MEMDLEAK
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   sync_lock lock(g_pmutgen);
+   synchronization_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {
@@ -741,7 +741,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
    heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
-   void * pbase = (void *)(((iptr)pmemory) - pheap->m_back);
+   void * pusermessage = (void *)(((iptr)pmemory) - pheap->m_back);
 
 
    pheap->check_padding_after();
@@ -750,7 +750,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
    if(pheap->m_blockuse == 0)
    {
 
-      g_pheap->_free(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
+      g_pheap->_free(pusermessage,heap_memory::aligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 1)
@@ -758,13 +758,13 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      g_pheap->free_dbg(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
+      g_pheap->free_dbg(pusermessage,heap_memory::aligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 128)
    {
 
-      system_heap_free(pbase);
+      system_heap_free(pusermessage);
 
    }
    else if(pheap->m_blockuse == 129)
@@ -772,13 +772,13 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      system_heap_free(pbase);
+      system_heap_free(pusermessage);
 
    }
    else if(pheap->m_blockuse == 2)
    {
 
-      g_pheap->_free(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
+      g_pheap->_free(pusermessage,heap_memory::unaligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 3)
@@ -786,7 +786,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      g_pheap->free_dbg(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
+      g_pheap->free_dbg(pusermessage,heap_memory::unaligned_provision_get_size(pheap->m_size));
 
    }
    else

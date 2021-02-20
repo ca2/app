@@ -308,7 +308,7 @@ namespace data
    ::count tree::get_proper_item_count()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       return get_base_item()->get_proper_item_count();
 
@@ -400,7 +400,7 @@ namespace data
       }
 
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(pitemNew == nullptr)
          return false;
@@ -732,7 +732,7 @@ namespace data
    //void tree::start_fill_children()
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   m_bFill = true;
 

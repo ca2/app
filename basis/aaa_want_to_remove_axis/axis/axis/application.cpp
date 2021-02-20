@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::id & id)
    {
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       __pointer(string_to_string) pmap;
 
@@ -1198,7 +1198,7 @@ m_millisHeartBeat.Now();
    void application::process_message_filter(i32 code,::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
       UNREFERENCED_PARAMETER(code);
 
@@ -1220,7 +1220,7 @@ m_millisHeartBeat.Now();
       {
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else if(nCode == 0)
@@ -1234,12 +1234,12 @@ m_millisHeartBeat.Now();
          if(m_iWaitCursorCount > 0)
          {
 
-            ShowWaitCursor(true);
+            show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else
@@ -1252,7 +1252,7 @@ m_millisHeartBeat.Now();
 
          m_iWaitCursorCount++;
 
-         ShowWaitCursor(true);
+         show_wait_cursor(true);
 
       }
 
@@ -1260,7 +1260,7 @@ m_millisHeartBeat.Now();
 
    }
 
-   //void application::ShowWaitCursor(bool bShow)
+   //void application::show_wait_cursor(bool bShow)
    //{
 
    //}
@@ -1418,7 +1418,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   //__pointer(::message::base) application::get_message_base(LPMESSAGE pmsg)
+   //__pointer(::user::message) application::get_message_base(LPMESSAGE pmsg)
 
    //{
 

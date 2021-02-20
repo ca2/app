@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -30,7 +28,7 @@ namespace filemanager
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_horizontal);
+      SetSplitOrientation(e_orientation_horizontal);
 
       set_position_rate(0,0.3);
 
@@ -72,16 +70,16 @@ namespace filemanager
 
    void operation_view::_001OnMainPostMessage(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_wparam == MessageMainPostFileOperation)
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_wparam == MessageMainPostFileOperation)
       {
-         m_pinfoview->OnFileOperationStep((i32)pbase->m_lparam,false);
-         m_plistview->OnFileOperationStep((i32)pbase->m_lparam,false);
+         m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
+         m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
       }
-      else if(pbase->m_wparam == MessageMainPostFileOperationFinal)
+      else if(pusermessage->m_wparam == MessageMainPostFileOperationFinal)
       {
-         m_pinfoview->OnFileOperationStep((i32)pbase->m_lparam,true);
-         m_plistview->OnFileOperationStep((i32)pbase->m_lparam,true);
+         m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,true);
+         m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,true);
       }
    }
 

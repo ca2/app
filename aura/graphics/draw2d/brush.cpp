@@ -76,7 +76,7 @@ namespace draw2d
    }
 
 
-   bool brush::create_solid(color color)
+   bool brush::create_solid(::color::color color)
    {
 
       if(m_etype != type_solid || m_color != color)
@@ -95,7 +95,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateHatchBrush(i32 nIndex, color color)
+   bool brush::CreateHatchBrush(i32 nIndex, ::color::color color)
    {
 
       UNREFERENCED_PARAMETER(nIndex);
@@ -178,7 +178,7 @@ namespace draw2d
 //   }
 
 
-   bool brush::CreateLinearGradientBrush(const point_i32 & point1,const point_i32 & point2,const color & color1,const color & color2)
+   bool brush::CreateLinearGradientBrush(const point_i32 & point1,const point_i32 & point2,const ::color::color & color1,const ::color::color & color2)
    {
 
       return CreateLinearGradientBrush(point_f64(point1),point_f64(point2),color1,color2);
@@ -186,7 +186,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateRadialGradientBrush(const point_i32 & point1,size_i32 point2,const color & color1,const color & color2)
+   bool brush::CreateRadialGradientBrush(const point_i32 & point1,size_i32 point2,const ::color::color & color1,const ::color::color & color2)
    {
 
       return CreateRadialGradientBrush((point_f64)point1,(size_f64)point2,color1,color2);
@@ -194,7 +194,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateLinearGradientBrush(point_f64 point1, point_f64 point2, const color & color1, const color & color2)
+   bool brush::CreateLinearGradientBrush(point_f64 point1, point_f64 point2, const ::color::color & color1, const ::color::color & color2)
    {
 
       if (m_etype == type_linear_gradient_point_color
@@ -216,16 +216,16 @@ namespace draw2d
    }
 
 
-   bool brush::CreateRadialGradientBrush(point_f64 point_i32,size_f64 s,const color & color1,const color & color2)
+   bool brush::CreateRadialGradientBrush(point_f64 point,size_f64 s,const ::color::color & color1,const ::color::color & color2)
    {
 
       if(m_etype == type_radial_gradient_color
-            && m_point == point_i32
+            && m_point == point
             && m_size == s)
          return true;
 
       m_etype           = type_radial_gradient_color;
-      m_point           = point_i32;
+      m_point           = point;
       m_size            = s;
       m_color1          = color1;
       m_color2          = color2;

@@ -59,17 +59,17 @@ public:
 
 
 template < typename PRED >
-class pred_delay_thread :
+class predicate_delay_thread :
    virtual public delay_thread
 {
 public:
 
    
-   PRED &      m_pred;
+   PRED &      m_predicate;
    
    
-   pred_delay_thread(::object * pobject, PRED pred, ::u32 dwSleep = 1000) :
-      m_pred(pred),
+   predicate_delay_thread(::object * pobject, PRED pred, ::u32 dwSleep = 1000) :
+      m_predicate(pred),
       ::object(pobject),
       delay_thread(pobject, dwSleep)
    {
@@ -80,7 +80,7 @@ public:
    virtual void do_delayed() override
    {
 
-      m_pred();
+      m_predicate();
 
    }
    
@@ -89,10 +89,10 @@ public:
 
 
 template < typename PRED >
-delay_thread * pred_delay(::object * pobject, millis tickDelay, PRED pred)
+delay_thread * predicate_delay(::object * pobject, millis tickDelay, PRED pred)
 {
 
-   auto pthread  = __new(pred_delay_thread < PRED >(pobject, pred, tickDelay));
+   auto pthread  = __new(predicate_delay_thread < PRED >(pobject, pred, tickDelay));
 
    pthread->begin();
 

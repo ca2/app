@@ -16,7 +16,7 @@ namespace user
       if (!pitem->m_ppath)
       {
 
-         ::rectangle_f64 rectangle_i32(pitem->m_rectangle);
+         ::rectangle_f64 rectangle(pitem->m_rectangle);
 
          double dMinimumDimension = rectangle.minimum_dimension();
 
@@ -45,13 +45,13 @@ namespace user
       if (puserinteraction->m_itemHover == ::user::e_element_close_icon)
       {
 
-         color.m_iA = 180;
+         color.alpha = 180;
 
       }
       else
       {
 
-         color.m_iA = 127;
+         color.alpha = 127;
 
       }
 

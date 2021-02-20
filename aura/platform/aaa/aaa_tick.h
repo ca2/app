@@ -194,7 +194,7 @@ namespace papaya
       template <  >
       inline millis default_value < millis > ()
       {
-         // estimate a delay of half of max millis positive value
+         // estimate a delay of half of maximum millis positive value
          return ::get_tick() - (MAXI64 >> 1);
 
       }
@@ -220,7 +220,7 @@ inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_i; }
 
 inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_i; }
 
-inline byte __byte(const ::millis & millis) { return (byte) __minmax(millis.m_i, 0, 255); }
+inline byte __byte(const ::millis & millis) { return (byte) minimummax(millis.m_i, 0, 255); }
 
 inline millis __tick(double d) { return (::i64) d; }
 

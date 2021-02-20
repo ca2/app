@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace user
@@ -47,7 +47,7 @@ namespace user
       bool                                   m_bSplitBar;
       __pointer_array(split_bar)             m_splitbara;
       __pointer_array(Pane)                  m_panea;
-      e_orientation                          m_eorientationSplit;
+      enum_orientation                          m_eorientationSplit;
       index                                  m_iIndex;
       i32                                    m_iState;
       bool                                   m_bInitialized;
@@ -68,8 +68,8 @@ namespace user
       virtual i32 get_normal_dimension();
       virtual i32 get_ortogonal_dimension();
 
-      void RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam);
-      e_orientation GetSplitOrientation();
+      //void RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam);
+      enum_orientation GetSplitOrientation();
       i32 GetMaxPos(index iPane);
       i32 GetMinPos(index iPane);
       bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, id idPane = id());
@@ -108,7 +108,7 @@ namespace user
       void RelayChildEvent(index iIndex, const MESSAGE *  pMsg);
 
 
-      void SetSplitOrientation(e_orientation eorientation);
+      void SetSplitOrientation(enum_orientation eorientation);
 
       bool SetPaneCount(::count iPaneCount);
 

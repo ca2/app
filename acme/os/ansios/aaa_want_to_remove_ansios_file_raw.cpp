@@ -12,9 +12,9 @@ int_bool file_exists_raw(const char * path1)
    u32 dwFileAttributes = GetFileAttributesA(path1);
 
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 #else
 
@@ -92,13 +92,13 @@ void file_beg_contents_raw(const char * path, const char * psz)
 
       fseek(f, lEnd - lRemain - lLen, SEEK_SET);
 
-      fread(buf, 1, min(lRemain, lSize), f);
+      fread(buf, 1, minimum(lRemain, lSize), f);
 
       fseek(f, lEnd - lRemain, SEEK_SET);
 
-      fwrite(buf, 1, min(lRemain, lSize), f);
+      fwrite(buf, 1, minimum(lRemain, lSize), f);
 
-      lRemain -= min(lRemain, lSize);
+      lRemain -= minimum(lRemain, lSize);
 
    }
 

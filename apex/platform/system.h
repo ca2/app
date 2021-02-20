@@ -77,10 +77,12 @@ namespace apex
       //__composite(::gpu::approach)                       m_pgpu;
 
       ::mutex                                            m_mutexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibrary;
+      ::apex::library_map                                m_mapLibrary;
       string_map < PFN_NEW_APEX_LIBRARY >                m_mapNewApexLibrary;
-      string_map < __composite(::apex::library) >        m_mapLibCall;
+      ::apex::library_map                                m_mapLibCall;
 
+      ::mutex                                            m_mutexContainerizedLibrary;
+      ::string_map < ::apex::library_map >               m_mapContainerizedLibrary;
 
 
       // for lesser cooperative GUI applications
@@ -260,16 +262,17 @@ namespace apex
       virtual ::e_status create_os_node() override;
 
 
-         //::thread * get_task(ithread_t ithread);
+      //::thread * get_task(ithread_t ithread);
       //ithread_t get_thread_id(::thread * pthread);
       //void set_thread(ithread_t ithread, ::thread * pthread);
       //void unset_thread(ithread_t ithread, ::thread * pthread);
-   //::url::department                           & url()     { return m_urldepartment; }
+      //::url::department & url() { return m_urldepartment; }
 
 
       //inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       //inline ::gpu::approach* gpu() { return m_pgpu.get(); };
       //virtual ::e_status create_gpu();
+
 
       ::thread_group * thread_group(::e_priority epriority = ::priority_none);
 
@@ -299,7 +302,7 @@ namespace apex
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
 
-      virtual __pointer(::layered) get_layered_window(oswindow oswindow);
+      virtual ::layered * get_layered_window(oswindow oswindow);
 
 
       virtual ::e_status process_init();
@@ -400,6 +403,10 @@ namespace apex
       __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
+      __pointer(::apex::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
+
+      result_pointer < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
 
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
@@ -528,7 +535,7 @@ namespace apex
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   sync_lock sl(&m_mutexFactory);
+      //   synchronization_lock synchronizationlock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -537,7 +544,7 @@ namespace apex
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const char * pszCommand);
+      //bool on_application_menu_action(const char * pszCommand);
 
 
       virtual ::e_status initialize_sockets();
@@ -564,10 +571,10 @@ namespace apex
       //virtual ::e_status process_init();
 
       //virtual ::e_status init_draw2d();
-      //virtual ::e_status draw2d_factory_exchange();
+      //virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
       //virtual string draw2d_get_default_library_name();
 
-      //virtual bool imaging_factory_exchange();
+      //virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
       //virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;
@@ -1011,7 +1018,7 @@ inline void set_enum_text(ENUM e, const char * psz)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -1026,7 +1033,7 @@ inline string enum_text(ENUM e)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1039,7 +1046,7 @@ inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 
    auto & system = System;
 
-   critical_section_lock sl(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(&system.m_csEnumText);
 
    i64 iValue;
 

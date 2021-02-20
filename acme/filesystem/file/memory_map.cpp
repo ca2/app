@@ -33,47 +33,78 @@ namespace file
    string memory_map::get_path()
    {
 
-#ifdef LINUX
+//#ifdef LINUX
+//
+//      ::file::path path("/::payload/tmp/ca2/");
+//
+//      string str = m_strName;
+//
+//      if (::str::begins_eat_ci(str, "Local\\"))
+//      {
+//
+//         path /= ::dir::home() / str;
+//
+//      }
+//      else
+//      {
+//
+//         path /= str;
+//
+//      }
+//
+//      return path;
+//
+//#endif
+//
+//      string strName = m_strName;
+//
+//      if (strName.begins_eat_ci("Local\\bitmap-source-"))
+//      {
+//
+//         return ::file::path("C:\\archive\\bitmap-source") / (strName + ".bitmap-source");
+//
+//      }
+//
+//      return m_strName;
 
-      ::file::path path("/::payload/tmp/ca2/");
-
-      string str = m_strName;
-
-      if (::str::begins_eat_ci(str, "Local\\"))
-      {
-
-         path /= ::dir::home() / str;
-
-      }
-      else
-      {
-
-         path /= str;
-
-      }
-
-      return path;
-
-#endif
-
-      string strName = m_strName;
-
-      if (strName.begins_eat_ci("Local\\bitmap-source-"))
-      {
-
-         return ::file::path("C:\\archive\\bitmap-source") / (strName + ".bitmap-source");
-
-      }
-
-      return m_strName;
+      return m_strPath;
 
    }
 
 
-   bool memory_map::open(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size)
+
+
+   bool memory_map::open_name(const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size)
    {
 
-      m_strName = psz;
+      string strPath = calculate_path_from_name(pszName);
+
+      if(strPath.is_empty())
+      {
+
+         return false;
+
+      }
+
+      return open(strPath, pszName, bRead, bWrite, bCreate, size);
+
+   }
+
+
+   bool memory_map::open_path(const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size)
+   {
+
+      return open("", pszPath, bRead, bWrite, bCreate, size);
+
+   }
+
+
+   bool memory_map::open(const char * pszPath, const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size)
+   {
+
+      m_strPath = pszPath;
+
+      m_strName = pszName;
 
       m_bRead = bRead;
 
@@ -110,6 +141,17 @@ namespace file
       return false;
 
    }
+
+
+   string memory_map::calculate_path_from_name(const string & strName)
+   {
+
+      __throw(interface_only_exception());
+
+      return "";
+
+   }
+
 
 // SALADA AND PASTA and me pig searching for food is good EAT IT!! But mama te
 

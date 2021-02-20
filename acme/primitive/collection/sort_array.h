@@ -6,7 +6,7 @@
 //
 //template < typename ARG_TYPE >
 //class default_less :
-//   public less_pred_base < ARG_TYPE >
+//   public less_predicateicate_base < ARG_TYPE >
 //{
 //public:
 //
@@ -23,7 +23,7 @@
 //
 //   bool                                            m_bSorted;
 //   __pointer(index_array)                          m_pindexa;
-//   __pointer(less_pred_base < ARG_TYPE >)          m_pless;
+//   __pointer(less_predicateicate_base < ARG_TYPE >)          m_pless;
 //
 //   sort_data()
 //   {
@@ -91,7 +91,7 @@
 //
 //      __defer_construct_new(psortmap);
 //
-//      psortmap->m_pless = __new(less_pred < ARG_TYPE, PRED >(predLess));
+//      psortmap->m_pless = __new(less_predicate < ARG_TYPE, PRED >(predLess));
 //
 //   }
 //

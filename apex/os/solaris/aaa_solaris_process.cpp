@@ -165,7 +165,7 @@ bool os_initialize()
 
    t_posthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 

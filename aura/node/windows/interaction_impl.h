@@ -2,6 +2,8 @@
 
 //#error ""
 
+#include "aura/operating_system.h"
+
 #include <Shobjidl.h>
 #include <Shellapi.h>
 
@@ -16,24 +18,24 @@ namespace windows
 
 
    class CLASS_DECL_AURA interaction_impl :
-      virtual public ::user::interaction_impl,
-      virtual public IDropTarget
+      virtual public ::user::interaction_impl
    {
    public:
+
 
       bool                                      m_bClipboardOpened : 1;
       bool                                      m_bFocusImpl : 1;
       bool                                      m_bSystemCaret : 1;
 
-      ::rectangle_i32                                    m_rectLast;
+      ::rectangle_i32                           m_rectLast;
 
       bool                                      m_bUpdateGraphics;
 
-      size_i32                                      m_size;
+      size_i32                                  m_size;
 
-      point_i32                                     m_point;
+      point_i32                                 m_point;
 
-      ::user::primitive *                m_pbasewnd;
+      ::user::primitive *                       m_pbasewnd;
 
       u32                                       m_uiLastRedrawRequest;
 
@@ -41,18 +43,14 @@ namespace windows
 
       bool                                      m_bUseDnDHelper;
 
-      WNDPROC                                   m_pfnSuper;          // for subclassing of controls
+      WNDPROC                                   m_pfnSuper; // for subclassing of controls
 
       edisplay                                  m_edisplayLayout;
-      rectangle_i64                                    m_rectLastPos;
-      millis                                      m_millisLastPos;
+      rectangle_i64                             m_rectLastPos;
+      millis                                    m_millisLastPos;
       string                                    m_strDebug;
 
-      ::point_i32                                   m_pointCursor;
-
-
-
-      
+      ::point_i32                               m_pointCursor;
 
 
       interaction_impl();
@@ -61,35 +59,9 @@ namespace windows
 
       void user_common_construct();
 
-      //virtual bool set_window_pos(::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
-
-      virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void **ppvObject);
-
-      virtual ULONG STDMETHODCALLTYPE AddRef(void);
-
-      virtual ULONG STDMETHODCALLTYPE Release(void);
-
-      virtual HRESULT STDMETHODCALLTYPE DragEnter(
-      /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
-      /* [in] */ DWORD grfKeyState,
-      /* [in] */ POINTL point_i32,
-      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
-
-      virtual HRESULT STDMETHODCALLTYPE DragOver(
-      /* [in] */ DWORD grfKeyState,
-      /* [in] */ POINTL point_i32,
-      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
-
-      virtual HRESULT STDMETHODCALLTYPE DragLeave(void);
-
-      virtual HRESULT STDMETHODCALLTYPE Drop(
-      /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
-      /* [in] */ DWORD grfKeyState,
-      /* [in] */ POINTL point_i32,
-      /* [out][in] */ __RPC__inout DWORD *pdwEffect);
 
 
-      virtual void construct(oswindow oswindow);
+      //virtual void construct(::windowing::window * pwindow);
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -102,22 +74,22 @@ namespace windows
       //virtual ::e_status update_graphics_resources();
 
 
-      virtual bool __windows_message_bypass(HWND oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult);
+      //virtual bool __windows_message_bypass(HWND oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult);
 
       virtual void install_message_routing(::channel * pchannel);
 
       bool operator==(const interaction_impl& wnd) const;
       bool operator!=(const interaction_impl& wnd) const;
 
-      virtual u32 GetStyle() const;
-      virtual u32 GetExStyle() const;
-      virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
-      virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
+      //virtual u32 GetStyle() const;
+      //virtual u32 GetExStyle() const;
+      //virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
+      //virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
 
       //virtual ::user::interaction * get_owner();
       //virtual void set_owner(::user::interaction * pOwnerWnd);
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       //void _002OnDraw(::image * pimage);
 
@@ -125,34 +97,35 @@ namespace windows
 
       //virtual void defer_start_prodevian();
 
-      virtual bool set_icon(::draw2d::icon * picon, bool bSmall) override;
+      //virtual bool set_icon(::draw2d::icon * picon, bool bSmall) override;
 
       virtual void on_visual_applied() override;
 
       //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnKillFocus);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnActivate);
-      DECL_GEN_SIGNAL(_001OnDwmNcRenderingChanged);
-      DECL_GEN_SIGNAL(_001OnProdevianSynch);
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
-      DECL_GEN_SIGNAL(_001OnWindowPosChanged);
-      DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
-      DECL_GEN_SIGNAL(_001OnEnable);
+      //DECL_GEN_SIGNAL(_001OnDestroy);
+      //DECL_GEN_SIGNAL(_001OnCreate);
+      //DECL_GEN_SIGNAL(_001OnKillFocus);
+      //DECL_GEN_SIGNAL(_001OnPaint);
+      //DECL_GEN_SIGNAL(_001OnPrint);
+      //DECL_GEN_SIGNAL(_001OnSetFocus);
+      //DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      //DECL_GEN_SIGNAL(_001OnSetCursor);
+      //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
+      //DECL_GEN_SIGNAL(_001OnMove);
+      //DECL_GEN_SIGNAL(_001OnSize);
+      //DECL_GEN_SIGNAL(_001OnShowWindow);
+      //DECL_GEN_SIGNAL(_001OnActivate);
+      //DECL_GEN_SIGNAL(_001OnDwmNcRenderingChanged);
+      //DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      //DECL_GEN_SIGNAL(_001OnWindowPosChanging);
+      //DECL_GEN_SIGNAL(_001OnWindowPosChanged);
+      //DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
+      //DECL_GEN_SIGNAL(_001OnEnable);
 
 
-      virtual void win_update_graphics();
+      //virtual void win_update_graphics();
+
 
 #if(WINVER >= 0x0500)
 
@@ -165,16 +138,16 @@ namespace windows
       virtual void * get_os_data() const;
 
 
-      virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
+      //virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
 
 
-      //      virtual ::user::interaction * from_handle(oswindow oswindow);
+      //      virtual ::user::interaction * from_handle(::windowing::window * pwindow);
 
       // subclassing/unsubclassing functions
-      virtual void pre_subclass_window();
-      bool subclass_window(oswindow oswindow);
-      bool SubclassDlgItem(::u32 nID, ::user::interaction_impl * pParent);
-      oswindow unsubclass_window();
+      //virtual void pre_subclass_window();
+      //bool subclass_window(::windowing::window * pwindow);
+      //bool SubclassDlgItem(::u32 nID, ::user::interaction_impl * pParent);
+      //oswindow unsubclass_window();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       //bool ExecuteDlgInit(const char * pszResourceName);
@@ -189,7 +162,7 @@ namespace windows
       // advanced creation (allows access to extended styles)
       //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction * puiParent, id id) override;
 
-      virtual bool native_create_host() override;
+      virtual ::e_status native_create_host() override;
 
       virtual bool destroy_impl_only() override;
       virtual bool DestroyWindow() override;
@@ -200,14 +173,14 @@ namespace windows
       virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
-      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder);
+      //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder);
 
 
 
-      // get immediate child with given ID
-      using ::user::interaction_impl::get_child_by_id;
-      void get_child_by_id(id id, oswindow* poswindow_) const;
+      //// get immediate child with given ID
+      //using ::user::interaction_impl::get_child_by_id;
+      //void get_child_by_id(id id, oswindow* poswindow_) const;
 
       virtual bool _is_window() const override;
 
@@ -222,11 +195,11 @@ namespace windows
       bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
 
 
-      bool SendNotifyMessage(::u32 message, wparam wParam, lparam lParam);
+      //bool SendNotifyMessage(::u32 message, wparam wParam, lparam lParam);
 
       //bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
-      bool DragDetect(const ::point_i32 & point) const;
+      //bool DragDetect(const ::point_i32 & point) const;
 
 
 
@@ -249,12 +222,12 @@ namespace windows
       //virtual void clear_need_zorder() override;
 
 
-      //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW);
 
 
       // Window size_i32 and position Functions
-      virtual bool node_is_iconic() override;
-      virtual bool node_is_zoomed() override;
+      virtual bool window_is_iconic() override;
+      virtual bool window_is_zoomed() override;
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 
@@ -277,14 +250,14 @@ namespace windows
       //virtual point_f64 client_screen_top_left() override;
 
 
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
 
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
 
 
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
 
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * prectangle);
+      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const;
@@ -292,16 +265,16 @@ namespace windows
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase = FALSE);
+      //virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase = false);
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
-      virtual void Invalidate(bool bErase = true);
-      virtual void InvalidateRect(const RECTANGLE_I32 * rectangle_i32, bool bErase = true);
+      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual void Invalidate(bool bErase = true);
+      //virtual void InvalidateRect(const RECTANGLE_I32 * rectangle, bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      virtual void ValidateRect(const RECTANGLE_I32 * rectangle_i32);
+      //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
+      //virtual void ValidateRect(const RECTANGLE_I32 * rectangle_i32);
 
-      virtual void ValidateRgn(::draw2d::region* pRgn);
+      //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool display(::e_display edisplay);
 
 
@@ -312,9 +285,9 @@ namespace windows
 
 
       //virtual bool _is_window_visible() override;
-      virtual void ShowOwnedPopups(bool bShow = true);
+//      virtual void ShowOwnedPopups(bool bShow = true);
 
-      virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip, u32 flags);
+      //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
@@ -322,11 +295,11 @@ namespace windows
          ::draw2d::region* prgnUpdate = nullptr,
          ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
-      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
+      //virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
       //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 
-      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & prc, ::u32 uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & prc, ::u32 uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -366,89 +339,72 @@ namespace windows
       virtual bool is_this_enabled();
       virtual bool enable_window(bool bEnable = true);
 
-      // the active interaction_impl applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
 
-      // the foreground interaction_impl applies only to top-level windows (frame windows)
-      virtual bool SetForegroundWindow();
-      virtual ::user::interaction * GetForegroundWindow();
-
-
-
-      virtual bool SetFocus();
-
-
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
-
-      virtual ::user::interaction * GetFocus();
-
-      virtual ::user::interaction * get_desktop_window();
+//      virtual ::user::interaction * get_desktop_window();
 
       // Obsolete and non-portable APIs - not recommended for new code
-      virtual void CloseWindow();
-      virtual bool OpenIcon();
+      //virtual void CloseWindow();
+      //virtual bool OpenIcon();
 
-      // Dialog-Box Item Functions
-      // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
-      virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
-      virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton);
-      virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
-      virtual i32 DlgDirList(__inout_z TCHAR * pPathSpec, __in i32 nIDListBox,
+      //// Dialog-Box Item Functions
+      //// (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
+      //virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
+      //virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton);
+      //virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
+      //virtual i32 DlgDirList(__inout_z TCHAR * pPathSpec, __in i32 nIDListBox,
 
-                             __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual i32 DlgDirListComboBox(__inout_z TCHAR * pPathSpec, __in i32 nIDComboBox,
+      //                       __in i32 nIDStaticPath, __in ::u32 nFileType);
+      //virtual i32 DlgDirListComboBox(__inout_z TCHAR * pPathSpec, __in i32 nIDComboBox,
 
-                                     __in i32 nIDStaticPath, __in ::u32 nFileType);
-      virtual bool DlgDirSelect(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDListBox);
+      //                               __in i32 nIDStaticPath, __in ::u32 nFileType);
+      //virtual bool DlgDirSelect(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDListBox);
 
-      virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDComboBox);
-
-
-      virtual ::u32 GetChildByIdInt(i32 nID, BOOL * pTrans = nullptr, bool bSigned = true) const;
-
-      virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) TCHAR * pStr, __in i32 nMaxCount) const;
-
-      virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
-      //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-      //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
-      virtual lresult SendDlgItemMessage(i32 nID, ::u32 message, wparam wParam = 0, lparam lParam = 0);
-      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true);
-      virtual void SetDlgItemText(i32 nID, const char * pszString);
+      //virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) TCHAR * pString, __in i32 nSize, __in i32 nIDComboBox);
 
 
-      virtual bool open_clipboard() override;
-      virtual bool close_clipboard() override;
+      //virtual ::u32 GetChildByIdInt(i32 nID, BOOL * pTrans = nullptr, bool bSigned = true) const;
+
+      //virtual i32 GetChildByIdText(__in i32 nID, __out_ecount_part_z(nMaxCount, return +1) TCHAR * pStr, __in i32 nMaxCount) const;
+
+      /////virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
+      ////virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
+      ////virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
+      //virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
+      //virtual lresult SendDlgItemMessage(i32 nID, ::u32 message, wparam wParam = 0, lparam lParam = 0);
+      //virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true);
+      //virtual void SetDlgItemText(i32 nID, const char * pszString);
+
+
+      //virtual bool open_clipboard() override;
+      //virtual bool close_clipboard() override;
 
 
       // Scrolling Functions
-      virtual i32 GetScrollPos(i32 nBar) const;
-      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
+      //virtual i32 GetScrollPos(i32 nBar) const;
+      //virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 
-      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-         const RECTANGLE_I32 * rectangle_i32 = nullptr,
+      //virtual void ScrollWindow(i32 xAmount, i32 yAmount,
+      //   const RECTANGLE_I32 * rectangle = nullptr,
 
-         const RECTANGLE_I32 * pClipRect = nullptr);
+      //   const RECTANGLE_I32 * pClipRect = nullptr);
 
-      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
-      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
-                                  bool bRedraw = true);
-      virtual void ShowScrollBar(::u32 nBar, bool bShow = true);
-      virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = true);
+      //virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
+      //virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
+      //                            bool bRedraw = true);
+      //virtual void ShowScrollBar(::u32 nBar, bool bShow = true);
+      //virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = true);
 
-      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
-         const RECTANGLE_I32 * pRectScroll, const RECTANGLE_I32 * lpRectClip,
+      //virtual i32 ScrollWindowEx(i32 dx, i32 dy,
+      //   const RECTANGLE_I32 * pRectScroll, const RECTANGLE_I32 * lpRectClip,
 
-                                 ::draw2d::region* prgnUpdate, RECTANGLE_I32 * pRectUpdate, ::u32 flags);
+      //                           ::draw2d::region* prgnUpdate, RECTANGLE_I32 * pRectUpdate, ::u32 flags);
 
-      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
+      //virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
 
-                                 bool bRedraw = true);
-      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
+      //                           bool bRedraw = true);
+      //virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
 
-      virtual i32 GetScrollLimit(i32 nBar);
+      //virtual i32 GetScrollLimit(i32 nBar);
 
 //#if(WINVER >= 0x0500)
 //
@@ -457,20 +413,20 @@ namespace windows
 //#endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
+      //virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
+      //virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
       ///      virtual ::user::interaction_impl * FindWindow(const char * pszClassName,const char * pszWindowName);
 
-      //   virtual ::user::interaction_impl * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * pszWindow);
+      //   virtual ::user::interaction_impl * FindWindowEx(::windowing::window * pwindowParent,::windowing::window * pwindowChildAfter,const char * lpszClass,const char * pszWindow);
 
       //virtual ::point_i64 _client_parent_top_left() override;
       //virtual ::point_i64 _client_screen_top_left() override;
 
       virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
-      virtual ::user::interaction * GetTopWindow() const;
+      virtual ::user::interaction * get_top_window() const;
 
-      virtual ::user::interaction * GetWindow(::u32 nCmd) const;
-      virtual ::user::interaction * GetLastActivePopup() const;
+      virtual ::user::interaction * get_window(::u32 nCmd) const;
+      virtual ::user::interaction * get_last_active_popup() const;
 
       virtual ::user::interaction * get_parent() const;
       virtual ::user::interaction * set_parent(::user::interaction * pWndNewParent);
@@ -493,12 +449,12 @@ namespace windows
 //#endif   // WINVER >= 0x0500
 //
       // Clipboard Functions
-      virtual bool ChangeClipboardChain(oswindow oswindow_Next);
-      virtual ::oswindow  SetClipboardViewer();
-      //virtual bool OpenClipboard();
-      virtual ::user::interaction * GetClipboardOwner();
-      virtual ::user::interaction * GetClipboardViewer();
-      virtual ::user::interaction * GetOpenClipboardWindow();
+      //virtual bool ChangeClipboardChain(::windowing::window * pwindow_Next);
+      //virtual ::oswindow  SetClipboardViewer();
+      ////virtual bool OpenClipboard();
+      //virtual ::user::interaction * GetClipboardOwner();
+      //virtual ::user::interaction * GetClipboardViewer();
+      //virtual ::user::interaction * GetOpenClipboardWindow();
 
       virtual point_i32 GetCaretPos();
       virtual void SetCaretPos(const ::point_i32 & point);
@@ -509,12 +465,12 @@ namespace windows
       virtual void DragAcceptFiles(bool bAccept = true);
 
       // icon Functions
-      virtual hicon SetIcon(hicon hIcon, bool bBigIcon);
-      virtual hicon GetIcon(bool bBigIcon) const;
+      virtual ::e_status set_icon(::windowing::icon * picon);
+      virtual __pointer(::windowing::icon) get_icon() const;
 
       // Context Help Functions
-      virtual bool SetWindowContextHelpId(u32 dwContextHelpId);
-      virtual u32 GetWindowContextHelpId() const;
+      //virtual bool SetWindowContextHelpId(u32 dwContextHelpId);
+      //virtual u32 GetWindowContextHelpId() const;
 
       // Dialog Data support
       //virtual bool update_data(bool bSaveAndValidate = true);
@@ -539,8 +495,8 @@ namespace windows
       //virtual void EndAllModalLoops(id nResult);
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
+      //virtual bool OnCommand(::message::message * pmessage);
+      //virtual bool OnNotify(::message::message * pmessage);
 
       //void OnActivate(::u32 nState, ::user::interaction_impl * pWndOther, bool bMinimized);
       //void OnActivateApp(bool bActive, u32 dwThreadID);
@@ -648,7 +604,7 @@ namespace windows
       //// Clipboard message handler member functions
       //void OnAskCbFormatName(__in ::u32 nMaxCount, __out_ecount_z(nMaxCount) char * pszString);
 
-      //void OnChangeCbChain(oswindow oswindow_Remove, oswindow oswindow_After);
+      //void OnChangeCbChain(::windowing::window * pwindow_Remove, ::windowing::window * pwindow_After);
       //void OnDestroyClipboard();
       //void OnDrawClipboard();
       //void OnHScrollClipboard(::user::interaction_impl * pClipAppWnd, ::u32 nSBCode, ::u32 nPos);
@@ -689,21 +645,21 @@ namespace windows
 
       // Overridables and other helpers (for implementation of derived classes)
       // for deriving from a standard control
-      virtual WNDPROC* GetSuperWndProcAddr();
+      //virtual WNDPROC* GetSuperWndProcAddr();
 
       // for dialog data exchange and validation
       //      virtual void do_data_exchange(CDataExchange* pDX);
 
       // for modality
-      virtual void BeginModalState();
-      virtual void EndModalState();
+      //virtual void BeginModalState();
+      //virtual void EndModalState();
 
       // for translating Windows messages in Main message pump
-      virtual void pre_translate_message(::message::message * pmessage);
+      //virtual void pre_translate_message(::message::message * pmessage);
 
 
-      virtual void default_message_handler(::message::message * pmessage) override;
-      virtual void message_handler(::message::base * pbase);
+      //virtual void default_message_handler(::message::message * pmessage) override;
+      //virtual void message_handler(::message::message * pmessage);
 
 
       //virtual bool OnWndMsg(const ::id & id, wparam wParam, lparam lParam, lresult* pResult);
@@ -713,30 +669,30 @@ namespace windows
       //virtual void default_window_procedure(::message::message * pmessage) override;
 
 
-      virtual void PostNcDestroy();
+      virtual void post_nc_destroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(::message::base * pbase);
+      //virtual bool OnChildNotify(::message::message * pmessage);
       // return true if parent should not process this message
-      virtual bool ReflectChildNotify(::message::base * pbase);
-      virtual bool ReflectMessage(oswindow oswindow_Child, ::message::base * pbase);
+      //virtual bool ReflectChildNotify(::message::message * pmessage);
+      //virtual bool ReflectMessage(::windowing::window * pwindow_Child, ::message::message * pmessage);
 
       // Implementation
       //virtual bool CheckAutoCenter();
-      //virtual bool GrayCtlColor(HDC hDC, oswindow oswindow, ::u32 nCtlColor,
+      //virtual bool GrayCtlColor(HDC hDC, ::windowing::window * pwindow, ::u32 nCtlColor,
       //                          HBRUSH hbrGray, color32_t clrText);
 
 
       // helper routines for implementation
-      bool HandleFloatingSysCommand(::u32 nID, lparam lParam);
-      bool IsTopParentActive();
-      void ActivateTopParent();
-      virtual void on_final_release();
-      virtual bool ModifyStyle(oswindow oswindow, u32 dwRemove, u32 dwAdd, ::u32 nFlags);
-      virtual bool ModifyStyleEx(oswindow oswindow, u32 dwRemove, u32 dwAdd, ::u32 nFlags);
+      //bool HandleFloatingSysCommand(::u32 nID, lparam lParam);
+      //bool IsTopParentActive();
+      //void ActivateTopParent();
+      //virtual void on_final_release();
+      ///virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags);
+      //virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags);
       //virtual void _FilterToolTipMessage(MSG* pMsg,::user::interaction_impl * pwindow);
       //bool _EnableToolTips(bool bEnable, ::u32 nFlag);
-      virtual oswindow get_safe_owner(::oswindow oswindow, ::oswindow * pWndTop);
+      //virtual oswindow get_safe_owner(::::windowing::window * pwindow, ::oswindow * pWndTop);
       //void PrepareForHelp();
 
 
@@ -757,16 +713,12 @@ namespace windows
       //lresult OnDisplayChange(wparam, lparam);
       //lresult OnDragList(wparam, lparam);
 
-
-
-      virtual void get_app_wnda(user::oswindow_array & wnda);
-
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      virtual ::i32 get_window_long(i32 nIndex) const;
-      virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue);
-      virtual iptr get_window_long_ptr(i32 nIndex) const;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
+      //virtual ::i32 get_window_long(i32 nIndex) const;
+      //virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue);
+      //virtual iptr get_window_long_ptr(i32 nIndex) const;
+      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
 
 
       void _001OnTriggerMouseInside();
@@ -783,7 +735,10 @@ namespace windows
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual void non_top_most_upper_window_rects(::rect_array& recta) override;
+      //virtual void non_top_most_upper_window_rects(::rect_array& recta) override;
+
+
+      virtual void activate_top_parent();
 
 
    };
@@ -792,6 +747,4 @@ namespace windows
 } // namespace windows
 
 
-
-
-
+CLASS_DECL_AURA::user::interaction * __user_interaction(::windowing::window * pwindow);

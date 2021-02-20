@@ -30,7 +30,7 @@ namespace browser
       if (m_bAlternate)
       {
 
-         color c(ARGB(255, 200, 200, 180));
+         ::color::color color(argb(255, 200, 200, 180));
 
          c.get_hls(m_hlsForeground);
 
@@ -113,9 +113,9 @@ namespace browser
       if (m_bNewLayout)
       {
 
-         sync_lock sl2(&m_mutexWork);
-         sync_lock sl3(&m_mutexDraw);
-         sync_lock sl4(&m_mutexSwap);
+         synchronization_lock sl2(&m_mutexWork);
+         synchronization_lock sl3(&m_mutexDraw);
+         synchronization_lock sl4(&m_mutexSwap);
 
          m_bNewLayout = false;
 
@@ -195,7 +195,7 @@ namespace browser
    void render::get_browser(string & strHellomultiverse)
    {
 
-      sync_lock sl(&m_mutexText);
+      synchronization_lock synchronizationlock(&m_mutexText);
 
       strHellomultiverse = m_strHelloBrowser.c_str();
 
@@ -243,7 +243,7 @@ namespace browser
 
       u64 uFrameNanos = (u64)(1000000000LL / get_fps());
 
-      uFrameNanos = min(max(100000, uFrameNanos), 1000000000);
+      uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
       u64 uFrameId = uNow / uFrameNanos;
 
@@ -272,7 +272,7 @@ namespace browser
 
             uFrameNanos = (u64)(1000000000ULL / get_fps());
 
-            uFrameNanos = min(max(100000ULL, uFrameNanos), 1000000000ULL);
+            uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
             uFrameId = uNow / uFrameNanos;
 
@@ -330,7 +330,7 @@ namespace browser
    void render::browser_render()
    {
 
-      sync_lock sl(&m_mutexWork);
+      synchronization_lock synchronizationlock(&m_mutexWork);
 
 /*      ::image_pointer pimage = m_pimageWork;
 
@@ -375,7 +375,7 @@ namespace browser
       if (m_bVoidTransfer)
          return;
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       if (m_bDib1)
       {
@@ -392,7 +392,7 @@ namespace browser
 
       }
 
-      sync_lock slSwap(&m_mutexSwap);
+      synchronization_lock slSwap(&m_mutexSwap);
 
       if (m_bDib1)
       {
@@ -460,7 +460,7 @@ namespace browser
 
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          get_browser(strHelloBrowser);
 
@@ -501,7 +501,7 @@ namespace browser
 
             {
 
-               sync_lock slDib(&m_mutexDib);
+               synchronization_lock slDib(&m_mutexDib);
 
 /*               m_pimage->create_image(this, ::size_i32(m_cxCache1, m_cyCache1));
 
@@ -512,11 +512,11 @@ namespace browser
 
 /*                  m_pimage->g()->set_font(m_font);
 
-/*                  m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  brushText->create_solid(ARGB(255, 255, 255, 255));
+                  brushText->create_solid(argb(255, 255, 255, 255));
 
 /*                  m_pimage->g()->SelectObject(brushText);
 
@@ -532,7 +532,7 @@ namespace browser
 
                   m_pimageTemplate->fill(0, 0, 0, 0);
 
-/*                  m_pimageTemplate->channel_copy(::color::channel_alpha, ::color::channel_green, m_pimage);
+/*                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
 
                }
 
@@ -546,7 +546,7 @@ namespace browser
 
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          get_browser(strGetHelloBrowser);
 
@@ -566,7 +566,7 @@ namespace browser
 
 
 
-      ::color ca;
+      ::color::color ca;
 
 
 //      if (false)
@@ -618,18 +618,18 @@ namespace browser
 
       pgraphics->set_font(m_font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(A_RGB(255, ca));
+         brushText->create_solid(a_rgb(255, ca));
 
       }
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -645,9 +645,9 @@ namespace browser
          pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
       }
-      //      pgraphics->FillSolidRect(200,00,100,100,ARGB(128,128,128,255));
+      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 
-      //    pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
       if(!m_bFirstDone)
       {
@@ -656,7 +656,7 @@ namespace browser
 
          {
 
-            sync_lock sl(&m_mutexText);
+            synchronization_lock synchronizationlock(&m_mutexText);
 
             get_browser(strGetHelloBrowser);
 
@@ -727,7 +727,7 @@ namespace browser
 
       double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      ::color ca;
+      ::color::color ca;
 
 //      if (false)
 //      {
@@ -763,7 +763,7 @@ namespace browser
 
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          get_browser(strGetHelloBrowser);
 
@@ -779,7 +779,7 @@ namespace browser
 
       {
 
-         sync_lock slDib(&m_mutexDib);
+         synchronization_lock slDib(&m_mutexDib);
 
          if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -799,11 +799,11 @@ namespace browser
 
 /*            m_pimage->fill(0, 0, 0, 0);
 
-/*            m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
 /*            m_pimage->g()->SelectObject(brushText);
 
@@ -832,7 +832,7 @@ namespace browser
             if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
-/*               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
+/*               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
 
 /*               m_pimageTint->tint(m_pimage, ca);
 
@@ -848,18 +848,18 @@ namespace browser
 
       }
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(A_RGB(255, ca));
+         brushText->create_solid(a_rgb(255, ca));
 
       }
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -892,7 +892,7 @@ namespace browser
       if (Application.m_iErrorAiFont == 0)
       {
 
-         sync_lock slAiFont(&Application.m_mutexAiFont);
+         synchronization_lock slAiFont(&Application.m_mutexAiFont);
 
          FT_Face & face = (FT_Face &)Application.m_faceAi;
 
@@ -1066,7 +1066,7 @@ namespace browser
 
             {
 
-               sync_lock sl(&m_mutexText);
+               synchronization_lock synchronizationlock(&m_mutexText);
 
                strHelloBrowser = m_pview->m_strProcessedHellomultiverse.c_str();
 
@@ -1077,19 +1077,19 @@ namespace browser
 
                float fHeight = 100.0;
 
-               ::draw2d::font_pointer font(e_create);
+               ::write_text::font_pointer font(e_create);
 
                font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(os_font_name(e_font_sans), min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1097,7 +1097,7 @@ namespace browser
 
             }
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (500) * 11;
 
@@ -1105,7 +1105,7 @@ namespace browser
 
             ::draw2d::brush_pointer brush(e_create);
 
-            brush->create_solid(A_RGB(255, ca));
+            brush->create_solid(a_rgb(255, ca));
 
             pgraphics->SelectObject(brush);
 
@@ -1113,7 +1113,7 @@ namespace browser
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
             ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
@@ -1130,9 +1130,9 @@ namespace browser
       if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-         sync_lock sl1(m_pview->get_wnd()->mutex());
+         synchronization_lock sl1(m_pview->get_wnd()->mutex());
 
-         sync_lock slDraw(&m_mutexDraw);
+         synchronization_lock slDraw(&m_mutexDraw);
 
          if (m_bFast || m_pimageFast->is_null())
          {
@@ -1144,7 +1144,7 @@ namespace browser
 
             {
 
-               sync_lock slText(&m_pview->m_mutexText);
+               synchronization_lock slText(&m_pview->m_mutexText);
 
                strFork = m_pview->m_strProcessedHellomultiverse.c_str();
 
@@ -1191,9 +1191,9 @@ namespace browser
 
       ::image_pointer imageFast = m_pimageFast;
 
-      sync_lock sl(&m_mutexDraw);
+      synchronization_lock synchronizationlock(&m_mutexDraw);
 
-      sync_lock slSwap(&m_mutexSwap);
+      synchronization_lock slSwap(&m_mutexSwap);
 
 /*      pimage = m_pimageOut;
 
@@ -1207,7 +1207,7 @@ namespace browser
 
          byte uchAlpha;
 
-         uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
 /*         System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1227,7 +1227,7 @@ namespace browser
    //::image_pointer & render::image23(string strImage)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   auto & pimage = m_mapDib23[strImage];
 
@@ -1250,7 +1250,7 @@ namespace browser
 
    //         {
 
-   //            sync_lock sl(mutex());
+   //            synchronization_lock synchronizationlock(mutex());
 
    //            pimage = &m_mapDib23[strImage];
 
@@ -1275,7 +1275,7 @@ namespace browser
    void render::defer_update_slide_show()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //for (auto & pslide : slideshow())
       //{
@@ -1318,7 +1318,7 @@ namespace browser
 
       }
 
-      sync_lock slDraw(&m_mutexDraw);
+      synchronization_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 
@@ -1333,21 +1333,21 @@ namespace browser
 
       float fHeight = 100.0;
 
-      ::draw2d::font_pointer font(e_create);
+      ::write_text::font_pointer font(e_create);
 
       font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       ::size_i32 size = pgraphics->GetTextExtent(strHelloBrowser);
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      font->create_pixel_font(m_pview->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-      m_dMinRadius = max(1.0, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
+      m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -1365,11 +1365,11 @@ namespace browser
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, ARGB(255, 90, 90, 80));
+      pen->create_solid(1.0, argb(255, 90, 90, 80));
 
       ::draw2d::pen_pointer penW(e_create);
 
-      penW->create_solid(3.0, ARGB(84, 255, 255, 255));
+      penW->create_solid(3.0, argb(84, 255, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 

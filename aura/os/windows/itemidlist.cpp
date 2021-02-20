@@ -1195,7 +1195,7 @@ comptr < IShellFolder > itemidlist::get_shell_folder() const
    }
    else
    {
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    return nullptr;

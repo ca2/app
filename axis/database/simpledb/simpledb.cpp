@@ -53,7 +53,7 @@ namespace simpledb
    bool simpledb::remove(const ::database::key & key)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       class server * pserver = server();
 
@@ -85,7 +85,7 @@ namespace simpledb
    bool simpledb::load(const ::database::key & key, get_memory getmemory)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       class server * pserver = server();
 
@@ -148,9 +148,9 @@ namespace simpledb
 
          __pointer(::sqlite::database) pdatabase = pserver->get_local_database();
 
-         class sync * pmutex = pdatabase->mutex();
+         class synchronization_object * pmutex = pdatabase->mutex();
 
-         sync_lock slDatabase(pmutex);
+         synchronization_lock slDatabase(pmutex);
 
       retry_statement:
 
@@ -274,11 +274,11 @@ namespace simpledb
 
          // Remote
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          Application.assert_user_logged_in();
 
-         sl.lock();
+         synchronizationlock.lock();
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
@@ -289,7 +289,7 @@ namespace simpledb
 
          }
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          string strValue;
 
@@ -305,7 +305,7 @@ namespace simpledb
 
             strUrl += System.url().url_encode(strKey);
 
-            strValue = Context.http().get(strUrl, set);
+            strValue = get_context()->http().get(strUrl, set);
 
             if (strValue.is_empty() || ::failed(set["get_status"]))
             {
@@ -342,7 +342,7 @@ namespace simpledb
 
                stritem.m_block.from_base64(strValue, strValue.get_length());
 
-               sl.lock();
+               synchronizationlock.lock();
 
                pstorage->m_map[strKey] = stritem;
 
@@ -373,7 +373,7 @@ namespace simpledb
    bool simpledb::save(const ::database::key & key, block block)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       class server * pserver = server();
 
@@ -432,7 +432,7 @@ namespace simpledb
 
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             pitem = pstorage->m_map.plookup(strKey);
 
@@ -443,7 +443,7 @@ namespace simpledb
          if (pitem != nullptr)
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (pitem->element2().m_block == block)
             {
@@ -477,7 +477,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 
@@ -506,7 +506,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 

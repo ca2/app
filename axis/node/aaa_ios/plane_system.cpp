@@ -83,7 +83,7 @@
 //
 //         pimpl->PostNcDestroy();
 //
-//         return FALSE;
+//         return false;
 //
 //      }
 //
@@ -96,7 +96,7 @@
 //
 //         pimpl->PostNcDestroy();
 //
-//         return FALSE;
+//         return false;
 //
 //      }
 //

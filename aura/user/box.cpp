@@ -1,10 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
-//#include "apex/platform/pred_procedure.h"
+//#include "apex/platform/predicate_procedure.h"
 
 
 namespace user
@@ -268,7 +267,7 @@ namespace user
          //main_async([this]()
          //           {
 
-         bool bRestore = good_restore(nullptr, nullptr, true, e_activation_default, zorder_top, initial_restore_display()) >= 0;
+         bool bRestore = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display()) >= 0;
 
          if (!bRestore)
          {
@@ -331,7 +330,7 @@ namespace user
 
          }
 
-         order(zorder_top);
+         order(e_zorder_top);
 
          if (m_ewindowflag & e_window_flag_disable_window_placement_snapping)
          {
@@ -388,7 +387,7 @@ namespace user
             send_routine(__routine([this, windowrect]()
             {
 
-               good_restore(nullptr, windowrect.m_rectRestored, true, e_activation_default, zorder_top, windowrect.m_edisplay);
+               good_restore(nullptr, windowrect.m_rectRestored, true, e_activation_default, e_zorder_top, windowrect.m_edisplay);
                
             }));
 
@@ -525,11 +524,11 @@ namespace user
    string box::calc_display()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       string strDisplay;
 
-      //::rectangle_i32 rectNormal;
+      //rectangle_i32 rectNormal;
 
       //get_rect_normal(rectNormal);
 
@@ -537,7 +536,13 @@ namespace user
 
       auto psession = Session;
 
-      psession->get_main_monitor(rectMainMonitor);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      pdisplay->get_main_monitor(rectMainMonitor);
 
       strDisplay.Format("Display(%d, %d)", rectMainMonitor.width(), rectMainMonitor.height());
 
@@ -548,7 +553,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -561,7 +566,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_strDisplay = calc_display();
 
@@ -570,7 +575,7 @@ namespace user
 
 
 
-   void box::on_command(::user::command * pcommand)
+   void box::on_command(::message::command * pcommand)
    {
 
       ::user::interaction::on_command(pcommand);
@@ -672,11 +677,11 @@ namespace user
    void box::on_simple_command(::message::simple_command * psimplecommand)
    {
 
-      switch (psimplecommand->m_esimplecommand)
+      switch (psimplecommand->command())
       {
-         case simple_command_load_window_rect:
+         case e_simple_command_load_window_rect:
 
-            WindowDataLoadWindowRect(psimplecommand->m_lparam != FALSE);
+            WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
 
             psimplecommand->m_bRet = true;
 

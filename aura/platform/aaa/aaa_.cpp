@@ -44,7 +44,7 @@ namespace aura
 
          {
             rString.Empty();        // return is_empty string as well
-            return FALSE;
+            return false;
          }
          pszFullString++;       // point past the separator
 
@@ -62,7 +62,7 @@ namespace aura
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 
-      return TRUE;
+      return true;
 
    }
 
@@ -238,7 +238,7 @@ CLASS_DECL_AURA string_map < __pointer(::apex::library) >& __library()
 CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 {
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    auto ppair = System.m_mapNewAuraLibrary.plookup(psz);
 
@@ -257,7 +257,7 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 CLASS_DECL_AURA::apex::library& get_library(const char* psz)
 {
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    return *System.m_mapLibrary[psz];
 
@@ -267,7 +267,7 @@ CLASS_DECL_AURA::apex::library& get_library(const char* psz)
 CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 {
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 
@@ -277,7 +277,7 @@ CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA
 CLASS_DECL_AURA void register_library(const char* psz, ::apex::library* plibrary)
 {
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    __library()[psz] = plibrary;
 
@@ -341,7 +341,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 //   if (g_iAuraRefCount >= 1)
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -353,7 +353,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 //
 //   aura_term();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -509,7 +509,7 @@ CLASS_DECL_AURA ::e_status load_factory_library(string strLibrary)
 {
 
 
-   sync_lock sl(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
    __pointer(::apex::library)& plibrary = System.m_mapLibrary[strLibrary];
 

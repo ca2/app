@@ -61,7 +61,7 @@ namespace imaging_wic
 
          ul = (ULONG)stg.cbSize.QuadPart - ulPos;
 
-         pstream->Read(memBuffer.get_data(), (ULONG)__min(ul, memBuffer.get_size()), &ulRead);
+         pstream->Read(memBuffer.get_data(), (ULONG)minimum(ul, memBuffer.get_size()), &ulRead);
 
          if (ulRead > 0)
          {
@@ -216,7 +216,7 @@ namespace imaging_wic
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;
-            varValue.fltVal = max(0.f, min(1.f, psaveimage->m_iQuality / 100.0f));
+            varValue.fltVal = maximum(0.f, minimum(1.f, psaveimage->m_iQuality / 100.0f));
             if (SUCCEEDED(hr))
             {
                hr = ppropertybag->Write(1, &option, &varValue);

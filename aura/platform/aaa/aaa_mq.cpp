@@ -1,11 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/os/_c.h"
 #include "aura/os/_.h"
 #include "aura/os/_os.h"
-#include "mq.h"
+#include "message_queue.h"
 
 
 #if defined(LINUX) // || defined(ANDROID)
@@ -17,7 +15,7 @@ bool aura_defer_process_x_message(hthread_t hthread,LPMESSAGE pMsg,oswindow oswi
 #endif
 
 
-mq::mq()
+message_queue::message_queue()
 {
 
    m_bQuit = false;
@@ -29,19 +27,19 @@ mq::mq()
 }
 
 
-mq::~mq()
+message_queue::~message_queue()
 {
 
 }
 
 
-int_bool mq::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPARAM lParam)
+int_bool message_queue::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPARAM lParam)
 {
 
    if(m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -59,28 +57,28 @@ int_bool mq::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPAR
 }
 
 
-int_bool mq::post_message(const MESSAGE & message)
+int_bool message_queue::post_message(const MESSAGE & message)
 {
 
    if(m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   sync_lock ml(mutex());
+   synchronization_lock ml(mutex());
 
    m_messagea.add(message);
 
    m_eventNewMessage.set_event();
 
-   return TRUE;
+   return true;
 
 }
 
 
-int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
@@ -90,7 +88,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    while (true)
    {
@@ -118,7 +116,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
             m_messagea.remove_at(i);
 
-            return TRUE;
+            return true;
 
          }
 
@@ -129,7 +127,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if(m_bQuit)
       {
 
-         return FALSE;
+         return false;
 
       }
 
@@ -146,17 +144,17 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          pMsg->pt.y = INT_MIN;
          pMsg->time = 0;
 
-         return TRUE;
+         return true;
 
       }
 
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          m_eventNewMessage.wait();
 
-         sl.lock();
+         synchronizationlock.lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -167,7 +165,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 }
 
 
-int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)
@@ -177,7 +175,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,:
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    ::count count = m_messagea.get_count();
 
@@ -198,31 +196,31 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,:
 
          }
 
-         return TRUE;
+         return true;
 
       }
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
 //   if(aura_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
 //#endif
 
-   return FALSE;
+   return false;
 
 }
 
 
-//__pointer(mq) get_mq(ithread_t idthread, bool bCreate)
+//__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = System.get_task(idthread);
@@ -346,18 +344,18 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //   if(pinteraction == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
-//   auto pmq = ::get_mq(idthread, message.message != e_message_quit);
+//   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 //
 //   if(pmq == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -374,7 +372,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //   if(pinteraction == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -387,25 +385,25 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
 //
-//   mq * pmq = __get_mq(idthread, false);
+//   message_queue * pmq = __get_mq(idthread, false);
 //
 //   if(pmq == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
-//   sync_lock ml(&pmq->m_mutex);
+//   synchronization_lock ml(&pmq->m_mutex);
 //
-//   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;
 //
 //   });
 
-   return TRUE;
+   return true;
 
 }
 
@@ -413,7 +411,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 {
 
-   auto pmq = ::get_mq(idthread, false);
+   auto pmq = ::get_message_queue(idthread, false);
 
    if (pmq == nullptr)
    {
@@ -422,7 +420,7 @@ CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 
    }
 
-   sync_lock ml(pmq->mutex());
+   synchronization_lock ml(pmq->mutex());
 
    pmq->m_messagea.remove_all();
 
@@ -432,12 +430,12 @@ CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
-   auto pmq = get_mq(idthread, true);
+   auto pmq = get_message_queue(idthread, true);
 
    if (::is_null(pmq))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -446,7 +444,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
 }
 
 
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    ::user::interaction* pinteraction = oswindow_interaction(oswindow);
@@ -454,27 +452,27 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
    if (pinteraction == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   auto pmq = pinteraction->m_pthreadUserInteraction->get_mq();
+   auto pmq = pinteraction->m_pthreadUserInteraction->get_message_queue();
 
    if (!pmq)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->post_message(oswindow, message, wparam, lparam))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -482,23 +480,23 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
 CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_mq(::get_current_ithread(), false);
+   auto pmq = ::get_message_queue(::get_current_ithread(), false);
 
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -506,23 +504,23 @@ CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u3
 CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_mq(::get_current_ithread(), true);
+   auto pmq = ::get_message_queue(::get_current_ithread(), true);
 
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

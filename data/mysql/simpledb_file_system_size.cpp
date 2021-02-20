@@ -36,7 +36,7 @@ file_size_table::file_size_table(::layered * pobjectContext) :
    /*   SECURITY_ATTRIBUTES MutexAttributes;
       ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
       MutexAttributes.nLength = sizeof( MutexAttributes );
-      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
+      MutexAttributes.bInheritHandle = false; // object uninheritable
 
       // declare and initialize a security descriptor
       SECURITY_DESCRIPTOR SD;
@@ -46,22 +46,22 @@ file_size_table::file_size_table(::layered * pobjectContext) :
       if ( bInitOk )
       {
          // give the security descriptor a Null Dacl
-         // done using the  "TRUE, (PACL)nullptr" here
+         // done using the  "true, (PACL)nullptr" here
          bool bSetOk = SetSecurityDescriptorDacl( &SD,
-                                               TRUE,
+                                               true,
                                                (PACL)nullptr,
-                                               FALSE );
+                                               false );
          if ( bSetOk )
          {
             // Make the security attributes point_i32
             // to the security descriptor
             MutexAttributes.lpSecurityDescriptor = &SD;*/
-   //mutex() = new ::mutex(FALSE, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-   //m_pevExec = new event(FALSE, FALSE, "Global\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-   //m_pevDone = new event(FALSE, FALSE, "Global\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-   //mutex() = new ::mutex(FALSE, "Local\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
-   //m_pevExec = new event(FALSE, FALSE, "Local\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
-   //m_pevDone = new event(FALSE, FALSE, "Local\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
+   //mutex() = new ::mutex(false, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+   //m_pevExec = new event(false, false, "Global\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+   //m_pevDone = new event(false, false, "Global\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+   //mutex() = new ::mutex(false, "Local\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
+   //m_pevExec = new event(false, false, "Local\\::draw2d::account::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
+   //m_pevDone = new event(false, false, "Local\\::draw2d::account::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
    /*      }
       }*/
    m_puserinteraction  = new FileSystemSizeWnd(pobject);
@@ -244,10 +244,10 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    return false;
-   single_lock sl(m_table.mutex(), FALSE);
+   single_lock synchronizationlock(m_table.mutex(), false);
    // Wait for ::mutex. Once it is obtained, no other client may
    // communicate with the server
-   if(!sl.lock(duration::zero()))
+   if(!synchronizationlock.lock(duration::zero()))
       return false;
    if(!m_table.check_map())
       return false;
@@ -288,8 +288,8 @@ bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath,
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    index iIteration = 0;
-   single_lock sl(m_table.mutex(), FALSE);
-   if(!sl.lock(duration::zero()))
+   single_lock synchronizationlock(m_table.mutex(), false);
+   if(!synchronizationlock.lock(duration::zero()))
       return false;
    if(!get_fs_size(i64Size, pszPath, bPending, iIteration))
       return false;
@@ -299,8 +299,8 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
 
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
 {
-   single_lock sl(m_table.mutex(), FALSE);
-   if(!sl.lock(duration::zero()))
+   single_lock synchronizationlock(m_table.mutex(), false);
+   if(!synchronizationlock.lock(duration::zero()))
       return false;
    if(iIteration >= m_iMaxIteration)
    {
@@ -350,7 +350,7 @@ bool FileSystemSizeWnd::CreateClient()
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  __pointer(::user::interaction) puiMessage = nullptr;
       puiMessage = System.ui_from_handle(HWND_MESSAGE);
-      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rectangle_i32(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rectangle_i32(0, 0, 0, 0), puiMessage, id()) != false;*/
 
 //#else
 
@@ -434,9 +434,9 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   __pointer(::message::base) pbase(pmessage);
+   __pointer(::user::message) pusermessage(pmessage);
 
-   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
+   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
    {
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
@@ -445,14 +445,14 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       ::file::byte_stream_memory_file file(get_context_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      single_lock sl(m_criticalsection, TRUE);
-      size.m_oswindow = (oswindow) pbase->m_wparam;
+      single_lock synchronizationlock(m_criticalsection, true);
+      size.m_oswindow = (oswindow) pusermessage->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
                      size.m_strPath,
                      size.m_bPending);
       m_sizea.add(size);
-      pbase->set_lresult(1);
+      pusermessage->set_lresult(1);
    }
    else if(pstruct->dwData == 1)
    {
@@ -461,7 +461,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
-      pbase->set_lresult(1);
+      pusermessage->set_lresult(1);
    }
 
 #else
@@ -481,7 +481,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
    super::_001OnTimer(ptimer);;
    if(ptimer->m_uEvent == 100)
    {
-      //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
+      //::PostMessage(pusermessage->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)
       {
          COPYDATASTRUCT data;
@@ -492,7 +492,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
          while(m_sizea.get_size() > 0)
          {
-            single_lock sl(m_criticalsection, TRUE);
+            single_lock synchronizationlock(m_criticalsection, true);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);

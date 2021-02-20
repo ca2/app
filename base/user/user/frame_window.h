@@ -12,7 +12,6 @@ namespace user
    public:
 
 
-
       enum EColumn
       {
 
@@ -41,37 +40,37 @@ namespace user
       ::user::impact_system *                   m_pdocumenttemplate;
 
       i32                                       m_nWindow;  // general purpose interaction_impl number - display as ":n"
-      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
-      // 1 => first of many windows viewing ::user::document, 2=> second
-#ifdef WINDOWS_DESKTOP
-      HMENU                      m_hMenuDefault;       // default menu resource for this frame
-      HACCEL                     m_hAccelTable;       // accelerator table
-#endif
-      u32                   m_dwPromptContext;    // current help prompt action_context for message box
-      bool                       m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
-      ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
-      ::rectangle_i32                     m_rectBorder;         // for OLE border space negotiation
+//      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
+//      // 1 => first of many windows viewing ::user::document, 2=> second
+//#ifdef WINDOWS_DESKTOP
+//    HMENU                                     m_hMenuDefault;       // default menu resource for this frame
+//    HACCEL                                    m_hAccelTable;       // accelerator table
+//#endif
+      u32                                       m_dwPromptContext;    // current help prompt action_context for message box
+      bool                                      m_bHelpMode;           // if true, then Shift+F1 help mode is active
+      ::user::frame_window *                    m_pNextFrameWnd; // next frame_window in cast global list
+      ::rectangle_i32                           m_rectBorder;         // for OLE border space negotiation
 
-      i32                    m_nShowDelay;           // SW_ command for delay show/hide
+      i32                                       m_nShowDelay;           // SW_ command for delay show/hide
 
-      bool                       m_bFrameMoveEnable;
+      bool                                      m_bFrameMoveEnable;
 
 
-      string                     m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
-      ::u32                       m_nIDTracking;         // tracking command ID or string IDS
-      ::u32                       m_nIDLastMessage;      // last displayed message string IDS
-      ::user::impact *           m_pviewActive;       // current active ::user::impact
-      ::u32                       m_cModalStack;         // BeginModalState depth
-      ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
-#ifdef WINDOWS_DESKTOP
-      HMENU                      m_hMenuAlt;           // menu to update to (nullptr means default)
-#endif
-      bool                       m_bInRecalcLayout;     // avoid recursion in on_layout
-      ::type                     m_pFloatingFrameClass;
+      string                                    m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
+      ::u32                                     m_nIDTracking;         // tracking command ID or string IDS
+      ::u32                                     m_nIDLastMessage;      // last displayed message string IDS
+      ::user::impact *                          m_pviewActive;       // current active ::user::impact
+      ::u32                                     m_cModalStack;         // BeginModalState depth
+      ::user::interaction_ptra                  m_uiptraDisable;       // windows disabled because of BeginModalState
+//#ifdef WINDOWS_DESKTOP
+//      HMENU                                     m_hMenuAlt;           // menu to update to (nullptr means default)
+//#endif
+      bool                                      m_bInRecalcLayout;     // avoid recursion in on_layout
+      ::type                                    m_pFloatingFrameClass;
 
-      ::u32                       m_nIdleFlags;          // set of bit flags for idle processing
+      ::u32                                     m_nIdleFlags;          // set of bit flags for idle processing
 
-      ::user::impact *           m_pviewMain;
+      ::user::impact *                          m_pviewMain;
 
 
 
@@ -115,21 +114,21 @@ namespace user
 
       virtual bool _001IsFrameWnd();
 
-      virtual void NotifyFloatingWindows(u32 dwFlags);
+      //virtual void NotifyFloatingWindows(u32 dwFlags);
 
       virtual string get_window_default_matter() override;
       virtual ::user::interaction::enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
 
 
       virtual bool on_set_parent(::user::primitive * puiParent) override;
 
-      virtual void defer_synch_layered();
-      virtual bool calc_layered();
+      //virtual void defer_synch_layered();
+      //virtual bool calc_layered();
 
 
 
@@ -141,15 +140,16 @@ namespace user
 
 
       virtual bool LoadFrame(const char * pszMatter,
-                             u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-                             ::user::interaction * puiParent = nullptr,
-                             ::user::system * pcreate = nullptr);
+                             //u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
+                              u32 dwDefaultStyle = FWS_ADDTOTITLE,
+                              ::user::interaction * puiParent = nullptr,
+                              ::user::system * pcreate = nullptr);
 
       virtual ::user::document * get_active_document();
 
       virtual ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE) override;
-      // active ::user::impact or nullptr, bNotify == FALSE if focus should not be set
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
+      // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
       virtual __pointer(::user::frame_window) GetActiveFrame();
@@ -158,7 +158,7 @@ namespace user
       virtual void GetMessageString(::u32 nID, string & rMessage) const;
 
       bool m_bAutoMenuEnable;
-      // TRUE => menu items without handlers will be disabled
+      // true => menu items without handlers will be disabled
 
       bool IsTracking() const;
 
@@ -169,9 +169,9 @@ namespace user
       virtual void InitialFramePosition(bool bForceRestore = false) override;
 
       // to set text of standard status bar
-      void SetMessageText(const char * pszText);
+      //void SetMessageText(const char * pszText);
 
-      void SetMessageText(::u32 nID);
+      //void SetMessageText(::u32 nID);
 
       ::user::control_bar* GetControlBar(::u32 nID);
 
@@ -191,28 +191,29 @@ namespace user
       virtual bool on_create_client(::user::system * pusersystem);
 
       void OnContextHelp();   // for Shift+F1 help
-      void OnUpdateControlBarMenu(::user::command* pCmdUI);
+      void OnUpdateControlBarMenu(::message::command* pCmdUI);
       bool OnBarCheck(::u32 nID);
 
-      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
+      //virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
+      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP) override;
 
       
-      virtual void on_command_message(::user::command * pcommand) override;
-      virtual void route_command_message(::user::command* pcommand) override;
+      virtual void on_command_message(::message::command * pcommand) override;
+      virtual void route_command_message(::message::command* pcommand) override;
 
       virtual void on_update_frame_title(bool bAddToTitle);
 
-#ifdef WINDOWS_DESKTOP
-      virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
-      virtual HACCEL GetDefaultAccelerator();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
+//      virtual HACCEL GetDefaultAccelerator();
+//#endif
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-#ifdef WINDOWS_DESKTOP
-      virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
+//#endif
       void DelayUpdateFrameTitle();
-      void DelayRecalcLayout(bool bNotify = TRUE);
+      void DelayRecalcLayout(bool bNotify = true);
 
       // for Shift+F1 help support
       bool CanEnterHelpMode();
@@ -242,38 +243,33 @@ namespace user
 
 
       void OnClose();
-      LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
-      LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
-      LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
       //void OnIdleUpdateCmdUI(::message::message * pmessage);
-      void OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho);
+      //void OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho);
       void OnSetFocus(__pointer(::user::interaction) pOldWnd);
       void OnSize(::u32 nType, i32 cx, i32 cy);
       bool OnEraseBkgnd(::image * pimage);
       //void OnActivate(::u32 nState, __pointer(::user::interaction) pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);
-      void OnSysCommand(::u32 nID, LPARAM lParam);
+      //void OnSysCommand(::u32 nID, LPARAM lParam);
       bool OnQueryEndSession();
       void OnEndSession(bool bEnding);
-#ifdef WINDOWS_DESKTOP
-      virtual void OnDropFiles(HDROP hDropInfo);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual void OnDropFiles(HDROP hDropInfo);
+//#endif
       bool OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
-      LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);
       void OnEnable(bool bEnable);
       void OnPaletteChanged(__pointer(::user::interaction) pFocusWnd);
       bool OnQueryNewPalette();
-      virtual LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
-      virtual LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);
-      virtual LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
-      LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
-
-
-
-
-
+      //virtual LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -294,7 +290,7 @@ namespace user
       void data_on_after_change(::message::message * pmessage);
 
 
-      virtual bool has_command_handler(::user::command * pcommand) override;
+      virtual bool has_command_handler(::message::command * pcommand) override;
 
 
    };

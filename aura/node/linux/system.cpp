@@ -3,91 +3,49 @@
 // (as caThworansfer (also fun :/ ... few times... so seriously F****) from aura/os/application_system_run.cpp)
 #include "framework.h"
 #include "aura/os/linux/_user.h"
+#include "aura/user/_user.h"
 //#include <gtk/gtk.h>
-#include "third/sn/sn.h"
+//#include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
 //#include "apex/os/linux/gnome_apex_application.h"
 #include "aura/user/message_box.h"
 
 
-extern ::app_core * g_pappcore;
-void x11_main();
-void os_post_quit();
-//Display * x11_get_display();
-
-CLASS_DECL_AURA i32 ca2_main();
 
 
-//gboolean linux_start_system(gpointer data);
-
-
-void CLASS_DECL_AURA __cdecl _ca2_purecall()
-{
-
-   __throw(::exception::exception());
-
-}
-
-
-#ifdef WINDOWS
-
-
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-
-   UNREFERENCED_PARAMETER(uiCode);
-
-   UNREFERENCED_PARAMETER(ppointers);
-
-}
-
-
-#endif
-
-
-string ca2_command_line()
-{
-
-   return "";
-
-}
-
-
-
-
-#ifndef RASPBIAN
-
-SnLauncheeContext* g_psncontext = nullptr;
-
-void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
-
-void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+//#ifndef RASPBIAN
 //
-//namespace aura
-//{
+//SnLauncheeContext* g_psncontext = nullptr;
 //
-
-//   ::e_status system::os_application_system_run()
-//   {
+//void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
+//
+//void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+////
+////namespace aura
+////{
+////
+//
+////   ::e_status system::os_application_system_run()
+////   {
+////
+////
+////
+////      auto estatus = ::apex::system::os_application_system_run();
+////
+////      if(!estatus)
+////      {
+////
+////         return estatus;
+////
+////      }
+////
+////      return estatus;
+////
+////   }
 //
 //
 //
-//      auto estatus = ::apex::system::os_application_system_run();
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
-//
-//   }
-
-
-
-#endif // !RASPBIAN
+//#endif // !RASPBIAN
 
 
 
@@ -127,12 +85,12 @@ void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
 //   return estatus;
 //
 //}
-#ifdef LINUX
-i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
-#endif
+//#ifdef LINUX
+//i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
+//#endif
 
 
-void x11_add_gdk_filter();
+//void x11_add_gdk_filter();
 
 
 namespace aura
@@ -142,32 +100,32 @@ namespace aura
    ::e_status system::os_application_system_run()
    {
 
-      auto estatus = do_factory_exchange("windowing", "x11");
+//      auto estatus = do_factory_exchange("windowing", "x11");
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __construct(m_pwindowing);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = m_pwindowing->process_init();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+//      estatus = __construct(m_pwindowing);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      estatus = m_pwindowing->process_init();
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
 //      auto estatus = create_os_node();
 //
@@ -234,32 +192,42 @@ namespace aura
 
       }
 
-      if (m_bUser)
-      {
+      auto psession = Session;
 
-         if (!XInitThreads())
-         {
+      auto puser = psession->user();
 
-            return false;
+      auto pwindowing = puser->windowing();
 
-         }
+      auto estatus = pwindowing->os_application_system_run();
 
-         XSetErrorHandler(_c_XErrorHandler);
-
-      }
-
-      if(pnode)
-      {
-
-         pnode->os_application_system_run();
-
-      }
-      else
-      {
-
-         x11_main();
-
-      }
+//      if (m_bUser)
+//      {
+//
+//         m_pwindowing->os_application_system_run();
+//
+//         if (!XInitThreads())
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         XSetErrorHandler(_c_XErrorHandler);
+//
+//      }
+//
+//      if(pnode)
+//      {
+//
+//         pnode->os_application_system_run();
+//
+//      }
+//      else
+//      {
+//
+//         x11_main();
+//
+//      }
 
       //x11_main();
 //      if (m_bGtkApp)
@@ -305,8 +273,11 @@ namespace aura
    ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
+      auto psession = Session;
 
-      auto pwindowing = System.windowing();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
 
       if(!pwindowing)
       {
@@ -336,7 +307,11 @@ namespace aura
    ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      auto pwindowing = System.windowing();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
 
       if(!pwindowing)
       {
@@ -372,11 +347,11 @@ void sn_start_context();
 bool os_init_application()
 {
 
-#ifndef RASPBIAN
-
-   sn_start_context();
-
-#endif
+//#ifndef RASPBIAN
+//
+//   sn_start_context();
+//
+//#endif
 
    return true;
 
@@ -401,7 +376,7 @@ bool os_init_application()
 //
 //   gtk_main_quit();
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -425,7 +400,7 @@ bool os_init_application()
 //
 //   run_runnable((matter *) pdata);
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //

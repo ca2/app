@@ -51,15 +51,15 @@ namespace graphics
       using graphics::update_window;
       virtual bool update_window() override;
 
-      virtual sync * get_draw_lock() override;
+      virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
-      // sync_lock screen sync first...
-      virtual sync * get_screen_sync() override;
+      // synchronization_lock screen synchronization_object first...
+      virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
-      //virtual ::image_pointer & get_screen_image_and_sync(sync ** psync, const ::size_i32 & size) override;
-      //virtual sync * get_screen_sync() override;
+      //virtual ::image_pointer & get_screen_image_and_sync(synchronization_object ** psync, const ::size_i32 & size) override;
+      //virtual synchronization_object * get_screen_sync() override;
 
    };
 

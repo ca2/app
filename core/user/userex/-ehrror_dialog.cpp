@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace userex
@@ -39,8 +37,8 @@ namespace userex
       }
       // TODO: add extra initialization here*/
 
-      return TRUE;  // return TRUE unless you set the focus to a control
-      // EXCEPTION: OCX Property Pages should return FALSE
+      return true;  // return true unless you set the focus to a control
+      // EXCEPTION: OCX Property Pages should return false
    }
 
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "edit_window.h"
 
 
@@ -18,7 +16,7 @@ namespace tsf
       if (m_cCompositions >= MAX_COMPOSITIONS)
       {
          //can't handle any more compositions
-         *pfOk = FALSE;
+         *pfOk = false;
          return S_OK;
       }
 

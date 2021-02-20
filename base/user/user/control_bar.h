@@ -143,11 +143,11 @@ public:
    bool m_bVisible;    // visibility of this bar
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
-   bool m_bDockBar;    // TRUE if a dockbar
+   bool m_bDockBar;    // true if a dockbar
    point_i32 m_pointPos;  // topleft point_i32 of interaction_impl
 
    ::u32 m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
-   bool m_bDocking;    // TRUE if this bar has a DockContext
+   bool m_bDocking;    // true if this bar has a DockContext
    ::u32 m_uMRUDockID;  // most recent docked dockbar
    ::rectangle_i32 m_rectMRUDockPos; // most recent docked position
    u32 m_dwMRUFloatStyle; // most recent floating orientation
@@ -243,12 +243,12 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pmessage) override;
 
 
       //virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
-      virtual u32 RecalcDelayShow(SIZEPARENTPARAMS * pLayout);
+      virtual u32 RecalcDelayShow(void * pLayoutSIZEPARENTPARAMS);
 
 
       virtual bool IsDockBar();

@@ -1,8 +1,6 @@
 #include "framework.h"
 #include "acme/const/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 XfplayerViewLineSelection::XfplayerViewLineSelection()
@@ -21,11 +19,11 @@ XfplayerViewLineSelection::~XfplayerViewLineSelection()
 
 void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::message::message * pmessage)
 {
-   __pointer(::message::base) pbase(pmessage);
+   __pointer(::user::message) pusermessage(pmessage);
 
    ::u32 message;
 
-   message = pbase->m_id.umessage();
+   message = pusermessage->m_id.umessage();
 
    if(message != e_message_mouse_move
          || message != e_message_timer
@@ -44,7 +42,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       
       bool bInside;
       
-      auto pointCursor = __point(pbase->m_lparam);
+      auto pointCursor = __point(pusermessage->m_lparam);
 
       ::rectangle_i32 rectPlacement;
       
@@ -79,7 +77,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       }
       else if(bInside)
       {
-         //u32 fwKeys = pbase->m_wparam; // key flags
+         //u32 fwKeys = pusermessage->m_wparam; // key flags
          if(message == e_message_left_button_down)
          {
             if(viewline.CalcChar(pointCursor, iChar))
@@ -100,7 +98,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
             }
             //                viewline.get_interaction()->set_need_redraw();
             OnSelEvent(viewline, EventStart);
-            pbase->m_bRet = true;
+            pusermessage->m_bRet = true;
             return;
          }
          else if(
@@ -137,18 +135,25 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
                      && m_iCharStartSource == m_item.GetCharStart()
                      && m_iCharEndSource == m_item.GetCharEnd())
                {
+
                   string str;
+
                   auto psession = Session;
 
-                  auto point =                  psession->get_cursor_pos();
-                  if(viewline.get_link(str, point_i32))
+                  auto puser = psession->user();
+
+                  auto pwindowing = puser->windowing();
+
+                  auto pointCursor = pwindowing->get_cursor_pos();
+
+                  if(viewline.get_link(str, pointCursor))
                   {
                      //usersp(::user::impact) pview = viewline.get_interaction();
                      //pview->on_link_click(str);
                   }
                }
             }
-            pbase->m_bRet = true;
+            pusermessage->m_bRet = true;
             return;
          }
          else if(message == e_message_mouse_move)
@@ -156,24 +161,35 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
             auto psession = Session;
 
-            auto point = psession->get_cursor_pos();
+            auto puser = psession->user();
 
-            viewline.update_hover(point);
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
+
+            viewline.update_hover(pointCursor);
 
          }
+
       }
+
    }
    else if(message == e_message_timer)
    {
-      uptr uEvent = pbase->m_wparam;
+      uptr uEvent = pusermessage->m_wparam;
       if(uEvent == ::e_timer_hover)
       {
 
          auto psession = Session;
 
-         auto point = psession->get_cursor_pos();
+         auto puser = psession->user();
 
-         viewline.update_hover(point);
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         viewline.update_hover(pointCursor);
+
          if(!viewline.is_hover())
          {
             __pointer(::user::interaction) pwnd = viewline.get_interaction();
@@ -210,7 +226,7 @@ void XfplayerViewLineSelection::OnSelEvent(xfplayer_view_line & viewline, Xfplay
 
       break;
    default:
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 }
 
@@ -290,7 +306,7 @@ bool XfplayerViewLineSelection::SetSelAfter(xfplayer_view_line & viewline)
 void XfplayerViewLineSelection::NormalizeSel(xfplayer_view_line & viewline)
 {
    UNREFERENCED_PARAMETER(viewline);
-   ASSERT(FALSE);
+   ASSERT(false);
    /*   string str;
    if(m_item.m_iLineStart < 0)
    {
@@ -562,7 +578,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point_i32) == ::user::e_line_hit_link)
+            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
@@ -643,7 +659,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point_i32) == ::user::e_line_hit_link)
+            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
@@ -667,10 +683,16 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
          
          auto psession = Session;
 
-         ::point_i32 point = psession->get_cursor_pos();
-         
-         viewline.get_interaction()->_001ScreenToClient(point);
-         viewline.update_hover(point);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         viewline.get_interaction()->_001ScreenToClient(pointCursor);
+
+         viewline.update_hover(pointCursor);
+
          if(!viewline.is_hover())
          {
             ::rectangle_i32 rectPlacement;
@@ -796,7 +818,7 @@ XfplayerViewLineSelection::enum_state XfplayerViewLineSelection::GetState()
 bool XfplayerViewLineSelectionItem::Intersect(index iFirstLine, index iLastLine)
 {
 
-   return max(iFirstLine, m_iLineStart) <= min(iLastLine, m_iLineEnd);
+   return maximum(iFirstLine, m_iLineStart) <= minimum(iLastLine, m_iLineEnd);
 
 }
 

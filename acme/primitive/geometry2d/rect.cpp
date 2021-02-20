@@ -35,7 +35,7 @@
 //
 //   double dy = (double) (rectangle.bottom - rectangle.top);
 //
-//   double dr = max(dx / cx, dy / cy);
+//   double dr = maximum(dx / cx, dy / cy);
 //
 //   i64 cw = (i64) (cx * dr);
 //   i64 ch = (i64) (cy * dr);
@@ -56,7 +56,7 @@
 //
 //   double dy = (double) (rectangle.bottom - rectangle.top);
 //
-//   double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+//   double dr = minimum(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 //
 //   i64 cw = cx == 0 ? (i64) dx : ((i64) (cx * dr));
 //   i64 ch = cy == 0 ? (i64) dy : ((i64) (cy * dr));
@@ -283,8 +283,8 @@
 //
 //
 //
-//i64 rectangle_i64::minimum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
-//i64 rectangle_i64::maximum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
+//i64 rectangle_i64::minimum_absolute_dimension() const noexcept { return minimum(INTABS(width()),INTABS(height())); }
+//i64 rectangle_i64::maximum_absolute_dimension() const noexcept { return minimum(INTABS(width()),INTABS(height())); }
 //
 //
 //
@@ -310,13 +310,13 @@
 //   else if(bNegativePreference) // absolutely equal, prefer negative ...
 //   {
 //
-//      return min(w,h);
+//      return minimum(w,h);
 //
 //   }
 //   else // ... otherwise prefer positive
 //   {
 //
-//      return max(w,h);
+//      return maximum(w,h);
 //
 //   }
 //
@@ -346,13 +346,13 @@
 //   else if(bPositivePreference) // absolutely equal, prefer positive ...
 //   {
 //
-//      return max(w,h);
+//      return maximum(w,h);
 //
 //   }
 //   else // ... otherwise prefer negative
 //   {
 //
-//      return min(w,h);
+//      return minimum(w,h);
 //
 //   }
 //

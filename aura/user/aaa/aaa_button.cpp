@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -53,7 +51,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -171,7 +169,7 @@ namespace user
 
       const ::size & size = pgraphics->GetTextExtent(strText);
 
-      ::draw2d::text_metric tm;
+      ::write_text::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
@@ -332,27 +330,27 @@ namespace user
       {
 
          // Disabled Background
-         crBk = ARGB(255, 127, 127, 127);
+         crBk = argb(255, 127, 127, 127);
 
       }
       else if (is_left_button_pressed() || echeck() == ::check_checked)
       {
 
          // Pressed Background
-         crBk = ARGB(255, 127, 127, 127);
+         crBk = argb(255, 127, 127, 127);
 
       }
       else if (m_itemHover.is_set())
       {
 
          // Hover Background
-         crBk = ARGB(255, 80, 80, 80);
+         crBk = argb(255, 80, 80, 80);
 
       }
       else
       {
 
-         crBk = ARGB(255, 255, 255, 255);
+         crBk = argb(255, 255, 255, 255);
 
       }
 
@@ -373,7 +371,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_rect(rectClient, crBk);
+         pgraphics->fill_rectangle(rectClient, crBk);
 
       }
 
@@ -383,32 +381,32 @@ namespace user
       if (!is_window_enabled())
       {
 
-         crBorder = ARGB(255, 127, 127, 127);
+         crBorder = argb(255, 127, 127, 127);
 
       }
       else if (is_left_button_pressed() || echeck() == ::check_checked)
       {
 
-         crBorder = ARGB(255, 255, 255, 255);
+         crBorder = argb(255, 255, 255, 255);
 
       }
       else if (m_itemHover.is_set())
       {
 
-         crBorder = ARGB(255, 100, 100, 200);
+         crBorder = argb(255, 100, 100, 200);
 
       }
       else
       {
 
-         crBorder = ARGB(255, 10, 10, 100);
+         crBorder = argb(255, 10, 10, 100);
 
       }
 
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_rect(rectClient, crBorder);
+         pgraphics->draw_rectangle(rectClient, crBorder);
 
       }
 
@@ -424,8 +422,8 @@ namespace user
          {
             ::rect rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = min(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
-            rectDib.right = min(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
+            rectDib.bottom = minimum(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
+            rectDib.right = minimum(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
             //m_pimage->to(pgraphics, rectDib);
             m_pbitmap->m_pimage->bitmap_blend(pgraphics, rectDib);
             rectText.left += m_pbitmap->m_pimage->width();
@@ -459,9 +457,9 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      ::user::e_key iKey = pkey->m_ekey;
+      ::user::enum_key iKey = pkey->m_ekey;
 
-      if (iKey == ::user::key_return || iKey == ::user::key_space)
+      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
          ::user::control_event ev;
@@ -488,25 +486,25 @@ namespace user
       if (!is_window_enabled())
       {
 
-         crText = ARGB(255, 0, 0, 0);
+         crText = argb(255, 0, 0, 0);
 
       }
       else if (is_left_button_pressed() || get_echeck() == ::check_checked)
       {
 
-         crText = ARGB(255, 0, 0, 0);
+         crText = argb(255, 0, 0, 0);
 
       }
       else if (m_itemHover.is_set())
       {
 
-         crText = ARGB(255, 0, 0, 0);
+         crText = argb(255, 0, 0, 0);
 
       }
       else
       {
 
-         crText = ARGB(255, 0, 0, 0);
+         crText = argb(255, 0, 0, 0);
 
       }
 
@@ -523,25 +521,25 @@ namespace user
       if (!is_window_enabled())
       {
 
-         crBackground = ARGB(255, 180, 180, 180);
+         crBackground = argb(255, 180, 180, 180);
 
       }
       else if (is_left_button_pressed() || get_echeck() == ::check_checked)
       {
 
-         crBackground = ARGB(255, 240, 240, 240);
+         crBackground = argb(255, 240, 240, 240);
 
       }
       else if (m_itemHover.is_set())
       {
 
-         crBackground = ARGB(255, 240, 240, 240);
+         crBackground = argb(255, 240, 240, 240);
 
       }
       else
       {
 
-         crBackground = ARGB(255, 240, 240, 240);
+         crBackground = argb(255, 240, 240, 240);
 
       }
 
@@ -570,7 +568,7 @@ namespace user
       if(get_echeck() == ::check_checked)
       {
 
-         color colorBack(crBackground);
+         ::color::color colorBack(crBackground);
 
          colorBack.hls_rate(0.0, -0.1, 0.0);
 
@@ -579,13 +577,13 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rect(rectClient, colorBack);
+            pgraphics->fill_rectangle(rectClient, colorBack);
 
          }
 
-         color colorTopLeft(colorBack);
+         ::color::color colorTopLeft(colorBack);
 
-         color colorBottomRight(colorBack);
+         ::color::color colorBottomRight(colorBack);
 
          colorTopLeft.hls_rate(0.0, -0.2, 0.0);
 
@@ -608,7 +606,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rect(rectClient, crBackground);
+            pgraphics->fill_rectangle(rectClient, crBackground);
 
          }
 
@@ -791,7 +789,7 @@ namespace user
 
          double dH = (double) rectClient.height() / (double) pimage->height();
 
-         double dMin = min(min(dW, dH), 1.0);
+         double dMin = minimum(minimum(dW, dH), 1.0);
 
          rectAspect.right = (::i32) (pimage->width() * dMin);
 
@@ -855,7 +853,7 @@ namespace user
 
             double dH = (double)rectPadded.height() / (double)pimage->height();
 
-            double dMin = min(min(dW, dH), 1.0);
+            double dMin = minimum(minimum(dW, dH), 1.0);
 
             rectAspect.right = (::i32) (pimage->width() * dMin);
 
@@ -912,10 +910,10 @@ namespace user
 
       cr = color;
 
-      class color colorExt1TL;
-      class color colorExt2TL;
-      class color colorExt1BR;
-      class color colorExt2BR;
+      class ::color::color colorExt1TL;
+      class ::color::color colorExt2TL;
+      class ::color::color colorExt1BR;
+      class ::color::color colorExt2BR;
 
       colorExt1TL.set_rgb(cr);
       colorExt2TL.set_rgb(cr);
@@ -1163,8 +1161,8 @@ namespace user
       {
          pgraphics->draw_3drect(
          rectClient,
-         RGB(255,255,255),
-         RGB(155,155,105));
+         rgb(255,255,255),
+         rgb(155,155,105));
 
          if(m_plist->m_pimagelistSubItemHover != nullptr)
          {

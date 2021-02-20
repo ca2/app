@@ -11,7 +11,7 @@ namespace draw2d
       m_elinecapBeg           = ::draw2d::e_line_cap_flat;
       m_elinecapEnd           = ::draw2d::e_line_cap_flat;
       m_elinejoin             = ::draw2d::e_line_join_miter;
-      m_color                 = ARGB(127, 0, 0, 0);
+      m_color                 = argb(127, 0, 0, 0);
       m_epen                  = e_pen_solid;
       m_dWidth                = 1.0;
       m_epenalign             = e_pen_align_center;
@@ -37,7 +37,7 @@ namespace draw2d
 
       m_epen                  = e_pen_null;
       m_dWidth                = 0.0;
-      m_color                 = ARGB(0, 0, 0, 0);
+      m_color                 = argb(0, 0, 0, 0);
       
       set_modified();
 
@@ -46,7 +46,7 @@ namespace draw2d
    }
 
 
-   bool pen::create_solid(double dWidth, const ::color& color)
+   bool pen::create_solid(double dWidth, const ::color::color& color)
    {
 
       if (m_epen == e_pen_solid

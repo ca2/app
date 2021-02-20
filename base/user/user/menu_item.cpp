@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aqua/xml.h"
 
 
@@ -278,14 +276,12 @@ namespace user
 
          }
 
-         if (!pinteraction->create_child(pmenu))
+         if (!pinteraction->create_control(pmenu, pitem->m_id))
          {
 
             return false;
 
          }
-
-         pinteraction->m_id = pitem->m_id;
 
          pinteraction->m_pmenuitem = pitem;
 

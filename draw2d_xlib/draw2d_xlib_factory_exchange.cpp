@@ -17,7 +17,7 @@ namespace draw2d_xlib
       create_factory < brush                 >  (__type(::draw2d::brush));
       create_factory < palette               >  (__type(::draw2d::palette));
       create_factory < region                >  (__type(::draw2d::region));
-      create_factory < font                  >  (__type(::draw2d::font));
+      create_factory < font                  >  (__type(::write_text::font));
       create_factory < path                  >  (__type(::draw2d::path));
 
    }

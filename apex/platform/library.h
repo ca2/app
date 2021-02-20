@@ -11,7 +11,8 @@ namespace apex
    {
    public:
 
-      
+
+      __pointer(::factory_map)      m_pfactorymap;
       string                        m_strFolder;
       string                        m_strName;
       void *                        m_plibrary;
@@ -21,11 +22,14 @@ namespace apex
       ::file::path                  m_strPath;
       string                        m_strMessage;
       bool                          m_bAutoUnload;
-      __pointer_array(library_object_allocator_base) m_allocatorptra;                     \
+      //__pointer_array(library_object_allocator_base) m_allocatorptra;                     \
 
 
       library() {}
       virtual ~library();
+
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context &) const override;
 
       virtual ::e_status     initialize(::layered * pobjectContext);
       virtual ::e_status     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
@@ -35,6 +39,9 @@ namespace apex
       virtual bool open_ca2_library(string strTitle = "");
 
       library * get_ca2_library();
+
+
+      virtual ::factory_map * factory_map() { return m_pfactorymap; }
 
 
       virtual bool close();
@@ -75,11 +82,11 @@ namespace apex
       virtual __result(::apex::application) new_application(const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
-
+      
       virtual ::matter* new_object(const char* pszClass);
 
 
-      virtual __pointer(::matter) create_object(::layered * pobjectContext, const char* pszClass);
+      virtual __pointer(::matter) create_object(const char* pszClass);
       virtual bool has_object_class(const char * lpszClass);
 
 
@@ -94,15 +101,17 @@ namespace apex
       // virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
-      virtual __pointer(::matter) factory_create(::layered * pobjectContext, const char * lpszClass);
-      virtual bool factory_has_object_class(const char * lpszClass);
+      //virtual __pointer(::matter) factory_create(const char * lpszClass);
+      //virtual bool factory_has_object_class(const char * lpszClass);
 
-      library_object_allocator_base * find_allocator(const char * lpszClass);
+      //library_object_allocator_base * find_allocator(const char * lpszClass);
 
-      virtual void initialize_factory();
+      //virtual void initialize_factory();
 
 
-      virtual bool create_factory();
+      //virtual bool create_factory();
+
+      virtual ::e_status factory_exchange(::factory_map * pfactorymap);
 
 
    };
@@ -139,6 +148,8 @@ namespace apex
 
    };
 
+   
+   using library_map = string_map < __composite(::apex::library) >;
 
 
 } // namespace apex

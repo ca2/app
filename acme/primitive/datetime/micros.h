@@ -27,6 +27,9 @@ public:
    void sleep() const;
 
 
+   void Now();
+
+
 };
 
 

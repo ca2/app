@@ -96,10 +96,10 @@ namespace draw2d_opengl
 
 
       // IMPLEMENT_DYNAMIC(resource_exception, ::exception::exception)
-      //resource_exception _simpleResourceException(FALSE, __IDS_RESOURCE_EXCEPTION);
+      //resource_exception _simpleResourceException(false, __IDS_RESOURCE_EXCEPTION);
 
       // IMPLEMENT_DYNAMIC(user_exception, ::exception::exception)
-      //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
+      //user_exception _simpleUserException(false, __IDS_USER_EXCEPTION);
 
       // IMPLEMENT_DYNCREATE(::draw2d::graphics_pointer, object)
       // IMPLEMENT_DYNAMIC(CClientDC, ::draw2d::graphics_pointer)
@@ -109,7 +109,7 @@ namespace draw2d_opengl
 
       // IMPLEMENT_DYNAMIC(pen, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::brush, ::draw2d::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::font, ::draw2d::object)
+      // IMPLEMENT_DYNAMIC(::write_text::font, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::palette, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::region, ::draw2d::object)
@@ -151,14 +151,14 @@ namespace draw2d_opengl
             cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
             graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
             // Make white pixels transparent too
-            graphicsMem->SetBkColor(RGB(255, 255, 255));
+            graphicsMem->SetBkColor(rgb(255, 255, 255));
             graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
 
             if(graphicsMem->SelectObject(pDest))
             {
                graphicsMem->FillSolidRect(0, 0, bm.bmWidth, bm.bmHeight, crBackground);
 
-               graphicsMem->SetBkColor(RGB(255, 255, 255));
+               graphicsMem->SetBkColor(rgb(255, 255, 255));
 
                spbr = graphicsMem->SelectObject(brHighLight);
                graphicsMem->BitBlt(1, 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
@@ -204,12 +204,12 @@ namespace draw2d_opengl
 
          cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
-         graphicsMem->SetBkColor(RGB(255, 255, 255));
+         graphicsMem->SetBkColor(rgb(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
 
          pgraphics->FillSolidRect(x, y, bm.bmWidth, bm.bmHeight, crBackground);
 
-         pgraphics->SetBkColor(RGB(255, 255, 255));
+         pgraphics->SetBkColor(rgb(255, 255, 255));
 
          spbr = pgraphics->SelectObject(brHighLight);
          pgraphics->BitBlt(x + 1, y + 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
@@ -265,7 +265,7 @@ namespace draw2d_opengl
                cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
                graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
                // Make white pixels of the source "transparent" too
-               graphicsSrc->SetBkColor(RGB(255, 255, 255));
+               graphicsSrc->SetBkColor(rgb(255, 255, 255));
                graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);
                graphicsSrc->SetBkColor(cr);
 
@@ -329,7 +329,7 @@ namespace draw2d_opengl
          cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
          // Make white pixels of the source "transparent" too
-         graphicsSrc->SetBkColor(RGB(255, 255, 255));
+         graphicsSrc->SetBkColor(rgb(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);
          graphicsSrc->SetBkColor(cr);
 

@@ -55,7 +55,7 @@ ftpfs::~ftpfs()
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    //   millis tickTimeout;
 
@@ -78,7 +78,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       dir_listing & dir = m_map[path];
 
@@ -149,7 +149,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -276,7 +276,7 @@ retry:
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -344,7 +344,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    //millis tickTimeout;
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -419,7 +419,7 @@ retry:
 
       }
 
-      ::file::path pathTemp = Context.file().time(Context.dir().time());
+      ::file::path pathTemp = get_context()->file().time(get_context()->dir().time());
 
       string strRemoteFile = System.url().get_object(path);
 
@@ -441,7 +441,7 @@ retry:
 
       }
 
-      return Context.file().get_file(pathTemp, eopen);
+      return get_context()->file().get_file(pathTemp, eopen);
 
    }
    else

@@ -43,8 +43,7 @@ typedef struct _tagTT_NAME_RECORD
    u16	uStringOffset;	//from start of storage area
 } TT_NAME_RECORD;
 
-#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), LOBYTE(x))
-#define SWAPLONG(x)		MAKELONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+
 
 
 
@@ -87,7 +86,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
       return csRetVal;
 
    TT_TABLE_DIRECTORY tblDir;
-   int_bool bFound = FALSE;
+   int_bool bFound = false;
    string csTemp;
 
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)
@@ -97,7 +96,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
       csTemp.release_string_buffer(4);
       if (csTemp.compare_ci("name") == 0)
       {
-         bFound = TRUE;
+         bFound = true;
          tblDir.uLength = SWAPLONG(tblDir.uLength);
          tblDir.uOffset = SWAPLONG(tblDir.uOffset);
          break;
@@ -112,7 +111,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
       ttNTHeader.uNRCount = SWAPWORD(ttNTHeader.uNRCount);
       ttNTHeader.uStorageOffset = SWAPWORD(ttNTHeader.uStorageOffset);
       TT_NAME_RECORD ttRecord;
-      bFound = FALSE;
+      bFound = false;
 
       for (int i = 0; i < ttNTHeader.uNRCount; i++)
       {

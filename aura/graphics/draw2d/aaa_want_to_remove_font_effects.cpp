@@ -7,7 +7,7 @@ namespace draw2d
 
 
    font::font(::layered * pobjectContext) :
-      ::draw2d::font(pobject),
+      ::write_text::font(pobject),
       m_pfont(e_create)
    {
 
@@ -31,7 +31,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::font * font::GetFont()
+   ::write_text::font * font::GetFont()
    {
 
       return m_pfont;
@@ -43,7 +43,7 @@ namespace draw2d
    {
 
 
-      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+      System.draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
 
       return;
 
@@ -98,7 +98,7 @@ namespace draw2d
 
    {
 
-      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+      System.draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 
       return;
@@ -209,15 +209,15 @@ namespace draw2d
    bool font::AddGlyph(::u32 user)
    {
 
-      //   single_lock sl(&m_mutex);
-      //   sl.lock(U32_INFINITE_TIMEOUT);
+      //   single_lock synchronizationlock(&m_mutex);
+      //   synchronizationlock.lock(U32_INFINITE_TIMEOUT);
 
-      return TRUE;
+      return true;
 
 #ifdef WINDOWS_DESKTOP
 
       if(m_glyphset.find_first(user) >= 0)
-         return TRUE;
+         return true;
 
       glyph glyph;
       glyph.m_ui = user;
@@ -236,14 +236,14 @@ namespace draw2d
       u32 cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, nullptr, &mat2);
 
       if(cbBuffer == GDI_ERROR)
-         return FALSE;
+         return false;
 
       if(cbBuffer == 0)
       {
 
          m_glyphset.add(glyph);
 
-         return TRUE;
+         return true;
 
       }
 
@@ -252,7 +252,7 @@ namespace draw2d
 
       if(pPH == nullptr)
 
-         return FALSE;
+         return false;
 
       m_pDC->GetGlyphOutline(user, GGO_NATIVE, &gm, cbBuffer, pPH, &mat2);
 
@@ -265,7 +265,7 @@ namespace draw2d
 
       m_glyphset.add(glyph);
 
-      return TRUE;
+      return true;
 
 #endif
 
@@ -318,7 +318,7 @@ namespace draw2d
       char           ch;
       string         str;
       i32        i, j, k;
-      bool           forceInsertion = FALSE;
+      bool           forceInsertion = false;
 
       SelectFont();
       for(i = 0; i < str2aTokens.get_size(); i++)
@@ -332,12 +332,12 @@ namespace draw2d
                ch = str.operator[](k);
                if(forceInsertion)
                {
-                  forceInsertion = FALSE;
+                  forceInsertion = false;
                   AddGlyph(ch);
                }
                else if(ch == '\\')
                {
-                  forceInsertion = TRUE;
+                  forceInsertion = true;
                }
                else if(ch == '^')
                {
@@ -410,7 +410,7 @@ namespace draw2d
          iOffset);
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
 
       }
 
@@ -440,7 +440,7 @@ namespace draw2d
 
       spgraphics->CreateCompatibleDC(nullptr);
 
-      ::draw2d::font * pFontOld = spgraphics->SelectObject(m_pfont);
+      ::write_text::font * pFontOld = spgraphics->SelectObject(m_pfont);
 
       spgraphics->get_text_metrics(&m_tm);
 
@@ -464,14 +464,14 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 c
    if(pString == nullptr)
 
    {
-      return ::TextOutW(hdc, x, y, nullptr, ca) != FALSE;
+      return ::TextOutW(hdc, x, y, nullptr, ca) != false;
 
    }
 
    wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
 
 
-   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
+   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
 
    return bRet;
 
@@ -484,10 +484,10 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 c
       if(pString == nullptr)
 
       {
-         return ::text_out(hdc, x, y, nullptr, 0) != FALSE;
+         return ::text_out(hdc, x, y, nullptr, 0) != false;
       }
 
-      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
+      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
    */
 
 #endif
@@ -505,14 +505,14 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 
    {
 
-      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != FALSE;
+      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != false;
 
    }
 
    wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
 
 
-   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32) wstr.get_length(), psizl) != FALSE;
+   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32) wstr.get_length(), psizl) != false;
 
    return bRet;
 
@@ -543,7 +543,7 @@ CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT3
    wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
 
 
-   bool bRet = ::DrawTextW(hdc, wstr, (i32) wcslen(wstr), prc, format) != FALSE;
+   bool bRet = ::DrawTextW(hdc, wstr, (i32) wcslen(wstr), prc, format) != false;
 
 
    return bRet;

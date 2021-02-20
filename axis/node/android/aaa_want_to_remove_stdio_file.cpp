@@ -36,7 +36,7 @@
 //
 //      m_pStream = nullptr;
 //      //if (!::android::file::open(lpszFileName, (nOpenFlags & ~::file::e_open_text)))
-//      // return FALSE;
+//      // return false;
 //
 //      char szMode[4]; // C-runtime open string
 //      i32 nMode = 0;
@@ -92,7 +92,7 @@
 //         }
 //
 //         //::android::file::Abort(); // close m_hFile
-//         return FALSE;
+//         return false;
 //      }
 //
 //      m_strFileName = lpszFileName;
@@ -126,7 +126,7 @@
 //   {
 //      ASSERT_VALID(this);
 //      ASSERT(m_pStream != nullptr);
-////   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
+////   ASSERT(fx_is_valid_address(lpBuf, nCount, false));
 //
 //      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
 //         ::file::throw_status(error_file, errno, m_strFileName);

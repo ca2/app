@@ -30,10 +30,10 @@ inline bool get_bounding_rect(RECTANGLE_F64 * prectBounding, const ::arc * parc)
 inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const line * pline)
 {
 
-   prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->top = min(pline->m_p1.y, pline->m_p2.y);
-   prectBounding->right = max(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->bottom = max(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->left = minimum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->top = minimum(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->right = maximum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->bottom = maximum(pline->m_p1.y, pline->m_p2.y);
 
    return true;
 
@@ -43,10 +43,10 @@ inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const line * pline)
 inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const line* pline)
 {
 
-   prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->top = min(pline->m_p1.y, pline->m_p2.y);
-   prectBounding->right = max(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->bottom = max(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->left = minimum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->top = minimum(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->right = maximum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->bottom = maximum(pline->m_p1.y, pline->m_p2.y);
 
    return true;
 
@@ -56,10 +56,10 @@ inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const line* pline)
 inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const lined* pline)
 {
 
-   prectBounding->left = (::i32)min(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->top = (::i32)min(pline->m_p1.y, pline->m_p2.y);
-   prectBounding->right = (::i32)max(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->bottom = (::i32)max(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->left = (::i32)minimum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->top = (::i32)minimum(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->right = (::i32)maximum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->bottom = (::i32)maximum(pline->m_p1.y, pline->m_p2.y);
 
    return true;
 
@@ -69,10 +69,10 @@ inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const lined* pline)
 inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const lined* pline)
 {
 
-   prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->top = min(pline->m_p1.y, pline->m_p2.y);
-   prectBounding->right = max(pline->m_p1.x, pline->m_p2.x);
-   prectBounding->bottom = max(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->left = minimum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->top = minimum(pline->m_p1.y, pline->m_p2.y);
+   prectBounding->right = maximum(pline->m_p1.x, pline->m_p2.x);
+   prectBounding->bottom = maximum(pline->m_p1.y, pline->m_p2.y);
 
    return true;
 

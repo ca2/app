@@ -38,7 +38,7 @@ namespace uwp
       iptr_to_iptr                                                m_mapLong;
       ::mutex                                                           m_mutexQueue;
       manual_reset_event                                                m_evQueue;
-      __pointer_array(::message::base)                                  m_messageaQueue;
+      __pointer_array(::user::message)                                  m_messageaQueue;
 
 
       interaction_impl();
@@ -87,7 +87,7 @@ namespace uwp
 
       virtual oswindow _get_handle();
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -168,7 +168,7 @@ namespace uwp
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(LPRECT32 lpClientRect, ::u32 nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType = adjustBorder);
 
 
       // get immediate child with given ID
@@ -198,20 +198,20 @@ namespace uwp
       //strsize get_window_text(char * lpszStringBuf, strsize nMaxCount) override;
       void get_window_text(string & rString) override;
       //strsize get_window_text_length() override;
-      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
-      ::draw2d::font* GetFont();
+      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      ::write_text::font* GetFont();
 
 
       // Window size_i32 and position Functions
       //virtual bool layout().is_iconic();
       //virtual bool layout().is_zoomed();
-      //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = TRUE);
-      //void MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint = TRUE);
+      //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = true);
+      //void MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint = true);
       //int SetWindowRgn(HRGN hRgn, bool bRedraw);
       //int GetWindowRgn(HRGN hRgn);
 
 
-      //virtual bool set_window_pos(iptr z, int x, int y, int cx, int cy, ::u32 nFlags);
+      //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;
@@ -219,11 +219,11 @@ namespace uwp
       //using ::user::interaction_impl::get_client_rect;
       //virtual bool get_client_rect(RECTANGLE_I64 * lpRect);
 
-      //virtual bool _001ClientToScreen(LPRECT32 lprect);
+      //virtual bool _001ClientToScreen(RECTANGLE_I32 * lprect);
       //virtual bool _001ClientToScreen(POINT_I32 * lppoint);
       //virtual bool _001ClientToScreen(RECTANGLE_I64 * lprect);
       //virtual bool _001ClientToScreen(POINT_I64 * lppoint);
-      //virtual bool _001ScreenToClient(LPRECT32 lprect);
+      //virtual bool _001ScreenToClient(RECTANGLE_I32 * lprect);
       //virtual bool _001ScreenToClient(POINT_I32 * lppoint);
       //virtual bool _001ScreenToClient(RECTANGLE_I64 * lprect);
       //virtual bool _001ScreenToClient(POINT_I64 * lppoint);
@@ -233,7 +233,7 @@ namespace uwp
 
       // Coordinate Mapping Functions
       virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, LPRECT32 lpRect);
+      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * lpRect);
 
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -243,19 +243,19 @@ namespace uwp
       virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const;
 
       virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = TRUE);
-      //virtual bool GetUpdateRect(LPRECT32 lpRect, bool bErase = FALSE);
-      //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
-      //virtual void Invalidate(bool bErase = TRUE);
-      //virtual void InvalidateRect(const RECTANGLE_I32 * lpRect, bool bErase = TRUE);
-      //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
+      virtual void SetRedraw(bool bRedraw = true);
+      //virtual bool GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase = false);
+      //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual void Invalidate(bool bErase = true);
+      //virtual void InvalidateRect(const RECTANGLE_I32 * lpRect, bool bErase = true);
+      //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
       //virtual void ValidateRect(const RECTANGLE_I32 * lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(int nCmdShow);
       virtual void _001WindowMaximize();
       virtual void _001WindowRestore();
       virtual bool is_window_visible();
-      virtual void ShowOwnedPopups(bool bShow = TRUE);
+      virtual void ShowOwnedPopups(bool bShow = true);
 
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
@@ -290,7 +290,7 @@ namespace uwp
 
       // Window State Functions
       virtual bool IsWindowEnabled();
-      virtual bool EnableWindow(bool bEnable = TRUE);
+      virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction *  GetActiveWindow();
@@ -332,14 +332,14 @@ namespace uwp
       virtual bool DlgDirSelect(__out_ecount_z(nSize) char * lpString, __in int nSize, __in int nIDListBox);
       virtual bool DlgDirSelectComboBox(__out_ecount_z(nSize) char * lpString, __in int nSize, __in int nIDComboBox);*/
 
-      virtual ::u32 GetDlgItemInt(int nID, BOOL * lpTrans = nullptr, bool bSigned = TRUE) const;
+      virtual ::u32 GetDlgItemInt(int nID, BOOL * lpTrans = nullptr, bool bSigned = true) const;
       //      virtual int GetDlgItemText(__in int nID, __out_ecount_part_z(nMaxCount, return + 1) char * lpStr, __in int nMaxCount) const;
       //    virtual int GetDlgItemText(int nID, string & rString) const;
-      virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
-      virtual ::user::interaction_impl * GetNextDlgTabItem(::user::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
+      virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl, bool bPrevious = false) const;
+      virtual ::user::interaction_impl * GetNextDlgTabItem(::user::interaction_impl * pWndCtl, bool bPrevious = false) const;
       virtual ::u32 IsDlgButtonChecked(int nIDButton) const;
       virtual LRESULT SendDlgItemMessage(int nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
-      virtual void SetDlgItemInt(int nID, ::u32 nValue, bool bSigned = TRUE);
+      virtual void SetDlgItemInt(int nID, ::u32 nValue, bool bSigned = true);
       virtual void SetDlgItemText(int nID, const char * lpszString);
 
       // Scrolling Functions
@@ -348,19 +348,19 @@ namespace uwp
       //virtual void ScrollWindow(int xAmount, int yAmount,
       //                          const RECTANGLE_I32 * lpRect = nullptr,
       //                          const RECTANGLE_I32 * lpClipRect = nullptr);
-      virtual int SetScrollPos(int nBar, int nPos, bool bRedraw = TRUE);
+      virtual int SetScrollPos(int nBar, int nPos, bool bRedraw = true);
       virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos,
-                                  bool bRedraw = TRUE);
-      virtual void ShowScrollBar(::u32 nBar, bool bShow = TRUE);
-      virtual void EnableScrollBarCtrl(int nBar, bool bEnable = TRUE);
+                                  bool bRedraw = true);
+      virtual void ShowScrollBar(::u32 nBar, bool bShow = true);
+      virtual void EnableScrollBarCtrl(int nBar, bool bEnable = true);
 //      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
       // return sibling scrollbar control (or nullptr if none)
 
       //virtual int ScrollWindowEx(int dx, int dy,
       //                           const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip,
-      //                           ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags);
+      //                           ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
-      //       bool bRedraw = TRUE);
+      //       bool bRedraw = true);
       //      virtual bool GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask = SIF_ALL);
       virtual int GetScrollLimit(int nBar);
 
@@ -372,7 +372,7 @@ namespace uwp
 
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags);
       static __pointer(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
@@ -416,7 +416,7 @@ namespace uwp
       virtual void ShowCaret();
 
       // Shell Interaction Functions
-      virtual void DragAcceptFiles(bool bAccept = TRUE);
+      virtual void DragAcceptFiles(bool bAccept = true);
 
       // icon Functions
       virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
@@ -427,7 +427,7 @@ namespace uwp
       virtual u32 GetWindowContextHelpId() const;
 
       // Dialog Data support
-      //virtual bool UpdateData(bool bSaveAndValidate = TRUE);
+      //virtual bool UpdateData(bool bSaveAndValidate = true);
       // data wnd must be same type as this
 
       // Help Command Handlers
@@ -582,8 +582,8 @@ namespace uwp
       // Win4 messages
       //      void OnStyleChanged(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
       //    void OnStyleChanging(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(::u32 nSide, LPRECT32 lpRect);
-      void OnMoving(::u32 nSide, LPRECT32 lpRect);
+      void OnSizing(::u32 nSide, RECTANGLE_I32 * lpRect);
+      void OnMoving(::u32 nSide, RECTANGLE_I32 * lpRect);
       void OnCaptureChanged(::user::interaction_impl * pWnd);
       bool OnDeviceChange(::u32 nEventType, dword_ptr dwData);
 
@@ -603,7 +603,7 @@ namespace uwp
 
 
       // for processing Windows messages
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::user::message * pusermessage);
       //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -615,7 +615,7 @@ namespace uwp
 
       // for notifications from parent
       virtual bool OnChildNotify(::u32 message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      // return TRUE if parent should not process this message
+      // return true if parent should not process this message
       bool ReflectChildNotify(::u32 message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
@@ -642,7 +642,7 @@ namespace uwp
       static const ::u32 m_nMsgDragList;
       int m_nModalResult; // for return values from ::user::interaction_impl::RunModalLoop
 
-      ::draw2d::font * m_pfont;
+      ::write_text::font * m_pfont;
 
       friend class frame_window;
 
@@ -690,9 +690,9 @@ namespace uwp
 
       void set_view_port_org(::image * pimage);
 
-      void offset_view_port_org(LPRECT32 lprectScreen);
+      void offset_view_port_org(RECTANGLE_I32 * lprectScreen);
 
-      virtual void queue_message_handler(::message::base * pbase) override;
+      virtual void queue_message_handler(::user::message * pusermessage) override;
 
       virtual bool _is_window() const override;
 

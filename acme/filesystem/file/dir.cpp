@@ -401,7 +401,7 @@ namespace dir
 
 //       strsize iFind2 = str.reverse_find('\\', iLast);
 
-//       strsize iFind = max(iFind1, iFind2);
+//       strsize iFind = maximum(iFind1, iFind2);
 
 //       if(iFind >= iLast)
 //          return false;
@@ -1107,7 +1107,7 @@ namespace dir
 
       strsize iPos2 = path.reverse_find('\\',iEnd);
 
-      strsize iPos = max(max(iPos1, iPos2), 0);
+      strsize iPos = maximum(maximum(iPos1, iPos2), 0);
 
       if (iPos == iSecondSlash)
       {
@@ -1767,9 +1767,9 @@ namespace dir
    ::file::path program_files_x86()
    {
 
-      ::file::path point_i32("/opt/ca2");
+      ::file::path path("/opt/ca2");
 
-      return point;
+      return path;
 
    }
 
@@ -1777,9 +1777,9 @@ namespace dir
    ::file::path program_files()
    {
 
-      ::file::path point_i32("/opt/ca2");
+      ::file::path path("/opt/ca2");
 
-      return point;
+      return path;
 
    }
 

@@ -95,7 +95,7 @@ namespace userex
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;
 
    };

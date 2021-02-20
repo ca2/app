@@ -34,7 +34,7 @@
 //
 //#endif
 //
-//CLASS_DECL_AURA void set_splash(oswindow oswindow);
+//CLASS_DECL_AURA void set_splash(::windowing::window * pwindow);
 //CLASS_DECL_AURA oswindow get_splash(void);
 //
 //CLASS_DECL_AURA int get_processor_count(void);

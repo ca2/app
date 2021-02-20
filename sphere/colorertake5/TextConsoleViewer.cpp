@@ -31,7 +31,7 @@ INPUT_RECORD ir;
   GetConsoleScreenBufferInfo(hCon, &csbi);
   CONSOLE_CURSOR_INFO cci;
   cci.dwSize = 100;
-  cci.bVisible = FALSE;
+  cci.bVisible = false;
   SetConsoleCursorInfo(hCon, &cci);
 
   CHAR_INFO *buffer = new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];

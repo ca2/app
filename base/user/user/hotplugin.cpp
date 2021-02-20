@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace hotplugin
@@ -38,8 +36,8 @@ namespace hotplugin
       else
       {
 
-         left = rectangle.left + min(m / 2, width(rectangle) / 2);
-         right = rectangle.right - min(m / 2, width(rectangle) / 2);
+         left = rectangle.left + minimum(m / 2, width(rectangle) / 2);
+         right = rectangle.right - minimum(m / 2, width(rectangle) / 2);
 
       }
 
@@ -79,21 +77,21 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create);
 
-      brush->create_solid(ARGB(190, 49, 50, 49));
+      brush->create_solid(argb(190, 49, 50, 49));
 
-      pgraphics->fill_rect(rectBar, brush);
+      pgraphics->fill_rectangle(rectBar, brush);
 
       if (!bStatic)
       {
 
          ::draw2d::brush_pointer brushGreen(e_create);
 
-         brushGreen->create_solid(ARGB(190, 80, 190, 123));
+         brushGreen->create_solid(argb(190, 80, 190, 123));
 
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -102,7 +100,7 @@ namespace hotplugin
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -111,7 +109,7 @@ namespace hotplugin
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -119,11 +117,11 @@ namespace hotplugin
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0f, ARGB(149, 150, 149, 142));
+      pen->create_solid(1.0f, argb(149, 150, 149, 142));
 
-      pgraphics->draw_rect(rectBar, pen);
+      pgraphics->draw_rectangle(rectBar, pen);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri", 18.0);
 
@@ -131,7 +129,7 @@ namespace hotplugin
 
       rectBar.top += 5;
 
-      pgraphics->set_text_color(ARGB(190, 255, 255, 255));
+      pgraphics->set_text_color(argb(190, 255, 255, 255));
 
       pgraphics->text_out(rectBar.left, rectBar.top, str);
 

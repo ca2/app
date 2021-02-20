@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -58,7 +56,7 @@ namespace filemanager
       case ::filemanager::state_finish:
       {
          m_fileoperationa[m_iOperation]->end();
-         single_lock sl(&m_mutexFileOperationA, TRUE);
+         single_lock synchronizationlock(&m_mutexFileOperationA, true);
          m_estate = ::filemanager::state_start;
          m_fileoperationa.remove_at(m_iOperation);
 
@@ -70,7 +68,7 @@ namespace filemanager
          return ::success;
       }
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
       }
 
       return ::success;
@@ -82,7 +80,7 @@ namespace filemanager
 
    double operation_thread::get_item_progress(i32 iItem)
    {
-      single_lock sl(&m_mutexFileOperationA,TRUE);
+      single_lock synchronizationlock(&m_mutexFileOperationA,true);
       i32 iLowerBound = 0;
       i32 iUpperBound;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
@@ -98,7 +96,7 @@ namespace filemanager
 
    string operation_thread::get_item_message(i32 iItem)
    {
-      single_lock sl(&m_mutexFileOperationA,TRUE);
+      single_lock synchronizationlock(&m_mutexFileOperationA,true);
       i32 iLowerBound = 0;
       i32 iUpperBound;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
@@ -116,7 +114,7 @@ namespace filemanager
 
    i32 operation_thread::get_item_count()
    {
-      single_lock sl(&m_mutexFileOperationA,TRUE);
+      single_lock synchronizationlock(&m_mutexFileOperationA,true);
       i32 iCount = 0;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
@@ -135,7 +133,7 @@ namespace filemanager
    }
 
 
-   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,const ::id & id,WPARAM wparamCallback)
+   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, __pointer(::user::interaction) oswindowCallback,const ::id & id,wparam wparamCallback)
    {
 
       auto poperation  = __new(::filemanager::operation);
@@ -159,7 +157,7 @@ namespace filemanager
 
       }
 
-      single_lock sl(&m_mutexFileOperationA,TRUE);
+      single_lock synchronizationlock(&m_mutexFileOperationA,true);
 
       m_fileoperationa.add(poperation);
 
@@ -211,7 +209,7 @@ namespace filemanager
 
    double operation_thread::get_progress_rate()
    {
-      single_lock sl(&m_mutexFileOperationA,TRUE);
+      single_lock synchronizationlock(&m_mutexFileOperationA,true);
       double dTotal = 0.0;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {

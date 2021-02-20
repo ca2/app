@@ -1,5 +1,5 @@
 #include "gnome.h"
-#include "gnome_internal_glue.h"
+#include "gtk_things/gnome_internal_glue.h"
 #include "aura/message/message_global.h"
 #include "platform/platform/platform.h"
 #include "aura/const/_const.h"
@@ -400,7 +400,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 //
 //            gtk_ui_manager_insert_action_group (uim, action_group, 0);
 //
-//            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != FALSE;
+//            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != false;
 //
 //            if(!bOk)
 //            {

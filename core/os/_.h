@@ -50,7 +50,7 @@
 //#endif
 //
 //template < typename PRED >
-//inline bool pred_Sleep(int iTime, PRED pred);
+//inline bool predicate_Sleep(int iTime, PRED pred);
 //
 //
 ////void adapt_font_name(string & str);

@@ -12,26 +12,23 @@ class object;
 
 
 class CLASS_DECL_ACME context_object :
-   virtual public layered
+   virtual public id_matter
 {
 public:
 
 
-   __pointer(::layered)             m_pobjectContext;
-   ::id                             m_id;
-   __pointer(::i64_array)           m_pia;
-   ::e_status                        m_estatus;
-   __pointer(property_set)          m_pset;
-   __pointer(matter_array)          m_pnotifya;
-
+   ::e_status                          m_estatus;
+   __pointer(::layered)                m_pobjectContext;
+   __pointer(::i64_array)              m_pia;
+   __pointer(property_set)             m_pset;
+   __pointer(matter_array)             m_pnotifya;
 
 
    context_object() { }
-   context_object(const ::id& id) : m_id(id) {}
+   context_object(const ::id& id) : id_matter(id) {}
    context_object(const context_object & object);
    context_object(context_object && object) :
-      matter(::move(object)),
-      m_id(::move(object.m_id)),
+      id_matter(::move(object)),
       m_pia(::move(object.m_pia)),
       m_estatus(object.m_estatus),
       m_pset(::move(object.m_pset))
@@ -73,7 +70,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::e_status __construct_new(__pointer(TYPE)& pbase);
+   inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
 
 
    virtual void keep_alive();
@@ -227,7 +224,7 @@ public:
 using reference_pointer = __pointer(::context_object);
 
 
-#define __add_runnable(array, ID) add_pred(array, [this]() { ID(); } )
+#define __add_runnable(array, ID) add_predicate(array, [this]() { ID(); } )
 
 
 

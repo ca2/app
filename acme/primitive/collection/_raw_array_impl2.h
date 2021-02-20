@@ -412,7 +412,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //         __throw(memory_exception());
 //      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 //#endif
-//      ::count nAllocSize = max(nNewSize, m_nGrowBy);
+//      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 ////#undef new
 //      m_pData = (TYPE*) new byte[(size_t)nAllocSize * sizeof(TYPE)];
 //      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
@@ -669,7 +669,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point_i32, ::index find, ::index last) const
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point, ::index find, ::index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -677,7 +677,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(&this->element_at(find) == point_i32)
+      if(&this->element_at(find) == point)
          return find;
    }
    return -1;

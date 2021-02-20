@@ -2,23 +2,12 @@ cmake_minimum_required(VERSION 3.17)
 project(base CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    message("System is Linux")
-    include(FindPkgConfig)
+if(LINUX)
 elseif(WIN32)
-    set(PLATFORM_NAME "windows")
 elseif(UWP)
-    set(PLATFORM_NAME "uwp")
-    set(WINDOWS_TSF TRUE)
 endif()
 
 
@@ -187,10 +176,6 @@ list(APPEND base_source
         user/user/network_configuration.h
         user/user/notification_area.cpp
         user/user/notification_area.h
-        user/user/notify_icon.cpp
-        user/user/notify_icon.h
-        user/user/notify_icon_listener.cpp
-        user/user/notify_icon_listener.h
         user/user/picture.cpp
         user/user/picture.h
         user/user/picture_interaction.cpp

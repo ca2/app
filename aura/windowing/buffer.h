@@ -3,26 +3,26 @@
 // hi5 contribution...
 #pragma once
 
-
-namespace windowing
-{
-
-
-   class CLASS_DECL_AURA buffer :
-      virtual public ::graphics::graphics
-   {
-   public:
-
-
-      buffer();
-      virtual ~buffer();
-
-
-
-   };
-
-
-} // namespace windowing
-
-
-
+//
+//namespace windowing
+//{
+//
+//
+//   class CLASS_DECL_AURA buffer :
+//      virtual public ::graphics::graphics
+//   {
+//   public:
+//
+//
+//      buffer();
+//      virtual ~buffer();
+//
+//
+//
+//   };
+//
+//
+//} // namespace windowing
+//
+//
+//

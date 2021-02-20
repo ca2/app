@@ -46,12 +46,12 @@ namespace draw2d_quartz2d
       virtual ~graphics();
 
 
-      bool IsPrinting() override;            // TRUE if being used for printing
+      bool IsPrinting() override;            // true if being used for printing
 
       ::draw2d::pen * get_current_pen() override;
       ::draw2d::brush * get_current_brush() override;
       ::draw2d::palette * get_current_palette() override;
-      ::draw2d::font * get_current_font() override;
+      ::write_text::font * get_current_font() override;
       ::draw2d::bitmap * get_current_bitmap() override;
 
 
@@ -74,7 +74,7 @@ namespace draw2d_quartz2d
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDeviceCaps(i32 nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_i32 & rectBounds, ::u32 flags) override;
-      ::u32 GetBoundsRect(LPRECT32 rectBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(RECTANGLE_I32 * rectBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode);
 
       // Drawing-Tool Functions
@@ -89,7 +89,7 @@ namespace draw2d_quartz2d
 //      virtual ::draw2d::object* SelectStockObject(i32 nIndex) override;
 //      ::draw2d::pen* SelectObject(::draw2d::pen* pPen) override;
 //      ::draw2d::brush* SelectObject(::draw2d::brush* pBrush) override;
-//      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont) override;
+//      virtual ::write_text::font* SelectObject(::write_text::font* pFont) override;
       virtual ::e_status set(::draw2d::bitmap* pBitmap) override;
 //      i32 SelectObject(::draw2d::region* pRgn) override;       // special return for regions
 //      ::draw2d::object* SelectObject(::draw2d::object* pObject);
@@ -97,11 +97,11 @@ namespace draw2d_quartz2d
 
       // ::draw2d::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
-      //virtual bool SelectFont(::draw2d::font * pfont) override;
+      //virtual bool SelectFont(::write_text::font * pfont) override;
 
 
       // color and color Palette Functions
-//      color32_t GetNearestColor(const ::color & color) override;
+//      color32_t GetNearestColor(const ::color::color & color) override;
 //      ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
 //      ::u32 RealizePalette() override;
 //      void UpdateColors() override;
@@ -113,7 +113,7 @@ namespace draw2d_quartz2d
       i32 GetROP2() override;
       i32 GetStretchBltMode() override;
 
-      //virtual color32_t SetBkColor(const ::color & color);
+      //virtual color32_t SetBkColor(const ::color::color & color);
       i32 SetBkMode(i32 nBkMode);
       i32 SetPolyFillMode(i32 nPolyFillMode) override;
       i32 SetROP2(i32 nDrawMode) override;
@@ -125,10 +125,10 @@ namespace draw2d_quartz2d
 #if (_WIN32_WINNT >= 0x0500)
 
       color32_t GetDCBrushColor() const;
-      color32_t SetDCBrushColor(const ::color & color);
+      color32_t SetDCBrushColor(const ::color::color & color);
 
       color32_t GetDCPenColor() const;
-      color32_t SetDCPenColor(const ::color & color);
+      color32_t SetDCPenColor(const ::color::color & color);
 
 #endif
 
@@ -244,15 +244,15 @@ namespace draw2d_quartz2d
       bool poly_bezier_to(const POINT_I32* lpPoints, i32 nCount);
 
       // Simple Drawing Functions
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush* pbrush) override;
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen* ppen) override;
+      virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pbrush) override;
+      virtual bool draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen* ppen) override;
 
       virtual bool rectangle_i32(const ::rectangle_f64 & rectangle) override;
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle) override;
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle) override;
+      virtual bool draw_rectangle(const ::rectangle_f64 & rectangle) override;
+      virtual bool fill_rectangle(const ::rectangle_f64 & rectangle) override;
 
-      virtual void frame_rect(const ::rectangle_i32 & rectangle, ::draw2d::brush* pbrush) override;
-      virtual void invert_rect(const ::rectangle_i32 & rectangle) override;
+      virtual void frame_rectangle(const ::rectangle_i32 & rectangle, ::draw2d::brush* pbrush) override;
+      virtual void invert_rectangle(const ::rectangle_i32 & rectangle) override;
       
       
       virtual bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon) override;
@@ -267,9 +267,9 @@ namespace draw2d_quartz2d
             bool DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, ::u32 nFlags,
                            ::draw2d::brush* pBrush = nullptr);*/
 //      virtual bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                             bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
+//                             bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
 //      virtual bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                             bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
+//                             bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
       //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
       //xxx         LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
       //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
@@ -302,7 +302,7 @@ namespace draw2d_quartz2d
       virtual bool draw_polygon(const POINT_F64 * lpPoints, count nCount) override;
       virtual bool draw_polygon(const POINT_I32 * lpPoints, count nCount) override;
       virtual bool polygon_i32(const POINT_F64 * ppoint,count nCount) override;
-      virtual bool round_rect(const ::rectangle_f64 & rectangle, const ::point_f64 & point) override;
+      virtual bool round_rectangle(const ::rectangle_f64 & rectangle, const ::point_f64 & point) override;
 
       // Bitmap Functions
       bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::u32 dwRop) override;
@@ -311,19 +311,19 @@ namespace draw2d_quartz2d
                      i32 xSrc, i32 ySrc, ::u32 dwRop) override;
       virtual bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
                                  i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 dwRop) override;
-      ::color GetPixel(i32 x, i32 y) override;
-      ::color GetPixel(const ::point_i32 & point) override;
-      ::color SetPixel(i32 x, i32 y, const ::color & color) override;
-      ::color SetPixel(const ::point_i32 & point, const ::color & color) override;
-//      bool FloodFill(i32 x, i32 y, const ::color & color) override;
-//      bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType) override;
+      ::color::color GetPixel(i32 x, i32 y) override;
+      ::color::color GetPixel(const ::point_i32 & point) override;
+      ::color::color SetPixel(i32 x, i32 y, const ::color::color & color) override;
+      ::color::color SetPixel(const ::point_i32 & point, const ::color::color & color) override;
+//      bool FloodFill(i32 x, i32 y, const ::color::color & color) override;
+//      bool ExtFloodFill(i32 x, i32 y, const ::color::color & color, ::u32 nFillType) override;
 //      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
 //                   ::u32 dwRop) override;
 //      bool PlgBlt(POINT_I32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
 //                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
-      bool SetPixelV(i32 x, i32 y, const ::color & color) override;
-      bool SetPixelV(const ::point_i32 & point, const ::color & color) override;
+      bool SetPixelV(i32 x, i32 y, const ::color::color & color) override;
+      bool SetPixelV(const ::point_i32 & point, const ::color::color & color) override;
 //      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
 //                        void * pMesh, WINULONG nMeshElements, ::u32 dwMode) override;
 //      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
@@ -341,9 +341,9 @@ namespace draw2d_quartz2d
       virtual bool _set(const ::draw2d::matrix & matrix) override;
 
       // Text Functions
-      virtual bool internal_show_text(double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr, ::draw2d::pen * ppen=nullptr, ::draw2d::brush * pbrush = nullptr, ::draw2d::font * pfont = nullptr);
+      virtual bool internal_show_text(double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr, ::draw2d::pen * ppen=nullptr, ::draw2d::brush * pbrush = nullptr, ::write_text::font * pfont = nullptr);
 
-      virtual bool internal_show_text(::draw2d::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr);
+      virtual bool internal_show_text(::write_text::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double w, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, const string & str, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = nullptr, CGFloat * pdescent = nullptr, CGFloat * pleading = nullptr, CGFloat * pwidth = nullptr);
 
       void internal_draw_text(CGTextDrawingMode emode, double x, double y, CTLineRef line, ::draw2d::brush * pbrush);
 
@@ -390,8 +390,8 @@ namespace draw2d_quartz2d
       ::u32 SetTextAlign(::u32 nFlags) override;
       i32 GetTextFace(i32 nCount, char * lpszFacename);
       i32 GetTextFace(string & rString) override;
-      bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
-      bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
+      bool get_text_metrics(::write_text::text_metric * lpMetrics) override;
+      bool get_output_text_metrics(::write_text::text_metric * lpMetrics) override;
 //      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
 //      i32 GetTextCharacterExtra() override;
 //      i32 SetTextCharacterExtra(i32 nCharExtra) override;
@@ -414,7 +414,7 @@ namespace draw2d_quartz2d
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip,
-//                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 //
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
@@ -494,15 +494,15 @@ namespace draw2d_quartz2d
 //      void DrawDragRect(const ::rectangle_f64 & rectangle, const ::size_i32 & size,
 //                        const ::rectangle_f64 & rectLast, const ::size_i32 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      virtual void fill_rect(const ::rectangle_f64 & rectangle, const ::color & color) override;
-      virtual void draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
+      virtual void draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
       virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode) override;
 
-      virtual bool set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrenderinghint) override;
+      virtual bool set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint) override;
 
       //virtual void * get_os_data() const override;
       //      virtual HDC get_handle() const;
@@ -524,7 +524,7 @@ namespace draw2d_quartz2d
       bool _set(::draw2d::brush * pbrush);
       bool _set_pen(::draw2d::brush * pbrush, double dWidth);
       bool _set(::draw2d::pen * ppen);
-//      //bool set(const ::draw2d::font * pfont);
+//      //bool set(const ::write_text::font * pfont);
 //      bool _set(::draw2d::path * ppath);
 //      bool _set(::draw2d::path::matter * pmatter);
 //      bool _set(::draw2d::path::arc * parc);
@@ -550,10 +550,10 @@ namespace draw2d_quartz2d
       bool _draw();
 
 
-      void internal_set_fill_color(const ::color & color);
+      void internal_set_fill_color(const ::color::color & color);
 
 
-      virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
+      virtual void enum_fonts(::write_text::font_enum_item_array & itema) override;
       
       
       virtual ::e_status clear_current_point() override;

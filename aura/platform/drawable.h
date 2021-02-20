@@ -28,7 +28,10 @@ namespace aura
 
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
       virtual ::graphics::graphics * get_window_graphics();
-      virtual oswindow get_handle() const;
+
+      
+      virtual oswindow get_oswindow() const;
+
 
       virtual bool is_composite();
 
@@ -74,8 +77,8 @@ namespace aura
    //   //mutable point_i32     m_pointParentWindow;
    //   //mutable point_i32     m_pointParentClient;
 
-   //   //inline auto get_client_rect64() { ::rectangle_i64 rectangle_i32; get_client_rect(rectangle); return rectangle; }
-   //   //inline auto get_window_rect64() { ::rectangle_i64 rectangle_i32; get_window_rect(rectangle); return rectangle; }
+   //   //inline auto get_client_rect64() { ::rectangle_i64 rectangle; get_client_rect(rectangle); return rectangle; }
+   //   //inline auto get_window_rect64() { ::rectangle_i64 rectangle; get_window_rect(rectangle); return rectangle; }
 
 
    //};

@@ -128,7 +128,7 @@ CLASS_DECL_AURA bool memcnts()
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, FALSE, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 
       }
 
@@ -229,14 +229,14 @@ CLASS_DECL_AURA bool enable_trace_category(e_trace_category ecategory, bool bEna
 CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
 {
 
-   if (!enable_trace_category(ecategory, iEnable != FALSE))
+   if (!enable_trace_category(ecategory, iEnable != false))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

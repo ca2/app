@@ -307,7 +307,7 @@ namespace draw2d
 
       virtual bool blur(::image * pimage, i32 iRadius = -1);
 
-      bool do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u8 * rectangle_i32,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
+      bool do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
       bool do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
 #if VECTOR3_SSE
       bool do_boxblur(vector4 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);

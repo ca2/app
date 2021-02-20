@@ -1,10 +1,12 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/_.h"
+#include "aura/operating_system.h"
+#include "direct2d/_.h"
 #include "aura/os/windows_common/graphics.h"
-#include "aura/os/windows/d2d1_1.h"
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
+//#include "aura/os/windows/d2d1_1.h"
+//#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 
@@ -20,6 +22,10 @@
 
 namespace draw2d_direct2d
 {
+
+
+   class draw2d;
+
 
    enum enum_data
    {
@@ -122,16 +128,19 @@ namespace draw2d_direct2d
 #include "graphics.h"
 
 
+#include "draw2d.h"
+
+
 #define new ACME_NEW
 
 
-inline D2D1_COLOR_F * copy(D2D1_COLOR_F * pcolorTarget, const ::color * pcolor)
+inline D2D1_COLOR_F * copy(D2D1_COLOR_F * pcolorTarget, const ::color::color * pcolor)
 {
 
-   pcolorTarget->a = pcolor->m_iA / 255.0f;
-   pcolorTarget->r = pcolor->m_iR / 255.0f;
-   pcolorTarget->g = pcolor->m_iG / 255.0f;
-   pcolorTarget->b = pcolor->m_iB / 255.0f;
+   pcolorTarget->a = pcolor->alpha / 255.0f;
+   pcolorTarget->r = pcolor->red / 255.0f;
+   pcolorTarget->g = pcolor->green / 255.0f;
+   pcolorTarget->b = pcolor->blue / 255.0f;
 
    return pcolorTarget;
 

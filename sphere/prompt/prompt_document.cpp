@@ -78,7 +78,7 @@ namespace prompt
 
       update_all_views(nullptr, OPEN_DOCUMENT_UPDATE);
 
-      return TRUE;
+      return true;
 
    }
 

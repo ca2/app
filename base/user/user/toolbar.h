@@ -20,7 +20,7 @@ namespace user
       string                              m_str;
       ::rectangle_i32                              m_rectangle;
       bool                                m_bEnableIfHasCommandHandler;
-      ::draw2d::font_pointer              m_font;
+      ::write_text::font_pointer              m_font;
 
 
       toolbar_item();
@@ -85,9 +85,9 @@ namespace user
       //bool LoadBitmap(const char * pszResourceName);
 
       //bool LoadBitmap(::u32 nIDResource);
-#ifdef WINDOWS_DESKTOP
-      bool from(HBITMAP hbmImageWell);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      bool from(HBITMAP hbmImageWell);
+//#endif
       bool SetButtons(const ::u32* pIDArray, index nIDCount);
 
       // pIDArray can be nullptr to allocate is_empty buttons
@@ -125,9 +125,9 @@ namespace user
       __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
 
 
-#ifdef WINDOWS_DESKTOP
-      bool AddReplaceBitmap(HBITMAP hbmImageWell);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      bool AddReplaceBitmap(HBITMAP hbmImageWell);
+//#endif
 
 
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
@@ -159,7 +159,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      virtual ::size_i32 CalcSize(TBBUTTON* pData, index nCount);
 //      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
-//      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = FALSE);
+//      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = false);
 //#endif
       void on_layout(::draw2d::graphics_pointer & pgraphics); // called for for delayed button on_layout
 

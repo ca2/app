@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
@@ -31,23 +29,27 @@ namespace user
    {
       if(is_window())
          return;
-      __pointer(::message::base) pbase(pmessage);
-      switch(pbase->m_id)
+      __pointer(::user::message) pusermessage(pmessage);
+      switch(pusermessage->m_id)
       {
       case e_message_mouse_move:
       {
          
-         if(ptool->BaseToolTipGetWnd()->get_top_level() == pbase->userinteraction())
+         if(ptool->BaseToolTipGetWnd()->get_top_level() == pusermessage->userinteraction())
          {
             
             auto psession = Session;
 
-            auto point = psession->get_cursor_pos();
-            
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
+
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
-                  || point != m_point)
+                  || pointCursor != m_point)
             {
-               m_point = point_i32;
+               m_point = pointCursor;
                m_iEventTool = ptool->BaseToolTipGetIndex();
                //ptool->BaseToolTipGetWnd()->_001ScreenToClient(&m_point);
                KillTimer(e_timer_show_delayed);
@@ -77,9 +79,13 @@ namespace user
 
          auto psession = Session;
 
-         auto point = psession->get_cursor_pos();
+         auto puser = psession->user();
 
-         if (point != m_point)
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         if (pointCursor != m_point)
          {
 
             return;
@@ -133,10 +139,20 @@ namespace user
          ::rectangle_i32 rectToolScreen;
          ptool->BaseToolTipGetRect(rectToolScreen);
          ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
-         CalcRect(pgraphics, rectangle_i32, rectToolScreen, m_strTip);
+         CalcRect(pgraphics, rectangle, rectToolScreen, m_strTip);
 
          ::rectangle_i32 rectScreen;
-         Session->get_main_monitor(rectangle);
+
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectangle);
+
          ::size_i32 sizeScreen;
          sizeScreen = rectScreen.size();
 
@@ -164,7 +180,7 @@ namespace user
       }
 
 
-      order(zorder_top_most);
+      order(e_zorder_top_most);
       
       place(rectangle);
       
@@ -260,10 +276,10 @@ namespace user
         ::rectangle_i32 rectArrow(rectClient.right - m_sizeArrow.cx * 2, rectClient.bottom - m_sizeArrow.cy * 2, rectClient.right, rectClient.bottom);
         rectClient.right -= m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
-        pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-        pgraphics->set_text_color(RGB(0, 60, 90));
+        pgraphics->fill_rectangle(rectArrow, rgb(0, 120, 180));
+        pgraphics->fill_rectangle(rectClient, rgb(220, 240, 250));
+        pgraphics->draw3d_rect(rectClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->set_text_color(rgb(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
         pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
@@ -274,10 +290,10 @@ namespace user
         ::rectangle_i32 rectArrow(0, rectClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectClient.bottom);
         rectClient.left = m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
-        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
-        pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-        pgraphics->set_text_color(RGB(0, 60, 90));
+        pgraphics->fill_rectangle(rectArrow, rgb(0, 120, 180));
+        pgraphics->fill_rectangle(rectClient, rgb(220, 240, 250));
+        pgraphics->draw3d_rect(rectClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->set_text_color(rgb(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
         pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
@@ -287,10 +303,10 @@ namespace user
         ::rectangle_i32 rectArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
         rectClient.left = m_sizeArrow.cx;
         rectClient.top = m_sizeArrow.cy;
-        pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
-        pgraphics->fill_rect(rectClient, RGB(220, 240, 250));
-        pgraphics->draw3d_rect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-        pgraphics->set_text_color(RGB(0, 60, 90));
+        pgraphics->fill_rectangle(rectArrow, rgb(0, 120, 180));
+        pgraphics->fill_rectangle(rectClient, rgb(220, 240, 250));
+        pgraphics->draw3d_rect(rectClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->set_text_color(rgb(0, 60, 90));
         rectText = rectClient;
         rectText.deflate(2, 2, 2, 2);
         pgraphics->draw_text(m_strTip, rectText, e_align_bottom_left, e_draw_text_end_ellipsis);
@@ -532,7 +548,7 @@ namespace user
       }*/
 
       // rgn.CreatePolygonRgn(pointa, 6, ALTERNATE);
-      //   SetWindowRgn((HRGN) rgn.detach(), TRUE);
+      //   SetWindowRgn((HRGN) rgn.detach(), true);
    }
 
 
@@ -573,12 +589,20 @@ namespace user
 
       if(ptool->BaseToolTipGetText(str))
       {
+         
          return true;
+
       }
 
       CText text;
-      if(!m_puserinteraction->send_message(MessageBaseToolTipText, iTool, (LPARAM) &text))
+      
+      if (!m_puserinteraction->send_message(MessageBaseToolTipText, iTool, (lparam)&text))
+      {
+
          return false;
+
+      }
+
       str = text.m_str;
 
       return true;
@@ -616,12 +640,12 @@ namespace user
          point =  rectangle.random_point();
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
       }
 
 
-      m_point = point_i32;
+      m_point = point;
    }
 
 } // namespace user

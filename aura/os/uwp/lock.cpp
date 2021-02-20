@@ -22,7 +22,7 @@ int _c_lock(const char * pszName, void ** pdata)
    wstring wstrName(pszName);
    HANDLE hmutex = ::CreateMutexEx(nullptr, wstrName, 0, SYNCHRONIZE);
 #else
-   HANDLE hmutex = ::CreateMutex(nullptr, FALSE, pszName);
+   HANDLE hmutex = ::CreateMutex(nullptr, false, pszName);
 #endif
    if(::GetLastError() == ERROR_ALREADY_EXISTS)
    {

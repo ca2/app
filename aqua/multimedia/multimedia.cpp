@@ -92,7 +92,7 @@ namespace aqua
    }
 
 
-   void multimedia::on_command(::user::command* pcommand)
+   void multimedia::on_command(::message::command* pcommand)
    {
 
 

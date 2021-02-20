@@ -2,14 +2,14 @@
 
 /////////////////////////////////////////////////////////////////////////////
 //
-//   probe_::user::command - used to check for command status
+//   probe_::message::command - used to check for command status
 //
 //   It can be used before dispatching a command
 //   It can be used to update a command button with updated status
 //   ...
 //
 
-// class probe_::user::command: public ::user::command
+// class probe_::message::command: public ::message::command
 // {
 // public:
 
@@ -21,7 +21,7 @@
 //    bool                    m_bRadioChanged;
 
 
-//    probe_::user::command(::layered * pobjectContext);
+//    probe_::message::command(::layered * pobjectContext);
 
 
 //    virtual void enable(bool bOn, const ::action_context & action_context = ::e_source_system);
@@ -35,7 +35,7 @@
 // };
 
 
-// special ::user::command derived classes are used for other UI paradigms
+// special ::message::command derived classes are used for other UI paradigms
 // like toolbar buttons and status indicators
 
 //// pointer to member function

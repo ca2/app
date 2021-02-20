@@ -9,16 +9,14 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "apex/id.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 
 
 //extern ::apex::system* g_papexsystem;
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-//int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
@@ -109,6 +107,8 @@ namespace apex
 
       create_factory < ::thread >();
 
+      m_edisplay = e_display_default;
+
       m_papexsystem = this;
 
 #ifdef _UWP
@@ -182,16 +182,23 @@ namespace apex
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      auto pnode = node();
+
+      if (pnode)
       {
 
-         set_simple_ui_darkness(0);
+         if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+         {
 
-      }
-      else
-      {
+            pnode->set_simple_ui_darkness(0);
 
-         set_simple_ui_darkness(255);
+         }
+         else
+         {
+
+            pnode->set_simple_ui_darkness(255);
+
+         }
 
       }
 
@@ -362,7 +369,7 @@ namespace apex
 
       //create_factory < ::draw2d::icon >();
 
-      __node_apex_factory_exchange();
+      __node_apex_factory_exchange(::factory::get_factory_map());
 
       estatus = __compose_new(m_pdatetime);
 
@@ -409,7 +416,7 @@ namespace apex
 
       //m_puserstr = nullptr;
 
-//      __node_axis_factory_exchange();
+//      __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
 
@@ -573,7 +580,7 @@ namespace apex
 
 #else
 
-      auto plibrary = open_component_library(pszComponent, pszImplementation);
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
 
       if (!plibrary)
       {
@@ -581,7 +588,6 @@ namespace apex
          return ::error_failed;
 
       }
-
 
       PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
 
@@ -606,11 +612,84 @@ namespace apex
 
       }
 
-      pfn_factory_exchange();
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfn_factory_exchange(pfactorymap);
 
       return ::success;
 
 #endif
+
+   }
+
+
+   result_pointer < ::apex::library > system::do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      plibrary->__construct_new(plibrary->m_pfactorymap);
+
+      pfn_factory_exchange(plibrary->m_pfactorymap);
+
+#endif
+
+      return plibrary;
 
    }
 
@@ -620,7 +699,7 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       __pointer(::apex::library) plibrary = System.m_mapLibrary[pszComponent];
 
@@ -698,6 +777,91 @@ namespace apex
       return plibrary;
 
    }
+
+
+   __pointer(::apex::library) system::open_containerized_component_library(const char * pszComponent, const char * pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      synchronization_lock synchronizationlock(&System.m_mutexContainerizedLibrary);
+
+      __pointer(::apex::library) plibrary = System.m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::apex::library);
+
+         plibrary->initialize(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
 
    ::e_status system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
    {
@@ -897,7 +1061,7 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      sync_lock sl(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -1148,7 +1312,7 @@ namespace apex
    }
 
 
-   __pointer(::layered) system::get_layered_window(oswindow oswindow)
+   ::layered * system::get_layered_window(oswindow oswindow)
    {
 
       return nullptr;
@@ -1225,6 +1389,13 @@ namespace apex
       {
 
          m_bDraw2d = !m_bConsole;
+
+      }
+
+      if (m_bWriteText.undefined())
+      {
+
+         m_bWriteText = m_bDraw2d;
 
       }
 
@@ -1348,7 +1519,7 @@ namespace apex
 //
 //               iSize *= 2;
 //
-//               iSize = max(iSize, 4096);
+//               iSize = maximum(iSize, 4096);
 //
 //               char * pszEnvLine = (char *) ::malloc(iSize);
 //
@@ -1378,12 +1549,12 @@ namespace apex
 
                HINSTANCE hinstance = (HINSTANCE)m_hinstance;
 
-               auto edisplay = m_edisplay;
+               //auto edisplay = m_edisplay;
 
                // handle critical errors and avoid Windows message boxes
                SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
-               m_edisplay = edisplay;
+               //m_edisplay = edisplay;
 
                //SetCurrentHandles();
 
@@ -1723,6 +1894,7 @@ namespace apex
    void system::get_time(micro_duration * pmicroduration)
    {
 
+
 #ifdef _WIN32
       
       FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
@@ -1740,8 +1912,18 @@ namespace apex
       pmicroduration->m_micros = (long)tt % 1'000'000;
 
 #else
-      gettimeofday(point, nullptr);
+
+      struct timeval timeval;
+
+      gettimeofday(&timeval, nullptr);
+
+      pmicroduration->m_secs = timeval.tv_sec;
+
+      pmicroduration->m_micros = timeval.tv_usec;
+
 #endif
+
+
    }
 
 
@@ -2311,6 +2493,8 @@ namespace apex
    }
 
 
+
+
    void system::process_term()
    {
 
@@ -2477,7 +2661,7 @@ namespace apex
 //   ::mutex * system::get_openweather_city_mutex()
 //   {
 //
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
@@ -2681,7 +2865,10 @@ namespace apex
    void system::appa_set_locale(const char * pszLocale, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      single_lock rsl(mutex());
+
+      rsl.lock(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
@@ -2695,7 +2882,10 @@ namespace apex
    void system::appa_set_schema(const char * pszStyle, const ::action_context & context)
    {
 
-      retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      single_lock rsl(mutex());
+
+      rsl.lock(10_s);
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
@@ -3379,7 +3569,7 @@ namespace apex
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_millisCommandLineLast.Now();
 
@@ -3424,7 +3614,7 @@ namespace apex
 
       ::apex::application * papp = nullptr;
 
-      appptra.pred_remove([](auto & papp)
+      appptra.predicate_remove([](auto & papp)
       {
 
          return papp->is_system() || papp->is_session();
@@ -3454,41 +3644,6 @@ namespace apex
    }
 
 
-   bool system::on_application_menu_action(const char * pszCommand)
-   {
-
-      sync_lock sl(mutex());
-
-      auto psession = Session;
-
-      auto applicationa = psession->m_applicationa;
-
-      sl.unlock();
-
-      for(auto & papp : applicationa)
-      {
-
-         ASSERT(papp != this);
-
-         if(papp == this)
-         {
-
-            continue;
-
-         }
-
-         if(papp->on_application_menu_action(pszCommand))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
 
 
    bool system::merge_accumulated_on_open_file(::create * pcreate)
@@ -3653,7 +3808,7 @@ namespace apex
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -3671,7 +3826,7 @@ namespace apex
 //   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
-//      ::rectangle_f64 rectangle_i32;
+//      ::rectangle_f64 rectangle;
 //
 //      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
@@ -4558,7 +4713,7 @@ namespace apex
 //   ::thread* system::get_task(ithread_t ithread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //      return m_threadmap[ithread];
 //
@@ -4568,9 +4723,9 @@ namespace apex
 //   ithread_t system::get_thread_id(::thread* pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
-//      ithread_t ithread = NULL_ITHREAD;
+//      ithread_t ithread = null_ithread;
 //
 //      if (!m_threadidmap.lookup(pthread, ithread))
 //      {
@@ -4587,7 +4742,7 @@ namespace apex
 //   void system::set_thread(ithread_t ithread, ::thread* pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4599,7 +4754,7 @@ namespace apex
 //   void system::unset_thread(ithread_t ithread, ::thread * pthread)
 //   {
 //
-//      sync_lock sl(&m_mutexThread);
+//      synchronization_lock synchronizationlock(&m_mutexThread);
 //
 //#if OBJ_REF_DBG
 //
@@ -4624,7 +4779,7 @@ namespace apex
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & threadgroupa = m_threadgroupmap[epriority];
 
@@ -4645,7 +4800,7 @@ namespace apex
    ::thread_tool * system::thread_tool(::enum_thread_tool etool)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto& threadtoola = m_threadtoolmap[etool];
 
@@ -4819,7 +4974,6 @@ CLASS_DECL_APEX bool set_last_run_application_path(string strAppId)
 
 
 #ifdef WINDOWS_DESKTOP
-//#include "apex/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
 #include "apex/os/uwp/_uwp.h"
 #endif

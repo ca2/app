@@ -58,7 +58,7 @@ namespace aura
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
 
-//      return FALSE;
+//      return false;
 //   }
 
 //   HINSTANCE application::GetHinstance()
@@ -292,7 +292,7 @@ namespace aura
       {
          ::win::thread::Delete();
       }
-      // 'delete this' only if m_bAutoDelete == TRUE
+      // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MESSAGE* msg)  // helper
       {
@@ -304,7 +304,7 @@ namespace aura
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
    }

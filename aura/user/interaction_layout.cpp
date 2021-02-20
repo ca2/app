@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -45,7 +43,7 @@ namespace user
    void interaction_layout::create_state(int iStateCount)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (iStateCount == m_iStateCount)
       {
@@ -82,7 +80,7 @@ namespace user
    void interaction_layout::destroy_state()
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 
       //if (::is_set(m_pstate))
       //{
@@ -114,7 +112,7 @@ namespace user
 
    //   rectangle.deflate(m_rectPadding);
 
-   //   request() = rectangle_i32;
+   //   request() = rectangle;
 
    //}
 
@@ -172,7 +170,7 @@ namespace user
    //void interaction_layout::set_dim(const ::point_i32& point, const ::size_i32& size)
    //{
    //
-   //   layout().sketch().m_point = point_i32;
+   //   layout().sketch().m_point = point;
    //
    //   layout().sketch().m_size = size;
    //

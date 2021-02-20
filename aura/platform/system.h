@@ -177,9 +177,9 @@ namespace aura
 //
 //    //factory_map                                    m_factorymap;
 
-      map < ::file::path, ::image_pointer >              m_mapImage;
+      map < ::file::path, ::image_pointer >                m_mapImage;
 
-      __composite(::user::window_map)                    m_pwindowmap;
+      //__composite(::user::window_map)                      m_pwindowmap;
 
 
       //critical_section                                   m_csEnumText;
@@ -254,9 +254,6 @@ namespace aura
 
       __pointer_array(::apex::library)          m_libraryspa;
 
-      __pointer(::windowing::windowing)            m_pwindowing;
-
-
 #ifdef _UWP
 
       __reference(::uwp::interaction_impl)            m_pimplMain;
@@ -281,11 +278,11 @@ namespace aura
       virtual ::e_status inline_term() override;
 
 
-#ifdef LINUX
-
-      virtual ::e_status os_application_system_run() override;
-
-#endif
+//#ifdef LINUX
+//
+//      virtual ::e_status os_application_system_run() override;
+//
+//#endif
 
 
 //      virtual ::e_status init_system() override;
@@ -304,8 +301,6 @@ namespace aura
       //ithread_t get_thread_id(::thread * pthread);
       //void set_thread(ithread_t ithread, ::thread * pthread);
       //void unset_thread(ithread_t ithread, ::thread * pthread);
-
-      inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
       ::aura::estamira& estamira();
 
@@ -396,9 +391,6 @@ namespace aura
 
 
 
-
-
-
       //virtual ::aura::session * query_session(index iEdge) override;
 
 
@@ -430,7 +422,7 @@ namespace aura
       //thread_tools * tools(::e_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
-      class ::user::window_map                     &  window_map();
+      //class ::user::window_map                     &  window_map();
 
 
       //__pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
@@ -472,7 +464,7 @@ namespace aura
       //}
 
 
-      inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
+      inline class ::draw2d::draw2d                * draw2d() { return m_pdraw2d; }
 
 
       //inline ::url::department                     &  url()
@@ -554,7 +546,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   sync_lock sl(&m_mutexFactory);
+      //   synchronization_lock synchronizationlock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -593,11 +585,12 @@ namespace aura
 
       //virtual ::e_status process_init();
 
-      virtual ::e_status init_draw2d();
-      virtual ::e_status draw2d_factory_exchange();
+      virtual ::e_status initialize_draw2d();
+      //virtual ::e_status initialize_write_text();
+      virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
       virtual string draw2d_get_default_library_name();
 
-      virtual bool imaging_factory_exchange();
+      virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
       virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;
@@ -677,6 +670,8 @@ namespace aura
 
       //class ::crypto::crypto                       & crypto();
 
+
+      virtual ::e_status os_application_system_run();
 
       virtual ::file::path local_get_matter_cache_path() override;
       virtual ::file::path local_get_matter_cache_path(string strMatter) override;
@@ -758,8 +753,8 @@ namespace aura
 
       virtual void on_os_text(e_os_text etext, string strText) override;
 
-      virtual ::user::interaction_impl * impl_from_handle(void * posdata);
-      virtual ::user::interaction * ui_from_handle(void * posdata);
+      //virtual ::user::interaction_impl * impl_from_handle(void * posdata);
+      //virtual ::user::interaction * ui_from_handle(void * posdata);
 
 
 
@@ -786,10 +781,10 @@ namespace aura
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
-      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+      //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 
-      ::e_status     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
-      ::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
+      //::e_status     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+      //::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 
 
 
@@ -869,12 +864,12 @@ namespace aura
       //::filehandler::handler& filehandler();
 
 
-#ifdef LINUX
-
-      virtual ::e_status defer_initialize_x11() ;
-      virtual bool sn_start_context();
-
-#endif
+//#ifdef LINUX
+//
+//      virtual ::e_status defer_initialize_x11() ;
+//      virtual bool sn_start_context();
+//
+//#endif
 
       //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
       bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
@@ -960,8 +955,6 @@ namespace aura
 
       //virtual __pointer(::aura::session) on_create_session() override;
 
-      virtual void set_active_guie(::user::interaction* pinteraction);
-      virtual void set_focus_guie(::user::interaction* pinteraction);
 
 
 
@@ -988,6 +981,9 @@ namespace aura
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
+
+
+      //virtual bool on_application_menu_action(const char * pszCommand);
 
 
    };

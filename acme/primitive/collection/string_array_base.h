@@ -382,11 +382,11 @@ public:
 
 
    //template < typename PRED >
-   //void pred_implode(Type & rwstr,PRED pred, const Type& strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   //void predicate_implode(Type & rwstr,PRED pred, const Type& strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
 
    template < typename PRED >
-   Type pred_implode(PRED pred, const Type& strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
+   Type predicate_implode(PRED pred, const Type& strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
 
 
    //void implode(Type & rwstr,const Type& strSeparator = nullptr,::index iStart = 0,::count iCount = -1) const;
@@ -554,7 +554,7 @@ public:
 
 template < class Type, class RawType >
 template < typename PRED >
-Type string_array_base < Type, RawType > ::pred_implode(PRED pred, const Type& strSeparator,::index i,::count inCountLastOut) const
+Type string_array_base < Type, RawType > ::predicate_implode(PRED pred, const Type& strSeparator,::index i,::count inCountLastOut) const
 {
 
    Type str;
@@ -1642,9 +1642,9 @@ void string_array_base < Type, RawType > ::add_lines(const Type & str,bool bAddE
       if(iFindB < 0)
          goto n_only;
 
-      iFind1 = min(iFindA,iFindB);
+      iFind1 = minimum(iFindA,iFindB);
 
-      iFind2 = max(iFindA,iFindB);
+      iFind2 = maximum(iFindA,iFindB);
 
       if(iFind1 > iPos)
       {
@@ -3142,7 +3142,7 @@ add(strMid);
 }
 else
 {
-::index iLen = max(str.get_length(), iMinLength);
+::index iLen = maximum(str.get_length(), iMinLength);
 for(::index i = 0; i < stra.get_size(); i++)
 {
 Type & strMid = stra[i].Left(iLength);
@@ -5058,7 +5058,7 @@ template < class Type, class RawType >
 void string_array_base < Type, RawType > ::sort()
 {
 
-   this->pred_sort([](Type & a, Type & b)
+   this->predicate_sort([](Type & a, Type & b)
    {
       return a.compare(b) < 0;
    });
@@ -5070,7 +5070,7 @@ template < class Type, class RawType >
 void string_array_base < Type, RawType > ::sort_ci()
 {
 
-   this->pred_sort([](Type & a, Type & b)
+   this->predicate_sort([](Type & a, Type & b)
    {
       return a.compare_ci(b) < 0;
    });
@@ -5082,7 +5082,7 @@ template < class Type, class RawType >
 void string_array_base < Type, RawType > ::collate_sort()
 {
 
-   this->pred_sort([](Type & a, Type & b)
+   this->predicate_sort([](Type & a, Type & b)
    {
       return a.collate(b) < 0;
    });
@@ -5094,7 +5094,7 @@ template < class Type, class RawType >
 void string_array_base < Type, RawType > ::collate_sort_ci()
 {
 
-   this->pred_sort([](Type & a, Type & b)
+   this->predicate_sort([](Type & a, Type & b)
    {
       return a.collate_ci(b) < 0;
    });

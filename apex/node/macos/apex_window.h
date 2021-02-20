@@ -90,7 +90,7 @@ public:
 };
 
 
-NSWindow * new_apex_window(apex_window * papexwindow, CGRect rectangle_i32, unsigned int uStyel);
+NSWindow * new_apex_window(apex_window * papexwindow, CGRect rectangle, unsigned int uStyel);
 void ns_app_close();
 
 

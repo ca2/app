@@ -6,7 +6,15 @@
 
 
 
+
+
+
 #include "acme/graphics/draw2d/color32.h"
+
+
+#pragma pack(pop, cross_windows)
+
+
 
 using dummy_pointer = void *;
 
@@ -34,7 +42,7 @@ using dummy_pointer = void *;
 //
 //using RECTANGLE_I32 = RECT;
 //
-//using LPRECT32 = LPRECT;
+//using RECTANGLE_I32 * = LPRECT;
 //
 //using const RECTANGLE_I32 * = LPCRECT;
 //
@@ -45,7 +53,7 @@ using dummy_pointer = void *;
 
 
 /*
-* set_window_pos Flags
+* set_window_position Flags
 */
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002
@@ -195,20 +203,15 @@ typedef ::i32 errno_t;
 
 
 
-#define PM_NOREMOVE 0
-#define PM_REMOVE 1
 
 
-class sync;
-
-using HSYNC = sync *;
 
 
 #define GetRValue(rgb)      (LOBYTE(rgb))
 #define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
 #define GetBValue(rgb)      (LOBYTE((rgb)>>16))
 
-#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+#define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
 
 
@@ -265,18 +268,6 @@ typedef iptr            LRESULT;
 //#endif // if !defined(WINDOWS_DESKTOP)
 //
 
-
-#pragma pack(pop, cross_windows)
-
-
-struct SIZEPARENTPARAMS
-{
-
-   RECTANGLE_I32  rectangle_i32;       // parent client rectangle_i32 (trim as appropriate)
-   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
-   bool  bStretch;   // should stretch to fill all space
-
-};
 
 
 typedef struct RECTANGLE_F64 RECTANGLE_F64;

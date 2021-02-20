@@ -5,7 +5,7 @@ CLASS_DECL_ACME ::mutex open_mutex(const char * lpszName);
 
 
 class CLASS_DECL_ACME mutex :
-   virtual public sync
+   virtual public synchronization_object
 {
 public:
 
@@ -68,13 +68,13 @@ public:
 
    virtual bool lock(const duration & durationTimeout);
 
-   virtual sync_result wait();
+   virtual synchronization_result wait();
 
-   virtual sync_result wait(const duration & durationTimeout);
+   virtual synchronization_result wait(const duration & durationTimeout);
 
 #endif
 
-   using sync::unlock;
+   using synchronization_object::unlock;
    virtual bool unlock();
 
 

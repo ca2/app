@@ -57,7 +57,7 @@ namespace hi5
          m_ptabview->get_wnd()->RunModalLoop();
 
 
-         m_ptemplatePane->close_all_documents(FALSE);
+         m_ptemplatePane->close_all_documents(false);
          return m_strPin;
       }
 
@@ -188,7 +188,7 @@ namespace hi5
 
          m_ptabview->get_parent_frame()->place(rectOpen);
 
-         m_pviewAuth->get_parent_frame()->SetForegroundWindow();
+         m_pviewAuth->get_parent_frame()->set_foreground_window();
 
          m_ptabview->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
 

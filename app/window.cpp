@@ -3,6 +3,7 @@
 
 #define STEPPY_DEBUG 0
 
+
 namespace app_app
 {
 
@@ -10,11 +11,13 @@ namespace app_app
    window::window()
    {
 
+      m_bTransparent = true;
+
       m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
       m_dBreathPeriod = 60.0;
 
-      m_dStartTime = ::get_secs();
+      m_millisStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -39,13 +42,14 @@ namespace app_app
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
 
-      ModifyStyle(WS_CAPTION, 0);
+//#ifdef WINDOWS_DESKTOP
 
-#endif
+  //    ModifyStyle(WS_CAPTION, 0);
 
-      ModifyStyleEx(0, WS_EX_LAYERED);
+//#endif
+
+  //    ModifyStyleEx(0, WS_EX_LAYERED);
 
       auto & app = App(this);
 
@@ -77,7 +81,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-      pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(127, 255, 255, 255));
 
       //return;
 
@@ -87,18 +91,18 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rect(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ARGB(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
 
       rectClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rect(rectClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_rectangle(rectClient, __acolor(255, 127, 127, 127));
 
          rectClient.deflate(1, 1);
 
@@ -128,7 +132,7 @@ namespace app_app
 
          }
 
-         double time = get_secs() - m_dStartTime;
+         double time = m_millisStart.elapsed().m_i / 1'000.0;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
@@ -180,7 +184,13 @@ namespace app_app
 
          auto psession = Session;
 
-         update_hover(get_cursor_pos());
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         update_hover(pointCursor);
 
       }
 
@@ -209,7 +219,7 @@ namespace app_app
          if (m_iCloseButtonDraw > 1)
          {
 
-            ::output_debug_string("output");
+            //::output_debug_string("output");
 
          }
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -49,7 +47,7 @@ namespace user
 
       bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
 
-      //auto pcs = __new(::user::system(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
+      place(rectWindow);
 
       bool bOk = create_host();
 
@@ -60,12 +58,12 @@ namespace user
 
       }
 
-      if (bInitialFramePosition)
-      {
+      //if (bInitialFramePosition)
+      //{
+      //   
+      //   place(rectWindow);
 
-         place(rectWindow);
-
-      }
+      //}
 
       return ::success;
 

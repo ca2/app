@@ -371,7 +371,7 @@ CLASS_DECL_AURA string process_version_dir_name()
 
 #ifdef WINDOWS
 
-      HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
+      HANDLE process = OpenProcess(SYNCHRONIZE, false, pid);
 
       ::u32 ret = WaitForSingleObject(process, 0);
 

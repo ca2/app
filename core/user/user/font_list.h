@@ -23,7 +23,7 @@ namespace user
       };
 
 
-      __pointer(::draw2d::font_list)   m_pfontlist;
+      __pointer(::write_text::font_list)   m_pfontlist;
       ::rectangle_i32                           m_rectMargin;
       bool                             m_bEnsureVisible;
       bool                             m_bFirstShown;
@@ -42,8 +42,8 @@ namespace user
 
       virtual void on_change_combo_sel(index iSel) override;
 
-      //void attach_visual_font_list(::draw2d::font_list * pdata);
-      //virtual void on_update_data(::draw2d::font_list * pdata, i32 iHint);
+      //void attach_visual_font_list(::write_text::font_list * pdata);
+      //virtual void on_update_data(::write_text::font_list * pdata, i32 iHint);
 
       //virtual void font_list_update();
 
@@ -91,12 +91,12 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::SIZE_I32 * psize) override;
 
 
       virtual bool update_data(bool bSaveAndValidate) override;
 
-      virtual void set_font_list_type(::draw2d::font_list::enum_type etype);
+      virtual void set_font_list_type(::write_text::font_list::enum_type etype);
 
 
    };

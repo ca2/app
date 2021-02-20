@@ -1,6 +1,5 @@
 #include "framework.h"
 #define WITH_GPU
-#define NO_IMAGING
 #include "aura/application.h"
 #include "aura/update.h"
 
@@ -19,7 +18,9 @@ namespace app_shader
       m_strBaseSupportId = "app/shader";
 
       m_bLicense = false;
+      m_bImaging = false;
 
+      m_bWriteText = false;
 
    }
 
@@ -62,7 +63,7 @@ namespace app_shader
 
       __compose(m_pwindow, __create_new < window >());
 
-      ::rectangle_i32 rectWindow;
+      rectangle_i32 rectWindow;
 
       m_pwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "tool_command.h"
 
 
@@ -21,7 +19,7 @@ namespace user
    void tool_command::enable(bool bOn)
    {
 
-      m_bEnableChanged = TRUE;
+      m_bEnableChanged = true;
 
 
 #ifdef WINDOWS_DESKTOP

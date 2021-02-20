@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace base
@@ -139,10 +137,10 @@ namespace base
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
 //      create_color(color_text_disabled, alpha_color(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
-//      create_color(color_background, ARGB(100, 180, 192, 255));
-//      create_color(color_background_press, ARGB(200, 180, 192, 255));
-//      create_color(color_background_disabled, ARGB(100, 180, 192, 255));
-//      create_color(color_background_hover, ARGB(125, 180, 192, 255));
+//      create_color(color_background, argb(100, 180, 192, 255));
+//      create_color(color_background_press, argb(200, 180, 192, 255));
+//      create_color(color_background_disabled, argb(100, 180, 192, 255));
+//      create_color(color_background_hover, argb(125, 180, 192, 255));
 //      create_flag(flag_border);
 //      create_translucency(e_element_none, ::user::e_translucency_present);
 //
@@ -183,14 +181,14 @@ namespace base
 //      theme_current_control(control_system_menu_close);
 //
 //      create_point_font(font_default, "Marlett", 11.0);
-//      create_color(color_text_normal, ARGB(200, 200, 100, 80));
-//      create_color(color_text_press, ARGB(225, 255, 0, 0));
-//      create_color(color_text_disabled, ARGB(200, 127, 127, 127));
-//      create_color(color_text_hover, ARGB(200, 255, 50, 50));
-//      create_color(color_background, ARGB(200, 210, 192, 192));
-//      create_color(color_background_press, ARGB(225, 255, 192, 192));
-//      create_color(color_background_disabled, ARGB(200, 192, 192, 192));
-//      create_color(color_background_hover, ARGB(200, 223, 192, 192));
+//      create_color(color_text_normal, argb(200, 200, 100, 80));
+//      create_color(color_text_press, argb(225, 255, 0, 0));
+//      create_color(color_text_disabled, argb(200, 127, 127, 127));
+//      create_color(color_text_hover, argb(200, 255, 50, 50));
+//      create_color(color_background, argb(200, 210, 192, 192));
+//      create_color(color_background_press, argb(225, 255, 192, 192));
+//      create_color(color_background_disabled, argb(200, 192, 192, 192));
+//      create_color(color_background_hover, argb(200, 223, 192, 192));
 //      create_flag(flag_border, false);
 //      create_translucency(e_element_none, ::user::e_translucency_present);
 //
@@ -259,7 +257,7 @@ namespace base
 //
 //
 //   //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
-//   //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
+//   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pfont = nullptr);
 //   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
 //   //virtual const rectangle_i32 &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
@@ -289,7 +287,7 @@ namespace base
 //
 //
 //   //virtual bool userstyle_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
-//   //virtual bool userstyle_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_rect(const rectangle_i32 & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
@@ -298,7 +296,7 @@ namespace base
 //
 //
 //   //virtual bool style_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
-//   //virtual bool style_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
+//   //virtual bool style_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool style_rect(const rectangle_i32 & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);

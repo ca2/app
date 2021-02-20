@@ -1,18 +1,16 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 
 
 //#if defined(APPLEOS)
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, R, G, B)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_r_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
 //#define COLORREF_get_b_value(cr) colorref_get_b_value(cr)
 //#else
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, B, G, R)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_b_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
@@ -94,7 +92,7 @@ namespace userex
 
       //::draw2d::pen_pointer pen(e_create);
 
-      //pen->create_solid(1.0, ARGB(255, 255, 255, 255));
+      //pen->create_solid(1.0, argb(255, 255, 255, 255));
 
       //m_pimageBeam->g()->set(pen);
 
@@ -132,7 +130,7 @@ namespace userex
    //color home_view::get_color()
    //{
 
-   //   //color color;
+   //   //::color::color color;
 
    //   //color.set_hls(m_hls);
 
@@ -145,7 +143,7 @@ namespace userex
    //}
 
 
-   //void home_view::set_color(color color)
+   //void home_view::set_color(::color::color color)
    //{
 
    //   color.get_hls(m_hls);
@@ -189,7 +187,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      SetCapture();
+      set_mouse_capture();
 
    }
 
@@ -207,7 +205,13 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       ::user::control_event ev;
 
@@ -266,7 +270,7 @@ namespace userex
 
       //m_pimage = create_image({m_rectColors->width() / 2,  m_rectColors->height()});
 
-      //m_pimage->g()->draw(m_pimage->rectangle_i32(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle_i32());
+      //m_pimage->g()->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
       //m_pimageLuminance = create_image({m_rectColors->width() / 8,  m_rectColors->height()});
 

@@ -141,10 +141,10 @@
 #define AFX_CONTROLBAR_MASK(nIDC)   (1L << (nIDC - AFX_IDW_CONTROLBAR_FIRST))
 
 // parts of Main Frame
-#define AFX_IDW_PANE_FIRST              0xE900  // first pane (256 max)
+#define AFX_IDW_PANE_FIRST              0xE900  // first pane (256 maximum)
 #define AFX_IDW_PANE_LAST               0xE9ff
-#define AFX_IDW_HSCROLL_FIRST           0xEA00  // first Horz scrollbar (16 max)
-#define AFX_IDW_VSCROLL_FIRST           0xEA10  // first Vert scrollbar (16 max)
+#define AFX_IDW_HSCROLL_FIRST           0xEA00  // first Horz scrollbar (16 maximum)
+#define AFX_IDW_VSCROLL_FIRST           0xEA10  // first Vert scrollbar (16 maximum)
 
 #define AFX_IDW_SIZE_BOX                0xEA20  // size_i32 box for splitters
 #define AFX_IDW_PANE_SAVE               0xEA21  // to shift AFX_IDW_PANE_FIRST
@@ -192,7 +192,7 @@
 #define ID_FILE_SEND_MAIL               0xE10C
 
 #define ID_FILE_MRU_FIRST               0xE110
-#define ID_FILE_MRU_FILE1               0xE110          // range - 16 max
+#define ID_FILE_MRU_FILE1               0xE110          // range - 16 maximum
 #define ID_FILE_MRU_FILE2               0xE111
 #define ID_FILE_MRU_FILE3               0xE112
 #define ID_FILE_MRU_FILE4               0xE113
@@ -262,7 +262,7 @@
 #define ID_OLE_EDIT_CONVERT             0xE202
 #define ID_OLE_EDIT_CHANGE_ICON         0xE203
 #define ID_OLE_EDIT_PROPERTIES          0xE204
-#define ID_OLE_VERB_FIRST               0xE210     // range - 16 max
+#define ID_OLE_VERB_FIRST               0xE210     // range - 16 maximum
 #ifndef RC_INVOKED      // code only
 #define ID_OLE_VERB_LAST                0xE21F
 #endif //!RC_INVOKED

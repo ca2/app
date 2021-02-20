@@ -51,15 +51,12 @@ namespace user
       virtual void last_install_message_routing(::channel * pchannel);
 
 
-      virtual void queue_message_handler(::message::base * pbase);
+      virtual void queue_message_handler(::message::message * pmessage);
 
 
       virtual bool enable_window(bool bEnable = true) override;
 
 
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
-      virtual bool is_this_enabled() const override;
 
 
       virtual bool create_host(::user::interaction * puserinteraction);
@@ -157,10 +154,10 @@ virtual bool setWMClass(const char * psz);
       //virtual bool SizeWindow(const size_i32 & sz,::u32 nFlags = SWP_SHOWWINDOW) override;
       //virtual bool ResizeWindow(i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
       //virtual bool set_size(const size_i32 & sz) override;
-      //virtual bool set_window_pos(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
 
-      //virtual bool set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_window_pos(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
       //virtual bool defer_set_window_pos(zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
 
       //virtual bool defer_set_window_pos(zorder zorder, i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
@@ -260,7 +257,7 @@ virtual bool setWMClass(const char * psz);
 
 
       virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam) override;
-      virtual lresult message_call(::message::base * pbase) override;
+      virtual lresult message_call(::message::message * pmessage) override;
 
 
 
@@ -271,12 +268,17 @@ virtual bool setWMClass(const char * psz);
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual bool SetCapture(::user::interaction * pinteraction = nullptr) override;
-      virtual bool ReleaseCapture() override;
-      virtual ::user::interaction * GetCapture() override;
+      //virtual bool is_active() const override;
+
+      //virtual bool has_capture() const override;
+      //virtual bool set_capture(::user::interaction * pinteraction = nullptr) override;
+      //virtual ::user::interaction * get_capture() const override;
+
+      //virtual bool has_keyboard_focus() const override;
+      //virtual bool set_keyboard_focus(::user::interaction * pinteraction = nullptr) override;
+      //virtual ::user::interaction * get_keyboard_focus() const override;
 
 
-      virtual bool SetFocus() override;
 
 
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);

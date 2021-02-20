@@ -222,7 +222,7 @@ namespace user
    }
 
 
-   void split_layout::SetSplitOrientation(e_orientation eorientationSplit)
+   void split_layout::SetSplitOrientation(enum_orientation eorientationSplit)
    {
 
       m_eorientationSplit = eorientationSplit;
@@ -288,8 +288,8 @@ namespace user
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
 
-            sync_lock sl(mutex());
-            //cslock sl(&m_mutex);
+            synchronization_lock synchronizationlock(mutex());
+            //cslock synchronizationlock(&m_mutex);
             {
                //      TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
@@ -348,7 +348,7 @@ namespace user
    i32 split_layout::GetPos(i32 xPos, i32 yPos)
    {
 
-      if (m_eorientationSplit == orientation_horizontal)
+      if (m_eorientationSplit == e_orientation_horizontal)
       {
 
          return yPos;
@@ -371,7 +371,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      if (m_eorientationSplit == orientation_horizontal)
+      if (m_eorientationSplit == e_orientation_horizontal)
       {
 
          return rectClient.top;
@@ -394,7 +394,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      if (m_eorientationSplit == orientation_horizontal)
+      if (m_eorientationSplit == e_orientation_horizontal)
       {
 
          return rectClient.bottom;
@@ -465,13 +465,13 @@ namespace user
 
                }
 
-               m_splitbara[i]->m_dwPosition = min(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dRate * iDimension));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dRate * iDimension));
 
             }
             else
             {
 
-               m_splitbara[i]->m_dwPosition = min(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dwPosition));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dwPosition));
 
             }
 
@@ -515,7 +515,7 @@ namespace user
          if (bIsWindowVisible)
          {
 
-            pwnd->order(zorder_top);
+            pwnd->order(e_zorder_top);
 
             pwnd->place(rectBar);
 
@@ -549,7 +549,7 @@ namespace user
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
 
-         pwnd->order(zorder_top);
+         pwnd->order(e_zorder_top);
 
          pwnd->place(rectClient);
 
@@ -744,7 +744,7 @@ namespace user
       get_client_rect(prect);
 
 
-      if(m_eorientationSplit == orientation_horizontal)
+      if(m_eorientationSplit == e_orientation_horizontal)
       {
 
          prect->top      = nMinPos;
@@ -775,7 +775,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      if(m_eorientationSplit == orientation_horizontal)
+      if(m_eorientationSplit == e_orientation_horizontal)
       {
 
          return rectClient.height();
@@ -798,7 +798,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      if(m_eorientationSplit == orientation_horizontal)
+      if(m_eorientationSplit == e_orientation_horizontal)
       {
 
          return rectClient.width();
@@ -851,13 +851,13 @@ namespace user
       get_client_rect(prect);
 
 
-      if(m_eorientationSplit == orientation_horizontal)
+      if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         nPos = max(nPos, prect->top + m_iMarging / 2);
+         nPos = maximum(nPos, prect->top + m_iMarging / 2);
 
 
-         nPos = min(nPos, prect->bottom - m_iMarging / 2);
+         nPos = minimum(nPos, prect->bottom - m_iMarging / 2);
 
 
          prect->top      = nPos - m_iMarging / 2;
@@ -870,10 +870,10 @@ namespace user
       else
       {
 
-         nPos = max(nPos, prect->left + m_iMarging / 2);
+         nPos = maximum(nPos, prect->left + m_iMarging / 2);
 
 
-         nPos = min(nPos, prect->right - m_iMarging / 2);
+         nPos = minimum(nPos, prect->right - m_iMarging / 2);
 
 
          prect->left   = nPos - m_iMarging / 2;
@@ -961,7 +961,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT(iIndex >= 0);
 
@@ -1076,7 +1076,7 @@ namespace user
 
          CalcSplitBarRect(iPane - 1, rect);
 
-         if(m_eorientationSplit == orientation_horizontal)
+         if(m_eorientationSplit == e_orientation_horizontal)
          {
 
             return rect.bottom;
@@ -1109,7 +1109,7 @@ namespace user
 
          CalcSplitBarRect(iPane, rect);
 
-         if(m_eorientationSplit == orientation_horizontal)
+         if(m_eorientationSplit == e_orientation_horizontal)
          {
 
             return rect.top;
@@ -1126,7 +1126,7 @@ namespace user
 
    }
 
-   e_orientation split_layout::GetSplitOrientation()
+   enum_orientation split_layout::GetSplitOrientation()
    {
 
       return m_eorientationSplit;
@@ -1137,7 +1137,7 @@ namespace user
    void split_layout::RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       if(!m_bInitialized)
          return;
@@ -1183,7 +1183,7 @@ namespace user
          {
             //cslock lock(&m_mutex);
             
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             {
                TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
@@ -1364,7 +1364,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_rect(rectClient, colorBackground);
+         pgraphics->fill_rectangle(rectClient, colorBackground);
 
       }
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -33,7 +31,7 @@ namespace user
 
       }
 
-      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
+      m_pfont = ::write_text::point_font(os_font_name(e_font_sans), 14.0);
 
       return true;
 
@@ -237,7 +235,7 @@ namespace user
 
                straLines.add_lines(strPlainText);
 
-               index iFind = straLines.pred_find_first([](auto strLine)
+               index iFind = straLines.predicate_find_first([](auto strLine)
                   {
 
                      return (strLine.begins_ci("http://")
@@ -420,9 +418,9 @@ namespace user
 
                               pimage->g()->set(pfont);
 
-                              pimage->g()->set_text_color(ARGB(255, 0, 0, 0));
+                              pimage->g()->set_text_color(argb(255, 0, 0, 0));
 
-                              pimage->g()->draw_text(str, rectangle_i32(pimage->get_size()), e_align_bottom_left);
+                              pimage->g()->draw_text(str, ::rectangle_i32(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

@@ -6,8 +6,8 @@
 #include "apex/platform/app_core.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "aura/astr.h"
-#include "aura/os/_os.h"
-
+//#include "aura/os/_os.h"
+//
 //#include <sqlite3.h>
 
 #ifdef RASPBIAN
@@ -30,8 +30,8 @@
 //#include <glib.h> // sudo apt-get install libglib2.0-dev
 
 
-void x11_hook_init();
-void x11_hook_term();
+//void x11_hook_init();
+//void x11_hook_term();
 
 
 #endif
@@ -123,7 +123,7 @@ namespace aura
 
    //::mutex * &System.g_mutexLibrary;
 
-   __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
    //::mutex * g_pmutexGlobals;
 
@@ -290,7 +290,7 @@ namespace aura
 
 #endif
 
-      g_main_deferred_run = nullptr;
+      //g_main_deferred_run = nullptr;
 
       //g_pmutexGlobals = nullptr;
 
@@ -632,11 +632,11 @@ namespace aura
 #endif
 
 
-#ifdef LINUX
-
-     x11_hook_init();
-
-#endif
+//#ifdef LINUX
+//
+//     x11_hook_init();
+//
+//#endif
 
       g_pcsFont = new critical_section();
 
@@ -652,11 +652,11 @@ namespace aura
    aura::~aura()
    {
 
-#ifdef LINUX
-
-     x11_hook_term();
-
-#endif
+//#ifdef LINUX
+//
+//     x11_hook_term();
+//
+//#endif
 
 
       term();
@@ -692,7 +692,7 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -706,7 +706,7 @@ namespace aura
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   &System.g_mapLibrary.remove_all();
 
@@ -1065,7 +1065,7 @@ namespace aura
 
 //CLASS_DECL_AURA color32_t dk_red() // <3 tbs
 //{
-//   return ARGB(255, 200, 16, 46);
+//   return argb(255, 200, 16, 46);
 //}
 
 

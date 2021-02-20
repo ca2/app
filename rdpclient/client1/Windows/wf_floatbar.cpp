@@ -100,7 +100,7 @@ static int button_hit(Button* button)
 			}
 
 			floatbar->locked = ~floatbar->locked;
-			InvalidateRect(button->floatbar->hwnd, nullptr, FALSE);
+			InvalidateRect(button->floatbar->hwnd, nullptr, false);
 			UpdateWindow(button->floatbar->hwnd);
 			break;
 
@@ -148,7 +148,7 @@ static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, i
 	button->y = y;
 	button->w = w;
 	button->h = h;
-	button->active = FALSE;
+	button->active = false;
 
 	button->bmp = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(resid), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
 	button->bmp_act = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(resid_act), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
@@ -212,8 +212,8 @@ static int floatbar_animation(FloatBar* floatbar, BOOL show)
 
 LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
-	static int dragging = FALSE;
-	static int lbtn_dwn = FALSE;
+	static int dragging = false;
+	static int lbtn_dwn = false;
 	static int btn_dwn_x = 0;
 	static FloatBar* floatbar;
 	static TRACKMOUSEEVENT tme;
@@ -233,7 +233,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			floatbar->hwnd = hWnd;
 			floatbar->parent = get_parent(hWnd);
 
-			get_window_rect(floatbar->hwnd, &floatbar->rectangle_i32);
+			get_window_rect(floatbar->hwnd, &floatbar->rectangle);
 			floatbar->width = floatbar->rectangle.right - floatbar->rectangle.left;
 			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
 
@@ -263,11 +263,11 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			if (!button)
 			{
 				SetCapture(hWnd);
-				dragging = TRUE;
+				dragging = true;
 				btn_dwn_x = lParam & 0xffff;
 			}
 			else
-				lbtn_dwn = TRUE;
+				lbtn_dwn = true;
 
 			break;
 
@@ -276,14 +276,14 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			pos_y = (lParam >> 16) & 0xffff;
 
 			ReleaseCapture();
-			dragging = FALSE;
+			dragging = false;
 
 			if (lbtn_dwn)
 			{
 				button = floatbar_get_button(floatbar, pos_x, pos_y);
 				if (button)
 					button_hit(button);
-				lbtn_dwn = FALSE;
+				lbtn_dwn = false;
 			}
 			break;
 
@@ -293,7 +293,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			pos_y = (lParam >> 16) & 0xffff;
 
 			if (!floatbar->shown)
-				floatbar_animation(floatbar, TRUE);
+				floatbar_animation(floatbar, true);
 
 			if (dragging)
 			{
@@ -304,20 +304,20 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				else if (floatbar->rectangle.left > xScreen - floatbar->width)
 					floatbar->rectangle.left = xScreen - floatbar->width;
 
-				MoveWindow(hWnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, TRUE);
+				MoveWindow(hWnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
 			}
 			else
 			{
 				int i;
 
 				for (i = 0; i < BTN_MAX; i++)
-					floatbar->buttons[i]->active = FALSE;
+					floatbar->buttons[i]->active = false;
 
 				button = floatbar_get_button(floatbar, pos_x, pos_y);
 				if (button)
-					button->active = TRUE;
+					button->active = true;
 
-				InvalidateRect(hWnd, nullptr, FALSE);
+				InvalidateRect(hWnd, nullptr, false);
 				UpdateWindow(hWnd);
 			}
 
@@ -325,7 +325,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			break;
 
 		case WM_CAPTURECHANGED:
-			dragging = FALSE;
+			dragging = false;
 			break;
 
 		case e_message_mouse_leave:
@@ -333,9 +333,9 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			int i;
 
 			for (i = 0; i < BTN_MAX; i++)
-				floatbar->buttons[i]->active = FALSE;
+				floatbar->buttons[i]->active = false;
 
-			InvalidateRect(hWnd, nullptr, FALSE);
+			InvalidateRect(hWnd, nullptr, false);
 			UpdateWindow(hWnd);
 
 			SetTimer(hWnd, TIMER_HIDE, 3000, nullptr);
@@ -348,14 +348,14 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				{
 					KillTimer(hWnd, TIMER_HIDE);
 					if (!floatbar->locked)
-						floatbar_animation(floatbar, FALSE);
+						floatbar_animation(floatbar, false);
 					break;
 				}
 				case TIMER_ANIMAT_SHOW:
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, TRUE);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -367,7 +367,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, TRUE);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -400,8 +400,8 @@ static FloatBar* floatbar_create(wfContext* wfc)
 	if (!floatbar)
 		return nullptr;
 
-	floatbar->locked = FALSE;
-	floatbar->shown = TRUE;
+	floatbar->locked = false;
+	floatbar->shown = true;
 	floatbar->hwnd = nullptr;
 	floatbar->parent = wfc->hwnd;
 	floatbar->wfc = wfc;
@@ -419,14 +419,14 @@ static FloatBar* floatbar_create(wfContext* wfc)
 int floatbar_hide(FloatBar* floatbar)
 {
 	KillTimer(floatbar->hwnd, TIMER_HIDE);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, TRUE);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, true);
 	return 0;
 }
 
 int floatbar_show(FloatBar* floatbar)
 {
 	SetTimer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, TRUE);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
 	return 0;
 }
 

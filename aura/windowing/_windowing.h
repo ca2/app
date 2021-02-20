@@ -8,7 +8,7 @@
 
 #include "aura/windowing/_.h"
 
-
+//#include "aura/user/window_util.h"
 
 //#ifdef WINDOWS
 //
@@ -20,7 +20,7 @@
 //!!!#include <X11/Xlib.h>
 
 
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 namespace windowing
@@ -38,7 +38,7 @@ namespace windowing
    //CLASS_DECL_ACME oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr, int iDepth = -1, int iScreen = -1, Colormap colormap = None);
    //CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
    //CLASS_DECL_ACME oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
-   //CLASS_DECL_ACME oswindow oswindow_defer_get(Window w);
+   //CLASS_DECL_ACME ::windowing::window * pwindow_defer_get(Window w);
    //CLASS_DECL_ACME bool oswindow_remove(Display * pdisplay, Window window);
    //CLASS_DECL_ACME bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
@@ -48,6 +48,7 @@ namespace windowing
 #include "monitor.h"
 
 
+#include "cursor.h"
 #include "icon.h"
 
 
@@ -60,12 +61,15 @@ namespace windowing
 
 
 #include "exception.h"
+#include "aura/user/keyboard.h"
 #include "keyboard.h"
 //#include "hook.h"
 //#include "button.h"
 //#include "simple_ui_display.h"
 //#include "message_box.h"
 
+
+#include "cursor_set.h"
 
 #include "windowing.h"
 

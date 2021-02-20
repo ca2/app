@@ -369,7 +369,7 @@ namespace userstack
             {
                string str = Context.dir().path(psz, straRelative[i]);
                Context.dir().mk(Context.dir().name(str));
-               ::CopyFile(straPath[i], str, TRUE);
+               ::CopyFile(straPath[i], str, true);
             }*/
    }
 
@@ -387,7 +387,7 @@ namespace userstack
 //      nullptr,
 //      buf,
 //      CSIDL_COMMON_DESKTOPDIRECTORY,
-//      FALSE);
+//      false);
 //      if(wcslen(buf) > 0)
 //      {
 //         if(wcslen(buf) > 0)
@@ -400,7 +400,7 @@ namespace userstack
 //
 //               Context.dir().mk(str.folder());
 //
-//               ::CopyFileW(wstring(listing[i]), wstring(str), TRUE);
+//               ::CopyFileW(wstring(listing[i]), wstring(str), true);
 //
 //            }
 //         }
@@ -410,7 +410,7 @@ namespace userstack
 //      nullptr,
 //      buf,
 //      CSIDL_DESKTOPDIRECTORY,
-//      FALSE);
+//      false);
 //      if(strlen(buf) > 0)
 //      {
 //         if(strlen(buf) > 0)
@@ -421,7 +421,7 @@ namespace userstack
 //            {
 //               ::file::path str = psz / listing[i].relative();
 //               Context.dir().mk(listing[i].folder());
-//               ::CopyFile(listing[i], str, TRUE);
+//               ::CopyFile(listing[i], str, true);
 //            }
 //         }
 //      }

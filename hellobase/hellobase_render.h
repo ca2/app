@@ -57,7 +57,7 @@ namespace hellobase
             bool                             m_bVoidTransfer;
             bool                             m_bFirstDone;
 
-            ::draw2d::font_pointer                m_font;
+            ::write_text::font_pointer                m_font;
 
             double                           m_dMinRadius;
             double                           m_dMaxRadius;
@@ -99,7 +99,7 @@ namespace hellobase
       virtual ~render();
 
 
-      string get_helloaura() { sync_lock slText(m_pmutexText);  string str(m_strHelloBase.c_str()); return str; }
+      string get_helloaura() { synchronization_lock slText(m_pmutexText);  string str(m_strHelloBase.c_str()); return str; }
 
 
       virtual i32 run();

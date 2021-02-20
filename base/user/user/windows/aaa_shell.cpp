@@ -14,7 +14,7 @@ namespace user
       windows::windows()
       {
 
-         //m_iMaxThreadCount = max(4, ::get_processor_count());
+         //m_iMaxThreadCount = maximum(4, ::get_processor_count());
 
          m_iMaxThreadCount = 1;
 
@@ -99,7 +99,7 @@ namespace user
             break;
          default:
             // unexpected icon type
-            ASSERT(FALSE);
+            ASSERT(false);
             return 0x80000000;
          }
 
@@ -454,11 +454,11 @@ namespace user
 
                HRESULT hrExtract = E_FAIL;
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                auto iaSize = m_iaSize;
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                for (auto iSize : iaSize)
                {
@@ -919,7 +919,7 @@ namespace user
          if (iFind >= 0 || iFind2 >= 2)
          {
 
-            string strProtocol = imagekey.m_strPath.Left(max(iFind, iFind2));
+            string strProtocol = imagekey.m_strPath.Left(maximum(iFind, iFind2));
 
             i32 i = 0;
 
@@ -1078,11 +1078,11 @@ namespace user
       int windows::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto iaSize = m_iaSize;
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          for (auto iSize : iaSize)
          {
@@ -1099,11 +1099,11 @@ namespace user
       int windows::add_icon_path(::file::path path, color32_t crBk, int iImage)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto iaSize = m_iaSize;
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          path = Context.defer_process_path(path);
 
@@ -1135,9 +1135,9 @@ namespace user
       int windows::add_icon(int iSize, HICON hicon, color32_t crBk, int iImage)
       {
 
-         sync_lock sl(m_pil[iSize]->mutex());
+         synchronization_lock synchronizationlock(m_pil[iSize]->mutex());
 
-         sync_lock slHover(m_pilHover[iSize]->mutex());
+         synchronization_lock slHover(m_pilHover[iSize]->mutex());
 
          iImage = m_pil[iSize]->add_icon_os_data(hicon, iImage);
 
@@ -1266,15 +1266,15 @@ namespace user
       int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
       {
 
-         sync_lock sl(m_pilHover[iSize]->mutex());
+         synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
 
          if (crBk == 0)
          {
 
-            return m_pilHover[iSize]->pred_add_image([&](auto pimage)
+            return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
-               System.imaging().color_blend(pimage, RGB(255, 255, 240), 64);
+               System.imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
             }
             , m_pil[iSize], iImage, iImage);
@@ -1307,7 +1307,7 @@ namespace user
                pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
                pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
                pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
-               pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+               pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
                m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
                m_pil[iSize]->m_pimage->g()->draw(d->rect(), pimage->get_graphics());
                m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1357,11 +1357,11 @@ namespace user
          if (reserve_image(imagekeyIco, iImage))
          {
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             auto iaSize = m_iaSize;
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             for (auto iSize : iaSize)
             {

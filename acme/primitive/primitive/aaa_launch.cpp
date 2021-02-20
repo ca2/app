@@ -93,7 +93,7 @@ void* ___launch::s_os_thread_proc(void* p)
 ::e_status ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, ithread_t* pithread, hthread_t* phthread)
 {
 
-   hthread_t hthread = NULL_HTHREAD;
+   hthread_t hthread = null_hthread;
 
    ithread_t ithread = NULL_ITHREAD;
 

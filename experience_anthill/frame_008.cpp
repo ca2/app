@@ -76,7 +76,7 @@ namespace experience
 
                   if(egrip & e_grip_top_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -84,7 +84,7 @@ namespace experience
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -95,7 +95,7 @@ namespace experience
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -103,7 +103,7 @@ namespace experience
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -114,7 +114,7 @@ namespace experience
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -122,7 +122,7 @@ namespace experience
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -133,7 +133,7 @@ namespace experience
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -141,7 +141,7 @@ namespace experience
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -228,9 +228,9 @@ SizingNone:
 
                auto estyle = get_style();
 
-               ::color    colorMoveableBorder;
-               ::color    colorMoveableBorderHilight;
-               ::color    colorMoveableBorderShadow;
+               ::color::color    colorMoveableBorder;
+               ::color::color    colorMoveableBorderHilight;
+               ::color::color    colorMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -309,7 +309,7 @@ SizingNone:
 
                   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-                  auto rectangle_i32 = get_margin_rect();
+                  auto rectangle = get_margin_rect();
 
 
          for (index i = 0; i < 11; i++)
@@ -317,7 +317,7 @@ SizingNone:
             
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(1.0, ARGB((i + 1) * 10, iR, iG, iB));
+            pen->create_solid(1.0, argb((i + 1) * 10, iR, iG, iB));
 
             pgraphics->set(pen);
 
@@ -331,7 +331,7 @@ SizingNone:
 
          }
 
-         //if (m_pframewindow->is_active())
+         //if (m_pframewindow->is_active_window())
          //{
 
          //   ::rectangle_i32 rectA(rectClient);
@@ -377,10 +377,10 @@ SizingNone:
                   //   Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
 
                   //   ::rectangle_i32 rectangle;
-                  //   GetBorderRect(rectClient,rectangle_i32,eside);
+                  //   GetBorderRect(rectClient,rectangle,eside);
                   //   class imaging & imaging = System.imaging();
                   //   imaging.color_blend(pgraphics,
-                  //      rectangle_i32,
+                  //      rectangle,
                   //      crMoveableBorder,
                   //      127);
 
@@ -392,20 +392,20 @@ SizingNone:
                        || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       colorMoveableBorder,
                                       127);
                }
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       colorMoveableBorder,
                                       127);
 
@@ -510,13 +510,13 @@ SizingNone:
                //   for (index i = 0; i < 9; i++)
                //   {
 
-               //      pgraphics->draw3d_rect(rectA, ARGB(0, 0, 0, 0), ARGB(0, 0, 0, 0));
+               //      pgraphics->draw3d_rect(rectA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
 
                //      rectA.deflate(1, 1, 1, 1);
 
                //   }
 
-               //   if (m_pframewindow->is_active())
+               //   if (m_pframewindow->is_active_window())
                //   {
 
                //      ::rectangle_i32 rectA(rectClient);
@@ -530,7 +530,7 @@ SizingNone:
 
                //         ::draw2d::pen_pointer pen(e_create);
 
-               //         pen->create_solid(1.0, ARGB((i+1) * 5, 0, 0, 0));
+               //         pen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
                //         pgraphics->draw_round_rect(rectA, pen, (int) (10 - i));
 
@@ -548,19 +548,19 @@ SizingNone:
                //      if (m_estyle == StyleRedOrange)
                //      {
 
-               //         pgraphics->draw3d_rect(rectA, ARGB(255, 255, 170, 136), ARGB(255, 255, 170, 136));
+               //         pgraphics->draw3d_rect(rectA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
 
                //      }
                //      else if (m_estyle == StyleLightGreen)
                //      {
 
-               //         pgraphics->draw3d_rect(rectA, ARGB(255, 128, 230, 150), ARGB(255, 128, 230, 150));
+               //         pgraphics->draw3d_rect(rectA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
 
                //      }
                //      else
                //      {
 
-               //         pgraphics->draw3d_rect(rectA, ARGB(255, 0x07, 0x6D, 0x91), ARGB(255, 0x07, 0x6D, 0x91));
+               //         pgraphics->draw3d_rect(rectA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
 
                //      }
 
@@ -569,7 +569,7 @@ SizingNone:
                //   {
 
                //      //rectA.deflate(9, 9, 9, 9);
-               //      pgraphics->draw3d_rect(rectA, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+               //      pgraphics->draw3d_rect(rectA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
                //   }
 
 
@@ -600,7 +600,7 @@ SizingNone:
 
             void frame_008::GetBorderRect(
             const ::rectangle_i32 & rectClient,
-            LPRECT32 lprect,
+            RECTANGLE_I32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectBig(rectClient);
@@ -635,7 +635,7 @@ SizingNone:
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
             }
 
 
@@ -662,37 +662,37 @@ SizingNone:
 
                if (estyle == ::user::StyleDarkRed)
                {
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 165, 32, 32);
-//                  create_color(::user::color_button_background, ARGB(255, 165, 32, 32));
-//                  create_color(::user::color_button_background_hover, ARGB(255, 195, 64, 64));
-//                  create_color(::user::color_button_background_press, ARGB(255, 208, 72, 72));
+                  //m_penHollow1->create_solid(1.0, argb(20, 0, 0, 0));
+                  //m_penHollow2->create_solid(1.0, argb(60, 20, 20, 20));
+                  //m_penHollow3->create_solid(1.0, argb(100, 40, 40, 40));
+                  //m_penHollow4->create_solid(1.0, argb(140, 60, 60, 60));
+                  //m_penHollow5->create_solid(1.0, argb(255, 90, 220, 100));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 165, 32, 32);
+//                  create_color(::user::color_button_background, argb(255, 165, 32, 32));
+//                  create_color(::user::color_button_background_hover, argb(255, 195, 64, 64));
+//                  create_color(::user::color_button_background_press, argb(255, 208, 72, 72));
 
                }
                else if (estyle == ::user::StyleLightGreen)
                {
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 140, 200, 160);
+                  //m_penHollow1->create_solid(1.0, argb(20, 0, 0, 0));
+                  //m_penHollow2->create_solid(1.0, argb(60, 20, 20, 20));
+                  //m_penHollow3->create_solid(1.0, argb(100, 40, 40, 40));
+                  //m_penHollow4->create_solid(1.0, argb(140, 60, 60, 60));
+                  //m_penHollow5->create_solid(1.0, argb(255, 90, 220, 100));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 140, 200, 160);
                }
                else
                {
-                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
-                  //m_penHollow1->create_solid(1.0, ARGB(20, 50, 100, 200));
-                  //m_penHollow2->create_solid(1.0, ARGB(60, 50, 100, 200));
-                  //m_penHollow3->create_solid(1.0, ARGB(100, 50, 100, 200));
-                  //m_penHollow4->create_solid(1.0, ARGB(140, 50, 100, 200));
-                  //m_penHollow5->create_solid(1.0, ARGB(255, 50, 100, 200));
+                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = argb(255, 0x07, 0x6D, 0x91);
+                  //m_penHollow1->create_solid(1.0, argb(20, 50, 100, 200));
+                  //m_penHollow2->create_solid(1.0, argb(60, 50, 100, 200));
+                  //m_penHollow3->create_solid(1.0, argb(100, 50, 100, 200));
+                  //m_penHollow4->create_solid(1.0, argb(140, 50, 100, 200));
+                  //m_penHollow5->create_solid(1.0, argb(255, 50, 100, 200));
                }
 
                if (m_pcontrolbox.is_set())
@@ -715,13 +715,13 @@ SizingNone:
             //   if (estyle == ::user::StyleRedOrange)
             //   {
 
-            //      return ARGB(255, 255, 170, 136);
+            //      return argb(255, 255, 170, 136);
 
             //   }
             //   else
             //   {
 
-            //      return ARGB(255, 50, 100, 200);
+            //      return argb(255, 50, 100, 200);
 
             //   }
 
@@ -737,7 +737,7 @@ SizingNone:
 //               //   if (ecolor == ::user::color_face_lite)
 //               //   {
 //
-//               //      cr = ARGB(80, 160, 160, 160);
+//               //      cr = argb(80, 160, 160, 160);
 //
 //               //      return true;
 //
@@ -745,7 +745,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_text)
 //               //   {
 //
-//               //      cr = ARGB(200, 80, 80, 80);
+//               //      cr = argb(200, 80, 80, 80);
 //
 //               //      return true;
 //
@@ -753,7 +753,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_text_hover)
 //               //   {
 //
-//               //      cr = ARGB(200, 80, 80, 80);
+//               //      cr = argb(200, 80, 80, 80);
 //
 //               //      return true;
 //
@@ -761,7 +761,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_text_highlight)
 //               //   {
 //
-//               //      cr = ARGB(200, 80, 80, 80);
+//               //      cr = argb(200, 80, 80, 80);
 //
 //               //      return true;
 //
@@ -769,7 +769,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_background_hover)
 //               //   {
 //
-//               //      cr = ARGB(20, 0, 0, 0);
+//               //      cr = argb(20, 0, 0, 0);
 //
 //               //      return true;
 //
@@ -784,7 +784,7 @@ SizingNone:
 //               //   if (ecolor == ::user::color_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -792,7 +792,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_list_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -800,7 +800,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_edit_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -808,7 +808,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_tree_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -816,7 +816,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_view_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -824,7 +824,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_scrollbar_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -832,7 +832,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_tab_layout_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -840,7 +840,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_tab_client_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 0xF3, 0XF5, 0xF5);
+//               //      cr = argb(255, 0xF3, 0XF5, 0xF5);
 //
 //               //      return true;
 //
@@ -848,7 +848,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_split_layout_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -856,7 +856,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_background_selected)
 //               //   {
 //
-//               //      cr = ARGB(255, 155, 185, 255);
+//               //      cr = argb(255, 155, 185, 255);
 //
 //               //      return true;
 //
@@ -864,7 +864,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_list_header)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -872,7 +872,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_list_header_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 0x58, 0x5C, 0x5D);
+//               //      cr = argb(255, 0x58, 0x5C, 0x5D);
 //
 //               //      return true;
 //
@@ -880,7 +880,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_list_item_background)
 //               //   {
 //
-//               //      cr = ARGB(30, 0, 0, 0);
+//               //      cr = argb(30, 0, 0, 0);
 //
 //               //      return true;
 //
@@ -896,7 +896,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_toolbar_background)
 //               //   {
 //
-//               //      cr = ARGB(255, 0xF3, 0XF5, 0xF5);
+//               //      cr = argb(255, 0xF3, 0XF5, 0xF5);
 //
 //               //      return true;
 //
@@ -905,7 +905,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_button_background_disabled)
 //               //   {
 //
-//               //      cr = ARGB(255, 128, 128, 128);
+//               //      cr = argb(255, 128, 128, 128);
 //
 //               //      return true;
 //
@@ -916,11 +916,11 @@ SizingNone:
 //
 //               //      if (m_estyle == StyleDarkRed)
 //               //      {
-//               //         cr = ARGB(255, 205, 72, 72);
+//               //         cr = argb(255, 205, 72, 72);
 //               //      }
 //               //      else
 //               //      {
-//               //         cr = ARGB(255, 0x55, 0x99, 0xC2);
+//               //         cr = argb(255, 0x55, 0x99, 0xC2);
 //
 //               //      }
 //
@@ -932,11 +932,11 @@ SizingNone:
 //
 //               //      if (m_estyle == StyleDarkRed)
 //               //      {
-//               //         cr = ARGB(255, 165, 32, 32);
+//               //         cr = argb(255, 165, 32, 32);
 //               //      }
 //               //      else
 //               //      {
-//               //         cr = ARGB(255, 0x30, 0x75, 0xA0);
+//               //         cr = argb(255, 0x30, 0x75, 0xA0);
 //               //      }
 //
 //
@@ -945,14 +945,14 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_button_background_press)
 //               //   {
 //
-//               //      cr = ARGB(255, 0x07, 0x6D, 0x91);
+//               //      cr = argb(255, 0x07, 0x6D, 0x91);
 //
 //               //      return true;
 //               //   }
 //               //   else if (ecolor == ::user::color_button_text_disabled)
 //               //   {
 //
-//               //      cr = ARGB(255, 0xD0, 0xD0, 0xD0);
+//               //      cr = argb(255, 0xD0, 0xD0, 0xD0);
 //
 //               //      return true;
 //
@@ -960,7 +960,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_button_text_hover)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -968,7 +968,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_button_text)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //
@@ -976,7 +976,7 @@ SizingNone:
 //               //   else if (ecolor == ::user::color_button_text_press)
 //               //   {
 //
-//               //      cr = ARGB(255, 255, 255, 255);
+//               //      cr = argb(255, 255, 255, 255);
 //
 //               //      return true;
 //

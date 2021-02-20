@@ -599,30 +599,6 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bFromCache)
-{
-
-   if (::is_null(pcursor))
-   {
-
-      return ::error_invalid_argument;
-
-   }
-
-   string str(path);
-
-   if (!::str::ends_eat_ci(str, ".png"))
-   {
-
-      return false;
-
-   }
-
-   pcursor->m_pimage = Application.image().load_image(path, bFromCache, bSync);
-
-   return true;
-
-}
 
 
 //bool context_image::_load_multi_frame_image(::image * pimage, memory_pointer pmemory)
@@ -711,7 +687,7 @@ bool context_image::_load_multi_frame_image(image * pimage, memory_pointer pmemo
 
    }
 
-   if (pframea->isEmpty())
+   if (pframea->is_empty())
    {
 
       set_nok();

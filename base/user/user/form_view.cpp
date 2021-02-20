@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "acme/const/id.h"
 
@@ -183,7 +181,7 @@ namespace user
    ::e_status form_view::open_html(const string & str)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pformOld = m_pform;
 

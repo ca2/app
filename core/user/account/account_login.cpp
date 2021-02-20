@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/account/_account.h"
-#endif
 #include "axis/user/simple_ui_draw.h"
 
 
@@ -22,24 +20,24 @@ namespace account
 
       m_picon95 = nullptr;
 
-#if defined(WINDOWS_DESKTOP)
-
-      {
-
-         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(nullptr),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
-
-         if(hicon95 != nullptr)
-         {
-
-            m_picon95 = new ::draw2d::icon;
-
-            m_picon95->attach_os_data(hicon95);
-
-         }
-
-      }
-
-#endif
+//#if defined(WINDOWS_DESKTOP)
+//
+//      {
+//
+//         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(nullptr),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
+//
+//         if(hicon95 != nullptr)
+//         {
+//
+//            m_picon95 = new ::draw2d::icon;
+//
+//            m_picon95->attach_os_data(hicon95);
+//
+//         }
+//
+//      }
+//
+//#endif
       m_bCred = false;
 
    }
@@ -203,23 +201,23 @@ namespace account
 
       #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      crOut = ARGB(1140, 255, 230, 255);
+      crOut = argb(1140, 255, 230, 255);
 
-      crIn = ARGB(255, 255, 133, 255);
+      crIn = argb(255, 255, 133, 255);
 
-      crBorderOut = ARGB(190, 150, 100, 150);
+      crBorderOut = argb(190, 150, 100, 150);
 
-      crBorderIn = ARGB(190, 255, 240, 255);
+      crBorderIn = argb(190, 255, 240, 255);
 
       #else
 
-      crOut = ARGB(1140, 230, 255, 225);
+      crOut = argb(1140, 230, 255, 225);
 
-      crIn = ARGB(255, 133, 255, 80 + 49);
+      crIn = argb(255, 133, 255, 80 + 49);
 
-      crBorderOut = ARGB(190, 100, 150, 100);
+      crBorderOut = argb(190, 100, 150, 100);
 
-      crBorderIn = ARGB(190, 240, 255, 235);
+      crBorderIn = argb(190, 240, 255, 235);
 
       #endif
 
@@ -229,31 +227,31 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         /*crOut = ARGB(190, 255, 210, 255);
+         /*crOut = argb(190, 255, 210, 255);
 
-         crIn = ARGB(255, 255, 1140, 255);
+         crIn = argb(255, 255, 1140, 255);
 
-         crBorderOut = ARGB(190, 90, 20, 90);
+         crBorderOut = argb(190, 90, 20, 90);
 
-         crBorderIn = ARGB(190, 255, 240, 255);*/
+         crBorderIn = argb(190, 255, 240, 255);*/
 
-         crOut = ARGB(255, 255, 210, 255);
+         crOut = argb(255, 255, 210, 255);
 
-         crIn = ARGB(255, 255, 1140, 255);
+         crIn = argb(255, 255, 114, 255);
 
-         crBorderOut = ARGB(255, 90, 20, 90);
+         crBorderOut = argb(255, 90, 20, 90);
 
-         crBorderIn = ARGB(255, 255, 255, 255);
+         crBorderIn = argb(255, 255, 255, 255);
 
 #else
 
-         crOut = ARGB(190, 210, 255, 205);
+         crOut = argb(190, 210, 255, 205);
 
-         crIn = ARGB(255, 133, 255, 80 + 49);
+         crIn = argb(255, 133, 255, 80 + 49);
 
-         crBorderOut = ARGB(190, 20, 90, 20);
+         crBorderOut = argb(190, 20, 90, 20);
 
-         crBorderIn = ARGB(190, 240, 255, 235);
+         crBorderIn = argb(190, 240, 255, 235);
 
 #endif
 
@@ -262,17 +260,17 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      //cr = ARGB(223, 90, 50, 80);
-      cr = ARGB(255, 90, 50, 80);
+      //cr = argb(223, 90, 50, 80);
+      cr = argb(255, 90, 50, 80);
 
 #else
 
-      //cr = ARGB(223, 49, 90, 23);
-      cr = ARGB(255, 49, 90, 23);
+      //cr = argb(223, 49, 90, 23);
+      cr = argb(255, 49, 90, 23);
 
 #endif
 
-      crBk = ARGB(
+      crBk = argb(
              (colorref_get_a_value(crOut) + colorref_get_a_value(crIn)) / 2,
              (colorref_get_r_value(crOut) + colorref_get_r_value(crIn)) / 2,
              (colorref_get_g_value(crOut) + colorref_get_g_value(crIn)) / 2,
@@ -298,7 +296,7 @@ namespace account
       {
          float fHeight = 18.0;
 
-         ::draw2d::font_pointer f(e_create);
+         ::write_text::font_pointer f(e_create);
 
          /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 

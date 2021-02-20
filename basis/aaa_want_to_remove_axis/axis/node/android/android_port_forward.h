@@ -97,7 +97,7 @@ namespace android
       	   virtual array_ptr_alloc < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
       	   virtual array_ptr_alloc < device >  get_igd() const;  // gets a copy of currently-know device information
 
-      	   virtual int_bool IsAnyThreadRunning() const;  // returns TRUE if there is any thread currently running
+      	   virtual int_bool IsAnyThreadRunning() const;  // returns true if there is any thread currently running
 
 
          protected:

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 namespace user
 {
@@ -89,7 +87,7 @@ namespace user
 zorder::zorder()
 {
 
-   m_ezorder = zorder_top;
+   m_ezorder = e_zorder_top;
 
    m_iZOrder = 0;
 
@@ -102,7 +100,7 @@ zorder::zorder(const zorder & zorder)
 
 }
 
-zorder::zorder(e_zorder ezorder)
+zorder::zorder(enum_zorder ezorder)
 {
 
    operator = (ezorder);
@@ -118,21 +116,21 @@ zorder::zorder(iptr iZ)
 }
 
 
-zorder::zorder(oswindow oswindow)
-{
-
-   operator = (oswindow);
-
-}
+//zorder::zorder(::windowing::window * pwindow)
+//{
+//
+//   operator = (oswindow);
+//
+//}
 
 
 bool zorder::is_stable() const
 {
 
    return
-      m_ezorder == zorder_none
-      || m_ezorder == zorder_normal_anchor
-      || m_ezorder == zorder_top_most_anchor;
+      m_ezorder == e_zorder_none
+      || m_ezorder == e_zorder_normal_anchor
+      || m_ezorder == e_zorder_top_most_anchor;
 
 }
 
@@ -140,16 +138,16 @@ bool zorder::is_stable() const
 void zorder::clear_request()
 {
 
-   if (m_ezorder == zorder_top_most || m_ezorder == zorder_top_most_anchor)
+   if (m_ezorder == e_zorder_top_most || m_ezorder == e_zorder_top_most_anchor)
    {
 
-      m_ezorder = zorder_top_most_anchor;
+      m_ezorder = e_zorder_top_most_anchor;
 
    }
    else
    {
 
-      m_ezorder = zorder_normal_anchor;
+      m_ezorder = e_zorder_normal_anchor;
 
    }
 
@@ -159,16 +157,16 @@ void zorder::clear_request()
 void zorder::set_request()
 {
 
-   if (m_ezorder == zorder_top_most || m_ezorder == zorder_top_most_anchor)
+   if (m_ezorder == e_zorder_top_most || m_ezorder == e_zorder_top_most_anchor)
    {
 
-      m_ezorder = zorder_top_most;
+      m_ezorder = e_zorder_top_most;
 
    }
    else
    {
 
-      m_ezorder = zorder_normal;
+      m_ezorder = e_zorder_normal;
 
    }
 
@@ -200,62 +198,12 @@ bool zorder::defer_set_request(int iZOrder)
 }
 
 
-oswindow zorder::get_os_data() const
-{
-
-   {
-
-      if (m_ezorder == zorder_normal)
-      {
-
-         if (::is_window((oswindow)m_iZOrder))
-         {
-
-            return (oswindow)m_iZOrder;
-
-         }
-         else
-         {
-
-            return nullptr;
-
-         }
-
-      }
-      else if (m_ezorder == zorder_top)
-      {
-
-         return (oswindow) HWND_TOP;
-
-      }
-      else if (m_ezorder == zorder_top_most)
-      {
-
-         return (oswindow) HWND_TOPMOST;
-
-      }
-      else if (m_ezorder == zorder_bottom)
-      {
-
-         return (oswindow) HWND_BOTTOM;
-
-      }
-      else
-      {
-
-         return nullptr;
-
-      }
-
-   }
-
-}
-
 
 zorder::operator oswindow() const
 {
 
-   return get_os_data();
+   //return get_os_data();
+   return nullptr;
 
 }
 
@@ -263,7 +211,7 @@ zorder::operator oswindow() const
 bool zorder::is_set() const
 {
 
-   return m_ezorder != zorder_none;
+   return m_ezorder != e_zorder_none;
 
 }
 
@@ -278,16 +226,16 @@ bool zorder::operator != (const zorder & zorder) const
 int zorder::get_sort_ezorder() const
 {
 
-   if (m_ezorder == zorder_normal_anchor)
+   if (m_ezorder == e_zorder_normal_anchor)
    {
 
-      return zorder_normal;
+      return e_zorder_normal;
 
    }
-   else if (m_ezorder == zorder_top_most_anchor)
+   else if (m_ezorder == e_zorder_top_most_anchor)
    {
 
-      return zorder_top_most;
+      return e_zorder_top_most;
 
    }
    else
@@ -342,101 +290,46 @@ bool zorder::operator <= (const zorder & zorder) const
 }
 
 
-zorder & zorder::operator = (oswindow oswindow)
+
+zorder & zorder::operator = (enum_zorder ezorder)
 {
 
-   if (oswindow == (::oswindow) HWND_BOTTOM)
+   if (ezorder == e_zorder_none)
    {
 
-      m_ezorder = zorder_bottom;
+      m_ezorder = e_zorder_normal;
 
       m_iZOrder = 0;
 
    }
-   else if (oswindow == (::oswindow)HWND_NOTOPMOST)
+   else if (ezorder == e_zorder_bottom)
    {
 
-      m_ezorder = zorder_no_top_most;
+      m_ezorder = e_zorder_bottom;
 
       m_iZOrder = 0;
 
    }
-   else if (oswindow == (::oswindow)HWND_TOP)
+   else if (ezorder == e_zorder_no_top_most)
    {
 
-      m_ezorder = zorder_top;
+      m_ezorder = e_zorder_no_top_most;
 
       m_iZOrder = 0;
 
    }
-   else if (oswindow == (::oswindow)HWND_TOPMOST)
+   else if (ezorder == e_zorder_top)
    {
 
-      m_ezorder = zorder_top_most;
+      m_ezorder = e_zorder_top;
 
       m_iZOrder = 0;
 
    }
-   else if (::is_window(oswindow))
+   else if (ezorder == e_zorder_top_most)
    {
 
-      m_ezorder = zorder_hwnd;
-
-      m_iZOrder = (iptr)oswindow;
-
-   }
-   else
-   {
-
-      m_ezorder = zorder_top;
-
-      m_iZOrder = 0;
-
-   }
-
-   return *this;
-
-}
-
-zorder & zorder::operator = (e_zorder ezorder)
-{
-
-   if (ezorder == zorder_none)
-   {
-
-      m_ezorder = zorder_normal;
-
-      m_iZOrder = 0;
-
-   }
-   else if (ezorder == zorder_bottom)
-   {
-
-      m_ezorder = zorder_bottom;
-
-      m_iZOrder = 0;
-
-   }
-   else if (ezorder == zorder_no_top_most)
-   {
-
-      m_ezorder = zorder_no_top_most;
-
-      m_iZOrder = 0;
-
-   }
-   else if (ezorder == zorder_top)
-   {
-
-      m_ezorder = zorder_top;
-
-      m_iZOrder = 0;
-
-   }
-   else if (ezorder == zorder_top_most)
-   {
-
-      m_ezorder = zorder_top_most;
+      m_ezorder = e_zorder_top_most;
 
       m_iZOrder = 0;
 
@@ -444,7 +337,7 @@ zorder & zorder::operator = (e_zorder ezorder)
    else
    {
 
-      m_ezorder = zorder_top;
+      m_ezorder = e_zorder_top;
 
       m_iZOrder = 0;
 
@@ -458,7 +351,7 @@ zorder & zorder::operator = (e_zorder ezorder)
 zorder & zorder::operator = (iptr i)
 {
 
-   m_ezorder = zorder_normal;
+   m_ezorder = e_zorder_normal;
 
    m_iZOrder = i;
 

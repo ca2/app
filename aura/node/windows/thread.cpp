@@ -50,7 +50,7 @@
 
 __STATIC bool CLASS_DECL_AURA IsHelpKey(LPMSG pMsg)
 
-// return TRUE only for non-repeat F1 keydowns.
+// return true only for non-repeat F1 keydowns.
 {
    return pMsg->message == e_message_key_down &&
 

@@ -15,10 +15,10 @@ namespace datetime
       public:
 
 
-         ::draw2d::font_pointer     m_pfont;
-         ::draw2d::font_pointer     m_pfontYear;
-         ::draw2d::font_pointer     m_pfontMonth;
-         ::draw2d::font_pointer     m_pfontSpin;
+         ::write_text::font_pointer     m_pfont;
+         ::write_text::font_pointer     m_pfontYear;
+         ::write_text::font_pointer     m_pfontMonth;
+         ::write_text::font_pointer     m_pfontSpin;
  /*        int                        m_iColWidth;
          int                        m_iLineHeight;
          point_i32                      m_point;*/
@@ -31,9 +31,9 @@ namespace datetime
          virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-         virtual void GetRectDay(::datetime::time& time, LPRECT32 lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect);
-         virtual void GetRect(LPRECT32 lprect, enum enum_element eelement);
+         virtual void GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
+         virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 

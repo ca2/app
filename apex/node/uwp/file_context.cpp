@@ -43,7 +43,7 @@ namespace uwp
       wstrFileIn = ::str::international::utf8_to_unicode(pszFileIn);
 
       wstring wstrFileOut;
-      //      bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8), wstrFileIn) != FALSE;
+      //      bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8), wstrFileIn) != false;
       /*      if(b)
       {
       ::str::international::unicode_to_utf8(str, wstrFileOut);
@@ -70,7 +70,7 @@ namespace uwp
          return true;
       }
 
-      //return vfxFullPath(wstrFullPath, wstrPath) != FALSE;
+      //return vfxFullPath(wstrFullPath, wstrPath) != false;
       return false;
 
    }

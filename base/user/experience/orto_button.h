@@ -53,7 +53,7 @@ namespace experience
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       void _001OnTimer(::timer * ptimer);
-      LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
+      //LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
 
 
    };

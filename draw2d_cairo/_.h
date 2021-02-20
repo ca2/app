@@ -3,7 +3,7 @@
 
 #include "aura/_.h" // System.ftlibrary()
 
-
+#include "aura/operating_system.h"
 #define TOY_FONT_SELECTION 0
 
 
@@ -13,6 +13,10 @@
 #define USE_PANGO
 
 #endif
+
+
+#include "acme/os/ansios/_pthread.h"
+
 
 #include "cairo/cairo-features.h"
 #include "cairo/cairo.h"
@@ -101,6 +105,10 @@ inline void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
 
 
 #include "graphics.h"
+
+
+
+#include "draw2d.h"
 
 
 

@@ -9,7 +9,7 @@
 #include "framework.h"
 #include "window_impl.h"
 #include "oswindow_data.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 
 
 UIWindow * __uiwindow(oswindow oswindow)
@@ -293,11 +293,11 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 //{
 //
 //   //ifGetCapture().display() == nullptr)
-//   // return FALSE;
+//   // return false;
 //
-//   //  int_bool bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
+//   //  int_bool bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != false;
 //
-//   int_bool bRet = TRUE;
+//   int_bool bRet = true;
 //
 //   if(bRet)
 //      g_oswindowCapture = nullptr;

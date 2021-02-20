@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -71,8 +69,8 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::_001OnKeyUp);
-      MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
+      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::_001OnMove);
 
@@ -100,9 +98,9 @@ namespace user
       ::rectangle_i32 rectClient;
 
       layout().get_client_rect(rectClient, ::user::e_layout_design);
-      //::user::e_color colorText = color_text;
+      //::user::e_::color::color colorText = color_text;
 
-      ::color colorText(0, 0, 0, 255);
+      ::color::color colorText(0, 0, 0, 255);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -113,13 +111,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color(192,192,192, 255);
+      //         colorText = ::color::color(192,192,192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color(255, 255, 255, 255);
+      //         colorText = ::color::color(255, 255, 255, 255);
 
       //      }
 
@@ -130,13 +128,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color::color(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color::color(80, 80, 80, 255);;
 
       //      }
 
@@ -237,8 +235,8 @@ namespace user
 
       ::rectangle_i32 rectDropIn(rectDropDown);
 
-      //::user::e_color colorDropDown = color_button_background_disabled;
-      ::color colorDropDown = ::color(127, 127, 127, 255);
+      //::user::e_::color::color colorDropDown = color_button_background_disabled;
+      ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -249,13 +247,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color(80, 80, 180, 255);
+      //         colorDropDown = ::color::color(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color(100, 100, 200, 255);
+      //         colorDropDown = ::color::color(100, 100, 200, 255);
 
       //      }
 
@@ -266,13 +264,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color(200, 200, 250, 255);
+      //         colorDropDown = ::color::color(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color(192, 192, 192, 255);
+      //         colorDropDown = ::color::color(192, 192, 192, 255);
 
       //      }
 
@@ -290,13 +288,13 @@ namespace user
             if (m_itemHover.is_set())
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
 
@@ -307,13 +305,13 @@ namespace user
             if (m_itemHover.is_set())
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
 
@@ -321,15 +319,15 @@ namespace user
 
       }
 
-      color c(colorDropDown);
+      ::color::color color(colorDropDown);
 
-      c.hls_rate(0.0, 0.5, 0.1);
+      color.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(c);
+      br->create_solid(color);
 
       pgraphics->set(br);
 
-      pgraphics->fill_rect(rectDropIn);
+      pgraphics->fill_rectangle(rectDropIn);
 
       ::draw2d::path_pointer path(e_create);
 
@@ -337,7 +335,7 @@ namespace user
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(ARGB(210, 0, 0, 0));
+      br->create_solid(argb(210, 0, 0, 0));
 
       pgraphics->set(br);
 
@@ -346,7 +344,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -556,7 +554,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_down)
+      if(pkey->m_ekey == ::user::e_key_down)
       {
 
          if(!is_drop_down())
@@ -600,7 +598,7 @@ namespace user
          if (!m_bEdit || m_itemHover == e_element_drop_down)
          {
 
-            pmouse->m_ecursor = cursor_arrow;
+            pmouse->m_ecursor = e_cursor_arrow;
 
             pmouse->m_bRet = true;
 
@@ -693,26 +691,21 @@ namespace user
    }
 
 
-   void combo_box::_001OnSetFocus(::message::message * pmessage)
+   void combo_box::on_set_keyboard_focus()
    {
 
    }
 
 
-   void combo_box::_001OnKillFocus(::message::message * pmessage)
+   void combo_box::on_kill_keyboard_focus()
    {
 
-      __pointer(::message::kill_focus) pkillfocus(pmessage);
+      //__pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);
 
       if (m_plist != nullptr)
       {
 
-         if (m_plist->get_safe_handle() != pkillfocus->m_oswindowNew)
-         {
-
-            m_plist->post_message(e_message_close);
-
-         }
+         m_plist->post_message(e_message_close);
 
       }
 
@@ -803,7 +796,7 @@ namespace user
 
          set_keyboard_focus();
 
-         get_wnd()->SetActiveWindow();
+         set_active_window();
 
       }
 
@@ -835,7 +828,7 @@ namespace user
 
       get_client_rect(rectClient, ::user::e_layout_sketch);
 
-      m_plist->m_dItemHeight = min(24, rectClient.height());
+      m_plist->m_dItemHeight = minimum(24, rectClient.height());
 
    }
 
@@ -912,7 +905,7 @@ namespace user
       }
 
 
-      /*      ::draw2d::font_pointer fontxyz(e_create);
+      /*      ::write_text::font_pointer fontxyz(e_create);
 
             ::rectangle_i32 rectClient;
 
@@ -987,61 +980,61 @@ namespace user
    //}
 
 
-#ifdef WINDOWS_DESKTOP
-   //Derived class is responsible for implementing these handlers
-   //for owner/self draw controls (except for the optional DeleteItem)
-   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
-   { ASSERT(FALSE); }
-   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
-   { ASSERT(FALSE); }
-   i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
-   { ASSERT(FALSE); return 0; }
-   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
-   { /* default to nothing */ }
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   //Derived class is responsible for implementing these handlers
+//   //for owner/self draw controls (except for the optional DeleteItem)
+//   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
+//   { ASSERT(false); }
+//   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
+//   { ASSERT(false); }
+//   i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+//   { ASSERT(false); return 0; }
+//   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
+//   { /* default to nothing */ }
+//#endif
 
-   bool combo_box::OnChildNotify(::message::base * pbase)
-   {
-
-#ifdef WINDOWS_DESKTOP
-      switch (pbase->m_id)
-      {
-      case WM_DRAWITEM:
-#ifdef WINDOWSEX
-         DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case e_message_measure_item:
-#ifdef WINDOWSEX
-         MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case WM_COMPAREITEM:
-#ifdef WINODWSEX
-         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case WM_DELETEITEM:
-#ifdef WINODWSEX
-         DeleteItem((LPDELETEITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      default:
-         return ::user::interaction::OnChildNotify(pbase);
-      }
-#endif
-
-      return TRUE;
-   }
-
+//   bool combo_box::OnChildNotify(::user::message * pusermessage)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//      switch (pusermessage->m_id)
+//      {
+//      case WM_DRAWITEM:
+//#ifdef WINDOWSEX
+//         DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case e_message_measure_item:
+//#ifdef WINDOWSEX
+//         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case WM_COMPAREITEM:
+//#ifdef WINODWSEX
+//         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case WM_DELETEITEM:
+//#ifdef WINODWSEX
+//         DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      default:
+//         return ::user::interaction::OnChildNotify(pusermessage);
+//      }
+//#endif
+//
+//      return true;
+//   }
+//
 
    void combo_box::GetLBText(index nIndex, string & rString)
    {
@@ -1067,19 +1060,19 @@ namespace user
       /*      ASSERT(is_window()); u32 dw = u32(send_message( CB_GETEDITSEL, 0, 0));
             nStartChar = LOWORD(dw);
             nEndChar = LOWORD(dw);*/
-      return TRUE;
+      return true;
    }
    bool combo_box::LimitText(strsize nMaxChars)
    {
       //ASSERT(is_window());
-      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != FALSE;
+      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != false;
       return true;
    }
 
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
    {
       //ASSERT(is_window());
-      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != FALSE;
+      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != false;
       return true;
    }
 
@@ -1185,7 +1178,7 @@ namespace user
    void combo_box::ResetContent()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_straList.remove_all();
 
@@ -1546,7 +1539,7 @@ namespace user
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT(m_edatamode == data_mode_opaque);
 

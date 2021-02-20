@@ -1,7 +1,4 @@
 #include "framework.h"
-#ifdef WINDOWS
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
-#endif
 
 
 namespace aura
@@ -31,9 +28,7 @@ namespace draw2d
 
       //m_pmutexFont = __new(::mutex);
 
-      create_factory < cursor_set >();
-
-      m_bSettingCursorMatter = false;
+      //create_factory < e_cursor_set >();
 
    }
 
@@ -79,26 +74,6 @@ namespace draw2d
    }
 
 
-#ifdef WINDOWS
-
-   ::draw2d_direct2d::plugin * draw2d::direct2d()
-   {
-
-      if (!m_pplugin)
-      {
-
-         __compose_new(m_pplugin);
-
-         //m_pplugin->initialize();
-
-      }
-
-      return m_pplugin;
-
-   }
-
-
-#endif
 
 
    ::e_status draw2d::init1()
@@ -108,6 +83,18 @@ namespace draw2d
       {
 
          return false;
+
+      }
+
+      if (System.m_bWriteText)
+      {
+
+         if (!initialize_write_text())
+         {
+
+            return false;
+
+         }
 
       }
 
@@ -126,7 +113,7 @@ namespace draw2d
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_papi->open())
       {
@@ -155,26 +142,6 @@ namespace draw2d
    }
 
 
-   double draw2d::font_similarity(const char* pszSystem, const char* pszUser)
-   {
-
-      if (::is_null(pszSystem) || ::is_null(pszUser))
-      {
-
-         return 0.0;
-
-      }
-
-      if (!stricmp(pszSystem, pszUser))
-      {
-
-         return 1.0;
-
-      }
-
-      return 0.0;
-
-   }
 
    e_format draw2d::file_extension_to_format(const ::payload & varFile)
    {
@@ -225,7 +192,7 @@ namespace draw2d
    void draw2d::term()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {
@@ -245,33 +212,11 @@ namespace draw2d
 
       }
 
-      try
-      {
 
-         if (m_pfontdepartment)
-         {
-
-            m_pfontdepartment->finalize();
-
-         }
-
-      }
-      catch (...)
-      {
-
-
-      }
 
       m_alpha_spread__24CC_filterMap.remove_all();
 
       m_alpha_spread__32CC_filterMap.remove_all();
-
-      if (m_pcursorset)
-      {
-
-         m_pcursorset->finalize();
-
-      }
 
    }
 
@@ -281,95 +226,14 @@ namespace draw2d
 
       m_papi.release();
 
-      m_pfontdepartment.release();
-
-      m_pcursorset.release();
-
       ::apex::department::finalize();
 
    }
 
 
-   class font_department & draw2d::fonts()
-   {
-      
-      sync_lock sl(mutex());
-
-      if (m_pfontdepartment == nullptr)
-      {
-
-         auto estatus = __construct_new(m_pfontdepartment);
-
-         if (estatus)
-         {
-
-            System.process_subject(id_font_enumeration);
-
-         }
-
-      }
-
-      return *m_pfontdepartment;
-
-   }
 
 
-   __pointer(cursor) draw2d::get_cursor(e_cursor ecursor)
-   {
 
-      sync_lock sl(mutex());
-
-      if (m_pcursorset.is_null())
-      {
-
-         auto estatus =  __construct_new(m_pcursorset);
-
-         if (!estatus)
-         {
-
-            return nullptr;
-
-         }
-
-         m_pcursorset->set_cursor_set_system_default();
-
-      }
-
-      return m_pcursorset->get_cursor(ecursor);
-
-   }
-
-
-   bool draw2d::set_cursor_set_from_matter(const ::file::path& pathDir)
-   {
-
-      sync_lock sl(mutex());
-
-      if (m_bSettingCursorMatter)
-      {
-
-         return false;
-
-      }
-
-      __keep(m_bSettingCursorMatter);
-
-      sl.unlock();
-
-      auto pcursorset = __create_new < cursor_set > ();
-
-      if (!pcursorset->set_cursor_set_from_matter(pathDir))
-      {
-
-         return false;
-
-      }
-
-      m_pcursorset = pcursorset;
-
-      return true;
-
-   }
 
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
@@ -398,7 +262,7 @@ namespace draw2d
    string strText,
    ::draw2d::fastblur & blur,
    ::image_pointer & imageBlur,
-   ::draw2d::font * pfont,
+   ::write_text::font * pfont,
    const ::e_align & ealign,
    const ::e_draw_text & edrawtext,
    color32_t crText,
@@ -421,13 +285,13 @@ namespace draw2d
       {
 
          pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
+         pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 
       };
 
-      emboss_pred(
+      emboss_predicate(
       pgraphics,
-      rectangle_i32,
+      rectangle,
       pred,
       blur,
       imageBlur,
@@ -444,7 +308,7 @@ namespace draw2d
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
+      pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 
       return true;
 
@@ -484,7 +348,7 @@ namespace draw2d
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -542,7 +406,7 @@ namespace draw2d
 
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       i32 maxx1 = cx;
       i32 maxy1 = cy;
@@ -625,7 +489,7 @@ namespace draw2d
                iFilterYUpperBound = iFilterH - 1;
             }
 
-            lpbSource = lpbSrc + (wSrc * max(y2, 0));
+            lpbSource = lpbSrc + (wSrc * maximum(y2, 0));
 
             x1 = xL;
             x2 = (x1 - iFilterHalfW) * 3;
@@ -649,7 +513,7 @@ namespace draw2d
                   iFilterXUpperBound = iFilterH - 1;
                }
 
-               lpbSource_1 = lpbSource + max(x2, 0);
+               lpbSource_1 = lpbSource + maximum(x2, 0);
 
 
                dwR = 0;
@@ -799,7 +663,7 @@ breakFilter:
       i32 rSquare;
 
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -828,7 +692,7 @@ breakFilter:
          }
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       i32 cx = pimageDst->width();
       i32 cy = pimageDst->height();
@@ -961,7 +825,7 @@ breakFilter:
                      iFilterXUpperBound = xFilterMax;
                   }
 
-                  lpbSource_1 = lpbSource + max(x2, 0) + iChannel;
+                  lpbSource_1 = lpbSource + maximum(x2, 0) + iChannel;
 
 
                   for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
@@ -1059,12 +923,12 @@ breakFilter2:
    }
 
 
-//   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+//   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock sl(::aura::g_pcsFont);
+//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
 //
-//      __pointer(::draw2d::font_enum_item) pitem;
+//      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
@@ -1129,7 +993,7 @@ breakFilter2:
 //
 //                        path /= strFile;
 //
-//                        pitem = __new(::draw2d::font_enum_item);
+//                        pitem = __new(::write_text::font_enum_item);
 //
 //                        if (::file_exists(path))
 //                        {
@@ -1175,7 +1039,7 @@ breakFilter2:
 //            for (auto& path : patha)
 //            {
 //
-//               pitem = __new(::draw2d::font_enum_item);
+//               pitem = __new(::write_text::font_enum_item);
 //
 //               pitem->m_strFile = path;
 //
@@ -1206,7 +1070,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_mono)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_mono);
 //
@@ -1219,7 +1083,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_sans)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_sans);
 //
@@ -1232,7 +1096,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_serif)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_serif);
 //
@@ -1245,7 +1109,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_sans_ex)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_sans_ex);
 //
@@ -1258,7 +1122,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_serif_ex)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_serif_ex);
 //
@@ -1271,7 +1135,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_sans_fx)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_sans_fx);
 //
@@ -1284,7 +1148,7 @@ breakFilter2:
 //
 //#ifdef os_font_name(e_font_serif_fx)
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = os_font_name(e_font_serif_fx);
 //
@@ -1297,7 +1161,7 @@ breakFilter2:
 //
 //#ifdef FONT_SANS_FX2
 //
-//         pitem = __new(::draw2d::font_enum_item);
+//         pitem = __new(::write_text::font_enum_item);
 //
 //         pitem->m_strFile = FONT_SANS_FX2;
 //
@@ -1311,6 +1175,234 @@ breakFilter2:
 //      }
 //
 //   }
+
+
+   ::e_status draw2d::initialize_write_text()
+   {
+
+      ::e_status estatus = ::success;
+
+      try
+      {
+
+         if (!write_text_factory_exchange(::factory::get_factory_map()))
+         {
+
+            message_box("Failed to initialize draw2d library.");
+
+            estatus = error_failed;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         estatus = error_exception;
+
+      }
+
+      if (!estatus)
+      {
+
+         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+
+         return estatus;
+
+      }
+
+
+      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+
+      estatus = __construct(m_pwritetext);
+
+      if (!estatus)
+      {
+
+         TRACE("Couldn't construct new draw2d.");
+
+         return false;
+
+      }
+
+      estatus = m_pwritetext->init1();
+
+      if (!estatus)
+      {
+
+         TRACE("Couldn't initialize write_text (init1).");
+
+         return estatus;
+
+      }
+
+      if (::succeeded(estatus))
+      {
+
+         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status draw2d::write_text_factory_exchange(::factory_map * pfactorymap)
+   {
+
+      string strLibrary;
+
+      if (has_property("write_text"))
+      {
+
+         strLibrary = payload("write_text");
+
+         //strDraw2d.trim();
+
+         //if (strDraw2d.has_char())
+         //{
+
+         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
+
+         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
+
+         //   strLibrary = "draw2d_" + strDraw2d;
+
+         //}
+
+      }
+
+      ::e_status estatus;
+
+      if (strLibrary.has_char())
+      {
+
+         estatus = System.do_factory_exchange("write_text", strLibrary);
+
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
+
+      }
+
+      strLibrary = write_text_get_default_library_name();
+
+      if (strLibrary.is_empty())
+      {
+
+#ifdef WINDOWS
+
+         strLibrary = "write_text_gdiplus";
+
+#else
+
+         strLibrary = "write_text_cairo";
+
+#endif
+
+      }
+
+      estatus = System.do_factory_exchange("write_text", strLibrary);
+
+      if (estatus)
+      {
+
+         return ::success;
+
+      }
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+      if (strLibrary != "write_text_gdiplus")
+      {
+
+         estatus = System.do_factory_exchange("write_text", "gdiplus");
+
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
+
+      }
+
+
+      if (strLibrary != "write_text_direct2d")
+      {
+
+         estatus = System.do_factory_exchange("write_text", "direct2d");
+
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
+
+      }
+
+
+#endif
+
+      if (strLibrary != "write_text_cairo")
+      {
+
+
+         estatus = System.do_factory_exchange("write_text", "cairo");
+
+         if (estatus)
+         {
+
+            return ::success;
+
+         }
+
+      }
+
+      //output_debug_string("No write_text pluging available!!.");
+      return error_failed;
+
+      //finalize:
+
+      //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("write_text_factory_exchange");
+
+      //   if (pfn_factory_exchange == nullptr)
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   pfn_factory_exchange(::factory_map * pfactorymap);
+
+      //   return true;
+
+   //#endif
+
+   }
+
+
+   string draw2d::write_text_get_default_library_name()
+   {
+
+#ifdef LINUX
+
+      return "linux";
+
+#else
+
+      return PLATFORM_COMMON_STRING;
+
+#endif
+
+   }
 
 
 } // namespace draw2d

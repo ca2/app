@@ -16,7 +16,7 @@ public:
    os_usleep()
    {
 #ifdef WINDOWS
-      m_hTimer = ::CreateWaitableTimer(NULL, TRUE, NULL);
+      m_hTimer = ::CreateWaitableTimer(NULL, true, NULL);
 #endif
    }
    ~os_usleep()

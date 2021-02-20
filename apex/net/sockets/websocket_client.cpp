@@ -1,6 +1,17 @@
 #include "framework.h"
 #include "apex/id.h"
 #include "apex/net/sockets/_sockets.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include <openssl/ssl.h>
 
 #define DEEP_DATA_DEBUG 0
@@ -701,7 +712,7 @@ namespace sockets
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      sync_lock sl(&m_mutexWebsocketWrite);
+      synchronization_lock synchronizationlock(&m_mutexWebsocketWrite);
 
       http_client_socket::write(buf, c);
 

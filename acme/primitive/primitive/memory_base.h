@@ -369,7 +369,7 @@ inline void memory_base::splice(const memory_base & memory, memsize iStartDst, m
 
    splice(
    &memory.get_data()[iStartSrc],
-   min(memory.get_size(), iCountSrc < 0 ? memory.get_size() - iCountSrc + 1 : iCountSrc),
+   minimum(memory.get_size(), iCountSrc < 0 ? memory.get_size() - iCountSrc + 1 : iCountSrc),
    iStartDst,
    iCountDst);
 

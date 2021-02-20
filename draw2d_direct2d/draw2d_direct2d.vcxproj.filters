@@ -59,6 +59,9 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draw2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -101,6 +104,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

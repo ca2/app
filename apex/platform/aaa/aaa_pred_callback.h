@@ -9,12 +9,12 @@ class __λcallback :
 public:
 
 
-   PRED                             m_pred;
+   PRED                             m_predicate;
    __pointer(::matter)      m_pobjectHold;
 
 
    __λcallback(PRED pred, ::matter* pobjectHold = nullptr) :
-      m_pred(pred),
+      m_predicate(pred),
       m_pobjectHold(pobjectHold)
    {
 
@@ -40,7 +40,7 @@ public:
    void receive_response(const ::payload & payload) override
    {
 
-      m_pred(payload);
+      m_predicate(payload);
 
    }
 

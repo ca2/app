@@ -67,7 +67,7 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
          auto pimage = create_image(size);
 
-         auto rectDst = pimage->rectangle_i32();
+         auto rectDst = pimage->rectangle();
 
          auto rectSrc = ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 

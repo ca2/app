@@ -5,6 +5,11 @@
 //  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 //
 
+
+#pragma once
+
+
+
 //
 
 // CLASS_DECL_APEX int_bool os_is_alias(const char * psz);

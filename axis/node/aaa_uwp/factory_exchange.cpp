@@ -30,7 +30,7 @@
 
 
 
-void __node_aura_factory_exchange()
+void __node_aura_factory_exchange(::factory_map * pfactorymap)
 {
 
    create_factory < ::uwp::interaction_impl, ::user::interaction_impl >();

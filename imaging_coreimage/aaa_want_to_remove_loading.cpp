@@ -486,7 +486,7 @@ namespace coreimage_imaging
    //bool os_init_imaging()
    //{
 
-   //   FreeImage_Initialise(FALSE);
+   //   FreeImage_Initialise(false);
 
    //   return true;
    //}

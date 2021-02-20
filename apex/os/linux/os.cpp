@@ -41,3 +41,12 @@ string get_current_login_name()
 
 
 
+string ca2_command_line()
+{
+
+   return "";
+
+}
+
+
+

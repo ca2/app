@@ -108,16 +108,16 @@ template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if(!p) p= new
 // inline ::e_status __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite);
 
 template < typename BASE_TYPE >
-inline ::e_status __construct(__pointer(BASE_TYPE) & pbase);
+inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage);
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase);
+inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage);
 
 template < typename BASE_TYPE >
-inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id);
+inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id);
+inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
 
 template < typename TYPE >
 inline ::e_status __construct_new(__pointer(TYPE) & ptype);

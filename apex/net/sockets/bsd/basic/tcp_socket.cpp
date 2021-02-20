@@ -2,6 +2,15 @@
 #include "apex/net/sockets/_sockets.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include <openssl/ssl.h>
 #include <openssl/safestack.h>
 #include <openssl/x509v3.h>
@@ -72,7 +81,7 @@ void SSL_set_app_data2(SSL *ssl, void *arg)
 static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
 {
    int result = false;
-   sync_lock sl(c->mutex());
+   synchronization_lock synchronizationlock(c->mutex());
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
@@ -84,7 +93,7 @@ static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
 static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
 {
    int result = false;
-   sync_lock sl(c->mutex());
+   synchronization_lock synchronizationlock(c->mutex());
    for (auto & ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
@@ -1361,7 +1370,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //sync_lock slMap(&System.sockets().m_clientcontextmap.m_mutex);
+      //synchronization_lock slMap(&System.sockets().m_clientcontextmap.m_mutex);
 
       if (is_true("from_pool"))
          return;
@@ -1468,7 +1477,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //sync_lock slMap(&System.sockets().m_servercontextmap.m_mutex);
+      //synchronization_lock slMap(&System.sockets().m_servercontextmap.m_mutex);
 
       {
          if(m_psslcontext.is_set()
@@ -1484,7 +1493,7 @@ namespace sockets
       }
 
 
-      //sync_lock sl(m_pmutexSslCtx);
+      //synchronization_lock synchronizationlock(m_pmutexSslCtx);
 
       //slMap.unlock();
 
@@ -1827,7 +1836,7 @@ namespace sockets
       int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
       if (context.get_length())
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, min((u32)context.get_length(), uSessionIdMaxLen));
+         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, minimum((u32)context.get_length(), uSessionIdMaxLen));
       else
          iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
 
@@ -1995,7 +2004,7 @@ namespace sockets
 
 
       {
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
          int i;
          int cnt = sizeof(System.sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);

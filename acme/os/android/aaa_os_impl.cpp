@@ -99,7 +99,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   sync_lock slScreen(pbuffer->get_screen_sync());
+//   synchronization_lock slScreen(pbuffer->get_screen_sync());
 //
 //   auto pimage = pbuffer->get_screen_image();
 //
@@ -128,9 +128,9 @@ const char* g_pszCacheDir = NULL;
 //
 //   auto window_stride = info->stride;
 //
-//   auto transfer_width = min(image_width, window_width);
+//   auto transfer_width = minimum(image_width, window_width);
 //
-//   auto transfer_height = min(image_height, window_height);
+//   auto transfer_height = minimum(image_height, window_height);
 //
 //   ::copy_colorref_swap_red_blue((color32_t *) pixels,
 //   transfer_width,
@@ -249,7 +249,7 @@ JNIEnv* get_jni_env()
 void android_exchange()
 {
 
-   sync_lock sl(osmutex());
+   synchronization_lock synchronizationlock(osmutex());
 
    auto plocal = g_poslocal;
 

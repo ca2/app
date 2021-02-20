@@ -292,7 +292,7 @@ void * plex_heap_alloc_array::alloc_dbg(memsize size, i32 nBlockUse, const char 
 
    }
 
-   ansi_count_copy((char *) &psize1], str->Mid(max(0, str->get_length() - 124)), 124);
+   ansi_count_copy((char *) &psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
    return ((u8 *) &psize[1]) + 128;
 
@@ -356,7 +356,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  memsize size, memsize sizeO
 
    psize[0] = size + sizeof(memsize) + 128;
 
-   ansi_count_copy((char *) &psize1], str->Mid(max(0, str->get_length() - 124)), 124);
+   ansi_count_copy((char *) &psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
    return ((u8 *) &psize[1]) + 128;
 
@@ -425,14 +425,14 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
          ::memcpy_dup(heap_memory_aligned(pNew,newSize,0, ALIGN_BYTE_COUNT),
                 heap_memory_aligned(p,oldSize,0, ALIGN_BYTE_COUNT),
-                min(oldSize, newSize));
+                minimum(oldSize, newSize));
 
       }
       else
 #endif
       {
 
-         ::memcpy_dup(pNew, p, min(sizeOld, size));
+         ::memcpy_dup(pNew, p, minimum(sizeOld, size));
 
       }
 
@@ -643,7 +643,7 @@ void plex_heap_alloc_array::_free(void * p,memsize size)
 void * plex_heap_alloc_sync::Alloc()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    if (m_pnodeFree == nullptr)
    {
@@ -710,7 +710,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    node * pnode = (node *)pParam;
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
 #ifdef MEMDFREE // Free Debug - duplicate freeing ?
 
@@ -842,7 +842,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 void plex_heap_alloc_sync::FreeAll()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    try
    {
@@ -865,7 +865,7 @@ void plex_heap_alloc_sync::FreeAll()
 void plex_heap_alloc_sync::NewBlock()
 {
 
-   critical_section_lock sl(&m_criticalsection);
+   critical_section_lock synchronizationlock(&m_criticalsection);
 
    ::u32 nAllocSize = m_nAllocSize;
 

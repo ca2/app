@@ -44,11 +44,11 @@ namespace calculator
    {
 
       if( !simple_frame_window::pre_create_window(pusersystem) )
-         return FALSE;
+         return false;
 
       pusersystem->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
-      return TRUE;
+      return true;
    }
 
    void frame::assert_valid() const

@@ -57,7 +57,7 @@ namespace draw2d_xlib
 
 
       using object::create;
-      bool create(::size_i32 size_i32);
+      bool create(::size_i32 size);
       bool create(i32 iWidth, i32 iHeight);
       bool create(::image::image * pimage);
       bool Destroy();
@@ -99,7 +99,7 @@ namespace draw2d_xlib
       //void rotate(::image::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
-      //void RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors
@@ -107,19 +107,19 @@ namespace draw2d_xlib
 
       //u32 GetPixel(i32 x, i32 y);
       //void Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
-      //void color::channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::color::rgba::echannel echannel);
-      //void transparent_color(color color);
+      //void ::color::e_channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::color::color::rgba::echannel echannel);
+      //void transparent_color(::color::color color);
       //void DivideRGB(i32 iDivide);
       //void DivideARGB(i32 iDivide);
       //void DivideA(i32 iDivide);
-      //virtual void fill_channel(i32 C, color::color::rgba::echannel echannel);
+      //virtual void fill_channel(i32 C, color::color::color::rgba::echannel echannel);
       //void Fill (i32 A, i32 R, i32 G, i32 B );
       //void Fill ( i32 R, i32 G, i32 B );
       //void FillGlass ( i32 R, i32 G, i32 B, i32 A );
       //void FillStippledGlass ( i32 R, i32 G, i32 B );
       //void Invert();
-      //void color::channel_invert(color::color::rgba::echannel echannel);
-      //void color::channel_multiply(color::color::rgba::echannel echannel, double dRate);
+      //void ::color::e_channel_invert(color::color::color::rgba::echannel echannel);
+      //void ::color::e_channel_multiply(color::color::color::rgba::echannel echannel, double dRate);
 
       //void Map (i32 ToRgb, i32 FromRgb );
 

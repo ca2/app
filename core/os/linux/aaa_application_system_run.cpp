@@ -225,7 +225,7 @@ gboolean gtk_quit_callback(gpointer data)
 
    gtk_main_quit();
 
-   return FALSE;
+   return false;
 
 }
 
@@ -249,7 +249,7 @@ gboolean gdk_callback_run_runnable(gpointer pdata)
 
    run_runnable((matter *) pdata);
 
-   return FALSE;
+   return false;
 
 }
 

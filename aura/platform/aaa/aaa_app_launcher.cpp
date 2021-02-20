@@ -104,7 +104,7 @@ namespace aura
       wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 
       if(::CreateProcessW((unichar *)wstrApp.c_str(),(unichar *)wstrCmdLine.c_str(),
-                          nullptr,nullptr,FALSE,0,nullptr,wstrDir,
+                          nullptr,nullptr,false,0,nullptr,wstrDir,
                           &si,&pi))
          return true;
 

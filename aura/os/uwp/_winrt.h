@@ -16,7 +16,7 @@
 //
 //CLASS_DECL_AURA uptr virtualkey_to_char(::Windows::System::VirtualKey e);
 //
-//CLASS_DECL_AURA::user::e_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey);
+//CLASS_DECL_AURA::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey);
 //
 //CLASS_DECL_AURA uptr virtualkey_to_code(::Windows::System::VirtualKey e);
 //

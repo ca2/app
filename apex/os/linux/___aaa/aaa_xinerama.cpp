@@ -44,7 +44,7 @@ int xinerama_get_monitor_count()
 
    }
 
-   return max(1, heads);
+   return maximum(1, heads);
 
 }
 
@@ -182,11 +182,11 @@ int xinerama_get_screen_size(int& width, int& height)
 
    // sort horizontally
 
-   ::sort::pred_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.left <= r2.left; });
+   ::sort::predicate_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.left <= r2.left; });
 
    // sort vertically in stable way
 
-   ::sort::pred_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.top <= r2.top; });
+   ::sort::predicate_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.top <= r2.top; });
 
    for(auto & rectItem: rectaMonitor)
    {
@@ -213,9 +213,9 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_context_application());
 
-   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, FALSE, 0, zorder_none);
+   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, false, 0, zorder_none);
 
-   index iOrdered = rectaOrdered.pred_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
+   index iOrdered = rectaOrdered.predicate_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
 
    output_debug_string(__str(iJustForComparison));
 
@@ -293,7 +293,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectPara
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rect, FALSE, 0, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rect, false, 0, zorder_none);
 
    return i;
 

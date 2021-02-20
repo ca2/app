@@ -120,7 +120,7 @@ semaphore::~semaphore()
 
 #if defined(ANDROID)
 
-sync_result semaphore::wait(const duration & durationTimeout)
+synchronization_result semaphore::wait(const duration & durationTimeout)
 {
 
    timespec ts;
@@ -132,14 +132,14 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
    sem_timedwait(m_psem, &ts);
 
-   return sync_result(sync_result::result_event0);
+   return synchronization_result(e_synchronization_result_signaled_base);
 
 
 }
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-sync_result semaphore::wait(const duration & durationTimeout)
+synchronization_result semaphore::wait(const duration & durationTimeout)
 {
 
    int iRet = 0;
@@ -169,7 +169,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
       if(iRet == EINTR || iRet == EAGAIN)
       {
 
-         return sync_result::result_timeout;
+         return e_synchronization_result_timed_out;
 
       }
 
@@ -178,13 +178,13 @@ sync_result semaphore::wait(const duration & durationTimeout)
    if(iRet == 0)
    {
 
-      return sync_result::result_event0;
+      return e_synchronization_result_signaled_base;
 
    }
    else
    {
 
-      return sync_result::result_error;
+      return e_synchronization_result_error;
 
    }
 
@@ -200,7 +200,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
 //void semaphore_timer_handler (int signum)
 //{
 //
-//   sync_lock sl(g_pmutexSemaphore);
+//   synchronization_lock synchronizationlock(g_pmutexSemaphore);
 //
 //   if(g_pthreadaSemaphore != nullptr)
 //   {
@@ -224,7 +224,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-sync_result semaphore::wait(const duration & durationTimeout)
+synchronization_result semaphore::wait(const duration & durationTimeout)
 {
 
 //   struct sigaction alarm;
@@ -248,7 +248,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
 
-      return i == 0 ? sync_result::result_event0 : sync_result::result_error;
+      return i == 0 ? e_synchronization_result_signaled_base : e_synchronization_result_error;
 
    }
 
@@ -271,7 +271,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
       if(i == 0)
       {
 
-         return sync_result::result_event0;
+         return e_synchronization_result_signaled_base;
 
       }
 
@@ -287,7 +287,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
          if(tRemaining > durationTimeout)
          {
 
-            return sync_result::result_timeout;
+            return e_synchronization_result_timed_out;
 
          }
 
@@ -295,7 +295,7 @@ sync_result semaphore::wait(const duration & durationTimeout)
       else
       {
 
-         return sync_result::result_error;
+         return e_synchronization_result_error;
 
       }
 

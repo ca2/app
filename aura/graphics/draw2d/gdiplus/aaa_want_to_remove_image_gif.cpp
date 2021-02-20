@@ -482,7 +482,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
             ::rect rect = pframea->element_at(uFrameIndex - 1)->m_rect;
 
-            pimageCompose->g()->fill_rect(rect, crBack);
+            pimageCompose->g()->fill_rectangle(rect, crBack);
 
          }
 
@@ -492,7 +492,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
             pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            pimageCompose->g()->fill_rect(pframea->rect(), 0);
+            pimageCompose->g()->fill_rectangle(pframea->rect(), 0);
 
          }*/
 
@@ -525,12 +525,12 @@ void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount)
    {
 
 #if defined(ANDROID) && defined(__arm__)
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
+      colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
 #else
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
+      colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
 #endif
 
-      if (colorrefa[i] == ARGB(255, 255, 255, 255))
+      if (colorrefa[i] == argb(255, 255, 255, 255))
       {
 
          output_debug_string("completely white");
@@ -966,7 +966,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
          if (SUCCEEDED(hr))
          {
 
-            pframe->m_bTransparent = propValue.boolVal != FALSE;
+            pframe->m_bTransparent = propValue.boolVal != false;
 
          }
 
@@ -1024,7 +1024,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
    else
    {
 
-      pframe->m_colorTransparent = ARGB(255, 255, 255, 255);
+      pframe->m_colorTransparent = argb(255, 255, 255, 255);
 
    }
 
@@ -1138,10 +1138,10 @@ color32_t windows_image_metadata_get_background_color(IWICMetadataQueryReader * 
 
    if (SUCCEEDED(hr))
    {
-      // Get the color in ARGB format
+      // Get the color in argb format
       dwBGColor = rgColors[backgroundIndex];
 
-      // The background color is in ARGB format, and we want to
+      // The background color is in argb format, and we want to
       // extract the alpha value and convert it to float
       crBk = dwBGColor;
    }

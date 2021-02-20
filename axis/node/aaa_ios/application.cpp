@@ -46,7 +46,7 @@ namespace axis
 //   bool application::_001OnDDECommand(const char * pcsz)
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
-//      return FALSE;
+//      return false;
 //   }
 //
 //
@@ -186,7 +186,7 @@ namespace axis
    {
    ::win::thread::Delete();
    }
-   // 'delete this' only if m_bAutoDelete == TRUE
+   // 'delete this' only if m_bAutoDelete == true
 
    bool application::DispatchThreadMessageEx(MESSAGE* msg)  // helper
    {
@@ -380,7 +380,7 @@ namespace axis
 //   }
 
 //
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      UNREFERENCED_PARAMETER(bShow);
@@ -415,7 +415,7 @@ namespace axis
 
    }
 
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      UNREFERENCED_PARAMETER(bShow);
@@ -425,7 +425,7 @@ namespace axis
 
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
       UNREFERENCED_PARAMETER(bShow);

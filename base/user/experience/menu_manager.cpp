@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 
 
 namespace experience
@@ -27,26 +25,26 @@ namespace experience
    void menu_manager::relay_event(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      if (m_pframewindow == nullptr || pbase->userinteraction() != m_pframewindow)
+      if (m_pframewindow == nullptr || pusermessage->userinteraction() != m_pframewindow)
       {
 
          return;
 
       }
 
-      if(pbase->m_id == e_message_right_button_down)
+      if(pusermessage->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == e_message_right_button_up)
+      else if(pusermessage->m_id == e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {
             //               auto pframewindow = m_pframewindow;
 
-            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(FALSE);
+            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(false);
                      if(pmenu != nullptr)
                      {
                      pmenu->track_popup_menu(
@@ -54,27 +52,27 @@ namespace experience
 
                      pframewindow);
                      }*/
-            //pbase->m_bRet = true;
+            //pusermessage->m_bRet = true;
             //return;
          }
          m_enumState = e_state_initial;
       }
    }
 
-   void menu_manager::message_handler(::user::interaction * pframewindow, ::message::base * pbase)
+   void menu_manager::message_handler(::user::interaction * pframewindow, ::user::message * pusermessage)
    {
 
-      switch(pbase->m_id)
+      switch(pusermessage->m_id)
       {
       case e_message_left_button_double_click:
       {
-                              auto point = __point(pbase->m_lparam);
-                              if(OnLButtonDblClk((::u32)pbase->m_wparam, point_i32))
+                              auto point = __point(pusermessage->m_lparam);
+                              if(OnLButtonDblClk((::u32)pusermessage->m_wparam, point))
                               {
 
-                                 pbase->m_lresult = 0;
+                                 pusermessage->m_lresult = 0;
 
-                                 pbase->m_bRet = true;
+                                 pusermessage->m_bRet = true;
 
                                  return;
 
@@ -83,21 +81,21 @@ namespace experience
       }
       }
 
-      if(pbase->m_id == e_message_right_button_down)
+      if(pusermessage->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pbase->m_id == e_message_right_button_down)
+      if(pusermessage->m_id == e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pbase->m_id == e_message_right_button_up)
+      else if(pusermessage->m_id == e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {
             //               auto pframewindow = m_pframewindow;
 
-            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(FALSE);
+            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(false);
                      if(pmenu != nullptr)
                      {
                      const ::point_i32 & point(LOWORD(lparam), HIWORD(lparam));
@@ -107,7 +105,7 @@ namespace experience
                      point.x, point.y,
                      pframewindow);
                      }*/
-            pbase->m_bRet = true;
+            pusermessage->m_bRet = true;
             return;
          }
          m_enumState = e_state_initial;

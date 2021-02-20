@@ -21,9 +21,9 @@ namespace userex
 
       virtual bool on_new_view_creator_data(::user::impact_data * pimpactdata);
 
-      virtual void on_command_probe(::user::command * pcommand) override;
+      virtual void on_command_probe(::message::command * pcommand) override;
 
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;

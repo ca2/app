@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "aura/os/ansios/_ansios.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 #ifdef LINUX
 #include "aura/os/linux/_user.h"
 
 #endif
 
 
-__pointer(mq) get_mq(ithread_t idthread, bool bCreate);
+__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate);
 
 
 CLASS_DECL_CORE void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -31,12 +31,12 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
 
    }
 
-   __pointer(mq) pmq;
+   __pointer(message_queue) pmq;
 
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_mq(get_current_ithread(), false);
+      pmq = ::get_message_queue(get_current_ithread(), false);
 
    }
 
@@ -63,7 +63,7 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               synchronization_lock synchronizationlock(pmq->mutex());
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -179,7 +179,7 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
 
 }
 
@@ -187,7 +187,7 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
 
 }
 
@@ -195,7 +195,7 @@ CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(hsync, tickTimeout, FALSE);
+   return WaitForSingleObjectEx(hsync, tickTimeout, false);
 
 }
 
@@ -316,7 +316,7 @@ int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
 
    pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -361,7 +361,7 @@ CLASS_DECL_CORE void set_main_hthread(hthread_t hthread)
    // MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_hMainThread = hthread;
 
@@ -374,7 +374,7 @@ CLASS_DECL_CORE void set_main_ithread(ithread_t ithread)
    //   MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_uiMainThread = ithread;
 
@@ -419,11 +419,11 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_CORE int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_CORE int_bool WINAPI mq_post(mq * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_CORE int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_CORE int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   sync_lock ml(pmq->mutex());
+//   synchronization_lock ml(pmq->mutex());
 //
 //   MESSAGE msg;
 //
@@ -570,7 +570,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
       iOsPriority = (((epriority - iCa2Min) * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
 
-   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+   iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
 
    *piPolicy = iOsPolicy;
 

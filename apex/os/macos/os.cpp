@@ -40,7 +40,7 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 //
 //
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

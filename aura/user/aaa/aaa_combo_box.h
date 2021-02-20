@@ -59,7 +59,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -167,7 +167,7 @@ namespace user
       i32 GetItemHeight(index nIndex);
       index FindStringExact(index nIndexStart, const char * pszFind);
 
-      i32 SetExtendedUI(bool bExtended = TRUE);
+      i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(RECT32 * prect);
 
@@ -175,7 +175,7 @@ namespace user
 
       // Operations
       // for drop-down combo boxes
-      void ShowDropDown(bool bShowIt = TRUE);
+      void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
       virtual index AddString(const char * pszString, uptr dwItemData = 0);
@@ -209,7 +209,7 @@ namespace user
 
 #endif
 
-      virtual bool OnChildNotify(::message::base * pbase) override;
+      virtual bool OnChildNotify(::user::message * pusermessage) override;
 
 
       //virtual color32_t get_action_hover_border_color() override;

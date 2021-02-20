@@ -87,9 +87,9 @@ namespace music
          void sequence_thread::OnMidiSequenceEvent(::message::message * pmessage)
          {
 
-            __pointer(::message::base) pbase(pmessage);
+            __pointer(::user::message) pusermessage(pmessage);
 
-            __pointer(sequence::event) pevent(pbase->m_lparam);
+            __pointer(sequence::event) pevent(pusermessage->m_lparam);
 
             auto pseq = pevent->m_psequence;
 

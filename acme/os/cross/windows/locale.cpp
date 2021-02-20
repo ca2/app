@@ -58,7 +58,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
    lcflags = lctype & LOCALE_LOCALEINFOFLAGSMASK;
    lctype &= 0xffff;
 
-   //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d)\n", lcid, lctype, buffer, len );
+   //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d)\n", lcid, lctype, buffer, len );
 
    /* first check for overrides in the registry */
 
@@ -107,7 +107,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
       lang_id = MAKELANGID(PRIMARYLANGID(lang_id), SUBLANG_DEFAULT);
 
    point = nullptr;
-   for (i = 0; i < (lctype & 0x0f); i++) point_i32 += *point_i32 + 1;
+   for (i = 0; i < (lctype & 0x0f); i++) point += *point_i32 + 1;
 
    if (lcflags & LOCALE_RETURN_NUMBER) ret = sizeof(u32)/sizeof(WCHAR);
    else if (is_genitive_name_supported( lctype ) && *point_i32)
@@ -118,7 +118,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
       if (comparison::le(i, *point_i32) && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
       {
          ret = *point_i32 - i + 1;
-         point_i32 += i;
+         point += i;
       }
       else ret = i;
    }
@@ -153,14 +153,14 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
 //        HeapFree( GetProcessHeap(), 0, tmp );
       free(tmp);
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d) returning number %d\n", lcid, lctype, buffer, len, number );
+      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning number %d\n", lcid, lctype, buffer, len, number );
    }
    else
    {
       ::memcpy_dup( buffer, point_i32 + 1, ret * sizeof(WCHAR) );
       if (lctype != LOCALE_FONTSIGNATURE) buffer[ret-1] = 0;
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
+      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
    }
    return ret;
 }
@@ -197,9 +197,9 @@ int_bool is_genitive_name_supported( LCTYPE lctype )
    case LOCALE_SMONTHNAME11:
    case LOCALE_SMONTHNAME12:
    case LOCALE_SMONTHNAME13:
-      return TRUE;
+      return true;
    default:
-      return FALSE;
+      return false;
    }
 }
 
@@ -549,7 +549,7 @@ WINAXISAPI
 LCID WINAPI GetSystemDefaultLCID(void)
 {
    LCID lcid;
-   NtQueryDefaultLocale( FALSE, &lcid );
+   NtQueryDefaultLocale( false, &lcid );
    return lcid;
 }
 
@@ -652,6 +652,6 @@ WINAXISAPI
 LCID WINAPI GetUserDefaultLCID(void)
 {
    LCID lcid;
-   NtQueryDefaultLocale( TRUE, &lcid );
+   NtQueryDefaultLocale( true, &lcid );
    return lcid;
 }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/node/windows/_node_windows.h"
@@ -120,8 +120,8 @@ i32 CLASS_DECL_APEX __windows_main(::apex::system * psystem, ::create * pmainini
 //
 //   CLASS_DECL_APEX HINSTANCE   load_library(const char * psz);
 //
-//   CLASS_DECL_APEX bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
-//   CLASS_DECL_APEX ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
+//   CLASS_DECL_APEX bool        shell_get_special_folder_path(::windowing::window * pwindow,::file::path &str,i32 csidl,bool fCreate);
+//   CLASS_DECL_APEX ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
 //   CLASS_DECL_APEX ::u32       get_file_attributes(const char * pFileName);
 //
 //   CLASS_DECL_APEX ::u32       get_current_directory(string & str);

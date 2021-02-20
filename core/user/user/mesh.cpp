@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "acme/os/cross/windows/_windows.h"
 #include "acme/const/timer.h"
 
@@ -152,11 +150,11 @@ namespace user
    void mesh::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_penFocused->create_solid(2,ARGB(255,0,255,255));
+      m_penFocused->create_solid(2,argb(255,0,255,255));
 
-      m_penHighlight->create_solid(2,ARGB(255,0,255,255));
+      m_penHighlight->create_solid(2,argb(255,0,255,255));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       if(m_bLockViewUpdate)
          return;
@@ -222,7 +220,7 @@ namespace user
                rectangle.right = rectClient.right;
                rectangle.bottom = ::i32(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle_i32,e_align_left);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
             }
          }
@@ -261,7 +259,7 @@ namespace user
       }
       else
       {
-         iItemLast = min(m_nItemCount - 1,iItemFirst + m_nDisplayCount - 1);
+         iItemLast = minimum(m_nItemCount - 1,iItemFirst + m_nDisplayCount - 1);
       }
 
       if(iItemFirst < 0)
@@ -574,7 +572,7 @@ namespace user
 
       if(pdrawitem->m_bListItemHover)
       {
-         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
+         pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(128,255,255,255));
          pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
       }
       else
@@ -596,14 +594,14 @@ namespace user
       {
          if(psession->savings().is_trying_to_save(::e_resource_processing))
          {
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(255,96,96,96));
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(255,96,96,96));
          }
          else
          {
-            color32_t crTranslucid = RGB(0,0,0);
+            color32_t crTranslucid = rgb(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
-            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle_i32,crTranslucid,127);
+            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
          }
       }
 
@@ -632,7 +630,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         pdrawitem->m_iOrder = max(get_viewport_offset().x, 0);
+         pdrawitem->m_iOrder = maximum(get_viewport_offset().x, 0);
 
       }
       else
@@ -672,7 +670,7 @@ namespace user
          ::rectangle_i32 rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.inflate(8,0,8,-1);
          pdrawitem->m_pgraphics->set(ppenHighlight);
-         pdrawitem->m_pgraphics->draw_rect(rectHighlight);
+         pdrawitem->m_pgraphics->draw_rectangle(rectHighlight);
       }
 
 
@@ -801,7 +799,7 @@ namespace user
    void mesh::_001OnSize(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::size_i32) psize(pmessage);
+      //__pointer(::message::size) psize(pmessage);
       //set_need_layout();
       //psize->m_bRet = false;
    }
@@ -810,7 +808,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(m_bTopText)
       {
@@ -851,12 +849,12 @@ namespace user
       //      get_client_rect(rectClient);
       //      index iIconSize;
       //      if (m_nColumnCount > 0)
-      //         //                  iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
+      //         //                  iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy);
       //         iIconSize = 32;
       //      else
       //         iIconSize = 32;
       //      index iItemSize = iIconSize * 2;
-      //      m_piconlayout->m_iWidth = (i32)(max(1, rectClient.width() / iItemSize));
+      //      m_piconlayout->m_iWidth = (i32)(maximum(1, rectClient.width() / iItemSize));
       //   }
       //}
 
@@ -881,9 +879,9 @@ namespace user
 
          m_nGridColumnCount = _001GetColumnCount();
 
-         m_nColumnCount = max(m_nColumnCount,sizePage.cx * 2);
+         m_nColumnCount = maximum(m_nColumnCount,sizePage.cx * 2);
 
-         m_nColumnCount = min(m_nColumnCount,m_nGridColumnCount);
+         m_nColumnCount = minimum(m_nColumnCount,m_nGridColumnCount);
 
       }
       else
@@ -910,7 +908,7 @@ namespace user
    bool mesh::_001OnUpdateItemCount(u32 dwFlags)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       UNREFERENCED_PARAMETER(dwFlags);
 
@@ -925,9 +923,9 @@ namespace user
 
          m_nGridItemCount = _001GetItemCount();
 
-         m_nItemCount = max(m_nItemCount, sizePage.cy * 2);
+         m_nItemCount = maximum(m_nItemCount, sizePage.cy * 2);
 
-         m_nItemCount = min(m_nItemCount,m_nGridItemCount);
+         m_nItemCount = minimum(m_nItemCount,m_nGridItemCount);
 
       }
       else
@@ -1045,7 +1043,7 @@ namespace user
             else
             {
 
-               sizeTotal.cx = (::i32) min(
+               sizeTotal.cx = (::i32) minimum(
                        m_nItemCount * itemFirst.m_rectItem.width() * m_dItemHeight /
                        rectClient.height()
                        + itemFirst.m_rectItem.width(), MAXI32);
@@ -1134,11 +1132,11 @@ namespace user
 
             get_client_rect(&rectClient);
 
-            itemTopRight.m_iItem = (index)max(1,rectClient.width() / get_item_size().cx) - 1;
+            itemTopRight.m_iItem = (index)maximum(1,rectClient.width() / get_item_size().cx) - 1;
          }
          /*       else
                 {
-                   itemTopRight.m_iItem = max(1,m_piconlayout->m_iWidth) - 1;
+                   itemTopRight.m_iItem = maximum(1,m_piconlayout->m_iWidth) - 1;
                 }
          */       itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
          _001GetItemRect(&itemTopRight);
@@ -1170,7 +1168,7 @@ namespace user
 
       return;
 
-//      sync_lock sl(&m_mutexData);
+//      synchronization_lock synchronizationlock(&m_mutexData);
 
 //      index iColumn;
 
@@ -1337,7 +1335,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::index) min(max(0,get_viewport_offset().y),m_nGridItemCount);
+         return (::index) minimum(maximum(0,get_viewport_offset().y),m_nGridItemCount);
 
       }
       else
@@ -1412,7 +1410,7 @@ namespace user
          ::rectangle_i32 rectView;
          get_client_rect(&rectView);
          const ::size_i32 & sizeItem = get_item_size();
-         return max((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
+         return maximum((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
       }
       else if(m_eview == impact_report || m_eview == impact_grid)
@@ -1573,7 +1571,7 @@ namespace user
 
       index iItem;
 
-      if(!_001DisplayHitTest(point_i32,iItem))
+      if(!_001DisplayHitTest(point,iItem))
       {
 
          return false;
@@ -1742,28 +1740,28 @@ namespace user
          {
             rectClient.top += m_rectTopText.height();
          }
-//         index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
+//         index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy);
          index iIconSize = 32;
          index iItemSize = iIconSize * 2;
 
          index ix = (index)(point.x + pointScroll.x);
-         ix = (index)max(pointScroll.x,ix);
-         ix = (index)min(rectClient.right,ix);
-         ix = (index)max(rectClient.left,ix);
+         ix = (index)maximum(pointScroll.x,ix);
+         ix = (index)minimum(rectClient.right,ix);
+         ix = (index)maximum(rectClient.left,ix);
          ix /= iItemSize;
 
          index iy = point.y + pointScroll.y;
-         iy = max(pointScroll.y,iy);
-         iy = max(rectClient.top,iy);
+         iy = maximum(pointScroll.y,iy);
+         iy = maximum(rectClient.top,iy);
          iy /= iItemSize;
 
          //if(m_flags.has(flag_auto_arrange))
          {
-            iItemParam = iy * (max(1,rectClient.width() / iItemSize)) + ix;
+            iItemParam = iy * (maximum(1,rectClient.width() / iItemSize)) + ix;
          }
          //else
          {
-            // iItemParam = iy * (max(1,m_piconlayout->m_iWidth)) + ix;
+            // iItemParam = iy * (maximum(1,m_piconlayout->m_iWidth)) + ix;
          }
 
 
@@ -1806,7 +1804,7 @@ namespace user
       _001GetItemRect(&itemLast);
 
       pdrawitem->m_rectGroup.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
-      pdrawitem->m_rectGroup.bottom = max(itemLast.m_rectItem.bottom,itemFirst.m_rectItem.top + m_iGroupMinHeight);
+      pdrawitem->m_rectGroup.bottom = maximum(itemLast.m_rectItem.bottom,itemFirst.m_rectItem.top + m_iGroupMinHeight);
       pdrawitem->m_rectGroup.left = 0;
       pdrawitem->m_rectGroup.right = m_iLateralGroupWidth;
       pdrawitem->m_bOk = true;
@@ -2095,11 +2093,11 @@ namespace user
             {
                rectClient.top += m_rectTopText.height();
             }
-            //index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
+            //index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy);
             index iIconSize = 32;
             index iItemSize = iIconSize * 2;
-            pdrawitem->m_rectItem.left = (::i32)(iItemSize * (pdrawitem->m_iItem % (max(1,rectClient.width() / iItemSize))));
-            pdrawitem->m_rectItem.top = (::i32)(iItemSize * (pdrawitem->m_iItem / (max(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.left = (::i32)(iItemSize * (pdrawitem->m_iItem % (maximum(1,rectClient.width() / iItemSize))));
+            pdrawitem->m_rectItem.top = (::i32)(iItemSize * (pdrawitem->m_iItem / (maximum(1,rectClient.width() / iItemSize))));
             pdrawitem->m_rectItem.bottom = (::i32)(pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (::i32)(pdrawitem->m_rectItem.left + iItemSize);
          }
@@ -2414,8 +2412,8 @@ namespace user
 
       }
 
-      if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
-            pkey->m_ekey == ::user::key_next || pkey->m_ekey == ::user::key_prior)
+      if(pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
+            pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
       {
 
          if(m_nItemCount > 0)
@@ -2429,36 +2427,36 @@ namespace user
 
             if(iItem < 0)
             {
-               if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_next)
+               if(pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_next)
                {
                   iItem = 0;
                }
-               else if(pkey->m_ekey == ::user::key_up || pkey->m_ekey == ::user::key_prior)
+               else if(pkey->m_ekey == ::user::e_key_up || pkey->m_ekey == ::user::e_key_prior)
                {
                   iItem = m_nItemCount - 1;
                }
             }
             else
             {
-               if(pkey->m_ekey == ::user::key_down)
+               if(pkey->m_ekey == ::user::e_key_down)
                {
                   iItem++;
                }
-               else if(pkey->m_ekey == ::user::key_next)
+               else if(pkey->m_ekey == ::user::e_key_next)
                {
                   iItem += m_nDisplayCount;
                }
-               else if(pkey->m_ekey == ::user::key_up)
+               else if(pkey->m_ekey == ::user::e_key_up)
                {
                   iItem--;
                }
-               else if(pkey->m_ekey == ::user::key_prior)
+               else if(pkey->m_ekey == ::user::e_key_prior)
                {
                   iItem -= m_nDisplayCount;
                }
                else
                {
-                  ASSERT(FALSE);
+                  ASSERT(false);
                   pmessage->m_bRet = false;
                   return;
                }
@@ -2490,7 +2488,7 @@ namespace user
             _001OnSelectionChange();
          }
       }
-      else if(pkey->m_ekey == ::user::key_delete)
+      else if(pkey->m_ekey == ::user::e_key_delete)
       {
 
          ::user::range range;
@@ -2521,7 +2519,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto psession = Session;
 
@@ -2548,7 +2546,7 @@ namespace user
       if (m_bDrag)
       {
 
-         m_pointLButtonUp = point_i32;
+         m_pointLButtonUp = point;
 
          set_need_redraw();
 
@@ -2576,7 +2574,15 @@ namespace user
 
       {
 
-         update_hover(psession->get_cursor_pos());
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         update_hover(pointCursor);
 
          pmessage->m_bRet = true;
 
@@ -2619,7 +2625,7 @@ namespace user
 
       m_bLButtonDown = true;
 
-      SetCapture();
+      set_mouse_capture();
 
       index iItem;
 
@@ -2641,7 +2647,7 @@ namespace user
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
-            m_pointLButtonDown2 = point_i32;
+            m_pointLButtonDown2 = point;
 
             m_iClick = 2;
 
@@ -2651,7 +2657,7 @@ namespace user
 
             m_millisLButtonDownStart2 = tickNow;
 
-            m_pointLButtonDown2 = point_i32;
+            m_pointLButtonDown2 = point;
 
             m_iClick = 2;
 
@@ -2661,7 +2667,7 @@ namespace user
 
             m_millisLButtonDownStart1 = tickNow;
 
-            m_pointLButtonDown1 = point_i32;
+            m_pointLButtonDown1 = point;
 
             m_iClick = 1;
 
@@ -2669,10 +2675,10 @@ namespace user
 
       }
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -2695,7 +2701,7 @@ namespace user
          if(m_bHoverSelect2)
          {
 
-            if(_001DisplayHitTest(point_i32,iItem))
+            if(_001DisplayHitTest(point,iItem))
             {
 
                // In "Hover Select"/"Single Click to Open" mode
@@ -2718,7 +2724,7 @@ namespace user
 
                // uptr nFlags = 0;
 
-               // const ::point_i32 & point = point_i32;
+               // const ::point_i32 & point = point;
 
                // on_click(item);
 
@@ -2740,17 +2746,17 @@ namespace user
          else
          {
 
-            if(m_bMultiSelect && psession->is_key_pressed(::user::key_shift))
+            if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_shift))
             {
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   item_range itemrange;
 
-                  index iLItem = min(m_iShiftFirstSelection,iItem);
+                  index iLItem = minimum(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = max(m_iShiftFirstSelection,iItem);
+                  index iUItem = maximum(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -2763,17 +2769,17 @@ namespace user
                }
 
             }
-            else if(m_bMultiSelect && psession->is_key_pressed(::user::key_control))
+            else if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_control))
             {
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   item_range itemrange;
 
-                  index iLItem = min(m_iShiftFirstSelection,iItem);
+                  index iLItem = minimum(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = max(m_iShiftFirstSelection,iItem);
+                  index iUItem = maximum(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -2793,7 +2799,7 @@ namespace user
 
                index iItem;
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   m_iShiftFirstSelection = iItem;
@@ -2804,7 +2810,7 @@ namespace user
 
                   m_uiLButtonDownFlags = pmouse->m_nFlags;
 
-                  m_pointLButtonDown1 = point_i32;
+                  m_pointLButtonDown1 = point;
 
                   SetTimer(e_timer_drag_start, 1200, nullptr);
 
@@ -2842,7 +2848,13 @@ namespace user
 
       _001ScreenToClient(point);
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       if (m_bDrag)
       {
@@ -2939,20 +2951,20 @@ namespace user
 
       _001ScreenToClient(point);
 
-      if(!has_focus())
+      if(!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
       auto psession = Session;
 
-      if(psession->is_key_pressed(::user::key_shift))
+      if(psession->is_key_pressed(::user::e_key_shift))
       {
 
       }
-      else if(psession->is_key_pressed(::user::key_control))
+      else if(psession->is_key_pressed(::user::e_key_control))
       {
 
       }
@@ -2960,7 +2972,7 @@ namespace user
       {
 
          index iItem;
-         if(_001DisplayHitTest(point_i32,iItem))
+         if(_001DisplayHitTest(point,iItem))
          {
             if(!m_rangeSelection.has_item(iItem))
             {
@@ -2990,10 +3002,10 @@ namespace user
 
       _001ScreenToClient(point);
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -3147,7 +3159,7 @@ namespace user
       if(wndidNotify == nullptr)
       wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
 
-      LRESULT lresult = 0;
+      lresult lresult = 0;
 
       /* trans if(wndidNotify)
       {
@@ -3248,9 +3260,9 @@ namespace user
       }
 
 
-      //m_font->operator=(*System.draw2d().fonts().GetMeshCtrlFont());
+      //m_font->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
 
-      //m_fontHover->operator=(*System.draw2d().fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
 
       //m_fontHover->set_underline();
       ////m_fontHover->set_bold();
@@ -3354,14 +3366,18 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      _001ScreenToClient(point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      _001ScreenToClient(pointCursor);
 
       try
       {
 
-         if (_001DisplayHitTest(point, iItemSel, iSubItemSel))
+         if (_001DisplayHitTest(pointCursor, iItemSel, iSubItemSel))
          {
 
             if (m_iSubItemEnter == iSubItemSel && m_iItemEnter == iItemSel)
@@ -3371,10 +3387,10 @@ namespace user
 
                m_iItemEnter = -1;
 
-               bool bLShiftKeyDown = psession->is_key_pressed(::user::key_lshift);
-               bool bRShiftKeyDown = psession->is_key_pressed(::user::key_rshift);
-               bool bLControlKeyDown = psession->is_key_pressed(::user::key_lcontrol);
-               bool bRControlKeyDown = psession->is_key_pressed(::user::key_rcontrol);
+               bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_lshift);
+               bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_rshift);
+               bool bLControlKeyDown = psession->is_key_pressed(::user::e_key_lcontrol);
+               bool bRControlKeyDown = psession->is_key_pressed(::user::e_key_rcontrol);
                bool bShiftKeyDown = bLShiftKeyDown || bRShiftKeyDown;
                bool bControlKeyDown = bLControlKeyDown || bRControlKeyDown;
 
@@ -3387,10 +3403,10 @@ namespace user
                      item_range itemrange;
 
                      itemrange.set(
-                        min(iItemSel, m_iItemSel),
-                        max(iItemSel, m_iItemSel),
-                        min(iSubItemSel, m_iSubItemSel),
-                        max(iSubItemSel, m_iSubItemSel),
+                        minimum(iItemSel, m_iItemSel),
+                        maximum(iItemSel, m_iItemSel),
+                        minimum(iSubItemSel, m_iSubItemSel),
+                        maximum(iSubItemSel, m_iSubItemSel),
                         -1,
                         -1);
 
@@ -3403,10 +3419,10 @@ namespace user
                      item_range itemrange;
 
                      itemrange.set(
-                        min(iItemSel, m_iItemSel),
-                        max(iItemSel, m_iItemSel),
-                        min(iSubItemSel, m_iSubItemSel),
-                        max(iSubItemSel, m_iSubItemSel),
+                        minimum(iItemSel, m_iItemSel),
+                        maximum(iItemSel, m_iItemSel),
+                        minimum(iSubItemSel, m_iSubItemSel),
+                        maximum(iSubItemSel, m_iSubItemSel),
                         -1,
                         -1);
 
@@ -3541,8 +3557,8 @@ namespace user
          //if(!_001IsEditing())
          {
             uptr nFlags = m_uiRButtonUpFlags;
-            const ::point_i32 & point = m_pointRButtonUp;
-            _001OnRightClick(nFlags,point_i32);
+            auto & point = m_pointRButtonUp;
+            _001OnRightClick(nFlags,point);
             set_need_redraw();
 
 
@@ -3828,7 +3844,7 @@ namespace user
    //   //pcolumn->m_iWidth = -1;
    //   //pcolumn->m_iSubItem = 0;
    //   //pcolumn->m_iSmallImageWidth = 16;
-   //   //pcolumn->m_colorSmallMask = ARGB(255,255,0,255);
+   //   //pcolumn->m_colorSmallMask = argb(255,255,0,255);
 
 
    //   //_001InsertColumn(column);
@@ -3852,7 +3868,7 @@ namespace user
    //}
 
 
-   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::draw2d::font * pfont,index iItem,index iSubItem)
+   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem)
    //{
    //   pgraphics->set(pfont);
    //   return _001CalcItemWidth(pgraphics,iItem,iSubItem);
@@ -3881,7 +3897,7 @@ namespace user
       //   if(item.m_bOk && item.m_iImage >= 0)
       //   {
       //      pcolumn->m_pil->get_image_info((i32)item.m_iImage,&ii);
-      //      rectangle_i32 = ii.m_rectangle;
+      //      rectangle = ii.m_rectangle;
       //      cx += rectangle.width();
       //      cx += 2;
       //   }
@@ -4014,7 +4030,7 @@ namespace user
 
       auto pointScroll = get_viewport_offset();
 
-      index iyScroll = pointScroll.y / max(1,m_dItemHeight);
+      index iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - m_nDisplayCount + 1;
@@ -4023,7 +4039,7 @@ namespace user
       {
          iyScroll = iItem;
       }
-      if(pointScroll.y / max(1,m_dItemHeight) != iyScroll)
+      if(pointScroll.y / maximum(1,m_dItemHeight) != iyScroll)
       {
          item_range item;
 
@@ -4039,7 +4055,7 @@ namespace user
             });
 
          item.set_lower_bound(iyScroll);
-         item.set_upper_bound(min(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
+         item.set_upper_bound(minimum(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
          range.add_item(item);
       }
    }
@@ -4367,7 +4383,7 @@ namespace user
 
       string wstrItem;
 
-      index iItemCount = min(m_nItemCount,m_iFilter1Step + 1000);
+      index iItemCount = minimum(m_nItemCount,m_iFilter1Step + 1000);
 
       index iFilter1Step;
 
@@ -4623,7 +4639,7 @@ namespace user
    i32 mesh::_001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       return -1;
 
@@ -4747,7 +4763,13 @@ namespace user
 
       auto psession = Session;
 
-      update_hover(psession->get_cursor_pos());
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_hover(pointCursor);
 
    }
 
@@ -4764,12 +4786,12 @@ namespace user
 
    }
 
-   //::draw2d::font * mesh::_001GetFont()
+   //::write_text::font * mesh::_001GetFont()
    //{
    //   return m_font;
    //}
 
-   //::draw2d::font * mesh::_001GetFontHover()
+   //::write_text::font * mesh::_001GetFontHover()
    //{
    //   return m_fontHover;
    //}
@@ -4796,7 +4818,7 @@ namespace user
       
       index iSubItemHover;
       
-      auto pointClient = point_i32;
+      auto pointClient = point;
 
       _001ScreenToClient(pointClient);
 
@@ -4935,7 +4957,7 @@ namespace user
          return "sort-icon";
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          return "sort";
       }
    }
@@ -4985,12 +5007,12 @@ namespace user
 
       pmessage->previous();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(m_eview == impact_grid)
       {
 
-         if(pscroll->m_nSBCode != SB_THUMBTRACK)
+         if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
             auto pointScroll = get_viewport_offset();
@@ -5002,7 +5024,7 @@ namespace user
             if((sizeTotal.cy - pointScroll.y - sizePage.cy) <= 1)
             {
 
-               m_nItemCount = min(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_dItemHeight));
+               m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_dItemHeight));
 
                auto pgraphics = create_memory_graphics();
 
@@ -5026,7 +5048,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         if(pscroll->m_nSBCode != SB_THUMBTRACK)
+         if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
             auto pointScroll = get_viewport_offset();
@@ -5038,7 +5060,7 @@ namespace user
             if((sizeTotal.cx - pointScroll.x - sizePage.cx) <= 1)
             {
 
-///               m_nColumnCount = min(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
+///               m_nColumnCount = minimum(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
@@ -5151,12 +5173,12 @@ namespace user
 //               get_client_rect(rectClient);
 //               index iIconSize;
 //               if(m_nColumnCount > 0)
-////                  iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
+////                  iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy);
 //                     iIconSize = 32;
 //               else
 //                  iIconSize = 32;
 //               index iItemSize = iIconSize * 2;
-//               m_piconlayout->m_iWidth = (i32)(max(1,rectClient.width() / iItemSize));
+//               m_piconlayout->m_iWidth = (i32)(maximum(1,rectClient.width() / iItemSize));
 //            }
             return do_drop(iDisplayDrop,iDisplayDrag);
          }
@@ -5216,7 +5238,7 @@ namespace user
 
          }
 
-//         index iIconSize = max(32,m_columna[0]->m_sizeIcon.cy);
+//         index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy);
 
          index iIconSize = 32;
 
@@ -5230,9 +5252,9 @@ namespace user
 
          // not implemented
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
-         return size();
+         return nullptr;
 
       }
 
@@ -5273,7 +5295,7 @@ namespace user
 
    void mesh::_001OnUpdateMeshViewAutoArrange(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -5397,7 +5419,7 @@ namespace user
    i32 mesh::_001GetGroupHeight(index iGroup)
    {
       i32 iMeshHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
-      return max(m_iGroupMinHeight,iMeshHeight);
+      return maximum(m_iGroupMinHeight,iMeshHeight);
    }
 
    mesh_item::mesh_item(mesh * pmesh)
@@ -5411,8 +5433,8 @@ namespace user
       m_iOrder          = -1;
       m_iSubItem        = -1;
       m_iListItem       = -1;
-      m_colorText              = (color32_t)-1;
-      m_colorTextBackground    = ARGB(255, 0, 0, 0);
+      m_colorText              = __indexed_color(-1);
+      m_colorTextBackground    = argb(255, 0, 0, 0);
       m_colorItemBackground = 0;
       m_iState          = -1;
       m_iImage          = -1;
@@ -5463,7 +5485,7 @@ namespace user
    }
 
 
-   bool mesh::_001OnHeaderCtrlEndTrack(WPARAM, LPARAM)
+   bool mesh::_001OnHeaderCtrlEndTrack(wparam, lparam)
    {
 
       return true;
@@ -5471,7 +5493,7 @@ namespace user
    }
 
 
-   bool mesh::_001OnHeaderCtrlTrack(WPARAM, LPARAM)
+   bool mesh::_001OnHeaderCtrlTrack(wparam, lparam)
    {
 
       return true;
@@ -5487,7 +5509,7 @@ namespace user
       //   if(m_pcolumn->m_mapIcon.lookup((i32)m_iImage,picon))
       //   {
       //      m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != FALSE;
+      //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != false;
       //   }
       //}
       //else
@@ -5550,7 +5572,7 @@ namespace user
             pimage1 = create_image(size);
             pimage1->fill(0,0,0,0);
             ::draw2d::brush_pointer brushText(e_create);
-            brushText->create_solid(ARGB(255,255,255,255));
+            brushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(brushText);
             ::image_pointer pimage2;
             pimage2 = create_image(size);
@@ -5566,7 +5588,7 @@ namespace user
 
             //::aura::application * get_context_application() = m_pmesh->get_context_application();
 
-            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,ARGB(192,192,192,192));
+            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
             System.imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
             pimage2->fill(0,0,0,0);
@@ -5577,7 +5599,7 @@ namespace user
             System.imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
 
 
-            brushText->create_solid(ARGB(255,255,255,255));
+            brushText->create_solid(argb(255,255,255,255));
             m_pgraphics->set(brushText);
             m_pgraphics->set(m_pfont);
             m_pgraphics->_DrawText(m_strText,m_rectText,m_ealign, m_edrawtext);

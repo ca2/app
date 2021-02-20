@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_imaging_freeimage.h"
 
 
@@ -250,7 +250,7 @@ namespace imaging_freeimage
 
       }
 
-      Context.file().as_memory(varFile, *pmemory);
+      Ctx(get_context()).file().as_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 
@@ -484,7 +484,7 @@ namespace imaging_freeimage
    //bool os_init_imaging()
    //{
 
-   //   FreeImage_Initialise(FALSE);
+   //   FreeImage_Initialise(false);
 
    //   return true;
    //}

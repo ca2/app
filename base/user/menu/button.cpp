@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/menu/_menu.h"
-#endif
 
 
 namespace user
@@ -70,7 +68,7 @@ namespace user
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_rect(rectClient, _001GetButtonBackgroundColor());
+         //pgraphics->fill_rectangle(rectClient, _001GetButtonBackgroundColor());
 
          //::draw2d::pen_pointer pen(e_create);
 
@@ -93,11 +91,11 @@ namespace user
 
          ::draw2d::brush_pointer br(e_create);
 
-         br->create_solid(ARGB(255, 0, 0, 0));
+         br->create_solid(argb(255, 0, 0, 0));
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1, RGB(0, 0, 0));
+         pen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(pen);
          pgraphics->set(br);
          ::rectangle_i32 rectPopupArrow;
@@ -110,7 +108,7 @@ namespace user
          pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
          pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.top));
          pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
-         pgraphics->polygon_i32(pointa);
+         pgraphics->polygon(pointa);
       }
 
       _001DrawCheck(pgraphics);
@@ -125,7 +123,7 @@ namespace user
 
       crBackground &= 0x00ffffff;
 
-      crBackground = crBackground | ARGB(200, 0, 0, 0);
+      crBackground = crBackground | argb(200, 0, 0, 0);
 
       return crBackground;
 
@@ -276,7 +274,7 @@ namespace user
             if (echeck() == ::check_checked)
             {
 
-               pgraphics->fill_rect(rectImageBorder, RGB(127, 127, 127));
+               pgraphics->fill_rectangle(rectImageBorder, rgb(127, 127, 127));
 
                auto psession = Session;
 
@@ -346,11 +344,7 @@ namespace user
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
-      __pointer(::draw2d::font) pfont = get_font(pstyle);
-
-      pcalcsize->m_pgraphics->set(pfont);
-
-      //select(pcalcsize->m_pgraphics);
+      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
 
       string strButtonText;
 
@@ -410,5 +404,7 @@ namespace user
    }
 
 
-
 } // namespace user
+
+
+

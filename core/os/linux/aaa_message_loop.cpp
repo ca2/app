@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_user.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 
 
 /*
@@ -40,11 +40,11 @@ int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
          m_msgptra.remove_at(0);
          if(pmsg->message == 0xffff)
          {
-            return FALSE;
+            return false;
          }
          else
          {
-            return TRUE;
+            return true;
          }
 
       }
@@ -101,7 +101,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
-   return mq_post_message(oswindow, message, wparam, lparam);
+   return message_queue_post(oswindow, message, wparam, lparam);
 
 }
 

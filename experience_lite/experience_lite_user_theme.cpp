@@ -25,41 +25,41 @@ namespace lite
 
       create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
 
-      userstyle()->m_mapFont->operator[](::user::font_default)->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
+      userstyle()->m_mapFont->operator[](::user::font_default)->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
 
-      create_color(::user::color_text, ARGB(255, 0, 0, 0));
-      create_color(::user::color_edit_text, ARGB(255, 0, 0, 0));
-      create_color(::user::color_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_face, ARGB(192, 192, 192, 192));
-      create_color(::user::color_list_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_edit_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_tree_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_view_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_scrollbar_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_tab_layout_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_tab_client_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_split_layout_background, ARGB(255, 255, 255, 255));
-      create_color(::user::color_background_selected, ARGB(255, 155, 185, 255));
-      create_color(::user::color_list_header, ARGB(255, 255, 255, 255));
-      create_color(::user::color_list_header_background, ARGB(255, 0x58, 0x5C, 0x5D));
-      create_color(::user::color_list_item_text, ARGB(255, 0, 0, 0));
-      create_color(::user::color_list_item_text_hover, ARGB(255, 100, 150, 200));
-      create_color(::user::color_list_item_background, ARGB(30, 0, 0, 0));
-      create_color(::user::color_list_item_background_hover, ARGB(50, 0, 0, 0));
-      create_color(::user::color_list_item_background_selected, ARGB(255, 160, 210, 235));
-      create_color(::user::color_list_item_background_selected_hover, ARGB(255, 160, 220, 255));
+      create_color(::user::color_text, argb(255, 0, 0, 0));
+      create_color(::user::color_edit_text, argb(255, 0, 0, 0));
+      create_color(::user::color_background, argb(255, 255, 255, 255));
+      create_color(::user::color_face, argb(192, 192, 192, 192));
+      create_color(::user::color_list_background, argb(255, 255, 255, 255));
+      create_color(::user::color_edit_background, argb(255, 255, 255, 255));
+      create_color(::user::color_tree_background, argb(255, 255, 255, 255));
+      create_color(::user::color_view_background, argb(255, 255, 255, 255));
+      create_color(::user::color_scrollbar_background, argb(255, 255, 255, 255));
+      create_color(::user::color_tab_layout_background, argb(255, 255, 255, 255));
+      create_color(::user::color_tab_client_background, argb(255, 255, 255, 255));
+      create_color(::user::color_split_layout_background, argb(255, 255, 255, 255));
+      create_color(::user::color_background_selected, argb(255, 155, 185, 255));
+      create_color(::user::color_list_header, argb(255, 255, 255, 255));
+      create_color(::user::color_list_header_background, argb(255, 0x58, 0x5C, 0x5D));
+      create_color(::user::color_list_item_text, argb(255, 0, 0, 0));
+      create_color(::user::color_list_item_text_hover, argb(255, 100, 150, 200));
+      create_color(::user::color_list_item_background, argb(30, 0, 0, 0));
+      create_color(::user::color_list_item_background_hover, argb(50, 0, 0, 0));
+      create_color(::user::color_list_item_background_selected, argb(255, 160, 210, 235));
+      create_color(::user::color_list_item_background_selected_hover, argb(255, 160, 220, 255));
       create_color(::user::color_list_header_separator, 0);
-      create_color(::user::color_toolbar_background, ARGB(255, 0xF3, 0XF5, 0xF5));
-      create_color(::user::color_button_background_disabled, ARGB(255, 128, 128, 128));
-      create_color(::user::color_button_background_hover, ARGB(255, 0x55, 0x99, 0xC2));
-      create_color(::user::color_button_background, ARGB(255, 0x30, 0x75, 0xA0));
-      create_color(::user::color_button_background_press, ARGB(255, 0x07, 0x6D, 0x91));
-      create_color(::user::color_button_text_disabled, ARGB(255, 0xD0, 0xD0, 0xD0));
-      create_color(::user::color_button_text_hover, ARGB(255, 255, 255, 255));
-      create_color(::user::color_button_text, ARGB(255, 255, 255, 255));
-      create_color(::user::color_button_text_press, ARGB(255, 255, 255, 255));
-      create_color(::user::color_text_selected_highlight, ARGB(255, 150, 200, 250));
-      create_color(::user::color_text_highlight, ARGB(255, 100, 150, 200));
+      create_color(::user::color_toolbar_background, argb(255, 0xF3, 0XF5, 0xF5));
+      create_color(::user::color_button_background_disabled, argb(255, 128, 128, 128));
+      create_color(::user::color_button_background_hover, argb(255, 0x55, 0x99, 0xC2));
+      create_color(::user::color_button_background, argb(255, 0x30, 0x75, 0xA0));
+      create_color(::user::color_button_background_press, argb(255, 0x07, 0x6D, 0x91));
+      create_color(::user::color_button_text_disabled, argb(255, 0xD0, 0xD0, 0xD0));
+      create_color(::user::color_button_text_hover, argb(255, 255, 255, 255));
+      create_color(::user::color_button_text, argb(255, 255, 255, 255));
+      create_color(::user::color_button_text_press, argb(255, 255, 255, 255));
+      create_color(::user::color_text_selected_highlight, argb(255, 150, 200, 250));
+      create_color(::user::color_text_highlight, argb(255, 100, 150, 200));
 
 
 
@@ -91,11 +91,11 @@ namespace lite
       ::rectangle_i32 r1;
       ptab->get_client_rect(r1);
 
-      pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
 
-      ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
+      ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -119,11 +119,11 @@ namespace lite
 
       color32_t crbk = ptab->_001GetColor(::user::color_tab_layout_background);
 
-      pgraphics->fill_rect(rcTabs, crbk);
+      pgraphics->fill_rectangle(rcTabs, crbk);
 
       crbk= ptab->_001GetColor(::user::color_tab_client_background);
 
-      pgraphics->fill_rect(rcClient, crbk);
+      pgraphics->fill_rectangle(rcClient, crbk);
 
       i32 iTab = -1;
 
@@ -139,7 +139,7 @@ namespace lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rectangle_i32,::user::e_element_tab))
+         if(!ptab->get_element_rect(iTab,rectangle,::user::e_element_tab))
             continue;
 
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -177,7 +177,7 @@ namespace lite
 
                   path->end_figure(false);
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
                   pgraphics->SelectObject(pane.m_brushFillSel);
 
@@ -219,7 +219,7 @@ namespace lite
                   if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->SelectObject(pane.m_brushFillHover);
 
@@ -237,7 +237,7 @@ namespace lite
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->SelectObject(pane.m_brushFill);
 
@@ -308,15 +308,15 @@ namespace lite
 
                   path->end_figure(false);
 
-                  //pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  //pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-                  pane.m_brushFillSel->create_solid(ARGB(255, 255, 255, 255));
+                  pane.m_brushFillSel->create_solid(argb(255, 255, 255, 255));
 
                   pgraphics->SelectObject(pane.m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
-                  ptab->get_data()->m_penBorderSel->create_solid(1.0,ARGB(255,0,0,0));
+                  ptab->get_data()->m_penBorderSel->create_solid(1.0,argb(255,0,0,0));
 
                   pgraphics->SelectObject(ptab->get_data()->m_penBorderSel);
 
@@ -363,7 +363,7 @@ namespace lite
                   if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->SelectObject(pane.m_brushFillHover);
 
@@ -381,7 +381,7 @@ namespace lite
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->SelectObject(pane.m_brushFill);
 
@@ -484,7 +484,7 @@ namespace lite
 
          ::rectangle_i32 rectText(lpcrect);
 
-         ::draw2d::font_pointer font;
+         ::write_text::font_pointer font;
          font = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectEmp;
@@ -504,12 +504,12 @@ namespace lite
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
-                  pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
+                  pgraphics->fill_rectangle(rectEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
                }
                else
                {
-                  //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
+                  //pgraphics->FillSolidRect(rectEmp,argb(128,208,223,233));
                   pgraphics->SelectObject(ptab->get_data()->m_brushText);
                }
                pgraphics->set_font(ptab->_001GetFont(::user::font_tab_big_bold));
@@ -612,7 +612,7 @@ namespace lite
 /*            if(tab_pane.m_pimage->is_set())
             {
 /*               size.cx += tab_pane.m_pimage->width() + 2;
-/*               size.cy = max(size.cy,tab_pane.m_pimage->height());
+/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
@@ -659,8 +659,8 @@ namespace lite
          ptab->get_data()->m_rectTab.right      = ptab->get_data()->m_rectTab.left + ptab->get_data().m_iTabWidth;
          ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
 
-         /*      m_puserinteraction->set_window_pos(
-         zorder_top,
+         /*      m_puserinteraction->set_window_position(
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -707,7 +707,7 @@ namespace lite
 /*            if(tab_pane.m_pimage)
             {
 
-/*               size.cy = max(size.cy,tab_pane.m_pimage->height());
+/*               size.cy = maximum(size.cy,tab_pane.m_pimage->height());
 
             }
 
@@ -779,8 +779,8 @@ namespace lite
          ptab->get_data()->m_rectTab.right      = rectClient.right;
          ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data().m_iTabHeight;
 
-         /*      set_window_pos(
-         zorder_top,
+         /*      set_window_position(
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -928,7 +928,7 @@ namespace lite
          rectSeparator.right = rectSeparator.left + 2;
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;
-         pgraphics->draw3d_rect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         pgraphics->draw3d_rect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
       {
@@ -949,9 +949,9 @@ namespace lite
                   rectItem.top,
                   rectItem.width(),
                   rectItem.height(),
-                  RGB(255, 255, 250), 208);
+                  rgb(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+                  pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
                }
 
                if (uImage != 0xffffffffu)
@@ -987,13 +987,13 @@ namespace lite
 
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1, ARGB(184, 92, 184, 92));
+                  pen->create_solid(1, argb(184, 92, 184, 92));
                   ::draw2d::brush_pointer brush(e_create);
 
-                  brush->create_solid(ARGB(123, 177, 184, 255));
+                  brush->create_solid(argb(123, 177, 184, 255));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                   ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
                   pgraphics->SelectObject(ppenOld);
                   pgraphics->SelectObject(pbrushOld);
 
@@ -1004,7 +1004,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
 /*                  System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
@@ -1014,7 +1014,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1032,13 +1032,13 @@ namespace lite
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ARGB(255, 92, 92, 92));
+               pen->create_solid(1, argb(255, 92, 92, 92));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ARGB(255, 255, 255, 255));
+               brush->create_solid(argb(255, 255, 255, 255));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1049,7 +1049,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
@@ -1070,14 +1070,14 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-               pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
+               pgraphics->fill_rectangle(rectItem, argb(184, 255, 255, 255));
 
             }
 
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1086,7 +1086,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+/*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
@@ -1125,13 +1125,13 @@ namespace lite
          if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
-            brushText->create_solid(ARGB(255, 0, 0, 0));
+            brushText->create_solid(argb(255, 0, 0, 0));
 
          }
          else
          {
 
-            brushText->create_solid(ARGB(255, 123, 123, 118));
+            brushText->create_solid(argb(255, 123, 123, 118));
 
          }
 
@@ -1235,7 +1235,7 @@ namespace lite
          rectSeparator.right = rectSeparator.left + 2;
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;*/
-         //pgraphics->Draw3dRect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         //pgraphics->Draw3dRect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
       {
@@ -1256,9 +1256,9 @@ namespace lite
                   rectItem.top,
                   rectItem.width(),
                   rectItem.height(),
-                  RGB(255, 255, 250), 208);
+                  rgb(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+                  pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
                }
 
                if (uImage != 0xffffffffu)
@@ -1300,7 +1300,7 @@ namespace lite
                   brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                   ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
                   pgraphics->SelectObject(ppenOld);
                   pgraphics->SelectObject(pbrushOld);
 
@@ -1311,7 +1311,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
 /*                  System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
@@ -1321,7 +1321,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1345,7 +1345,7 @@ namespace lite
                brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1356,7 +1356,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
@@ -1377,14 +1377,14 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-               pgraphics->fill_rect(rectItem, _001GetColor(::user::color_button_background));
+               pgraphics->fill_rectangle(rectItem, _001GetColor(::user::color_button_background));
 
             }
 
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1405,7 +1405,7 @@ namespace lite
                                    ::user::color_button_background_disabled));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1416,7 +1416,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+/*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
@@ -1455,9 +1455,9 @@ namespace lite
          if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
-            pgraphics->set_text_color(ARGB(255, 255, 255, 255));
+            pgraphics->set_text_color(argb(255, 255, 255, 255));
 
          }
          else
@@ -1494,14 +1494,14 @@ namespace lite
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       return true;
 
    }
 
 
-   bool theme::get_font(::draw2d::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
+   bool theme::get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
    {
 
       return ::user::theme::get_font(sp, efont, pcontext);

@@ -146,7 +146,7 @@ public:
    static void siginfofree(void * psiginfo);
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_callstack_SKIP, void * caller_address = nullptr) :
-      exception(error_exception, iSkip, caller_address),
+      exception(nullptr, error_exception, iSkip, caller_address),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
 #ifndef ANDROID

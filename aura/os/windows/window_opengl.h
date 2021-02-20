@@ -22,7 +22,7 @@ namespace opengl
       virtual void destroy_buffer() override;
 
 
-      virtual ::draw2d::graphics * on_begin_draw(sync ** ppsync) override;
+      virtual ::draw2d::graphics * on_begin_draw(synchronization_object ** ppsync) override;
 
 
       virtual bool update_window() override;

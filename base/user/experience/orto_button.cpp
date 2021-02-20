@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -51,31 +49,31 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 90, 90, 80));
+         pgraphics->fill_rectangle(rectClient, argb(255, 90, 90, 80));
 
-         crText = ARGB(255, 49, 50, 23);
+         crText = argb(255, 49, 50, 23);
 
       }
       else if (m_itemHover.is_set())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(190, 49, 50, 23));
+         pgraphics->fill_rectangle(rectClient, argb(190, 49, 50, 23));
 
-         crText = ARGB(255, 255, 255, 255);
+         crText = argb(255, 255, 255, 255);
 
       }
-      else if (has_focus())
+      else if (has_keyboard_focus())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 255, 250, 184));
+         pgraphics->fill_rectangle(rectClient, argb(255, 255, 250, 184));
 
-         crText = ARGB(255, 255, 255, 255);
+         crText = argb(255, 255, 255, 255);
 
       }
       else
       {
 
-         crText = ARGB(255, 243, 243, 233);
+         crText = argb(255, 243, 243, 233);
 
       }
 
@@ -146,29 +144,29 @@ namespace experience
 
    }
 
-   LRESULT orto_button::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
-   {
-      MESSAGE * pmsg = (MESSAGE *)lParam;
+   //LRESULT orto_button::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
+   //{
+   //   MESSAGE * pmsg = (MESSAGE *)lParam;
 
-      if (wParam == e_message_mouse_move)
-      {
-         ::point_i32 pointCursor = pmsg->pt;
+   //   if (wParam == e_message_mouse_move)
+   //   {
+   //      ::point_i32 pointCursor = pmsg->pt;
 
-         ::rectangle_i32 rectClient;
-         ::user::interaction::get_client_rect(rectClient);
-         ::user::interaction::_001ClientToScreen(rectClient);
+   //      ::rectangle_i32 rectClient;
+   //      ::user::interaction::get_client_rect(rectClient);
+   //      ::user::interaction::_001ClientToScreen(rectClient);
 
-         if (rectClient.contains(pointCursor))
-         {
-            set_need_redraw();
-         }
-         else
-         {
-            set_need_redraw();
-         }
-      }
-      return 0;
-   }
+   //      if (rectClient.contains(pointCursor))
+   //      {
+   //         set_need_redraw();
+   //      }
+   //      else
+   //      {
+   //         set_need_redraw();
+   //      }
+   //   }
+   //   return 0;
+   //}
 
    void orto_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
@@ -188,7 +186,13 @@ namespace experience
          /*if(m_bFocus)
          {
          ::point_i32 pointCursor;
-         psession->get_cursor_pos(&pointCursor);
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pointCursor = pwindowing->get_cursor_pos();
          ::rectangle_i32 rectClient;
          ::user::interaction::get_client_rect(rectClient);
          ::user::interaction::_001ClientToScreen(rectClient);

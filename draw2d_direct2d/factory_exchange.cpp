@@ -13,7 +13,7 @@ extern CLASS_DECL_AURA image_array * g_pimagea;
 //{
 
 extern "C"
-void draw2d_direct2d_factory_exchange()
+void draw2d_direct2d_factory_exchange(::factory_map * pfactorymap)
    {
 
       if (g_pimagea == nullptr)
@@ -30,7 +30,7 @@ void draw2d_direct2d_factory_exchange()
       create_factory < ::draw2d_direct2d::brush, ::draw2d::brush >();
       create_factory < ::draw2d_direct2d::palette, ::draw2d::palette >();
       create_factory < ::draw2d_direct2d::region, ::draw2d::region >();
-      create_factory < ::draw2d_direct2d::font, ::draw2d::font >();
+      create_factory < ::draw2d_direct2d::font, ::write_text::font >();
 
       create_factory < ::draw2d_direct2d::graphics, ::draw2d::graphics > ();
 
@@ -59,7 +59,7 @@ void draw2d_direct2d_factory_exchange()
 //
 
 //extern "C"
-//void draw2d_factory_exchange()
+//void draw2d_factory_exchange(::factory_map * pfactorymap)
 //{
 //
 //   System.m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
@@ -70,7 +70,7 @@ void draw2d_direct2d_factory_exchange()
 //void factory_exchange()
 //{
 //
-//   draw2d_factory_exchange();
+//   draw2d_factory_exchange(::factory_map * pfactorymap);
 //
 //}
 

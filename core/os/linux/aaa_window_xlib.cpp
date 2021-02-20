@@ -39,7 +39,7 @@ namespace xlib
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       xdisplay d(m_oswindow->display());
 
@@ -55,7 +55,7 @@ namespace xlib
    void buffer::finalize()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       xdisplay d(m_oswindow->display());
 
@@ -75,7 +75,7 @@ namespace xlib
    bool buffer::create_os_buffer(const ::size & size, int iStrideParam)
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      destroy_os_buffer();
 //
@@ -119,7 +119,7 @@ namespace xlib
    void buffer::destroy_os_buffer()
    {
 
-//      sync_lock sl(mutex());
+//      synchronization_lock synchronizationlock(mutex());
 //
 //      xdisplay d(m_oswindow->display());
 //
@@ -164,7 +164,7 @@ namespace xlib
 //   bool buffer::create_os_buffer(::image * pimage)
 //   {
 //
-//      //sync_lock sl(mutex());
+//      //synchronization_lock synchronizationlock(mutex());
 //
 ////      if(!pimage)
 ////      {
@@ -269,7 +269,7 @@ namespace xlib
 
       }
 
-      sync_lock slGraphics(mutex());
+      synchronization_lock slGraphics(mutex());
 
       if(m_gc == nullptr)
       {
@@ -280,7 +280,7 @@ namespace xlib
 
       auto psync = get_screen_sync();
 
-      sync_lock sl(psync);
+      synchronization_lock synchronizationlock(psync);
 
       auto & pimage = get_screen_image();
 
@@ -375,7 +375,7 @@ namespace xlib
    ::draw2d::graphics * buffer::on_begin_draw()
    {
 
-      m_iGoodStride = max(m_iGoodStride, window_size().cx);
+      m_iGoodStride = maximum(m_iGoodStride, window_size().cx);
 
       bitmap_source_buffer::on_begin_draw();
 

@@ -19,7 +19,7 @@ namespace promise
 
       __pointer(::promise::handler)          m_pbacking;
       ::promise::matter_context              m_mattercontext;
-      ::user::e_key                          m_ekey;
+      ::user::enum_key                          m_ekey;
       ::payload                              m_var;
       ::i64                                  m_iUpdateSerial;
       bool                                   m_bModified;
@@ -62,7 +62,7 @@ namespace promise
       inline bool is_ending()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          return m_mattercontext.is_empty();
 

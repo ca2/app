@@ -114,7 +114,7 @@ static int_bool
       {
          // create a tag
          tag = FreeImage_CreateTag();
-         if(!tag) return FALSE;
+         if(!tag) return false;
 
          ::u32 tag_length;
 
@@ -142,7 +142,7 @@ static int_bool
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (::u32) max(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif
@@ -177,7 +177,7 @@ static int_bool
       }
    }
 
-   return TRUE;
+   return true;
 }
 
 static int_bool
@@ -188,7 +188,7 @@ static int_bool
 
    FITAG *tag = nullptr;
    FIMETADATA *mdhandle = nullptr;
-   int_bool bResult = TRUE;
+   int_bool bResult = true;
 
    png_text text_metadata;
 
@@ -218,7 +218,7 @@ static int_bool
       while(FreeImage_FindNextMetadata(mdhandle, &tag));
 
       FreeImage_FindCloseMetadata(mdhandle);
-      bResult &= TRUE;
+      bResult &= true;
    }
 
    // set the 'XMP' metadata as iTXt chuncks
@@ -238,7 +238,7 @@ static int_bool
 #endif
       // set the tag
       png_set_text(png_ptr, info_ptr, &text_metadata, 1);
-      bResult &= TRUE;
+      bResult &= true;
    }
 
    return bResult;
@@ -321,13 +321,13 @@ SupportsExportType(FREE_IMAGE_TYPE type)
 static int_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
-   return TRUE;
+   return true;
 }
 
 static int_bool DLL_CALLCONV
 SupportsNoPixels()
 {
-   return TRUE;
+   return true;
 }
 
 // ----------------------------------------------------------
@@ -447,7 +447,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          case PNG_COLOR_TYPE_RGB:
          case PNG_COLOR_TYPE_RGB_ALPHA:
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip the RGB pixels to BGR (or RGBA to BGRA)
+            // flip the rgb pixels to BGR (or RGBA to BGRA)
 
             if(image_type == FIT_BITMAP)
             {
@@ -553,7 +553,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             png_get_PLTE(png_ptr,info_ptr, &png_palette, &palette_entries);
 
-/*            palette_entries = min((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
+/*            palette_entries = minimum((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
 /*            palette = FreeImage_GetPalette(pimage);
 
             // store the palette
@@ -728,11 +728,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          {
 /*            if (FreeImage_GetColorType(pimage) == FIC_RGBALPHA)
             {
-/*               FreeImage_SetTransparent(pimage, TRUE);
+/*               FreeImage_SetTransparent(pimage, true);
             }
             else
             {
-/*               FreeImage_SetTransparent(pimage, FALSE);
+/*               FreeImage_SetTransparent(pimage, false);
             }
          }
 
@@ -791,7 +791,7 @@ static int_bool DLL_CALLCONV
    png_infop info_ptr;
    png_colorp palette = nullptr;
    png_::u32_32 width, height;
-   int_bool has_alpha_channel = FALSE;
+   int_bool has_alpha_channel = false;
 
    RGBQUAD *pal;					// pointer to image palette
    int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
@@ -812,7 +812,7 @@ static int_bool DLL_CALLCONV
 
          if (!png_ptr)
          {
-            return FALSE;
+            return false;
          }
 
          // allocate/initialize the image information data.
@@ -822,7 +822,7 @@ static int_bool DLL_CALLCONV
          if (!info_ptr)
          {
             png_destroy_write_struct(&png_ptr,  (png_infopp)nullptr);
-            return FALSE;
+            return false;
          }
 
          // Set error handling.  REQUIRED if you aren't supplying your own
@@ -833,7 +833,7 @@ static int_bool DLL_CALLCONV
 //
 //				png_destroy_write_struct(&png_ptr, &info_ptr);
 //
-//				return FALSE;
+//				return false;
 //			}
 
          // init the IO
@@ -862,11 +862,11 @@ static int_bool DLL_CALLCONV
 /*         height = FreeImage_GetHeight(pimage);
 /*         pixel_depth = FreeImage_GetBPP(pimage);
 
-         int_bool bInterlaced = FALSE;
+         int_bool bInterlaced = false;
          if( (flags & PNG_INTERLACED) == PNG_INTERLACED)
          {
             interlace_type = PNG_INTERLACE_ADAM7;
-            bInterlaced = TRUE;
+            bInterlaced = true;
          }
          else
          {
@@ -903,13 +903,13 @@ static int_bool DLL_CALLCONV
          }
          else
          {
-            // 16-bit greyscale or 16-bit RGB(A)
+            // 16-bit greyscale or 16-bit rgb(A)
             bit_depth = 16;
          }
 
          // check for transparent images
          int_bool bIsTransparent =
-/*         (image_type == FIT_BITMAP) && FreeImage_IsTransparent(pimage) && (FreeImage_GetTransparencyCount(pimage) > 0) ? TRUE : FALSE;
+/*         (image_type == FIT_BITMAP) && FreeImage_IsTransparent(pimage) && (FreeImage_GetTransparencyCount(pimage) > 0) ? true : false;
 
 /*         switch (FreeImage_GetColorType(pimage))
          {
@@ -961,14 +961,14 @@ static int_bool DLL_CALLCONV
          }
 
          case FIC_RGBALPHA :
-            has_alpha_channel = TRUE;
+            has_alpha_channel = true;
 
             png_set_IHDR(png_ptr, info_ptr, width, height, bit_depth,
                          PNG_COLOR_TYPE_RGBA, interlace_type,
                          PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip BGR pixels to RGB
+            // flip BGR pixels to rgb
             if(image_type == FIT_BITMAP)
             {
                png_set_bgr(png_ptr);
@@ -982,7 +982,7 @@ static int_bool DLL_CALLCONV
                          PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
-            // flip BGR pixels to RGB
+            // flip BGR pixels to rgb
             if(image_type == FIT_BITMAP)
             {
                png_set_bgr(png_ptr);
@@ -1104,7 +1104,7 @@ static int_bool DLL_CALLCONV
 
          png_destroy_write_struct(&png_ptr, &info_ptr);
 
-         return TRUE;
+         return true;
       }
       catch (const char *text)
       {
@@ -1112,7 +1112,7 @@ static int_bool DLL_CALLCONV
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 extern "C"

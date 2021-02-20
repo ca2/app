@@ -442,7 +442,7 @@
 //   }
 //  TEMPLATE bool rectangle_f64::contains(POINT_F64 point_i32) const noexcept
 //   {
-//      return ::contains((const rectangle_f64&)this, point_i32) != FALSE;
+//      return ::contains((const rectangle_f64&)this, point_i32) != false;
 //   }
 //  TEMPLATE void rectangle_f64::set(double x1, double y1, double x2, double y2) noexcept
 //   {
@@ -478,7 +478,7 @@
 //  TEMPLATE bool rectangle_f64::is_equal(const rectangle_f64 & RECT_TEMPLATE) const noexcept
 //
 //   {
-//      return ::is_equal((const rectangle_f64&)this, RECT_TEMPLATE) != FALSE;
+//      return ::is_equal((const rectangle_f64&)this, RECT_TEMPLATE) != false;
 //   }
 //
 //  TEMPLATE void rectangle_f64::inflate(double x, double y) noexcept
@@ -528,19 +528,19 @@
 //   //TEMPLATE bool rectangle_f64::intersect_x(const rectangle_f64 & rect1, const rectangle_f64 & rect2) noexcept
 //
 //   //{
-//   //   return ::x_intersect_rect(this, rect1, rect2) != FALSE;
+//   //   return ::x_intersect_rect(this, rect1, rect2) != false;
 //
 //   //}
 //   //TEMPLATE bool rectangle_f64::intersect_y(const rectangle_f64 & rect1, const rectangle_f64 & rect2) noexcept
 //
 //   //{
-//   //   return ::y_intersect_rect(this, rect1, rect2) != FALSE;
+//   //   return ::y_intersect_rect(this, rect1, rect2) != false;
 //
 //   //}
 //  TEMPLATE bool rectangle_f64::intersect(const rectangle_f64 & rect1, const rectangle_f64 & rect2) noexcept
 //
 //   {
-//      return ::intersect(this, rect1, rect2) != FALSE;
+//      return ::intersect(this, rect1, rect2) != false;
 //
 //   }
 //   //rectangle_f64 rectangle_f64::intersect(const rectangle_f64 & RECT_TEMPLATE) const noexcept
@@ -554,7 +554,7 @@
 //  TEMPLATE bool rectangle_f64::unite(const rectangle_f64 & rect1, const rectangle_f64 & rect2) noexcept
 //
 //   {
-//      return ::unite(this, rect1, rect2) != FALSE;
+//      return ::unite(this, rect1, rect2) != false;
 //   }
 //
 //  TEMPLATE void rectangle_f64::operator=(const ::rectangle_f64 & rectectSrc) noexcept
@@ -563,11 +563,11 @@
 //   }
 //  TEMPLATE bool rectangle_f64::operator==(const ::rectangle_f64 & rectectd) const noexcept
 //   {
-//      return ::is_equal((const rectangle_f64&)this, (const rectangle_f64&)& rectangle_f64) != FALSE;
+//      return ::is_equal((const rectangle_f64&)this, (const rectangle_f64&)& rectangle_f64) != false;
 //   }
 //  TEMPLATE bool rectangle_f64::operator!=(const ::rectangle_f64 & rectectd) const noexcept
 //   {
-//      return !::is_equal((const rectangle_f64&)this, (const rectangle_f64&)& rectangle_f64) != FALSE;
+//      return !::is_equal((const rectangle_f64&)this, (const rectangle_f64&)& rectangle_f64) != false;
 //   }
 //  TEMPLATE void rectangle_f64::operator+=(POINT_F64 point_i32) noexcept
 //   {
@@ -645,7 +645,7 @@
 //   }
 //   //TEMPLATE bool rectangle_f64::subtract(const rectangle_f64 & pRectSrc1, const rectangle_f64 & lpRectSrc2) noexcept
 //
-//   // { return ::subtract(this, pRectSrc1, lpRectSrc2) != FALSE; }
+//   // { return ::subtract(this, pRectSrc1, lpRectSrc2) != false; }
 //
 //
 //  TEMPLATE void rectangle_f64::normalize() noexcept
@@ -786,13 +786,13 @@
 //      else if (bNegativePreference) // absolutely equal, prefer negative ...
 //      {
 //
-//         return min(w, h);
+//         return minimum(w, h);
 //
 //      }
 //      else // ... otherwise prefer positive
 //      {
 //
-//         return max(w, h);
+//         return maximum(w, h);
 //
 //      }
 //
@@ -822,13 +822,13 @@
 //      else if (bPositivePreference) // absolutely equal, prefer positive ...
 //      {
 //
-//         return max(w, h);
+//         return maximum(w, h);
 //
 //      }
 //      else // ... otherwise prefer negative
 //      {
 //
-//         return min(w, h);
+//         return minimum(w, h);
 //
 //      }
 //
@@ -837,8 +837,8 @@
 //
 //
 //
-//   double rectangle_f64::minimum_absolute_dimension() const noexcept { return min(fabs(width()), fabs(height())); }
-//   double rectangle_f64::maximum_absolute_dimension() const noexcept { return min(fabs(width()), fabs(height())); }
+//   double rectangle_f64::minimum_absolute_dimension() const noexcept { return minimum(fabs(width()), fabs(height())); }
+//   double rectangle_f64::maximum_absolute_dimension() const noexcept { return minimum(fabs(width()), fabs(height())); }
 //
 //
 //
@@ -1005,18 +1005,18 @@
 
 
 
-template < typename TARGET, typename SOURCE >
-inline TARGET * _001CopyRect(TARGET * prectTarget, const SOURCE * prectSource)
-{
-
-   return _001SetRectDim(
-      prectTarget,
-      (decltype(::left(prectTarget))) ::left(prectSource),
-      (decltype(::top(prectTarget))) ::top(prectSource),
-      (decltype(::width(prectTarget))) ::width(prectSource),
-      (decltype(::height(prectTarget))) ::height(prectSource));
-
-}
+//template < typename TARGET, typename SOURCE >
+//inline TARGET * _001CopyRect(TARGET * prectTarget, const SOURCE * prectSource)
+//{
+//
+//   return _001SetRectDim(
+//      prectTarget,
+//      (decltype(::left(prectTarget))) ::left(prectSource),
+//      (decltype(::top(prectTarget))) ::top(prectSource),
+//      (decltype(::width(prectTarget))) ::width(prectSource),
+//      (decltype(::height(prectTarget))) ::height(prectSource));
+//
+//}
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >

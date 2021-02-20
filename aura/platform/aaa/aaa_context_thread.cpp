@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 
 
 namespace aura
@@ -53,10 +51,10 @@ namespace aura
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
-      return m_createaPending.pred_contains([&pcreate](auto& p) {return p.get() == pcreate; })
-      || m_createaHistory.pred_contains([&pcreate](auto& p) {return p.get() == pcreate; })
+      return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
+      || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
       || m_pcreate.get() == pcreate;
 
    }
@@ -117,7 +115,7 @@ namespace aura
    void context_thread::add_create(::create* pcreate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -149,7 +147,7 @@ namespace aura
    create * context_thread::get_create()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {

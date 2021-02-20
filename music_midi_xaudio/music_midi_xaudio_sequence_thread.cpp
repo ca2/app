@@ -73,9 +73,9 @@ namespace music
          void sequence_thread::OnMidiSequenceEvent(::message::message * pmessage)
          {
 
-            __pointer(::message::base) pbase(pmessage);
+            __pointer(::user::message) pusermessage(pmessage);
 
-            ::music::midi::sequence::event * pevent = (::music::midi::sequence::event *) pbase->m_lparam.m_lparam;
+            ::music::midi::sequence::event * pevent = (::music::midi::sequence::event *) pusermessage->m_lparam.m_lparam;
             ::music::midi::sequence * pseq = (::music::midi::sequence *) pevent->m_psequence;
 
             pseq->OnEvent(pevent);
@@ -227,7 +227,7 @@ namespace music
             catch (::exception_pointer e)
             {
                string str;
-               ASSERT(FALSE);
+               ASSERT(false);
 
                /* super merge module      CVmsMusDll::load_string(str, IDS_PREROLLUSERERROR001);
                pme->SetUserText(str);*/
@@ -307,9 +307,9 @@ namespace music
 
          void sequence_thread::OnCommand(::message::message * pmessage)
          {
-            __pointer(::message::base) pbase(pmessage);
+            __pointer(::user::message) pusermessage(pmessage);
             pointer < ::music::midi::player::command > spcommand;
-            spcommand = (::music::midi::player::command *) pbase->m_lparam.m_lparam;
+            spcommand = (::music::midi::player::command *) pusermessage->m_lparam.m_lparam;
             try
             {
                _ExecuteCommand(spcommand);

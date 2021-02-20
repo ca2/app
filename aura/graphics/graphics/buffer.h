@@ -22,7 +22,7 @@ namespace graphics
       virtual ~buffer();
 
 
-      virtual sync * get_draw_lock() override;
+      virtual synchronization_object * get_draw_lock() override;
       ::draw2d::graphics * on_begin_draw() override;
       virtual bool update_window() override;
       virtual bool buffer_lock_round_swap_key_buffers() override;
@@ -38,7 +38,7 @@ namespace graphics
       ::image_pointer & get_buffer();
 
       virtual ::image_pointer & get_screen_image() override;
-      virtual sync * get_screen_sync() override;
+      virtual synchronization_object * get_screen_sync() override;
 
 
    };

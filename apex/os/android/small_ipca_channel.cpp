@@ -117,9 +117,9 @@
          while(c > 0)
          {
 
-            cSend = min(c,511);
+            cSend = minimum(c,511);
 
-            ::memcpy_dup(data.data,&pszMessage[cPos],min(c,511));
+            ::memcpy_dup(data.data,&pszMessage[cPos],minimum(c,511));
 
             c -= cSend;
 

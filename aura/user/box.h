@@ -64,7 +64,7 @@ namespace user
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
 
       virtual bool on_set_parent(::user::primitive * puiParent) override;

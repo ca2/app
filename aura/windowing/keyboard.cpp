@@ -53,8 +53,10 @@ namespace windowing
       return groupLookup(groupResNum, _groupNames, _symbolNames, _groupCount);
    }
 
+
    int keyboard::groupLookup(int srcValue, string_array fromText, string_array toText, int count)
    {
+
       const string srcText = fromText[srcValue];
 
       if (!srcText.empty())
@@ -64,16 +66,24 @@ namespace windowing
          for (int i = 0; i < count; i++)
          {
             targetText = toText[i];
-            if (compareNoCase(srcText, targetText) == 0)
+
+            if (srcText.compare_ci(targetText) == 0)
             {
+
                srcValue = i;
+
                break;
+
             }
+
          }
+
       }
 
       return srcValue;
+
    }
+
 
    void keyboard::accomodateGroupXkb()
    {
@@ -108,7 +118,11 @@ namespace windowing
 
    int keyboard::currentGroupNum() const
    {
+
+       return -1;
+
    }
+
 
    string keyboard::currentGroupName() const
    {

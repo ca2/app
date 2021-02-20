@@ -14,7 +14,7 @@ namespace user
       ::user::document *            m_pdocument;
       ::userex::color_view *        m_pview;
       ::experience::frame_window *  m_pframewindow;
-      ::hls                         m_hls;
+      ::color::hls                         m_hls;
       bool                          m_bMouseDown;
 
 

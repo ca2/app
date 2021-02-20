@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -16,7 +14,7 @@ namespace filemanager
 
    bool operation_document::on_new_document()
    {
-      return TRUE;
+      return true;
    }
 
 

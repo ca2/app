@@ -123,7 +123,7 @@ const char* matter::debug_note() const
 i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = m_countReference++;
+   auto c = ++m_countReference;
 
 #if OBJ_REF_DBG
 
@@ -139,7 +139,7 @@ i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_decrement(&m_countReference);
+   auto c = --m_countReference;
 
 #if OBJ_REF_DBG
 
@@ -187,7 +187,7 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-void matter::set_mutex(sync* psync)
+void matter::set_mutex(synchronization_object* psync)
 {
 
    ::release(m_pmutex);
@@ -458,19 +458,19 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::task* matter::defer_start_task(const ::id& id, const ::promise::routine & routine)
+::task* matter::defer_fork(const ::id& id, const ::promise::routine & routine)
 {
 
    auto ptasktool = __task_pool(taskpool());
 
-   if (ptasktool)
+   if (!ptasktool)
    {
 
-      return ptasktool->defer_start(id, routine);
+      return nullptr;
 
    }
 
-   return nullptr;
+   return ptasktool->defer_fork(id, routine);
 
 }
 

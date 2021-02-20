@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "aura/user/wait_cursor.h"
@@ -30,7 +28,7 @@ namespace user
 
       m_pimpactsystem = nullptr;
 
-      m_bEmbedded = FALSE;        // default to file-based document
+      m_bEmbedded = false;        // default to file-based document
 
       defer_create_mutex();
 
@@ -99,7 +97,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::user::interaction_array uia;
 
@@ -214,7 +212,7 @@ namespace user
    }
 
 
-   //void document::route_command_message(::user::command * pcommand)
+   //void document::route_command_message(::message::command * pcommand)
    //{
 
    //   channel::route_command_message(pcommand);
@@ -235,7 +233,7 @@ namespace user
    //}
 
 
-   //void document::route_command_message(::user::command* pcommand)
+   //void document::route_command_message(::message::command* pcommand)
    //{
 
    //   on_command_message(pcommand);
@@ -427,7 +425,7 @@ namespace user
    void document::disconnect_views()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       for (index index = 0; index < m_viewa.get_count(); index++)
       {
@@ -475,7 +473,7 @@ namespace user
    __pointer(::user::impact) document::get_view(index index) const
    {
 
-      sync_lock sl(((document *)this)->mutex());
+      synchronization_lock synchronizationlock(((document *)this)->mutex());
 
       if (index < 0 || index >= m_viewa.get_count())
       {
@@ -527,7 +525,7 @@ namespace user
    __pointer(::user::impact) document::get_typed_view(::type info, index indexFind)
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       ::count countView = get_view_count();
 
@@ -567,7 +565,7 @@ namespace user
 
    __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
    {
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
       ::count countView = get_view_count();
       ::count countFind = 0;
       __pointer(::user::impact) pview;
@@ -588,9 +586,11 @@ namespace user
    }
 
 
-   void document::show_all_frames(::u32 nCmdShow)
+   void document::show_all_frames(const ::edisplay & edisplay)
    {
+
       ::count count = get_view_count();
+
       for (index index = 0; index < count; index++)
       {
 
@@ -598,15 +598,13 @@ namespace user
 
          enum_activation eactivation = e_activation_default;
 
-         auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
-
          pview->get_parent_frame()->display(edisplay, eactivation);
 
       }
+
    }
 
 
-   // document
    const string & document::get_title() const
    {
 
@@ -694,16 +692,16 @@ namespace user
       //if ( lstrlen(pszPathName) >= _MAX_PATH )
 
       //{
-      //   ASSERT(FALSE);
+      //   ASSERT(false);
       // aura API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
       //   ::aura::ThrowFileException(::file::exception::badPath);
       //}
 
-      //   if( ::aura::FullPath(szFullPath, pszPathName) == FALSE )
+      //   if( ::aura::FullPath(szFullPath, pszPathName) == false )
 
       //   {
-      //      ASSERT(FALSE);
+      //      ASSERT(false);
       // aura API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
       //      ::aura::ThrowFileException(::file::exception::badPath);
@@ -716,7 +714,7 @@ namespace user
       m_path = Context.defer_process_path(m_path);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
-      m_bEmbedded = FALSE;
+      m_bEmbedded = false;
 
       // set the document_interface title based on path name
       set_title(strFullPath.title());
@@ -735,7 +733,7 @@ namespace user
       m_strPathName = pszPathName;
 
       ASSERT(!m_strPathName.is_empty());       // must be set to something
-      m_bEmbedded = FALSE;
+      m_bEmbedded = false;
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
@@ -1032,7 +1030,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          for (auto & pview : m_viewa.ptra())
          {
@@ -1063,7 +1061,7 @@ namespace user
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_viewa.remove_all();
 
@@ -1079,11 +1077,11 @@ namespace user
 
       __pointer(::object) pthis = this;
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto viewptra = m_viewa;
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       for(auto & pview : viewptra.ptra())
       {
@@ -1268,7 +1266,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT_VALID(pframeParam);
 
@@ -1299,7 +1297,7 @@ namespace user
 
       }
 
-      sl.unlock();
+      synchronizationlock.unlock();
 
       // otherwise only one frame that we know about
       return save_modified();
@@ -1391,7 +1389,7 @@ namespace user
       //default:
       //{
 
-      //   ASSERT(FALSE);
+      //   ASSERT(false);
       //   break;
 
       //}
@@ -1434,8 +1432,8 @@ namespace user
 
    // note: pszPathName can be different than 'm_strPathName'
 
-   // if 'bReplace' is TRUE will machine file name if successful (SaveAs)
-   // if 'bReplace' is FALSE will not machine path name (SaveCopyAs)
+   // if 'bReplace' is true will machine file name if successful (SaveAs)
+   // if 'bReplace' is false will not machine path name (SaveCopyAs)
    {
 
       ::payload newName = varFile;
@@ -1469,8 +1467,8 @@ namespace user
             }
          }
 
-         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate, this))
-           // return FALSE;       // don't even attempt to save
+         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+           // return false;       // don't even attempt to save
 
       }
 
@@ -1499,14 +1497,14 @@ namespace user
             }
 
          }
-         return FALSE;
+         return false;
       }
 
       // reset the title and machine the document_interface name
       if (bReplace)
          set_path_name(newName);
 
-      return TRUE;        // success
+      return true;        // success
    }
 
 
@@ -1523,7 +1521,7 @@ namespace user
 
             TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
 
-            return FALSE;
+            return false;
 
          }
 
@@ -1636,7 +1634,7 @@ namespace user
                if (nFrames == 1)
                   pframe->m_nWindow = 0;      // the only one of its kind
 
-               pframe->post_simple_command(simple_command_update_frame_title, (LPARAM) TRUE);
+               pframe->post_simple_command(e_simple_command_update_frame_title, (lparam) true);
 
                iFrame++;
 
@@ -1649,26 +1647,26 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   HMENU document::GetDefaultMenu()
-   {
-
-      return nullptr;    // just use original default
-
-   }
-
-
-   HACCEL document::GetDefaultAccelerator()
-   {
-
-      return nullptr;    // just use original default
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   HMENU document::GetDefaultMenu()
+//   {
+//
+//      return nullptr;    // just use original default
+//
+//   }
+//
+//
+//   HACCEL document::GetDefaultAccelerator()
+//   {
+//
+//      return nullptr;    // just use original default
+//
+//   }
+//
+//
+//#endif
 
 
    void document::on_idle()
@@ -1683,7 +1681,7 @@ namespace user
    ::e_status document::add_view(::user::impact * pview)
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       ASSERT_VALID(pview);
 
@@ -1713,7 +1711,7 @@ namespace user
    ::e_status document::remove_view(::user::impact * pview)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ASSERT_VALID(pview);
 

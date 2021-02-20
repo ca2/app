@@ -178,7 +178,7 @@ namespace linux
 
          strsize iFind2 = pathInstall.reverse_find("/", iFind);
 
-         strsize iStart = max(iFind1 + 1, iFind2 + 1);
+         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
          pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall.Mid(iFind + 1);
 
@@ -629,7 +629,7 @@ namespace linux
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(psz) != false;
 
    }
 

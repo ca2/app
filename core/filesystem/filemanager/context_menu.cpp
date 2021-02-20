@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -24,26 +22,26 @@ namespace filemanager
 
 #ifdef WINDOWS_DESKTOP
 
-      if (m_pcontextmenu.is_null())
-      {
+      //if (m_pcontextmenu.is_null())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      string & str = rstrMessage;
+      //string & str = rstrMessage;
 
-      char * psz = str.get_string_buffer(1024);
+      //char * psz = str.get_string_buffer(1024);
 
-      m_pcontextmenu->GetCommandString(
-         nID - 0x1000,
-         GCS_HELPTEXTA,
-         nullptr,
-         psz,
+      //m_pcontextmenu->GetCommandString(
+      //   nID - 0x1000,
+      //   GCS_HELPTEXTA,
+      //   nullptr,
+      //   psz,
 
-         1024);
+      //   1024);
 
-      str.release_string_buffer();
+      //str.release_string_buffer();
 
 #endif
 
@@ -55,26 +53,26 @@ namespace filemanager
 
 #ifdef WINDOWS_DESKTOP
 
-      if (m_pcontextmenu.is_null())
-      {
+      //if (m_pcontextmenu.is_null())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      string & str = rwstrMessage;
+      //string & str = rwstrMessage;
 
-      char * psz = str.get_string_buffer(1024);
+      //char * psz = str.get_string_buffer(1024);
 
-      m_pcontextmenu->GetCommandString(
-         nID - 0x1000,
-         GCS_VERBW,
-         nullptr,
-         (char *) psz,
+      //m_pcontextmenu->GetCommandString(
+      //   nID - 0x1000,
+      //   GCS_VERBW,
+      //   nullptr,
+      //   (char *) psz,
 
-         1024);
+      //   1024);
 
-      str.release_string_buffer();
+      //str.release_string_buffer();
 
 #endif
 
@@ -84,28 +82,28 @@ namespace filemanager
    void context_menu::OnCommand(::u32 uId)
    {
 #ifdef WINDOWS_DESKTOP
-      if(m_pcontextmenu.is_null())
-         return;
+      //if(m_pcontextmenu.is_null())
+      //   return;
 
-      CMINVOKECOMMANDINFO info;
+      //CMINVOKECOMMANDINFO info;
 
-      string wstrVerb;
-      GetVerb(uId, wstrVerb);
+      //string wstrVerb;
+      //GetVerb(uId, wstrVerb);
 
-      info.cbSize = sizeof(info);
-      info.fMask = CMIC_MASK_ASYNCOK;
-      info.lpParameters = nullptr;
+      //info.cbSize = sizeof(info);
+      //info.fMask = CMIC_MASK_ASYNCOK;
+      //info.lpParameters = nullptr;
 
-      info.lpDirectory = nullptr;
+      //info.lpDirectory = nullptr;
 
-      auto psession = Session;
+      //auto psession = Session;
 
-      info.hwnd = psession->get_active_ui()->m_puiThis->get_handle();
-      info.lpVerb = MAKEINTRESOURCEA(uId - 0x1000);
+      //info.hwnd = psession->get_active_ui()->m_puiThis->get_handle();
+      //info.lpVerb = MAKEINTRESOURCEA(uId - 0x1000);
 
-      info.nShow = SW_SHOWNORMAL;
+      //info.nShow = SW_SHOWNORMAL;
 
-      m_pcontextmenu->InvokeCommand((LPCMINVOKECOMMANDINFO) &info);
+      //m_pcontextmenu->InvokeCommand((LPCMINVOKECOMMANDINFO) &info);
 
 #endif
    }

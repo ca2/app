@@ -167,7 +167,7 @@ namespace macos
 
 //      if(window_pointer::is_set() && window_pointer::m_p->is_window())
       //    {
-      //     bOk = window_pointer::m_p->DestroyWindow() != FALSE;
+      //     bOk = window_pointer::m_p->DestroyWindow() != false;
       //}
 //      else
       //    {

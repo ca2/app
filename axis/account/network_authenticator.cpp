@@ -571,7 +571,7 @@ namespace account
 //
 //   strSomeBrothersAndSisters = doc.attribute("some_brothers_and_sisters");
 //
-//   sl.lock();
+//   synchronizationlock.lock();
 //
 //   if(strSomeBrothersAndSisters.has_char())
 //   {

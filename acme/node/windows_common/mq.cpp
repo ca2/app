@@ -2,7 +2,7 @@
 #include "acme/os/_c.h"
 #include "acme/os/_.h"
 #include "acme/os/_os.h"
-#include "mq.h"
+#include "message_queue.h"
 
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
@@ -14,7 +14,7 @@ bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswi
 #endif
 
 
-mq::mq()
+message_queue::message_queue()
 {
 
    m_bQuit = false;
@@ -26,13 +26,13 @@ mq::mq()
 }
 
 
-mq::~mq()
+message_queue::~message_queue()
 {
 
 }
 
 
-int_bool mq::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
+int_bool message_queue::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
 {
 
    if (m_bQuit)
@@ -55,7 +55,7 @@ int_bool mq::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPA
 }
 
 
-int_bool mq::post_message(const mq_message & message)
+int_bool message_queue::post_message(const mq_message & message)
 {
 
    if(m_bQuit)
@@ -65,7 +65,7 @@ int_bool mq::post_message(const mq_message & message)
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_messagea.add(message);
 
@@ -77,7 +77,7 @@ int_bool mq::post_message(const mq_message & message)
 
 
 
-int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
@@ -87,7 +87,7 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    while (true)
    {
@@ -149,11 +149,11 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          m_eventNewMessage.wait();
 
-         sl.lock();
+         synchronizationlock.lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -164,7 +164,7 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 }
 
 
-int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)
@@ -174,7 +174,7 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    ::count count = m_messagea.get_count();
 
@@ -201,7 +201,7 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
@@ -222,13 +222,13 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 ::mutex * g_pmutexMq;
 
 
-map < ithread_t, __pointer(mq) > * g_pmapMq;
+map < ithread_t, __pointer(message_queue) > * g_pmapMq;
 
 
-mq * get_mq(ithread_t ithread, bool bCreate)
+message_queue * get_message_queue(ithread_t ithread, bool bCreate)
 {
 
-   sync_lock sl(g_pmutexMq);
+   synchronization_lock synchronizationlock(g_pmutexMq);
 
    auto p = g_pmapMq->plookup(ithread);
 
@@ -246,7 +246,7 @@ mq * get_mq(ithread_t ithread, bool bCreate)
 
    }
 
-   auto pmq = __new(mq);
+   auto pmq = __new(message_queue);
 
    pmq->m_ithread = ithread;
 
@@ -257,10 +257,10 @@ mq * get_mq(ithread_t ithread, bool bCreate)
 }
 
 
-void clear_mq(ithread_t idthread)
+void clear_message_queue(ithread_t idthread)
 {
 
-   sync_lock sl(g_pmutexMq);
+   synchronization_lock synchronizationlock(g_pmutexMq);
 
    g_pmapMq->remove_key(idthread);
 
@@ -291,7 +291,7 @@ void clear_mq(ithread_t idthread)
 ////
 ////   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmq = ::get_mq(idthread, message.message != e_message_quit);
+////   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 ////
 ////   if(pmq == nullptr)
 ////   {
@@ -326,7 +326,7 @@ void clear_mq(ithread_t idthread)
 ////
 ////   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
 ////
-////   mq * pmq = __get_mq(idthread, false);
+////   message_queue * pmq = __get_mq(idthread, false);
 ////
 ////   if(pmq == nullptr)
 ////   {
@@ -335,9 +335,9 @@ void clear_mq(ithread_t idthread)
 ////
 ////   }
 ////
-////   sync_lock ml(&pmq->m_mutex);
+////   synchronization_lock ml(&pmq->m_mutex);
 ////
-////   pmq->m_messagea.pred_remove([=](MESSAGE & item)
+////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 ////   {
 ////
 ////      return item.hwnd == oswindow;
@@ -352,7 +352,7 @@ void clear_mq(ithread_t idthread)
 CLASS_DECL_ACME void mq_clear(ithread_t idthread)
 {
 
-   auto pmq = ::get_mq(idthread, false);
+   auto pmq = ::get_message_queue(idthread, false);
 
    if (pmq == nullptr)
    {
@@ -361,7 +361,7 @@ CLASS_DECL_ACME void mq_clear(ithread_t idthread)
 
    }
 
-   sync_lock ml(g_pmutexMq);
+   synchronization_lock ml(g_pmutexMq);
 
    pmq->m_messagea.remove_all();
 
@@ -374,11 +374,11 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wpar
    if (id.m_etype != ::id::e_type_message)
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
-   auto pmq = get_mq(idthread, true);
+   auto pmq = get_message_queue(idthread, true);
 
    if (::is_null(pmq))
    {
@@ -397,7 +397,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wpar
 CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_mq(::get_current_ithread(), false);
+   auto pmq = ::get_message_queue(::get_current_ithread(), false);
 
    if (pmq == nullptr)
    {
@@ -421,7 +421,7 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
 CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_mq(::get_current_ithread(), true);
+   auto pmq = ::get_message_queue(::get_current_ithread(), true);
 
    if (pmq == nullptr)
    {
@@ -450,7 +450,7 @@ void init_global_mq()
 
    g_pmutexMq = new mutex();
 
-   g_pmapMq = new map < ithread_t, __pointer(mq) >();
+   g_pmapMq = new map < ithread_t, __pointer(message_queue) >();
 
 }
 

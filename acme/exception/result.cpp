@@ -25,7 +25,7 @@ namespace status
         else
         {
 
-            add(__new(::exception::exception(estatus, g_iSkipCallStack)));
+            add(__new(::exception::exception(nullptr, estatus, g_iSkipCallStack)));
 
         }
 

@@ -159,9 +159,6 @@
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{c21dbb0c-f9fc-4c28-a0bf-f9c3a36b5bb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\text">
-      <UniqueIdentifier>{2f1acfc1-10fb-47b5-8b52-b81dfb0e47ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Resource Files">
       <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
     </Filter>
@@ -173,6 +170,12 @@
     </Filter>
     <Filter Include="Source Files\windowing">
       <UniqueIdentifier>{dfaa184b-7fde-434a-9632-253c0f03d653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\write_text">
+      <UniqueIdentifier>{2f1acfc1-10fb-47b5-8b52-b81dfb0e47ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\write_text">
+      <UniqueIdentifier>{9c7fbf2d-65a8-4085-8fc1-26598744d146}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -234,18 +237,6 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\fastblur.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_department.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_enumeration.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_list.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\fwd.h">
@@ -312,9 +303,6 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\text_box.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\thread_tool.h">
@@ -458,9 +446,6 @@
     <ClInclude Include="node\windows\buffer.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\copydesk.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\factory_exchange.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -509,9 +494,6 @@
     <ClInclude Include="platform\drawable.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_platform.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -550,9 +532,6 @@
     </ClInclude>
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\mq.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
@@ -782,9 +761,6 @@
     <ClInclude Include="os\_.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="os\os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -795,9 +771,6 @@
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\imm_context.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windowing.h">
@@ -829,9 +802,6 @@
     </ClInclude>
     <ClInclude Include="inline\aaa_console.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\draw2d_direct2d_global.h">
-      <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="os\windows_common\graphics.h">
       <Filter>Header Files\os\windows_common</Filter>
@@ -890,21 +860,6 @@
     <ClInclude Include="platform\theme.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\text\draw_text.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\text\text.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\text\text_out.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\text\bounding_rect.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\text\contains.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\_draw2d.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -916,9 +871,6 @@
     </ClInclude>
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\imm_client.h">
-      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\device_lock.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -1007,6 +959,102 @@
     <ClInclude Include="windowing\icon.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
+    <ClInclude Include="os\_c2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_os2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\aaa_imm_context.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\aaa_imm_client.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\text_composition.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor_set.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\notify_icon.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\notify_icon_listener.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\notify_icon_mm.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\notify_icon_mm_bridge.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\shell.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="message\command.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="user\message.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_command.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_item.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_enumeration.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_department.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\draw_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\contains.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\bounding_rect.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\write_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_box.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\message_queue.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1064,18 +1112,6 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\fastblur.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_department.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_enumeration.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_list.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\glyph.cpp">
@@ -1147,9 +1183,6 @@
     <ClCompile Include="graphics\draw2d\region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\text_box.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\thread_tool.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1190,9 +1223,6 @@
       <Filter>Source Files\include</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\application.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\copydesk.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\factory_exchange.cpp">
@@ -1429,17 +1459,11 @@
     <ClCompile Include="os\windows\aura.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\imm_context.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windowing.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\context_image.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -1463,9 +1487,6 @@
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\monitor.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\imm_client.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\user_frame.cpp">
@@ -1510,28 +1531,13 @@
     <ClCompile Include="windowing\buffer.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\button.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\debug.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\display.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\event.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\hook.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\keyboard.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\message_box.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\simple_ui_display.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\window.cpp">
@@ -1552,6 +1558,60 @@
     <ClCompile Include="windowing\icon.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
+    <ClCompile Include="windowing\cursor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\text_composition.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor_set.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\notify_icon_listener.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\notify_icon.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\shell.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="message\command.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="user\message.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_command.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_item.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_department.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_enumeration.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_list.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\write_text.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_box.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows_common\aaa_draw2d_direct2d_global.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">
@@ -1563,15 +1623,16 @@
     <None Include="aura.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="user\notify_icon_mm_bridge.mm">
+      <Filter>Header Files\user</Filter>
+    </None>
+    <None Include="user\notify_icon.mm">
+      <Filter>Source Files\user</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Source Files\Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="graphics\text\_.h">
-      <Filter>Header Files\graphics\text</Filter>
-    </Text>
   </ItemGroup>
 </Project>

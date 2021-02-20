@@ -40,7 +40,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //   if (::CreateDirectoryW(wstr, lpSecurityAttributes))
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -50,13 +50,13 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //      if (::CreateDirectoryW(wstr, lpSecurityAttributes))
 //      {
 //
-//         return TRUE;
+//         return true;
 //
 //      }
 //
 //   }
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //
@@ -257,7 +257,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
                   }
 
-                  return TRUE;
+                  return true;
 
                }
                else if (item->IsOfType(::Windows::Storage::StorageItemTypes::File))
@@ -270,11 +270,11 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
                   }
 
-                  return TRUE;
+                  return true;
 
                }
 
-               return FALSE;
+               return false;
 
             }
 
@@ -295,7 +295,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
       }
 
-      return FALSE;
+      return false;
 
    }
 
@@ -317,7 +317,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

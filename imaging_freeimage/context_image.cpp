@@ -9,7 +9,7 @@ namespace imaging_freeimage
    context_image::context_image()
    {
 
-      FreeImage_Initialise(FALSE);
+      FreeImage_Initialise(false);
 
    }
 

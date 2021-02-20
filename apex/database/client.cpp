@@ -64,7 +64,7 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
-         sync_lock sl(m_pdataserver->mutex());
+         synchronization_lock synchronizationlock(m_pdataserver->mutex());
 
          m_pdataserver->m_clienta.remove_client(this);
 
@@ -73,7 +73,7 @@ namespace database
       if(pserver != nullptr)
       {
 
-         sync_lock sl(pserver->mutex());
+         synchronization_lock synchronizationlock(pserver->mutex());
 
          pserver->m_clienta.add_client(this);
 
@@ -92,7 +92,7 @@ namespace database
       if(m_pdataserver != nullptr)
       {
 
-         sync_lock sl(m_pdataserver->mutex());
+         synchronization_lock synchronizationlock(m_pdataserver->mutex());
 
          try
          {

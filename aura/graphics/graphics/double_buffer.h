@@ -31,12 +31,12 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 
-      // sync_lock buffer sync first...
-      virtual sync * get_buffer_sync() override;
+      // synchronization_lock buffer synchronization_object first...
+      virtual synchronization_object * get_buffer_sync() override;
       virtual ::image_pointer & get_buffer_image() override;
 
-      // sync_lock screen sync first...
-      virtual sync * get_screen_sync() override;
+      // synchronization_lock screen synchronization_object first...
+      virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
       virtual ::index get_buffer_index() const;
@@ -45,7 +45,7 @@ namespace graphics
       using graphics::update_window;
       virtual bool update_window() override;
 
-      virtual sync * get_draw_lock() override;
+      virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
 

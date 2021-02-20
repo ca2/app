@@ -33,7 +33,7 @@ namespace html
       void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         sync_lock lock(pdata->m_pcoredata->mutex());
+         synchronization_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -130,7 +130,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         sync_lock lock(pdata->m_pcoredata->mutex());
+         synchronization_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::layout_phase0(pdata);
 
@@ -312,7 +312,7 @@ namespace html
 
                m_box.set_width(0);
 
-               ::draw2d::text_metric textmetric;
+               ::write_text::text_metric textmetric;
 
                pgraphics->get_text_metrics(&textmetric);
 
@@ -376,9 +376,9 @@ namespace html
 
          ::size_f32 sizeContent = ::size_f32(get_bound_size());
 
-         sizeContent.cx = max(0.f, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         sizeContent.cx = maximum(0.f, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
 
-         sizeContent.cy = max(0.f, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         sizeContent.cy = maximum(0.f, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          for (i32 i = 0; i < str.get_length();)
          {
@@ -447,7 +447,7 @@ namespace html
 
                   sizeText = pgraphics->GetTextExtent(strLine.Left(iLastSpace));
 
-                  ::draw2d::text_metric textmetric;
+                  ::write_text::text_metric textmetric;
 
                   pgraphics->get_text_metrics(&textmetric);
 
@@ -482,7 +482,7 @@ namespace html
 
             sizeText = pgraphics->GetTextExtent(strLine);
 
-            ::draw2d::text_metric textmetric;
+            ::write_text::text_metric textmetric;
 
             pgraphics->get_text_metrics(&textmetric);
 
@@ -635,9 +635,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         color32_t crBkSel = RGB(120, 240, 150);
+         color32_t crBkSel = rgb(120, 240, 150);
 
-         color32_t crSel = RGB(10, 30, 20);
+         color32_t crSel = rgb(10, 30, 20);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -673,40 +673,40 @@ namespace html
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
-                  max(0, min(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (byte)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
-                  max(0, min(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (byte)(d * 255))));
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
-                  max(0, min(255, (byte)(d * 255))));
+                  maximum(0, minimum(255, (byte)(d * 255))));
                }
             }
             else
             {
                if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
             }
          }
@@ -758,7 +758,7 @@ namespace html
          }
          else if(has_link())
          {
-            brushText->create_solid(ARGB(255, 127, 127, 255));
+            brushText->create_solid(argb(255, 127, 127, 255));
          }
          else if(m_pelemental->m_pstyle->get_color("color", "", pdata, m_pelemental, cr))
          {
@@ -766,7 +766,7 @@ namespace html
          }
          else
          {
-            brushText->create_solid(ARGB(255, 0, 0, 0));
+            brushText->create_solid(argb(255, 0, 0, 0));
          }
 
 
@@ -839,8 +839,8 @@ namespace html
                   strsize i1 = iSelStart - lim;
                   strsize i2 = iSelEnd - lim;
                   strsize i3 = iCursor - lim;
-                  strsize iStart = max(0,i1);
-                  strsize iEnd = min(i2,strLine.get_length());
+                  strsize iStart = maximum(0,i1);
+                  strsize iEnd = minimum(i2,strLine.get_length());
                   str1 = strLine.Mid(0,iStart);
                   str2 = strLine.Mid(iStart,iEnd - iStart);
                   str3 = strLine.Mid(iEnd);
@@ -871,12 +871,12 @@ namespace html
                   //            pgraphics->set_text_color(cr);
                   brushText->create_solid(cr);
                   pgraphics->set(brushText);
-                  //pgraphics->SetBkColor(RGB(120, 240, 180));
+                  //pgraphics->SetBkColor(rgb(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
                   pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
-                  maxcy = max(size1.cy,size2.cy);
-                  maxcy = max(maxcy,size3.cy);
+                  maxcy = maximum(size1.cy,size2.cy);
+                  maxcy = maximum(maxcy,size3.cy);
                   if(m_bFocus && bCaretOn && i3 == str1.get_length())
                   {
                      pgraphics->move_to(left + size1.cx,y);
@@ -892,14 +892,14 @@ namespace html
                else
                {
                   pgraphics->text_out(left,top,strLine);
-                  //pgraphics->fill_rect(left,top,50,50,ARGB(255,0,255,0));
+                  //pgraphics->fill_rectangle(left,top,50,50,argb(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;
                lim += strLine.get_length();
             }
          }
-         //pgraphics->fill_rect(0, 0, 100, 100, RGB(0, 255, 0));
+         //pgraphics->fill_rectangle(0, 0, 100, 100, rgb(0, 255, 0));
 
          */
 
@@ -967,13 +967,13 @@ namespace html
          if(has_link())
          {
 
-            cr =  ARGB(255, 127, 127, 255);
+            cr =  argb(255, 127, 127, 255);
 
          }
          else
          {
 
-            cr = ARGB(255, 0, 0, 0);
+            cr = argb(255, 0, 0, 0);
 
          }
 

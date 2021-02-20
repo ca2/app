@@ -78,13 +78,13 @@
 //          )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
 //    if(lpNumberOfBytesWritten != nullptr)
 //        *lpNumberOfBytesWritten = (::u32) sizeWritten;
-//    return TRUE;
+//    return true;
 //}
 //
 //int_bool
@@ -98,13 +98,13 @@
 //         )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
 //    if(lpNumberOfBytesRead != nullptr)
 //        *lpNumberOfBytesRead = (::u32)sizeRead;
-//    return TRUE;
+//    return true;
 //}
 //
 //int_bool
@@ -113,9 +113,9 @@
 //                 HANDLE hFile
 //                 )
 //{    if(hFile == INVALID_HANDLE_VALUE)
-//    return FALSE;
+//    return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    return fflush(hFile->m_file.m_pfile) == 0;
 //}
 //
@@ -127,10 +127,10 @@
 //            )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
-//    return fclose(hFile->m_file.m_pfile) != FALSE;
+//        return false;
+//    return fclose(hFile->m_file.m_pfile) != false;
 //}
 //
 //int_bool
@@ -140,8 +140,8 @@
 //            )
 //{
 //   if(hObject == INVALID_HANDLE_VALUE)
-//      return FALSE;
-//   int_bool bOk = FALSE;
+//      return false;
+//   int_bool bOk = false;
 //   switch(hObject->m_etype)
 //   {
 //      case win_handle::type_file:
@@ -167,7 +167,7 @@
 //
 //   wstring wstr = "/::payload/apex/time/";
 //
-//   ::count iLen = min(nBufferLength, wstr.get_length());
+//   ::count iLen = minimum(nBufferLength, wstr.get_length());
 //
 //   unincpy(lpBuffer, wstr, iLen);
 //

@@ -250,7 +250,7 @@ namespace music
 //      *****************************************************************************/
 //      ::e_status     file::CloseFile()
 //      {
-//         single_lock(&m_cs, TRUE);
+//         single_lock(&m_cs, true);
 //         SetOpened(false);
 //         delete_contents();
 //         return ::music::midi::Success;
@@ -259,7 +259,7 @@ namespace music
 //
 //      void file::delete_contents()
 //      {
-//         single_lock(&m_cs, TRUE);
+//         single_lock(&m_cs, true);
 //         SetOpened(false);
 //
 //
@@ -771,7 +771,7 @@ namespace music
 //         ASSERT(!(pEvent->GetFlags() & 1));
 //         if(pEvent->GetFlags() & 1)
 //         {
-//            ASSERT(FALSE);
+//            ASSERT(false);
 //         }
 //         else if (pEvent->GetFullType() < sys_ex)
 //         {
@@ -1042,7 +1042,7 @@ namespace music
 //         tkNextLyricEvent = pDoc->m_TokensTicks[pDoc->m_iBufferingTokenIndex ];
 //         }*/
 //         //   ::ikaraoke::lyric_events_v1 *pEventsV1;
-//         while(TRUE)
+//         while(true)
 //         {
 //            ASSERT(lpmh->dwBytesRecorded <= lpmh->dwBufferLength);
 //            if(lpmh->dwBytesRecorded > cbPrerollNominalMax)
@@ -1073,7 +1073,7 @@ namespace music
 //
 //            /*        if (::music::midi::Success != smfrc)
 //            {
-//            smfrc = GetNextEvent((event_v1 *)&event, tkMax, TRUE);
+//            smfrc = GetNextEvent((event_v1 *)&event, tkMax, true);
 //            ASSERT(::music::midi::Success != smfrc); */
 //
 //            /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1094,7 +1094,7 @@ namespace music
 //            }*/
 //            iTrackFound = -1;
 //            tkLastDelta = 0;
-//            /*      while(TRUE)
+//            /*      while(true)
 //            {
 //            for(i = 0; i < m_eventsTracksForPositionCB.get_size(); i++)
 //            {
@@ -1210,7 +1210,7 @@ namespace music
 //               break;
 //            }
 //
-//            smfrc = GetNextEvent(pevent, tkMax, TRUE);
+//            smfrc = GetNextEvent(pevent, tkMax, true);
 //            if (::music::midi::Success != smfrc)
 //            {
 //               /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1424,7 +1424,7 @@ namespace music
 //
 //         lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 //         dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-//         dwLength = min(dwLength, 8);
+//         dwLength = minimum(dwLength, 8);
 //
 //         //u32 dwa = MEVT_F_CALLBACK;
 //         //   u32 dwb = MEVT_LONGMSG;
@@ -1524,7 +1524,7 @@ namespace music
 //         lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 //
 //         dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-//         dwLength = min(dwLength, m_cbPendingUserEvent);
+//         dwLength = minimum(dwLength, m_cbPendingUserEvent);
 //
 //         *lpdw++ = (u32)tkDelta;
 //         *lpdw++ = 0L;
@@ -1635,7 +1635,7 @@ namespace music
 //         m_ptracks->seek_begin();
 //         //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 //
-//         while (::music::midi::Success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)))
+//         while (::music::midi::Success == (smfrc = GetNextEvent(pevent, tkPosition, false)))
 //         {
 //
 //            if (meta == (bEvent = pevent->GetFullType()))
@@ -1795,7 +1795,7 @@ namespace music
 //
 //         m_ptracks->seek_begin();
 //
-//         while(::music::midi::Success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)));
+//         while(::music::midi::Success == (smfrc = GetNextEvent(pevent, tkPosition, false)));
 //
 //         if (success_reached_tk_max != smfrc)
 //         {
@@ -2176,7 +2176,7 @@ namespace music
 //            ::memcpy_dup(hpbDest, hpbSrc, ptrack->GetTrackImageLength());
 //            ptrack->m_idxTrack = (u32) (hpbDest - GetImage() + sizeof(CHUNKHDR));
 //            ptrack->Initialize(m_ptracks);
-//            ptrack->SetAutoAllocation(FALSE);
+//            ptrack->SetAutoAllocation(false);
 //            ptrack->WriteHeaderLength();
 //            hpbDest += ptrack->GetTrackImageLength();
 //         }
@@ -2335,7 +2335,7 @@ namespace music
 //         m_ptracks->seek_begin();
 //         //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 //
-//         while(::music::midi::Success == (smfrc = GetNextEvent(pevent, pEvent->get_position(), TRUE)))
+//         while(::music::midi::Success == (smfrc = GetNextEvent(pevent, pEvent->get_position(), true)))
 //         {
 //            if(pevent->GetImage() == pEvent->GetImage())
 //            {
@@ -2724,7 +2724,7 @@ namespace music
 //               break;
 //            }
 //
-//            smfrc = WorkGetNextEvent(pevent, tkMax, TRUE);
+//            smfrc = WorkGetNextEvent(pevent, tkMax, true);
 //            if (::music::midi::Success != smfrc)
 //            {
 //               // smfGetNextEvent doesn't set this because smfSeek uses it
@@ -2948,7 +2948,7 @@ namespace music
 //                  && pevent->GetNoteVelocity() > 0
 //                  && m_iaMuteTrack.contains(pevent->GetTrack()))
 //               {
-//                  ASSERT(TRUE);
+//                  ASSERT(true);
 //               }
 //               else
 //               {
@@ -3017,7 +3017,7 @@ namespace music
 //
 //         m_ptracks->WorkSeekBegin();
 //
-//         while (::music::midi::Success == (smfrc = WorkGetNextEvent(pevent, tkPosition, FALSE)))
+//         while (::music::midi::Success == (smfrc = WorkGetNextEvent(pevent, tkPosition, false)))
 //         {
 //            if (meta == (bEvent = pevent->GetFullType()))
 //            {
@@ -3148,7 +3148,7 @@ namespace music
 //         ::music::midi::event_v5 * pevent;
 //         m_ptracks->WorkSeekBegin();
 //         while (::music::midi::Success
-//            == (smfrc = WorkGetNextRawMidiEvent(pevent, MAX_TICKS, TRUE)))
+//            == (smfrc = WorkGetNextRawMidiEvent(pevent, MAX_TICKS, true)))
 //         {
 //            if (meta == pevent->GetFullType() &&
 //               meta_tempo == pevent->GetMetaType() &&

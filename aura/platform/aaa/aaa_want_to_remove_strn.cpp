@@ -35,7 +35,7 @@ namespace aura
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info< i32 >::max ())
+      if(iConversion > numeric_info< i32 >::maximum ())
          return false;
 
       i = (i32) iConversion;
@@ -77,7 +77,7 @@ namespace aura
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info < i32 >::max ())
+      if(iConversion > numeric_info < i32 >::maximum ())
          return false;
 
       i = (i32) iConversion;

@@ -67,12 +67,12 @@ BOOL wf_set_rop2(HDC hdc, int rop2)
 	if ((rop2 < 0x01) || (rop2 > 0x10))
 	{
 		WLog_ERR(TAG,  "Unsupported ROP2: %d", rop2);
-		return FALSE;
+		return false;
 	}
 
 	SetROP2(hdc, wf_rop2_table[rop2 - 1]);
 
-	return TRUE;
+	return true;
 }
 
 wfBitmap* wf_glyph_new(wfContext* wfc, GLYPH_DATA* glyph)
@@ -215,7 +215,7 @@ void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 	wfc->update_rect.bottom = wfc->update_rect.top + height;
 
 	wf_scale_rect(wfc, &(wfc->update_rect));
-	InvalidateRect(wfc->hwnd, &(wfc->update_rect), FALSE);
+	InvalidateRect(wfc->hwnd, &(wfc->update_rect), false);
 
 	rectangle.left = x;
 	rectangle.right = width;
@@ -272,12 +272,12 @@ void wf_resize_window(wfContext* wfc)
 			int h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
 			SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_POPUP);
-			set_window_pos(wfc->hwnd, HWND_TOP, x, y, w, h, SWP_FRAMECHANGED);
+			set_window_position(wfc->hwnd, HWND_TOP, x, y, w, h, SWP_FRAMECHANGED);
 		}
 		else
 		{
 			SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_POPUP);
-			set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
+			set_window_position(wfc->hwnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
 		}
 	}
 	else if (!wfc->instance->settings->Decorations)
@@ -285,10 +285,10 @@ void wf_resize_window(wfContext* wfc)
 		SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_CHILD);
 
 		/* Now resize to get full canvas size_i32 and room for caption and borders */
-		set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
+		set_window_position(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
-		set_window_pos(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE | SWP_FRAMECHANGED);
+		set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE | SWP_FRAMECHANGED);
 	}
 	else
 	{
@@ -309,7 +309,7 @@ void wf_resize_window(wfContext* wfc)
 //		wf_update_canvas_diff(wfc);
 
 		/* Now resize to get full canvas size_i32 and room for caption and borders */
-		set_window_pos(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
+		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
 	wf_update_offset(wfc);
@@ -322,7 +322,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 
 	if (wfc->fullscreen)
 	{
-		wfc->disablewindowtracking = TRUE;
+		wfc->disablewindowtracking = true;
 	}
 
 	if (wfc->fullscreen)
@@ -338,7 +338,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 	if (!wfc->fullscreen)
 	{
 		// Reenable window tracking AFTER resizing it back, otherwise it can lean to repositioning errors.
-		wfc->disablewindowtracking = FALSE;
+		wfc->disablewindowtracking = false;
 	}
 }
 
@@ -367,7 +367,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //
 //	hdc = CreateCompatibleDC(GetDC(nullptr));
 //	if (!hdc)
-//		return FALSE;
+//		return false;
 //
 //	for (index = 0; index < bitmapUpdate->number; index++)
 //	{
@@ -389,7 +389,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //		bitsPerPixel = bitmap->bitsPerPixel;
 //		bytesPerPixel = (bitsPerPixel + 7) / 8;
 //
-//		SrcFormat = gdi_get_pixel_format(bitsPerPixel, TRUE);
+//		SrcFormat = gdi_get_pixel_format(bitsPerPixel, true);
 //
 //		if (wfc->bitmap_size < (::u32) (nWidth * nHeight * 4))
 //		{
@@ -397,7 +397,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //			wfc->bitmap_buffer = (byte*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
 //
 //			if (!wfc->bitmap_buffer)
-//				return FALSE;
+//				return false;
 //		}
 //
 //		if (compressed)
@@ -407,7 +407,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //			if (bitsPerPixel < 32)
 //			{
 //				if (!freerdp_client_codecs_prepare(codecs, FREERDP_CODEC_INTERLEAVED))
-//					return FALSE;
+//					return false;
 //
 //				status = interleaved_decompress(codecs->interleaved, pSrcData, SrcSize, bitsPerPixel,
 //						&pDstData, PIXEL_FORMAT_XRGB32, nWidth * 4, 0, 0, nWidth, nHeight, nullptr);
@@ -415,16 +415,16 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //			else
 //			{
 //				if (!freerdp_client_codecs_prepare(codecs, FREERDP_CODEC_PLANAR))
-//					return FALSE;
+//					return false;
 //
 //				status = planar_decompress(codecs->planar, pSrcData, SrcSize, &pDstData,
-//						PIXEL_FORMAT_XRGB32, nWidth * 4, 0, 0, nWidth, nHeight, TRUE);
+//						PIXEL_FORMAT_XRGB32, nWidth * 4, 0, 0, nWidth, nHeight, true);
 //			}
 //
 //			if (status < 0)
 //			{
 //				WLog_ERR(TAG, "bitmap decompression failure");
-//				return FALSE;
+//				return false;
 //			}
 //
 //			pSrcData = wfc->bitmap_buffer;
@@ -444,7 +444,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //	}
 //
 //	ReleaseDC(nullptr, hdc);
-//	return TRUE;
+//	return true;
 //}
 //
 void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
@@ -565,7 +565,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	for (i = 1; i < (int) multi_opaque_rect->numRectangles + 1; i++)
 //	{
-//		rectangle_i32 = &multi_opaque_rect->rectangles[i];
+//		rectangle = &multi_opaque_rect->rectangles[i];
 //
 //		rectangle.left = rectangle_i32->left;
 //		rectangle.top = rectangle_i32->top;

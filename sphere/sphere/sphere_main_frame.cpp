@@ -48,19 +48,19 @@ namespace sphere
    //   else if (ecolor == ::user::color_text_selected)
    //   {
 
-   //      cr = ARGB(255, 255, 255, 255);
+   //      cr = argb(255, 255, 255, 255);
 
    //   }
    //   else if (ecolor == ::user::color_text_highlight)
    //   {
 
-   //      cr = ARGB(255, 55, 105, 255);
+   //      cr = argb(255, 55, 105, 255);
 
    //   }
    //   else if (ecolor == ::user::color_text_selected_highlight)
    //   {
 
-   //      cr = ARGB(255, 102, 153, 255);
+   //      cr = argb(255, 102, 153, 255);
 
    //   }
    //   else if (ecolor == ::user::color_background
@@ -78,13 +78,13 @@ namespace sphere
    //      if (_001IsTranslucent())
    //      {
 
-   //         cr = ARGB(190, 0, 0, 127);
+   //         cr = argb(190, 0, 0, 127);
 
    //      }
    //      else
    //      {
 
-   //         cr = ARGB(255, 0, 0, 127);
+   //         cr = argb(255, 0, 0, 127);
 
    //      }
 
@@ -95,13 +95,13 @@ namespace sphere
    //      if (_001IsTranslucent())
    //      {
 
-   //         cr = ARGB(190, 0, 0, 127);
+   //         cr = argb(190, 0, 0, 127);
 
    //      }
    //      else
    //      {
 
-   //         cr = ARGB(255, 0, 0, 127);
+   //         cr = argb(255, 0, 0, 127);
 
    //      }
 
@@ -109,19 +109,19 @@ namespace sphere
    //   else if (ecolor == ::user::color_border)
    //   {
 
-   //      cr = ARGB(255, 90, 90, 80);
+   //      cr = argb(255, 90, 90, 80);
 
    //   }
    //   else if (ecolor == ::user::color_border_hover)
    //   {
 
-   //      cr = ARGB(255, 90, 190, 80);
+   //      cr = argb(255, 90, 190, 80);
 
    //   }
    //   else if (ecolor == ::user::color_text_hover)
    //   {
 
-   //      cr = ARGB(255, 90, 184, 255);
+   //      cr = argb(255, 90, 184, 255);
 
    //   }
    //   else

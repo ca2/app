@@ -14,10 +14,10 @@ namespace http
    }
 
 
-   void message::want_memory_response(memory_base * pbase)
+   void message::want_memory_response(memory_base * pusermessage)
    {
 
-      if (::is_set(pbase))
+      if (::is_set(pusermessage))
       {
 
          payload("get_memory") = create_memory();
@@ -26,7 +26,7 @@ namespace http
       else
       {
 
-         payload("get_memory") = pbase;
+         payload("get_memory") = pusermessage;
 
       }
 

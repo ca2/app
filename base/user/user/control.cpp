@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 //#include "e_control_ddx_dbflags.h"
@@ -124,7 +122,7 @@
 //
 //      __keep(m_bCustomWindowProc);
 //
-//      ::message::base base(pwnd, message, wparam, lparam);
+//      ::user::message base(pwnd, message, wparam, lparam);
 //
 //      _003CustomWindowProc(&base);
 //
@@ -515,7 +513,7 @@
 //   void control_cmd_ui::enable(bool bOn)
 //   {
 //
-//      m_bEnableChanged = TRUE;
+//      m_bEnableChanged = true;
 //
 //      __pointer(::user::interaction) pwnd = m_puiOther;
 //
@@ -577,7 +575,7 @@
 //               if (pinteraction->is_window_enabled())
 //               {
 //
-//                  pinteraction->enable_window(FALSE);
+//                  pinteraction->enable_window(false);
 //
 //               }
 //
@@ -639,7 +637,7 @@
 ////         if (pTarget == nullptr)
 ////            pTarget = pview->get_parent_frame();
 ////         if (pTarget != nullptr)
-////            BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
+////            BaseControlExOnUpdateCmdUI(pTarget, wParam != false);
 ////      }
 ////
 ////      return 0L;
@@ -652,7 +650,7 @@
 ////
 ////      __pointer(::user::interaction) pview = get_window();
 ////
-////      ::user::command & state = m_commandui;
+////      ::message::command & state = m_commandui;
 ////
 ////      state.m_puiOther = pview;
 ////
@@ -685,7 +683,7 @@
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
 ////            state.m_id = m_commandui.GetControlCommand(idControl);
-////            state.m_bContinueRouting = FALSE;
+////            state.m_bContinueRouting = false;
 ////
 ////            // ignore separators
 ////            if ((pwnd->GetStyle() & WS_VISIBLE))
@@ -736,7 +734,7 @@
 ////         if (emessage == BN_CLICKED)
 ////         {
 ////            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
-////            //::user::command command(idCommand);
+////            //::message::command command(idCommand);
 ////            //xxx get_window()->get_parent_frame()->_001SendCommand(&command);
 ////         }
 ////
@@ -744,7 +742,7 @@
 ////
 ////      }
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 //
@@ -786,7 +784,13 @@
 //
 //   //         m_iHover = -1;
 //
-//   //         psession->ReleaseCapture();
+//auto psession = Session;
+//
+//auto puser = psession->user();
+//
+//auto pwindowing = puser->windowing();
+//
+//pwindowing->release_capture();
 //
 //   //         pwnd->set_need_redraw();
 //
@@ -919,7 +923,7 @@
 //   }
 //
 //
-//   void control::route_command_message(::user::command * pcommand)
+//   void control::route_command_message(::message::command * pcommand)
 //   {
 //
 //      ::user::box::route_command_message(pcommand);

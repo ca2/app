@@ -235,7 +235,7 @@ namespace uwp
 
       set_input_text(text);
       
-      sync([this, iBeg, iEnd, text]()
+      synchronization_object([this, iBeg, iEnd, text]()
       {
             
          CoreTextRange sel;
@@ -321,7 +321,7 @@ namespace uwp
 
       wstrText = wstrText.Mid(
          request->Range.StartCaretPosition,
-         min(request->Range.EndCaretPosition, wstrText.length()) - request->Range.StartCaretPosition);
+         minimum(request->Range.EndCaretPosition, wstrText.length()) - request->Range.StartCaretPosition);
 
       request->Text = wstrText;
 
@@ -385,7 +385,7 @@ namespace uwp
          else
          {
 
-            ___pointer < ::message::base > spbase;
+            ___pointer < ::user::message > spbase;
 
             auto pkey = __new(::message::key);
 
@@ -400,7 +400,7 @@ namespace uwp
             pkey->m_id = e_message_key_down;
             pkey->m_playeredUserPrimitive = psession->m_puiHost;
             pkey->m_nChar = 0;
-            pkey->m_ekey = ::user::key_refer_to_text_member;
+            pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
             pkey->m_nFlags = 0;
             pkey->m_lparam = pkey->m_nFlags << 16;
@@ -630,7 +630,7 @@ namespace uwp
          //   // Delete the character to the left of the caret, if one exists,
          //   // by creating a range that encloses the character to the left
          //   // of the caret, and setting the contents of that range to nothing.
-         //   range.StartCaretPosition = max(0, range.StartCaretPosition - 1);
+         //   range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //   ReplaceText(range, "");
          //}
          //m_strNewText.Empty();
@@ -662,7 +662,7 @@ namespace uwp
          //   else
          //   {
          //      // There was no selection. Move the caret left one code unit if possible.
-         //      range.StartCaretPosition = max(0, range.StartCaretPosition - 1);
+         //      range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //      range.EndCaretPosition = range.StartCaretPosition;
          //      SetSelectionAndNotify(range);
          //   }
@@ -696,7 +696,7 @@ namespace uwp
          //   else
          //   {
          //      // There was no selection. Move the caret right one code unit if possible.
-         //      range.StartCaretPosition = min(m_strText.length(), range.StartCaretPosition + 1);
+         //      range.StartCaretPosition = minimum(m_strText.length(), range.StartCaretPosition + 1);
          //      range.EndCaretPosition = range.StartCaretPosition;
          //      SetSelectionAndNotify(range);
          //   }
@@ -715,7 +715,7 @@ namespace uwp
       if (m_bExtendingLeft)
       {
 
-         range.StartCaretPosition = max(0, range.StartCaretPosition + direction);      
+         range.StartCaretPosition = maximum(0, range.StartCaretPosition + direction);      
 
       }
       else
@@ -723,7 +723,7 @@ namespace uwp
 
          widestring wstrText = get_input_text();
 
-         range.EndCaretPosition = min(wstrText.length(), range.EndCaretPosition + direction);
+         range.EndCaretPosition = minimum(wstrText.length(), range.EndCaretPosition + direction);
 
       }
 

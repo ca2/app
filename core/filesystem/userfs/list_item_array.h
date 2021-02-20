@@ -11,7 +11,7 @@ namespace userfs
    public:
 
 
-      //__pointer(::less_pred_base < const __pointer(list_item) & >)   m_pless;
+      //__pointer(::less_predicateicate_base < const __pointer(list_item) & >)   m_pless;
 
 
       list_item_array();

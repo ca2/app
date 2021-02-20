@@ -156,7 +156,7 @@ namespace file
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
 
-            uiReadNow = min(nCount - uRead, (memsize) (m_uiBufUPos - m_uiPosition + 1));
+            uiReadNow = minimum(nCount - uRead, (memsize) (m_uiBufUPos - m_uiPosition + 1));
 
             if(nCount == 1)
             {
@@ -220,7 +220,7 @@ namespace file
       if (uiGrow > 0)
       {
 
-         uiCopy = min(m_uiBufferSize, uiGrow);
+         uiCopy = minimum(m_uiBufferSize, uiGrow);
 
       }
       else
@@ -260,7 +260,7 @@ namespace file
 
             m_bDirty = true;
 
-            uiWriteNow = min(nCount - uiWrite, (memsize) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
+            uiWriteNow = minimum(nCount - uiWrite, (memsize) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
 
             if (m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
             {

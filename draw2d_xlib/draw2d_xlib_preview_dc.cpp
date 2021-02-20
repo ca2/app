@@ -110,7 +110,7 @@ void preview_dc::SetOutputDC(HDC hDC)
 
    if (get_handle2() != nullptr)
    {
-      MirrorMappingMode(FALSE);
+      MirrorMappingMode(false);
 
       if (m_hFont)
          ::SelectObject(get_os_data(), m_hFont);
@@ -132,7 +132,7 @@ void preview_dc::SetAttribDC(HDC hDC)
    ASSERT(hDC != nullptr);
    ::draw2d::graphics_pointer::SetAttribDC(hDC);
 
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    MirrorFont();
    MirrorAttributes();
 }
@@ -149,7 +149,7 @@ void preview_dc::SetScaleRatio(i32 nNumerator, i32 nDenominator)
    m_nScaleDen = nDenominator;
    if (get_handle2() != nullptr)
    {
-      MirrorMappingMode(TRUE);
+      MirrorMappingMode(true);
       MirrorFont();
    }
 }
@@ -366,7 +366,7 @@ void preview_dc::MirrorFont()
    m_hFont = hNewFont;         // save the new one
 }
 
-::draw2d::font* preview_dc::SelectObject(::draw2d::font* pFont)
+::write_text::font* preview_dc::SelectObject(::write_text::font* pFont)
 {
    if (pFont == nullptr)
       return nullptr;
@@ -374,7 +374,7 @@ void preview_dc::MirrorFont()
    ASSERT(get_handle2() != nullptr);
    ASSERT_VALID(pFont);
 
-   ::draw2d::font* pOldFont = (::draw2d::font*) ::draw2d_xlib::object::from_handle(
+   ::write_text::font* pOldFont = (::write_text::font*) ::draw2d_xlib::object::from_handle(
             ::SelectObject(get_handle2(), pFont->get_handle()));
 
    // If same as already selected, don't re-mirror screen font
@@ -410,7 +410,7 @@ i32 preview_dc::SetMapMode(i32 nMapMode)
 {
    ASSERT(get_handle2() != nullptr);
    i32 nModeOld = ::SetMapMode(get_handle2(), nMapMode);
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    return nModeOld;
 }
 
@@ -437,7 +437,7 @@ size_i32 preview_dc::SetViewportExt(i32 x, i32 y)
    ASSERT(get_handle2() != nullptr);
    size_i32 sizeExtOld;
    VERIFY(::SetViewportExtEx(get_handle2(), x, y, &sizeExtOld));
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    return sizeExtOld;
 }
 
@@ -447,7 +447,7 @@ size_i32 preview_dc::ScaleViewportExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom
    size_i32 sizeExtOld;
    VERIFY(::ScaleViewportExtEx(get_handle2(), xNum, xDenom,
       yNum, yDenom, &sizeExtOld));
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    return sizeExtOld;
 }
 
@@ -456,7 +456,7 @@ size_i32 preview_dc::set_window_ext(i32 x, i32 y)
    ASSERT(get_handle2() != nullptr);
    size_i32 sizeExtOld;
    VERIFY(::SetWindowExtEx(get_handle2(), x, y, &sizeExtOld));
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    return sizeExtOld;
 }
 
@@ -466,7 +466,7 @@ size_i32 preview_dc::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom
    size_i32 sizeExtOld;
    VERIFY(::ScaleWindowExtEx(get_handle2(), xNum, xDenom, yNum, yDenom,
       &sizeExtOld));
-   MirrorMappingMode(TRUE);
+   MirrorMappingMode(true);
    return sizeExtOld;
 }
 
@@ -541,7 +541,7 @@ size_i32 preview_dc::ComputeDeltas(i32& x, const char * lpszString, ::u32 &nCoun
       int_bool bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
       if (bSpace || (bTabbed && *lpszCurChar == '\t'))
       {
-         // bSpace will be either TRUE (==1) or FALSE (==0).  For spaces
+         // bSpace will be either true (==1) or false (==0).  For spaces
          // we want the space included in the GetTextExtent, for tabs we
          // do not want the tab included
          i32 nRunLength = (i32)(lpszCurChar - lpszStartRun) + bSpace;
@@ -646,8 +646,8 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_
    ASSERT(get_handle2() != nullptr);
    ASSERT(lpszString != nullptr);
    ASSERT(lpDxWidths == nullptr ||
-         fx_is_valid_address(lpDxWidths, sizeof(i32) * nCount, FALSE));
-   ASSERT(fx_is_valid_address(lpszString, nCount, FALSE));
+         fx_is_valid_address(lpDxWidths, sizeof(i32) * nCount, false));
+   ASSERT(fx_is_valid_address(lpszString, nCount, false));
 
    i32* pDeltas = nullptr;
    char * pOutputString = nullptr;
@@ -656,7 +656,7 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_
    if (lpDxWidths == nullptr)
    {
       if (nCount == 0)    // Do nothing
-         return TRUE;
+         return true;
 
       try
       {
@@ -667,18 +667,18 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_
       {
          delete[] pDeltas;  // in case it was allocated
          // Note: DELETE_EXCEPTION(e) not required
-         return FALSE;   // Could not allocate buffer, cannot display
+         return false;   // Could not allocate buffer, cannot display
       }
 
 
-      ComputeDeltas(x, (char *)lpszString, nCount, FALSE, 0, nullptr, 0,
+      ComputeDeltas(x, (char *)lpszString, nCount, false, 0, nullptr, 0,
                               pOutputString, pDeltas, nRightFixup);
 
       lpDxWidths = pDeltas;
       lpszString = pOutputString;
    }
 
-   int_bool bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, rectangle_i32, lpszString,
+   int_bool bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, rectangle, lpszString,
                                           nCount, lpDxWidths);
    if (nRightFixup != 0 && bSuccess && (GetTextAlign() & TA_UPDATECP))
    {
@@ -698,10 +698,10 @@ size_i32 preview_dc::TabbedTextOut(i32 x, i32 y, const char * lpszString, i32 nC
    ASSERT(get_handle2() != nullptr);
    ASSERT(get_os_data() != nullptr);
    ASSERT(lpszString != nullptr);
-   ASSERT(fx_is_valid_address(lpszString, nCount, FALSE));
+   ASSERT(fx_is_valid_address(lpszString, nCount, false));
    ASSERT(lpnTabStopPositions == nullptr ||
          fx_is_valid_address(lpnTabStopPositions, sizeof(i32) * nTabPositions,
-            FALSE));
+            false));
 
    if (nCount <= 0)
       return (::u32) 0;         // nCount is zero, there is nothing to print
@@ -724,7 +724,7 @@ size_i32 preview_dc::TabbedTextOut(i32 x, i32 y, const char * lpszString, i32 nC
 
 
    ::u32 uCount = nCount;
-   size_i32 sizeFinalExtent = ComputeDeltas(x, lpszString, uCount, TRUE,
+   size_i32 sizeFinalExtent = ComputeDeltas(x, lpszString, uCount, true,
                      nTabPositions, lpnTabStopPositions, nTabOrigin,
                      pOutputString, pDeltas, nRightFixup);
 
@@ -751,13 +751,13 @@ i32 preview_dc::DrawText(const char * lpszString, i32 nCount, RECTANGLE_I32 * pr
    ASSERT(get_handle2() != nullptr);
    ASSERT(get_os_data() != nullptr);
    ASSERT(lpszString != nullptr);
-   ASSERT(rectangle_i32 != nullptr);
+   ASSERT(rectangle != nullptr);
    ASSERT(fx_is_valid_address(rectangle, sizeof(RECTANGLE_I32)));
    ASSERT(nCount == -1 ?
       AfxIsValidString(lpszString) :
-      fx_is_valid_address(lpszString, nCount, FALSE));
+      fx_is_valid_address(lpszString, nCount, false));
 
-   i32 retVal = ::DrawText(get_os_data(), lpszString, nCount, rectangle_i32, nFormat);
+   i32 retVal = ::DrawText(get_os_data(), lpszString, nCount, rectangle, nFormat);
 
    point_i32 pos;
    ::GetCurrentPositionEx(get_os_data(), &pos);
@@ -771,13 +771,13 @@ i32 preview_dc::DrawTextEx(__in_ecount(nCount) char * lpszString, i32 nCount, RE
    ASSERT(get_handle2() != nullptr);
    ASSERT(get_os_data() != nullptr);
    ASSERT(lpszString != nullptr);
-   ASSERT(rectangle_i32 != nullptr);
+   ASSERT(rectangle != nullptr);
    ASSERT(fx_is_valid_address(rectangle, sizeof(RECTANGLE_I32)));
    ASSERT(nCount == -1 ?
       AfxIsValidString(lpszString) :
-      fx_is_valid_address(lpszString, nCount, FALSE));
+      fx_is_valid_address(lpszString, nCount, false));
 
-   i32 retVal = ::DrawTextEx(get_os_data(), lpszString, nCount, rectangle_i32, nFormat, lpDTParams);
+   i32 retVal = ::DrawTextEx(get_os_data(), lpszString, nCount, rectangle, nFormat, lpDTParams);
 
    point_i32 pos;
    ::GetCurrentPositionEx(get_os_data(), &pos);
@@ -956,7 +956,7 @@ void preview_dc::ClipToPage()
    ::IntersectClipRect(get_os_data(), -1, -1, point.x + 2, point.y + 2);
 
    // Resynchronize the mapping mode
-   MirrorMappingMode(FALSE);
+   MirrorMappingMode(false);
 }
 
 // these conversion functions can be used without an attached screen DC

@@ -104,7 +104,7 @@ namespace user
       virtual double get_output_fps();
 
 
-      __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       virtual ::user::interaction* get_host_window() const;
@@ -154,11 +154,11 @@ namespace user
 
       virtual bool has_pending_redraw_flags();
 
-      virtual bool set_icon(::draw2d::icon * picon, bool bSmall);
+      virtual ::e_status set_icon(::windowing::icon * picon);
 
       virtual void default_message_handler(::message::message * pmessage);
 
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::message::message * pmessage);
 
       //virtual lresult message_handler(MESSAGE * pmessage);
 
@@ -168,11 +168,13 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      virtual e_cursor get_cursor();
+      virtual enum_cursor get_cursor();
 
-      virtual bool set_cursor(e_cursor ecursor);
+      virtual ::e_status set_cursor(enum_cursor ecursor);
 
-      virtual ::point_i32 get_cursor_pos() const;
+      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+
+      //virtual ::point_i32 get_cursor_pos() const;
 
       virtual bool _is_window() const;
 
@@ -204,6 +206,7 @@ namespace user
       virtual void mouse_hover_add(::user::interaction * pinterface);
       virtual bool mouse_hover_remove(::user::interaction * pinterface);
 
+      virtual void _task_transparent_mouse_event();
 
       virtual bool CheckAutoCenter();
 
@@ -226,10 +229,11 @@ namespace user
       virtual bool update_data(bool bSaveAndValidate = true);
 
 
-      virtual ::user::primitive * get_keyboard_focus();
+      //virtual ::user::primitive * get_keyboard_focus();
 
 
-      virtual bool on_keyboard_focus(::user::primitive * pfocus);
+      virtual void on_set_keyboard_focus();
+      virtual void on_kill_keyboard_focus();
 
 
 
@@ -287,15 +291,15 @@ namespace user
       virtual string get_class_name();
 
       
-      virtual bool create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr);
+      virtual ::e_status create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr);
 
 
-      virtual bool create_host();
-      virtual bool create_child(::user::interaction * puserinteractionParent);
-      virtual bool create_control(::user::interaction * puserinteractionParent, const ::id & id);
+      virtual ::e_status create_host();
+      virtual ::e_status create_child(::user::interaction * puserinteractionParent);
+      virtual ::e_status create_control(::user::interaction * puserinteractionParent, const ::id & id);
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       virtual bool IsTopParentActive();
@@ -340,13 +344,13 @@ namespace user
 
 
       //using ::channel::send;
-      virtual lresult send(::message::base * pbase);
-      virtual bool post(::message::base * pbase);
+      virtual lresult send(::message::message * pmessage);
+      virtual bool post(::message::message * pmessage);
 
       virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
 
       virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0);
-      virtual lresult message_call(::message::base * pbase);
+      virtual lresult message_call(::message::message * pmessage);
 
 
 #ifdef LINUX
@@ -357,7 +361,7 @@ namespace user
 
       virtual bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 
-      virtual bool post_simple_command(const e_simple_command & ecommand,lparam lParam = 0);
+      virtual bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
       virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
@@ -394,31 +398,19 @@ namespace user
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(::id id);
 
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      virtual bool open_clipboard();
+//      virtual bool close_clipboard();
+//
+//#endif
 
-#ifdef WINDOWS_DESKTOP
-
-      virtual bool open_clipboard();
-      virtual bool close_clipboard();
-
-#endif
 
 
-      virtual bool SetCapture(::user::interaction * pinteraction = nullptr);
-      virtual bool ReleaseCapture();
-      virtual ::user::interaction * GetCapture();
-
+      //virtual ::e_status set_foreground_window();
 
       
-
-
-
-      virtual bool has_focus();
-      virtual bool SetFocus();
-      virtual bool SetForegroundWindow();
-      virtual bool is_active();
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
-
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
@@ -434,8 +426,7 @@ namespace user
 
       //virtual bool _is_window_visible();
       virtual bool is_this_visible(enum_layout elayout);
-      virtual bool is_window_enabled() const;
-      virtual bool is_this_enabled() const;
+      //virtual bool is_window_enabled() const;
 
 
 
@@ -516,7 +507,7 @@ namespace user
 
 
       //virtual lresult default_window_procedure();
-      //virtual void default_window_procedure(::message::message * pbase);
+      //virtual void default_window_procedure(::message::message * pmessage);
 
 
       virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, lresult * presult = nullptr);
@@ -529,11 +520,13 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      oswindow get_safe_handle() const;
-      virtual oswindow get_handle() const override;
-      virtual bool attach(oswindow oswindow_New);
+      oswindow get_safe_oswindow() const;
+      virtual oswindow get_oswindow() const override;
+      //virtual bool attach(::windowing::window * pwindow_New);
       virtual oswindow detach();
 
+
+      virtual windowing::window * get_window() const;
       
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -567,13 +560,13 @@ namespace user
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
-      virtual bool OnChildNotify(::message::base * pbase);
+      virtual bool OnCommand(::message::message * pmessage);
+      virtual bool OnNotify(::message::message * pmessage);
+      virtual bool OnChildNotify(::message::message * pmessage);
 
 
 
@@ -581,7 +574,7 @@ namespace user
 
       //virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
 
-      virtual bool has_command_handler(::user::command * pcommand) override;
+      virtual bool has_command_handler(::message::command * pcommand) override;
 
 
 
@@ -661,8 +654,8 @@ namespace user
 
       //virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
       //virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
-      //virtual void message_handler(::message::base * pbase);
-      //virtual void pre_translate_message(::message::base * pbase);
+      //virtual void message_handler(::message::message * pmessage);
+      //virtual void pre_translate_message(::message::message * pmessage);
 
 
 
@@ -677,6 +670,9 @@ namespace user
 
       /*virtual void pre_translate_message(::message::message * pmessage);
 */
+
+
+
 
 
 
@@ -714,7 +710,7 @@ namespace user
       virtual ::e_status remove_keyboard_focus();
       virtual ::e_status clear_keyboard_focus();
       virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
-      //virtual bool has_focus();
+      //virtual bool has_keyboard_focus();
 
       // mouse focus
 
@@ -765,7 +761,7 @@ namespace user
       virtual void on_text_composition(string str);
       virtual void on_text_commit(string str);
       virtual void on_text_composition_done();
-      virtual bool is_text_composition_active();
+      //virtual bool is_text_composition_active();
 
       virtual void set_input_content_rect(const rectangle_i32& rectangle);
       virtual void set_input_selection_rect(const rectangle_i32& rectangle);
@@ -812,7 +808,7 @@ namespace user
 
 
 
-   inline oswindow primitive::get_safe_handle() const
+   inline oswindow primitive::get_safe_oswindow() const
    {
 
       if (::is_null(this))
@@ -822,7 +818,7 @@ namespace user
 
       }
 
-      return get_handle();
+      return get_oswindow();
 
    }
 

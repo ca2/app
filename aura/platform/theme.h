@@ -28,12 +28,12 @@ namespace aura
       public:
 
 
-         ::color        m_colorBg;
-         ::color        m_colorIconGlow;
-         ::color        m_colorFg;
-         ::color        m_colorMg;
-         ::color        m_colorBack;
-         ::color        m_colorText;
+         ::color::color        m_colorBg;
+         ::color::color        m_colorIconGlow;
+         ::color::color        m_colorFg;
+         ::color::color        m_colorMg;
+         ::color::color        m_colorBack;
+         ::color::color        m_colorText;
 
 
       };
@@ -74,7 +74,7 @@ namespace aura
       virtual string get_day_night_theme();
 
 
-      virtual void get_theme_text_color(::color & colorText, ::color & colorBack);
+      virtual void get_theme_text_color(::color::color & colorText, ::color::color & colorBack);
 
       virtual void sync_with_stored_theme();
       virtual string get_current_weather();
@@ -99,11 +99,11 @@ namespace aura
       //
       //   Is initialize_contextualized_theme called from aura::application
       //
-      inline ::color get_theme_bg_color() { return m_pcolors->m_colorBg; }
-      inline ::color get_theme_fg_color() { return m_pcolors->m_colorFg; }
-      inline ::color get_theme_mg_color() { return m_pcolors->m_colorMg; }
-      inline ::color get_theme_text_color() { return m_pcolors->m_colorText; }
-      inline ::color get_theme_icon_glow_color() { return m_pcolors->m_colorIconGlow; }
+      inline ::color::color get_theme_bg_color() { return m_pcolors->m_colorBg; }
+      inline ::color::color get_theme_fg_color() { return m_pcolors->m_colorFg; }
+      inline ::color::color get_theme_mg_color() { return m_pcolors->m_colorMg; }
+      inline ::color::color get_theme_text_color() { return m_pcolors->m_colorText; }
+      inline ::color::color get_theme_icon_glow_color() { return m_pcolors->m_colorIconGlow; }
 
 
       virtual void handle_file_action(::file::action* psubject) override;

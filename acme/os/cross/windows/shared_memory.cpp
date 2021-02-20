@@ -260,16 +260,16 @@ int_bool WINAPI GlobalUnlock(HGLOBAL hglobal)
 {
 
    if(hglobal->m_map == nullptr)
-      return FALSE;
+      return false;
 
    if (munmap(hglobal->m_map, ::get_file_size(hglobal->m_fd)) == -1)
    {
       //perror("Error un-mmapping the file");
       /* Decide here whether to close(fd) and exit() or not. Depends... */
-      return FALSE;
+      return false;
    }
 
-   return TRUE;
+   return true;
 
 }
 

@@ -588,7 +588,7 @@ try1:;
 
       }
 
-      return RemoveDirectoryW(::str::international::utf8_to_unicode(psz)) != FALSE;
+      return RemoveDirectoryW(::str::international::utf8_to_unicode(psz)) != false;
 
    }
 

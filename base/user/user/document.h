@@ -13,8 +13,8 @@ namespace user
 
 
 
-      bool                                m_bAutoDelete;     // TRUE => delete document when no more views
-      bool                                m_bEmbedded;       // TRUE => document is being created by OLE
+      bool                                m_bAutoDelete;     // true => delete document when no more views
+      bool                                m_bEmbedded;       // true => document is being created by OLE
 
       __pointer(::create)                 m_pcreate;
       string                              m_strTitle;
@@ -70,11 +70,11 @@ namespace user
       virtual string get_save_file_extension();
 
       const ::file::path & get_file_path() const;
-      virtual void set_path_name(::payload varFile, bool bAddToMRU = TRUE);
+      virtual void set_path_name(::payload varFile, bool bAddToMRU = true);
 
       ::user::impact_system * get_document_template() const;
       virtual bool is_modified();
-      virtual void set_modified_flag(bool bModified = TRUE);
+      virtual void set_modified_flag(bool bModified = true);
       virtual void set_new(bool bNew = true);
 
       virtual bool is_new_document();
@@ -90,7 +90,7 @@ namespace user
       template < class T >
       ::count get_typed_view_count() const
       {
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
          ::count count = 0;
          for (index index = 0; index < m_viewa.get_count(); index++)
          {
@@ -109,7 +109,7 @@ namespace user
       __pointer(T) get_typed_view(index indexFind = 0) const
       {
 
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
 
          if (indexFind < 0 || indexFind >= m_viewa.get_count())
          {
@@ -161,7 +161,7 @@ namespace user
       __pointer(T) get_typed_view_with_id(id id) const
       {
 
-         sync_lock sl(((document *)this)->mutex());
+         synchronization_lock synchronizationlock(((document *)this)->mutex());
 
          ::count count = 0;
 
@@ -178,7 +178,7 @@ namespace user
             if(point.is_set())
             {
 
-               if(id == point_i32->m_id)
+               if(id == point->m_id)
                   return point;
                else
                   count++;
@@ -191,8 +191,8 @@ namespace user
 
       }
 
-      //bool                             m_bAutoDelete;     // TRUE => delete document when no more views
-      //bool                             m_bEmbedded;       // TRUE => document is being created by OLE
+      //bool                             m_bAutoDelete;     // true => delete document when no more views
+      //bool                             m_bEmbedded;       // true => document is being created by OLE
 
 
       //controller();
@@ -235,7 +235,7 @@ namespace user
 
       virtual __pointer(::user::impact) get_typed_view_with_id(::type info,id id);
 
-      virtual void show_all_frames(::u32 nCmdShow);
+      virtual void show_all_frames(const ::edisplay & edisplay = e_display_normal);
 
 
       //class update
@@ -284,7 +284,7 @@ namespace user
 
       // advanced overridables, closing down frame/doc, etc.
       virtual bool can_close_frame(::user::frame_window * pframe);
-      virtual bool save_modified(); // return TRUE if ok to continue
+      virtual bool save_modified(); // return true if ok to continue
       virtual void pre_close_frame(::user::frame_window * pframe);
 
 
@@ -300,15 +300,15 @@ namespace user
       virtual void call_initial_update();
 
 
-#ifdef WINDOWS_DESKTOP
-      // overridables for implementation
-      virtual HMENU GetDefaultMenu(); // get menu depending on state
-      virtual HACCEL GetDefaultAccelerator();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      // overridables for implementation
+//      virtual HMENU GetDefaultMenu(); // get menu depending on state
+//      virtual HACCEL GetDefaultAccelerator();
+//#endif
       virtual void on_idle();
       virtual void on_final_release();
 
-      //virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::message::command * pcommand) override;
 
       friend class impact_system;
 
@@ -317,7 +317,7 @@ namespace user
       void on_file_save();
       void on_file_save_as();
       void on_file_send_mail();
-      void on_update_file_send_mail(::user::command* pCmdUI);
+      void on_update_file_send_mail(::message::command* pCmdUI);
 
       //virtual void on_request(::create * pcreate) override;
 

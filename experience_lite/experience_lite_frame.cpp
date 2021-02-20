@@ -32,7 +32,7 @@
 
                m_rectMarginNormal.set(5, 5, 5, 5);
 
-               m_colorCaptionText = ARGB(255, 255, 255, 255);
+               m_colorCaptionText = argb(255, 255, 255, 255);
 
                m_rectClient = ::rectangle_i32();
 
@@ -146,7 +146,7 @@
 
             color32_t frame::get_border_main_body_color()
             {
-               return ARGB(255, 63, 150, 106);
+               return argb(255, 63, 150, 106);
             }
 
             //::user::front_end_schema * frame::get_user_front_end_schema()
@@ -233,7 +233,7 @@
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
+            bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
             {
                switch (eelement)
                {
@@ -292,7 +292,7 @@
             {
                m_colorMoveableBorder = cr;
 
-               color color;
+               ::color::color color;
 
                color.set_rgb(cr);
                color.hls_rate(0.0, 0.5, 0.0);
@@ -355,13 +355,13 @@
             void frame::set_frame_color_system_default_001()
             {
 
-               m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
+               m_penText1->create_solid(1, argb(255, 255, 255, 255));
                m_penFace1->create_solid(1, crButtonFace | 0xff000000);
                m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
                m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
                m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
                m_colorDkShadow = crButtonDarkShadow;
-               m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
+               m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
 
 
             }
@@ -397,33 +397,33 @@
                {
                case StyleLightBlue:
                case StyleTranslucidLightBlue:
-                  return ARGB(255, 116, 160, 220);
+                  return argb(255, 116, 160, 220);
                case StyleTranslucidWarmGray:
-                  return ARGB(255, 184, 184, 177);
+                  return argb(255, 184, 184, 177);
                   break;
                case StyleDarkWarmBlue:
-                  return ARGB(255, 34, 54, 75);
+                  return argb(255, 34, 54, 75);
                   break;
                case StyleBlackBorder:
-                  return RGB(116, 160, 220) | 0xff000000;
+                  return rgb(116, 160, 220) | 0xff000000;
                case StyleLightGreen:
                case StyleTranslucidLightGreen:
-                  return RGB(116, 220, 160) | 0xff000000;
+                  return rgb(116, 220, 160) | 0xff000000;
                case StyleRedOrange:
-                  return RGB(255, 170, 136) | 0xff000000;
+                  return rgb(255, 170, 136) | 0xff000000;
                case StyleBlueRedPurple:
-                  return RGB(200, 100, 220) | 0xff000000;
+                  return rgb(200, 100, 220) | 0xff000000;
                case StyleEveningSun:
-                  return RGB(255, 210, 100) | 0xff000000;
+                  return rgb(255, 210, 100) | 0xff000000;
                case StyleTranslucidWarmLiteGray:
-                  return RGB(239, 230, 219) | 0xff000000;
+                  return rgb(239, 230, 219) | 0xff000000;
                default:
-                  return RGB(200, 100, 220) | 0xff000000;
+                  return rgb(200, 100, 220) | 0xff000000;
                }
 
 
                // Light Green/Translucid Light Green
-               return RGB(116, 220, 160) | 0xff000000;
+               return rgb(116, 220, 160) | 0xff000000;
 
             }
 
@@ -535,7 +535,7 @@
 
                }
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                appearance * pframewindow = m_pframewindow->get_display();
 
@@ -577,13 +577,13 @@
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw3d_rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), ARGB(84 + 23, 230, 230, 230), ARGB(84 + 23, 108 + 23, 108 + 23, 108 + 23));
+                        pgraphics->draw3d_rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), argb(84 + 23, 230, 230, 230), argb(84 + 23, 108 + 23, 108 + 23, 108 + 23));
 
                         i += 5;
 
                      }
 
-                     //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),ARGB(184,255,255,255),ARGB(184,84,84,84));
+                     //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
                   }
 
@@ -594,13 +594,13 @@
                   if (m_pframewindow->GetWndDraw()->is_active() && m_colorActiveCaptionTextBk != 0)
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
                   }
 
@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = System.draw2d().fonts();
+                  //class font_department & fonts = System.draw2d()->fonts();
 
                   string wstrWindowText;
 

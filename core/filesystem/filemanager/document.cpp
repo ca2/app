@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -56,30 +54,30 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
 
-      ASSERT(bOpenFileDialog == FALSE);
+      ASSERT(bOpenFileDialog == false);
 
       __pointer(document) pdocument = this;
 
       tab_view * pview = pdocument->get_typed_view < tab_view >();
 
-#ifdef WINDOWS_DESKTOP
-      oswindow oswindowDesktop = ::get_desktop_window();
-      ::rectangle_i32 rectOpen;
-      ::GetWindowRect(oswindowDesktop, rectOpen);
-      i32 iWidth = rectOpen.width();
-      i32 iHeight = rectOpen.width();
-      rectOpen.deflate(iWidth / 5, iHeight / 5);
-      pview->get_parent_frame()->order(zorder_top);
-      pview->get_parent_frame()->place(rectOpen);
-      pview->get_parent_frame()->display();
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      oswindow oswindowDesktop = ::get_desktop_window();
+//      ::rectangle_i32 rectOpen;
+//      ::GetWindowRect(oswindowDesktop, rectOpen);
+//      i32 iWidth = rectOpen.width();
+//      i32 iHeight = rectOpen.width();
+//      rectOpen.deflate(iWidth / 5, iHeight / 5);
+//      pview->get_parent_frame()->order(e_zorder_top);
+//      pview->get_parent_frame()->place(rectOpen);
+//      pview->get_parent_frame()->display();
+//
+//#endif
       pview->set_cur_tab_by_id(1);
       pview->get_parent_frame()->set_need_redraw();
       pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
       pview->get_parent_frame()->DestroyWindow();
-      return TRUE;
+      return true;
 
    }
 
@@ -326,7 +324,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_item_update(::user::command * pcommand, const ::file::item_array & itema)
+   void document::on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema)
    {
 
       ASSERT(filemanager_data()->m_pcallback != nullptr);
@@ -713,7 +711,7 @@ namespace filemanager
    }
 
 
-   void document::on_command(::user::command * pcommand)
+   void document::on_command(::message::command * pcommand)
    {
 
       if (filemanager_data() != nullptr)
@@ -737,7 +735,7 @@ namespace filemanager
    }
 
 
-   void document::on_command_probe(::user::command * pcommand)
+   void document::on_command_probe(::message::command * pcommand)
    {
       /*if(pcommand->m_id == filemanager_template()->m_strLevelUp)
       {
@@ -753,9 +751,9 @@ namespace filemanager
    void document::_001OnUpdateNewManager(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -781,9 +779,9 @@ namespace filemanager
    void document::_001OnUpdateDelManager(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -823,18 +821,18 @@ namespace filemanager
    void document::_001OnUpdateLevelUp(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
       {
 
-         pcommand->enable(FALSE);
+         pcommand->enable(false);
 
       }
       else
       {
 
-         pcommand->enable(TRUE);
+         pcommand->enable(true);
 
       }
 
@@ -853,9 +851,9 @@ namespace filemanager
    void document::_001OnUpdateAddLocation(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -875,9 +873,9 @@ namespace filemanager
    void document::_001OnUpdateReplaceText(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -899,9 +897,9 @@ namespace filemanager
    void document::_001OnUpdateNewFolder(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -922,7 +920,7 @@ namespace filemanager
 
    void document::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      //      __pointer(::user::command) pcommand(pmessage);
+      //      __pointer(::message::command) pcommand(pmessage);
 
       //         pcommand->enable(System.m_strCopy.is_empty());
       pmessage->m_bRet = true;
@@ -938,20 +936,20 @@ namespace filemanager
 
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      __pointer(::message::command) pcommand(pmessage);
+      pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      __pointer(::message::command) pcommand(pmessage);
+      pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      __pointer(::message::command) pcommand(pmessage);
+      pcommand->enable(true);
    }
 
 
@@ -1183,7 +1181,7 @@ namespace filemanager
    }
 
 
-   bool document::HandleDefaultFileManagerItemCmdMsg(::user::command * pcommand, ::file::item_array & itema)
+   bool document::HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand, ::file::item_array & itema)
    {
 
       if (pcommand->is_command_probe())

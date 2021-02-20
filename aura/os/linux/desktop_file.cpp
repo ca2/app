@@ -411,35 +411,37 @@ namespace linux
    }
 
 
-   bool desktop_file::bamf_set_icon(oswindow oswindow)
-   {
-
-      ::file::path path = get_file_path();
-
-      output_debug_string("\nlinux::interaction_impl::set_window_text");
-
-      fflush(stdout);
-
-      auto pwindowing = System.windowing();
-
-      if(!pwindowing)
-      {
-
-         return false;
-
-      }
-
-
-      if(!pwindowing->set_window_icon(oswindow, path))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//   bool desktop_file::bamf_set_icon(oswindow oswindow)
+//   {
+//
+//      ::file::path path = get_file_path();
+//
+//      output_debug_string("\nlinux::interaction_impl::set_window_text");
+//
+//      fflush(stdout);
+//
+//      auto puser = User;
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(!pwindowing)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//      if(!pwindowing->set_window_icon(oswindow, path))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 
 } // namespace linux

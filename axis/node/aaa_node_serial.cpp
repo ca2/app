@@ -20,7 +20,7 @@
 #endif
 
 //using std::invalid_argument;
-//using std::min;
+//using std::minimum;
 //using std::numeric_limits;
 //using std::vector;
 //using std::size_t;
@@ -89,7 +89,7 @@ serial::Timeout Timeout::simpleTimeout(u32 timeout)
 #ifdef WINDOWS
    return Timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
 #else
-   return Timeout(max(), timeout, 0, timeout, 0);
+   return Timeout(maximum(), timeout, 0, timeout, 0);
 #endif
 }
 

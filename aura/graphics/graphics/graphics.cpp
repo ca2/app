@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "aura/user/_user.h"
-#endif
 
 
 namespace graphics
@@ -55,7 +53,7 @@ namespace graphics
 
       m_pimpl = pimpl;
 
-      m_oswindow = pimpl->m_oswindow;
+      m_pwindow = pimpl->get_window();
 
       return estatus;
 
@@ -110,7 +108,7 @@ namespace graphics
    }
 
 
-   ::sync * graphics::get_draw_lock()
+   ::synchronization_object * graphics::get_draw_lock()
    {
 
       return mutex();
@@ -169,7 +167,7 @@ namespace graphics
    }
 
 
-   sync * graphics::get_buffer_sync()
+   synchronization_object * graphics::get_buffer_sync()
    {
 
       return mutex();
@@ -187,7 +185,7 @@ namespace graphics
    }
 
 
-   sync * graphics::get_screen_sync()
+   synchronization_object * graphics::get_screen_sync()
    {
 
       return mutex();
@@ -198,9 +196,9 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect)
    {
 
-      sync_lock sl(get_screen_sync());
+      synchronization_lock synchronizationlock(get_screen_sync());
 
-      color colorTransparent(0);
+      ::color::color colorTransparent(0);
 
       return get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent, lpcrect);
 

@@ -142,7 +142,7 @@ namespace uwp
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
-      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+      ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
          ::file::throw_status(error_file, _doserrno, m_path);
@@ -265,7 +265,7 @@ namespace uwp
          nErr = fclose(m_pStream);
 
       m_hFile = (::u32) hFileNull;
-      m_bCloseOnDelete = FALSE;
+      m_bCloseOnDelete = false;
       m_pStream = nullptr;
 
       if (nErr != 0)
@@ -280,7 +280,7 @@ namespace uwp
          fclose(m_pStream);  // close but ignore errors
       m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
-      m_bCloseOnDelete = FALSE;
+      m_bCloseOnDelete = false;
    }
 
 

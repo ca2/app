@@ -44,7 +44,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(::datetime::time& time, LPRECT32 lprect)
+      void calendar::GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect)
       {
 
          int32_t iWeekDay = time.GetDayOfWeek();
@@ -54,7 +54,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect)
+      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect)
       {
 
          UNREFERENCED_PARAMETER(iWeekDay);
@@ -64,7 +64,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(LPRECT32 lprect, enum enum_element eelement)
+      void calendar::GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement)
       {
 
          UNREFERENCED_PARAMETER(lprect);
@@ -108,7 +108,7 @@ namespace datetime
       }
 
 
-      void calendar::set_pos(point_i32 point_i32, size_i32 sz)
+      void calendar::set_pos(point_i32 point, size_i32 sz)
       {
 
          UNREFERENCED_PARAMETER(point);
@@ -270,7 +270,7 @@ namespace datetime
 
          GetRect(rectangle, eelement);
 
-         return rectangle.contains(point) != FALSE;
+         return rectangle.contains(point) != false;
 
       }
 

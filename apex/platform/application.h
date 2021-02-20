@@ -161,7 +161,7 @@ namespace apex
 
 
       string_array                                    m_straAppInterest;
-      string_map < oswindow, oswindow >               m_mapAppInterest;
+      //string_map < oswindow, oswindow >               m_mapAppInterest;
 
       ::duration                                      m_durationGcomBackgroundUpdate;
 
@@ -241,7 +241,7 @@ namespace apex
       virtual ::e_status os_native_bergedge_start();
 
 
-
+      virtual bool on_application_menu_action(const char * pszCommand);
 
 
       virtual void term();
@@ -348,7 +348,7 @@ namespace apex
 
       virtual string get_mutex_name_gen();
 
-      //virtual ::user::interaction * user_interaction_from_oswindow(oswindow oswindow);
+      //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
       virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
@@ -511,7 +511,7 @@ namespace apex
       //virtual ::file::path full_process_path(::file::path path);
 
       //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void ShowWaitCursor(bool bShow = true);
+      virtual void show_wait_cursor(bool bShow = true);
 
 
 
@@ -527,7 +527,7 @@ namespace apex
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      virtual bool on_application_menu_action(const char * pszCommand);
+      //virtual bool on_application_menu_action(const char * pszCommand);
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -701,9 +701,9 @@ namespace apex
       virtual ::e_status     call_request(::create * pcreate) override;
 
 
-      virtual void process_message(::message::base * base) override;
+      //virtual void process_message(::user::message * base) override;
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pmessage) override;
 
 
 
@@ -807,7 +807,7 @@ namespace apex
 
       //virtual ::user::interaction * main_window();
 
-//         virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
+//         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
 
 
       //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
@@ -861,7 +861,7 @@ namespace apex
       virtual ::id translate_property_id(const ::id & id) override;
       //virtual property fetch_property(const ::id & id) override;
 
-      virtual void get_time(micro_duration * pmicroduration);
+      //virtual void get_time(micro_duration * pmicroduration);
 
 
       virtual void close(::apex::enum_end eend);
@@ -965,10 +965,10 @@ namespace apex
       //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 
 
-      void OnUpdateRecentFileMenu(::user::command* pcommand);
+      void OnUpdateRecentFileMenu(::message::command* pcommand);
 
       //virtual void send_app_language_changed();
-      virtual void route_command_message(::user::command* pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
 
       virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
@@ -1197,7 +1197,7 @@ namespace apex
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam);
+//      static BOOL CALLBACK GetAppsEnumWindowsProc(::windowing::window * pwindow, LPARAM lParam);
 //
 //#endif
 
@@ -1205,15 +1205,15 @@ namespace apex
       void ensure_app_interest();
 
 
-      virtual oswindow get_ca2_app_wnd(const char* psz);
+      //virtual oswindow get_ca2_app_wnd(const char* psz);
 
 
       //virtual void request_create(::create * pcreate);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
-      virtual i32 send_simple_command(const char* psz, void* osdataSender);
-      virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender);
+      //virtual i32 send_simple_command(const char* psz, void* osdataSender);
+      //virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender);
 
       //virtual ::apex::printer* get_printer(const char* pszDeviceName) override;
 
@@ -1390,7 +1390,11 @@ namespace apex
 
 
 
-      virtual ::e_status process_message() override;
+//#ifdef WINDOWS_DESKTOP
+//      virtual ::e_status process_message(::layered * pwindow);     // route message
+//#else
+//      virtual ::e_status process_message();     // route message
+//#endif
 
       //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 

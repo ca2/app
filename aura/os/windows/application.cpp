@@ -32,7 +32,7 @@ block_input::block_input(::object * pobject, int iSleep) :
 {
    m_mutex.lock();
    //   repeat:
-   m_bBlocked = ::BlockInput(TRUE) != FALSE;
+   m_bBlocked = ::BlockInput(true) != false;
    //{
 
    //   ::u32 dw = ::get_last_error();
@@ -55,7 +55,7 @@ block_input::~block_input()
 
    if (m_bBlocked)
    {
-      ::BlockInput(FALSE);
+      ::BlockInput(false);
    }
    m_mutex.unlock();
 
@@ -949,7 +949,7 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam);
 
    // If we can't open the process with PROCESS_TERMINATE rights,
    // then we give up immediately.
-   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, FALSE,
+   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, false,
                        dwPID);
 
    if (hProc == nullptr)
@@ -988,7 +988,7 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

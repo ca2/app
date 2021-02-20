@@ -169,7 +169,7 @@ namespace hotplugin
    //void plugin::set_window_rect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   m_rectangle = *rectangle_i32;
+   //   m_rectangle = *rectangle;
 
 
    //}
@@ -666,7 +666,7 @@ namespace hotplugin
 
             rectP.right    = rectWindow.right;
 
-            pgraphics->fill_rect(rectP, ARGB(90, 90, 90, 80));
+            pgraphics->fill_rectangle(rectP, argb(90, 90, 90, 80));
 
          }
 
@@ -1066,7 +1066,7 @@ namespace hotplugin
    }
 
 
-   void plugin::message_handler(::message::base * pbase)
+   void plugin::message_handler(::user::message * pusermessage)
    {
 
       const ::id & id;
@@ -1076,11 +1076,11 @@ namespace hotplugin
       lparam lparam;
 
 
-      message = (::u32) (LPARAM) pbase->m_id.i64();
+      message = (::u32) (LPARAM) pusermessage->m_id.i64();
 
-      wparam     = pbase->m_wparam;
+      wparam     = pusermessage->m_wparam;
 
-      __pointer(::message::mouse) spmouse = pbase;
+      __pointer(::message::mouse) spmouse = pusermessage;
 
       if(spmouse.is_set())
       {
@@ -1092,7 +1092,7 @@ namespace hotplugin
       else
       {
 
-         lparam     = pbase->m_lparam;
+         lparam     = pusermessage->m_lparam;
 
 
       }

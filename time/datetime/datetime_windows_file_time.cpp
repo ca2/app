@@ -18,7 +18,7 @@ namespace windows
       {
 
 #if defined(_WIN32) && !defined(UNDER_CE) && !defined(METROWIN)
-         return ::DosDateTimeToFileTime((::u3216_t)(dosTime >> 16), (::u3216_t)(dosTime & 0xFFFF), &ft) != FALSE;
+         return ::DosDateTimeToFileTime((::u3216_t)(dosTime >> 16), (::u3216_t)(dosTime & 0xFFFF), &ft) != false;
 #else
 
          ft.dwLowDateTime = 0;
@@ -55,7 +55,7 @@ namespace windows
 
 #else
 
-         ::u32 year, mon, day, hour, min, sec;
+         ::u32 year, mon, day, hour, minimum, sec;
          ::u3264_t v64 = ft.dwLowDateTime | ((::u3264_t)ft.dwHighDateTime << 32);
          byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
          ::u32 temp;
@@ -64,7 +64,7 @@ namespace windows
          v64 /= kNumTimeQuantumsInSecond;
          sec = (::u32)(v64 % 60);
          v64 /= 60;
-         min = (::u32)(v64 % 60);
+         minimum = (::u32)(v64 % 60);
          v64 /= 60;
          hour = (::u32)(v64 % 24);
          v64 /= 24;
@@ -110,7 +110,7 @@ namespace windows
          dosTime = kHighDosTime;
          if (year >= 128)
             return false;
-         dosTime = (year << 25) | (mon << 21) | (day << 16) | (hour << 11) | (min << 5) | (sec >> 1);
+         dosTime = (year << 25) | (mon << 21) | (day << 16) | (hour << 11) | (minimum << 5) | (sec >> 1);
 #endif
          return true;
       }
@@ -141,11 +141,11 @@ namespace windows
       }
 
       bool GetSecondsSince1601(::u32 year, ::u32 month, ::u32 day,
-         ::u32 hour, ::u32 min, ::u32 sec, ::u3264_t &resSeconds)
+         ::u32 hour, ::u32 minimum, ::u32 sec, ::u3264_t &resSeconds)
       {
          resSeconds = 0;
          if (year < kFileTimeStartYear || year >= 10000 || month < 1 || month > 12 ||
-            day < 1 || day > 31 || hour > 23 || min > 59 || sec > 59)
+            day < 1 || day > 31 || hour > 23 || minimum > 59 || sec > 59)
             return false;
          ::u32 numYears = year - kFileTimeStartYear;
          ::u32 numDays = numYears * 365 + numYears / 4 - numYears / 100 + numYears / 400;
@@ -156,7 +156,7 @@ namespace windows
          for (::u32 i = 0; i < month; i++)
             numDays += ms[i];
          numDays += day - 1;
-         resSeconds = ((::u3264_t)(numDays * 24 + hour) * 60 + min) * 60 + sec;
+         resSeconds = ((::u3264_t)(numDays * 24 + hour) * 60 + minimum) * 60 + sec;
          return true;
       }
 

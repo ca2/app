@@ -34,34 +34,34 @@ namespace draw2d_opengl
    // bool brush::CreateHatchBrush(i32 nIndex, color32_t crColor)
    // { 
    //    //return attach(::CreateHatchBrush(nIndex, crColor));
-   //    return FALSE;
+   //    return false;
    // }
 //    bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
   //  {
        //return attach(::CreateBrushIndirect(lpLogBrush)); 
-    //   return FALSE;
+    //   return false;
     //}
     //bool brush::CreatePatternBrush(::draw2d::bitmap* pBitmap)
     //{ 
     //   //return attach(::CreatePatternBrush((HBITMAP)pBitmap->get_os_data()));
-    //   return FALSE;
+    //   return false;
     //}
     //bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, ::u32 nUsage)
     //{ 
     //   //return attach(::CreateDIBPatternBrushPt(lpPackedDIB, nUsage));
-    //   return FALSE;
+    //   return false;
     //}
     //bool brush::CreateSysColorBrush(i32 nIndex)
     //{ 
     //   //return attach(::GetSysColorBrush(nIndex));
-    //   return FALSE;
+    //   return false;
 
     //}
 /*    i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
     { 
        //ASSERT(get_os_data() != nullptr);
        //return ::GetObject(get_os_data(), sizeof(LOGBRUSH), pLogBrush); 
-       return FALSE;
+       return false;
     }*/
 
 
@@ -93,7 +93,7 @@ namespace draw2d_opengl
 //      //bool bResult = attach(::CreateDIBPatternBrushPt(lpPackedDIB, nUsage));
 //      //::GlobalUnlock(hPackedDIB);
 //      //return bResult;
-//      return FALSE;
+//      return false;
 //   }
 
 

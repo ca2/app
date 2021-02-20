@@ -1,5 +1,5 @@
-﻿#include "framework.h"
-#include "core/user/user/shell.h"
+#include "framework.h"
+#include "aura/user/shell.h"
 #include "_userfs.h"
 
 
@@ -108,7 +108,7 @@ namespace userfs
    void list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
 //      if(is_locked())
 //         return;
@@ -258,7 +258,7 @@ namespace userfs
    void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 //      if(is_locked())
       //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)

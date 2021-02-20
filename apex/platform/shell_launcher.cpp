@@ -32,12 +32,12 @@ namespace apex
    }
 
 
-   bool shell_launcher::succeeded()
-   {
-
-      return false;
-
-   }
+//   bool shell_launcher::succeeded()
+//   {
+//
+//      return false;
+//
+//   }
 
 #endif
 

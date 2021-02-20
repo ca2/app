@@ -292,10 +292,10 @@ namespace multimedia
             break;
 
          default:
-            ASSERT(FALSE);
+            ASSERT(false);
             //            DPF(0, "!MixAppGetControlTypeName: invalid control type %.08lXh!", pmxctrl->dwControlType);
             strTypeName = "** NOT VALID **";
-            return (FALSE);
+            return (false);
          }
 
          return true;
@@ -316,7 +316,7 @@ namespace multimedia
          else
          {
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
          }
 
@@ -337,7 +337,7 @@ namespace multimedia
          else
          {
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
          }
 
@@ -349,9 +349,9 @@ namespace multimedia
          __pointer(::multimedia::audio_mixer_mmsystem::device) device = m_pdevice;
 
          if(device != nullptr && device->OnCommand(wparam, lparam))
-            return TRUE;
+            return true;
 
-         return FALSE;
+         return false;
 
       }
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -25,7 +23,7 @@ namespace user
       if (is_picture_enabled())
       {
 
-         item.m_pointScreen = point_i32;
+         item.m_pointScreen = point;
 
          auto pointClient = get_parent()->screen_to_client(item.m_pointScreen);
 

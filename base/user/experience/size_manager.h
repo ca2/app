@@ -39,9 +39,9 @@ namespace experience
       enum_grip GetGripMask();
       void SetGripMask(enum_grip egrip);
       bool window_is_sizing();
-      void SetSWPFlags(::u32 uFlags);
+      //void SetSWPFlags(::u32 uFlags);
       virtual ::size_i32 GetMinSize();
-      e_cursor translate(e_hittest ehittest);
+      enum_cursor translate(e_hittest ehittest);
       bool set_frame_window(frame_window * pframewindow);
 
       void size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking);

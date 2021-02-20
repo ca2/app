@@ -1,29 +1,10 @@
 #pragma once
 
 
-
-
-#ifndef WINDOWS
-
-typedef struct _SYSTEMTIME {
-   ::u16 wYear;
-   ::u16 wMonth;
-   ::u16 wDayOfWeek;
-   ::u16 wDay;
-   ::u16 wHour;
-   ::u16 wMinute;
-   ::u16 wSecond;
-   ::u16 wMilliseconds;
-} SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
-
-void GetSystemTime(LPSYSTEMTIME systime);
-
-#endif
-
-
+#include "system_time.h"
 #include "result.h"
 
-
+#include "microsecond_sleep.h"
 //namespace datetime
 //{
 //
@@ -38,7 +19,15 @@ void GetSystemTime(LPSYSTEMTIME systime);
 //} // namespace datetime
 
 
+#ifdef WINDOWS
+
+
 extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp);
+
+
+#endif
+
+
 extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 

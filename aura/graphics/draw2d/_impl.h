@@ -340,78 +340,6 @@ inline image::operator const image_extension* () const
 inline __pointer(image_frame_array) image_meta::frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
 
 
-inline ::rgba& rgba::operator =(const ::payload & payload)
-{
-
-   red = payload["red"];
-   green = payload["green"];
-   blue = payload["blue"];
-   alpha = payload["alpha"];
-
-   return *this;
-
-}
-
-
-inline ::payload& assign(::payload& payload, const rgba& rgba)
-{
-
-   payload["rec"] = rgba.red;
-   payload["green"] = rgba.green;
-   payload["blue"] = rgba.blue;
-   payload["alpha"] = rgba.alpha;
-
-   return payload;
-
-}
-
-
-
-inline void __exchange(::stream& s, ::rgba& rgba)
-{
-
-   s.exchange("red", rgba.red);
-   s.exchange("green", rgba.green);
-   s.exchange("blue", rgba.blue);
-   s.exchange("alpha", rgba.alpha);
-
-}
-
-
-
-
-inline ::hls& hls::operator =(const ::payload & payload)
-{
-
-   m_dH = payload["hue"];
-   m_dL = payload["lightness"];
-   m_dS = payload["saturation"];
-
-   return *this;
-
-}
-
-
-inline ::payload& assign(::payload& payload, const ::hls& hls)
-{
-
-   payload["hue"] = hls.m_dH;
-   payload["lightness"] = hls.m_dL;
-   payload["saturation"] = hls.m_dS;
-
-   return payload;
-
-}
-
-
-inline void __exchange(::stream& s, ::hls& hls)
-{
-
-   s.exchange("hue", hls.m_dH); s.exchange("lightness", hls.m_dL); s.exchange("saturation", hls.m_dS);
-
-}
-
-
 inline ::size_i32 image::get_size() const { return size(); }
 
 
@@ -436,7 +364,7 @@ namespace draw2d
 
 
    template < typename PRED >
-   bool draw2d::emboss_pred(
+   bool draw2d::emboss_predicate(
       ::draw2d::graphics_pointer & pgraphics,
       const ::rectangle_i32 & rectangle,
       PRED pred,
@@ -452,7 +380,7 @@ namespace draw2d
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-      ::rectangle_i32 rectEmboss = rectangle_i32;
+      ::rectangle_i32 rectEmboss = rectangle;
 
       rectEmboss.left -= (::i32)(iR * g_dEmboss);
       rectEmboss.top -= (::i32)(iR * g_dEmboss);
@@ -504,7 +432,7 @@ namespace draw2d
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         brushText->create_solid(ARGB(255, 255, 255, 255));
+         brushText->create_solid(argb(255, 255, 255, 255));
          pimage->get_graphics()->set(brushText);
 
          pimage->get_graphics()->OffsetViewportOrg(rectCache.left - rectangle.left, rectCache.top - rectangle.top);
@@ -513,7 +441,7 @@ namespace draw2d
 
          pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rectangle.left, -rectCache.top + rectangle.top);
 
-         System.imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
+         System.imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
          for (iptr i = 0; i < iBlur; i++)
          {

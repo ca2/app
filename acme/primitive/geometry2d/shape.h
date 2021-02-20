@@ -165,7 +165,7 @@ public:
 using arc_shape = _shape < ::arc, e_shape_arc>;
 //using line_shape = _shape < ::line, e_shape_line >;
 using lined_shape = _shape < ::lined, e_shape_lined >;
-//using rect_shape = _shape < ::rectangle_i32, e_shape_rect >;
+//using rect_shape = _shape < ::rectangle, e_shape_rect >;
 using rectd_shape = _shape < ::rectangle_f64, e_shape_rectd >;
 //using oval_shape = _shape < ::oval, e_shape_oval >;
 using ovald_shape = _shape < ::ovald, e_shape_ovald >;

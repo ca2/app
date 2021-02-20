@@ -167,13 +167,13 @@ namespace iter
    ITERABLE & preferred_iter(ITERABLE & iterable, const ITERABLE2 & iterable2);
 
    template < typename ITERABLE, typename PRED >
-   bool pred_remove_first(ITERABLE & iterable, PRED pred);
+   bool predicate_remove_first(ITERABLE & iterable, PRED pred);
 
    template < typename ITERABLE, typename PRED >
-   typename ITERABLE::const_iterator pred_find_first(const ITERABLE & iterable, PRED pred, typename ITERABLE::const_iterator = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator predicate_find_first(const ITERABLE & iterable, PRED pred, typename ITERABLE::const_iterator = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename PRED >
-   typename ITERABLE::iterator pred_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator predicate_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::count count = -1);
@@ -1433,9 +1433,9 @@ namespace iter
          if (iFindB < 0)
             goto n_only;
 
-         iFind1 = min(iFindA, iFindB);
+         iFind1 = minimum(iFindA, iFindB);
 
-         iFind2 = max(iFindA, iFindB);
+         iFind2 = maximum(iFindA, iFindB);
 
          if (iFind1 > iPos)
          {
@@ -1678,10 +1678,10 @@ end:
    }
 
    template < typename ITERABLE, typename PRED>
-   bool pred_remove_first(ITERABLE & iterable, PRED pred)
+   bool predicate_remove_first(ITERABLE & iterable, PRED pred)
    {
 
-      auto it = pred_find_first(iterable, pred);
+      auto it = predicate_find_first(iterable, pred);
 
       if (it == iterable.end())
       {
@@ -1697,7 +1697,7 @@ end:
    }
 
    template < typename ITERABLE, typename PRED >
-   typename ITERABLE::const_iterator pred_find_first(const ITERABLE & iterable, PRED pred, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator predicate_find_first(const ITERABLE & iterable, PRED pred, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -1720,7 +1720,7 @@ end:
 
 
    template < typename ITERABLE, typename PRED >
-   typename ITERABLE::iterator pred_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator predicate_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -4655,26 +4655,26 @@ public:
    }
 
    template < typename PRED >
-   bool pred_remove_first(PRED pred)
+   bool predicate_remove_first(PRED pred)
    {
 
-      return ::iter::pred_remove_first(*this, pred);
+      return ::iter::predicate_remove_first(*this, pred);
 
    }
 
    template < typename PRED >
-   typename ITERABLE::const_iterator pred_find_first(PRED pred, typename ITERABLE::const_iterator first = nullptr, typename ITERABLE::const_iterator last = nullptr) const
+   typename ITERABLE::const_iterator predicate_find_first(PRED pred, typename ITERABLE::const_iterator first = nullptr, typename ITERABLE::const_iterator last = nullptr) const
    {
 
-      return ::iter::pred_find_first(*this, pred, first, last);
+      return ::iter::predicate_find_first(*this, pred, first, last);
 
    }
 
    template < typename PRED >
-   typename ITERABLE::iterator pred_find_first(PRED pred, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator predicate_find_first(PRED pred, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::pred_find_first(*this, pred, first, last);
+      return ::iter::predicate_find_first(*this, pred, first, last);
 
    }
 
@@ -4817,28 +4817,28 @@ public:
 
 
    template < typename PRED >
-   void pred_quick_sort(PRED pred, bool bAscending)
+   void predicate_quick_sort(PRED pred, bool bAscending)
    {
 
-      ::sort::pred_quick_sort(*this, pred, bAscending);
+      ::sort::predicate_quick_sort(*this, pred, bAscending);
 
    }
 
 
    template < typename PRED >
-   void pred_quick_sort(PRED pred)
+   void predicate_quick_sort(PRED pred)
    {
 
-      ::sort::pred_quick_sort(*this, pred);
+      ::sort::predicate_quick_sort(*this, pred);
 
    }
 
 
    template < typename PRED >
-   void pred_quick_sort_descending(PRED pred)
+   void predicate_quick_sort_descending(PRED pred)
    {
 
-      ::sort::pred_quick_sort_descending(*this, pred);
+      ::sort::predicate_quick_sort_descending(*this, pred);
 
    }
 
@@ -4848,27 +4848,27 @@ public:
 
 
    template < typename PRED, typename SWAP >
-   void pred_swap_quick_sort(PRED pred, SWAP __swap, bool bAscending)
+   void predicate_swap_quick_sort(PRED pred, SWAP __swap, bool bAscending)
    {
 
-      ::sort::pred_swap_quick_sort(*this, pred, bAscending);
+      ::sort::predicate_swap_quick_sort(*this, pred, bAscending);
 
    }
 
 
    template < typename PRED, typename SWAP >
-   void pred_swap_quick_sort(PRED pred, SWAP __swap)
+   void predicate_swap_quick_sort(PRED pred, SWAP __swap)
    {
 
-      ::sort::pred_swap_quick_sort(*this, pred);
+      ::sort::predicate_swap_quick_sort(*this, pred);
 
    }
 
    template < typename PRED, typename SWAP >
-   void pred_swap_quick_sort_descending(PRED pred, SWAP __swap)
+   void predicate_swap_quick_sort_descending(PRED pred, SWAP __swap)
    {
 
-      ::sort::pred_swap_quick_sort_descending(*this, pred, bAscending);
+      ::sort::predicate_swap_quick_sort_descending(*this, pred, bAscending);
 
    }
 

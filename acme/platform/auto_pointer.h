@@ -56,7 +56,7 @@ public:
 
 
    template < typename TYPE, typename COPY >
-   auto_pointer(TYPE* p, ::count c, COPY copy)
+   auto_pointer(TYPE * p, ::count c, COPY copy)
    {
 
       m_bArray = true;

@@ -379,16 +379,16 @@ namespace introjection
 
       str += get_environment_variable("PATH");
 
-      bool bResult = FALSE;
+      bool bResult = false;
 #ifdef WINDOWS_DESKTOP
-      //bResult = SetEnvironmentVariable("PATH",str) != FALSE;
+      //bResult = SetEnvironmentVariable("PATH",str) != false;
 #elif defined(_UWP)
 
       __throw(todo());
 
 #elif defined(LINUX)
 #else
-      bResult = setenv("PATH",str,TRUE);
+      bResult = setenv("PATH",str,true);
 #endif
 
       TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d",bResult);
@@ -530,7 +530,7 @@ namespace introjection
 
 
 
-      sync_lock slCompiler(mutex());
+      synchronization_lock slCompiler(mutex());
 
       auto & plibrary = m_lib[strFilePath];
 
@@ -550,12 +550,12 @@ namespace introjection
 
       }
 
-      single_lock sl(plibrary->mutex());
+      single_lock synchronizationlock(plibrary->mutex());
 
-      if (!sl.lock(millis(0)))
+      if (!synchronizationlock.lock(millis(0)))
       {
 
-         sl.lock();
+         synchronizationlock.lock();
 
          if (plibrary->m_plibrary.is_set())
          {
@@ -1476,7 +1476,7 @@ auto tickStart = ::millis::now();
    //the parameters passed to the application being run from the command window.
    ansi_concatenate(Args, strstrParams);
 
-   if (!CreateProcessW(nullptr, wstring(Args), nullptr, nullptr, FALSE,
+   if (!CreateProcessW(nullptr, wstring(Args), nullptr, nullptr, false,
                       CREATE_NEW_CONSOLE,
                       nullptr,
                       nullptr,

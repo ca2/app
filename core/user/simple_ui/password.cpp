@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -25,7 +22,7 @@ namespace simple_ui
    void password::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       color32_t crBk;
       color32_t crBkSel;
@@ -113,13 +110,13 @@ namespace simple_ui
       imaging.color_blend(
       pgraphics,
       rectClient,
-      RGB(200, 255, 255),
+      rgb(200, 255, 255),
       127);
       }*/
 
-      color ca;
-      ca.set_rgb(RGB(227,227,210));
-      ca.hls_rate(0.0,-0.33,-0.23);
+      ::color::color color;
+      color.set_rgb(rgb(227,227,210));
+      color.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
       //pgraphics->draw3d_rect(rectClient,crBorder,crBorder);
 
@@ -149,7 +146,7 @@ namespace simple_ui
 
       bool bFocus;
 
-      if(has_focus())
+      if(has_keyboard_focus())
       {
          bFocus = keyboard_focus_is_focusable();
       }
@@ -166,14 +163,14 @@ namespace simple_ui
 
       ::draw2d::brush_pointer brushText(e_create);
 
-      penCaret->create_solid(1.0,ARGB(255,0,0,0));
+      penCaret->create_solid(1.0,argb(255,0,0,0));
 
 
       /*   rectClient.top = m_point.y;
       rectClient.left = m_point.x;
       rectClient.bottom = rectClient.top + m_size.cy;
       rectClient.right = rectClient.left + m_size.cx;*/
-      //      pgraphics->fill_rect(rectClient, crBk);
+      //      pgraphics->fill_rectangle(rectClient, crBk);
 
 //
 
@@ -183,7 +180,7 @@ namespace simple_ui
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
       //size_i32 size3;
-      ::draw2d::text_metric metric;
+      ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();
 //      string_array & straLines = m_plines->lines;
@@ -198,7 +195,7 @@ namespace simple_ui
       string strExtent3;
       index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
       index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
-      iLineEnd = min(iLineEnd,straLines.get_upper_bound());
+      iLineEnd = minimum(iLineEnd,straLines.get_upper_bound());
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.remove_all();
@@ -215,8 +212,8 @@ namespace simple_ui
          strsize i1 = iSelStart - lim;
          strsize i2 = iSelEnd - lim;
          strsize i3 = iCursor - lim;
-         strsize iStart = max(0,i1);
-         strsize iEnd = min(i2,strLine.get_length());
+         strsize iStart = maximum(0,i1);
+         strsize iEnd = minimum(i2,strLine.get_length());
          ::str::fill(strLine,'*');
          str1 = strLine.Mid(0,iStart);
          str2 = strLine.Mid(iStart,iEnd - iStart);
@@ -247,7 +244,7 @@ namespace simple_ui
          {
 
             auto rectFill = ::rectd_dim((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
-            pgraphics->fill_rect(rectFill,ARGB(255,120,240,180));
+            pgraphics->fill_rectangle(rectFill,argb(255,120,240,180));
             brushText->create_solid(crSel);
             pgraphics->set(brushText);
             pgraphics->text_out(left + size1.cx,y,strExtent2);
@@ -257,8 +254,8 @@ namespace simple_ui
          pgraphics->set(brushText);
          pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
-         //maxcy = max(size1.cy, size2.cy);
-         //maxcy = max(maxcy, size3.cy);
+         //maxcy = maximum(size1.cy, size2.cy);
+         //maxcy = maximum(maxcy, size3.cy);
          if(bFocus && bCaretOn && i3 == str1.get_length())
          {
             
@@ -279,7 +276,7 @@ namespace simple_ui
          y += dLineHeight;
          lim += straLines[i].get_length();
 
-         //ASSERT(FALSE);
+         //ASSERT(false);
 
       }
 

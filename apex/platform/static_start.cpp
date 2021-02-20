@@ -5,9 +5,7 @@
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
 //#include "apex/os/_os.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 
 
 CLASS_DECL_APEX string __apex_get_text(string str);
@@ -95,7 +93,7 @@ namespace apex
 //
 //#else
 
-   DWORD_PTR g_tlsindexLastError;
+   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -257,7 +255,7 @@ namespace apex
 
 #if !defined(WINDOWS)
 
-      g_tlsindexLastError = 0;
+//      g_tlsindexLastError = 0;
 
       g_pszDemangle = nullptr;
 
@@ -629,7 +627,7 @@ namespace apex
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -643,7 +641,7 @@ namespace apex
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   &System.g_mapLibrary.remove_all();
 
@@ -994,7 +992,7 @@ namespace apex
 //
 //CLASS_DECL_APEX color32_t dk_red() // <3 tbs
 //{
-//   return ARGB(255, 200, 16, 46);
+//   return argb(255, 200, 16, 46);
 //}
 
 

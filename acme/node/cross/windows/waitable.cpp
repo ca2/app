@@ -48,8 +48,8 @@
 //
 //	///  \brief		abstract function to initialize a waiting action with a timeout
 //	///  \lparam		duration time period to wait for item
-//	///  \return	waiting action result as sync_result
-//sync_result matter::wait(const duration & duration )
+//	///  \return	waiting action result as synchronization_result
+//synchronization_result matter::wait(const duration & duration )
 //{
 //
 //
@@ -68,7 +68,7 @@
 //   {
 //   }
 //
-//   return sync_result(sync_result::Failure);
+//   return synchronization_result(synchronization_result::Failure);
 //
 //}
 //
@@ -207,12 +207,12 @@
 //   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
 //   ASSERT(dynamic_cast < critical_section * > ( const_cast < matter * > (this)) == nullptr);
 //
-//   single_lock sl(const_cast < matter * > (this));
+//   single_lock synchronizationlock(const_cast < matter * > (this));
 //
-//   bool bWasLocked = !sl.lock(duration::zero());
+//   bool bWasLocked = !synchronizationlock.lock(duration::zero());
 //
 //   if(!bWasLocked)
-//      sl.unlock();
+//      synchronizationlock.unlock();
 //
 //   return bWasLocked;
 //

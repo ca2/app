@@ -210,6 +210,9 @@ public:
 
    bool is_new_or_null(const id & idName) const;
 
+   
+   using property_ptra::is_empty;
+
    bool is_empty(const id & idName) const;
 
    ::index find_index(const ::id & id, ::index iStart = 0) const;

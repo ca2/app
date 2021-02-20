@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -123,7 +121,7 @@ namespace user
       __pointer(span) data::add_span(const span & span)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          return __new(class span(this, span));
 
@@ -133,7 +131,7 @@ namespace user
       __pointer(span) data::add_span(::e_align ealignNewLine)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto pspan = create_span(ealignNewLine);
 
@@ -155,7 +153,7 @@ namespace user
       strsize data::get_sel_beg()
       {
 
-         return min(max(min_non_neg(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -163,7 +161,7 @@ namespace user
       strsize data::get_sel_end()
       {
 
-         return min(max(max(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
 
       }
 
@@ -171,7 +169,7 @@ namespace user
       void data::on_selection_change(format * pformat)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          index iSelBeg = get_sel_beg();
 
@@ -185,7 +183,7 @@ namespace user
       void data::get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          update_span_cache(m_spana);
 
@@ -232,10 +230,10 @@ namespace user
       }
 
 
-      strsize data::hit_test(point_f64 point_i32)
+      strsize data::hit_test(point_f64 point)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //double xLast = 0.0;
 
@@ -260,7 +258,7 @@ namespace user
             for (auto & pbox : pline->ptra())
             {
 
-               rBox.max(pbox->m_rectDevice);
+               rBox.maximum(pbox->m_rectDevice);
 
                yLast = pbox->m_rectHitTest.top;
 
@@ -356,7 +354,7 @@ namespace user
       strsize data::hit_test_line_x(index iLine, double x)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto plinea = m_plinea;
 
@@ -429,7 +427,7 @@ namespace user
       void data::_001GetText(string & str) const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          str = text(m_spana);
 
@@ -439,7 +437,7 @@ namespace user
       void data::_001GetLayoutText(string & str) const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          str = layout_text(*m_plinea);
 
@@ -457,7 +455,7 @@ namespace user
       index data::LineColumnToSel(index iLine, strsize iColumn) const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (iLine < 0)
          {
@@ -493,7 +491,7 @@ namespace user
 
          }
 
-         return min(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
+         return minimum(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
 
       }
 
@@ -501,9 +499,9 @@ namespace user
       void data::_001Delete(strsize i1, strsize i2)
       {
 
-         strsize iSelBeg = min_non_neg(i1, i2);
+         strsize iSelBeg = minimum_non_negative(i1, i2);
 
-         strsize iSelEnd = max(i1, i2);
+         strsize iSelEnd = maximum(i1, i2);
 
          if (iSelBeg == iSelEnd)
          {
@@ -512,7 +510,7 @@ namespace user
 
          }
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          update_span_cache(m_spana);
 
@@ -619,7 +617,7 @@ namespace user
       string data::get_full_text()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          update_span_cache(m_spana);
 
@@ -635,7 +633,7 @@ namespace user
 
          straLines.add_lines(psz);
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          index iSelBeg = get_sel_beg();
 
@@ -796,7 +794,7 @@ namespace user
       void data::_001SetSelFontFormat(const format * pformat, const eattribute & eattribute)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          optimize_data();
 
@@ -1071,7 +1069,7 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   sync_lock sl(mutex());
+      //   synchronization_lock synchronizationlock(mutex());
 
       //   if (m_pgraphics.is_null())
       //   {
@@ -1092,11 +1090,11 @@ namespace user
       void data::do_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         //m_rectangle = rectangle_i32;
+         //m_rectangle = rectangle;
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          if (m_spana.is_empty())
          {
@@ -1118,7 +1116,7 @@ namespace user
 
          bool bLineWrap = false;
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
          rectangle_f64 rectClient(rectangle);
 
@@ -1212,7 +1210,7 @@ namespace user
                if(iLenSpan != iLenMeasure)
                {
 
-                  ASSERT(FALSE);
+                  ASSERT(false);
 
                   output_debug_string("unexpected: iLenSpan != iLenMeasure");
 
@@ -1487,20 +1485,20 @@ namespace user
       ::rectangle_f64 data::get_drawing_rect()
       {
 
-         ::rectangle_f64 rectangle_i32;
+         ::rectangle_f64 rectangle;
 
          if (m_pedit->is_picture_enabled())
          {
 
-            rectangle_i32 = m_pedit->m_ppictureimpl->m_rectDrawing;
+            rectangle = m_pedit->m_ppictureimpl->m_rectDrawing;
 
-            rectangle_i32 -= rectangle.origin();
+            rectangle -= rectangle.origin();
 
          }
          else
          {
 
-            rectangle_i32 = m_pedit->get_client_rect();
+            rectangle = m_pedit->get_client_rect();
 
          }
 
@@ -1512,30 +1510,30 @@ namespace user
       void data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if (pgraphics->m_bPrinting)
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
          else
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
 
          //rectangle_f64 rectClient(rectangle);
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, ARGB(255, 0, 127, 0));
+         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
-         if (m_pedit->has_focus())
+         if (m_pedit->has_keyboard_focus())
          {
 
             bHasFocus = true;
@@ -1594,7 +1592,7 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  iMaxCy = max(iMaxCy, (int) pbox->m_sizeBox.cy);
+                  iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy);
 
                   pbox->m_rectBox.top = y;
 
@@ -1626,13 +1624,13 @@ namespace user
             if (bHasFocus && m_pedit->is_text_editable())
             {
 
-               crBkSel = ARGB(192, 175, 200, 240);
+               crBkSel = argb(192, 175, 200, 240);
 
             }
             else
             {
 
-               crBkSel = ARGB(127, 192, 210, 225);
+               crBkSel = argb(127, 192, 210, 225);
 
             }
 
@@ -1661,11 +1659,11 @@ namespace user
                      if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                      {
 
-                        iBoxPosBeg = max(iBoxPosBeg, get_sel_beg());
+                        iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
 
-                        iBoxPosEnd = min(iBoxPosEnd, get_sel_end());
+                        iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
 
-                        index iBeg = pline->pred_find_first([&](auto & pbox)
+                        index iBeg = pline->predicate_find_first([&](auto & pbox)
                         {
 
                            return pbox->m_iPosBeg <= iBoxPosBeg && iBoxPosBeg <= pbox->m_iPosEnd;
@@ -1677,7 +1675,7 @@ namespace user
 
                            pboxBeg = pline->element_at(iBeg);
 
-                           index iEnd = pline->pred_find_first([&](auto & pbox)
+                           index iEnd = pline->predicate_find_first([&](auto & pbox)
                            {
 
                               return pbox->m_iPosBeg <= iBoxPosEnd && iBoxPosEnd <= pbox->m_iPosEnd + 1;
@@ -1724,7 +1722,7 @@ namespace user
                                  r = pboxEnd->get_pos_left(iBoxPosEnd);
                               }
 
-                              pgraphics->fill_rect(
+                              pgraphics->fill_rectangle(
                                  ::rectd_dim(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
@@ -1822,11 +1820,11 @@ namespace user
 
                   auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
 
-                  pgraphics->fill_rect(::rectangle_f64(r,
+                  pgraphics->fill_rectangle(::rectangle_f64(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
                      pbox->m_rectBox.bottom - dDescent),
-                     ARGB(255, 0, 0, 0));
+                     argb(255, 0, 0, 0));
 
                }
 
@@ -1885,7 +1883,7 @@ namespace user
       void data::optimize_data()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_pformata->remove_all();
 
@@ -1949,9 +1947,9 @@ namespace user
       strsize data::_001GetTextLength() const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
-         if (m_spana.isEmpty())
+         if (m_spana.is_empty())
          {
 
             return 0;
@@ -1966,7 +1964,7 @@ namespace user
       strsize data::_001GetLayoutTextLength() const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          auto plinea = m_plinea;
 
@@ -1985,7 +1983,7 @@ namespace user
       void data::internal_update_sel_char()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2069,7 +2067,7 @@ namespace user
       stream & data::write(::stream & stream) const
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          {
 
@@ -2093,7 +2091,7 @@ namespace user
       stream & data::read(::stream & stream)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_plinea->remove_all();
 
@@ -2123,13 +2121,13 @@ namespace user
       void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectBox)
       {
 
-         sync_lock sl(pgraphics->mutex());
+         synchronization_lock synchronizationlock(pgraphics->mutex());
 
-         sync_lock sl1(mutex());
+         synchronization_lock sl1(mutex());
 
-         //sync_lock sl2(m_plinea->mutex());
+         //synchronization_lock sl2(m_plinea->mutex());
 
-         //sync_lock sl3(m_pformata->mutex());
+         //synchronization_lock sl3(m_pformata->mutex());
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -2178,14 +2176,14 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
-                  path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
+                  //path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
+                  path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
 
                   ::draw2d::brush_pointer brush(e_create);
 
-                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, color(m_pedit->m_ppictureimpl->m_hlsOutline));
+                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, ::color::color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
                   brush->create_solid(pformat->m_colorForeground);
 
@@ -2205,7 +2203,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rectangle_i32, e_align_bottom_left, e_draw_text_single_line);
+                  pgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
 
                }
 

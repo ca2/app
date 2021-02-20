@@ -20,7 +20,7 @@ namespace ios2
    {
       if(is_opened())
          close();
-//      return OpenPrinter((char *) (const char *) pszDeviceName, &m_hPrinter, nullptr) != FALSE && m_hPrinter != nullptr;
+//      return OpenPrinter((char *) (const char *) pszDeviceName, &m_hPrinter, nullptr) != false && m_hPrinter != nullptr;
       return false;
    }
 
@@ -42,7 +42,7 @@ namespace ios2
       bool bOk = true;
       if(m_hPrinter != nullptr)
       {
-//         bOk = ::ClosePrinter(m_hPrinter) != FALSE;
+//         bOk = ::ClosePrinter(m_hPrinter) != false;
          bOk = false;
          m_hPrinter = nullptr;
       }

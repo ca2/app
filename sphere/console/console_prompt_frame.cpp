@@ -355,7 +355,7 @@ namespace console
          bChanged = true;
       }
 
-      set_window_pos(      zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
+      set_window_position(      e_zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
 
    }
 
@@ -363,45 +363,45 @@ namespace console
    void prompt_frame::message_queue_message_handler(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_id == (WM_APP + 2000))
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_id == (WM_APP + 2000))
       {
-         _001OnApp2000(pbase);
-         pbase->m_bRet = true;
+         _001OnApp2000(pusermessage);
+         pusermessage->m_bRet = true;
       }
    }
 
    void prompt_frame::_001OnApp2000(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
 
-      if(pbase->m_wparam == 0)
+      if(pusermessage->m_wparam == 0)
       {
-         if(pbase->m_lparam == 1)
+         if(pusermessage->m_lparam == 1)
          {
             m_bTimerOn = true;
             SetTimer(1000, 23, nullptr);
          }
-         else if(pbase->m_lparam == 0)
+         else if(pusermessage->m_lparam == 0)
          {
             KillTimer(1000);
             m_bTimerOn = false;
          }
 
       }
-      else if(pbase->m_wparam == 1)
+      else if(pusermessage->m_wparam == 1)
       {
-         pbase->m_lresult = 2;
+         pusermessage->m_lresult = 2;
       }
-      else if(pbase->m_wparam == 2)
+      else if(pusermessage->m_wparam == 2)
       {
-         pbase->m_lresult = 4;
+         pusermessage->m_lresult = 4;
       }
-      else if(pbase->m_wparam == 3)
+      else if(pusermessage->m_wparam == 3)
       {
          
-         if(pbase->m_lparam == 6)
+         if(pusermessage->m_lparam == 6)
          {
          
             //top_level_frame()->hide();
@@ -413,39 +413,39 @@ namespace console
          }
          
       }
-      else if(pbase->m_wparam == 4)
+      else if(pusermessage->m_wparam == 4)
       {
-         pbase->m_lresult = 5;
+         pusermessage->m_lresult = 5;
       }
-      else if(pbase->m_wparam == 5)
+      else if(pusermessage->m_wparam == 5)
       {
-         pbase->m_lresult = 8;
+         pusermessage->m_lresult = 8;
       }
-      else if(pbase->m_wparam == 8)
+      else if(pusermessage->m_wparam == 8)
       {
-         pbase->m_lresult =11;
+         pusermessage->m_lresult =11;
       }
-      else if(pbase->m_wparam == 11)
+      else if(pusermessage->m_wparam == 11)
       {
-         pbase->m_lresult =23;
+         pusermessage->m_lresult =23;
       }
-      else if(pbase->m_wparam == 23)
+      else if(pusermessage->m_wparam == 23)
       {
-         pbase->m_lresult =33;
+         pusermessage->m_lresult =33;
       }
-      else if(pbase->m_wparam == 33)
+      else if(pusermessage->m_wparam == 33)
       {
 
-         pbase->m_lresult =1;
+         pusermessage->m_lresult =1;
 
       }
 
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
 
    }
 
 
-   void prompt_frame::on_command(::user::command * pcommand)
+   void prompt_frame::on_command(::message::command * pcommand)
    {
 
       if(pcommand->m_id == "app_exit")
@@ -464,7 +464,7 @@ namespace console
    }
 
 
-   void prompt_frame::on_command_probe(::user::command * pcommand)
+   void prompt_frame::on_command_probe(::message::command * pcommand)
    {
 
       if(pcommand->m_id == "app_exit")
@@ -512,7 +512,7 @@ namespace console
 
       set_appearance(::e_display_minimal);
 
-      set_window_pos(zorder_top,rectangle_i32,SWP_SHOWWINDOW);
+      set_window_position(e_zorder_top,rectangle,SWP_SHOWWINDOW);
 
       display(e_display_normal);
 

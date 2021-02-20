@@ -52,6 +52,10 @@ namespace uwp
 
 #endif
 
+#include "aura/graphics/draw2d/_.h"
+
+
+#include "aura/message/_.h"
 
 
 //#include "aura/primitive/primitive/estatus.h"
@@ -269,10 +273,10 @@ CLASS_DECL_AURA void aura_ref();
 //#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 //#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
 //#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-//#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
+//#define argb(a, r, g, b)      RGBA(r, g, b, a)
 //
 //
-//#define __acolor(a, r, g, b)      ::color(r, g, b, a)
+//#define __acolor(a, r, g, b)      ::color::color(r, g, b, a)
 //
 //
 //inline int trailingBytesForUTF8(char ch);
@@ -320,8 +324,8 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//#undef min
-//#undef max
+//#undef minimum
+//#undef maximum
 //
 //
 //#define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -330,16 +334,16 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 ////#ifdef __cplusplus
-////#define max(a, b) (((b) < (a)) ? (a) : (b))
-////#define min(a, b) (((a) < (b)) ? (a) : (b))
+////#define maximum(a, b) (((b) < (a)) ? (a) : (b))
+////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
 ////#include "aura/primitive/comparison/_c.h"
 ////#else
-////#define max(a, b) (((a) > (b)) ? (a) : (b))
-////#define min(a, b) (((a) < (b)) ? (a) : (b))
+////#define maximum(a, b) (((a) > (b)) ? (a) : (b))
+////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
 ////#endif
 //
 //
-//#define LIM(a, min, max) min(max, max(min, a))
+//#define LIM(a, minimum, maximum) minimum(maximum, maximum(minimum, a))
 //#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 //#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 //
@@ -714,14 +718,14 @@ CLASS_DECL_AURA void aura_ref();
 //#ifdef CPP17
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//inline bool _returns_true(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 //{
 //   pred(args...);
 //   return bOnVoid;
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//inline bool _returns_true(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 //{
 //   return (bool)pred(args...);
 //}
@@ -735,14 +739,14 @@ CLASS_DECL_AURA void aura_ref();
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+//inline bool _returns_false(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 //{
 //   pred(args...);
 //   return bOnVoid;
 //}
 //
 //template <typename PRED, typename ... Args >
-//inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+//inline bool _returns_false(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 //{
 //   return !(bool)pred(args...);
 //}
@@ -820,7 +824,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //class trait;
 //class create;
-//class sync;
+//class synchronization_object;
 //
 //
 ////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
@@ -929,7 +933,7 @@ using icon_result = __result(::draw2d::icon);
 using image_pointer_array = __pointer_array(::image);
 
 
-#include "aura/graphics/draw2d/_.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 //
@@ -1158,9 +1162,9 @@ using image_pointer_array = __pointer_array(::image);
 //inline bool is_null(const void * p, size_t s)
 //{
 //
-//   const auto max = (size_t)(-1);
+//   const auto maximum = (size_t)(-1);
 //
-//   return ((size_t)p) <= s || ((size_t)p) >= (max - s);
+//   return ((size_t)p) <= s || ((size_t)p) >= (maximum - s);
 //
 //}
 //
@@ -1170,9 +1174,9 @@ using image_pointer_array = __pointer_array(::image);
 //inline bool is_null(const TYPE * p)
 //{
 //
-//   const auto max = (size_t)(-1) - 65536;
+//   const auto maximum = (size_t)(-1) - 65536;
 //
-//   return ((size_t) p <= 65536) || ((size_t)p) >= (max);
+//   return ((size_t) p <= 65536) || ((size_t)p) >= (maximum);
 //
 //}
 //
@@ -1304,13 +1308,21 @@ namespace draw2d
    class cursor;
    class region;
    class brush;
-   class font;
    using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
 
 
 } // namespace draw2d
 
+
+namespace write_text
+{
+
+
+   class font;
+   using font_pointer = __pointer(font);
+
+
+} // namespace write_text
 
 
 //
@@ -1369,7 +1381,7 @@ namespace draw2d
 ////
 ////
 ////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
-////   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
+////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
 ////   using eflag = flags < enum_flag >;
 ////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 ////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
@@ -1724,7 +1736,7 @@ class form_document;
 //template < typename T >
 //inline int type_is_null(const T * p)
 //{
-//   return (((UINT_PTR)(void *)p) < max(4096, sizeof(T)));
+//   return (((UINT_PTR)(void *)p) < maximum(4096, sizeof(T)));
 //}
 //
 //
@@ -2561,7 +2573,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //#include "aura/primitive/primitive/matter.h"
 //#include "aura/primitive/primitive/task.h"
-//#include "aura/primitive/primitive/compare_pred.h"
+//#include "aura/primitive/primitive/compare_predicate.h"
 //
 //
 //#include "aura/platform/status.h"
@@ -2733,8 +2745,6 @@ namespace draw2d
 #include "aura/platform/node.h"
 
 #include "aura/platform/system.h"
-
-#include "aura/platform/mq.h"
 
 #include "aura/graphics/graphics/graphics.h"
 

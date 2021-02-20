@@ -48,7 +48,7 @@ namespace aura
 //   bool application::_001OnDDECommand(const char * pcsz)
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
-//      return FALSE;
+//      return false;
 //   }
 
 //
@@ -300,7 +300,7 @@ namespace aura
    }
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
       UNREFERENCED_PARAMETER(bShow);

@@ -159,16 +159,16 @@ inline __pointer(BASE_TYPE) __create()
 
    }
 
-   __pointer(BASE_TYPE) pbase = ptypeNew;
+   __pointer(BASE_TYPE) pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return nullptr;
 
    }
 
-   return pbase;
+   return pusermessage;
 
 }
 
@@ -222,18 +222,18 @@ inline __pointer(BASE_TYPE) __id_create(const ::id & id)
 
    }
 
-   __pointer(BASE_TYPE) pbase = ptypeNew;
+   __pointer(BASE_TYPE) pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return nullptr;
 
    }
 
-   pbase->m_eobject |= e_object_factory;
+   pusermessage->m_eobject |= e_object_factory;
 
-   return pbase;
+   return pusermessage;
 
 }
 
@@ -311,7 +311,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::exception::exception(error_composite_not_composer_member));
+//    //   __throw(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -353,7 +353,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 // //   if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 // //   {
 // //
-// //      __throw(::exception::exception(error_composite_not_composer_member));
+// //      __throw(::status_exception(error_composite_not_composer_member));
 // //
 // //   }
 
@@ -369,7 +369,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::exception::exception(error_composite_not_composer_member));
+//    //   __throw(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -439,7 +439,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -481,7 +481,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 
@@ -508,7 +508,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -524,7 +524,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -540,7 +540,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::exception::exception(error_composite_not_composer_member));
+//      __throw(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -553,7 +553,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 
 
 template < typename BASE_TYPE >
-inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage)
 {
 
    auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -566,13 +566,13 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
       if (!ptypeNew)
       {
 
-         ::release(pbase);
+         ::release(pusermessage);
 
          return ::error_no_memory;
 
       }
 
-      __dynamic_cast(pbase, ptypeNew);
+      __dynamic_cast(pusermessage, ptypeNew);
 
    }
    else
@@ -583,7 +583,7 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
    }
 
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return ::error_wrong_type;
@@ -596,15 +596,15 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage)
 {
 
    ::e_status estatus = ::success_none;
 
-   if(!pbase)
+   if(!pusermessage)
    {
 
-      estatus = __construct(pbase);
+      estatus = __construct(pusermessage);
 
    }
 
@@ -614,7 +614,7 @@ inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
+inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
 {
 
    auto pfactory = ::factory::get_factory(id);
@@ -622,7 +622,7 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
    if (!pfactory)
    {
 
-      ::release(pbase);
+      ::release(pusermessage);
 
       return ::error_no_factory;
 
@@ -633,15 +633,15 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
    if (!ptypeNew)
    {
 
-      ::release(pbase);
+      ::release(pusermessage);
 
       return ::error_no_memory;
 
    }
 
-   pbase = ptypeNew;
+   pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return ::error_wrong_type;
@@ -654,7 +654,7 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __construct(pbase, id) : ::success; }
+inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __construct(pusermessage, id) : ::success; }
 
 
 template < typename TYPE >
@@ -683,5 +683,57 @@ inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype)
 
 }
 
+
+
+
+
+
+inline __pointer(::factory::factory_interface) & factory_map::get_factory(const ::id & id)
+{
+
+   critical_section_lock cs(::factory::get_factory_critical_section());
+
+   return (*this)[id];
+
+}
+
+
+template < typename BASE_TYPE >
+inline __pointer(::factory::factory_interface) & factory_map::get_factory()
+{
+
+   string strTypename(typeid(BASE_TYPE).name());
+
+   demangle(strTypename);
+
+   return get_factory(strTypename);
+
+}
+
+
+template < typename BASE_TYPE >
+inline __pointer(BASE_TYPE) factory_map::new_object()
+{
+
+   auto pfactoryinterface = get_factory < BASE_TYPE >();
+
+   return pfactoryinterface->call_new();
+
+}
+
+
+template < typename TYPE, typename BASE_TYPE>
+inline __pointer(::factory::factory_base < BASE_TYPE >) factory_map::create_factory()
+{
+
+   critical_section_lock lock(::factory::get_factory_critical_section());
+
+   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
+
+   get_factory < BASE_TYPE >() = pfactory;
+
+   return pfactory;
+
+}
 
 

@@ -67,7 +67,7 @@ namespace factory
    void factory_close()
    {
 
-      critical_section_lock sl(g_pcsFactory);
+      critical_section_lock synchronizationlock(g_pcsFactory);
 
       g_pfactorymap->remove_all();
 
@@ -78,7 +78,7 @@ namespace factory
    void factory_term()
    {
 
-      critical_section_lock sl(g_pcsFactory);
+      critical_section_lock synchronizationlock(g_pcsFactory);
 
       ::acme::del(g_pfactorya);
 

@@ -32,8 +32,8 @@ bool m_bDirty;
    virtual void boot_window_mouse_up(double x, double y) = 0;
    virtual void boot_window_mouse_moved(double x, double y) = 0;
    virtual void boot_window_mouse_dragged(double x, double y) = 0;
-   virtual bool boot_window_key_down(::user::e_key ekey, const char * characters) = 0;
-   virtual bool boot_window_key_up(::user::e_key ekey, const char * characters) = 0;
+   virtual bool boot_window_key_down(::user::enum_key ekey, const char * characters) = 0;
+   virtual bool boot_window_key_up(::user::enum_key ekey, const char * characters) = 0;
    
    
    virtual void boot_window_invalidate();

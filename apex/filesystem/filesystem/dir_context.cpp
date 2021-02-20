@@ -962,7 +962,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         critical_section_lock sl(m_criticalsection);
+//         critical_section_lock synchronizationlock(m_criticalsection);
 //
 //         if (path.length() + 1 < 2048)
 //         {
@@ -998,7 +998,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            index iFind2 = path.find('\\', iFind0);
 //
-//            iFind3 = min_non_neg(iFind1, iFind2);
+//            iFind3 = minimum_non_negative(iFind1, iFind2);
 //
 //            if (iFind3 < 0)
 //            {
@@ -1013,7 +1013,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            index iFind = pdir->pred_binary_search(&find, [&](auto & t1, auto & t2)
+//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return t1->m_str.compare_ci(t2->m_str) < 0;
@@ -1089,7 +1089,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            index iFind = pdir->pred_binary_search(&find, [&](auto & t1, auto & t2)
+//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
@@ -1138,7 +1138,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            index iFind = pdir->pred_binary_search(&find, [&](auto & t1, auto & t2)
+//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
@@ -1173,7 +1173,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            index iFind = pdir->pred_binary_search(&find, [&](auto & t1, auto & t2)
+//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
@@ -1220,7 +1220,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //      void dir_context::is_dir_map::set(const ::file::path & path,bool bIsDir,u32 dwLastError)
 //      {
 //
-//         critical_section_lock sl(m_criticalsection);
+//         critical_section_lock synchronizationlock(m_criticalsection);
 //
 //         string strPath(path);
 //
@@ -1235,7 +1235,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            index iFind1 = strPath.find('/', iFind0);
 //            index iFind2 = strPath.find('\\', iFind0);
-//            iFind3 = min_non_neg(iFind1, iFind2);
+//            iFind3 = minimum_non_negative(iFind1, iFind2);
 //            if (iFind3 < 0)
 //            {
 //               pfind->m_str = strPath.Mid(iFind0);
@@ -1245,7 +1245,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //               pfind->m_str = strPath.Mid(iFind0, iFind3 - iFind0);
 //            }
 //
-//            index iFind = pdir->pred_binary_search(pfind, [&](auto & t1, auto & t2)
+//            index iFind = pdir->predicate_binary_search(pfind, [&](auto & t1, auto & t2)
 //            {
 //
 //               return t1->m_str.compare_ci(t2->m_str) < 0;
@@ -1260,7 +1260,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  index iFind1 = strPath.find('/', iFind0);
 //                  index iFind2 = strPath.find('\\', iFind0);
-//                  iFind3 = min_non_neg(iFind1, iFind2);
+//                  iFind3 = minimum_non_negative(iFind1, iFind2);
 //                  if (iFind3 < 0)
 //                  {
 //                     pfind->m_str = strPath.Mid(iFind0);
@@ -1277,7 +1277,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  pdir->add(pfind);
 //
-//                  pdir->pred_sort([&](auto & t1, auto & t2)
+//                  pdir->predicate_sort([&](auto & t1, auto & t2)
 //                  {
 //
 //                     return t1->m_str.compare_ci(t2->m_str) < 0;
@@ -1349,7 +1349,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::install()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return System.m_pdirsystem->m_pathInstall;
 
@@ -1359,7 +1359,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::config()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return System.m_pdirsystem->m_pathCa2Config;
 
@@ -1369,7 +1369,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::home()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return System.m_pdirsystem->m_pathHome;
 
@@ -1380,7 +1380,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
 //   UNREFERENCED_PARAMETER(pobject);
 
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 
 //   return m_pathUser;
 
@@ -1390,7 +1390,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::module()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return System.m_pdirsystem->m_pathModule;
 
@@ -1400,7 +1400,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::ca2module()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return System.m_pdirsystem->m_pathCa2Module;
 
@@ -1466,7 +1466,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
-   sync_lock sl(System.m_pmutexMatter);
+   synchronization_lock synchronizationlock(System.m_pmutexMatter);
 
    string strDir = matter(path, true);
 
@@ -1488,7 +1488,7 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          strsize iFind2 = strMatter.find_ci("\\matter\\");
 
-         strsize iFind = min_non_neg(iFind1, iFind2);
+         strsize iFind = minimum_non_negative(iFind1, iFind2);
 
          if (iFind > 0)
          {
@@ -1938,7 +1938,7 @@ ret:
    string_array straMatterLocator;
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       straMatterLocator = Application.m_straMatterLocator;
 
@@ -1956,7 +1956,7 @@ ret:
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       straMatterLocator = Context.m_straMatterLocator;
 
@@ -2035,7 +2035,7 @@ ret:
 ::file::path dir_context::commonappdata(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string strAppId(pszAppId);
 
@@ -2067,7 +2067,7 @@ ret:
 ::file::path dir_context::commonappdata_locale_schema(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    string strLocale(pszLocale);
 
@@ -2154,7 +2154,7 @@ ret:
 
       strsize iFind2 = strRelative.reverse_find("/", iFind);
 
-      strsize iStart = max(iFind1 + 1, iFind2 + 1);
+      strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
       strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
 
@@ -2306,7 +2306,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //         if(m_strApiCc.has_char())
 //            return m_strApiCc;
 //
-//         sync_lock sl(&m_mutex);
+//         synchronization_lock synchronizationlock(&m_mutex);
 //
 //
 //

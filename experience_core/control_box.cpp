@@ -31,7 +31,7 @@ namespace experience
       void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         if((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
+         if((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
 
             return;
@@ -54,7 +54,7 @@ namespace experience
          if(get_top_level()->frame_is_transparent())
          {
 
-            crBackground = ARGB(90,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+            crBackground = argb(90,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
 
          }
          else
@@ -64,7 +64,7 @@ namespace experience
 
          }
 
-         pgraphics->fill_rect(rectClient, crBackground);
+         pgraphics->fill_rectangle(rectClient, crBackground);
 
       }
 

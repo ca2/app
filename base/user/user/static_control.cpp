@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -39,7 +37,7 @@ namespace user
    //}
 
 
-   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -148,29 +146,33 @@ namespace user
 
 
 
-      color32_t crText = ARGB(255, 0, 0, 0);
+      color32_t crText = argb(255, 0, 0, 0);
 
       if(m_bHover)
       {
 
          auto psession = Session;
 
-         auto point = psession->get_cursor_pos();
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          ::rectangle_i32 rectWindow;
 
          get_window_rect(rectWindow);
 
-         if(rectWindow.contains(point))
+         if(rectWindow.contains(pointCursor))
          {
 
-            crText = ::color(255, 0, 0, 0);
+            crText = ::color::color(255, 0, 0, 0);
 
          }
          else
          {
 
-            crText = ::color(255, 0, 0, 0);
+            crText = ::color::color(255, 0, 0, 0);
 
          }
 
@@ -178,7 +180,7 @@ namespace user
       else
       {
 
-         crText = ::color(255, 0, 0, 0);
+         crText = ::color::color(255, 0, 0, 0);
 
       }
 
@@ -191,25 +193,25 @@ namespace user
    }
 
 
-   bool static_control::OnChildNotify(::message::base * pbase)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      if (pbase->m_id != WM_DRAWITEM)
-         return ::user::interaction::OnChildNotify(pbase);
-
-#ifdef WINDOWS_DESKTOP
-
-//      DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
-
-#endif
-
-#endif
-
-      return true;
-
-   }
+//   bool static_control::OnChildNotify(::user::message * pusermessage)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pusermessage->m_id != WM_DRAWITEM)
+//         return ::user::interaction::OnChildNotify(pusermessage);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+////      DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
+//
+//#endif
+//
+//#endif
+//
+//      return true;
+//
+//   }
 
 
    void static_control::static_set_icon(::draw2d::icon * picon)
@@ -233,34 +235,34 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   HENHMETAFILE static_control::SetEnhMetaFile(HENHMETAFILE hMetaFile)
-   {
-
-      //ASSERT(is_window());
-
-      //return (HENHMETAFILE)send_message( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile);
-
-      return nullptr;
-
-   }
-
-
-   HENHMETAFILE static_control::GetEnhMetaFile()
-   {
-
-      //ASSERT(is_window());
-
-      //return (HENHMETAFILE)send_message( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L);
-
-      return nullptr;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   HENHMETAFILE static_control::SetEnhMetaFile(HENHMETAFILE hMetaFile)
+//   {
+//
+//      //ASSERT(is_window());
+//
+//      //return (HENHMETAFILE)send_message( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile);
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   HENHMETAFILE static_control::GetEnhMetaFile()
+//   {
+//
+//      //ASSERT(is_window());
+//
+//      //return (HENHMETAFILE)send_message( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L);
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//#endif
 
 
    void static_control::static_set_bitmap(::draw2d::bitmap * pbitmap)

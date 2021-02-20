@@ -67,7 +67,7 @@ i32 html_data::create_font(::html::element* pelemental)
 void html_data::delete_contents()
 {
 
-   sync_lock lock(mutex());
+   synchronization_lock lock(mutex());
 
    destroy();
 
@@ -111,7 +111,7 @@ void html_data::_001OnKeyDown(::message::message * pmessage)
 
    __pointer(::message::key) pkey(pmessage);
 
-   if(pkey->m_ekey == ::user::key_tab)
+   if(pkey->m_ekey == ::user::e_key_tab)
    {
 
       auto pfocus = get_form()->get_keyboard_focus();

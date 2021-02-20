@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -24,7 +22,7 @@ namespace user
    void list_cache::_001CacheHint(      ::user::mesh * pmesh,      index iItemStart,      index iItemCount)
    {
 
-      single_lock sl(mutex(), false);
+      single_lock synchronizationlock(mutex(), false);
 
       ::user::list * plist = pmesh->m_plist;
 
@@ -79,11 +77,11 @@ namespace user
             if(item.m_bOk)
             {
 
-               sl.lock();
+               synchronizationlock.lock();
 
                m.set_at(item.m_iSubItem,item.m_strText);
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
             }
 
@@ -100,7 +98,7 @@ namespace user
       if(pitem->m_iItem < 0)
          return_(pitem->m_bOk,false);
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pmap = m_map.plookup(pitem->m_iItem);
 
@@ -130,7 +128,7 @@ namespace user
    void list_cache::_001Invalidate(::user::mesh * pmesh)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_map.remove_all();
 

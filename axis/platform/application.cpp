@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "aura/id.h"
 
 
@@ -187,84 +185,84 @@ namespace axis
 #endif
 
    }
-#ifdef WINDOWS_DESKTOP
-
-
-   class open_browser_enum
-   {
-   public:
-
-      string                           m_strWindowEnd;
-      string                           m_strTopic;
-      string                           m_strCounterTopic;
-      oswindow                         m_hwnd;
-      comparable_array < oswindow >    m_hwndaTopic;
-      comparable_array < oswindow >    m_hwndaCounterTopic;
-
-   };
-
-
-   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
-
-      if (::str::ends_ci(str, penum->m_strWindowEnd))
-      {
-
-         penum->m_hwnd = hwnd;
-
-         return FALSE;
-
-      }
-
-      return TRUE;
-
-   }
-
-
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-      string str = ::str::get_window_text_timeout(hwnd);
-
-      if (::str::ends_ci(str, penum->m_strTopic))
-      {
-
-         penum->m_hwndaTopic.add(hwnd);
-
-      }
-
-      return TRUE;
-
-   }
-
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
-
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam;
-
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
-
-      if (::str::ends_ci(str, penum->m_strCounterTopic))
-      {
-
-         penum->m_hwndaCounterTopic.add(hwnd);
-
-      }
-
-      return TRUE;
-
-   }
-
-#endif
-
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   class open_browser_enum
+//   {
+//   public:
+//
+//      string                           m_strWindowEnd;
+//      string                           m_strTopic;
+//      string                           m_strCounterTopic;
+//      oswindow                         m_hwnd;
+//      comparable_array < oswindow >    m_hwndaTopic;
+//      comparable_array < oswindow >    m_hwndaCounterTopic;
+//
+//   };
+//
+//
+//   int_bool CALLBACK enum_proc(HWND hwnd, LPARAM lparam)
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//
+//      if (::str::ends_ci(str, penum->m_strWindowEnd))
+//      {
+//
+//         penum->m_hwnd = hwnd;
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//      string str = ::str::get_window_text_timeout(hwnd);
+//
+//      if (::str::ends_ci(str, penum->m_strTopic))
+//      {
+//
+//         penum->m_hwndaTopic.add(hwnd);
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
+//
+//   {
+//
+//      open_browser_enum * penum = (open_browser_enum *)lparam;
+//
+//
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//
+//      if (::str::ends_ci(str, penum->m_strCounterTopic))
+//      {
+//
+//         penum->m_hwndaCounterTopic.add(hwnd);
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//#endif
+//
 
 
 
@@ -283,13 +281,13 @@ namespace axis
    //}
 
 
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      if (m_pappimpl.is_null())
 //         return;
 //
-//      m_pappimpl->ShowWaitCursor(bShow);
+//      m_pappimpl->show_wait_cursor(bShow);
 //
 //
 //   }

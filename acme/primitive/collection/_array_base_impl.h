@@ -515,7 +515,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
          __throw(memory_exception());
       ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = (::count) max(nNewSize, m_nGrowBy);
+      ::count nAllocSize = (::count) maximum(nNewSize, m_nGrowBy);
 #if defined(__MCRTDBG) || MEMDLEAK
       if (::get_task() != nullptr)
       {
@@ -683,7 +683,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       ASSERT(::comparison::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif
 
-      auto nAllocSize = __count(max(nNewSize, m_nGrowBy));
+      auto nAllocSize = __count(maximum(nNewSize, m_nGrowBy));
 
 #if MEMDLEAK  || defined(__MCRTDBG)
 

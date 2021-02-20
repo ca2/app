@@ -150,7 +150,7 @@ namespace linux
       switch (eopen & ::file::e_open_share_mask)    // ::collection::map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
@@ -192,7 +192,7 @@ namespace linux
 
          int iError = errno;
 
-         ::e_status estatus = ::get_last_status();
+         ::e_status estatus = ::errno_to_status(iError);
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
@@ -226,7 +226,7 @@ namespace linux
       memsize readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) minimum(0x7fffffff, nCount);
          i32 iRead = ::read(m_iFile, &((u8 *)pdata)[pos], readNow);
 
          if(iRead < 0)
@@ -262,13 +262,13 @@ namespace linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount, FALSE));
+      ASSERT(__is_valid_address(pdata, nCount, false));
 
 
       memsize pos = 0;
       while(nCount > 0)
       {
-         i32 iWrite = ::write(m_iFile, &((const u8 *)pdata)[pos], (size_t) min(0x7fffffff, nCount));
+         i32 iWrite = ::write(m_iFile, &((const u8 *)pdata)[pos], (size_t) minimum(0x7fffffff, nCount));
 
          if(iWrite < 0)
             throw_errno(errno, m_path);
@@ -340,7 +340,7 @@ namespace linux
    void file::close()
    {
 
-      bool bError = FALSE;
+      bool bError = false;
 
       if (m_iFile != INVALID_FILE)
          bError = ::close(m_iFile) == -1;
@@ -711,7 +711,7 @@ namespace linux
       {
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
-            return FALSE;
+            return false;
 
          rStatus.m_size = st.st_size;
 
@@ -727,7 +727,7 @@ namespace linux
          if (rStatus.m_atime.get_time() == 0)
             rStatus.m_atime = rStatus.m_mtime;
       }
-      return TRUE;
+      return true;
    }
 
 

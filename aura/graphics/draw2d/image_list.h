@@ -43,9 +43,10 @@ public:
    i32 reserve_image(int iItem = -1);
 
    i32 add(::draw2d::icon * picon, int iItem = -1);
+   i32 add(::windowing::icon * picon, int iItem = -1);
    i32 add_icon(::payload varFile, int iItem = -1);
    i32 add_image(::image * pimage, int x = 0, int y = 0, int iItem = -1);
-   i32 add_icon_os_data(void * p, int iItem = -1);
+   ///i32 add_icon_os_data(void * p, int iItem = -1);
    i32 add_matter_icon(const char * pcszMatter, int iItem = -1);
 
    i32 add_file(::payload varFile, int iItem = -1);
@@ -56,7 +57,7 @@ public:
    i32 add_image(image_list * pil, int iImage, int iItem = - 1);
 
    template < typename PRED >
-   i32 pred_add_image(PRED pred, image_list * pil, int iImage, int iItem = -1)
+   i32 predicate_add_image(PRED pred, image_list * pil, int iImage, int iItem = -1)
    {
 
       auto pimage = pil->get_image(iImage);

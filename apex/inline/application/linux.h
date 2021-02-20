@@ -15,19 +15,19 @@ int main(int argc, char * argv[])
 
    ::e_status estatus = ::success;
 
-   if(psystem->m_bUser || psystem->m_bUser.undefined())
-   {
-
-      estatus = psystem->defer_initialize_x11();
-
-      if(!estatus)
-      {
-
-         return -1;
-
-      }
-
-   }
+//   if(psystem->m_bUser || psystem->m_bUser.undefined())
+//   {
+//
+//      estatus = psystem->defer_low_initialize_user();
+//
+//      if(!estatus)
+//      {
+//
+//         return -1;
+//
+//      }
+//
+//   }
 
    psystem->m_bConsole = false;
 

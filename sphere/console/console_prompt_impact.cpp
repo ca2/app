@@ -119,7 +119,7 @@ namespace console
 
       ::message::key & key = *pkey;
 
-      if(key.m_ekey == ::user::key_escape)
+      if(key.m_ekey == ::user::e_key_escape)
       {
 
          GetTypedParent < prompt_frame > ()->hide();
@@ -129,21 +129,21 @@ namespace console
          clear();
 
       }
-      else if(key.m_ekey == ::user::key_return)
+      else if(key.m_ekey == ::user::e_key_return)
       {
 
          interpret_command();
 
       }
-      else if(key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_lshift || key.m_ekey == ::user::key_rshift
-              || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
-              || key.m_ekey == ::user::key_alt || key.m_ekey == ::user::key_lalt || key.m_ekey == ::user::key_ralt
+      else if(key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
+              || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
+              || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
              )
       {
 
 
       }
-      else if(pkey->m_ekey == ::user::key_back)
+      else if(pkey->m_ekey == ::user::e_key_back)
       {
 
          if(m_iCursor <= 0)
@@ -165,7 +165,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_delete)
+      else if(pkey->m_ekey == ::user::e_key_delete)
       {
 
          if(m_iCursor >= m_strCommand.utf8_get_length())
@@ -185,7 +185,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_left)
+      else if(pkey->m_ekey == ::user::e_key_left)
       {
 
          if(m_iCursor <= 0)
@@ -196,7 +196,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_right)
+      else if(pkey->m_ekey == ::user::e_key_right)
       {
 
          if(m_iCursor >= m_strCommand.utf8_get_length())
@@ -212,7 +212,7 @@ namespace console
 
          string str;
 
-         if(pkey->m_ekey == ::user::key_space)
+         if(pkey->m_ekey == ::user::e_key_space)
          {
 
             str = " ";
@@ -294,7 +294,7 @@ namespace console
 
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Consolas",16.0);
 
@@ -307,7 +307,7 @@ namespace console
       if(m_millisLastError.elapsed() < 84 && !m_bOk)
       {
 
-         crTopic = ARGB(255,255,0,210);
+         crTopic = argb(255,255,0,210);
 
       }
       else
@@ -315,7 +315,7 @@ namespace console
 
          m_bOk = true;
 
-         crTopic = ARGB(255,100,210,84);
+         crTopic = argb(255,100,210,84);
 
       }
 
@@ -325,9 +325,9 @@ namespace console
 
       m_sizeChar = pgraphics.GetTextExtent("M");
       
-      m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
+      m_sizeChar = m_sizeChar.maximum(pgraphics.GetTextExtent("p"));
 
-      pgraphics->fill_rect(rectClient,ARGB(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectClient,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 
@@ -354,7 +354,7 @@ namespace console
 
 
 
-         pgraphics->fill_rect(rectCaret,crTopic);
+         pgraphics->fill_rectangle(rectCaret,crTopic);
 
       }
 

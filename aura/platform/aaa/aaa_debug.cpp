@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/update.h"
 #ifdef WINDOWS
 #include <process.h>
@@ -15,7 +13,7 @@
 
 
 
-void debug_object_event_promisse_pred()
+void debug_object_event_promisse_predicate()
 {
 
    //::object o;

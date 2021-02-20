@@ -210,6 +210,16 @@ enum enum_normalize
 };
 
 
+namespace message
+{
+
+ 
+   class command;
+
+
+} // namespace message
+
+
 enum enum_null
 {
 
@@ -246,6 +256,8 @@ concept a_pointer = std::is_pointer < T >::value;
 template < typename T >
 concept non_pointer = !std::is_pointer < T >::value;
 
+template < typename T >
+concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
 concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value;
@@ -351,8 +363,14 @@ CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
 CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
 CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
 
+namespace windowing
+{
 
-using oswindow = void *;
+   class window;
+
+} // namespace windowing
+
+//using oswindow = void *;
 using windows_handle = void *;
 using hinstance = void *;
 
@@ -476,11 +494,11 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 #define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 #define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
+//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define argb(a, r, g, b)      RGBA(r, g, b, a)
 
 
-#define __acolor(a, r, g, b)      ::color(r, g, b, a)
+#define __acolor(a, r, g, b)      ::color::color(r, g, b, a)
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -520,7 +538,7 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
-#include "acme/primitive/math/mkint_c.h"
+#include "acme/primitive/mathematics/mkint_c.h"
 
 // C-includes
 #include "acme/_c.h"
@@ -972,10 +990,10 @@ namespace core
 class eimpact;
 
 
-enum e_simple_command : ::i64;
-enum e_message : ::i64;
-enum e_impact : ::i64;
-enum e_id : ::u64;
+enum enum_simple_command : ::i64;
+enum enum_message : ::i64;
+enum enum_impact : ::i64;
+enum enum_id : ::u64;
 enum enum_check : ::i32;
 
 template<typename TYPE>
@@ -1091,14 +1109,14 @@ inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 #ifdef CPP17
 
 template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+inline bool _returns_true(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 {
    pred(args...);
    return bOnVoid;
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_true(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+inline bool _returns_true(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 {
    return (bool)pred(args...);
 }
@@ -1112,14 +1130,14 @@ inline bool returns_true(PRED pred, bool bOnVoid, Args... args)
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const true_type & pred_returns_void, bool bOnVoid, Args... args)
+inline bool _returns_false(PRED pred, const true_type & predicate_returns_void, bool bOnVoid, Args... args)
 {
    pred(args...);
    return bOnVoid;
 }
 
 template <typename PRED, typename ... Args >
-inline bool _returns_false(PRED pred, const false_type & pred_returns_void, bool, Args... args)
+inline bool _returns_false(PRED pred, const false_type & predicate_returns_void, bool, Args... args)
 {
    return !(bool)pred(args...);
 }
@@ -1224,7 +1242,7 @@ class trait;
 class create;
 
 
-class sync;
+class synchronization_object;
 
 
 //CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
@@ -1310,7 +1328,7 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 #include "acme/primitive/primitive/bits.h"
 
-#include "acme/primitive/math/_.h"
+#include "acme/primitive/mathematics/_.h"
 
 //#include "acme/user/_const.h"
 
@@ -1453,15 +1471,17 @@ class task_pool;
 
 
 
-namespace draw2d
+namespace write_text
 {
 
+   
    class font_enum_item;
 
 
    using font_enum_item_array = __pointer_array(font_enum_item);
 
-} // namespace draw2d
+
+} // namespace write_text
 
 template<typename T>
 class result_pointer;
@@ -1667,7 +1687,7 @@ template<typename TYPE>
 inline bool is_ok(const TYPE *p)
 {
 
-   return ::is_set(p);
+   return ::is_set(p) && p->is_ok();
 
 }
 
@@ -1758,33 +1778,6 @@ namespace message
 } // namespace message
 
 
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-   class icon;
-
-
-   class cursor;
-
-
-   class region;
-
-
-   class brush;
-
-
-   class font;
-
-
-   using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
-
-
-} // namespace draw2d
 
 
 template < typename ARGUMENT >
@@ -2301,7 +2294,6 @@ namespace base
 }
 
 
-
 class app_core;
 
 
@@ -2398,7 +2390,9 @@ struct plane_system;
 
 #endif
 
-typedef void(*PFN_factory_exchange)();
+class factory_map;
+
+typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 #ifdef WINDOWS
 CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
@@ -2530,6 +2524,12 @@ namespace primitive
 template < typename T >
 concept not_pointer = !std::is_pointer < T >::value;
 
+template < typename T >
+concept an_object = !std::is_pointer < T >::value 
+&& !std::is_integral < T >::value
+&& !std::is_enum < T >::value
+&& !std::is_floating_point < T >::value;
+
 
 template<typename TYPE>
 inline bool is_null(const __pointer(TYPE) & p)
@@ -2611,7 +2611,7 @@ inline bool is_set(const TYPE & t)
 using matter_pointer = __pointer(::matter);
 
 
-#include "acme/primitive/promise_pred/pred_function_pointer.h"
+#include "acme/primitive/promise_predicate/predicate_function_pointer.h"
 
 
 #include "acme/primitive/promise/routine.h"
@@ -2655,16 +2655,16 @@ inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 #include "acme/primitive/primitive/logic.h"
 
 
-#include "acme/primitive/math/static_numeric_info.h"
-#include "acme/primitive/math/numeric_info.h"
+#include "acme/primitive/mathematics/static_numeric_info.h"
+#include "acme/primitive/mathematics/numeric_info.h"
 
 
-#include "acme/primitive/math/c_number.h"
+#include "acme/primitive/mathematics/c_number.h"
 
 using wparam = c_number<iptr>;
 
 
-#include "acme/primitive/math/math_clip.h"
+#include "acme/primitive/mathematics/math_clip.h"
 
 
 #include "acme/primitive/datetime/_datetime.h"
@@ -2684,9 +2684,12 @@ namespace status
 namespace message
 {
 
+   
    class message;
 
+
 } // namespace status
+
 
 class parents;
 
@@ -2733,7 +2736,7 @@ class memory_base;
 //using size = size_type<SIZE_I32, POINT_I32, RECTANGLE_I32>;
 
 
-#include "acme/primitive/math/cast.h"
+#include "acme/primitive/mathematics/cast.h"
 
 
 #include "acme/primitive/primitive/block.h"
@@ -2748,6 +2751,7 @@ class memory_base;
 #include "acme/primitive/primitive/enumeration.h"
 
 
+#include "acme/exception/status.h"
 
 
 class thread;
@@ -2800,7 +2804,8 @@ namespace factory
 
 
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/layered.h"
+#include "acme/primitive/primitive/id_matter.h"
+
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -2813,7 +2818,7 @@ class manual_reset_event;
 #include "acme/primitive/primitive/work.h"
 
 
-#include "acme/primitive/primitive/compare_pred.h"
+#include "acme/primitive/primitive/compare_predicate.h"
 
 
 #include "acme/platform/status.h"
@@ -2893,9 +2898,6 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 
 
-
-
-
 //#include "acme/primitive/collection/_papaya_array_decl.h"
 #include "acme/primitive/collection/_papaya_heap.h"
 
@@ -2908,23 +2910,12 @@ using element_address_array = ::address_array<matter *>;
 
 #include "acme/primitive/collection/_papaya.h"
 
-
-//#include "acme/primitive/collection/pointer2_array.h"
-
 class sticker;
-
 
 inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
 
-
 template<typename POINTER_TYPE>
 class ptr_array;
-
-//using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
-
-//using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
-
-//using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
 using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
@@ -2950,52 +2941,37 @@ namespace http
 
 
 
+#ifdef WINDOWS_DESKTOP
 
-//class context;
+struct hwnd { }; // as pointer is a HWND
 
-//namespace draw2d
-//{
-//
-//   class graphics;
-//   class pen;
-//
-//   using graphics_pointer = __pointer(graphics);
-//   using pen_pointer = __pointer(pen);
-//
-//
-//
-//
-//} // namespace draw2d
+using oswindow_t = hwnd;
+
+#else
+
+using oswindow_t = ::windowing::window;
+
+#endif
 
 
-
+using oswindow = oswindow_t *;
 
 
 struct MESSAGE
 {
 
-   oswindow       hwnd;
-   ::u32          message;
-   wparam         wParam;
-   lparam         lParam;
-   point_i32      pt;
-   ::u64          time;
+   ::oswindow              oswindow;
+   ::id                    m_id;
+   wparam                  wParam;
+   lparam                  lParam;
+   point_i32               pt;
+   ::u64                   time;
 
 };
 
 
-//class create_thread;
-
 using generic_pointer = __pointer(::matter);
 
-
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//#include "acme/os/windows/itemidlist.h"
-//
-//
-//#endif
 
 
 namespace core
@@ -3031,6 +3007,8 @@ namespace promise
 
 
 #include "acme/primitive/primitive/context_object.h"
+#include "acme/primitive/primitive/layered.h"
+
 
 #include "acme/primitive/comparison/var_strict.h"
 
@@ -3040,9 +3018,9 @@ namespace promise
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/promise_pred/pred_routine.h"
+#include "acme/primitive/promise_predicate/predicate_routine.h"
 
-#include "acme/primitive/promise_pred/pred_process.h"
+#include "acme/primitive/promise_predicate/predicate_process.h"
 
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
@@ -3064,9 +3042,9 @@ class message_box;
 
 #include "acme/primitive/primitive/request_interface.h"
 
-#include "acme/parallelization/sync_result.h"
+#include "acme/parallelization/synchronization_result.h"
 
-//#include "acme/parallelization/sync.h"
+//#include "acme/parallelization/synchronization_object.h"
 
 //#include "acme/xml/exportable.h"
 
@@ -3235,10 +3213,10 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/primitive/primitive/id_space.h"
 
 
-#include "acme/primitive/math/scalar_enum.h"
+#include "acme/primitive/mathematics/scalar_enum.h"
 
 
-#include "acme/primitive/math/scalar.h"
+#include "acme/primitive/mathematics/scalar.h"
 
 
 //#include "acme/platform/progress.h"
@@ -3247,7 +3225,25 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/platform/enum.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+#define CRITICAL_SECTION_FUNCTION_RETURN int
+
+CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
+
+#else
+
+#define CRITICAL_SECTION_FUNCTION_RETURN void
+
+#endif
+
+
+#include "acme/parallelization/critical_section.h"
+
+
 #include "acme/primitive/primitive/factory.h"
+
+
 
 
 #include "acme/parallelization/_.h"
@@ -3319,7 +3315,7 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 #if defined(LINUX)
 
-#include "acme/os/ansios/_.h"
+//#include "acme/os/ansios/_.h"
 
 
 #elif defined(_UWP)
@@ -3384,7 +3380,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 //#include "acme/primitive/data/_.h"
 
 
-#include "acme/primitive/math/objects.h"
+#include "acme/primitive/mathematics/objects.h"
 
 
 //#include "acme/platform/simple_log.h"
@@ -3401,7 +3397,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 class mq_base;
 
 //#include "acme/platform/live_signal.h"
-//#include "acme/parallelization/pred_holder.h"
+//#include "acme/parallelization/predicate_holder.h"
 //#include "acme/primitive/primitive/command.h"
 //#include "acme/parallelization/handler.h"
 //#include "acme/parallelization/service_base.h"
@@ -3473,7 +3469,7 @@ class mq_base;
 
 
 
-#include "acme/primitive/math/random_number_generator.h"
+#include "acme/primitive/mathematics/random_number_generator.h"
 //#include "acme/primitive/math/department.h"
 #include "acme/primitive/geometry2d/geometry.h"
 
@@ -3682,7 +3678,7 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 //#include "acme/platform/async.h"
 
 
-//#include "acme/platform/mq.h"
+//#include "acme/platform/message_queue.h"
 
 
 #include "acme/platform/international.h"
@@ -4002,7 +3998,7 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/platform/message_box.h"
 
 
-//#include "acme/parallelization/pred_method.h"
+//#include "acme/parallelization/predicate_method.h"
 
 
 
@@ -4014,7 +4010,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 #include "acme/graphics/draw2d/_.h"
@@ -4092,7 +4087,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_factory_impl.h"
 
 
-#include "acme/primitive/math/_impl.h"
+#include "acme/primitive/mathematics/_impl.h"
 
 
 #include "acme/primitive/collection/_string_array_impl.h"

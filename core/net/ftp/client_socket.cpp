@@ -1161,7 +1161,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               sync_lock sl(sckDataConnection.mutex());
+               synchronization_lock synchronizationlock(sckDataConnection.mutex());
 
                sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1252,7 +1252,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                iNumRead = sckDataConnection.m_file.remove_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1407,7 +1407,7 @@ auto tickStart = ::millis::now();
    void client_socket::OnLine(const string & strLine)
    {
 
-      single_lock sl(mutex());
+      single_lock synchronizationlock(mutex());
 
       m_qResponseBuffer.add_tail(strLine);
 
@@ -1434,7 +1434,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               single_lock sl(mutex());
+               single_lock synchronizationlock(mutex());
 
                if (m_qResponseBuffer.has_elements())
                {
@@ -1510,7 +1510,7 @@ auto tickStart = ::millis::now();
          // get first response-line from buffer
          {
 
-            single_lock sl(mutex());
+            single_lock synchronizationlock(mutex());
 
             strResponse = m_qResponseBuffer.pop_head();
 

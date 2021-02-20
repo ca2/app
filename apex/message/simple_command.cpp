@@ -10,19 +10,20 @@ namespace message
    {
 
       m_id = ::e_message_simple_command;
-      m_esimplecommand = simple_command_none;
+
+      set(e_simple_command_none);
 
    }
 
 
-   void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
-   {
+   //void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   //{
 
-      ::message::base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
+   //   ::user::message::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
-      m_esimplecommand = (e_simple_command)wparam.m_number;
+   //   m_esimplecommand = (e_simple_command)wparam.m_number;
 
-   }
+   //}
 
 
 } // namespace message

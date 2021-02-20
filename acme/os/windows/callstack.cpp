@@ -263,7 +263,7 @@ namespace windows
 {
 
 
-   critical_section callstack::s_criticalsection;
+   critical_section * callstack::s_pcriticalsection = nullptr;
 
 
    callstack::callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount):
@@ -402,7 +402,7 @@ namespace windows
 
    void callstack::backtrace(OS_DWORD * pinteraction, int & c)
    {
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
 #if FAST_STACK_TRACE
 
@@ -418,7 +418,7 @@ namespace windows
    {
 
 #if FAST_STACK_TRACE
-      ::u32 maxframes = min_non_neg(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
+      ::u32 maxframes = minimum_non_negative(iCount, (int)(sizeof(m_uia) / sizeof(m_uia[0])));
       ULONG BackTraceHash;
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&m_uia), &BackTraceHash);
 #else
@@ -851,7 +851,7 @@ namespace windows
       //}
 
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       if (m_bInit)
       {
@@ -916,7 +916,7 @@ namespace windows
    void callstack::clear()
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       if (!m_bInit)
       {
@@ -944,7 +944,7 @@ namespace windows
    void callstack::reset()
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
 
       if (!m_bInit)
@@ -1137,7 +1137,7 @@ namespace windows
 
       }
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       *_strS = '\0';
 
@@ -1272,11 +1272,11 @@ namespace windows
    //char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    //{
 
-   //   critical_section_lock csl(&s_criticalsection);
+   //   critical_section_lock csl(s_pcriticalsection);
 
    //   *_strS = '\0';
 
-   //   ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
+   //   ::memcpy_dup(m_uia, pinteraction, minimum(c * sizeof(*pinteraction), sizeof(m_uia)));
 
    //   m_iAddressWrite = c;
    //   m_iAddressRead = 0;
@@ -1461,11 +1461,11 @@ namespace  windows
    char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, min(c * sizeof(*pinteraction), sizeof(m_uia)));
+      ::memcpy_dup(m_uia, pinteraction, minimum(c * sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;
@@ -1622,7 +1622,7 @@ namespace  windows
 
       const char * psz;
 
-      //sync_lock sl(::callstack().mutex());
+      //synchronization_lock synchronizationlock(::callstack().mutex());
 
    #if defined(LINUX)
 

@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
-//#include "aura/net/sockets/_.h"
+#include "axis/user/_user.h"
 #include "acme/const/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
@@ -101,8 +98,6 @@ namespace axis
 
       m_bSystemSynchronizedCursor      = true;
 
-      m_bSystemSynchronizedScreen      = true;
-
       m_pimplPendingFocus2             = nullptr;
 
       set_context_session(this);
@@ -114,19 +109,7 @@ namespace axis
 
          m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
 
-         m_bSystemSynchronizedScreen   = psystem->m_bSystemSynchronizedScreen;
-
       }
-
-      m_ecursorDefault                 = cursor_arrow;
-
-      m_ecursor                        = cursor_default;
-
-      m_ecursorDefault                 = cursor_arrow;
-
-      m_ecursor                        = cursor_default;
-
-      m_bDrawCursor                    = false;
 
       m_pappCurrent                    = nullptr;
 
@@ -135,8 +118,6 @@ namespace axis
       m_pmapKeyPressed                 = nullptr;
 
       m_puiMouseMoveCapture            = nullptr;
-
-      m_iMainMonitor                   = -1;
 
       m_bZipIsDir2                     = true;
 
@@ -151,16 +132,6 @@ namespace axis
 //m_strAppName = "base_session";
 //m_strBaseSupportId = "base_session";
 //m_strInstallToken = "base_session";
-
-      m_iMainMonitor = -1;
-
-      m_puiCapture = nullptr;
-
-      m_puiMouseMoveCapture = nullptr;
-
-      m_ecursorDefault = cursor_arrow;
-
-      m_ecursor = cursor_default;
 
       m_puiMouseMoveCapture = nullptr;
 
@@ -329,7 +300,7 @@ namespace axis
 //
 //
 //         }
-//         sync_lock sl(&System.m_mutexLibrary);
+//         synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //         __pointer(::apex::library) & plibrary = &System.m_mapLibrary[pszAppId];
 //

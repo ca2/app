@@ -343,7 +343,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -374,7 +374,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -384,10 +384,10 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
@@ -400,7 +400,7 @@ namespace uwp
          //pkey->m_strText            = m_strNewText;
          //if (pkey->m_strText.has_char())
          //{
-           // pkey->m_ekey = ::user::key_refer_to_text_member;
+           // pkey->m_ekey = ::user::e_key_refer_to_text_member;
          //}
    //      pkey->m_key = args;
 
@@ -423,7 +423,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::key * pkey = new  ::message::key;
 
@@ -439,7 +439,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if (bSpecialKey || !bTextFocus)
       {
@@ -532,7 +532,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new ::message::mouse;
 
@@ -568,7 +568,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -632,7 +632,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -770,7 +770,7 @@ namespace uwp
    Windows::Foundation::Point directx_framework_view::get_cursor_pos()
    {
 
-      single_lock sl(&m_mutex, true);
+      single_lock synchronizationlock(&m_mutex, true);
 
       Windows::Foundation::Point p = m_pointLastCursor;
 

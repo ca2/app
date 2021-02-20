@@ -203,7 +203,7 @@ namespace VistaTools
    // to be able to specify the verb easily.
 
    bool CLASS_DECL_ACME
-   MyShellExec(oswindow oswindow,
+   MyShellExec(::windowing::window * pwindow,
                const char * pszVerb,
                const char * pszPath,
                const char * pszParameters   = nullptr,

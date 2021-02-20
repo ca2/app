@@ -54,7 +54,7 @@
 #endif
 
 template < typename PRED >
-inline bool pred_Sleep(int iTime, PRED pred);
+inline bool predicate_Sleep(int iTime, PRED pred);
 
 
 //void adapt_font_name(string & str);
@@ -63,7 +63,7 @@ inline bool pred_Sleep(int iTime, PRED pred);
 //namespace str
 //{
 //
-//   string CLASS_DECL_APEX get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+//   string CLASS_DECL_APEX get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
 //
 //} // namespace str
 

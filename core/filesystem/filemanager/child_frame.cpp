@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -52,7 +50,7 @@ namespace filemanager
    }
 
 
-   void child_frame::route_command_message(::user::command * pcommand)
+   void child_frame::route_command_message(::message::command * pcommand)
    {
 
       simple_child_frame::route_command_message(pcommand);
@@ -78,11 +76,11 @@ namespace filemanager
 
       }
 
-#ifdef WINDOWS_DESKTOP
-
-      m_hMenuDefault = nullptr;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_hMenuDefault = nullptr;
+//
+//#endif
 
 
    }

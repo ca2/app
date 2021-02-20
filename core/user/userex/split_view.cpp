@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace userex
@@ -118,13 +116,13 @@ namespace userex
    }
 
 
-   void split_view::on_command_probe(::user::command * pcommand)
+   void split_view::on_command_probe(::message::command * pcommand)
    {
 
    }
 
 
-   void split_view::on_command(::user::command * pcommand)
+   void split_view::on_command(::message::command * pcommand)
    {
 
    }

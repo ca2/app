@@ -40,6 +40,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////#include <ctype.h>
 #include <time.h>
 
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
 #endif
@@ -357,7 +367,7 @@ namespace sockets
    if (m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   ::memcpy_dup(&fail, point_i32, sizeof(struct sockaddr_in6));
+   ::memcpy_dup(&fail, point, sizeof(struct sockaddr_in6));
    }
    else
    {
@@ -849,9 +859,11 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocks4Port(port_t point_i32)
+   void base_socket::SetSocks4Port(port_t port)
    {
-      m_socks4_port = point_i32;
+
+      m_socks4_port = port;
+
    }
 
 
@@ -1143,12 +1155,12 @@ namespace sockets
    }
 
 
-   bool base_socket::SetIpOptions(const void *point_i32, socklen_t len)
+   bool base_socket::SetIpOptions(const void *point, socklen_t len)
    {
 
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point_i32, len) == -1)
+      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
       {
 
          FATAL(log_this, "setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, __cstr(bsd_socket_error(Errno)));
@@ -2693,7 +2705,7 @@ namespace sockets
 
 #ifdef BSD_STYLE_SOCKETS
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_psslcontext->m_pclientcontext->get_context_session() != nullptr)
       {
@@ -2710,7 +2722,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

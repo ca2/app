@@ -184,9 +184,9 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
       // Scan through line of contributions
       double dCenter = (double)u / dScale;   // Reverse mapping
       // Find the significant edge points that affect the pixel
-      int iLeft = max (0, (int)floor (dCenter - dWidth));
+      int iLeft = maximum (0, (int)floor (dCenter - dWidth));
       res->ContribRow[u].Left = iLeft;
-      int iRight = min ((int)ceil (dCenter + dWidth), int(uSrcSize) - 1);
+      int iRight = minimum ((int)ceil (dCenter + dWidth), int(uSrcSize) - 1);
       res->ContribRow[u].Right = iRight;
 
       // Cut edge points to fit in filter window in case of spill-off
@@ -247,11 +247,11 @@ ScaleRow (  color32_t           *pSrc,
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetRValue(pSrcRow[i])));
-         g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetGValue(pSrcRow[i])));
-         b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetBValue(pSrcRow[i])));
+         r += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(red(pSrcRow[i])));
+         g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(green(pSrcRow[i])));
+         b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(blue(pSrcRow[i])));
       }
-      pDstRow[x] = RGB(r,g,b); // Place result in destination pixel
+      pDstRow[x] = rgb(r,g,b); // Place result in destination pixel
    }
 }
 
@@ -326,11 +326,11 @@ ScaleCol (  color32_t           *pSrc,
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
          color32_t pCurSrc = pSrc[i * uSrcWidth + uCol];
-         r += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetRValue(pCurSrc)));
-         g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetGValue(pCurSrc)));
-         b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetBValue(pCurSrc)));
+         r += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(red(pCurSrc)));
+         g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(green(pCurSrc)));
+         b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(blue(pCurSrc)));
       }
-      pRes[y * uResWidth + uCol] = RGB (r,g,b);   // Place result in destination pixel
+      pRes[y * uResWidth + uCol] = rgb (r,g,b);   // Place result in destination pixel
    }
 }
 
@@ -394,7 +394,7 @@ VertScale ( color32_t           *pSrc,
 //::u32        uNewHeight)
 //{
    // Scale source image horizontally into temporary image
-//   m_bCanceled = FALSE;
+//   m_bCanceled = false;
 //   color32_t *pTemp = new color32_t [uNewWidth * uOrigHeight];
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
@@ -441,7 +441,7 @@ color32_t   *pOrigImage,
 {
 
    // Scale source image horizontally into temporary image
-   m_bCanceled = FALSE;
+   m_bCanceled = false;
 
    acme::malloc < color32_t * > pTemp;
 

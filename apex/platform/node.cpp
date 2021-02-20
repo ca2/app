@@ -29,6 +29,30 @@ namespace apex
    }
 
 
+   ::file::path node::get_desktop_file_path(::apex::application * papplication)
+   {
+
+      return "";
+
+   }
+
+
+#ifdef WINDOWS
+
+
+   ::e_status node::register_dll(const ::file::path & pathDll)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+#endif
+
+
 } // namespace apex
 
 

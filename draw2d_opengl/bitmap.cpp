@@ -87,7 +87,7 @@ namespace draw2d_opengl
 
       //m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -96,7 +96,7 @@ namespace draw2d_opengl
 
       UNREFERENCED_PARAMETER(pgraphics);
 
-      return FALSE;
+      return false;
    }
 
 
@@ -128,14 +128,14 @@ namespace draw2d_opengl
 
       m_osdata[0] = (void *) 1;
 
-      return TRUE;
+      return true;
 
    }
 
 
    bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage)
    {
-      return FALSE;
+      return false;
    }
 
 
@@ -155,7 +155,7 @@ namespace draw2d_opengl
    {
       //   return attach(::LoadBitmap(::aura::FindResourceHandle(
       //lpszResourceName, RT_BITMAP), lpszResourceName));
-      return FALSE;
+      return false;
 
    }
 
@@ -187,12 +187,12 @@ namespace draw2d_opengl
    bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       //return attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
-      return FALSE;
+      return false;
    }
    bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
-      return FALSE;
+      return false;
    }
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
@@ -201,7 +201,7 @@ namespace draw2d_opengl
 
       //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return TRUE;
+      return true;
 
    }
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
@@ -211,7 +211,7 @@ namespace draw2d_opengl
 
       //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return TRUE;
+      return true;
    }
 
 
@@ -734,9 +734,9 @@ namespace draw2d_opengl
 
       int attribList[] =
       {
-         WGL_DRAW_TO_PBUFFER_ARB, TRUE,      // allow rendering to the pbuffer
-         WGL_SUPPORT_OPENGL_ARB,  TRUE,      // associate with OpenGL
-         WGL_DOUBLE_BUFFER_ARB,   FALSE,     // single buffered
+         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
+         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
+         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
          WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
          WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
          WGL_BLUE_BITS_ARB, 8,              // minimum 8-bits for blue channel

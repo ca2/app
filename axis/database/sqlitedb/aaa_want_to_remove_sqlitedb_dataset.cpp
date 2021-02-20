@@ -278,7 +278,7 @@
 //
 //      }
 //
-//      sync_lock sl(m_pdatabase->mutex());
+//      synchronization_lock synchronizationlock(m_pdatabase->mutex());
 //
 //      close();
 //
@@ -531,7 +531,7 @@
 ////      }
 ////      else
 ////      {
-////         ASSERT(FALSE);
+////         ASSERT(false);
 ////         //      return dataset::SetFieldValue(f_name, value);
 ////      }
 ////      __throw(::database::exception(::get_context_application(),"Not in Insert or Edit or Select state"));
@@ -567,7 +567,7 @@
 ////      }
 ////      //   else
 ////      {
-////         ASSERT(FALSE);
+////         ASSERT(false);
 ////         //return dataset::SetFieldValue(f_name, value);
 ////
 ////      }

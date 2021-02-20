@@ -11,9 +11,9 @@ namespace graphics
    public:
 
 
-      ::user::interaction_impl *    m_pimpl;
-      ::oswindow                    m_oswindow;
-      bool                          m_bNewBuffer;
+      __pointer(::user::interaction_impl)    m_pimpl;
+      __pointer(::windowing::window)         m_pwindow;
+      bool                                   m_bNewBuffer;
 
 
       graphics();
@@ -35,7 +35,7 @@ namespace graphics
 
       virtual i64 _001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect);
 
-      virtual sync * get_draw_lock();
+      virtual synchronization_object * get_draw_lock();
       virtual ::draw2d::graphics * on_begin_draw();
 
       virtual void on_end_draw();
@@ -44,9 +44,9 @@ namespace graphics
 
 
       virtual ::image_pointer & get_buffer_image();
-      virtual sync * get_buffer_sync();
+      virtual synchronization_object * get_buffer_sync();
       virtual ::image_pointer & get_screen_image();
-      virtual sync * get_screen_sync();
+      virtual synchronization_object * get_screen_sync();
 
 
 

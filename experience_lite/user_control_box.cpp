@@ -49,7 +49,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(get_top_level()->frame_is_transparent())
    {
 
-      crBackground = ARGB(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+      crBackground = argb(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
 
    }
    else
@@ -59,7 +59,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   pgraphics->fill_rect(rectClient, m_colorBackground);
+   pgraphics->fill_rectangle(rectClient, m_colorBackground);
 
 }
 

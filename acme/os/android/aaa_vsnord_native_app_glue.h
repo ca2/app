@@ -35,7 +35,6 @@
 
 
 #include <poll.h>
-#include <pthread.h>
 #include <sched.h>
 
 #include <android/configuration.h>

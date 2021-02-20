@@ -4,28 +4,28 @@
 #pragma once
 
 
-#include "acme/graphics/draw2d/color32.h"
+#include "acme/graphics/draw2d/color.h"
 
 
 struct os_theme_colors
 {
 
 
-   COLOR32     m_colorBack;
-   COLOR32     m_colorFace;
-   COLOR32     m_colorFore;
+   ::color::color    m_colorBack;
+   ::color::color    m_colorFace;
+   ::color::color    m_colorFore;
 
-   COLOR32     m_colorFaceHover;
-   COLOR32     m_colorFacePress;
-   COLOR32     m_colorButton;
-   COLOR32     m_colorButtonHover;
-   COLOR32     m_colorButtonPress;
-   COLOR32     m_colorBorder;
-   COLOR32     m_colorBorderHover;
-   COLOR32     m_colorBorderHover1;
-   COLOR32     m_colorBorderHover2;
-   COLOR32     m_colorBorderHover3;
-   COLOR32     m_colorBorderPress;
+   ::color::color    m_colorFaceHover;
+   ::color::color    m_colorFacePress;
+   ::color::color    m_colorButton;
+   ::color::color    m_colorButtonHover;
+   ::color::color    m_colorButtonPress;
+   ::color::color    m_colorBorder;
+   ::color::color    m_colorBorderHover;
+   ::color::color    m_colorBorderHover1;
+   ::color::color    m_colorBorderHover2;
+   ::color::color    m_colorBorderHover3;
+   ::color::color    m_colorBorderPress;
 
 
 };

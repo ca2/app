@@ -2,7 +2,7 @@
 
 
 extern "C"
-void draw2d_cairo_factory_exchange()
+void draw2d_cairo_factory_exchange(::factory_map * pfactorymap)
 {
 
    init_cairo_mutex();
@@ -14,8 +14,12 @@ void draw2d_cairo_factory_exchange()
    create_factory < ::draw2d_cairo::brush, ::draw2d::brush >();
    create_factory < ::draw2d_cairo::palette, ::draw2d::palette >();
    create_factory < ::draw2d_cairo::region, ::draw2d::region >();
-   create_factory < ::draw2d_cairo::font, ::draw2d::font >();
+   create_factory < ::draw2d_cairo::font, ::write_text::font >();
    create_factory < ::draw2d_cairo::path, ::draw2d::path >();
+
+   create_factory < ::draw2d_cairo::draw2d, ::draw2d::draw2d >();
+
+
 }
 
 

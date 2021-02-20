@@ -42,8 +42,8 @@ public:
    //bool open_document(::create * pcreate) override;
    bool on_open_document(const ::payload & varFile) override;
 
-   virtual void on_command_probe(::user::command * pcommand) override;
-   virtual void on_command(::user::command * pcommand) override;
+   virtual void on_command_probe(::message::command * pcommand) override;
+   virtual void on_command(::message::command * pcommand) override;
 
    virtual void soft_reload() override;
 

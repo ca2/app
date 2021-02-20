@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "axis/user/validate.h"
 #include "aura/update.h"
 #include "acme/const/id.h"
@@ -87,7 +85,7 @@ namespace user
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (LPARAM)&ev);
+               send_message(e_message_event, 0, (lparam)&ev);
 
             }
 
@@ -176,7 +174,7 @@ namespace user
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (LPARAM)& ev);
+               send_message(e_message_event, 0, (lparam)& ev);
 
             }
 
@@ -348,7 +346,7 @@ namespace user
    interaction * form_list::_001GetControl(index iItem, index iSubItem)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
@@ -547,7 +545,7 @@ namespace user
                if (pedit.is_set())
                {
 
-                  pinteraction->SetFocus();
+                  pinteraction->set_keyboard_focus();
 
                   pedit->_001SetSel(0, pedit->_001GetTextLength());
 
@@ -698,7 +696,7 @@ break_click:;
          //      }
          //      break;
          //      default:
-         //         ASSERT(FALSE);
+         //         ASSERT(false);
          //         break;
          //      }
          //   }
@@ -1023,8 +1021,9 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
    {
+
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
       UNREFERENCED_PARAMETER(id);
@@ -1162,7 +1161,7 @@ break_click:;
    {
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
          _001SaveEdit(_001GetEditControl());
          _001HideEditingControls();
@@ -1193,7 +1192,7 @@ break_click:;
    }
 
 
-   bool form_list::_001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32)
+   bool form_list::_001IsPointInside(::user::interaction * pinteraction,point_i64 point)
    {
 
       if(pinteraction != nullptr)
@@ -1250,7 +1249,7 @@ break_click:;
 //      rectClient.bottom = rectForm.bottom;
 //      rectClient.left = rectControl.left;
 //      rectClient.right = rectControl.right;
-//      return rectClient.contains(point) != FALSE;
+//      return rectClient.contains(point) != false;
    }
 
 
@@ -1262,7 +1261,7 @@ break_click:;
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          for (index i = 0; i < m_columna.get_size(); i++)
          {
@@ -1294,220 +1293,220 @@ break_click:;
    }
 
 
-   void form_list::_000OnMouse(::message::mouse * pmouse)
-   {
-      // must lock ::user::mutex_children() at top stack chain
-// and only at top stack chain.
-
-      auto point = pmouse->m_point;
-
-      _001ScreenToClient(point);
-
-      if (pmouse->m_id == e_message_left_button_down)
-      {
-
-         index iItem;
-
-         index iSubItem;
-
-         //::user::range range;
-
-         //_001GetSelection(range);
-
-         if (_001DisplayHitTest(point, iItem, iSubItem))
-         {
-
-            auto pinteraction = get_subitem_control(iSubItem);
-
-            if (pinteraction 
-                  && pinteraction->m_econtroltype == e_control_type_combo_box)
-            {
-
-               _001PlaceControl(pinteraction, (::index) iItem, true);
-
-               //pinteraction->m_puserinteraction->message_handler(pmouse);
-
-               pmouse->m_bRet = true;
-
-               return;
-
-            }
-         }
-      }
-      if (pmouse->m_bRet)
-      {
-
-         return;
-
-      }
-
-
-      form_mesh::_000OnMouse(pmouse);
-
-      if (pmouse->m_bRet)
-      {
-
-         return;
-
-      }
-
-      //else if(emessage == e_message_left_button_up)
-      //{
-      //i32 iItem;
-      //i32 iSubItem;
-      //::user::range range;
-      //_001GetSelection(range);
-      //if(_001DisplayHitTest(point, iItem, iSubItem))
-      //{
-      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-      //if(pinteraction != nullptr
-      //&& pinteraction->m_pcontrol != nullptr
-      //&& !pinteraction->m_pcontrol->is_window_visible()
-      //&& (pinteraction->m_etype == type_edit
-      //|| pinteraction->m_etype == type_edit_plain_text))
-      //{
-      //return false;
-      //}
-      //}
-      //}*/
-      //control_keep controlkeep(this,point_i32);
-      //__pointer(::user::interaction) pinteraction = top_child();
-      //__pointer(::user::interaction) puiBefore = nullptr;
-      //bool bError;
-      //try
-      //{
-      //   while(pinteraction != nullptr)
-      //   {
-      //      bError = false;
-      //      try
-      //      {
-      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
-      //         {
-      //            pinteraction->_000OnMouse(pmouse);
-      //            if(pmouse->m_bRet)
-      //               return;
-      //            pinteraction->send(pmouse);
-      //            if(pmouse->get_lresult() != 0)
-      //               return;
-      //         }
-      //      }
-      //      catch(...)
-      //      {
-      //         bError = true;
-      //         puiBefore = pinteraction;
-      //      }
-      //      pinteraction = under_sibling(pinteraction);
-      //      if(bError)
-      //      {
-      //         m_uiptraChild.remove(puiBefore);
-      //      }
-      //   }
-      //}
-      //catch(...)
-      //{
-      //}
-      //try
-      //{
-      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::message::message * > (pmouse->);
-      //   if(pmouse->get_lresult() != 0)
-      //      return;
-      //}
-      //catch(...)
-      //{
-      //}
-
-
-
-
-
-      //::point_i32 point = pmouse->m_point;
-      //_001ScreenToClient(point);
-      ///*      if(emessage == e_message_left_button_down)
-      //      {
-      //      i32 iItem;
-      //      i32 iSubItem;
-      //      ::user::range range;
-      //      _001GetSelection(range);
-      //      if(_001DisplayHitTest(point, iItem, iSubItem))
-      //      {
-      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-      //      if(pinteraction != nullptr
-      //      && pinteraction->m_pcontrol != nullptr
-      //      && (pinteraction->m_etype == type_edit
-      //      || pinteraction->m_etype == type_edit_plain_text)
-      //      && !range.has_sub_item(iItem, iSubItem))
-      //      {
-      //      _001HideEditingControls();
-      //      return false;
-      //      }
-      //      }
-      //      }
-      //      else if(emessage == e_message_left_button_up)
-      //      {
-      //      i32 iItem;
-      //      i32 iSubItem;
-      //      ::user::range range;
-      //      _001GetSelection(range);
-      //      if(_001DisplayHitTest(point, iItem, iSubItem))
-      //      {
-      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-      //      if(pinteraction != nullptr
-      //      && pinteraction->m_pcontrol != nullptr
-      //      && !pinteraction->m_pcontrol->is_window_visible()
-      //      && (pinteraction->m_etype == type_edit
-      //      || pinteraction->m_etype == type_edit_plain_text))
-      //      {
-      //      return false;
-      //      }
-      //      }
-      //      }*/
-      //control_keep controlkeep(this,point_i32);
-      //__pointer(::user::interaction) pinteraction = top_child();
-      //__pointer(::user::interaction) puiBefore = nullptr;
-      //bool bError;
-      //try
-      //{
-      //   while(pinteraction != nullptr)
-      //   {
-      //      bError = false;
-      //      try
-      //      {
-      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
-      //         {
-      //            pinteraction->_000OnMouse(pmouse);
-      //            if(pmouse->m_bRet)
-      //               return;
-      //            pinteraction->send(pmouse);
-      //            if(pmouse->get_lresult() != 0)
-      //               return;
-      //         }
-      //      }
-      //      catch(...)
-      //      {
-      //         bError = true;
-      //         puiBefore = pinteraction;
-      //      }
-      //      pinteraction = under_sibling(pinteraction);
-      //      if(bError)
-      //      {
-      //         m_uiptraChild.remove(puiBefore);
-      //      }
-      //   }
-      //}
-      //catch(...)
-      //{
-      //}
-      //try
-      //{
-      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <::message::message *> (pmouse->);
-      //   if(pmouse->get_lresult() != 0)
-      //      return;
-      //}
-      //catch(...)
-      //{
-      //}
-
-   }
+//   void form_list::_000OnMouse(::message::mouse * pmouse)
+//   {
+//      // must lock ::user::mutex_children() at top stack chain
+//// and only at top stack chain.
+//
+//      auto point = pmouse->m_point;
+//
+//      _001ScreenToClient(point);
+//
+//      if (pmouse->m_id == e_message_left_button_down)
+//      {
+//
+//         index iItem;
+//
+//         index iSubItem;
+//
+//         //::user::range range;
+//
+//         //_001GetSelection(range);
+//
+//         if (_001DisplayHitTest(point, iItem, iSubItem))
+//         {
+//
+//            auto pinteraction = get_subitem_control(iSubItem);
+//
+//            if (pinteraction 
+//                  && pinteraction->m_econtroltype == e_control_type_combo_box)
+//            {
+//
+//               _001PlaceControl(pinteraction, (::index) iItem, true);
+//
+//               //pinteraction->m_puserinteraction->message_handler(pmouse);
+//
+//               pmouse->m_bRet = true;
+//
+//               return;
+//
+//            }
+//         }
+//      }
+//      if (pmouse->m_bRet)
+//      {
+//
+//         return;
+//
+//      }
+//
+//
+//      form_mesh::_000OnMouse(pmouse);
+//
+//      if (pmouse->m_bRet)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      //else if(emessage == e_message_left_button_up)
+//      //{
+//      //i32 iItem;
+//      //i32 iSubItem;
+//      //::user::range range;
+//      //_001GetSelection(range);
+//      //if(_001DisplayHitTest(point, iItem, iSubItem))
+//      //{
+//      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+//      //if(pinteraction != nullptr
+//      //&& pinteraction->m_pcontrol != nullptr
+//      //&& !pinteraction->m_pcontrol->is_window_visible()
+//      //&& (pinteraction->m_etype == type_edit
+//      //|| pinteraction->m_etype == type_edit_plain_text))
+//      //{
+//      //return false;
+//      //}
+//      //}
+//      //}*/
+//      //control_keep controlkeep(this,point_i32);
+//      //__pointer(::user::interaction) pinteraction = top_child();
+//      //__pointer(::user::interaction) puiBefore = nullptr;
+//      //bool bError;
+//      //try
+//      //{
+//      //   while(pinteraction != nullptr)
+//      //   {
+//      //      bError = false;
+//      //      try
+//      //      {
+//      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
+//      //         {
+//      //            pinteraction->_000OnMouse(pmouse);
+//      //            if(pmouse->m_bRet)
+//      //               return;
+//      //            pinteraction->send(pmouse);
+//      //            if(pmouse->get_lresult() != 0)
+//      //               return;
+//      //         }
+//      //      }
+//      //      catch(...)
+//      //      {
+//      //         bError = true;
+//      //         puiBefore = pinteraction;
+//      //      }
+//      //      pinteraction = under_sibling(pinteraction);
+//      //      if(bError)
+//      //      {
+//      //         m_uiptraChild.remove(puiBefore);
+//      //      }
+//      //   }
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//      //try
+//      //{
+//      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::message::message * > (pmouse->);
+//      //   if(pmouse->get_lresult() != 0)
+//      //      return;
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//
+//
+//
+//
+//
+//      //::point_i32 point = pmouse->m_point;
+//      //_001ScreenToClient(point);
+//      ///*      if(emessage == e_message_left_button_down)
+//      //      {
+//      //      i32 iItem;
+//      //      i32 iSubItem;
+//      //      ::user::range range;
+//      //      _001GetSelection(range);
+//      //      if(_001DisplayHitTest(point, iItem, iSubItem))
+//      //      {
+//      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+//      //      if(pinteraction != nullptr
+//      //      && pinteraction->m_pcontrol != nullptr
+//      //      && (pinteraction->m_etype == type_edit
+//      //      || pinteraction->m_etype == type_edit_plain_text)
+//      //      && !range.has_sub_item(iItem, iSubItem))
+//      //      {
+//      //      _001HideEditingControls();
+//      //      return false;
+//      //      }
+//      //      }
+//      //      }
+//      //      else if(emessage == e_message_left_button_up)
+//      //      {
+//      //      i32 iItem;
+//      //      i32 iSubItem;
+//      //      ::user::range range;
+//      //      _001GetSelection(range);
+//      //      if(_001DisplayHitTest(point, iItem, iSubItem))
+//      //      {
+//      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+//      //      if(pinteraction != nullptr
+//      //      && pinteraction->m_pcontrol != nullptr
+//      //      && !pinteraction->m_pcontrol->is_window_visible()
+//      //      && (pinteraction->m_etype == type_edit
+//      //      || pinteraction->m_etype == type_edit_plain_text))
+//      //      {
+//      //      return false;
+//      //      }
+//      //      }
+//      //      }*/
+//      //control_keep controlkeep(this,point_i32);
+//      //__pointer(::user::interaction) pinteraction = top_child();
+//      //__pointer(::user::interaction) puiBefore = nullptr;
+//      //bool bError;
+//      //try
+//      //{
+//      //   while(pinteraction != nullptr)
+//      //   {
+//      //      bError = false;
+//      //      try
+//      //      {
+//      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
+//      //         {
+//      //            pinteraction->_000OnMouse(pmouse);
+//      //            if(pmouse->m_bRet)
+//      //               return;
+//      //            pinteraction->send(pmouse);
+//      //            if(pmouse->get_lresult() != 0)
+//      //               return;
+//      //         }
+//      //      }
+//      //      catch(...)
+//      //      {
+//      //         bError = true;
+//      //         puiBefore = pinteraction;
+//      //      }
+//      //      pinteraction = under_sibling(pinteraction);
+//      //      if(bError)
+//      //      {
+//      //         m_uiptraChild.remove(puiBefore);
+//      //      }
+//      //   }
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//      //try
+//      //{
+//      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <::message::message *> (pmouse->);
+//      //   if(pmouse->get_lresult() != 0)
+//      //      return;
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//
+//   }
 
 
    void form_list::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
@@ -1564,7 +1563,7 @@ break_click:;
 
       ::rectangle_i32 rectangle(rectControl);
 
-      *prectangle = rectangle_i32;
+      *prectangle = rectangle;
 
 
    }
@@ -1586,7 +1585,7 @@ break_click:;
    bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point_i32,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
+      return _001DisplayHitTest(point,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
 
    }
 
@@ -1917,7 +1916,7 @@ break_click:;
 
          auto psession = Session;
 
-         if (psession->is_key_pressed(::user::key_shift))
+         if (psession->is_key_pressed(::user::e_key_shift))
          {
 
             bOk = _001PreviousEditableControl(iItem, iSubItem);
@@ -1947,8 +1946,8 @@ break_click:;
 
          SCAST_PTR(::message::key, pkey, pevent->m_pmessage);
 
-         if (pkey->m_ekey == key_down || pkey->m_ekey == key_up
-               || pkey->m_ekey == key_left || pkey->m_ekey == key_right)
+         if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
+               || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
          {
 
             index iItem = 0;
@@ -1976,13 +1975,13 @@ break_click:;
 
                   }
 
-                  if (pkey->m_ekey == key_left && iSel != 0)
+                  if (pkey->m_ekey == e_key_left && iSel != 0)
                   {
 
                      return;
 
                   }
-                  else if (pkey->m_ekey == key_right)
+                  else if (pkey->m_ekey == e_key_right)
                   {
 
                      strsize iLen = pedit->_001GetTextLength();
@@ -2011,25 +2010,25 @@ break_click:;
 
             bool bOk = false;
 
-            if (pkey->m_ekey == key_left)
+            if (pkey->m_ekey == e_key_left)
             {
 
                bOk = _001PreviousEditableControl(iItem, iSubItem);
 
             }
-            else if (pkey->m_ekey == key_right)
+            else if (pkey->m_ekey == e_key_right)
             {
 
                bOk = _001NextEditableControl(iItem, iSubItem);
 
             }
-            else if (pkey->m_ekey == key_up)
+            else if (pkey->m_ekey == e_key_up)
             {
 
                bOk = _001UpperEditableControl(iItem, iSubItem);
 
             }
-            else if (pkey->m_ekey == key_down)
+            else if (pkey->m_ekey == e_key_down)
             {
 
                bOk = _001LowerEditableControl(iItem, iSubItem);
@@ -2048,7 +2047,7 @@ break_click:;
                if(pedit.is_set())
                {
 
-                  if (pkey->m_ekey == key_left)
+                  if (pkey->m_ekey == e_key_left)
                   {
 
                      strsize iLen = pedit->_001GetTextLength();
@@ -2057,7 +2056,7 @@ break_click:;
 
 
                   }
-                  else if (pkey->m_ekey == key_right)
+                  else if (pkey->m_ekey == e_key_right)
                   {
 
                      pedit->_001SetSel(0, 0);
@@ -2089,7 +2088,7 @@ break_click:;
    bool form_list::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
    {
 
-      return ::user::list::_001HitTest_(point_i32,iItem,iSubItem);
+      return ::user::list::_001HitTest_(point,iItem,iSubItem);
 
    }
 
@@ -2116,11 +2115,11 @@ break_click:;
             if (!crBackHover)
             {
 
-               crBackHover = ARGB(40, 0, 0, 0);
+               crBackHover = argb(40, 0, 0, 0);
 
             }
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectSubItem, crBackHover);
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectSubItem, crBackHover);
 
          }
 
@@ -2210,11 +2209,11 @@ break_click:;
             //if (rectWindow != pdrawitem->m_rectClient)
             {
 
-               // pinteraction->set_window_pos(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 
-            if (!pinteraction->has_focus())
+            if (!pinteraction->has_keyboard_focus())
             {
 
                __pointer(::user::combo_box) pcombobox = pinteraction;

@@ -12,9 +12,6 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{2ec8ecd0-d089-4887-98eb-a66497a4e6c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\NewFilter1">
-      <UniqueIdentifier>{209be871-19d1-438e-95bd-ddd0fedf5355}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

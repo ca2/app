@@ -199,7 +199,7 @@ STDMETHODIMP CTSFDataObject::GetDataHere(LPFORMATETC pFE, LPSTGMEDIUM pStgMedium
 
 STDMETHODIMP CTSFDataObject::QueryGetData(LPFORMATETC pFE)
 {
-BOOL fReturn = FALSE;
+BOOL fReturn = false;
 
     /*
     Check the aspects we support. Implementations of this object will only

@@ -146,7 +146,7 @@ CLASS_DECL_APEX void main_async_runnable(const ::promise::routine & routine)
 
    //__pointer(::object) pobjectTask = pobjectTaskParam;
    
-   System.post_pred([routine]()
+   System.post_predicate([routine]()
    {
 
       routine();

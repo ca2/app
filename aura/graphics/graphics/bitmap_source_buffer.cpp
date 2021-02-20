@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "bitmap_source_buffer.h"
 
 
@@ -48,7 +46,7 @@ namespace graphics
    void bitmap_source_buffer::defer_initialize_bitmap_source_buffer()
    {
 
-      if (m_oswindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
+      if (m_pwindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
       {
 
          return;
@@ -66,11 +64,11 @@ namespace graphics
 
       char szName[] = "Local\\bitmap-source-%s";
 
-      string strPath;
+      string strName;
 
-      strPath.Format(szName, m_strBitmapSource.c_str());
+      strName.Format(szName, m_strBitmapSource.c_str());
 
-      m_memorymap.open(strPath, false, true, true, 8192 * 4096 * 4);
+      m_memorymap.open_name(strName, false, true, true, 128_mb);
 
    }
 
@@ -94,7 +92,7 @@ namespace graphics
 
       }
 
-      sync_lock sl(m_memorymap.mutex());
+      synchronization_lock synchronizationlock(m_memorymap.mutex());
 
       try
       {

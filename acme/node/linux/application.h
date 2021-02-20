@@ -81,7 +81,7 @@
 //
 //
 //
-//      virtual void ShowWaitCursor(bool bShow = true);
+//      virtual void show_wait_cursor(bool bShow = true);
 //
 //      ::user::primitive * window_from_os_data(void * pdata);
 //      ::user::primitive * window_from_os_data_permanent(void * pdata);

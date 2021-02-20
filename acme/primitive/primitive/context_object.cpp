@@ -32,7 +32,7 @@ void context_object::dump(dump_context& context) const
 void context_object::finalize()
 {
 
-   ::layered::finalize();
+   ::id_matter::finalize();
 
    m_pobjectContext.release(OBJ_REF_DBG_THIS);
 
@@ -83,9 +83,9 @@ void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_
 void context_object::on_finish()
 {
 
-   layered::on_finish();
+   id_matter::on_finish();
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pnotifya)
    {
@@ -100,7 +100,7 @@ void context_object::on_finish()
          if (pmatter && pmatter->m_bFinishing)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             sleep(10_ms);
 
@@ -109,7 +109,7 @@ void context_object::on_finish()
             if (estatus == ::success)
             {
 
-               sl.lock();
+               synchronizationlock.lock();
 
                pnotifya->remove(pmatter);
 
@@ -117,7 +117,7 @@ void context_object::on_finish()
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
          }
 

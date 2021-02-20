@@ -394,16 +394,16 @@ int_bool is_window(oswindow oswindow)
 {
 
    if (((void *)oswindow) == nullptr)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 }
 
 int destroy_window(oswindow oswindow)
 {
 
-   return TRUE;
+   return true;
 
 }
 
@@ -577,7 +577,7 @@ CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edis
    UNREFERENCED_PARAMETER(edisplay);
    UNREFERENCED_PARAMETER(eactivation);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -629,7 +629,7 @@ int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, 
 
    pdata->m_pimpl->m_puserinteraction->post_redraw();
 
-   return TRUE;
+   return true;
 
 }
 
@@ -655,7 +655,7 @@ void defer_term_ui()
 //   lppoint->y = g_iMouseY;
 //
 //   if (g_iMouse < 0)
-//      return FALSE;
+//      return false;
 //
 //   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //      ref new Windows::UI::Core::DispatchedHandler([]()
@@ -683,7 +683,7 @@ void defer_term_ui()
 //
 //         }));
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

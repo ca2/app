@@ -65,12 +65,12 @@ namespace http
 
          set = pmessage->m_set;
 
-         single_lock sl(Context.http().m_pmutexDownload, true);
+         single_lock synchronizationlock(Context.http().m_pmutexDownload, true);
 
          if (!(Context.http().m_straDownloading.contains(strUrl)) && !exists(pmessage->m_strUrl, set))
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             pmessage->m_estatusRet = error_http;
 

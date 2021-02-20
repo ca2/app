@@ -110,7 +110,7 @@
 //         i32 y,
 //         i32 nWidth,
 //         i32 nHeight,
-//         oswindow oswindow_Parent,
+//         ::windowing::window * pwindow_Parent,
 //         HMENU hMenu,
 //         HINSTANCE hInstance,
 //         LPVOID pParam);*/
@@ -213,7 +213,7 @@
 //         i32 y,
 //         i32 nWidth,
 //         i32 nHeight,
-//         oswindow oswindow_Parent,
+//         ::windowing::window * pwindow_Parent,
 //         HMENU hMenu,
 //         HINSTANCE hInstance,
 //         LPVOID pParam);
@@ -323,7 +323,7 @@
 //         i32 y,
 //         i32 nWidth,
 //         i32 nHeight,
-//         oswindow oswindow_Parent,
+//         ::windowing::window * pwindow_Parent,
 //         HMENU hMenu,
 //         HINSTANCE hInstance,
 //         LPVOID pParam);
@@ -551,7 +551,7 @@
 //      i32 y,
 //      i32 nWidth,
 //      i32 nHeight,
-//      oswindow oswindow_Parent,
+//      ::windowing::window * pwindow_Parent,
 //      HMENU hMenu,
 //      HINSTANCE hInstance,
 //      LPVOID pParam)

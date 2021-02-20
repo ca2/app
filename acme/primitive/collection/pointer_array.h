@@ -385,7 +385,7 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) pred_remove_first(PRED pred, ::index iStart = 0)
+   __pointer(T) predicate_remove_first(PRED pred, ::index iStart = 0)
    {
 
       for (::index i = iStart; i < this->get_count(); i++)
@@ -410,7 +410,7 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) pred_remove_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
+   __pointer(T) predicate_remove_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
    {
 
       __pointer(T) sp;
@@ -597,10 +597,10 @@ public:
 
 
    template < typename PRED >
-   T * pred_ptr_first(PRED pred)
+   T * predicate_ptr_first(PRED pred)
    {
 
-      ::index i = this->pred_find_first(pred);
+      ::index i = this->predicate_find_first(pred);
 
       if(i < 0)
          return nullptr;

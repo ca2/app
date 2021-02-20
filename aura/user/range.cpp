@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -190,10 +188,10 @@ namespace user
 
    //      get_client_rect(&rectClient);
 
-   //      m_pmeshheader->set_window_pos(
-   //         zorder_top,
+   //      m_pmeshheader->set_window_position(
+   //         e_zorder_top,
    //         0,0,
-   //         max(m_iItemWidth + 10,rectClient.width()),
+   //         maximum(m_iItemWidth + 10,rectClient.width()),
    //         m_iItemHeight,
    //         SWP_SHOWWINDOW);
    //   }

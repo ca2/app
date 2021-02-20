@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "_.h"
 #include "aura/os/linux/_linux.h"
 #include "aura/os/linux/gnome_gnome.h"
@@ -130,7 +128,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
          if(!bHasAlpha)
          {
 
-            pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+            pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          }
 
@@ -428,7 +426,7 @@ gboolean clipboard_callback(gpointer data)
 //               if(!bHasAlpha)
 //               {
 //
-//                  pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+//                  pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 //
 //               }
 //

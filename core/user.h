@@ -25,7 +25,7 @@ namespace graphics
 // lParam = pszOther (or nullptr)
 
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
-#define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,
+#define WM_COMMANDHELP      0x0365  // lResult = true/false,
 // lParam = dwContext
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
 // lParam = MAKELONG(x,y)

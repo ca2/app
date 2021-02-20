@@ -188,7 +188,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
    //if (path.m_iSize != -1)
    //{
 
-   //   return max(0, path.m_iSize);
+   //   return maximum(0, path.m_iSize);
 
    //}
 
@@ -280,7 +280,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   sync_lock lockMachineEvent(
+   synchronization_lock lockMachineEvent(
       !is_null(&System.machine_event_central()) ? &System.machine_event_central().m_machineevent.m_mutex
                                                 : ((::mutex *) nullptr));
 
@@ -1899,7 +1899,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uRead = spfile->read(buf, (::u32)(min(iBufSize, iLen)));
+//            uRead = spfile->read(buf, (::u32)(minimum(iBufSize, iLen)));
 //            if (uRead == 0)
 //               break;
 //            pfile2->write(buf, uRead);
@@ -1997,7 +1997,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //      i64 iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
-//         i32 iProcess = (i32)min(1024 * 1024, iLen - iProcessed);
+//         i32 iProcess = (i32)minimum(1024 * 1024, iLen - iProcessed);
 //         MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
 //
 //         iProcessed += iProcess;
@@ -2307,7 +2307,7 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
 
       strsize iEncoding2 = strSample.find(";", iFind + 1);
 
-      strsize iEncoding = min_non_neg(iEncoding1, iEncoding2);
+      strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
 
       if (iFind > 5 && iEncoding > iFind)
       {
@@ -2420,10 +2420,10 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    }
 
-   if (while_pred_Sleep(60 * 1000, [&]()
+   if (while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       return Context.http().m_straDownloading.contains(path) || Context.http().m_straExists.contains(path);
 
@@ -2437,12 +2437,12 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       if (!(path & ::file::e_flag_bypass_cache) && ::file_exists(pathCache))
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          auto pfile = file_get_file(pathCache, eopenFlags);
 
@@ -2460,7 +2460,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
    if (bSaveCache)
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       Context.http().m_straDownloading.add(path);
 
@@ -2480,7 +2480,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
    if (bSaveCache)
    {
 
-      sync_lock sl(Context.http().m_pmutexDownload);
+      synchronization_lock synchronizationlock(Context.http().m_pmutexDownload);
 
       try
       {

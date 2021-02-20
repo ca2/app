@@ -7,7 +7,7 @@
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 
 namespace apex
@@ -63,7 +63,7 @@ namespace apex
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
 
-//      return FALSE;
+//      return false;
 //   }
 
 //   HINSTANCE application::GetHinstance()
@@ -297,7 +297,7 @@ namespace apex
       {
          ::win::thread::Delete();
       }
-      // 'delete this' only if m_bAutoDelete == TRUE
+      // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MESSAGE* msg)  // helper
       {
@@ -309,7 +309,7 @@ namespace apex
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
    }
@@ -389,12 +389,12 @@ namespace apex
 
 
 
-   void application::get_time(struct timeval * ptimeval)
-   {
-
-      gettimeofday(ptimeval, nullptr);
-
-   }
+//   void application::get_time(struct timeval * ptimeval)
+//   {
+//
+//      gettimeofday(ptimeval, nullptr);
+//
+//   }
 
 
 //   void application::set_env_var(const string & payload,const string & value)

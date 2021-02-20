@@ -40,7 +40,7 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 
 
 
-   return TRUE;
+   return true;
 
 }
 

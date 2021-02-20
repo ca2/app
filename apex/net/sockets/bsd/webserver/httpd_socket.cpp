@@ -29,6 +29,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "apex/id.h"
 #include "apex/net/sockets/_sockets.h"
 #include "apex/platform/static_start.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include <openssl/ssl.h>
 
 //extern ::mutex * get_globals_mutex();
@@ -181,7 +192,7 @@ namespace sockets
    map < int, DH * > * dh_map()
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       if (g_pmapdh == nullptr)
       {
@@ -198,7 +209,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       return dh_map()->operator[](keylength);
 
@@ -208,7 +219,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      sync_lock sl(::get_globals_mutex());
+      synchronization_lock synchronizationlock(::get_globals_mutex());
 
       dh_map()->operator[](keylength) = pdh;
 

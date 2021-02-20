@@ -78,17 +78,17 @@ namespace multimedia
 
       void thread::OnMixerMessage(::message::message * pmessage)
       {
-         __pointer(::message::base) pbase(pmessage);
+         __pointer(::user::message) pusermessage(pmessage);
 
-         if(pbase->m_wparam ==  23)
+         if(pusermessage->m_wparam ==  23)
          {
          }
-         else if(pbase->m_wparam ==  21)
+         else if(pusermessage->m_wparam ==  21)
          {
          }
-         else if(pbase->m_wparam == 19)
+         else if(pusermessage->m_wparam == 19)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
@@ -97,9 +97,9 @@ namespace multimedia
             //  CDataCentral::eBuildSongsAlbumCreateSearchReferences),
             //false, this, this);
          }
-         else if(pbase->m_wparam == 20)
+         else if(pusermessage->m_wparam == 20)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
@@ -107,22 +107,22 @@ namespace multimedia
             //    CDataCentral::eBuildSongsAlbumCreateSearchReferences),
             //  true, this, this);
          }
-         else if(pbase->m_wparam == 810)
+         else if(pusermessage->m_wparam == 810)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
             //      CDataCentral::eBuildSongsAlbumDeleteNotFound,
             //    false, this, this);
          }
-         else if(pbase->m_wparam == 20191817)
+         else if(pusermessage->m_wparam == 20191817)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
          }
-         else if(pbase->m_wparam == 67985)
+         else if(pusermessage->m_wparam == 67985)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        m_pMixerDocTemplate->close_all_documents(lParam != 0);
          }
 
@@ -156,13 +156,13 @@ namespace multimedia
 
       void thread::OnUserMessage(::message::message * pmessage)
       {
-         __pointer(::message::base) pbase(pmessage);
+         __pointer(::user::message) pusermessage(pmessage);
 
-         switch(pbase->m_wparam)
+         switch(pusermessage->m_wparam)
          {
 
          case 21:
-            //                    ASSERT(FALSE);
+            //                    ASSERT(false);
             //                  //ReserveSong_(pMsg->lParam);
             //GetPlayerDocTemplate()->ReserveSong(lParam, false, true);
             break;
@@ -199,7 +199,7 @@ namespace multimedia
 
          }
 
-         switch(pbase->m_wparam)
+         switch(pusermessage->m_wparam)
          {
          case 131415:
             // ViewToolsAlbum();
@@ -236,7 +236,7 @@ namespace multimedia
          break;
          case 676869:
          {
-            //ASSERT(FALSE);
+            //ASSERT(false);
             /*            CDBBuildAlbumThreadData * lpdata =
             (CDBBuildAlbumThreadData *)lParam;
             if(!lpdata->m_ptaskdlg->create(IDD_TASK))

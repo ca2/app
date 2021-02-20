@@ -1267,7 +1267,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
    if (tickEnd == (filesize)-1)
    {
 
-      nCount = ::numeric_info< strsize >::max();
+      nCount = ::numeric_info< strsize >::maximum();
 
    }
    else
@@ -1277,7 +1277,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    }
 
-   while ((uRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (memsize)nCount))) > 0)
+   while ((uRead = read(&memory.get_data()[uiPos], minimum(memory.get_size() - uiPos, (memsize)nCount))) > 0)
    {
       uiPos += uRead;
       nCount -= uRead;

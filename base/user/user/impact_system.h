@@ -105,7 +105,7 @@ namespace user
 
       virtual __pointer(::user::document) create_new_document(::create * pcreate);
       virtual __pointer(::user::frame_window) create_new_frame(::user::document * pDoc, __pointer(::user::frame_window) pOther, ::create * pcreate);
-      virtual void InitialUpdateFrame(__pointer(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = TRUE);
+      virtual void InitialUpdateFrame(__pointer(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);
@@ -118,7 +118,7 @@ namespace user
 
 
       virtual void on_idle();             // for all documents
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
 
       bool on_open_document(::user::document * pdocument, ::create * pcreate);

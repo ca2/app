@@ -50,11 +50,11 @@ namespace ftp
       if (Reply.Value().length() == 0)
          return;
 
-      string strStatus = "R"; // RGB(0, 150, 0);
+      string strStatus = "R"; // rgb(0, 150, 0);
       if (Reply.Code().IsPermanentNegativeCompletionReply())
-         strStatus = "N"; // RGB(255, 0, 0);
+         strStatus = "N"; // rgb(255, 0, 0);
       else if (Reply.Code().IsTransientNegativeCompletionReply())
-         strStatus = "W"; // = RGB(200, 200, 0);
+         strStatus = "W"; // = rgb(200, 200, 0);
 
       WriteLine("< " + Reply.Value(), strStatus);
 

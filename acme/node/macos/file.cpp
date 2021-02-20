@@ -147,7 +147,7 @@ namespace macos
       switch (eopen & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          break;
@@ -240,7 +240,7 @@ namespace macos
       while(nCount > 0)
       {
 
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) minimum(0x7fffffff, nCount);
 
          size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
 
@@ -304,14 +304,14 @@ namespace macos
 
       ASSERT(lpBuf != nullptr);
       
-      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+      ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       memsize pos = 0;
       
       while(nCount > 0)
       {
          
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
+         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
          
          if(iWrite == ::numeric_info<size_t>::get_allset_value ())
          {
@@ -399,7 +399,7 @@ namespace macos
       
       ASSERT(m_iFile != (::u32)hFileNull);
 
-      bool bError = FALSE;
+      bool bError = false;
       
       if (m_iFile != (::u32)hFileNull)
       {

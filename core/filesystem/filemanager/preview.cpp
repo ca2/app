@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -34,7 +32,7 @@ namespace filemanager
 
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      pgraphics->fill_rect(rectClient, RGB(200, 200, 190));
+      pgraphics->fill_rectangle(rectClient, rgb(200, 200, 190));
 
       if(filemanager_document() == nullptr)
          return;

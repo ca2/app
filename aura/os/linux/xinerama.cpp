@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "aura/os/linux/_user.h"
 //!!!#define pointer x11_pointer
 //!!!#include <X11/extensions/Xrandr.h>
@@ -47,7 +45,7 @@ int xinerama_get_monitor_count()
 
    }
 
-   return max(1, heads);
+   return maximum(1, heads);
 
 }
 
@@ -185,11 +183,11 @@ int xinerama_get_screen_size(int& width, int& height)
 
    // sort horizontally
 
-   ::sort::pred_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.left <= r2.left; });
+   ::sort::predicate_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.left <= r2.left; });
 
    // sort vertically in stable way
 
-   ::sort::pred_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.top <= r2.top; });
+   ::sort::predicate_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.top <= r2.top; });
 
    for(auto & rectItem: rectaMonitor)
    {
@@ -217,7 +215,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECTANGLE_I32 *
 
    index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, e_display_none, e_activation_default, zorder_none);
 
-   index iOrdered = rectaOrdered.pred_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
+   index iOrdered = rectaOrdered.predicate_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
 
    output_debug_string(__str(iJustForComparison));
 
@@ -238,11 +236,11 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_
    if(rectangle_i32 == nullptr)
    {
 
-      rectangle_i32 = prectRet;
+      rectangle = prectRet;
 
    }
 
-   index iOrdered = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
+   index iOrdered = pinteraction->best_monitor(prectRet, rectangle, false, e_activation_default, zorder_none);
 
    ::count cMonitor = xinerama_get_monitor_count();
 
@@ -289,11 +287,11 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 &
    if(rectangle_i32 == nullptr)
    {
 
-      rectangle_i32 = rNull;
+      rectangle = rNull;
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rectangle, false, e_activation_default, zorder_none);
 
    return i;
 

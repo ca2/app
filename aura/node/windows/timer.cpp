@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 // Thank you TBS!!
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
+//VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 
 
 
@@ -17,7 +17,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //   }
 //
 //   begin();
-//   //sync_lock sl(mutex());
+//   //synchronization_lock synchronizationlock(mutex());
 //
 //   //add_ref(OBJ_REF_DBG_ARGS);
 //
@@ -38,7 +38,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_init()
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   m_hTimer = nullptr;
 //
@@ -57,7 +57,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_term()
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimerQueue != INVALID_HANDLE_VALUE)
 //   {
@@ -74,7 +74,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_stop()
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimer != nullptr)
 //   {
@@ -92,7 +92,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //bool timer::impl_restart()
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   DeleteTimerQueueTimer(m_hTimerQueue, m_hTimer, nullptr);
 //

@@ -566,7 +566,7 @@ size_t Serial::SerialImpl::readline(string &buffer, size_t size, string eol)
          }
 
          // Timeout occured on reading 1 byte
-         sleep(max(100_ms, m_timeout.m_millisReadTimeoutConstant / 10));
+         sleep(maximum(100_ms, m_timeout.m_millisReadTimeoutConstant / 10));
 
          if (!::thread_get_run())
          {

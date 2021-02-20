@@ -188,7 +188,7 @@ enum graphics_errors
 
 #if defined(WITH_X)
 
-// Here are RGB definitions of the X equivalents (I hope) for the various
+// Here are rgb definitions of the X equivalents (I hope) for the various
 // Turbo C colors.  
 #define XBLACK 		{ 0x0000, 0x0000, 0x0000 }
 #define XBLUE 		{ 0x0000, 0x0000, 0x8000 }

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 xfplayer_view_linea::xfplayer_view_linea()
@@ -24,7 +22,7 @@ xfplayer_view_linea::~xfplayer_view_linea()
 
 void xfplayer_view_linea::OnChildSetVisible(xfplayer_view_line * pline, bool bVisible)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    index iLineIndex = FindLine(pline);
    index iIndex;
 
@@ -75,7 +73,7 @@ index xfplayer_view_linea::GetLastVisibleLineIndex()
 
 void xfplayer_view_linea::Prepare()
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -86,7 +84,7 @@ void xfplayer_view_linea::Prepare()
 void xfplayer_view_linea::Prepare(xfplayer_view_line *pViewLine)
 
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    pViewLine->m_pContainer = this;
 
 }
@@ -101,7 +99,7 @@ void xfplayer_view_linea::set_user_interaction(__pointer(::user::interaction) pi
 
 void xfplayer_view_linea::SetEffect(i32 iEffect)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->SetTextEffect(iEffect);
@@ -115,7 +113,7 @@ void xfplayer_view_linea::SetRenderWindow(::user::interaction_impl * pwindow)
 
 index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 iLine = 0; iLine < this->line_count(); iLine++)
    {
       if (line_at(iLine) == pline)
@@ -126,7 +124,7 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
 
 ::user::enum_line_hit xfplayer_view_linea::hit_test(const point_i32 &pointCursor, index &iLine, strsize &iChar)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (index i = 0; i < this->line_count(); i++)
    {
       ::user::enum_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
@@ -151,7 +149,7 @@ void xfplayer_view_linea::install_message_routing(::channel * pchannel)
 
 void xfplayer_view_linea::OnMouseMove(::message::message * pmessage)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -164,7 +162,7 @@ void xfplayer_view_linea::OnMouseMove(::message::message * pmessage)
 
 void xfplayer_view_linea::OnLButtonDown(::message::message * pmessage)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -177,7 +175,7 @@ void xfplayer_view_linea::OnLButtonDown(::message::message * pmessage)
 
 void xfplayer_view_linea::OnLButtonUp(::message::message * pmessage)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnLButtonUp(pmessage);
@@ -188,7 +186,7 @@ void xfplayer_view_linea::OnLButtonUp(::message::message * pmessage)
 
 void xfplayer_view_linea::_001OnTimer(::timer * ptimer)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->_001OnTimer(ptimer);
@@ -197,7 +195,7 @@ void xfplayer_view_linea::_001OnTimer(::timer * ptimer)
 
 void xfplayer_view_linea::OnSetCursor(::message::message * pmessage)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnSetCursor(pmessage);
@@ -208,7 +206,7 @@ void xfplayer_view_linea::OnSetCursor(::message::message * pmessage)
 
 void xfplayer_view_linea::set_blend(double dBlend)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    for (i32 iLine = 0; iLine < this->line_count(); iLine++)
    {
       line_at(iLine)->set_blend(dBlend);
@@ -224,7 +222,7 @@ XfplayerViewLineSelection & xfplayer_view_linea::GetSelection()
 
 void xfplayer_view_linea::get_sel_text(string & strSelText, const char * pszLineSeparator)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    index iLineStart;
    index iCharStart;
    index iLineEnd;
@@ -289,7 +287,7 @@ string xfplayer_view_linea::get_sel_text(const char * pszLineSeparator)
 
 void xfplayer_view_linea::get_text(string & strText, const char * pszLineSeparator)
 {
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
    if (line_count() > 0)
    {
 

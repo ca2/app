@@ -66,7 +66,7 @@ namespace opengl
       int nHeight = size.cy;
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
-      HINSTANCE hInstance = System.m_hinstance;
+      HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
       LPVOID lpParam = nullptr;
 
       HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);

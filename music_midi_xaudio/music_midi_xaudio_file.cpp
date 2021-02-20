@@ -265,7 +265,7 @@ smf_Open_File_Cleanup:
          *****************************************************************************/
          ::e_status     buffer::CloseFile()
          {
-            single_lock(m_criticalsection, TRUE);
+            single_lock(m_criticalsection, true);
             SetOpened(false);
             delete_contents();
             return ::success;
@@ -274,7 +274,7 @@ smf_Open_File_Cleanup:
 
          void buffer::delete_contents()
          {
-            single_lock(m_criticalsection, TRUE);
+            single_lock(m_criticalsection, true);
             SetOpened(false);
 
 
@@ -786,7 +786,7 @@ smf_Open_File_Cleanup:
             ASSERT(!(pEvent->GetFlags() & 1));
             if(pEvent->GetFlags() & 1)
             {
-               ASSERT(FALSE);
+               ASSERT(false);
             }
             else if (pEvent->GetFullType() < sys_ex)
             {
@@ -1064,7 +1064,7 @@ smf_Open_File_Cleanup:
             tkNextLyricEvent = pDoc->m_TokensTicks[pDoc->m_iBufferingTokenIndex ];
             }*/
             //   ::ikaraoke::lyric_events_v1 *pEventsV1;
-            while(TRUE)
+            while(true)
             {
                ASSERT(lpmh->dwBytesRecorded <= lpmh->dwBufferLength);
                if(lpmh->dwBytesRecorded > cbPrerollNominalMax)
@@ -1095,7 +1095,7 @@ smf_Open_File_Cleanup:
 
                /*        if (::success != smfrc)
                {
-               smfrc = GetNextEvent((event *)&event, tkMax, TRUE);
+               smfrc = GetNextEvent((event *)&event, tkMax, true);
                ASSERT(::success != smfrc); */
 
                /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1116,7 +1116,7 @@ smf_Open_File_Cleanup:
                }*/
                iTrackFound = -1;
                tkLastDelta = 0;
-               /*      while(TRUE)
+               /*      while(true)
                {
                for(i = 0; i < m_eventsTracksForPositionCB.get_size(); i++)
                {
@@ -1232,7 +1232,7 @@ smf_Open_File_Cleanup:
                   break;
                }
 
-               smfrc = GetNextEvent(pevent, tkMax, TRUE);
+               smfrc = GetNextEvent(pevent, tkMax, true);
                if (::success != smfrc)
                {
                   /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1447,7 +1447,7 @@ smf_Open_File_Cleanup:
 
             lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
             dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-            dwLength = min(dwLength, 8);
+            dwLength = minimum(dwLength, 8);
 
             //u32 dwa = MEVT_F_CALLBACK;
             //   u32 dwb = MEVT_LONGMSG;
@@ -1547,7 +1547,7 @@ smf_Open_File_Cleanup:
             lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 
             dwLength = lpmh->dwBufferLength - lpmh->dwBytesRecorded - 3*sizeof(u32);
-            dwLength = min(dwLength, m_cbPendingUserEvent);
+            dwLength = minimum(dwLength, m_cbPendingUserEvent);
 
             *lpdw++ = (u32)tkDelta;
             *lpdw++ = 0L;
@@ -1658,7 +1658,7 @@ smf_Open_File_Cleanup:
             m_ptracks->seek_begin();
             //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 
-            while (::success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)))
+            while (::success == (smfrc = GetNextEvent(pevent, tkPosition, false)))
             {
 
                if (meta == (bEvent = pevent->GetFullType()))
@@ -1818,7 +1818,7 @@ smf_Open_File_Cleanup:
 
             m_ptracks->seek_begin();
 
-            while(::success == (smfrc = GetNextEvent(pevent, tkPosition, FALSE)));
+            while(::success == (smfrc = GetNextEvent(pevent, tkPosition, false)));
 
             if (success_reached_tk_max != smfrc)
             {
@@ -2158,7 +2158,7 @@ smf_Open_File_Cleanup:
             m_ptracks->seek_begin();
             //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 
-            while(::success == (smfrc = GetNextEvent(pevent, pEvent->GetPosition(), TRUE)))
+            while(::success == (smfrc = GetNextEvent(pevent, pEvent->GetPosition(), true)))
             {
                if(pevent->GetImage() == pEvent->GetImage())
                {
@@ -2549,7 +2549,7 @@ smf_Open_File_Cleanup:
                   break;
                }
 
-               smfrc = WorkGetNextEvent(pevent, tkMax, TRUE);
+               smfrc = WorkGetNextEvent(pevent, tkMax, true);
                if (::success != smfrc)
                {
                   // smfGetNextEvent doesn't set this because smfSeek uses it
@@ -2773,7 +2773,7 @@ smf_Open_File_Cleanup:
                         && pevent->GetNoteVelocity() > 0
                         && m_iaMuteTrack.contains(pevent->GetTrack()))
                   {
-                     ASSERT(TRUE);
+                     ASSERT(true);
                   }
                   else
                   {
@@ -2842,7 +2842,7 @@ smf_Open_File_Cleanup:
 
             m_ptracks->WorkSeekBegin();
 
-            while (::success == (smfrc = WorkGetNextEvent(pevent, tkPosition, FALSE)))
+            while (::success == (smfrc = WorkGetNextEvent(pevent, tkPosition, false)))
             {
                if (meta == (bEvent = pevent->GetFullType()))
                {
@@ -2973,7 +2973,7 @@ smf_Open_File_Cleanup:
                      ::music::midi::event * pevent;
                      m_ptracks->WorkSeekBegin();
                      while (success
-                        == (smfrc = WorkGetNextRawMidiEvent(pevent, MAX_TICKS, TRUE)))
+                        == (smfrc = WorkGetNextRawMidiEvent(pevent, MAX_TICKS, true)))
                      {
                         if (meta == pevent->GetFullType() &&
                            meta_tempo == pevent->GetMetaType() &&

@@ -2,6 +2,15 @@
 #include "apex/net/sockets/_sockets.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include <openssl/ssl.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>

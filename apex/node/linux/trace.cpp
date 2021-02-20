@@ -91,19 +91,19 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 ////   ENSURE_ARG(AfxIsValidString(pszPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
-//   __pointer(::message::base) pbase(pmessage);
+//   __pointer(::user::message) pusermessage(pmessage);
 //
-//   if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
-//      pbase->m_id == e_message_nchittest || pbase->m_id == e_message_set_cursor ||
-//      pbase->m_id == WM_CTLCOLORBTN ||
-//      pbase->m_id == WM_CTLCOLORDLG ||
-//      pbase->m_id == WM_CTLCOLOREDIT ||
-//      pbase->m_id == WM_CTLCOLORLISTBOX ||
-//      pbase->m_id == WM_CTLCOLORMSGBOX ||
-//      pbase->m_id == WM_CTLCOLORSCROLLBAR ||
-//      pbase->m_id == WM_CTLCOLORSTATIC ||
-//      pbase->m_id == WM_ENTERIDLE || pbase->m_id == WM_CANCELMODE ||
-//      pbase->m_id == 0x0118)    // WM_SYSTIMER (caret blink)
+//   if (pusermessage->m_id == e_message_mouse_move || pusermessage->m_id == e_message_non_client_mouse_move ||
+//      pusermessage->m_id == e_message_nchittest || pusermessage->m_id == e_message_set_cursor ||
+//      pusermessage->m_id == WM_CTLCOLORBTN ||
+//      pusermessage->m_id == WM_CTLCOLORDLG ||
+//      pusermessage->m_id == WM_CTLCOLOREDIT ||
+//      pusermessage->m_id == WM_CTLCOLORLISTBOX ||
+//      pusermessage->m_id == WM_CTLCOLORMSGBOX ||
+//      pusermessage->m_id == WM_CTLCOLORSCROLLBAR ||
+//      pusermessage->m_id == WM_CTLCOLORSTATIC ||
+//      pusermessage->m_id == WM_ENTERIDLE || pusermessage->m_id == WM_CANCELMODE ||
+//      pusermessage->m_id == 0x0118)    // WM_SYSTIMER (caret blink)
 //   {
 //      // don't report very frequently sent messages
 //      return;
@@ -114,18 +114,18 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   char szBuf[80];
 //
 //   // find message name
-//   if (pbase->m_id >= 0xC000)
+//   if (pusermessage->m_id >= 0xC000)
 //   {
 //      // Window message registered with 'RegisterWindowMessage'
 //      //  (actually a USER atom)
-////      if (::GetClipboardFormatNameA(pbase->m_id, szBuf, _countof(szBuf)))
+////      if (::GetClipboardFormatNameA(pusermessage->m_id, szBuf, _countof(szBuf)))
 //  //       pszMsgName = szBuf;
 
 //   }
-//   else if (pbase->m_id >= WM_USER)
+//   else if (pusermessage->m_id >= WM_USER)
 //   {
 //      // User message
-//      sprintf(szBuf, "WM_USER+0x%04X", pbase->m_id - WM_USER);
+//      sprintf(szBuf, "WM_USER+0x%04X", pusermessage->m_id - WM_USER);
 //      pszMsgName = szBuf;
 
 //   }
@@ -136,7 +136,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //      for (/*null*/ ; pMapMsg->pszMsg != nullptr; pMapMsg++)
 
 //      {
-//         if (pMapMsg->nMsg == pbase->m_id)
+//         if (pMapMsg->nMsg == pusermessage->m_id)
 //         {
 //            pszMsgName = pMapMsg->pszMsg;
 
@@ -149,33 +149,33 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef OS64BIT
-//      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = %s (%point_i32, %point_i32)\n",
-//        // pszPrefix, pbase->m_hwnd, pszMsgName,
+//      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %point_i32)\n",
+//        // pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
-//         //pbase->m_wparam, pbase->m_lparam);
+//         //pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
 //    //  ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
-////         pszPrefix, pbase->m_hwnd, pszMsgName,
+////         pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
-//  //       pbase->m_wparam, pbase->m_lparam);
+//  //       pusermessage->m_wparam, pusermessage->m_lparam);
 //#endif
 //   }
 //   else
 //   {
 //#ifdef OS64BIT
-////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = 0x%04X (%point_i32, %point_i32)\n",
-//  //       pszPrefix, pbase->m_hwnd, pszMsgName,
+////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
+//  //       pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
-//    //     pbase->m_wparam, pbase->m_lparam);
+//    //     pusermessage->m_wparam, pusermessage->m_lparam);
 //#else
 ////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
-//  //       pszPrefix, pbase->m_hwnd, pszMsgName,
+//  //       pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
-//    //     pbase->m_wparam, pbase->m_lparam);
+//    //     pusermessage->m_wparam, pusermessage->m_lparam);
 //#endif
 //   }
 //
-///*   if (pbase->m_id >= WM_DDE_FIRST && pbase->m_id <= WM_DDE_LAST)
+///*   if (pusermessage->m_id >= WM_DDE_FIRST && pusermessage->m_id <= WM_DDE_LAST)
 //      TraceDDE(pszPrefix, pMsg);  */
 
 //}
@@ -263,7 +263,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef WIN64
-////      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = %hs (%point_i32, %point_i32)\n",
+////      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %point_i32)\n",
 //  //       pszPrefix, pMsg->hwnd, pszMsgName,
 
 //    //     pMsg->wParam, pMsg->lParam);
@@ -278,7 +278,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   else
 //   {
 //#ifdef WIN64
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = 0x%04X (%point_i32, %point_i32)\n",
+//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
 //        // pszPrefix, pMsg->hwnd, pszMsgName,
 
 //         //pMsg->wParam, pMsg->lParam);

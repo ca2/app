@@ -44,7 +44,7 @@ public:
    __pointer(::file::item)                         m_pfileitem;
    //__pointer(::u)                        m_pupdatetask;
    ::i64                                           m_iUpdateSerial;
-   ::user::e_key                                   m_ekey;
+   ::user::enum_key                                   m_ekey;
    ::payload                                           m_var;
    bool                                            m_bModified;
    int                                             m_iMillisSleep;
@@ -68,7 +68,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { sync_lock sl(mutex()); return m_map.is_empty(); };
+   inline bool is_ending() { synchronization_lock synchronizationlock(mutex()); return m_map.is_empty(); };
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
 
    static inline bool should_poll(int iMillis)

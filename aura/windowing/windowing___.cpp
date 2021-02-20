@@ -54,7 +54,7 @@
 //
 //   GC gc = XCreateGC(pdisplay, window, 0, 0);
 //
-//   color32_t cr = ARGB(a, r * a / 255, g * a / 255, b * a / 255);
+//   color32_t cr = argb(a, r * a / 255, g * a / 255, b * a / 255);
 //
 //   XSetForeground (pdisplay, gc, cr);
 //
@@ -80,7 +80,7 @@
 //
 //CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
 //
-////::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
+////::e_status os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
 ////{
 ////
 ////   x11_message_box(pszMessage, pszTitle, emessagebox, future);
@@ -132,7 +132,7 @@
 //   tv.tv_sec = 1;
 //
 //   // Wait for X Event or a Timer
-//   int num_ready_fds = select(max(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+//   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
 //
 //   if (num_ready_fds > 0)
 //   {
@@ -232,7 +232,7 @@
 //      try
 //      {
 //
-//         sync_lock sl(x11_mutex());
+//         synchronization_lock synchronizationlock(x11_mutex());
 //
 //         XLockDisplay(pdisplay);
 //

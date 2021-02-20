@@ -4,9 +4,9 @@
 CLASS_DECL_AURA int framework_is_basis()
 {
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-   return TRUE;
+   return true;
 #else
-   return FALSE;
+   return false;
 #endif
 }
 
@@ -14,9 +14,9 @@ CLASS_DECL_AURA int framework_is_basis()
 CLASS_DECL_AURA int framework_is_stage()
 {
 #if CA2_PLATFORM_VERSION == CA2_STAGE
-   return TRUE;
+   return true;
 #else
-   return FALSE;
+   return false;
 #endif
 }
 
@@ -44,7 +44,7 @@ namespace version
 
       int iCmp = 0;
 
-      for (int i = 0; i < max(stra1.get_size(), stra2.get_size()); i++)
+      for (int i = 0; i < maximum(stra1.get_size(), stra2.get_size()); i++)
       {
 
          int iVersion1 = 0;

@@ -1,7 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#endif
+#include "aura/os/_user.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -28,7 +28,7 @@ namespace user
       //m_rectBorder.left = m_rectBorder.right = 6;
       m_cxDefaultGap = 2;
       //m_rectBorder.top = m_rectBorder.bottom = 1;
-      m_bAutoDelete = FALSE;
+      m_bAutoDelete = false;
       m_nStateFlags = 0;
       m_pDockSite = nullptr;
       m_pDockBar = nullptr;
@@ -43,9 +43,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-#ifdef WINDOWS
-      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
-#endif
+//#ifdef WINDOWS
+//      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
+//#endif
       MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
@@ -79,17 +79,17 @@ namespace user
       if (!::user::interaction::pre_create_window(pusersystem))
       {
 
-         return FALSE;
+         return false;
 
       }
 
 
-#ifdef WINDOWS_DESKTOP
-
-      // force clipsliblings (otherwise will cause repaint problems)
-      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      // force clipsliblings (otherwise will cause repaint problems)
+//      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
+//
+//#endif
 
       // default border style translation for Win4
       //  (you can turn off this translation by setting CBRS_BORDER_3D)
@@ -125,7 +125,7 @@ namespace user
          m_bFullScreenBar = true;
       }
 
-      return TRUE;
+      return true;
    }
 
    void control_bar::SetBarStyle(u32 uStyle)
@@ -158,7 +158,7 @@ namespace user
       {
          ASSERT(cbElement > 0);
          if ((pData = calloc(nElements, cbElement)) == nullptr)
-            return FALSE;
+            return false;
       }
       free(m_pData);      // free old data
 
@@ -166,7 +166,7 @@ namespace user
       m_pData = pData;
       m_nCount = nElements;
 
-      return TRUE;
+      return true;
    }
    */
 
@@ -220,7 +220,7 @@ namespace user
 
    bool control_bar::IsDockBar()
    {
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       auto psession = Session;
 
-      if (psession->is_key_pressed(::user::key_lbutton))
+      if (psession->is_key_pressed(::user::e_key_lbutton))
          return;
 #else
       __throw(todo());
@@ -262,7 +262,7 @@ namespace user
       //   if (m_nStateFlags & statusSet)
       //   {
       //      m_nStateFlags &= ~statusSet;
-      //      return TRUE;
+      //      return true;
       //   }
       //   KillTimer(ID_TIMER_WAIT);
       //}
@@ -274,10 +274,10 @@ namespace user
       //      pOwner->send_message(WM_SETMESSAGESTRING, nHit);
       //      m_nStateFlags |= statusSet;
       //      ResetTimer(ID_TIMER_CHECK, 200);
-      //      return TRUE;
+      //      return true;
       //   }
       //}
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -297,19 +297,19 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::message::base) pbase(pmessage);
-
-      ::u32 message;
-
-      message = pbase->m_id.umessage();
-
-      // handle CBRS_FLYBY style (status bar flyby help)
-      if (((m_dwStyle & CBRS_FLYBY) ||
-            message == e_message_left_button_down || message == e_message_left_button_up) &&
-            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
-//          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
-      {
-      }
+//      __pointer(::user::message) pmessage(pmessage);
+//
+//      ::u32 message;
+//
+//      message = pmessage->m_id.umessage();
+//
+//      // handle CBRS_FLYBY style (status bar flyby help)
+//      if (((m_dwStyle & CBRS_FLYBY) ||
+//            message == e_message_left_button_down || message == e_message_left_button_up) &&
+//            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
+////          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
+//      {
+//      }
 #else
 //      __throw(todo());
 #endif
@@ -333,17 +333,17 @@ namespace user
       }
 
       // filter both messages to dialog and from children
-      // pbase->m_bRet = false;
+      // pmessage->m_bRet = false;
 
    }
 
 
-   void control_bar::message_handler(::message::base * pbase)
+   void control_bar::message_handler(::message::message * pmessage)
    {
 
-      ::user::interaction::message_handler(pbase);
+      ::user::interaction::message_handler(pmessage);
 
-      if (pbase->m_bRet)
+      if (pmessage->m_bRet)
       {
 
          return;
@@ -352,62 +352,62 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      ASSERT_VALID(this);
-
-      LRESULT lResult;
-
-      ::u32 message;
-
-      message = pbase->m_id.umessage();
-
-      switch (message)
-      {
-      case WM_NOTIFY:
-      case e_message_command:
-      case WM_DRAWITEM:
-      case e_message_measure_item:
-      case WM_DELETEITEM:
-      case WM_COMPAREITEM:
-      case WM_VKEYTOITEM:
-      case WM_CHARTOITEM:
-         // send these messages to the owner if not handled
-         //      if (OnWndMsg(nMsg, wParam, lParam, &lResult))
-         //         return lResult;
-         //      else
-      {
-         // try owner next
-         lResult = get_owner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
-
-         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
-//#ifdef WINDOWS_DESKTOP
-//            if(pbase->m_id == WM_NOTIFY)
-//            {
-//               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
-//               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
-//               {
-//                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
-//                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
-//                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->pszText || !*pTTTA->pszText)) ||
-
-//                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->pszText || !*pTTTW->pszText)))
-
-//                  {
-//                     // not handled by owner, so let bar itself handle it
-//                     ::user::interaction::message handler(pmessage);
-//                  }
-//               }
-//            }
-//#else
-//            __throw(todo());
-//#endif
-         return;
-      }
-      }
+//      ASSERT_VALID(this);
+//
+//      lresult lResult;
+//
+//      ::u32 message;
+//
+//      message = pmessage->m_id.umessage();
+//
+//      switch (message)
+//      {
+//      case WM_NOTIFY:
+//      case e_message_command:
+//      case WM_DRAWITEM:
+//      case e_message_measure_item:
+//      case WM_DELETEITEM:
+//      case WM_COMPAREITEM:
+//      case WM_VKEYTOITEM:
+//      case WM_CHARTOITEM:
+//         // send these messages to the owner if not handled
+//         //      if (OnWndMsg(nMsg, wParam, lParam, &lResult))
+//         //         return lResult;
+//         //      else
+//      {
+//         // try owner next
+//         lResult = get_owner()->send_message((enum_message) message, pmessage->m_wparam, pmessage->m_lparam);
+//
+//         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
+////#ifdef WINDOWS_DESKTOP
+////            if(pmessage->m_id == WM_NOTIFY)
+////            {
+////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
+////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
+////               {
+////                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+////                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+////                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->pszText || !*pTTTA->pszText)) ||
+//
+////                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->pszText || !*pTTTW->pszText)))
+//
+////                  {
+////                     // not handled by owner, so let bar itself handle it
+////                     ::user::interaction::message handler(pmessage);
+////                  }
+////               }
+////            }
+////#else
+////            __throw(todo());
+////#endif
+//         return;
+//      }
+//      }
 
 #endif
 
       // otherwise, just handle in default way
-      ::user::interaction::message_handler(pbase);
+      ::user::interaction::message_handler(pmessage);
 
    }
 
@@ -415,7 +415,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pmessage(pmessage);
       ASSERT_VALID(this);
 
    }
@@ -554,9 +554,9 @@ namespace user
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rectangle_i32 = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
+      auto rectangle = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
 
-      pgraphics->fill_rect(rectangle, ARGB(128, 192, 192, 187));
+      pgraphics->fill_rectangle(rectangle, argb(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -638,7 +638,7 @@ namespace user
 
 //    void control_bar::_001OnIdleUpdateCmdUI(::message::message * pmessage)
 //    {
-//       __pointer(::message::base) pbase(pmessage);
+//       __pointer(::user::message) pmessage(pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
 //       ::u32 swpFlags = 0;
@@ -649,7 +649,7 @@ namespace user
 //       m_nStateFlags &= ~(delayShow|delayHide);
 //       if (swpFlags != 0)
 //       {
-//          set_window_pos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
+//          set_window_position(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
 //       }
 
 //       // the style must be visible and if it is docked
@@ -660,9 +660,9 @@ namespace user
 //          if (pTarget == nullptr)
 //             pTarget = (get_parent_frame());
 //          if (pTarget != nullptr)
-//             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
+//             OnUpdateCmdUI(pTarget, pmessage->m_wparam != false);
 //       }
-//       pbase->set_lresult(0L);
+//       pmessage->set_lresult(0L);
 //    }
 
 
@@ -670,17 +670,18 @@ namespace user
    {
 
       // // update the indicators before becoming visible
-      // ::message::base base(get_object());
+      // ::user::message base(get_object());
       // LRESULT lresult;
-      // base.set(this, WM_IDLEUPDATECMDUI, TRUE, (LPARAM) 0, lresult);
+      // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
 
    }
 
 
-   u32 control_bar::RecalcDelayShow(SIZEPARENTPARAMS * playout)
-
+   u32 control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
    {
+
+      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
 
       u32 uStyleVisible = 0;
 
@@ -748,7 +749,7 @@ namespace user
 //
 //            }
 //
-//            set_window_pos(zorder_none, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
+//            set_window_position(zorder_none, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
 //         }
 //         else
 //         {
@@ -763,9 +764,7 @@ namespace user
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
-
-      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
+      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pmessage->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
@@ -775,7 +774,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         rectangle.copy(&playout->rectangle_i32);
+         rectangle.copy(&playout->rectangle);
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
@@ -793,14 +792,14 @@ namespace user
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
-         size.cx = min(size.cx, sizeAvail.cx);
-         size.cy = min(size.cy, sizeAvail.cy);
+         size.cx = minimum(size.cx, sizeAvail.cx);
+         size.cy = minimum(size.cy, sizeAvail.cy);
 
          if (uStyle & CBRS_ORIENT_HORZ)
          {
             playout->sizeTotal.cy += size.cy;
 
-            playout->sizeTotal.cx = max(playout->sizeTotal.cx, size.cx);
+            playout->sizeTotal.cx = maximum(playout->sizeTotal.cx, size.cx);
 
             if (uStyle & CBRS_ALIGN_TOP)
                playout->rectangle.top += size.cy;
@@ -816,7 +815,7 @@ namespace user
          {
             playout->sizeTotal.cx += size.cx;
 
-            playout->sizeTotal.cy = max(playout->sizeTotal.cy, size.cy);
+            playout->sizeTotal.cy = maximum(playout->sizeTotal.cy, size.cy);
 
             if (uStyle & CBRS_ALIGN_LEFT)
                playout->rectangle.left += size.cx;
@@ -830,7 +829,7 @@ namespace user
          }
          else
          {
-            ASSERT(FALSE);      // can never happen
+            ASSERT(false);      // can never happen
          }
 
          rectangle.right = rectangle.left + size.cx;
@@ -839,11 +838,11 @@ namespace user
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
 
-         __reposition_window(playout, this, &rectangle);
+         ::user::__reposition_window(playout, this, &rectangle);
 
       }
 
-      pbase->m_lresult = 0;
+      pmessage->m_lresult = 0;
 
    }
 
@@ -865,12 +864,12 @@ namespace user
    {
       return is_this_visible();
       //if (m_nStateFlags & delayHide)
-      //   return FALSE;
+      //   return false;
 
       //if ((m_nStateFlags & delayShow) || ((GetStyle() & WS_VISIBLE) != 0))
-      //   return TRUE;
+      //   return true;
 
-      //return FALSE;
+      //return false;
    }
 
 
@@ -906,12 +905,12 @@ namespace user
       // prepare for dark lines
       ASSERT(rectangle.top == 0 && rectangle.left == 0);
       ::rectangle_i32 rect1, rect2;
-      rect1 = rectangle_i32;
-      rect2 = rectangle_i32;
+      rect1 = rectangle;
+      rect2 = rectangle;
       //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
 //      color32_t clr = afxData.clrBtnShadow;
       color32_t clr;
-      clr = RGB(128, 128, 123);
+      clr = rgb(128, 128, 123);
 
 
 
@@ -937,34 +936,34 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rect(::rectd_dim(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
+            pgraphics->fill_rectangle(::rectd_dim(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_rect(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rect(
+            pgraphics->fill_rectangle(
             ::rectangle_f64(rectangle.left + 7,
             rectangle.top,
             rectangle.right - 7,
             1),
-            RGB(128, 128, 123));
+            rgb(128, 128, 123));
          }
          else
          {
-            pgraphics->fill_rect(
+            pgraphics->fill_rectangle(
             ::rectangle_f64(rectangle.left,
             rectangle.top,
             rectangle.right,
             1),
-            RGB(128, 128, 123));
+            rgb(128, 128, 123));
          }
-         //      pgraphics->fill_rect(0, 0, rectangle.right, CY_BORDER, clr);
+         //      pgraphics->fill_rectangle(0, 0, rectangle.right, CY_BORDER, clr);
       }
       if (uStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
@@ -985,33 +984,33 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_rect(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_rect(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
          // prepare for hilite lines
 //         clr = afxData.clrBtnHilite;
-         clr = RGB(250, 250, 245);
+         clr = rgb(250, 250, 245);
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_rect(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_rect(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
             else
-               pgraphics->fill_rect(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
-            //pgraphics->fill_rect(0, 1, rectangle.right, CY_BORDER, clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
+            //pgraphics->fill_rectangle(0, 1, rectangle.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_rect(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_rect(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
@@ -1190,7 +1189,7 @@ namespace user
 
    bool control_bar::IsFloating()
    {
-      return FALSE;
+      return false;
    }
 
 

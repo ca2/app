@@ -110,7 +110,7 @@ public:
 
    TYPE get_total()
    {
-      TYPE t = ::numeric_info < TYPE >:: get_null_value();
+      TYPE t = ::numeric_info < TYPE >:: null();
       for(index i = 0; i < this->get_count(); i++)
       {
          t+= this->element_at(i);
@@ -133,7 +133,7 @@ public:
    const numeric_array  < TYPE > & array1,
    TYPE & tMax);
 
-   TYPE GetMean();
+   TYPE simple_total_mean();
 
    void set(const TYPE & t, index iStart = 0, index iEnd = -1);
 
@@ -248,11 +248,11 @@ public:
       {
          find = (iL + iU) / 2;
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info < TYPE > :: get_null_value ())
+         if(tCmp == numeric_info < TYPE > :: null ())
          {
             return true;
          }
-         else if(tCmp > numeric_info < TYPE >::get_null_value())
+         else if(tCmp > numeric_info < TYPE >::null())
          {
             iL = find + 1;
          }
@@ -264,11 +264,11 @@ public:
       for(; find < this->get_size(); find++)
       {
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info < TYPE >::get_null_value())
+         if(tCmp == numeric_info < TYPE >::null())
          {
             return true;
          }
-         else if(tCmp < numeric_info  < TYPE >::get_null_value())
+         else if(tCmp < numeric_info  < TYPE >::null())
          {
             return false;
          }
@@ -578,7 +578,7 @@ template < class TYPE >
 index numeric_array < TYPE >::
 Cmp(const numeric_array  < TYPE > & array1)
 {
-   ::count iMinSize = min(array1.get_size(), this->get_size());
+   ::count iMinSize = minimum(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
@@ -770,26 +770,50 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::count N)
 }
 
 
-template < typename T >
-inline T get_mean(const T * point_i32, ::count N)
+template < primitive_integral INTEGRAL >
+inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::count N)
 {
 
-   double dSum = 0.0;
+   ::i64 i = 0;
 
    ::count c = N;
 
    while(c > 0)
    {
 
-      dSum += *point_i32;
+      i += *p;
 
-      point_i32++;
+      p++;
 
       c--;
 
    }
 
-   return (typename ::numeric_info < T >::TYPE) (dSum / (double)N);
+   return (INTEGRAL) (i / N);
+
+}
+
+
+template < primitive_floating FLOATING >
+inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
+{
+
+   double d = 0.;
+
+   ::count c = N;
+
+   while (c > 0)
+   {
+
+      d += *p;
+
+      p++;
+
+      c--;
+
+   }
+
+   return (FLOATING)(d / (double) N);
 
 }
 
@@ -799,16 +823,18 @@ inline int get_mean(const int * A, ::count N)
    return get_integer_mean(A, N);
 }
 
+
 template < class TYPE >
-TYPE numeric_array < TYPE >::GetMean()
+TYPE numeric_array < TYPE >::simple_total_mean()
 {
 
-   return get_mean(this->get_data(), this->get_count());
+   return ::simple_total_mean(this->get_data(), this->get_count());
 
 }
 
+
 template < class TYPE >
-void numeric_array < TYPE >::set(const TYPE & t, index iStart, index iEnd)
+void numeric_array < TYPE >::set(const TYPE & t, ::index iStart, ::index iEnd)
 {
    if(iEnd == -1)
       iEnd = this->get_upper_bound();
@@ -892,7 +918,7 @@ inline TYPE numeric_array < TYPE > ::pop_max()
 
    TYPE nowpop = this->pop();
 
-   this->last() = max(nowpop, lastelement);
+   this->last() = maximum(nowpop, lastelement);
 
    return this->last();
 
@@ -908,7 +934,7 @@ inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 
    TYPE nowpop = this->pop();
 
-   this->last() = max(nowpop, lastelement + tLastAddUp);
+   this->last() = maximum(nowpop, lastelement + tLastAddUp);
 
    return this->last();
 
@@ -1034,7 +1060,7 @@ namespace papaya
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_pred_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
 
       template<class ARRAY>
       index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)

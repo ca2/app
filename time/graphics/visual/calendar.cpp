@@ -47,7 +47,7 @@ namespace datetime
          for(iDay = 1; iDay <= 7; iDay++)
          {
             GetRectDay(iDay,0,rectDay);
-            //crBorder = RGB(184, 184, 177);
+            //crBorder = rgb(184, 184, 177);
             //pgraphics->Draw3dRect(rectDay, crBorder, crBorder);
             rectDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
@@ -70,8 +70,8 @@ namespace datetime
                continue;
             }
             GetRectDay(time,rectDay);
-            crBorder = RGB(184,184,177);
-            pgraphics->draw_rect(rectDay,crBorder);
+            crBorder = rgb(184,184,177);
+            pgraphics->draw_rectangle(rectDay,crBorder);
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",iDay);
@@ -83,13 +83,13 @@ namespace datetime
          if(timeNow.GetMonth() == iMonth
                && timeNow.GetYear() == iYear)
          {
-            crBorder = RGB(90, 90, 80);
+            crBorder = rgb(90, 90, 80);
             GetRectDay(timeNow,rectDay);
             rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->fill_rect(rectDay,RGB(220,220,210));
-            pgraphics->draw_rect(rectDay,crBorder);
+            pgraphics->fill_rectangle(rectDay,rgb(220,220,210));
+            pgraphics->draw_rectangle(rectDay,crBorder);
             rectDay.deflate(1,1);
-            pgraphics->draw_rect(rectDay,crBorder);
+            pgraphics->draw_rectangle(rectDay,crBorder);
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeNow.GetDay());
@@ -101,12 +101,12 @@ namespace datetime
                (m_time.GetDay() == iDay || (
                 m_bRange && time <= m_timeEnd)); time += timespan)
          {
-            crBorder = RGB(240,120,52);
+            crBorder = rgb(240,120,52);
             GetRectDay(m_time,rectDay);
             rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->draw_rect(rectDay,crBorder);
+            pgraphics->draw_rectangle(rectDay,crBorder);
             rectDay.deflate(1,1);
-            pgraphics->draw_rect(rectDay,crBorder);
+            pgraphics->draw_rectangle(rectDay,crBorder);
             rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeEmp.GetDay());
@@ -118,27 +118,27 @@ namespace datetime
          GetRect(rectangle,e_element_year_title);
          string strYear;
          strYear.Format("%d",iYear);
-         pgraphics->draw_text(strYear,rectangle_i32,e_align_center);
+         pgraphics->draw_text(strYear,rectangle,e_align_center);
 
          pgraphics->set(m_pfontMonth);
          GetRect(rectangle,e_element_month_title);
          string strMonth;
          strMonth = GetMonth(pgraphics->str_context(),iMonth);
-         pgraphics->draw_text(strMonth,rectangle_i32,e_align_center);
+         pgraphics->draw_text(strMonth,rectangle,e_align_center);
 
          pgraphics->set(m_pfontSpin);
          GetRect(rectangle,e_element_previous_year);
-         pgraphics->draw_text("<<",rectangle_i32,e_align_center);
+         pgraphics->draw_text("<<",rectangle,e_align_center);
          GetRect(rectangle,e_element_next_year);
-         pgraphics->draw_text(">>",rectangle_i32,e_align_center);
+         pgraphics->draw_text(">>",rectangle,e_align_center);
          GetRect(rectangle,e_element_previous_month);
-         pgraphics->draw_text("<",rectangle_i32,e_align_center);
+         pgraphics->draw_text("<",rectangle,e_align_center);
          GetRect(rectangle,e_element_next_month);
-         pgraphics->draw_text(">",rectangle_i32,e_align_center);
+         pgraphics->draw_text(">",rectangle,e_align_center);
       }
 
 
-      void graphics::GetRectDay(::datetime::time & time,LPRECT32 lprect)
+      void graphics::GetRectDay(::datetime::time & time,RECTANGLE_I32 * lprect)
       {
          int32_t iWeekDay = time.GetDayOfWeek();
          ::datetime::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
@@ -146,7 +146,7 @@ namespace datetime
          GetRectDay(iWeekDay,iWeek + 1,lprect);
       }
 
-      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,LPRECT32 lprect)
+      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,RECTANGLE_I32 * lprect)
       {
          lprect->left = m_point.x + m_iColWidth * (iWeekDay - 1);
          lprect->right = lprect->left + m_iColWidth + 1;
@@ -154,7 +154,7 @@ namespace datetime
          lprect->bottom = lprect->top + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(LPRECT32 lprect,enum enum_element eelement)
+      void graphics::GetRect(RECTANGLE_I32 * lprect,enum enum_element eelement)
       {
          if(eelement == e_element_month_title)
          {
@@ -248,7 +248,7 @@ namespace datetime
 
          ::rectangle_i32 rectangle;
          GetRect(rectangle,eelement);
-         return rectangle.contains(pt) != FALSE;
+         return rectangle.contains(pt) != false;
 
       }
 

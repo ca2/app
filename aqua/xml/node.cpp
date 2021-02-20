@@ -312,12 +312,12 @@ namespace xml
                }
                if(entity_value.has_char())
                {
-                  defer_fork(m_pdocument->m_pentitiesHash);
+                  defer_clone(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_char())
                {
-                  defer_fork(m_pdocument->m_pentitiesExtHash);
+                  defer_clone(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }
@@ -454,7 +454,7 @@ namespace xml
 //                           if(point_i32[0] == '&')
 //                           {
 //
-//                              point = m_pdocument->patch_entity_ref((const char * &) point_i32, true, &xml, &pszEnd, nullptr);
+//                              point = m_pdocument->patch_entity_ref((const char * &) point, true, &xml, &pszEnd, nullptr);
 //
 //                           }
 //                           else

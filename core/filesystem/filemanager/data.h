@@ -34,7 +34,7 @@ namespace filemanager
       callback *                 m_pcallback;
       //bool bMakeVisible = true, bool bTransparentBackground = false, __pointer(::user::interaction) puiParent = nullptr, ::fs::data * pfsdata = nullptr, __pointer(data) pdata = nullptr, callback * pcallback = nullptr
       ::user::multiple_document_template * m_pdocumenttemplate;
-      ::draw2d::font_pointer                   m_pfont;
+      ::write_text::font_pointer                   m_pfont;
       ::user::document *                  m_pdocumentTopic;
       ::filemanager::document *                    m_pdocument;
       string m_strTitle;

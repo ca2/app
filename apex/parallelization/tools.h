@@ -32,7 +32,7 @@ public:
    index                            m_iIndex;
    ::count                          m_iScan;
    ::count                          m_iCount;
-   __pointer(::pred_holder_base)    m_ppred;
+   __pointer(::predicate_holder_base)    m_ppred;
    __pointer(object)                m_pholdref;
 
 
@@ -45,7 +45,7 @@ public:
    virtual ::e_status run() override;
 
 
-   bool set_pred(::pred_holder_base * ppred);
+   bool set_predicate(::predicate_holder_base * ppred);
 
    void reset();
    void set_ready();
@@ -100,7 +100,7 @@ public:
 
    HAVE_ARRAY_OF(thread, m_threada, tool_thread);
 
-   sync_array                             m_synca;
+   synchronization_array                             m_synchronizationa;
    ::count                                m_cCount;
    ::count                                m_cIteration;
    ::count                                m_cSpan;
@@ -127,7 +127,7 @@ public:
    bool wait();
    bool process();
 
-   bool add_pred(::pred_holder_base * ppred);
+   bool add_predicate(::predicate_holder_base * ppred);
 
 
    void select_tool(thread_tool* ptool);

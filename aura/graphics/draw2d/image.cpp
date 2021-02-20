@@ -3,7 +3,7 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
-
+#include "aura/operating_system.h"
 
 double get_default_screen_dpi()
 {
@@ -66,7 +66,7 @@ inline byte byte_clip(double d)
 
 inline byte byte_clip(int i)
 {
-   return min(255, max(0, i));
+   return minimum(255, maximum(0, i));
 }
 */
 
@@ -253,7 +253,7 @@ bool image::dc_select(bool bSelect)
 
    }
 
-   return max(c1, c2);
+   return maximum(c1, c2);
 
 }
 
@@ -430,7 +430,7 @@ bool image::destroy()
 //bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point)
 //{
 //
-//   return to(pgraphics, point_i32, size());
+//   return to(pgraphics, point, size());
 //
 //}
 //
@@ -454,7 +454,7 @@ bool image::destroy()
 //bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size)
 //{
 //
-//   return to(pgraphics, point_i32, size, nullptr);
+//   return to(pgraphics, point, size, nullptr);
 //
 //}
 //
@@ -592,9 +592,9 @@ bool image::_draw_raw(const ::rectangle_i32 & rectDstParam, ::image * pimageSrc,
 
    }
 
-   int xEnd = min(rectDst.width(), min(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   int xEnd = minimum(rectDst.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
 
-   int yEnd = min(rectDst.height(), min(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+   int yEnd = minimum(rectDst.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
 
    if (xEnd < 0)
    {
@@ -663,7 +663,7 @@ bool image::blend(const ::rectangle_i32 & rectDstParam, ::image * pimageSrc, con
 
    ::point_i32 pointSrc(pointSrcParam);
 
-   ::size_i32 size_i32(rectDst.size());
+   ::size_i32 size(rectDst.size());
 
    rectDst +=m_point;
 
@@ -717,9 +717,9 @@ bool image::blend(const ::rectangle_i32 & rectDstParam, ::image * pimageSrc, con
 
    }
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
 
    if (xEnd < 0)
    {
@@ -822,9 +822,9 @@ bool image::blend2(const ::point_i32 & pointDstParam, ::image * pimageSrc, const
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -878,17 +878,17 @@ bool image::blend2(const ::point_i32 & pointDstParam, ::image * pimageSrc, const
             else
             {
 
-               int rectangle_i32 = pdst2[0];
+               int r = pdst2[0];
                int g = pdst2[1];
                int b = pdst2[2];
 
-               rectangle_i32 = (rectangle_i32 << 8) / aDst;
+               r = (r << 8) / aDst;
                g = (g << 8) / aDst;
                b = (b << 8) / aDst;
 
                int a = aSrc * aDst;
 
-               pdst2[0] = (rectangle_i32 * a) >> 16;
+               pdst2[0] = (r * a) >> 16;
                pdst2[1] = (g * a) >> 16;
                pdst2[2] = (b * a) >> 16;
                pdst2[3] = a >> 8;
@@ -1006,9 +1006,9 @@ bool image::blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, const 
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -1323,9 +1323,9 @@ bool image::precision_blend(const ::point_i32 & pointDstParam, ::image * pimageS
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -1505,9 +1505,9 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd <= 0)
       return false;
@@ -1557,11 +1557,11 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    auto pgroup = System.thread_group();
 
-   sync_lock slGroup(pgroup->mutex());
+   synchronization_lock slGroup(pgroup->mutex());
 
    auto ptool = System.thread_tool(::e_thread_tool_draw2d);
 
-   sync_lock slTool(ptool->mutex());
+   synchronization_lock slTool(ptool->mutex());
 
    if(!pgroup || !ptool)
    {
@@ -1629,7 +1629,7 @@ bool image::draw_ignore_alpha(const ::point_i32 & pointDstParam, ::image * pimag
 
    ::point_i32 pointSrc(rectSrcParam.top_left());
 
-   ::size_i32 size_i32(rectSrcParam.size());
+   ::size_i32 size(rectSrcParam.size());
 
    if (pointDst.x < 0)
    {
@@ -1649,9 +1649,9 @@ bool image::draw_ignore_alpha(const ::point_i32 & pointDstParam, ::image * pimag
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimage->width() - pointSrc.x, width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimage->width() - pointSrc.x, width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimage->height() - pointSrc.y, height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimage->height() - pointSrc.y, height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -1754,9 +1754,9 @@ bool image::blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, const 
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -1820,9 +1820,9 @@ bool image::blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, const 
 //                  a = (*palf2 * psrc2[3]) / 255;
 //                  a = psrc2[3];
 //                  //a = (int) (byte) sqrt((float) (*palf2 * psrc2[3]));
-//                  pdst2[3] = (byte)max(a, pdst2[3]);
+//                  pdst2[3] = (byte)maximum(a, pdst2[3]);
 //                  //pdst2[3] = (byte)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
-//                  pdst2[3] = (byte)(max(psrc2[3], pdst2[3]));
+//                  pdst2[3] = (byte)(maximum(psrc2[3], pdst2[3]));
 //
 //                  //                  if (a > 0)
 //                  {
@@ -1837,12 +1837,12 @@ bool image::blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, const 
 //               else
             {
 
-               //pdst2[3] = (byte)(max(psrc2[3], pdst2[3]));
+               //pdst2[3] = (byte)(maximum(psrc2[3], pdst2[3]));
                //pdst2[3] = (byte)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
                //pdst2[0] = (byte)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
                //pdst2[1] = (byte)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
                //pdst2[2] = (byte)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
-               pdst2[3] = (byte)(max(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
+               pdst2[3] = (byte)(maximum(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
                pdst2[0] = (byte)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
                pdst2[1] = (byte)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
                pdst2[2] = (byte)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
@@ -1906,9 +1906,9 @@ bool image::blend(const ::point_i32 & pointDst,::image * pimageSrc, const ::poin
    if (size.cy < 0)
       return true;
 
-   int xEnd = min(size.cx, min(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = min(size.cy, min(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -2016,12 +2016,12 @@ bool image::set_rgb(i32 R, i32 G, i32 B)
 
 /*   bool image::Fill ( i32 R, i32 G, i32 B )
    {
-      color32_t color=RGB ( B, G, R );
+      color32_t color=rgb ( B, G, R );
       i64 size = area();
 
       color32_t * pcr;
 
-      i64 iSize32 = size_i32 / 32;
+      i64 iSize32 = size / 32;
       i32 i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -2399,9 +2399,9 @@ bool image::mult_alpha(const ::point_i32 & pointDstParam, const ::size_i32 & siz
    if (size.cy < 0)
       return false;
 
-   int xEnd = min(size.cx, pimageDst->width() - pointDst.x);
+   int xEnd = minimum(size.cx, pimageDst->width() - pointDst.x);
 
-   int yEnd = min(size.cy, pimageDst->height() - pointDst.y);
+   int yEnd = minimum(size.cy, pimageDst->height() - pointDst.y);
 
    if (xEnd < 0)
       return false;
@@ -2565,9 +2565,9 @@ bool image::div_alpha(const ::point_i32 & pointDstParam, const ::size_i32 & size
    if (size.cy < 0)
       return false;
 
-   int xEnd = min(size.cx, pimageDst->width() - pointDst.x);
+   int xEnd = minimum(size.cx, pimageDst->width() - pointDst.x);
 
-   int yEnd = min(size.cy, pimageDst->height() - pointDst.y);
+   int yEnd = minimum(size.cy, pimageDst->height() - pointDst.y);
 
    if (xEnd < 0)
       return false;
@@ -2703,7 +2703,7 @@ bool image::GrayToARGB(color32_t cr)
 bool image::BitBlt(::image * pimage, i32 op)
 {
 
-   if (op == 123) // zero dest RGB, invert alpha, and OR src RGB
+   if (op == 123) // zero dest rgb, invert alpha, and OR src rgb
    {
 
       __throw(todo());
@@ -2729,7 +2729,7 @@ bool image::BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)
       if (cyParam <= 0)
          return false;
 
-      cyParam = min(cyParam, min(pimage->height(), height()));
+      cyParam = minimum(cyParam, minimum(pimage->height(), height()));
 
 #if defined(__APPLE__)
 
@@ -2751,9 +2751,9 @@ bool image::BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)
       if (cyParam <= 0)
          return false;
 
-      cxParam = min(cxParam, min(pimage->width(), width()));
+      cxParam = minimum(cxParam, minimum(pimage->width(), width()));
 
-      cyParam = min(cyParam, min(pimage->height(), height()));
+      cyParam = minimum(cyParam, minimum(pimage->height(), height()));
 
       int iStrideSrc = pimage->m_iScan;
 
@@ -2775,9 +2775,9 @@ bool image::BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)
 
          int wsrc = iStrideSrc / sizeof(color32_t);
          int wdst = m_iScan / sizeof(color32_t);
-         int cw = min(cxParam, width()) * sizeof(color32_t);
+         int cw = minimum(cxParam, width()) * sizeof(color32_t);
 
-         int h = min(cyParam, height());
+         int h = minimum(cyParam, height());
 
 
          color32_t * psrc = pimage->colorref();
@@ -2829,7 +2829,7 @@ bool image::invert()
 }
 
 
-bool image::channel_invert(color::e_channel echannel)
+bool image::channel_invert(::color::enum_channel echannel)
 {
 
    i64 size = scan_area();
@@ -2856,7 +2856,7 @@ bool image::channel_invert(color::e_channel echannel)
 }
 
 
-bool image::channel_multiply(double dRate, color::e_channel echannel, bool bIfAlphaIgnorePreDivPosMult)
+bool image::channel_multiply(double dRate, ::color::enum_channel echannel, bool bIfAlphaIgnorePreDivPosMult)
 {
 
    if (dRate < 0)
@@ -2867,7 +2867,7 @@ bool image::channel_multiply(double dRate, color::e_channel echannel, bool bIfAl
    }
 
    //#ifdef __APPLE__
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
 
       div_alpha();
@@ -2892,7 +2892,7 @@ bool image::channel_multiply(double dRate, color::e_channel echannel, bool bIfAl
 
    }
    //#ifdef __APPLE__
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
       mult_alpha();
    }
@@ -2903,7 +2903,7 @@ bool image::channel_multiply(double dRate, color::e_channel echannel, bool bIfAl
 }
 
 
-bool image::channel_multiply(color::e_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult)
+bool image::channel_multiply(::color::enum_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult)
 {
 
    //      i64 size = area();
@@ -2911,7 +2911,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, bool b
    map();
 
    pimage->map();
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
       div_alpha();
    }
@@ -2955,7 +2955,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, bool b
 
    }
 
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
 
       mult_alpha();
@@ -2967,7 +2967,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, bool b
 }
 
 
-bool image::channel_darken(color::e_channel echannel, ::image * pimage)
+bool image::channel_darken(::color::enum_channel echannel, ::image * pimage)
 {
 
    i64 size = scan_area();
@@ -2995,7 +2995,7 @@ bool image::channel_darken(color::e_channel echannel, ::image * pimage)
 }
 
 
-bool image::channel_lighten(color::e_channel echannel, ::image * pimage)
+bool image::channel_lighten(::color::enum_channel echannel, ::image * pimage)
 {
 
    i64 size = scan_area();
@@ -3022,12 +3022,17 @@ bool image::channel_lighten(color::e_channel echannel, ::image * pimage)
 }
 
 
-bool image::channel_from(color::e_channel echannel, ::image * pimage)
+bool image::channel_from(::color::enum_channel echannel, ::image * pimage)
 {
+   
    map();
+   
    pimage->map();
+   
    i64 size = m_iScan * height() / sizeof(color32_t);
-   i64 size_i64 = size_i32 / 64;
+   
+   i64 size_i64 = size / 64;
+
    byte * pb1 = (byte *)get_data();
 
    byte * pb2 = (byte *)pimage->get_data();
@@ -3190,7 +3195,7 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage)
 }
 
 
-bool image::channel_from(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectParam)
+bool image::channel_from(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectParam)
 {
 
    map();
@@ -3199,7 +3204,7 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage, const ::re
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle_i32(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectParam))
 
    {
 
@@ -3207,7 +3212,7 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage, const ::re
 
    }
 
-   if (!rectangle.intersect(pimage->rectangle_i32(), rectangle))
+   if (!rectangle.intersect(pimage->rectangle(), rectangle))
 
    {
 
@@ -3268,7 +3273,7 @@ bool image::channel_from(color::e_channel echannel, ::image * pimage, const ::re
 
 
 
-bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectParam, bool bIfAlphaIgnorePreDivPosMult)
+bool image::channel_multiply(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectParam, bool bIfAlphaIgnorePreDivPosMult)
 {
 
    map();
@@ -3277,7 +3282,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const 
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle_i32(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectParam))
 
    {
 
@@ -3285,7 +3290,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const 
 
    }
 
-   if (!rectangle.intersect(pimage->rectangle_i32(), rectangle))
+   if (!rectangle.intersect(pimage->rectangle(), rectangle))
 
    {
 
@@ -3293,7 +3298,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const 
 
    }
 
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
 
       div_alpha(rectangle.top_left(), rectangle.size());
@@ -3371,7 +3376,7 @@ bool image::channel_multiply(color::e_channel echannel, ::image * pimage, const 
 
    }
 
-   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::channel_alpha)
+   if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_alpha)
    {
 
       mult_alpha(rectangle.top_left(), rectangle.size());
@@ -3408,7 +3413,7 @@ bool image::fill_glass(i32 R, i32 G, i32 B, i32 A)
 bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 {
 
-   color32_t color = RGB(B, G, R);
+   color32_t color = rgb(B, G, R);
    i32 w = width();
    i32 h = height();
 
@@ -3474,7 +3479,7 @@ bool image::copy(const ::image * pimage, ::eobject eobjectCreate)
    else
    {
 
-      int iScan = min(m_iScan, pimage->m_iScan);
+      int iScan = minimum(m_iScan, pimage->m_iScan);
 
       for (int i = 0; i < height(); i++)
       {
@@ -3493,7 +3498,7 @@ bool image::copy(const ::image * pimage, ::eobject eobjectCreate)
 bool image::bitmap_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle)
 {
 
-   return pgraphics->stretch(rectangle, get_graphics()) != FALSE;
+   return pgraphics->stretch(rectangle, get_graphics()) != false;
 
 
 }
@@ -3678,7 +3683,7 @@ bool image::blend(::image * pimage, ::image * pimageRate)
       dst += 4;
       src += 4;
       alf += 4;
-      size_i32--;
+      size--;
    }
 
    return true;
@@ -3896,7 +3901,7 @@ bool image::copy_to(::image * pimage, i32 x, i32 y)
 }
 
 
-bool image::fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
+bool image::fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
 {
 
    i32 x = rectangle.left;
@@ -3948,7 +3953,7 @@ bool image::fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
 }
 
 
-bool image::fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)
+bool image::fill_rectangle(const ::rectangle_i32 & rectangle, color32_t cr)
 
 {
 
@@ -4020,7 +4025,7 @@ bool image::fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)
 
       }
 
-      get_graphics()->fill_rect(rectangle, cr);
+      get_graphics()->fill_rectangle(rectangle, cr);
 
 
       if (get_graphics()->m_ealphamode != emodeOld)
@@ -4112,7 +4117,7 @@ bool image::fill_stippled_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i
 
    // Prepare buffer Address
    color32_t *dst = get_data() + (py*width()) + px;
-   color32_t color = RGB(B, G, R);
+   color32_t color = rgb(B, G, R);
 
    // Do FillStippledGlass
    for (i32 j = 0; j < dy; j++)
@@ -4367,7 +4372,7 @@ bool image::ScreenRect(::image * pimage, i32 x, i32 y)
 /*bool image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
 {
 i32 dx, dy, k1, k2, d, x, y;
-color32_t color=RGB ( B, G, R );
+color32_t color=rgb ( B, G, R );
 
 dx=x2-x1;
 dy=y2-y1;
@@ -4407,7 +4412,7 @@ bool image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
       x2 += width();
    if (x1 < 0)
       x1 += width();
-   color32_t color = RGB(B, G, R) | (A << 24);
+   color32_t color = rgb(B, G, R) | (A << 24);
 
 #ifdef __APPLE__
 
@@ -4436,7 +4441,7 @@ bool image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
 bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 {
    i32 d, x, y, aura, ay, sx, sy, dx, dy;
-   color32_t color = RGB(B, G, R);
+   color32_t color = rgb(B, G, R);
 
    dx = x2 - x1;
    aura = abs(dx) << 1;
@@ -4486,7 +4491,7 @@ bool image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A)
 {
    i32 d, x, y, aura, ay, sx, sy, dx, dy;
-   //      color32_t color=RGB ( B, G, R );
+   //      color32_t color=rgb ( B, G, R );
    u8 *dst = (u8 *)get_data();
 
    dx = x2 - x1;
@@ -4540,9 +4545,9 @@ bool image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
 
 bool image::Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)
 {
-   color32_t crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
-   color32_t crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
-   color32_t crUnset = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
+   color32_t crFind = rgb(::blue(crMask), ::green(crMask), ::red(crMask));
+   color32_t crSet = rgb(::blue(crInMask), ::green(crInMask), ::red(crInMask));
+   color32_t crUnset = rgb(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
 
    i64 size = scan_area();
 
@@ -4557,7 +4562,7 @@ bool image::Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)
 }
 
 
-bool image::transparent_color(color color)
+bool image::transparent_color(::color::color color)
 {
    color32_t crFind = color.get_rgb();
    i64 iSize = scan_area();
@@ -4573,7 +4578,7 @@ bool image::transparent_color(color color)
 }
 
 
-bool image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::e_channel echannel)
+bool image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::enum_channel echannel)
 {
 
    i32 size = (m_iScan / sizeof(color32_t)) * height();
@@ -4613,20 +4618,20 @@ u32 image::GetPixel(i32 x, i32 y)
 
    u32 u = *(get_data() + x + line(y) * (m_iScan / sizeof(color32_t)));
 
-   u8 * point = (u8 *) &u;
+   u8 * p = (u8 *) &u;
 
-   int iA = point_i32[IMAGE_A_BYTE_INDEX];
+   int iA = p[IMAGE_A_BYTE_INDEX];
 
    if (iA == 0)
    {
 
-      return RGB(point_i32[IMAGE_R_BYTE_INDEX], point_i32[IMAGE_G_BYTE_INDEX], point_i32[IMAGE_B_BYTE_INDEX]);
+      return rgb(p[IMAGE_R_BYTE_INDEX], p[IMAGE_G_BYTE_INDEX], p[IMAGE_B_BYTE_INDEX]);
 
    }
    else
    {
 
-      return ARGB(iA, point_i32[IMAGE_R_BYTE_INDEX] * 255 / iA, point_i32[IMAGE_G_BYTE_INDEX] * 255 / iA, point_i32[IMAGE_B_BYTE_INDEX] * 255 / iA);
+      return argb(iA, p[IMAGE_R_BYTE_INDEX] * 255 / iA, p[IMAGE_G_BYTE_INDEX] * 255 / iA, p[IMAGE_B_BYTE_INDEX] * 255 / iA);
 
    }
 
@@ -5103,11 +5108,11 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //         {
 //            bMax = 0;
 //            b = (byte)(r1[0] - r2[0]);
-//            bMax = max(b, bMax);
+//            bMax = maximum(b, bMax);
 //            b = (byte)(r1[1] - r2[1]);
-//            bMax = max(b, bMax);
+//            bMax = maximum(b, bMax);
 //            b = (byte)(r1[2] - r2[2]);
-//            bMax = max(b, bMax);
+//            bMax = maximum(b, bMax);
 //            bMax = 255 - bMax;
 //         }
 //         dest[0] = bMax;
@@ -5171,13 +5176,13 @@ bool image::rotate(::image * pimage, double dAngle, double dScale)
 
    if (wTarget < 2 || hTarget < 2 || ::is_null(pdataTarget)) return false;
 
-   i32 l = max(wTarget, hTarget);
+   i32 l = maximum(wTarget, hTarget);
 
-   i32 jmax = min(l, hTarget / 2);
+   i32 jmax = minimum(l, hTarget / 2);
 
    i32 jmin = -jmax;
 
-   i32 imax = min(l, wTarget / 2);
+   i32 imax = minimum(l, wTarget / 2);
 
    i32 imin = -imax;
 
@@ -5234,11 +5239,11 @@ bool image::Rotate034(::image * pimage, double dAngle, double dScale)
    map();
    pimage->map();
 
-   i32 l = max(width(), height());
+   i32 l = maximum(width(), height());
 
-   i32 jmax = min(l, height() / 2);
+   i32 jmax = minimum(l, height() / 2);
    i32 jmin = -jmax;
-   i32 imax = min(l, width() / 2);
+   i32 imax = minimum(l, width() / 2);
    i32 imin = -imax;
 
 
@@ -5307,11 +5312,11 @@ bool image::rotate(::image * pimage, const ::rectangle_i32 & rectangle, double d
 
 {
 
-   i32 l = max(width(), height());
+   i32 l = maximum(width(), height());
 
-   i32 jmax = min(l, height() / 2);
+   i32 jmax = minimum(l, height() / 2);
    i32 jmin = -jmax;
-   i32 imax = min(l, width() / 2);
+   i32 imax = minimum(l, width() / 2);
    i32 imin = -imax;
 
    i32 joff = height() / 2 + rectangle.left;
@@ -5724,7 +5729,7 @@ bool image::fill_byte(uchar uch)
          
       }
       
-      g()->fill_rect(::rectangle_f64(m_size), color);
+      g()->fill_rectangle(::rectangle_f64(m_size), color);
       
       if(ealphamode != ::draw2d::alpha_mode_set)
       {
@@ -5749,15 +5754,17 @@ bool image::fill(color32_t cr)
       i64 size = scan_area();
 
       byte a = colorref_get_a_value(cr);
-      byte rectangle_i32 = colorref_get_r_value(cr);
+      byte r = colorref_get_r_value(cr);
       byte g = colorref_get_g_value(cr);
       byte b = colorref_get_b_value(cr);
 
-      rectangle_i32 = rectangle_i32 * a / 255;
+      r = r * a / 255;
+
       g = g * a / 255;
+
       b = b * a / 255;
 
-      if (a == rectangle_i32 && a == g && a == b)
+      if (a == r && a == g && a == b)
       {
 
          __memset(colorref(), a, m_iScan * height());
@@ -5766,12 +5773,16 @@ bool image::fill(color32_t cr)
 
       }
 
-      cr = IMAGE_ARGB(a, rectangle_i32, g, b);
+      cr = IMAGE_ARGB(a, r, g, b);
 
       color32_t * pcr = colorref();
 
       for (i64 i = 0; i < size; i++)
+      {
+
          pcr[i] = cr;
+
+      }
 
    }
    else if(get_graphics() != nullptr)
@@ -5779,7 +5790,7 @@ bool image::fill(color32_t cr)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->fill_rect(rectangle_i32(), cr);
+      get_graphics()->fill_rectangle(rectangle_i32(), cr);
 
    }
 
@@ -5790,10 +5801,10 @@ bool image::fill(color32_t cr)
 
 
 
-bool image::fill(i32 a, i32 rectangle_i32, i32 g, i32 b)
+bool image::fill(i32 a, i32 r, i32 g, i32 b)
 {
 
-   if (a == rectangle_i32 && a == g && a == b)
+   if (a == r && a == g && a == b)
    {
 
       fill_byte(a);
@@ -5802,7 +5813,7 @@ bool image::fill(i32 a, i32 rectangle_i32, i32 g, i32 b)
    else
    {
 
-      color32_t color = make_colorref(a, rectangle_i32, g, b);
+      color32_t color = make_colorref(a, r, g, b);
 
       fill(color);
 
@@ -5866,7 +5877,7 @@ color32_t image::GetAverageColor()
 
       i32 iB = (i32)(iBLine / iDiv);
 
-      return RGB(iR, iG, iB);
+      return rgb(iR, iG, iB);
 
    }
    else
@@ -5923,7 +5934,7 @@ color32_t image::GetAverageOpaqueColor()
       i32 iR = (i32)dR;
       i32 iG = (i32)dG;
       i32 iB = (i32)dB;
-      return RGB(iR, iG, iB);
+      return rgb(iR, iG, iB);
    }
    else
    {
@@ -6119,15 +6130,22 @@ bool image::get_frame(void * pdata, i32 iFrame, i32 iFrameCount)
 
 bool image::is_rgb_black()
 {
+   
    i32 iSize = width() * height();
-   color32_t * point = get_data();
+   
+   color32_t * p = get_data();
 
    for (i32 i = 0; i < iSize; i++)
    {
-      if ((*point_i32 & 0x00FFFFFF) != 0)
+
+      if ((*p & 0x00FFFFFF) != 0)
+      {
 
          return false;
-      point_i32++;
+
+      }
+
+      p++;
 
    }
 
@@ -6147,80 +6165,84 @@ bool image::DivideRGB(i32 iDivide)
    }
 
    i32 iCount = width() * height();
-   byte * point = ((byte *)get_data());
+
+   byte * p = ((byte *)get_data());
 
    i32 i = 0;
+   
    i32 iCount1 = iCount - iCount % 8;
+
    for (; i < iCount1; i++)
    {
-      point_i32[0] /= (byte)iDivide;
+      
+      p[0] /= (byte)iDivide;
 
-      point_i32[1] /= (byte)iDivide;
+      p[1] /= (byte)iDivide;
 
-      point_i32[2] /= (byte)iDivide;
-
-
-      point_i32[4] /= (byte)iDivide;
-
-      point_i32[5] /= (byte)iDivide;
-
-      point_i32[6] /= (byte)iDivide;
+      p[2] /= (byte)iDivide;
 
 
-      point_i32[8] /= (byte)iDivide;
+      p[4] /= (byte)iDivide;
 
-      point_i32[9] /= (byte)iDivide;
+      p[5] /= (byte)iDivide;
 
-      point_i32[10] /= (byte)iDivide;
-
-
-      point_i32[12] /= (byte)iDivide;
-
-      point_i32[13] /= (byte)iDivide;
-
-      point_i32[14] /= (byte)iDivide;
+      p[6] /= (byte)iDivide;
 
 
-      point_i32[16] /= (byte)iDivide;
+      p[8] /= (byte)iDivide;
 
-      point_i32[17] /= (byte)iDivide;
+      p[9] /= (byte)iDivide;
 
-      point_i32[28] /= (byte)iDivide;
-
-
-      point_i32[20] /= (byte)iDivide;
-
-      point_i32[21] /= (byte)iDivide;
-
-      point_i32[22] /= (byte)iDivide;
+      p[10] /= (byte)iDivide;
 
 
-      point_i32[24] /= (byte)iDivide;
+      p[12] /= (byte)iDivide;
 
-      point_i32[25] /= (byte)iDivide;
+      p[13] /= (byte)iDivide;
 
-      point_i32[26] /= (byte)iDivide;
-
-
-      point_i32[28] /= (byte)iDivide;
-
-      point_i32[29] /= (byte)iDivide;
-
-      point_i32[30] /= (byte)iDivide;
+      p[14] /= (byte)iDivide;
 
 
-      point_i32 += 4 * 8;
+      p[16] /= (byte)iDivide;
+
+      p[17] /= (byte)iDivide;
+
+      p[28] /= (byte)iDivide;
+
+
+      p[20] /= (byte)iDivide;
+
+      p[21] /= (byte)iDivide;
+
+      p[22] /= (byte)iDivide;
+
+
+      p[24] /= (byte)iDivide;
+
+      p[25] /= (byte)iDivide;
+
+      p[26] /= (byte)iDivide;
+
+
+      p[28] /= (byte)iDivide;
+
+      p[29] /= (byte)iDivide;
+
+      p[30] /= (byte)iDivide;
+
+
+      p += 4 * 8;
 
    }
    for (; i < iCount; i++)
    {
-      point_i32[0] /= (byte)iDivide;
+      p[0] /= (byte)iDivide;
 
-      point_i32[1] /= (byte)iDivide;
+      p[1] /= (byte)iDivide;
 
-      point_i32[2] /= (byte)iDivide;
+      p[2] /= (byte)iDivide;
 
-      point_i32 += 4;
+      p += 4;
 
    }
 
@@ -6240,19 +6262,20 @@ bool image::DivideARGB(i32 iDivide)
    }
 
    i32 iCount = width() * height();
-   byte * point = ((byte *)get_data());
+
+   byte * p = ((byte *)get_data());
 
    for (i32 i = 0; i < iCount; i++)
    {
-      point_i32[0] /= (byte)iDivide;
+      p[0] /= (byte)iDivide;
 
-      point_i32[1] /= (byte)iDivide;
+      p[1] /= (byte)iDivide;
 
-      point_i32[2] /= (byte)iDivide;
+      p[2] /= (byte)iDivide;
 
-      point_i32[3] /= (byte)iDivide;
+      p[3] /= (byte)iDivide;
 
-      point_i32 += 4;
+      p += 4;
 
    }
 
@@ -6272,13 +6295,14 @@ bool image::DivideA(i32 iDivide)
    }
 
    i32 iCount = width() * height();
-   byte * point = ((byte *)get_data());
+
+   byte * p = ((byte *)get_data());
 
    for (i32 i = 0; i < iCount; i++)
    {
-      point_i32[3] /= (byte)iDivide;
+      p[3] /= (byte)iDivide;
 
-      point_i32 += 4;
+      p += 4;
 
    }
 
@@ -6476,7 +6500,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 bool image::SetViewportOrg(const ::point_i32 & point)
 {
 
-   m_point = point_i32;
+   m_point = point;
 
    if (!m_bMapped)
    {
@@ -6558,7 +6582,7 @@ bool image::_create_helper_map()
             if (pdata[i*m_iScan + j + 3] == 255)
             {
                jStart = j;
-               jNextBoundary = min(j + 960, sw);
+               jNextBoundary = minimum(j + 960, sw);
                for (j += 4; j < jNextBoundary; j += 4)
                {
                   if (pdata[i*m_iScan + j + 3] != 255)
@@ -6613,7 +6637,7 @@ bool image::_create_helper_map()
 
                jStart = j;
 
-               jNextBoundary = min(j + 960, sw);
+               jNextBoundary = minimum(j + 960, sw);
 
                for (j += 4; j < jNextBoundary; j += 4)
                {
@@ -6777,7 +6801,7 @@ double image::pi() const
 }
 
 
-bool image::fill_channel(i32 intensity, color::e_channel echannel)
+bool image::fill_channel(i32 intensity, ::color::enum_channel echannel)
 {
    map();
    i32 offset = ((i32)echannel) % 4;
@@ -6787,7 +6811,7 @@ bool image::fill_channel(i32 intensity, color::e_channel echannel)
 
    u8 * pb;
 
-   i64 iSize32 = size_i32 / 32;
+   i64 iSize32 = size / 32;
    i32 i;
    for (i = 0; i < iSize32; i += 32)
    {
@@ -6836,7 +6860,7 @@ bool image::fill_channel(i32 intensity, color::e_channel echannel)
 }
 
 
-bool image::white_fill_channel(i32 intensity, color::e_channel echannel)
+bool image::white_fill_channel(i32 intensity, ::color::enum_channel echannel)
 {
    map();
    i32 offset = ((i32)echannel) % 4;
@@ -6846,7 +6870,7 @@ bool image::white_fill_channel(i32 intensity, color::e_channel echannel)
 
    //      u8 * pb;
 
-   i64 iSize32 = size_i32 / 32;
+   i64 iSize32 = size / 32;
    i32 i;
    //      for (i=0; i < iSize32; i+=32 )
    //      {
@@ -6900,13 +6924,13 @@ bool image::white_fill_channel(i32 intensity, color::e_channel echannel)
 }
 
 
-bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc)
+bool image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc)
 {
 
    map();
 
-   echannelDst = (color::e_channel) (((i32)echannelDst) % 4);
-   echannelSrc = (color::e_channel) (((i32)echannelSrc) % 4);
+   echannelDst = (::color::enum_channel) (((i32)echannelDst) % 4);
+   echannelSrc = (::color::enum_channel) (((i32)echannelSrc) % 4);
 
    if (echannelDst == echannelSrc)
    {
@@ -6944,7 +6968,7 @@ bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannel
 }
 
 
-bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc, ::image * pimage)
+bool image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage)
 {
 
    if (size() != pimage->size())
@@ -6972,8 +6996,8 @@ bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannel
 
    }
 
-   echannelDst = (color::e_channel) (((i32)echannelDst) % 4);
-   echannelSrc = (color::e_channel) (((i32)echannelSrc) % 4);
+   echannelDst = (::color::enum_channel) (((i32)echannelDst) % 4);
+   echannelSrc = (::color::enum_channel) (((i32)echannelSrc) % 4);
 
    u8 * pdataDst = (u8 *)get_data() + ((i32)echannelDst);
 
@@ -7004,7 +7028,7 @@ bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannel
 }
 
 
-bool image::tint(::image * pimage, const rgba & rgba)
+bool image::tint(::image * pimage, const ::color::color & color32)
 {
 
    if (!create(pimage->size()))
@@ -7020,9 +7044,9 @@ bool image::tint(::image * pimage, const rgba & rgba)
    u8 *dst = (u8 *)colorref();
    i64 size = scan_area();
 
-   byte uchR = (byte)rgba.red;
-   byte uchG = (byte)rgba.green;
-   byte uchB = (byte)rgba.blue;
+   byte uchR = (byte)color32.red;
+   byte uchG = (byte)color32.green;
+   byte uchB = (byte)color32.blue;
 
    //      i32 i = 0;;
 
@@ -7130,10 +7154,10 @@ bool image::tint(::image * pimage, const rgba & rgba)
    //   dst[2] = tableB[src[3]];
    //   dst += 4;
    //   src += 4;
-   //   size_i32--;
+   //   size--;
    //}
 
-   color32_t o = ARGB(255, uchR, uchG, uchB);
+   color32_t o = argb(255, uchR, uchG, uchB);
 
    while (size > 0)
    {
@@ -7162,7 +7186,7 @@ bool image::tint(::image * pimage, const rgba & rgba)
 
       dst += 4;
       src += 4;
-      size_i32--;
+      size--;
    }
 
    return true;
@@ -7186,9 +7210,9 @@ bool image::saturation(double dRate)
    while (size > 0)
    {
 
-      int iMax = max(max(dst[0], dst[1]), dst[2]);
+      int iMax = maximum(maximum(dst[0], dst[1]), dst[2]);
 
-      int iMin = min(min(dst[0], dst[1]), dst[2]);
+      int iMin = minimum(minimum(dst[0], dst[1]), dst[2]);
 
       int iMid = (iMax + iMin) / 2;
 
@@ -7200,7 +7224,7 @@ bool image::saturation(double dRate)
 
       dst += 4;
 
-      size_i32--;
+      size--;
 
    }
 
@@ -7232,10 +7256,10 @@ bool image::opacity(double dRate)
       i64 iArea = scan_area();
       while (iArea > 0)
       {
-         puch[0] = max(0, min(255, puch[0] * iA / 255));
-         puch[1] = max(0, min(255, puch[1] * iA / 255));
-         puch[2] = max(0, min(255, puch[2] * iA / 255));
-         puch[3] = max(0, min(255, puch[3] * iA / 255));
+         puch[0] = maximum(0, minimum(255, puch[0] * iA / 255));
+         puch[1] = maximum(0, minimum(255, puch[1] * iA / 255));
+         puch[2] = maximum(0, minimum(255, puch[2] * iA / 255));
+         puch[3] = maximum(0, minimum(255, puch[3] * iA / 255));
          puch += 4;
          iArea--;
       }
@@ -7272,7 +7296,7 @@ bool image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
       dst[2] = ((int)uchR * (int)dst[3] * A) >> 16;
       dst[3] = ((int)dst[3] * A) >> 8;
       dst += 4;
-      size_i32--;
+      size--;
    }
 
    while (size > 16)
@@ -7383,12 +7407,12 @@ bool image::set_rgb(color32_t cr)
 //}
 
 
-::i64 image::get_rgba_area(const rgba& rgba) const
+::i64 image::get_rgba_area(const ::color::color & color32) const
 {
 
    ::i64 areaRgba = 0;
 
-   color32_t cr = IMAGE_ARGB(rgba.alpha, rgba.red, rgba.green, rgba.blue);
+   color32_t cr = IMAGE_ARGB(color32.alpha, color32.red, color32.green, color32.blue);
 
    const color32_t* p = this->get_data();
 
@@ -7417,12 +7441,12 @@ bool image::set_rgb(color32_t cr)
 }
 
 
-::i64 image::get_rgba_area(const rgba& rgba, const RECTANGLE_I32 * lpcrect) const
+::i64 image::get_rgba_area(const ::color::color & color32, const RECTANGLE_I32 * lpcrect) const
 {
 
    ::rectangle_i32 r(lpcrect);
 
-   if (!r.intersect(this->rectangle_i32()))
+   if (!r.intersect(this->rectangle()))
    {
 
       return 0;
@@ -7431,7 +7455,7 @@ bool image::set_rgb(color32_t cr)
 
    ::count areaRgba = 0;
 
-   color32_t cr = IMAGE_ARGB(rgba.alpha, rgba.red, rgba.green, rgba.blue);
+   color32_t cr = IMAGE_ARGB(color32.alpha, color32.red, color32.green, color32.blue);
 
    int wscan = m_iScan / sizeof(color32_t);
 
@@ -7477,7 +7501,7 @@ bool image::set_rgb(color32_t cr)
 ::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
 {
 
-   auto r = this->rectangle_i32();
+   auto r = this->rectangle();
 
    return _001GetTopLeftWeightedOpaqueArea(iAlphaMin, r);
 
@@ -7489,7 +7513,7 @@ bool image::set_rgb(color32_t cr)
 
    ::rectangle_i32 r(lpcrect);
 
-   ::rectangle_i32 rTotal(this->rectangle_i32());
+   ::rectangle_i32 rTotal(this->rectangle());
 
    if (!r.intersect(rTotal))
    {
@@ -7552,12 +7576,12 @@ bool image::set_rgb(color32_t cr)
 }
 
 
-bool image::paint_rgb(color c)
+bool image::paint_rgb(::color::color color)
 {
 
-   int R = c.red;
-   int G = c.green;
-   int B = c.blue;
+   int R = color.red;
+   int G = color.green;
+   int B = color.blue;
    int A;
 
    u8 * puch = (u8 *)get_data();
@@ -7642,7 +7666,7 @@ bool image::pixelate(i32 iSize)
    i32 iDiv2;
 
    i32 a;
-   i32 rectangle_i32;
+   i32 r;
    i32 g;
    i32 b;
    i32 a2;
@@ -7660,7 +7684,7 @@ bool image::pixelate(i32 iSize)
       {
          y1 = y * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7676,18 +7700,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * s];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7698,11 +7722,11 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         color32_t cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = argb(a2, r2, g2, b2);
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -7727,7 +7751,7 @@ bool image::pixelate(i32 iSize)
       {
          y1 = y * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7743,18 +7767,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7765,11 +7789,11 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         color32_t cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = argb(a2, r2, g2, b2);
          for (i32 i = 0; i < iMax; i++)
          {
             for (i32 j = 0; j < iSize; j++)
@@ -7790,7 +7814,7 @@ bool image::pixelate(i32 iSize)
       {
          x1 = x * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7806,18 +7830,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7828,11 +7852,11 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
-         color32_t cr = ARGB(a2, r2, g2, b2);
+         color32_t cr = argb(a2, r2, g2, b2);
          for (i32 i = 0; i < iSize; i++)
          {
             for (i32 j = 0; j < jMax; j++)
@@ -7854,7 +7878,7 @@ bool image::pixelate(i32 iSize)
       i32 jMax = h - yCount * iSize;
       x1 = x * iSize;
       a = 0;
-      rectangle_i32 = 0;
+      r = 0;
       g = 0;
       b = 0;
       a2 = 0;
@@ -7870,18 +7894,18 @@ bool image::pixelate(i32 iSize)
          {
             color32_t cr = pdata[x1 + i + (y1 + j) * w];
             a += colorref_get_a_value(cr);
-            rectangle_i32 += colorref_get_r_value(cr);
+            r += colorref_get_r_value(cr);
             g += colorref_get_g_value(cr);
             b += colorref_get_b_value(cr);
             iDiv++;
             if (iDiv >= 64)
             {
                a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-               r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+               r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                a = 0;
-               rectangle_i32 = 0;
+               r = 0;
                g = 0;
                b = 0;
                iDiv = 0;
@@ -7893,13 +7917,13 @@ bool image::pixelate(i32 iSize)
       {
 
          a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-         r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+         r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
          g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
          b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
 
       }
 
-      color32_t cr = ARGB(a2, r2, g2, b2);
+      color32_t cr = argb(a2, r2, g2, b2);
 
       for (i32 i = 0; i < iMax; i++)
       {
@@ -7931,9 +7955,9 @@ bool image::rate_rgb(int iMul, int iDiv)
       i64 iArea = scan_area();
       while (iArea > 0)
       {
-         puch[0] = max(0, min(255, puch[0] * iMul / iDiv));
-         puch[1] = max(0, min(255, puch[1] * iMul / iDiv));
-         puch[2] = max(0, min(255, puch[2] * iMul / iDiv));
+         puch[0] = maximum(0, minimum(255, puch[0] * iMul / iDiv));
+         puch[1] = maximum(0, minimum(255, puch[1] * iMul / iDiv));
+         puch[2] = maximum(0, minimum(255, puch[2] * iMul / iDiv));
          puch += 4;
          iArea--;
       }
@@ -7980,7 +8004,7 @@ bool image::unmap() const
 
          ::rectangle_i32 rectThis(m_size);
 
-         ::rectangle_i32 rectMap(rectangle_i32());
+         ::rectangle_i32 rectMap(rectangle());
 
          if (rectThis.contains(rectMap.origin()))
          {
@@ -8077,13 +8101,13 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
    else
    {
 
-      //         int x1 = min(point1.x, point2.x);
+      //         int x1 = minimum(point1.x, point2.x);
 
-      //       int x2 = max(point1.x, point2.x);
+      //       int x2 = maximum(point1.x, point2.x);
 
-      //     int y1 = min(point1.y, point2.y);
+      //     int y1 = minimum(point1.y, point2.y);
 
-      //   int y2 = max(point1.y, point2.y);
+      //   int y2 = maximum(point1.y, point2.y);
 
       //         int top = y1;
       //
@@ -8093,7 +8117,7 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
       //
       //  int bottom = height() - y2;
 
-      int dim = max(width(), height());
+      int dim = maximum(width(), height());
 
       double angle = atan2(dy, dx);
 
@@ -8172,7 +8196,7 @@ bool image::gradient_horizontal_fill(color32_t clr1, color32_t clr2, int start, 
       ::__swap(clr1, clr2);
    }
 
-   end = min(end, height() - 1);
+   end = minimum(end, height() - 1);
    color32_t clr = clr1;
    u8 * pb = (u8 *)colorref();
    color32_t * pdata;
@@ -8192,7 +8216,7 @@ bool image::gradient_horizontal_fill(color32_t clr1, color32_t clr2, int start, 
 
       d = ((double)(line - start)) / ((double)(end - start));
 
-      clr = ARGB(
+      clr = argb(
             byte_clip(colorref_get_a_value(clr1) * (1.0 - d) + colorref_get_a_value(clr2) * d),
             byte_clip(colorref_get_r_value(clr1) * (1.0 - d) + colorref_get_r_value(clr2) * d),
             byte_clip(colorref_get_g_value(clr1) * (1.0 - d) + colorref_get_g_value(clr2) * d),
@@ -8230,7 +8254,7 @@ bool image::gradient_vertical_fill(color32_t clr1, color32_t clr2, int start, in
       ::__swap(clr1, clr2);
    }
 
-   end = min(end, width() - 1);
+   end = minimum(end, width() - 1);
    color32_t clr = clr1;
    u8 * pb = (u8 *)colorref();
    color32_t * pdata;
@@ -8250,7 +8274,7 @@ bool image::gradient_vertical_fill(color32_t clr1, color32_t clr2, int start, in
 
       d = ((double)(row - start)) / ((double)(end - start));
 
-      clr = ARGB(
+      clr = argb(
             byte_clip(colorref_get_a_value(clr1) * (1.0 - d) + colorref_get_a_value(clr2) * d),
             byte_clip(colorref_get_r_value(clr1) * (1.0 - d) + colorref_get_r_value(clr2) * d),
             byte_clip(colorref_get_g_value(clr1) * (1.0 - d) + colorref_get_g_value(clr2) * d),
@@ -8317,16 +8341,16 @@ bool image::invert_rgb(const ::rectangle_i32 & rectangle)
    int top;
    int bottom;
 
-   left = min(max(0, rectangle.left), width());
+   left = minimum(maximum(0, rectangle.left), width());
 
 
-   right = min(max(0, rectangle.right), width());
+   right = minimum(maximum(0, rectangle.right), width());
 
 
-   top = min(max(0, rectangle.top), height());
+   top = minimum(maximum(0, rectangle.top), height());
 
 
-   bottom = min(max(0, rectangle.bottom), height());
+   bottom = minimum(maximum(0, rectangle.bottom), height());
 
    int start = left * 4 + top * s;
 
@@ -8384,13 +8408,13 @@ bool image::create_circle(::image * pimage, int diameter)
 
    int wscan = iScan / sizeof(color32_t);
 
-   double rectangle_i32 = diameter / 2.0;
+   double radius = diameter / 2.0;
 
    double dBorder = 1.0;
 
-   double rmin = rectangle_i32 - dBorder;
+   double rmin = radius - dBorder;
 
-   double rmax = rectangle_i32;
+   double rmax = radius;
 
    int crA;
 
@@ -8408,11 +8432,11 @@ bool image::create_circle(::image * pimage, int diameter)
 
          double dy = y;
 
-         double distance = sqrt((dx - rectangle_i32) * (dx - rectangle_i32) + (dy - rectangle_i32) * (dy - rectangle_i32));
+         double distance = sqrt((dx - radius) * (dx - radius) + (dy - radius) * (dy - radius));
 
          crA = (int)((rmin - distance) * 255.0 / dBorder);
 
-         crA = max(min(crA, 255), 0);
+         crA = maximum(minimum(crA, 255), 0);
 
          *pcolorref2 = (*pcolorref2 & 0x00ffffff) | (crA << 24);
 
@@ -8674,12 +8698,12 @@ save_image::save_image()
 save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 {
 
-   auto eformat = System.draw2d().text_to_format(varOptions["format"]);
+   auto eformat = System.draw2d()->text_to_format(varOptions["format"]);
 
    if (eformat != ::draw2d::format_none)
    {
 
-      eformat = System.draw2d().file_extension_to_format(varFile.get_file_path());
+      eformat = System.draw2d()->file_extension_to_format(varFile.get_file_path());
 
    }
 
@@ -8823,7 +8847,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
    FT_Int x = (FT_Int)xParam;
    FT_Int y = (FT_Int)yParam;
 
-   FT_Int  i, j, point_i32, q;
+   FT_Int  i, j, point, q;
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
@@ -8838,7 +8862,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 
          i32 a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -8846,14 +8870,14 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte rectangle_i32, byte g, byte b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *)pftbitmap;
    FT_Int x = (FT_Int)xParam;
    FT_Int y = (FT_Int)yParam;
 
-   FT_Int  i, j, point_i32, q;
+   FT_Int  i, j, point, q;
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
@@ -8871,7 +8895,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
          if (a > 0)
          {
 
-            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rectangle_i32, g, b);
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else
@@ -8906,7 +8930,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
    FT_Int x = (FT_Int)xParam;
    FT_Int y = (FT_Int)yParam;
 
-   FT_Int  i, j, point_i32, q;
+   FT_Int  i, j, point, q;
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
@@ -8921,7 +8945,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 
          i32 a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
+         *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -8929,14 +8953,14 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte rectangle_i32, byte g, byte b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte rectangle, byte g, byte b)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *)pftbitmap;
    FT_Int x = (FT_Int)xParam;
    FT_Int y = (FT_Int)yParam;
 
-   FT_Int  i, j, point_i32, q;
+   FT_Int  i, j, point, q;
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
@@ -8954,7 +8978,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * m_p, i32 dx, i32 dy, void * 
          if (a > 0)
          {
 
-            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255, rectangle_i32, g, b);
+            *((color32_t *)&((u8 *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else

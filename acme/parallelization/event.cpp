@@ -2,9 +2,18 @@
 #include "acme/operating_system.h"
 
 
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -230,7 +239,7 @@ bool event::SetEvent()
    try
    {
 
-      return ::SetEvent((HANDLE)m_hsync) != FALSE;
+      return ::SetEvent((HANDLE)m_hsync) != false;
 
    }
    catch(...)
@@ -308,7 +317,7 @@ bool event::SetEvent()
 //
 //   ASSERT(m_hsync != nullptr);
 //
-//   return ::PulseEvent(m_hsync) != FALSE;
+//   return ::PulseEvent(m_hsync) != false;
 //
 //#else
 //
@@ -343,7 +352,7 @@ bool event::ResetEvent()
 
       }
 
-      return ::ResetEvent((HANDLE)m_hsync) != FALSE;
+      return ::ResetEvent((HANDLE)m_hsync) != false;
 
    }
    catch(...)
@@ -381,7 +390,7 @@ bool event::ResetEvent()
 }
 
 
-sync_result event::wait ()
+synchronization_result event::wait ()
 {
 
    //__throw(todo("thread"));
@@ -404,12 +413,12 @@ sync_result event::wait ()
    while (true)
    {
 
-      int iResult = ::WaitForSingleObjectEx(hsync(), 300, FALSE);
+      int iResult = ::WaitForSingleObjectEx(hsync(), 300, false);
 
       if(iResult == WAIT_OBJECT_0)
       {
 
-         return sync_result(sync_result::result_event0);
+         return e_synchronization_result_signaled_base;
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -418,7 +427,7 @@ sync_result event::wait ()
          if (!thread_get_run())
          {
 
-            return sync_result(sync_result::result_abandon0);
+            return e_synchronization_result_abandoned_base;
 
          }
 
@@ -426,7 +435,7 @@ sync_result event::wait ()
       else
       {
 
-         return sync_result(sync_result::result_error);
+         return e_synchronization_result_error;
 
       }
 
@@ -507,17 +516,15 @@ sync_result event::wait ()
 
    //}
 
-   return sync_result(sync_result::result_event0);
+   return e_synchronization_result_signaled_base;
 
 }
 
-///  \brief		waits for an event for a specified time
-///  \lparam		duration time period to wait for an event
-///  \return	waiting action result as WaitResult
-sync_result event::wait (const duration & durationTimeout)
+
+synchronization_result event::wait (const duration & durationTimeout)
 {
 
-   sync_result result;
+   synchronization_result result;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
@@ -539,7 +546,7 @@ sync_result event::wait (const duration & durationTimeout)
 
    auto osduration = durationTimeout.u32_millis();
 
-   result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), osduration,FALSE));
+   result = windows_wait_result_to_synchronization_result(::WaitForSingleObjectEx(hsync(), osduration,false));
 
 #elif defined(ANDROID)
 
@@ -582,7 +589,7 @@ sync_result event::wait (const duration & durationTimeout)
 
    pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-   result =  m_bSignaled ? sync_result(sync_result::result_event0) : sync_result(sync_result::result_timeout);
+   result =  m_bSignaled ? synchronization_result(e_synchronization_result_signaled_base) : synchronization_result(e_synchronization_result_timed_out);
 
 
 #else
@@ -616,9 +623,17 @@ sync_result event::wait (const duration & durationTimeout)
          pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
          if(m_bSignaled)
-            result = sync_result(sync_result::result_event0);
+         {
+
+            result = synchronization_result(e_synchronization_result_signaled_base);
+
+         }
          else
-            result = sync_result(sync_result::result_error);
+         {
+
+            result = synchronization_result(e_synchronization_result_error);
+
+         }
 
       }
       else
@@ -658,7 +673,7 @@ sync_result event::wait (const duration & durationTimeout)
 
                pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-               return sync_result(sync_result::result_timeout);
+               return e_synchronization_result_timed_out;
 
             }
 
@@ -667,9 +682,17 @@ sync_result event::wait (const duration & durationTimeout)
          pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
          if(m_bSignaled)
-            result = sync_result(sync_result::result_event0);
+         {
+
+            result = e_synchronization_result_signaled_base;
+
+         }
          else
-            result = sync_result(sync_result::result_error);
+         {
+
+            result = e_synchronization_result_error;
+
+         }
 
       }
 
@@ -701,23 +724,31 @@ sync_result event::wait (const duration & durationTimeout)
 
          if(ret < 0)
          {
+
             if(ret == EPERM || ret == EBUSY)
             {
+
                nanosleep(&delay, nullptr);
+
             }
             else
             {
-               return sync_result(sync_result::result_error);
+
+               return e_synchronization_result_error;
+
             }
+
          }
          else
          {
-            return sync_result(sync_result::result_event0);
+
+            return e_synchronization_result_signaled_base;
+
          }
 
       }
 
-      result= sync_result(sync_result::result_timeout);
+      result= e_synchronization_result_timed_out;
 
    }
 
@@ -764,7 +795,7 @@ bool event::is_signaled() const
 
 #ifdef WINDOWS
 
-   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsync,0,FALSE);
+   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsync,0,false);
 
 #elif defined(ANDROID)
 
@@ -839,7 +870,7 @@ bool event::lock(const duration & durationTimeout)
 
 //#ifdef WINDOWS
 //
-//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),FALSE);
+//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
 //
 //   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 //      return true;

@@ -67,7 +67,7 @@ namespace draw2d_cairo
    bool region::_mask(cairo_t * pgraphics, double dOpacity, enum_mask emask)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if(m_pdc != nullptr)
       {
@@ -232,7 +232,7 @@ namespace draw2d_cairo
    bool region::mask_rect(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       cairo_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
@@ -244,7 +244,7 @@ namespace draw2d_cairo
    bool region::mask_oval(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       double centerx    = (m_x2 + m_x1) / 2.0;
 
@@ -277,7 +277,7 @@ namespace draw2d_cairo
    bool region::mask_polygon(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if(m_nCount <= 0)
       {
@@ -303,7 +303,7 @@ namespace draw2d_cairo
    bool region::mask_poly_polygon(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       i32 n = 0;
 
@@ -340,7 +340,7 @@ namespace draw2d_cairo
    bool region::mask_combine(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       cairo_push_group(pgraphics);
 
@@ -383,7 +383,7 @@ namespace draw2d_cairo
    bool region::clip(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if(m_pdc != nullptr)
       {
@@ -449,7 +449,7 @@ namespace draw2d_cairo
    bool region::clip_rect(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       cairo_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
@@ -463,7 +463,7 @@ namespace draw2d_cairo
    bool region::clip_oval(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       double centerx    = (m_x2 + m_x1) / 2.0;
 
@@ -500,7 +500,7 @@ namespace draw2d_cairo
    bool region::clip_polygon(cairo_t * pgraphics)
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 
       if(m_nCount <= 0)
       {

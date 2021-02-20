@@ -5,12 +5,13 @@
 #include "acme/node/posix/pipe.h"
 //#include "acme/node/linux/process.h"
 #include "_linux.h"
-#include "acme/node/_node.h"
-#include "acme/os/_os.h"
+#include "acme/node/_node2.h"
+#include "acme/os/_os2.h"
+#include "acme/node/posix/file_memory_map.h"
 //#include "copydesk.h"
 
 
-void __node_acme_factory_exchange()
+void __node_acme_factory_exchange(::factory_map * pfactorymap)
 {
 
    //create_factory < ::linux::dir_system         , ::dir_system             >();
@@ -32,6 +33,9 @@ void __node_acme_factory_exchange()
 
 
 //   create_factory < ::linux::shell              , ::user::shell            >();
+
+   create_factory < ::posix::file_memory_map, ::file::memory_map >();
+
 
 }
 

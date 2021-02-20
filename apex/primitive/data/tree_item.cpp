@@ -82,7 +82,7 @@ namespace data
    void tree_item::remove_tree_item_descendants()
    {
 
-      list_pred(this, [](auto p) { p->remove_tree_item(); });
+      list_predicate(this, [](auto p) { p->remove_tree_item(); });
 
       list_remove_all(this);
 
@@ -288,7 +288,7 @@ namespace data
    tree_item * tree_item::get_child_by_user_data(uptr iUserData)
    {
 
-      return list_pred_find(this, [iUserData](auto p)
+      return list_predicateicate_find(this, [iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
@@ -301,7 +301,7 @@ namespace data
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
 
-      list_pred_add(ptra, this);
+      list_predicateicate_add(ptra, this);
 
    }
 
@@ -327,7 +327,7 @@ namespace data
 
       ::count c = 0;
       
-      list_pred(this, [&c](auto& p)
+      list_predicate(this, [&c](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -349,7 +349,7 @@ namespace data
       
       ::count c = 0;
 
-      return list_pred_find(this, [&c, iIndex](auto& p)
+      return list_predicateicate_find(this, [&c, iIndex](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -864,7 +864,7 @@ namespace data
 
       }
 
-      list_pred(this, [](auto& p)
+      list_predicate(this, [](auto& p)
          {
 
             if (p->is_expanded())

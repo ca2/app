@@ -44,12 +44,12 @@ extern "C" {
 #endif
 #endif
 
-#ifndef FALSE
-#define FALSE               0
+#ifndef false
+#define false               0
 #endif
 
-#ifndef TRUE
-#define TRUE                1
+#ifndef true
+#define true                1
 #endif
 
 #ifndef IN
@@ -793,11 +793,11 @@ VARIANT_BOOL BoolToVARIANT_BOOL(int_bool v);
 int_bool VARIANT_BOOLToBool(VARIANT_BOOL v);
 
 
-//#define INVALID_HSYNC_VALUE ((::sync *) nullptr)
+//#define INVALID_HSYNC_VALUE ((::synchronization_object *) nullptr)
 
-class sync;
+class synchronization_object;
 
-typedef ::sync * HSYNC;
+typedef ::synchronization_object * HSYNC;
 
 
 

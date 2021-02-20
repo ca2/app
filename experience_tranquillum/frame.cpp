@@ -21,7 +21,7 @@ namespace experience
 
          m_rectMarginNormal.set(1, 1, 1, 1);
 
-         m_colorCaptionText = ARGB(255, 255, 255, 255);
+         m_colorCaptionText = argb(255, 255, 255, 255);
 
          m_rectClient = nullptr;
 
@@ -127,7 +127,7 @@ namespace experience
       
       color32_t frame::get_border_main_body_color()
       {
-         //return ARGB(255, 63, 150, 106);
+         //return argb(255, 63, 150, 106);
 
          return m_pframewindow->get_border_main_body_color();
 
@@ -152,7 +152,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         System.imaging().color_blend(pgraphics, rectangle_i32, cr, bAlpha);
+         System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
 
       }
@@ -252,19 +252,19 @@ namespace experience
       {
          m_colorMoveableBorder = cr;
 
-         color color;
+         ::color::color color;
 
          color.set_rgb(cr);
          color.hls_rate(0.0, 0.5, 0.0);
-         m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderHilight = color;
 
          color.set_rgb(cr);
          color.hls_rate(0.0, -0.3, 0.0);
-         m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderShadow = color;
 
          color.set_rgb(cr);
          color.hls_rate(8.0, -0.8, 0.0);
-         m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderDkShadow = color;
 
 
          m_colorCaptionTextBk = m_colorMoveableBorderShadow;
@@ -331,14 +331,13 @@ namespace experience
 
          auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-         m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
+         m_penText1->create_solid(1, argb(255, 255, 255, 255));
          m_penFace1->create_solid(1, crButtonFace | 0xff000000);
          m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
          m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
          m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
          m_colorDkShadow = crButtonDarkShadow;
-         m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
-
+         m_colorFrameBorder = argb(255, 0, 0, 0);
 
       }
 
@@ -380,33 +379,33 @@ namespace experience
       //   {
       //   case StyleLightBlue:
       //   case StyleTranslucidLightBlue:
-      //      return ARGB(255, 116, 160, 220);
+      //      return argb(255, 116, 160, 220);
       //   case StyleTranslucidWarmGray:
-      //      return ARGB(255, 184, 184, 177);
+      //      return argb(255, 184, 184, 177);
       //      break;
       //   case StyleDarkWarmBlue:
-      //      return ARGB(255, 34, 54, 75);
+      //      return argb(255, 34, 54, 75);
       //      break;
       //   case StyleBlackBorder:
-      //      return RGB(116, 160, 220) | 0xff000000;
+      //      return rgb(116, 160, 220) | 0xff000000;
       //   case StyleLightGreen:
       //   case StyleTranslucidLightGreen:
-      //      return RGB(116, 220, 160) | 0xff000000;
+      //      return rgb(116, 220, 160) | 0xff000000;
       //   case StyleRedOrange:
-      //      return RGB(255, 170, 136) | 0xff000000;
+      //      return rgb(255, 170, 136) | 0xff000000;
       //   case StyleBlueRedPurple:
-      //      return RGB(200, 100, 220) | 0xff000000;
+      //      return rgb(200, 100, 220) | 0xff000000;
       //   case StyleEveningSun:
-      //      return RGB(255, 210, 100) | 0xff000000;
+      //      return rgb(255, 210, 100) | 0xff000000;
       //   case StyleTranslucidWarmLiteGray:
-      //      return RGB(239, 230, 219) | 0xff000000;
+      //      return rgb(239, 230, 219) | 0xff000000;
       //   default:
-      //      return RGB(200, 100, 220) | 0xff000000;
+      //      return rgb(200, 100, 220) | 0xff000000;
       //   }
 
 
       //   // Light Green/Translucid Light Green
-      //   return RGB(116, 220, 160) | 0xff000000;
+      //   return rgb(116, 220, 160) | 0xff000000;
 
       //}
 
@@ -541,7 +540,7 @@ namespace experience
 
          auto psession = Session;
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          if (!m_pframewindow->layout().is_full_screen()
             && !m_pframewindow->layout().is_zoomed()
@@ -607,13 +606,13 @@ namespace experience
 
                   auto rect3d = ::rectd_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
 
-                  pgraphics->draw_3drect(rect3d, ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
+                  pgraphics->draw_3drect(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                   i += 5;
 
                }
 
-               //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),ARGB(184,255,255,255),ARGB(184,84,84,84));
+               //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
             }
 
@@ -685,19 +684,19 @@ namespace experience
                   || hwndDraw == hwndActiveWindowParent
                   || puiInactiveTopLevel == puiActiveTopLevel)
                   && m_colorActiveCaptionTextBk != 0)*/
-            if(m_pframewindow->is_active())
+            if(m_pframewindow->is_active_window())
             {
 
                pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
             else
             {
 
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
             }
 
@@ -721,7 +720,7 @@ namespace experience
 
             pframewindow->get_window_text(str);
 
-            if (pframewindow->is_active())
+            if (pframewindow->is_active_window())
             {
 
                crMoveableBorder = m_colorMoveableBorder;
@@ -755,7 +754,7 @@ namespace experience
 
             m_pframewindow->get_window_rect(rectangle);
 
-            rectangle_i32 -= rectangle.top_left();
+            rectangle -= rectangle.top_left();
 
             if (get_element_rect(rectIcon, ElementTopLeftIcon))
             {
@@ -777,7 +776,7 @@ namespace experience
 
             //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
 
-            //class font_department & fonts = System.draw2d().fonts();
+            //class font_department & fonts = System.draw2d()->fonts();
 
             millis tick5;
 

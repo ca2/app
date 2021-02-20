@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #include "_simpledb.h"
 #include "axis/database/sqlitedb/_.h"
 #include <sqlite3.h>
@@ -33,7 +34,7 @@ namespace simpledb
 
       }
 
-      m_bRemote = !Context.is_local_data();
+      m_bRemote = !get_context()->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {
@@ -44,7 +45,7 @@ namespace simpledb
 
       ::file::path pathDatabase(pszDatabase);
 
-      if (!Context.dir().mk(pathDatabase.folder()))
+      if (!get_context()->dir().mk(pathDatabase.folder()))
       {
 
          return false;
@@ -60,7 +61,7 @@ namespace simpledb
 
       }
 
-      sync_lock sl(pdatabase->mutex());
+      synchronization_lock synchronizationlock(pdatabase->mutex());
 
       estatus = pdatabase->connect(pszDatabase);
 
@@ -179,7 +180,7 @@ namespace simpledb
       try
       {
 
-         sync_lock sl(pdatabase->mutex());
+         synchronization_lock synchronizationlock(pdatabase->mutex());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

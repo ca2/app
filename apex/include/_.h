@@ -149,8 +149,8 @@ extern CLASS_DECL_APEX int g_bApex;
 //#include "apex/os/_c.h"
 
 
-#undef min
-#undef max
+#undef minimum
+#undef maximum
 
 
 #define INTABS(i) (((i) >= 0) ? (i) : (-i))
@@ -307,13 +307,16 @@ namespace core
 #include "apex/platform/apex_main_struct.h"
 
 
-class eimpact;
 
-enum e_simple_command : ::i64;
-enum e_message : ::i64;
-enum e_impact : ::i64;
-enum e_id : ::u64;
-enum enum_check: ::i32;
+
+
+//class eimpact;
+//
+//enum e_simple_command : ::i64;
+//enum e_message : ::i64;
+//enum e_impact : ::i64;
+//enum e_id : ::u64;
+//enum enum_check: ::i32;
 
 
 template < typename CHAR_TYPE >
@@ -392,24 +395,6 @@ namespace message
 } // namespace message
 
 
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-   class icon;
-   class cursor;
-   class region;
-   class brush;
-   class font;
-   using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
-
-
-} // namespace draw2d
-
 
 class form_property_set;
 
@@ -476,7 +461,7 @@ class var_array;
 class thread;
 class channel;
 class critical_section;
-class ::mutex;
+class mutex;
 class id;
 
 namespace colorertake5
@@ -683,7 +668,10 @@ struct plane_system;
 #endif
 
 
-typedef  void(*PFN_factory_exchange)();
+class factory_map;
+
+
+typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 
 class object;
@@ -738,7 +726,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class ::payload;
+class payload;
 class id;
 
 
@@ -926,7 +914,7 @@ namespace core
 #include "apex/parallelization/threading.h"
 
 
-class mq;
+class message_queue;
 
 
 #include "apex/parallelization/thread.h"
@@ -1100,7 +1088,7 @@ namespace apex
 
 #include "apex/user/check.h"
 
-#include "apex/user/command.h"
+#include "apex/message/command.h"
 
 #include "apex/message/_.h"
 

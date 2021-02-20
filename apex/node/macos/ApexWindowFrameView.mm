@@ -318,7 +318,7 @@ NSCursor * g_pcurrentNscursor = nullptr;
     
     CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
     
-    COLORREF cr = ARGB(255, 0, 0, 0);
+    COLORREF cr = argb(255, 0, 0, 0);
     
     CGContextSetBlendMode(cgc1, kCGBlendModeCopy);
     

@@ -9,9 +9,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "apex/compress/zip/_.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
+
 #include "apex/platform/node.h"
 
 
@@ -35,7 +33,7 @@ extern ::app_core * g_pappcore;
 //extern "C"
 //{
 //
-//   typedef void FN_factory_exchange();
+//   typedef void FN_factory_exchange(::factory_map * pfactorymap);
 //
 //   typedef FN_factory_exchange * PFN_factory_exchange;
 //
@@ -44,7 +42,7 @@ extern ::app_core * g_pappcore;
 //PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
 //
 //
-//PFN_factory_exchange get_draw2d_factory_exchange()
+//PFN_factory_exchange get_draw2d_factory_exchange(::factory_map * pfactorymap)
 //{
 //
 //   return g_pfnfactoryDraw2d;
@@ -86,7 +84,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #endif
 #define _GNU_SOURCE
@@ -479,7 +477,7 @@ namespace apex
    bool application::enable_application_events(::object * pobject, bool bEnable)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if(bEnable)
       {
@@ -1073,7 +1071,7 @@ namespace apex
 
       }
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       if (m_stringtableStd.lookup(strTable, pmap))
       {
@@ -1100,7 +1098,7 @@ namespace apex
       else if (bLoadStringTable)
       {
 
-         sl.unlock();
+         synchronizationlock.unlock();
 
          load_string_table(strTable, "");
 
@@ -1238,17 +1236,17 @@ namespace apex
    };
 
 
-   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
+   int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
+      string str = ::str::get_window_text_timeout(oswindow, 1000);
 
       if (::str::ends_ci(str, penum->m_strWindowEnd))
       {
 
-         penum->m_hwnd = hwnd;
+         penum->m_hwnd = oswindow;
 
          return false;
 
@@ -1259,17 +1257,17 @@ namespace apex
    }
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
+   int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(hwnd);
+      string str = ::str::get_window_text_timeout(oswindow);
 
       if (::str::ends_ci(str, penum->m_strTopic))
       {
 
-         penum->m_hwndaTopic.add(hwnd);
+         penum->m_hwndaTopic.add(oswindow);
 
       }
 
@@ -1277,19 +1275,18 @@ namespace apex
 
    }
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 
+   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
+      string str = ::str::get_window_text_timeout(oswindow, 1000);
 
       if (::str::ends_ci(str, penum->m_strCounterTopic))
       {
 
-         penum->m_hwndaCounterTopic.add(hwnd);
+         penum->m_hwndaCounterTopic.add(oswindow);
 
       }
 
@@ -1457,13 +1454,13 @@ namespace apex
    //}
 
 
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      if (m_pappimpl.is_null())
 //         return;
 //
-//      m_pappimpl->ShowWaitCursor(bShow);
+//      m_pappimpl->show_wait_cursor(bShow);
 //
 //
 //   }
@@ -1841,7 +1838,7 @@ namespace apex
 
       ::thread::on_pos_run_thread();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //try
       //{
@@ -2805,7 +2802,7 @@ retry_license:
 
       }
 
-      sync_lock sl(System.m_pmutexSystemAppData);
+      synchronization_lock synchronizationlock(System.m_pmutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;
@@ -2901,6 +2898,14 @@ retry_license:
    }
 
 
+   bool application::on_application_menu_action(const char * pszCommand)
+   {
+
+      return false;
+
+   }
+
+
    ::e_status     application::run()
    {
 
@@ -2967,7 +2972,7 @@ retry_license:
       if (!is_serviceable())
       {
 
-         __throw(::exception::exception(error_unsupported_function));
+         __throw(::status_exception(error_unsupported_function));
 
       }
 
@@ -3885,11 +3890,11 @@ retry_license:
 
       bool bSetOk;
 
-      LPSECURITY_ATTRIBUTES psa = nullptr;
-
       bool bResourceException = false;
 
 #ifdef WINDOWS_DESKTOP
+
+      LPSECURITY_ATTRIBUTES psa = nullptr;
 
       bSetOk = false;
 
@@ -3931,7 +3936,7 @@ retry_license:
       if (bSetOk)
       {
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psa);
+         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() ADD_PARAM_SEC_ATTRS);
 
          if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
          {
@@ -3961,7 +3966,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
          {
 
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name(), psa);
+            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() ADD_PARAM_SEC_ATTRS);
 
             if (bGlobalIdExclusiveFail)
             {
@@ -3990,7 +3995,7 @@ retry_license:
 
          }
 
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psa);
+         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  ADD_PARAM_SEC_ATTRS);
 
          if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
          {
@@ -4020,7 +4025,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
          {
 
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name(), psa);
+            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() ADD_PARAM_SEC_ATTRS);
 
             if (bLocalIdExclusiveFail)
             {
@@ -4554,18 +4559,15 @@ retry_license:
    }
 
 
-
-
-   void application::message_handler(::message::base * pbase)
+   void application::message_handler(::message::message * pmessage)
    {
 
-      ::thread::message_handler(pbase);
+      ::thread::message_handler(pmessage);
 
    }
 
 
    void application::set_locale(const string & pcsz, const ::action_context & context)
-
    {
 
       string strLocale(pcsz);
@@ -4900,7 +4902,7 @@ retry_license:
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          get_context()->file().add_contents(get_context()->dir().appdata() / (get_context()->file().module().name() + "_log_error.txt"), strMessage);
 
@@ -5077,7 +5079,7 @@ retry_license:
    void application::install_trace(const string & str)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -5087,7 +5089,7 @@ retry_license:
    void application::install_trace(double dRate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5592,7 +5594,7 @@ retry_license:
 //
 //      {
 //
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         ptra = m_objectptraEventHook;
 //
@@ -5678,12 +5680,12 @@ retry_license:
 
    //}
 
-   void application::process_message(::message::base * pbase)
-   {
+   //void application::process_message(::user::message * pusermessage)
+   //{
 
-      return ::thread::process_message(pbase);
+   //   return ::thread::process_message(pusermessage);
 
-   }
+   //}
 
 
 //   ::account::user * application::interactive_get_user(::file::path pathUrl)
@@ -5763,7 +5765,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   sync_lock sl(mutex());
+   //   synchronization_lock synchronizationlock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5893,7 +5895,7 @@ retry_license:
    string application::load_string(const ::id & id)
    {
 
-      sync_lock sl(&m_mutexStr);
+      synchronization_lock synchronizationlock(&m_mutexStr);
 
       string str;
 
@@ -6001,7 +6003,7 @@ retry_license:
 
    //   }
 
-   //   sync_lock sl(&m_mutexStr);
+   //   synchronization_lock synchronizationlock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -6930,7 +6932,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //__pointer(::message::base) pbase(pmessage);
+   //   //__pointer(::user::message) pusermessage(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -6952,7 +6954,7 @@ retry_license:
       {
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else if (nCode == 0)
@@ -6966,12 +6968,12 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            ShowWaitCursor(true);
+            show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else
@@ -6984,7 +6986,7 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         ShowWaitCursor(true);
+         show_wait_cursor(true);
 
       }
 
@@ -6992,7 +6994,7 @@ retry_license:
 
    }
 
-   //void application::ShowWaitCursor(bool bShow)
+   //void application::show_wait_cursor(bool bShow)
    //{
 
    //}
@@ -7409,16 +7411,6 @@ retry_license:
 
 
 
-} // namespace apex
-
-
-
-
-
-
-
-namespace apex
-{
 
 
    const char application::gen_FileSection[] = "Recent File List";
@@ -7482,30 +7474,6 @@ namespace apex
    //}
 
 
-   bool application::on_application_menu_action(const char* pszCommand)
-   {
-
-      if (m_puiMain1 != nullptr)
-      {
-
-         ::user::command command;
-
-         command.m_id = ::id(pszCommand);
-
-         __channel(m_puiMain1)->route_command_message(&command);
-
-         if (command.m_bRet)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
 
 
    //::apex::application * application::get_context_application() const
@@ -7596,7 +7564,7 @@ namespace apex
 
 #endif
 
-   void application::OnUpdateRecentFileMenu(::user::command* pcommand)
+   void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
 
       UNREFERENCED_PARAMETER(pcommand);
@@ -7676,11 +7644,11 @@ namespace apex
 
       ENSURE_ARG(pmessage != nullptr);
 
-      __pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
       // handle certain messages in thread
 
-      switch (pbase->m_id)
+      switch (pmessage->m_id)
       {
       case e_message_create:
       case e_message_paint:
@@ -7692,13 +7660,13 @@ namespace apex
       // handle all the rest
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
-      pbase->m_lresult = 0;        // sensible default
-      if (pbase->m_id == e_message_command)
+      pmessage->m_lresult = 0;        // sensible default
+      if (pmessage->m_id == e_message_command)
       {
-         if (pbase->m_lparam == 0)
+         if (pmessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pbase->m_lresult = (LRESULT)true;        // pretend the command was handled
+         pmessage->m_lresult = (LRESULT)true;        // pretend the command was handled
       }
 
       if (pe.is < memory_exception >())
@@ -7719,7 +7687,7 @@ namespace apex
    }
 
 
-   void application::route_command_message(::user::command* pcommand)
+   void application::route_command_message(::message::command* pcommand)
    {
 
       ::thread::route_command_message(pcommand);
@@ -7809,7 +7777,7 @@ namespace apex
    // Global File commands
    //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
    // MRU - most recently used file menu
-   //   ON_UPDATE_::user::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
+   //   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
    //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
    //}}__MSG_MAP
    // // END_MESSAGE_MAP()
@@ -8631,7 +8599,7 @@ namespace apex
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puiMain1->m_puiThis->order(zorder_bottom);
+   //      m_puiMain1->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
@@ -9148,13 +9116,13 @@ namespace apex
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, true);
+   single_lock synchronizationlock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -9205,7 +9173,7 @@ namespace apex
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puiMain1->m_puiThis->order(zorder_bottom);
+   //      m_puiMain1->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
@@ -9329,7 +9297,7 @@ namespace apex
 //      __throw(todo());
 //      /*#elif defined(LINUX)
 //
-//      //      sync_lock sl(&user_mutex());
+//      //      synchronization_lock synchronizationlock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -9495,26 +9463,8 @@ namespace apex
 #endif
 
 
-   void application::pre_translate_message(::message::message* pmessage)
+   void application::pre_translate_message(::message::message * pmessage)
    {
-
-      __pointer(::message::base) pbase(pmessage);
-
-      if (pbase->m_id == WM_USER + 124 && pbase->m_playeredUserPrimitive == nullptr)
-      {
-
-         /*
-
-         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
-         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
-
-         */
-
-         pbase->m_bRet = true;
-
-         return;
-
-      }
 
       return thread::pre_translate_message(pmessage);
 
@@ -9845,51 +9795,51 @@ namespace apex
    //}
 
 
-   oswindow application::get_ca2_app_wnd(const char* psz)
-   {
+   //oswindow application::get_ca2_app_wnd(const char* psz)
+   //{
 
-      UNREFERENCED_PARAMETER(psz);
+   //   UNREFERENCED_PARAMETER(psz);
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   i32 application::send_simple_command(const char* psz, void* osdataSender)
-   {
-      string strApp;
-      string_array stra;
-      stra.add_tokens(psz, "::", true);
-      if (stra.get_size() > 0)
-      {
-         strApp = stra[0];
-         oswindow oswindow = get_ca2_app_wnd(strApp);
-         if (oswindow != nullptr)
-         {
-            return send_simple_command((void*)oswindow, psz, osdataSender);
-         }
-      }
-      return -1;
-   }
+   //}
 
 
-   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
-   {
-#ifdef WINDOWS_DESKTOP
-      ::oswindow oswindow = (::oswindow) osdata;
-      if (!::IsWindow((HWND) oswindow))
-         return -1;
-      COPYDATASTRUCT cds;
-      __memset(&cds, 0, sizeof(cds));
-      cds.dwData = 888888;
-      cds.cbData = (u32)strlen(psz);
-      cds.lpData = (PVOID)psz;
-
-      return (i32)SendMessage((HWND) oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
-#else
-      __throw(todo());
-#endif
-   }
+//   i32 application::send_simple_command(const char* psz, void* osdataSender)
+//   {
+//      string strApp;
+//      string_array stra;
+//      stra.add_tokens(psz, "::", true);
+//      if (stra.get_size() > 0)
+//      {
+//         strApp = stra[0];
+//         ::windowing::window * pwindow = get_ca2_app_wnd(strApp);
+//         if (oswindow != nullptr)
+//         {
+//            return send_simple_command((void*)oswindow, psz, osdataSender);
+//         }
+//      }
+//      return -1;
+//   }
+//
+//
+//   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      ::::windowing::window * pwindow = (::oswindow) osdata;
+//      if (!::IsWindow(__hwnd(oswindow)))
+//         return -1;
+//      COPYDATASTRUCT cds;
+//      __memset(&cds, 0, sizeof(cds));
+//      cds.dwData = 888888;
+//      cds.cbData = (u32)strlen(psz);
+//      cds.lpData = (PVOID)psz;
+//
+//      return (i32)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+//#else
+//      __throw(todo());
+//#endif
+//   }
 
 
    void application::ensure_app_interest()
@@ -10395,7 +10345,7 @@ namespace apex
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -10411,7 +10361,7 @@ namespace apex
 
       //case MSGF_MENU:
 
-      //   pMsgWnd = dynamic_cast <::user::interaction*> (pbase->m_puserinteraction);
+      //   pMsgWnd = dynamic_cast <::user::interaction*> (pusermessage->m_puserinteraction);
 
       //   if (pMsgWnd != nullptr)
       //   {
@@ -10420,10 +10370,10 @@ namespace apex
       //         pTopFrameWnd->m_bHelpMode)
       //      {
       //         //pMainWnd = __get_main_window();
-      //         //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
+      //         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
       //         //{
       //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
-      //         //   pbase->m_bRet = true;
+      //         //   pusermessage->m_bRet = true;
       //         //   return;
       //         //}
       //      }
@@ -10433,7 +10383,7 @@ namespace apex
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pbase->m_id >= e_message_key_first && pbase->m_id <= e_message_key_last)
+      //      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -10571,7 +10521,7 @@ namespace apex
       //      }
       //      else
       //      {
-      //         //               sl.unlock();
+      //         //               synchronizationlock.unlock();
       //         try
       //         {
       //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
@@ -10580,7 +10530,7 @@ namespace apex
       //         {
 
       //         }
-      //         //             sl.lock();
+      //         //             synchronizationlock.lock();
       //      }
       //   }
 
@@ -10605,12 +10555,12 @@ namespace apex
    //}
 
 
-   ::e_status application::process_message()
-   {
+   //::e_status application::process_message()
+   //{
 
-      return ::thread::process_message();
+   //   return ::thread::process_message();
 
-   }
+   //}
 
 
    //void application::SetCurrentHandles()

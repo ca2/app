@@ -9,7 +9,7 @@ int_bool file_exists(const char* path1)
    u32 dwFileAttributes = windows_get_file_attributes(path1);
 
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-      return FALSE;
+      return false;
 
    return true;
 
@@ -29,7 +29,7 @@ int_bool file_put_contents(const char* path, const char* contents, memsize len)
    if (hfile == hfile_null)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -50,11 +50,11 @@ int_bool file_put_contents(const char* path, const char* contents, memsize len)
 
    DWORD dwWritten = 0;
 
-   int_bool bOk = WriteFile(hfile, contents, (u32)dwWrite, &dwWritten, nullptr) != FALSE;
+   int_bool bOk = WriteFile(hfile, contents, (u32)dwWrite, &dwWritten, nullptr) != false;
 
    CloseHandle(hfile);
 
-   return dwWrite == dwWritten && bOk != FALSE;
+   return dwWrite == dwWritten && bOk != false;
 
 
 }
@@ -363,7 +363,7 @@ string file_module_path_dup()
 //
 //   u32 u;
 //
-//   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,processID);
+//   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,false,processID);
 //
 //   if(nullptr == hProcess)
 //      return false;
@@ -615,10 +615,10 @@ string file_module_path_dup()
 // //       SYSTEM_HANDLE& sh = pThreadParam->pSysHandleInformation->Handles[g_CurrentIndex];
 // //       g_CurrentIndex++;
 // //       HANDLE hDup = (HANDLE)sh.wValue;
-// //       HANDLE hProcess = OpenProcess(PROCESS_DUP_HANDLE,FALSE,sh.dwProcessId);
+// //       HANDLE hProcess = OpenProcess(PROCESS_DUP_HANDLE,false,sh.dwProcessId);
 // //       if(hProcess)
 // //       {
-// //          bool b = DuplicateHandle(hProcess,(HANDLE)sh.wValue,GetCurrentProcess(),&hDup,0,FALSE,DUPLICATE_SAME_ACCESS) != FALSE;
+// //          bool b = DuplicateHandle(hProcess,(HANDLE)sh.wValue,GetCurrentProcess(),&hDup,0,false,DUPLICATE_SAME_ACCESS) != false;
 // //          if(!b)
 // //          {
 // //             hDup = (HANDLE)sh.wValue;
@@ -665,7 +665,7 @@ string file_module_path_dup()
 // //    csShortName.make_lower();
 // //    bool bShortPath = false;
 // //    LPCTSTR lpShortPath = csShortName;
-// //    if(csShortName != csPath && FALSE == csShortName.is_empty())
+// //    if(csShortName != csPath && false == csShortName.is_empty())
 // //    {
 // //       bShortPath = true;
 // //    }
@@ -714,8 +714,8 @@ string file_module_path_dup()
 // //       ThreadParams.nFileType = nFileType;
 // //       ThreadParams.pGetFinalPathNameByHandle = pGetFinalPathNameByHandle;
 // //       ThreadParams.pSysHandleInformation = pSysHandleInformation;
-// //       ThreadParams.hStartEvent = ::CreateEvent(0,TRUE,FALSE,0);
-// //       ThreadParams.hFinishedEvent = ::CreateEvent(0,TRUE,FALSE,0);
+// //       ThreadParams.hStartEvent = ::CreateEvent(0,true,false,0);
+// //       ThreadParams.hFinishedEvent = ::CreateEvent(0,true,false,0);
 // //       HANDLE ThreadHandle = 0;
 // //       while(g_CurrentIndex < pSysHandleInformation->dwCount)
 // //       {
@@ -788,7 +788,7 @@ string file_module_path_dup()
 // //          ADDRESS_INFO stAddress;
 // //          stAddress.pAddress = sh.pAddress;
 // //          ::u32 dwReturn = 0;
-// //          bool bSuccess = DeviceIoControl(hDriver,IOCTL_LISTDRV_BUFFERED_IO,&stAddress,sizeof(ADDRESS_INFO),&stHandle,sizeof(HANDLE_INFO),&dwReturn,nullptr) != FALSE;
+// //          bool bSuccess = DeviceIoControl(hDriver,IOCTL_LISTDRV_BUFFERED_IO,&stAddress,sizeof(ADDRESS_INFO),&stHandle,sizeof(HANDLE_INFO),&dwReturn,nullptr) != false;
 
 
 // //          if(bSuccess && stHandle.tcFileName[0] != 0 &&
@@ -875,7 +875,7 @@ string file_module_path_dup()
 // //    csShortName.ReleaseBuffer();
 // //    csShortName.make_lower();
 // //    bool bShortPath = false;
-// //    if(csShortName != csPath && FALSE == csShortName.is_empty())
+// //    if(csShortName != csPath && false == csShortName.is_empty())
 // //    {
 // //       bShortPath = true;
 // //    }
@@ -928,7 +928,7 @@ string file_module_path_dup()
 // //                if(!PathFileExists(me32.szExePath))
 // //                {
 // //                   TCHAR tcFileName[MAX_PATH];
-// //                   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,TRUE,pDwId[nIdx]);
+// //                   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,true,pDwId[nIdx]);
 // //                   if(GetProcessImageFileName(hProcess,tcFileName,MAX_PATH))
 // //                   {
 // //                      GetDrive(tcFileName,csModule,false);
@@ -1102,9 +1102,9 @@ int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
-//      return FALSE;
+//      return false;
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -1116,11 +1116,11 @@ int_bool file_delete(const char* lpszFileName)
    if (!::DeleteFile(wstr))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 
 }
@@ -1425,7 +1425,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //            size_t dwWritten = 0;
 //            while(i - startpos - dwWritten > 0)
 //            {
-//               if(!WriteFile(hFile,&src[startpos + dwWritten],(u32)min(1024,i - startpos - dwWritten),&bw2,0))
+//               if(!WriteFile(hFile,&src[startpos + dwWritten],(u32)minimum(1024,i - startpos - dwWritten),&bw2,0))
 //                  return 0;
 //               bw += bw2;
 //               dwWritten += bw2;
@@ -1442,7 +1442,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(i - startpos - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[startpos + dwWritten],(u32)min(1024,i - startpos - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[startpos + dwWritten],(u32)minimum(1024,i - startpos - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }
@@ -1454,7 +1454,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[dwWritten],(u32)min(1024,s - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[dwWritten],(u32)minimum(1024,s - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }
@@ -1735,20 +1735,20 @@ SYSTEMTIME st;
 __memset(&st, 0, sizeof(st));
 
 if(FileTimeToSystemTime(lpFileTime, &st))
-return FALSE;
+return false;
 
 SYSTEMTIME stLocal;
 
 __memset(&stLocal, 0, sizeof(stLocal));
 
 if(!SystemTimeToTzSpecificLocalTime(nullptr, &st, &stLocal))
-return FALSE;
+return false;
 
 if(!SystemTimeToFileTime(&stLocal, lpLocalFileTime))
-return FALSE;
+return false;
 
 
-return TRUE;
+return true;
 
 
 }
@@ -1779,7 +1779,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 ::e_status hfile_close(hfile hfile)
 {
 
-   return ::CloseHandle(hfile) != FALSE;
+   return ::CloseHandle(hfile) != false;
 
 }
 
@@ -1968,9 +1968,9 @@ bool get_filetime_set(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreati
 //   else
 //      dwWrite = len;
 //   ::u32 dwWritten = 0;
-//   bool bOk = ::WriteFile(hfile,contents,(u32)dwWrite,&dwWritten,nullptr) != FALSE;
+//   bool bOk = ::WriteFile(hfile,contents,(u32)dwWrite,&dwWritten,nullptr) != false;
 //   ::CloseHandle(hfile);
-//   return dwWrite == dwWritten && bOk != FALSE;
+//   return dwWrite == dwWritten && bOk != false;
 //
 //}
 
@@ -2041,7 +2041,7 @@ bool file_as_memory(memory_base& memory, const char* path, iptr iReadAtMostByteC
 
    ::filesize filesize = ::hfile_get_size(hfile);
 
-   iReadAtMostByteCount = (iptr) min_non_neg(filesize, iReadAtMostByteCount);
+   iReadAtMostByteCount = (iptr) minimum_non_negative(filesize, iReadAtMostByteCount);
 
    memory.set_size(iReadAtMostByteCount);
 
@@ -2150,7 +2150,7 @@ bool file_copy_dup(const char* pszNew, const char* pszSrc, bool bOverwrite)
 
    return ::wait(fileSrc->CopyAsync(folder, wstrNew, bOverwrite ?
       ::Windows::Storage::NameCollisionOption::ReplaceExisting :
-      ::Windows::Storage::NameCollisionOption::FailIfExists)) ? TRUE : FALSE;
+      ::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
 
 
 }

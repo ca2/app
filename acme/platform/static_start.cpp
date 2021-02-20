@@ -10,12 +10,16 @@
 
 #ifdef WINDOWS
 
-
 LARGE_INTEGER g_largeintegerFrequency;
 
 
 #endif
 
+#ifdef WINDOWS_DESKTOP
+
+#include "acme/os/windows/callstack.h"
+
+#endif
 
 ::array < ::promise::routine > * g_proutineaOsTerm;
 
@@ -50,7 +54,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 }
 
 
-void __node_acme_factory_exchange();
+void __node_acme_factory_exchange(::factory_map * pfactorymap);
 
 
 CLASS_DECL_ACME void __seed_srand();
@@ -541,6 +545,12 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+#ifdef WINDOWS
+
+      ::windows::callstack::s_pcriticalsection = new critical_section();
+
+#endif
+
       //::update::g_pcs = new critical_section();
 
 #ifndef __MCRTDBG
@@ -751,7 +761,7 @@ namespace acme
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -765,7 +775,7 @@ namespace acme
       //try
       //{
 
-      //   sync_lock sl(&System.g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(&System.g_mutexLibrary);
 
       //   &System.g_mapLibrary.remove_all();
 
@@ -964,6 +974,12 @@ namespace acme
 
       delete_all_release_on_end();
 
+#ifdef WINDOWS
+
+      ::acme::del(::windows::callstack::s_pcriticalsection);
+
+#endif
+
       ::acme::del(g_pcsGlobal);
 
       ::acme::del(g_pmutexChildren);
@@ -1061,9 +1077,7 @@ namespace acme
 
       create_factory < ::stdio_file >();
 
-      __node_acme_factory_exchange();
-
-      //g_pfn_create_system = &acme_create_acme_system;
+      __node_acme_factory_exchange(::factory::get_factory_map());
 
       return true;
 
@@ -1167,7 +1181,7 @@ namespace acme
 
 CLASS_DECL_ACME color32_t dk_red() // <3 tbs
 {
-   return ARGB(255, 200, 16, 46);
+   return argb(255, 200, 16, 46);
 }
 
 

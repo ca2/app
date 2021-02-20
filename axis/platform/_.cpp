@@ -44,7 +44,7 @@ namespace axis
 
          {
             rString.Empty();        // return is_empty string as well
-            return FALSE;
+            return false;
          }
          pszFullString++;       // point_i32 past the separator
 
@@ -62,7 +62,7 @@ namespace axis
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 
-      return TRUE;
+      return true;
 
    }
 
@@ -238,7 +238,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 //{
 //
-//   sync_lock sl(&System.m_mutexLibrary);
+//   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //   auto ppair = System.m_mapNewAuraLibrary.plookup(psz);
 //
@@ -257,7 +257,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS::apex::library& get_library(const char* psz)
 //{
 //
-//   sync_lock sl(&System.m_mutexLibrary);
+//   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //   return *System.m_mapLibrary[psz];
 //
@@ -267,7 +267,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 //{
 //
-//   sync_lock sl(&System.m_mutexLibrary);
+//   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 //
@@ -277,7 +277,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS void register_library(const char* psz, ::apex::library* plibrary)
 //{
 //
-//   sync_lock sl(&System.m_mutexLibrary);
+//   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //   __library()[psz] = plibrary;
 //
@@ -341,7 +341,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 ////   if (g_iAuraRefCount >= 1)
 ////   {
 ////
-////      return TRUE;
+////      return true;
 ////
 ////   }
 ////
@@ -353,7 +353,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 ////
 ////   aura_term();
 ////
-////   return TRUE;
+////   return true;
 ////
 ////}
 //
@@ -508,7 +508,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //{
 //
 //
-//   sync_lock sl(&System.m_mutexLibrary);
+//   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
 //
 //   __pointer(::apex::library)& plibrary = System.m_mapLibrary[strLibrary];
 //

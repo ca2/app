@@ -17,7 +17,7 @@ namespace uwp
 
       m_hFile = HFILE_NULL;
 
-      m_bCloseOnDelete = TRUE;
+      m_bCloseOnDelete = true;
 
    }
 
@@ -39,7 +39,7 @@ namespace uwp
    //   __pointer(file) pFile = __new(file());
    //   HANDLE hFile;
    //   if (!::DuplicateHandle(::GetCurrentProcess(), (HANDLE)m_hFile,
-   //                          ::GetCurrentProcess(), &hFile, 0, FALSE, DUPLICATE_SAME_ACCESS))
+   //                          ::GetCurrentProcess(), &hFile, 0, false, DUPLICATE_SAME_ACCESS))
    //   {
    //      delete pFile;
    //      //xxx      Ex1::file::throw_os_error((::i32)::get_last_error(), m_path);
@@ -92,7 +92,7 @@ namespace uwp
 
       }
 
-      m_bCloseOnDelete = FALSE;
+      m_bCloseOnDelete = false;
       m_hFile = HFILE_NULL;
       m_path.Empty();
 
@@ -126,7 +126,7 @@ namespace uwp
       switch (eopen & 0x70)    // ::map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          dwShareMode = 0;
@@ -181,7 +181,7 @@ namespace uwp
             pfe->m_cause = WinFileException::OsErrorToException(pfe->m_lOsError);
             pfe->m_path = lpszFileName;
             }
-            return FALSE;
+            return false;
             }
             else
             {*/
@@ -218,7 +218,7 @@ namespace uwp
             pfe->m_cause = WinFileException::OsErrorToException(pfe->m_lOsError);
             pfe->m_path = lpszFileName;
             }
-            return FALSE;
+            return false;
             }
             else
             {*/
@@ -236,7 +236,7 @@ namespace uwp
 
       m_hFile = hFile;
 
-      m_bCloseOnDelete = TRUE;
+      m_bCloseOnDelete = true;
 
       return ::success;
 
@@ -270,7 +270,7 @@ namespace uwp
          return;     // avoid Win32 "nullptr-write" option
 
       ASSERT(lpBuf != nullptr);
-      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+      ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       ::u32 nWritten;
       if (!::WriteFile((HANDLE)m_hFile, lpBuf, (::u32) nCount, &nWritten, nullptr))
@@ -343,12 +343,12 @@ namespace uwp
       ASSERT_VALID(this);
       ASSERT(m_hFile != HFILE_NULL);
 
-      bool bError = FALSE;
+      bool bError = false;
       if (m_hFile != HFILE_NULL)
          bError = !::CloseHandle((HANDLE)m_hFile);
 
       m_hFile = HFILE_NULL;
-      m_bCloseOnDelete = FALSE;
+      m_bCloseOnDelete = false;
       m_path.Empty();
 
       if (bError)
@@ -447,7 +447,7 @@ namespace uwp
    bool CLASS_DECL_AXIS vfxGetInProcServer(const char * lpszCLSID, string & str)
    {
 
-      bool b = FALSE;
+      bool b = false;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -994,7 +994,7 @@ namespace uwp
       // copy file name from cached m_path
       rStatus.m_strFullName = m_path;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -1010,14 +1010,14 @@ namespace uwp
 //      if (!vfxFullPath(wstrFullName, wstrFileName))
 //      {
 //         rStatus.m_strFullName.Empty();
-//         return FALSE;
+//         return false;
 //      }
 //      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 //
 //      WIN32_FIND_DATA findFileData;
 //      HANDLE hFind = FindFirstFile((char *)lpszFileName, &findFileData);
 //      if (hFind == INVALID_HANDLE_VALUE)
-//         return FALSE;
+//         return false;
 //      VERIFY(FindClose(hFind));
 //
 //      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
@@ -1038,7 +1038,7 @@ namespace uwp
 //      if (rStatus.m_atime.get_time() == 0)
 //         rStatus.m_atime = rStatus.m_mtime;
 //#endif
-//      return TRUE;
+//      return true;
 //   }
 
 
@@ -1131,11 +1131,11 @@ bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSour
 
    bool bNativeUnicode;
    if (dwVersion < 0x80000000)              // Windows NT
-      bNativeUnicode = TRUE;
+      bNativeUnicode = true;
    else if (dwWindowsMajorVersion < 4)      // Win32s
-      bNativeUnicode = FALSE;
+      bNativeUnicode = false;
    else                                     // Windows Me/98/95
-      bNativeUnicode = FALSE;
+      bNativeUnicode = false;
 
 
    //   __COM com;
@@ -1146,14 +1146,14 @@ bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSour
    if ((shell::SHGetFileInfo(wstrFileIn, 0, &info, sizeof(info),
                              SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
    {
-      return FALSE;
+      return false;
    }
 
    HRESULT hr ;
    if (FAILED(hr = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLinkW,
                                     (LPVOID*)&psl)))
    {
-      return FALSE;
+      return false;
    }
 
    IPersistFile *ppf;
@@ -1185,7 +1185,7 @@ bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSour
       ppf->Release();
    }
    psl->Release();
-   return FALSE;
+   return false;
 
 #else
 

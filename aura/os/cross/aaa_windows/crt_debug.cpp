@@ -70,12 +70,12 @@ CLASS_DECL_AURA i32 __cdecl _CrtReportBlockType(const void * p)
 
 CLASS_DECL_AURA i32 __cdecl _CrtSetReportMode(i32, i32)
 {
-   return TRUE;
+   return true;
 }
 
 CLASS_DECL_AURA i32 __cdecl _CrtSetReportHook2(i32, i32(__cdecl*)(i32, char *, i32 *))
 {
-   return TRUE;
+   return true;
 }
 
 //CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
@@ -85,12 +85,12 @@ CLASS_DECL_AURA i32 __cdecl _CrtSetReportHook2(i32, i32(__cdecl*)(i32, char *, i
 
 CLASS_DECL_AURA i32 __cdecl _CrtSetDbgFlag(i32)
 {
-   return TRUE;
+   return true;
 }
 
 CLASS_DECL_AURA i32 __cdecl _CrtDumpMemoryLeaks()
 {
-   return TRUE;
+   return true;
 }
 
 

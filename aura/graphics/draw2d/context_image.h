@@ -58,8 +58,6 @@ public:
    
    virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);
    
-   virtual ::e_status load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bCache = true);
-
    virtual bool _load_multi_frame_image(::image* pimage, memory_pointer pmemory);
 
    virtual ::e_status load_svg(::image* pimage, ::memory_pointer pmemory);

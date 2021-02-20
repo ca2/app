@@ -33,7 +33,7 @@ namespace lite
 
 
 //      virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pframewindow) override;
-      //    virtual bool get_font(::draw2d::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
+      //    virtual bool get_font(::write_text::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
       //  virtual bool get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pframewindow) override;
 
 
@@ -48,7 +48,7 @@ namespace lite
       virtual void _001DrawLiteToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar);
       virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
 
-      virtual bool get_font(::draw2d::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
+      virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
       virtual bool get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext) override;
 
 

@@ -359,11 +359,11 @@
 //   if(!(*theLinuxShell.m_pfnSHGetPathFromIDList)(pidl, pwszPath))
 //   {
 //      free(pwszPath);
-//      return FALSE;
+//      return false;
 //   }
 //   ::str::international::unicode_to_utf8(str, pwszPath);
 //   free(pwszPath);
-//   return TRUE;
+//   return true;
 //}
 //*/
 ///*

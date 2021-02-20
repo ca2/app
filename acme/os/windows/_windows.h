@@ -1,9 +1,46 @@
 #pragma once
 
 
+
+
+inline void copy(MESSAGE * pmessage, const MSG * pmsg)
+{
+
+   pmessage->oswindow = (oswindow)(pmsg->hwnd);
+   pmessage->m_id = (enum_message) pmsg->message;
+   pmessage->wParam = pmsg->wParam;
+   pmessage->lParam = pmsg->lParam;
+   pmessage->pt = pmsg->pt;
+   pmessage->time = pmsg->time;
+
+
+}
+
+inline void copy(MSG * pmsg, const MESSAGE * pmessage)
+{
+
+   pmsg->hwnd = (HWND)(pmessage->oswindow);
+   pmsg->message = (UINT) pmessage->m_id.i64();
+   pmsg->wParam = pmessage->wParam;
+   pmsg->lParam = pmessage->lParam;
+   pmsg->pt.x = pmessage->pt.x;
+   pmsg->pt.y = pmessage->pt.y;
+   pmsg->time = (DWORD)pmessage->time;
+
+
+}
+
+namespace str
+{
+
+   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+
+} // namespace str
+
+
 CLASS_DECL_ACME void TRACELASTERROR();
 
-CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+//CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 //#include "acme/os/windows_common/comptr.h"
 
 
@@ -14,6 +51,14 @@ inline HWND __hwnd(oswindow oswindow)
 {
 
    return (HWND)oswindow;
+
+}
+
+
+inline oswindow __oswindow(HWND hwnd)
+{
+
+   return (oswindow)hwnd;
 
 }
 
@@ -65,8 +110,8 @@ namespace str
 
 #ifdef WINDOWS
    // wd16
-   inline  BSTR               AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept;
-   inline  bool               ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept;
+   CLASS_DECL_ACME  BSTR               AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept;
+   CLASS_DECL_ACME  bool               ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept;
 
 #endif
 
@@ -167,21 +212,17 @@ inline comptr < IStream > create_istream(const memory_base & memory)
 
 
 
-CLASS_DECL_ACME time_t __time(const SYSTEMTIME & st, i32 nDST = -1);
-CLASS_DECL_ACME time_t __time(const FILETIME & ft, i32 nDST = -1);
-CLASS_DECL_ACME SYSTEMTIME __systemtime(const ::datetime::time & time);
 inline filetime __filetime(const FILETIME & filetime) { return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); }
 
 
 
 CLASS_DECL_ACME bool is_valid_FILETIME(const FILETIME & ft) noexcept;
 
-template < typename CHAR >
-CLASS_DECL_ACME BSTR AllocSysString(const ::string_base < CHAR > & str);
+
+CLASS_DECL_ACME BSTR AllocSysString(const string & str);
 
 
-template < typename CHAR >
-CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const ::string_base < CHAR > & str);
+CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str);
 
 
 CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);

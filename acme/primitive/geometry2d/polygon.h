@@ -110,7 +110,7 @@ void polygon_base < POINT_TYPE >::sort()
    x /= this->get_count();
    y /= this->get_count();
 
-   this->pred_sort([x, y](auto & point1, auto & point2) { return atan(point1, x, y) >= atan(point2, x, y); });
+   this->predicate_sort([x, y](auto & point1, auto & point2) { return atan(point1, x, y) >= atan(point2, x, y); });
 }
 
 
@@ -343,7 +343,7 @@ template < typename POINT_TYPE >
 void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rectangle)
 {
 
-   m_rectBounding = rectangle_i32;
+   m_rectBounding = rectangle;
 
    this->set_size(4);
 
@@ -377,10 +377,10 @@ const typename polygon_base < POINT_TYPE >::RECT_TYPE & polygon_base < POINT_TYP
       for (index i = 1; i < this->get_count(); i++)
       {
 
-         ((polygon_base *)this)->m_rectBounding.left = min(m_rectBounding.left, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.right = max(m_rectBounding.right, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.top = min(m_rectBounding.top, this->element_at(i).y);
-         ((polygon_base *)this)->m_rectBounding.bottom = max(m_rectBounding.bottom, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectBounding.left = minimum(m_rectBounding.left, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectBounding.right = maximum(m_rectBounding.right, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectBounding.top = minimum(m_rectBounding.top, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectBounding.bottom = maximum(m_rectBounding.bottom, this->element_at(i).y);
 
       }
 

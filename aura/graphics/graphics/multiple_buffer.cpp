@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/graphics/graphics/multiple_buffer.h"
 
 
@@ -66,7 +64,7 @@ namespace graphics
    }
 
 
-   ::sync * multiple_buffer::get_draw_lock()
+   ::synchronization_object * multiple_buffer::get_draw_lock()
    {
 
       return m_mutexa[m_iBuffer];
@@ -108,7 +106,7 @@ namespace graphics
    index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       bool bFoundExact = false;
 
@@ -205,7 +203,7 @@ namespace graphics
 
             ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
 
-            if (sizeBuffer == size_i32)
+            if (sizeBuffer == size)
             {
 
                iFound = i;
@@ -305,7 +303,7 @@ namespace graphics
    bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_iDone = m_iBuffer;
 
@@ -318,7 +316,7 @@ namespace graphics
    }
 
 
-   sync * multiple_buffer::get_screen_sync()
+   synchronization_object * multiple_buffer::get_screen_sync()
    {
 
       auto size = m_pimpl->m_puserinteraction->layout().design().size();
@@ -349,7 +347,7 @@ namespace graphics
    bool multiple_buffer::update_window()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto size = m_pimpl->m_puserinteraction->layout().design().size();
 
@@ -362,7 +360,7 @@ namespace graphics
 
       }
 
-      sync_lock slBuffer(get_screen_sync());
+      synchronization_lock slBuffer(get_screen_sync());
 
       return update_window(get_screen_image());
 

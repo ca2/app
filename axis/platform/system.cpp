@@ -7,10 +7,10 @@
 #include "axis/const/idpool.h"
 
 
-void __node_axis_factory_exchange();
+void __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
-//int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 //
 //const char* g_pszMultimediaLibraryName = nullptr;
@@ -69,22 +69,6 @@ void unit_test_primitive_var_aura_block();
 
 void dappy(const char * psz);
 
-
-#ifdef WINDOWS_DESKTOP
-string get_user_name()
-{
-   
-   WCHAR wsz[1024];
-
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-   ::GetUserNameW(wsz,&dwSize);
-
-   return string(wsz);
-
-}
-#include "aura/os/windows/_c.h"
-#endif
 
 
 
@@ -164,7 +148,7 @@ namespace axis
 
       }
 
-      __node_axis_factory_exchange();
+      __node_axis_factory_exchange(::factory::get_factory_map());
 
       return estatus;
 
@@ -546,7 +530,7 @@ namespace axis
 
 
 
-void __node_axis_factory_exchange()
+void __node_axis_factory_exchange(::factory_map * pfactorymap)
 {
    
 }

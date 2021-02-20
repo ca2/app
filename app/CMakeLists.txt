@@ -1,20 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
 project(app_app CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
+
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
-
-
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    include(FindPkgConfig)
-elseif(WIN32)
-    set(PLATFORM_NAME "windows")
-endif()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
@@ -22,6 +10,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 
 
 list(APPEND app_app_source
+        _.cpp
         _.h
         _user.h
         application.cpp
@@ -54,12 +43,13 @@ if (MSVC)
     add_dependencies(app_app draw2d_gdiplus)
 elseif(LINUX)
 
-    if(EXISTS $ENV{HOME}/__config/gnome.txt)
-        add_dependencies(app_app node_gnome windowing_x11)
-    endif()
-    if(EXISTS $ENV{HOME}/__config/kde.txt)
-        add_dependencies(app_app node_kde windowing_xcb)
-    endif()
+    #if(LINUX_GNOME)
+    #    add_dependencies(app_app node_gnome windowing_x11)
+    #endif()
+    #if(LINUX_KDE)
+    #   add_dependencies(app_app node_kde windowing_xcb)
+    #endif()
+
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     #target_compile_options(app_app PRIVATE ${PKGCONFIG_CFLAGS})
@@ -71,10 +61,9 @@ elseif(LINUX)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
     add_dependencies(app_app draw2d_cairo)
-
 endif()
 
-
+add_dependencies(app_app ${app_common_dependencies})
 
 target_link_directories(app_app PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)

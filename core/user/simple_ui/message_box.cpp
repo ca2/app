@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 void maximum_line_length(string_array & stra, int iLen)
 {
@@ -122,7 +119,13 @@ namespace simple_ui
       else
       {
 
-         psession->get_main_monitor(rectDesktop);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectDesktop);
 
       }
 
@@ -215,7 +218,7 @@ namespace simple_ui
 
       TRACE("(4) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
-      order(zorder_top);
+      order(e_zorder_top);
 
       place(rectFontopus);
 
@@ -235,21 +238,23 @@ namespace simple_ui
 
       get_client_rect(rectClient);
 
-      color32_t crBk = get_simple_ui_color(::user::e_element_background);
+      auto pnode = Node;
 
-      pgraphics->fill_rect(rectClient,crBk);
+      color32_t crBk = pnode->get_simple_ui_color(::user::e_element_background);
 
-      __pointer(::draw2d::font) font(e_create);
+      pgraphics->fill_rectangle(rectClient,crBk);
+
+      __pointer(::write_text::font) font(e_create);
 
       font->create_point_font(os_font_name(e_font_sans),12);
 
       pgraphics->set(font);
 
-      ::draw2d::text_metric tm;
+      ::write_text::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
-      color32_t crText = get_simple_ui_color(::user::e_element_text);
+      color32_t crText = pnode->get_simple_ui_color(::user::e_element_text);
 
       pgraphics->set_text_color(crText);
 
@@ -259,7 +264,7 @@ namespace simple_ui
 
       rectangle.deflate(10, 10);
 
-      pgraphics->draw_text(strMessage, rectangle_i32, e_align_top_left, e_draw_text_expand_tabs);
+      pgraphics->draw_text(strMessage, rectangle, e_align_top_left, e_draw_text_expand_tabs);
 
    }
 
@@ -291,7 +296,7 @@ namespace simple_ui
 
          __pointer(tap) ptap = m_tapaA[i];
 
-         ptap->order(zorder_top);
+         ptap->order(e_zorder_top);
 
          ptap->set_dim(x, y, cx, cy);
 
@@ -310,7 +315,7 @@ namespace simple_ui
 
          __pointer(tap) ptap = m_tapaB[i];
 
-         ptap->order(zorder_top);
+         ptap->order(e_zorder_top);
 
          ptap->set_dim(x, y, cx, cy);
 

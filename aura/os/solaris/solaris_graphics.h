@@ -20,7 +20,7 @@ void set(XColor & color, color32_t cr);
 
 /*
 Hi,
-if you want to make a ARGB window using xlib/Qt here is the code i use
+if you want to make a argb window using xlib/Qt here is the code i use
 /**files to include from xlib*/
 /*#include <X11/extensions/Xrender.h>
 #include <X11/Xlib.h>
@@ -40,7 +40,7 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
   i32 eventBase, errorBase;
 
   if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
-      qWarning ("You have ARGB support");
+      qWarning ("You have argb support");
       i32 nvi;
       XVisualInfo templ;
       templ.screen  = screen;
@@ -79,7 +79,7 @@ void set(XColor & color, color32_t cr);
 
 /*
 Hi,
-if you want to make a ARGB window using xlib/Qt here is the code i use
+if you want to make a argb window using xlib/Qt here is the code i use
 /**files to include from xlib*/
 /*#include <X11/extensions/Xrender.h>
 #include <X11/Xlib.h>
@@ -99,7 +99,7 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
   i32 eventBase, errorBase;
 
   if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
-      qWarning ("You have ARGB support");
+      qWarning ("You have argb support");
       i32 nvi;
       XVisualInfo templ;
       templ.screen  = screen;

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -43,9 +41,9 @@ namespace filemanager
 
       simple_frame_window::install_message_routing(pchannel);
 
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
+//#endif
 
       MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
 
@@ -54,7 +52,7 @@ namespace filemanager
 
    void  frame::_001OnSetText(::message::message * pmessage)
    {
-      //   __pointer(::message::base) pbase(pmessage);
+      //   __pointer(::user::message) pusermessage(pmessage);
 
       pmessage->previous();
 

@@ -14,7 +14,7 @@
 #include "acme/user/_const_key.h"
 
 
-::user::e_key event_key(UIEvent * event);
+::user::enum_key event_key(UIEvent * event);
 
 
 class aura_window;

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-image_pointer & size_image::operator[](const ::size_i32 & size)
+image_pointer & size_image::operator[](const concrete < ::size_i32 > & size)
 {
 
    bool bExists;
@@ -11,10 +11,10 @@ image_pointer & size_image::operator[](const ::size_i32 & size)
 }
 
 
-image_pointer & size_image::get(const ::size_i32 & size, bool & bExists)
+image_pointer & size_image::get(const concrete < ::size_i32 > & size, bool & bExists)
 {
 
-   auto & pimage = ::map < ::size_i32, ::image_pointer >::operator [](size);
+   auto & pimage = ::map < concrete < ::size_i32 >, ::image_pointer >::operator [](size);
 
    if (pimage->is_null())
    {

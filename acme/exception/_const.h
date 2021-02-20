@@ -2,7 +2,7 @@
 
 
 
-#define callstack_DEFAULT_SKIP_TRIGGER (-2)
+#define CALLSTACK_DEFAULT_SKIP_TRIGGER (-2)
 
 #define SKIP_callstack (-1)
 

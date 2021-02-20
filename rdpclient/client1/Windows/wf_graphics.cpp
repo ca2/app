@@ -186,7 +186,7 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //				return;
 //
 //			status = planar_decompress(wfc->codecs->planar, pSrcData, SrcSize, &pDstData,
-//					PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, TRUE);
+//					PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, true);
 //		}
 //
 //		if (status < 0)
@@ -197,13 +197,13 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //	}
 //	else
 //	{
-//		SrcFormat = gdi_get_pixel_format(bpp, TRUE);
+//		SrcFormat = gdi_get_pixel_format(bpp, true);
 //
 //		status = freerdp_image_copy(pDstData, PIXEL_FORMAT_XRGB32, width * 4, 0, 0,
 //				width, height, pSrcData, SrcFormat, width * bytesPerPixel, 0, 0, nullptr);
 //	}
 //
-//	bitmap->compressed = FALSE;
+//	bitmap->compressed = false;
 //	bitmap->length = size;
 //	bitmap->bpp = 32;
 //}
@@ -224,7 +224,7 @@ void wf_Pointer_New(wfContext* wfc, rdpPointer* pointer)
 	ICONINFO info;
 	byte *data;
 
-	info.fIcon = FALSE;
+	info.fIcon = false;
 	info.xHotspot = pointer->xPos;
 	info.yHotspot = pointer->yPos;
 	if (pointer->xorBpp == 1)

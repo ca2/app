@@ -175,7 +175,7 @@
  *
  * allocate a buffer for the ::account::user.
  */
-/*      if ( (p = (WCHAR *)malloc(__max(len, maxlen) * sizeof(WCHAR)))
+/*      if ( (p = (WCHAR *)malloc(maximum(len, maxlen) * sizeof(WCHAR)))
  == nullptr )
  {
  //                errno = ENOMEM;

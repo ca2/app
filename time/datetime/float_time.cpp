@@ -33,9 +33,9 @@ static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
   if (day && month && month < 13)
   {
     if (day <= days[month] || (month == 2 && day == 29 && IsLeapYear(year)))
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -70,8 +70,8 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offse
  *  pDateOut [O] Destination for VT_DATE format date
  *
  * RETURNS
- *  Success: TRUE. *pDateOut contains the converted value.
- *  Failure: FALSE, if lpSt cannot be represented in VT_DATE format.
+ *  Success: true. *pDateOut contains the converted value.
+ *  Failure: false, if lpSt cannot be represented in VT_DATE format.
  */
 CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
 {
@@ -81,7 +81,7 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
         lpSt->wYear, lpSt->wHour, lpSt->wMinute, lpSt->wSecond, pDateOut);*/
 
   if (lpSt->wMonth > 12)
-    return FALSE;
+    return false;
 
   ud.st = *lpSt;
   return FloatTimeFromUdate(&ud, 0, pDateOut) == S_OK;
@@ -99,8 +99,8 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
 *  lpSt   [O] Destination for System format date and time
 *
 * RETURNS
-*  Success: TRUE. *lpSt contains the converted value.
-*  Failure: FALSE, if dateIn is too large or small.
+*  Success: true. *lpSt contains the converted value.
+*  Failure: false, if dateIn is too large or small.
 */
 ::i32 WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
 {
@@ -109,10 +109,10 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
   //TRACE("(%g,%p)\n", dateIn, lpSt);
 
   if (FAILED(VarUdateFromDate(dateIn, 0, &ud)))
-    return FALSE;
+    return false;
 
   *lpSt = ud.st;
-  return TRUE;
+  return true;
 }
 
 
@@ -415,7 +415,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
     }
     else if (isalpha(*strIn))
     {
-      int_bool bFound = FALSE;
+      int_bool bFound = false;
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {
@@ -444,7 +444,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
             }
           }
           strIn += (dwLen - 1);
-          bFound = TRUE;
+          bFound = true;
           break;
         }
       }

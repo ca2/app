@@ -97,7 +97,7 @@ struct wf_clipboard
 	rdpChannels* channels;
 	CliprdrClientContext* action_context;
 
-	BOOL sync;
+	BOOL synchronization_object;
 	::u32 capabilities;
 
 	int map_size;

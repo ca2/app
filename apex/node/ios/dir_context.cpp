@@ -95,7 +95,7 @@ namespace ios
 
 //            file_find file_find;
 
-         //          bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         //          bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != false;
 
          for(auto & strPath : straPath)
          {
@@ -140,7 +140,7 @@ namespace ios
 
          // file_find file_find;
 
-         // bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         // bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != false;
 
          for(auto & strPath : straPath)
          {
@@ -292,7 +292,7 @@ namespace ios
    //            }
    //         }
    //      }
-   //      return ::rmdir(psz) != FALSE;
+   //      return ::rmdir(psz) != false;
    //   }
    //
    //
@@ -437,7 +437,7 @@ namespace ios
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock sl(&m_mutex, true);
+//      single_lock synchronizationlock(&m_mutex, true);
 //
 //      return m_strCa2;
 //

@@ -37,7 +37,7 @@ namespace ios
 //
 //      m_iFile = hFile;
 //
-////      m_bCloseOnDelete = TRUE;
+////      m_bCloseOnDelete = true;
 //
 //   }
 //
@@ -149,7 +149,7 @@ namespace ios
       switch (eopen & 0x70)
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
@@ -204,7 +204,7 @@ namespace ios
              pfe->m_cause = ::win::file_exception::os_error_to_exception(pfe->m_lOsError);
              pfe->m_strFileName = lpszFileName;
              }
-             return FALSE;
+             return false;
              }
              else
              {*/
@@ -223,7 +223,7 @@ namespace ios
           }
           catch(...)
           {
-          return FALSE;
+          return false;
           }
 
           m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
@@ -242,7 +242,7 @@ namespace ios
              pfe->m_cause = ::win::file_exception::os_error_to_exception(pfe->m_lOsError);
              pfe->m_strFileName = lpszFileName;
              }
-             return FALSE;
+             return false;
              }
              else
              {*/
@@ -260,7 +260,7 @@ namespace ios
 
       m_iFile = (i32)hFile;
 
-      //      m_bCloseOnDelete = TRUE;
+      //      m_bCloseOnDelete = true;
 
       return ::success;
 
@@ -283,7 +283,7 @@ namespace ios
       while(nCount > 0)
       {
          
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) minimum(0x7fffffff, nCount);
          
          size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
          
@@ -336,14 +336,14 @@ namespace ios
 
       ASSERT(lpBuf != nullptr);
       
-      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+      ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       memsize pos = 0;
       
       while(nCount > 0)
       {
          
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
+         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) minimum(0x7fffffff, nCount));
          
          if(iWrite == -1)
          {
@@ -463,12 +463,12 @@ namespace ios
       ASSERT_VALID(this);
       ASSERT(m_iFile != (::u32)hFileNull);
 
-      bool bError = FALSE;
+      bool bError = false;
       if (m_iFile != (::u32)hFileNull)
          bError = ::close(m_iFile) != 0;
 
       m_iFile = (::u32) hFileNull;
-      //      m_bCloseOnDelete = FALSE;
+      //      m_bCloseOnDelete = false;
       m_strFileName.Empty();
 
       if (bError)
@@ -660,7 +660,7 @@ namespace ios
 //      //      if (!vfxFullPath(wstrFullName, wstrFileName))
 //      //    {
 //      //     rStatus.m_strFullName.Empty();
-//      //   return FALSE;
+//      //   return false;
 //      //}
 //
 //      wstrFullName = wstrFileName;
@@ -671,7 +671,7 @@ namespace ios
 //      if(stat(lpszFileName, &st) == -1)
 //         return false;
 //      //if (hFind == INVALID_HANDLE_VALUE)
-//      // return FALSE;
+//      // return false;
 //      //VERIFY(FindClose(hFind));
 //
 //      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
@@ -699,7 +699,7 @@ namespace ios
 //      if (rStatus.m_atime.get_time() == 0)
 //         rStatus.m_atime = rStatus.m_mtime;
 //
-//      return TRUE;
+//      return true;
 //   }
 
 

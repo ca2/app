@@ -111,7 +111,7 @@ CLASS_DECL_ACME char * wd32_to_ansi_dup(const wd32char * input, strsize input_si
  * @authorr Ondřej Hruška <ondra@ondrovo.com>
  * @license MIT
  *
- * @paramrr out - output buffer (min 5 characters), will be 0-terminated
+ * @paramrr out - output buffer (minimum 5 characters), will be 0-terminated
  * @paramrr utf - code point_i32 0-0x10FFFF
  * @returnr number of bytes on success, 0 on failure (also produces U+FFFD, which uses 3 bytes)
  */

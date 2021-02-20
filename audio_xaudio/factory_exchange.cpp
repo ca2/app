@@ -30,7 +30,7 @@
 
 
 extern "C"
-CLASS_DECL_EXPORT void audio_xaudio_factory_exchange()
+CLASS_DECL_EXPORT void audio_xaudio_factory_exchange(::factory_map * pfactorymap)
 {
 
    //::multimedia::audio_xaudio::factory_exchange factoryexchange();

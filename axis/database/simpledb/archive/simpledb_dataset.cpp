@@ -846,7 +846,7 @@ namespace simpledb
       }
       else
       {
-         ASSERT(FALSE);
+         ASSERT(false);
          //      return dataset::SetFieldValue(f_name, value);
       }
       __throw(::database::exception("Not in Insert or Edit or Select state"));
@@ -868,7 +868,7 @@ namespace simpledb
       }
       //   else
       {
-         ASSERT(FALSE);
+         ASSERT(false);
          //return dataset::SetFieldValue(f_name, value);
 
       }

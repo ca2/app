@@ -44,16 +44,16 @@ namespace console
    void department::pre_translate_message(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      if(pbase != nullptr)
+      if(pusermessage != nullptr)
       {
-         if(pbase->m_id == e_message_key_down)
+         if(pusermessage->m_id == e_message_key_down)
          {
 
             __pointer(::message::key) pkey(pmessage);
 
-            if(pkey->m_ekey == ::user::key_semicolon2 && psession->is_key_pressed(::user::key_shift))
+            if(pkey->m_ekey == ::user::e_key_semicolon2 && psession->is_key_pressed(::user::e_key_shift))
             {
 
                if (m_spprompt.is_set())
@@ -77,7 +77,7 @@ namespace console
    void department::_001OnImpact(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
 
       bool bShow = pmessage->m_wparam & 1;
@@ -113,7 +113,7 @@ namespace console
 
       }
 
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
 
    }
 

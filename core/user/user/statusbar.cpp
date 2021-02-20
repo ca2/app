@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 #define SBPF_UPDATE 0x0001  // pending update of text
@@ -42,12 +40,12 @@ namespace user
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
-      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
-      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
-      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
+//      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
+//      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
+//      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
+//#endif
    }
 
 
@@ -75,7 +73,7 @@ namespace user
 //         uStyle |= SBARS_SIZEGRIP;
 //#endif
 //
-//      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rectangle_i32, puiParent, strId);
+//      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rectangle, puiParent, strId);
 //      return ::user::interaction::create_window("msctls_statusbar32",nullptr,uStyle,puiParent,strId);
 //
 //   }
@@ -96,17 +94,17 @@ namespace user
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(pIDArray == nullptr ||
 
-      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
+      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
 
       ASSERT(is_window());
 
       // first allocate array for panes and copy initial data
       //   if (!AllocElements(nIDCount, sizeof(__STATUSPANE)))
-      //      return FALSE;
+      //      return false;
       //   ASSERT(nIDCount == m_panea.get_count());
 
       // copy initial data from indicator array
-      bool bResult = TRUE;
+      bool bResult = true;
       //if (pIDArray != nullptr)
 
       //{
@@ -129,14 +127,14 @@ namespace user
                         {
                            TRACE(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                               pSBP->strId);
-                           bResult = FALSE;
+                           bResult = false;
                            break;
                         } */
             pSBP->cxText = (i32) (spgraphicsScreen->GetTextExtent(pSBP->strText).cx);
             ASSERT(pSBP->cxText >= 0);
-            if (!SetPaneText(i, pSBP->strText, FALSE))
+            if (!SetPaneText(i, pSBP->strText, false))
             {
-               bResult = FALSE;
+               bResult = false;
                break;
             }
          }
@@ -144,20 +142,20 @@ namespace user
          {
             // no indicator (must access via index)
             // default to 1/4 the screen width (first pane is stretchy)
-#ifdef WINDOWS_DESKTOP
-            pSBP->cxText = ::GetSystemMetrics(SM_CXSCREEN)/4;
-            if (i == 0)
-               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
-#else
-            __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//            pSBP->cxText = ::GetSystemMetrics(SM_CXSCREEN)/4;
+//            if (i == 0)
+//               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
+//#else
+//            __throw(todo());
+//#endif
          }
          ++pSBP;
       }
 //         if (hOldFont != nullptr)
       //          spgraphicsScreen->set(hOldFont);
       //}
-      UpdateAllPanes(TRUE, TRUE);
+      UpdateAllPanes(true, true);
 
       return bResult;
    }
@@ -177,7 +175,7 @@ namespace user
 
       // allocate new elements
       //if (!::user::control_bar::AllocElements(nElements, cbElement))
-      //   return FALSE;
+      //   return false;
 
       // construct new elements
       pSBP = _GetPanePtr(0);
@@ -189,7 +187,7 @@ namespace user
    #pragma pop_macro("new")
          ++pSBP;
       }*/
-   /*   return TRUE;
+   /*   return true;
    }
    */
 
@@ -237,7 +235,7 @@ namespace user
 //         ::rectangle_i32 rectangle;
 //         get_window_rect(rectangle);
 //         rectangle.offset(-rectangle.left, -rectangle.top);
-//         CalcInsideRect(rectangle, TRUE);
+//         CalcInsideRect(rectangle, true);
 //         i32 rgBorders[3];
 //
 //         default_window_procedure(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
@@ -365,7 +363,7 @@ namespace user
 //         {
 //            // ... we need to re-on_layout the panes
 //            pSBP->nStyle = nStyle;
-//            UpdateAllPanes(TRUE, FALSE);
+//            UpdateAllPanes(true, false);
 //         }
 //
 //         // use SetPaneText, since it updates the style and text
@@ -390,13 +388,13 @@ namespace user
    {
       ASSERT_VALID(this);
 
-      bool bChanged = FALSE;
+      bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       pSBP->m_id = id;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
-            bChanged = TRUE;
+            bChanged = true;
          else
          {
             pSBP->nStyle = nStyle;
@@ -409,10 +407,10 @@ namespace user
       {
          // change width of one pane -> invalidate the entire status bar
          pSBP->cxText = cxWidth;
-         bChanged = TRUE;
+         bChanged = true;
       }
       if (bChanged)
-         UpdateAllPanes(TRUE, FALSE);
+         UpdateAllPanes(true, false);
    }
 
    void status_bar::GetPaneText(i32 nIndex, string & s)
@@ -446,7 +444,7 @@ namespace user
 
       {
          // nothing to change
-         return TRUE;
+         return true;
       }
 
       try
@@ -461,7 +459,7 @@ namespace user
       catch(::exception::exception *)
       {
          // Note: DELETE_EXCEPTION(e) not required
-         return FALSE;
+         return false;
       }
 
 
@@ -469,7 +467,7 @@ namespace user
       {
          // can't update now, wait until later
          pSBP->nFlags |= SBPF_UPDATE;
-         return TRUE;
+         return true;
       }
 
       pSBP->nFlags &= ~SBPF_UPDATE;
@@ -479,7 +477,7 @@ namespace user
 //                    (LPARAM)(const char *)pSBP->strText);
 //#endif
 //
-      return TRUE;
+      return true;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -508,7 +506,7 @@ namespace user
       // get border information
       ::rectangle_i32 rectangle;
 
-      CalcInsideRect(pgraphics, rectangle_i32, bHorz);
+      CalcInsideRect(pgraphics, rectangle, bHorz);
       ::size_i32 size;
       size.cx =0;
       size.cy =0;
@@ -560,7 +558,7 @@ namespace user
 //
 //      ::rectangle_i32 rectangle;
 //
-//      ::user::control_bar::CalcInsideRect(rectangle, TRUE);
+//      ::user::control_bar::CalcInsideRect(rectangle, true);
 //      ASSERT(rectangle.top >= 2);
 //
 //      // adjust non-client area for border space
@@ -581,7 +579,7 @@ namespace user
 //      {
 //
 //         // recalc non-client area when border styles change
-//         set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+//         set_window_position(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
 //
 //      }
 
@@ -594,31 +592,31 @@ namespace user
 
    // Derived class is responsible for implementing all of these handlers
    //  for owner/self draw controls.
-#ifdef WINDOWS_DESKTOP
-   void status_bar::DrawItem(LPDRAWITEMSTRUCT)
+//#ifdef WINDOWS_DESKTOP
+//   void status_bar::DrawItem(LPDRAWITEMSTRUCT)
+//   {
+//      ASSERT(false);
+//   }
+//#endif
+
+
+   bool status_bar::OnChildNotify(::message::message * pmessage)
    {
-      ASSERT(FALSE);
-   }
-#endif
-
-
-   bool status_bar::OnChildNotify(::message::base * pbase)
-   {
 
 
 
-#ifdef WINDOWS_DESKTOP
-
-      if (pbase->m_id != WM_DRAWITEM)
-      {
-
-         return ::user::interaction::OnChildNotify(pbase);
-
-      }
-
-      DrawItem(pbase->m_lparam.cast < DRAWITEMSTRUCT >());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pmessage->m_id != WM_DRAWITEM)
+//      {
+//
+//         return ::user::interaction::OnChildNotify(pmessage);
+//
+//      }
+//
+//      DrawItem(pmessage->m_lparam.cast < DRAWITEMSTRUCT >());
+//
+//#endif
 
       return true;
 
@@ -627,7 +625,7 @@ namespace user
 
    /*void status_bar::OnPaint()
    {
-      UpdateAllPanes(FALSE, TRUE);
+      UpdateAllPanes(false, true);
 
       default_window_procedure();
    }
@@ -638,7 +636,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pgraphics);
 
-      UpdateAllPanes(FALSE, TRUE);
+      UpdateAllPanes(false, true);
 
       //default_window_procedure();
 
@@ -653,7 +651,7 @@ namespace user
       pmessage->previous();
 
       // need to adjust pane right edges (because of stretchy pane)
-      UpdateAllPanes(TRUE, FALSE);
+      UpdateAllPanes(true, false);
    }
 
    void status_bar::_001OnWindowPosChanging(::message::message * pmessage)
@@ -671,49 +669,48 @@ namespace user
 #endif
    }
 
+
    void status_bar::_001OnSetText(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+
       ASSERT_VALID(this);
       ASSERT(is_window());
 
       i32 nIndex = CommandToIndex(nullptr);
       if (nIndex < 0)
       {
-         pbase->m_lresult = -1;
-         pbase->m_bRet = true;
+         pmessage->m_lresult = -1;
+         pmessage->m_bRet = true;
          return;
       }
-      pbase->m_lresult = SetPaneText(nIndex, (const char *)pbase->m_lparam.m_lparam) ? 0 : -1;
-      pbase->m_bRet = true;
+      pmessage->m_lresult = SetPaneText(nIndex, (const char *)pmessage->m_lparam.m_lparam) ? 0 : -1;
+      pmessage->m_bRet = true;
    }
 
 
    void status_bar::_001OnGetText(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
-
       ASSERT_VALID(this);
 
       ASSERT(is_window());
 
-      index nMaxLen = (index) pbase->m_wparam;
+      index nMaxLen = (index) pmessage->m_wparam;
 
       if (nMaxLen == 0)
       {
 
          // nothing copied
 
-         pbase->m_lresult = 0;
+         pmessage->m_lresult = 0;
 
-         pbase->m_bRet = true;
+         pmessage->m_bRet = true;
 
          return;
 
       }
 
-      char * pszDest = (char *) pbase->m_lparam.m_lparam;
+      char * pszDest = (char *) pmessage->m_lparam.m_lparam;
 
       index nLen = 0;
 
@@ -739,18 +736,18 @@ namespace user
 
       pszDest[nLen] = '\0';
 
-      pbase->m_lresult = (nLen + 1);      // number of bytes copied
+      pmessage->m_lresult = (nLen + 1);      // number of bytes copied
 
-      pbase->m_bRet = true;
+      pmessage->m_bRet = true;
 
    }
 
 
    void status_bar::_001OnGetTextLength(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
+
       ASSERT(is_window());
 
       index nLen = 0;
@@ -766,9 +763,9 @@ namespace user
 
       }
 
-      pbase->m_lresult = nLen;
+      pmessage->m_lresult = nLen;
 
-      pbase->m_bRet = true;
+      pmessage->m_bRet = true;
 
    }
 
@@ -776,13 +773,13 @@ namespace user
    void status_bar::_001OnSetMinHeight(::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::message::message) pmessage(pmessage);
 
       //LRESULT lResult = default_window_procedure();
 
-      //m_nMinHeight = (i32)pbase->m_wparam;
+      //m_nMinHeight = (i32)pmessage->m_wparam;
 
-      //pbase->set_lresult(lResult);
+      //pmessage->set_lresult(lResult);
 
    }
 
@@ -791,7 +788,7 @@ namespace user
    // status_bar idle update through status_command class
 
    class status_command :
-      virtual public ::user::command,
+      virtual public ::message::command,
       virtual public ::user::check,
       virtual public ::user::text
    {
@@ -811,7 +808,7 @@ namespace user
 
 
    status_command::status_command(::layered * pobjectContext) :
-      ::user::command(pobjectContext)
+      ::message::command(pobjectContext)
    {
 
    }
@@ -819,7 +816,7 @@ namespace user
 
    void status_command::enable(bool bOn)
    {
-      m_bEnableChanged = TRUE;
+      m_bEnableChanged = true;
       __pointer(status_bar) pStatusBar = m_puiOther;
       ASSERT(pStatusBar != nullptr);
       ASSERT_KINDOF(status_bar, pStatusBar);
@@ -844,12 +841,13 @@ namespace user
 
       ASSERT(m_iIndex < m_iCount);
 
-      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
+      //::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
+      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32)m_iIndex);
 
       if (echeck != ::check_unchecked)
       {
 
-         nNewStyle |= SBPS_POPOUT;
+         //nNewStyle |= SBPS_POPOUT;
 
       }
 
@@ -882,7 +880,7 @@ namespace user
    void status_command::delete_this()
    {
 
-      ::user::command::delete_this();
+      ::message::command::delete_this();
 
    }
 

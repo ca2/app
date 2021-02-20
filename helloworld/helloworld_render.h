@@ -71,7 +71,7 @@ namespace helloworld
       //bool                             m_bVoidTransfer;
       //bool                             m_bFirstDone;
 
-      //::draw2d::font_pointer                m_font;
+      //::write_text::font_pointer                m_font;
 
       //double                           m_dMinRadius;
       //double                           m_dMaxRadius;
@@ -115,7 +115,7 @@ namespace helloworld
 
       virtual string get_helloaura() override;
 
-      // { sync_lock slText(m_pmutexText);  string str(m_strHelloWorld.c_str()); return str; }
+      // { synchronization_lock slText(m_pmutexText);  string str(m_strHelloWorld.c_str()); return str; }
 
 
       virtual i32 run();

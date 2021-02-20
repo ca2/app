@@ -42,7 +42,7 @@ OUT PULONG ReturnLength OPTIONAL
    if(!QueryProcInfo)
    {
       SHOW_ERR_DLG(_T("Can't find NtQueryInformationProcess in ntdll.dll"));
-      return FALSE;
+      return false;
    }
 
    NTSTATUS ntStat =  QueryProcInfo(ProcessHandle,
@@ -90,7 +90,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       if(!HasReadAccess(hProcess,pRTLUserInfo,nReadbleSize))
       {
          SHOW_ERR_DLG(_T("Error Reading Process Memory"));
-         return FALSE;
+         return false;
       }
 
       // Get the first 0x64 bytes of RTL_USER_PROCESS_PARAMETERS strcuture
@@ -101,7 +101,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       if(!nReturnNumBytes)
       {
          SHOW_ERR_DLG(_T("Error Reading Process Memory"));
-         return FALSE;
+         return false;
       }
 
       // Get the value at offset 0x48 to get the pointer to environment string block
@@ -110,7 +110,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       if(!HasReadAccess(hProcess,pAddrEnvStrBlock,nReadbleSize))
       {
          SHOW_ERR_DLG(_T("Error Reading Process Memory"));
-         return FALSE;
+         return false;
       }
 
       // Allocate buffer for to copy the block
@@ -128,7 +128,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
          // Set the values in the return pointer
          stEnvData.pData = (const widechar *)pchBuffEnvString;
          stEnvData.nSize = (int) nReturnNumBytes;
-         return TRUE;
+         return true;
       }
       else
       {
@@ -140,7 +140,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       SAFE_ARRAY_CLEANUP(pchBuffEnvString);
    }
 
-   return FALSE;
+   return false;
 }
 
 
@@ -158,17 +158,17 @@ BOOL CProcessEnvReader::HasReadAccess(HANDLE hProcess,
             PAGE_EXECUTE == memInfo.Protect)
       {
          nSize = 0;
-         return FALSE;
+         return false;
       }
 
       nSize = (int) memInfo.RegionSize;
-      return TRUE;
+      return true;
    }
    __except(SHOW_ERR_DLG(_T("Failed to close Handle")))
    {
 
    }
-   return FALSE;
+   return false;
 }
 
 
@@ -178,7 +178,7 @@ BOOL CProcessEnvReader::HasReadAccess(HANDLE hProcess,
 HANDLE CProcessEnvReader::OpenProcessToRead(::u32 dwPID)
 {
    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |
-                                 PROCESS_VM_READ,FALSE,dwPID);
+                                 PROCESS_VM_READ,false,dwPID);
    return hProcess;
 }
 
@@ -366,7 +366,7 @@ void CProcessEnvReader::SeparateVariablesAndValues(const string_array& EnvStrArr
 //   if(DEST_FILE == Dest) // Copy to file
 //   {
 //      static TCHAR szFilter[] = _T("Text File(*.txt)|*.txt||");
-//      CFileDialog fileDlg(FALSE,_T("*.txt"),nullptr,nullptr,szFilter,nullptr);
+//      CFileDialog fileDlg(false,_T("*.txt"),nullptr,nullptr,szFilter,nullptr);
 //      if(e_dialog_result_ok == fileDlg.DoModal())
 //      {
 //         string csFilePath = fileDlg.GetPathName();

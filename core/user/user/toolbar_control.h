@@ -36,10 +36,10 @@ namespace user
       bool IsButtonIndeterminate(i32 nID);
       bool set_state(i32 nID, ::u32 nState);
       i32 GetState(i32 nID);
-#ifdef WINDOWS_DESKTOP
-      bool GetButton(i32 nIndex, LPTBBUTTON pButton);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      bool GetButton(i32 nIndex, LPTBBUTTON pButton);
+//
+//#endif
       i32 GetButtonCount();
       bool GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle);
 
@@ -77,25 +77,25 @@ namespace user
       void SetStyle(u32 dwStyle);
 
 
-#ifdef WINDOWS_DESKTOP
-      bool GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
-      bool SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      bool GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
+//      bool SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi);
+//#endif
 
 
       u32 SetDrawTextFlags(u32 dwMask, u32 dwDTFlags);
       bool GetAnchorHighlight();
-      bool SetAnchorHighlight(bool fAnchor = TRUE);
+      bool SetAnchorHighlight(bool fAnchor = true);
       i32 GetHotItem();
       i32 SetHotItem(i32 nHot);
-#ifdef WINDOWS_DESKTOP
-      void GetInsertMark(TBINSERTMARK* ptbim);
-      void SetInsertMark(TBINSERTMARK* ptbim);
-#endif
-      bool GetMaxSize(LPSIZE32 pSize);
-#ifdef WINDOWS_DESKTOP
-      bool InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      void GetInsertMark(TBINSERTMARK* ptbim);
+//      void SetInsertMark(TBINSERTMARK* ptbim);
+//#endif
+      bool GetMaxSize(SIZE_I32 * pSize);
+//#ifdef WINDOWS_DESKTOP
+//      bool InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim);
+//#endif
       u32 GetExtendedStyle();
       u32 SetExtendedStyle(u32 dwExStyle);
       color32_t GetInsertMarkColor();
@@ -103,38 +103,38 @@ namespace user
 
    // Operations
    public:
-      bool EnableButton(i32 nID, bool bEnable = TRUE);
-      bool CheckButton(i32 nID, bool bCheck = TRUE);
-      bool PressButton(i32 nID, bool bPress = TRUE);
-      bool HideButton(i32 nID, bool bHide = TRUE);
-      bool Indeterminate(i32 nID, bool bIndeterminate = TRUE);
-      i32 AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap);
+      bool EnableButton(i32 nID, bool bEnable = true);
+      bool CheckButton(i32 nID, bool bCheck = true);
+      bool PressButton(i32 nID, bool bPress = true);
+      bool HideButton(i32 nID, bool bHide = true);
+      bool Indeterminate(i32 nID, bool bIndeterminate = true);
+      //i32 AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap);
 
 
-#ifdef WINDOWS_DESKTOP
-
-      bool AddButtons(i32 nNumButtons, LPTBBUTTON pButtons);
-
-      bool InsertButton(i32 nIndex, LPTBBUTTON pButton);
-
-#endif
-
+//#ifdef WINDOWS_DESKTOP
+//
+//      bool AddButtons(i32 nNumButtons, LPTBBUTTON pButtons);
+//
+//      bool InsertButton(i32 nIndex, LPTBBUTTON pButton);
+//
+//#endif
+//
 
       bool DeleteButton(i32 nIndex);
       ::u32 CommandToIndex(::u32 nID);
 
 
-#ifdef WINDOWS_DESKTOP
-
-      void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
-      void RestoreState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
-      void LoadImages(i32 iBitmapID, HINSTANCE hinst);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
+//      void RestoreState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
+//      void LoadImages(i32 iBitmapID, HINSTANCE hinst);
+//
+//#endif
 
 
       bool MapAccelerator(char chAccel, ::u32* pIDBtn);
-      bool MarkButton(i32 nID, bool fHighlight = TRUE);
+      bool MarkButton(i32 nID, bool fHighlight = true);
       bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
       i32 hit_test(POINT_I32 * ppt);
 

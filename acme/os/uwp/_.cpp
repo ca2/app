@@ -16,7 +16,7 @@ bool __node_acme_pre_init()
 
    //g_gdiplusHookToken         = NULL;
 
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
    //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
@@ -45,7 +45,7 @@ bool __node_acme_pre_init()
 //    try
 //    {
 
-//       FreeImage_Initialise(FALSE);
+//       FreeImage_Initialise(false);
 
 //    }
 //    catch (...)

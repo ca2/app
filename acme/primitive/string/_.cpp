@@ -32,7 +32,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const char * pcszType
 
       ::u32 * pnRes = (::u32 *)::LockResource(hres);
 
-      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : min(iReadAtMostByteCount, (strsize) dwResSize);
+      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (strsize) dwResSize);
 
       psz = str.get_string_buffer(iReadAtMostByteCount);
 

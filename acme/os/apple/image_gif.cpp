@@ -166,9 +166,9 @@
 //
 //            p->m_bLocalPalette = false;
 //
-//            pframea->m_size.cx = max(w, pframea->m_size.cx);
+//            pframea->m_size.cx = maximum(w, pframea->m_size.cx);
 //
-//            pframea->m_size.cy = max(h, pframea->m_size.cy);
+//            pframea->m_size.cy = maximum(h, pframea->m_size.cy);
 //
 //            pframea->add(p);
 //
@@ -176,7 +176,7 @@
 //            // Note: It's not in (1/100) of a second like still falsely described in the documentation as per iOS 8 (rdar://19507384) but in seconds stored as `kCFNumberFloat32Type`.
 //            // Frame properties example:
 //            // {
-//            //     ColorModel = RGB;
+//            //     ColorModel = rgb;
 //            //     Depth = 8;
 //            //     PixelHeight = 960;
 //            //     PixelWidth = 640;

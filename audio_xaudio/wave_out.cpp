@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/message.h"
 
 
@@ -53,7 +53,7 @@ namespace multimedia
       ::e_status     out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_pxaudio.is_set() && m_pvoice != nullptr && m_psourcevoice != nullptr && m_estate != e_state_initial)
             return ::success;
@@ -104,7 +104,7 @@ namespace multimedia
          m_pwaveformat->m_waveformat.nBlockAlign = m_pwaveformat->m_waveformat.wBitsPerSample  * uiChannelCount / 8;
          m_pwaveformat->m_waveformat.nAvgBytesPerSec = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
          //m_pwaveformat->cbSize = 0;
-         __pointer(::wave::wave) audiowave = Audio.audiowave();
+         __pointer(::wave::wave) audiowave = Au(get_context()).audiowave();
 
          //if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
          if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),0,1.0f,this)))
@@ -151,7 +151,7 @@ namespace multimedia
 
          auto uiBufferSize = iBufferSampleCount * m_pwaveformat->m_waveformat.nChannels * 2;
 
-         uiBufferSize = max(uiBufferSize,2048);
+         uiBufferSize = maximum(uiBufferSize,2048);
 
          ASSERT((uiBufferSize % 2048) == 0);// Streaming size_i32 must be 2K aligned to use for async I/O
 
@@ -176,7 +176,7 @@ namespace multimedia
       ::e_status     out::out_close()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate == e_state_playing)
          {
@@ -277,7 +277,7 @@ namespace multimedia
       void out::out_filled(index iBuffer)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          if(out_get_state() != e_state_playing)
          {
@@ -303,7 +303,7 @@ namespace multimedia
          b.pAudioData = (const byte *)pbuffer->m_pData;
          b.Flags = m_bEOS ? XAUDIO2_END_OF_STREAM : 0;
 
-         //single_lock sLock(mutex(),TRUE);
+         //single_lock sLock(mutex(),true);
 
 #if 0
 
@@ -346,7 +346,7 @@ namespace multimedia
       ::e_status     out::out_stop()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate != e_state_playing && m_estate != e_state_paused)
             return error_failed;
@@ -377,7 +377,7 @@ namespace multimedia
       ::e_status     out::out_pause()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_playing);
 
@@ -407,7 +407,7 @@ namespace multimedia
       ::e_status     out::out_start(const imedia_time & position)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //if(m_estate == e_state_playing)
          //   return ::success;
@@ -446,7 +446,7 @@ namespace multimedia
       ::e_status     out::out_restart()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_paused);
 
@@ -477,7 +477,7 @@ namespace multimedia
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
 //         ::e_status                    estatus;
 
@@ -491,7 +491,7 @@ namespace multimedia
             i64 i = s.SamplesPlayed;
             i *= 1000;
             i /= m_pwaveformat->m_waveformat.nSamplesPerSec;
-            return i;
+            return (double) i;
 
          }
          else
@@ -512,7 +512,7 @@ namespace multimedia
 //      imedia_time out::out_get_time()
 //      {
 //
-//         single_lock sLock(mutex(), TRUE);
+//         single_lock sLock(mutex(), true);
 //
 ////         ::e_status                    estatus;
 //

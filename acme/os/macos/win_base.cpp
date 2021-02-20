@@ -16,7 +16,7 @@ char * pBuffer
 
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
-      ansi_count_copy(pBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+      ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
       return (::u32) strlen(ptmpdir);
    }
@@ -25,12 +25,12 @@ char * pBuffer
 
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
-      ansi_count_copy(pBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+      ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
       return (::u32) strlen(ptmpdir);
    }
 
-   ansi_count_copy(pBuffer, "/tmp", min(nBufferLength, 5));
+   ansi_count_copy(pBuffer, "/tmp", minimum(nBufferLength, 5));
 
    return 5;
 

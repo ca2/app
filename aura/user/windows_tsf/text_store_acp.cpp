@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "aura/operating_system.h"
 #include "aura/user/_user.h"
-#endif
 #include "edit_window.h"
 #include "DataObj.h"
 #include "Globals.h"
@@ -434,7 +433,7 @@ namespace tsf
            lEnd = m_acpStart;
        }
 
-       m_fNotify = FALSE;
+       m_fNotify = false;
     
        //::SendMessage(m_hwndEdit, EM_SETSEL, lStart, lEnd);
 
@@ -640,7 +639,7 @@ namespace tsf
        tsa.acpStart = acpStart;
        tsa.acpEnd = acpEnd;
        tsa.style.ase = TS_AE_START;
-       tsa.style.fInterimChar = FALSE;
+       tsa.style.fInterimChar = false;
 
        hr = SetSelection(1, &tsa);
 
@@ -763,7 +762,7 @@ namespace tsf
        OutputDebugString(TEXT("edit_window::QueryInsertEmbedded \n"));
 
        //this implementation doesn't support embedded objects
-       *pfInsertable = FALSE;
+       *pfInsertable = false;
 
        return S_OK;
    }
@@ -1051,7 +1050,7 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       *pfClipped = FALSE;
+       *pfClipped = false;
        ZeroMemory(prc, sizeof(RECTANGLE_I32));
 
        if(EDIT_VIEW_COOKIE != vcView)
@@ -1312,7 +1311,7 @@ namespace tsf
        //pwszCopy[cch] = 0;
 
        //don't notify TSF of text and selection changes when in response to a TSF action
-       m_fNotify = FALSE;
+       m_fNotify = false;
     
        //insert the text
        //::SendMessage(m_hwndEdit, EM_REPLACESEL, true, (lparam)pwszCopy);

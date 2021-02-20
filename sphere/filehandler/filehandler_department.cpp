@@ -54,7 +54,7 @@ namespace filehandler
       m_ptemplateMenu = pdoctemplate;
 
 
-      return TRUE;
+      return true;
    }
 
 

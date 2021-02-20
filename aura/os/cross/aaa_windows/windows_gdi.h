@@ -135,7 +135,7 @@ typedef struct tagBITMAP
 
 
 /* ICM Color Definitions */
-// The following two structures are used for defining RGB's in terms of CIEXYZ.
+// The following two structures are used for defining rgb's in terms of CIEXYZ.
 
 typedef struct tagCIEXYZ
 {
@@ -447,7 +447,7 @@ typedef LPEXTLOGPEN HPEN;
 #define AD_COUNTERCLOCKWISE 1
 #define AD_CLOCKWISE        2
 
-#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+#define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
 #define GetRValue(rgb)      (LOBYTE(rgb))
 #define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
@@ -714,9 +714,9 @@ int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdc
 
 
 
-int_bool get_client_rect(oswindow hwnd,LPRECT32 lprect);
+int_bool get_client_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
 
-int_bool get_window_rect(oswindow hwnd,LPRECT32 lprect);
+int_bool get_window_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
 
 i32 FillRect(HDC hDC,const RECT32 *lprc,HBRUSH hbr);
 
@@ -762,8 +762,8 @@ typedef struct tagENHMETAHEADER
    // This is 0 if no pixel format is set
    ::u32   offPixelFormat;     // Offset to PIXELFORMATDESCRIPTOR
    // This is 0 if no pixel format is set
-   ::u32   bOpenGL;            // TRUE if OpenGL commands are present in
-   // the metafile, otherwise FALSE
+   ::u32   bOpenGL;            // true if OpenGL commands are present in
+   // the metafile, otherwise false
 #endif /* WINVER >= 0x0400 */
 #if(WINVER >= 0x0500)
    SIZEL   szlMicrometers;     // Size of the context_object device in micrometers

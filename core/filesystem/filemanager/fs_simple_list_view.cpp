@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aqua/xml.h"
 
 
@@ -81,7 +79,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemId;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
                */
                pcolumn->m_iWidth = 170;
@@ -89,7 +87,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemTitle;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
 
 
@@ -191,7 +189,7 @@ namespace filemanager
                pitem->m_strText.Empty();
                break;
             default:
-               //ASSERT(FALSE);
+               //ASSERT(false);
                pitem->m_strText.Empty();
                break;
             }
@@ -328,7 +326,7 @@ namespace filemanager
             strSql += ";";
 
 
-            /*            critical_section_lock sl(get_document()->m_pcsAlbum1);
+            /*            critical_section_lock synchronizationlock(get_document()->m_pcsAlbum1);
                         get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate(this);
@@ -342,7 +340,7 @@ namespace filemanager
 
             UNREFERENCED_PARAMETER(wstrFile);
             UNREFERENCED_PARAMETER(uiTimer);
-            ASSERT(FALSE);
+            ASSERT(false);
 
          }
 
@@ -352,7 +350,7 @@ namespace filemanager
 
             //UNREFERENCED_PARAMETER(pParameter);
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
             /*FillTask * pobjectTask = (FillTask *) pParameter;
 
@@ -425,7 +423,7 @@ namespace filemanager
 
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             while(true)
@@ -480,7 +478,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = get_document();
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
-            i32 iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+            i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
             i32 iFind = 0;
@@ -497,7 +495,7 @@ namespace filemanager
             }
             else
             {
-            ASSERT(FALSE);
+            ASSERT(false);
             }
 
             }
@@ -517,7 +515,7 @@ namespace filemanager
             }
             else
             {
-            ASSERT(FALSE);
+            ASSERT(false);
             }
             }
             else
@@ -569,9 +567,9 @@ namespace filemanager
 
          void list_view::_001OnFillTaskResponse(::message::message * pmessage)
          {
-            __pointer(::message::base) pbase(pmessage);
+            __pointer(::user::message) pusermessage(pmessage);
             m_bKickActive = true;
-            if(pbase->m_wparam == 0)
+            if(pusermessage->m_wparam == 0)
             {
 
                m_cache._001Invalidate(this);
@@ -593,17 +591,17 @@ namespace filemanager
                }
 
             }
-            else if(pbase->m_wparam == 1)
+            else if(pusermessage->m_wparam == 1)
             {
 
                m_cache._001Invalidate(this);
                set_need_redraw();
             }
-            else if(pbase->m_wparam == 2)
+            else if(pusermessage->m_wparam == 2)
             {
                _001OnUpdateItemCount();
             }
-            else if(pbase->m_wparam == 3)
+            else if(pusermessage->m_wparam == 3)
             {
                m_cache._001Invalidate(this);
             }
@@ -720,7 +718,7 @@ namespace filemanager
                               else
                               {
                                  // unknown item type
-                                 ASSERT(FALSE);
+                                 ASSERT(false);
                               }
 
                               switch(item.m_etype)
@@ -796,7 +794,7 @@ namespace filemanager
          {
             __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
             perasebkgnd->m_bRet = true;
-            perasebkgnd->set_result(TRUE);
+            perasebkgnd->set_result(true);
          }
 
          ::count list_view::_001GetItemCount()

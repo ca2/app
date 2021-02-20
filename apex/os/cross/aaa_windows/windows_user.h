@@ -471,7 +471,7 @@ const widechar * lpString);
 
 
 /*
-* set_window_pos Flags
+* set_window_position Flags
 */
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002
@@ -1124,7 +1124,7 @@ oswindow hWnd);
 //
 ////#ifndef _UWP
 ////
-////#define zorder_top -1
+////#define e_zorder_top -1
 ////#define ZORDER_BOTTOM -2
 ////#define ZORDER_TOPMOST -3
 ////#define ZORDER_NOTOPMOST -4sss
@@ -2748,18 +2748,18 @@ oswindow hWnd);
 //
 //
 //
-//CLASS_DECL_APEX int_bool CopyRect(LPRECT32 prectDest, LPCRECT32 pcrectSrc);
+//CLASS_DECL_APEX int_bool CopyRect(RECTANGLE_I32 * prectDest, LPCRECT32 pcrectSrc);
 //CLASS_DECL_APEX int_bool PtInRect(LPCRECT32 prect, POINT32 point);
-//CLASS_DECL_APEX int_bool SetRect(LPRECT32 prect, i32 x1, i32 y1, i32 x2, i32 y2);
-//CLASS_DECL_APEX int_bool SetRectEmpty(LPRECT32 prect);
+//CLASS_DECL_APEX int_bool SetRect(RECTANGLE_I32 * prect, i32 x1, i32 y1, i32 x2, i32 y2);
+//CLASS_DECL_APEX int_bool SetRectEmpty(RECTANGLE_I32 * prect);
 //CLASS_DECL_APEX int_bool EqualRect(LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_APEX int_bool InflateRect(LPRECT32 prect, i32 x, i32 y);
-//CLASS_DECL_APEX int_bool OffsetRect(LPRECT32 prect, i32 x, i32 y);
-//CLASS_DECL_APEX int_bool IntersectRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-////CLASS_DECL_APEX int_bool x_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-////CLASS_DECL_APEX int_bool y_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_APEX int_bool UnionRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_APEX int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool InflateRect(RECTANGLE_I32 * prect, i32 x, i32 y);
+//CLASS_DECL_APEX int_bool OffsetRect(RECTANGLE_I32 * prect, i32 x, i32 y);
+//CLASS_DECL_APEX int_bool IntersectRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+////CLASS_DECL_APEX int_bool x_intersect_rect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+////CLASS_DECL_APEX int_bool y_intersect_rect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool UnionRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
+//CLASS_DECL_APEX int_bool SubtractRect(RECTANGLE_I32 * prect, LPCRECT32 prect1, LPCRECT32 prect2);
 //
 ////typedef struct oswindow_data *   oswindow;
 //

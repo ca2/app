@@ -1,14 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "core/user/rich_text/_rich_text.h"
-//#include "format_tool.h"
 
 
-#ifdef WINDOWS_DESKTOP
-#include <Commdlg.h>
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#include <Commdlg.h>
+//#endif
 
 
 
@@ -111,15 +108,15 @@ namespace user
 
       m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
-      //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
-      //m_pcomboFamily->create_color(::user::color_text, ARGB(255, 80, 80, 80));
-      //m_pcomboFamily->create_color(::user::color_background, ARGB(255, 255, 255, 255));
+      //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
+      //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
+      //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
 
       m_pcomboSize->create_control(this, "combo_size");
       //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
-      //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
-      //m_pcomboSize->create_color(::user::color_text, ARGB(255, 80, 80, 80));
-      //m_pcomboSize->create_color(::user::color_background, ARGB(255, 255, 255, 255));
+      //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
+      //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
+      //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
       //::rectangle_f64 r(2, 2, 2, 2);
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 
@@ -188,10 +185,10 @@ namespace user
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      //create_color(::user::color_background, ARGB(255, 200, 200, 200));
-      //create_color(::user::color_button_background, ARGB(0, 0, 0, 0));
-      //create_color(::user::color_button_background_hover, ARGB(255, 180, 180, 180));
-      //create_color(::user::color_button_background_press, ARGB(255, 160, 160, 160));
+      //create_color(::user::color_background, argb(255, 200, 200, 200));
+      //create_color(::user::color_button_background, argb(0, 0, 0, 0));
+      //create_color(::user::color_button_background_hover, argb(255, 180, 180, 180));
+      //create_color(::user::color_button_background_press, argb(255, 160, 160, 160));
 
    }
 
@@ -206,9 +203,9 @@ namespace user
       get_client_rect(rectClient);
 
       brBk->CreateLinearGradientBrush(rectClient.top_left(), rectClient.bottom_left(),
-                                      ARGB(255, 230, 230, 230), ARGB(255, 200, 200, 200));
+                                      argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rect(rectClient, brBk);
+      pgraphics->fill_rectangle(rectClient, brBk);
 
    }
 
@@ -433,35 +430,6 @@ namespace user
                fork([&]()
                {
 
-#ifdef WINDOWS_DESKTOP
-                  CHOOSECOLOR cc;
-                  color32_t crCustColors[16];
-
-                  // init-int this array did not affect the mouse problem
-                  // ::u32 idx ;
-                  // for (idx=0; idx<16; idx++) {
-                  // crCustColors[idx] = RGB(idx, idx, idx) ;
-                  // }
-
-                  ZeroMemory(&cc, sizeof(cc));
-                  cc.lStructSize = sizeof(CHOOSECOLOR);
-                  cc.rgbResult = RGB(0, 0, 0);
-                  cc.lpCustColors = (COLORREF *) crCustColors;
-
-                  cc.Flags = CC_RGBINIT | CC_FULLOPEN;
-                  cc.hwndOwner = get_safe_handle() ; // this hangs parent, as well as me
-
-                  if (::ChooseColor(&cc))
-                  {
-
-                     m_eattribute |= ::user::rich_text::attribute_foreground;
-
-                     m_formata[0]->m_colorForeground = cc.rgbResult | (255 << 24);
-
-                     update_data(true);
-
-                  }
-#endif
                });
 
             }
@@ -541,7 +509,7 @@ namespace user
    void format_tool::set_font_size(double dFontSize)
    {
 
-      dFontSize = max(6.0, min(1440.0, dFontSize));
+      dFontSize = maximum(6.0, minimum(1440.0, dFontSize));
 
       double dRound = dFontSize - (double)(int)dFontSize;
 
@@ -592,14 +560,14 @@ namespace user
    bool format_tool::update_data(bool bSaveAndValidate)
    {
 
-      if (m_formata.isEmpty() || !m_formata[0])
+      if (m_formata.is_empty() || !m_formata[0])
       {
 
          return false;
 
       }
 
-      sync_lock sl(m_formata[0]->mutex());
+      synchronization_lock synchronizationlock(m_formata[0]->mutex());
 
       if (bSaveAndValidate)
       {
@@ -724,7 +692,7 @@ namespace user
 
       place(rectRequest);
 
-      order(zorder_top_most);
+      order(e_zorder_top_most);
 
       display(e_display_normal, e_activation_no_activate);
 
@@ -743,7 +711,7 @@ namespace user
 //::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
 //{
 //
-//   sync_lock sl(mutex());
+//   synchronization_lock synchronizationlock(mutex());
 //
 //   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
 //
@@ -754,7 +722,7 @@ namespace user
 //
 //      m_ptoolwindowFont = pfontformattool;
 //
-//      sl.unlock();
+//      synchronizationlock.unlock();
 //
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;

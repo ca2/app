@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/macos/oswindow_data.h"
-#include "aura/platform/mq.h"
+#include "aura/platform/message_queue.h"
 #include "aura/message.h"
 
 
@@ -110,7 +110,7 @@ namespace macos
 
    CLASS_DECL_AURA bool unhook_window_create();
 
-   void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, LPRECT32 lpRectOld, ::u32* pdwStyleOld);
+   void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, RECTANGLE_I32 * lpRectOld, ::u32* pdwStyleOld);
 
    void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECTANGLE_I32& rectOld, ::u32 dwStyleOld);
 
@@ -231,12 +231,12 @@ namespace macos
       if (hWndNew == nullptr)
       {
 
-         return FALSE;
+         return false;
 
       }
 
-      //single_lock sl(afxMutexHwnd(), TRUE);
-      //hwnd_map * pMap = afxMapHWND(TRUE); // create ::collection::map if not exist
+      //single_lock synchronizationlock(afxMutexHwnd(), true);
+      //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
       //pMap->set_permanent(set_handle(hWndNew), this);
@@ -247,7 +247,7 @@ namespace macos
 
       m_oswindow = hWndNew;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -256,7 +256,7 @@ namespace macos
       oswindow hWnd = (oswindow)get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock sl(afxMutexHwnd(), TRUE);
+         //         single_lock synchronizationlock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->remove_handle(get_handle());
@@ -388,7 +388,7 @@ namespace macos
 
          }
 
-         m_oswindow = oswindow_get(new_apex_window(this, rectangle_i32, uStyle));
+         m_oswindow = oswindow_get(new_apex_window(this, rectangle, uStyle));
 
          m_puserinteraction->layout().window() = ::top_left(rectParam);
 
@@ -473,7 +473,7 @@ namespace macos
 
       ASSERT(puiParent != nullptr);
       
-      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rectangle_i32, pcreate);
+      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rectangle, pcreate);
 
       pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
@@ -646,7 +646,7 @@ namespace macos
 //
 //      }
 //
-//      __pointer(::message::size_i32) psize(pmessage);
+//      __pointer(::message::size) psize(pmessage);
 //
 //      m_puserinteraction->window_state().m_size = psize->m_size;
 //
@@ -738,7 +738,7 @@ namespace macos
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock sl(afxMutexHwnd(), TRUE);
+       single_lock synchronizationlock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -895,7 +895,7 @@ namespace macos
 //   {
 //      /*    ASSERT(::is_window(get_handle()));
 //       lpwndpl->length = sizeof(WINDOWPLACEMENT);
-//       return ::GetWindowPlacement(get_handle(), lpwndpl) != FALSE;*/
+//       return ::GetWindowPlacement(get_handle(), lpwndpl) != false;*/
 //      return false;
 //   }
 //
@@ -903,7 +903,7 @@ namespace macos
 //   {
 //      /*      ASSERT(::is_window(get_handle()));
 //       ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
-//       return ::SetWindowPlacement(get_handle(), lpwndpl) != FALSE;*/
+//       return ::SetWindowPlacement(get_handle(), lpwndpl) != false;*/
 //      return false;
 //   }
 
@@ -947,7 +947,7 @@ namespace macos
 //   {
 //      UNREFERENCED_PARAMETER(bEnable);
 //      UNREFERENCED_PARAMETER(nFlag);
-//      return FALSE;
+//      return false;
 //   }
 //
 //
@@ -968,12 +968,12 @@ namespace macos
 //
 //       // cancel any tracking modes
 //       send_message(WM_CANCELMODE);
-//       send_message_to_descendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
+//       send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
 //
 //       // need to use top level parent (for the case where get_handle() is in DLL)
 //       ::user::interaction * pWnd = EnsureTopLevelParent();
 //       MAC_WINDOW(pWnd)->send_message(WM_CANCELMODE);
-//       MAC_WINDOW(pWnd)->send_message_to_descendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
+//       MAC_WINDOW(pWnd)->send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
 //
 //       // attempt to cancel capture
 //       oswindow hWndCapture = ::GetCapture();
@@ -1008,7 +1008,7 @@ namespace macos
 
 
 
-   void interaction_impl::route_command_message(::user::command * pcommand)
+   void interaction_impl::route_command_message(::message::command * pcommand)
    {
 
       channel::route_command_message(pcommand);
@@ -1076,29 +1076,29 @@ namespace macos
    }
 
 
-   void interaction_impl::message_handler(::message::base * pbase)
+   void interaction_impl::message_handler(::user::message * pusermessage)
    {
 
-      if (pbase->m_id == e_message_size || pbase->m_id == e_message_move)
+      if (pusermessage->m_id == e_message_size || pusermessage->m_id == e_message_move)
       {
 
          //         win_update_graqhics();
 
       }
 
-      if (pbase->m_id == e_message_key_down ||
-            pbase->m_id == e_message_key_up ||
-            pbase->m_id == e_message_char)
+      if (pusermessage->m_id == e_message_key_down ||
+            pusermessage->m_id == e_message_key_up ||
+            pusermessage->m_id == e_message_char)
       {
 
-         __pointer(::message::key) pkey(pbase);
+         __pointer(::message::key) pkey(pusermessage);
 
          psession->translate_os_key_message(pkey);
 
-         if(pkey->m_ekey != ::user::key_refer_to_text_member)
+         if(pkey->m_ekey != ::user::e_key_refer_to_text_member)
          {
             
-            if (pbase->m_id == e_message_key_down)
+            if (pusermessage->m_id == e_message_key_down)
             {
                
                try
@@ -1120,7 +1120,7 @@ namespace macos
                }
                
             }
-            else if (pbase->m_id == e_message_key_up)
+            else if (pusermessage->m_id == e_message_key_up)
             {
                
                try
@@ -1154,69 +1154,69 @@ namespace macos
          else
          {
 
-            m_puserinteraction->pre_translate_message(pbase);
+            m_puserinteraction->pre_translate_message(pusermessage);
 
-            if (pbase->m_bRet)
+            if (pusermessage->m_bRet)
                return;
 
-            pbase->m_uiMessageFlags |= 1;
+            pusermessage->m_uiMessageFlags |= 1;
 
          }
 
       }
 
-      if (pbase->m_id == e_message_timer)
+      if (pusermessage->m_id == e_message_timer)
       {
          //         get_context_application()->get_context_application()->step_timer();
       }
-      else if (pbase->m_id == e_message_left_button_down)
+      else if (pusermessage->m_id == e_message_left_button_down)
       {
          //  g_pwndLastLButtonDown = this;
       }
-      else if (pbase->m_id == e_message_size)
+      else if (pusermessage->m_id == e_message_size)
       {
          m_bUpdateGraphics = true;
       }
-         /*   else if(pbase->m_id == CA2M_BERGEDGE)
+         /*   else if(pusermessage->m_id == CA2M_BERGEDGE)
        {
-       if(pbase->m_wparam == BERGEDGE_GETAPP)
+       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
-       ::application ** ppapp= (::application **) pbase->m_lparam;
+       ::application ** ppapp= (::application **) pusermessage->m_lparam;
        *ppapp = get_context_application();
-       pbase->m_bRet = true;
+       pusermessage->m_bRet = true;
        return;
        }
        }*/
-      pbase->m_lresult = 0;
+      pusermessage->m_lresult = 0;
 
 
-      if (pbase->m_id == e_message_left_button_down ||
-            pbase->m_id == e_message_left_button_up ||
-            pbase->m_id == e_message_middle_button_down ||
-            pbase->m_id == e_message_middle_button_up ||
-            pbase->m_id == e_message_right_button_down ||
-            pbase->m_id == e_message_right_button_up ||
-            pbase->m_id == e_message_right_button_double_click ||
-            pbase->m_id == e_message_left_button_double_click ||
-            pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == e_message_mouse_wheel)
+      if (pusermessage->m_id == e_message_left_button_down ||
+            pusermessage->m_id == e_message_left_button_up ||
+            pusermessage->m_id == e_message_middle_button_down ||
+            pusermessage->m_id == e_message_middle_button_up ||
+            pusermessage->m_id == e_message_right_button_down ||
+            pusermessage->m_id == e_message_right_button_up ||
+            pusermessage->m_id == e_message_right_button_double_click ||
+            pusermessage->m_id == e_message_left_button_double_click ||
+            pusermessage->m_id == e_message_mouse_move ||
+            pusermessage->m_id == e_message_mouse_move ||
+            pusermessage->m_id == e_message_mouse_wheel)
       {
 
-         if (pbase->m_id == e_message_left_button_down)
+         if (pusermessage->m_id == e_message_left_button_down)
          {
 
             //output_debug_string("\nWM_LBUTTONDOWN");
 
          }
-         else if(pbase->m_id == e_message_mouse_move)
+         else if(pusermessage->m_id == e_message_mouse_move)
          {
             
             //output_debug_string("\nWM_MOUSEMOVE");
             
          }
 
-         ::message::mouse * pmouse = (::message::mouse *) pbase;
+         ::message::mouse * pmouse = (::message::mouse *) pusermessage;
 
 
          // user presence status activity reporting
@@ -1287,7 +1287,7 @@ namespace macos
 
          }
 
-         if (pbase->m_id == e_message_mouse_move)
+         if (pusermessage->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1303,12 +1303,12 @@ namespace macos
          return;
 
       }
-      else if (pbase->m_id == e_message_key_down ||
-               pbase->m_id == e_message_key_up ||
-               pbase->m_id == e_message_char)
+      else if (pusermessage->m_id == e_message_key_down ||
+               pusermessage->m_id == e_message_key_up ||
+               pusermessage->m_id == e_message_char)
       {
 
-         ::message::key * pkey = (::message::key *) pbase;
+         ::message::key * pkey = (::message::key *) pusermessage;
 
          ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (psession->get_keyboard_focus());
 
@@ -1320,7 +1320,7 @@ namespace macos
 
             puiFocus->send(pkey);
 
-            if (pbase->m_bRet)
+            if (pusermessage->m_bRet)
             {
 
                return;
@@ -1336,7 +1336,7 @@ namespace macos
 
                m_puserinteraction->_000OnKey(pkey);
 
-               if (pbase->m_bRet)
+               if (pusermessage->m_bRet)
                {
 
                   return;
@@ -1347,25 +1347,25 @@ namespace macos
 
          }
 
-         default_message_handler(pbase);
+         default_message_handler(pusermessage);
 
          return;
 
       }
 
-      if (pbase->m_id == e_message_event)
+      if (pusermessage->m_id == e_message_event)
       {
 
          if (m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pbase->m_lparam.m_lparam);
+            m_puserinteraction->on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
          else
          {
 
-            on_control_event((::user::control_event *) pbase->m_lparam.m_lparam);
+            on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
 
@@ -1375,16 +1375,16 @@ namespace macos
 
       //(this->*m_pfnDispatchWindowProc)(pmessage);
 
-      m_puserinteraction->route_message(pbase);
+      m_puserinteraction->route_message(pusermessage);
 
-      if (pbase->m_bRet)
+      if (pusermessage->m_bRet)
       {
 
          return;
 
       }
 
-      default_message_handler(pbase);
+      default_message_handler(pusermessage);
 
    }
 
@@ -1513,7 +1513,7 @@ namespace macos
     ASSERT(lpScrollInfo != nullptr);
 
     oswindow hWnd = get_handle();
-    return ::GetScrollInfo(hWnd, nBar, lpScrollInfo) != FALSE;
+    return ::GetScrollInfo(hWnd, nBar, lpScrollInfo) != false;
     }
     */
 
@@ -1537,7 +1537,7 @@ namespace macos
    }
 
 
-   void interaction_impl::CalcWindowRect(LPRECT32 lpClientRect, ::u32 nAdjustType)
+   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType)
    {
 
    }
@@ -1594,11 +1594,11 @@ namespace macos
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //      // walk from the target user::interaction up to the hWndStop user::interaction checking
 //      //  if any user::interaction wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+//      for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -1625,10 +1625,10 @@ namespace macos
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock sl(afxMutexHwnd(), TRUE);
+//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
 //       hwnd_map * pMap = afxMapHWND();
 //       if (pMap == nullptr)
-//       return FALSE;
+//       return false;
 //
 //       // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
 //       ::user::interaction * pWnd = dynamic_cast < ::user::interaction * > (pMap->lookup_permanent(hWndChild)); */
@@ -1636,7 +1636,7 @@ namespace macos
 //      ASSERT(pWnd == nullptr || pWnd->get_handle() == hWndChild);
 //      if (pWnd == nullptr)
 //      {
-//         return FALSE;
+//         return false;
 //      }
 //
 //      // only OLE controls and permanent windows will get reflected msgs
@@ -1644,7 +1644,7 @@ namespace macos
 //      __throw(todo());
 //      //return pWnd->SendChildNotifyLastMsg(pResult);
 //
-//      return FALSE;
+//      return false;
 //   }
 
 //   bool interaction_impl::OnChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
@@ -1674,7 +1674,7 @@ namespace macos
 //      case WM_COMPAREITEM:
 //         // reflect the message through the message ::collection::map as WM_REFLECT_BASE+uMsg
 //         //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
-//         return FALSE;
+//         return false;
 //
 //      // special case for e_message_command
 //      case e_message_command:
@@ -1685,7 +1685,7 @@ namespace macos
 //          {
 //          if (pResult != nullptr)
 //          *pResult = 1;
-//          return TRUE;
+//          return true;
 //          } */
 //      }
 //      break;
@@ -1716,7 +1716,7 @@ namespace macos
 //             // reflect the message through the message ::collection::map as OCM_CTLCOLOR
 //             bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
 //             if ((HBRUSH)*pResult == nullptr)
-//             bResult = FALSE;
+//             bResult = false;
 //             return bResult;*/
 //            return false;
 //         }
@@ -1741,7 +1741,7 @@ namespace macos
 //   {
 //      bool bHandled;
 //
-//      bHandled = FALSE;
+//      bHandled = false;
 //      if (!bHandled)
 //      {
 //         Default();
@@ -1769,7 +1769,7 @@ namespace macos
 //
 //       // forward this message to all other child windows
 //       if (!(GetStyle() & WS_CHILD))
-//       send_message_to_descendants(WM_SYSCOLORCHANGE, 0, 0L, TRUE, TRUE);
+//       send_message_to_descendants(WM_SYSCOLORCHANGE, 0, 0L, true, true);
 //
 //       Default();*/
 //   }
@@ -1782,7 +1782,7 @@ namespace macos
 //      //    UNUSED_ALWAYS(lpszSection);
 //
 //      // force refresh of settings that we cache
-//      gen_GotScrollLines = FALSE;
+//      gen_GotScrollLines = false;
 //
 //
 //      interaction_impl::OnDisplayChange(0, 0);    // to update system metrics, etc.
@@ -1801,7 +1801,7 @@ namespace macos
     {
     const MESSAGE* pMsg = GetCurrentMessage();
     send_message_to_descendants(pMsg->message, pMsg->wparam, pMsg->lparam,
-    TRUE, TRUE);
+    true, true);
     }*/
    //}
 
@@ -1818,7 +1818,7 @@ namespace macos
    //            GetKeyState(VK_MENU) >= 0)
    //         {
    //            //            pMainWnd->SendMessage(e_message_command, ID_HELP);
-   //            return TRUE;
+   //            return true;
    //         }
    //      }
    //      return Default() != 0;
@@ -1829,7 +1829,7 @@ namespace macos
 //      if (!(GetStyle() & WS_CHILD))
 //      {
 //         const MESSAGE* pMsg = GetCurrentMessage();
-//         send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, TRUE, TRUE);
+//         send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, true, true);
 //      }
 //
 //      return Default();
@@ -2041,7 +2041,7 @@ namespace macos
    {
       user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
       phwnda->add(hwnd);
-      return TRUE;
+      return true;
    }
 
    void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
@@ -2133,16 +2133,16 @@ namespace macos
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      __pointer(::message::base) pbase(pmessage);
+      //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if(pbase->m_wparam == nullptr)
+      //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
       //      ::draw2d::graphics_pointer graphics(get_object());
-      //      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
+      //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
-      //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+      //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
       //      //      ::u32 dw = ::get_last_error();
       //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
@@ -2196,10 +2196,10 @@ namespace macos
       //      catch(...)
       //      {
       //      }
-      //      pgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      //      pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //      WIN_DC(graphics.m_p)->Detach();
       //      pmessage->m_bRet = true;
-      //      pbase->set_lresult(0);
+      //      pusermessage->set_lresult(0);
    }
 
 
@@ -2215,7 +2215,7 @@ namespace macos
 //         //         MESSAGE msg;
 //         __throw(not_implemented());
 //         //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, PM_REMOVE))
-//         //while (PeekMessage(&msg, ::caNULL, WM_ENTERIDLE, WM_ENTERIDLE, TRUE))
+//         //while (PeekMessage(&msg, ::caNULL, WM_ENTERIDLE, WM_ENTERIDLE, true))
 //         // DispatchMessage(&msg);
 //      }
 //
@@ -2235,8 +2235,8 @@ namespace macos
 
    // implementation of OnCtlColor for default gray backgrounds
    //   (works for any user::interaction containing controls)
-   //  return value of FALSE means caller must call DefWindowProc's default
-   //  TRUE means that 'hbrGray' will be used and the appropriate text
+   //  return value of false means caller must call DefWindowProc's default
+   //  true means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
 //   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, ::u32 nCtlColor,
 //         HBRUSH hbrGray, color32_t clrText)
@@ -2247,14 +2247,14 @@ namespace macos
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
 //      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
-//      //         return FALSE;
+//      //         return false;
 //      //      }
 //      //
 //      //      if (hbrGray == nullptr ||
 //      //         nCtlColor == CTLCOLOR_EDIT || nCtlColor == CTLCOLOR_MSGBOX ||
 //      //         nCtlColor == CTLCOLOR_SCROLLBAR)
 //      //      {
-//      //         return FALSE;
+//      //         return false;
 //      //      }
 //      //
 //      //      if (nCtlColor == CTLCOLOR_LISTBOX)
@@ -2262,7 +2262,7 @@ namespace macos
 //      //         // only handle requests to draw the space between edit and drop button
 //      //         //  in a drop-down combo (not a drop-down list)
 //      //         if (!__is_combo_box_control(hWnd, (::u32)CBS_DROPDOWN))
-//      //            return FALSE;
+//      //            return false;
 //      //      }
 //      //
 //      //      // set background color and return handle to brush
@@ -2272,7 +2272,7 @@ namespace macos
 //      //      if (clrText == (color32_t)-1)
 //      //         clrText = ::GetSysColor(COLOR_WINDOWTEXT);  // normal text
 //      //      ::SetTextColor(hDC, clrText);
-//      //      return TRUE;
+//      //      return true;
 //   }
 
 
@@ -2287,7 +2287,7 @@ namespace macos
 
 //   bool interaction_impl::CheckAutoCenter()
 //   {
-//      return TRUE;
+//      return true;
 //   }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2307,7 +2307,7 @@ namespace macos
           // load it
           hResource = LoadResource(hInst, hDlgInit);
           if (hResource == nullptr)
-          return FALSE;
+          return false;
           // lock it
           lpResource = LockResource(hResource);
           ASSERT(lpResource != nullptr);
@@ -2335,7 +2335,7 @@ namespace macos
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      ::user::command state(get_context_object());
+      ::message::command state(get_context_object());
       user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
@@ -2358,7 +2358,7 @@ namespace macos
        }
 
        // check for handlers in the parent user::interaction
-       if (interaction_impl::_001OnCommand((::u32)state.m_nID, CN_UPDATE_::user::command, &state, nullptr))
+       if (interaction_impl::_001OnCommand((::u32)state.m_nID, CN_UPDATE_::message::command, &state, nullptr))
        continue;
 
        // determine whether to disable when no handler exists
@@ -2368,7 +2368,7 @@ namespace macos
        if ((wndTemp.SendMessage(WM_GETDLGCODE) & DLGC_BUTTON) == 0)
        {
        // non-button controls don't get automagically disabled
-       bDisableTemp = FALSE;
+       bDisableTemp = false;
        }
        else
        {
@@ -2379,7 +2379,7 @@ namespace macos
        nStyle == (::u32)BS_GROUPBOX ||
        nStyle == (::u32)BS_AUTORADIOBUTTON)
        {
-       bDisableTemp = FALSE;
+       bDisableTemp = false;
        }
        }
        }
@@ -2392,13 +2392,13 @@ namespace macos
 
 //   bool interaction_impl::IsFrameWnd()
 //   {
-//      return FALSE;
+//      return false;
 //   }
 
    bool interaction_impl::SubclassWindow(oswindow hWnd)
    {
       if (!Attach(hWnd))
-         return FALSE;
+         return false;
 
       // allow any other subclassing to occur
       pre_subclass_window();
@@ -2430,8 +2430,8 @@ namespace macos
       }
       else
       {
-         //         return ::IsChild(get_handle(), MAC_WINDOW(pWnd)->get_handle()) != FALSE;
-         return FALSE;
+         //         return ::IsChild(get_handle(), MAC_WINDOW(pWnd)->get_handle()) != false;
+         return false;
       }
    }
 
@@ -2439,7 +2439,7 @@ namespace macos
    bool interaction_impl::_is_window() const
    {
 
-      return ::is_window(m_oswindow) != FALSE;
+      return ::is_window(m_oswindow) != false;
 
    }
 
@@ -2457,7 +2457,7 @@ namespace macos
 //
 //      ASSERT(::is_window(get_handle()));
 //
-//      set_window_pos(zorder_none, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
+//      set_window_position(zorder_none, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
 //
 //   }
 
@@ -2713,7 +2713,7 @@ namespace macos
 
       }
       
-      auto pmq = m_puserinteraction->m_pthreadUserInteraction->get_mq();
+      auto pmq = m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
       return pmq->post_message(m_oswindow, message, wparam, lparam);
 
@@ -2804,7 +2804,7 @@ namespace macos
 //   bool interaction_impl::BringWindowToTop()
 //   {
 //
-//      bool b = ::BringWindowToTop(get_handle()) != FALSE;
+//      bool b = ::BringWindowToTop(get_handle()) != false;
 //
 //      return b;
 //
@@ -2819,7 +2819,7 @@ namespace macos
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT32 lpRect)
+//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
 //   {
 //
 //      __throw(not_implemented());
@@ -2874,7 +2874,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::GetUpdateRect(LPRECT32 lpRect, bool bErase)
+   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase)
    {
 
       __throw(not_implemented());
@@ -3090,7 +3090,7 @@ namespace macos
 //      if (m_bZ)
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        0,
 //                        0,
 //                        0,
@@ -3120,7 +3120,7 @@ namespace macos
 //      if (m_rectLastOsPlacement.top_left() != m_puserinteraction.m_rectParentClientRequest.top_left())
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.left,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.top,
 //                        0,
@@ -3149,7 +3149,7 @@ namespace macos
 //      if (m_rectLastOsPlacement != m_puserinteraction.m_rectParentClientRequest)
 //      {
 //
-//         ::set_window_pos(m_oswindow, (oswindow) m_iZ,
+//         ::set_window_position(m_oswindow, (oswindow) m_iZ,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.left,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.top,
 //                        (int) m_puserinteraction->m_rectParentClientRequest.width(),
@@ -3444,7 +3444,7 @@ namespace macos
    }
 
 
-   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
+   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -3552,7 +3552,7 @@ namespace macos
 
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      return ::FlashWindow(get_handle(), bInvert) != FALSE;
+      //      return ::FlashWindow(get_handle(), bInvert) != false;
 
    }
 
@@ -3561,7 +3561,7 @@ namespace macos
 
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      return ::ChangeClipboardChain(get_handle(), hWndNext) != FALSE;
+      //      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 
    }
 
@@ -3579,7 +3579,7 @@ namespace macos
 
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      return ::OpenClipboard(get_handle()) != FALSE;
+      //      return ::OpenClipboard(get_handle()) != false;
 
    }
 
@@ -3645,7 +3645,7 @@ namespace macos
    bool interaction_impl::SetForegroundWindow()
    {
 
-      bool b = ::SetForegroundWindow(get_handle()) != FALSE;
+      bool b = ::SetForegroundWindow(get_handle()) != false;
 
       //      round_window_show();
 
@@ -3665,7 +3665,7 @@ namespace macos
 //   {
 //
 //      __throw(not_implemented());
-//      //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != FALSE;
+//      //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 //
 //   }
 
@@ -3693,7 +3693,7 @@ namespace macos
 
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != FALSE;
+      //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 
    }
 
@@ -3736,7 +3736,7 @@ namespace macos
 //   bool interaction_impl::OnCopyData(::user::interaction *, COPYDATASTRUCT*)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 
@@ -3752,7 +3752,7 @@ namespace macos
 //   bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -3788,27 +3788,27 @@ namespace macos
 //   bool interaction_impl::OnQueryEndSession()
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
 //   bool interaction_impl::OnQueryNewPalette()
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
 //   bool interaction_impl::OnQueryOpen()
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
 //   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
 //   {
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //      if (psession->get_cursor() != nullptr
 //            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
@@ -3816,8 +3816,8 @@ namespace macos
 //         __throw(not_implemented());
 //         //         ::SetCursor(nullptr);
 //      }
-//      pbase->set_lresult(1);
-//      pbase->m_bRet = true;
+//      pusermessage->set_lresult(1);
+//      pusermessage->m_bRet = true;
 //      //(bool)Default();
 //   }
 //   void interaction_impl::OnShowWindow(bool, ::u32)
@@ -3852,7 +3852,7 @@ namespace macos
 //   bool interaction_impl::OnNcActivate(bool)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -3864,7 +3864,7 @@ namespace macos
 //   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -4008,7 +4008,7 @@ namespace macos
 //   bool interaction_impl::OnMouseWheel(::u32, short, point_i32)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 
@@ -4107,11 +4107,11 @@ namespace macos
    //   { Default(); }
    //   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
    //   { Default(); }
-//   void interaction_impl::OnSizing(::u32, LPRECT32)
+//   void interaction_impl::OnSizing(::u32, RECTANGLE_I32 *)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMoving(::u32, LPRECT32)
+//   void interaction_impl::OnMoving(::u32, RECTANGLE_I32 *)
 //   {
 //      Default();
 //   }
@@ -4123,7 +4123,7 @@ namespace macos
 //   bool interaction_impl::OnDeviceChange(::u32, uptr)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -4158,7 +4158,7 @@ namespace macos
 //
 //      __throw(todo());
 //
-//      //::EnableWindow(get_handle(), FALSE);
+//      //::EnableWindow(get_handle(), false);
 //
 //   }
 //
@@ -4167,7 +4167,7 @@ namespace macos
 //
 //      __throw(todo());
 //
-//      //::EnableWindow(get_handle(), TRUE);
+//      //::EnableWindow(get_handle(), true);
 //
 //   }
 //
@@ -4200,7 +4200,7 @@ namespace macos
 
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      return ::OpenIcon(get_handle()) != FALSE;
+      //      return ::OpenIcon(get_handle()) != false;
 
    }
 
@@ -4228,7 +4228,7 @@ namespace macos
 //
 //      perasebkgnd->m_bRet = true;
 //
-//      perasebkgnd->set_result(TRUE);
+//      perasebkgnd->set_result(true);
 //
 //   }
 //
@@ -4344,9 +4344,9 @@ namespace macos
 
       g->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      sync_lock slGraphics(pbuffer->mutex());
+      synchronization_lock slGraphics(pbuffer->mutex());
       
-      sync_lock sl1(pbuffer->get_screen_sync());
+      synchronization_lock sl1(pbuffer->get_screen_sync());
 
       ::image_pointer & imageBuffer2 = pbuffer->get_screen_image();
 
@@ -4403,7 +4403,7 @@ namespace macos
       
 #endif
 
-      ::size_i32 sizeMin = imageBuffer2->size().min(sizeWindow);
+      ::size_i32 sizeMin = imageBuffer2->size().minimum(sizeWindow);
 
       g->draw(::rectangle_i32(sizeMin), imageBuffer2->g(), sizeMin);
       
@@ -4417,7 +4417,7 @@ namespace macos
    bool interaction_impl::round_window_key_down(unsigned int uiKeyCode)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -4444,7 +4444,7 @@ namespace macos
    bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -4471,7 +4471,7 @@ namespace macos
    bool interaction_impl::round_window_key_down(unsigned int vk, unsigned int scan, const char * pszUtf8)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -4496,7 +4496,7 @@ namespace macos
 //         if(pkey->m_strText.has_char())
 //         {
 //
-//            pkey->m_ekey = ::user::key_refer_to_text_member;
+//            pkey->m_ekey = ::user::e_key_refer_to_text_member;
 //
 //         }
          
@@ -4521,7 +4521,7 @@ namespace macos
    bool interaction_impl::round_window_key_up(unsigned int vk, unsigned int scan)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -4546,7 +4546,7 @@ namespace macos
    void interaction_impl::round_window_mouse_down(int iButton, double x, double y)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       if (!is_active())
       {
@@ -4859,7 +4859,7 @@ namespace macos
          
       }
       
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
       
       if(!m_puserinteraction)
       {
@@ -4963,7 +4963,7 @@ namespace macos
 ////
 ////      {
 ////
-////         sync_lock sl(m_puserinteraction->mutex());
+////         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 ////
 ////         if (pt != m_puserinteraction->m_rectParentClient.top_left())
 ////         {
@@ -5108,13 +5108,13 @@ namespace macos
 ////      if(m_puserinteraction->m_pointRequest != point_i32)
 ////      {
 ////
-////         m_puserinteraction->m_pointRequest = point_i32;
+////         m_puserinteraction->m_pointRequest = point;
 ////
 ////         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 ////
 ////      }
 ////
-////      m_puserinteraction->m_point = point_i32;
+////      m_puserinteraction->m_point = point;
 
    }
 
@@ -5356,7 +5356,7 @@ namespace macos
 
 
    void CLASS_DECL_AURA __pre_init_dialog(
-   ::user::interaction * pWnd, LPRECT32 lpRectOld, ::u32* pdwStyleOld)
+   ::user::interaction * pWnd, RECTANGLE_I32 * lpRectOld, ::u32* pdwStyleOld)
    {
       ASSERT(lpRectOld != nullptr);
       ASSERT(pdwStyleOld != nullptr);
@@ -5461,10 +5461,10 @@ namespace macos
       //         pLastActive->IsWindowEnabled())
       //      {
       //         pLastActive->SetForegroundWindow();
-      //         return TRUE;
+      //         return true;
       //      }
       //   }
-      //   return FALSE;
+      //   return false;
    }
 
 
@@ -5482,7 +5482,7 @@ namespace macos
       //   LRESULT lResult = 0;
       //   try
       //   {
-      //      bool bCallDefault = TRUE;
+      //      bool bCallDefault = true;
       //      switch (nMsg)
       //      {
       //      case WM_INITDIALOG:
@@ -5491,7 +5491,7 @@ namespace macos
       //            ::rectangle_i32 rectOld;
       //            ::user::interaction * pWnd = ::macos::interaction_impl::from_handle(hWnd);
       //            __pre_init_dialog(pWnd, &rectOld, &uStyle);
-      //            bCallDefault = FALSE;
+      //            bCallDefault = false;
       //            lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
       //            __post_init_dialog(pWnd, rectOld, uStyle);
       //         }
@@ -5538,7 +5538,7 @@ namespace macos
    }
 
 
-   void interaction_impl::offset_viewport_org(LPRECT32 lprectScreen)
+   void interaction_impl::offset_viewport_org(RECTANGLE_I32 * lprectScreen)
    {
 
    }

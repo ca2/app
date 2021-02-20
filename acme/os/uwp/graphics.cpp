@@ -22,7 +22,7 @@ void os_term_imaging()
 //HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
 //{
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -38,7 +38,7 @@ HCURSOR load_default_cursor(e_cursor ecursor)
 int_bool delete_hcursor(HCURSOR hcursor)
 {
 
-   return TRUE;
+   return true;
 
 }
 

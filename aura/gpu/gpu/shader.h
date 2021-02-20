@@ -34,18 +34,18 @@ namespace gpu
 
       virtual void setFloat(const char * pszName, float value);
 
-      virtual void setVec2(const char * pszName, const glm::vec2& value);
+      //virtual void setVec2(const char * pszName, const glm::vec2& value);
       virtual void setVec2(const char * pszName, float x, float y);
 
-      virtual void setVec3(const char * pszName, const glm::vec3& value);
+      //virtual void setVec3(const char * pszName, const glm::vec3& value);
       virtual void setVec3(const char * pszName, float x, float y, float z);
 
-      virtual void setVec4(const char * pszName, const glm::vec4& value);
+      //virtual void setVec4(const char * pszName, const glm::vec4& value);
       virtual void setVec4(const char * pszName, float x, float y, float z, float w);
 
-      virtual void setMat2(const char * pszName, const glm::mat2& mat);
-      virtual void setMat3(const char * pszName, const glm::mat3& mat);
-      virtual void setMat4(const char * pszName, const glm::mat4& mat);
+      virtual void setMat2(const char * pszName, const float p[2*2]);
+      virtual void setMat3(const char * pszName, const float p[3*3]);
+      virtual void setMat4(const char * pszName, const float p[4*4]);
 
       //virtual shader * create_shader(const char* pszVertex, enum_shader eshader);
 

@@ -26,7 +26,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   if (::is_null(pimageCanvas))
 //   {
 //
-//      __throw(invalid_argument_exception);
+//      __throw(invalid_argument_exception());
 //
 //      return false;
 //
@@ -35,7 +35,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   if (pimageCanvas->m_size == pframea->m_size)
 //   {
 //
-//      __throw(invalid_argument_exception);
+//      __throw(invalid_argument_exception());
 //
 //      return false;
 //
@@ -85,7 +85,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      rectangle.offset(5, 5);
 //
-//   //      pimageCanvas.get_graphics()->fill_rect(rectangle, crBack);
+//   //      pimageCanvas.get_graphics()->fill_rectangle(rectangle, crBack);
 //
 //   //   }
 //
@@ -190,17 +190,17 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   f.initialize(pframe->m_pimage->get_size() + size(10, 10), 1);
 //
-//   //   //   f.channel_copy(::color::channel_red, ::color::channel_alpha, pimageCanvas);
+//   //   //   f.channel_copy(::color::e_channel_red, ::color::e_channel_alpha, pimageCanvas);
 //
-//   //   //   f.channel_invert(::color::channel_red);
+//   //   //   f.channel_invert(::color::e_channel_red);
 //
 //   //   //   f.blur();
-//   //   //   f.channel_multiply(::color::channel_red, 1.4);
+//   //   //   f.channel_multiply(::color::e_channel_red, 1.4);
 //   //   //   f.blur();
 //   //   //
 //   //   //         f.blur();
 //
-//   //   //   f.channel_invert(::color::channel_red);
+//   //   //   f.channel_invert(::color::e_channel_red);
 //
 //   //   //   image d(pframe->m_pimage->create_new, this);
 //
@@ -212,7 +212,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   pframe->m_pimage->div_alpha();
 //
-//   //   //   pframe->m_pimage->channel_copy(::color::channel_alpha, ::color::channel_red, d);
+//   //   //   pframe->m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_red, d);
 //
 //   //   //   pframe->m_pimage->mult_alpha();
 //
@@ -249,7 +249,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
 //
-//         pimageCanvas->g()->fill_rect(rectangle, crBack);
+//         pimageCanvas->g()->fill_rectangle(rectangle, crBack);
 //
 //      }
 //
@@ -327,7 +327,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 //         //byte bG = colorref_get_g_value(cr);
 //         //byte bB = colorref_get_b_value(cr);
 //
-//         //pframe->m_pimage->m_pcolorref[y*w + x] = ARGB(bA, bB, bG, bR);
+//         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
 //
 //         pframe->m_pimage->m_pcolorref[y*w + x] = ((cr << 16) & 0xff0000) | ((cr >> 16) & 0xff) | (cr & 0xff00ff00);
 //
@@ -340,7 +340,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
             output_debug_string("test255");
          }
-         colorref[y*w + x] = ARGB(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255);
+         colorref[y*w + x] = argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255);
 
 //#endif
 

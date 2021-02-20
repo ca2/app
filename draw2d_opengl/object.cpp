@@ -37,21 +37,21 @@ namespace draw2d_opengl
    bool object::operator==(const ::draw2d::object& obj) const
    { 
       //return ((HGDIOBJ) obj.get_os_data()) == get_handle(); 
-      return FALSE;
+      return false;
    }
    bool object::operator!=(const ::draw2d::object& obj) const
    { 
       //return ((HGDIOBJ) obj.get_os_data()) != get_handle(); 
-      return TRUE;
+      return true;
    }
 
 
    bool object::delete_object()
    {
       //if (get_os_data() == nullptr)
-        // return FALSE;
+        // return false;
       //return ::DeleteObject(detach());
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////

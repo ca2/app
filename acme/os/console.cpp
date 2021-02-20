@@ -93,10 +93,10 @@ namespace console
    }
 
 
-   void console_composite::SetScreenColor(int color, int iLineStart, int iLineCount)
+   void console_composite::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
    {
 
-      m_pconsole->SetScreenColor(color, iLineStart, iLineCount);
+      m_pconsole->SetScreenColor(edoscolor, iLineStart, iLineCount);
 
    }
 
@@ -136,9 +136,28 @@ void press_any_key_to_exit(const char * pszPrompt)
 
 }
 
+int safe_get_char(FILE * pfile, const ::duration & duration)
+{
 
+   int iSafeChar = EOF;
 
-int_bool message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox)
+   ::millis millisStart;
+
+   do
+   {
+
+      millisStart.Now();
+
+      iSafeChar = getc(pfile);
+
+   }
+   while(ansi_char_is_space(iSafeChar) || millisStart.elapsed() < duration);
+
+   return iSafeChar;
+
+}
+
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 
    string strLine;
@@ -226,65 +245,28 @@ repeat:
 
    }
 
+   int c = safe_get_char(stdin, 100_ms);
+
+   c = ::ansi_tolower(c);
+
    if (etype == e_message_box_yes_no_cancel)
    {
 
-      int c = getc(stdin);
-
-      switch (c)
-      {
-      case 'y':
-      case 'Y':
-         edialogresult = e_dialog_result_yes;
-         bAnswer = true;
-         break;
-      case 'n':
-      case 'N':
-         edialogresult = e_dialog_result_no;
-         bAnswer = true;
-         break;
-      case 'c':
-      case 'C':
-         edialogresult = e_dialog_result_cancel;
-         bAnswer = true;
-         break;
-      default:
-         bAnswer = bDefault;
-         break;
-
-      }
+      bAnswer = ::ansi_chr("ync", c) != nullptr;
 
    }
    else if (etype == e_message_box_yes_no)
    {
 
-      int c = getc(stdin);
-
-      switch (c)
-      {
-      case 'y':
-      case 'Y':
-         edialogresult = e_dialog_result_yes;
-         bAnswer = true;
-         break;
-      case 'n':
-      case 'N':
-         edialogresult = e_dialog_result_no;
-         bAnswer = true;
-         break;
-      default:
-         bAnswer = bDefault;
-         break;
-      }
+      bAnswer = ::ansi_chr("yn", c) != nullptr;
 
    }
    else
    {
 
-      getc(stdin);
+      bAnswer = true;
 
    }
-
 
    if (!bAnswer)
    {
@@ -293,6 +275,21 @@ repeat:
 
    }
 
+   switch (c)
+   {
+      case 'y':
+         edialogresult = e_dialog_result_yes;
+         break;
+      case 'n':
+         edialogresult = e_dialog_result_no;
+         break;
+      case 'c':
+         edialogresult = e_dialog_result_cancel;
+         break;
+      default:
+         break;
+
+   }
 
    return edialogresult;
 

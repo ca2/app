@@ -14,7 +14,7 @@ namespace draw2d
       m_iWidth = 0;
       m_iHeight = 0;
 
-      m_bDrawWithLight = TRUE;
+      m_bDrawWithLight = true;
       m_iLightModifier = 1;
       m_iHpage = 0;
       m_density = 5;
@@ -65,7 +65,7 @@ namespace draw2d
    void water_routine::to(color32_t * pSrcImage, color32_t * pTargetImage)
    {
       // Yes they have to be the same size...(for now)
-      if(m_bDrawWithLight == FALSE)
+      if(m_bDrawWithLight == false)
       {
          DrawWaterNoLight(m_iHpage,pSrcImage,pTargetImage);
       }
@@ -568,7 +568,7 @@ namespace draw2d
       ig = (G < 0) ? 0 : (G > 255) ? 255 : G;
       ib = (B < 0) ? 0 : (B > 255) ? 255 : B;
 
-      return RGB(ir,ig,ib);
+      return rgb(ir,ig,ib);
    }
 
 } // namespace draw2d

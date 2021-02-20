@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/rich_text/_rich_text.h"
 #include "core/user/userex/_userex.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -115,14 +113,17 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::_001OnMouseLeave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
-         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
-#ifdef WINDOWS_DESKTOP
 
-         imm_client::install_message_routing(pchannel);
+         text_composition_composite::install_message_routing(pchannel);
 
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//         imm_client::install_message_routing(pchannel);
+//
+//#endif
 
       }
 
@@ -154,9 +155,9 @@ namespace user
 
             });
 
-#if !defined(APPLE_IOS) && !defined(ANDROID)
-         psession->keyboard(); // trigger keyboard creationg
-#endif
+//#if !defined(APPLE_IOS) && !defined(ANDROID)
+//         psession->keyboard(); // trigger keyboard creationg
+//#endif
 
 
          SetTimer(100, 100, nullptr);
@@ -205,11 +206,11 @@ namespace user
       }
 
 
-      void edit_impl::_001OnSetFocus(::message::message * pmessage)
+      void edit_impl::on_set_keyboard_focus()
       {
 
 
-         UNREFERENCED_PARAMETER(pmessage);
+         //UNREFERENCED_PARAMETER(pmessage);
 
          //__pointer(::message::set_focus) psetfocus(pmessage);
 
@@ -224,32 +225,35 @@ namespace user
 
          pformattool->show_for_ui(this);
 
+         //::user::rich_text::edit::on_set_keyboard_focus();
+
       }
 
 
-      void edit_impl::_001OnKillFocus(::message::message * pmessage)
+      void edit_impl::on_kill_keyboard_focus()
       {
-
-         __pointer(::message::kill_focus) pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            ::user::primitive_impl * pimplNew = oswindow_interaction_impl(pkillfocus->m_oswindowNew);
+            auto psession = Session;
+
+            auto puser = psession->user();
+
+            //auto puserinteractionFocusNew = puser->interaction(pkillfocus->m_oswindowNew);
 
             ::user::interaction * pinteraction = nullptr;
 
-            if (pimplNew != nullptr)
+            /*if (puserinteractionFocusNew != nullptr)
             {
 
-               pinteraction = pimplNew->m_puserinteraction;
+               pinteraction = puserinteractionFocusNew;
 
-            }
+            }*/
 
-            if (pkillfocus->m_oswindowNew == pformattool->get_safe_handle()
-                  || pformattool->is_ascendant_or_owner_of(pinteraction, true))
+            if (pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
                output_debug_string("Window winning focus is own font format tool");
@@ -261,6 +265,8 @@ namespace user
             pformattool->hide();
 
          }
+
+         ::user::rich_text::edit::on_kill_keyboard_focus();
 
       }
 
@@ -315,19 +321,19 @@ namespace user
 
             m_bSelDrag = true;
 
-            if (psession->is_key_pressed(key_shift))
+            if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (item < min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (item < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item > max(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (item > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
-                  m_pdata->m_iSelBeg = min(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
+                  m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
 
@@ -343,7 +349,7 @@ namespace user
 
             m_pdata->internal_update_sel_char();
 
-            SetCapture();
+            set_mouse_capture();
 
             set_keyboard_focus();
 
@@ -386,7 +392,13 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -398,8 +410,6 @@ namespace user
          m_bSelDrag = false;
 
          auto item = hit_test(pmouse);
-
-         auto psession = Session;
 
          if (item.is_set() && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
@@ -446,7 +456,7 @@ namespace user
          if (m_itemHover.is_set())
          {
 
-            pmouse->m_ecursor = cursor_text_select;
+            pmouse->m_ecursor = e_cursor_text_select;
 
             pmouse->m_bRet = true;
 
@@ -477,7 +487,7 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            pmouse->m_ecursor = cursor_text_select;
+            pmouse->m_ecursor = e_cursor_text_select;
 
             pmouse->m_bRet = true;
 
@@ -513,7 +523,13 @@ namespace user
       void edit_impl::_001OnMouseLeave(::message::message * pmessage)
       {
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
 
          set_need_redraw();
 
@@ -670,7 +686,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -679,12 +695,12 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 100, 200, 255);
+         //   //crBackground = argb(255, 100, 200, 255);
 
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_rect(rectClient, crBackground);
+         //      pgraphics->fill_rectangle(rectClient, crBackground);
 
          //   }
 
@@ -694,7 +710,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -703,9 +719,9 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 255, 200, 100);
+         //   //crBackground = argb(255, 255, 200, 100);
 
-         //   pgraphics->fill_rect(rectClient, crBackground);
+         //   pgraphics->fill_rectangle(rectClient, crBackground);
 
          //}
 
@@ -733,7 +749,7 @@ namespace user
 
             get_client_rect(rectClient);
 
-            pgraphics->fill_rect(rectClient, ARGB(40, 255, 255, 255));
+            pgraphics->fill_rectangle(rectClient, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 
@@ -745,7 +761,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
 
@@ -791,7 +807,7 @@ namespace user
 
             }
 
-            if(has_focus())
+            if(has_keyboard_focus())
             {
 
                keyboard_set_focus_next();
@@ -827,7 +843,7 @@ namespace user
          if (is_picture_enabled())
          {
 
-            point_f64 point_i32(pointParam);
+            point_f64 point(pointParam);
 
             _001ScreenToClient(point);
 
@@ -843,11 +859,11 @@ namespace user
 
             copy(rectWindow, rectWindow);
 
-            point_i32 += rectWindow.top_left();
+            point += rectWindow.top_left();
 
             _rtransform_point(point);
 
-            point_i32 -= rectWindow.top_left();
+            point -= rectWindow.top_left();
 
             auto rectClient = get_client_rect();
 
@@ -908,7 +924,7 @@ namespace user
 
                post_redraw();
 
-               SetFocus();
+               set_keyboard_focus();
 
                //pevent->Ret();
 
@@ -968,7 +984,7 @@ namespace user
       void edit_impl::_001OnKeyDown(::message::message * pmessage)
       {
 
-         //sync_lock sl(mutex());
+         //synchronization_lock synchronizationlock(mutex());
 
          {
 
@@ -997,10 +1013,10 @@ namespace user
 
          auto psession = Session;
 
-         if (pkey->m_ekey == ::user::key_return)
+         if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
 
                pkey->m_bRet = false;
@@ -1010,10 +1026,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_tab)
+         else if (pkey->m_ekey == ::user::e_key_tab)
          {
 
-            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
 
                pkey->m_bRet = false;
@@ -1023,7 +1039,7 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_alt)
+         else if (pkey->m_ekey == ::user::e_key_alt)
          {
 
             pkey->m_bRet = false;
@@ -1031,7 +1047,7 @@ namespace user
             return;
 
          }
-         else if (pkey->m_ekey == ::user::key_escape)
+         else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
             ::user::control_event ev;
@@ -1056,10 +1072,10 @@ namespace user
             return;
 
          }
-         else if (pkey->m_ekey == ::user::key_c)
+         else if (pkey->m_ekey == ::user::e_key_c)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -1082,10 +1098,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_v)
+         else if (pkey->m_ekey == ::user::e_key_v)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -1106,10 +1122,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_x)
+         else if (pkey->m_ekey == ::user::e_key_x)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -1151,16 +1167,16 @@ namespace user
 
          auto psession = Session;
 
-         if (pkey->m_ekey == ::user::key_return)
+         if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            if (psession->is_key_pressed(::user::key_control)  && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control)  && psession->is_key_pressed(::user::e_key_alt))
             {
                pkey->m_bRet = false;
                return;
             }
          }
-         else if (pkey->m_ekey == ::user::key_alt)
+         else if (pkey->m_ekey == ::user::e_key_alt)
          {
             pkey->m_bRet = false;
          }
@@ -1175,7 +1191,7 @@ namespace user
 
          if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
          {
-            if (has_focus())
+            if (has_keyboard_focus())
             {
 
                //_001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
@@ -1196,7 +1212,7 @@ namespace user
 
             // Caret
 
-            if (is_text_editable() && is_window_visible() && has_focus())
+            if (is_text_editable() && is_window_visible() && has_keyboard_focus())
             {
 
                set_need_redraw();
@@ -1217,9 +1233,9 @@ namespace user
 
          auto psession = Session;
 
-         if (key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_lshift || key.m_ekey == ::user::key_rshift
-               || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
-               || key.m_ekey == ::user::key_alt || key.m_ekey == ::user::key_lalt || key.m_ekey == ::user::key_ralt
+         if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
+               || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
+               || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
             )
          {
 
@@ -1227,8 +1243,8 @@ namespace user
 
          }
 
-         if (key.m_ekey == ::user::key_right || key.m_ekey == ::user::key_up
-               || key.m_ekey == ::user::key_left || key.m_ekey == ::user::key_down)
+         if (key.m_ekey == ::user::e_key_right || key.m_ekey == ::user::e_key_up
+               || key.m_ekey == ::user::e_key_left || key.m_ekey == ::user::e_key_down)
          {
 
             _001OnChar(&key);
@@ -1237,7 +1253,7 @@ namespace user
 
          }
 
-         bool bShift = psession->is_key_pressed(::user::key_shift);
+         bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
          if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
          {
@@ -1269,7 +1285,7 @@ namespace user
 
          {
 
-            sync_lock sl(m_pdata->mutex());
+            synchronization_lock synchronizationlock(m_pdata->mutex());
 
             strsize i1 = m_pdata->get_sel_beg();
 
@@ -1325,10 +1341,10 @@ namespace user
 
             auto psession = Session;
 
-            if (pkey->m_ekey == ::user::key_s)
+            if (pkey->m_ekey == ::user::e_key_s)
             {
 
-               if (psession->is_key_pressed(::user::key_control))
+               if (psession->is_key_pressed(::user::e_key_control))
                {
 
                   return;
@@ -1336,10 +1352,10 @@ namespace user
                }
 
             }
-            else if (pkey->m_ekey == ::user::key_a)
+            else if (pkey->m_ekey == ::user::e_key_a)
             {
 
-               if (psession->is_key_pressed(::user::key_control))
+               if (psession->is_key_pressed(::user::e_key_control))
                {
 
                   _001SetSel(0, _001GetTextLength());
@@ -1349,10 +1365,10 @@ namespace user
                }
 
             }
-            else if (pkey->m_ekey == ::user::key_z)
+            else if (pkey->m_ekey == ::user::e_key_z)
             {
 
-               if (psession->is_key_pressed(::user::key_control))
+               if (psession->is_key_pressed(::user::e_key_control))
                {
 
                   if (is_window_enabled())
@@ -1367,10 +1383,10 @@ namespace user
                }
 
             }
-            else if (pkey->m_ekey == ::user::key_y)
+            else if (pkey->m_ekey == ::user::e_key_y)
             {
 
-               if (psession->is_key_pressed(::user::key_control))
+               if (psession->is_key_pressed(::user::e_key_control))
                {
 
                   if (is_window_enabled())
@@ -1385,14 +1401,14 @@ namespace user
                }
 
             }
-            else if (psession->is_key_pressed(::user::key_control))
+            else if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               if (pkey->m_ekey == ::user::key_home)
+               if (pkey->m_ekey == ::user::e_key_home)
                {
 
                }
-               else if (pkey->m_ekey == ::user::key_end)
+               else if (pkey->m_ekey == ::user::e_key_end)
                {
 
                }
@@ -1406,13 +1422,13 @@ namespace user
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
-               bool bControl = psession->is_key_pressed(::user::key_control);
+               bool bControl = psession->is_key_pressed(::user::e_key_control);
 
-               bool bShift = psession->is_key_pressed(::user::key_shift);
+               bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-               if (pkey->m_ekey == ::user::key_prior)
+               if (pkey->m_ekey == ::user::e_key_prior)
                {
 
                   //on_reset_focus_start_tick();
@@ -1445,7 +1461,7 @@ namespace user
                   //_001EnsureVisibleLine(iLine);
 
                }
-               else if (pkey->m_ekey == ::user::key_next)
+               else if (pkey->m_ekey == ::user::e_key_next)
                {
 
                   //on_reset_focus_start_tick();
@@ -1479,7 +1495,7 @@ namespace user
                   //_001EnsureVisibleLine(iLine);
 
                }
-               else if (pkey->m_ekey == ::user::key_back)
+               else if (pkey->m_ekey == ::user::e_key_back)
                {
 
                   if (is_window_enabled())
@@ -1488,7 +1504,7 @@ namespace user
                      on_reset_focus_start_tick();
 
                      {
-                        sync_lock sl(m_pdata->mutex());
+                        synchronization_lock synchronizationlock(m_pdata->mutex());
 
                         strsize i1 = m_pdata->get_sel_beg();
 
@@ -1535,7 +1551,7 @@ namespace user
                   }
 
                }
-               else if (pkey->m_ekey == ::user::key_delete)
+               else if (pkey->m_ekey == ::user::e_key_delete)
                {
 
                   if (is_window_enabled())
@@ -1548,12 +1564,12 @@ namespace user
                   return;
 
                }
-               else if (pkey->m_ekey == ::user::key_up)
+               else if (pkey->m_ekey == ::user::e_key_up)
                {
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   double x;
 
@@ -1582,12 +1598,12 @@ namespace user
                   }
 
                }
-               else if (pkey->m_ekey == ::user::key_down)
+               else if (pkey->m_ekey == ::user::e_key_down)
                {
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   double x;
 
@@ -1617,7 +1633,7 @@ namespace user
                   }
 
                }
-               else if (pkey->m_ekey == ::user::key_right)
+               else if (pkey->m_ekey == ::user::e_key_right)
                {
 
                   on_reset_focus_start_tick();
@@ -1625,7 +1641,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1635,7 +1651,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1645,7 +1661,7 @@ namespace user
                   else
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
                      {
@@ -1676,7 +1692,7 @@ namespace user
                   }
 
                }
-               else if (pkey->m_ekey == ::user::key_left)
+               else if (pkey->m_ekey == ::user::e_key_left)
                {
 
                   on_reset_focus_start_tick();
@@ -1684,7 +1700,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1694,7 +1710,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1704,7 +1720,7 @@ namespace user
                   else if (m_pdata->m_iSelEnd > 0)
                   {
 
-                     sync_lock sl(m_pdata->mutex());
+                     synchronization_lock synchronizationlock(m_pdata->mutex());
 
                      string strText;
 
@@ -1730,12 +1746,12 @@ namespace user
                   }
 
                }
-               else if (pkey->m_ekey == ::user::key_home)
+               else if (pkey->m_ekey == ::user::e_key_home)
                {
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   if (bControl)
                   {
@@ -1764,12 +1780,12 @@ namespace user
                   m_pdata->internal_update_sel_char();
 
                }
-               else if (pkey->m_ekey == ::user::key_end)
+               else if (pkey->m_ekey == ::user::e_key_end)
                {
 
                   on_reset_focus_start_tick();
 
-                  sync_lock sl(m_pdata->mutex());
+                  synchronization_lock synchronizationlock(m_pdata->mutex());
 
                   if (bControl)
                   {
@@ -1798,11 +1814,11 @@ namespace user
                   m_pdata->internal_update_sel_char();
 
                }
-               else if (pkey->m_ekey == ::user::key_escape)
+               else if (pkey->m_ekey == ::user::e_key_escape)
                {
 
                }
-               else if (pkey->m_ekey == ::user::key_return)
+               else if (pkey->m_ekey == ::user::e_key_return)
                {
 
 //                if(m_bMultiLine)
@@ -1828,13 +1844,13 @@ namespace user
 
                   char ch = 0;
 
-                  if (pkey->m_ekey == ::user::key_tab)
+                  if (pkey->m_ekey == ::user::e_key_tab)
                   {
 
                      str = "   ";
 
                   }
-                  else if (pkey->m_ekey == ::user::key_refer_to_text_member)
+                  else if (pkey->m_ekey == ::user::e_key_refer_to_text_member)
                   {
 
                      str = pkey->m_strText;

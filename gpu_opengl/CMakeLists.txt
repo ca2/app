@@ -2,23 +2,12 @@ cmake_minimum_required(VERSION 3.17)
 project(gpu_opengl CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    message("System is Linux")
-    include(FindPkgConfig)
+if(LINUX)
 elseif(WIN32)
-    set(PLATFORM_NAME "windows")
 elseif(UWP)
-    set(PLATFORM_NAME "uwp")
-    set(WINDOWS_TSF TRUE)
 endif()
 
 
@@ -76,6 +65,14 @@ if(APPLE)
 endif()
 
 
+list(APPEND library_references
+        acme
+        apex
+        aqua
+        aura
+        )
+
+
 if (MSVC)
     set(LIBCXX_TARGETING_MSVC ON)
 else()
@@ -94,7 +91,8 @@ if (MSVC)
     target_link_options(gpu_opengl PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(gpu_opengl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/gpu_opengl.lib")
     target_link_options(gpu_opengl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/gpu_opengl.def")
-    target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura glu32 glew32 opengl32)
+    target_link_libraries(gpu_opengl PRIVATE glu32 glew32 opengl32)
+    target_link_libraries(gpu_opengl PRIVATE ${library_references})
 elseif(LINUX)
     pkg_check_modules(PKGCONFIG glib-2.0)
     #pkg_check_modules(PKGCONFIG freetype2 gtk+-3.0 )
@@ -108,9 +106,13 @@ elseif(LINUX)
     target_link_libraries(gpu_opengl PRIVATE GL GLEW EGL GLU)
     target_link_libraries(gpu_opengl PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura)
+    target_link_libraries(gpu_opengl PRIVATE ${library_references})
+    target_link_libraries(gpu_opengl PRIVATE windowing_x11)
     target_link_options(gpu_opengl PRIVATE -Wl,-z,defs)
     ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
+
+
 
 target_link_directories(gpu_opengl PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(gpu_opengl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)

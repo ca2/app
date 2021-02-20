@@ -1,10 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "apex/platform/static_setup.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 
 
@@ -24,6 +23,259 @@ namespace user
 
    user::~user()
    {
+
+   }
+
+
+   ::e_status user::initialize(::layered * pobjectContext)
+   {
+
+      auto estatus = ::apex::department::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = create_windowing();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::user::interaction * user::interaction(oswindow oswindow)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->window(oswindow);
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::user::interaction * user::get_mouse_capture(::thread * pthread)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_mouse_capture(pthread);
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteractionCapture;
+
+   }
+
+
+   ::user::interaction * user::get_keyboard_focus(::thread * pthread)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_keyboard_focus(pthread);
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteractionFocus1;
+
+   }
+
+
+   ::user::interaction * user::get_active_window(::thread * pthread)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_active_window(pthread);
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::e_status user::set_active_window(::user::interaction * puserinteraction)
+   {
+
+      ::windowing::window * pwindow = nullptr;
+
+      if (::is_set(puserinteraction))
+      {
+
+         pwindow = puserinteraction->get_window();
+
+      }
+
+      auto estatus = pwindow->set_active_window();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::user::interaction * user::get_foreground_window()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_foreground_window();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::e_status user::set_foreground_window(::user::interaction * puserinteraction)
+   {
+
+      ::windowing::window * pwindow = nullptr;
+
+      if (::is_set(puserinteraction))
+      {
+
+         pwindow = puserinteraction->get_window();
+
+      }
+
+      auto estatus = pwindow->set_foreground_window();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
 
    }
 
@@ -146,14 +398,25 @@ namespace user
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      auto estatus = ::apex::department::init2();
+
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      //estatus = create_windowing();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      return estatus;
 
    }
 
@@ -193,7 +456,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -203,7 +466,7 @@ namespace user
    void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -239,7 +502,7 @@ namespace user
       for (auto& papp : psession->m_applicationa)
       {
 
-         sync_lock sl(&App(papp).m_mutexFrame);
+         synchronization_lock synchronizationlock(&App(papp).m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
@@ -530,15 +793,15 @@ namespace aura
    //}
 
 
-   ::draw2d::font_list * session::get_single_column_font_list()
+   ::write_text::font_list * session::get_single_column_font_list()
    {
 
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         __compose(m_pfontlistSingleColumn, __create_new < ::draw2d::font_list > ());
+         __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
-         m_pfontlistSingleColumn->set_font_list_type(::draw2d::font_list::type_single_column);
+         m_pfontlistSingleColumn->set_font_list_type(::write_text::font_list::type_single_column);
 
          // m_pfontlistSingleColumn->set_need_layout();
 
@@ -883,7 +1146,7 @@ namespace user
 
             {
 
-               sync_lock sl(mutex());
+               synchronization_lock synchronizationlock(mutex());
 
                ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -921,6 +1184,86 @@ namespace user
    }
 
 
+   ::e_status user::create_windowing()
+   {
+
+      ::e_status estatus = ::success;
+
+      estatus = ::__construct(m_pwindowing);
+
+      if (!estatus)
+      {
+
+#ifdef LINUX
+
+         auto edesktop = System.get_edesktop();
+
+         if (edesktop & ::user::e_desktop_kde)
+         {
+
+            estatus = System.do_factory_exchange("windowing", "xcb");
+
+         }
+         else if (edesktop & ::user::e_desktop_gnome)
+         {
+
+            estatus = System.do_factory_exchange("windowing", "x11");
+
+         }
+         else
+         {
+
+            estatus = System.do_factory_exchange("windowing", "xcb");
+
+            //if (!estatus)
+            {
+
+               estatus = System.do_factory_exchange("windowing", "x11");
+
+            }
+
+         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         estatus = System.do_factory_exchange("windowing", "win32");
+
+#endif
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = ::__construct(m_pwindowing);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      estatus = m_pwindowing->initialize_windowing(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pnode = Node;
+
+      pnode->m_pwindowing = m_pwindowing;
+
+      return estatus;
+
+   }
 
 
    __namespace_object_factory(user, ::static_setup::flag_object_user);

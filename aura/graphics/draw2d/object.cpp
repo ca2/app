@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace draw2d
@@ -117,9 +117,14 @@ namespace draw2d
 
          ::draw2d::object* pthis = (::draw2d::object*) this;
 
-         pthis->destroy();
+         if (this->m_osdata[0])
+         {
 
-         pthis->clear_os_data();
+            pthis->destroy();
+
+            pthis->clear_os_data();
+
+         }
 
          if (pthis->create(pgraphics, i))
          {

@@ -45,7 +45,7 @@ namespace user
    //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   //   virtual void route_command_message(::user::command * pcommand) override;
+   //   virtual void route_command_message(::message::command * pcommand) override;
 
    //   virtual bool has_function(enum_control_function econtrolfunction) const;
    //   virtual enum_control_type get_control_type() const override;
@@ -116,7 +116,7 @@ namespace user
    //};
 
 
-   //class control_cmd_ui : public ::user::command
+   //class control_cmd_ui : public ::message::command
    //{
    //public:
 
@@ -148,7 +148,7 @@ namespace user
    //   virtual bool BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
    //   virtual __pointer(::user::interaction) get_window();
 
-   //   control_cmd_ui  m_commandui; // ::user::command derived class used to update
+   //   control_cmd_ui  m_commandui; // ::message::command derived class used to update
    //                                 // base_controlex derived controls
    //   list<oswindow, oswindow> m_listwndptrBlackList;
    //};

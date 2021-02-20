@@ -7,7 +7,7 @@ typedef map < task *, ithread_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
-   virtual public context_object
+   virtual public layered
 {
 
 public:
@@ -23,13 +23,17 @@ public:
    ithread_t                           m_ithread;
    string                              m_strTaskName;
    string                              m_strTaskTag;
-   __pointer(::context_object)    m_pobjectParent;
+   __pointer(::layered)                m_pobjectParent;
 
-   __pointer(::matter)            m_pmatter;
+   __pointer(::matter)                 m_pmatter;
    __pointer(manual_reset_event)       m_pevSleep;
 
 #ifdef WINDOWS
-   HRESULT                          m_hresultCoInitialize;
+   HRESULT                             m_hresultCoInitialize;
+#endif
+
+#ifdef __DEBUG
+   char *                              m_pszDebug;
 #endif
 
 
@@ -120,7 +124,7 @@ public:
 
    //virtual bool set_thread_name(const char* pszThreadName);
 
-   virtual bool is_pred() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
+   virtual bool is_predicate() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
 
    //virtual void set_thread_run(bool bRun = true);
 

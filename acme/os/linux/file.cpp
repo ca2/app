@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-
+#include "acme/os/ansios/binreloc.h"
 
 
 string get_sys_temp_path()
@@ -117,3 +117,44 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
 //    return false;
 //
 //}
+
+
+namespace path
+{
+
+
+   ::file::path module()
+   {
+
+      char *pszModuleFilePath = nullptr;
+
+#if defined(__APPLE__)
+
+      pszModuleFilePath = ns_get_executable_path();
+
+#else
+
+      pszModuleFilePath = br_find_exe("app");
+
+#endif
+
+      if (pszModuleFilePath == nullptr)
+      {
+
+         return "";
+
+      }
+
+      string strModuleFileName(pszModuleFilePath);
+
+      free(pszModuleFilePath);
+
+      return strModuleFileName;
+
+   }
+
+
+} // namespace path
+
+
+

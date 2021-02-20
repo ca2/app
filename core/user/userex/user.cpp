@@ -1,21 +1,19 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/user/account/_account.h"
-#endif
 #include "apex/platform/static_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
-#include "core/user/user/shell.h"
+#include "aura/user/shell.h"
 #include "core/user/user/_tree.h"
 
 
 //void __html_initialize(::user::user * puserex);
 //::type get_html_document_type();
 
-#ifdef WINDOWS_DESKTOP
-#include <Commdlg.h>
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#include <Commdlg.h>
+//#endif
 
 
 #define new ACME_NEW
@@ -99,7 +97,7 @@ namespace core
    ::e_status user::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::base::user::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -131,14 +129,14 @@ namespace core
       create_factory < simple_pane_document >();
 
 
- /*     if (!create_user_shell())
-      {
+      //if (!create_user_shell())
+      //{
 
-         WARN("Failed to create_user_shell");
+      //   WARN("Failed to create_user_shell");
 
-         return false;
+      //   return false;
 
-      }*/
+      //}
 
 
       if (!::base::user::init1())
@@ -188,6 +186,8 @@ namespace core
       return m_pshell;
 
    }
+
+
 
 
    ::e_status user::init()
@@ -482,7 +482,36 @@ namespace core
    }
 
 
+   ::e_status user::create_user_shell()
+   {
 
+      ::e_status estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         //estatus = __compose(m_pshell, __new(::windows::shell));
+         estatus = __compose(m_pshell);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (!m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
 
    ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
@@ -884,40 +913,40 @@ namespace core
    }
 
 
-   bool user::modal_get_color(::user::interaction * puiOwner, ::hls & hls)
+   bool user::modal_get_color(::user::interaction * puiOwner, ::color::hls & hls)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      CHOOSECOLOR cc;
-      color32_t crCustColors[16];
+      //CHOOSECOLOR cc;
+      //color32_t crCustColors[16];
 
-      // init-int this array did not affect the mouse problem
-      // ::u32 idx ;
-      // for (idx=0; idx<16; idx++) {
-      // crCustColors[idx] = RGB(idx, idx, idx) ;
-      // }
+      //// init-int this array did not affect the mouse problem
+      //// ::u32 idx ;
+      //// for (idx=0; idx<16; idx++) {
+      //// crCustColors[idx] = rgb(idx, idx, idx) ;
+      //// }
 
-      ::color c(hls);
+      //::color::color color(hls);
 
-      ZeroMemory(&cc, sizeof(cc));
-      cc.lStructSize = sizeof(CHOOSECOLOR);
-      cc.rgbResult = c.get_rgb();
-      cc.lpCustColors = (COLORREF*) crCustColors;
+      //ZeroMemory(&cc, sizeof(cc));
+      //cc.lStructSize = sizeof(CHOOSECOLOR);
+      //cc.rgbResult = c.get_rgb();
+      //cc.lpCustColors = (COLORREF*) crCustColors;
 
-      cc.Flags = CC_RGBINIT | CC_FULLOPEN;
-      cc.hwndOwner = puiOwner->get_safe_handle(); // this hangs parent, as well as me
+      //cc.Flags = CC_RGBINIT | CC_FULLOPEN;
+      //cc.hwndOwner = puiOwner->get_safe_handle(); // this hangs parent, as well as me
 
-      if (::ChooseColor(&cc))
-      {
+      //if (::ChooseColor(&cc))
+      //{
 
-         c.set_COLORREF(cc.rgbResult | (255 << 24));
+      //   c.set_COLORREF(cc.rgbResult | (255 << 24));
 
-         c.get_hls(hls);
+      //   c.get_hls(hls);
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
       return false;
 
@@ -1415,7 +1444,7 @@ namespace core
    }
 
 
-   void user::route_command_message(::user::command * pcommand)
+   void user::route_command_message(::message::command * pcommand)
    {
 
       UNREFERENCED_PARAMETER(pcommand);
@@ -1471,172 +1500,92 @@ namespace core
    }
 
 
-   string user::os_get_user_theme()
-   {
+   //string user::os_get_user_theme()
+   //{
 
-      return impl_get_os_desktop_theme();
+   //   return impl_get_os_desktop_theme();
 
-   }
-
-
-   bool user::set_os_desktop_theme(string strTheme)
-   {
-
-      return impl_set_os_desktop_theme(strTheme);
-
-   }
+   //}
 
 
-   string user::get_wallpaper(index iScreen)
-   {
+   //bool user::set_os_desktop_theme(string strTheme)
+   //{
 
-      return impl_get_wallpaper(iScreen);
+   //   return impl_set_os_desktop_theme(strTheme);
 
-   }
-
-
-   bool user::set_wallpaper(index iScreen, string strWallpaper)
-   {
-
-      return impl_set_wallpaper(iScreen, strWallpaper);
-
-   }
+   //}
 
 
-   string_array user::get_wallpaper()
-   {
+   //string user::get_wallpaper(index iScreen)
+   //{
 
-      auto psession = Session;
+   //   return impl_get_wallpaper(iScreen);
 
-      ::count iMonitorCount = psession->get_monitor_count();
-
-      string_array stra;
-
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
-      {
-
-         stra.add(get_wallpaper(iScreen));
-
-      }
-
-      bool bAllEqual = true;
-
-      for (index iScreen = 1; iScreen < iMonitorCount; iScreen++)
-      {
-
-         if (stra[iScreen] != stra[iScreen - 1])
-         {
-
-            bAllEqual = false;
-
-         }
-
-      }
-
-      if (bAllEqual && stra.get_count() >= 2)
-      {
-
-         stra.set_size(1);
-
-      }
-
-      return stra;
-
-   }
+   //}
 
 
-   void user::set_wallpaper(const string_array & straWallpaper)
-   {
+   //bool user::set_wallpaper(index iScreen, string strWallpaper)
+   //{
 
-      if (straWallpaper.is_empty())
-      {
+   //   return impl_set_wallpaper(iScreen, strWallpaper);
 
-         return;
+   //}
 
-      }
-
-      auto psession = Session;
-
-      ::count iMonitorCount = psession->get_monitor_count();
-
-#ifdef LINUX
-
-      if (iMonitorCount > 0)
-      {
-
-         set_wallpaper(0, straWallpaper[0]);
-
-      }
-
-#else
-
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
-      {
-
-         string strWallpaper = iScreen % straWallpaper;
-
-         set_wallpaper(iScreen, strWallpaper);
-
-      }
-
-#endif
-
-   }
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-   void user::enable_wallpaper_change_notification()
-   {
+   //void user::enable_wallpaper_change_notification()
+   //{
 
-   }
-
-
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != FALSE;
-
-   }
+   //}
 
 
-   string user::impl_get_wallpaper(index iScreen)
-   {
+   //bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+   //{
 
-      wstring  wstr;
+   //   return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
 
-      wstr.get_string_buffer(MAX_PATH * 8);
-      //::u32 uLen = pwsz.memsize();
-
-      if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
-      {
-         return "";
-
-      }
-      wstr.release_string_buffer();
-
-      return wstr;
-
-   }
+   //}
 
 
-   string user::impl_get_os_desktop_theme()
-   {
+   //string user::impl_get_wallpaper(index iScreen)
+   //{
 
-      return "";
+   //   wstring  wstr;
 
-   }
+   //   wstr.get_string_buffer(MAX_PATH * 8);
+   //   //::u32 uLen = pwsz.memsize();
+
+   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
+   //   {
+   //      return "";
+
+   //   }
+   //   wstr.release_string_buffer();
+
+   //   return wstr;
+
+   //}
 
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
+   //string user::impl_get_os_desktop_theme()
+   //{
 
-      UNREFERENCED_PARAMETER(strTheme);
+   //   return "";
 
-      return true;
+   //}
 
-   }
+
+   //bool user::impl_set_os_desktop_theme(string strTheme)
+   //{
+
+   //   UNREFERENCED_PARAMETER(strTheme);
+
+   //   return true;
+
+   //}
 
 
 #elif defined(LINUX)
@@ -2120,13 +2069,13 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         System.draw2d().fonts();
+         System.draw2d()->write_text()->fonts();
 
 
 
          //fork([&]()
          //{
-         //         System.draw2d().fonts().m_pfontenumeration->check_need_update();
+         //         System.draw2d()->fonts().m_pfontenumeration->check_need_update();
 
 
          //});

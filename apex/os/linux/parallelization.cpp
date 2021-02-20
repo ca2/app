@@ -1,6 +1,14 @@
 #include "framework.h"
 #include "_linux.h"
-//#include "gnome_gnome.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
 
 
 namespace process

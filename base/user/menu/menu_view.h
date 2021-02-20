@@ -14,8 +14,8 @@ namespace user
       ::image_pointer                     m_pimageMem;
       __composite(::xml::document)        m_pxmldoc;
       ::image_pointer                     m_pimageLogo;
-      ::draw2d::font_pointer              m_fontTitle;
-      ::draw2d::font_pointer              m_font;
+      ::write_text::font_pointer              m_fontTitle;
+      ::write_text::font_pointer              m_font;
       ::draw2d::brush_pointer             m_brBkSel;
       ::draw2d::brush_pointer             m_brBkHoverSel;
       ::draw2d::pen_pointer               m_penBkSel;

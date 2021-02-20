@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/menu/_menu.h"
-#endif
 #include "aqua/xml.h"
 
 
@@ -29,7 +27,7 @@ namespace user
 
       defer_initialize();
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       i32 iIndex;
 
@@ -66,19 +64,19 @@ namespace user
       imaging.change_hue(
       m_pilHue,
       MenuV033GetImageList(),
-      RGB(192, 192, 180),
+      rgb(192, 192, 180),
       0.50);
 
       imaging.color_blend(
       m_pilBlend,
       MenuV033GetImageList(),
-      RGB(255, 255, 240),
+      rgb(255, 255, 240),
       64);
 
       imaging.change_hue(
       m_pilHueLight,
       m_pil,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.5);
 
       return true;
@@ -86,12 +84,12 @@ namespace user
    }
 
 
-   ::draw2d::font * menu_central::MenuV033GetFont()
+   ::write_text::font * menu_central::MenuV033GetFont()
    {
       return GetMenuFont();
    }
 
-   ::draw2d::font * menu_central::GetMenuFont()
+   ::write_text::font * menu_central::GetMenuFont()
    {
 
       return m_fontMenu;
@@ -136,7 +134,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (m_pil.is_set())
       {
@@ -152,17 +150,17 @@ namespace user
 
       VERIFY(m_fontMenu->create_point_font(os_font_name(e_font_sans), 11));
 
-#ifdef WINDOWS_DESKTOP
-      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
-      {
-         __throw(::exception::exception("resource exception menu_central constructor"));
-      }
-#else
+//#ifdef WINDOWS_DESKTOP
+//      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
+//      {
+//         __throw(::exception::exception("resource exception menu_central constructor"));
+//      }
+//#else
       if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
       {
          __throw(::exception::exception("resource exception menu_central constructor"));
       }
-#endif
+//#endif
 
    }
 

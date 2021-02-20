@@ -1,9 +1,19 @@
 #include "framework.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #include "apex/os/ansios/_ansios.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 #ifdef LINUX
 #include "apex/os/linux/_user.h"
-
 #endif
 
 
@@ -21,7 +31,7 @@
 //   if (!thread_name_buffer[0])
 //      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 
-mq * get_mq(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(ithread_t idthread, bool bCreate);
 
 
 CLASS_DECL_APEX void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -33,7 +43,7 @@ CLASS_DECL_APEX::e_priority thread_get_scheduling_priority(int iOsPolicy, const 
 CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    millis start;
@@ -45,12 +55,12 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 
    }
 
-   __pointer(mq) pmq;
+   __pointer(message_queue) pmq;
 
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_mq(get_current_ithread(), false);
+      pmq = ::get_message_queue(get_current_ithread(), false);
 
    }
 
@@ -77,12 +87,12 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
             if (pmq.is_set())
             {
 
-               sync_lock sl(pmq->mutex());
+               synchronization_lock synchronizationlock(pmq->mutex());
 
                if (pmq->m_messagea.get_count() > 0)
                {
 
-                  return WAIT_OBJECT_0 + dwSize;
+                  return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
 
                }
 
@@ -98,7 +108,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 
                }
 
-               return WAIT_TIMEOUT;
+               return e_synchronization_result_error;
 
             }
 
@@ -121,7 +131,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
          //     hsynca[j]->unlock();
          //}
 
-         return WAIT_OBJECT_0;
+         return e_synchronization_result_signaled_base;
 
       }
 
@@ -140,7 +150,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
             if (pmq->m_eventNewMessage.lock(millis(0)))
             {
 
-               return WAIT_OBJECT_0 + dwSize;
+               return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
 
             }
 
@@ -152,14 +162,14 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
             if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
-               return WAIT_TIMEOUT;
+               return e_synchronization_result_timed_out;
 
             }
 
             if (synca[i]->lock(millis(0)))
             {
 
-               return WAIT_OBJECT_0 + i;
+               return (enum_synchronization_result) (e_synchronization_result_signaled_base + i);
 
             }
 
@@ -174,7 +184,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 }
 
 
-::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+::enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -182,7 +192,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 }
 
 
-::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+::enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -190,26 +200,26 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 }
 
 
-::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
+::enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
 
 }
 
 
-::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
+::enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
 
 }
 
 
-::u32 WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
+::enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(hsync, tickTimeout, FALSE);
+   return WaitForSingleObjectEx(hsync, tickTimeout, false);
 
 }
 
@@ -247,7 +257,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 CLASS_DECL_APEX hthread_t get_current_hthread()
 {
 
-   return ::pthread_self();
+   return (hthread_t) ::pthread_self();
 
 }
 
@@ -255,7 +265,7 @@ CLASS_DECL_APEX hthread_t get_current_hthread()
 CLASS_DECL_APEX ithread_t get_current_ithread()
 {
 
-   return ::pthread_self();
+   return (ithread_t) ::pthread_self();
 
 }
 
@@ -330,7 +340,7 @@ int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
 
    pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -375,7 +385,7 @@ CLASS_DECL_APEX void set_main_hthread(hthread_t hthread)
    // MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_hMainThread = hthread;
 
@@ -388,7 +398,7 @@ CLASS_DECL_APEX void set_main_ithread(ithread_t ithread)
    //   MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_uiMainThread = ithread;
 
@@ -433,11 +443,11 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_APEX int_bool WINAPI mq_post(mq * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_APEX int_bool WINAPI mq_post(mq * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_APEX int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_APEX int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   sync_lock ml(pmq->mutex());
+//   synchronization_lock ml(pmq->mutex());
 //
 //   MESSAGE msg;
 //
@@ -585,7 +595,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
       iOsPriority = (((epriority - iCa2Min) * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
 
-   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+   iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
 
    *piPolicy = iOsPolicy;
 

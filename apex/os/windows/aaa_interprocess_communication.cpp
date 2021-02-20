@@ -182,7 +182,7 @@
          COPYDATASTRUCT cds;
 
          cds.dwData = (unsigned int)message;
-         cds.cbData = (unsigned int)max(0,len);
+         cds.cbData = (unsigned int)maximum(0,len);
          cds.lpData = (void *)pdata;
 
 
@@ -280,7 +280,7 @@
 
          wstring wstrKey(pszKey);
 
-         m_oswindow = ::CreateWindowExW(0,L"small_ipc_rx_color::channel_message_queue_class", wstrKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
+         m_oswindow = ::CreateWindowExW(0,L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
 
          if(m_oswindow == nullptr)
          {
@@ -436,7 +436,7 @@
          wcex.hbrBackground   = (HBRUSH)(COLOR_WINDOW + 1);
          wcex.lpszMenuName    = nullptr;
 
-         wcex.lpszClassName   = L"small_ipc_rx_color::channel_message_queue_class";
+         wcex.lpszClassName   = L"small_ipc_rx_::color::e_channel_message_queue_class";
 
          wcex.hIconSm         = nullptr;
 

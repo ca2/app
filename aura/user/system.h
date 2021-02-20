@@ -4,37 +4,41 @@
 namespace user
 {
 
+
    class CLASS_DECL_AURA create_struct
    {
    public:
 
-      void *      lpCreateParams;
-      hinstance   hInstance;
-      void *      hMenu;
-      oswindow    hwndParent;
-      int         cy;
-      int         cx;
-      int         y;
-      int         x;
-      long        style;
-      wchar_t *   lpszName;
-      wchar_t *   lpszClass;
-      u32         dwExStyle;
+
+      void *               lpCreateParams;
+      hinstance            hInstance;
+      void *               hMenu;
+      oswindow             hwndParent;
+      int                  cy;
+      int                  cx;
+      int                  y;
+      int                  x;
+      long                 style;
+      platform_char *      lpszName;
+      platform_char *      lpszClass;
+      u32                  dwExStyle;
+
+
    };
 
 
    class CLASS_DECL_AURA system :
-      virtual public ::context_object
+      virtual public ::layered
    {
    public:
 
       create_struct        m_createstruct;
 #ifdef WINDOWS
-      wstring     m_strClassName;
-      wstring     m_strWindowName;
+      wstring              m_strClassName;
+      wstring              m_strWindowName;
 #else
-      string      m_strClassName;
-      string      m_strWindowName;
+      string               m_strClassName;
+      string               m_strWindowName;
 #endif
 
       ::user::interaction *                  m_puserinteractionOwner;
@@ -42,6 +46,7 @@ namespace user
       ::promise::routine                     m_routineFailure;
       __pointer(::user::interaction_impl)    m_pimpl;
       __pointer(::create)                    m_pcreate;
+      ::windowing::window *                  m_pwindow;
 
 
 

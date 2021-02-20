@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "acme/os/console.h"
 #include "shell_linux.h"
 //#include "console_window.h"
@@ -13,7 +11,7 @@
 //#include "copydesk.h"
 
 
-void __node_aura_factory_exchange()
+void __node_aura_factory_exchange(::factory_map * pfactorymap)
 {
 
 //create_factory < ::linux::dir_system         , ::dir_system             >();

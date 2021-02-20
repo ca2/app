@@ -12,7 +12,7 @@ bool CLASS_DECL_AXIS __internal_pump_message();
 LRESULT CLASS_DECL_AXIS __internal_process_wnd_proc_exception(::exception::exception*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
-//__STATIC void CLASS_DECL_AXIS __pre_init_dialog(__pointer(::user::interaction) pWnd, LPRECT32 lpRectOld, u32* pdwStyleOld);
+//__STATIC void CLASS_DECL_AXIS __pre_init_dialog(__pointer(::user::interaction) pWnd, RECTANGLE_I32 * lpRectOld, u32* pdwStyleOld);
 //__STATIC void CLASS_DECL_AXIS __post_init_dialog(__pointer(::user::interaction) pWnd, const RECT32& rectOld, u32 dwStyleOld);
 
 

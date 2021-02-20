@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace geo
@@ -20,35 +20,10 @@ namespace geo
    }
 
 
-   ::mutex * department::get_openweather_city_mutex()
-   {
-
-      sync_lock sl(mutex());
-
-      if (m_spmutexOpenweatherCity.is_null())
-      {
-
-#ifdef _UWP
-
-         m_spmutexOpenweatherCity = __new(::mutex());
-
-#else
-
-         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
-
-#endif
-
-      }
-
-      return m_spmutexOpenweatherCity;
-
-   }
-
-
    void department::defer_check_openweather_city_list()
    {
 
-      sync_lock sl(get_openweather_city_mutex());
+      synchronization_lock synchronizationlock(get_openweather_city_mutex());
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -494,7 +469,7 @@ namespace geo
 
       string str = Context.http().get(strGetUrl, set);
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       const char* pszJson = str;
 
@@ -563,7 +538,7 @@ namespace geo
 
       {
 
-         sync_lock sl(&m);
+         synchronization_lock synchronizationlock(&m);
 
          if (!m_bInitialLocalityTimeZoneInit)
          {
@@ -666,7 +641,7 @@ namespace geo
 
       {
 
-         sync_lock sl(&m);
+         synchronization_lock synchronizationlock(&m);
 
          m_cityTimeZone[(iptr)pcity->m_iId] = timezone;
 
@@ -805,7 +780,7 @@ namespace geo
       //
       //      {
       //
-      //         sync_lock sl(&m);
+      //         synchronization_lock synchronizationlock(&m);
       //
       //         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
       //

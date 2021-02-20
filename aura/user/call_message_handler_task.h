@@ -14,8 +14,8 @@ namespace user
 
       __pointer(interaction)        m_pinteraction;
       ::id                          m_id;
-      WPARAM                        m_wparam;
-      LPARAM                        m_lparam;
+      wparam                        m_wparam;
+      lparam                        m_lparam;
 
 
       call_message_handler_task(interaction * pinteraction, const ::id & id, wparam wparam, lparam lparam);

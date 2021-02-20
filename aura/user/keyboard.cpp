@@ -1,15 +1,13 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
-#if defined(LINUX) || defined(SOLARIS)
-//#include "base/base/os/x11/x11_keyboard.h"
-string x11_keyboard_get_current_group_symbol();
-#elif defined(MACOS)
-string keyboard_input_source();
-#endif
+//#if defined(LINUX) || defined(SOLARIS)
+////#include "base/base/os/x11/x11_keyboard.h"
+//string x11_keyboard_get_current_group_symbol();
+//#elif defined(MACOS)
+//string keyboard_input_source();
+//#endif
 
 
 
@@ -19,164 +17,121 @@ namespace user
 #ifdef LINUX
 
 
-   CLASS_DECL_AURA ::user::e_key keysym_to_userkey(const lparam & lparam);
+   CLASS_DECL_AURA ::user::enum_key keysym_to_userkey(const lparam & lparam);
 
 #elif defined(MACOS)
 
-   CLASS_DECL_AURA ::user::e_key vkcode_to_userkey(wparam wparam);
+   CLASS_DECL_AURA ::user::enum_key vkcode_to_userkey(wparam wparam);
 
 #endif
 
    keyboard::keyboard()
    {
 
-      SET_ENUM_TEXT(key_0);
-      SET_ENUM_TEXT(key_1);
-      SET_ENUM_TEXT(key_2);
-      SET_ENUM_TEXT(key_3);
-      SET_ENUM_TEXT(key_4);
-      SET_ENUM_TEXT(key_5);
-      SET_ENUM_TEXT(key_6);
-      SET_ENUM_TEXT(key_7);
-      SET_ENUM_TEXT(key_8);
-      SET_ENUM_TEXT(key_9);
-      SET_ENUM_TEXT(key_a);
-      SET_ENUM_TEXT(key_b);
-      SET_ENUM_TEXT(key_c);
-      SET_ENUM_TEXT(key_d);
-      SET_ENUM_TEXT(key_e);
-      SET_ENUM_TEXT(key_f);
-      SET_ENUM_TEXT(key_g);
-      SET_ENUM_TEXT(key_h);
-      SET_ENUM_TEXT(key_i);
-      SET_ENUM_TEXT(key_j);
-      SET_ENUM_TEXT(key_k);
-      SET_ENUM_TEXT(key_l);
-      SET_ENUM_TEXT(key_m);
-      SET_ENUM_TEXT(key_n);
-      SET_ENUM_TEXT(key_o);
-      SET_ENUM_TEXT(key_p);
-      SET_ENUM_TEXT(key_q);
-      SET_ENUM_TEXT(key_r);
-      SET_ENUM_TEXT(key_s);
-      SET_ENUM_TEXT(key_t);
-      SET_ENUM_TEXT(key_u);
-      SET_ENUM_TEXT(key_v);
-      SET_ENUM_TEXT(key_w);
-      SET_ENUM_TEXT(key_x);
-      SET_ENUM_TEXT(key_y);
-      SET_ENUM_TEXT(key_z);
-      SET_ENUM_TEXT(key_semicolon);
-      SET_ENUM_TEXT(key_semicolon2);
-      SET_ENUM_TEXT(key_comma);
-      SET_ENUM_TEXT(key_dot);
-      SET_ENUM_TEXT(key_shift);
-      SET_ENUM_TEXT(key_lshift);
-      SET_ENUM_TEXT(key_rshift);
-      SET_ENUM_TEXT(key_control);
-      SET_ENUM_TEXT(key_lcontrol);
-      SET_ENUM_TEXT(key_rcontrol);
-      SET_ENUM_TEXT(key_alt);
-      SET_ENUM_TEXT(key_lalt);
-      SET_ENUM_TEXT(key_ralt);
-      SET_ENUM_TEXT(key_command);
-      SET_ENUM_TEXT(key_lcommand);
-      SET_ENUM_TEXT(key_rcommand);
-      SET_ENUM_TEXT(key_lbutton);
-      SET_ENUM_TEXT(key_mbutton);
-      SET_ENUM_TEXT(key_rbutton);
-      SET_ENUM_TEXT(key_back);
-      SET_ENUM_TEXT(key_delete);
-      SET_ENUM_TEXT(key_space);
-      SET_ENUM_TEXT(key_right);
-      SET_ENUM_TEXT(key_down);
-      SET_ENUM_TEXT(key_left);
-      SET_ENUM_TEXT(key_up);
-      SET_ENUM_TEXT(key_prior);
-      SET_ENUM_TEXT(key_next);
-      SET_ENUM_TEXT(key_return);
-      SET_ENUM_TEXT(key_home);
-      SET_ENUM_TEXT(key_end);
-      SET_ENUM_TEXT(key_tab);
-      SET_ENUM_TEXT(key_capslock);
-      SET_ENUM_TEXT(key_hyphen);
-      SET_ENUM_TEXT(key_semicolon3);
-      SET_ENUM_TEXT(key_slash2);
-      SET_ENUM_TEXT(key_backslash2);
-      SET_ENUM_TEXT(key_closebracket2);
-      SET_ENUM_TEXT(key_openbracket2);
-      SET_ENUM_TEXT(key_til2);
-      SET_ENUM_TEXT(key_acute2);
-      SET_ENUM_TEXT(key_equal);
-      SET_ENUM_TEXT(key_escape);
-      SET_ENUM_TEXT(key_apostrophe2);
-      SET_ENUM_TEXT(key_numpad_0);
-      SET_ENUM_TEXT(key_numpad_1);
-      SET_ENUM_TEXT(key_numpad_2);
-      SET_ENUM_TEXT(key_numpad_3);
-      SET_ENUM_TEXT(key_numpad_4);
-      SET_ENUM_TEXT(key_numpad_5);
-      SET_ENUM_TEXT(key_numpad_6);
-      SET_ENUM_TEXT(key_numpad_7);
-      SET_ENUM_TEXT(key_numpad_8);
-      SET_ENUM_TEXT(key_numpad_9);
-      SET_ENUM_TEXT(key_print_screen);
-      SET_ENUM_TEXT(key_f1);
-      SET_ENUM_TEXT(key_f2);
-      SET_ENUM_TEXT(key_f3);
-      SET_ENUM_TEXT(key_f4);
-      SET_ENUM_TEXT(key_f5);
-      SET_ENUM_TEXT(key_f6);
-      SET_ENUM_TEXT(key_f7);
-      SET_ENUM_TEXT(key_f8);
-      SET_ENUM_TEXT(key_f9);
-      SET_ENUM_TEXT(key_f10);
-      SET_ENUM_TEXT(key_f11);
-      SET_ENUM_TEXT(key_f12);
+      SET_ENUM_TEXT(e_key_0);
+      SET_ENUM_TEXT(e_key_1);
+      SET_ENUM_TEXT(e_key_2);
+      SET_ENUM_TEXT(e_key_3);
+      SET_ENUM_TEXT(e_key_4);
+      SET_ENUM_TEXT(e_key_5);
+      SET_ENUM_TEXT(e_key_6);
+      SET_ENUM_TEXT(e_key_7);
+      SET_ENUM_TEXT(e_key_8);
+      SET_ENUM_TEXT(e_key_9);
+      SET_ENUM_TEXT(e_key_a);
+      SET_ENUM_TEXT(e_key_b);
+      SET_ENUM_TEXT(e_key_c);
+      SET_ENUM_TEXT(e_key_d);
+      SET_ENUM_TEXT(e_key_e);
+      SET_ENUM_TEXT(e_key_f);
+      SET_ENUM_TEXT(e_key_g);
+      SET_ENUM_TEXT(e_key_h);
+      SET_ENUM_TEXT(e_key_i);
+      SET_ENUM_TEXT(e_key_j);
+      SET_ENUM_TEXT(e_key_k);
+      SET_ENUM_TEXT(e_key_l);
+      SET_ENUM_TEXT(e_key_m);
+      SET_ENUM_TEXT(e_key_n);
+      SET_ENUM_TEXT(e_key_o);
+      SET_ENUM_TEXT(e_key_p);
+      SET_ENUM_TEXT(e_key_q);
+      SET_ENUM_TEXT(e_key_r);
+      SET_ENUM_TEXT(e_key_s);
+      SET_ENUM_TEXT(e_key_t);
+      SET_ENUM_TEXT(e_key_u);
+      SET_ENUM_TEXT(e_key_v);
+      SET_ENUM_TEXT(e_key_w);
+      SET_ENUM_TEXT(e_key_x);
+      SET_ENUM_TEXT(e_key_y);
+      SET_ENUM_TEXT(e_key_z);
+      SET_ENUM_TEXT(e_key_semicolon);
+      SET_ENUM_TEXT(e_key_semicolon2);
+      SET_ENUM_TEXT(e_key_comma);
+      SET_ENUM_TEXT(e_key_dot);
+      SET_ENUM_TEXT(e_key_shift);
+      SET_ENUM_TEXT(e_key_lshift);
+      SET_ENUM_TEXT(e_key_rshift);
+      SET_ENUM_TEXT(e_key_control);
+      SET_ENUM_TEXT(e_key_lcontrol);
+      SET_ENUM_TEXT(e_key_rcontrol);
+      SET_ENUM_TEXT(e_key_alt);
+      SET_ENUM_TEXT(e_key_lalt);
+      SET_ENUM_TEXT(e_key_ralt);
+      SET_ENUM_TEXT(e_key_command);
+      SET_ENUM_TEXT(e_key_lcommand);
+      SET_ENUM_TEXT(e_key_rcommand);
+      SET_ENUM_TEXT(e_key_lbutton);
+      SET_ENUM_TEXT(e_key_mbutton);
+      SET_ENUM_TEXT(e_key_rbutton);
+      SET_ENUM_TEXT(e_key_back);
+      SET_ENUM_TEXT(e_key_delete);
+      SET_ENUM_TEXT(e_key_space);
+      SET_ENUM_TEXT(e_key_right);
+      SET_ENUM_TEXT(e_key_down);
+      SET_ENUM_TEXT(e_key_left);
+      SET_ENUM_TEXT(e_key_up);
+      SET_ENUM_TEXT(e_key_prior);
+      SET_ENUM_TEXT(e_key_next);
+      SET_ENUM_TEXT(e_key_return);
+      SET_ENUM_TEXT(e_key_home);
+      SET_ENUM_TEXT(e_key_end);
+      SET_ENUM_TEXT(e_key_tab);
+      SET_ENUM_TEXT(e_key_capslock);
+      SET_ENUM_TEXT(e_key_hyphen);
+      SET_ENUM_TEXT(e_key_semicolon3);
+      SET_ENUM_TEXT(e_key_slash2);
+      SET_ENUM_TEXT(e_key_backslash2);
+      SET_ENUM_TEXT(e_key_closebracket2);
+      SET_ENUM_TEXT(e_key_openbracket2);
+      SET_ENUM_TEXT(e_key_til2);
+      SET_ENUM_TEXT(e_key_acute2);
+      SET_ENUM_TEXT(e_key_equal);
+      SET_ENUM_TEXT(e_key_escape);
+      SET_ENUM_TEXT(e_key_apostrophe2);
+      SET_ENUM_TEXT(e_key_numpad_0);
+      SET_ENUM_TEXT(e_key_numpad_1);
+      SET_ENUM_TEXT(e_key_numpad_2);
+      SET_ENUM_TEXT(e_key_numpad_3);
+      SET_ENUM_TEXT(e_key_numpad_4);
+      SET_ENUM_TEXT(e_key_numpad_5);
+      SET_ENUM_TEXT(e_key_numpad_6);
+      SET_ENUM_TEXT(e_key_numpad_7);
+      SET_ENUM_TEXT(e_key_numpad_8);
+      SET_ENUM_TEXT(e_key_numpad_9);
+      SET_ENUM_TEXT(e_key_print_screen);
+      SET_ENUM_TEXT(e_key_f1);
+      SET_ENUM_TEXT(e_key_f2);
+      SET_ENUM_TEXT(e_key_f3);
+      SET_ENUM_TEXT(e_key_f4);
+      SET_ENUM_TEXT(e_key_f5);
+      SET_ENUM_TEXT(e_key_f6);
+      SET_ENUM_TEXT(e_key_f7);
+      SET_ENUM_TEXT(e_key_f8);
+      SET_ENUM_TEXT(e_key_f9);
+      SET_ENUM_TEXT(e_key_f10);
+      SET_ENUM_TEXT(e_key_f11);
+      SET_ENUM_TEXT(e_key_f12);
 
-#ifdef WINDOWS
-      for (char ch = 'A'; ch <= 'Z'; ch++)
-      {
-         m_mapKey[ch] = (::user::e_key) (key_a + (ch - 'A'));
-      }
-      for (char ch = '0'; ch <= '9'; ch++)
-      {
-         m_mapKey[ch] = (::user::e_key) (key_0 + (ch - '0'));
-      }
-      m_mapKey[VK_LEFT] = key_left;
-      m_mapKey[VK_RIGHT] = key_right;
-      m_mapKey[VK_UP] = key_up;
-      m_mapKey[VK_DOWN] = key_down;
-      m_mapKey[VK_DELETE] = key_delete;
-      m_mapKey[VK_BACK] = key_back;
-      m_mapKey[VK_RETURN] = key_return;
-      m_mapKey[VK_SPACE] = key_space;
-      m_mapKey[VK_HOME] = key_home;
-      m_mapKey[VK_END] = key_end;
-      m_mapKey[VK_PRIOR] = key_prior;
-      m_mapKey[VK_NEXT] = key_next;
-      m_mapKey[VK_TAB] = key_tab;
-      m_mapKey[VK_ESCAPE] = key_escape;
-      m_mapKey[VK_TAB] = key_tab;
-      m_mapKey[VK_F1] = key_f1;
-      m_mapKey[VK_F2] = key_f2;
-      m_mapKey[VK_F3] = key_f3;
-      m_mapKey[VK_F4] = key_f4;
-      m_mapKey[VK_F5] = key_f5;
-      m_mapKey[VK_F6] = key_f6;
-      m_mapKey[VK_F7] = key_f7;
-      m_mapKey[VK_F8] = key_f8;
-      m_mapKey[VK_F9] = key_f9;
-      m_mapKey[VK_F10] = key_f10;
-      m_mapKey[VK_F11] = key_f11;
-      m_mapKey[VK_F12] = key_f12;
-      m_mapKey[VK_LSHIFT] = key_lshift;
-      m_mapKey[VK_RSHIFT] = key_rshift;
-      m_mapKey[VK_LCONTROL] = key_lcontrol;
-      m_mapKey[VK_RCONTROL] = key_rcontrol;
-      m_mapKey[VK_LMENU] = key_lalt;
-      m_mapKey[VK_RMENU] = key_ralt;
-#endif
 
    }
 
@@ -301,7 +256,6 @@ namespace user
    }
 
 
-
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
 
@@ -309,9 +263,9 @@ namespace user
 
       //i32 iScan;
 
-      //::user::e_key ekey;
+      //::user::enum_key ekey;
 
-      //::type typeinfoKey = __type(::user::e_key);
+      //::type typeinfoKey = __type(::user::enum_key);
 
       string str = Context.file().as_string(pszPath);
 
@@ -480,11 +434,11 @@ namespace user
 
    //   pkey->m_iCode = (int)(pkey->m_ekey);
 
-   //   if(psession->is_key_pressed(::user::key_shift))
+   //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
    //      pkey->m_iCode |= 0x80000000;
    //   }
-   //   if(psession->is_key_pressed(::user::key_ralt))
+   //   if(psession->is_key_pressed(::user::e_key_ralt))
    //   {
    //      pkey->m_iCode |= 0x40000000;
    //   }
@@ -495,7 +449,7 @@ namespace user
 
    //}
 
-   //string keyboard::process_key(::user::e_key ekey)
+   //string keyboard::process_key(::user::enum_key ekey)
    //{
 
    //   if(m_playout == nullptr)
@@ -507,11 +461,11 @@ namespace user
 
    //   int iCode = (int) (ekey);
 
-   //   if(psession->is_key_pressed(::user::key_shift))
+   //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
    //      iCode |= 0x80000000;
    //   }
-   //   if(psession->is_key_pressed(::user::key_ralt))
+   //   if(psession->is_key_pressed(::user::e_key_ralt))
    //   {
    //      iCode |= 0x40000000;
    //   }
@@ -733,7 +687,7 @@ namespace user
    ::e_status keyboard::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_iSoftwareKeyboardEventId++;
 
@@ -746,14 +700,14 @@ namespace user
 
             sleep(400_ms);
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (iEventId == m_iSoftwareKeyboardEventId)
             {
 
                ASSERT(pprimitive == m_pprimitiveSoftwareKeyboard);
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                m_pprimitiveSoftwareKeyboard->show_software_keyboard(pprimitive, str, iBeg, iEnd);
 
@@ -776,7 +730,7 @@ namespace user
 
       }
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       m_iSoftwareKeyboardEventId++;
 
@@ -789,12 +743,12 @@ namespace user
 
             sleep(400_ms);
 
-            sync_lock sl(mutex());
+            synchronization_lock synchronizationlock(mutex());
 
             if (iEventId == m_iSoftwareKeyboardEventId)
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                m_pprimitiveSoftwareKeyboard->hide_software_keyboard(pprimitive);
 
@@ -808,11 +762,10 @@ namespace user
 
 
 
-
    void keyboard::translate_os_key_message(key * pkey)
    {
 
-      if(pkey->m_ekey == ::user::key_refer_to_text_member
+      if(pkey->m_ekey == ::user::e_key_refer_to_text_member
          && pkey->m_strText.has_char())
       {
 
@@ -824,7 +777,7 @@ namespace user
 
       auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
 
-      if(ekey != ::user::key_none)
+      if(ekey != ::user::e_key_none)
       {
 
           pkey->m_ekey = ekey;
@@ -837,17 +790,17 @@ namespace user
 
 
    #else
-
-     auto ekey = keysym_to_userkey(pkey->m_lparam);
-
-     if(ekey != ::user::key_none)
-     {
-
-         pkey->m_ekey = ekey;
-
-         return;
-
-     }
+//
+//     auto ekey = keysym_to_userkey(pkey->m_lparam);
+//
+//     if(ekey != ::user::e_key_none)
+//     {
+//
+//         pkey->m_ekey = ekey;
+//
+//         return;
+//
+//     }
 
    #endif
 
@@ -859,19 +812,19 @@ namespace user
 
          pkey->m_ekey = m_mapExt[(i32)pkey->m_nScanCode];
 
-         if(pkey->m_ekey != ::user::key_none)
+         if(pkey->m_ekey != ::user::e_key_none)
             return;
 
       }
 
       pkey->m_ekey = m_mapScan[(i32)pkey->m_nScanCode];
 
-      if(pkey->m_ekey != ::user::key_none)
+      if(pkey->m_ekey != ::user::e_key_none)
          return;
 
 #endif
 
-      if(pkey->m_ekey == ::user::key_none)
+      if(pkey->m_ekey == ::user::e_key_none)
       {
 
          pkey->m_ekey = m_mapKey[(i32) pkey->m_iVirtualKey];

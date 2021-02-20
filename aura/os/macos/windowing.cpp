@@ -10,7 +10,7 @@
 #include "window_impl.h"
 #include "aura/os/_os.h"
 #include "oswindow_data.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 #include <CoreGraphics/CoreGraphics.h>
 
 oswindow_dataptra * g_poswindowdataptra = nullptr;
@@ -22,7 +22,7 @@ void ns_main_async(dispatch_block_t block);
 int oswindow_find(NSWindow * window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
    {
@@ -39,7 +39,7 @@ int oswindow_find(NSWindow * window)
 oswindow_data * oswindow_get(nswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -119,7 +119,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 bool oswindow_remove(nswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -355,7 +355,7 @@ oswindow set_capture(oswindow window)
 int_bool release_capture()
 {
 
-   int_bool bRet = TRUE;
+   int_bool bRet = true;
 
    if(bRet)
    {
@@ -426,7 +426,7 @@ int_bool session_accepts_first_responder()
 void deactivate_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
    
    if(g_oswindowActive != window)
    {
@@ -446,7 +446,7 @@ void deactivate_window(oswindow window)
 oswindow set_active_window(oswindow window)
 {
 
-   sync_lock sl(g_pmutexOsWindowData);
+   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
 
    oswindow windowOld(g_oswindowActive);
 
@@ -523,14 +523,14 @@ int_bool destroy_window(oswindow w)
    if(is_null(w))
    {
       
-      return FALSE;
+      return false;
       
    }
    
    if(is_null(w->m_pimpl))
    {
       
-      return FALSE;
+      return false;
       
    }
    
@@ -1004,7 +1004,7 @@ rect_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
             if(iWindowId == windowid)
             {
                
-               rect1 = rectangle_i32;
+               rect1 = rectangle;
                
             }
             else if(bFound)
@@ -1300,7 +1300,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 //   ::rectangle_i32 rectangle;
 //
-//   rectangle_i32 = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
+//   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
 //
 //   ::rectangle_i32 rectTest;
 //
@@ -1350,7 +1350,7 @@ int_bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude
          
       }
 
-      auto rectangle_i32 = recta[i];
+      auto rectangle = recta[i];
 
       ::rectangle_i32 rectHitTest;
       

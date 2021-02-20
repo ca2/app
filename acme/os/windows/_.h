@@ -1,9 +1,7 @@
 #pragma once
 
-
-
-
-
+typedef struct tagMSG MSG;
+inline void copy(MESSAGE * pmessage, const MSG * pmsg);
 
 
 //#ifdef WINDOWS
@@ -16,8 +14,7 @@ CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 CLASS_DECL_ACME string ca2_command_line();
 #endif
 
-CLASS_DECL_ACME void process_set_args(int argc, char ** argv);
-CLASS_DECL_ACME void process_set_args(int argc, wchar_t ** argv);
+
 
 
 

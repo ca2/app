@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -8,7 +8,7 @@
 string get_error_message(::u32 dwError);
 
 
-CLASS_DECL_ACME bool __initialize();
+//CLASS_DECL_ACME bool __initialize();
 
 
 //#include "system_dir.h"
@@ -119,7 +119,7 @@ namespace windows
    CLASS_DECL_ACME HINSTANCE   load_library(const char * psz);
 
    CLASS_DECL_ACME bool        shell_get_special_folder_path(HWND hwnd,::file::path &str,i32 csidl,bool fCreate);
-   CLASS_DECL_ACME ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
+   CLASS_DECL_ACME ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
    CLASS_DECL_ACME ::u32       get_file_attributes(const char * pFileName);
 
    CLASS_DECL_ACME ::u32       get_current_directory(string & str);

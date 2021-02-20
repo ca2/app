@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -124,7 +122,7 @@ namespace filemanager
    void file_list::RenameFile(i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::path filepath = fs_list_item(iLine)->m_filepathFinal;
 
@@ -142,7 +140,7 @@ namespace filemanager
 
       __pointer(::message::mouse) pcontextmenu(pmessage);
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       index iItem;
 
@@ -322,7 +320,7 @@ namespace filemanager
    }
 
 
-   void file_list::route_command_message(::user::command * pcommand)
+   void file_list::route_command_message(::message::command * pcommand)
    {
 
       auto itema = get_selected_items();
@@ -343,14 +341,14 @@ namespace filemanager
 
    void file_list::_001OnShellCommand(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      __pointer(::user::message) pcommand(pmessage);
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::file::item_array itema;
 
@@ -384,9 +382,9 @@ namespace filemanager
    void file_list::_001OnFileManagerItemUpdate(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -499,11 +497,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      //      __pointer(::user::command) pcommand(pmessage);
+      //      __pointer(::message::command) pcommand(pmessage);
       //    pcommand->enable(_001GetSelectedItemCount() == 1);
       //  pmessage->m_bRet = true;
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -517,7 +515,7 @@ namespace filemanager
    void file_list::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -549,7 +547,7 @@ namespace filemanager
    void file_list::_001OnUpdateTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -581,7 +579,7 @@ namespace filemanager
    void file_list::_001OnUpdateOpenWith(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       __pointer(::user::menu_command) pmenucommandui(pcommand);
 
@@ -655,7 +653,7 @@ namespace filemanager
    }
 
 
-   void file_list::on_command_probe(::user::command * pcommand)
+   void file_list::on_command_probe(::message::command * pcommand)
    {
 
       i32 iPos = -1;
@@ -679,7 +677,7 @@ namespace filemanager
       if (iPos >= 0)
       {
 
-         pcommand->enable(TRUE);
+         pcommand->enable(true);
 
          pcommand->m_bRet = true;
 
@@ -692,7 +690,7 @@ namespace filemanager
    }
 
 
-   void file_list::on_command(::user::command * pcommand)
+   void file_list::on_command(::message::command * pcommand)
    {
 
       if (pcommand->m_id == "1000")
@@ -746,7 +744,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy(::message::message * pmessage)
    //{
-   //   __pointer(::user::command) pcommand(pmessage);
+   //   __pointer(::message::command) pcommand(pmessage);
    //   ::user::range range;
    //   _001GetSelection(range);
    //   pcommand->enable(range.get_item_count() > 0);
@@ -819,8 +817,8 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
-   //   __pointer(::user::command) pcommand(pmessage);
-   //   pcommand->enable(TRUE);
+   //   __pointer(::message::command) pcommand(pmessage);
+   //   pcommand->enable(true);
    //   pmessage->m_bRet = true;
    //}
 
@@ -828,7 +826,7 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   sync_lock sl(fs_list()->mutex());
+   //   synchronization_lock synchronizationlock(fs_list()->mutex());
 
    //   __pointer(::userfs::list_data) pdata = fs_list();
    //
@@ -975,7 +973,7 @@ namespace filemanager
 
          Application.data_get(filemanager_data()->m_dataidStatic, stra);
 
-         sync_lock lock(fs_list()->mutex());
+         synchronization_lock lock(fs_list()->mutex());
 
          fs_list()->m_itema.remove_all();
 
@@ -1058,9 +1056,9 @@ namespace filemanager
 
       {
 
-         sync * pm = fs_list()->mutex();
+         synchronization_object * pm = fs_list()->mutex();
 
-         sync_lock lock(pm);
+         synchronization_lock lock(pm);
 
          ::file::listing & listingUser = get_document()->m_listingUser2;
 
@@ -1120,7 +1118,7 @@ namespace filemanager
 
       {
 
-         sync_lock lock(fs_list()->mutex());
+         synchronization_lock lock(fs_list()->mutex());
 
          if (m_eview == impact_icon)
          {
@@ -1405,9 +1403,9 @@ namespace filemanager
    //void file_list::_001OnMainPostMessage(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::base) pbase(pmessage);
+   //   __pointer(::user::message) pusermessage(pmessage);
 
-   //   switch (pbase->m_wparam)
+   //   switch (pusermessage->m_wparam)
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
@@ -1426,9 +1424,9 @@ namespace filemanager
    //   break;
    //   }
 
-   //   pbase->set_lresult(0);
+   //   pusermessage->set_lresult(0);
 
-   //   pbase->m_bRet = true;
+   //   pusermessage->m_bRet = true;
 
    //}
 
@@ -1531,7 +1529,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -1648,7 +1646,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   sync_lock sl(fs_list()->mutex());
+   //   synchronization_lock synchronizationlock(fs_list()->mutex());
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1659,7 +1657,7 @@ namespace filemanager
    //         iItemRange++)
    //   {
    //      auto & itemrange = range.ItemAt(iItemRange);
-   //      for (iItem = max(0, itemrange.get_lower_bound());
+   //      for (iItem = maximum(0, itemrange.get_lower_bound());
    //            iItem <= itemrange.get_upper_bound();
    //            iItem++)
    //      {
@@ -1715,7 +1713,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       ::userfs::list_item item;
 
@@ -1774,7 +1772,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   single_lock sl(pset->m_table.mutex(), TRUE);
+   //   single_lock synchronizationlock(pset->m_table.mutex(), true);
 
    //   for (i32 i = 0; i < fs_list()->m_itema.get_count(); i++)
    //   {
@@ -1799,7 +1797,7 @@ namespace filemanager
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       if (iDisplayDrag < 0)
          return false;
@@ -1840,7 +1838,7 @@ namespace filemanager
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      sync_lock sl(fs_list()->mutex());
+      synchronization_lock synchronizationlock(fs_list()->mutex());
 
       index strict = _001DisplayToStrict(iDisplayDrop);
 
@@ -1873,30 +1871,30 @@ namespace filemanager
 
    //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
    //   {
-   //      return ARGB(255, 255, 255, 255);
+   //      return argb(255, 255, 255, 255);
    //      //color32_t cr;
    //      //if (filemanager_document()->m_emode == document::mode_saving)
    //      //{
 
-   //      //   cr = ARGB(255, 255, 210, 180);
+   //      //   cr = argb(255, 255, 210, 180);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_import)
    //      //{
 
-   //      //   cr = ARGB(255, 180, 210, 255);
+   //      //   cr = argb(255, 180, 210, 255);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_export)
    //      //{
 
-   //      //   cr = ARGB(255, 255, 250, 210);
+   //      //   cr = argb(255, 255, 250, 210);
 
    //      //}
    //      //else
    //      //{
 
-   //      //   cr = ARGB(190, 210, 255, 180);
+   //      //   cr = argb(190, 210, 255, 180);
 
    //      //}
    //      //return cr;
@@ -1904,7 +1902,7 @@ namespace filemanager
    //   else
    //   {
 
-   //      return ARGB(255, 255, 255, 255);
+   //      return argb(255, 255, 255, 255);
 
    //   }
 
@@ -2016,7 +2014,7 @@ namespace filemanager
 
             {
 
-               sync_lock sl(mutex_draw());
+               synchronization_lock synchronizationlock(mutex_draw());
 
                if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
                {

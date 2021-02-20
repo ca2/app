@@ -48,7 +48,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    call_routine(CREATE_ROUTINE);
 
-   estatus = __construct_new(m_prx);
+   estatus = __construct(m_prx);
 
    if (!estatus)
    {
@@ -108,7 +108,7 @@ void interprocess_intercommunication::finalize()
 bool interprocess_intercommunication::start(const string & strApp)
 {
 
-   sync_lock sl1(mutex());
+   synchronization_lock sl1(mutex());
 
    auto & pmutex = m_mapAppMutex[strApp];
 
@@ -121,7 +121,7 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    sl1.unlock();
 
-   sync_lock sl(pmutex);
+   synchronization_lock synchronizationlock(pmutex);
 
    auto idaPid = get_pid(strApp);
 
@@ -195,7 +195,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
 
    }
 
@@ -212,7 +212,7 @@ bool interprocess_intercommunication::connect(const string & strApp, const ::id 
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create<::interprocess_communication::tx>();
 
    }
 
@@ -240,7 +240,7 @@ bool interprocess_intercommunication::connect(const string & strApp, const ::id 
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __new(::interprocess_communication::tx);
+      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
 
    }
 
@@ -467,7 +467,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 
    auto pobjectTask = __new(interprocess_task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -481,7 +481,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 __pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return m_mapTask[iTask];
 

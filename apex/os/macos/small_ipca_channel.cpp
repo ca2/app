@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 
 
@@ -384,7 +384,7 @@ namespace interprocess_communication
       do
       {
          // Start the run loop but return after each source is handled.
-         SInt32    result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.5, TRUE);
+         SInt32    result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.5, true);
 
          // If a source explicitly stopped the run loop, or if there are no
          // sources or timers, go ahead and exit.

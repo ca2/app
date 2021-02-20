@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/user/wait_cursor.h"
 
 
@@ -105,9 +103,9 @@ namespace user
 
       __pointer(::user::frame_window) pFrame;
 
-      bool bCreated = FALSE;      // => doc and frame created
+      bool bCreated = false;      // => doc and frame created
 
-      bool bWasModified = FALSE;
+      bool bWasModified = false;
 
       if (m_pdocument.is_set())
       {
@@ -141,7 +139,7 @@ namespace user
          
          ASSERT(pFrame == nullptr);     // will be created below
          
-         bCreated = TRUE;
+         bCreated = true;
          
       }
 
@@ -165,7 +163,7 @@ namespace user
          // create frame - set as main ::user::document frame
          bool bAutoDelete = pdocument->m_bAutoDelete;
 
-         pdocument->m_bAutoDelete = FALSE;
+         pdocument->m_bAutoDelete = false;
 
          // don't destroy if something goes wrong
          pFrame = create_new_frame(pdocument, nullptr, pcreate);
@@ -204,14 +202,14 @@ namespace user
          if (!bMakeVisible)
          {
 
-            pdocument->m_bEmbedded = TRUE;
+            pdocument->m_bEmbedded = true;
 
          }
 
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
 
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::document
@@ -230,12 +228,12 @@ namespace user
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();
-         pdocument->set_modified_flag(FALSE);  // not dirty for open
+         pdocument->set_modified_flag(false);  // not dirty for open
 
          if (!on_open_document(pdocument, pcreate))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned false.\n");
 
             if (bCreated)
             {

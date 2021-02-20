@@ -7,7 +7,7 @@
 //#include <sys/wait.h>
 //
 #include <spawn.h>
-//#include <pthread.h>
+//#include "acme/os/ansios/_pthread.h"
 //
 extern char * const * environ;
 
@@ -54,7 +54,7 @@ critical_section * get_pid_cs()
 chldstatus get_chldstatus(int iPid)
 {
 
-   critical_section_lock sl(get_pid_cs());
+   critical_section_lock synchronizationlock(get_pid_cs());
 
    return g_ppid->operator[](iPid);
 
@@ -95,7 +95,7 @@ void ansios_sigchld_handler(int sig)
 
       {
 
-         critical_section_lock sl(get_pid_cs());
+         critical_section_lock synchronizationlock(get_pid_cs());
 
          auto ppair = g_ppid->plookup(iPid);
 
@@ -257,7 +257,7 @@ namespace apple
 
       {
 
-         critical_section_lock sl(get_pid_cs());
+         critical_section_lock synchronizationlock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
@@ -462,7 +462,7 @@ namespace apple
 
       }
 
-      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
+      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, true);
 
       // Create authorization context_object
       OSStatus status;
@@ -830,7 +830,7 @@ auto tickStart = ::millis::now();
 
       {
 
-         critical_section_lock sl(get_pid_cs());
+         critical_section_lock synchronizationlock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 

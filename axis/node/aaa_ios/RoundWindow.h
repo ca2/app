@@ -14,7 +14,7 @@
 #include "aura/user/user/_const_key.h"
 
 
-::user::e_key event_key(UIEvent * event);
+::user::enum_key event_key(UIEvent * event);
 
 
 class round_window;

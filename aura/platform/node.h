@@ -29,25 +29,30 @@ namespace aura
    public:
 
 
+      __pointer(::windowing::windowing)         m_pwindowing;
+
+
       node();
       virtual ~node();
 
 
-#ifdef LINUX
 
-      virtual ::linux::appindicator * appindicator_allocate();
-      virtual void appindicator_destroy(::linux::appindicator * pappindicator);
+//#ifdef LINUX
 
-#endif
+  //    virtual ::linux::appindicator * appindicator_allocate();
+    //  virtual void appindicator_destroy(::linux::appindicator * pappindicator);
+
+//#endif
 
       virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
 
 //      virtual void * node_wrap_window(void * pdisplay, i64 window);
 
-      using apex::node::user_fork;
+      //using apex::node::user_fork;
 
-      virtual void user_fork(const ::promise::routine & routine) override;
+      //virtual void user_fork(const ::promise::routine & routine) override;
 
+      inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
 
    };

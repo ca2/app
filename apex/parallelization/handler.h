@@ -26,7 +26,7 @@ public:
 
 
    ::e_status async(const ::promise::routine & routine);
-   ::e_status sync(const ::promise::routine & routine);
+   ::e_status synchronization_object(const ::promise::routine & routine);
 
 
    ::e_status handle(const ::promise::routine & routine, bool bSync);

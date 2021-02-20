@@ -1305,9 +1305,9 @@
 //   if(iSubString < 0)
 //      iSubString = 0;
 //
-//   iStart = min(str.get_length(), max(0, iStart));
+//   iStart = minimum(str.get_length(), maximum(0, iStart));
 //
-//   iEnd = min(str.get_length(), max(0, iEnd));
+//   iEnd = minimum(str.get_length(), maximum(0, iEnd));
 //
 //   SMatches matches;
 //

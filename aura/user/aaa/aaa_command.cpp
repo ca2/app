@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 
 
 namespace user
@@ -210,14 +208,14 @@ namespace user
    }
 
 
-   void ::user::command::SetRadio(bool bOn, const ::action_context & context)
+   void ::message::command::SetRadio(bool bOn, const ::action_context & context)
    {
 
       _001SetCheck(bOn,context);
 
    }
 
-   void ::user::command::SetText(const char * pszText, const ::action_context & context)
+   void ::message::command::SetText(const char * pszText, const ::action_context & context)
 
    {
 

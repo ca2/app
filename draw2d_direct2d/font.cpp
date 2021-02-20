@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace draw2d_direct2d
@@ -42,7 +42,7 @@ namespace draw2d_direct2d
 
          }
 
-         IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
+         IDWriteFactory * pfactory = ::direct2d::direct2d()->dwrite_factory();
 
          DWRITE_FONT_STYLE style;
 
@@ -77,13 +77,13 @@ namespace draw2d_direct2d
          if(m_eunitFontSize == ::draw2d::unit_point)
          {
 
-            fFontSize = point_dpi(oswindow, (float)m_dFontSize);
+            fFontSize = pgraphics->m_puserinteraction->get_window()->point_dpi((float)m_dFontSize);
 
          }
          else
          {
 
-            fFontSize = dpiy(oswindow, (float)m_dFontSize);
+            fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
          }
 
@@ -139,7 +139,7 @@ namespace draw2d_direct2d
    void font::destroy()
    {
 
-      ::draw2d::font::destroy();
+      ::write_text::font::destroy();
 
       if (m_pformat == nullptr)
       {

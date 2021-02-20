@@ -16,7 +16,7 @@ namespace message
 
       timer() { }
 
-      using ::message::base::set;
+      using ::user::message::set;
       virtual void set(::user::primitive * pwnd, const ::id & id, WPARAM wparam, ::lparam lparam);
 
 

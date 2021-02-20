@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/user/wait_cursor.h"
 
 
@@ -132,7 +130,7 @@ namespace user
 
          TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_document.\n");
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return nullptr;
 
@@ -206,7 +204,7 @@ namespace user
 
          TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return nullptr;
 
@@ -258,9 +256,21 @@ namespace user
 
       }
 
+      if (pcreate->m_bMakeVisible)
+      {
+
+         if (!::is_screen_visible(pframe->layout().sketch().display()))
+         {
+
+            pframe->display(e_display_default);
+
+         }
+
+      }
+
       // create new from resource
       if (!pframe->LoadFrame(m_strMatter,
-                             WS_OVERLAPPEDWINDOW |
+                             //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
                              __user_interaction(pcreate->m_puserinteractionParent), 
                               pusersystem))
@@ -305,9 +315,9 @@ namespace user
       {
          __pointer(::user::document) pdocument = get_document(index);
          if (!pdocument->save_modified())
-            return FALSE;
+            return false;
       }
-      return TRUE;
+      return true;
    }
 
    void impact_system::pre_close_all_documents()
@@ -370,7 +380,7 @@ namespace user
    }
 
 
-   void impact_system::route_command_message(::user::command * pcommand)
+   void impact_system::route_command_message(::message::command * pcommand)
    {
 
       channel::route_command_message(pcommand);

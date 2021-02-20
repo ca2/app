@@ -100,7 +100,7 @@ MODIFICATIONS:
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 
-#define ASSERT_HERE ASSERT(FALSE)
+#define ASSERT_HERE ASSERT(false)
 
 /*#if ( NTDDI_VERSION < NTDDI_LONGHORN )
 #   error NTDDI_VERSION must be defined as NTDDI_LONGHORN or later
@@ -114,7 +114,7 @@ MODIFICATIONS:
 // #   ifdef __DEBUG
 // #      include <assert.h>
 // #      define ASSERT(x) assert( x )
-// #      define ASSERT_HERE assert( FALSE )
+// #      define ASSERT_HERE assert( false )
 // #   else// __DEBUG
 // #      define ASSERT(x)
 // #      define ASSERT_HERE
@@ -164,7 +164,7 @@ namespace VistaTools
       shex.lpDirectory   = pszDirectory;
       shex.nShow         = SW_NORMAL;
 
-      bool bRet = ::ShellExecuteEx( &shex ) != FALSE;
+      bool bRet = ::ShellExecuteEx( &shex ) != false;
 
       if ( phProcess )
          *phProcess = shex.hProcess;
@@ -181,9 +181,9 @@ namespace VistaTools
       if (   ::GetVersionEx( &osver ) &&
              osver.dwPlatformId == VER_PLATFORM_WIN32_NT &&
              (osver.dwMajorVersion >= 6 ) )
-         return TRUE;
+         return true;
 
-      return FALSE;
+      return false;
    }
 
 #ifndef WIN64 // we need this when compiling 32-bit code only
@@ -196,7 +196,7 @@ namespace VistaTools
    bool
    IsWow64()
    {
-      BOOL bIsWow64 = FALSE;
+      BOOL bIsWow64 = false;
 
       if (nullptr != fnIsWow64Process)
       {
@@ -206,7 +206,7 @@ namespace VistaTools
          }
       }
 
-      return bIsWow64 != FALSE;
+      return bIsWow64 != false;
    }
 
 #endif//WIN64
@@ -336,7 +336,7 @@ namespace VistaTools
    ::u32   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
-   bool   bVESuccess                  = FALSE;
+   bool   bVESuccess                  = false;
 
    __declspec(allocate("ve_shared"))
    char   szVE_Path[ MAX_PATH ]         = "";
@@ -348,7 +348,7 @@ namespace VistaTools
    char   szVE_Directory[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
-   bool    bVE_NeedProcessHandle         = FALSE;
+   bool    bVE_NeedProcessHandle         = false;
 
    __declspec(allocate("ve_shared"))
    HANDLE   hVE_Process               = nullptr;
@@ -437,7 +437,7 @@ namespace VistaTools
       if ( IsWow64() )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
 #endif//WIN64
@@ -473,7 +473,7 @@ namespace VistaTools
       if ( !hwndShell )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       if ( !hwnd )
@@ -490,7 +490,7 @@ namespace VistaTools
       if ( !pGetModuleHandleExW )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       HMODULE hModule = nullptr;   // we need to know hModule of this DLL to install a global hook
@@ -501,7 +501,7 @@ namespace VistaTools
             &hModule ) )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       /////////////////////////////////////////
@@ -513,7 +513,7 @@ namespace VistaTools
       if ( !hVEHook )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       //////////////////////////////////
@@ -525,7 +525,7 @@ namespace VistaTools
              pszPath, _tsizeof(szVE_Path) ) ) )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       if (!( ansi_count_copy(
@@ -535,7 +535,7 @@ namespace VistaTools
              _tsizeof(szVE_Parameters)) ) )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       if ( FAILED( ansi_count_copy(
@@ -544,7 +544,7 @@ namespace VistaTools
                    _tsizeof(szVE_Directory)) ) )
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       bVE_NeedProcessHandle = (phProcess != nullptr);
@@ -552,7 +552,7 @@ namespace VistaTools
       /////////////////////////////////////////
       // Activate our hook callback procedure:
 
-      bVESuccess = FALSE; // assume failure
+      bVESuccess = false; // assume failure
 
       ::SendMessage( hwndShell, uVEMsg, 0, 0 );
 

@@ -40,9 +40,31 @@ namespace user
       
       __pointer_array(::user::interaction)   m_uiptraToolWindow;
 
+      __pointer(::windowing::windowing)      m_pwindowing;
+
+
       user();
       virtual ~user();
 
+
+      virtual ::e_status initialize(::layered * pobjectContext) override;
+
+
+      inline ::windowing::windowing * windowing() { return m_pwindowing; }
+
+      virtual ::user::interaction * interaction(oswindow oswindow);
+
+      virtual ::user::interaction * get_mouse_capture(::thread * pthread);
+
+      virtual ::user::interaction * get_keyboard_focus(::thread * pthread);
+
+      virtual ::user::interaction * get_active_window(::thread * pthread);
+
+      virtual ::e_status set_active_window(::user::interaction *);
+
+      
+      virtual ::user::interaction * get_foreground_window();
+      virtual ::e_status set_foreground_window(::user::interaction *);
 
 
       virtual ::user::style* get_user_style();
@@ -55,6 +77,10 @@ namespace user
       virtual ::e_status init1() override;
       virtual ::e_status init2() override;
       virtual ::e_status init() override;
+
+
+      virtual ::e_status create_windowing();
+
 
 
 
@@ -82,7 +108,8 @@ namespace user
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
 
 
-      
+
+
 
 
    };

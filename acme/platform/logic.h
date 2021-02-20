@@ -1,15 +1,26 @@
 #pragma once
 
-namespace acme
+
+//namespace acme
+//{
+//
+//
+namespace logic
 {
 
-   namespace logic
+      
+   inline bool condition(bool p, bool q)
    {
 
-      CLASS_DECL_ACME bool forward_conditional(bool point_i32, bool q); // it tests point_i32 before
-      CLASS_DECL_ACME bool reverse_conditional(bool point_i32, bool q); // it tests q before
+      return !p || q;
 
-   } // namespace logic
+   }
 
-} // namespace acme
+
+} // namespace logic
+
+
+///} // namespace acme
+
+
 

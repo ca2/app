@@ -11,6 +11,8 @@ namespace app_shader
    window::window()
    {
 
+      m_bTransparent = true;
+
       m_iShader = 0;
 
       payload(FONTSEL_IMPACT) = true;
@@ -69,8 +71,6 @@ namespace app_shader
 
       *pitem = ::user::e_element_close_icon;
 
-      ModifyStyleEx(0, WS_EX_LAYERED);
-
       get_top_level()->set_prodevian();
 
       update_shader();
@@ -89,7 +89,7 @@ namespace app_shader
 
       __pointer(::message::key) pkey(pmessage);
 
-      if (pkey->m_ekey == ::user::key_s)
+      if (pkey->m_ekey == ::user::e_key_s)
       {
 
          m_bSaveFrame = true;
@@ -212,7 +212,7 @@ namespace app_shader
    void window::update_shader()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       start_layout();
 

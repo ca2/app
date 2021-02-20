@@ -102,7 +102,7 @@ bool html_form_view::Refresh2(i32 i)
 
 bool html_form_view::Navigate(const char * pszUrl)
 {
-   ASSERT(FALSE);
+   ASSERT(false);
    /*   if(!open_document(pszUrl))
          return false;*/
    m_strPath = pszUrl;

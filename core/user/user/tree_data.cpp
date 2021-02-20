@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/user/_user.h"
-#endif
 #include "_data.h"
 #include "_tree.h"
 
@@ -219,7 +217,7 @@ namespace user
       for(index i = 0; i < m_usertreea.get_count(); i++)
       {
 
-         m_usertreea[i]->_001OnItemContextMenu(pitem,context,ptree,point_i32);
+         m_usertreea[i]->_001OnItemContextMenu(pitem, context, ptree, point);
 
       }
 

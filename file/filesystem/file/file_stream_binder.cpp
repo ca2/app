@@ -102,7 +102,7 @@ namespace file
       if(size > 0)
       {
          _thereAreBytesToReadEvent.wait();
-         sizeToRead = min(_size, size);
+         sizeToRead = minimum(_size, size);
          if(_size > 0)
          {
             ::memcpy_dup(data, _data, sizeToRead);
@@ -137,7 +137,7 @@ namespace file
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();
 
-         sync_array eva(get_object());
+         synchronization_array eva(get_object());
          eva.add(&_allBytesAreWritenEvent);
          eva.add(&_readStreamIsClosedEvent);
          if(!eva.wait(false, duration::infinite()).signaled())

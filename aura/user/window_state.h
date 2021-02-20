@@ -6,19 +6,19 @@ class CLASS_DECL_AURA zorder
 public:
 
 
-   e_zorder       m_ezorder;
+   enum_zorder    m_ezorder;
    iptr           m_iZOrder;
 
 
    zorder();
 
    zorder(const zorder & zorder);
-   zorder(e_zorder ezorder);
+   zorder(enum_zorder ezorder);
 
    zorder(iptr iZ);
-   zorder(oswindow hwnd);
+   //zorder(oswindow hwnd);
 
-   oswindow get_os_data() const;
+   //oswindow get_os_data() const;
 
    operator oswindow() const;
 
@@ -38,9 +38,9 @@ public:
 
    bool operator <= (const zorder & zorder) const;
 
-   zorder & operator = (oswindow hwnd);
+   ///zorder & operator = (oswindow hwnd);
 
-   zorder & operator = (e_zorder ezorder);
+   zorder & operator = (enum_zorder ezorder);
 
    zorder & operator = (iptr i);
 

@@ -39,15 +39,15 @@ namespace uwp
             LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
             tkp.PrivilegeCount = 1;
             tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+            AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             if (bIfPowerOff)
-               retval = ExitWindowsEx(EWX_POWEROFF, 0) != FALSE;
+               retval = ExitWindowsEx(EWX_POWEROFF, 0) != false;
             else
-               retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != FALSE;
+               retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != false;
 
             //reset the previlages
             tkp.Privileges[0].Attributes = 0;
-            AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+            AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;
       */
       return false;
@@ -69,7 +69,7 @@ namespace uwp
       }
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+      if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
       {
          TRACELASTERROR();
          return false;
@@ -85,7 +85,7 @@ namespace uwp
       }
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+      if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
       {
          TRACELASTERROR();
          return false;
@@ -109,7 +109,7 @@ namespace uwp
       }*/
       //reset the previlages
       /*tkp.Privileges[0].Attributes = 0;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
       return true;*/
 
       return false;
@@ -124,7 +124,7 @@ namespace uwp
       {
          HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                         PROCESS_VM_READ,
-                                        FALSE, dwPid );
+                                        false, dwPid );
          TerminateProcess(hProcess, (::u32) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
@@ -138,9 +138,9 @@ namespace uwp
          !=WAIT_OBJECT_0)
          bResult = TerminateProcess(hProcess,0);
          else
-         bResult = TRUE;
+         bResult = true;
          CloseHandle(hProcess);
-         return bResult == TRUE;*/
+         return bResult == true;*/
 
       }
 #else
@@ -189,7 +189,7 @@ namespace uwp
       // get a handle to the process.
       HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                      PROCESS_VM_READ,
-                                     FALSE, dwPid );
+                                     false, dwPid );
 
       // get the process name.
 
@@ -748,7 +748,7 @@ namespace uwp
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::get_last_error();
-         return FALSE;
+         return false;
       }
 
       CloseServiceHandle(hdlServ);
@@ -842,10 +842,10 @@ namespace uwp
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::get_last_error();
-         return FALSE;
+         return false;
       }
 
-      bOk = StartService(hdlServ, 0, nullptr) != FALSE;
+      bOk = StartService(hdlServ, 0, nullptr) != false;
 
       CloseServiceHandle(hdlServ);
       CloseServiceHandle(hdlSCM);
@@ -856,7 +856,7 @@ namespace uwp
 
 #endif
 
-      return bOk != FALSE;
+      return bOk != false;
    }
 
 
@@ -896,7 +896,7 @@ namespace uwp
 
       __memset(&ss, 0, sizeof(ss));
 
-      bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss) != FALSE;
+      bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss) != false;
 
       ::DeleteService(hdlServ);
 
@@ -910,7 +910,7 @@ namespace uwp
 
 #endif
 
-      return bOk != FALSE;
+      return bOk != false;
    }
 
 
@@ -937,7 +937,7 @@ namespace uwp
 
 #ifdef WINDOWS_DESKTOP
 
-      return GetSystemMetrics(SM_REMOTESESSION) != FALSE;
+      return GetSystemMetrics(SM_REMOTESESSION) != false;
 #else
 
       return false;

@@ -55,7 +55,7 @@ namespace android
 
       virtual bool is_remote_session() override;
 
-      virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema) override;
+      virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema) override;
 
       //virtual void post_to_all_threads(const ::id & id, WPARAM wParam, LPARAM lParam) override;
 

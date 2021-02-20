@@ -1,11 +1,19 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
+#include "acme/os/_user.h"
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
 
 
 #ifdef LINUX
@@ -153,7 +161,7 @@ namespace user
 
       //m_pimpl->m_puserinteraction->task_add(this);
 
-      m_synca.add(&m_evUpdateScreen);
+      m_synchronizationa.add(&m_evUpdateScreen);
 
    #ifdef WINDOWS_DESKTOP
 
@@ -164,11 +172,20 @@ namespace user
       if (m_bAuraMessageQueue)
       {
 
-         m_synca.add(&get_mq()->m_eventNewMessage);
+         m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
 
       }
 
-      ::set_thread_name("prodevian," + ::str::demangle(m_puserinteraction->type_name()));
+      string strType = ::str::demangle(m_puserinteraction->type_name());
+
+      ::set_thread_name("prodevian," + strType);
+
+      if (strType.contains_ci("combo_list"))
+      {
+
+         output_debug_string("combo_list");
+
+      }
 
       while (thread_get_run())
       {
@@ -286,7 +303,7 @@ void prodevian::finalize()
 
    m_pimpl.release(OBJ_REF_DBG_THIS);
 
-   m_synca.clear();
+   m_synchronizationa.clear();
    
    ::thread::finalize();
 
@@ -305,12 +322,12 @@ bool prodevian::prodevian_iteration()
 
    string strType;
 
+   strType = ::str::demangle(m_puserinteraction->type_name());
+
    try
    {
 
-      sync_lock sl(m_puserinteraction->mutex());
-
-      strType = ::str::demangle(m_puserinteraction->type_name());
+      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
       if (strType.contains_ci("filemanager"))
       {
@@ -343,7 +360,7 @@ bool prodevian::prodevian_iteration()
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
-         //sync_lock sl(m_pimpl->mutex());
+         //synchronization_lock synchronizationlock(m_pimpl->mutex());
 
       }
 
@@ -368,6 +385,13 @@ bool prodevian::prodevian_iteration()
 
          }
 
+         if (strType.contains_ci("combo_list"))
+         {
+
+            output_debug_string("combo_list");
+
+         }
+
          //printf("prodevian get_message(%d)\n", m_message.message);
 
          int iSkipped = 0;
@@ -375,8 +399,7 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
          {
 
-            if (m_message.message == e_message_redraw ||
-               m_message.message == WM_KICKIDLE)
+            if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
             {
 
                iSkipped++;
@@ -399,13 +422,13 @@ bool prodevian::prodevian_iteration()
 
 #endif
 
-         if (m_message.message == e_message_null)
+         if (m_message.m_id == e_message_null)
          {
 
             return true;
 
          }
-         else if (m_message.message != e_message_redraw)
+         else if (m_message.m_id != e_message_redraw)
          {
 
             return true;
@@ -427,13 +450,13 @@ bool prodevian::prodevian_iteration()
          while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
          {
 
-            if (m_message.message == e_message_null)
+            if (m_message.m_id == e_message_null)
             {
 
                return true;
 
             }
-            else if (m_message.message != e_message_redraw)
+            else if (m_message.m_id != e_message_redraw)
             {
 
                return true;
@@ -608,7 +631,7 @@ bool prodevian::prodevian_iteration()
 
                millis.Now();
 
-               m_synca.wait(false, ::millis(msToWaitForNextFrame - 1));
+               m_synchronizationa.wait(::millis(msToWaitForNextFrame - 1));
 
                //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
@@ -740,7 +763,8 @@ bool prodevian::prodevian_iteration()
       if (bStartWindowVisual)
       {
 
-         m_puserinteraction->post_routine(m_routineWindowShow);
+         m_pimpl->m_pwindow->window_show();
+         //m_puserinteraction->post_routine(m_routineWindowShow);
 
       }
       // ENDIF WINDOWS
@@ -816,21 +840,23 @@ bool prodevian::prodevian_iteration()
       else
       {
 
+         m_millisLastScreenUpdate.Now();
+
+         m_bUpdatingScreen = true;
+
+         m_pimpl->m_pwindow->update_screen();
+
          //if (!m_bUpdatingScreen || m_millisLastScreenUpdate.elapsed() > 200_ms)
-         {
-
-            m_millisLastScreenUpdate.Now();
-
-            m_bUpdatingScreen = true;
-
-            if (m_puserinteraction)
-            {
-
-               m_puserinteraction->post_routine(m_routineUpdateScreen);
-
-            }
-
-         }
+//         {
+//
+//            if (m_puserinteraction)
+//            {
+//
+//               m_puserinteraction->post_routine(m_routineUpdateScreen);
+//
+//            }
+//
+//         }
 
       }
 
@@ -845,7 +871,7 @@ bool prodevian::prodevian_iteration()
       try
       {
 
-         sync_lock sl(m_puserinteraction->mutex());
+         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
          if(!m_puserinteraction)
          {
@@ -911,7 +937,7 @@ bool prodevian::prodevian_iteration()
          if (!m_puserinteraction->m_bLockWindowUpdate)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
@@ -919,7 +945,7 @@ bool prodevian::prodevian_iteration()
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
-            sl.lock();
+            synchronizationlock.lock();
 
             if(!m_puserinteraction)
             {
@@ -1024,7 +1050,7 @@ bool prodevian::prodevian_iteration()
          if (bDraw && m_pimpl)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             m_millisBeforeDrawing.Now();
 
@@ -1191,7 +1217,7 @@ bool prodevian::prodevian_iteration()
 
       m_nanosFrame = (u64)(1'000'000'000.0 / m_pimpl->m_dConfigFps);
 
-      m_nanosPostRedraw = min(m_nanosPostRedraw, m_nanosFrame);
+      m_nanosPostRedraw = minimum(m_nanosPostRedraw, m_nanosFrame);
 
    }
 

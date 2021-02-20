@@ -85,11 +85,11 @@ namespace windows
 	   virtual HRESULT ListenForUpnpChanges(::net::port_forward_change_callbacks *pCallbacks = nullptr);  // nullptr==default matter; if you provide your own pointer to a port_forward_change_callbacks-derived matter it is deleted for you automatically
 	   virtual HRESULT StopListeningForUpnpChanges( );  // Stops listenting for UPnP machine events on the router and deletes any port_forward_change_callbacks-derived objects
 	
-	   virtual bool GetDeviceInformationUsingThread( oswindow oswindow );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-	   virtual bool GetMappingsUsingThread( oswindow oswindow );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-	   virtual bool EditMappingUsingThread( port_map& oldMapping, port_map& newMapping, oswindow oswindow );  // starts a thread that will edit one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-	   virtual bool AddMappingUsingThread( port_map& newMapping, oswindow oswindow );  // starts a thread that will add one new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
-	   virtual bool DeleteMappingUsingThread( port_map& oldMapping, oswindow oswindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+	   virtual bool GetDeviceInformationUsingThread( ::windowing::window * pwindow );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+	   virtual bool GetMappingsUsingThread( ::windowing::window * pwindow );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+	   virtual bool EditMappingUsingThread( port_map& oldMapping, port_map& newMapping, ::windowing::window * pwindow );  // starts a thread that will edit one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+	   virtual bool AddMappingUsingThread( port_map& newMapping, ::windowing::window * pwindow );  // starts a thread that will add one new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
+	   virtual bool DeleteMappingUsingThread( port_map& oldMapping, ::windowing::window * pwindow );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION message to oswindow when it's done
 	
 	   virtual pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
 	   virtual pointer_array < device >  get_igd() const;  // gets a copy of currently-know device information
@@ -103,7 +103,7 @@ namespace windows
 	
 	   void InitializeMembersToNull();
 	   void DeinitializeCom();
-	   HRESULT PopulateDeviceInfoContainer( IUPnPDevice* piDevice, device & deviceInfo, oswindow oswindow=nullptr );
+	   HRESULT PopulateDeviceInfoContainer( IUPnPDevice* piDevice, device & deviceInfo, ::windowing::window * pwindow=nullptr );
 	   HRESULT GetNextMapping( IEnumVARIANT* piEnumerator, port_map & mappingContainer );
 	   HRESULT SetChangeEventCallbackPointer(::net::port_forward_change_callbacks *pCallbacks);
 	

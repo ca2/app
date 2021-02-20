@@ -26,7 +26,7 @@ thread_group::thread_group(::object * pobject, ::e_priority epriority) :
    if (!estatus)
    {
 
-      throw ::exception::exception(estatus);
+      throw ::exception::exception(nullptr, estatus);
 
    }
 
@@ -50,7 +50,7 @@ thread_group::thread_group(::object * pobject, ::e_priority epriority) :
 
       ptoolthread->initialize_tool_thread(this);
 
-      m_synca.add(ptoolthread->m_pevReady);
+      m_synchronizationa.add(ptoolthread->m_pevReady);
 
       ptoolthread->m_iThread = iThread;
 
@@ -86,7 +86,7 @@ thread_group::~thread_group()
 bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    for (auto & pthread : m_threada)
    {
@@ -95,7 +95,7 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
 
    }
 
-   if (ethreadop == ::e_thread_op_pred || ethreadop == ::e_thread_op_fork_count)
+   if (ethreadop == ::e_thread_op_predicate || ethreadop == ::e_thread_op_fork_count)
    {
 
       m_cCount = 0;
@@ -104,7 +104,7 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
    else
    {
 
-      m_cCount = min(m_threada.get_count(), cIteration);
+      m_cCount = minimum(m_threada.get_count(), cIteration);
 
    }
 
@@ -112,7 +112,7 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
 
    m_cIteration = cIteration;
 
-   m_cSpan = max(1, cIteration / get_count());
+   m_cSpan = maximum(1, cIteration / get_count());
 
    return true;
 
@@ -131,12 +131,12 @@ bool thread_group::prepare(::enum_thread_op ethreadop, ::count cIteration)
 //}
 
 
-bool thread_group::add_pred(::pred_holder_base * ppred)
+bool thread_group::add_predicate(::predicate_holder_base * ppred)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
-   if ((m_ethreadop != ::e_thread_op_pred && m_ethreadop != ::e_thread_op_fork_count) || is_full())
+   if ((m_ethreadop != ::e_thread_op_predicate && m_ethreadop != ::e_thread_op_fork_count) || is_full())
    {
 
       return false;
@@ -150,7 +150,7 @@ bool thread_group::add_pred(::pred_holder_base * ppred)
 
    }
 
-   m_threada[m_cCount]->set_pred(ppred);
+   m_threada[m_cCount]->set_predicate(ppred);
 
    m_cCount++;
 
@@ -162,7 +162,7 @@ bool thread_group::add_pred(::pred_holder_base * ppred)
 bool thread_group::start()
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_cCount <= 0)
    {
@@ -188,7 +188,7 @@ bool thread_group::start()
 bool thread_group::wait()
 {
 
-   //sync_lock sl(mutex());
+   //synchronization_lock synchronizationlock(mutex());
 
    //if (m_cCount <= 0)
    //{
@@ -197,11 +197,11 @@ bool thread_group::wait()
 
    //}
 
-   //multi_lock ml(m_cCount, m_synca);
+   //multi_lock ml(m_cCount, m_synchronizationa);
 
-   //sl.unlock();
+   //synchronizationlock.unlock();
 
-   return m_synca.wait(5_s).succeeded();
+   return m_synchronizationa.wait(5_s).succeeded();
 
 }
 
@@ -268,7 +268,7 @@ tool_thread::tool_thread()
 }
 
 
-bool tool_thread::set_pred(::pred_holder_base * ppred)
+bool tool_thread::set_predicate(::predicate_holder_base * ppred)
 {
 
    try
@@ -309,7 +309,7 @@ bool tool_thread::set_pred(::pred_holder_base * ppred)
 
          m_pevStart->ResetEvent();
 
-         if (m_pgroup->m_ethreadop == ::e_thread_op_pred || m_pgroup->m_ethreadop == ::e_thread_op_fork_count)
+         if (m_pgroup->m_ethreadop == ::e_thread_op_predicate || m_pgroup->m_ethreadop == ::e_thread_op_fork_count)
          {
 
             m_ppred->run();
@@ -441,7 +441,7 @@ void thread_group::select_tool(thread_tool* ptool)
 //}
 
 
-//pred_set::pred_set(::thread_group * ptools) :
+//predicate_set::predicate_set(::thread_group * ptools) :
 //   object(ptools->get_context_application()),
 //   m_pthreadtools(ptools)
 //{
@@ -449,7 +449,7 @@ void thread_group::select_tool(thread_tool* ptool)
 //
 //}
 //
-//bool pred_set::add_pred(::pred_holder_base * ppred)
+//bool predicate_set::add_predicate(::predicate_holder_base * ppred)
 //{
 //
 //   ppred->m_pset = this;

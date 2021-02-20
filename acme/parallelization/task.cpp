@@ -1,8 +1,14 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "task.h"
-#ifdef LINUX
-#include <pthread.h>
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
 #endif
 
 
@@ -12,7 +18,7 @@ task::task()
    m_bitCoInitialize = false;
    m_bitIsRunning = false;
    m_bitIsPred = true;
-   m_hthread = NULL_HTHREAD;
+   m_hthread = null_hthread;
    m_ithread = 0;
 
 }
@@ -175,7 +181,7 @@ void* task::s_os_task(void* p)
 void task::add_notify(::matter* pmatter)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -185,7 +191,7 @@ void task::add_notify(::matter* pmatter)
 void task::remove_notify(::matter* pmatter)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (m_pnotifya)
    {
@@ -272,14 +278,14 @@ void task::term_task()
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    //if (m_pnotifya)
    //{
 
    //   auto notifya = *m_pnotifya;
 
-   //   sl.unlock();
+   //   synchronizationlock.unlock();
 
    //   for (auto & pmatter : notifya)
    //   {
@@ -290,7 +296,7 @@ void task::term_task()
 
    //   }
 
-   //   sl.lock();
+   //   synchronizationlock.lock();
 
    //}
 
@@ -334,7 +340,7 @@ void task::term_task()
 
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          pmatter = m_pmatter.m_p;
 
@@ -413,6 +419,60 @@ void task::term_task()
 
    }
 
+#ifdef __DEBUG
+
+   string strId = m_id;
+
+   if (strId.contains_ci("forking_thread"))
+   {
+
+#if 0
+
+#ifdef WINDOWS_DESKTOP
+
+      ::exception::engine().reset();
+
+      OS_DWORD                dwDisplacement;
+
+      OS_DWORD                uia[4096];
+
+      dwDisplacement = 0;
+
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+
+      ULONG BackTraceHash;
+
+      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+
+      char sz[1024];
+
+      __zero(sz);
+
+      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+
+      u32 uiLine = 0;
+
+      {
+         critical_section_lock csl(&::exception::engine().m_criticalsection);
+
+         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+
+      }
+
+      strId = string(sz) + "(" + __str(uiLine) + ") :: forking_thread";
+
+#endif
+
+#endif
+
+   }
+
+   m_pszDebug = strdup(strId);
+
+#endif
+
+
+
    auto estatus = task_caller_on_init();
 
    if (!estatus)
@@ -442,6 +502,8 @@ void task::term_task()
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
+   m_bitIsRunning = true;
+
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
@@ -466,7 +528,7 @@ void task::term_task()
    pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
    pthread_create(
-      &m_hthread,
+      (pthread_t *) &m_hthread,
       &taskAttr,
       &task::s_os_task,
       this);
@@ -475,6 +537,8 @@ void task::term_task()
 
    if (!m_hthread)
    {
+
+      m_bitIsRunning = false;
 
       return ::error_failed;
 
@@ -581,7 +645,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         sync_lock sl(pthread->mutex());
+         synchronization_lock synchronizationlock(pthread->mutex());
 
          if (pthread->m_pevSleep.is_null())
          {
@@ -630,7 +694,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync)
 {
 
    try
@@ -659,7 +723,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
+CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_object* psync)
 {
 
    if (millis.m_i < 1000)
@@ -711,7 +775,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
 }
 
 
-CLASS_DECL_ACME bool task_sleep(millis millis, sync* psync)
+CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
 {
 
    auto pthread = ::get_task();

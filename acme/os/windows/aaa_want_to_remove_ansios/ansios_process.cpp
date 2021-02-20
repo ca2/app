@@ -77,7 +77,7 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
       iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
 
-   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+   iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
 
    *piPolicy = iOsPolicy;
 
@@ -133,7 +133,7 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
       iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
    }
 
-   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+   iCa2Priority = maximum(iCa2Min, minimum(iCa2Max, iCa2Priority));
 
    return iCa2Priority;
 

@@ -270,4 +270,31 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //} // namespace draw2d
 
 
+namespace user
+{
+
+
+   inline ::user::interaction_impl * message::userinteractionimpl()
+   {
+
+      auto pwindow = window();
+
+      return pwindow ? pwindow->m_pimpl : nullptr;
+
+   }
+
+
+   inline ::user::interaction * message::userinteraction()
+   {
+
+      auto pimpl = userinteractionimpl();
+
+      return pimpl ? pimpl->m_puserinteraction : nullptr;
+
+   }
+
+
+} // namespace user
+
+
 

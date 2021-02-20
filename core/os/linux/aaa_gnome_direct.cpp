@@ -3,8 +3,8 @@
 #include <limits.h>
 #include "__standard_type.h"
 #include "gnome.h"
-#include "gnome_gnome.h"
-#include "gnome_internal_glue.h"
+#include "gtk_things/gnome_gnome.h"
+#include "gtk_things/gnome_internal_glue.h"
 #include "aura/message/global.h"
 #include "aura/const/_const.h"
 #include "acme/const/id.h"
@@ -375,7 +375,7 @@ bool gnome_appindicator::init(user_notify_icon_bridge * pbridge)
 
             gtk_ui_manager_insert_action_group (uim, action_group, 0);
 
-            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != FALSE;
+            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != false;
 
             if(!bOk)
             {

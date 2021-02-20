@@ -14,6 +14,8 @@ timer_task::~timer_task()
 }
 
 
+#ifdef DEBUG
+
 
 i64 timer_task::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
@@ -39,10 +41,13 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-::e_status timer_task::initialize_timer(::apex::timer_array* ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
+#endif
+
+
+::e_status timer_task::initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
 
-   auto estatus = initialize(ptimera);
+   auto estatus = initialize(pobjectContext);
 
    if (!estatus)
    {
@@ -52,8 +57,6 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
    }
 
    m_bRunning = false;
-
-   initialize(ptimera);
 
    m_ptimera.reset(ptimera OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -80,7 +83,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 bool timer_task::start(const ::duration& duration, bool bPeriodic)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -275,7 +278,7 @@ void timer_task::finalize()
 
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       try
       {

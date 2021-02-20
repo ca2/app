@@ -15,8 +15,8 @@ namespace experience
       public:
 
 
-         //::draw2d::font_pointer                 m_font;
-         //::draw2d::font_pointer                m_fontList;
+         //::write_text::font_pointer                 m_font;
+         //::write_text::font_pointer                m_fontList;
 
 
          style();
@@ -37,10 +37,10 @@ namespace experience
          //}
 
 
-         virtual ::color get_color(const ::user::interaction * pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const override;
+         virtual ::color::color get_color(const ::user::interaction * pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const override;
       
       
-         //    virtual bool get_font(::draw2d::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
+         //    virtual bool get_font(::write_text::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
          //  virtual bool get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pframewindow) override;
 
 
@@ -57,7 +57,7 @@ namespace experience
       //virtual void _001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar);
       virtual bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
 
-      //virtual bool get_font(::draw2d::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
+      //virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
       //virtual bool get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext) override;
 
 

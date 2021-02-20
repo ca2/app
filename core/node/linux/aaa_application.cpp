@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 //#include "aura/node/ansios/ansios.h"
 #include "_linux.h"
 #include "aura/os/linux/_linux.h"
@@ -63,7 +61,7 @@ namespace aura
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
 
-//      return FALSE;
+//      return false;
 //   }
 
 //   HINSTANCE application::GetHinstance()
@@ -297,7 +295,7 @@ namespace aura
       {
          ::win::thread::Delete();
       }
-      // 'delete this' only if m_bAutoDelete == TRUE
+      // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MESSAGE* msg)  // helper
       {
@@ -309,7 +307,7 @@ namespace aura
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
    }

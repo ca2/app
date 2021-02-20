@@ -2,12 +2,12 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
-#include "node.h"
 #include "acme/id.h"
 
 
 namespace acme
 {
+
 
    node::node()
    {
@@ -41,10 +41,161 @@ namespace acme
    }
 
 
-   bool node::_calc_dark_mode()
+   ::color::color node::get_system_color(enum_system_color esystemcolor)
    {
 
-      return false;
+      __throw(interface_only_exception());
+
+      return argb(0, 0, 0, 0);
+
+   }
+
+
+
+
+
+   bool node::_os_calc_app_dark_mode()
+   {
+
+      return _os_calc_system_dark_mode();
+
+   }
+
+
+   bool node::_os_calc_system_dark_mode()
+   {
+
+      return _os_calc_app_dark_mode();
+
+   }
+
+
+   void node::defer_initialize_dark_mode()
+   {
+
+      if (m_bLastDarkModeApp.is_set() && m_bLastDarkModeSystem.is_set())
+      {
+
+         return;
+
+      }
+
+      os_calc_user_dark_mode();
+
+   }
+
+
+   ::e_status node::set_system_dark_mode1(bool bSet)
+   {
+
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_app_dark_mode1(bool bSet)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_internal_system_dark_mode(bool bDark)
+   {
+
+      m_bLastDarkModeApp = bDark;
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_internal_app_dark_mode(bool bDark)
+   {
+
+      m_bLastDarkModeApp = bDark;
+
+      return ::success;
+
+   }
+
+
+   bool node::is_system_dark_mode()
+   {
+
+      if (m_bLastDarkModeSystem.is_empty())
+      {
+
+         os_calc_user_dark_mode();
+
+      }
+
+      return m_bLastDarkModeSystem;
+
+   }
+
+   
+   bool node::is_app_dark_mode()
+   {
+
+      if (m_bLastDarkModeApp.is_empty())
+      {
+
+         defer_initialize_dark_mode();
+
+      }
+
+      return m_bLastDarkModeApp;
+
+   }
+
+
+   ::color::color node::get_system_app_background_color()
+   {
+
+      return m_colorSystemAppBackground;
+
+   }
+
+
+   void node::set_system_app_background_color(::color::color color)
+   {
+
+      m_colorSystemAppBackground = color;
+
+   }
+
+
+   double node::get_system_app_luminance()
+   {
+
+      return m_dSystemLuminance;
+
+   }
+
+
+   void node::set_system_app_luminance(double dLuminance)
+   {
+
+      m_dSystemLuminance = dLuminance;
+
+   }
+
+
+   int node::get_simple_ui_darkness()
+   {
+
+      return m_iWeatherDarkness;
+
+   }
+
+
+   void node::set_simple_ui_darkness(int iWeatherDarkness)
+   {
+
+      m_iWeatherDarkness = iWeatherDarkness;
 
    }
 
@@ -52,15 +203,17 @@ namespace acme
    void node::os_calc_user_dark_mode()
    {
 
-      bool bDarkMode = _calc_dark_mode();
+      bool bDarkModeApp = _os_calc_app_dark_mode();
 
-      if(is_different(::user::is_app_dark_mode(), bDarkMode)
-      || is_different(::user::is_system_dark_mode(), bDarkMode))
+      bool bDarkModeSystem = _os_calc_system_dark_mode();
+
+      if(m_bLastDarkModeApp != bDarkModeApp
+      || m_bLastDarkModeSystem != bDarkModeSystem)
       {
 
-         ::user::set_app_dark_mode(bDarkMode);
+         m_bLastDarkModeApp = bDarkModeApp;
 
-         ::user::set_system_dark_mode(bDarkMode);
+         m_bLastDarkModeSystem = bDarkModeSystem;
 
          System.deliver(id_os_dark_mode);
 
@@ -176,23 +329,23 @@ namespace acme
    }
 
 
-   void node::user_fork(const ::promise::routine & routine)
-   {
+//   void node::user_fork(const ::promise::routine & routine)
+//   {
+//
+//
+//   }
 
 
-   }
-
-
-   void node::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
-   {
-
-      auto proutine = __sync_routine(routine);
-
-      user_fork(proutine);
-
-      proutine->sync_wait(durationTimeout);
-
-   }
+//   void node::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
+//   {
+//
+//      auto proutine = __sync_routine(routine);
+//
+//      user_fork(proutine);
+//
+//      proutine->sync_wait(durationTimeout);
+//
+//   }
 
 
    void node::node_post_quit()
@@ -202,11 +355,11 @@ namespace acme
    }
 
 
-   void node::enum_display_monitors(::aura::session * psession)
-   {
-
-
-   }
+//   void node::enum_display_monitors(::aura::session * psession)
+//   {
+//
+//
+//   }
 
 
    void node::os_post_quit()
@@ -255,6 +408,157 @@ namespace acme
       return false;
 
   }
+
+
+  string node::get_user_name()
+  {
+
+
+     return "";
+
+  }
+
+
+  ::color::color node::get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate)
+  {
+
+     ::color::color color;
+
+     if (eelement == ::user::e_element_background)
+     {
+
+        if (is_app_dark_mode())
+        {
+
+           color = argb(255, 0x50, 0x50, 0x58);
+
+        }
+        else
+        {
+
+           color = argb(255, 0xcd, 0xcd, 0xc8);
+
+        }
+
+     }
+     else
+     {
+
+        if (is_app_dark_mode())
+        {
+
+           color = argb(255, 255, 255, 255);
+
+        }
+        else
+        {
+
+           color = argb(255, 49, 50, 42);
+
+        }
+
+     }
+
+      return color;
+
+   }
+
+
+   ::color::color node::get_default_color(::u64 u )
+   {
+
+      return argb(255, 0, 0, 0);
+
+   }
+
+
+   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+   {
+
+
+   }
+
+
+   ::e_status node::get_system_time_as_file_time(filetime * pfiletime)
+   {
+
+      system_time_t systemtime;
+
+      auto estatus = get_system_time(&systemtime);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   double node::get_time_zone()
+   {
+
+      return 0.;
+
+   }
+
+
+   ::e_status node::get_system_time(system_time_t * psystemtime)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::file_time_to_local_file_time(filetime*, filetime const*)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::open_folder(::file::path & pathFolder)
+   {
+
+      __throw(interface_only_exception());
+     
+      return ::error_interface_only;
+
+   }
 
 
 } // namespace acme

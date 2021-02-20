@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -27,12 +25,12 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(::u32 nSBCode)
+   void scroll_bar::post_scroll_message(enum_scroll_command ecommand)
    {
 
       auto pscroll = __new(::message::scroll);
 
-      pscroll->m_nSBCode = nSBCode;
+      pscroll->m_ecommand = ecommand;
 
       if(m_bTracking)
       {
@@ -47,7 +45,7 @@ namespace user
 
       }
 
-      if(m_eorientation == orientation_horizontal)
+      if(m_eorientation == e_orientation_horizontal)
       {
 
          pscroll->m_id = (enum_message) e_message_hscroll;
@@ -67,7 +65,7 @@ namespace user
    }
 
 
-   //bool scroll_bar::create_interaction(e_orientation eorientation, ::user::interaction * puiParent)
+   //bool scroll_bar::create_interaction(enum_orientation eorientation, ::user::interaction * puiParent)
    //{
 
    //   m_eorientation = eorientation;
@@ -108,95 +106,95 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(130, 190, 180, 250);
+         return argb(130, 190, 180, 250);
 
       }
       else
       {
 
-         return ARGB(150, 150, 150, 150);
+         return argb(150, 150, 150, 150);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(100, 190, 180, 250);
+         return argb(100, 190, 180, 250);
 
       }
       else
       {
 
-         return ARGB(150, 150, 150, 150);
+         return argb(150, 150, 150, 150);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(190, 180, 180, 180);
+         return argb(190, 180, 180, 180);
 
       }
       else
       {
 
-         return ARGB(190, 160, 160, 160);
+         return argb(190, 160, 160, 160);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(190, 90, 110, 180);
+         return argb(190, 90, 110, 180);
 
       }
       else
       {
 
-         return ARGB(190, 110, 110, 100);
+         return argb(190, 110, 110, 100);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)
       {
 
-         return ARGB(127, 90, 90, 90);
+         return argb(127, 90, 90, 90);
 
       }
       else
       {
 
-         return ARGB(127, 65, 65, 65);
+         return argb(127, 65, 65, 65);
 
       }
 

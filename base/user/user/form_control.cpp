@@ -1,10 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "axis/user/validate.h"
 #include "aura/message.h"
-#include "acme/os/_os.h"
+//#include "acme/os/_os.h"
 
 
 namespace user
@@ -148,20 +146,20 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uNotificationCode)
-      {
-      case BN_CLICKED:
-      {
-         if(pinteraction->has_function(e_control_function_action))
-         {
-            _001OnButtonAction(pinteraction);
-            return true;
-         }
-      }
-      break;
-      default:
-         break;
-      }
+      //switch(uNotificationCode)
+      //{
+      //case BN_CLICKED:
+      //{
+      //   if(pinteraction->has_function(e_control_function_action))
+      //   {
+      //      _001OnButtonAction(pinteraction);
+      //      return true;
+      //   }
+      //}
+      //break;
+      //default:
+      //   break;
+      //}
 
 #endif
 
@@ -185,18 +183,18 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uNotificationCode)
-      {
-      case BN_CLICKED:
-      {
-         /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
-         i32 i = pbutton->get_check() != 0;
-         VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
-      }
-      break;
-      default:
-         break;
-      }
+      //switch(uNotificationCode)
+      //{
+      //case BN_CLICKED:
+      //{
+      //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
+      //   i32 i = pbutton->get_check() != 0;
+      //   VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
+      //}
+      //break;
+      //default:
+      //   break;
+      //}
 
 #endif
 
@@ -221,26 +219,26 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uNotificationCode)
-      {
-      case CBN_SELCHANGE:
-      {
-         /* linux         __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_id);
-         i32 iSel = pcombo->current_item();
-         if(iSel != CB_ERR)
-         {
-         u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
-         VmsDataSet(pinteraction->m_dataid, 0, 0, (i32) dwData);
-         }*/
-      }
-      break;
-      case EN_KILLFOCUS:
-      {
-         //_001SaveEdit(control);
-      }
-      default:
-         break;
-      }
+      //switch(uNotificationCode)
+      //{
+      //case CBN_SELCHANGE:
+      //{
+      //   /* linux         __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_id);
+      //   i32 iSel = pcombo->current_item();
+      //   if(iSel != CB_ERR)
+      //   {
+      //   u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
+      //   VmsDataSet(pinteraction->m_dataid, 0, 0, (i32) dwData);
+      //   }*/
+      //}
+      //break;
+      //case EN_KILLFOCUS:
+      //{
+      //   //_001SaveEdit(control);
+      //}
+      //default:
+      //   break;
+      //}
 
 #endif
 
@@ -265,23 +263,23 @@ namespace user
 
 #ifdef WINDOWS
 
-      switch(uNotificationCode)
-      {
-      case EN_CHANGE:
-      {
-         if(pinteraction->has_function(e_control_function_save_on_change))
-         {
-            _001SaveEdit(pinteraction);
-         }
-      }
-      break;
-      case EN_KILLFOCUS:
-      {
-         _001SaveEdit(pinteraction);
-      }
-      default:
-         break;
-      }
+      //switch(uNotificationCode)
+      //{
+      //case EN_CHANGE:
+      //{
+      //   if(pinteraction->has_function(e_control_function_save_on_change))
+      //   {
+      //      _001SaveEdit(pinteraction);
+      //   }
+      //}
+      //break;
+      //case EN_KILLFOCUS:
+      //{
+      //   _001SaveEdit(pinteraction);
+      //}
+      //default:
+      //   break;
+      //}
 
 #endif
 
@@ -537,7 +535,7 @@ namespace user
             //   }
             //   break;
             //   default:
-            //      ASSERT(FALSE);
+            //      ASSERT(false);
             //      break;
             //   }
             //}
@@ -568,7 +566,7 @@ namespace user
    void form_control::_000OnPosCreate(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      __pointer(::message::base) pbase(pmessage);
+      //      __pointer(::user::message) pusermessage(pmessage);
    }
 
    void form_control::_001InitializeFormPreData()
@@ -686,7 +684,7 @@ namespace user
    }
 
 
-   void form_control::on_command(::user::command * pcommand)
+   void form_control::on_command(::message::command * pcommand)
    {
 
       ::user::form::on_command(pcommand);
@@ -715,11 +713,11 @@ namespace user
    void form_control::_001OnMessageNotify(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      // revamp pbase->set_lresult(user::NotifyRetContinue);
+      // revamp pusermessage->set_lresult(user::NotifyRetContinue);
 
-      pbase->m_bRet = false;
+      pusermessage->m_bRet = false;
 
    }
 
@@ -880,13 +878,13 @@ namespace user
    void form_control::_001OnAppLanguage(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
       __keep(m_bOnLanguageChange);
 
       _017OnAppLanguage();
 
-      pbase->m_bRet = false;
+      pusermessage->m_bRet = false;
 
    }
 
@@ -1316,7 +1314,7 @@ namespace user
    }
 
 
-   bool form_control::_001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32)
+   bool form_control::_001IsPointInside(::user::interaction * pinteraction,point_i64 point)
    {
 
       if(pinteraction == nullptr)
@@ -1478,11 +1476,11 @@ namespace user
 
    void form_control::_001OnUser123(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
 #ifdef WINDOWS_DESKTOP
 
-      if(pbase->m_wparam == 0x80000001)
+      if(pusermessage->m_wparam == 0x80000001)
       {
          if(get_top_level() != nullptr)
          {
@@ -1495,7 +1493,7 @@ namespace user
 
       //if(m_pcallback != nullptr)
       //{
-      //   m_pcallback->OnUser123(pbase->m_wparam,pbase->m_lparam);
+      //   m_pcallback->OnUser123(pusermessage->m_wparam,pusermessage->m_lparam);
       //}
    }
 

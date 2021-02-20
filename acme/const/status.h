@@ -85,6 +85,10 @@ enum enum_status
    error_no_session,
    error_no_system,
    error_no_application,
+   error_no_interface,
+   error_last_error,
+   error_already_working_on_it,
+   error_all_failed,
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,
@@ -190,6 +194,11 @@ enum enum_status
    success_not_found,
    success_not_ready,
    success_promise,
+   success_color_index,
+   success_mouse_has_left,
+   partial_one_third_or_less_has_failed, // <= 1/3 success
+   partial_sorf_of_half_has_failed, // ~ 1/2 success (between 1/3 and 2/3)
+   partial_two_thirds_or_more_but_not_all_has_failed, // >= 2/3 success
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

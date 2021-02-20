@@ -754,7 +754,7 @@ namespace file
 
       __pointer(delete_item) pdelete;
 
-      uiCount = min(uiCount,(memsize) (get_length() - m_position));
+      uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
 
       if (uiCount == 0)
       {
@@ -872,7 +872,7 @@ namespace file
    void edit_file::flush()
    {
       
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pfile = create_memory_file();
 

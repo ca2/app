@@ -67,12 +67,12 @@ namespace sockets
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = System.base64().encode(Context.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               strResponse = System.base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = System.base64().encode(Context.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               strResponse = System.base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
                print(strResponse + "\r\n");
             }
          }
@@ -111,7 +111,7 @@ namespace sockets
             string strBody = m_pemail->m_strBody;
             strBody.replace("\r\n", "\n");
             string_array stra;
-            stra.add_tokens(strBody, "\n", TRUE);
+            stra.add_tokens(strBody, "\n", true);
             for(i32 i = 0; i < stra.get_count(); i++)
             {
                if(stra[i].Mid(0, 1) == ".")

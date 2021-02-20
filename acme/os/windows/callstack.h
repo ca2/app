@@ -70,16 +70,16 @@ namespace windows
       int m_iSkip;
       int m_iCount;
 
-      static critical_section s_criticalsection;
+      static critical_section * s_pcriticalsection;
 
-      callstack(const char * pszFormat = default_format(), i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+      callstack(const char * pszFormat = default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
       virtual ~callstack();
 
 
       //static void global_enable_stack_trace(bool bEnable = true);
       static const char * default_format() { return "%f(%l) %s\n"; }
 
-      const char * get_dup(const char * pszFormat = default_format(), i32 uiSkip = callstack_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+      const char * get_dup(const char * pszFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 
       const char * stack_trace() const;
 

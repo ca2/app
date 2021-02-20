@@ -22,7 +22,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 
    }
 
-   __pointer(mq) pmq;
+   __pointer(message_queue) pmq;
 
    if(dwWakeMask > 0)
    {
@@ -57,7 +57,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               sync_lock sl(&pmq->m_mutex);
+               synchronization_lock synchronizationlock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -116,7 +116,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               sync_lock sl(&pmq->m_mutex);
+               synchronization_lock synchronizationlock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -171,7 +171,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 ::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, tickTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, tickTimeout, false);
 
 }
 
@@ -179,7 +179,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 ::u32 WaitForSingleObjectEx(sync_object * pobject, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &pobject, TRUE, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &pobject, true, tickTimeout, bAlertable);
 
 }
 
@@ -187,7 +187,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 ::u32 WaitForSingleObject(sync_object * pobject, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(pobject, tickTimeout, FALSE);
+   return WaitForSingleObjectEx(pobject, tickTimeout, false);
 
 }
 
@@ -292,7 +292,7 @@ int_bool WINAPI SetThreadPriority(hthread_t hthread,int32_t nCa2Priority)
 
    pthread_setschedparam((pthread_t) hthread,iPolicy,&schedparam);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -367,16 +367,16 @@ int g_iDebug_post_thread_msg_time;
 CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ithread_t iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   __pointer(mq) pmq = __get_mq(iThreadId);
+   __pointer(message_queue) pmq = __get_mq(iThreadId);
 
    if(pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   sync_lock ml(&pmq->m_mutex);
+   synchronization_lock ml(&pmq->m_mutex);
 
    MESSAGE msg;
 

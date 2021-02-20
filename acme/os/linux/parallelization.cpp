@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/os/ansios/_pthread.h"
 
 
 bool set_thread_name(hthread_t hthread, const char * psz)
@@ -8,7 +9,7 @@ bool set_thread_name(hthread_t hthread, const char * psz)
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np(hthread, strName);
+   return !pthread_setname_np((pthread_t) hthread, strName);
 
 }
 
@@ -16,7 +17,7 @@ bool set_thread_name(hthread_t hthread, const char * psz)
 bool set_thread_name(const char * psz)
 {
 
-   return set_thread_name(pthread_self(), psz);
+   return set_thread_name((hthread_t) pthread_self(), psz);
 
 }
 
@@ -31,15 +32,6 @@ void __node_term_cross_windows_threading()
 {
 
 }
-
-
-
-
-//#include <pthread.h>
-
-typedef pthread_t pthread;
-
-typedef pthread hthread_t;
 
 
 int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask)
@@ -61,7 +53,7 @@ int SetThreadAffinityMask(hthread_t h, unsigned int dwThreadAffinityMask)
 
    }
 
-   pthread_setaffinity_np(h, sizeof(c), &c);
+   pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
 
    return 1;
 

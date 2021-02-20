@@ -51,7 +51,7 @@
 // {
 //    // no hook on asserts or when m_pFile is nullptr
 //    if (nRptType == _CRT_ASSERT || System.m_pdumpcontext->m_pfile == nullptr)
-//       return FALSE;
+//       return false;
 
 //    ASSERT( pResult != nullptr );
 //    if( pResult == nullptr )
@@ -62,10 +62,10 @@
 //       __throw(invalid_argument_exception());
 
 //    // non-nullptr m_pFile, so go through System.m_pdumpcontext for the message
-//    *pResult = FALSE;
+//    *pResult = false;
 //    *System.m_pdumpcontext << szMsg;
 //    //Allow other report hooks to be called.
-//    return FALSE;
+//    return false;
 // }
 
 

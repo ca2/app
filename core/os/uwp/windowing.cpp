@@ -390,16 +390,16 @@ int_bool is_window(oswindow oswindow)
 {
 
    if (((void *)oswindow) == nullptr)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 }
 
 int destroy_window(oswindow oswindow)
 {
 
-   return TRUE;
+   return true;
 
 }
 
@@ -572,7 +572,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
    UNREFERENCED_PARAMETER(oswindow);
    UNREFERENCED_PARAMETER( iShowCmd);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -614,7 +614,7 @@ int_bool is_window_occluded(oswindow oswindow)
 int_bool WINAPI SetWindowPos(oswindow pdata, oswindow pdataAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 {
 
-   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uFlags);
+   return pdata->m_pimpl->m_puserinteraction->set_window_position((iptr)pdataAfter, x, y, cx, cy, uFlags);
 
 }
 

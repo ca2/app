@@ -380,7 +380,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      if (System.m_phtml->m_namedColors.contains(m_strValue.lowered()))
+      if (System.m_phtml->m_namedcolor.contains(m_strValue.lowered()))
       {
 
           return true;
@@ -399,14 +399,18 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      ::color color;
+      __status < ::color::color >  color;
 
       string      strKey(m_strValue);
 
       strKey.make_lower();
 
-      if(System.m_phtml->m_namedColors.lookup(strKey, color))
-         return color.m_flags == -2;
+      if (System.m_phtml->m_namedcolor.lookup(strKey, color))
+      {
+
+         return color.m_estatus == ::success_color_index;
+
+      }
 
    }
 
@@ -450,7 +454,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
-   color color;
+   __status < ::color::color > color;
 
    if(isNamedColorValue(preader))
    {
@@ -459,12 +463,13 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(System.m_phtml->m_namedColors.lookup(strKey, color))
+      if(System.m_phtml->m_namedcolor.lookup(strKey, color))
       {
 
          // is this a system named color value?
-         if (color.m_flags == -2)
+         if (color.m_estatus == ::success_color_index)
          {
+
             color = Sess(preader->get_context_session())->get_default_color(color.red);
 
          }
@@ -474,13 +479,16 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      color = (u32) ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
+
+      color.m_estatus = ::success;
 
    }
 
    return color;
 
 }
+
 
 string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
 {

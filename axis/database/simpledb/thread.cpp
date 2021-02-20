@@ -11,7 +11,7 @@ namespace simpledb
    ::e_status thread::run()
    {
 
-      single_lock sl(mutex());
+      single_lock synchronizationlock(mutex());
 
       try
       {
@@ -63,12 +63,12 @@ namespace simpledb
 
             }
 
-            sl.lock();
+            synchronizationlock.lock();
 
             if (m_itema.is_empty())
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                sleep(300_ms);
 
@@ -97,7 +97,7 @@ namespace simpledb
             if (bFound)
             {
 
-               sl.unlock();
+               synchronizationlock.unlock();
 
                continue;
 
@@ -107,7 +107,7 @@ namespace simpledb
 
             m_itema.remove_at(0);
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             try
             {
@@ -130,9 +130,9 @@ namespace simpledb
 
                {
 
-                  sync_lock slDatabase(mutex());
+                  synchronization_lock slDatabase(mutex());
 
-                  Context.http().get(strUrl, set);
+                  get_context()->http().get(strUrl, set);
 
                }
 
@@ -174,7 +174,7 @@ namespace simpledb
    void thread::queue(const char * pszKey, block block)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       auto pitem = __new(queue_item);
 

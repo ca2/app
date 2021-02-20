@@ -265,7 +265,7 @@ namespace prompt
       }
       break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
       }
 

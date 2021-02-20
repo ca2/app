@@ -57,10 +57,10 @@ putch (int c)
 	return (EOF);
       if (_wscroll == 0)
 	{
-	  scrollok (CurrentWindow, FALSE);
+	  scrollok (CurrentWindow, false);
 	  mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,
 		    CurrentAttributes.curx - 1, TranslatedChar[c]);
-	  scrollok (CurrentWindow, TRUE);
+	  scrollok (CurrentWindow, true);
 	}
       else
 	mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,

@@ -54,12 +54,12 @@ typedef WINUCHAR *PWINUCHAR;
 #endif
 #endif
 
-#ifndef FALSE
-#define FALSE               0
+#ifndef false
+#define false               0
 #endif
 
-#ifndef TRUE
-#define TRUE                1
+#ifndef true
+#define true                1
 #endif
 
 #ifndef IN
@@ -243,7 +243,7 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECT32, *PRECT, *NPRECT, *LPRECT32;
+} RECT32, *PRECT, *NPRECT, *RECTANGLE_I32 *;
 
 typedef const RECT32 * LPCRECT32;
 

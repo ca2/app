@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/account/_account.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -131,7 +129,7 @@ namespace account
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
 
          m_plogin->on_action("submit");
@@ -139,7 +137,7 @@ namespace account
          pmessage->m_bRet = true;
 
       }
-      else if(pkey->m_ekey == ::user::key_escape)
+      else if(pkey->m_ekey == ::user::e_key_escape)
       {
 
          m_plogin->on_action("escape");
@@ -202,7 +200,13 @@ namespace account
       else if (is_empty(&rectParam))
       {
 
-         psession->get_main_monitor(rectDesktop);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectDesktop);
 
       }
       else
@@ -268,17 +272,17 @@ namespace account
 
       set_window_text( "account Auth Windows");
 
-      order(zorder_top);
+      order(e_zorder_top);
 
       place(rectFontopus);
 
-      m_plogin->m_peditUser->SetFocus();
+      m_plogin->m_peditUser->set_keyboard_focus();
 
       //m_plogin->on_layout(::draw2d::graphics_pointer & pgraphics);
 
       m_plogin->display();
 
-      SetForegroundWindow();
+      set_foreground_window();
 
       //BringWindowToTop();
 
@@ -388,7 +392,13 @@ namespace account
             else
             {
 
-               psession->get_main_monitor(rectDesktop);
+               auto puser = psession->user();
+
+               auto pwindowing = puser->windowing();
+
+               auto pdisplay = pwindowing->display();
+
+               pdisplay->get_main_monitor(rectDesktop);
 
             }
 
@@ -428,7 +438,7 @@ namespace account
                get_parent()->_001ScreenToClient(rectFontopus);
 
 
-            set_window_pos(zorder_top,rectFontopus,SWP_SHOWWINDOW);
+            set_window_position(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
 
          }
 
@@ -468,7 +478,7 @@ namespace account
 
       m_sizeLButtonDownOffset = pointOffset;
 
-      SetCapture();
+      set_mouse_capture();
 
       pmouse->m_bRet = true;
 
@@ -482,10 +492,20 @@ namespace account
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      if(pmouse->previous())
+      if (pmouse->previous())
+      {
+
          return;
 
-      ReleaseCapture();
+      }
+
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       m_bDrag = false;
 
@@ -541,11 +561,11 @@ namespace account
    void simple_ui::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->FillSolidRect(0, 0, 100, 100, ARGB(255, 255, 0, 0));
+      //pgraphics->FillSolidRect(0, 0, 100, 100, argb(255, 255, 0, 0));
 
       ::user::interaction::_000OnDraw(pgraphics);
 
-      //pgraphics->FillSolidRect(100, 100, 100, 100, ARGB(255, 0, 255, 0));
+      //pgraphics->FillSolidRect(100, 100, 100, 100, argb(255, 0, 255, 0));
 
    }
 

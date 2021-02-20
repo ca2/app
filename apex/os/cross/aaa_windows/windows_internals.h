@@ -2721,8 +2721,8 @@ static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, WINULONG ulBit)
 {
    if (lpBits && ulBit < lpBits->SizeOfBitMap &&
          lpBits->Buffer[ulBit >> 5] & (1 << (ulBit & 31)))
-      return TRUE;
-   return FALSE;
+      return true;
+   return false;
 }
 
 /* These are implemented as __fastcall, so we can't let Winelib apps link with them */

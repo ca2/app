@@ -58,7 +58,7 @@ bool linux_prepare_app_desktop_file(::matter * pobject, string strAppId);
 
 #include "x11.h"
 
-#include "gnome_gnome.h"
+#include "gtk_things/gnome_gnome.h"
 
 #include "linux.inl"
 

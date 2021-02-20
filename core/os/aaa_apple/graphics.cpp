@@ -33,7 +33,7 @@ CGColorRef cg_create_color(color32_t cr)
 int_bool cg_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
-   return TRUE;
+   return true;
 }
 
 
@@ -249,7 +249,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //   CFRelease(string);
 //
 //
-//   return TRUE;
+//   return true;
 //
 //
 //}
@@ -281,7 +281,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 
 //{
-//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, FALSE, hdc);
+//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 
 //}
 //
@@ -421,7 +421,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    //
    //   __memset(bitmapData, 0, bitmapByteCount);
 
-   // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+   // Create the bitmap context. We want pre-multiplied argb, 8-bits
    // per component. Regardless of what the source image format is
    // (CMYK, Grayscale, and so on) it will be converted over to the format
    // specified here by CGBitmapContextCreate.

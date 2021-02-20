@@ -153,8 +153,8 @@ namespace userstack
 
 
 
-      SetTimer(e_timer_backview, 83, nullptr);  // max. 12 fps
-      SetTimer(21977, 20 * 1000, nullptr);  // max. 12 fps
+      SetTimer(e_timer_backview, 83, nullptr);  // maximum. 12 fps
+      SetTimer(21977, 20 * 1000, nullptr);  // maximum. 12 fps
 
       check_apps();
 
@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void view::GetAreaThumbRect(LPRECT32 lprect, i32 iArea)
+   void view::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
    {
       
       ::rectangle_i32 rectClient = get_client_rect();
@@ -366,14 +366,14 @@ namespace userstack
       get_client_rect(rectClient);
       if(m_ppaneview != nullptr)
       {
-         m_ppaneview->set_window_pos(zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+         m_ppaneview->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pinteraction = get_top_child();
          if(pinteraction != nullptr)
          {
-            pinteraction->set_window_pos(zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+            pinteraction->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
       ::user::show < ::user::interaction >::on_layout(pgraphics);

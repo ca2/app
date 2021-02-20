@@ -24,7 +24,7 @@ public:
    process_data(u32 dwProcessId = 0, u32 dwDesiredAccess = PROCESS_ALL_ACCESS,
       u32 flAllocationType = MEM_COMMIT, u32 flProtect = PAGE_READWRITE)
    {
-      m_hProcess = OpenProcess(dwDesiredAccess, FALSE,
+      m_hProcess = OpenProcess(dwDesiredAccess, false,
          dwProcessId ? dwProcessId : GetCurrentProcessId());
       if(m_hProcess)
       {
@@ -54,13 +54,13 @@ public:
    bool WriteData(const T& data)
    {
       return (m_hProcess && m_lpData) ? WriteProcessMemory(m_hProcess, m_lpData,
-         (const void *)&data, sizeof T, nullptr) : FALSE;
+         (const void *)&data, sizeof T, nullptr) : false;
    }
 
    //ReadData reads back data from memory in the foreign process
    bool ReadData(T* data)
    {
-      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, nullptr) != FALSE : false;
+      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, nullptr) != false : false;
    }
 
    //Templated ReadData that's used to read a specific data type from
@@ -68,7 +68,7 @@ public:
    template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, const void * pData)
 
    {
-      return m_hProcess ? ReadProcessMemory(m_hProcess, pData, (LPVOID)data, sizeof TSUBTYPE, nullptr) != FALSE : false;
+      return m_hProcess ? ReadProcessMemory(m_hProcess, pData, (LPVOID)data, sizeof TSUBTYPE, nullptr) != false : false;
 
    }
 

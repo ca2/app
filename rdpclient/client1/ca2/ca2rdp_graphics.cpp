@@ -58,8 +58,8 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
             pointer->xorBpp, &context->gdi->palette))
       {
          //_aligned_free(ci.pixels);
-         //xf_unlock_x11(xfc, FALSE);
-         return FALSE;
+         //xf_unlock_x11(xfc, false);
+         return false;
       }
       //  freerdp_alpha_cursor_convert((byte *) ::draw2d::image_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
       //pointer->width, pointer->height, pointer->xorBpp, ca2rdpi->clrconv);

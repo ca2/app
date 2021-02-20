@@ -64,15 +64,25 @@ namespace opengl
 
       };
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
-      xdisplay display(x11_get_display());
+      auto psession = Session;
 
-      int screen = display.default_screen();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+
+      ::windowing_x11::display_lock display(pdisplayx11);
+
+      int screen = DefaultScreen(pdisplayx11->Display());
 
       int iConfigCount = 0;
 
-      m_pconfig = glXChooseFBConfig(display, screen, attribList, &iConfigCount);
+      m_pconfig = glXChooseFBConfig(pdisplayx11->Display(), screen, attribList, &iConfigCount);
 
       if (m_pconfig == NULL || iConfigCount <= 0)
       {
@@ -86,7 +96,7 @@ namespace opengl
         int glx_major, glx_minor;
 
    // FBConfigs were added in GLX version 1.3.
-      if ( !glXQueryVersion( display, &glx_major, &glx_minor ) ||
+      if ( !glXQueryVersion(pdisplayx11->Display(), &glx_major, &glx_minor ) ||
          ( ( glx_major == 1 ) && ( glx_minor < 3 ) ) || ( glx_major < 1 ) )
       {
          printf("Invalid GLX version");
@@ -104,7 +114,7 @@ namespace opengl
 
 
       // Create P-Buffer
-      m_pbuffer = glXCreatePbuffer(display, m_pconfig[0], bufferAttribList);
+      m_pbuffer = glXCreatePbuffer(pdisplayx11->Display(), m_pconfig[0], bufferAttribList);
 
       if (m_pbuffer == None)
       {
@@ -116,7 +126,7 @@ namespace opengl
       }
 
       // Create graphics context
-      m_context = glXCreateNewContext(display, m_pconfig[0], GLX_RGBA_TYPE, NULL, GL_TRUE);
+      m_context = glXCreateNewContext(pdisplayx11->Display(), m_pconfig[0], GLX_RGBA_TYPE, NULL, GL_TRUE);
 
       if (!m_context)
       {
@@ -156,13 +166,23 @@ namespace opengl
 
       ::e_status estatus = ::success;
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
-      xdisplay display(x11_get_display());
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+
+      ::windowing_x11::display_lock display(pdisplayx11);
 
 
       // Activate graphics context
-      if (!glXMakeContextCurrent(display, m_pbuffer, m_pbuffer, m_context))
+      if (!glXMakeContextCurrent(pdisplayx11->Display(), m_pbuffer, m_pbuffer, m_context))
       {
 
          fprintf(stderr, "Failed to activate graphics context.");
@@ -203,14 +223,24 @@ namespace opengl
 
       };
 
-      sync_lock sl(x11_mutex());
+      synchronization_lock synchronizationlock(x11_mutex());
 
-      xdisplay display(x11_get_display());
+      auto psession = Session;
 
-      int screen = display.default_screen();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+
+      ::windowing_x11::display_lock display(pdisplayx11);
+
+      int screen = DefaultScreen(pdisplayx11->Display());
 
       // Create P-Buffer
-      auto pbuffer = glXCreatePbuffer(display, m_pconfig[0], bufferAttribList);
+      auto pbuffer = glXCreatePbuffer(pdisplayx11->Display(), m_pconfig[0], bufferAttribList);
 
       if (pbuffer == None)
       {
@@ -223,7 +253,7 @@ namespace opengl
 
       m_pbuffer = pbuffer;
 
-      glXDestroyPbuffer(display, pbufferOld);
+      glXDestroyPbuffer(pdisplayx11->Display(), pbufferOld);
 
       make_current();
 

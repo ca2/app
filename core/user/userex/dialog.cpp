@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/id.h"
 #include "core/user/userex/_userex.h"
 
@@ -181,7 +179,7 @@ void dialog::on_position_parent_frame()
 
    rectOpen.deflate(iWidth / 5, iHeight / 5);
 
-   m_pframe->order(zorder_top);
+   m_pframe->order(e_zorder_top);
 
    m_pframe->place(rectOpen);
 
@@ -220,7 +218,7 @@ void dialog::do_data_exchange(::user::data_exchange * pdx)
 int_bool dialog::on_init_dialog()
 {
 
-   return TRUE;
+   return true;
 
 }
 

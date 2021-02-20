@@ -20,6 +20,37 @@ namespace windowing
    }
 
 
+   ::e_status monitor::update_cache()
+   {
+
+      return ::success_none;
+
+   }
+
+   
+   ::u32 monitor::get_monitor_color_temperature()
+   {
+
+      return 0;
+
+   }
+
+
+   bool monitor::adjust_monitor(::u32 dwTemperature, double dBrightness, double dwGamma)
+   {
+
+      return false;
+
+   }
+
+
+   bool monitor::get_monitor_rect(::rectangle_i32 * prectangle)
+   {
+
+      return false;
+
+   }
+
 
 } // namespace windowing
 

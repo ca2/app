@@ -17,7 +17,7 @@ public:
    // using event_base::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using sync::unlock;
+   using synchronization_object::unlock;
    virtual bool unlock();
 
    //virtual HSYNC hsync() const;
@@ -32,12 +32,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual sync_result wait();
+   virtual synchronization_result wait();
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual sync_result wait(const duration & duration);
+   virtual synchronization_result wait(const duration & duration);
 
    bool is_signaled() const;
 

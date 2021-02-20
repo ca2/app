@@ -52,7 +52,7 @@ namespace account
 
       virtual ~account();
 
-      virtual string show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual bool prepare_window(bool bShow);
 
@@ -156,7 +156,7 @@ namespace account
 
          simple_brush b;
 
-         b.create_solid(g, ARGB(184, 220, 220, 220));
+         b.create_solid(g, argb(184, 220, 220, 220));
 
          g.select(b);
 
@@ -164,7 +164,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(192, 192, 192, 192));
+         p.create_solid(g, argb(192, 192, 192, 192));
 
          g.select(p);
 
@@ -196,7 +196,7 @@ namespace account
 
          simple_brush b;
 
-         b.create_solid(g, ARGB(177, 210, 210, 210));
+         b.create_solid(g, argb(177, 210, 210, 210));
 
          g.select(b);
 
@@ -204,7 +204,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(177, 177, 177, 177));
+         p.create_solid(g, argb(177, 177, 177, 177));
 
          g.select(p);
 
@@ -222,7 +222,7 @@ namespace account
 
          simple_brush b;
 
-         b.create_solid(g, ARGB(123, 123, 123, 123));
+         b.create_solid(g, argb(123, 123, 123, 123));
 
          g.select(b);
 
@@ -230,7 +230,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(123, 90, 90, 90));
+         p.create_solid(g, argb(123, 90, 90, 90));
 
          g.select(p);
 
@@ -248,7 +248,7 @@ namespace account
 
          simple_brush b;
 
-         b.create_solid(g, ARGB(149, 192, 192, 192));
+         b.create_solid(g, argb(149, 192, 192, 192));
 
          g.select(b);
 
@@ -256,7 +256,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(149, 177, 177, 177));
+         p.create_solid(g, argb(149, 177, 177, 177));
 
          g.select(p);
 
@@ -274,7 +274,7 @@ namespace account
 
          simple_brush b;
 
-         b.create_solid(g, ARGB(84, 149, 149, 149));
+         b.create_solid(g, argb(84, 149, 149, 149));
 
          g.select(b);
 
@@ -282,7 +282,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(84, 123, 123, 123));
+         p.create_solid(g, argb(84, 123, 123, 123));
 
          g.select(p);
 
@@ -299,7 +299,7 @@ namespace account
 
          simple_pen p;
 
-         p.create_solid(g, ARGB(184, 90, 90, 90));
+         p.create_solid(g, argb(184, 90, 90, 90));
 
          g.select(p);
 
@@ -330,7 +330,7 @@ namespace account
          byte r1 = brate(dRate, 23, 127);
          byte g1 = brate(dRate, 23, 127);
          byte b1 = brate(dRate, 23, 127);
-         p.create_solid(g, ARGB(a1, r1, g1, b1));
+         p.create_solid(g, argb(a1, r1, g1, b1));
          g.draw_line(rectWindow.left, i, rectWindow.right, i, p);
 
       }
@@ -370,7 +370,7 @@ namespace account
    {
    }
 
-   string account::show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string account::show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == nullptr)
@@ -474,7 +474,7 @@ namespace account
 
       if (!m_oswindow)
       {
-         return FALSE;
+         return false;
       }
 
       m_login.on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -485,7 +485,7 @@ namespace account
 
 
 
-      return TRUE;
+      return true;
 
    }
 
@@ -519,15 +519,15 @@ namespace account
 
    void account::boot_window_mouse_dragged(double x, double y)
    {
-      set_window_pos(m_oswindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+      set_window_position(m_oswindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
    }
 
-   bool account::boot_window_key_down(::user::e_key ekey)
+   bool account::boot_window_key_down(::user::enum_key ekey)
    {
       return true;
    }
 
-   bool account::boot_window_key_up(::user::e_key ekey)
+   bool account::boot_window_key_up(::user::enum_key ekey)
    {
       return true;
    }
@@ -610,7 +610,7 @@ namespace account
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
-            set_window_pos(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            set_window_position(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;
@@ -643,7 +643,7 @@ namespace account
       get_window_rect(rectWindow);
 
 
-      g.fill_rect(rectWindow, ARGB(84, 127, 127, 127));
+      g.fill_rectangle(rectWindow, argb(84, 127, 127, 127));
 
    }
 
@@ -787,7 +787,7 @@ namespace account
 
    account account::s_account;
 
-   string CLASS_DECL_BOOT show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::account::account::s_account.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

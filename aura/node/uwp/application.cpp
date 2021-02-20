@@ -53,7 +53,7 @@ namespace aura
    //bool application::_001OnDDECommand(const char * pcsz)
    //{
    //   UNREFERENCED_PARAMETER(pcsz);
-   //   return FALSE;
+   //   return false;
    //}
 
    //HINSTANCE application::GetHinstance()
@@ -240,7 +240,7 @@ namespace aura
       {
          ::uwp::thread::Delete();
       }
-      // 'delete this' only if m_bAutoDelete == TRUE
+      // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MSG* msg)  // helper
       {
@@ -332,7 +332,7 @@ namespace aura
 
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
    }
@@ -373,7 +373,7 @@ namespace aura
    int_bool application::window_set_mouse_cursor(oswindow, HCURSOR hcursor)
    {
 
-      return FALSE;
+      return false;
 
    }
    

@@ -1,3 +1,4 @@
+#include "apex/operating_system.h"
 
 
 i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdLine, int nCmdShow)

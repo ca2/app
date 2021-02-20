@@ -6,10 +6,10 @@
 
 
 //class thread;
-//class mq;
+//class message_queue;
 
 
-//CLASS_DECL_ACME __pointer(mq) __get_mq(ithread_t id);
+//CLASS_DECL_ACME __pointer(message_queue) __get_mq(ithread_t id);
 
 //CLASS_DECL_ACME int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 

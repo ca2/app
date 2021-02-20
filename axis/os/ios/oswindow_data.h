@@ -32,7 +32,7 @@ public:
 
    nswindow                      m_nswindow;
    ::user::interaction_impl *    m_pimpl;
-   __pointer(::mq)               m_pmq;
+   __pointer(::message_queue)               m_pmq;
 
 
 

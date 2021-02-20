@@ -36,12 +36,12 @@ namespace user
 
          bool                    m_bOutline;
          int                     m_iOutlineWidth;
-         ::hls                   m_hlsOutline;
+         ::color::hls                   m_hlsOutline;
 
          bool                    m_bGlowDropShadow;
          int                     m_iGlowDropShadowOffset;
          int                     m_iGlowDropShadowBlur;
-         ::hls                   m_hlsGlowDropShadow;
+         ::color::hls                   m_hlsGlowDropShadow;
 
          int                     m_iBlur;
          bool                    m_bGrayscale;
@@ -77,7 +77,7 @@ namespace user
 
 
       virtual void on_hit_test(::user::item & item) override;
-      //virtual int on_hit_test_cursor(point_f64 point_i32);
+      //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;
       virtual bool intersects_drawing(const ::rectangle_f64 & rectangle) const;
@@ -110,7 +110,7 @@ namespace user
       virtual void drag_transform_point_drawing(point_f64 & point) const;
       virtual point_f64 drag_transform(const point_f64 & point) const;
       virtual point_f64 drag_transform_drawing(const point_f64 & point) const;
-      inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size_i32); }
+      inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size); }
       virtual void drag_rtransform_point(point_f64 & point) const;
       virtual void drag_rtransform_point_drawing(point_f64 & point) const;
       virtual point_f64 drag_rtransform(const point_f64 & point) const;
@@ -140,7 +140,7 @@ namespace user
       virtual void draw_impl(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void move_to(point_f64 point_i32, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin);
+      virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin);
 
 
       virtual void exchange(::stream & stream) override;

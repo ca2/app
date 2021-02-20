@@ -6,7 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "_.h"
-#include "acme/parallelization/mq.h"
+#include "acme/parallelization/message_queue.h"
 
 
 #undef System
@@ -176,9 +176,9 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
       ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
 
-      ph[nCount] = (HANDLE)::get_mq(get_current_ithread(), true)->m_eventNewMessage.hsync();
+      ph[nCount] = (HANDLE)::get_message_queue(get_current_ithread(), true)->m_eventNewMessage.hsync();
 
-      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, TRUE);
+      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, true);
 
       delete ph;
 
@@ -186,7 +186,7 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
    else
    {
 
-      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, FALSE);
+      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, false);
 
    }
 

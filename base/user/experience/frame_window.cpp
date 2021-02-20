@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 #include "aura/update.h"
 #include "aura/message.h"
 
@@ -48,23 +46,23 @@ namespace experience
    void frame_window::pre_translate_message(::message::message * pmessage)
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      if (pmessage->m_id == WM_GETTEXT)
-      {
-
-         return;
-
-      }
-      else if (pmessage->m_id == WM_GETTEXTLENGTH)
-      {
-
-         return;
-
-      }
-      else
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pmessage->m_id == WM_GETTEXT)
+//      {
+//
+//         return;
+//
+//      }
+//      else if (pmessage->m_id == WM_GETTEXTLENGTH)
+//      {
+//
+//         return;
+//
+//      }
+//      else
+//
+//#endif
 
          if (pmessage->m_id == e_message_mouse_move)
       {
@@ -91,22 +89,22 @@ namespace experience
                if (!m_bFullScreenOnMaximize)
                {
 
-                  if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
+                  if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
                   {
 
                      m_bFullScreenAlt = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+                  else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
                   {
 
                      m_bFullScreenCtrl = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::key_return)
+                  else if (pkey->m_ekey == ::user::e_key_return)
                   {
 
-                     if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+                     if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
                      {
 
                         m_bFullScreenReturn = true;
@@ -140,16 +138,16 @@ namespace experience
             else if (pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
             {
 
-               if (pkey->m_ekey == ::user::key_return)
+               if (pkey->m_ekey == ::user::e_key_return)
                {
 
                }
-               else if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
+               else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
                {
 
                   auto psession = Session;
 
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -175,10 +173,10 @@ namespace experience
                   m_bFullScreenAlt = false;
 
                }
-               else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+               else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
                {
 
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -278,7 +276,7 @@ namespace experience
          else if(_001GetTopLeftWeightedOccludedOpaqueRate()  > 0.025)
          {
 
-            order(::zorder_top);
+            order(::e_zorder_top);
 
             display(e_display_default, e_activation_set_foreground);
 
@@ -345,21 +343,21 @@ namespace experience
    }
 
 
-   void frame_window::message_handler(::message::base* pbase)
+   void frame_window::message_handler(::message::message* pusermessage)
    {
 
-//      int iMessage = pbase->m_id;
+//      int iMessage = pusermessage->m_id;
 
 
-      //if (pbase->m_id == WM_GETTEXT)
+      //if (pusermessage->m_id == WM_GETTEXT)
       //{
 
-      //   _008GetWindowText(pbase);
+      //   _008GetWindowText(pusermessage);
 
-      //   pbase->m_uiMessageFlags |= 3; // message considered pre translated
-      //   pbase->m_uiMessageFlags |= 16384; //  by early optmization
+      //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
+      //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
 
-      //   if (!pbase->m_bRet)
+      //   if (!pusermessage->m_bRet)
       //   {
 
       //      default_window_procedure();
@@ -369,15 +367,15 @@ namespace experience
       //   return;
 
       //}
-      //else if (pbase->m_id == WM_GETTEXTLENGTH)
+      //else if (pusermessage->m_id == WM_GETTEXTLENGTH)
       //{
 
-      //   _008GetWindowTextLength(pbase);
+      //   _008GetWindowTextLength(pusermessage);
 
-      //   pbase->m_uiMessageFlags |= 3; // message considered pre translated
-      //   pbase->m_uiMessageFlags |= 16384; //  by early optmization
+      //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
+      //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
 
-      //   if (!pbase->m_bRet)
+      //   if (!pusermessage->m_bRet)
       //   {
 
       //      default_window_procedure();
@@ -390,18 +388,18 @@ namespace experience
       //else
       //{
 
-         relay_event(pbase);
+         relay_event(pusermessage);
 
 //      }
 
-      if (pbase->m_bRet)
+      if (pusermessage->m_bRet)
       {
 
          return;
 
       }
 
-      ::user::frame_window::message_handler(pbase);
+      ::user::frame_window::message_handler(pusermessage);
 
    }
 
@@ -595,9 +593,9 @@ namespace experience
 
 //      m_pdockmanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
+//      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
+//      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
       if (!m_pmovemanager->set_frame_window(this))
       {
@@ -781,7 +779,7 @@ namespace experience
    }
 
 
-   void frame_window::on_command_message(::user::command * pcommand)
+   void frame_window::on_command_message(::message::command * pcommand)
    {
 
       if (pcommand->m_id == ::e_message_system_command && m_pframe != nullptr)
@@ -884,7 +882,7 @@ namespace experience
    }
 
 
-   void frame_window::route_command_message(::user::command* pcommand)
+   void frame_window::route_command_message(::message::command* pcommand)
    {
 
       ::user::frame_window::route_command_message(pcommand);
@@ -946,7 +944,7 @@ namespace experience
    void frame_window::_001OnSysCommand(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::message::message) pusermessage(pmessage);
 
    }
 
@@ -961,38 +959,38 @@ namespace experience
    }
 
 
-   void frame_window::_001OnCommand(::message::message * pmessage)
-   {
+   //void frame_window::_001OnCommand(::message::message * pmessage)
+   //{
 
-      __pointer(::message::base) pbase(pmessage);
+   //   __pointer(::message::message) pusermessage(pmessage);
 
-      if (m_pframe == nullptr)
-      {
+   //   if (m_pframe == nullptr)
+   //   {
 
-         pbase->m_bRet = false;
+   //      pusermessage->m_bRet = false;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         pbase->m_bRet = m_pframe->_001OnCommand(pbase->m_wparam, pbase->m_lparam, pbase->m_lresult);
+   //      pusermessage->m_bRet = m_pframe->_001OnCommand(pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->m_lresult);
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //  define System flags que serão usados para posicionar ou
-   //  dimensionar pelo uso da função set_window_pos
+   //  dimensionar pelo uso da função set_window_position
 
    void frame_window::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uFlags;
 
-      m_pmovemanager->SetSWPFlags(m_uiSWPFlags);
+      //m_pmovemanager->SetSWPFlags(m_uiSWPFlags);
 
-      m_psizemanager->SetSWPFlags(m_uiSWPFlags);
+      //m_psizemanager->SetSWPFlags(m_uiSWPFlags);
 
    }
 
@@ -1210,13 +1208,13 @@ namespace experience
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
       MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
-      MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
+      //MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
 
-      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+//      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
 
-#endif
+//#endif
 
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
 
@@ -1426,16 +1424,34 @@ namespace experience
 
    }
 
+
    void frame_window::_001OnNcHitTest(::message::message * pmessage)
    {
-   __pointer(::message::nchittest) pnchittest(pmessage);
-   if(!is_frame_experience_enabled())
-   {
-   pnchittest->m_bRet = false;
-   return;
-   }
-   ASSERT(m_pframe != nullptr);
-   pnchittest->m_bRet = m_pframe->_001OnNcHitTest(pnchittest->m_point,pnchittest->m_lresult);
+
+      __pointer(::message::nc_hit_test) pnchittest(pmessage);
+
+      if(!is_frame_experience_enabled())
+      {
+   
+         pnchittest->m_bRet = false;
+   
+         return;
+   
+      }
+      
+      ASSERT(m_pframe != nullptr);
+
+      enum_hit_test ehittest = e_hit_test_error;
+   
+      pnchittest->m_bRet = m_pframe->_001OnNcHitTest(pnchittest->m_point, ehittest);
+
+      if (pnchittest->m_bRet)
+      {
+
+         pnchittest->set_hit_test(ehittest);
+
+      }
+
    }
 
 
@@ -1665,13 +1681,13 @@ namespace experience
          if (rectRequest.is_set())
          {
 
-            rectangle_i32 = rectRequest;
+            rectangle = rectRequest;
 
          }
          else
          {
 
-            rectangle_i32 = layout().sketch().screen_rect();
+            rectangle = layout().sketch().screen_rect();
 
          }
 
@@ -1724,7 +1740,11 @@ namespace experience
 
             auto psession = Session;
 
-            pointCursor = psession->get_cursor_pos();
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            pointCursor = pwindowing->get_cursor_pos();
 
          }
 
@@ -1936,7 +1956,7 @@ namespace experience
          if (is_docking_appearance(edisplay))
          {
 
-            *prectangle = rectangle_i32;
+            *prectangle = rectangle;
 
          }
          else if (edisplay == e_display_zoomed)

@@ -375,7 +375,7 @@ namespace base
 //      //virtual ::file::path full_process_path(::file::path path);
 //
 //      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-//      virtual void ShowWaitCursor(bool bShow = true);
+//      virtual void show_wait_cursor(bool bShow = true);
 //
 //
 //
@@ -565,9 +565,9 @@ namespace base
 //      virtual ::e_status     call_request(::create * pcreate) override;
 //
 //
-//      virtual void process_message(::message::base * base) override;
+//      virtual void process_message(::user::message * base) override;
 //
-//      virtual void message_handler(::message::base * pbase) override;
+//      virtual void message_handler(::user::message * pusermessage) override;
 //
 //
 //
@@ -671,7 +671,7 @@ namespace base
 //
 //      virtual ::user::interaction * main_window();
 //
-////         virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
+////         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
 //
 //
 //      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
@@ -809,7 +809,7 @@ namespace base
 //      //virtual void on_request(::create* pcreate) override;
 //
 //      // overrides for implementation
-//      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
 //
 //      void EnableModelessEx(bool bEnable);
@@ -830,10 +830,10 @@ namespace base
 //      virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 //
 //
-//      void OnUpdateRecentFileMenu(::user::command* pcommand);
+//      void OnUpdateRecentFileMenu(::message::command* pcommand);
 //
 //      //virtual void send_app_language_changed();
-//      virtual void route_command_message(::user::command* pcommand) override;
+//      virtual void route_command_message(::message::command* pcommand) override;
 //
 //
 //
@@ -873,7 +873,7 @@ namespace base
 //      void SetRegistryKey(::u32 nIDRegistryKey);
 //
 //
-//      void RegisterShellFileTypes(bool bCompat = FALSE);
+//      void RegisterShellFileTypes(bool bCompat = false);
 //
 //      // call after all doc templates are registered
 //      void UnregisterShellFileTypes();
@@ -881,7 +881,7 @@ namespace base
 //
 //
 //      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
+//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
 //
 //      // create a DC for the system default printer.
 //      ::draw2d::graphics* CreatePrinterDC();

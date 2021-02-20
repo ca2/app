@@ -139,11 +139,11 @@ namespace helloworld
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       {
 
-         sync_lock slText(&m_mutexText);
+         synchronization_lock slText(&m_mutexText);
 
          if(m_strNewHelloWorld.is_empty())
          {
@@ -295,7 +295,7 @@ namespace helloworld
    string view::get_processed_helloworld()
    {
 
-      sync_lock slText(&m_mutexText);
+      synchronization_lock slText(&m_mutexText);
 
       string str = get_helloworld();
 
@@ -397,7 +397,7 @@ namespace helloworld
    string view::get_helloworld()
    {
 
-      sync_lock sl(&m_mutexText);
+      synchronization_lock synchronizationlock(&m_mutexText);
 
       if(m_strHelloWorld != m_strNewHelloWorld)
       {
@@ -455,14 +455,14 @@ namespace helloworld
       if (m_prender != nullptr)
       {
 
-         sync_lock sl(&m_mutexText);
+         synchronization_lock synchronizationlock(&m_mutexText);
 
          if (get_processed_helloworld() != m_prender->m_strHelloWorld)
          {
 
             m_prender->m_strHelloWorld = get_processed_helloworld().c_str(); // rationale : string allocation fork *for parallelization*
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             set_need_layout();
 

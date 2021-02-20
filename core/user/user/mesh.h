@@ -191,8 +191,8 @@ namespace user
       string                           m_strTopText;
       ::rectangle_i32                           m_rectTopText;
       __pointer(mesh_data)                    m_pmeshdata;
-//      ::draw2d::font_pointer                m_font;
-      //    ::draw2d::font_pointer                m_fontHover;
+//      ::write_text::font_pointer                m_font;
+      //    ::write_text::font_pointer                m_fontHover;
       ::draw2d::pen_pointer                 m_penFocused;
       ::draw2d::pen_pointer                 m_penHighlight;
       EView                            m_eview;
@@ -246,7 +246,7 @@ namespace user
 
 
       //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,index iItem,index iSubItem);
-      //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::draw2d::font * pfont,index iItem,index iSubItem);
+      //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem);
 
 
 
@@ -257,8 +257,8 @@ namespace user
       virtual mesh_data * GetDataInterface();
       using interaction::update_hover;
       virtual bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
-      //::draw2d::font * _001GetFont();
-      //::draw2d::font * _001GetFontHover();
+      //::write_text::font * _001GetFont();
+      //::write_text::font * _001GetFontHover();
       virtual ::draw2d::pen * _001GetPenFocused();
       virtual ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow() override;

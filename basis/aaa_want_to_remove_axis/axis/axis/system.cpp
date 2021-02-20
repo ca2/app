@@ -62,7 +62,7 @@ namespace axis
 
       m_puserstr = nullptr;
 
-      __node_axis_factory_exchange();
+      __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 
       //create_factory < ::file::axis::application_dir, ::file::application_dir >();

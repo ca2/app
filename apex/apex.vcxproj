@@ -1141,6 +1141,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\application.cpp" />
     <ClCompile Include="message\base.cpp" />
     <ClCompile Include="message\channel.cpp" />
+    <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\debug.cpp" />
     <ClCompile Include="message\id.cpp" />
     <ClCompile Include="message\message.cpp" />
@@ -1199,7 +1200,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\handler.cpp" />
     <ClCompile Include="parallelization\retry_multi_lock.cpp" />
     <ClCompile Include="parallelization\retry_single_lock.cpp" />
-    <ClCompile Include="parallelization\service\plain_service.cpp" />
     <ClCompile Include="parallelization\service_base.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
     <ClCompile Include="parallelization\threading.cpp" />
@@ -1321,6 +1321,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="message\application.h" />
     <ClInclude Include="message\base.h" />
     <ClInclude Include="message\channel.h" />
+    <ClInclude Include="message\command.h" />
     <ClInclude Include="message\command_ui_probe.h" />
     <ClInclude Include="message\const.h" />
     <ClInclude Include="message\cross_windows.h" />
@@ -1526,8 +1527,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
     <ClInclude Include="user\aaa_range.h" />
-    <ClInclude Include="user\menu_shared.h" />
-    <ClInclude Include="user\menu_shared_command.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\ewindowflag.h" />

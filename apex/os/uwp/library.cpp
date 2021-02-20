@@ -146,15 +146,15 @@ void * __node_library_open_ca2(const char * psz, string & strMessage)
 {
    /*      string str(psz);
    if(str.find("..") >= 0)
-   return FALSE;
+   return false;
    if(str.find(":") >= 0)
-   return FALSE;
+   return false;
    if(str.find("\\\\") >= 0)
-   return FALSE;
+   return false;
    if(str[0] == '\\')
-   return FALSE;
+   return false;
    if(str[0] == '/')
-   return FALSE;
+   return false;
    #ifdef _M_X64
    //::SetDllDirectory(dir::install("stage\\x64") + "\\");
    #else
@@ -188,7 +188,7 @@ bool __node_library_close(void * plibrary)
    try
    {
 
-      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+      bOk = ::FreeLibrary((HINSTANCE)plibrary) != false;
 
    }
    catch (...)

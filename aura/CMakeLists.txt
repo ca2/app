@@ -2,21 +2,12 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if (LINUX)
    set(LINUX TRUE)
-   set(PLATFORM_NAME "linux")
-   message("System is Linux")
-   include(FindPkgConfig)
 elseif (WIN32)
-   set(PLATFORM_NAME "windows")
 elseif (UWP)
-   set(PLATFORM_NAME "uwp")
    set(WINDOWS_TSF TRUE)
 endif ()
 
@@ -94,14 +85,6 @@ list(APPEND aura_source
    graphics/draw2d/draw2d.h
    graphics/draw2d/fastblur.cpp
    graphics/draw2d/fastblur.h
-   graphics/draw2d/font.cpp
-   graphics/draw2d/font.h
-   graphics/draw2d/font_department.cpp
-   graphics/draw2d/font_department.h
-   graphics/draw2d/font_enumeration.cpp
-   graphics/draw2d/font_enumeration.h
-   graphics/draw2d/font_list.cpp
-   graphics/draw2d/font_list.h
    graphics/draw2d/fwd.h
    graphics/draw2d/glyph.cpp
    graphics/draw2d/glyph.h
@@ -163,8 +146,6 @@ list(APPEND aura_source
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
-   graphics/draw2d/text_box.cpp
-   graphics/draw2d/text_box.h
    graphics/draw2d/thread_tool.cpp
    graphics/draw2d/thread_tool.h
    graphics/draw2d/ttf_util.cpp
@@ -202,12 +183,24 @@ list(APPEND aura_source
    graphics/graphics/window_dc.h
    graphics/snippet/close_button.h
    graphics/snippet/close_icon.h
-   graphics/text/_.h
-   graphics/text/bounding_rect.h
-   graphics/text/contains.h
-   graphics/text/draw_text.h
-   graphics/text/text.h
-   graphics/text/text_out.h
+   graphics/write_text/_.h
+   graphics/write_text/bounding_rect.h
+   graphics/write_text/contains.h
+   graphics/write_text/draw_text.h
+   graphics/write_text/font.cpp
+   graphics/write_text/font.h
+   graphics/write_text/font_department.cpp
+   graphics/write_text/font_department.h
+   graphics/write_text/font_enumeration.cpp
+   graphics/write_text/font_enumeration.h
+   graphics/write_text/font_list.cpp
+   graphics/write_text/font_list.h
+   graphics/write_text/text.h
+   graphics/write_text/text_box.cpp
+   graphics/write_text/text_box.h
+   graphics/write_text/text_out.h
+   graphics/write_text/write_text.cpp
+   graphics/write_text/write_text.h
    graphics/_.h
    graphics/_impl.h
    include/_.cpp
@@ -248,7 +241,7 @@ list(APPEND aura_source
    os/ansios/_ansios.h
    os/ansios/_c.h
    os/ansios/ansios_file.h
-   os/ansios/callstack.h
+   #os/ansios/callstack.h
    os/ansios/datetime_c.h
    os/ansios/exception_engine.h
    os/ansios/file.h
@@ -262,11 +255,11 @@ list(APPEND aura_source
    os/_application.h
    os/_c.h
    os/_impl.h
-   os/_os.h
+   os/_os2.h
    os/_user.h
    os/argcargv.cpp
-   os/binreloc.cpp
-   os/binreloc.h
+   #os/binreloc.cpp
+   #os/binreloc.h
    os/chronometer.h
    os/cross.h
    os/file.h
@@ -290,7 +283,7 @@ list(APPEND aura_source
    platform/draw_context2.h
    platform/drawable.cpp
    platform/drawable.h
-   platform/mq.h
+   platform/message_queue.h
    platform/node.cpp
    platform/node.h
    platform/session.cpp
@@ -358,11 +351,17 @@ list(APPEND aura_source
    user/keyboard.h
    user/main_window.cpp
    user/main_window.h
+   user/message.cpp
+   user/message.h
    user/message_queue.cpp
    user/message_queue.h
    user/message_queue_listener.h
    user/mouse.cpp
    user/mouse.h
+   user/notify_icon.cpp
+   user/notify_icon.h
+   user/notify_icon_listener.cpp
+   user/notify_icon_listener.h
    user/plain_edit.cpp
    user/plain_edit.h
    user/plain_text_data.cpp
@@ -381,12 +380,16 @@ list(APPEND aura_source
    user/scroll_bar.cpp
    user/scroll_bar.h
    user/scroll_info.h
+   user/shell.cpp
+   user/shell.h
    user/style.cpp
    user/style.h
    user/style_base.cpp
    user/style_base.h
    user/style_control.cpp
    user/style_control.h
+   user/text_composition.cpp
+   user/text_composition.h
    user/tool_window.cpp
    user/tool_window.h
    user/user.cpp
@@ -401,6 +404,30 @@ list(APPEND aura_source
    user/window_util.h
    user/windowing.cpp
    user/windowing.h
+   windowing/buffer.cpp
+   windowing/buffer.h
+   windowing/cursor.cpp
+   windowing/cursor.h
+   windowing/cursor_set.cpp
+   windowing/cursor_set.h
+   windowing/display.cpp
+   windowing/display.h
+   windowing/icon.cpp
+   windowing/icon.h
+   windowing/keyboard.cpp
+   windowing/keyboard.h
+   windowing/menu.cpp
+   windowing/menu.h
+   windowing/menu_command.cpp
+   windowing/menu_command.h
+   windowing/menu_item.cpp
+   windowing/menu_item.h
+   windowing/monitor.cpp
+   windowing/monitor.h
+   windowing/window.cpp
+   windowing/window.h
+   windowing/windowing.cpp
+   windowing/windowing.h
    version/version.config.h
    version/version.h
    _.cpp
@@ -652,8 +679,8 @@ if (LINUX)
       node/linux/_linux.h
       node/linux/application.cpp
       node/linux/application.h
-      node/linux/console_window.cpp
-      node/linux/console_window.h
+      node/linux/console.cpp
+      node/linux/console.h
       #node/linux/copydesk.cpp
       #node/linux/copydesk.h
       node/linux/factory_exchange.cpp
@@ -682,8 +709,8 @@ if (LINUX)
       os/linux/debug.h
       os/linux/desktop_file.cpp
       os/linux/desktop_file.h
-      os/linux/exception_engine.cpp
-      os/linux/exception_engine.h
+      #os/linux/exception_engine.cpp
+      #os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
       os/linux/graphics.cpp
@@ -697,13 +724,13 @@ if (LINUX)
       os/linux/list_serial_ports.cpp
       os/linux/lock.cpp
       os/linux/message_loop.cpp
-      os/linux/monitor.cpp
-      os/linux/multithreading.cpp
+      #os/linux/monitor.cpp
       os/linux/os.cpp
       #os/linux/osdisplay.cpp
       #os/linux/osdisplay.h
       #os/linux/oswindow.cpp
       #os/linux/oswindow.h
+      os/linux/parallelization.cpp
       #os/linux/process.cpp
       #os/linux/process.h
       #os/linux/process_pid.cpp

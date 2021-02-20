@@ -28,7 +28,7 @@ namespace papaya
                for (::index i = 0; i < c; i++)
                {
 
-                  a.set_size(i + 1, min((size_t)(c - i), 96_mb / sizeof(a[0])));
+                  a.set_size(i + 1, minimum((size_t)(c - i), 96_mb / sizeof(a[0])));
 
                   auto & item = __typed(a[i]);
 
@@ -790,7 +790,7 @@ namespace papaya
 
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_pred_base < typename ARRAY::BASE_ARG_TYPE > * pless, index_array & ia)
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
          if(a.get_size() == 0)

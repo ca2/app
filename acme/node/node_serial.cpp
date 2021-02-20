@@ -20,7 +20,7 @@
 #endif
 
 //using std::invalid_argument;
-//using std::min;
+//using std::minimum;
 //using std::numeric_limits;
 //using std::vector;
 //using std::size_t;
@@ -89,7 +89,7 @@ serial::Timeout Timeout::simpleTimeout(u32 timeout)
 #ifdef WINDOWS
    return Timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
 #else
-   return Timeout(max(), timeout, 0, timeout, 0);
+   return Timeout(maximum(), timeout, 0, timeout, 0);
 #endif
 }
 
@@ -167,7 +167,7 @@ size_t
 Serial::read(string& buffer, size_t size)
 {
    ScopedReadLock lock(this->pimpl_);
-   u8* buffer_ = new u8[size_i32];
+   u8* buffer_ = new u8[size];
    size_t bytes_read = this->pimpl_->read(buffer_, size);
    buffer.append(reinterpret_cast<const char*>(buffer_), bytes_read);
    delete[] buffer_;
@@ -206,7 +206,7 @@ Serial::readline(string& buffer, size_t size, string eol)
       {
          break; // EOL found
       }
-      if (read_so_far == size_i32)
+      if (read_so_far == size)
       {
          break; // Reached the maximum read length
       }
@@ -234,7 +234,7 @@ Serial::readlines(size_t size, string eol)
       (alloca(size * sizeof(u8)));
    size_t read_so_far = 0;
    size_t start_of_line = 0;
-   while (read_so_far < size_i32)
+   while (read_so_far < size)
    {
       size_t bytes_read = this->read_(buffer_ + read_so_far, 1);
       read_so_far += bytes_read;
@@ -257,7 +257,7 @@ Serial::readlines(size_t size, string eol)
                read_so_far - start_of_line));
          start_of_line = read_so_far;
       }
-      if (read_so_far == size_i32)
+      if (read_so_far == size)
       {
          if (start_of_line != read_so_far)
          {

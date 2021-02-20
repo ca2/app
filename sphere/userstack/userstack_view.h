@@ -39,7 +39,7 @@ namespace userstack
       oswindow                   m_oswindowBergedge;
 
 
-      ::draw2d::font_pointer          m_font;
+      ::write_text::font_pointer          m_font;
       ::file::listing            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
@@ -68,7 +68,7 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(LPRECT32 lprect, i32 iArea);
+      void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
 
       void on_hit_test(::user::item & item) override;
 

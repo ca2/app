@@ -2,22 +2,14 @@ cmake_minimum_required(VERSION 3.17)
 project(apex CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-   set(LINUX TRUE)
+if (LINUX)
    set(USE_OPENSSL TRUE)
    set(PTHREAD TRUE)
-   set(PLATFORM_NAME "linux")
-   message("System is Linux")
-   include(FindPkgConfig)
 elseif (WIN32)
    set(USE_OPENSSL TRUE)
-   set(PLATFORM_NAME "windows")
 endif ()
 
 
@@ -89,7 +81,7 @@ list(APPEND apex_source
    database/server.h
    database/stringhelper.cpp
    database/stringhelper.h
-   filesystem/file/_.h
+   #filesystem/file/_.h
    filesystem/file/_data.h
    filesystem/file/_file.h
    filesystem/file/edit_file.cpp
@@ -182,6 +174,8 @@ list(APPEND apex_source
    message/command_target.cpp
    message/command_ui_probe.cpp
    message/command_ui_probe.h
+   message/command.cpp
+   message/command.h
    message/const.h
    message/cross_windows.h
    message/debug.cpp
@@ -198,9 +192,6 @@ list(APPEND apex_source
    message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
-   parallelization/service/plain_service.cpp
-   parallelization/service/plain_service.h
-   parallelization/service/pool.h
    parallelization/_.cpp
    parallelization/_.h
    parallelization/_impl.h
@@ -212,10 +203,10 @@ list(APPEND apex_source
    parallelization/handler.cpp
    parallelization/handler.h
    parallelization/retry.h
-   parallelization/retry_multi_lock.cpp
-   parallelization/retry_multi_lock.h
-   parallelization/retry_single_lock.cpp
-   parallelization/retry_single_lock.h
+   # parallelization/retry_multi_lock.cpp
+   # parallelization/retry_multi_lock.h
+   # parallelization/retry_single_lock.cpp
+   # parallelization/retry_single_lock.h
    parallelization/service_base.cpp
    parallelization/service_base.h
    parallelization/service_status.h
@@ -368,27 +359,27 @@ list(APPEND apex_source
    node/_node.h
    os/ansios/_.h
    os/ansios/_ansios.h
-   os/ansios/_c.h
+   #os/ansios/_c.h
    os/ansios/ansios_file.h
    os/ansios/base.cpp
-   os/ansios/callstack.h
+   # os/ansios/callstack.h
    os/ansios/datetime.cpp
    os/ansios/datetime_c.h
-   os/ansios/exception_engine.cpp
-   os/ansios/exception_engine.h
+   # os/ansios/exception_engine.cpp
+   # os/ansios/exception_engine.h
    os/ansios/file.cpp
    os/ansios/file.h
-   os/ansios/file_c.h
+   #os/ansios/file_c.h
    os/ansios/language.cpp
    os/ansios/parallelization.h
    #os/ansios/process.cpp
    os/ansios/win.cpp
-   os/_.h
+   os/_2.h
    os/_application.cpp
    os/_application.h
-   os/_c.h
+   os/_c2.h
    os/_impl.h
-   os/_os.h
+   os/_os2.h
    os/apex.h
    os/argcargv.cpp
    os/binreloc.h
@@ -503,8 +494,6 @@ list(APPEND apex_source
    platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
-   ../acme/platform/simple_trace.cpp
-   ../acme/platform/simple_trace.h
    platform/static_setup.cpp
    platform/static_setup.h
    platform/static_start.cpp
@@ -560,7 +549,6 @@ list(APPEND apex_source
    primitive/primitive/object.h
    primitive/primitive/object_meta.cpp
    primitive/primitive/object_meta.h
-   primitive/string/_.h
    process/_.h
    process/department.cpp
    process/department.h
@@ -578,9 +566,6 @@ list(APPEND apex_source
    user/language.h
    user/language_map.cpp
    user/language_map.h
-   user/menu_shared.cpp
-   user/menu_shared.h
-   user/menu_shared_command.h
    user/menu_shared_commnand.cpp
    user/notify_icon_bridge.h
    user/text.cpp
@@ -655,7 +640,7 @@ if (WIN32)
       os/windows/library.cpp
       os/windows/main.cpp
       os/windows/menu.cpp
-      os/windows/simple_shell_launcher.cpp
+      os/windows/shell_launcher.cpp
       os/windows/thread.cpp
       os/windows/user.cpp
       os/windows/windowing.cpp
@@ -896,8 +881,8 @@ if (LINUX)
       os/linux/cross_win_gdi_internal.h
       os/linux/debug.cpp
       os/linux/debug.h
-      os/linux/exception_engine.cpp
-      os/linux/exception_engine.h
+      # os/linux/exception_engine.cpp
+      # os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
       os/linux/graphics.cpp
@@ -916,8 +901,10 @@ if (LINUX)
       #os/linux/process.h
       #os/linux/process_pid.cpp
       os/linux/simple_app.cpp
-      os/linux/simple_shell_launcher.cpp
-      os/linux/interprocess_communication.cpp
+      os/linux/shell_launcher.cpp
+      os/linux/shell_launcher.h
+      os/linux/standard_exception.cpp
+      node/linux/interprocess_communication.cpp
       os/linux/time.cpp
       os/linux/user.cpp
       os/linux/user.h
@@ -1335,7 +1322,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} )
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 

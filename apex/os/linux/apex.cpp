@@ -36,7 +36,7 @@ CLASS_DECL_APEX bool __node_apex_pos_init()
 //
 //   t_hthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 
@@ -88,7 +88,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 
 //    stra.add_lines(str);
 
-//    return stra.pred_get_count([](auto str) { return ::str::begins(str, "cpu"); });
+//    return stra.predicate_get_count([](auto str) { return ::str::begins(str, "cpu"); });
 
 // }
 

@@ -15,7 +15,7 @@ namespace uwp
       __pointer(::uwp::interaction_impl)                       m_pimpl;
 
       template < typename PRED >
-      void sync(PRED pred)
+      void synchronization_object(PRED pred)
       {
 
          Windows::UI::Core::CoreDispatcher ^ pdispatcher = nullptr;
@@ -85,7 +85,7 @@ namespace uwp
       // content of the custom text edit control.
       //String^ _text;
 
-      // If the _selection starts and ends at the same point_i32,
+      // If the _selection starts and ends at the same point,
       // then it represents the location of the caret (insertion point_i32).
       Windows::UI::Text::Core::CoreTextRange                   m_selection;
 

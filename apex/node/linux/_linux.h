@@ -10,23 +10,23 @@ __pointer(::apex::application)     linux_instantiate_application(__pointer(::ape
 
 
 
-#pragma once
-
-
-namespace linux
-{
-
-
-//   class thread;
-
-   class linux
-   {
-      i32 function();
-   };
-
-
-
-} // namespace linux
+//#pragma once
+//
+//
+//namespace linux
+//{
+//
+//
+////   class thread;
+//
+//   class linux
+//   {
+//      i32 function();
+//   };
+//
+//
+//
+//} // namespace linux
 
 
 
@@ -48,12 +48,6 @@ CLASS_DECL_APEX const char * __get_app_name();
 #define NULL_REF(class) (*((class *) nullptr))
 
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
-
-//#include "shell.h"
-//#include "shell_linux.h"
-
-
-//#include "interaction_impl.h"
 
 
 CLASS_DECL_APEX void AfxProcessWndProcException(::exception::exception*, ::message::message * pmessage);
@@ -85,7 +79,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 #include "dir_context.h"
 #include "file_system.h"
 #include "file_context.h"
-
+#include "interprocess_communication.h"
 
 #include "factory_exchange.h"
 

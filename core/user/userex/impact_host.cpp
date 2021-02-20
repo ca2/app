@@ -1,4 +1,4 @@
-﻿//
+//
 //  userex_view_container.cpp
 //  app_veriwell_musical_player
 //
@@ -6,9 +6,7 @@
 //  Copyright © 2018 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
@@ -70,7 +68,7 @@ namespace userex
    }
 
 
-   void impact_host::on_command(::user::command * pcommand)
+   void impact_host::on_command(::message::command * pcommand)
    {
 
       if (m_idaHandledViews.contains(pcommand->m_id))
@@ -683,7 +681,7 @@ namespace userex
       //if (pframewindow.is_set())
       //{
 
-      //   pframewindow->post_pred([pframewindow]()
+      //   pframewindow->post_predicate([pframewindow]()
       //   {
 
       //      pframewindow->InitialFramePosition();
@@ -822,7 +820,7 @@ namespace userex
    void impact_host::on_simple_command(::message::simple_command * psimplecommand)
    {
       
-      if (psimplecommand->m_esimplecommand == simple_command_defer_initialize_handled_views)
+      if (psimplecommand->command() == e_simple_command_defer_initialize_handled_views)
       {
          
          for (auto & id : m_idaHandledViews)

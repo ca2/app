@@ -317,7 +317,7 @@ namespace sockets
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       u8 * pbuf = (u8 *) pdata;
 
@@ -351,7 +351,7 @@ namespace sockets
 
    //      {
 
-   //         sync_lock sl(mutex());
+   //         synchronization_lock synchronizationlock(mutex());
 
    //         iRead = m_file.remove_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -424,7 +424,7 @@ namespace sockets
    void write_socket::OnWrite()
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       write(m_file.get_data(), (memsize)m_file.get_size());
 
@@ -547,7 +547,7 @@ namespace sockets
    //   }
    //   do
    //   { // now pass the rest of the data directly to the caller
-   //      nBytesToRead = std::min(static_cast<int>(nSizeRecv), nSize - nBytesRead);
+   //      nBytesToRead = std::minimum(static_cast<int>(nSizeRecv), nSize - nBytesRead);
    //      nBytesThisTime = receive(pch, nBytesToRead, nSecs);
    //      if (nBytesThisTime <= 0)
    //         break; // sender closed the socket

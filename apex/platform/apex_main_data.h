@@ -26,6 +26,7 @@ public:
 
    hinstance                        m_hinstance;
    hinstance                        m_hPrevInstance;
+   int                              m_nCmdShow;
 
 #endif
 
@@ -40,8 +41,6 @@ public:
    void system_construct(int argc, char** argv);
    void system_construct(int argc, wchar_t** argv);
 
-   void system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
-   void system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -50,6 +49,11 @@ public:
 #elif defined(_UWP)
 
    void system_construct(Array < String^ >^ refstra);
+
+#else
+
+   void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
+   void system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
 
 #endif
 

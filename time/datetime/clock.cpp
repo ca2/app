@@ -32,7 +32,7 @@ namespace datetime
       }
 
 
-      void clock::GetRect(LPRECT32 lprect, enum_element eelement)
+      void clock::GetRect(RECTANGLE_I32 * lprect, enum_element eelement)
       {
          UNREFERENCED_PARAMETER(lprect);
          UNREFERENCED_PARAMETER(eelement);
@@ -99,7 +99,7 @@ namespace datetime
 
          GetRect(rectangle, eelement);
 
-         return rectangle.contains(pt) != FALSE;
+         return rectangle.contains(pt) != false;
 
       }
 

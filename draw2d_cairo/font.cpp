@@ -28,7 +28,7 @@ namespace draw2d_cairo
 
       pc2->lf = *lpelf;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -70,7 +70,7 @@ namespace draw2d_cairo
    void font::destroy()
    {
 
-      sync_lock ml(cairo_mutex());
+      synchronization_lock ml(cairo_mutex());
 //      if(m_pdesc != nullptr)
 //      {
 // // the fonts are stored and managed by "font cache"
@@ -126,7 +126,7 @@ namespace draw2d_cairo
    void font::dump(dump_context & dumpcontext) const
    {
 
-      ::draw2d::font::dump(dumpcontext);
+      ::write_text::font::dump(dumpcontext);
 
    }
 
@@ -264,7 +264,7 @@ namespace draw2d_cairo
    ::e_char_set font::calc_char_set(::draw2d::graphics * pgraphics)
    {
 
-      return ::draw2d::font::calc_char_set(pgraphics);
+      return ::write_text::font::calc_char_set(pgraphics);
 
    }
 

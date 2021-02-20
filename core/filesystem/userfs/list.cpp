@@ -1,5 +1,5 @@
-﻿#include "framework.h"
-#include "core/user/user/shell.h"
+#include "framework.h"
+#include "aura/user/shell.h"
 #include "_userfs.h"
 
 
@@ -39,9 +39,9 @@ namespace userfs
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
+//#endif
 
    }
 
@@ -346,7 +346,7 @@ namespace userfs
 
       auto itema = get_selected_items();
 
-      if (itema.isEmpty())
+      if (itema.is_empty())
       {
 
          return nullptr;
@@ -400,7 +400,7 @@ namespace userfs
 
       auto itema = get_selected_items();
 
-      if (itema.isEmpty())
+      if (itema.is_empty())
       {
 
          return false;
@@ -522,7 +522,7 @@ namespace userfs
 
       UNREFERENCED_PARAMETER(item);
       UNREFERENCED_PARAMETER(context);
-      ASSERT(FALSE);
+      ASSERT(false);
 
    }
 
@@ -532,7 +532,7 @@ namespace userfs
 
    //   UNREFERENCED_PARAMETER(item);
    //   UNREFERENCED_PARAMETER(context);
-   //   ASSERT(FALSE);
+   //   ASSERT(false);
 
    //}
 
@@ -540,7 +540,7 @@ namespace userfs
    {
       UNREFERENCED_PARAMETER(itema);
       UNREFERENCED_PARAMETER(context);
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    void list::_001OnInitializeForm(::user::interaction * pinteraction)
@@ -597,7 +597,7 @@ namespace userfs
    //         iItemRange++)
    //   {
    //      auto & itemrange = range.ItemAt(iItemRange);
-   //      for (iItem = max(0, itemrange.get_lower_bound());
+   //      for (iItem = maximum(0, itemrange.get_lower_bound());
    //            iItem <= itemrange.get_upper_bound();
    //            iItem++)
    //      {
@@ -711,7 +711,7 @@ namespace userfs
 
    void list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -841,7 +841,7 @@ namespace userfs
    //color32_t list::get_background_color()
    //{
 
-   //   return RGB(255, 255, 255);
+   //   return rgb(255, 255, 255);
 
    //}
 

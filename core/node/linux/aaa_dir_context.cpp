@@ -1,9 +1,7 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "acme/const/id.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "_linux.h"
 #undef USE_MISC
 
@@ -181,7 +179,7 @@ namespace linux
 
          strsize iFind2 = pathInstall.reverse_find("/", iFind);
 
-         strsize iStart = max(iFind1 + 1, iFind2 + 1);
+         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
          pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall.Mid(iFind + 1);
 
@@ -634,7 +632,7 @@ namespace linux
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(psz) != false;
 
    }
 

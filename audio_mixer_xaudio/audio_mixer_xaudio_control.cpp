@@ -100,7 +100,7 @@ namespace multimedia
             free(m_mixercontroldetails.paDetails);
          m_mixercontroldetails.paDetails = malloc(cb);
 
-         nRange = (i32) min(32767, m_mixercontrol.Metrics.cSteps - 1);
+         nRange = (i32) minimum(32767, m_mixercontrol.Metrics.cSteps - 1);
          bool bOk = false;
          for(i32 i = 5; i <= 10; i++)
          {
@@ -149,7 +149,7 @@ namespace multimedia
          mcdvVolume.m_uiControlID = m_mixercontrol.dwControlID;
          mcdvVolume.nRange  = nRange;
          mcdvVolume.nPageInc = nPageInc;
-         plevelcontrol->SetOrientation(::multimedia::audio_mixer::user::level_control::orientation_vertical);
+         plevelcontrol->SetOrientation(::multimedia::audio_mixer::user::level_control::e_orientation_vertical);
          plevelcontrol->SetRange(0, mcdvVolume.nRange);
          plevelcontrol->SetLineSize(1);
          plevelcontrol->SetPageSize(mcdvVolume.nPageInc);
@@ -187,7 +187,7 @@ namespace multimedia
             mcdvBalance.nRange  = nRange;
             mcdvBalance.nPageInc = nPageInc;
 
-            pinteraction->SetOrientation(::multimedia::audio_mixer::user::level_control::orientation_horizontal);
+            pinteraction->SetOrientation(::multimedia::audio_mixer::user::level_control::e_orientation_horizontal);
             pinteraction->SetRange(0, mcdvBalance.nRange);
             pinteraction->SetLineSize(1);
             pinteraction->SetPageSize(mcdvBalance.nPageInc);
@@ -415,7 +415,7 @@ namespace multimedia
                i32 nRightValue = (i32)MulDivRN(pmxcd_u[1].dwValue - m_mixercontrol.Bounds.dwMinimum, nRange, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum);
 
 
-               i32 nMaxValue = max(nLeftValue, nRightValue);
+               i32 nMaxValue = maximum(nLeftValue, nRightValue);
                i32 nBalance = nMaxValue == 0 ?
                                   nRange / 2 :
                                   (nRange +
@@ -456,7 +456,7 @@ namespace multimedia
 
 
                PMIXERCONTROLDETAILS_BOOLEAN pmxcd_f = (PMIXERCONTROLDETAILS_BOOLEAN) m_mixercontroldetails.paDetails;
-               bool fValue = pmxcd_f[cMultipleItems - i - 1].fValue != FALSE;
+               bool fValue = pmxcd_f[cMultipleItems - i - 1].fValue != false;
 
                pmutecontrol->_001SetCheck(fValue ? check_checked : check_unchecked);
             }
@@ -847,12 +847,12 @@ namespace multimedia
                                                   "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
                                                   m_mixercontrol.dwControlID, device->m_hMixer, mmrc);
                      }
-                     return TRUE;
+                     return true;
                   }
                }
             }
          }
-         return FALSE;
+         return false;
       }
 
       control & control::operator =(const control & control)

@@ -59,7 +59,7 @@ namespace filehandler
       __pointer(list)                m_plistWorking;
       __pointer(list)                m_plist;
 
-      ::draw2d::font_pointer       m_pfont;
+      ::write_text::font_pointer       m_pfont;
 
 
       view(::layered * pobjectContext);
@@ -84,7 +84,7 @@ namespace filehandler
 
       void layout_list(list * plist);
 
-      virtual bool get_font(::draw2d::font_pointer & font);
+      virtual bool get_font(::write_text::font_pointer & font);
 
    };
 

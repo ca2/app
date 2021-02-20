@@ -29,7 +29,7 @@ public:
 #endif
    {
       m_pbStart = (u8 *)point_i32;
-      m_pbEnd = ((u8 *)point_i32) + max(iSize - 1,0);
+      m_pbEnd = ((u8 *)point_i32) + maximum(iSize - 1,0);
       m_dwTickCount = millis;
    }
 

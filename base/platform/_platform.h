@@ -6,11 +6,11 @@
 class image_list;
 
 
-#ifdef WINDOWS
-
-interface ID2D1DeviceContext;
-
-#endif
+//#ifdef WINDOWS
+//
+//interface ID2D1DeviceContext;
+//
+//#endif
 
 namespace user
 {

@@ -22,19 +22,19 @@ typedef unsigned char         byte;
 #ifdef __cplusplus
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >
-inline TYPE __minmax(const TYPE & value, const MINIMUM & min, const MAXIMUM & max)
+inline TYPE minimummax(const TYPE & value, const MINIMUM & minimum, const MAXIMUM & maximum)
 {
 
-   if (value < (TYPE)min)
+   if (value < (TYPE)minimum)
    {
 
-      return (TYPE)min;
+      return (TYPE)minimum;
 
    }
-   else if ((TYPE)max < value)
+   else if ((TYPE)maximum < value)
    {
 
-      return (TYPE)max;
+      return (TYPE)maximum;
 
    }
 
@@ -45,20 +45,20 @@ inline TYPE __minmax(const TYPE & value, const MINIMUM & min, const MAXIMUM & ma
 inline double __rate(double d)
 {
 
-   return __minmax(d, 0., 1.);
+   return minimummax(d, 0., 1.);
 
 }
 
 inline float __rate(float f)
 {
 
-   return __minmax(f, 0.f, 1.f);
+   return minimummax(f, 0.f, 1.f);
 
 }
 
 
-inline byte __byte(double d) { return (byte) __minmax(d, 0, 255); }
-inline byte __byte(::i64 i) { return (byte)__minmax(i, 0, 255); }
+inline byte __byte(double d) { return (byte) minimummax(d, 0, 255); }
+inline byte __byte(::i64 i) { return (byte)minimummax(i, 0, 255); }
 
 #endif
 

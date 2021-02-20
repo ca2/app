@@ -13,7 +13,7 @@
 //
 //   const char * psz;
 //
-//   sync_lock sl(::exception::engine().mutex());
+//   synchronization_lock synchronizationlock(::exception::engine().mutex());
 //
 //#if defined(LINUX)
 //

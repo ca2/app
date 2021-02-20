@@ -22,7 +22,7 @@ ApexApplication * apex_application_new (const char * pszAppName, const char * ps
                                           "application-id", pszProgName,
                                           "flags", G_APPLICATION_FLAGS_NONE,
                                           "inactivity-timeout", 30000,
-                                          "register-session", TRUE,
+                                          "register-session", true,
                                           nullptr);
 
    return apex_application;
@@ -43,7 +43,7 @@ gboolean linux_start_system(gpointer data)
 
    //psystem->request(psystem->m_pcommand);
 
-   return FALSE;
+   return false;
 
 }
 

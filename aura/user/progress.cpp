@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "progress.h"
 
 
@@ -55,15 +53,15 @@ namespace user
 
       get_client_rect(rectangle);
 
-      pgraphics->fill_rect(rectangle, ARGB(255, 235, 235, 235));
+      pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 
-      pgraphics->draw_rect(rectangle, ARGB(255, 128, 128, 128));
+      pgraphics->draw_rectangle(rectangle, argb(255, 128, 128, 128));
 
       rectangle.deflate(1, 1);
 
       rectangle.right = (::i32) (rectangle.width() * m_dRate + rectangle.left);
 
-      pgraphics->fill_rect(rectangle, ARGB(255, 100, 220,180));
+      pgraphics->fill_rectangle(rectangle, argb(255, 100, 220,180));
 
    }
 

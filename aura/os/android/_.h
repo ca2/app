@@ -36,7 +36,7 @@ END_EXTERN_C
 //oswindow get_desktop_window();
 //
 //
-//int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 
 

@@ -150,7 +150,7 @@ namespace draw2d_quartz2d
       
    }
 
-   bool path::internal_add_text_out(int x, int y, const string & strText, ::draw2d::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
+   bool path::internal_add_text_out(int x, int y, const string & strText, ::write_text::font_pointer spfont, ::draw2d_quartz2d::graphics * p)
    {
       
       x+= m_pointOffset.x;
@@ -284,7 +284,7 @@ namespace draw2d_quartz2d
    bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::arc * parc)
    {
    
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
       
       rectangle.left = parc->m_pointCenter.x - parc->m_sizeRadius.cx;
       rectangle.right = parc->m_pointCenter.x + parc->m_sizeRadius.cx;

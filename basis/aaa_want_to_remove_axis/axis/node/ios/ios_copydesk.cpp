@@ -77,8 +77,8 @@ namespace ios
             LPDROPFILES pDropFiles = (LPDROPFILES) ::GlobalLock(hglbCopy);
             pDropFiles->pFiles = sizeof(DROPFILES);
             pDropFiles->point.x = pDropFiles->point.y = 0;
-            pDropFiles->fNC = TRUE;
-            pDropFiles->fWide = TRUE; // ANSI charset
+            pDropFiles->fNC = true;
+            pDropFiles->fWide = true; // ANSI charset
 
             ASSERT(m_p->is_window());
             char * lptstrCopy = (char *) pDropFiles;
@@ -137,7 +137,7 @@ namespace ios
 
 //      if(window_pointer::is_set() && window_pointer::m_p->is_window())
 //      {
-//         bOk = window_pointer::m_p->DestroyWindow() != FALSE;
+//         bOk = window_pointer::m_p->DestroyWindow() != false;
 //      }
 //      else
 //      {
@@ -250,7 +250,7 @@ namespace ios
                size sz = bitmap->GetBitmapDimension();
 /*               if(pimage = create_image(sz))
                {
-/*                  bOk = pimage->g()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0) != FALSE;
+/*                  bOk = pimage->g()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0) != false;
                }
             }
             catch(...)

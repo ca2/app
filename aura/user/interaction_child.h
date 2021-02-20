@@ -30,23 +30,19 @@ namespace user
 
       ::user::interaction_child * get_user_interaction_child() override;
 
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pusermessage) override;
 
-      //using ::user::primitive::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //using ::user::primitive::set_window_position;
+      //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect
-      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
+      //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual bool start_window_visual() override;
 
-      virtual bool SetFocus() override;
-
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
-
+      //virtual bool is_active() const override;
 
       virtual bool DestroyWindow() override;
 
@@ -57,11 +53,11 @@ namespace user
       //virtual lresult default_window_procedure() override;
 
 
-#ifdef LINUX
-
-      virtual lresult send_x11_event(void * pevent) override; // XEvent *
-
-#endif
+//#ifdef LINUX
+//
+//      virtual lresult send_x11_event(void * pevent) override; // XEvent *
+//
+//#endif
 
 
       virtual void rects_from_system();

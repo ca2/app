@@ -44,25 +44,25 @@
 // {
 
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    if(hdc == nullptr)
-//       return FALSE;
+//       return false;
 
 //    XFreeGC(hdc->m_display, hdc->m_gc);
 //    XCloseDisplay(hdc->m_display);
 
 //    delete hdc;
-//    return TRUE;
+//    return true;
 
 // }
 
 
-// int_bool get_client_rect(oswindow hwnd, LPRECT32 lprect)
+// int_bool get_client_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 //    XWindowAttributes attrs;
 
@@ -71,7 +71,7 @@
 //    if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
 //    {
 
-//       return FALSE;
+//       return false;
 
 //    }
 
@@ -80,20 +80,20 @@
 //    lprect->right     = lprect->left    + attrs.width;
 //    lprect->bottom    = lprect->top     + attrs.height;
 
-//    return TRUE;
+//    return true;
 
 // }
 
 
-// int_bool get_window_rect(oswindow hwnd, LPRECT32 lprect)
+// int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
 // {
 
 
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 //    if(!IsWindow(hwnd))
-//       return FALSE;
+//       return false;
 
 
 //    bool bDestroying = hwnd->m_bDestroying;
@@ -102,7 +102,7 @@
 
 
 //    if(pdisplay == nullptr)
-//     return FALSE;
+//     return false;
 
 //    XWindowAttributes attrs;
 
@@ -113,7 +113,7 @@
 
 //    if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
 //    {
-//       return FALSE;
+//       return false;
 //    }
 
 //    int x;
@@ -122,7 +122,7 @@
 
 //    if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
 //    {
-//       return FALSE;
+//       return false;
 //    }
 
 //    lprect->left      = x;
@@ -130,7 +130,7 @@
 //    lprect->right     = x    + attrs.width;
 //    lprect->bottom    = y    + attrs.height;
 
-//    return TRUE;
+//    return true;
 
 // }
 
@@ -139,7 +139,7 @@
 // i32 FillRect(HDC hdc, const RECTANGLE_I32 * lprc, HBRUSH hbr)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
@@ -170,7 +170,7 @@
 // int_bool GetCursorPos(POINT_I32 * lppointCursor)
 // {
 
-//    //mutex_lock sl(user_mutex(), true);
+//    //mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    Window root_return;
@@ -184,20 +184,20 @@
 //    display.open(nullptr);
 
 //    if(display == nullptr)
-//         return FALSE;
+//         return false;
 
 //    XQueryPointer(display, display.default_root_window(), &root_return, &child_return, &lppointCursor->x, &lppointCursor->y, &win_x_return, &win_y_return, & mask_return);
 
-//    return TRUE;
+//    return true;
 
 // }
 
 
 
-// int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
+// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
 // {
 
-//    mutex_lock sl(user_mutex(), true);
+//    mutex_lock synchronizationlock(user_mutex(), true);
 
 
 //    xdisplay display(hwnd->display());
@@ -237,7 +237,7 @@
 
 //    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
 //    {
-//       if(hwndInsertAfter->window() == zorder_top || hwndInsertAfter->window() == ZORDER_TOPMOST)
+//       if(hwndInsertAfter->window() == e_zorder_top || hwndInsertAfter->window() == ZORDER_TOPMOST)
 //       {
 //          XRaiseWindow(hwnd->display(), hwnd->window());
 //       }

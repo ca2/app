@@ -49,7 +49,7 @@ _AFXMT_INLINE int_bool critical_section::Init()
    return true;
 }
 
-_AFXMT_INLINE critical_sectioncritical_section() : sync < HANDLE > (nullptr)
+_AFXMT_INLINE critical_sectioncritical_section() : synchronization_object < HANDLE > (nullptr)
 {
    int_bool bSuccess;
 
@@ -87,34 +87,34 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 //
-//inline bool sync_result::abandoned() const
+//inline bool synchronization_result::abandoned() const
 //{ return m_iEvent <= (::index)result_abandon0; }
 //
-//inline ::index sync_result::abandoned_index() const
+//inline ::index synchronization_result::abandoned_index() const
 //{
 //   if ( !abandoned() )
 //      __throw(range_error("abandoned index out of range"));
 //   return -(m_iEvent + (::index)result_abandon0);
 //}
 //
-//inline bool sync_result::error() const
+//inline bool synchronization_result::error() const
 //{ return m_eresult == result_error; }
 //
-//inline bool sync_result::bad_thread() const
+//inline bool synchronization_result::bad_thread() const
 //{ return m_eresult == result_bad_thread; }
 //
-//inline bool sync_result::timeout() const
+//inline bool synchronization_result::timeout() const
 //{ return m_eresult == result_timeout; }
 //
-//inline bool sync_result::signaled() const
+//inline bool synchronization_result::signaled() const
 //{ return m_iEvent >= (::index)result_event0; }
 //
-//inline bool sync_result::succeeded() const
+//inline bool synchronization_result::succeeded() const
 //{
 //   return signaled();
 //}
 //
-//inline ::index sync_result::signaled_index() const
+//inline ::index synchronization_result::signaled_index() const
 //{
 //   if ( !signaled() )
 //      __throw(range_error("signaled index out of range"));
@@ -304,7 +304,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //template < typename PRED >
-//inline bool pred_Sleep(int iTime, PRED pred)
+//inline bool predicate_Sleep(int iTime, PRED pred)
 //{
 //
 //   if(iTime < 100)
@@ -360,7 +360,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 template < typename PRED >
-auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
 {
 
    auto proutine = __sync_routine(pred);
@@ -388,7 +388,7 @@ auto sync_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pre
 //
 //
 //template < typename PRED >
-//void async_pred(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
+//void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
 //{
 //
 //   auto pobjectTask = __task_procedure(pred);

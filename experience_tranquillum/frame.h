@@ -14,32 +14,31 @@ namespace experience
             public:
 
 
+               ::rectangle_i32                        m_rectCaptionTextBk;
+               ::point_i32                            m_pointMoveGripMinimal;
+               //::write_text::font_pointer           m_fontButton;
+               //::write_text::font_pointer           m_fontCaption;
+               //e_style                              m_estyle;
+               //::user::front_end_schema             m_schema;
+               __status < ::color::color >            m_colorFrameBorder;
+               __status < ::color::color >            m_colorMoveableBorderHilight;
+               __status < ::color::color >            m_colorMoveableBorderDkShadow;
+               __status < ::color::color >            m_colorCaptionTextBk;
+               __status < ::color::color >            m_colorActiveCaptionTextBk;
+               __status < ::color::color >            m_colorCaptionText;
+               ::draw2d::pen_pointer                  m_penText1;
+               ::draw2d::pen_pointer                  m_penFace1;
+               ::draw2d::pen_pointer                  m_penHilight1;
+               ::draw2d::pen_pointer                  m_penShadow1;
+               ::draw2d::pen_pointer                  m_penDkShadow1;
+               __status < ::color::color >            m_colorDkShadow;
+               size_i32                               m_minSize;
 
-               ::rectangle_i32 m_rectCaptionTextBk;
-               ::point_i32 m_pointMoveGripMinimal;
-               //::draw2d::font_pointer                m_fontButton;
-               //::draw2d::font_pointer                m_fontCaption;
-               //e_style                          m_estyle;
-               //::user::front_end_schema         m_schema;
-               color32_t                         m_colorFrameBorder;
-               color32_t                         m_colorMoveableBorderHilight;
-               color32_t                         m_colorMoveableBorderDkShadow;
-               color32_t                         m_colorCaptionTextBk;
-               color32_t                         m_colorActiveCaptionTextBk;
-               color32_t                         m_colorCaptionText;
-               ::draw2d::pen_pointer                 m_penText1;
-               ::draw2d::pen_pointer                 m_penFace1;
-               ::draw2d::pen_pointer                 m_penHilight1;
-               ::draw2d::pen_pointer                 m_penShadow1;
-               ::draw2d::pen_pointer                 m_penDkShadow1;
-               color32_t                         m_colorDkShadow;
-               size_i32                             m_minSize;
-
-               ::draw2d::pen_pointer                 m_penHollow1;
-               ::draw2d::pen_pointer                 m_penHollow2;
-               ::draw2d::pen_pointer                 m_penHollow3;
-               ::draw2d::pen_pointer                 m_penHollow4;
-               ::draw2d::pen_pointer                 m_penHollow5;
+               ::draw2d::pen_pointer                  m_penHollow1;
+               ::draw2d::pen_pointer                  m_penHollow2;
+               ::draw2d::pen_pointer                  m_penHollow3;
+               ::draw2d::pen_pointer                  m_penHollow4;
+               ::draw2d::pen_pointer                  m_penHollow5;
 
 
 

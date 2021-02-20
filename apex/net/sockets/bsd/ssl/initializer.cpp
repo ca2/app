@@ -33,6 +33,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //#endif
 
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+#include "acme/os/ansios/_pthread.h"
+
+
+#endif
+
+
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
@@ -47,7 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #endif
 
@@ -273,7 +283,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    UNREFERENCED_PARAMETER(line);
 
-   sync_lock sl(::sockets::g_pmutexMap);
+   synchronization_lock synchronizationlock(::sockets::g_pmutexMap);
 
    ::mutex * pmutex = nullptr;
 
@@ -298,7 +308,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    }
 
-   sl.unlock();
+   synchronizationlock.unlock();
 
    if (mode & CRYPTO_LOCK)
    {

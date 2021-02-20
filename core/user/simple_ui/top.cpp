@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -35,11 +32,11 @@ namespace simple_ui
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &top::_001OnNcActivate);
 
-#ifdef WINDOWS_DESKTOP
-
-      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
+//
+//#endif
 
 
    }
@@ -73,7 +70,7 @@ namespace simple_ui
 //      else
 //      {
 //
-//         pncactivate->m_lresult = FALSE;
+//         pncactivate->m_lresult = false;
 //
 //         pncactivate->m_bRet = true;
 //
@@ -82,7 +79,7 @@ namespace simple_ui
 //
 //#else
 //
-//      pncactivate->m_lresult = TRUE;
+//      pncactivate->m_lresult = true;
 //
 //      pncactivate->m_bRet = true;
 //
@@ -125,7 +122,7 @@ namespace simple_ui
       
       m_sizeLButtonDownOffset = m_pointLButtonDown - layout().origin();
 
-      SetCapture();
+      set_mouse_capture();
 
       pmouse->m_bRet = true;
 
@@ -139,10 +136,20 @@ namespace simple_ui
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      if(pmouse->previous())
+      if (pmouse->previous())
+      {
+
          return;
 
-      ReleaseCapture();
+      }
+
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_mouse_capture();
 
       m_bDrag = false;
 

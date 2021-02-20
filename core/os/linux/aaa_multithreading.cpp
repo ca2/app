@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "gnome_gnome.h"
+#include "gtk_things/gnome_gnome.h"
 
 
 namespace process

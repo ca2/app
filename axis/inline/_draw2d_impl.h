@@ -12,9 +12,9 @@ public:
    draw2d_impl()
    {
 
-      initialize_draw2d_factory_exchange();
+      initialize_draw2d_factory_exchange(::factory_map * pfactorymap);
 
-      initialize_imaging_factory_exchange();
+      initialize_imaging_factory_exchange(::factory_map * pfactorymap);
 
    }
 

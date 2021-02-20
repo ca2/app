@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+#include "framework.h"
+#include "aura/operating_system.h"
 #include "aura/node/_node.h"
 #include <VersionHelpers.h>
 
@@ -149,7 +150,7 @@ bool __node_aura_pre_init()
 //    try
 //    {
 
-//       FreeImage_Initialise(FALSE);
+//       FreeImage_Initialise(false);
 
 //    }
 //    catch (...)
@@ -172,7 +173,7 @@ bool __node_aura_pre_init()
 bool __node_aura_pos_init()
 {
 
-   _set_purecall_handler(_ca2_purecall);
+   //_set_purecall_handler(_ca2_purecall);
 
    // HMODULE hmoduleUser32 = ::LoadLibraryW(L"User32");
    // g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
@@ -433,7 +434,7 @@ int GetVersion_ex1()
 ////#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN) // Windows 7 or greater
 //
-//   return FALSE;
+//   return false;
 //
 //#else
 //
@@ -575,7 +576,7 @@ int GetVersion_ex1()
 //
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 //
-//   return FALSE;
+//   return false;
 //
 //#else
 //
@@ -627,9 +628,9 @@ int GetVersion_ex1()
 //      if (dwVersion < 0x80000000)              // Windows NT
 //         s_bNativeUnicode = true;
 //      else if (dwWindowsMajorVersion < 4)      // Win32s
-//         s_bNativeUnicode = FALSE;
+//         s_bNativeUnicode = false;
 //      else                                     // Windows Me/98/95
-//         s_bNativeUnicode = FALSE;
+//         s_bNativeUnicode = false;
 //
 //   }
 //
@@ -667,7 +668,7 @@ int GetVersion_ex1()
 //   {
 //      return true;
 //   }
-//   return FALSE;
+//   return false;
 //}
 //
 // __is_valid_address() returns true if the passed parameter is

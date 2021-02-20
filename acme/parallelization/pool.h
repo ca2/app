@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME task_pool :
-   virtual public ::context_object
+   virtual public ::layered
 {
 protected:
 
@@ -20,7 +20,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual ::task_pointer & defer_start(const ::id& id, const ::promise::routine & routine);
+   virtual ::task * defer_fork(const ::id& id, const ::promise::routine & routine) override;
 
 
    virtual void start_clock(enum_clock eclock, const duration & duration);

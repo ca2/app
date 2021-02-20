@@ -122,7 +122,7 @@ bool os_initialize()
    //sleep(15 * 1000);
 
    if(!initialize_primitive_trace())
-      return FALSE;
+      return false;
 
 
 
@@ -138,7 +138,7 @@ bool os_initialize()
 
 #endif
 
-   return TRUE;
+   return true;
 
 }
 
@@ -148,7 +148,7 @@ bool os_finalize()
 
    finalize_primitive_trace();
 
-   return TRUE;
+   return true;
 
 }
 */
@@ -207,7 +207,7 @@ int_bool main_initialize()
 
       //MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 
-      g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+      g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
       // Initialize GDI+.
       Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
@@ -217,7 +217,7 @@ int_bool main_initialize()
 
          MessageBox(nullptr, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 
-         return FALSE;
+         return false;
 
       }
 
@@ -229,7 +229,7 @@ int_bool main_initialize()
 
          MessageBox(nullptr, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 
-         return FALSE;
+         return false;
 
       }
       */
@@ -241,7 +241,7 @@ int_bool main_initialize()
    //currentThread = new hthread();
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -250,7 +250,7 @@ int_bool main_finalize()
 {
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -371,7 +371,7 @@ string get_system_error_message(u32 dwError)
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
 //{
 //
-//   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
+//   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, false);
 //
 //}
 
@@ -425,7 +425,7 @@ string get_system_error_message(u32 dwError)
 //
 ////   return IsWindowsXPOrGreater();
 //
-//   return TRUE;
+//   return true;
 //
 //#else
 //
@@ -546,7 +546,7 @@ bool __node_aura_pos_init()
    //g_gdiplusToken             = nullptr;
    //g_gdiplusHookToken         = nullptr;
 
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
    //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 

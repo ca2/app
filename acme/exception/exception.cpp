@@ -68,7 +68,14 @@ namespace exception
 {
 
 
-   exception::exception(const char * pszMessage, const ::enum_status & estatus, i32 iSkip, void * caller_address)
+//   exception::exception(const ::e_status & estatus, i32 iSkip, void * caller_address) :
+//      exception(nullptr, estatus, iSkip, caller_address)
+//   {
+//
+//   }
+//
+//
+   exception::exception(const char * pszMessage, const ::e_status & estatus, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -76,7 +83,7 @@ namespace exception
       if (s_bDoStackTrace && iSkip != SKIP_callstack)
       {
 
-         if (iSkip == callstack_DEFAULT_SKIP_TRIGGER)
+         if (iSkip == CALLSTACK_DEFAULT_SKIP_TRIGGER)
          {
 
             iSkip = callstack_DEFAULT_SKIP;
@@ -361,7 +368,7 @@ namespace exception
 
          index i = 0;
 
-         a.pred_each(
+         a.predicate_each(
 
          [&](auto & pe)
          {

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace userex
@@ -107,8 +105,8 @@ namespace userex
 
       m_buttonMenu.set_button_style(::user::button::style_image_and_text);
 
-      //m_buttonMenu.create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
-      //m_buttonMenu.create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
+      //m_buttonMenu.create_color(::user::color_button_text, argb(255, 80, 80, 80));
+      //m_buttonMenu.create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
       m_buttonMenu.m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
@@ -119,7 +117,7 @@ namespace userex
    group_image_list_view::group * group_image_list_view::get_group(::id idGroup)
    {
 
-      index iFind = m_groupa.pred_find_first([=](auto & item)
+      index iFind = m_groupa.predicate_find_first([=](auto & item)
       {
 
          return item->m_idGroup == idGroup;
@@ -375,8 +373,8 @@ namespace userex
       auto puser = User;
 
       m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
-      //m_pmenu->create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
-      //m_pmenu->create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
+      //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
+      //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
       index i = 0;
 
@@ -416,7 +414,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_command(::user::command * pcommand)
+   void group_image_list_view::on_command(::message::command * pcommand)
    {
 
       string str = pcommand->m_id;

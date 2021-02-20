@@ -35,7 +35,7 @@ void apex_timer(void * p);
 ////
 ////   }
 ////
-////   m_timer = CreateDispatchTimer(m_dwMillis, max(1, m_dwMillis / 20), m_queue, apex_timer, this);
+////   m_timer = CreateDispatchTimer(m_dwMillis, maximum(1, m_dwMillis / 20), m_queue, apex_timer, this);
 ////
 ////   if (m_timer == nullptr)
 ////   {
@@ -87,7 +87,7 @@ void apex_timer(void * p);
 //{
 //
 //
-////   m_timer = ResetDispatchTimer(m_timer, m_dwMillis, max(1, m_dwMillis / 20));
+////   m_timer = ResetDispatchTimer(m_timer, m_dwMillis, maximum(1, m_dwMillis / 20));
 ////
 ////   if (m_timer == nullptr)
 ////   {

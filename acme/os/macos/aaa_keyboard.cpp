@@ -11,7 +11,7 @@
 namespace user
 {
 
-   CLASS_DECL_ACME ::user::e_key vkcode_to_userkey(WPARAM wparam)
+   CLASS_DECL_ACME ::user::enum_key vkcode_to_userkey(WPARAM wparam)
    {
 
       iptr vkcode = (iptr)wparam;

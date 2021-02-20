@@ -830,7 +830,7 @@ namespace android
    ::file::path dir_context::install()
    {
 
-      single_lock sl(mutex(), true);
+      single_lock synchronizationlock(mutex(), true);
 
       return m_pdirsystem->m_pathInstall;
 
@@ -979,7 +979,7 @@ namespace android
 
       }
 
-      return ::rmdir(path) != FALSE;
+      return ::rmdir(path) != false;
 
    }
 
@@ -1186,7 +1186,7 @@ namespace android
 //         nullptr,
 //         str,
 //         CSIDL_PROFILE,
-//         FALSE);*/
+//         false);*/
 //
 //      str = getenv("HOME");
 //
@@ -1197,7 +1197,7 @@ namespace android
 //      {
 //         strsize iFind1 = strRelative.reverse_find("\\", iFind);
 //         strsize iFind2 = strRelative.reverse_find("/", iFind);
-//         strsize iStart = max(iFind1 + 1, iFind2 + 1);
+//         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 //         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
 //      }
 //
@@ -1222,7 +1222,7 @@ namespace android
 //            nullptr,
 //            str,
 //            CSIDL_PROFILE,
-//            FALSE);
+//            false);
 //         return path(path(str, "ca2\\_____default"), lpcsz);
 //      }
 //      else

@@ -10,7 +10,7 @@ namespace windows
    {
    public:
 
-
+      HWND           m_hwnd;
       HINSTANCE   m_h;
       HINSTANCE   m_hinstApp;       // out when SEE_MASK_NOCLOSEPROCESS is specified
       ULONG       m_fMask;          // in, SEE_MASK_XXX values

@@ -63,7 +63,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 
    defer_create_mutex();
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    m_iSize = 0;
    m_iGrow = nGrow;
@@ -83,7 +83,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 bool image_list::realize(::draw2d::graphics * pgraphics) const
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    return m_pimage->realize(pgraphics);
 
@@ -93,7 +93,7 @@ bool image_list::realize(::draw2d::graphics * pgraphics) const
 image_list & image_list::operator=(const image_list & imagelist)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(this != &imagelist)
    {
@@ -118,7 +118,7 @@ i32 image_list::get_image_count() const
 bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    try
    {
@@ -126,7 +126,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
       UNREFERENCED_PARAMETER(iFlag);
 
       return pgraphics->draw(
-         rectangle_f64( point_i32, m_size ),
+         rectangle_f64(point, m_size ),
          m_pimage, 
          point_f64((double) (iImage * m_size.cx), 0.));
 
@@ -145,14 +145,18 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, byte alpha)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   if(alpha == 255)
-      return draw(pgraphics, iImage, point_i32, iFlag);
+   if (alpha == 255)
+   {
 
-   return System.imaging().color_blend(pgraphics, point_i32, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
+      return draw(pgraphics, iImage, point, iFlag);
+
+   }
+
+   return System.imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
 
 }
 
@@ -169,7 +173,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if(iImage >= get_image_count())
    {
@@ -180,10 +184,10 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = min(m_size.cx, sz.cx);
-   sz.cy = min(m_size.cy, sz.cy);
-   pointOffset.x = min(m_size.cx, pointOffset.x);
-   pointOffset.y = min(m_size.cy, pointOffset.y);
+   sz.cx = minimum(m_size.cx, sz.cx);
+   sz.cy = minimum(m_size.cy, sz.cy);
+   pointOffset.x = minimum(m_size.cx, pointOffset.x);
+   pointOffset.y = minimum(m_size.cy, pointOffset.y);
 
    return pgraphics->draw(
       rectangle_f64(point, sz ), 
@@ -193,24 +197,24 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 }
 
 
-i32 image_list::add_icon_os_data(void * p, int iItem)
-{
-
-   ::draw2d::icon icon;
-
-   icon.initialize(this);
-
-   icon.attach_os_data(p, false);
-
-   return add(&icon, iItem);
-
-}
+//i32 image_list::add_icon_os_data(void * p, int iItem)
+//{
+//
+//   ::draw2d::icon icon;
+//
+//   icon.initialize(this);
+//
+//   icon.attach_os_data(p, false);
+//
+//   return add(&icon, iItem);
+//
+//}
 
 
 i32 image_list::reserve_image(int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    if (iItem < 0)
    {
@@ -226,7 +230,7 @@ i32 image_list::reserve_image(int iItem)
 
    }
 
-   m_iSize = max(iItem + 1, m_iSize);
+   m_iSize = maximum(iItem + 1, m_iSize);
 
    return iItem;
 
@@ -244,15 +248,15 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    }
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
-   auto rectangle_i32 = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   m_pimage->g()->fill_rect(rectangle, 0);
+   m_pimage->g()->fill_rectangle(rectangle, 0);
 
 
 //#ifdef _UWP
@@ -276,27 +280,84 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 }
 
 
+i32 image_list::add(::windowing::icon * picon, int iItem)
+{
+
+   if (is_null(picon))
+   {
+
+      return -1;
+
+   }
+
+   synchronization_lock synchronizationlock(mutex());
+
+   iItem = reserve_image(iItem);
+
+   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+
+   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   m_pimage->g()->fill_rectangle(rectangle, 0);
+
+   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+
+   auto sizeDst = m_size;
+
+   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+
+   auto pdraw2dicon = __create < ::draw2d::icon >();
+
+   m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
+
+   return iItem;
+
+}
+
+
 i32 image_list::add_icon(::payload varFile, int iItem)
 {
 
-   ::draw2d::icon icon;
+   auto picon = __create < ::windowing::icon >();
 
-   icon.initialize(this);
+   if (!picon)
+   {
 
-#ifdef WINDOWS_DESKTOP
+      return -1;
 
-   i32 iSize = min(m_size.cx, m_size.cy);
+   }
 
-   ::file::path path = varFile.get_file_path();
+   if (!picon->load_file(varFile))
+   {
 
-   path = Context.defer_process_matter_path(path);
+      return -1;
 
-   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
-      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+   }
 
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   i32 iSize = minimum(m_size.cx, m_size.cy);
+//
+//   ::file::path path = varFile.get_file_path();
+//
+//   path = Context.defer_process_matter_path(path);
+//
+//   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
+//      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+//
+//#endif
+//
+   
+   auto iIcon = add(picon);
+   
+   if(iIcon < -1)
+   {
 
-   return add(&icon);
+      return -1;
+
+   }
+
+   return iIcon;
 
 }
 
@@ -312,7 +373,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 i32 image_list::add_file(::payload varFile, int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -344,7 +405,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -357,9 +418,9 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   auto rectangle_i32 = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
-   m_pimage->get_graphics()->fill_rect(rectangle, ARGB(0, 0, 0, 0));
+   m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -400,7 +461,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 {
 
-   sync_lock sl(pil->mutex());
+   synchronization_lock synchronizationlock(pil->mutex());
 
    return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
 
@@ -454,7 +515,7 @@ i32 image_list::_get_alloc_count()
 bool image_list::_grow(int iAddUpHint)
 {
 
-   sync_lock sl(mutex());
+   synchronization_lock synchronizationlock(mutex());
 
    i32 cx = m_size.cx;
 

@@ -27,10 +27,9 @@ protected:
    __pointer(matter_array)                            m_preferencea;
 
 
+
 public:
 
-
-   
    ::object_meta *                                    m_pmeta;
    ::i64                                              m_cRun;
 
@@ -58,6 +57,8 @@ public:
 
 
 #endif
+
+   
 
 
    inline matter_array * _composite_array() { return m_pcompositea; }
@@ -291,25 +292,25 @@ public:
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pbase);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::e_status __id_compose(__composite(BASE_TYPE) & pbase, const ::id & id);
+   inline ::e_status __id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id);
 
    template < typename BASE_TYPE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource);
 
    template < typename TYPE >
    inline ::e_status __raw_compose_new(__composite(TYPE) & ptype);
@@ -321,10 +322,10 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_compose(__composite(BASE_TYPE) & pbase) { return !pbase ? __compose(pbase) : ::e_status(::success); }
+   inline ::e_status __defer_compose(__composite(BASE_TYPE) & pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_id_compose(__composite(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __id_compose(pbase) : ::e_status(::success); }
+   inline ::e_status __defer_id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
 
    template < typename TYPE >
    inline ::e_status __defer_raw_compose_new(__composite(TYPE) & ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
@@ -336,13 +337,13 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::e_status __construct(__pointer(BASE_TYPE) & pbase);
+   inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage);
 
    template < typename BASE_TYPE >
-   inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id);
+   inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
 
    template < typename TYPE >
-   inline ::e_status __construct_new(__pointer(TYPE) & pbase);
+   inline ::e_status __construct_new(__pointer(TYPE) & pusermessage);
 
    template < typename BASE_TYPE >
    inline ::e_status __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
@@ -502,9 +503,10 @@ public:
    void single_fork(const ::promise::routine_array & routinea);
    void multiple_fork(const ::promise::routine_array & routinea);
 
+   using layered::defer_fork;
 
-   template < typename THREAD, typename ROUTINE >
-   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread, ROUTINE routine)
+   template < typename THREAD >
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::promise::routine & routine)
    {
 
       if (pthread && pthread->is_running())
@@ -522,7 +524,7 @@ public:
 
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_start(__pointer(THREAD)& pthread)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread)
    {
 
       if (pthread && pthread->is_running())
@@ -532,14 +534,14 @@ public:
 
       }
 
-      pthread->_start();
+      pthread->begin_thread();
 
       return pthread;
 
    }
 
 
-   inline ::e_status defer_start(::thread_pointer& pthread, const ::promise::routine & routine);
+   inline ::e_status defer_fork(::thread_pointer& pthread, const ::promise::routine & routine);
 
 
    //template < typename THREAD >
@@ -566,7 +568,7 @@ public:
 
       auto ptask = ::get_task();
 
-      sync_lock sl(ptask->mutex());
+      synchronization_lock synchronizationlock(ptask->mutex());
 
       if (ptask && ptask->m_bitIsPred)
       {
@@ -587,13 +589,13 @@ public:
 
 
    template < typename PRED >
-   inline auto new_pred_thread(PRED pred);
+   inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
    inline auto async(void (TYPE:: * pfnMemberProcedure)())
    {
 
-      return fork([=]()
+      return fork([this,pfnMemberProcedure]()
          {
 
             TYPE * ptype = dynamic_cast <TYPE *> (this);
@@ -605,7 +607,7 @@ public:
    }
 
    template < typename PRED >
-   inline ::thread_pointer pred_run(bool bSync, PRED pred);
+   inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
    ::thread_pointer begin(
       ::e_priority epriority = ::priority_normal,
@@ -699,8 +701,35 @@ public:
 };
 
 
-#define __defer_fork(ID) defer_fork(#ID, [this]() { ID(); } )
+#define __make_identifier(PART1, PART2) PART1 ## PART2
 
+
+#define __defer_fork(ID)                                             \
+                                                                     \
+do                                                                   \
+{                                                                    \
+                                                                     \
+   auto & pthread = m_pthread ## ID;                                 \
+                                                                     \
+   if(!pthread)                                                      \
+   {                                                                 \
+                                                                     \
+      __construct(pthread);                                          \
+                                                                     \
+      pthread->m_pmatter = __routine([this]()                        \
+      {                                                              \
+                                                                     \
+         ID ## ThreadProcedure();                                    \
+                                                                     \
+      });                                                            \
+                                                                     \
+   }                                                                 \
+                                                                     \
+   defer_fork(pthread);                                              \
+                                                                     \
+} while(false)                                                       \
+                                                                     \
+   
 
 
 CLASS_DECL_APEX ::e_status call_sync(const ::promise::routine_array & routinea);

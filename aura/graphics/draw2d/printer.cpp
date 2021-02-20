@@ -51,7 +51,7 @@ namespace draw2d
       //bool bOk = true;
       //if (m_hPrinter != nullptr)
       //{
-      //   bOk = ::ClosePrinter(m_hPrinter) != FALSE;
+      //   bOk = ::ClosePrinter(m_hPrinter) != false;
       //   m_hPrinter = nullptr;
       //}
 
@@ -78,17 +78,17 @@ namespace draw2d
 
    }
 
-
-#ifdef WINDOWS_DESKTOP
-   bool printer::document_properties::initialize_draw2d_printer_document_properties(printer * pprinter, DEVMODE * pdevmode)
-#else
-   bool printer::document_properties::initialize_draw2d_printer_document_properties(printer * pprinter)
-#endif
-   {
-
-      return true;
-
-   }
+//
+//#ifdef WINDOWS_DESKTOP
+//   bool printer::document_properties::initialize_draw2d_printer_document_properties(printer * pprinter, DEVMODE * pdevmode)
+//#else
+//   bool printer::document_properties::initialize_draw2d_printer_document_properties(printer * pprinter)
+////#endif
+//   {
+//
+//      return true;
+//
+//   }
 
 
    bool printer::document_properties::close()

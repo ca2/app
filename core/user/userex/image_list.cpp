@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -78,7 +76,7 @@ namespace userex
    bool image_list_view::update_data(bool bSaveAndValidate)
    {
 
-      sync_lock sl(mutex());
+      synchronization_lock synchronizationlock(mutex());
 
       if (bSaveAndValidate)
       {
@@ -89,7 +87,7 @@ namespace userex
       else
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          m_imageaThumb.remove_all();
 
@@ -121,14 +119,14 @@ namespace userex
       fork([this]()
       {
 
-         sync_lock sl(mutex());
+         synchronization_lock synchronizationlock(mutex());
 
          int iForkDib = m_iForkAddDib;
 
          for (index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
          {
 
-            sl.unlock();
+            synchronizationlock.unlock();
 
             ::image_pointer pimage1;
 
@@ -146,7 +144,7 @@ namespace userex
 
                   pimageSmall = create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  pimageSmall->g()->stretch(pimageSmall->rectangle_i32(), pimage1->g(), pimage1->rectangle_i32());
+                  pimageSmall->g()->stretch(pimageSmall->rectangle(), pimage1->g(), pimage1->rectangle());
 
                   pimage1 = pimageSmall;
 
@@ -157,7 +155,7 @@ namespace userex
 
                   pimage1->extension()->payload("read_only_link") = get_link_prefix() + path.name();
 
-                  sl.lock();
+                  synchronizationlock.lock();
 
                   i++;
 
@@ -169,7 +167,7 @@ namespace userex
                else
                {
 
-                  sl.lock();
+                  synchronizationlock.lock();
 
                   TRACE("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
@@ -181,7 +179,7 @@ namespace userex
             else
             {
 
-               sl.lock();
+               synchronizationlock.lock();
 
                TRACE("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
@@ -281,7 +279,13 @@ namespace userex
    //void image_list_view::_001OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   ReleaseCapture();
+   //auto psession = Session;
+
+   //auto puser = psession->user();
+
+   //auto pwindowing = puser->windowing();
+
+   //pwindowing->release_capture();
 
    //   m_iMenuHover = -1;
 

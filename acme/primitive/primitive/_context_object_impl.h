@@ -1,9 +1,15 @@
 #pragma once
 
 
+inline id_matter::id_matter(const id_matter & idmatter) :
+   matter(idmatter),
+   m_id(idmatter.m_id)
+{
+
+}
+
 inline context_object::context_object(const context_object & object) :
-      matter(object),
-      m_id(object.m_id),
+      id_matter(object),
       m_pia(__new(::i64_array(*object.m_pia))),
       m_estatus(object.m_estatus),
       m_pset(__new(::property_set(*object.m_pset)))
@@ -24,7 +30,7 @@ inline ::i64_array& context_object::idarray() const { if (!m_pia) ((context_obje
 inline bool context_object::contains(const property_set & set) const
 {
 
-  if (set.isEmpty())
+  if (set.is_empty())
   {
 
      return true;

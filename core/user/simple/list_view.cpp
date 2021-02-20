@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple/_simple.h"
-#endif
 
 
 simple_list_view::simple_list_view()
@@ -34,7 +32,7 @@ void simple_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
    
    UNREFERENCED_PARAMETER(pgraphics);
    
-   ASSERT(FALSE);
+   ASSERT(false);
 
 }
 

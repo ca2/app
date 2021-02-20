@@ -19,19 +19,19 @@ namespace user
 
 
 
-CLASS_DECL_AURA bool oswindow_assign(oswindow oswindow, ::user::interaction_impl * pimpl);
-CLASS_DECL_AURA oswindow oswindow_remove_impl(::user::interaction_impl * pimpl);
-CLASS_DECL_AURA void oswindow_remove(oswindow oswindow);
-CLASS_DECL_AURA oswindow oswindow_get(::user::interaction_impl * pimpl);
-CLASS_DECL_AURA ::user::interaction_impl * oswindow_interaction_impl(oswindow oswindow);
-CLASS_DECL_AURA ::user::interaction * oswindow_interaction(oswindow oswindow);
+//CLASS_DECL_AURA bool oswindow_assign(::windowing::window * pwindow, ::user::interaction_impl * pimpl);
+//CLASS_DECL_AURA ::windowing::window * pwindow_remove_impl(::user::interaction_impl * pimpl);
+//CLASS_DECL_AURA void oswindow_remove(::windowing::window * pwindow);
+//CLASS_DECL_AURA ::windowing::window * pwindow_get(::user::interaction_impl * pimpl);
+//CLASS_DECL_AURA ::user::interaction_impl * oswindow_interaction_impl(::windowing::window * pwindow);
+//CLASS_DECL_AURA ::user::interaction * oswindow_interaction(::windowing::window * pwindow);
 
 
 //#if defined(WINDOWS) || defined(LINUX)
 //
-//inline ::user::interaction * window_from_handle(oswindow oswindow);
+//inline ::user::interaction * window_from_handle(::windowing::window * pwindow);
 //
-//inline ::user::interaction * window_from_handle(oswindow oswindow)
+//inline ::user::interaction * window_from_handle(::windowing::window * pwindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -49,6 +49,6 @@ CLASS_DECL_AURA ::user::interaction * oswindow_interaction(oswindow oswindow);
 //
 //#else
 //
-//CLASS_DECL_AURA ::user::interaction * window_from_handle(oswindow oswindow);
+//CLASS_DECL_AURA ::user::interaction * window_from_handle(::windowing::window * pwindow);
 //
 //#endif

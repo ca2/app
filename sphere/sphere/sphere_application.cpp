@@ -972,7 +972,7 @@ namespace sphere
 
    }
 
-   void application::route_command_message(::user::command * pcommand)
+   void application::route_command_message(::message::command * pcommand)
    {
 
       ::aura::application::route_command_message(pcommand);

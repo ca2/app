@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 
 
@@ -85,7 +83,7 @@ namespace userex
          if (m_ptopview != nullptr && psubject->m_puserinteraction == m_ptopview->m_peditview)
          {
 
-            sync_lock sl(m_pview->m_pfontlist->mutex());
+            synchronization_lock synchronizationlock(m_pview->m_pfontlist->mutex());
 
             string strText;
 
@@ -112,7 +110,7 @@ namespace userex
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_horizontal);
+      SetSplitOrientation(e_orientation_horizontal);
 
       set_position(0, 24);
 
@@ -143,7 +141,7 @@ namespace userex
 
       }
 
-      m_pview->set_font_list_type(::draw2d::font_list::type_wide);
+      m_pview->set_font_list_type(::write_text::font_list::type_wide);
 
    }
 

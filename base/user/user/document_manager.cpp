@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
@@ -17,7 +15,7 @@ bool _set_reg_key(const widechar * pszKey, const widechar * pszValue, const wide
 #ifdef WINDOWS_DESKTOP
 
 
-void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
+void __get_module_short_file_name(hinstance hInst, string& strShortName);
 
 
 #endif
@@ -429,9 +427,9 @@ namespace user
          __pointer(::user::impact_system) ptemplate = m_templateptra[index];
          ASSERT_KINDOF(::user::impact_system, ptemplate);
          if (!ptemplate->save_all_modified())
-            return FALSE;
+            return false;
       }
-      return TRUE;
+      return true;
    }
 
 
@@ -538,17 +536,17 @@ namespace user
       strCommand = strCommand.Right(strCommand.get_length() - 10);
       }
       else
-      return FALSE; // not a command we handle
+      return false; // not a command we handle
 
       i32 i = strCommand.find('"');
       if (i == -1)
-      return FALSE; // illegally terminated
+      return false; // illegally terminated
 
       cmdInfo.m_varFile = strCommand.Left(i);
       strCommand = strCommand.Right(strCommand.get_length() - i);
 
       //command_line* pOldInfo = nullptr;
-      bool bRetVal = TRUE;
+      bool bRetVal = true;
 
       // // If we were started up for DDE retrieve the Show state
       //   System.command_line() = cmdInfo;
@@ -582,7 +580,7 @@ namespace user
       {
       if (strCommand.Left(3) != _T("\",\""))
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -591,7 +589,7 @@ namespace user
       i = strCommand.find('"');
       if (i == -1)
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -603,7 +601,7 @@ namespace user
 
       if (strCommand.Left(3) != _T("\",\""))
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -612,7 +610,7 @@ namespace user
       i = strCommand.find('"');
       if (i == -1)
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -624,7 +622,7 @@ namespace user
 
       if (strCommand.Left(3) != _T("\",\""))
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -633,7 +631,7 @@ namespace user
       i = strCommand.find('"');
       if (i == -1)
       {
-      bRetVal = FALSE;
+      bRetVal = false;
       goto RestoreAndReturn;
       }
       else
@@ -661,7 +659,7 @@ namespace user
       RestoreAndReturn:
       //System.m_pCmdInfo = pOldInfo;
       return bRetVal;*/
-      return TRUE;
+      return true;
    }
 
    //#ifdef WINDOWS
@@ -688,9 +686,9 @@ namespace user
    ASSERT(ptemplate != nullptr);
    ASSERT_KINDOF(impact_system, ptemplate);
 
-   ptemplate->open_document_file(get_context_application(), nullptr, TRUE, System.m_puiInitialPlaceHolderContainer);
+   ptemplate->open_document_file(get_context_application(), nullptr, true, System.m_puiInitialPlaceHolderContainer);
    // if returns nullptr, the ::account::user has already been alerted*/
-   //   return TRUE;
+   //   return true;
    //}
 
    //#endif
@@ -701,7 +699,7 @@ namespace user
 
       __pointer(::create) pcreate(e_create);
 
-      if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, nullptr, nullptr))
+      if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
       auto psession = Session;
@@ -785,9 +783,9 @@ namespace user
       *pszLast = 0;*/
 
 
-      //if( ::aura::FullPath(szPath, szTemp) == FALSE )
+      //if( ::aura::FullPath(szPath, szTemp) == false )
       //{
-      //   ASSERT(FALSE);
+      //   ASSERT(false);
       //   return nullptr; // We won't open the file. aura API requires paths with
       // length < _MAX_PATH
       //}

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -46,7 +44,7 @@ namespace user
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(2.0, ARGB(127, 80, 80, 80));
+         pen->create_solid(2.0, argb(127, 80, 80, 80));
 
          pgraphics->set(pen);
 
@@ -65,11 +63,11 @@ namespace user
 
          ::draw2d::brush_pointer br(e_create);
 
-         br->create_solid(RGB(0, 0, 0));
+         br->create_solid(rgb(0, 0, 0));
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1, RGB(0, 0, 0));
+         pen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(pen);
          pgraphics->set(br);
          ::rectangle_i32 rectPopupArrow;
@@ -88,7 +86,7 @@ namespace user
 
 
          pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
-         pgraphics->polygon_i32(pointa);
+         pgraphics->polygon(pointa);
 
       }
 

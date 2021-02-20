@@ -34,7 +34,7 @@ namespace account
       if(strToken.is_empty())
       {
          
-         ASSERT(FALSE);
+         ASSERT(false);
          
          strToken = "(empty)";
          

@@ -5,6 +5,9 @@
 ::acme::system * g_psystem = nullptr;
 
 
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
+
+
 namespace acme
 {
 
@@ -112,10 +115,6 @@ namespace acme
    }
 
 
-
-
-
-
    string system::os_get_user_theme()
    {
 
@@ -124,20 +123,19 @@ namespace acme
    }
 
 
-   void system::defer_calc_os_dark_mode()
+   ::user::enum_desktop system::get_edesktop()
    {
 
-      ::user::os_calc_dark_mode();
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         m_edesktop = calc_edesktop();
+
+      }
+
+      return m_edesktop;
 
    }
-
-
-//   void system::defer_calc_os_user_theme()
-//   {
-//
-//      ::user::os_calc_user_theme();
-//
-//   }
 
 
    void system::on_subject(::promise::subject *psubject)
@@ -149,7 +147,14 @@ namespace acme
          if (psubject->id() == id_os_dark_mode)
          {
 
-            defer_calc_os_dark_mode();
+            auto pnode = node();
+
+            if (pnode)
+            {
+
+               pnode->os_calc_user_dark_mode();
+
+            }
 
          }
          else if (psubject->id() == id_os_user_theme)
@@ -171,6 +176,7 @@ namespace acme
                psubject->m_esubject = e_subject_not_modified;
 
             }
+
          }
 
       }
@@ -205,7 +211,6 @@ namespace acme
    {
 
 
-
    }
 
 
@@ -214,7 +219,6 @@ namespace acme
 
 
    }
-
 
 
    ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
@@ -249,7 +253,7 @@ namespace acme
    ::task * system::get_task(ithread_t ithread)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       return m_taskmap[ithread];
 
@@ -259,9 +263,9 @@ namespace acme
    ithread_t system::get_task_id(::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
-      ithread_t ithread = NULL_ITHREAD;
+      ithread_t ithread = null_ithread;
 
       if (!m_taskidmap.lookup(ptask, ithread))
       {
@@ -278,7 +282,7 @@ namespace acme
    void system::set_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
       m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -290,7 +294,7 @@ namespace acme
    void system::unset_task(ithread_t ithread, ::task * ptask)
    {
 
-      sync_lock sl(&m_mutexTask);
+      synchronization_lock synchronizationlock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 
@@ -316,42 +320,30 @@ namespace acme
    ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox , const ::promise::process & process)
    {
 
-      printf("\n%s\n%s", pszTitle, pszText);
+      auto result = message_box_for_console(pszText, pszTitle, emessagebox);
 
-      getchar();
+      process(result);
 
-      getchar();
+      //printf("\n%s\n%s", pszTitle, pszText);
+
+      //getchar();
+
+      //getchar();
 
       return ::success;
 
    }
 
 
-   ::user::enum_desktop system::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calc_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
-
-
-
 } // namespace acme
 
 
-   string __get_text(const string & str)
-   {
+string __get_text(const string & str)
+{
 
-      return ::g_psystem->__get_text(str);
+   return ::g_psystem->__get_text(str);
 
-   }
+}
 
 
 CLASS_DECL_ACME ::acme::system * get_context_system()
@@ -362,15 +354,12 @@ CLASS_DECL_ACME ::acme::system * get_context_system()
 }
 
 
-
-
 CLASS_DECL_ACME void acme_system_init()
 {
 
    g_psystem = new acme::system();
 
 }
-
 
 
 CLASS_DECL_ACME void acme_system_term()

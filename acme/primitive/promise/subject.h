@@ -13,7 +13,7 @@ namespace promise
 
       __pointer(::promise::handler)       m_phandler;
       ::promise::matter_context           m_mattercontext;
-      ::user::e_key                       m_ekey;
+      ::user::enum_key                       m_ekey;
       ::payload                           m_payload;
       ::i64                               m_iUpdateSerial;
       bool                                m_bModified;
@@ -77,7 +77,7 @@ namespace promise
 
          return false;
 
-//         sync_lock sl(mutex());
+//         synchronization_lock synchronizationlock(mutex());
 //
 //         return m_mattercontext.is_empty();
 

@@ -3,16 +3,7 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
 
-
-#if defined(APPLE_IOS)
-
-#include "apex/node/ios/interaction_impl.h"
-
-#endif
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -42,7 +33,7 @@ void defer_term_ui();
 CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
 
 #ifdef _UWP
 
@@ -117,8 +108,6 @@ namespace apex
 
       m_bSystemSynchronizedCursor      = true;
 
-      m_bSystemSynchronizedScreen      = true;
-
       set_context_session(this);
 
       set_context_object(this);
@@ -130,13 +119,9 @@ namespace apex
 
          m_bSystemSynchronizedCursor   = System.m_bSystemSynchronizedCursor;
 
-         m_bSystemSynchronizedScreen   = System.m_bSystemSynchronizedScreen;
-
       }
 
       m_pappCurrent                    = nullptr;
-
-      m_iMainMonitor                   = -1;
 
       m_bZipIsDir2                     = true;
 
@@ -174,176 +159,161 @@ namespace apex
    }
 
    
-   void session::enum_display_monitors()
-   {
+   //void session::enum_display_monitors()
+   //{
 
 
-   }
+   //}
    
 
-   index session::get_main_monitor(RECTANGLE_I32* prectangle)
-   {
+   //index session::get_main_monitor(RECTANGLE_I32* prectangle)
+   //{
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
-   ::count session::get_monitor_count()
-   {
+   //::count session::get_monitor_count()
+   //{
 
-      return -1;
+   //   return -1;
 
-   }
-
-   
-   bool  session::get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
-   {
-
-      return false;
-
-   }
+   //}
 
    
-   ::count session::get_desk_monitor_count()
-   {
+   //bool  session::get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
+   //{
 
-      return -1;
+   //   return false;
 
-   }
-
-
-   bool  session::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
-   {
-
-      return false;
-
-   }
-
-
-   index session::get_main_wkspace(RECTANGLE_I32* prectangle)
-   {
-
-      return -1;
-
-   }
-
-
-   ::count session::get_wkspace_count()
-   {
-
-      return -1;
-
-   }
-
-
-   bool  session::get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
-   {
-
-      return false;
-
-   }
+   //}
 
    
-   ::count session::get_desk_wkspace_count()
-   {
+   //::count session::get_desk_monitor_count()
+   //{
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
+
+
+   //bool  session::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //index session::get_main_wkspace(RECTANGLE_I32* prectangle)
+   //{
+
+   //   return -1;
+
+   //}
+
+
+   //::count session::get_wkspace_count()
+   //{
+
+   //   return -1;
+
+   //}
+
+
+   //bool  session::get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
+   //{
+
+   //   return false;
+
+   //}
+
+   //
+   //::count session::get_desk_wkspace_count()
+   //{
+
+   //   return -1;
+
+   //}
   
+   //
+   //bool  session::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool session::set_main_monitor(index iMonitor)
+   //{
+
+   //   return false;
+
+   //}
    
-   bool  session::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
+
+   //bool session::set_main_wkspace(index iWkspace)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWkspace)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle, index iWkspace, index iMonitor)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rectangle_i32& rectangle)
+   //{
+
+
+   //}
+
+
+   ::color::color session::get_default_color(u64 u)
    {
 
-      return false;
+      auto pnode = System.node();
 
-   }
-
-
-   bool session::set_main_monitor(index iMonitor)
-   {
-
-      return false;
-
-   }
-   
-
-   bool session::set_main_wkspace(index iWkspace)
-   {
-
-      return false;
-
-   }
-
-
-   bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWkspace)
-   {
-
-      return false;
-
-   }
-
-
-   bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle, index iWkspace, index iMonitor)
-   {
-
-      return false;
-
-   }
-
-
-   bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle)
-   {
-
-      return false;
-
-   }
-
-
-   bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle)
-   {
-
-      return false;
-
-   }
-
-
-   void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rectangle_i32& rectangle)
-   {
-
-
-   }
-
-
-   color32_t session::get_default_color(u64 u)
-   {
-
-
-#ifdef WINDOWS
-
-
-      switch (u)
+      if (!pnode)
       {
-      case COLOR_3DFACE:
-         return ARGB(127, 192, 192, 184);
-      case COLOR_WINDOW:
-         return ARGB(127, 255, 255, 255);
-      case COLOR_3DLIGHT:
-         return ARGB(127, 218, 218, 210);
-      case COLOR_3DHIGHLIGHT:
-         return ARGB(127, 238, 238, 230);
-      case COLOR_3DSHADOW:
-         return ARGB(127, 138, 138, 130);
-      case COLOR_3DDKSHADOW:
-         return ARGB(127, 90, 90, 80);
-      default:
-         break;
+
+         return argb(127, 0, 0, 0);
+
       }
 
-#endif
-
-      return ARGB(127, 0, 0, 0);
+      return pnode->get_default_color(u);
 
    }
 
@@ -352,12 +322,12 @@ namespace apex
 
 
 
-   size_i32 session::get_window_minimum_size()
-   {
+   //size_i32 session::get_window_minimum_size()
+   //{
 
-      return size_i32(300, 300);
+   //   return size_i32(300, 300);
 
-   }
+   //}
 
 
    ::e_status session::init_thread()
@@ -568,11 +538,7 @@ namespace apex
    void session::term2()
    {
 
-#ifdef WINDOWS_DESKTOP
 
-      __release(m_puiSession);
-
-#endif
 
    }
 
@@ -1176,7 +1142,7 @@ namespace apex
    //}
 
 
-   //bool session::set_cursor(::user::interaction * pinteraction, e_cursor ecursor)
+   //bool session::set_cursor(::user::interaction * pinteraction, enum_cursor ecursor)
    //{
 
    //   m_ecursor = ecursor;
@@ -1211,10 +1177,10 @@ namespace apex
    //}
 
 
-   //bool session::set_default_cursor(::user::interaction * pinteraction, e_cursor ecursor)
+   //bool session::set_default_cursor(::user::interaction * pinteraction, enum_cursor ecursor)
    //{
 
-   //   if (ecursor == cursor_default)
+   //   if (ecursor == e_cursor_default)
    //   {
 
    //      m_ecursorDefault = cursor_arrow;
@@ -1242,30 +1208,30 @@ namespace apex
    //}
 
 
-  void session::get_cursor_pos(POINT_I32 * ppoint)
-  {
-
-
-//   __throw(todo("aura"));
-//     if (m_bSystemSynchronizedCursor)
+//  void session::get_cursor_pos(POINT_I32 * ppoint)
+//  {
+//
+//
+////   __throw(todo("aura"));
+////     if (m_bSystemSynchronizedCursor)
+////     {
+////
+////        POINT_I32 point_i32;
+////
+////        ::GetCursorPos(&point);
+////
+////        m_pointCursor = point;
+////
+////     }
+//
+//     if (ppoint != nullptr)
 //     {
 //
-//        POINT_I32 point_i32;
-//
-//        ::GetCursorPos(&point);
-//
-//        m_pointCursor = point_i32;
+//        *ppoint = m_pointCursor;
 //
 //     }
-
-     if (ppoint != nullptr)
-     {
-
-        *ppoint = m_pointCursor;
-
-     }
-
-  }
+//
+//  }
 
 //
 //   oswindow session::get_capture()
@@ -1276,22 +1242,22 @@ namespace apex
 //   }
 //
 //
-   void session::set_cursor_pos(const ::point_i32 & point)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ::SetCursorPos(point.x, point.y);
-
-#endif
-
-   }
+//   void session::set_cursor_pos(const ::point_i32 & point)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::SetCursorPos(point.x, point.y);
+//
+//#endif
+//
+//   }
 //
 //
 //   bool session::ReleaseCapture()
 //   {
 //
-//      // oswindow oswindowCapture = ::get_capture();
+//      // ::windowing::window * pwindowCapture = ::get_capture();
 //
 //      // if (oswindowCapture == nullptr)
 //      // {
@@ -1313,7 +1279,7 @@ namespace apex
    //__pointer(::user::interaction) session::GetCapture()
    //{
 
-   //   oswindow oswindowCapture = ::get_capture();
+   //   ::windowing::window * pwindowCapture = ::get_capture();
 
    //   if (oswindowCapture == nullptr)
    //   {
@@ -1352,462 +1318,6 @@ namespace apex
 
 
 
-#define ZONEING_COMPARE ::comparison
-
-   i64 g_i_get_best_zoneing = 0;
-
-   index session::_get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest, bool bPreserveSize)
-   {
-
-      ::rectangle_i32 rectangle(rectRequest);
-
-      ::rectangle_i32 rectWkspace;
-
-      index iBestWkspace = get_best_wkspace(&rectWkspace, rectangle);
-
-      edisplay edisplay;
-
-      ::e_display edisplayPrevious = *pedisplay;
-
-      double dMargin = System.m_dpi;
-
-      if (ZONEING_COMPARE::is_equal(rectangle.top, rectWkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
-      {
-
-         edisplay |= e_display_top;
-
-         if (bPreserveSize)
-         {
-
-            rectangle.move_top_to(rectWkspace.top);
-
-         }
-         else
-         {
-
-            rectangle.top = rectWkspace.top;
-
-         }
-
-      }
-      else if (ZONEING_COMPARE::is_equal(rectangle.bottom, rectWkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
-      {
-
-         edisplay |= e_display_bottom;
-
-         if (bPreserveSize)
-         {
-
-            rectangle.move_bottom_to(rectWkspace.bottom);
-
-         }
-         else
-         {
-
-            rectangle.bottom = rectWkspace.bottom;
-
-         }
-
-      }
-
-      if (ZONEING_COMPARE::is_equal(rectRequest.left, rectWkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
-      {
-
-         edisplay |= e_display_left;
-
-         if (bPreserveSize)
-         {
-
-            rectangle.move_left_to(rectWkspace.left);
-
-         }
-         else
-         {
-
-            rectangle.left = rectWkspace.left;
-
-         }
-
-      }
-      else if (ZONEING_COMPARE::is_equal(rectRequest.right, rectWkspace.right, dMargin, !(edisplayPrevious & e_display_right)))
-      {
-
-         edisplay |= e_display_right;
-
-         if (bPreserveSize)
-         {
-
-            rectangle.move_right_to(rectWkspace.right);
-
-         }
-         else
-         {
-
-            rectangle.right = rectWkspace.right;
-
-         }
-
-      }
-
-      if (!(edisplay & e_display_top || edisplay & e_display_bottom)
-         && is_different(edisplay & e_display_left, edisplay & e_display_right))
-      {
-
-         if (ZONEING_COMPARE::is_centered(rectWkspace.top, rectangle.top, rectangle.bottom, rectWkspace.bottom))
-         {
-
-            edisplay |= e_display_bottom;
-
-            edisplay |= e_display_top;
-
-            rectangle.bottom = rectWkspace.bottom;
-
-            rectangle.top = rectWkspace.top;
-
-         }
-
-      }
-
-      if (!(edisplay & e_display_left || edisplay & e_display_right)
-         && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
-      {
-
-         if (ZONEING_COMPARE::is_centered(rectWkspace.left, rectangle.left, rectangle.right, rectWkspace.right))
-         {
-
-            edisplay |= e_display_left;
-
-            edisplay |= e_display_right;
-
-            rectangle.left = rectWkspace.left;
-
-            rectangle.right = rectWkspace.right;
-
-         }
-
-      }
-
-      bool bLeftXorRight = is_different(edisplay & e_display_left, edisplay & e_display_right);
-
-      bool bTopXorBottom = is_different(edisplay & e_display_top, edisplay & e_display_bottom);
-
-      bool bTopAndBottom = edisplay & e_display_top && edisplay & e_display_bottom;
-
-      bool bLeftAndRight = edisplay & e_display_left && edisplay & e_display_right;
-
-      if (bLeftXorRight && bTopXorBottom)
-      {
-
-      }
-      else if (bTopAndBottom && bLeftAndRight)
-      {
-
-         edisplay = e_display_zoomed;
-
-      }
-      else
-      {
-
-         if (bLeftXorRight && !bTopAndBottom)
-         {
-
-            edisplay = e_display_none;
-
-         }
-
-         if (bTopXorBottom && !bLeftAndRight)
-         {
-
-            edisplay = e_display_none;
-
-         }
-
-         if (bTopAndBottom)
-         {
-
-            edisplay -= e_display_top;
-
-            edisplay -= e_display_bottom;
-
-         }
-
-         if (bLeftAndRight)
-         {
-
-            edisplay -= e_display_left;
-
-            edisplay -= e_display_right;
-
-         }
-
-      }
-
-      if (edisplay == e_display_none)
-      {
-
-         edisplay = e_display_normal;
-
-      }
-
-      if (is_docking_appearance(edisplay))
-      {
-
-         *prectangle = rectangle;
-
-      }
-      else if (edisplay == e_display_zoomed)
-      {
-
-         *prectangle = rectWkspace;
-
-      }
-      else
-      {
-
-         *prectangle = rectRequest;
-
-      }
-
-      if (pedisplay)
-      {
-
-         *pedisplay = edisplay;
-
-      }
-
-      //if (g_i_get_best_zoneing % 10 == 0)
-      //{
-
-      //   string strE("e");
-      //   if (edisplay & e_display_left)
-      //      strE += "L";
-      //   if (edisplay & e_display_top)
-      //      strE += "T";
-      //   if (edisplay & e_display_right)
-      //      strE += "R";
-      //   if (edisplay & e_display_bottom)
-      //      strE += "B";
-
-      //   string strP("p");
-      //   if (edisplayPrevious & e_display_left)
-      //      strP += "L";
-      //   if (edisplayPrevious & e_display_top)
-      //      strP += "T";
-      //   if (edisplayPrevious & e_display_right)
-      //      strP += "R";
-      //   if (edisplayPrevious & e_display_bottom)
-      //      strP += "B";
-
-      //   ::output_debug_string(
-      //      "w" + ::str::from(rectWkspace.left) + ","
-      //      + ::str::from(rectWkspace.top) + ","
-      //      + ::str::from(rectWkspace.right) + ","
-      //      + ::str::from(rectWkspace.bottom) + " " +
-      //      "r" + ::str::from(prectangle->left) + ","
-      //      + ::str::from(prectangle->top) + ","
-      //      + ::str::from(prectangle->right) + ","
-      //      + ::str::from(prectangle->bottom) + " " +
-      //      strE + " " + strP + "\n");
-
-      //}
-
-
-      //g_i_get_best_zoneing++;
-
-      //   rectWkspace.left,
-      //   rectWkspace.top,
-      //   rectWkspace.right,
-      //   rectWkspace.bottom,
-      //   (edisplay & e_display_left)?'L':' ',
-      //   (edisplay & e_display_top) ? 'T':' ',
-      //   (edisplay & e_display_right) ? 'R':' ',
-      //   (edisplay & e_display_bottom) ? 'B':' ',
-      //   (edisplayPrevious & e_display_left) ? 'L':' ',
-      //   (edisplayPrevious & e_display_top) ? 'T':' ',
-      //   (edisplayPrevious & e_display_right) ? 'R':' ',
-      //   (edisplayPrevious & e_display_bottom) ? 'B':' ');
-
-      return iBestWkspace;
-
-   }
-
-
-   index session::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
-   {
-
-      index iMatchingMonitor = -1;
-
-      i64 iBestArea = -1;
-
-      ::rectangle_i32 rectMatch;
-
-      ::rectangle_i32 rectangle(rectParam);
-
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
-      {
-
-         ::point_i32 pointCursor = get_cursor_pos();
-
-         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
-
-      }
-
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         ::rectangle_i32 rectIntersect;
-
-         ::rectangle_i32 rectMonitor;
-
-         if (get_monitor_rect(iMonitor, rectMonitor))
-         {
-
-            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
-            {
-
-               if (rectIntersect.area() > iBestArea)
-               {
-
-                  iMatchingMonitor = iMonitor;
-
-                  iBestArea = rectIntersect.area();
-
-                  rectMatch = rectMonitor;
-
-               }
-
-            }
-            else if (rectMonitor.contains(rectangle))
-            {
-
-               iMatchingMonitor = iMonitor;
-
-               rectMatch = rectMonitor;
-
-            }
-
-         }
-
-      }
-
-      if (iMatchingMonitor >= 0)
-      {
-
-         if (prectangle != nullptr)
-         {
-
-            *prectangle = rectMatch;
-
-         }
-
-         return iMatchingMonitor;
-
-      }
-
-      iMatchingMonitor = get_main_monitor(prectangle);
-
-      return iMatchingMonitor;
-
-   }
-
-
-   index session::get_best_wkspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
-   {
-
-      index iMatchingWkspace = -1;
-
-      i64 iBestArea = -1;
-
-      ::rectangle_i32 rectMatch;
-
-      ::rectangle_i32 rectangle(rectParam);
-
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
-      {
-
-         ::point_i32 pointCursor = get_cursor_pos();
-
-         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
-
-      }
-
-      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         ::rectangle_i32 rectIntersect;
-
-         ::rectangle_i32 rectMonitor;
-
-         if (get_wkspace_rect(iWkspace, rectMonitor))
-         {
-
-            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
-            {
-
-               if (rectIntersect.area() > iBestArea)
-               {
-
-                  iMatchingWkspace = iWkspace;
-
-                  iBestArea = rectIntersect.area();
-
-                  rectMatch = rectMonitor;
-
-               }
-
-            }
-            else if (rectMonitor.contains(rectangle))
-            {
-
-               iMatchingWkspace = iWkspace;
-
-               rectMatch = rectMonitor;
-
-            }
-
-         }
-
-      }
-
-      if (iMatchingWkspace >= 0)
-      {
-
-         if(prectangle != nullptr)
-         {
-
-            *prectangle = rectMatch;
-
-         }
-
-         return iMatchingWkspace;
-
-      }
-
-      iMatchingWkspace = get_main_wkspace(prectangle);
-
-      return iMatchingWkspace;
-
-   }
-
-
-   index session::get_good_iconify(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam)
-   {
-
-      ::rectangle_i32 rectMonitor;
-
-      index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
-
-      prectangle->left = rectMonitor.left;
-
-      prectangle->top = rectMonitor.top;
-
-      prectangle->right = rectMonitor.left;
-
-      prectangle->bottom = rectMonitor.top;
-
-      return iMatchingMonitor;
-
-   }
 
 
    //index session::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, bool bMove, ::user::interaction * pinteraction)
@@ -1861,8 +1371,8 @@ namespace apex
    //      || rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy )
    //   {
 
-   //      if (rectMonitor.width() / 7 + max(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
-   //            || rectMonitor.height() / 7 + max(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
+   //      if (rectMonitor.width() / 7 + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
+   //            || rectMonitor.height() / 7 + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
    //      {
 
    //         rectRestore = rectMonitor;
@@ -1875,9 +1385,9 @@ namespace apex
 
    //         rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-   //         rectRestore.right = rectRestore.left + max(sizeMin.cx, rectMonitor.width() * 2 / 5);
+   //         rectRestore.right = rectRestore.left + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5);
 
-   //         rectRestore.bottom = rectRestore.top + max(sizeMin.cy, rectMonitor.height() * 2 / 5);
+   //         rectRestore.bottom = rectRestore.top + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5);
 
    //         if (rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
    //         {
@@ -1951,9 +1461,9 @@ namespace apex
 
    //      iMatchingWkspace = get_best_wkspace(&rectWkspace, rectParam);
 
-   //      sizeBroad = sizeMin.max(rectWkspace.size() * 4 / 5);
+   //      sizeBroad = sizeMin.maximum(rectWkspace.size() * 4 / 5);
 
-   //      sizeCompact = sizeMin.max(rectWkspace.size() * 2 / 5);
+   //      sizeCompact = sizeMin.maximum(rectWkspace.size() * 2 / 5);
 
    //   }
 
@@ -2020,7 +1530,7 @@ namespace apex
 
    //   ::rectangle_i32 rectangle(rectParam);
 
-   //   index iBestWkspace = get_window_restore_1(prectangle, rectangle_i32, pinteraction, edisplayRestore);
+   //   index iBestWkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
 
    //   bool bChangedSize = ::size_i32(prectangle) != rectParam.size();
 
@@ -2063,7 +1573,7 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         if (rectangle_i32 > pinteraction->m_sizeRestoreCompact)
    //         {
@@ -2094,7 +1604,7 @@ namespace apex
 
    //         }
 
-   //         *prectangle = rectangle_i32;
+   //         *prectangle = rectangle;
 
    //      }
    //      while (rectWkspace.contains(rectangle));
@@ -2110,13 +1620,13 @@ namespace apex
 
    //      rectangle.move_to(pointLineStart);
 
-   //      *prectangle = rectangle_i32;
+   //      *prectangle = rectangle;
 
    //      return iBestWkspace;
 
    //   }
 
-   //   rectangle_i32 = rectStart;
+   //   rectangle = rectStart;
 
    //   rectangle.set_size(pinteraction->m_sizeRestoreCompact);
 
@@ -2133,11 +1643,11 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         rectangle.offset(49, 49);
 
-   //         *prectangle = rectangle_i32;
+   //         *prectangle = rectangle;
 
    //      } while (rectWkspace.contains(rectangle));
 
@@ -2162,7 +1672,7 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         rectangle.offset(49, 0);
 
@@ -2182,7 +1692,7 @@ namespace apex
 
    //         }
 
-   //         *prectangle = rectangle_i32;
+   //         *prectangle = rectangle;
 
    //      } while (rectWkspace.contains(rectangle));
 
@@ -2194,7 +1704,7 @@ namespace apex
 
    //   rectangle.move_to(pointLineStart);
 
-   //   *prectangle = rectangle_i32;
+   //   *prectangle = rectangle;
 
    //   return iBestWkspace;
 
@@ -2245,62 +1755,62 @@ namespace apex
    //}
 
 
-   bool session::is_key_pressed(::user::e_key ekey)
+   bool session::is_key_pressed(::user::enum_key ekey)
    {
 
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
+         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
 
       }
 
       bool bPressed = false;
-      if (ekey == ::user::key_shift)
+      if (ekey == ::user::e_key_shift)
       {
-         m_pmapKeyPressed->lookup(::user::key_shift, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_lshift, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_lshift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_rshift, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_rshift, bPressed);
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::key_command)
+      else if (ekey == ::user::e_key_command)
       {
-         m_pmapKeyPressed->lookup(::user::key_command, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_lcommand, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_lcommand, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_rcommand, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_rcommand, bPressed);
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::key_control)
+      else if (ekey == ::user::e_key_control)
       {
-         m_pmapKeyPressed->lookup(::user::key_control, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_lcontrol, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_lcontrol, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_rcontrol, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_rcontrol, bPressed);
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::key_alt)
+      else if (ekey == ::user::e_key_alt)
       {
-         m_pmapKeyPressed->lookup(::user::key_alt, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_lalt, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_lalt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::key_ralt, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_ralt, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -2318,13 +1828,13 @@ ret:
    }
 
 
-   void session::set_key_pressed(::user::e_key ekey, bool bPressed)
+   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
+         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
 
       }
 
@@ -2333,21 +1843,7 @@ ret:
    }
 
 
-   ::user::interaction * session::get_session_window()
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      return __user_interaction(m_puiSession);
-
-#else
-
-      return nullptr;
-
-#endif
-
-   }
-
+   
 
    ::e_status session::init1()
    {
@@ -2519,12 +2015,6 @@ ret:
 
          //}
 
-         //if(System.m_bDraw2d)
-         //{
-
-         //   m_pfontCopyDesk = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
-
-         //}
 
       }
 
@@ -2621,12 +2111,12 @@ ret:
    //}
 
 
-   bool session::on_create_frame_window()
-   {
+   //bool session::on_create_frame_window()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 //   void session::translate_os_key_message(::user::key * pkey)
@@ -2785,15 +2275,15 @@ namespace apex
 
    //   if (emouse == ::user::e_mouse_left_button)
    //   {
-   //      return psession->is_key_pressed(::user::key_lbutton);
+   //      return psession->is_key_pressed(::user::e_key_lbutton);
    //   }
    //   else if (emouse == ::user::e_mouse_right_button)
    //   {
-   //      return psession->is_key_pressed(::user::key_rbutton);
+   //      return psession->is_key_pressed(::user::e_key_rbutton);
    //   }
    //   else if (emouse == ::user::e_mouse_middle_button)
    //   {
-   //      return psession->is_key_pressed(::user::key_mbutton);
+   //      return psession->is_key_pressed(::user::e_key_mbutton);
    //   }
    //   else
    //   {
@@ -3026,7 +2516,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return System.draw2d().get_cursor(m_ecursorDefault);
+   //   return System.draw2d()->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -3170,7 +2660,7 @@ namespace apex
    //      ::rectangle_i32 rectText(rectangle);
 
 
-   //      ::draw2d::font_pointer font;
+   //      ::write_text::font_pointer font;
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
    //      ::rectangle_i32 rectEmp;
@@ -3190,12 +2680,12 @@ namespace apex
    //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
    //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
    //            {
-   //               pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
+   //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_brushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
+   //               //pgraphics->fill_rectangle(rectEmp,argb(128,208,223,233));
    //               pgraphics->set(ptab->get_data()->m_brushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);
@@ -3249,17 +2739,17 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-      if (pmessage->m_id == WM_GETTEXT
-         || pmessage->m_id == WM_GETTEXTLENGTH
-         )
-      {
-
-         pmessage->m_uiMessageFlags |= 3; // message considered pre translated
-         pmessage->m_uiMessageFlags |= 16384; //  by early optmization
-
-         return;
-
-      }
+//      if (pmessage->m_id == WM_GETTEXT
+//         || pmessage->m_id == WM_GETTEXTLENGTH
+//         )
+//      {
+//
+//         pmessage->m_uiMessageFlags |= 3; // message considered pre translated
+//         pmessage->m_uiMessageFlags |= 16384; //  by early optmization
+//
+//         return;
+//
+//      }
       //else if (pmessage->m_id == e_message_mouse_move)
       //{
 

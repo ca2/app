@@ -163,7 +163,7 @@ namespace filehandler
       }
       break;
       default:
-         //ASSERT(FALSE);
+         //ASSERT(false);
          break;
       }
    }

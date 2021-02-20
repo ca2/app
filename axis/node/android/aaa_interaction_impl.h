@@ -43,7 +43,7 @@ namespace android
       virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
       virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       void _002OnDraw(::image * pimage);
 
@@ -95,7 +95,7 @@ namespace android
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(LPRECT32 lpClientRect,::u32 nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECTANGLE_I32 * lpClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
 
@@ -110,7 +110,7 @@ namespace android
 
       // oswindow State Functions
       //virtual bool IsWindowEnabled();
-      //virtual bool EnableWindow(bool bEnable = TRUE);
+      //virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * GetActiveWindow() override;
@@ -140,8 +140,8 @@ namespace android
       //i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //i32 GetWindowRgn(HRGN hRgn);
 
-      //using ::user::interaction_impl::set_window_pos;
-      //virtual bool set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
+      //using ::user::interaction_impl::set_window_position;
+      //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
       //virtual ::u32 ArrangeIconicWindows();
       //virtual void BringToTop(int nCmdShow);
       //virtual bool BringWindowToTop();
@@ -150,11 +150,11 @@ namespace android
       //using ::user::interaction_impl::get_client_rect;
       //virtual bool get_client_rect(RECT64 * lpRect);
 
-      //virtual bool _001ClientToScreen(LPRECT32 lprect);
+      //virtual bool _001ClientToScreen(RECTANGLE_I32 * lprect);
       //virtual bool _001ClientToScreen(POINT32 * lppoint);
       //virtual bool _001ClientToScreen(RECT64 * lprect);
       //virtual bool _001ClientToScreen(POINT64 * lppoint);
-      //virtual bool _001ScreenToClient(LPRECT32 lprect);
+      //virtual bool _001ScreenToClient(RECTANGLE_I32 * lprect);
       //virtual bool _001ScreenToClient(POINT32 * lppoint);
       //virtual bool _001ScreenToClient(RECT64 * lprect);
       //virtual bool _001ScreenToClient(POINT64 * lppoint);
@@ -163,18 +163,18 @@ namespace android
       //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
       //virtual void MapWindowPoints(::user::interaction * pwndTo,POINT32 * lpPoint,::u32 nCount);
-      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPRECT32 lpRect);
+      //virtual void MapWindowPoints(::user::interaction * pwndTo,RECTANGLE_I32 * lpRect);
 
       //virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
       //virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
 
       //virtual void UpdateWindow();
-      //virtual void SetRedraw(bool bRedraw = TRUE);
-      //virtual bool GetUpdateRect(LPRECT32 lpRect,bool bErase = FALSE);
-      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
-      //virtual void Invalidate(bool bErase = TRUE);
-      //virtual void InvalidateRect(LPCRECT32 lpRect,bool bErase = TRUE);
-      //virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
+      //virtual void SetRedraw(bool bRedraw = true);
+      //virtual bool GetUpdateRect(RECTANGLE_I32 * lpRect,bool bErase = false);
+      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
+      //virtual void Invalidate(bool bErase = true);
+      //virtual void InvalidateRect(LPCRECT32 lpRect,bool bErase = true);
+      //virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
       //virtual void ValidateRect(LPCRECT32 lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(i32 nCmdShow) override;
@@ -184,7 +184,7 @@ namespace android
       //virtual void _001WindowRestore();
       virtual bool _is_window() const override;
       virtual bool is_window_visible();
-      virtual void ShowOwnedPopups(bool bShow = TRUE) override;
+      virtual void ShowOwnedPopups(bool bShow = true) override;
 
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
@@ -242,14 +242,14 @@ namespace android
       virtual bool DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox) override;
       virtual bool DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox) override;
 
-      //virtual ::u32 GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = TRUE) const;
+      //virtual ::u32 GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = true) const;
       //virtual i32 GetChildByIdText(i32 nID, char * lpStr, i32 nMaxCount) const;
       //virtual i32 GetChildByIdText(i32 nID, string & rString) const;
-      //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-      //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
+      //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
+      //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
       virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
-      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = TRUE) override;
+      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true) override;
       virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
 
 
@@ -257,16 +257,16 @@ namespace android
       virtual i32 GetScrollPos(i32 nBar) const override;
       virtual void GetScrollRange(i32 nBar,LPINT lpMinPos,LPINT lpMaxPos) const override;
       virtual void ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT32 lpRect = nullptr, LPCRECT32 lpClipRect = nullptr) override;
-      virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = TRUE) override;
-      virtual void SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos, bool bRedraw = TRUE) override;
-      virtual void ShowScrollBar(::u32 nBar,bool bShow = TRUE) override;
-      virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = TRUE) override;
+      virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = true) override;
+      virtual void SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos, bool bRedraw = true) override;
+      virtual void ShowScrollBar(::u32 nBar,bool bShow = true) override;
+      virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true) override;
 
       virtual i32 ScrollWindowEx(i32 dx,i32 dy,
                                  LPCRECT32 lpRectScroll,LPCRECT32 lpRectClip,
-                                 ::draw2d::region* prgnUpdate,LPRECT32 lpRectUpdate,::u32 flags) override;
+                                 ::draw2d::region* prgnUpdate,RECTANGLE_I32 * lpRectUpdate,::u32 flags) override;
       //virtual bool SetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,
-      //   bool bRedraw = TRUE);
+      //   bool bRedraw = true);
       //virtual bool GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask = SIF_ALL);
       virtual i32 GetScrollLimit(i32 nBar) override;
 
@@ -324,7 +324,7 @@ namespace android
       //virtual void ShowCaret() override;
 
       // Shell Interaction Functions
-      virtual void DragAcceptFiles(bool bAccept = TRUE) override;
+      virtual void DragAcceptFiles(bool bAccept = true) override;
 
       // icon Functions
       //virtual HICON SetIcon(HICON hIcon,bool bBigIcon);
@@ -335,7 +335,7 @@ namespace android
       virtual u32 GetWindowContextHelpId() const override;
 
       // Dialog Data support
-      //virtual bool update_data(bool bSaveAndValidate = TRUE);
+      //virtual bool update_data(bool bSaveAndValidate = true);
       // data wnd must be same type as this
 
       // Help Command Handlers
@@ -353,8 +353,8 @@ namespace android
       void UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
-      virtual bool OnCommand(::message::base * pbase) override;
-      virtual bool OnNotify(::message::base * pbase) override;
+      virtual bool OnCommand(::user::message * pusermessage) override;
+      virtual bool OnNotify(::user::message * pusermessage) override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
@@ -481,8 +481,8 @@ namespace android
       // Win4 messages
       void OnStyleChanged(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
       void OnStyleChanging(i32 nStyleType,LPSTYLESTRUCT lpStyleStruct);
-      void OnSizing(::u32 nSide,LPRECT32 lpRect);
-      void OnMoving(::u32 nSide,LPRECT32 lpRect);
+      void OnSizing(::u32 nSide,RECTANGLE_I32 * lpRect);
+      void OnMoving(::u32 nSide,RECTANGLE_I32 * lpRect);
       void OnCaptureChanged(::user::interaction * pwindow);
       bool OnDeviceChange(::u32 nEventType,uptr dwData);
 
@@ -502,7 +502,7 @@ namespace android
 
 
       // for processing Windows messages
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
 
 
       // for handling default processing
@@ -512,10 +512,10 @@ namespace android
       virtual void PostNcDestroy() override;
 
       // for notifications from parent
-      //virtual bool OnChildNotify(::message::base * pbase);
-      // return TRUE if parent should not process this message
-      //virtual bool ReflectChildNotify(::message::base * pbase);
-      //static bool ReflectMessage(oswindow oswindow_Child,::message::base * pbase);
+      //virtual bool OnChildNotify(::user::message * pusermessage);
+      // return true if parent should not process this message
+      //virtual bool ReflectChildNotify(::user::message * pusermessage);
+      //static bool ReflectMessage(oswindow oswindow_Child,::user::message * pusermessage);
 
       // Implementation
       virtual bool CheckAutoCenter() override;
@@ -579,7 +579,7 @@ namespace android
 
       bool Attach(oswindow hWndNew);
       virtual oswindow Detach();
-      //virtual bool get_rect_normal(LPRECT32 lprect);
+      //virtual bool get_rect_normal(RECTANGLE_I32 * lprect);
       virtual oswindow UnsubclassWindow();
 //      virtual void register_drop_target();
 
@@ -589,7 +589,7 @@ namespace android
       virtual oswindow get_handle() const override;
 
       //virtual void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight, bool bRepaint);
-      //virtual void MoveWindow(LPCRECT32 lpRect, bool bRepaint = TRUE);
+      //virtual void MoveWindow(LPCRECT32 lpRect, bool bRepaint = true);
 
       virtual id SetDlgCtrlId(id id) override;
       virtual id GetDlgCtrlId();
@@ -599,9 +599,9 @@ namespace android
       virtual ::i32 SetWindowLong(i32 nIndex, ::i32 lValue);
 
 
-      virtual void SetFont(::draw2d::font* pfont, bool bRedraw);
+      virtual void SetFont(::write_text::font* pfont, bool bRedraw);
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
-      virtual ::draw2d::font* GetFont();
+      virtual ::write_text::font* GetFont();
 
 
 

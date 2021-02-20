@@ -196,7 +196,7 @@ typedef int wxCoord;
 //   
 //   // comparison
 //   bool operator==(const wxPoint& point) const { return x == point.x && y == point.y; }
-//   bool operator!=(const wxPoint& point) const { return !(*this == point_i32); }
+//   bool operator!=(const wxPoint& point) const { return !(*this == point); }
 //   
 //   // arithmetic operations (component wise)
 //   wxPoint operator+(const wxPoint& point) const { return wxPoint(x + point.x,y + point.y); }

@@ -71,7 +71,7 @@ namespace data
       }
 
 
-      sync_array get_synca();
+      synchronization_array get_synca();
 
 
    };

@@ -68,12 +68,12 @@ namespace draw2d_xlib
       //virtual void ReleaseAttribDC();     // Release the Attribute DC
       //virtual void ReleaseOutputDC();     // Release the Output DC
 
-      bool IsPrinting() const;            // TRUE if being used for printing
+      bool IsPrinting() const;            // true if being used for printing
 
       ::draw2d::pen_pointer     get_current_pen() const;
       ::draw2d::brush_pointer   get_current_brush() const;
       ::draw2d::palette_pointer get_current_palette() const;
-      ::draw2d::font_pointer    get_current_font() const;
+      ::write_text::font_pointer    get_current_font() const;
       ::draw2d::bitmap_pointer  get_current_bitmap() const;
 
 
@@ -100,7 +100,7 @@ namespace draw2d_xlib
       virtual bool RestoreDC(i32 nSavedDC);
       i32 GetDevicecaps(i32 nIndex) const;
       ::u32 SetBoundsRect(::rectangle_i32 rectBounds, ::u32 flags);
-      ::u32 GetBoundsRect(LPRECT32 rectBounds, ::u32 flags);
+      ::u32 GetBoundsRect(RECTANGLE_I32 * rectBounds, ::u32 flags);
 // xxx      bool ResetDC(const DEVMODE* lpDevMode);
 
       // Drawing-Tool Functions
@@ -115,7 +115,7 @@ namespace draw2d_xlib
       virtual ::draw2d::object* SelectStockObject(i32 nIndex);
       ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
       ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
-      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
+      virtual ::write_text::font* SelectObject(::write_text::font* pFont);
       ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
       i32 SelectObject(::draw2d::region* pRgn);       // special return for regions
       ::draw2d_xlib::object* SelectObject(::draw2d_xlib::object* pObject);
@@ -269,9 +269,9 @@ namespace draw2d_xlib
             bool DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, ::u32 nFlags,
                ::draw2d::brush* pBrush = nullptr);*/
 //      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
+//                     bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
 //      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
+//                     bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
 //xxx         LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
@@ -382,8 +382,8 @@ namespace draw2d_xlib
       ::u32 SetTextAlign(::u32 nFlags);
       i32 GetTextFace(i32 nCount, char * lpszFacename) const;
       i32 GetTextFace(string & rString) const;
-      bool get_text_metrics(::draw2d::text_metric * lpMetrics) const;
-      bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) const;
+      bool get_text_metrics(::write_text::text_metric * lpMetrics) const;
+      bool get_output_text_metrics(::write_text::text_metric * lpMetrics) const;
       i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount);
       i32 GetTextCharacterExtra() const;
       i32 SetTextCharacterExtra(i32 nCharExtra);
@@ -406,7 +406,7 @@ namespace draw2d_xlib
 
       // Scrolling Functions
       bool ScrollDC(i32 dx, i32 dy, rectangle_i32 lpRectScroll, const ::rectangle_i32 & rectClip,
-                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate);
+                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate);
 
       // font Functions
       bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const;
@@ -483,7 +483,7 @@ namespace draw2d_xlib
       void DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_i32 & size,
                         rectangle_i32 lpRectLast, const ::size_i32 & sizeLast,
                         ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
-      void FillSolidRect(const RECTANGLE_I64 * rectangle_i32, color32_t clr);
+      void FillSolidRect(const RECTANGLE_I64 * rectangle, color32_t clr);
       void FillSolidRect(const ::rectangle_i32 & rectangle, color32_t clr);
       void FillSolidRect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr);
       void Draw3dRect(const ::rectangle_i32 & rectangle, color32_t clrTopLeft, color32_t clrBottomRight);
@@ -502,7 +502,7 @@ namespace draw2d_xlib
 
       virtual void set_alpha_mode(::draw2d::enum_alpha_mode ealphamode);
 
-      virtual void set_text_rendering_hint(::draw2d::e_text_rendering_hint_hint etextrendering);
+      virtual void set_text_rendering_hint(::draw2d::::write_text::enum_rendering_hint etextrendering);
 
       virtual void * get_os_data() const;
 //      virtual HDC get_handle() const;
@@ -525,7 +525,7 @@ namespace draw2d_xlib
       bool set_os_color(color32_t cr);
       bool set(const ::draw2d::brush * pbrush);
       bool set(const ::draw2d::pen * ppen);
-      bool set(const ::draw2d::font * pfont);
+      bool set(const ::write_text::font * pfont);
       bool set(const ::draw2d::path * ppath);
       bool set(const ::draw2d::path::matter & e);
       bool set(const ::draw2d::path::arc & arc);

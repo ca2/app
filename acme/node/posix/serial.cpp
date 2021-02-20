@@ -23,7 +23,7 @@
 #include <sysexits.h>
 #include <termios.h>
 #include <sys/param.h>
-#include <pthread.h>
+#include "acme/os/ansios/_pthread.h"
 
 #if defined(__linux__)
 #include <unistd.h>
@@ -586,7 +586,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
       }
    }
 
-   while (bytes_read < size_i32)
+   while (bytes_read < size)
    {
       auto millisRemaining = millisStart.remaining(total_timeout_ms);
       if (millisRemaining <= 0)
@@ -596,17 +596,17 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
       }
       // Timeout for the next select is whichever is less of the remaining
       // total read timeout and the inter-byte timeout.
-      auto timeout = min(millisRemaining, m_timeout.m_millisInterByteTimeout);
+      auto timeout = minimum(millisRemaining, m_timeout.m_millisInterByteTimeout);
       // Wait for the device to be readable, and then attempt to read.
       if (waitReadable(timeout))
       {
          // If it's a fixed-length multi-byte read, insert a wait here so that
          // we can attempt to grab the whole thing in a single IO call. Skip
-         // this wait if a non-max inter_byte_timeout is specified.
-         if (size > 1 && m_timeout.m_millisInterByteTimeout == Timeout::max())
+         // this wait if a non-maximum inter_byte_timeout is specified.
+         if (size > 1 && m_timeout.m_millisInterByteTimeout == Timeout::maximum())
          {
             size_t bytes_available = available();
-            if (bytes_available + bytes_read < size_i32)
+            if (bytes_available + bytes_read < size)
             {
                waitByteTimes(size - (bytes_available + bytes_read));
             }
@@ -626,18 +626,18 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          }
          // Update bytes_read
          bytes_read += static_cast<size_t> (bytes_read_now);
-         // If bytes_read == size_i32 then we have read everything we need
-         if (bytes_read == size_i32)
+         // If bytes_read == size then we have read everything we need
+         if (bytes_read == size)
          {
             break;
          }
-         // If bytes_read < size_i32 then we have more to read
-         if (bytes_read < size_i32)
+         // If bytes_read < size then we have more to read
+         if (bytes_read < size)
          {
             continue;
          }
-         // If bytes_read > size_i32 then we have over read, which shouldn't happen
-         if (bytes_read > size_i32)
+         // If bytes_read > size then we have over read, which shouldn't happen
+         if (bytes_read > size)
          {
             __throw( SerialException("read over read, too many bytes where "
                "read, this shouldn't happen, might be "
@@ -725,17 +725,17 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
             }
             // Update bytes_written
             bytes_written += static_cast<size_t> (bytes_written_now);
-            // If bytes_written == size_i32 then we have written everything we need to
+            // If bytes_written == size then we have written everything we need to
             if (bytes_written == length)
             {
                break;
             }
-            // If bytes_written < size_i32 then we have more to write
+            // If bytes_written < size then we have more to write
             if (bytes_written < length)
             {
                continue;
             }
-            // If bytes_written > size_i32 then we have over written, which shouldn't happen
+            // If bytes_written > size then we have over written, which shouldn't happen
             if (bytes_written > length)
             {
                __throw( SerialException("write over wrote, too many bytes where "

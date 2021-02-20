@@ -26,7 +26,7 @@ namespace file
       
       m_stream = nullptr;
       
-      m_pwatcher->m_pthread->send_pred([&]()
+      m_pwatcher->m_pthread->send_predicate([&]()
       {
 
          CFStringRef mypath = CFStringCreateWithCString(kCFAllocatorDefault, pathFolder, kCFStringEncodingUTF8);
@@ -197,7 +197,7 @@ namespace file
       bool done = false;
       
       // Start the run loop but return after each source is handled.
-      SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, TRUE);
+      SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, true);
       
       // If a source explicitly stopped the run loop, or if there are no
       // sources or timers, go ahead and exit.

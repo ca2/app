@@ -2092,7 +2092,7 @@ namespace user
 
       m_iLineCount = (::count) ceil((double)rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -2544,7 +2544,7 @@ namespace user
 
       m_iLineCount = (::count) ceil((double) rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 

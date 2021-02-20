@@ -153,7 +153,7 @@ int safe_get_any_char(const ::duration & duration)
 
       millisStart.Now();
 
-      iSafeChar = getch();
+      iSafeChar = getche();
 
    } while (millisStart.elapsed() < duration);
 

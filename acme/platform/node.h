@@ -165,8 +165,6 @@ namespace acme
 
 
 
-      virtual ::e_status get_system_time(system_time_t * psystemtime);
-
       virtual double get_time_zone();
 
       virtual ::e_status get_system_time(system_time_t * psystemtime);

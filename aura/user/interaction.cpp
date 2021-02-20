@@ -14083,6 +14083,28 @@ restart:
    }
 
 
+   bool interaction::is_window_enabled() const
+   {
+
+      auto pparent = get_parent();
+
+      if (::is_set(pparent))
+      {
+
+         if (!pparent->is_window_enabled())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return is_this_window_enabled();
+
+   }
+
+
    void interaction::_001OnLButtonDown(::message::message* pmessage)
    {
 
@@ -14161,27 +14183,6 @@ restart:
 
    }
 
-
-   bool interaction::is_window_enabled() const
-   {
-      
-      auto pparent = get_parent();
-
-      if (::is_set(pparent))
-      {
-
-         if (!pparent->is_window_enabled())
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return is_this_window_enabled();
-
-   }
 
 
    void interaction::_001OnLButtonUp(::message::message* pmessage)

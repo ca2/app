@@ -89,7 +89,7 @@ namespace user
    }
 
 
-   bool frame::_001Restore()
+   /*bool frame::_001Restore()
    {
 
       if (layout().sketch().display() == e_display_default)
@@ -111,7 +111,7 @@ namespace user
 
       return true;
 
-   }
+   }*/
 
 
 } // namespace user

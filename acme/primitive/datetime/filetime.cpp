@@ -174,7 +174,7 @@ namespace acme
 
       auto pnode = System.node();
 
-      pnode->get_system_time_as_file_time(&filetime);
+      pnode->get_system_time_as_file_time(&filetime.m_filetime);
 
       return filetime;
 

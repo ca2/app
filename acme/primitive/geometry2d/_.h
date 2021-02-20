@@ -538,6 +538,30 @@ RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 }
 
 
+template < XY_point POINT1, primitive_point POINT2 >
+POINT1 * copy(POINT1 * ppoint1, const POINT2 * ppoint2)
+{
+
+   ppoint1->X = (decltype(POINT1::X))ppoint2->x;
+   ppoint1->Y = (decltype(POINT1::Y))ppoint2->y;
+
+   return ppoint1;
+
+}
+
+
+template < primitive_point POINT1, XY_point POINT2 >
+POINT1 * copy(POINT1 * ppoint1, const POINT2 * ppoint2)
+{
+
+   ppoint1->x = (decltype(POINT1::x))ppoint2->X;
+   ppoint1->y = (decltype(POINT1::y))ppoint2->Y;
+
+
+   return ppoint1;
+}
+
+
 template < XYDim_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 {

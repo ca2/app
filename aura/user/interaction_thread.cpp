@@ -255,6 +255,15 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      m_pwindowing = pwindowing;
+
+
          if (!m_pimpl->native_create_host())
          {
 
@@ -477,42 +486,51 @@ namespace user
          if(oswindow)
          {
 
-            auto pimpl = oswindow->m_pimpl;
+            auto pwindow = m_pwindowing->window(oswindow);
 
-            if(pimpl)
+            if (pwindow)
             {
 
-               auto puserinteraction = pimpl->m_puserinteraction;
+               auto pimpl = pwindow->m_pimpl;
 
-               if(puserinteraction)
+               if (pimpl)
                {
 
-                  if (msg.m_id == ::e_message_redraw)
+                  auto puserinteraction = pimpl->m_puserinteraction;
+
+                  if (puserinteraction)
                   {
 
-                     string strType = ::str::demangle(puserinteraction->type_name());
-
-                     if (strType.contains_ci("filemanager"))
+                     if (msg.m_id == ::e_message_redraw)
                      {
 
-                        //INFO("filemanager");
+                        string strType = ::str::demangle(puserinteraction->type_name());
+
+                        if (strType.contains_ci("filemanager"))
+                        {
+
+                           //INFO("filemanager");
+
+                        }
+
+                        puserinteraction->prodevian_redraw(msg.wParam & 1);
+
+                        return true;
 
                      }
-
-                     puserinteraction->prodevian_redraw(msg.wParam & 1);
-
-                     return true;
-
-                  }
-                  else
-                  {
-
-                     auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
-
-                     if (pmessage)
+                     else
                      {
 
-                        puserinteraction->message_handler(pmessage);
+                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
+
+                        if (pmessage)
+                        {
+
+                           pwindow->message_handler(pmessage);
+
+                           return ::success;
+
+                        }
 
                      }
 

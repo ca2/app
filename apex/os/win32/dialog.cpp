@@ -28,7 +28,7 @@ namespace win32
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(::status_exception(estatus));
 
       }
 

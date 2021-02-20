@@ -1264,7 +1264,7 @@ void thread::kick_idle()
 
 #ifdef WINDOWS_DESKTOP
 
-         ::PostThreadMessage(m_ithread, WM_KICKIDLE, 0, 0);
+         ::PostThreadMessage((DWORD) m_ithread, WM_KICKIDLE, 0, 0);
 
 #else
 
@@ -2926,7 +2926,7 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage(m_ithread, id.umessage(), wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessage((DWORD) m_ithread, id.umessage(), wparam, lparam) != false;
 
       if (!bOk)
       {

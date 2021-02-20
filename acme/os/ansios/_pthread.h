@@ -4,12 +4,9 @@
 #pragma once
 
 
-<<<<<<< HEAD
 #ifdef PARALLELIZATION_PTHREAD
 
 
-=======
->>>>>>> origin/basis
 #undef __restore
 
 
@@ -49,10 +46,7 @@ using HSYNC = synchronization_object *;
 void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
 
 
-<<<<<<< HEAD
 #endif
 
 
-=======
->>>>>>> origin/basis
 

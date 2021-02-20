@@ -3,7 +3,7 @@
 
 
 static HANDLE g_hMainThread = nullptr;
-static ::u32 g_iMainThread = -1;
+static ithread_t g_iMainThread = -1;
 
 void set_main_hthread(hthread_t hthread)
 {
@@ -57,7 +57,7 @@ void attach_thread_input_to_main_thread(bool bAttach)
 
    }
 
-   AttachThreadInput(::GetCurrentThreadId(),get_main_ithread(),bAttach ? true : false);
+   AttachThreadInput(::GetCurrentThreadId(), (DWORD) get_main_ithread(),bAttach ? true : false);
 
 }
 

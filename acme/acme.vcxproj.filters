@@ -3766,7 +3766,7 @@
     <ClCompile Include="primitive\promise_predicate\predicate_holder.cpp">
       <Filter>Source Files\primitive\promise_predicate</Filter>
     </ClCompile>
-    <ClCompile Include="process\wchar_main.cpp">
+    <ClCompile Include="process\main.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
   </ItemGroup>

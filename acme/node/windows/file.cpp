@@ -594,10 +594,12 @@ namespace windows
 
          }
 
+         auto pnode = System.node();
+
          // convert times as appropriate
-         rStatus.m_ctime = __time(information.ftCreationTime);
-         rStatus.m_atime = __time(information.ftLastAccessTime);
-         rStatus.m_mtime = __time(information.ftLastWriteTime);
+         pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *) &information.ftCreationTime);
+         pnode->file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *) &information.ftLastAccessTime);
+         pnode->file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *) &information.ftLastWriteTime);
 
          if (rStatus.m_ctime.get_time() == 0)
          {

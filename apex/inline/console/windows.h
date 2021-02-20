@@ -1,6 +1,7 @@
 
 
-CLASS_DECL_APEX string executable_get_app_id(HINSTANCE hinstance);
+CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
+CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);
 
 
 class console
@@ -8,16 +9,14 @@ class console
 public:
 
 
-   ::e_status                     m_estatus;
-   __pointer(::apex::system)     m_psystem;
+   ::e_status                       m_estatus;
+   __pointer(::apex::system)        m_psystem;
 
 
    void create_system()
    {
 
       apex_ref();
-
-      HINSTANCE hinstance = ::GetModuleHandle(NULL);
 
       string strAppId;
 
@@ -27,16 +26,18 @@ public:
 
 #else
 
+      auto hinstance = get_module_handle(NULL);
+
       strAppId = executable_get_app_id(hinstance);
 
-#endif;
+#endif
 
       auto psystem = platform_create_system(strAppId);
 
       if (!psystem)
       {
 
-         __throw(resource_exception);
+         __throw(resource_exception());
 
       }
 
@@ -45,7 +46,7 @@ public:
       if (!papplicationStartup)
       {
 
-         __throw(resource_exception);
+         __throw(resource_exception());
 
       }
 
@@ -66,8 +67,6 @@ public:
    {
 
       create_system();
-
-      application_common(m_psystem);
 
    }
 

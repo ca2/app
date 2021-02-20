@@ -153,7 +153,10 @@ inline filetime_set get_filetime_set(const char * psz)
 }
 
 
-CLASS_DECL_ACME filetime __filetime(const ::datetime::time & time);
+//CLASS_DECL_ACME filetime __filetime(const ::datetime::time & time);
+
+
+//time_t __time(const filetime & filetime);
 
 
 

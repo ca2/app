@@ -1669,8 +1669,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\promise_predicate\predicate_holder.cpp" />
     <ClCompile Include="process\bidirectional_pipe.cpp" />
     <ClCompile Include="process\exit_status.cpp" />
+    <ClCompile Include="process\main.cpp" />
     <ClCompile Include="process\pipe.cpp" />
-    <ClCompile Include="process\wchar_main.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
     <ClCompile Include="_.cpp" />

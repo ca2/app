@@ -7,6 +7,8 @@
 #include "top_level_enum.h"
 
 
+#include "acme/os/_user.h"
+
 
 #ifdef WINDOWS_DESKTOP
 CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo);
@@ -55,14 +57,14 @@ inline void copy(CREATESTRUCTW * pcreatestructw, const ::user::create_struct * p
 
 
 
-struct SIZEPARENTPARAMS
-{
-
-   RECTANGLE_I32  rectangle;       // parent client rectangle_i32 (trim as appropriate)
-   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
-   bool  bStretch;   // should stretch to fill all space
-
-};
+//struct SIZEPARENTPARAMS
+//{
+//
+//   RECTANGLE_I32  rectangle;       // parent client rectangle_i32 (trim as appropriate)
+//   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
+//   bool  bStretch;   // should stretch to fill all space
+//
+//};
 namespace user
 {
 

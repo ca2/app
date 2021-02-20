@@ -43,14 +43,14 @@ namespace windows
    }
 
 
-   bool shell_launcher::succeeded()
-   {
+   //bool shell_launcher::succeeded()
+   //{
 
-      //return ((iptr)m_h) >= 32;
+   //   //return ((iptr)m_h) >= 32;
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 } // namespace windows

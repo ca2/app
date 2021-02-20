@@ -120,9 +120,9 @@ namespace datetime
    time::time(const filetime & filetime)
    {
 
-      auto pnode = Node;
+      auto pnode = System.node();
 
-      m_time = pnode->file_time_to_time(filetime);
+      pnode->file_time_to_time(&m_time, &filetime.m_filetime);
 
    }
 
@@ -753,31 +753,35 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 }
 
 
-filetime __filetime(const ::datetime::time & time)
-{
-
-   SYSTEMTIME systemtime = __systemtime(time);
-
-   filetime filetime = {};
-
-   if (!SystemTimeToFileTime(&systemtime, (FILETIME *) &filetime))
-   {
-
-#ifdef WINDOWS
-
-      DWORD dwLastError = ::GetLastError();
-
-#endif
-
-      //TRACELASTERROR();
-
-      __zero(filetime);
-
-   }
-
-   return filetime;
-
-}
+//filetime __filetime(const ::datetime::time & time)
+//{
+//
+//   auto pnode = System.node();
+//
+//   SYSTEMTIME systemtime;
+//
+//   pnode->system_time_to_time(__systemtime();
+//
+//   filetime filetime = {};
+//
+//   if (!SystemTimeToFileTime(&systemtime, (FILETIME *) &filetime))
+//   {
+//
+//#ifdef WINDOWS
+//
+//      DWORD dwLastError = ::GetLastError();
+//
+//#endif
+//
+//      //TRACELASTERROR();
+//
+//      __zero(filetime);
+//
+//   }
+//
+//   return filetime;
+//
+//}
 
 
 FILETIME __FILETIME(const ::datetime::time & time)

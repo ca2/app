@@ -212,9 +212,14 @@ namespace windows
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = __time(m_pFoundInfo->ftLastAccessTime);
+
+         auto pnode = System.node();
+
+         pnode->file_time_to_time(&refTime.m_time,(filetime_t*)&m_pFoundInfo->ftLastAccessTime);
+
          return true;
-      }
+
+      }  
       else
          return false;
 
@@ -227,28 +232,42 @@ namespace windows
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
-      if (m_pFoundInfo != nullptr)
+      if (::is_null(m_pFoundInfo))
       {
-         refTime = __time(m_pFoundInfo->ftLastWriteTime);
-         return true;
-      }
-      else
+
          return false;
+
+      }
+       
+      auto pnode = System.node();
+
+      pnode->file_time_to_time(&refTime.m_time, (filetime_t *)&m_pFoundInfo->ftLastWriteTime);
+
+      return true;
 
    }
 
+
    bool file_find::GetCreationTime(::datetime::time& refTime) const
    {
+
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
-      if (m_pFoundInfo != nullptr)
+
+      if (::is_null(m_pFoundInfo))
       {
-         refTime = __time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
-         return true;
-      }
-      else
+
          return false;
+
+      }
+         
+      auto pnode = System.node();
+
+      pnode->file_time_to_time(&refTime.m_time , (filetime_t *)&((LPWIN32_FIND_DATAW)m_pFoundInfo)->ftCreationTime);
+      
+      return true;
+      
    }
 
 

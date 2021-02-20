@@ -583,9 +583,11 @@ namespace interprocess_communication
 
          //}
 
-         if (!m_ptx::open(strChannelTx.c_str(), plauncher))
+         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
          {
+            
             return false;
+
          }
 
          return true;

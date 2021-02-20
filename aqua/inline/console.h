@@ -37,7 +37,9 @@
 #if defined(WINDOWS)
 
 
-#include "aqua/library.h"
+//#include "aqua/library.h"
+
+#include "acme/asset/new.cpp"
 
 
 #endif

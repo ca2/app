@@ -8,16 +8,16 @@ class single_lock;
 
 
 
-#ifdef WINDOWS
-
-typedef u32 ithread_t;
-typedef ::u32 thread_data_index;
-
-#else
-
-using thread_data_index = ::u32;
-
-#endif
+//#ifdef WINDOWS
+//
+//typedef u32 ithread_t;
+//typedef ::u32 thread_data_index;
+//
+//#else
+//
+//using thread_data_index = ::u32;
+//
+//#endif
 
 
 

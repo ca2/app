@@ -1126,7 +1126,7 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order()
 int g_iProcessStatus = 0;
 
 
-int process_get_status()
+CLASS_DECL_ACME int process_get_status()
 {
 
    return g_iProcessStatus;
@@ -1134,7 +1134,7 @@ int process_get_status()
 }
 
 
-void process_set_status(int iStatus)
+CLASS_DECL_ACME void process_set_status(int iStatus)
 {
 
    g_iProcessStatus = iStatus;
@@ -1148,7 +1148,7 @@ int g_argc = 0;
 platform_char ** g_argv = nullptr;
 
 
-void process_set_args(int argc, platform_char ** argv)
+CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv)
 {
 
    g_argc = argc;
@@ -1158,7 +1158,7 @@ void process_set_args(int argc, platform_char ** argv)
 }
 
 
-int * process_get_pargc()
+CLASS_DECL_ACME int * process_get_pargc()
 {
 
    return &g_argc;
@@ -1166,7 +1166,7 @@ int * process_get_pargc()
 }
 
 
-int process_get_argc()
+CLASS_DECL_ACME int process_get_argc()
 {
 
    return *process_get_pargc();
@@ -1174,7 +1174,7 @@ int process_get_argc()
 }
 
 
-platform_char *** process_get_pargv()
+CLASS_DECL_ACME platform_char *** process_get_pargv()
 {
 
    return &g_argv;
@@ -1182,7 +1182,7 @@ platform_char *** process_get_pargv()
 }
 
 
-platform_char ** process_get_argv()
+CLASS_DECL_ACME platform_char ** process_get_argv()
 {
 
    return *process_get_pargv();

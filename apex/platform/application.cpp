@@ -3936,7 +3936,7 @@ retry_license:
       if (bSetOk)
       {
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() ADD_PARAM_SEC_ATTRS);
+         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
          if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
          {
@@ -3966,7 +3966,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
          {
 
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() ADD_PARAM_SEC_ATTRS);
+            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
             if (bGlobalIdExclusiveFail)
             {
@@ -3995,7 +3995,7 @@ retry_license:
 
          }
 
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  ADD_PARAM_SEC_ATTRS);
+         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
          if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
          {
@@ -4025,7 +4025,7 @@ retry_license:
          if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
          {
 
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() ADD_PARAM_SEC_ATTRS);
+            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
             if (bLocalIdExclusiveFail)
             {

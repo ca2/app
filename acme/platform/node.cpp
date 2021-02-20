@@ -479,50 +479,6 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time_as_file_time(filetime * pfiletime)
-   {
-
-      system_time_t systemtime;
-
-      auto estatus = get_system_time(&systemtime);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = system_time_to_file_time(pfiletime, &systemtime);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
-   ::e_status node::system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime)
-   {
-
-      return ::error_interface_only;
-
-   }
-
-
-   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime)
-   {
-
-      return ::error_interface_only;
-
-   }
-
-
    double node::get_time_zone()
    {
 
@@ -541,7 +497,7 @@ namespace acme
    }
 
 
-   ::e_status node::file_time_to_local_file_time(filetime*, filetime const*)
+   ::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
    {
 
       __throw(interface_only_exception());
@@ -557,6 +513,46 @@ namespace acme
       __throw(interface_only_exception());
      
       return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   {
+
+      return error_interface_only;
 
    }
 

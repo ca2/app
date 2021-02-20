@@ -1,7 +1,12 @@
 #include "framework.h"
 #include "acme/os/console.h"
 #include <stdio.h>
-
+#ifdef WINDOWS
+#include <conio.h>
+#endif
+#ifdef LINUX
+#include <ncurses.h>
+#endif
 
 
 
@@ -136,6 +141,27 @@ void press_any_key_to_exit(const char * pszPrompt)
 
 }
 
+int safe_get_any_char(const ::duration & duration)
+{
+
+   int iSafeChar = EOF;
+
+   ::millis millisStart;
+
+   do
+   {
+
+      millisStart.Now();
+
+      iSafeChar = getch();
+
+   } while (millisStart.elapsed() < duration);
+
+   return iSafeChar;
+
+
+}
+
 int safe_get_char(FILE * pfile, const ::duration & duration)
 {
 
@@ -222,7 +248,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    else
    {
 
-      strLine += " : (OK) ";
+      strLine += " : (Press any key to continue) ";
 
    }
 
@@ -245,38 +271,32 @@ repeat:
 
    }
 
-   int c = safe_get_char(stdin, 100_ms);
-
-   c = ::ansi_tolower(c);
+   const char * pszAcceptedAnswer = "";
 
    if (etype == e_message_box_yes_no_cancel)
    {
 
-      bAnswer = ::ansi_chr("ync", c) != nullptr;
+      pszAcceptedAnswer = "ync";
 
    }
    else if (etype == e_message_box_yes_no)
    {
 
-      bAnswer = ::ansi_chr("yn", c) != nullptr;
-
-   }
-   else
-   {
-
-      bAnswer = true;
+      pszAcceptedAnswer = "yn";
 
    }
 
-   if (!bAnswer)
+   if (ansi_len(pszAcceptedAnswer) > 0)
    {
 
-      goto repeat;
+      int c = safe_get_char(stdin, 100_ms);
 
-   }
+      c = ::ansi_tolower(c);
 
-   switch (c)
-   {
+      bAnswer = ::ansi_chr(pszAcceptedAnswer, c) != nullptr;
+
+      switch (c)
+      {
       case 'y':
          edialogresult = e_dialog_result_yes;
          break;
@@ -289,7 +309,27 @@ repeat:
       default:
          break;
 
+      }
    }
+   else
+   {
+
+      int iSafeChar = safe_get_any_char(100_ms);
+
+      bAnswer = true;
+
+      edialogresult = e_dialog_result_ok;
+
+   }
+
+   if (!bAnswer)
+   {
+
+      goto repeat;
+
+   }
+
+
 
    return edialogresult;
 

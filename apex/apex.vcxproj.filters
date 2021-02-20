@@ -2137,12 +2137,6 @@
     <ClCompile Include="parallelization\handler.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\retry_multi_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\retry_single_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\service_base.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>

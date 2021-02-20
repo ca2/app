@@ -172,7 +172,7 @@ namespace acme
 
       filetime filetime;
 
-      auto pnode = Node;
+      auto pnode = System.node();
 
       pnode->get_system_time_as_file_time(&filetime);
 
@@ -184,12 +184,14 @@ namespace acme
 
 
 
-   ::e_status node::is_valid_filetime(const filetime & filetime)
+   ::e_status node::is_valid_filetime(const filetime_t * pfiletime)
    {
 
       ::filetime localtime;
 
-      if (!file_time_to_local_file_time(&localtime, &filetime))
+      auto estatus = file_time_to_local_file_time(&localtime.m_filetime, pfiletime);
+
+      if(!estatus)
       {
 
          return error_failed;
@@ -199,33 +201,44 @@ namespace acme
       // then convert that time to system time
       system_time systemtime;
 
-      if (!file_time_to_system_time(&systemtime,  &localtime))
+      estatus = file_time_to_system_time(&systemtime, &localtime.m_filetime);
+
+      if(!estatus)
       {
 
-         return error_failed;
+         return estatus;
 
       }
 
-      return success;
+      return estatus;
 
    }
 
 
-   time_t node::file_time_to_time(const filetime & filetime, i32 nDST)
+   ::e_status node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
    {
 
       system_time_t systemtime;
 
-      if (!file_time_to_system_time(&systemtime, &filetime))
+      auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+
+      if(!estatus)
       {
 
-         __throw(invalid_argument_exception());
-
-         return 0;
+         return estatus;
 
       }
 
-      return system_time_to_time(systemtime);
+      estatus = system_time_to_time(ptime, &systemtime);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -280,7 +293,13 @@ bool get_filetime_set(const char * psz, filetime & filetimeCreation, filetime & 
 CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const ::datetime::time& time)
 {
 
-   return set_modified_filetime(psz, __filetime(time));
+   auto pnode = System.node();
+
+   ::filetime filetime;
+
+   pnode->time_to_file_time(&filetime.m_filetime, &time.m_time);
+
+   return set_modified_filetime(psz, filetime);
 
 }
 
@@ -384,7 +403,7 @@ void copy(payload * ppayload, const filetime * pfiletime)
 bool filetime_set::modified_timeout(int iSeconds) const
 {
 
-   auto pnode = Node;
+   auto pnode = System.node();
 
    auto filetimeNow = pnode->get_filetime_now();
 

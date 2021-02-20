@@ -487,10 +487,12 @@ namespace windows
       ASSERT(findFileData.nFileSizeHigh == 0);
       rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
+      auto pnode = System.node();
+
       // convert times as appropriate
-      rStatus.m_ctime = __time(findFileData.ftCreationTime);
-      rStatus.m_atime = __time(findFileData.ftLastAccessTime);
-      rStatus.m_mtime = __time(findFileData.ftLastWriteTime);
+      pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *)&findFileData.ftCreationTime);
+      pnode->file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *)&findFileData.ftLastAccessTime);
+      pnode->file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *)&findFileData.ftLastWriteTime);
 
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;

@@ -35,6 +35,14 @@ namespace acme
    }
 
 
+   ::enum_operating_system system::get_operating_system() const
+   {
+
+      return ::e_operating_system_windows;
+
+   }
+
+
    ::user::enum_desktop system::calc_edesktop()
    {
 

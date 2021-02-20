@@ -39,9 +39,10 @@
 #define SUCCESS_STATUS(iStatusRange) ((::e_status    )INT_SUCCESS_STATUS(iStatusRange))
 
 
-enum enum_status
+enum enum_status : ::i64
 {
 
+   e_status_process_result_negative_base = -0x100000000,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_pending,
@@ -221,6 +222,7 @@ enum enum_status
 
 #include "status_range_authentication.h"
 
+   e_status_process_result_positive_base = 0x100000000, 
 
 };
 

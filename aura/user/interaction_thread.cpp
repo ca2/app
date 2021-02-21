@@ -532,21 +532,26 @@ namespace user
                         return true;
 
                      }
+
+#if !defined(WINDOWS_DESKTOP)
+
                      else
                      {
 
-                        //auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
+                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
 
-                        //if (pmessage)
-                        //{
+                        if (pmessage)
+                        {
 
-                          // pwindow->message_handler(pmessage);
+                           pwindow->message_handler(pmessage);
 
-                           //return ::success;
+                           return ::success;
 
-                        //}
+                        }
 
                      }
+
+#endif
 
                   }
 

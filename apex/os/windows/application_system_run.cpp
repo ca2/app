@@ -6,10 +6,10 @@ namespace apex
 {
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
    {
 
-      auto estatus = ::acme::system::os_application_system_run();
+      auto estatus = ::acme::system::start();
 
       if (!estatus)
       {

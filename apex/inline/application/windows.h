@@ -46,7 +46,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    psystem->set_current_handles();
 
-   ::e_status estatus = psystem->run_system();
+   ::e_status estatus = psystem->start();
 
    ::i32 iErrorStatus = estatus.error_status();
 

@@ -46,16 +46,16 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
+   ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
 
 #elif defined(_UWP)
 
-   void system_construct(Array < String^ >^ refstra);
+   ::e_status system_construct(Array < String^ >^ refstra);
 
 #else
 
-   void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
-   void system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
+   ::e_status system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
+   ::e_status system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
 
 #endif
 

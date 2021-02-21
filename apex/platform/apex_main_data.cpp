@@ -141,7 +141,7 @@ e_status apex_main_data::on_system_construct()
 #ifdef WINDOWS_DESKTOP
 
 
-void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
+::e_status apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
 {
 
    m_hinstance = hinstanceThis;
@@ -165,6 +165,18 @@ void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevIn
    m_wargv = __wargv;
 
    //__zero(m_mainrunnera);
+
+   auto estatus = on_system_construct();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
 
 }
 

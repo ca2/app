@@ -9,10 +9,10 @@ namespace acme
 {
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
    {
 
-      auto estatus = do_task();
+      auto estatus = on_start();
 
       if (!estatus)
       {
@@ -26,7 +26,12 @@ namespace acme
    }
 
 
+   ::e_status system::on_start()
+   {
 
+      return ::success;
+
+   }
 
    void system::os_construct()
    {

@@ -4527,10 +4527,15 @@ retry_license:
       if (bSynch)
       {
 
-         if (!begin_synch())
+         if (m_hthread == nullptr)
          {
 
-            return false;
+            if (!begin_synch())
+            {
+
+               return false;
+
+            }
 
          }
 

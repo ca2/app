@@ -21,8 +21,6 @@ namespace aura
 
       bool m_bAvoidFirstResponder;
 
-      //__pointer(::aura::application)                     m_papplicationStartup;
-
       //__composite(::aura::system)                        m_psystemParent;
 
       // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;

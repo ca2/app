@@ -44,10 +44,17 @@ namespace aura
    }
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
    {
 
-      auto estatus = ::aqua::system::os_application_system_run();
+      if (m_pnode)
+      {
+
+         return m_pnode->start();
+
+      }
+
+      auto estatus = ::aqua::system::start();
 
       if (!estatus)
       {

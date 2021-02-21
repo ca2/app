@@ -439,7 +439,7 @@ public:
    virtual ::e_status osthread_term() override;
 
 
-   virtual bool begin_thread(
+   virtual e_status begin_thread(
    bool bSynchInitialization = false,
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
@@ -447,13 +447,13 @@ public:
 
 
 
-   virtual bool begin(
+   virtual ::e_status begin(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
-   virtual bool begin_synch(
+   virtual ::e_status begin_synch(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);

@@ -2195,7 +2195,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    clear_finish_bit();
@@ -2291,7 +2291,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
       dec_ref(OBJ_REF_DBG_THIS);
 
-      return false;
+      return estatus;
 
    }
 
@@ -2325,44 +2325,48 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
          }
 
-         return false;
+         return estatus;
 
       }
 
    }
 
-   return true;
+   return ::success;
 
 }
 
 
 
-bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::e_status thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(false, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS))
+   auto estatus = begin_thread(false, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+
+   if(!estatus)
    {
 
-      return false;
+      return estatus;
 
    }
 
-   return true;
+   return estatus;
 
 }
 
 
-bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::e_status thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS))
+   auto estatus = begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+
+   if(!estatus)
    {
 
-      return false;
+      return estatus;
 
    }
 
-   return true;
+   return estatus;
 
 }
 

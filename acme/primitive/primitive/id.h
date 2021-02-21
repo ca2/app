@@ -8,10 +8,17 @@
 enum e_id : ::u64;
 
 
+template <typename T>
+int sgn(T val)
+{
+   return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
+}
+
+
 // Lets (AMajor.AMinor) (BMajor.BMinor)
 // compare_square(AMajor - BMajor, AMinor - BMinor)
 #define __COMPARE_SQUARE(MAJOR_COMPARISON, MINOR_COMPARISON) \
-((MAJOR_COMPARISON) != 0 ? (MAJOR_COMPARISON) : (MINOR_COMPARISON))
+((MAJOR_COMPARISON) != 0 ? ::sgn(MAJOR_COMPARISON) : ::sgn(MINOR_COMPARISON))
 
 
 struct id_all
@@ -675,25 +682,25 @@ inline void id::raw_set(const char * psz)
 inline string id::str() const
 {
 
-   if((m_etype & 63) == e_type_null)
+   if(m_etype == e_type_null)
    {
 
       return "(null)";
 
    }
-   else if((m_etype & 63) == e_type_empty)
+   else if(m_etype == e_type_empty)
    {
 
       return "(empty)";
 
    }
-   else if((m_etype & 63) == e_type_text)
+   else if(is_text())
    {
 
       return m_psz;
 
    }
-   else if((m_etype & 63) == e_type_integer)
+   else if(is_integer())
    {
 
       return __str(m_i);

@@ -1912,7 +1912,7 @@ namespace apex
    ::e_status system::on_start()
    {
 
-      auto papp = System.m_papplicationStartup;
+      auto papp = m_papplicationStartup;
 
       auto pcreate = papp->__create_new< ::create> ();
 

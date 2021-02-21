@@ -17,7 +17,7 @@ namespace filemanager
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_view::_001OnTimer);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_view::on_message_create);
    }
 
 
@@ -84,7 +84,7 @@ namespace filemanager
 
 
 
-   void operation_list_view::_001OnCreate(::message::message * pmessage)
+   void operation_list_view::on_message_create(::message::message * pmessage)
    {
       pmessage->previous();
       SetTimer(123,500,nullptr);

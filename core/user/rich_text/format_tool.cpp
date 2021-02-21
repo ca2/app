@@ -45,12 +45,12 @@ namespace user
 
       ::user::tool_window::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &format_tool::_001OnCreate);
+      MESSAGE_LINK(e_message_create, psender, this, &format_tool::on_message_create);
 
    }
 
 
-   void format_tool::_001OnCreate(::message::message * pmessage)
+   void format_tool::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

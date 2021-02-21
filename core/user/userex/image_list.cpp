@@ -209,16 +209,16 @@ namespace userex
 
       ::user::image_list_view::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
-//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::_001OnLButtonDown);
+//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::on_message_left_button_down);
       //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::_001OnMouseMove);
       //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::_001OnMouseLeave);
 
    }
 
 
-   //void image_list_view::_001OnLButtonDown(::message::message * pmessage)
+   //void image_list_view::on_message_left_button_down(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -294,7 +294,7 @@ namespace userex
    //}
 
 
-   void image_list_view::_001OnCreate(::message::message * pmessage)
+   void image_list_view::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

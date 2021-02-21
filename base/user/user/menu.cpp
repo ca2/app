@@ -76,7 +76,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::_001OnDestroy);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &menu::_001OnNcActivate);
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::_001OnNcCalcSize);
@@ -866,7 +866,7 @@ namespace user
 
 
 
-   void menu::_001OnLButtonDown(::message::message * pmessage)
+   void menu::on_message_left_button_down(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1163,7 +1163,7 @@ namespace user
    }
 
 
-   void menu::_001OnCreate(::message::message * pmessage)
+   void menu::on_message_create(::message::message * pmessage)
    {
 
       /// descriptor().set_control_type(e_control_type_menu);

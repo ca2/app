@@ -5,7 +5,7 @@
 #include <conio.h>
 #endif
 #ifdef LINUX
-#include <ncurses.h>
+int getche();
 #endif
 
 
@@ -263,11 +263,15 @@ repeat:
 
       fputs(strLine, stderr);
 
+      fflush(stderr);
+
    }
    else
    {
 
       fputs(strLine, stdout);
+
+      fflush(stdout);
 
    }
 
@@ -334,3 +338,54 @@ repeat:
    return edialogresult;
 
 }
+
+
+
+#ifdef LINUX
+
+#include <unistd.h>
+#include <termios.h>
+
+
+
+int getche()
+{
+
+   struct termios termiosOld = {0};
+
+   if (tcgetattr(0, &termiosOld) < 0)
+   {
+
+      return -1;
+
+   }
+
+   auto termiosNew = termiosOld;
+
+   termiosNew.c_lflag &= ~ICANON;
+   termiosNew.c_lflag &= ~ECHO;
+
+   if (tcsetattr(0, TCSANOW, &termiosNew) < 0)
+   {
+
+      return -1;
+
+   }
+
+   char ch = -1;
+
+   int iChar = read(0, &ch, 1);
+
+   if (tcsetattr(0, TCSADRAIN, &termiosOld) < 0)
+   {
+
+      return -1;
+
+   }
+
+   return ch;
+
+}
+
+
+#endif

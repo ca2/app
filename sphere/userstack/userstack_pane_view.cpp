@@ -43,7 +43,7 @@ namespace userstack
    }
 
 
-   void pane_view::_001OnCreate(::message::message * pmessage)
+   void pane_view::on_message_create(::message::message * pmessage)
    {
 
       if(pmessage->previous())
@@ -257,7 +257,7 @@ namespace userstack
    void pane_view::install_message_routing(::channel * pchannel)
    {
       ::userex::pane_tab_view::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_view::_001OnRButtonUp);
       connect_command("properties", &pane_view::_001OnProperties);

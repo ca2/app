@@ -23,7 +23,7 @@ namespace user
    //
    //   ::user::plain_edit::install_message_routing(pchannel);
    //   impact::install_message_routing(pchannel);
-   //   //MESSAGE_LINK(e_message_create, pchannel, this, &edit_plain_text_view::_001OnCreate);
+   //   //MESSAGE_LINK(e_message_create, pchannel, this, &edit_plain_text_view::on_message_create);
    //   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::plain_edit::_002OnMouseMove);
    //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::plain_edit::_002OnLButtonDown);
    //   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::plain_edit::_002OnLButtonUp);

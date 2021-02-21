@@ -55,12 +55,12 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
 
    }
 
 
-   void impact_host::_001OnCreate(::message::message * pmessage)
+   void impact_host::on_message_create(::message::message * pmessage)
    {
 
       m_idaHandledCommands.add(m_idaHandledViews);

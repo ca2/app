@@ -126,7 +126,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::on_message_create);
 //#ifdef WINDOWS_DESKTOP
    //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
 //#endif
@@ -690,7 +690,7 @@ bool simple_frame_window::would_display_notify_icon()
 }
 
 
-void simple_frame_window::_001OnCreate(::message::message * pmessage)
+void simple_frame_window::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);

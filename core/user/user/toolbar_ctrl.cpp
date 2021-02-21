@@ -69,7 +69,7 @@ namespace user
 //#endif
 
 
-   void toolbar_control::_001OnCreate(::message::message * pmessage)
+   void toolbar_control::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

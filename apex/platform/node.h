@@ -27,7 +27,10 @@ namespace apex
       virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papplication);
+      virtual ::file::path get_desktop_file_path(::apex::application * papplication) const;
+
+
+      virtual ::e_status start();
 
 
 #ifdef WINDOWS_DESKTOP

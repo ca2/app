@@ -26,7 +26,7 @@ namespace turboc
 
       virtual void turboc_render(::draw2d::graphics * pdcFull);
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
 

@@ -27,7 +27,7 @@ namespace filehandler
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
    };
 
 

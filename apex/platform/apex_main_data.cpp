@@ -37,7 +37,7 @@ apex_main_data::~apex_main_data()
 }
 
 
-void apex_main_data::system_construct(int argc, char** argv)
+::e_status apex_main_data::system_construct(int argc, char** argv)
 {
 
    m_argc = argc;
@@ -71,10 +71,21 @@ void apex_main_data::system_construct(int argc, char** argv)
 
 #endif
 
+   auto estatus = on_system_construct();
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
 }
 
 
-void apex_main_data::system_construct(int argc, wchar_t** argv)
+::e_status apex_main_data::system_construct(int argc, wchar_t** argv)
 {
 
    m_argc = argc;
@@ -104,6 +115,25 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
    m_bGtkApp = false;
 
 #endif
+
+   auto estatus = on_system_construct();
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+e_status apex_main_data::on_system_construct()
+{
+
+   return success;
 
 }
 

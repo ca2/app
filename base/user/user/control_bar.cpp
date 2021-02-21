@@ -49,11 +49,11 @@ namespace user
       MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::_001OnDestroy);
       MESSAGE_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
@@ -431,7 +431,7 @@ namespace user
    }
 
 
-   void control_bar::_001OnCreate(::message::message * pmessage)
+   void control_bar::on_message_create(::message::message * pmessage)
    {
 
       if(pmessage->previous())
@@ -592,7 +592,7 @@ namespace user
       pctlcolor->m_bRet = true;
    }
 
-   void control_bar::_001OnLButtonDown(::message::message * pmessage)
+   void control_bar::on_message_left_button_down(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       // only start dragging if clicked in "void" space
@@ -610,7 +610,7 @@ namespace user
       }
    }
 
-   void control_bar::_001OnLButtonUp(::message::message * pmessage)
+   void control_bar::on_message_left_button_up(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)

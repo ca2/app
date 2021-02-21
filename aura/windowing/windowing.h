@@ -70,7 +70,7 @@ namespace windowing
       virtual void finalize();
 
 
-      virtual ::e_status os_application_system_run();
+      virtual ::e_status start();
 
       virtual void windowing_main();
       
@@ -124,7 +124,7 @@ namespace windowing
 
       //virtual ::mutex * mutex();
 
-      virtual ::e_status defer_initialize_x11();
+      //virtual ::e_status defer_initialize_x11();
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
       //virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);

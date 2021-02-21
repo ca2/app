@@ -104,7 +104,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create    , pchannel, this, &button::_001OnCreate);
+      MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
       MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::_001OnKeyDown);
 
       install_simple_ui_default_mouse_handling(pchannel);
@@ -260,7 +260,7 @@ namespace user
 //   }
 
 
-   void button::_001OnCreate(::message::message * pmessage)
+   void button::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

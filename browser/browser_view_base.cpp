@@ -46,14 +46,14 @@ namespace browser
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::_001OnDestroy);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact_base::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact_base::on_message_left_button_down);
 
    }
 
 
-   void impact_base::_001OnCreate(::message::message * pmessage)
+   void impact_base::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -74,7 +74,7 @@ auto m_millisRoll = ::millis::now();
    }
 
 
-   void impact_base::_001OnLButtonDown(::message::message * pmessage)
+   void impact_base::on_message_left_button_down(::message::message * pmessage)
    {
 
       if(Application.m_ppaneview != nullptr)

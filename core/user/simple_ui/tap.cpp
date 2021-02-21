@@ -36,14 +36,14 @@ namespace simple_ui
       //   END_IMH
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tap::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tap::on_message_create);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &tap::_001OnKeyDown);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tap::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tap::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tap::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tap::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tap::_001OnMouseMove);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tap::_001OnMouseLeave);
-      //MESSAGE_LINK(e_message_create, pchannel, this, &tap::_001OnCreate);
-      //MESSAGE_LINK(e_message_create, pchannel, this, &tap::_001OnCreate);
+      //MESSAGE_LINK(e_message_create, pchannel, this, &tap::on_message_create);
+      //MESSAGE_LINK(e_message_create, pchannel, this, &tap::on_message_create);
 
 
    }
@@ -60,7 +60,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnCreate(::message::message * pmessage)
+   void tap::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -68,7 +68,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnLButtonDown(::message::message * pmessage)
+   void tap::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -93,7 +93,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnLButtonUp(::message::message * pmessage)
+   void tap::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

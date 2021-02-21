@@ -18,7 +18,7 @@ namespace filemanager
    }
 
 
-   void operation_view::_001OnCreate(::message::message * pmessage)
+   void operation_view::on_message_create(::message::message * pmessage)
    {
       pmessage->previous();
 
@@ -58,7 +58,7 @@ namespace filemanager
    void operation_view::install_message_routing(::channel * pchannel)
    {
       ::user::split_view::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::on_message_create);
       MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::_001OnDestroy);
    }

@@ -156,7 +156,7 @@ public:
 
    virtual bool _001CanEnterScreenSaver() override;
 
-   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(on_message_create);
    DECL_GEN_SIGNAL(_001OnDdeInitiate);
    DECL_GEN_SIGNAL(_001OnDestroy);
    DECL_GEN_SIGNAL(_001OnMove);

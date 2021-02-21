@@ -43,8 +43,8 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &interaction::_001OnLButtonDown);
-//      MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &interaction::_001OnLButtonUp);
+//      MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &interaction::on_message_left_button_down);
+//      MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &interaction::on_message_left_button_up);
 //      MESSAGE_LINK(e_message_middle_button_down  , pchannel, this, &interaction::_001OnMButtonDown);
 //      MESSAGE_LINK(e_message_middle_button_up    , pchannel, this, &interaction::_001OnMButtonUp);
 //      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::_001OnMouseMove);
@@ -105,7 +105,7 @@ namespace simple_ui
 //   }
 //
 //
-//   void interaction::_001OnLButtonDown(::message::message * pmessage)
+//   void interaction::on_message_left_button_down(::message::message * pmessage)
 //   {
 //
 //      __pointer(::message::mouse) pmouse(pmessage);
@@ -199,7 +199,7 @@ namespace simple_ui
 //   }
 //
 //
-//   void interaction::_001OnLButtonUp(::message::message * pmessage)
+//   void interaction::on_message_left_button_up(::message::message * pmessage)
 //   {
 //
 //      __pointer(::message::mouse) pmouse(pmessage);

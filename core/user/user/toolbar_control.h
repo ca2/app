@@ -146,7 +146,7 @@ namespace user
       i32 GetButtonText(::u32 uID, string &str);
       virtual ~toolbar_control();
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
    };
 

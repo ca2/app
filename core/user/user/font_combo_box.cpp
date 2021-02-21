@@ -37,12 +37,12 @@ namespace user
 
       ::user::combo_box::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::_001OnCreate);
+      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::on_message_create);
 
    }
 
 
-   void font_combo_box::_001OnCreate(::message::message * pmessage)
+   void font_combo_box::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

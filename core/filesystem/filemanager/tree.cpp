@@ -512,7 +512,7 @@ namespace filemanager
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::_001OnContextMenu);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
 
    }
 
@@ -722,7 +722,7 @@ namespace filemanager
    }
 
 
-   void tree::_001OnCreate(::message::message * pmessage)
+   void tree::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

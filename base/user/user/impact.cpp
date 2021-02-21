@@ -24,19 +24,19 @@ namespace user
       ::user::box::install_message_routing(pchannel);
 
       //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouseMove);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
-      //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::_001OnRButtonDown);
+      //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &impact::_001OnMButtonDown);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
 
 
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
       //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::_001OnDestroy);
-      //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::_001OnCreate);
+      //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
       //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   void impact::_001OnCreate(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pmessagecreate(pmessage);
@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   void impact::_001OnLButtonDown(::message::message * pmessage)
+   void impact::on_message_left_button_down(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -924,7 +924,7 @@ namespace user
 
    }
 
-   void impact::_001OnLButtonUp(::message::message * pmessage)
+   void impact::on_message_left_button_up(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::mouse) pmouse(pmessage);
@@ -1350,7 +1350,7 @@ namespace user
    //}
 
 
-   void impact::_001OnRButtonDown(::message::message * pmessage)
+   void impact::on_message_right_button_down(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::mouse) pmouse(pmessage);

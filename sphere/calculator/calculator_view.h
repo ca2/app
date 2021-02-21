@@ -33,7 +33,7 @@ namespace calculator
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       DECL_GEN_SIGNAL(_001OnUpdateViewEncoding);

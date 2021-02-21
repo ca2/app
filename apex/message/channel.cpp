@@ -396,7 +396,7 @@ void channel::on_command_message(::message::command * pcommand)
       on_command(pcommand);
 
    }
-   else if (pcommand->m_id.is_compounded(::id::e_type_command_probe))
+   else if (pcommand->m_id.is_command_probe())
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -404,7 +404,7 @@ void channel::on_command_message(::message::command * pcommand)
       on_command_probe(pcommand);
 
    }
-   else if (pcommand->m_id.is_compounded(::id::e_type_command))
+   else if (pcommand->m_id.is_command())
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);

@@ -24,9 +24,9 @@ namespace simple_ui
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &top::_001OnCreate);
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&top::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&top::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_create, pchannel, this, &top::on_message_create);
+      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&top::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&top::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::_001OnMouseMove);
 
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
@@ -94,7 +94,7 @@ namespace simple_ui
    }
 
 
-   void top::_001OnCreate(::message::message * pmessage)
+   void top::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -105,7 +105,7 @@ namespace simple_ui
    }
 
 
-   void top::_001OnLButtonDown(::message::message * pmessage)
+   void top::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -129,7 +129,7 @@ namespace simple_ui
    }
 
 
-   void top::_001OnLButtonUp(::message::message * pmessage)
+   void top::on_message_left_button_up(::message::message * pmessage)
    {
 
       m_bLButtonDown = false;

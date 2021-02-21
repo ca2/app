@@ -22,7 +22,7 @@ namespace calculator
    {
    }
 
-   void frame::_001OnCreate(::message::message * pmessage)
+   void frame::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

@@ -137,9 +137,9 @@ namespace experience
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnNcLButtonDown);
       DECL_GEN_SIGNAL(_001OnNcMouseMove);
       DECL_GEN_SIGNAL(_001OnNcLButtonUp);

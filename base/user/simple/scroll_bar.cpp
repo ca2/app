@@ -40,12 +40,12 @@ simple_scroll_bar::~simple_scroll_bar()
 void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::_001OnLButtonDown);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
    MESSAGE_LINK(e_message_hscroll, pchannel, this, &simple_scroll_bar::_001OnHScroll);
 
 }
@@ -150,7 +150,7 @@ bool simple_scroll_bar::scrollbar_action(const ::user::item & item, ::draw2d::gr
 
 }
 
-void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
+void simple_scroll_bar::on_message_left_button_down(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -202,7 +202,7 @@ void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 
 }
 
-void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
+void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -986,7 +986,7 @@ puiParent->SendMessage(e_message_vscroll, MAKEWPARAM(e_scroll_command_LINEDOWN, 
 //}
 
 
-void simple_scroll_bar::_001OnCreate(::message::message * pmessage)
+void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
 

@@ -17,10 +17,10 @@ namespace userfs
    void main_view::install_message_routing(::channel * pchannel)
    {
       ::user::split_view::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_view::on_message_create);
    }
 
-   void main_view::_001OnCreate(::message::message * pmessage)
+   void main_view::on_message_create(::message::message * pmessage)
    {
       pmessage->previous();
       if(pmessage->m_bRet)

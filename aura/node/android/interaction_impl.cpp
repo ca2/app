@@ -524,7 +524,7 @@ namespace android
          MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
       m_puserinteraction->install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
       if(!m_puserinteraction->m_bMessageWindow)
       {
 
@@ -1823,7 +1823,7 @@ namespace android
    //}
 
 
-   void interaction_impl::_001OnCreate(::message::message * pmessage)
+   void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

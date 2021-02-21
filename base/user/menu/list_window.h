@@ -23,7 +23,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnClose);
       

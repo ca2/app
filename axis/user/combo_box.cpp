@@ -64,8 +64,8 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::_001OnMouseMove);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::_001OnMouseLeave);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::_001OnKeyUp);
@@ -621,7 +621,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnLButtonDown(::message::message * pmessage)
+   void combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -667,7 +667,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnLButtonUp(::message::message * pmessage)
+   void combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1685,7 +1685,7 @@ namespace user
 
       //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");
 
-      _001OnLButtonDown(pmessage);
+      on_message_left_button_down(pmessage);
 
       //pmessage->m_bRet = true;
 

@@ -25,14 +25,14 @@ namespace user
    void elastic_slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &elastic_slider::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &elastic_slider::on_message_create);
       ////MESSAGE_LINK(e_message_timer, pchannel, this, &elastic_slider::_001OnTimer);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &elastic_slider::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &elastic_slider::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &elastic_slider::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &elastic_slider::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::_001OnMouseMove);
    }
 
-   void elastic_slider::_001OnCreate(::message::message * pmessage)
+   void elastic_slider::on_message_create(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       SetTimer(84 +77 +51 +33 + 23 + 49, 50, nullptr);
@@ -62,7 +62,7 @@ namespace user
    }
 
 
-   void elastic_slider::_001OnLButtonDown(::message::message * pmessage)
+   void elastic_slider::on_message_left_button_down(::message::message * pmessage)
    {
       
       __pointer(::message::mouse) pmouse(pmessage);
@@ -89,7 +89,7 @@ namespace user
       }
    }
 
-   void elastic_slider::_001OnLButtonUp(::message::message * pmessage)
+   void elastic_slider::on_message_left_button_up(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       if(m_bSlide)

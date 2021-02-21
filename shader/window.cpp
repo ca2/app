@@ -46,7 +46,7 @@ namespace app_shader
    {
 
       ::user::main_window::install_message_routing(psender);
-      MESSAGE_LINK(e_message_create,psender,this,&window::_001OnCreate);
+      MESSAGE_LINK(e_message_create,psender,this,&window::on_message_create);
       MESSAGE_LINK(e_message_destroy, psender, this, &window::_001OnDestroy);
       MESSAGE_LINK(e_message_key_down, psender, this, &window::_001OnKeyDown);
 
@@ -55,7 +55,7 @@ namespace app_shader
 
 
 
-   void window::_001OnCreate(::message::message * pmessage)
+   void window::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

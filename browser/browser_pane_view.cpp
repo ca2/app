@@ -51,12 +51,12 @@ namespace browser
 
       ::userex::pane_tab_view::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
 
    }
 
 
-   void pane_view::_001OnCreate(::message::message * pmessage)
+   void pane_view::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;

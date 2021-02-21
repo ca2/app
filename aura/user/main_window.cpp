@@ -49,6 +49,10 @@ namespace user
 
       place(rectWindow);
 
+      string strCaption = Application.get_app_user_friendly_task_bar_name();
+
+      set_window_text(strCaption);
+
       bool bOk = create_host();
 
       if (!bOk)

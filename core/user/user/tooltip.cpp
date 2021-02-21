@@ -38,13 +38,13 @@ namespace user
    {
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&tooltip::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&tooltip::on_message_create);
       //
 
    }
 
 
-   void tooltip::_001OnCreate(::message::message * pmessage)
+   void tooltip::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

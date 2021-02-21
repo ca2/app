@@ -68,7 +68,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
 
       virtual bool on_click(const ::user::item & item) override;
@@ -115,7 +115,7 @@ namespace user
 
 
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
 
 

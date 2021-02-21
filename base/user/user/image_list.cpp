@@ -109,7 +109,7 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::_001OnDestroy);
 
    }
@@ -174,7 +174,7 @@ namespace user
 
 
 
-   void image_list::_001OnCreate(::message::message * pmessage)
+   void image_list::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -674,13 +674,13 @@ namespace user
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
 
    }
 
 
-   void image_list_view::_001OnCreate(::message::message * pmessage)
+   void image_list_view::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

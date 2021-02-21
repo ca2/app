@@ -209,7 +209,7 @@ namespace prompt
    void frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame::on_message_create);
       MESSAGE_LINK(e_message_close, pchannel, this, &frame::_001OnClose);
 //
       MESSAGE_LINK(e_message_move, pchannel, this, &frame::_001OnMove);
@@ -217,7 +217,7 @@ namespace prompt
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &frame::_001OnApp2000);
    }
 
-   void frame::_001OnCreate(::message::message * pmessage)
+   void frame::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

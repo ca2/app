@@ -578,6 +578,13 @@ inline T natural_assign(T & t,const T2 & t2)
    t = minimum(::numeric_info < T >::maximum(),maximum(::numeric_info < T >::null(),(T)t2));
 }
 
+template < typename T >
+T & minimum(T & t)
+{
+
+   return t = numeric_info<T>::minimum();
+
+}
 
 namespace papaya // or ace, when I am going to introduce ace, on in the minimum insertion ace static library
 {

@@ -20,7 +20,7 @@ namespace filemanager
    }
 
 
-   void  frame::_001OnCreate(::message::message * pmessage)
+   void  frame::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -45,7 +45,7 @@ namespace filemanager
 //      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
 //#endif
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame::on_message_create);
 
    }
 

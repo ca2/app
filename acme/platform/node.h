@@ -43,7 +43,7 @@ namespace acme
 
       virtual int node_init_check(int * pi, char *** ppz);
 
-      virtual void os_application_system_run();
+      virtual ::e_status start();
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
@@ -172,6 +172,8 @@ namespace acme
       virtual ::e_status file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST = -1);
 
       virtual ::e_status system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST = -1);
+
+      virtual ::e_status system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime);
 
       virtual ::e_status time_to_system_time(system_time_t * psystem_time, const time_t * ptime);
 

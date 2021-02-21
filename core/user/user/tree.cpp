@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void tree::_001OnCreate(::message::message * pmessage)
+   void tree::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -130,7 +130,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating tree data at ::user::tree::_001OnCreate");
+         pcreate->error("Error creating tree data at ::user::tree::on_message_create");
 
          return;
 
@@ -141,7 +141,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating image list at ::user::tree::_001OnCreate");
+         pcreate->error("Error creating image list at ::user::tree::on_message_create");
 
          return;
 
@@ -152,7 +152,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating image list (2) at ::user::tree::_001OnCreate");
+         pcreate->error("Error creating image list (2) at ::user::tree::on_message_create");
 
          return;
 
@@ -609,7 +609,7 @@ namespace user
    }
 
 
-   void tree::_001OnLButtonDown(::message::message * pmessage)
+   void tree::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -635,7 +635,7 @@ namespace user
    }
 
 
-   void tree::_001OnLButtonUp(::message::message * pmessage)
+   void tree::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -725,7 +725,7 @@ namespace user
    }
 
 
-   void tree::_001OnRButtonDown(::message::message * pmessage)
+   void tree::on_message_right_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -842,12 +842,12 @@ namespace user
 
       ::user::scroll_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::_001OnLButtonUp);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::_001OnRButtonUp);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::_001OnMouseLeave);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);

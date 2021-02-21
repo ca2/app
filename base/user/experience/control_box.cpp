@@ -44,7 +44,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnLButtonDown(::message::message * pmessage)
+   void control_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -70,7 +70,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnLButtonUp(::message::message * pmessage)
+   void control_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -366,7 +366,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnCreate(::message::message * pmessage)
+   void control_box::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -389,10 +389,10 @@ namespace experience
       ::user::interaction::install_message_routing(pframewindow);
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
-      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
-      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
       MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
 

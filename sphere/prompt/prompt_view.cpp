@@ -29,17 +29,17 @@ namespace prompt
       MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
       MESSAGE_LINK(e_message_size, pchannel, this, &view::_001OnSize);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
 
-      //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
+      //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
       //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
       //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &view::_001OnRButtonUp);
 //
 
@@ -161,7 +161,7 @@ namespace prompt
    }
 
 
-   void view::_001OnCreate(::message::message * pmessage)
+   void view::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -206,14 +206,14 @@ namespace prompt
    }
 
 
-   void view::_001OnLButtonDown(::message::message * pmessage)
+   void view::on_message_left_button_down(::message::message * pmessage)
    {
       //   __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
-   void view::_001OnLButtonUp(::message::message * pmessage)
+   void view::on_message_left_button_up(::message::message * pmessage)
    {
       //__pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);

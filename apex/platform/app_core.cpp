@@ -524,19 +524,6 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    //set_context_object(get_context_system());
 
-   auto papp = System.m_papplicationStartup;
-
-   auto pcreate = papp->__create_new< ::create> ();
-
-   pcreate->m_strAppId = strAppId;
-
-   pcreate->m_pcommandline = __create_new < command_line > ();
-
-   pcreate->m_pcommandline->initialize_command_line(strCommandLine);
-
-   pcreate->finish_initialization();
-
-   System.add_create(pcreate);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
@@ -553,6 +540,8 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
    return true;
 
 }
+
+
 
 
 string app_core::get_command_line()

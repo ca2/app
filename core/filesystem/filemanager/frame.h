@@ -27,7 +27,7 @@ namespace filemanager
 
 
       DECL_GEN_SIGNAL(_001OnSetText);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
    };
 

@@ -150,17 +150,17 @@ void html_form::install_message_routing(::channel * pchannel)
 
    ::user::form_view::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::on_message_create);
 
-   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
-   //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+   //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::_001OnKeyDown);
    //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::_001OnLButtonDown);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::_001OnMouseMove);
    MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::_001OnMouseLeave);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::_001OnLButtonUp);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
 
    MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 
@@ -214,7 +214,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void html_form::_001OnCreate(::message::message * pmessage)
+void html_form::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);
@@ -231,7 +231,7 @@ void html_form::_001OnCreate(::message::message * pmessage)
 }
 
 
-void html_form::_001OnLButtonDown(::message::message * pmessage)
+void html_form::on_message_left_button_down(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -359,7 +359,7 @@ void html_form::_001OnMouseLeave(::message::message * pmessage)
 }
 
 
-void html_form::_001OnLButtonUp(::message::message * pmessage)
+void html_form::on_message_left_button_up(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);

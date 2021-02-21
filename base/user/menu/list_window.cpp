@@ -46,14 +46,14 @@ namespace user
 
       menu::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::_001OnDestroy);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::_001OnClose);
 
    }
 
 
-   void menu_list_window::_001OnCreate(::message::message * pmessage)
+   void menu_list_window::on_message_create(::message::message * pmessage)
    {
 
       //descriptor().set_control_type(e_control_type_menu);

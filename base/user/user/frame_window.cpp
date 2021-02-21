@@ -174,7 +174,7 @@ namespace user
       ::user::box::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::_001OnDestroy);
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
@@ -914,7 +914,7 @@ namespace user
    }
 
 
-   void frame_window::_001OnCreate(::message::message * pmessage)
+   void frame_window::on_message_create(::message::message * pmessage)
    {
 
 

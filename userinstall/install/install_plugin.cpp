@@ -1093,7 +1093,7 @@ run_install:
    }
 
 
-   void plugin::_001OnLButtonUp(::message::message * pmessage)
+   void plugin::on_message_left_button_up(::message::message * pmessage)
    {
 
       if(pmessage->previous())

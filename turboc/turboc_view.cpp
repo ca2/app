@@ -91,12 +91,12 @@ namespace turboc
 
       ::aura::impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&view::_001OnCreate);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&view::on_message_create);
 
    }
 
 
-   void view::_001OnCreate(signal_details * pmessage)
+   void view::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

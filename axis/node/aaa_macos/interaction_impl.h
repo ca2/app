@@ -463,7 +463,7 @@ namespace macos
 //      bool OnCopyData(::user::interaction * pWnd, COPYDATASTRUCT* pCopyDataStruct);
 
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 

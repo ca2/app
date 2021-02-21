@@ -87,8 +87,8 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnNcActivate);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);

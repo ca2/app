@@ -28,7 +28,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       ::e_status set_form_callback(::user::form_callback* pcallback);
       ::e_status set_parent_form(::user::form* pform);

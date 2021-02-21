@@ -27,7 +27,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_interaction::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_interaction::on_message_create);
 
    }
 
@@ -137,7 +137,7 @@ namespace user
    }
 
 
-   void menu_interaction::_001OnCreate(::message::message * pmessage)
+   void menu_interaction::on_message_create(::message::message * pmessage)
    {
 
       //descriptor().set_control_type(e_control_type_menu_button);

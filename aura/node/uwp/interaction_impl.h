@@ -454,7 +454,7 @@ namespace uwp
       void OnClose();
       void OnContextMenu(::user::interaction_impl * pWnd, point_i32 pos);
       //      bool OnCopyData(::user::interaction_impl * pWnd, COPYDATASTRUCT* pCopyDataStruct);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
 
       HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics, ::user::interaction_impl * pWnd, ::u32 nCtlColor);

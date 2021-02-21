@@ -44,12 +44,12 @@ namespace turboc
 
       ::userex::pane_tab_view::install_message_handling(pchannel);
 
-	   IGUI_WIN_MSG_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
+	   IGUI_WIN_MSG_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
 
    }
 
 
-   void pane_view::_001OnCreate(signal_details * pmessage)
+   void pane_view::on_message_create(signal_details * pmessage)
    {
       if(pmessage->previous())
          return;

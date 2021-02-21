@@ -106,12 +106,12 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &form::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &form::on_message_create);
 
    }
 
    
-   void form::_001OnCreate(::message::message * pmessage)
+   void form::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

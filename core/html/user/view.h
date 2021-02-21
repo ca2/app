@@ -37,7 +37,7 @@ public:
    virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
    DECL_GEN_SIGNAL(_001OnDestroy);
-   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(on_message_create);
    DECL_GEN_SIGNAL(_001OnContextMenu);
    DECL_GEN_SIGNAL(_001OnSetCursor);
 

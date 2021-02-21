@@ -29,9 +29,9 @@ namespace experience
       e_hittest _001HitTest(const ::point_i32 & pointCursor);
 
 
-      bool _001OnLButtonDown(::message::mouse * pmouse);
+      bool on_message_left_button_down(::message::mouse * pmouse);
       bool _001OnMouseMove(::message::mouse * pmouse);
-      bool _001OnLButtonUp(::message::mouse * pmouse);
+      bool on_message_left_button_up(::message::mouse * pmouse);
 
 
       void NotifyFramework(e_hittest emode);

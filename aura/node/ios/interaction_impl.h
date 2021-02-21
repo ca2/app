@@ -540,7 +540,7 @@ namespace ios
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OnCaptureChanged);
       DECL_GEN_SIGNAL(_001OnSetCursor);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnKillFocus);
 

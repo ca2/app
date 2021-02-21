@@ -1582,7 +1582,7 @@ namespace user
    }
 
 
-   void tab::_001OnLButtonDown(::message::message * pmessage)
+   void tab::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1683,7 +1683,7 @@ namespace user
    }
 
 
-   void tab::_001OnLButtonUp(::message::message * pmessage)
+   void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -2421,7 +2421,7 @@ namespace user
    }
    */
 
-   void tab::_001OnCreate(::message::message * pmessage)
+   void tab::on_message_create(::message::message * pmessage)
    {
 
       m_bNoTabs = System.has_property("no_tabs");
@@ -2503,11 +2503,11 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::_001OnMouseLeave);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::_001OnShowWindow);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
       MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);

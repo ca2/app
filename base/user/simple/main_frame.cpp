@@ -35,12 +35,12 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 
    simple_frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::_001OnCreate);
+   MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::on_message_create);
 
 }
 
 
-void simple_main_frame::_001OnCreate(::message::message * pmessage)
+void simple_main_frame::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);

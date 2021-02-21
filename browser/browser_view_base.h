@@ -77,9 +77,9 @@ namespace browser
 
       virtual void defer_check_on_draw_layout();
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
 
 
    };

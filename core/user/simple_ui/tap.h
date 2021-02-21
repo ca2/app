@@ -29,10 +29,10 @@ namespace simple_ui
       virtual void simple_ui_draw_text(::draw2d::graphics_pointer & pgraphics);
 
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
 

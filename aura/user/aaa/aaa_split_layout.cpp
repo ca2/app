@@ -34,13 +34,13 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::_001OnShowWindow);
 
    }
 
 
-   void split_layout::_001OnCreate(::message::message* pmessage)
+   void split_layout::on_message_create(::message::message* pmessage)
    {
       
       pmessage->previous();

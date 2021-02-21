@@ -67,17 +67,17 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&dialog::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&dialog::on_message_create);
       MESSAGE_LINK(e_message_char,pchannel,this,&dialog::_001OnChar);
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::_001OnShowWindow);
 
    }
 
 
-   void dialog::_001OnCreate(::message::message * pmessage)
+   void dialog::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -495,7 +495,7 @@ namespace account
    }
 
 
-   void dialog::_001OnLButtonDown(::message::message * pmessage)
+   void dialog::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -526,7 +526,7 @@ namespace account
    }
 
 
-   void dialog::_001OnLButtonUp(::message::message * pmessage)
+   void dialog::on_message_left_button_up(::message::message * pmessage)
    {
 
       m_bLButtonDown = false;

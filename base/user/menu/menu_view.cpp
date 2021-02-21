@@ -62,7 +62,7 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::_001OnDestroy);
 
    }
@@ -144,7 +144,7 @@ namespace user
    }
 
 
-   void menu_view::_001OnCreate(::message::message * pmessage)
+   void menu_view::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

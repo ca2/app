@@ -97,7 +97,7 @@ namespace install
 
       virtual void on_login_result(const ::e_status & estatus, const char * pszResponse);
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       
       virtual void message_handler(::user::message * pusermessage) override;
 

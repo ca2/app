@@ -26,13 +26,13 @@ namespace simple_ui
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_box::_001OnKeyDown);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_box::on_message_left_button_up);
 
    }
 
 
-   void edit_box::_001OnLButtonDown(::message::message * pmessage)
+   void edit_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -47,7 +47,7 @@ namespace simple_ui
    }
 
 
-   void edit_box::_001OnLButtonUp(::message::message * pmessage)
+   void edit_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

@@ -416,13 +416,13 @@ namespace user
    void list_header::install_message_routing(::channel * pchannel)
    {
       ::user::box::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::_001OnMouseMove);
    }
 
-   void list_header::_001OnLButtonDown(::message::message * pmessage)
+   void list_header::on_message_left_button_down(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
@@ -435,7 +435,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnLButtonUp(::message::message * pmessage)
+   void list_header::on_message_left_button_up(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       list * plist = m_plistctrlinterface;

@@ -1130,51 +1130,23 @@ namespace node_ansios
    }
 
 
-   time_t node::system_time_to_time(const system_time_t & systemtime, i32 nDST)
+   ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    {
 
       struct tm tm;
 
-      system_time_to_tm(&tm, &systemtime);
+      auto estatus = system_time_to_tm(&tm, psystemtime);
 
-//
-//      ::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
-//      {
-//
-//         system_time_t systemtime;
-//
-//         if (!FileTimeToSystemTime(&filetime, &systemtime))
-//         {
-//
-//            time = 0;
-//
-//            return ::error_failed;
-//
-//         }
-//
-//         struct tm tm = {};
-//
-//         tm.tm_hour = systemtime.wHour;
-//         tm.tm_min = systemtime.wMinute;
-//         tm.tm_sec = systemtime.wSecond;
-//         tm.tm_mon = systemtime.wMonth;
-//         tm.tm_mday = systemtime.wDay;
-//         tm.tm_year = systemtime.wYear;
-//
-////#ifdef WINDOWS
-//
-//  //       time = _mkgmtime64(&tm);
-//
-////#else
+      if(!estatus)
+      {
 
-      auto time = timegm(&tm);
+         return estatus;
 
-//#endif
+      }
 
-      return time;
+      *ptime = timegm(&tm);
 
-      //}
-
+      return ::success;
 
    }
 
@@ -1209,41 +1181,62 @@ namespace node_ansios
    }
 
 
-   time_t node::file_time_to_time(const filetime & filetime, i32 nDST)
+   ::e_status node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
    {
 
       system_time_t systemtime;
 
-      file_time_to_system_time(&systemtime, &filetime);
+      auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
       struct tm tm;
 
-      system_time_to_tm(&tm, &systemtime);
+      estatus = system_time_to_tm(&tm, &systemtime);
 
-      auto time = timegm(&tm);
+      if(!estatus)
+      {
 
-      return time;
+         return estatus;
+
+      }
+
+      *ptime = timegm(&tm);
+
+      return ::success;
 
    }
 
 
-   system_time_t node::time_to_system_time(const ::datetime::time & time)
+   ::e_status node::time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
    {
 
       struct tm tm;
 
-      gmtime_r(&time.m_time, &tm);
+      gmtime_r(ptime, &tm);
 
       system_time_t systemtime;
 
-      tm_to_system_time(&systemtime, &tm);
+      auto estatus = tm_to_system_time(psystemtime, &tm);
 
-      return systemtime;
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   ::e_status node::get_system_time_as_file_time(filetime * pfiletime)
+   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
    {
 
       return ::acme::node::get_system_time_as_file_time(pfiletime);
@@ -1251,10 +1244,10 @@ namespace node_ansios
    }
 
 
-   ::e_status node::system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime)
+   ::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
    {
 
-      if(!SystemTimeToFileTime(psystemtime, &pfiletime->m_filetime))
+      if(!SystemTimeToFileTime(psystemtime, pfiletime))
       {
 
          return error_failed;
@@ -1266,10 +1259,10 @@ namespace node_ansios
    }
 
 
-   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime)
+   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
    {
 
-      if(!FileTimeToSystemTime(&pfiletime->m_filetime, psystemtime))
+      if(!FileTimeToSystemTime(pfiletime, psystemtime))
       {
 
          return error_failed;
@@ -1281,10 +1274,10 @@ namespace node_ansios
    }
 
 
-   ::e_status node::file_time_to_local_file_time(filetime * pfiletimeLocal, const filetime * pfiletime)
+   ::e_status node::file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime)
    {
 
-      if(!FileTimeToLocalFileTime(&pfiletime->m_filetime, &pfiletimeLocal->m_filetime))
+      if(!FileTimeToLocalFileTime(pfiletime, pfiletimeLocal))
       {
 
          return error_failed;
@@ -1296,9 +1289,8 @@ namespace node_ansios
    }
 
 
-   ::e_status node::is_valid_filetime(const filetime & filetime)
+   ::e_status node::is_valid_filetime(const filetime_t * pfiletime)
    {
-
 
 
       return ::success;

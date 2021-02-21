@@ -26,7 +26,7 @@ namespace experience
    }
 
 
-   bool dock_manager::_001OnLButtonDown(::message::mouse * pmouse)
+   bool dock_manager::on_message_left_button_down(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_docking_enabled())
@@ -496,7 +496,7 @@ namespace experience
    }
 
 
-   bool dock_manager::_001OnLButtonUp(::message::mouse * pmouse)
+   bool dock_manager::on_message_left_button_up(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_docking_enabled())

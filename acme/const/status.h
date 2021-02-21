@@ -45,6 +45,7 @@ enum enum_status : ::i64
    e_status_process_result_negative_base = -0x100000000,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
+   error_not_set,
    error_pending,
    error_multiple,
    error_null_result,

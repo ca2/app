@@ -72,9 +72,9 @@ namespace filehandler
 
       virtual void refresh();
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       void _001OnTimer(::timer * ptimer);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

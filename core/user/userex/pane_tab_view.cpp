@@ -145,7 +145,7 @@ namespace userex
 
       ::user::tab_view::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::on_message_create);
 
       connect_command("file_save_as", &pane_tab_view::_001OnFileSaveAs);
       connect_command_probe("file_save_as", &pane_tab_view::_001OnUpdateFileSaveAs);
@@ -153,7 +153,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::_001OnCreate(::message::message * pmessage)
+   void pane_tab_view::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

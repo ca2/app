@@ -26,7 +26,7 @@ namespace user
       split_layout::install_message_routing(pchannel);
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &split_view::on_message_create);
 
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_view::_001OnSize);
       //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_view::_001OnShowWindow);
@@ -45,7 +45,7 @@ namespace user
       impact::dump(dumpcontext);
    }
 
-   void split_view::_001OnCreate(::message::message * pmessage)
+   void split_view::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

@@ -1200,8 +1200,8 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
@@ -1227,7 +1227,7 @@ namespace experience
    }
 
 
-   void frame_window::_001OnLButtonDown(::message::message * pmessage)
+   void frame_window::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1244,7 +1244,7 @@ namespace experience
       if(::is_set(m_pframe))
       {
 
-         m_pframe->_001OnLButtonDown(pmouse);
+         m_pframe->on_message_left_button_down(pmouse);
 
       }
 
@@ -1327,7 +1327,7 @@ namespace experience
    }
 
 
-   void frame_window::_001OnLButtonUp(::message::message * pmessage)
+   void frame_window::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1343,7 +1343,7 @@ namespace experience
 
       ASSERT(m_pframe != nullptr);
 
-      m_pframe->_001OnLButtonUp(pmouse);
+      m_pframe->on_message_left_button_up(pmouse);
 
       if(pmouse->m_bRet)
       {
@@ -1996,7 +1996,7 @@ namespace experience
 
          }
 
-         dock_manager()->_001OnLButtonDown(pmouse);
+         dock_manager()->on_message_left_button_down(pmouse);
 
          //::rectangle_i32 rectWindow;
 

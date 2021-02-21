@@ -527,7 +527,7 @@ namespace macos
 
       m_puserinteraction->install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
@@ -555,7 +555,7 @@ namespace macos
       //      {
       //         m_puserinteraction->install_message_routing(pchannel);
       //      }
-      //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::_001OnCreate);
+      //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::on_message_create);
       //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::_001OnSetCursor);
       //      MESSAGE_LINK(e_message_erase_background        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
       //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::_001OnMove);
@@ -1962,7 +1962,7 @@ namespace macos
    }
 
 
-   void interaction_impl::_001OnCreate(::message::message * pmessage)
+   void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

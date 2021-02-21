@@ -92,7 +92,7 @@ namespace userfs
    void tree::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::_001OnContextMenu);
 
@@ -226,7 +226,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnCreate(::message::message * pmessage)
+   void tree::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

@@ -23,13 +23,13 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &button::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &button::on_message_left_button_down);
 
 
    }
 
 
-   void button::_001OnLButtonDown(::message::message* pmessage)
+   void button::on_message_left_button_down(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

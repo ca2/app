@@ -1453,10 +1453,6 @@ namespace apex
 
       ::apex::idpool::init();
 
-      auto pcreate = m_pcreate;
-
-      pcreate->m_strAppId = strAppId;
-
       if (is_true("show_application_information"))
       {
 
@@ -1889,6 +1885,81 @@ namespace apex
       return true;
 
    }
+
+
+   ::e_status system::on_system_construct()
+   {
+
+      auto estatus = create_os_node();
+
+      if(m_bUser)
+      {
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::on_start()
+   {
+
+      auto papp = System.m_papplicationStartup;
+
+      auto pcreate = papp->__create_new< ::create> ();
+
+      string strAppId = papp->m_strAppId;
+
+      pcreate->m_strAppId = strAppId;
+
+      pcreate->m_pcommandline = __create_new < command_line > ();
+
+      string strCommandLine = get_command_line();
+
+      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+
+      pcreate->finish_initialization();
+
+      System.add_create(pcreate);
+
+      System.post_create_requests();
+
+      return ::success;
+
+   }
+
+
+//   ::e_status system::start()
+//   {
+//
+//      auto pnode = Node;
+//
+//      ::e_status estatus = error_exception;
+//
+//      if(pnode)
+//      {
+//
+//         estatus = pnode->start();
+//
+//      }
+//      else
+//      {
+//
+//         estatus = on_start();
+//
+//      }
+//
+//      return estatus;
+//
+//   }
 
 
    void system::get_time(micro_duration * pmicroduration)

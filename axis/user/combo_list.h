@@ -53,7 +53,7 @@ namespace user
 
       virtual void _001OnTimer(::timer* ptimer) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnSetFocus);
@@ -63,10 +63,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseActivate);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnMButtonDown);
-      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(on_message_right_button_down);
       DECL_GEN_SIGNAL(_001OnMouseMove);
 
 

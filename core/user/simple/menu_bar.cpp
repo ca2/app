@@ -37,7 +37,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::_001OnMouseMove);
    //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::on_message_create);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
 
@@ -47,7 +47,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 //
 //#endif
 
-   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
+   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
    //MESSAGE_LINK(e_message_erase_background               , pchannel, this, *simple_menu_bar::_001On);
@@ -218,7 +218,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 }
 
 
-void simple_menu_bar::_001OnCreate(::message::message * pmessage)
+void simple_menu_bar::on_message_create(::message::message * pmessage)
 {
 
    //   __pointer(::message::create) pcreate(pmessage);
@@ -685,7 +685,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 //}
 
 
-//void simple_menu_bar::_001OnLButtonDown(::message::message * pmessage)
+//void simple_menu_bar::on_message_left_button_down(::message::message * pmessage)
 //{
 //   __pointer(::message::mouse) pmouse(pmessage);
 //

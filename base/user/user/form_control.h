@@ -72,7 +72,7 @@ namespace user
       virtual void WfiOnClose() override;
 
       DECL_GEN_SIGNAL(_000OnPosCreate);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
@@ -120,14 +120,14 @@ namespace user
 
       //virtual void install_message_routing(::channel * pchannel);
 
-      //      DECL_GEN_SIGNAL(_001OnCreate);
+      //      DECL_GEN_SIGNAL(on_message_create);
 
 
       //      ::user::form_window(::layered * pobjectContext);
 
       //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
       //      virtual void on_control_event(::user::control_event * pevent);
-      //      DECL_GEN_SIGNAL(_001OnCreate);
+      //      DECL_GEN_SIGNAL(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;
       DECL_GEN_SIGNAL(_001OnUser123);
       //      virtual void install_message_routing(::channel * pchannel);

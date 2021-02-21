@@ -30,7 +30,7 @@ namespace experience
    }
 
 
-   bool size_manager::_001OnLButtonDown(::message::mouse * pmouse)
+   bool size_manager::on_message_left_button_down(::message::mouse * pmouse)
    {
 
       ASSERT(pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_non_client_left_button_down);
@@ -197,7 +197,7 @@ namespace experience
    }
 
 
-   bool size_manager::_001OnLButtonUp(::message::mouse * pmouse)
+   bool size_manager::on_message_left_button_up(::message::mouse * pmouse)
    {
 
       if(!m_pframewindow->is_sizing_enabled())

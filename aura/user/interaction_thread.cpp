@@ -390,6 +390,13 @@ namespace user
 
          }
 
+         if(m_message.m_id == e_message_left_button_down)
+         {
+
+            output_debug_string("test");
+
+         }
+
          if (m_message.m_id == e_message_quit)
          {
 
@@ -480,6 +487,13 @@ namespace user
       {
 
          MESSAGE & msg = m_message;
+
+         if(msg.m_id == e_message_left_button_down)
+         {
+
+            output_debug_string("\nleft_button_down");
+
+         }
 
          auto oswindow = msg.oswindow;
 

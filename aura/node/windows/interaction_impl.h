@@ -104,7 +104,7 @@ namespace windows
       //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
       //DECL_GEN_SIGNAL(_001OnDestroy);
-      //DECL_GEN_SIGNAL(_001OnCreate);
+      //DECL_GEN_SIGNAL(on_message_create);
       //DECL_GEN_SIGNAL(_001OnKillFocus);
       //DECL_GEN_SIGNAL(_001OnPaint);
       //DECL_GEN_SIGNAL(_001OnPrint);

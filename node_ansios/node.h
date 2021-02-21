@@ -28,7 +28,7 @@ namespace node_ansios
 
       virtual int node_init_check(int * pi, char *** ppz) override;
 
-      virtual void os_application_system_run() override;
+      virtual ::e_status start() override;
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
@@ -36,25 +36,25 @@ namespace node_ansios
 
       virtual double get_time_zone();
 
-      virtual time_t system_time_to_time(const system_time_t & st, i32 nDST = -1);
+      virtual ::e_status system_time_to_time(time_t * ptime, const system_time_t * psystime, i32 nDST = -1) override;
 
-      virtual time_t file_time_to_time(const filetime & ft, i32 nDST = -1);
+      virtual ::e_status file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST = -1) override;
 
-      virtual system_time_t time_to_system_time(const ::datetime::time & time);
+      virtual ::e_status time_to_system_time(system_time_t * psystemtime, const time_t * ptime) override;
 
-      virtual ::e_status get_system_time_as_file_time(filetime * pfiletime);
+      virtual ::e_status get_system_time_as_file_time(filetime_t * pfiletime) override;
 
       virtual ::e_status system_time_to_tm(tm * ptm, const system_time_t * psystemtime);
 
       virtual ::e_status tm_to_system_time(system_time_t * psystemtime, const tm * ptm);
 
-      virtual ::e_status system_time_to_file_time(filetime * pfiletime, const system_time_t * psystemtime);
+      virtual ::e_status system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime) override;
 
-      virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime * pfiletime);
+      virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime) override;
 
-      virtual ::e_status file_time_to_local_file_time(filetime * pfiletimeLocal, const filetime * pfiletime);
+      virtual ::e_status file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime) override;
 
-      virtual ::e_status is_valid_filetime(const filetime & filetime);
+      virtual ::e_status is_valid_filetime(const filetime_t * pfiletime) override;
 
       virtual filetime get_filetime_now();
 

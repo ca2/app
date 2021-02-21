@@ -16,7 +16,7 @@ namespace user
 
          virtual void install_edit_window_message_routing(channel * pchannel);
 
-         DECL_GEN_SIGNAL(_001OnCreate);
+         DECL_GEN_SIGNAL(on_message_create);
          DECL_GEN_SIGNAL(_001OnDestroy);
          DECL_GEN_SIGNAL(_001OnSetFocus);
          DECL_GEN_SIGNAL(_001OnKillFocus);

@@ -53,7 +53,7 @@ namespace user
       virtual void WfiOnClose() override;
 
       DECL_GEN_SIGNAL(_000OnPosCreate);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;

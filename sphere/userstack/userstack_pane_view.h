@@ -64,7 +64,7 @@ namespace userstack
 
 
       DECL_GEN_SIGNAL(_001OnMenuMessage);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnRButtonUp);
       DECL_GEN_SIGNAL(_001OnProperties);
 

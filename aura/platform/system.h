@@ -289,7 +289,7 @@ namespace aura
 //      virtual void term_system() override;
 
 
-      virtual ::e_status run_system() override;
+      virtual ::e_status start() override;
 
       virtual void term() override;
 
@@ -671,7 +671,7 @@ namespace aura
       //class ::crypto::crypto                       & crypto();
 
 
-      virtual ::e_status os_application_system_run();
+      //virtual ::e_status start() override;
 
       virtual ::file::path local_get_matter_cache_path() override;
       virtual ::file::path local_get_matter_cache_path(string strMatter) override;

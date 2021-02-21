@@ -35,7 +35,7 @@ int main(int argc, char * argv[])
 
    psystem->system_construct(argc, argv);
 
-   estatus = psystem->run_system();
+   estatus = psystem->start();
 
    ::i32 iErrorStatus = estatus.error_status();
 

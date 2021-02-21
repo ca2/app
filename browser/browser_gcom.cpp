@@ -47,13 +47,13 @@ namespace browser
       impact_base::install_message_routing(pchannel);
       ::backview::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &gcom::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &gcom::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &gcom::_001OnDestroy);
 
    }
 
 
-   void gcom::_001OnCreate(::message::message * pmessage)
+   void gcom::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

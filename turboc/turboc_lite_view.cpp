@@ -36,7 +36,7 @@ namespace turboc
 
       view::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_view::_001OnCreate);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_view::on_message_create);
 
    }
 
@@ -49,7 +49,7 @@ namespace turboc
       return ::root::dec_ref(OBJ_REF_DBG_ARGS);
    }
 
-   void lite_view::_001OnCreate(signal_details * pmessage)
+   void lite_view::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

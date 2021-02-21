@@ -52,7 +52,7 @@ namespace console
       virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
 
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
 
       DECL_GEN_SIGNAL(_001OnClose);

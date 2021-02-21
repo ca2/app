@@ -83,7 +83,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::os_application_system_run()
+   ::e_status windowing::start()
    {
 
       return ::success;
@@ -273,12 +273,13 @@ namespace windowing
    }
 
 
-    ::e_status windowing::defer_initialize_x11()
-   {
+//    ::e_status windowing::defer_initialize_x11()
+//   {
+//
+//       return ::success;
+//   }
 
-       return ::success;
-   }
-    void windowing::handle_just_hooks()
+   void windowing::handle_just_hooks()
    {
 
    }

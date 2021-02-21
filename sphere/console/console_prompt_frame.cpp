@@ -210,7 +210,7 @@ namespace console
    void prompt_frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::on_message_create);
       MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::_001OnClose);
 //      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::_001OnTimer);
       MESSAGE_LINK(e_message_move, pchannel, this, &prompt_frame::_001OnMove);
@@ -219,7 +219,7 @@ namespace console
    }
 
 
-   void prompt_frame::_001OnCreate(::message::message * pmessage)
+   void prompt_frame::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

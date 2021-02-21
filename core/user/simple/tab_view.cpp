@@ -55,7 +55,7 @@ bool simple_tab_view::get_client_rect(RECTANGLE_I32 * prectangle)
 
 
 
-void simple_tab_view::_001OnCreate(::message::message * pmessage)
+void simple_tab_view::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);
@@ -90,12 +90,12 @@ void simple_tab_view::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_tab_view::_001OnLButtonUp(::message::message * pmessage)
+void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
    
-   ::user::tab::_001OnLButtonUp(pmessage);
+   ::user::tab::on_message_left_button_up(pmessage);
    
    if (pmouse->m_bRet)
    {

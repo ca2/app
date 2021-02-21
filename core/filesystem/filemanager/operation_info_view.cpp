@@ -122,7 +122,7 @@ namespace filemanager
       }
    }
 
-   void operation_info_view::_001OnCreate(::message::message * pmessage)
+   void operation_info_view::on_message_create(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       //SetTimer(123, 184, nullptr);
@@ -131,7 +131,7 @@ namespace filemanager
    void operation_info_view::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_view::on_message_create);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_view::_001OnTimer);
    }
 

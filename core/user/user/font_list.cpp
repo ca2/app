@@ -42,8 +42,8 @@ namespace user
 
       ::user::combo_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_list::_001OnCreate);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::_001OnLButtonDown);
+      MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::_001OnMouseMove);
       MESSAGE_LINK(e_message_close, pchannel, this, &font_list::_001OnClose);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::_001OnShowWindow);
@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void font_list::_001OnCreate(::message::message * pmessage)
+   void font_list::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -136,7 +136,7 @@ namespace user
    }
 
 
-   void font_list::_001OnLButtonDown(::message::message * pmessage)
+   void font_list::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

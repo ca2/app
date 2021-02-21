@@ -45,7 +45,7 @@ dir_system::~dir_system()
    }
 
 
-   #if defined(__APPLE__) || (defined(LINUX) && defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
+   #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
    if (::dir::is(System.side_get_matter_path("app/_matter/main")))
    {
 

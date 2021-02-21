@@ -32,9 +32,9 @@ namespace experience
       virtual ~dock_manager();
 
 
-      bool _001OnLButtonDown(::message::mouse * pmouse);
+      bool on_message_left_button_down(::message::mouse * pmouse);
       bool _001OnMouseMove(::message::mouse * pmouse);
-      bool _001OnLButtonUp(::message::mouse * pmouse);
+      bool on_message_left_button_up(::message::mouse * pmouse);
       bool _001OnTimer(::u32 uEvent);
 
       bool dock_window(::message::mouse* pmouse);

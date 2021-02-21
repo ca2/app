@@ -1343,7 +1343,7 @@ namespace user
    void interaction::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::_001OnDestroy);
       MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::_001OnPostUser);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
@@ -1365,7 +1365,7 @@ namespace user
          MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
          MESSAGE_LINK((enum_message)e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::_001OnLButtonDown);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
@@ -3757,7 +3757,7 @@ namespace user
    ::user::item* interaction::get_user_item(const ::user::item& item)
    {
 
-      for (auto& pitem : m_itema)
+      for (auto& pitem : m_useritema)
       {
 
          if (*pitem == item)
@@ -3812,7 +3812,7 @@ namespace user
    }
 
 
-   void interaction::_001OnCreate(::message::message * pmessage)
+   void interaction::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -10631,7 +10631,7 @@ restart:
 
       pmessage->m_bRet = true;
 
-      for (auto& pitem : m_itema)
+      for (auto& pitem : m_useritema)
       {
 
          if (pitem->m_eelement == ::user::e_element_close_button
@@ -14002,8 +14002,8 @@ restart:
 
       m_bSimpleUIDefaultMouseHandling = true;
 
-      MESSAGE_LINK((enum_message) e_message_left_button_down, pchannel, this, &interaction::_001OnLButtonDown);
-      MESSAGE_LINK((enum_message) e_message_left_button_up, pchannel, this, &interaction::_001OnLButtonUp);
+      MESSAGE_LINK((enum_message) e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+      MESSAGE_LINK((enum_message) e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
       MESSAGE_LINK((enum_message) e_message_middle_button_down, pchannel, this, &interaction::_001OnMButtonDown);
       MESSAGE_LINK((enum_message) e_message_middle_button_up, pchannel, this, &interaction::_001OnMButtonUp);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);
@@ -14105,7 +14105,7 @@ restart:
    }
 
 
-   void interaction::_001OnLButtonDown(::message::message* pmessage)
+   void interaction::on_message_left_button_down(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -14185,7 +14185,7 @@ restart:
 
 
 
-   void interaction::_001OnLButtonUp(::message::message* pmessage)
+   void interaction::on_message_left_button_up(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -14210,7 +14210,7 @@ restart:
 
          bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-         TRACE("interaction::_001OnLButtonUp item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
+         TRACE("interaction::on_message_left_button_up item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
 
          if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
          {
@@ -14219,7 +14219,7 @@ restart:
 
             pmessage->m_bRet = on_click(item);
 
-            TRACE("interaction::_001OnLButtonUp on_click_ret=%d", (int) pmessage->m_bRet);
+            TRACE("interaction::on_message_left_button_up on_click_ret=%d", (int) pmessage->m_bRet);
 
             if (pmessage->m_bRet)
             {
@@ -14246,7 +14246,7 @@ restart:
 
                route_control_event(&ev);
 
-               TRACE("interaction::_001OnLButtonUp route_btn_clked=%d", (int) ev.m_bRet);
+               TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) ev.m_bRet);
 
                pmessage->m_bRet = ev.m_bRet;
 
@@ -14259,7 +14259,7 @@ restart:
 
                   route_command_message(&command);
 
-                  TRACE("interaction::_001OnLButtonUp route_cmd_msg=%d", (int) command.m_bRet);
+                  TRACE("interaction::on_message_left_button_up route_cmd_msg=%d", (int) command.m_bRet);
 
                   pmessage->m_bRet = command.m_bRet;
 
@@ -14525,7 +14525,7 @@ restart:
 
       synchronization_lock synchronizationlock(mutex());
 
-      for (auto & pitem : m_itema)
+      for (auto & pitem : m_useritema)
       {
 
          if (pitem->m_ppath)
@@ -14657,7 +14657,7 @@ restart:
    {
 
       //::user::interaction::_001OnDraw(pgraphics);
-      if (m_itema.has_element())
+      if (m_useritema.has_element())
       {
 
          _001DrawItems(pgraphics);
@@ -14672,7 +14672,7 @@ restart:
 
       __pointer(::user::item) pitem = __new(::user::item(item));
 
-      m_itema.add(pitem);
+      m_useritema.add(pitem);
 
       return pitem;
 
@@ -14681,10 +14681,21 @@ restart:
    void interaction::_001DrawItems(::draw2d::graphics_pointer& pgraphics)
    {
 
-      for (auto& pitem : m_itema)
+      int iCount = 0;
+
+      for (auto& pitem : m_useritema)
       {
 
          _001DrawItem(pgraphics, pitem);
+
+         iCount++;
+
+         if(iCount > 1)
+         {
+
+            output_debug_string("drawing 2nd, 3rd, nth item");
+
+         }
 
       }
 

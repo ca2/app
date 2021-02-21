@@ -18,7 +18,7 @@ namespace filemanager
 
       virtual bool on_create_bars();
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
 
       virtual ::filemanager::document * filemanager_document();

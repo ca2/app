@@ -48,13 +48,13 @@ namespace userex
 
       ::user::split_view::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &font_view::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_view::_001OnShowWindow);
 
    }
 
 
-   void font_view::_001OnCreate(::message::message* pmessage)
+   void font_view::on_message_create(::message::message* pmessage)
    {
 
       pmessage->previous();

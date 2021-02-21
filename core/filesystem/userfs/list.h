@@ -91,7 +91,7 @@ namespace userfs
       DECL_GEN_SIGNAL(_001OnFileRename);
       DECL_GEN_SIGNAL(_001OnUpdateFileRename);
       DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnCancelMode);
 

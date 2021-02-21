@@ -109,7 +109,7 @@ namespace user
       //virtual void on_hit_test(::user::item & item) override;
 
       DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
 
       ::size calc_text_size();

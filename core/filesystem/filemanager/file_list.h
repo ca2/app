@@ -73,7 +73,7 @@ namespace filemanager
 
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnContextMenu);
 
       DECL_GEN_SIGNAL(_001OnShellCommand);

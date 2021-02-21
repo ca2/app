@@ -258,7 +258,7 @@ namespace user
 
       string                                       m_strInteractionTag;
 
-      __pointer_array(::user::item)                m_itema;
+      __pointer_array(::user::item)           m_useritema;
       bool                                         m_bOverdraw;
       ::index                                      m_iIndex;
       ::user::item                                 m_itemLButtonDown;
@@ -1176,7 +1176,7 @@ namespace user
 
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseEnter);
@@ -1192,7 +1192,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnPostUser);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       DECL_GEN_SIGNAL(_001OnClose);
       //DECL_GEN_SIGNAL(_001OnCommand);
@@ -1644,7 +1644,7 @@ namespace user
       void install_update_data_message_routing(::channel * pchannel);
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnMButtonDown);
       DECL_GEN_SIGNAL(_001OnMButtonUp);
 
@@ -1723,7 +1723,7 @@ namespace user
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
       //virtual void on_hit_test(::user::item & item) override;
-      //DECL_GEN_SIGNAL(_001OnCreate);
+      //DECL_GEN_SIGNAL(on_message_create);
       //DECL_GEN_SIGNAL(_001OnMouseMove);
       //DECL_GEN_SIGNAL(_001OnMouseLeave);
       //DECL_GEN_SIGNAL(_001OnKeyDown);

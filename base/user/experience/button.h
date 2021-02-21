@@ -27,7 +27,7 @@ namespace experience
       void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
 
       virtual bool keyboard_focus_is_focusable() const override;
 

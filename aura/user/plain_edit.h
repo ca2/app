@@ -283,9 +283,9 @@ namespace user
       virtual __status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
-      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
+      DECL_GEN_SIGNAL(on_message_right_button_down);
       DECL_GEN_SIGNAL(_001OnRButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
@@ -440,7 +440,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       void VirtualOnSize(::draw2d::graphics_pointer & pgraphics);
       DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       DECL_GEN_SIGNAL(_001OnSize);

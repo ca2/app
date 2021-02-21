@@ -22,7 +22,7 @@ namespace user
    void edit_window::install_edit_window_message_routing(channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_window::_001OnDestroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::_001OnKillFocus);
@@ -30,7 +30,7 @@ namespace user
    }
 
 
-   void edit_window::_001OnCreate(::message::message * pmessage)
+   void edit_window::on_message_create(::message::message * pmessage)
    {
       
       _OnCreate();

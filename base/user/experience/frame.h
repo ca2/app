@@ -154,8 +154,8 @@ namespace experience
 
       virtual color32_t get_border_main_body_color();
 
-      virtual bool _001OnLButtonDown(::message::mouse * pmouse);
-      virtual bool _001OnLButtonUp(::message::mouse * pmouse);
+      virtual bool on_message_left_button_down(::message::mouse * pmouse);
+      virtual bool on_message_left_button_up(::message::mouse * pmouse);
       virtual bool _001OnMouseMove(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);

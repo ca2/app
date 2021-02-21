@@ -12,7 +12,24 @@ namespace acme
 {
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
+   {
+
+      auto estatus = on_start();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::on_start()
    {
 
       return ::success;

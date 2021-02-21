@@ -29,7 +29,7 @@ namespace userex
 
       //virtual void _001OnTimer(::timer * ptimer) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       virtual bool on_timeout_check();
       virtual bool on_timeout();

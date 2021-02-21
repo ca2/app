@@ -69,15 +69,15 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &static_control::_001OnCreate);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &static_control::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &static_control::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_create, pchannel, this, &static_control::on_message_create);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &static_control::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &static_control::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::_001OnMouseLeave);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &static_control::_001OnMouseMove);
 
    }
 
-   void static_control::_001OnCreate(::message::message * pmessage)
+   void static_control::on_message_create(::message::message * pmessage)
    {
 
       //descriptor().set_control_type(e_control_type_static);
@@ -89,7 +89,7 @@ namespace user
 
    }
 
-   void static_control::_001OnLButtonDown(::message::message * pmessage)
+   void static_control::on_message_left_button_down(::message::message * pmessage)
    {
 
 //      __pointer(::message::mouse) pmouse(pmessage);
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   void static_control::_001OnLButtonUp(::message::message * pmessage)
+   void static_control::on_message_left_button_up(::message::message * pmessage)
    {
 
 //      __pointer(::message::mouse) pmouse(pmessage);

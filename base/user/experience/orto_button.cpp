@@ -128,14 +128,14 @@ namespace experience
 
    }
 
-   void orto_button::_001OnLButtonDown(::message::message * pmessage)
+   void orto_button::on_message_left_button_down(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
-   void orto_button::_001OnLButtonUp(::message::message * pmessage)
+   void orto_button::on_message_left_button_up(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -238,8 +238,8 @@ namespace experience
    {
       ::user::button::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &orto_button::_001OnShowWindow);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
       //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::_001OnSize);
       //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::_001OnTimer);
    }

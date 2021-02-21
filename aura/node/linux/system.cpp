@@ -97,7 +97,7 @@ namespace aura
 {
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
    {
 
 //      auto estatus = do_factory_exchange("windowing", "x11");
@@ -198,7 +198,7 @@ namespace aura
 
       auto pwindowing = puser->windowing();
 
-      auto estatus = pwindowing->os_application_system_run();
+      auto estatus = pwindowing->start();
 
 //      if (m_bUser)
 //      {

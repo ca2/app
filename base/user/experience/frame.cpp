@@ -232,20 +232,20 @@ namespace experience
    }
 
 
-   bool frame::_001OnLButtonDown(::message::mouse * pmouse)
+   bool frame::on_message_left_button_down(::message::mouse * pmouse)
    {
 
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if (m_pframewindow->size_manager()->_001OnLButtonDown(pmouse))
+         if (m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
          {
 
             return true;
 
          }
 
-         if (m_pframewindow->move_manager()->_001OnLButtonDown(pmouse))
+         if (m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
          {
 
             return true;
@@ -259,19 +259,19 @@ namespace experience
    }
 
 
-   bool frame::_001OnLButtonUp(::message::mouse * pmouse)
+   bool frame::on_message_left_button_up(::message::mouse * pmouse)
    {
 
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if(m_pframewindow->dock_manager()->_001OnLButtonUp(pmouse))
+         if(m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
             return true;
 
-         if(m_pframewindow->size_manager()->_001OnLButtonUp(pmouse))
+         if(m_pframewindow->size_manager()->on_message_left_button_up(pmouse))
             return true;
 
-         if(m_pframewindow->move_manager()->_001OnLButtonUp(pmouse))
+         if(m_pframewindow->move_manager()->on_message_left_button_up(pmouse))
             return true;
 
       }
@@ -395,13 +395,13 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if(m_pframewindow->dock_manager()->_001OnLButtonDown(pmouse))
+         if(m_pframewindow->dock_manager()->on_message_left_button_down(pmouse))
             return true;
 
-         if(m_pframewindow->size_manager()->_001OnLButtonDown(pmouse))
+         if(m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
             return true;
 
-         if(m_pframewindow->move_manager()->_001OnLButtonDown(pmouse))
+         if(m_pframewindow->move_manager()->on_message_left_button_down(pmouse))
             return true;
 
       }
@@ -415,21 +415,21 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if (m_pframewindow->dock_manager()->_001OnLButtonUp(pmouse))
+         if (m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
          {
 
             return true;
 
          }
 
-         if (m_pframewindow->size_manager()->_001OnLButtonUp(pmouse))
+         if (m_pframewindow->size_manager()->on_message_left_button_up(pmouse))
          {
 
             return true;
 
          }
 
-         if (m_pframewindow->move_manager()->_001OnLButtonUp(pmouse))
+         if (m_pframewindow->move_manager()->on_message_left_button_up(pmouse))
          {
 
             return true;

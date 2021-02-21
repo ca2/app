@@ -127,18 +127,18 @@ namespace user
 
       if (!bList)
       {
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::_001OnLButtonDown);
-         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::_001OnLButtonUp);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
+         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
          MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::_001OnRButtonUp);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::_001OnKeyDown);
 
-      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
       connect_command("mesh_view_auto_arrange",&mesh::_001OnMeshViewAutoArrange);
 
@@ -2616,7 +2616,7 @@ namespace user
    }
 
 
-   void mesh::_001OnLButtonDown(::message::message * pmessage)
+   void mesh::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -2839,7 +2839,7 @@ namespace user
    }
 
 
-   void mesh::_001OnLButtonUp(::message::message * pmessage)
+   void mesh::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -2940,7 +2940,7 @@ namespace user
    }
 
 
-   void mesh::_001OnRButtonDown(::message::message * pmessage)
+   void mesh::on_message_right_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -3229,7 +3229,7 @@ namespace user
    }
 
 
-   void mesh::_001OnCreate(::message::message * pmessage)
+   void mesh::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

@@ -50,13 +50,13 @@ namespace hellobase
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::_001OnDestroy);
 
    }
 
 
-   void impact_base::_001OnCreate(::message::message * pmessage)
+   void impact_base::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

@@ -38,8 +38,10 @@ public:
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   void system_construct(int argc, char** argv);
-   void system_construct(int argc, wchar_t** argv);
+   ::e_status system_construct(int argc, char** argv);
+   ::e_status system_construct(int argc, wchar_t** argv);
+
+   virtual ::e_status on_system_construct();
 
 
 #ifdef WINDOWS_DESKTOP

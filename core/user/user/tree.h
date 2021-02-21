@@ -120,13 +120,13 @@ namespace user
       // Overrides
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(on_message_right_button_down);
       DECL_GEN_SIGNAL(_001OnRButtonUp);
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnVScroll);
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnChangeExperience);

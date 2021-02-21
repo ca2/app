@@ -260,21 +260,21 @@ namespace aura
    }
 
 
-   ::e_status system::run_system()
-   {
-
-      auto estatus = ::apex::system::run_system();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
+//   ::e_status system::run_system()
+//   {
+//
+//      auto estatus = ::apex::system::run_system();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+//
+//   }
 
 
    bool system::on_get_thread_name(string& strThreadName)
@@ -1695,6 +1695,7 @@ namespace aura
       return ::success;
 
    }
+
 
    void system::term1()
    {
@@ -5473,7 +5474,7 @@ namespace aura
 
       }
 
-         post_create_requests();
+         //post_create_requests();
 
 
 

@@ -110,7 +110,7 @@ namespace user
       //virtual void on_hit_test(::user::item & item) override;
 
       DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;

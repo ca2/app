@@ -178,19 +178,11 @@ namespace linux
    ::file::path desktop_file::get_file_path()
    {
 
-      ::file::path path;
+      auto pnode = Node;
 
-      path = ::dir::home();
+      auto papp = &Application;
 
-      path /= ".local/share/applications";
-
-      string strPrgName = Application.m_strAppId;
-
-      strPrgName.replace("/", ".");
-
-      strPrgName.replace("_", "-");
-
-      path /= ("com." + strPrgName + ".desktop");
+      ::file::path path = pnode->get_desktop_file_path(papp);
 
       return path;
 

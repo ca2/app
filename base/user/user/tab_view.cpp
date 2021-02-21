@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnCreate(::message::message * pmessage)
+   void tab_view::on_message_create(::message::message * pmessage)
    {
 
       if (pmessage->previous())
@@ -175,7 +175,7 @@ namespace user
    {
       impact::install_message_routing(pchannel);
       ::user::tab::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::_001OnSetFocus);
    }
@@ -1048,7 +1048,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab_drop_target_window::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab_drop_target_window::on_message_left_button_up);
 
    }
 
@@ -1122,7 +1122,7 @@ namespace user
 
    //}
 
-   void tab_drop_target_window::_001OnLButtonUp(::message::message * pmessage)
+   void tab_drop_target_window::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

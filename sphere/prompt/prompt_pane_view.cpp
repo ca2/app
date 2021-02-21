@@ -35,7 +35,7 @@ namespace prompt
    }
 
 
-   void pane_view::_001OnCreate(::message::message * pmessage)
+   void pane_view::on_message_create(::message::message * pmessage)
    {
 
       if (pmessage->previous())
@@ -289,7 +289,7 @@ namespace prompt
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &pane_view::_001OnSize);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
 

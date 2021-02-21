@@ -644,12 +644,12 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &check_box::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &check_box::on_message_create);
 
    }
 
 
-   void check_box::_001OnCreate(::message::message * pmessage)
+   void check_box::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

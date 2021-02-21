@@ -357,7 +357,7 @@ namespace android
       virtual bool OnCommand(::user::message * pusermessage) override;
       virtual bool OnNotify(::user::message * pusermessage) override;
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
 
       virtual bool SubclassWindow(oswindow hWnd);
       //HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);

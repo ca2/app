@@ -34,9 +34,10 @@ namespace acme
    }
 
 
-   void node::os_application_system_run()
+   ::e_status node::start()
    {
 
+      return ::success;
 
    }
 
@@ -80,7 +81,12 @@ namespace acme
 
       }
 
-      os_calc_user_dark_mode();
+      node_sync(10_s, __routine([this]()
+                          {
+
+                             os_calc_user_dark_mode();
+
+                          }));
 
    }
 
@@ -534,6 +540,14 @@ namespace acme
 
 
    ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
    {
 
       return error_interface_only;

@@ -28,8 +28,8 @@ public:
 
 
    DECL_GEN_SIGNAL(_001OnShowWindow);
-   DECL_GEN_SIGNAL(_001OnLButtonDown);
-   DECL_GEN_SIGNAL(_001OnLButtonUp);
+   DECL_GEN_SIGNAL(on_message_left_button_down);
+   DECL_GEN_SIGNAL(on_message_left_button_up);
    void _001OnTimer(::timer * ptimer) override;
 
 

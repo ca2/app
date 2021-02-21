@@ -87,7 +87,7 @@ namespace userfs
 
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnShellCommand);
 
 

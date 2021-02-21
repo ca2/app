@@ -18,7 +18,7 @@ public:
 
    virtual bool on_click(const ::user::item & item);
 
-   DECL_GEN_SIGNAL(_001OnCreate);
+   DECL_GEN_SIGNAL(on_message_create);
 
 
 };

@@ -28,9 +28,9 @@ namespace filehandler
    {
 
       ::user::form::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
 //
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
 
    }
 
@@ -66,7 +66,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnCreate(::message::message * pmessage)
+   void view::on_message_create(::message::message * pmessage)
    {
 
       if(pmessage->previous())
@@ -234,7 +234,7 @@ namespace filehandler
 
 
 
-   void view::_001OnLButtonUp(::message::message * pmessage)
+   void view::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

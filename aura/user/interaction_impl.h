@@ -333,11 +333,11 @@ namespace user
       virtual lresult send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
 
 
-#ifdef LINUX
-
-      virtual lresult send_x11_event(void * pevent) override; // XEvent *
-
-#endif
+//#ifdef LINUX
+//
+//      virtual lresult send_x11_event(void * pevent) override; // XEvent *
+//
+//#endif
 
 
       virtual bool post_message(const ::id & id,wparam wParam = 0,lparam lParam = 0) override;
@@ -582,7 +582,7 @@ namespace user
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
 
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);

@@ -38,9 +38,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &still::_001OnCreate);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::_001OnLButtonDown);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
+      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
       //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::_001OnMButtonDown);
       //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::_001OnMButtonUp);
       //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
@@ -153,7 +153,7 @@ namespace user
    }
 
 
-   //void still::_001OnLButtonDown(::message::message * pmessage)
+   //void still::on_message_left_button_down(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -245,7 +245,7 @@ namespace user
    ////   return psession->m_puiLastLButtonDown == this;
    ////}
 
-   //void still::_001OnLButtonUp(::message::message * pmessage)
+   //void still::on_message_left_button_up(::message::message * pmessage)
    //{
 
    //   //__pointer(::message::mouse) pmouse(pmessage);
@@ -490,7 +490,7 @@ namespace user
    }
 
 
-   void still::_001OnCreate(::message::message * pmessage)
+   void still::on_message_create(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

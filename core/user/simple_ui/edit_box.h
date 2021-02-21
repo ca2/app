@@ -28,8 +28,8 @@ namespace simple_ui
 
 
       DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_down);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
 
       virtual bool keyboard_focus_is_focusable();
 

@@ -27,9 +27,9 @@ namespace user
 
       ::user::interaction::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::_001OnCreate);
-      MESSAGE_LINK(e_message_left_button_down, psender, this, &::user::color_combo_box::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::on_message_create);
+      MESSAGE_LINK(e_message_left_button_down, psender, this, &::user::color_combo_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::_001OnMouseMove);
       MESSAGE_LINK(e_message_mouse_leave, psender, this, &::user::color_combo_box::_001OnMouseLeave);
       MESSAGE_LINK(e_message_show_window, psender, this, &::user::color_combo_box::_001OnShowWindow);
@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnCreate(::message::message * pmessage)
+   void color_combo_box::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnLButtonDown(::message::message * pmessage)
+   void color_combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnLButtonUp(::message::message * pmessage)
+   void color_combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

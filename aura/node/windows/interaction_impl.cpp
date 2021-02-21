@@ -240,7 +240,7 @@ namespace windows
    //   }
 
    //   m_puserinteraction->install_message_routing(pchannel);
-   //   MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
+   //   MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
    //   if (!m_puserinteraction->m_bMessageWindow)
    //   {
    //      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::_001OnSetCursor);
@@ -1200,7 +1200,7 @@ namespace windows
    //}
 
 
-   //void interaction_impl::_001OnCreate(::message::message * pmessage)
+   //void interaction_impl::on_message_create(::message::message * pmessage)
    //{
 
    //   __pointer(::message::create) pcreate(pmessage);

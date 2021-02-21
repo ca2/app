@@ -23,12 +23,12 @@ void simple_printer_list_view::install_message_routing(::channel * pchannel)
 {
 
    simple_list_view::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_view::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_view::on_message_create);
 
 }
 
 
-void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
+void simple_printer_list_view::on_message_create(::message::message * pmessage)
 {
 //   __pointer(::message::create) pcreate(pmessage);
 

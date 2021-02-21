@@ -83,16 +83,16 @@ namespace user
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::_001OnMouseLeave);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::_001OnRButtonDown);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
       connect_command("list_view_auto_arrange", &list::_001OnListViewAutoArrange);
       connect_command_probe("list_view_auto_arrange", &list::_001OnUpdateListViewAutoArrange);
@@ -3508,7 +3508,7 @@ namespace user
    }
 
 
-   void list::_001OnLButtonDown(::message::message * pmessage)
+   void list::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -3866,7 +3866,7 @@ namespace user
    }
 
 
-   void list::_001OnLButtonUp(::message::message * pmessage)
+   void list::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -4069,7 +4069,7 @@ namespace user
    }
 
 
-   void list::_001OnRButtonDown(::message::message * pmessage)
+   void list::on_message_right_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -5297,7 +5297,7 @@ namespace user
    }
 
 
-   void list::_001OnCreate(::message::message * pmessage)
+   void list::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);

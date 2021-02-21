@@ -253,6 +253,12 @@ namespace apex
       virtual ::e_status init_system();
       virtual void term_system();
 
+      virtual ::e_status on_system_construct();
+
+      virtual ::e_status on_start();
+
+      virtual ::e_status start();
+
       virtual void term();
 
 
@@ -324,7 +330,7 @@ namespace apex
       virtual string crypto_md5_text(const string & str);
 
 
-      virtual ::e_status os_application_system_run() override;
+      //virtual ::e_status start() override;
 
       //virtual ::e_status create_html();
 

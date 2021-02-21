@@ -35,7 +35,7 @@
 //      //      ::user::impact::install_message_routing(pchannel);
 //      ::user::box::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_create, pchannel, this, &::user::interaction::_001OnCreate);
+//      MESSAGE_LINK(e_message_create, pchannel, this, &::user::interaction::on_message_create);
 //      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::_001OnMouseMove);
 //      //
 //      //#ifdef WINDOWS
@@ -60,7 +60,7 @@
 //   }
 //
 //
-//   void control::_001OnCreate(::message::message* pmessage)
+//   void control::on_message_create(::message::message* pmessage)
 //   {
 //
 //      __pointer(::message::create) pcreate(pmessage);

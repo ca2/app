@@ -87,7 +87,7 @@ namespace user
 
    //   //virtual void on_hit_test(::user::item & item) override;
 
-   //   DECL_GEN_SIGNAL(_001OnCreate);
+   //   DECL_GEN_SIGNAL(on_message_create);
    //   //DECL_GEN_SIGNAL(_001OnMouseMove);
    //   //DECL_GEN_SIGNAL(_001OnMouseLeave);
    //   DECL_GEN_SIGNAL(_001OnKeyDown);

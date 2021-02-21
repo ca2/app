@@ -887,7 +887,7 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
@@ -2489,18 +2489,22 @@ namespace user
    }
 
 
-#ifdef LINUX
-
-   lresult interaction_impl::send_x11_event(void * pevent)
-   {
-      UNREFERENCED_PARAMETER(pevent);
-      ::exception::throw_interface_only();
-
-      return 0;
-
-   }
-
-#endif
+//#ifdef LINUX
+//
+//
+//   lresult interaction_impl::send_x11_event(void * pevent)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pevent);
+//
+//      ::exception::throw_interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
+//#endif
 
 
    bool interaction_impl::post_message(const ::id & id,wparam wParam,lparam lParam)
@@ -3334,7 +3338,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnCreate(::message::message * pmessage)
+   void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
       if (::is_set(m_pprodevian))

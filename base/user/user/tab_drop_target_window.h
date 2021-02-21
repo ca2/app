@@ -26,7 +26,7 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
 
       virtual bool has_pending_graphical_update() override;
 

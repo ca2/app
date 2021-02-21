@@ -71,9 +71,10 @@ namespace acme
 
       //virtual void defer_calc_os_user_theme();
 
+      virtual ::e_status on_start();
 
-      virtual ::e_status os_application_system_run();
-      virtual ::e_status run_system();
+      virtual ::e_status start();
+      //virtual ::e_status run_system();
 
 
       using ::promise::handler::on_subject;

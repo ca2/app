@@ -664,7 +664,7 @@ namespace user
 
       form::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::on_message_create);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
       //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::_001OnKeyDown);
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   void form_control::_001OnCreate(::message::message * pmessage)
+   void form_control::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pmessagecreate(pmessage);
@@ -1425,7 +1425,7 @@ namespace user
    //}
 
 
-   //void form_control::_001OnCreate(::message::message * pmessage)
+   //void form_control::on_message_create(::message::message * pmessage)
    //{
    //   pmessage->previous();
    //}

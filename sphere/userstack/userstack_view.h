@@ -74,11 +74,11 @@ namespace userstack
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(on_message_left_button_up);
 
       virtual void _001OnTabClick(i32 iTab);
 

@@ -130,7 +130,7 @@ namespace apex
 {
 
 
-   ::e_status system::os_application_system_run()
+   ::e_status system::start()
    {
 
 
@@ -201,7 +201,7 @@ namespace apex
 
       auto pnode = Node;
 
-      pnode->os_application_system_run();
+      pnode->start();
 
       return ::success;
 

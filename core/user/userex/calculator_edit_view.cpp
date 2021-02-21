@@ -53,12 +53,12 @@ namespace calculator
     
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_view::on_message_create);
       
    }
 
 
-   void plain_edit_view::_001OnCreate(::message::message * pmessage)
+   void plain_edit_view::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();

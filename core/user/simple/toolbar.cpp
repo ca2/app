@@ -101,10 +101,10 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::_001OnCreate);
+   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
-   //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::_001OnLButtonDown);
-   //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::_001OnLButtonUp);
+   //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
+   //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
    //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
 
@@ -387,7 +387,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-void simple_toolbar::_001OnCreate(::message::message * pmessage)
+void simple_toolbar::on_message_create(::message::message * pmessage)
 {
 
    if (pmessage->previous())
@@ -1262,7 +1262,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-//void simple_toolbar::_001OnLButtonDown(::message::message * pmessage)
+//void simple_toolbar::on_message_left_button_down(::message::message * pmessage)
 //{
 //
 //   __pointer(::message::mouse) pmouse(pmessage);
@@ -1287,7 +1287,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 //
 //
-//void simple_toolbar::_001OnLButtonUp(::message::message * pmessage)
+//void simple_toolbar::on_message_left_button_up(::message::message * pmessage)
 //{
 //
 //   __pointer(::message::mouse) pmouse(pmessage);

@@ -51,7 +51,7 @@ namespace node_ansios
    }
 
 
-   void node::os_application_system_run()
+   ::e_status node::start()
    {
 
 
@@ -146,6 +146,7 @@ namespace node_ansios
       //
       //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
+      return ::success;
 
    }
 

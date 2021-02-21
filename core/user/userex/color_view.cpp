@@ -397,10 +397,10 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &color_view::_001OnCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &color_view::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_view::_001OnMouseMove);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_view::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_view::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::on_message_left_button_up);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::_001OnShowWindow);
 
       m_pimageTemplate = create_image({2048,  2048});
@@ -428,7 +428,7 @@ namespace userex
    }
 
 
-   void color_view::_001OnCreate(::message::message * pmessage)
+   void color_view::on_message_create(::message::message * pmessage)
    {
 
       //m_pimageBeam->create_image(this, ::size_i32(32, 32));
@@ -806,7 +806,7 @@ namespace userex
    }
 
 
-   void color_view::_001OnLButtonDown(::message::message * pmessage)
+   void color_view::on_message_left_button_down(::message::message * pmessage)
    {
       
       __pointer(::message::mouse) pmouse(pmessage);
@@ -826,7 +826,7 @@ namespace userex
    }
 
 
-   void color_view::_001OnLButtonUp(::message::message * pmessage)
+   void color_view::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

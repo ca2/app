@@ -8,6 +8,12 @@
 enum e_id : ::u64;
 
 
+// Lets (AMajor.AMinor) (BMajor.BMinor)
+// compare_square(AMajor - BMajor, AMinor - BMinor)
+#define __COMPARE_SQUARE(MAJOR_COMPARISON, MINOR_COMPARISON) \
+((MAJOR_COMPARISON) != 0 ? (MAJOR_COMPARISON) : (MINOR_COMPARISON))
+
+
 struct id_all
 {
 
@@ -25,38 +31,37 @@ public:
    enum enum_type : ::i64
    {
 
-      e_type_null,
-      e_type_integer,
-      e_type_text,
 
+      e_type_empty = -1,
 
-      e_type_empty = 256,
+      e_type_null = 0,
 
-
-      e_type_enum = 1024,
-      e_type_property = e_type_enum,
+      e_type_integer = 1,
+      e_type_id,
       e_type_factory,
       e_type_thread_tool,
       e_type_clock,
       e_type_message,
+      e_type_property,
 
-
-      e_type_compounded = 1 << 16,
-      e_type_command = e_type_compounded,
-      e_type_command_integer,
-      e_type_command_text,
+      e_type_command = 1 << 16,
+      e_type_command_integer = e_type_command,
 
       e_type_command_probe = 1 << 20,
-      e_type_command_probe_integer,
-      e_type_command_probe_text,
+      e_type_command_probe_integer = e_type_command_probe,
 
       e_type_has_command_handler = 1 << 24,
-      e_type_has_command_handler_integer,
-      e_type_has_command_handler_text,
+      e_type_has_command_handler_integer = e_type_has_command_handler,
 
       e_type_update = 1 << 28,
-      e_type_update_integer,
-      e_type_update_text,
+      e_type_update_integer = e_type_update,
+
+      e_type_text = 1ull << 32,
+      e_type_command_text = e_type_text | e_type_command,
+      e_type_update_text = e_type_text | e_type_update,
+      e_type_has_command_handler_text = e_type_text | e_type_has_command_handler,
+      e_type_command_probe_text = e_type_text | e_type_command_probe_integer,
+
 
    };
 
@@ -76,6 +81,7 @@ public:
             ::u64                m_u;
             ::i64                m_i;
             const char *         m_psz;
+            e_id                 m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
             enum_thread_tool     m_ethreadtool;
@@ -112,12 +118,13 @@ public:
 
    inline id();
    inline id(enum_type etype);
+   inline id(e_id eid);
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
    inline id(enum_thread_tool ethreadtool);
    inline id(enum_clock eclock);
    inline id(enum_message emessage);
-   inline id(enum_type etype, const ::id & id);
+   inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
    id(const char * psz);
    id(::i32 i);
@@ -137,75 +144,68 @@ public:
    string str() const;
 
 
-   inline enum_type primitive_type() const
+   enum_type primitive_type() const
    {
 
-      return m_etype >= e_type_enum && m_etype < e_type_compounded ? e_type_integer : (enum_type) (m_etype & 3);
+      if(m_etype <= 0)
+      {
+
+         return m_etype;
+
+      }
+      else if(m_etype < e_type_text)
+      {
+
+         return e_type_integer;
+
+      }
+      else
+      {
+
+         return e_type_text;
+
+      }
 
    }
 
 
-   inline enum_type compounded_type() const
+   enum_type compounded_type(enum_type etype) const
    {
 
-      return (enum_type) (m_etype & 0xFFFF);
+      return (enum_type)((m_iType & ~0xffff0000) | (int) etype);
 
    }
 
 
-   inline enum_type compounded_type(enum_type etype) const
+   ::id compounded(enum_type etype) const
    {
 
-      return (enum_type) ((etype & 0xffffffffffff0000) | primitive_type());
+      return {compounded_type(etype), m_i};
 
    }
 
 
-   inline ::id & set_compounded_type(enum_type etype)
+   void set_compounded_type(enum_type etype)
    {
 
       m_etype = compounded_type(etype);
 
-      return *this;
-
    }
 
-
-   inline ::id compounded(enum_type etype) const
-   {
-
-      ::id id(*this);
-
-      id.m_etype = compounded_type(etype);
-
-      return id;
-
-   }
-
-
-   inline bool is_compounded(enum_type etype) const
-   {
-
-      return
-         m_etype >= e_type_compounded
-         && etype >= e_type_compounded
-         && (enum_type) ((::i64)m_etype & (::i64) etype) == etype;
-
-   }
-
-   bool is_command() const { return is_compounded(e_type_command); }
-   bool is_command_probe() const { return is_compounded(e_type_command_probe); }
-
-
-   bool is_message() const
-   {
-
-      return m_etype == e_type_message || m_etype == e_type_integer;
-
-   }
+   bool _is_compounded(enum_type etype) const { return (m_etype & etype) != 0;}
 
 
 
+   bool is_message() const { return m_etype == e_type_message; }
+
+
+   bool is_command() const { return _is_compounded(e_type_command); }
+   bool is_command_probe() const { return _is_compounded(e_type_command_probe); }
+   bool is_has_command_handler() const { return _is_compounded(e_type_has_command_handler); }
+   bool is_update() const { return _is_compounded(e_type_update); }
+
+
+   inline int compare(const id& id) const;
    inline bool operator == (const id& id) const;
    inline bool operator != (const id & id) const;
    inline bool operator < (const id & id) const;
@@ -214,6 +214,7 @@ public:
    inline bool operator >= (const id & id) const;
 
 
+   inline int compare(const char * psz) const;
    inline bool operator == (const char * psz) const;
    inline bool operator != (const char * psz) const;
    inline bool operator < (const char * psz) const;
@@ -222,6 +223,7 @@ public:
    inline bool operator >= (const char * psz) const;
 
 
+   inline int compare(const string & str) const;
    inline bool operator == (const string & str) const;
    inline bool operator != (const string & str) const;
    inline bool operator < (const string & str) const;
@@ -230,6 +232,7 @@ public:
    inline bool operator >= (const string & str) const;
 
 
+   inline int compare(::i32 i) const;
    inline bool operator == (::i32 i) const;
    inline bool operator != (::i32 i) const;
    inline bool operator < (::i32 i) const;
@@ -238,6 +241,7 @@ public:
    inline bool operator >= (::i32 i) const;
 
 
+   inline int compare(::i64 i) const;
    inline bool operator == (::i64 i) const;
    inline bool operator != (::i64 i) const;
    inline bool operator < (::i64 i) const;
@@ -246,12 +250,22 @@ public:
    inline bool operator >= (::i64 i) const;
 
 
+   inline int compare(::e_id i) const;
    inline bool operator == (::e_id eid) const;
    inline bool operator != (::e_id eid) const;
    inline bool operator < (::e_id eid) const;
    inline bool operator <= (::e_id eid) const;
    inline bool operator > (::e_id eid) const;
    inline bool operator >= (::e_id eid) const;
+
+
+   inline int compare(::enum_message emessage) const;
+   inline bool operator == (::enum_message emessage) const;
+   inline bool operator != (::enum_message emessage) const;
+   inline bool operator < (::enum_message emessage) const;
+   inline bool operator <= (::enum_message emessage) const;
+   inline bool operator > (::enum_message emessage) const;
+   inline bool operator >= (::enum_message emessage) const;
 
 
    id & operator = (const ::payload & payload);
@@ -299,8 +313,8 @@ public:
    inline bool begins_ci(const string & strPrefix) const;
 
 
-   inline bool is_text() const { return m_etype == e_type_text; }
-   inline bool is_integer() const { return primitive_type() == e_type_integer; }
+   inline bool is_text() const { return m_etype >= e_type_text; }
+   inline bool is_integer() const { return m_etype > 0 && m_etype < e_type_text; }
 
 
    inline id & operator +=(const char * psz);
@@ -353,9 +367,17 @@ inline id::id(enum_type etype) :
 }
 
 
+inline id::id(e_id eid) :
+   m_etype(e_type_id),
+   m_eid(eid) // used m_i to reset 64-bit field
+{
+
+}
+
+
 inline id::id(enum_property eproperty) :
    m_etype(e_type_property),
-   m_i(eproperty) // used m_i to reset 64-bit field
+   m_eproperty(eproperty) // used m_i to reset 64-bit field
 {
 
 }
@@ -363,7 +385,7 @@ inline id::id(enum_property eproperty) :
 
 inline id::id(enum_factory efactory) :
    m_etype(e_type_factory),
-   m_i(efactory) // used m_i to reset 64-bit field
+   m_efactory(efactory) // used m_i to reset 64-bit field
 {
 
 }
@@ -371,7 +393,7 @@ inline id::id(enum_factory efactory) :
 
 inline id::id(enum_thread_tool ethreadtool) :
    m_etype(e_type_thread_tool),
-   m_i(ethreadtool) // used m_i to reset 64-bit field
+   m_ethreadtool(ethreadtool) // used m_i to reset 64-bit field
 {
 
 }
@@ -379,7 +401,7 @@ inline id::id(enum_thread_tool ethreadtool) :
 
 inline id::id(enum_clock eclock) :
    m_etype(e_type_clock),
-   m_i(eclock)
+   m_eclock(eclock)
 {
 
 }
@@ -388,16 +410,16 @@ inline id::id(enum_clock eclock) :
 
 inline id::id(enum_message emessage) :
    m_etype(e_type_message),
-   m_i(emessage)
+   m_emessage(emessage)
 {
 
 }
 
 
 
-inline id::id(enum_type etype, const ::id & id) :
-   m_etype((enum_type) (etype + id.m_etype)),
-   m_i(id.m_i)
+inline id::id(enum_type etype, ::i64 i) :
+   m_etype(etype),
+   m_i(i)
 {
 
 }
@@ -471,10 +493,18 @@ inline id::id(const ::lparam& lparam)
 }
 
 
+inline int id::compare(const id & id) const
+{
+
+   return __COMPARE_SQUARE(m_iType - id.m_iType, m_iBody - id.m_iBody);
+
+}
+
+
 inline bool id::operator == (const id & id) const
 {
 
-   return m_iType == id.m_iType && m_iBody == id.m_iBody;
+   return compare(id) == 0;
 
 }
 
@@ -482,7 +512,7 @@ inline bool id::operator == (const id & id) const
 inline bool id::operator != (const id & id) const
 {
 
-   return ! operator == (id);
+   return compare(id) != 0;
 
 }
 
@@ -490,7 +520,7 @@ inline bool id::operator != (const id & id) const
 inline bool id::operator < (const id & id) const
 {
 
-   return m_iType < id.m_iType || ((m_iType == id.m_iType) && m_iBody < id.m_iBody);
+   return compare(id) < 0;
 
 }
 
@@ -498,7 +528,7 @@ inline bool id::operator < (const id & id) const
 inline bool id::operator >(const id & id) const
 {
 
-   return m_iType > id.m_iType || ((m_iType == id.m_iType) && m_iBody > id.m_iBody);
+   return compare(id) > 0;
 
 }
 
@@ -506,7 +536,7 @@ inline bool id::operator >(const id & id) const
 inline bool id::operator <= (const id & id) const
 {
 
-   return id > *this;
+   return compare(id) <= 0;
 
 }
 
@@ -514,7 +544,7 @@ inline bool id::operator <= (const id & id) const
 inline bool id::operator >= (const id & id) const
 {
 
-   return id < *this;
+   return compare(id) >= 0;
 
 }
 
@@ -529,10 +559,18 @@ inline id & id::operator = (const id & id)
 }
 
 
+inline int id::compare(const string & str) const
+{
+
+   return __COMPARE_SQUARE(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
+
+}
+
+
 inline bool id::operator == (const string & str) const
 {
 
-   return primitive_type() == e_type_text && (m_psz == nullptr ? false : str.compare(m_psz) == 0);
+   return compare(str) == 0;
 
 }
 
@@ -540,7 +578,7 @@ inline bool id::operator == (const string & str) const
 inline bool id::operator != (const string & str) const
 {
 
-   return !operator==(str);
+   return compare(str) != 0;
 
 }
 
@@ -548,7 +586,7 @@ inline bool id::operator != (const string & str) const
 inline bool id::operator < (const string & str) const
 {
 
-   return (primitive_type() < e_type_text) || ((primitive_type() == e_type_text) && (m_psz == nullptr ? true : str.compare(m_psz) > 0));
+   return compare(str) < 0;
 
 }
 
@@ -556,7 +594,7 @@ inline bool id::operator < (const string & str) const
 inline bool id::operator <= (const string & str) const
 {
 
-   return !operator > (str);
+   return compare(str) <= 0;
 
 }
 
@@ -564,7 +602,7 @@ inline bool id::operator <= (const string & str) const
 inline bool id::operator > (const string & str) const
 {
 
-   return (primitive_type() > e_type_text) || ((primitive_type() == e_type_text) && (m_psz == nullptr ? false : str.compare(m_psz) < 0));
+   return compare(str) > 0;
 
 }
 
@@ -572,7 +610,7 @@ inline bool id::operator > (const string & str) const
 inline bool id::operator >= (const string & str) const
 {
 
-   return !operator < (str);
+   return compare(str) >= 0;
 
 }
 
@@ -580,7 +618,7 @@ inline bool id::operator >= (const string & str) const
 inline id::operator const char *() const
 {
 
-   return (primitive_type() != e_type_text || m_psz == nullptr) ? nullptr : m_psz;
+   return primitive_type() == e_type_text ? m_psz : nullptr;
 
 }
 
@@ -592,12 +630,14 @@ inline void id::to_string(string & strRet) const
 
 }
 
+
 inline string id::to_string() const
 {
 
    return str();
 
 }
+
 
 inline string id::__string() const
 {
@@ -669,24 +709,34 @@ inline string id::str() const
 }
 
 
+inline int id::compare(const char * psz) const
+{
+
+   return __COMPARE_SQUARE(primitive_type() - e_type_text, ansi_compare(m_psz, psz));
+
+}
+
+
 inline bool id::operator == (const char * psz) const
 {
 
-   return primitive_type() == e_type_text && (m_psz == nullptr ? psz == nullptr : strcmp(m_psz,psz) == 0);
+   return compare(psz) == 0;
 
 }
+
 
 inline bool id::operator != (const char * psz) const
 {
 
-   return !operator ==(psz);
+   return compare(psz) != 0;
+
 
 }
 
 inline bool id::operator < (const char * psz) const
 {
 
-   return primitive_type() < e_type_text || (primitive_type() == e_type_text && (m_psz == nullptr ? psz != nullptr : strcmp(m_psz,psz) < 0));
+   return compare(psz) < 0;
 
 }
 
@@ -694,7 +744,7 @@ inline bool id::operator < (const char * psz) const
 inline bool id::operator > (const char * psz) const
 {
 
-   return primitive_type() > e_type_text || (primitive_type() == e_type_text && (m_psz == nullptr ? psz == nullptr : strcmp(m_psz,psz) > 0));
+   return compare(psz) > 0;
 
 }
 
@@ -703,7 +753,7 @@ inline bool id::operator > (const char * psz) const
 inline bool id::operator <= (const char * psz) const
 {
 
-   return !operator>(psz);
+   return compare(psz) <= 0;
 
 }
 
@@ -711,7 +761,14 @@ inline bool id::operator <= (const char * psz) const
 inline bool id::operator >= (const char * psz) const
 {
 
-   return !operator<(psz);
+   return compare(psz) >= 0;
+
+}
+
+inline int id::compare(::i32 i) const
+{
+
+   return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
 
 }
 
@@ -719,7 +776,7 @@ inline bool id::operator >= (const char * psz) const
 inline bool id::operator == (::i32 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i == i;
+   return compare(i)== 0;
 
 }
 
@@ -727,7 +784,7 @@ inline bool id::operator == (::i32 i) const
 inline bool id::operator != (::i32 i) const
 {
 
-   return primitive_type() != e_type_integer || m_i != i;
+   return compare(i) != 0;
 
 }
 
@@ -735,7 +792,7 @@ inline bool id::operator != (::i32 i) const
 inline bool id::operator < (::i32 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i < i;
+   return compare(i) < 0;
 
 }
 
@@ -743,7 +800,7 @@ inline bool id::operator < (::i32 i) const
 inline bool id::operator <= (::i32 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i <= i;
+   return compare(i) <= 0;
 
 }
 
@@ -751,7 +808,7 @@ inline bool id::operator <= (::i32 i) const
 inline bool id::operator > (::i32 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i > i;
+   return compare(i) > 0;
 
 }
 
@@ -759,7 +816,15 @@ inline bool id::operator > (::i32 i) const
 inline bool id::operator >= (::i32 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i >= i;
+   return compare(i) >= 0;
+
+}
+
+
+inline int id::compare(::i64 i) const
+{
+
+   return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
 
 }
 
@@ -767,7 +832,7 @@ inline bool id::operator >= (::i32 i) const
 inline bool id::operator == (::i64 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i == i;
+   return compare(i) == 0;
 
 }
 
@@ -775,7 +840,7 @@ inline bool id::operator == (::i64 i) const
 inline bool id::operator != (::i64 i) const
 {
 
-   return primitive_type() != e_type_integer || m_i != i;
+   return compare(i) != 0;
 
 }
 
@@ -783,7 +848,7 @@ inline bool id::operator != (::i64 i) const
 inline bool id::operator < (::i64 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i < i;
+   return compare(i) < 0;
 
 }
 
@@ -791,7 +856,7 @@ inline bool id::operator < (::i64 i) const
 inline bool id::operator <= (::i64 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i <= i;
+   return compare(i) <= 0;
 
 }
 
@@ -799,7 +864,7 @@ inline bool id::operator <= (::i64 i) const
 inline bool id::operator > (::i64 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i > i;
+   return compare(i) > 0;
 
 }
 
@@ -807,7 +872,15 @@ inline bool id::operator > (::i64 i) const
 inline bool id::operator >= (::i64 i) const
 {
 
-   return primitive_type() == e_type_integer && m_i >= i;
+   return compare(i) >= 0;
+
+}
+
+
+inline int id::compare(::e_id eid) const
+{
+
+   return __COMPARE_SQUARE(m_etype - e_type_id, m_i - eid);
 
 }
 
@@ -815,7 +888,7 @@ inline bool id::operator >= (::i64 i) const
 inline bool id::operator == (::e_id eid) const
 {
 
-   return primitive_type() == e_type_integer && m_i == eid;
+   return compare(eid) == 0;
 
 }
 
@@ -823,7 +896,7 @@ inline bool id::operator == (::e_id eid) const
 inline bool id::operator != (::e_id eid) const
 {
 
-   return primitive_type() != e_type_integer || m_i != eid;
+   return compare(eid) != 0;
 
 }
 
@@ -831,7 +904,7 @@ inline bool id::operator != (::e_id eid) const
 inline bool id::operator < (::e_id eid) const
 {
 
-   return primitive_type() == e_type_integer && m_u < eid;
+   return compare(eid) < 0;
 
 }
 
@@ -839,7 +912,7 @@ inline bool id::operator < (::e_id eid) const
 inline bool id::operator <= (::e_id eid) const
 {
 
-   return primitive_type() == e_type_integer && m_u <= eid;
+   return compare(eid) <= 0;
 
 }
 
@@ -847,7 +920,7 @@ inline bool id::operator <= (::e_id eid) const
 inline bool id::operator > (::e_id eid) const
 {
 
-   return primitive_type() == e_type_integer && m_u > eid;
+   return compare(eid) > 0;
 
 }
 
@@ -855,7 +928,64 @@ inline bool id::operator > (::e_id eid) const
 inline bool id::operator >= (::e_id eid) const
 {
 
-   return primitive_type() == e_type_integer && m_u >= eid;
+   return compare(eid) >= 0;
+
+}
+
+
+inline int id::compare(::enum_message emessage) const
+{
+
+   return __COMPARE_SQUARE(m_etype - e_type_message, m_i - emessage);
+
+}
+
+
+
+inline bool id::operator == (::enum_message emessage) const
+{
+
+   return compare(emessage) == 0;
+
+}
+
+
+inline bool id::operator != (::enum_message emessage) const
+{
+
+   return compare(emessage) != 0;
+
+}
+
+
+inline bool id::operator < (::enum_message emessage) const
+{
+
+   return compare(emessage) < 0;
+
+}
+
+
+inline bool id::operator <= (::enum_message emessage) const
+{
+
+   return compare(emessage) <= 0;
+
+}
+
+
+inline bool id::operator > (::enum_message emessage) const
+{
+
+   return compare(emessage) > 0;
+
+}
+
+
+inline bool id::operator >= (::enum_message emessage) const
+{
+
+   return compare(emessage) >= 0;
 
 }
 

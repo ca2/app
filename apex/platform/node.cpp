@@ -29,10 +29,28 @@ namespace apex
    }
 
 
-   ::file::path node::get_desktop_file_path(::apex::application * papplication)
+   ::file::path node::get_desktop_file_path(::apex::application * papplication) const
    {
 
       return "";
+
+   }
+
+
+   ::e_status node::start()
+   {
+
+      auto estatus = System.on_start();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
 
    }
 

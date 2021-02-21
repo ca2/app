@@ -90,16 +90,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(e_message_create, pchannel, this, &split_bar::_001OnCreate);
+      //MESSAGE_LINK(e_message_create, pchannel, this, &split_bar::on_message_create);
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::_001OnSize);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::_001OnLButtonDown);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::_001OnLButtonUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::_001OnMouseMove);
 
    }
 
 
-   void split_bar::_001OnLButtonDown(::message::message * pmessage)
+   void split_bar::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -125,7 +125,7 @@ namespace user
    }
 
 
-   void split_bar::_001OnLButtonUp(::message::message * pmessage)
+   void split_bar::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

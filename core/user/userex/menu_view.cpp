@@ -53,14 +53,14 @@ void menu_view::on_control_event(::user::control_event * pevent)
 void menu_view::install_message_routing(::channel * pchannel)
 {
    ::user::form::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::_001OnCreate);
+   MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
 //   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_view::_001OnTimer);
    //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_view::_001OnUser123);
 
 }
 
 
-void menu_view::_001OnCreate(::message::message * pmessage)
+void menu_view::on_message_create(::message::message * pmessage)
 {
    pmessage->previous();
 }

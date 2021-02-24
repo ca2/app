@@ -143,7 +143,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       _001ScreenToClient(pointCursor);
 
@@ -250,7 +250,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          _001ScreenToClient(pointCursor);
 

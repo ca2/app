@@ -76,11 +76,15 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
    if (bWaitForAll)
    {
 
+      i32 i;
+
+      i32 j;
+
+      i = 0;
+
       while (true)
       {
-         i32 i;
-         i32 j;
-         i = 0;
+
          for (; comparison::lt(i, dwSize);)
          {
 
@@ -89,7 +93,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 
                synchronization_lock synchronizationlock(pmq->mutex());
 
-               if (pmq->m_messagea.get_count() > 0)
+               if (pmq->m_messagea.has_element())
                {
 
                   return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
@@ -112,7 +116,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 
             }
 
-            if (synca[i]->lock(millis(1)))
+            if (synca[i]->lock(0))
             {
 
                i++;
@@ -123,15 +127,18 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 
                nanosleep(&delay, nullptr);
 
+               break;
+
             }
 
          }
-         //      for(j = 0; j < dwSize; j++)
-         //    {
-         //     hsynca[j]->unlock();
-         //}
 
-         return e_synchronization_result_signaled_base;
+         if(i >= dwSize)
+         {
+
+            return e_synchronization_result_signaled_base;
+
+         }
 
       }
 

@@ -269,7 +269,7 @@ namespace user
          }
 
       }
-      else if(pMsg->message == WM_CAPTURECHANGED)
+      else if(pMsg->message == e_message_capture_changed)
 
       {
 
@@ -1171,7 +1171,7 @@ namespace user
             m_iState = stateInitial;
          }
       }
-      else if(emessage == WM_CAPTURECHANGED)
+      else if(emessage == e_message_capture_changed)
       {
       }
       else if(emessage == e_message_mouse_move)

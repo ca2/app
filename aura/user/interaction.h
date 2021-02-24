@@ -125,6 +125,13 @@ namespace user
             bool              m_bEdgeGestureDisableTouchWhenFullscreen : 1;
             bool              m_bVisible : 1;
 
+            bool              m_bMouseHoverOnCapture : 1;
+            bool              m_bTrackMouseLeave : 1;
+            bool              m_bMouseHover : 1;
+            bool              m_bSimpleUIDefaultMouseHandling : 1;
+            bool              m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture : 1;
+
+
             //bool              m_bIsWindow : 1;
             //bool              m_bEnable : 1;
             //bool              m_bFocus : 1;
@@ -269,9 +276,6 @@ namespace user
       ::size_i32                                       m_sizeRestoreBroad;
       ::size_i32                                       m_sizeRestoreCompact;
       enumeration < e_non_client >                       m_flagNonClient;
-      bool                                         m_bTrackMouseLeave;
-      bool                                         m_bMouseHover;
-      bool                                         m_bSimpleUIDefaultMouseHandling;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
       ::millis                                     m_millisMouseMoveSkip;
@@ -378,6 +382,10 @@ namespace user
       virtual bool _001Restore();
 
       virtual bool _001Minimize();
+
+      virtual ::windowing::window * window() const;
+
+      virtual ::windowing::windowing * windowing() const;
 
       ::user::interaction * get_host_window() const override;
 
@@ -731,7 +739,7 @@ namespace user
       virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
 
-      //virtual ::point_i32 get_cursor_pos() const override;
+      //virtual ::point_i32 get_cursor_position() const override;
 
 
       virtual bool is_left_button_pressed() const;
@@ -1173,7 +1181,7 @@ namespace user
       virtual void _000OnKey(::message::key* pkey);
       virtual void _000OnDrag(::message::drag_and_drop* pdrag);
 
-
+      virtual void prio_install_message_routing(::channel *pchannel);
 
 
       DECL_GEN_SIGNAL(on_message_left_button_down);
@@ -1214,10 +1222,11 @@ namespace user
       DECL_GEN_SIGNAL(_001OnTextComposition);
 
 
-      virtual bool _001IsPointInside(::point_i32 point) override;
-      
-      inline bool _001IsClientPointInside(::point_i32 point) { return layout().sketch().client_rect().contains(point); }
-      inline bool _001IsParentClientPointInside(::point_i32 point) { return layout().sketch().parent_client_rect().contains(point); }
+      virtual bool _001IsPointInside(const ::point_i32 & point) override;
+
+      inline bool _001IsPointInsideInline(const ::point_i32 & point) { return layout().sketch().screen_rect().contains(point); }
+      inline bool _001IsClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().client_rect().contains(point); }
+      inline bool _001IsParentClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().parent_client_rect().contains(point); }
 
       virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
@@ -1442,20 +1451,20 @@ namespace user
 
 
 
-      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);
 
        //virtual void reset_window_state();
 
       virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_wkspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_workspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, edisplay edisplay = e_display_restore);
       virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectRequest = ::rectangle_i32(), bool bPreserveSize = false);
-      virtual index get_best_wkspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECTANGLE_I32* prectangle);
 

@@ -157,7 +157,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          ::rectangle_i32 rectWindow;
 

@@ -1916,6 +1916,10 @@ namespace aura
 
       ::aqua::system::TermSystem();
 
+      auto pnode = Node;
+
+      pnode->node_post_quit();
+
 #ifdef LINUX
 
       // dirty
@@ -3375,7 +3379,7 @@ namespace aura
 //
 //      {
 //
-//         get_monitor_rect(iMainMonitor, prectangle);
+//         get_monitor_rectangle(iMainMonitor, prectangle);
 //
 //
 //      }
@@ -3411,7 +3415,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+//   bool system::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3496,29 +3500,29 @@ namespace aura
 //
 //   {
 //
-//      return get_monitor_rect(iMonitor, prectangle);
+//      return get_monitor_rectangle(iMonitor, prectangle);
 //
 //
 //   }
 //
 //
-//   index system::get_main_wkspace(RECTANGLE_I32 * prectangle)
+//   index system::get_main_workspace(RECTANGLE_I32 * prectangle)
 //
 //   {
 //
-//      index iMainWkspace = 0;
+//      index iMainWorkspace = 0;
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+//      HMONITOR hworkspacePrimary = GetPrimaryMonitorHandle();
 //
-//      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      for (index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
 //      {
 //
-//         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+//         if (m_hmonitora[iWorkspace] == hworkspacePrimary)
 //         {
 //
-//            iMainWkspace = iWkspace;
+//            iMainWorkspace = iWorkspace;
 //
 //            break;
 //
@@ -3533,17 +3537,17 @@ namespace aura
 //
 //      {
 //
-//         get_wkspace_rect(iMainWkspace, prectangle);
+//         get_workspace_rectangle(iMainWorkspace, prectangle);
 //
 //
 //      }
 //
-//      return iMainWkspace;
+//      return iMainWorkspace;
 //
 //   }
 
 
-//   ::count system::get_wkspace_count()
+//   ::count system::get_workspace_count()
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3559,20 +3563,20 @@ namespace aura
 //   }
 //
 
-//   bool system::get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle)
+//   bool system::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //         return false;
 //
-//      *prectangle = m_monitorinfoa[iWkspace].rcWork;
+//      *prectangle = m_monitorinfoa[iWorkspace].rcWork;
 //
 //
 //#elif defined(_UWP)
 //
-//      return get_monitor_rect(iWkspace, prectangle);
+//      return get_monitor_rectangle(iWorkspace, prectangle);
 //
 //
 //      //#elif defined(LINUX)
@@ -3581,14 +3585,14 @@ namespace aura
 //      //
 //#elif defined(__APPLE__)
 //
-//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      GetWkspaceRect(prectangle, (int) iWkspace);
+//      GetWorkspaceRect(prectangle, (int) iWorkspace);
 //
 //
 //      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
@@ -3599,14 +3603,14 @@ namespace aura
 //
 //      synchronization_lock synchronizationlock(mutex());
 //
-//      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
+//      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      *prectangle = m_rectaWork[iWkspace];
+//      *prectangle = m_rectaWork[iWorkspace];
 //
 //
 //      return true;
@@ -3618,7 +3622,7 @@ namespace aura
 //      //::get_window_rect(::get_desktop_window(),prectangle);
 //
 //
-//      get_monitor_rect(iWkspace, prectangle);
+//      get_monitor_rectangle(iWorkspace, prectangle);
 //
 //
 //#endif
@@ -3628,39 +3632,39 @@ namespace aura
 //   }
 //
 //
-//   ::count system::get_desk_wkspace_count()
+//   ::count system::get_desk_workspace_count()
 //   {
 //
-//      return get_wkspace_count();
+//      return get_workspace_count();
 //
 //   }
 //
 //
-//   bool system::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle)
+//   bool system::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle)
 //
 //   {
 //
-//      return get_wkspace_rect(iWkspace, prectangle);
+//      return get_workspace_rectangle(iWorkspace, prectangle);
 //
 //
 //   }
 //
-//   index system::get_ui_wkspace(::user::interaction * pinteraction)
+//   index system::get_ui_workspace(::user::interaction * pinteraction)
 //   {
 //
-//      index iMainWkspace = 0;
+//      index iMainWorkspace = 0;
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
+//      HMONITOR hworkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
 //
-//      for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      for (index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
 //      {
 //
-//         if (m_hmonitora[iWkspace] == hwkspacePrimary)
+//         if (m_hmonitora[iWorkspace] == hworkspacePrimary)
 //         {
 //
-//            iMainWkspace = iWkspace;
+//            iMainWorkspace = iWorkspace;
 //
 //            break;
 //
@@ -3670,7 +3674,7 @@ namespace aura
 //
 //#endif
 //
-//      return iMainWkspace;
+//      return iMainWorkspace;
 //
 //   }
 

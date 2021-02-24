@@ -41,7 +41,7 @@ namespace os
 
 
 
-      virtual void get_cursor_pos(POINT_I32 * ppt);
+      virtual void get_cursor_position(POINT_I32 * ppt);
 
       //void draw(ID2D1DeviceContext * pctx);
 

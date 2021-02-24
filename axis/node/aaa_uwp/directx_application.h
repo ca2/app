@@ -77,7 +77,7 @@ namespace uwp
 
 
       virtual Windows::Foundation::Rect get_window_rect() override;
-      virtual Windows::Foundation::Point get_cursor_pos() override;
+      virtual Windows::Foundation::Point get_cursor_position() override;
 
       virtual Windows::Foundation::Rect get_input_content_rect() override;
       virtual Windows::Foundation::Rect get_input_selection_rect() override;

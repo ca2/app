@@ -101,9 +101,9 @@ namespace core
 
       //bool                                                  m_bSystemSynchronizedScreen;
       //rect_array                                            m_rectaMonitor;
-      //rect_array                                            m_rectaWkspace;
+      //rect_array                                            m_rectaWorkspace;
       //index                                                 m_iMainMonitor;
-      //index                                                 m_iMainWkspace;
+      //index                                                 m_iMainWorkspace;
 
 
 
@@ -289,7 +289,7 @@ namespace core
       //virtual size_i32 get_window_minimum_size();
 
 
-      ////virtual void  get_cursor_pos(POINT_I32 * ppoint);
+      ////virtual void  get_cursor_position(POINT_I32 * ppoint);
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -436,8 +436,8 @@ namespace core
       ////virtual void translate_os_key_message(::user::key * pkey);
       ////virtual bool on_create_frame_window();
 
-      //virtual void get_cursor_pos(POINT_I32 * ppoint);
-      //inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
+      //virtual void get_cursor_position(POINT_I32 * ppoint);
+      //inline ::point_i32 get_cursor_position() {::point_i32 point; get_cursor_position(&point); return point;}
 
       //virtual void set_cursor_pos(const ::point_i32 & point);
 
@@ -445,21 +445,21 @@ namespace core
 
       //virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count();
-      //virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
+      //virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle);
 
-      //virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr);
+      //virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr);
 
-      //virtual bool set_main_wkspace(index iWkspace);
-      //virtual ::count get_wkspace_count();
-      //virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
+      //virtual bool set_main_workspace(index iWorkspace);
+      //virtual ::count get_workspace_count();
+      //virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle);
 
-      //virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWkspace);
+      //virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWorkspace);
 
-      //virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle, index iWkspace, index iMonitor);
+      //virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle, index iWorkspace, index iMonitor);
 
-      //virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle);
+      //virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle);
 
-      //virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle);
+      //virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle);
 
       //virtual ::count get_desk_monitor_count();
       //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
@@ -472,7 +472,7 @@ namespace core
 
       //virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default);
 
-      //virtual index get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+      //virtual index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
       //virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle);
 
@@ -482,7 +482,7 @@ namespace core
 
       //virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
-      //virtual index get_ui_wkspace(::user::interaction * pinteraction);
+      //virtual index get_ui_workspace(::user::interaction * pinteraction);
 
 
 
@@ -627,7 +627,7 @@ namespace core
       ////virtual ::draw2d::cursor* get_default_cursor() override;
 
       ////virtual ::count   get_monitor_count() override;
-      ////virtual bool      get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
+      ////virtual bool      get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 
 
       ////virtual void on_user_logon(::account::user* puser) override;

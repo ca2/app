@@ -24,7 +24,7 @@
                virtual ~frame_008();
 
 
-               virtual void on_style_change();
+               virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
 
 

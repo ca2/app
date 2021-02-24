@@ -1242,7 +1242,7 @@ namespace macos
                if (System.get_monitor_count() > 0)
                {
 
-                  System.get_monitor_rect(0, &rect);
+                  System.get_monitor_rectangle(0, &rect);
 
                }
                else

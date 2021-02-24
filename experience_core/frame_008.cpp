@@ -539,10 +539,10 @@ SizingNone:;
             }
 
 
-            void frame_008::on_style_change()
+            void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
             {
 
-               on_style_change_001_and_002();
+               on_style_change_001_and_002(pgraphics);
 
                ::color::color color = m_colorMoveableBorderDkShadow;
 

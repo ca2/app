@@ -12,7 +12,9 @@ public:
    bool                             m_bFork;
    int                              m_argc;
    char **                          m_argv;
+   char **                          m_envp;
    wchar_t **                       m_wargv;
+   wchar_t **                       m_wenvp;
    int                              m_iExitCode;
    string                           m_strCommandLine;
    string                           m_strStandalone;
@@ -38,8 +40,8 @@ public:
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   ::e_status system_construct(int argc, char** argv);
-   ::e_status system_construct(int argc, wchar_t** argv);
+   ::e_status system_construct(int argc, char** argv, char ** envp);
+   ::e_status system_construct(int argc, wchar_t** argv, wchar_t ** envp);
 
    virtual ::e_status on_system_construct();
 
@@ -59,7 +61,9 @@ public:
 
 #endif
 
-   string get_arg(int i);
+   string get_arg(int i) const;
+   string get_env(const char *pszVariableName) const;
+
 
    bool is_console_app() const;
 

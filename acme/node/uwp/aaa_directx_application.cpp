@@ -767,7 +767,7 @@ namespace uwp
 
    }
 
-   Windows::Foundation::Point directx_framework_view::get_cursor_pos()
+   Windows::Foundation::Point directx_framework_view::get_cursor_position()
    {
 
       single_lock synchronizationlock(&m_mutex, true);

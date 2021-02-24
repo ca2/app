@@ -74,7 +74,7 @@ namespace opengl
 
       auto pdisplay = pwindowing->display();
 
-      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::display >();
 
       ::windowing_x11::display_lock display(pdisplayx11);
 
@@ -176,7 +176,7 @@ namespace opengl
 
       auto pdisplay = pwindowing->display();
 
-      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::display >();
 
       ::windowing_x11::display_lock display(pdisplayx11);
 
@@ -233,7 +233,7 @@ namespace opengl
 
       auto pdisplay = pwindowing->display();
 
-      auto pdisplayx11 = pdisplay->cast < ::windowing_x11::window >();
+      auto pdisplayx11 = (::windowing_x11::display *) pdisplay->layer(LAYERED_X11);
 
       ::windowing_x11::display_lock display(pdisplayx11);
 

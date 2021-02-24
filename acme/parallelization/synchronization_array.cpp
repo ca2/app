@@ -242,13 +242,30 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    ::synchronization_result result;
 
+   ::duration durationWaitNow;
+
    do
    {
 
-      if (start.elapsed() > duration)
+      if(duration.is_infinite())
       {
 
-         result = e_synchronization_result_timed_out;
+         durationWaitNow.Infinite();
+
+      }
+      else
+      {
+
+         durationWaitNow = start.elapsed() - duration;
+
+         if (durationWaitNow.m_secs.m_i <= 0)
+         {
+
+            result = e_synchronization_result_timed_out;
+
+            break;
+
+         }
 
       }
 
@@ -258,13 +275,13 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
          if (uWakeMask)
          {
 
-            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(),  __os(duration - start.elapsed()), QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(),  __os(durationWaitNow), QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
          {
 
-            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, __os(duration - start.elapsed()), true);
+            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, __os(durationWaitNow), true);
 
          }
 
@@ -272,8 +289,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
       while (result == e_synchronization_result_io_completion);
 
    }
-   while (result != e_synchronization_result_timed_out
-   && result != e_synchronization_result_error);
+   while (result == e_synchronization_result_timed_out);
 
    return result;
 

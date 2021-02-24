@@ -174,7 +174,7 @@ namespace user
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
-      //virtual ::point_i32 get_cursor_pos() const;
+      //virtual ::point_i32 get_cursor_position() const;
 
       virtual bool _is_window() const;
 
@@ -431,7 +431,7 @@ namespace user
 
 
 
-      virtual bool _001IsPointInside(::point_i32 point);
+      virtual bool _001IsPointInside(const ::point_i32 & point);
       virtual ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false);
 
       virtual void OnLinkClick(const char * psz,const char * pszTarget = nullptr);

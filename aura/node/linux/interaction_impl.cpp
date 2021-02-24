@@ -3,7 +3,7 @@
 #include "apex/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
 #include "acme/os/_user.h"
-//#include "third/sn/sn.h"
+////#include "third/sn/sn.h"
 
 
 //#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
@@ -628,7 +628,7 @@ namespace linux
    void interaction_impl::PostNcDestroy()
    {
 
-      Detach();
+      clear_os_data();
 
       if (m_pwindow)
       {
@@ -1182,7 +1182,7 @@ namespace linux
 
                ::rectangle_i32 rcMonitor;
 
-               pdisplay->get_monitor_rect(0, &rcMonitor);
+               pdisplay->get_monitor_rectangle(0, &rcMonitor);
 
                if(rectWindow.left >= rcMonitor.left)
                {
@@ -1234,16 +1234,33 @@ namespace linux
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
             pmouse->m_ecursor = e_cursor_default;
+
+            m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
+
          }
 
          //_008OnMouse(pmouse);
 
-         auto puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+         ::user::interaction * puserinteractionMouse = nullptr;
 
          if(m_puserinteractionCapture)
          {
 
             puserinteractionMouse = m_puserinteractionCapture;
+
+         }
+
+         if(!puserinteractionMouse)
+         {
+
+            puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+
+         }
+
+         if(pmouse->m_id == e_message_left_button_down)
+         {
+
+            ::output_debug_string("left_button_down");
 
          }
 
@@ -1253,8 +1270,6 @@ namespace linux
             puserinteractionMouse->route_message(pmouse);
 
          }
-
-
 
          return;
 

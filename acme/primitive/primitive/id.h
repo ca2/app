@@ -11,7 +11,7 @@ enum e_id : ::u64;
 template <typename T>
 int sgn(T val)
 {
-   return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
+   return (((T) 0) < val) - (val < ((T) 0));
 }
 
 

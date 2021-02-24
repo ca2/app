@@ -9,6 +9,8 @@ namespace experience
    frame::frame()
    {
 
+      m_bPendingStyleChange = false;
+
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
@@ -265,8 +267,8 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if(m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
-            return true;
+//         if(m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
+  //          return true;
 
          if(m_pframewindow->size_manager()->on_message_left_button_up(pmouse))
             return true;
@@ -302,7 +304,7 @@ namespace experience
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
-                  m_pframewindow->dock_manager()->_001OnMouseMove(pmouseHold);
+//                  m_pframewindow->dock_manager()->_001OnMouseMove(pmouseHold);
 
                //});
 
@@ -312,12 +314,12 @@ namespace experience
             else
             {
 
-               if (m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
-               {
-
-                  return true;
-
-               }
+//               if (m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+//               {
+//
+//                  return true;
+//
+//               }
 
             }
 
@@ -395,8 +397,8 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if(m_pframewindow->dock_manager()->on_message_left_button_down(pmouse))
-            return true;
+//         if(m_pframewindow->dock_manager()->on_message_left_button_down(pmouse))
+//            return true;
 
          if(m_pframewindow->size_manager()->on_message_left_button_down(pmouse))
             return true;
@@ -415,12 +417,12 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         if (m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
-         {
-
-            return true;
-
-         }
+//         if (m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
+//         {
+//
+//            return true;
+//
+//         }
 
          if (m_pframewindow->size_manager()->on_message_left_button_up(pmouse))
          {
@@ -451,7 +453,8 @@ namespace experience
 
          if(!m_pframewindow->move_manager()->window_is_moving()
                && !m_pframewindow->size_manager()->window_is_sizing()
-               && m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+            )
+             //  && m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
             return true;
 
          if(!m_pframewindow->move_manager()->window_is_moving()
@@ -865,6 +868,14 @@ namespace experience
    void frame::on_style_change()
    {
 
+      m_bPendingStyleChange = true;
+
+   }
+
+
+   void frame::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   {
+
       auto estyle = m_pframewindow->m_estyle;
 
       auto color = m_pframewindow->m_puserstyle->get_style_moveable_border_color(estyle);
@@ -1000,10 +1011,10 @@ namespace experience
 
       }
 
-      auto iWkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectRequest, bPreserveSize);
+      auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectRequest, bPreserveSize);
 
       if(edisplay != m_pframewindow->layout().sketch().display() ||
-         (::is_docking_appearance(edisplay) && iWkspace != m_pframewindow->m_windowrect.m_iWkspace))
+         (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrect.m_iWorkspace))
       {
 
          if (m_pframewindow->layout().m_millisLastSketchToDesign.elapsed() < 800_tick)
@@ -1062,7 +1073,7 @@ namespace experience
 
          }
 
-         m_pframewindow->m_windowrect.m_iWkspace = iWkspace;
+         m_pframewindow->m_windowrect.m_iWorkspace = iWorkspace;
 
          m_pframewindow->layout().sketch() = edisplay;
 

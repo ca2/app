@@ -179,7 +179,7 @@ CLASS_DECL_APEX int_bool release_capture()
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_pos(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

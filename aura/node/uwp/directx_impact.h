@@ -57,7 +57,7 @@ namespace uwp
       virtual void Uninitialize() = 0;
 
       virtual Windows::Foundation::Rect get_window_rect() = 0;
-      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+      virtual Windows::Foundation::Point get_cursor_position() = 0;
 
 
       virtual Windows::Foundation::Rect get_input_content_rect() = 0;

@@ -20,7 +20,7 @@ namespace experience
                virtual ~frame_Minimal001();
 
                virtual string get_default_user_style() const;
-               virtual void on_style_change();
+               virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient);

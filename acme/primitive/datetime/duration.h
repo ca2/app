@@ -77,6 +77,9 @@ public:
    inline static duration pos_infinity();
    inline static duration zero();
 
+   void Infinite() {*this=infinite();}
+   void PosInfinity() {*this=pos_infinity();}
+   void Zero() {*this=zero();}
 
    duration & operator = (const ::secs & secs);
    duration & operator = (const ::millis & millis);
@@ -222,7 +225,24 @@ inline duration duration::create_null()
 inline ::millis duration::millis() const
 {
 
-   return m_secs.m_i * 1000 + m_nanos.m_i / 1000000;
+   if(m_secs.m_i >= (MAXI64 / 1000))
+   {
+
+      return MAXI64;
+
+   }
+   else if(m_secs.m_i <= (MINI64 / 1000))
+   {
+
+      return MINI64;
+
+   }
+   else
+   {
+
+      return m_secs.m_i * 1000 + m_nanos.m_i / 1000000;
+
+   }
 
 }
 
@@ -254,7 +274,7 @@ inline nanos duration::nanos() const
 inline bool duration::is_pos_infinity() const
 {
 
-   return m_secs.m_i < 0;
+   return m_secs.m_i == MAXI64;
 
 }
 
@@ -262,7 +282,7 @@ inline bool duration::is_pos_infinity() const
 inline bool duration::is_infinite() const
 {
 
-   return m_secs.m_i < 0;
+   return m_secs.m_i == MAXI64;
 
 }
 
@@ -278,7 +298,7 @@ bool duration::is_null() const
 inline duration duration::infinite()
 {
 
-   return {-1,0};
+   return {MAXI64,0};
 
 }
 
@@ -286,7 +306,7 @@ inline duration duration::infinite()
 inline duration duration::pos_infinity()
 {
 
-   return {-1, 0};
+   return {MAXI64, 0};
 
 }
 

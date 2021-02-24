@@ -219,9 +219,9 @@ namespace user
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
 
-      virtual void MouseLeaveThreadProcedure();
+      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor);
 
-      virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
+      //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
       virtual bool add_prodevian(::context_object * pobject) override;
@@ -256,6 +256,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnDestroyWindow);
+      DECL_GEN_SIGNAL(on_message_destroy);
       DECL_GEN_SIGNAL(_001OnRedraw);
       DECL_GEN_SIGNAL(_001OnDoShowWindow);
 
@@ -433,7 +434,7 @@ namespace user
 //#endif
 
 
-      //virtual ::point_i32 get_cursor_pos() const override;
+      //virtual ::point_i32 get_cursor_position() const override;
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor) override;
 

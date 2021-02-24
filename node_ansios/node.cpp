@@ -441,7 +441,7 @@ namespace node_ansios
 //
 //                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //
-//                              psession->m_rectaWkspace.set_size(iMonitorCount);
+//                              psession->m_rectaWorkspace.set_size(iMonitorCount);
 //
 //                              psession->m_rectaMonitor.set_size(iMonitorCount);
 //
@@ -450,14 +450,14 @@ namespace node_ansios
 //
 //                                 GdkMonitor *pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 //
-//                                 auto &rectWkspace = psession->m_rectaWkspace[iMonitor];
+//                                 auto &rectWorkspace = psession->m_rectaWorkspace[iMonitor];
 //
 //                                 auto &rectMonitor = psession->m_rectaMonitor[iMonitor];
 //
 //                                 if (pmonitor == nullptr)
 //                                 {
 //
-//                                    rectWkspace.Null();
+//                                    rectWorkspace.Null();
 //
 //                                    rectMonitor.Null();
 //
@@ -471,7 +471,7 @@ namespace node_ansios
 //
 //                                 gdk_monitor_get_workarea(pmonitor, &rect);
 //
-//                                 __copy(rectWkspace, rect);
+//                                 __copy(rectWorkspace, rect);
 //
 //                                 __zero(rect);
 //

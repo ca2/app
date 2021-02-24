@@ -87,6 +87,7 @@ namespace windowing
    void window::message_handler(::message::message * pmessage)
    {
 
+      m_pimpl->message_handler(pmessage);
 
    }
 

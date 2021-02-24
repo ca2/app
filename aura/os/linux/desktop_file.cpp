@@ -175,16 +175,18 @@ namespace linux
    }
 
 
+   void desktop_file::set_file_path(const ::file::path & path)
+   {
+
+      m_path = path;
+
+   }
+
+
    ::file::path desktop_file::get_file_path()
    {
 
-      auto pnode = Node;
-
-      auto papp = &Application;
-
-      ::file::path path = pnode->get_desktop_file_path(papp);
-
-      return path;
+      return m_path;
 
    }
 
@@ -211,7 +213,7 @@ namespace linux
       straLine.add("Terminal=false");
       straLine.add("X-MultipleArgs=false");
       straLine.add("Categories=Network;");
-      straLine.add("StartupNotify=true");
+      //straLine.add("StartupNotify=true");
       straLine.add("MimeType=");
 
    }
@@ -353,7 +355,7 @@ namespace linux
       }
 
 
-      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", "com." + strPrgName);
+      straLine._007SetLine("[Desktop Entry]", "StartupWMClass",  strPrgName);
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 

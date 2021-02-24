@@ -736,21 +736,21 @@ namespace base
 //      virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr);
 //
 //      virtual ::count get_monitor_count();
-//      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
+//      virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle);
 //
 //      virtual ::count get_desk_monitor_count();
 //      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 //
 //
-//      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr);
+//      virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr);
 //
-//      virtual ::count get_wkspace_count();
-//      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
+//      virtual ::count get_workspace_count();
+//      virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle);
 //
-//      virtual ::count get_desk_wkspace_count();
-//      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
+//      virtual ::count get_desk_workspace_count();
+//      virtual bool  get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle);
 //
-//      virtual index get_ui_wkspace(::user::interaction * pinteraction);
+//      virtual index get_ui_workspace(::user::interaction * pinteraction);
 //
 //      virtual void on_extra(string str);
 //
@@ -901,7 +901,7 @@ namespace base
 //
 //      virtual ::e_status add_view_library(::apex::library* plibrary);
 //
-//      //virtual void get_cursor_pos(POINT_I32 * ppoint);
+//      //virtual void get_cursor_position(POINT_I32 * ppoint);
 //
 //
 //
@@ -967,11 +967,11 @@ namespace base
 //
 //      virtual ::u32 get_monitor_color_temperature(index iMonitor);
 //      virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-//      //virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
+//      //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 //
 //      //virtual ::count get_monitor_count() override;
 //
-//      //bool get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
+//      //bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32* prectangle) override;
 //
 //
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

@@ -98,6 +98,13 @@ namespace windowing
    }
 
 
+   void windowing::windowing_post_quit()
+   {
+
+
+   }
+
+
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
@@ -267,8 +274,10 @@ namespace windowing
    }
 
 
-   void windowing::message_loop_step()
+   bool windowing::message_loop_step()
    {
+
+      return false;
 
    }
 
@@ -308,7 +317,7 @@ namespace windowing
    }
 
 
-   void windowing::get_cursor_pos(POINT_I32 * ppoint)
+   void windowing::get_cursor_position(POINT_I32 * ppoint)
    {
 
       *ppoint = m_pointCursor;

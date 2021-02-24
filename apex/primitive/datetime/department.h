@@ -50,6 +50,9 @@ namespace datetime
          string get_local_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
          string get_local_date_time_for_file();
 
+         string get_gmt_date_time_for_file_with_no_spaces();
+         string get_local_date_time_for_file_with_no_spaces();
+
 
          inline string get_gmt(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(strFormat);  }
          inline string get_gmt(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(time, strFormat); }

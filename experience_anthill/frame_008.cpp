@@ -644,7 +644,7 @@ SizingNone:
 
                frame::on_style_change();
 
-               on_style_change_001_and_002();
+               on_style_change_001_and_002(pgraphics);
 
                m_rectMarginNormal.set(10, 10, 10, 10);
 

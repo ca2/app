@@ -44,6 +44,8 @@ namespace user
       if (!estatus)
       {
 
+         output_debug_string("\nFailed to create_windowing at user::user::initialize.");
+
          return estatus;
 
       }
@@ -293,7 +295,9 @@ namespace user
 
 
       //create_factory <::user::document >();
-      create_factory <::user::message_queue >();
+#ifdef WINDOWS_DESKTOP
+      create_factory <::user::message_window >();
+#endif
       //create_factory <::user::simple_view >();
       //create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
@@ -424,6 +428,27 @@ namespace user
    void user::term()
    {
 
+
+      try
+      {
+
+
+         auto pwindowing = windowing();
+
+         if(::is_set(pwindowing))
+         {
+
+            pwindowing->windowing_post_quit();
+
+         }
+
+
+      }
+      catch(...)
+      {
+
+
+      }
 
       //pstyle.release();
 //      ::acme::del(m_pufeschema);
@@ -905,7 +930,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+   //bool session::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
 
    //{
 
@@ -921,7 +946,7 @@ namespace aura
    //   else
    //   {
 
-   //      return ::aura::session::get_monitor_rect(iMonitor, prectangle);
+   //      return ::aura::session::get_monitor_rectangle(iMonitor, prectangle);
 
 
    //   }
@@ -1252,6 +1277,8 @@ namespace user
 
       if (!estatus)
       {
+
+         output_debug_string("\nFailed to initialize_windowing at ::user::user::create_windowing");
 
          return estatus;
 

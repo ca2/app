@@ -167,7 +167,7 @@ int xinerama_get_screen_size(int& width, int& height)
    for(; iMonitor < cMonitor; iMonitor++)
    {
 
-      psession->get_monitor_rect(iMonitor, &rectMonitor);
+      psession->get_monitor_rectangle(iMonitor, &rectMonitor);
 
       rectaMonitor[iMonitor] = rectMonitor;
 

@@ -126,7 +126,7 @@ namespace userstack
          {
             OnHoverAction();
          }
-         point = psession->get_cursor_pos();
+         point = psession->get_cursor_position();
          if(!m_bHoverMouse && point.x == 0 && point.y == 0)
          {
             m_millisLastHover = ::millis::now();

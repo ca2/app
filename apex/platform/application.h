@@ -1243,7 +1243,7 @@ namespace apex
 
       /*
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
+      virtual bool  get_monitor_rectangle(index i, RECTANGLE_I32 * prectangle);
 
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, RECTANGLE_I32 * prectangle);

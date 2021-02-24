@@ -8,7 +8,7 @@
 CLASS_DECL_AURA int g_iMouse = -1;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(POINT_I32 * lppoint);
+CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint);
 
 
 CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT_I32 * ppt)
@@ -27,7 +27,7 @@ CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT_I32 * ppt)
       try
       {
 
-         iRet = ::get_cursor_pos(&pointCursor);
+         iRet = ::get_cursor_position(&pointCursor);
 
       }
       catch (...)
@@ -53,7 +53,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(POINT_I32 * lppoint)
+CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint)
 {
 
    lppoint->x = g_iMouseX;

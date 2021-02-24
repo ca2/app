@@ -488,10 +488,21 @@ namespace user
 
          MESSAGE & msg = m_message;
 
-         if(msg.m_id == e_message_left_button_down)
+         if(msg.m_id == e_message_mouse_move)
          {
 
-            output_debug_string("\nleft_button_down");
+
+         }
+         else if(msg.m_id == e_message_left_button_down)
+         {
+
+            ::output_debug_string("e_message_left_button_down");
+
+         }
+         else if(msg.m_id == e_message_left_button_up)
+         {
+
+            ::output_debug_string("e_message_left_button_up");
 
          }
 
@@ -538,10 +549,30 @@ namespace user
                      else
                      {
 
+                        if(msg.m_id == e_message_left_button_down)
+                        {
+
+                           ::output_debug_string("e_message_left_button_down");
+
+                        }
+                        else if(msg.m_id == e_message_left_button_up)
+                        {
+
+                           ::output_debug_string("e_message_left_button_up");
+
+                        }
+
                         auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {
+
+                           if(pmessage->m_id == e_message_left_button_down)
+                           {
+
+                              ::output_debug_string("e_message_left_button_down");
+
+                           }
 
                            pwindow->message_handler(pmessage);
 

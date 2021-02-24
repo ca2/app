@@ -501,11 +501,24 @@ namespace acme
       try
       {
 
-         auto pfile = __create_new < ::linux::desktop_file >();
+         auto pnode = Node;
 
-         pfile->create();
+         auto papp = this;
 
-         pfile->write();
+         ::file::path path = pnode->get_desktop_file_path(papp);
+
+         if(path.has_char() && !file_exists(path))
+         {
+
+            auto pfile = __create_new<::linux::desktop_file>();
+
+            pfile->set_path(path);
+
+            pfile->create();
+
+            pfile->write();
+
+         }
 
       }
       catch(...)

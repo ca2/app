@@ -21,7 +21,7 @@ namespace windowing
       bool                          m_bSystemSynchronizedScreen;
 
       index                         m_iMainMonitor;
-      index                         m_iMainWkspace;
+      index                         m_iMainWorkspace;
       double                        m_dpi;
 
 
@@ -42,21 +42,21 @@ namespace windowing
 
       virtual bool set_main_monitor(index iMonitor) ;
       //virtual ::count get_monitor_count() //;
-      //virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) //;
+      //virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) //;
 
-//      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr) ;
+//      virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr) ;
 
-      virtual bool set_main_wkspace(index iWkspace) ;
-      //virtual ::count get_wkspace_count() ;
-      //virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle) ;
+      virtual bool set_main_workspace(index iWorkspace) ;
+      //virtual ::count get_workspace_count() ;
+      //virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle) ;
 
-      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWkspace) ;
+      virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWorkspace) ;
 
-      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle, index iWkspace, index iMonitor) ;
+      virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle, index iWorkspace, index iMonitor) ;
 
-      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle) ;
+      virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle) ;
 
-      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle) ;
+      virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle) ;
 
       //virtual ::count get_desk_monitor_count() ;
       //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
@@ -71,7 +71,7 @@ namespace windowing
 
       virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default) ;
 
-      virtual index get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default) ;
+      virtual index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default) ;
 
       virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle) ;
 
@@ -91,21 +91,21 @@ namespace windowing
       virtual ::size_i32 get_main_monitor_size();
 
       virtual ::count get_monitor_count() ;
-      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
+      virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) ;
 
       virtual ::count get_desk_monitor_count() ;
       virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
 
 
-      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr) ;
+      virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr) ;
 
-      virtual ::count get_wkspace_count() ;
-      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_workspace_count() ;
+      virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle) ;
 
-      virtual ::count get_desk_wkspace_count() ;
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_desk_workspace_count() ;
+      virtual bool  get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle) ;
 
-      virtual index get_ui_wkspace(::user::interaction * pinteraction);
+      virtual index get_ui_workspace(::user::interaction * pinteraction);
 
 
 

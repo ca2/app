@@ -353,9 +353,9 @@ list(APPEND aura_source
    user/main_window.h
    user/message.cpp
    user/message.h
-   user/message_queue.cpp
-   user/message_queue.h
-   user/message_queue_listener.h
+   user/message_window.cpp
+   user/message_window.h
+   user/message_window_listener.h
    user/mouse.cpp
    user/mouse.h
    user/notify_icon.cpp

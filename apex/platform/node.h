@@ -30,6 +30,9 @@ namespace apex
       virtual ::file::path get_desktop_file_path(::apex::application * papplication) const;
 
 
+      virtual void defer_notify_startup_complete();
+
+
       virtual ::e_status start();
 
 

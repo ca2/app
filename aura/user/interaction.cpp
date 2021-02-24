@@ -11,6 +11,7 @@
 #include "acme/os/_user.h"
 //#include "acme/os/cross/windows/_windows.h"
 
+int g_iMouseHoverCount = 0;
 
 #define TEST_PRINT_BUFFER
 
@@ -53,6 +54,10 @@ namespace user
    {
 
       m_bEdgeGestureDisableTouchWhenFullscreen = true;
+
+      m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = false;
+
+      m_bMouseHoverOnCapture = false;
 
       m_bCompositedFrameWindow = true;
 
@@ -280,11 +285,72 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_host_window() const
+   ::windowing::window *interaction::window() const
+   {
+
+      auto puserinteractionHost = ((interaction *)this)->get_host_window();
+
+      if (::is_null(puserinteractionHost))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl2 = puserinteractionHost->m_pimpl2;
+
+      if (::is_null(pimpl2))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pimpl2->m_pwindow;
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindow;
+
+   }
+
+
+   ::windowing::windowing *interaction::windowing() const
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindowing = pwindow->windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindowing;
+
+   }
+
+
+   ::user::interaction *interaction::get_host_window() const
    {
 
       if (get_context_session() == nullptr
-         || get_context_session()->m_paurasession == nullptr)
+          || get_context_session()->m_paurasession == nullptr)
       {
 
          return nullptr;
@@ -315,7 +381,8 @@ namespace user
    }
 
 
-   ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer
+   interaction::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -335,7 +402,7 @@ namespace user
    }
 
 
-   enum_translucency interaction::get_translucency(style * pstyle) const
+   enum_translucency interaction::get_translucency(style *pstyle) const
    {
 
       if (pstyle)
@@ -350,7 +417,7 @@ namespace user
    }
 
 
-   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault) const
+   int interaction::get_int(style *pstyle, enum_int eint, ::user::enum_state estate, int iDefault) const
    {
 
       int i;
@@ -358,7 +425,7 @@ namespace user
       if (::is_set(pstyle))
       {
 
-         if(pstyle->get_int(this, i, eint, estate))
+         if (pstyle->get_int(this, i, eint, estate))
          {
 
             return i;
@@ -369,7 +436,7 @@ namespace user
 
       auto psession = Session;
 
-      if(psession->get_int(this, i, eint, estate))
+      if (psession->get_int(this, i, eint, estate))
       {
 
          return i;
@@ -381,7 +448,7 @@ namespace user
    }
 
 
-   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault) const
+   double interaction::get_double(style *pstyle, enum_double edouble, ::user::enum_state estate, double dDefault) const
    {
 
       double d;
@@ -389,7 +456,7 @@ namespace user
       if (::is_set(pstyle))
       {
 
-         if(pstyle->get_double(this, d, edouble, estate))
+         if (pstyle->get_double(this, d, edouble, estate))
          {
 
             return d;
@@ -400,7 +467,7 @@ namespace user
 
       auto psession = Session;
 
-      if(psession->get_double(this, d, edouble, estate))
+      if (psession->get_double(this, d, edouble, estate))
       {
 
          return d;
@@ -412,15 +479,17 @@ namespace user
    }
 
 
-   __status < ::rectangle_f64 > interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   __status<::rectangle_f64>
+   interaction::get_border(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
 
    }
 
-   
-   __status < ::rectangle_f64 > interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+
+   __status<::rectangle_f64>
+   interaction::get_padding(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
 
@@ -444,7 +513,8 @@ namespace user
    }
 
 
-   __status < ::rectangle_f64 > interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   __status<::rectangle_f64>
+   interaction::get_margin(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
@@ -465,7 +535,8 @@ namespace user
    }
 
 
-   __status < ::color::color > interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   __status<::color::color>
+   interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -509,7 +580,7 @@ namespace user
    }
 
 
-   eflag interaction::get_draw_flags(style * pstyle) const
+   eflag interaction::get_draw_flags(style *pstyle) const
    {
 
       return e_flag_none;
@@ -517,12 +588,12 @@ namespace user
    }
 
 
-   style* interaction::get_style() const
+   style *interaction::get_style() const
    {
 
       auto pframe = top_level_frame();
 
-      if(pframe)
+      if (pframe)
       {
 
          return pframe->m_puserstyle;
@@ -552,7 +623,7 @@ namespace user
    }
 
 
-   bool interaction::child_set_unique_id(::user::interaction * pinteraction)
+   bool interaction::child_set_unique_id(::user::interaction *pinteraction)
    {
 
       if (pinteraction->m_id.has_char())
@@ -579,7 +650,7 @@ namespace user
 
          bDuplicate = false;
 
-         for (auto & pinteraction : puiptraChild->interactiona())
+         for (auto &pinteraction : puiptraChild->interactiona())
          {
 
             if (pinteraction->m_id == strCandidateId)
@@ -671,7 +742,7 @@ namespace user
    //}
 
 
-   interaction *    interaction::get_tooltip()
+   interaction *interaction::get_tooltip()
    {
 
       return m_ptooltip;
@@ -682,7 +753,7 @@ namespace user
    ::e_status interaction::set_tool_window(bool bSet)
    {
 
-      if(is_null(m_pimpl))
+      if (is_null(m_pimpl))
       {
 
          m_bToolWindow = true;
@@ -693,7 +764,7 @@ namespace user
 
       auto estatus = m_pimpl->set_tool_window(bSet);
 
-      if(!estatus)
+      if (!estatus)
       {
 
          return estatus;
@@ -761,9 +832,9 @@ namespace user
    void interaction::set_need_redraw(bool bAscendants)
    {
 
-      auto * pinteraction = get_wnd();
+      auto *pinteraction = get_wnd();
 
-      if(::is_null(pinteraction))
+      if (::is_null(pinteraction))
       {
 
          pinteraction = this;
@@ -777,9 +848,9 @@ namespace user
       auto edisplayState = pinteraction->layout().window().display();
 
       if (pinteraction->m_pimpl.is_set() &&
-         (
-            layout().sketch().is_screen_visible() || edisplayState != edisplayRequest
-         ))
+          (
+             layout().sketch().is_screen_visible() || edisplayState != edisplayRequest
+          ))
       {
 
          pinteraction->m_pimpl->set_need_redraw();
@@ -819,7 +890,7 @@ namespace user
 
       }
 
-      auto* pinteraction = get_host_window();
+      auto *pinteraction = get_host_window();
 
       if (::is_null(pinteraction))
       {
@@ -833,9 +904,9 @@ namespace user
       auto edisplayWindow = pinteraction->layout().window().display();
 
       if (pinteraction->m_pimpl.is_set() &&
-         (layout().sketch().is_screen_visible()
-            || edisplaySketch != edisplayWindow
-            || pinteraction == get_user_interaction_host()))
+          (layout().sketch().is_screen_visible()
+           || edisplaySketch != edisplayWindow
+           || pinteraction == get_user_interaction_host()))
       {
 
          pinteraction->layout().sketch().set_ready();
@@ -847,7 +918,7 @@ namespace user
    }
 
 
-   ::user::form * interaction::get_form()
+   ::user::form *interaction::get_form()
    {
 
       return m_pform;
@@ -855,7 +926,7 @@ namespace user
    }
 
 
-   matter* interaction::get_taskpool_container()
+   matter *interaction::get_taskpool_container()
    {
 
       return get_parent_frame();
@@ -863,7 +934,7 @@ namespace user
    }
 
 
-   void interaction::set_place_child_title(const char* pszTitle)
+   void interaction::set_place_child_title(const char *pszTitle)
    {
 
       payload("place_child_title") = pszTitle;
@@ -893,7 +964,7 @@ namespace user
    }
 
 
-   ::user::form * interaction::get_parent_form()
+   ::user::form *interaction::get_parent_form()
    {
 
       auto pform = get_form();
@@ -910,7 +981,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_user_interaction()
+   ::user::interaction *interaction::get_user_interaction()
    {
 
       return this;
@@ -918,7 +989,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction::get_bind_ui()
+   ::user::primitive *interaction::get_bind_ui()
    {
 
       if (::is_null(get_context_session()))
@@ -950,7 +1021,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent_window() const
+   interaction *interaction::get_parent_window() const
    {
 
       return get_parent();
@@ -970,7 +1041,7 @@ namespace user
 
       }
 
-      auto pinteractionimpl = pimpl.cast < ::user::interaction_impl >();
+      auto pinteractionimpl = pimpl.cast<::user::interaction_impl>();
 
       if (!pinteractionimpl)
       {
@@ -1021,7 +1092,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent() const
+   interaction *interaction::get_parent() const
    {
 
       if (!m_puserinteractionParent)
@@ -1064,7 +1135,7 @@ namespace user
    oswindow interaction::GetParentHandle() const
    {
 
-      interaction * puiParent = get_parent();
+      interaction *puiParent = get_parent();
 
       if (puiParent == nullptr)
       {
@@ -1078,7 +1149,7 @@ namespace user
    }
 
 
-   bool interaction::on_before_set_parent(::user::primitive * puiParent)
+   bool interaction::on_before_set_parent(::user::primitive *puiParent)
    {
 
       return true;
@@ -1086,7 +1157,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction::set_parent(::user::primitive * puiParent)
+   ::user::primitive *interaction::set_parent(::user::primitive *puiParent)
    {
 
       if (puiParent == nullptr && get_parent() == nullptr)
@@ -1131,11 +1202,11 @@ namespace user
       if (puiParent == nullptr)
       {
 
-         auto pimplNew = __create < ::user::interaction_impl >();
+         auto pimplNew = __create<::user::interaction_impl>();
 
          auto strName = get_window_text();
 
-         const char * pszClassName = nullptr;
+         const char *pszClassName = nullptr;
 
          m_bEnableSaveWindowRect2 = true;
 
@@ -1150,7 +1221,9 @@ namespace user
 
          auto rectRequest = layout().sketch().screen_rect();
 
-         auto pusersystem = __new(::user::system(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE), rectRequest));
+         auto pusersystem = __new(
+            ::user::system(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE),
+                           rectRequest));
 
          pusersystem->m_createstruct.style &= ~WS_CHILD;
 
@@ -1180,7 +1253,7 @@ namespace user
       else // puiParent != nullptr
       {
 
-         auto pimplNew = __create_new < ::user::interaction_child > ();
+         auto pimplNew = __create_new<::user::interaction_child>();
 
          pimplNew->m_puserinteraction = this;
 
@@ -1204,7 +1277,7 @@ namespace user
 
          ::rectangle_i32 rectWindow;
 
-         auto pparent = puiParent->cast < ::user::interaction >();
+         auto pparent = puiParent->cast<::user::interaction>();
 
          if (pparent)
          {
@@ -1232,7 +1305,6 @@ namespace user
       return pparentOld;
 
    }
-
 
 
    void interaction::on_set_keyboard_focus()
@@ -1339,8 +1411,7 @@ namespace user
    }
 
 
-
-   void interaction::install_message_routing(::channel * pchannel)
+   void interaction::install_message_routing(::channel *pchannel)
    {
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
@@ -1364,8 +1435,7 @@ namespace user
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
          MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
-         MESSAGE_LINK((enum_message)e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+         MESSAGE_LINK((enum_message) e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
@@ -1383,6 +1453,12 @@ namespace user
 
    }
 
+   void interaction::prio_install_message_routing(::channel *pchannel)
+   {
+
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+
+   }
 
    void interaction::_001OnNcCalcSize(::message::message * pmessage)
    {
@@ -1723,7 +1799,16 @@ namespace user
 
       //}
 
-      auto psession = Session;
+      auto pcontextsession = get_context_session();
+
+      if(is_null(pcontextsession))
+      {
+
+         return;
+
+      }
+
+      auto psession = Sess(pcontextsession);
 
       m_pimpl->user_interaction_on_hide();
 
@@ -3170,7 +3255,7 @@ namespace user
 
                auto pwindowing = puser->windowing();
 
-               auto pointCursor = pwindowing->get_cursor_pos();
+               auto pointCursor = pwindowing->get_cursor_position();
 
                _001ScreenToClient(pointCursor, e_layout_design);
 
@@ -4229,7 +4314,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       if (!pkey->m_bRet)
       {
@@ -4361,7 +4446,7 @@ namespace user
    }
 
 
-   bool interaction::_001IsPointInside(::point_i32 point)
+   bool interaction::_001IsPointInside(const ::point_i32 & point)
    {
 
       if (m_pimpl.is_null())
@@ -4540,6 +4625,13 @@ namespace user
 
          pointClient = puserinteractionParent->parent_to_client(pointClient);
 
+         if(ansi_str(puserinteractionParent->type_c_str(), "button"))
+         {
+
+            output_debug_string("button");
+
+         }
+
          auto puiptraChild = puserinteractionParent->m_puiptraChild;
 
          if (!puiptraChild)
@@ -4557,7 +4649,7 @@ namespace user
 
             auto & puserinteractionChild = puiptraChild->interaction_at(iChild);
 
-            if (puserinteractionChild->_001IsParentClientPointInside(pointClient))
+            if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
             {
 
                puserinteractionSearchChildren = puserinteractionChild;
@@ -7236,7 +7328,7 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (m_pimpl->m_puserinteraction == nullptr)
+      if (!m_pimpl || !m_pimpl->m_puserinteraction)
       {
 
          return false;
@@ -8742,25 +8834,7 @@ namespace user
    bool interaction::has_mouse_capture() const
    {
 
-      auto psession = Session;
-
-      if (::is_null(psession))
-      {
-
-         return false;
-
-      }
-
-      auto puser = psession->user();
-
-      if (::is_null(puser))
-      {
-
-         return false;
-
-      }
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       if (::is_null(pwindowing))
       {
@@ -9094,7 +9168,7 @@ namespace user
    void interaction::defer_restore(const ::rectangle_i32 & rectRequest)
    {
 
-      ::rectangle_i32 rectWkspace;
+      ::rectangle_i32 rectWorkspace;
 
       auto psession = Session;
 
@@ -9104,14 +9178,14 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iBestWkspace = pdisplay->get_best_monitor(rectWkspace, rectRequest);
+      index iBestWorkspace = pdisplay->get_best_monitor(rectWorkspace, rectRequest);
 
-      bool bWindowCrossesWkspaceBoundaries = !rectWkspace.contains(rectRequest);
+      bool bWindowCrossesWorkspaceBoundaries = !rectWorkspace.contains(rectRequest);
 
       bool bWindowLargerThanBroadRestore = rectRequest.width() > m_sizeRestoreBroad.cx
       || rectRequest.height() > m_sizeRestoreBroad.cy;
 
-      if (bWindowCrossesWkspaceBoundaries || bWindowLargerThanBroadRestore)
+      if (bWindowCrossesWorkspaceBoundaries || bWindowLargerThanBroadRestore)
       {
 
          sketch_prepare_window_restore(e_display_restore);
@@ -10026,7 +10100,7 @@ namespace user
    }
 
 
-   //::point_i32 interaction::get_cursor_pos() const
+   //::point_i32 interaction::get_cursor_position() const
    //{
 
    //   auto pwnd = get_host_window();
@@ -10034,7 +10108,7 @@ namespace user
    //   if (pwnd == this)
    //   {
 
-   //      return m_pimpl->get_cursor_pos();
+   //      return m_pimpl->get_cursor_position();
 
    //   }
 
@@ -10045,7 +10119,7 @@ namespace user
 
    //   }
 
-   //   return pwnd->get_cursor_pos();
+   //   return pwnd->get_cursor_position();
 
    //}
 
@@ -10343,9 +10417,13 @@ restart:
    {
 
       if (m_pimpl == nullptr)
+      {
+
          return;
 
-     m_pimpl->mouse_hover_add(pinterface);
+      }
+
+      m_pimpl->mouse_hover_add(pinterface);
 
    }
 
@@ -10949,7 +11027,7 @@ restart:
 
    //   ::point_i32 point;
 
-   //   psession->get_cursor_pos(point);
+   //   psession->get_cursor_position(point);
 
    //   return track_popup_menu(pitem, iFlags, point);
 
@@ -10959,7 +11037,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags)
    //{
 
-   //   auto point = psession->get_cursor_pos();
+   //   auto point = psession->get_cursor_position();
 
    //   return track_popup_xml_menu_text(strXml, iFlags, point);
 
@@ -10969,7 +11047,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags)
    //{
 
-   //   auto point = psession->get_cursor_pos();
+   //   auto point = psession->get_cursor_position();
 
    //   return track_popup_xml_matter_menu(pszMatter, iFlags, point);
 
@@ -11422,7 +11500,7 @@ restart:
 
       ::rectangle_i32 rectRequest = layout().window().screen_rect();
 
-      best_wkspace(nullptr, rectRequest, true, layout().sketch().activation(), layout().sketch().zorder());
+      best_workspace(nullptr, rectRequest, true, layout().sketch().activation(), layout().sketch().zorder());
 
    }
 
@@ -11493,7 +11571,7 @@ restart:
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point_i32 pointCursor = pwindowing->get_cursor_pos();
+         ::point_i32 pointCursor = pwindowing->get_cursor_position();
 
          rectSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
@@ -11529,7 +11607,7 @@ restart:
          if (m_bWorkspaceFullScreen)
          {
 
-            iMatchingMonitor = get_best_wkspace(&rectNew, rectSample);
+            iMatchingMonitor = get_best_workspace(&rectNew, rectSample);
 
          }
          else
@@ -11566,7 +11644,7 @@ restart:
    }
 
 
-   index interaction::best_wkspace(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_workspace(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       ::rectangle_i32 rectWindow;
@@ -11596,9 +11674,9 @@ restart:
 
       index iMatchingMonitor = pdisplay->get_best_monitor(rectNew, rectWindow, eactivation);
 
-      ::rectangle_i32 rectWkspace;
+      ::rectangle_i32 rectWorkspace;
 
-      pdisplay->get_wkspace_rect(iMatchingMonitor, rectWkspace);
+      pdisplay->get_workspace_rectangle(iMatchingMonitor, rectWorkspace);
 
       if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
@@ -11608,10 +11686,10 @@ restart:
          if (iMatchingMonitor >= 0 && rectNew.bottom > 0)
          {
 
-            if (rectWkspace.bottom > rectNew.bottom - 2)
+            if (rectWorkspace.bottom > rectNew.bottom - 2)
             {
 
-               rectWkspace.bottom = rectNew.bottom - 2;
+               rectWorkspace.bottom = rectNew.bottom - 2;
 
             }
 
@@ -11621,7 +11699,7 @@ restart:
 
          order(zorderParam);
 
-         place(rectWkspace);
+         place(rectWorkspace);
 
          display(e_display_zoomed, eactivation | e_activation_display_change);
 
@@ -11630,7 +11708,7 @@ restart:
       if (prectangle != nullptr)
       {
 
-         *prectangle = rectWkspace;
+         *prectangle = rectWorkspace;
 
 
       }
@@ -11650,11 +11728,11 @@ restart:
 
       }
 
-      ::rectangle_i32 rectWkspace;
+      ::rectangle_i32 rectWorkspace;
 
-      index iWkspace = get_best_wkspace(&rectWkspace, rectParam);
+      index iWorkspace = get_best_workspace(&rectWorkspace, rectParam);
 
-      if (iWkspace < 0 || rectWkspace.is_empty())
+      if (iWorkspace < 0 || rectWorkspace.is_empty())
       {
 
          return -1;
@@ -11670,7 +11748,7 @@ restart:
       else
       {
 
-         auto point = rectWkspace.center();
+         auto point = rectWorkspace.center();
 
          ::top_left(prectangle) = point;
 
@@ -11683,7 +11761,7 @@ restart:
       if (edisplay & ::e_display_top)
       {
 
-         prectangle->move_top_to(rectWkspace.top);
+         prectangle->move_top_to(rectWorkspace.top);
 
          if(::height(prectangle) < sizeMinimum.cy)
          {
@@ -11697,7 +11775,7 @@ restart:
       if (edisplay & ::e_display_bottom)
       {
 
-         prectangle->move_bottom_to(rectWkspace.bottom);
+         prectangle->move_bottom_to(rectWorkspace.bottom);
 
          if(::height(prectangle) < sizeMinimum.cy)
          {
@@ -11711,7 +11789,7 @@ restart:
       if (edisplay & ::e_display_left)
       {
 
-         prectangle->move_left_to(rectWkspace.left);
+         prectangle->move_left_to(rectWorkspace.left);
 
          if(::width(prectangle) < sizeMinimum.cx)
          {
@@ -11725,7 +11803,7 @@ restart:
       if (edisplay & ::e_display_right)
       {
 
-         prectangle->move_right_to(rectWkspace.right);
+         prectangle->move_right_to(rectWorkspace.right);
 
          if(::width(prectangle) < sizeMinimum.cx)
          {
@@ -11736,7 +11814,7 @@ restart:
 
       }
 
-      return iWkspace;
+      return iWorkspace;
 
    }
 
@@ -11749,7 +11827,7 @@ restart:
    }
 
 
-   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32* prectWkspace, SIZE_I32 * psizeMin, const ::rectangle_i32& rectHint)
+   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace, SIZE_I32 * psizeMin, const ::rectangle_i32& rectHint)
    {
 
       ::rectangle_i32 rectRestore(rectHint);
@@ -11761,7 +11839,7 @@ restart:
 
       }
 
-      ::rectangle_i32 rectWkspace;
+      ::rectangle_i32 rectWorkspace;
 
       auto psession = Session;
 
@@ -11771,9 +11849,9 @@ restart:
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingWkspace = pdisplay->get_best_wkspace(&rectWkspace, rectRestore);
+      index iMatchingWorkspace = pdisplay->get_best_workspace(&rectWorkspace, rectRestore);
 
-      if (iMatchingWkspace >= 0)
+      if (iMatchingWorkspace >= 0)
       {
 
          ::size_i32 sizeMin;
@@ -11791,14 +11869,14 @@ restart:
 
          }
 
-         m_sizeRestoreBroad = sizeMin.maximum(rectWkspace.size() * 4 / 5);
+         m_sizeRestoreBroad = sizeMin.maximum(rectWorkspace.size() * 4 / 5);
 
-         m_sizeRestoreCompact = sizeMin.maximum(rectWkspace.size() * 2 / 5);
+         m_sizeRestoreCompact = sizeMin.maximum(rectWorkspace.size() * 2 / 5);
 
-         if (::is_set(prectWkspace))
+         if (::is_set(prectWorkspace))
          {
 
-            *prectWkspace = rectWkspace;
+            *prectWorkspace = rectWorkspace;
 
          }
 
@@ -11811,7 +11889,7 @@ restart:
 
       }
 
-      return iMatchingWkspace;
+      return iMatchingWorkspace;
 
    }
 
@@ -11914,7 +11992,7 @@ restart:
    }
 
 
-   index interaction::get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
+   index interaction::get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
    {
 
       auto psession = Session;
@@ -11925,7 +12003,7 @@ restart:
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_wkspace(prectangle, rectangle, eactivation);
+      return pdisplay->get_best_workspace(prectangle, rectangle, eactivation);
 
    }
 
@@ -13245,6 +13323,13 @@ restart:
 
       }
 
+      if(!m_pimpl)
+      {
+
+         return false;
+
+      }
+
       if (m_pimpl->has_pending_graphical_update())
       {
 
@@ -13366,7 +13451,7 @@ restart:
 
    //   ::point_i32 pointCurrent;
 
-   //   psession->get_cursor_pos(pointCurrent);
+   //   psession->get_cursor_position(pointCurrent);
 
    //   if (pointCurrent != pointLast)
    //   {
@@ -13482,7 +13567,7 @@ restart:
 //
 //      ::point_i32 pointCurrent;
 //
-//      psession->get_cursor_pos(pointCurrent);
+//      psession->get_cursor_position(pointCurrent);
 //
 //#if !defined(LINUX)
 //
@@ -13996,7 +14081,6 @@ restart:
    }
 
 
-
    void interaction::install_simple_ui_default_mouse_handling(::channel* pchannel)
    {
 
@@ -14158,7 +14242,16 @@ restart:
          if (m_itemLButtonDown.is_set())
          {
 
+            auto psession = Session;
+
             psession->m_puiLastLButtonDown = this;
+
+            if(m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture)
+            {
+
+               set_mouse_capture();
+
+            }
 
             pmouse->m_bRet = true;
 
@@ -14173,6 +14266,8 @@ restart:
 
             }
 
+            auto psession = Session;
+
             psession->m_puiLastLButtonDown = this;
 
             simple_on_control_event(pmessage, ::user::e_event_button_down);
@@ -14182,7 +14277,6 @@ restart:
       }
 
    }
-
 
 
    void interaction::on_message_left_button_up(::message::message* pmessage)
@@ -14199,6 +14293,20 @@ restart:
 
       if (m_bSimpleUIDefaultMouseHandling)
       {
+
+         if(m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture)
+         {
+
+            if(has_mouse_capture())
+            {
+
+               auto pwindowing = windowing();
+
+               pwindowing->release_mouse_capture();
+
+            }
+
+         }
 
          auto item = hit_test(pmouse);
 
@@ -14302,6 +14410,7 @@ restart:
    }
 
 
+
    void interaction::_001OnMButtonDown(::message::message* pmessage)
    {
 
@@ -14393,7 +14502,13 @@ restart:
       if (itemHitTest != m_itemHover)
       {
 
+         g_iMouseHoverCount++;
+
+         //auto itemHitTest2 = hit_test(pointClient);
+
          m_itemHover = itemHitTest;
+
+
 
          bAnyHoverChange = true;
 
@@ -14562,7 +14677,19 @@ restart:
       if (!rectangle.contains(item.m_pointClient))
       {
 
-         item = e_element_none;
+         if(m_bMouseHoverOnCapture && has_mouse_capture())
+         {
+
+            item = e_element_non_client;
+
+         }
+         else
+         {
+
+            item = e_element_none;
+
+         }
+
 
       }
       else

@@ -238,7 +238,7 @@ namespace experience
 
          auto pwindowing = puser->windowing();
 
-         pointCursor = pwindowing->get_cursor_pos();
+         pointCursor = pwindowing->get_cursor_position();
 
          if (is_window_visible())
          {
@@ -658,6 +658,17 @@ namespace experience
 
       pbutton->display(e_display_none);
 
+      pbutton->m_pcontrolbox = this;
+
+      pbutton->m_ebutton = ebutton;
+
+      if(ebutton == e_button_dock)
+      {
+
+         pbutton->m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
+
+      }
+
       if (!pbutton->is_window() && !pbutton->create_child(this))
       {
 
@@ -707,7 +718,7 @@ namespace experience
 
       pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
 
-      pbutton->set_parent(this);
+      //pbutton->set_parent(this);
 
       pbutton->set_window_text(strCaption);
 

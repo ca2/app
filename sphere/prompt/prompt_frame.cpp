@@ -99,7 +99,7 @@ namespace prompt
          /*      ::rectangle_i32 rectWindow;
                get_window_rect(rectWindow);
                ::point_i32 point;
-               point = psession->get_cursor_pos();
+               point = psession->get_cursor_position();
                if(rectWindow.is_empty().contains(point) && !m_bTimerHide)
                {
                   m_bTimerHide = true;
@@ -115,7 +115,7 @@ namespace prompt
          {
             OnHoverAction();
          }
-         if(psession->get_cursor_pos(&pt))
+         if(psession->get_cursor_position(&pt))
          {
             if(!m_bHoverMouse && point.x == 0 && point.y == 0)
             {

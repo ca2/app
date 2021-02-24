@@ -73,6 +73,8 @@ namespace windowing
       virtual ::e_status start();
 
       virtual void windowing_main();
+
+      virtual void windowing_post_quit();
       
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);
@@ -120,7 +122,7 @@ namespace windowing
 
       virtual void __hook_on_idle(class display * pdisplay);
 
-      virtual void message_loop_step();
+      virtual bool message_loop_step();
 
       //virtual ::mutex * mutex();
 
@@ -162,9 +164,9 @@ namespace windowing
 
       void on_idle(class display *pdisplay);
 
-      virtual void get_cursor_pos(POINT_I32 * ppoint);
+      virtual void get_cursor_position(POINT_I32 * ppoint);
 
-      inline ::point_i32 get_cursor_pos() { ::point_i32 point; get_cursor_pos(&point); return point; }
+      inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
       //virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
 

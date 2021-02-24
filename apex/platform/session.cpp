@@ -182,7 +182,7 @@ namespace apex
    //}
 
    
-   //bool  session::get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
+   //bool  session::get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle)
    //{
 
    //   return false;
@@ -206,7 +206,7 @@ namespace apex
    //}
 
 
-   //index session::get_main_wkspace(RECTANGLE_I32* prectangle)
+   //index session::get_main_workspace(RECTANGLE_I32* prectangle)
    //{
 
    //   return -1;
@@ -214,7 +214,7 @@ namespace apex
    //}
 
 
-   //::count session::get_wkspace_count()
+   //::count session::get_workspace_count()
    //{
 
    //   return -1;
@@ -222,7 +222,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
+   //bool  session::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32* prectangle)
    //{
 
    //   return false;
@@ -230,7 +230,7 @@ namespace apex
    //}
 
    //
-   //::count session::get_desk_wkspace_count()
+   //::count session::get_desk_workspace_count()
    //{
 
    //   return -1;
@@ -238,7 +238,7 @@ namespace apex
    //}
   
    //
-   //bool  session::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
+   //bool  session::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32* prectangle)
    //{
 
    //   return false;
@@ -254,7 +254,7 @@ namespace apex
    //}
    
 
-   //bool session::set_main_wkspace(index iWkspace)
+   //bool session::set_main_workspace(index iWorkspace)
    //{
 
    //   return false;
@@ -262,7 +262,7 @@ namespace apex
    //}
 
 
-   //bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWkspace)
+   //bool session::workspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWorkspace)
    //{
 
    //   return false;
@@ -270,7 +270,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle, index iWkspace, index iMonitor)
+   //bool session::monitor_to_workspace(RECTANGLE_I32* prectangle, index iWorkspace, index iMonitor)
    //{
 
    //   return false;
@@ -278,7 +278,7 @@ namespace apex
    //}
 
 
-   //bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle)
+   //bool session::workspace_to_monitor(RECTANGLE_I32* prectangle)
    //{
 
    //   return false;
@@ -286,7 +286,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle)
+   //bool session::monitor_to_workspace(RECTANGLE_I32* prectangle)
    //{
 
    //   return false;
@@ -443,7 +443,7 @@ namespace apex
       if (!estatus)
       {
 
-         message_box("::apex::session::init1 Failed");
+         output_debug_string("\nFailed to init1 the session (::apex::session or ::apex::session derived)");
 
          return estatus;
 
@@ -1208,7 +1208,7 @@ namespace apex
    //}
 
 
-//  void session::get_cursor_pos(POINT_I32 * ppoint)
+//  void session::get_cursor_position(POINT_I32 * ppoint)
 //  {
 //
 //
@@ -1432,11 +1432,11 @@ namespace apex
 
    //   ::rectangle_i32 rectRestore(rectParam);
 
-   //   ::rectangle_i32 rectWkspace;
+   //   ::rectangle_i32 rectWorkspace;
 
    //   ::size_i32 sizeMin;
 
-   //   index iMatchingWkspace;
+   //   index iMatchingWorkspace;
 
    //   ::size_i32 sizeBroad;
 
@@ -1447,7 +1447,7 @@ namespace apex
 
    //      sizeMin = pinteraction->get_window_minimum_size();
 
-   //      iMatchingWkspace = pinteraction->calculate_broad_and_compact_restore(rectWkspace, sizeMin, rectParam);
+   //      iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectWorkspace, sizeMin, rectParam);
 
    //      sizeBroad = pinteraction->m_sizeRestoreBroad;
 
@@ -1459,19 +1459,19 @@ namespace apex
 
    //      sizeMin = get_window_minimum_size();
 
-   //      iMatchingWkspace = get_best_wkspace(&rectWkspace, rectParam);
+   //      iMatchingWorkspace = get_best_workspace(&rectWorkspace, rectParam);
 
-   //      sizeBroad = sizeMin.maximum(rectWkspace.size() * 4 / 5);
+   //      sizeBroad = sizeMin.maximum(rectWorkspace.size() * 4 / 5);
 
-   //      sizeCompact = sizeMin.maximum(rectWkspace.size() * 2 / 5);
+   //      sizeCompact = sizeMin.maximum(rectWorkspace.size() * 2 / 5);
 
    //   }
 
-   //   auto rectIntersect = rectWkspace & rectParam;
+   //   auto rectIntersect = rectWorkspace & rectParam;
 
-   //   auto rectTolerance(rectWkspace);
+   //   auto rectTolerance(rectWorkspace);
 
-   //   auto sizeMax = rectWkspace.size() * 0.8;
+   //   auto sizeMax = rectWorkspace.size() * 0.8;
 
    //   bool b1 = !rectTolerance.contains(rectRestore);
    //   bool b2 = rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy;
@@ -1499,20 +1499,20 @@ namespace apex
 
    //      }
 
-   //      ::rectangle_i32 rectWkspaceBitSmaller(rectWkspace);
+   //      ::rectangle_i32 rectWorkspaceBitSmaller(rectWorkspace);
 
-   //      rectWkspaceBitSmaller.deflate(5);
+   //      rectWorkspaceBitSmaller.deflate(5);
 
-   //      if (!rectWkspaceBitSmaller.contains(rectRestore))
+   //      if (!rectWorkspaceBitSmaller.contains(rectRestore))
    //      {
 
-   //         rectRestore.move_to(rectWkspace.origin() + rectWkspace.size() / 10);
+   //         rectRestore.move_to(rectWorkspace.origin() + rectWorkspace.size() / 10);
 
    //      }
 
    //      *prectangle = rectRestore;
 
-   //      return iMatchingWkspace;
+   //      return iMatchingWorkspace;
 
    //   }
    //   else
@@ -1530,29 +1530,29 @@ namespace apex
 
    //   ::rectangle_i32 rectangle(rectParam);
 
-   //   index iBestWkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
+   //   index iBestWorkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
 
    //   bool bChangedSize = ::size_i32(prectangle) != rectParam.size();
 
-   //   if (iBestWkspace < 0 && !bChangedSize)
+   //   if (iBestWorkspace < 0 && !bChangedSize)
    //   {
 
    //      return -1;
 
    //   }
 
-   //   ::rectangle_i32 rectWkspace;
+   //   ::rectangle_i32 rectWorkspace;
 
    //   ::rectangle_i32 rectStart(prectangle);
 
    //   ::point_i32 pointLineStart(::top_left(prectangle));
 
-   //   get_wkspace_rect(iBestWkspace, rectWkspace);
+   //   get_workspace_rectangle(iBestWorkspace, rectWorkspace);
 
    //   if (rectStart > pinteraction->m_sizeRestoreCompact)
    //   {
 
-   //      pointLineStart = rectWkspace.origin();
+   //      pointLineStart = rectWorkspace.origin();
 
    //      pointLineStart.offset(49, 49);
 
@@ -1569,7 +1569,7 @@ namespace apex
    //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
-   //            return iBestWkspace;
+   //            return iBestWorkspace;
 
    //         }
 
@@ -1580,14 +1580,14 @@ namespace apex
 
    //            rectangle.offset(49, 0);
 
-   //            if (!rectWkspace.contains(rectangle))
+   //            if (!rectWorkspace.contains(rectangle))
    //            {
 
    //               pointLineStart.offset(0, 49);
 
    //               rectangle.move_to(pointLineStart);
 
-   //               if (!rectWkspace.contains(rectangle))
+   //               if (!rectWorkspace.contains(rectangle))
    //               {
 
    //                  break;
@@ -1607,14 +1607,14 @@ namespace apex
    //         *prectangle = rectangle;
 
    //      }
-   //      while (rectWkspace.contains(rectangle));
+   //      while (rectWorkspace.contains(rectangle));
 
    //   }
 
    //   if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
    //   {
 
-   //      pointLineStart = rectWkspace.origin();
+   //      pointLineStart = rectWorkspace.origin();
 
    //      pointLineStart.offset(49, 49);
 
@@ -1622,7 +1622,7 @@ namespace apex
 
    //      *prectangle = rectangle;
 
-   //      return iBestWkspace;
+   //      return iBestWorkspace;
 
    //   }
 
@@ -1639,7 +1639,7 @@ namespace apex
    //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
-   //            return iBestWkspace;
+   //            return iBestWorkspace;
 
    //         }
 
@@ -1649,11 +1649,11 @@ namespace apex
 
    //         *prectangle = rectangle;
 
-   //      } while (rectWkspace.contains(rectangle));
+   //      } while (rectWorkspace.contains(rectangle));
 
    //   }
 
-   //   pointLineStart = rectWkspace.origin();
+   //   pointLineStart = rectWorkspace.origin();
 
    //   pointLineStart.offset(49, 49);
 
@@ -1668,7 +1668,7 @@ namespace apex
    //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
-   //            return iBestWkspace;
+   //            return iBestWorkspace;
 
    //         }
 
@@ -1676,14 +1676,14 @@ namespace apex
 
    //         rectangle.offset(49, 0);
 
-   //         if (!rectWkspace.contains(rectangle))
+   //         if (!rectWorkspace.contains(rectangle))
    //         {
 
    //            pointLineStart.offset(0, 49);
 
    //            rectangle.move_to(pointLineStart);
 
-   //            if (!rectWkspace.contains(rectangle))
+   //            if (!rectWorkspace.contains(rectangle))
    //            {
 
    //               break;
@@ -1694,11 +1694,11 @@ namespace apex
 
    //         *prectangle = rectangle;
 
-   //      } while (rectWkspace.contains(rectangle));
+   //      } while (rectWorkspace.contains(rectangle));
 
    //   }
 
-   //   pointLineStart = rectWkspace.origin();
+   //   pointLineStart = rectWorkspace.origin();
 
    //   pointLineStart.offset(49, 49);
 
@@ -1706,7 +1706,7 @@ namespace apex
 
    //   *prectangle = rectangle;
 
-   //   return iBestWkspace;
+   //   return iBestWorkspace;
 
    //}
 
@@ -1732,13 +1732,13 @@ namespace apex
    //}
 
 
-   //index session::get_ui_wkspace(::user::interaction * pinteraction)
+   //index session::get_ui_workspace(::user::interaction * pinteraction)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
    //   {
 
-   //      return System.get_ui_wkspace(pinteraction);
+   //      return System.get_ui_workspace(pinteraction);
 
    //   }
    //   else
@@ -1748,7 +1748,7 @@ namespace apex
 
    //      pinteraction->get_window_rect(rectangle);
 
-   //      return get_best_wkspace(nullptr, rectangle);
+   //      return get_best_workspace(nullptr, rectangle);
 
    //   }
 
@@ -1852,6 +1852,8 @@ ret:
 
       if (!estatus)
       {
+
+         output_debug_string("\nFailed to __compose_new(m_pfs)");
 
          m_result.add(estatus);
 

@@ -148,7 +148,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto point = pwindowing->get_cursor_pos();
+      auto point = pwindowing->get_cursor_position();
 
       _001ScreenToClient(point, e_layout_design);
 
@@ -237,7 +237,7 @@ namespace user
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rectangle.center());
-      //   auto point = psession->get_cursor_pos();
+      //   auto point = psession->get_cursor_position();
       //   _001ScreenToClient(point);
       //   pgraphics->line_to(point);
       //}

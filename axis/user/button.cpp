@@ -37,6 +37,9 @@ namespace user
 
       m_econtroltype = e_control_type_button;
 
+      m_bMouseHoverOnCapture = true;
+
+      m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
 
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
@@ -1010,9 +1013,6 @@ namespace user
       }
 
    }
-
-
-
 
 
    bool button::LoadBitmaps(::payload payload,::payload varSel,::payload varFocus,::payload varDisabled,::payload varHover)

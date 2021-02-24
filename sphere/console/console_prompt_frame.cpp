@@ -90,7 +90,7 @@ namespace console
 //   /*      ::rectangle_i32 rectWindow;
 //         get_window_rect(rectWindow);
 //         ::point_i32 point;
-//         point = psession->get_cursor_pos();
+//         point = psession->get_cursor_position();
 //         if(rectWindow.is_empty().contains(point) && !m_bTimerHide)
 //         {
 //            m_bTimerHide = true;
@@ -106,7 +106,7 @@ namespace console
 //         {
 //            OnHoverAction();
 //         }
-//         if(psession->get_cursor_pos(&pt))
+//         if(psession->get_cursor_position(&pt))
 //         {
 //            if(!m_bHoverMouse && point.x == 0 && point.y == 0)
 //            {
@@ -498,7 +498,7 @@ namespace console
 
       ::rectangle_i32 rectangle;
 
-      System.get_monitor_rect(0,rectangle_i32);
+      System.get_monitor_rectangle(0,rectangle_i32);
 
       int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 

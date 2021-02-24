@@ -1446,7 +1446,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 //void simple_toolbar::_001Hover(bool bRedraw)
 //{
 //
-//   auto point = psession->get_cursor_pos();
+//   auto point = psession->get_cursor_position();
 //
 //   _001ScreenToClient(point);
 //

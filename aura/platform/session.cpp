@@ -1354,7 +1354,7 @@ namespace aura
 
 
 
-//   void session::get_cursor_pos(POINT_I32 * ppoint)
+//   void session::get_cursor_position(POINT_I32 * ppoint)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -1364,7 +1364,7 @@ namespace aura
 //
 //         POINT_I32 point_i32;
 //
-//         ::get_cursor_pos(&point);
+//         ::get_cursor_position(&point);
 //
 //         m_pointCursor = point;
 //
@@ -1455,22 +1455,22 @@ namespace aura
    }
 
 
-   //index session::get_main_wkspace(RECTANGLE_I32 * prectangle)
+   //index session::get_main_workspace(RECTANGLE_I32 * prectangle)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
    //   {
 
-   //      if (m_iMainWkspace >= 0 && m_iMainWkspace < get_monitor_count())
+   //      if (m_iMainWorkspace >= 0 && m_iMainWorkspace < get_monitor_count())
    //      {
 
-   //         return get_main_wkspace(prectangle);
+   //         return get_main_workspace(prectangle);
 
    //      }
    //      else
    //      {
 
-   //         if (get_monitor_rect(m_iMainWkspace, prectangle))
+   //         if (get_monitor_rectangle(m_iMainWorkspace, prectangle))
    //         {
 
    //            return m_iMainMonitor;
@@ -1479,7 +1479,7 @@ namespace aura
    //         else
    //         {
 
-   //            get_wkspace_rect(0, prectangle);
+   //            get_workspace_rectangle(0, prectangle);
 
 
    //            return 0;
@@ -1492,16 +1492,16 @@ namespace aura
    //   else
    //   {
 
-   //      index iMainWkspace = m_iMainWkspace;
+   //      index iMainWorkspace = m_iMainWorkspace;
 
-   //      if (iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
+   //      if (iMainWorkspace < 0 || iMainWorkspace >= m_rectaWorkspace.get_count())
    //      {
 
-   //         iMainWkspace = 0;
+   //         iMainWorkspace = 0;
 
    //      }
 
-   //      if (m_rectaWkspace.get_count() <= 0)
+   //      if (m_rectaWorkspace.get_count() <= 0)
    //      {
 
    //         return -1;
@@ -1511,11 +1511,11 @@ namespace aura
    //      if(prectangle != nullptr)
    //      {
 
-   //         *prectangle = m_rectaWkspace[iMainWkspace];
+   //         *prectangle = m_rectaWorkspace[iMainWorkspace];
 
    //      }
 
-   //      return iMainWkspace;
+   //      return iMainWorkspace;
 
    //   }
 
@@ -1774,6 +1774,13 @@ ret:
 
             estatus = __compose(m_puser, psetup->create_new_object());
 
+            if(!estatus)
+            {
+
+               output_debug_string("\nFailed to __compose(m_puser)");
+
+            }
+
          }
 
          if (!estatus)
@@ -1785,6 +1792,8 @@ ret:
 
          if (!estatus || !m_puser)
          {
+
+            output_debug_string("\nFailed to __compose_new(m_puser)");
 
             ERR(".4");
 

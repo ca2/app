@@ -13,15 +13,21 @@ enum enum_message : ::i64
    e_message_activate = 6,
    e_message_set_focus = 7,
    e_message_kill_focus = 8,
+   e_message_enable = 10,
    e_message_set_text = 12,
    e_message_paint = 15,
    e_message_close = 16,
    e_message_quit = 18,
-   e_message_setting_change = 26,
-   e_message_activate_app = 28,
-   e_message_get_min_max_info = 36,
 
-   e_message_mouse_activate = 0x0021,
+   e_message_erase_background  = 20, // 0x0014
+
+   e_message_setting_change = 26,
+   e_message_activate_app = 28, // 0x001C
+   e_message_show_window = 30, // 0x001E
+   e_message_set_cursor = 32, // 0x0020
+   e_message_mouse_activate = 33, // 0x0021
+
+   e_message_get_min_max_info = 36, // 0x0024
 
    e_message_context_menu = 0x007B,
 
@@ -50,13 +56,13 @@ enum enum_message : ::i64
    e_message_measure_item     =             0x002C,
    e_message_window_position_changing    =        0x0046,
    e_message_window_position_changed   =          0x0047,
-   e_message_set_cursor       =             0x0020,
-   e_message_erase_background  =                 0x0014,
-   e_message_show_window     =              0x0018,
 
    e_message_non_client_mouse_move           =    0x00A0,
    e_message_non_client_left_button_down     =        0x00A1,
    e_message_non_client_left_button_up       =        0x00A2,
+   e_message_command  =                    0x0111,
+   e_message_timer      =                  0x0113,
+   e_message_initialize_menu_popup       =         0x0117,
 
 
    e_message_mouse_first = 512,
@@ -71,14 +77,11 @@ enum enum_message : ::i64
    e_message_middle_button_up = 520,
    e_message_middle_button_double_click = 521,
    e_message_mouse_wheel = 522,
-   e_message_timer      =                  0x0113,
+   e_message_capture_changed = 533,
 
 
    e_message_mouse_leave    =               0x02A3,
 
-   e_message_command  =                    0x0111,
-   e_message_enable       =                0x000A,
-   e_message_initialize_menu_popup       =         0x0117,
 
 
 

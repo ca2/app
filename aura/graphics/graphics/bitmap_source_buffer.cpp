@@ -52,24 +52,33 @@ namespace graphics
 
    }
 
-   void bitmap_source_buffer::defer_initialize_bitmap_source_buffer()
+   ::e_status bitmap_source_buffer::enable_ipc_copy(const ::string &strBitmapSource)
    {
 
-      if (m_pwindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
+      //if (m_pwindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
+      //{
+
+        // return;
+
+      //}
+
+      if(m_pwindow == nullptr)
       {
 
-         return;
+         return false;
 
       }
 
-      if (m_pmemorymap->is_mapped())
-      {
+//      if (m_pmemorymap->is_mapped())
+//      {
+//
+//         return;
+//
+//      }
 
-         return;
+      //m_strBitmapSource = m_pimpl->m_puserinteraction->payload("bitmap-source");
 
-      }
-
-      m_strBitmapSource = m_pimpl->m_puserinteraction->payload("bitmap-source");
+      m_strBitmapSource = strBitmapSource;
 
       char szName[] = "Local\\bitmap-source-%s";
 
@@ -79,13 +88,15 @@ namespace graphics
 
       m_pmemorymap->open_name(strName, false, true, true, 128_mb);
 
+      return ::success;
+
    }
 
 
    bool bitmap_source_buffer::ipc_copy(const pixmap * ppixmap)
    {
 
-      if (!m_pmemorymap->is_mapped())
+      if (!is_ipc_copy_enabled())
       {
 
          return false;
@@ -144,7 +155,7 @@ namespace graphics
 
       }
 
-      if (m_pimpl->m_puserinteraction->payload("bitmap-source").has_char())
+      if (is_ipc_copy_enabled())
       {
 
          if (!ipc_copy(get_screen_image()))

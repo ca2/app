@@ -44,7 +44,7 @@ namespace user
 
             auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_pos();
+            auto pointCursor = pwindowing->get_cursor_position();
 
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || pointCursor != m_point)
@@ -83,7 +83,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          if (pointCursor != m_point)
          {

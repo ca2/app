@@ -40,10 +40,10 @@ int GetScreenRect(RECTANGLE_I32 * prectangle, int iMonitor);
 
 int GetScreenCount();
 
-int GetWkspaceRect(RECTANGLE_I32 * prectangle, int iMonitor);
+int GetWorkspaceRect(RECTANGLE_I32 * prectangle, int iMonitor);
 
 
-int GetWkspaceCount();
+int GetWorkspaceCount();
 
 
 

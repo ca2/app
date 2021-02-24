@@ -1975,7 +1975,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
             display(e_display_zoomed);
 
-          //  psession->get_main_wkspace(rectFrame);
+          //  psession->get_main_workspace(rectFrame);
 
          }
 
@@ -3827,7 +3827,7 @@ void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 
    auto pwindowing = puser->windowing();
 
-   auto pointCursor = pwindowing->get_cursor_pos();
+   auto pointCursor = pwindowing->get_cursor_position();
 
    string strXml = notification_area_get_xml_menu();
 

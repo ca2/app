@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "_user.h"
-#include "third/sn/sn.h"
+//#include "third/sn/sn.h"
 #include "aura/platform/message_queue.h"
 
 

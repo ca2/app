@@ -1,6 +1,6 @@
 
 
-int main(int argc, char * argv[])
+int main(int argc, char * argv[], char * envp[])
 {
 
    string strAppId = executable_get_app_id();
@@ -33,7 +33,7 @@ int main(int argc, char * argv[])
 
    application_common(psystem);
 
-   psystem->system_construct(argc, argv);
+   psystem->system_construct(argc, argv, envp);
 
    estatus = psystem->start();
 

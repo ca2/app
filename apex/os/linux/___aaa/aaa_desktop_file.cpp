@@ -219,7 +219,7 @@ namespace linux
       straLine.add("Terminal=false");
       straLine.add("X-MultipleArgs=false");
       straLine.add("Categories=Network;");
-      straLine.add("StartupNotify=true");
+      //straLine.add("StartupNotify=true");
       straLine.add("MimeType=");
 
    }

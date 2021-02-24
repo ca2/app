@@ -369,8 +369,6 @@ namespace promise
 
       pmatter->on_subject(this, pcontext);
 
-
-
    }
 
 

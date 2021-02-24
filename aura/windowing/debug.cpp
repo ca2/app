@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "_windowing.h"
-//#include "third/sn/sn.h"
+////#include "third/sn/sn.h"
 
 
 //extern ::mutex * x11_mutex();

@@ -2,7 +2,6 @@
 
 
 #define MAX_LAYERED_COUNT 8
-#define MAX_LAYERED_OS_DATA_COUNT 4
 
 
 class CLASS_DECL_ACME layered :
@@ -12,24 +11,26 @@ private:
 
 
    void *      m_pa[MAX_LAYERED_COUNT];
-   void *      m_osdataa[MAX_LAYERED_OS_DATA_COUNT];
+   void *      m_osdataa[MAX_LAYERED_COUNT];
 
 
 public:
 
 
 
-   layered() : m_pa{} { }
+   layered() : m_pa{}, m_osdataa{} { }
    virtual ~layered();
 
    void set_layer(byte bLayeredIndex, void* p);
-
    inline void * layer(byte bLayeredIndex) const { return ::c_is_null(this) ? nullptr : m_pa[bLayeredIndex]; }
+   inline void clear_layers()  { __zero(m_pa); }
 
 
+
+   void set_os_data(byte b, void * p);
    inline void * get_os_data(byte b = 0) const { return m_osdataa[b]; }
-   inline void set_os_data(byte b, void * p) { m_osdataa[b] = p; }
-   inline void set_os_data(void * p) { m_osdataa[0] = p; }
+   inline void set_os_data(void * p) { set_os_data(0, p); }
+   inline void clear_os_data() { __zero(m_osdataa); }
 
 
 };

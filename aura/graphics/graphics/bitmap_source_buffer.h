@@ -12,16 +12,19 @@ namespace graphics
 
 
       __pointer(file::memory_map)   m_pmemorymap;
-      string                        m_strBitmapSource;
+      string                              m_strBitmapSource;
 
 
       bitmap_source_buffer();
       virtual ~bitmap_source_buffer();
 
 
+      inline bool is_ipc_copy_enabled() const { return m_pmemorymap && m_pmemorymap->is_mapped(); }
+
+
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
 
-      virtual void defer_initialize_bitmap_source_buffer();
+      virtual ::e_status enable_ipc_copy(const ::string & strBitmapSource);
 
       virtual bool ipc_copy(const pixmap * ppixmap);
 

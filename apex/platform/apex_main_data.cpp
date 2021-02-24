@@ -37,12 +37,14 @@ apex_main_data::~apex_main_data()
 }
 
 
-::e_status apex_main_data::system_construct(int argc, char** argv)
+::e_status apex_main_data::system_construct(int argc, char** argv, char ** envp)
 {
 
    m_argc = argc;
 
    m_argv = argv;
+
+   m_envp = envp;
 
    m_iPathInstallFolderExeArg = -1;
 
@@ -52,6 +54,8 @@ apex_main_data::~apex_main_data()
 //   g_poslocal = nullptr;
 //
    m_wargv = nullptr;
+
+   m_wenvp = nullptr;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -85,18 +89,22 @@ apex_main_data::~apex_main_data()
 }
 
 
-::e_status apex_main_data::system_construct(int argc, wchar_t** argv)
+::e_status apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
 {
 
    m_argc = argc;
 
    m_argv = nullptr;
 
+   m_envp = nullptr;
+
    m_iPathInstallFolderExeArg = -1;
 
    //m_poslocal = nullptr;
 
    m_wargv = argv;
+
+   m_wenvp = envp;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -213,7 +221,7 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 #else
 
 
-void apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
+::e_status apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -224,10 +232,21 @@ void apex_main_data::system_construct(const char * pszCommandLine, const ::e_dis
 
    //__zero(m_mainrunnera);
 
+   auto estatus = on_system_construct();
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
 }
 
 
-void apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
+::e_status apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
 {
 
 #ifdef ANDROID
@@ -244,6 +263,17 @@ void apex_main_data::system_construct(os_local * poslocal, const ::e_display & e
 
    //__zero(m_mainrunnera);
 
+   auto estatus = on_system_construct();
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
 }
 
 
@@ -258,7 +288,7 @@ void apex_main_data::set_main_struct(const apex_main_struct & mainstruct)
 }
 
 
-string apex_main_data::get_arg(int i)
+string apex_main_data::get_arg(int i) const
 {
 
    if (m_wargv)
@@ -276,6 +306,63 @@ string apex_main_data::get_arg(int i)
 
    return "";
 
+
+}
+
+
+string apex_main_data::get_env(const char * pszVariableName) const
+{
+
+   if (m_wenvp)
+   {
+
+      wstring wstrPrefix(pszVariableName);
+
+      wstrPrefix += "=";
+
+      for(auto p = m_wenvp; p != nullptr; p++)
+      {
+
+         wstring wstr(*p);
+
+         if(wstr.begins_eat_ci(wstrPrefix))
+         {
+
+            return wstr;
+
+         }
+
+      }
+
+      return "";
+
+   }
+   else if (m_envp)
+   {
+
+      string strPrefix(pszVariableName);
+
+      strPrefix += "=";
+
+      for(auto p = m_envp; p != nullptr; p++)
+      {
+
+         string str(*p);
+
+         if(str.begins_eat_ci(strPrefix))
+         {
+
+            return str;
+
+         }
+
+      }
+
+      return "";
+
+   }
+
+   return "";
 
 }
 

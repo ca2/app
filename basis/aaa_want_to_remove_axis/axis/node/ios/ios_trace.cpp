@@ -194,7 +194,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_SETICON),
    DEFINE_MESSAGE(WM_SIZING),
    DEFINE_MESSAGE(WM_MOVING),
-   DEFINE_MESSAGE(WM_CAPTURECHANGED),
+   DEFINE_MESSAGE(e_message_capture_changed),
    DEFINE_MESSAGE(WM_DEVICECHANGE),
    { 0, nullptr, }    // end of message list
 };

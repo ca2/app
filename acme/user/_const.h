@@ -254,6 +254,7 @@ namespace user
       e_element_border,
       e_element_lite_border,
       e_element_client,
+      e_element_non_client, // but m_bMouseHoverOnCapture ?
       e_element_area,
       e_element_drop_down,
       e_element_combo_edit,

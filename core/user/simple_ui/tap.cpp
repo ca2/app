@@ -180,7 +180,7 @@ namespace simple_ui
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       bool bHover = rectWindow.contains(pointCursor);
 

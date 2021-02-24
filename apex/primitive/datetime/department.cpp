@@ -368,6 +368,30 @@ namespace datetime
    }
 
 
+   string department::international::get_gmt_date_time_for_file_with_no_spaces()
+   {
+
+      string str = get_gmt_date_time_for_file();
+
+      str.replace(" ", "_");
+
+      return str;
+
+   }
+
+
+   string department::international::get_local_date_time_for_file_with_no_spaces()
+   {
+
+      string str = get_local_date_time_for_file();
+
+      str.replace(" ", "_");
+
+      return str;
+
+   }
+
+
    department::str::str()
    {
       

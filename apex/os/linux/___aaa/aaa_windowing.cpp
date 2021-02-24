@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "acme/id.h"
 #include "apex/const/message.h"
-#include "third/sn/sn.h"
+////#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
 //!!!#include <X11/extensions/xf86vmode.h>

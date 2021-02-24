@@ -594,7 +594,7 @@ CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edis
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_pos(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

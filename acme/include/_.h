@@ -3258,7 +3258,7 @@ CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * 
 //      {
 //
 //         virtual Windows::Foundation::Rect get_window_rect() = 0;
-//         virtual Windows::Foundation::Point get_cursor_pos() = 0;
+//         virtual Windows::Foundation::Point get_cursor_position() = 0;
 //
 //
 //

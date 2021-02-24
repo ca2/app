@@ -5,7 +5,7 @@
 #include "_linux.h"
 #include "acme/const/id.h"
 #include "acme/const/message.h"
-#include "third/sn/sn.h"
+//#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
 #include <X11/extensions/xf86vmode.h> // libxxf86vm-dev
@@ -207,7 +207,7 @@ bool xcb_on_event(xcb_generic_event_t * pevent)
 //}
 
 
-extern bool g_bFinishX11Thread;
+//extern bool g_bFinishX11Thread;
 
 void x11_add_gdk_filter();
 

@@ -1244,7 +1244,7 @@ namespace macos
                if (psession->get_monitor_count() > 0)
                {
 
-                  psession->get_monitor_rect(0, &rectangle);
+                  psession->get_monitor_rectangle(0, &rectangle);
 
                }
                else

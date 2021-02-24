@@ -900,7 +900,7 @@ namespace aura
 
       virtual ::e_status add_view_library(::apex::library* plibrary);
 
-      //virtual void get_cursor_pos(POINT_I32 * ppoint);
+      //virtual void get_cursor_position(POINT_I32 * ppoint);
 
 
 
@@ -964,11 +964,11 @@ namespace aura
 
       //virtual ::u32 get_monitor_color_temperature(index iMonitor);
       //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
+      //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
+      //bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32* prectangle) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

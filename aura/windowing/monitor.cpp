@@ -44,10 +44,18 @@ namespace windowing
    }
 
 
-   bool monitor::get_monitor_rect(::RECTANGLE_I32 * prectangle)
+   bool monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       return false;
+
+   }
+
+
+   bool monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
+   {
+
+      return get_monitor_rectangle(prectangle);
 
    }
 

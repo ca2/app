@@ -451,12 +451,13 @@ SizingNone:;
             }
 
 
-            void frame_011::on_style_change()
+            void frame_011::_on_style_change(::draw2d::graphics_pointer & pgraphics)
             {
 
-               on_style_change_001_and_002();
+               on_style_change_001_and_002(pgraphics);
 
             }
+
 
 #define BEVEL_SMALL 2
 #define BEVEL_LARGE 5

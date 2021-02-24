@@ -755,7 +755,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    auto pwindowing = puser->windowing();
 
-   auto pointCursor = pwindowing->get_cursor_pos();
+   auto pointCursor = pwindowing->get_cursor_position();
 
    _001ScreenToClient(pointCursor);
 
@@ -1430,7 +1430,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::point_i32 point2;
 
-   //   psession->get_cursor_pos(&point2);
+   //   psession->get_cursor_position(&point2);
 
    //   _001ClientToScreen(point1);
 

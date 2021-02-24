@@ -26,8 +26,17 @@ namespace experience
    }
 
 
-   bool dock_manager::on_message_left_button_down(::message::mouse * pmouse)
+   void dock_manager::dock_button_on_message_left_button_down(::message::message *pmessage)
    {
+
+      if (!m_pframewindow->WfiOnStartDock())
+      {
+
+         return;
+
+      }
+
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (!m_pframewindow->is_docking_enabled())
       {
@@ -35,6 +44,8 @@ namespace experience
          return false;
 
       }
+
+      pmouse->previous();
 
       auto pointCursor = pmouse->m_point;
 
@@ -52,7 +63,16 @@ namespace experience
 
       m_sizeOrigin = rectWindow.size();
 
-      m_pframewindow->set_mouse_capture();
+      dock_button()->set_mouse_capture();
+
+      auto pwindow = m_pframewindow->window();
+
+      if(!pwindow->has_mouse_capture())
+      {
+
+         m_pframewindow->set_mouse_capture();
+
+      }
 
       m_edisplayOrigin = m_pframewindow->layout().design().display();
 
@@ -119,7 +139,7 @@ namespace experience
       if (!m_mapWorkspaceRect.lookup(iMonitor, rectWork))
       {
 
-         pdisplay->get_wkspace_rect(iMonitor, rectWork);
+         pdisplay->get_workspace_rectangle(iMonitor, rectWork);
 
          m_mapWorkspaceRect.set_at(iMonitor, rectWork);
 
@@ -419,71 +439,40 @@ namespace experience
    //}
 
 
-   bool dock_manager::_001OnMouseMove(::message::mouse * pmouse)
+   void dock_manager::dock_button_on_message_mouse_move(::message::message *pmessage)
    {
+
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (!m_pframewindow->is_docking_enabled())
       {
 
-         return false;
+         return;
 
       }
 
       if (!window_is_docking())
       {
 
-         return false;
+         return;
 
       }
 
       if (pmouse->m_eflagMessage & ::message::flag_synthesized)
       {
 
-         return true;
+         pmessage->m_bRet = false;
+
+         return;
 
       }
 
-      pmouse->m_bRet = true;
+      auto pwindow = m_pframewindow->window();
 
-      auto psession = Session;
-
-      auto puser = psession->user();
-
-      auto puserinteractionCapture = puser->get_mouse_capture(m_pframewindow->m_pthreadUserInteraction);
-
-      if (!puserinteractionCapture)
-      {
-//
-//#ifdef LINUX
-//
-//         // for safety in Linux
-//         ::release_capture();
-//
-//#endif
-
-         m_bDocking = false;
-
-         return false;
-
-      }
-
-      auto puserinteractionEventWindow = m_pframewindow;
-
-      if (puserinteractionCapture != puserinteractionEventWindow)
+      if (!pwindow || !pwindow->has_mouse_capture())
       {
 
-         if (puserinteractionCapture != nullptr && puserinteractionCapture == m_pframewindow)
-         {
-
-            TRACE("dock_manager::message_handler oswindow ReleaseCapture %x\n", puserinteractionCapture);
-
-            auto pwindowing = puser->windowing();
-
-            pwindowing->release_mouse_capture();
-
-         }
-
-         return false;
+         return;
 
       }
 
@@ -491,25 +480,27 @@ namespace experience
 
       dock_window(pmouse);
 
-      return true;
+      pmessage->m_bRet = true;
 
    }
 
 
-   bool dock_manager::on_message_left_button_up(::message::mouse * pmouse)
+   void dock_manager::dock_button_on_message_left_button_up(::message::message *pmessage)
    {
+
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (!m_pframewindow->is_docking_enabled())
       {
 
-         return false;
+         return;
 
       }
 
       if (!window_is_docking())
       {
 
-         return false;
+         return;
 
       }
 
@@ -531,7 +522,7 @@ namespace experience
 
       m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 
-      return true;
+      pmessage->m_bRet = true;
 
    }
 

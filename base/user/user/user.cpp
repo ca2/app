@@ -61,7 +61,7 @@ namespace base
 
 
       create_factory <::user::document >();
-      create_factory <::user::message_queue >();
+      //create_factory <::user::message_queue >();
       create_factory <::user::simple_view >();
       create_factory <::user::still >();
       create_factory <::user::combo_box >();
@@ -742,7 +742,7 @@ namespace base
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+   //bool session::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
 
    //{
 
@@ -758,7 +758,7 @@ namespace base
    //   else
    //   {
 
-   //      return ::aura::session::get_monitor_rect(iMonitor, prectangle);
+   //      return ::aura::session::get_monitor_rectangle(iMonitor, prectangle);
 
 
    //   }
@@ -953,7 +953,7 @@ namespace base
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       return track_popup_menu(pinteraction, pitem, iFlags, pointCursor);
 
@@ -969,7 +969,7 @@ namespace base
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor);
 
@@ -985,7 +985,7 @@ namespace base
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor);
 

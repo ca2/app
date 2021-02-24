@@ -258,7 +258,7 @@ namespace user
       rectangle_i32                       m_rectRestored = nullptr;
       rectangle_i32                       m_rectWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
-      index                      m_iWkspace = 0;
+      index                      m_iWorkspace = 0;
 
       using memory_template < window_rect >::operator=;
       bool operator == (const window_rect & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rect)); }

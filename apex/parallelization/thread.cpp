@@ -2559,7 +2559,7 @@ void thread::__os_finalize()
 ::e_status thread::osthread_init()
 {
 
-   //set_current_handles();
+   set_current_handles();
 
    m_bDedicated = true;
 

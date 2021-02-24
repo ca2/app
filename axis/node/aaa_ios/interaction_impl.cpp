@@ -1227,7 +1227,7 @@ namespace ios
             if(System.get_monitor_count() > 0)
             {
                ::rect rcMonitor;
-               System.get_monitor_rect(0, &rcMonitor);
+               System.get_monitor_rectangle(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)

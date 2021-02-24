@@ -2,18 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(app_shader CXX)
 
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    include(FindPkgConfig)
-elseif(WIN32)
-    set(PLATFORM_NAME "windows")
-endif()
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
@@ -58,6 +48,7 @@ elseif(LINUX)
     add_dependencies(app_shader draw2d_cairo)
 endif()
 
+add_dependencies(app_shader ${app_common_dependencies})
 
 add_dependencies(app_shader gpu_opengl)
 

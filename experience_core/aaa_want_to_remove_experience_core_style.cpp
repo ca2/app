@@ -721,7 +721,7 @@ namespace experience_lite
 
          point pt2;
 
-         psession->get_cursor_pos(&pt2);
+         psession->get_cursor_position(&pt2);
 
          pbar->ClientToScreen(pt1);
 

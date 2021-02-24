@@ -367,7 +367,7 @@
             }
 
 
-            void frame::on_style_change_001_and_002()
+            void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
             {
 
 

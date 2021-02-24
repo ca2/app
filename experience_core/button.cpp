@@ -203,17 +203,24 @@ namespace experience
 
          synchronization_lock synchronizationlock(mutex());
 
-         if (m_spregion.is_null())
+
+
+         if (m_spregion.is_null() || !m_spregion->contains(item.m_pointHitTest))
          {
 
-            item = ::user::e_element_none;
+            if(m_ebutton == e_button_dock || m_bMouseHoverOnCapture)
+            {
 
-            return;
+               if(has_mouse_capture())
+               {
 
-         }
+                  item = ::user::e_element_non_client;
 
-         if (!m_spregion->contains(item.m_pointHitTest))
-         {
+                  return;
+
+               }
+
+            }
 
             item = ::user::e_element_none;
 

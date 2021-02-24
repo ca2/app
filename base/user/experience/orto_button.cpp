@@ -192,7 +192,7 @@ namespace experience
 
          auto pwindowing = puser->windowing();
 
-         pointCursor = pwindowing->get_cursor_pos();
+         pointCursor = pwindowing->get_cursor_position();
          ::rectangle_i32 rectClient;
          ::user::interaction::get_client_rect(rectClient);
          ::user::interaction::_001ClientToScreen(rectClient);

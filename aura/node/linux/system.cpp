@@ -5,7 +5,7 @@
 #include "aura/os/linux/_user.h"
 #include "aura/user/_user.h"
 //#include <gtk/gtk.h>
-//#include "third/sn/sn.h"
+////#include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
 //#include "apex/os/linux/gnome_apex_application.h"
 #include "aura/user/message_box.h"
@@ -186,7 +186,7 @@ namespace aura
       if (!begin_synch())
       {
 
-         output_debug_string("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
+         output_debug_string("\nFailed to begin_synch the system (::aura::system or ::aura::system derived)");
 
          return error_failed;
 

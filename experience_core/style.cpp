@@ -1380,7 +1380,7 @@ namespace experience
 
             auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_pos();
+            auto pointCursor = pwindowing->get_cursor_position();
 
             pbar->_001ClientToScreen(point1);
 

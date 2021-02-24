@@ -1028,7 +1028,7 @@ namespace uwp
                
                ::rect rcMonitor;
 
-               get_context_session()->get_monitor_rect(0,&rcMonitor);
+               get_context_session()->get_monitor_rectangle(0,&rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)

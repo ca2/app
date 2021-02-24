@@ -23,33 +23,44 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &button::on_message_left_button_down);
-
-
-   }
-
-
-   void button::on_message_left_button_down(::message::message* pmessage)
-   {
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      if (m_ebutton == e_button_dock)
+      if(m_ebutton == e_button_dock)
       {
 
-         auto item = hit_test(pmouse);
+         auto pdockmanager = m_pcontrolbox->m_pframewindow->m_pdockmanager.get();
 
-         if (item.is_set())
-         {
-
-            m_pcontrolbox->m_pframewindow->experience_on_start_dock(pmouse);
-
-         }
+         MESSAGE_LINK(e_message_left_button_down   , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_down  );
+         MESSAGE_LINK(e_message_mouse_move         , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move        );
+         MESSAGE_LINK(e_message_left_button_up     , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_up    );
 
       }
 
+
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &button::on_message_left_button_down);
+
    }
 
+
+//   void button::on_message_left_button_down(::message::message* pmessage)
+//   {
+//
+//      __pointer(::message::mouse) pmouse(pmessage);
+//
+////      if (m_ebutton == e_button_dock)
+////      {
+////
+////         auto item = hit_test(pmouse);
+////
+////         if (item.is_set())
+////         {
+////
+////            m_pcontrolbox->m_pframewindow->experience_on_start_dock(pmouse);
+////
+////         }
+////
+////      }
+//
+//   }
+//
 
    void button::UpdateWndRgn()
    {

@@ -88,7 +88,6 @@ namespace experience
 
       //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
 
-      virtual void experience_on_start_dock(::message::mouse * pmouse);
 
       //virtual bool WfiOnBeginSizing(::u32 nType, const ::point_i32 & point);
       //virtual bool WfiOnBeginMoving(const ::point_i32 & point);

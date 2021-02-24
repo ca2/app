@@ -64,7 +64,13 @@ namespace user
    class main_frame;
    //class window_map;
    class plain_edit;
-   class message_queue;
+
+
+#ifdef WINDOWS_DESKTOP
+
+   class message_window;
+
+#endif
 
 
 
@@ -129,7 +135,7 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 //#include "aura/filesystem/file/html_file.h"
 
 
-#include "message_queue_listener.h"
+#include "message_window_listener.h"
 
 
 

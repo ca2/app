@@ -387,7 +387,7 @@ namespace experience
             }
 
 
-            void frame::on_style_change_001_and_002()
+            void frame::on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics)
             {
 
                auto pcontrolbox = get_control_box();
@@ -553,7 +553,7 @@ namespace experience
             }
 
 
-            void frame::on_style_change()
+            void frame::_on_style_change(::draw2d::graphics_pointer & pgraphics)
             {
 
 

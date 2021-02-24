@@ -11,7 +11,7 @@
 
 //CLASS_DECL_AURA int_bool get_window_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
 
-//CLASS_DECL_AURA int_bool get_cursor_pos(POINT_I32 * lppointCursor);
+//CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppointCursor);
 
 
 

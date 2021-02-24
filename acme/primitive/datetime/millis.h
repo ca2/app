@@ -269,8 +269,29 @@ inline double __double(const ::millis & millis) { return (double) millis.m_i; }
 inline auto __pr(const ::millis & millis) { return millis.m_i; }
 
 
-inline u32 __os(const ::millis & millis) { return millis.m_i > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : millis.m_i < 0 ? 0 : (u32) millis.m_i; }
+inline u32 __os(const ::millis & millis)
+{
 
+   if (millis.m_i > (i64) MAXI32)
+   {
+
+      return U32_INFINITE_TIMEOUT;
+
+   }
+   else if (millis.m_i < 0)
+   {
+
+      return 0;
+
+   }
+   else
+   {
+
+      return (u32) millis.m_i;
+
+   }
+
+}
 
 inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_i; }
 

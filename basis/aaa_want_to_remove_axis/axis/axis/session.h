@@ -63,7 +63,7 @@ namespace axis
       virtual size get_window_minimum_size() override;
 
 
-      //virtual void  get_cursor_pos(POINT32 * ppoint);
+      //virtual void  get_cursor_position(POINT32 * ppoint);
 
 
 

@@ -1190,7 +1190,7 @@ namespace user
 //
 //      }
 //#ifdef WINDOWS_DESKTOP
-//      else if(id == WM_CAPTURECHANGED)
+//      else if(id == e_message_capture_changed)
 //      {
 //      }
 //#endif

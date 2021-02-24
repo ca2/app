@@ -3,7 +3,7 @@
 #include "aura/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
 #include <X11/Xatom.h>
-#include "third/sn/sn.h"
+//#include "third/sn/sn.h"
 #include <gdk/gdkx.h>
 
 #define TEST 0
@@ -650,7 +650,7 @@ namespace linux
                      if(m_puserinteraction->layout().sketch().m_edisplay3 == e_display_undefined)
                      {
 
-                        m_puserinteraction->move_to(get_context_session()->get_cursor_pos());
+                        m_puserinteraction->move_to(get_context_session()->get_cursor_position());
 
                         m_puserinteraction->set_size(0, 0);
 
@@ -1563,7 +1563,7 @@ namespace linux
             if(System.get_monitor_count() > 0)
             {
                ::rectangle_i32 rcMonitor;
-               System.get_monitor_rect(0, &rcMonitor);
+               System.get_monitor_rectangle(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)

@@ -442,7 +442,7 @@ namespace user
 
             auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_pos();
+            auto pointCursor = pwindowing->get_cursor_position();
 
             bool bShowTabs = rectTab.contains(pointCursor);
 
@@ -500,7 +500,7 @@ namespace user
 
             auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_pos();
+            auto pointCursor = pwindowing->get_cursor_position();
 
             if(get_data()->m_bVertical)
             {
@@ -3390,7 +3390,7 @@ namespace user
 
          pwindowing->release_mouse_capture();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          auto item = hit_test(pointCursor);
 

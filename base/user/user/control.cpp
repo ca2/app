@@ -755,7 +755,7 @@
 //   //   __pointer(::user::interaction) pwnd = ControlExGetWnd();
 //
 //   //   ::point_i32 pointCursor;
-//   //   psession->get_cursor_pos(&pointCursor);
+//   //   psession->get_cursor_position(&pointCursor);
 //
 //   //   enum_element eelement;
 //

@@ -324,7 +324,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			TrackMouseEvent(&tme);
 			break;
 
-		case WM_CAPTURECHANGED:
+		case e_message_capture_changed:
 			dragging = false;
 			break;
 

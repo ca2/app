@@ -560,7 +560,7 @@ SizingNone:
             void frame_008::on_style_change()
             {
 
-               on_style_change_001_and_002();
+               on_style_change_001_and_002(pgraphics);
                
                auto pframewindow = m_pframewindow;
 

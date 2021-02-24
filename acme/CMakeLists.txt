@@ -95,6 +95,7 @@ list(APPEND acme_source
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
    graphics/draw2d/_.cpp
+   graphics/draw2d/_system_color.h
    graphics/draw2d/color.cpp
    graphics/draw2d/color32.h
    graphics/draw2d/colorref_array.cpp
@@ -747,6 +748,7 @@ list(APPEND acme_source
    parallelization/manual_reset_event.h
    parallelization/message_queue.cpp
    parallelization/message_queue.h
+   parallelization/message_queue_global.cpp
    parallelization/mutex.h
    parallelization/pool.h
    parallelization/semaphore.h
@@ -1731,7 +1733,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} graphics/draw2d/_system_color.h)
+add_library(acme SHARED ${acme_source})
 
 target_precompile_headers(acme PRIVATE framework.h)
 

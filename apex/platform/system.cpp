@@ -9,7 +9,9 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "apex/id.h"
-
+#ifdef LINUX
+#include <unistd.h>
+#endif
 
 
 //extern ::apex::system* g_papexsystem;
@@ -131,6 +133,7 @@ namespace apex
 
 
       common_construct();
+
 
    }
 
@@ -1356,7 +1359,7 @@ namespace apex
 
       estatus = m_papplicationStartup->initialize(get_context_session());
 
-      if(!estatus)
+      if (!estatus)
       {
 
          message_box("Failed to initialize Application object!!");
@@ -1420,7 +1423,7 @@ namespace apex
 
       }
 
-      #ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_DESKTOP
 
       if (m_bGdiplus.undefined())
       {
@@ -1429,18 +1432,18 @@ namespace apex
 
       }
 
-      #endif
+#endif
 
-      #if defined(LINUX)
+#if defined(LINUX)
 
-         if (m_bGtkApp.undefined())
-         {
+      if (m_bGtkApp.undefined())
+      {
 
-            m_bGtkApp = !m_bConsole;
+         m_bGtkApp = !m_bConsole;
 
-         }
+      }
 
-      #endif
+#endif
 
       if (m_bShowApplicationInformation.undefined())
       {
@@ -1586,10 +1589,10 @@ namespace apex
 
       //}
 
-      create_factory < ::create >();
+      create_factory<::create>();
       //create_factory < application_bias >();
-      create_factory < command_line >();
-      create_factory < http::context >();
+      create_factory<command_line>();
+      create_factory<http::context>();
 
       //create_factory < ::mutex >();
       //create_factory < event >();
@@ -1671,7 +1674,7 @@ namespace apex
 
       }
 
-      if(!m_pmachineeventcentral)
+      if (!m_pmachineeventcentral)
       {
 
 #ifndef APPLE_IOS
@@ -1692,7 +1695,7 @@ namespace apex
 
          //}
 
-         if(m_pmachineeventcentral->is_close_application())
+         if (m_pmachineeventcentral->is_close_application())
          {
 
             return false;
@@ -1703,7 +1706,7 @@ namespace apex
 
       }
 
-      if(!__compose(m_pfilesystem))
+      if (!__compose(m_pfilesystem))
       {
 
          ERR("failed to initialize file-system");
@@ -1712,7 +1715,7 @@ namespace apex
 
       }
 
-      if(!__compose(m_pdirsystem))
+      if (!__compose(m_pdirsystem))
       {
 
          ERR("failed to initialize dir-system");
@@ -1751,6 +1754,68 @@ namespace apex
       {
 
          return estatus;
+
+      }
+
+      string strLogTime = System.datetime().international().get_gmt_date_time_for_file_with_no_spaces();
+
+      strLogTime.replace("-", "/");
+
+      strLogTime.replace("_", "/");
+
+      {
+
+         string_array straCmds;
+
+         for (int i = 0; i < m_argc; i++)
+         {
+
+            char *thisCmd = m_argv[i];
+
+            straCmds.add(thisCmd);
+
+         }
+
+         string strCmd = straCmds.implode("\n");
+
+         string strCmdLineDumpFileName =  strAppId / strLogTime + "-command_line.txt";
+
+         ::file::path pathCmdLineDumpFile = ::dir::home() / "application" / strCmdLineDumpFileName;
+
+         file_put_contents(pathCmdLineDumpFile, strCmd);
+
+      }
+
+      {
+
+         string_array straEnv;
+
+         for (char **env = m_envp; *env != 0; env++)
+         {
+
+            char *thisEnv = *env;
+
+            straEnv.add(thisEnv);
+
+         }
+
+         string strEnv = straEnv.implode("\n");
+
+         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
+
+         ::file::path pathEnvDumpFile = ::dir::home() / "application" / strEnvDumpFileName;
+
+         file_put_contents(pathEnvDumpFile, strEnv);
+
+      }
+
+      {
+
+         string strCurrentWorkingDirectory;
+
+         strCurrentWorkingDirectory = ::str::from_strdup(get_current_dir_name());
+
+         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
 
       }
 
@@ -2226,6 +2291,8 @@ namespace apex
          if (!get_context_session()->begin_synch())
          {
 
+            output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+
             return false;
 
          }
@@ -2289,6 +2356,19 @@ namespace apex
 
    }
 
+
+   string system::get_application_server_name()
+   {
+
+      string strApplicationServerName = m_strAppId;
+
+      strApplicationServerName.replace("/", ".");
+
+      strApplicationServerName.replace("_", "-");
+
+      return strApplicationServerName;
+
+   }
 
    bool system::thread_get_run() const
    {

@@ -214,7 +214,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
@@ -657,7 +657,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
 

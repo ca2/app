@@ -990,9 +990,8 @@ namespace user
    }
 
 
-   bool primitive::_001IsPointInside(::point_i32 point)
+   bool primitive::_001IsPointInside(const ::point_i32 & point)
    {
-
 
       return false;
 
@@ -2582,7 +2581,7 @@ namespace user
 
    }
 
-   //::point_i32 primitive::get_cursor_pos() const
+   //::point_i32 primitive::get_cursor_position() const
    //{
 
    //   return ::point_i32();

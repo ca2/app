@@ -1219,7 +1219,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("Couldn't construct new draw2d.");
+         TRACE("Couldn't construct new write_text.");
 
          return false;
 
@@ -1300,7 +1300,7 @@ breakFilter2:
 
 #else
 
-         strLibrary = "write_text_cairo";
+         strLibrary = "write_text_pango";
 
 #endif
 
@@ -1308,7 +1308,7 @@ breakFilter2:
 
       estatus = System.do_factory_exchange("write_text", strLibrary);
 
-      if (estatus)
+      if (estatus.succeeded())
       {
 
          return ::success;
@@ -1351,11 +1351,11 @@ breakFilter2:
 
 #endif
 
-      if (strLibrary != "write_text_cairo")
+      if (strLibrary != "write_text_pango")
       {
 
 
-         estatus = System.do_factory_exchange("write_text", "cairo");
+         estatus = System.do_factory_exchange("write_text", "pango");
 
          if (estatus)
          {

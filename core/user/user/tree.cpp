@@ -216,7 +216,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          ::u32 dwHoverIn = 384;
          ::u32 dwHoverOut = 1284;
@@ -1171,7 +1171,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       update_hover(pointCursor);
 
@@ -1276,7 +1276,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_pos();
+      auto pointCursor = pwindowing->get_cursor_position();
 
       update_tree_hover(pointCursor);
 

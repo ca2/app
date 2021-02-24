@@ -235,7 +235,7 @@ namespace uwp
    }
 
 
-   ::point_i32 interaction_impl::get_cursor_pos() const
+   ::point_i32 interaction_impl::get_cursor_position() const
    {
 
       return m_pointCursor;
@@ -1114,7 +1114,7 @@ namespace uwp
                
                ::rectangle_i32 rcMonitor;
 
-               get_context_session()->get_monitor_rect(0,&rcMonitor);
+               get_context_session()->get_monitor_rectangle(0,&rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)

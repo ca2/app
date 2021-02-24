@@ -16,7 +16,8 @@ namespace linux
    public:
 
 
-      string_array     m_straLine;
+      ::file::path      m_path;
+      string_array      m_straLine;
 
 
       desktop_file();
@@ -30,8 +31,9 @@ namespace linux
       string proper_category(string strCategory);
       string_array proper_category(string_array straCategory);
 
-
+      void set_file_path(const ::file::path & path);
       ::file::path get_file_path();
+
       ::file::path get_board_path();
 
       void write();

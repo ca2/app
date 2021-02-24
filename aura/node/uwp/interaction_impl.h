@@ -147,7 +147,7 @@ namespace uwp
       virtual bool _native_create_window_ex(__pointer(::user::system) pcs);
 
 
-      virtual ::point_i32 get_cursor_pos() const;
+      virtual ::point_i32 get_cursor_position() const;
 
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,

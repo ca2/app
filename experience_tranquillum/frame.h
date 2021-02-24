@@ -56,7 +56,7 @@ namespace experience
 
                virtual void set_frame_color_system_default_001();
 
-               virtual void on_style_change_001_and_002();
+               virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
 
                //virtual color32_t get_style_moveable_border_color(e_style estyle);
 

@@ -169,7 +169,7 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          if (m_pointCursor != pointCursor)
          {
@@ -913,6 +913,7 @@ namespace user
       }
 
       MESSAGE_LINK(e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
    }
 
@@ -934,7 +935,12 @@ namespace user
 #endif
       {
 
-         mouse_hover_step(success_mouse_has_left);
+         ::point_i32 pointInvalid; // For long future hope still : Invalid
+
+         minimum(pointInvalid.x);
+         minimum(pointInvalid.y);
+
+         _on_mouse_move_step(pointInvalid);
 
          //__pointer(::user::interaction) pinteraction;
 
@@ -946,7 +952,7 @@ namespace user
 
          //auto pwindowing = puser->windowing();
 
-         //auto pointCursor = pwindowing->get_cursor_pos();
+         //auto pointCursor = pwindowing->get_cursor_position();
 
          //::user::interaction_array uia;
 
@@ -1252,105 +1258,106 @@ namespace user
    void interaction_impl::track_mouse_leave()
    {
 
-      __defer_fork(MouseLeave);
+      //__defer_fork(MouseLeave);
 
    }
    
    
-   void interaction_impl::MouseLeaveThreadProcedure()
+   void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor)
    {
 
-      auto psession = Session;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-            
-      __status < point_i32 > statusPointCursor;
-
-      statusPointCursor.m_estatus = success;
-
-      synchronization_lock synchronizationlock(mutex());
-
-      while (thread_get_run() && m_puserinteraction && m_uiptraMouseHover.has_element())
+      for(::index i = 0; i < m_uiptraMouseHover.get_count(); )
       {
 
-         synchronizationlock.unlock();
+         auto pinteraction = m_uiptraMouseHover[i];
 
-         pwindowing->get_cursor_pos(&statusPointCursor);
-
-         mouse_hover_step(statusPointCursor);
-
-         sleep(100_ms);
-
-         synchronizationlock.lock();
-
-      }
-
-   }
-
-   
-   void interaction_impl::mouse_hover_step(const __status < ::point_i32 > & statusPointCursor)
-   {
-
-      decltype(m_uiptraMouseHover) uia;
-
-      {
-
-         synchronization_lock synchronizationlock(mutex());
-
-         if (statusPointCursor.m_estatus != success)
+         if(pinteraction == m_puserinteractionCapture)
          {
 
-            uia = ::move(m_uiptraMouseHover);
+            i++;
+
+         }
+         else if(pinteraction->_001IsPointInsideInline(pointCursor))
+         {
+
+            i++;
 
          }
          else
          {
 
-            for (::index i = 0; i < m_uiptraMouseHover.get_count();)
-            {
+            m_uiptraMouseHover.remove_at(i);
 
-               auto pinteraction = m_uiptraMouseHover[i];
-
-               try
-               {
-
-                  if (pinteraction->_001IsPointInside(statusPointCursor))
-                  {
-                     
-                     i++;
-
-                  }
-                  else
-                  {
-
-                     uia.add(pinteraction);
-
-                     m_uiptraMouseHover.remove_at(i);
-
-                  }
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
+            pinteraction->send_message(e_message_mouse_leave);
 
          }
 
       }
 
-      for (auto & pinteraction : uia)
-      {
-
-         pinteraction->send_message((enum_message)e_message_mouse_leave);
-
-      }
-
    }
+
+   
+//   void interaction_impl::mouse_hover_step(const __status < ::point_i32 > & statusPointCursor)
+//   {
+//
+//      decltype(m_uiptraMouseHover) uia;
+//
+//      {
+//
+//         synchronization_lock synchronizationlock(mutex());
+//
+//         if (statusPointCursor.m_estatus != success)
+//         {
+//
+//            uia = ::move(m_uiptraMouseHover);
+//
+//         }
+//         else
+//         {
+//
+//            for (::index i = 0; i < m_uiptraMouseHover.get_count();)
+//            {
+//
+//               auto pinteraction = m_uiptraMouseHover[i];
+//
+//               try
+//               {
+//
+//                  if (pinteraction->_001IsPointInside(statusPointCursor))
+//                  {
+//
+//                     i++;
+//
+//                  }
+//                  else
+//                  {
+//
+//                     uia.add(pinteraction);
+//
+//                     m_uiptraMouseHover.remove_at(i);
+//
+//                  }
+//
+//               }
+//               catch (...)
+//               {
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      for (auto & pinteraction : uia)
+//      {
+//
+//         pinteraction->send_message((enum_message)e_message_mouse_leave);
+//
+//      }
+//
+//   }
 
 
    bool interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
@@ -1398,16 +1405,16 @@ namespace user
 
       m_puserinteraction->install_message_routing(pchannel);
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         MESSAGE_LINK(WM_CAPTURECHANGED, pchannel, this, &interaction_impl::_001OnCaptureChanged);
+         MESSAGE_LINK(e_message_capture_changed, pchannel, this, &interaction_impl::_001OnCaptureChanged);
 
       }
 
-#endif
+//#endif
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
@@ -2524,7 +2531,43 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_pthreadUserInteraction->post_message(id, wParam, lParam);
+      auto pwindow = m_pwindow;
+
+      if(!pwindow)
+      {
+
+         return false;
+
+      }
+
+      auto oswindow = pwindow->get_oswindow();
+
+      if(!oswindow)
+      {
+
+         return false;
+
+      }
+
+      MESSAGE message = {};
+
+      message.oswindow = oswindow;
+
+      message.m_id = id;
+
+      message.wParam = wParam;
+
+      message.lParam = lParam;
+
+      auto puserinteraction = m_puserinteraction;
+
+      auto pthread = puserinteraction->m_pthreadUserInteraction;
+
+      auto pmessagequeue = pthread->get_message_queue();
+
+      auto estatus = pmessagequeue->post_message(message);
+
+      return estatus;
 
    }
 
@@ -2810,7 +2853,7 @@ namespace user
    }
 
 
-   //::point_i32 interaction_impl::get_cursor_pos() const
+   //::point_i32 interaction_impl::get_cursor_position() const
    //{
 
    //   auto psession = Session;
@@ -2822,7 +2865,7 @@ namespace user
 
    //   }
 
-   //   return psession->get_cursor_pos();
+   //   return psession->get_cursor_position();
 
    //}
 
@@ -5351,6 +5394,20 @@ namespace user
       }
 
    }
+
+
+   void interaction_impl::on_message_destroy(::message::message* pmessage)
+   {
+
+      if(m_pprodevian)
+      {
+
+         m_pprodevian->finish();
+
+      }
+
+   }
+
 
    bool interaction_impl::setWMClass(const char * psz)
    {

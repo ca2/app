@@ -178,7 +178,7 @@ typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32
 #if(WINVER >= 0x0400)
 #define WM_NEXTMENU                     0x0213
 #define WM_SIZING                       0x0214
-#define WM_CAPTURECHANGED               0x0215
+#define e_message_capture_changed               0x0215
 #define WM_MOVING                       0x0216
 #endif /* WINVER >= 0x0400 */
 
@@ -1908,7 +1908,7 @@ typedef struct tagMDINEXTMENU
 //#if(WINVER >= 0x0400)
 #define WM_NEXTMENU                     0x0213
 #define WM_SIZING                       0x0214
-#define WM_CAPTURECHANGED               0x0215
+#define e_message_capture_changed               0x0215
 #define WM_MOVING                       0x0216
 //#endif /* WINVER >= 0x0400 */
 

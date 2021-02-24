@@ -24,7 +24,7 @@ namespace user
 
       //virtual void set_style(const char * pszStyle);
 
-      //virtual void on_style_change();
+      //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
 
 

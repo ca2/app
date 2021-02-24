@@ -130,7 +130,7 @@ namespace user
 
       }
 
-      auto pointCursor = psession->get_cursor_pos();
+      auto pointCursor = psession->get_cursor_position();
 
       _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
@@ -597,7 +597,7 @@ namespace user
       if (pactivate->m_nState == WA_INACTIVE)
       {
 
-         auto pointCursor = psession->get_cursor_pos();
+         auto pointCursor = psession->get_cursor_position();
 
          m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
 

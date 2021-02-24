@@ -21,7 +21,6 @@ list(APPEND app_app_source
         window.h)
 
 
-
 if (MSVC)
     set(LIBCXX_TARGETING_MSVC ON)
 else()

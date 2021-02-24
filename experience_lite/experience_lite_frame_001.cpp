@@ -422,7 +422,7 @@ SizingNone:;
             void frame_001::on_style_change()
             {
 
-               on_style_change_001_and_002();
+               on_style_change_001_and_002(pgraphics);
 
             }
 

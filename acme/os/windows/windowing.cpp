@@ -199,7 +199,7 @@ CLASS_DECL_ACME int_bool is_window(HWND hwnd)
 //
 ////    }
 //
-////    Sess(puiimpl->get_context_application()).get_cursor_pos(puiimpl->m_pointCursor);
+////    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
 //
 //// }
 //

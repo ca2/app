@@ -144,7 +144,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
                   auto pwindowing = puser->windowing();
 
-                  auto pointCursor = pwindowing->get_cursor_pos();
+                  auto pointCursor = pwindowing->get_cursor_position();
 
                   if(viewline.get_link(str, pointCursor))
                   {
@@ -165,7 +165,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
             auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_pos();
+            auto pointCursor = pwindowing->get_cursor_position();
 
             viewline.update_hover(pointCursor);
 
@@ -186,7 +186,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          viewline.update_hover(pointCursor);
 
@@ -687,7 +687,7 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_pos();
+         auto pointCursor = pwindowing->get_cursor_position();
 
          viewline.get_interaction()->_001ScreenToClient(pointCursor);
 

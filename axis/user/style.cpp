@@ -539,12 +539,12 @@ namespace axis
    //   }
 
 
-   bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
-   {
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)

@@ -149,7 +149,7 @@ namespace aura
    ::user::style* session::get_user_style()
    {
 
-      return nullptr;
+      return m_puserstyleDefault;
 
    }
 
@@ -1959,6 +1959,10 @@ ret:
    {
 
       ::e_status estatus = ::apex::session::init();
+
+      __compose_new(m_puserstyleDefault);
+
+      m_puserstyleDefault->default_style_construct();
 
       //__pointer(::fs::set) pfsset = m_pfsdata;
 

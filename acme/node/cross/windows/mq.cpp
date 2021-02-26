@@ -445,7 +445,7 @@
 //
 //
 //
-//void init_global_mq()
+//void initialize_global_message_queue()
 //{
 //
 //   g_pmutexMq = new mutex();
@@ -455,7 +455,7 @@
 //}
 //
 //
-//void term_global_mq()
+//void finalize_global_message_queue()
 //{
 //
 //   ::acme::del(g_pmutexMq);

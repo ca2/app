@@ -447,19 +447,19 @@ namespace windowing
    //}
 
 
-   int windowing::message_box(const char *pszMessage, const char *pszTitle, const ::e_message_box &emessagebox)
+   string windowing::message_box(const char *pszMessage, const char *pszTitle, const ::e_message_box &emessagebox)
    {
 
-      return -1;
+      return "";
 
    }
 
 
-   int windowing::message_box_timeout(const char *pszMessage, const char *pszTitle, const ::duration &duration,
+   string windowing::message_box_timeout(const char *pszMessage, const char *pszTitle, const ::duration &duration,
                                       const ::e_message_box &emessagebox)
    {
 
-      return -1;
+      return "";
 
    }
 

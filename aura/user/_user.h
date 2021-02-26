@@ -608,6 +608,14 @@ namespace user
 // #endif
 
 
+#include "button.h"
+
+
+#include "check_box.h"
+
+
+#include "still.h"
+
 
 #include "text_composition.h"
 
@@ -768,6 +776,9 @@ typedef struct _AppIndicator AppIndicator;
 //#include "aura/message/timer.h"
 
 #include "main_window.h"
+
+
+#include "message_box.h"
 
 
 //#include "command.h"

@@ -949,7 +949,7 @@ namespace user
       virtual void on_kill_keyboard_focus() override;
 
 
-      ::user::primitive * get_keyboard_focus() override;
+      virtual ::user::primitive * get_keyboard_focus() override;
 
 
       virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;

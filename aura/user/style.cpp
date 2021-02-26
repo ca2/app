@@ -139,6 +139,14 @@ namespace user
    }
 
 
+   bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   {
+
+      return false;
+
+   }
+
+
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
    {
 

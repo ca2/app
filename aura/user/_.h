@@ -18,6 +18,11 @@ namespace graphics
 namespace user
 {
 
+   class button;
+
+   class check_box;
+
+   class still;
 
    class plain_edit;
 

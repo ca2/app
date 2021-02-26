@@ -42,6 +42,7 @@ namespace aura
 
       __composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
+      __composite(::user::style)                            m_puserstyleDefault;
 
 
 

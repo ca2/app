@@ -28,7 +28,11 @@ namespace user
 
       m_plistener = plistener;
 
-      if (!::user::interaction::create_message_window(pszName))
+      m_bMessageWindow = true;
+
+      m_strWindowText = pszName;
+
+      if (!create_host())
       {
 
          return false;

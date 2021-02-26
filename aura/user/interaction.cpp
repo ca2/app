@@ -593,7 +593,7 @@ namespace user
 
       auto pframe = top_level_frame();
 
-      if (pframe)
+      if (pframe && pframe->m_puserstyle)
       {
 
          return pframe->m_puserstyle;
@@ -1414,7 +1414,16 @@ namespace user
    ::user::primitive * interaction::get_keyboard_focus()
    {
 
-      auto puser = User;
+      auto psession = Session;
+
+      if (::is_null(psession))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puser = psession->user();
 
       if(::is_null(puser))
       {
@@ -3830,9 +3839,7 @@ namespace user
       if(bOk)
       {
 
-         auto puser = User;
-
-         auto puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+         auto puserinteractionFocus = get_keyboard_focus();
 
          if (puserinteractionFocus)
          {
@@ -3872,7 +3879,14 @@ namespace user
 
       }
 
-      auto puser = User;
+      if (::is_null(psession))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puser = psession->user();
 
       if(::is_null(puser))
       {
@@ -15325,7 +15339,9 @@ restart:
    ::user::enum_state interaction::get_state() const
    {
 
-      auto puser = User;
+      auto psession = Session;
+
+      auto puser = psession->user();
 
       if (m_pdrawcontext != nullptr)
       {

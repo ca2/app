@@ -64,6 +64,8 @@ namespace user
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
+      virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
+
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual ::e_status initialize_style();

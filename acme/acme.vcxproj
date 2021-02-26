@@ -1571,6 +1571,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\event.cpp" />
     <ClCompile Include="parallelization\manual_reset_event.cpp" />
     <ClCompile Include="parallelization\message_queue.cpp" />
+    <ClCompile Include="parallelization\message_queue_global.cpp" />
     <ClCompile Include="parallelization\multiple_lock.cpp" />
     <ClCompile Include="parallelization\mutex.cpp" />
     <ClCompile Include="parallelization\pool.cpp" />
@@ -1660,6 +1661,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\handler.cpp" />
     <ClCompile Include="primitive\promise\context.cpp" />
+    <ClCompile Include="primitive\promise\manager.cpp" />
     <ClCompile Include="primitive\promise\process.cpp" />
     <ClCompile Include="primitive\promise\promise.cpp" />
     <ClCompile Include="primitive\promise\routine.cpp" />
@@ -2138,6 +2140,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\promise\subject.h" />
     <ClInclude Include="primitive\promise\_.h" />
     <ClInclude Include="primitive\promise_predicate\predicate_function_pointer.h" />
+    <ClInclude Include="primitive\promise_predicate\predicate_handler.h" />
     <ClInclude Include="primitive\promise_predicate\predicate_holder.h" />
     <ClInclude Include="primitive\promise_predicate\predicate_process.h" />
     <ClInclude Include="primitive\promise_predicate\predicate_routine.h" />

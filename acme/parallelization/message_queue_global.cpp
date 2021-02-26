@@ -241,7 +241,7 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
 
 
 
-void init_global_mq()
+void initialize_global_message_queue()
 {
 
    g_pmutexMq = new mutex();
@@ -251,7 +251,7 @@ void init_global_mq()
 }
 
 
-void term_global_mq()
+void finalize_global_message_queue()
 {
 
    ::acme::del(g_pmutexMq);

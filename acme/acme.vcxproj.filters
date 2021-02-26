@@ -2564,6 +2564,9 @@
     <ClInclude Include="primitive\primitive\trait_predicate.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\promise_predicate\predicate_handler.h">
+      <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3768,6 +3771,12 @@
     </ClCompile>
     <ClCompile Include="process\main.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise\manager.cpp">
+      <Filter>Source Files\primitive\promise</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\message_queue_global.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

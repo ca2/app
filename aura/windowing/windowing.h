@@ -146,9 +146,9 @@ namespace windowing
 
       //virtual bool set_window_icon(window * pwindow, const ::file::path & path);
 
-      virtual int message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox);
+      virtual string message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox);
 
-      virtual int message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration & duration, const ::e_message_box & emessagebox);
+      virtual string message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration & duration, const ::e_message_box & emessagebox);
 
       virtual class window * new_message_window(::user::interaction_impl * pimpl);
 

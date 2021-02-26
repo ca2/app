@@ -293,7 +293,9 @@ namespace user
    ::e_status user::init1()
    {
 
-
+      create_factory <::user::button >();
+      create_factory <::user::check_box >();
+      create_factory <::user::still >();
       //create_factory <::user::document >();
 #ifdef WINDOWS_DESKTOP
       create_factory <::user::message_window >();

@@ -740,13 +740,10 @@
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="user\button.cpp" />
-    <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
     <ClCompile Include="user\combo_list.cpp" />
     <ClCompile Include="user\simple_ui_draw.cpp" />
     <ClCompile Include="user\slider.cpp" />
-    <ClCompile Include="user\still.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\validate.cpp" />

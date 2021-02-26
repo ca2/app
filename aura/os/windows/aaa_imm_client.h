@@ -22,7 +22,7 @@ public:
 
 
    string                                       m_strImeComposition;
-   bool                                         m_bImeCandidateOpened;
+   bool                                         m_bTextCompositionActive;
    bool                                         m_bImeCancelling;
 
 

@@ -1770,9 +1770,22 @@ namespace apex
          for (int i = 0; i < m_argc; i++)
          {
 
-            char *thisCmd = m_argv[i];
+            if (m_argv && m_argv[i])
+            {
 
-            straCmds.add(thisCmd);
+               char * thisCmd = m_argv[i];
+
+               straCmds.add(thisCmd);
+
+            }
+            else if (m_wargv && m_wargv[i])
+            {
+
+               wchar_t * thisCmd = m_wargv[i];
+
+               straCmds.add(thisCmd);
+
+            }
 
          }
 
@@ -1790,12 +1803,30 @@ namespace apex
 
          string_array straEnv;
 
-         for (char **env = m_envp; *env != 0; env++)
+         if (m_wenvp)
          {
 
-            char *thisEnv = *env;
+            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
+            {
 
-            straEnv.add(thisEnv);
+               auto thisEnv = *wenv;
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+         else if (m_envp)
+         {
+
+            for (auto env = m_envp; *env != 0; env++)
+            {
+
+               auto thisEnv = *env;
+
+               straEnv.add(thisEnv);
+
+            }
 
          }
 
@@ -1813,7 +1844,7 @@ namespace apex
 
          string strCurrentWorkingDirectory;
 
-         strCurrentWorkingDirectory = ::str::from_strdup(get_current_dir_name());
+         strCurrentWorkingDirectory = get_current_directory_name();
 
          ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
 

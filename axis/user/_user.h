@@ -14,12 +14,12 @@ namespace user
 } // namespace user
 
 
-#include "still.h"
+//#include "still.h"
 
-#include "button.h"
+//#include "button.h"
 
 
-#include "check_box.h"
+//#include "check_box.h"
 
 
 #include "combo_box.h"

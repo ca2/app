@@ -101,7 +101,7 @@ template < typename PRED >
 
 
 template < typename TYPE >
-class CLASS_DECL_ACME typed_handler :
+class typed_handler :
     virtual public ::matter
 {
 public:

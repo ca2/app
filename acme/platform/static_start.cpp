@@ -60,8 +60,8 @@ void __node_acme_factory_exchange(::factory_map * pfactorymap);
 CLASS_DECL_ACME void __seed_srand();
 
 
-void init_global_mq();
-void term_global_mq();
+void initialize_global_message_queue();
+void finalize_global_message_queue();
 
 
 #undef new
@@ -563,7 +563,7 @@ namespace acme
 
 //      ::acme::idpool::init();
 
-      init_global_mq();
+      initialize_global_message_queue();
 
 
 #ifdef ANDROID
@@ -958,7 +958,7 @@ namespace acme
 
       //term_id_pool();
 
-      term_global_mq();
+      finalize_global_message_queue();
 
       ::acme::del(::id_space::s_pidspace);
 

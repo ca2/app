@@ -47,7 +47,9 @@ namespace windowing
    bool monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
-      return false;
+      __copy(prectangle, m_rectangle);
+
+      return true;
 
    }
 
@@ -55,7 +57,9 @@ namespace windowing
    bool monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
-      return get_monitor_rectangle(prectangle);
+      __copy(prectangle, m_rectangleWorkspace);
+
+      return true;
 
    }
 

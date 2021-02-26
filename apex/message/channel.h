@@ -46,7 +46,7 @@ public:
    //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);
    bool add_handler(const ::id & id, MESSAGE_PRED pred);
 
-   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, ::matter * pmatterHandler);
+   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::promise::handler & handler);
 
 
    virtual void route_message(::message::message * pmessage);

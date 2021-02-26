@@ -210,3 +210,22 @@ namespace dir
 
 
 }
+
+
+string get_current_directory_name()
+{
+
+   auto size = GetCurrentDirectoryW(0, nullptr);
+
+   wstring wstr;
+
+   auto buffer = wstr.get_string_buffer(size);
+
+   GetCurrentDirectoryW(size, buffer);
+
+   wstr.release_string_buffer(-1);
+
+   return wstr;
+
+}
+

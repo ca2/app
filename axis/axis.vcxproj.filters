@@ -767,12 +767,6 @@
     <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\smtp</Filter>
     </ClCompile>
-    <ClCompile Include="user\button.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -786,9 +780,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\combo_list.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\still.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\slider.cpp">

@@ -89,7 +89,7 @@ template < typename RECEIVER >
 bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
 {
 
-    return _add_handler(id, preceiver, (void *) phandler, __handler(preceiver, phandler));
+   return _add_handler(id, preceiver, reinterpret_cast<void *&>(phandler), __handler(preceiver, phandler));
 
 }
 

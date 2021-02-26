@@ -496,7 +496,7 @@ void channel::on_command_probe(::message::command * pcommand)
 }
 
 
-bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, ::matter * pmatterHandler)
+bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::promise::handler & handler)
 {
 
     auto & handlera = m_handlermap[id];
@@ -519,11 +519,11 @@ bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandle
 
     }
 
-    ::message::handler handler(preceiver, phandler);
+    ::message::handler messagehandler(preceiver, phandler);
 
-    handler.m_handler = pmatterHandler;
+    messagehandler.m_handler = handler;
 
-    handlera.add(handler);
+    handlera.add(messagehandler);
 
     return true;
 

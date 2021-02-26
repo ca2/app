@@ -172,6 +172,10 @@ e_status apex_main_data::on_system_construct()
 
    m_wargv = __wargv;
 
+   m_envp = *__p__environ();
+
+   m_wenvp = *__p__wenviron();
+
    //__zero(m_mainrunnera);
 
    auto estatus = on_system_construct();

@@ -460,8 +460,8 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      connect_command("app_exit", &application::_001OnAppExit);
-      connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+      connect_command("app_exit", this, &application::_001OnAppExit);
+      connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
    }
 

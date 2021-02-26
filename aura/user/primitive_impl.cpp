@@ -1226,8 +1226,8 @@ namespace user
       if (::is_set(m_puserinteraction))
       {
 
-         m_puserinteraction->transfer_receiver(m_idroute, this);
-
+//         m_puserinteraction->transfer_receiver(m_idroute, this);
+//
          auto pwnd = m_puserinteraction->get_wnd();
 
          if (::is_set(pwnd))

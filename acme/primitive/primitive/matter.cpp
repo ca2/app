@@ -200,7 +200,7 @@ void matter::set_mutex(synchronization_object* psync)
 void matter::remove_from_any_source()
 {
 
-   ::promise::handler::__remove(this);
+   ::promise::manager::__remove(this);
 
 }
 
@@ -330,6 +330,13 @@ void matter::kick_idle()
    }
 
    return estatus;
+
+}
+
+
+void matter::operator()(::message::message * pmessage)
+{
+
 
 }
 

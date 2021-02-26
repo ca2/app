@@ -912,7 +912,7 @@ void object::finalize()
 
    //}
 
-   handler::finalize();
+   manager::finalize();
 
 #if OBJ_TYP_CTR
 
@@ -961,7 +961,7 @@ void object::finalize()
 void object::on_finish()
 {
 
-   handler::on_finish();
+   manager::on_finish();
 
    finalize();
 
@@ -1922,7 +1922,7 @@ void object::_001OnUpdate(::message::message * pmessage)
 void object::install_message_routing(::channel * pchannel)
 {
 
-   MESSAGE_LINK(e_message_system_update, pchannel, this, &::object::_001OnUpdate);
+   pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
 
 }
 
@@ -1964,87 +1964,54 @@ __pointer(::matter) object::running(const char * pszTag) const
 }
 
 
-
-::e_status object::bind_update(const ::id & id, bool bCreate)
-{
-
-   auto pproperty = fetch_property(id, bCreate);
-
-   if (!pproperty)
-   {
-
-      return ::error_failed;
-
-   }
-
-   return bind_update(pproperty);
-
-}
-
-
-::e_status object::bind_update(const ::id & id, ::object * pobject)
-{
-
-   if (::is_null(pobject))
-   {
-
-      return ::error_failed;
-
-   }
-
-   if (!pobject->m_pset)
-   {
-
-      return ::error_failed;
-
-   }
-
-   auto pproperty = pobject->m_pset->find(id);
-
-   if (!pproperty)
-   {
-
-      return ::error_failed;
-
-   }
-
-   return bind_update(pproperty);
-
-}
+//::e_status object::add_update_notification(const ::id & id, bool bCreate)
+//{
+//
+//   auto pproperty = fetch_property(id, bCreate);
+//
+//   if (!pproperty)
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+//   return add_update_notification(pproperty);
+//
+//}
 
 
-::e_status object::bind_update(property * pproperty)
-{
+//::e_status object::add_update_notification(const ::id & id, ::object * pobject)
+//{
+//
+//   if (::is_null(pobject))
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+//   if (!pobject->m_pset)
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+//   auto pproperty = pobject->m_pset->find(id);
+//
+//   if (!pproperty)
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+//   return add_update_notification(pproperty);
+//
+//}
 
-   ASSERT(::is_set(pproperty));
 
-   auto pchannel = Application.m_mapNotify[pproperty->m_id];
-
-   if (!pchannel)
-   {
-
-      pchannel = get_context_application();
-
-   }
-
-   if (!pchannel)
-   {
-
-      return ::error_failed;
-
-   }
-
-   pchannel->add_update_route(this, pproperty->m_id);
-
-   string strTypeSource = ::str::demangle(pchannel->type_name());
-
-   string strTypeTarget = type_name();
-
-   INFO("property from '%s' update handling installed to '%s'", strTypeSource.c_str(), strTypeTarget.c_str());
-
-   return ::success;
-
-}
 
 
 ::object * object::parent_property_set_holder() const

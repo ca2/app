@@ -91,24 +91,24 @@
          }
 
 
-         console(int argc, char** argv)
+         console(int argc, char** argv, char ** envp)
          {
 
             common_construct();
 
-            m_psystem->system_construct(argc, argv);
+            m_psystem->system_construct(argc, argv, envp);
 
             init();
 
          }
 
 
-         console(int argc, wchar_t** argv)
+         console(int argc, wchar_t** argv, wchar_t **  envp)
          {
 
             common_construct();
 
-            m_psystem->system_construct(argc, argv);
+            m_psystem->system_construct(argc, argv, envp);
 
             init();
 

@@ -664,11 +664,11 @@ namespace user
 
       pmessage->previous();
 
-      m_ppropertyCheck = fetch_property(m_id, true);
-
-      bind_update(m_ppropertyCheck);
-
-      
+//      m_ppropertyCheck = fetch_property(m_id, true);
+//
+//      add_update_notification(m_ppropertyCheck);
+//
+//
 
    }
 

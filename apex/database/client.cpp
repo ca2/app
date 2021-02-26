@@ -31,7 +31,7 @@ namespace database
 
       auto idProcedure = translate_property_id(id);
 
-      ::add_routine(Application.m_mapRoutine[idProcedure], [this, id]()
+      ::add_routine(Application.m_routinemap[idProcedure], [this, id]()
          {
 
             auto pproperty = fetch_property(id);

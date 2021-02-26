@@ -7,170 +7,160 @@
 namespace message
 {
 
-   class messageable :
-      virtual public ::context_object
-   {
-   public:
+//   class messageable :
+//      virtual public ::context_object
+//   {
+//   public:
+//
+//
+//      virtual void on_message(message * pmessage) = 0;
+//
+//
+//   };
 
 
-      virtual void on_message(message * pmessage) = 0;
+//   template < typename MESSAGE_PRED, typename MESSAGE >
+//   class predicate_route :
+//      virtual public messageable
+//   {
+//   public:
+//
+//
+//      MESSAGE_PRED m_messagepred;
+//
+//
+//      predicate_route(MESSAGE_PRED messagepred) : m_messagepred(messagepred) { }
+//
+//
+//      void on_message(message * pobject)
+//      {
+//
+//         __pointer(MESSAGE) pmessage(pobject);
+//
+//         m_messagepred(pmessage);
+//
+//      }
+//
+//
+//   };
 
 
-   };
-
-
-   template < typename MESSAGE_PRED, typename MESSAGE >
-   class predicate_route :
-      virtual public messageable
-   {
-   public:
-
-
-      MESSAGE_PRED m_messagepred;
-
-
-      predicate_route(MESSAGE_PRED messagepred) : m_messagepred(messagepred) { }
-
-
-      void on_message(message * pobject)
-      {
-
-         __pointer(MESSAGE) pmessage(pobject);
-
-         m_messagepred(pmessage);
-
-      }
-
-
-   };
-
-
-   template < typename RECEIVER, typename MESSAGE >
-   class receiver_route :
-      virtual public messageable
-   {
-   public:
-
-
-      RECEIVER * m_preceiver;
-      
-      void (RECEIVER::* m_phandler)(::message::message* pmessage);
-
-
-      receiver_route(RECEIVER * preceiver, void (RECEIVER::* phandler)(MESSAGE* pmessage))
-      : m_preceiver(preceiver), m_phandler(phandler){ }
-
-
-      void on_message(MESSAGE * pmessage) { (m_preceiver->*m_phandler)(pmessage); }
-
-
-   };
+//   template < typename RECEIVER, typename MESSAGE >
+//   class receiver_route :
+//      virtual public messageable
+//   {
+//   public:
+//
+//
+//      RECEIVER * m_preceiver;
+//
+//      void (RECEIVER::* m_phandler)(::message::message* pmessage);
+//
+//
+//      receiver_route(RECEIVER * preceiver, void (RECEIVER::* phandler)(MESSAGE* pmessage))
+//      : m_preceiver(preceiver), m_phandler(phandler){ }
+//
+//
+//      void on_message(MESSAGE * pmessage) { (m_preceiver->*m_phandler)(pmessage); }
+//
+//
+//   };
 
 
 
-   class route :
-      virtual public ::context_object
+   class handler
    {
    public:
 
 
       enum_message                  m_emessage;
       ::object *                    m_preceiver;
-      object *                      m_pobjectReceiver;
-      ::type                        m_typeReceiver;
-      __pointer(messageable)        m_pmessageable;
+      void *                        m_pHandler;
+      ::promise::handler            m_handler;
 
 
-      route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver) :
+      handler() :
+      m_preceiver(nullptr),
+      m_pHandler(nullptr)
+      {
+
+
+      }
+        handler(::object * preceiver, void  * pHandler) :
          m_preceiver(preceiver),
-         m_pobjectReceiver(pobjectReceiver),
-         m_typeReceiver(typeReceiver)
+         m_pHandler(pHandler)
       {
 
 
       }
-
-      virtual ~route() { }
-
-
-
-
-      template < typename MESSAGE_PRED >
-      route & operator = (MESSAGE_PRED pred)
-      {
-
-         m_pmessageable = __new(predicate_route<MESSAGE_PRED, ::message::message >(pred));
-
-         return *this;
-
-      }
-
 
    };
 
 
-   template < typename MESSAGE >
-   class typed_route :
-      virtual public route
-   {
-   public:
+//   template < typename MESSAGE >
+//   class typed_route :
+//      virtual public route
+//   {
+//   public:
+//
+//
+//      typed_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver) :
+//         route(preceiver, pobjectReceiver, typeReceiver)
+//      {
+//
+//      }
+//
+//
+//      virtual ~typed_route() { }
+//
+//
+//      typed_route & operator = (messageable * pmessageable)
+//      {
+//
+//         m_pmessageable = pmessageable;
+//
+//         return *this;
+//
+//      }
+//
+//
+//      template < typename MESSAGE_PRED >
+//      typed_route& operator = (MESSAGE_PRED pred)
+//      {
+//
+//         m_pmessageable = __new(predicate_route<MESSAGE_PRED, MESSAGE >(pred));
+//
+//         return *this;
+//
+//      }
+//
+//
+//
+//   };
 
 
-      typed_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver) :
-         route(preceiver, pobjectReceiver, typeReceiver)
-      {
-
-      }
-
-
-      virtual ~typed_route() { }
-
-
-      typed_route & operator = (messageable * pmessageable)
-      {
-
-         m_pmessageable = pmessageable;
-
-         return *this;
-
-      }
+//   template < typename MESSAGE >
+//   inline __pointer(typed_route < MESSAGE >) create_typed_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver)
+//   {
+//
+//      return __new(typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver));
+//
+//   }
 
 
-      template < typename MESSAGE_PRED >
-      typed_route& operator = (MESSAGE_PRED pred)
-      {
-
-         m_pmessageable = __new(predicate_route<MESSAGE_PRED, MESSAGE >(pred));
-
-         return *this;
-
-      }
+//   inline __pointer(typed_route < message >) create_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver)
+//   {
+//
+//      return create_typed_route < message > (preceiver, pobjectReceiver, typeReceiver);
+//
+//   }
 
 
+   using handler_array = ::array < handler >;
 
-   };
+   using handler_map = ::id_map < handler_array >;
 
-
-   template < typename MESSAGE >
-   inline __pointer(typed_route < MESSAGE >) create_typed_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver)
-   {
-
-      return __new(typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver));
-
-   }
-
-
-   inline __pointer(typed_route < message >) create_route(::object * preceiver, ::object * pobjectReceiver, const ::type & typeReceiver)
-   {
-
-      return create_typed_route < message > (preceiver, pobjectReceiver, typeReceiver);
-
-   }
-
-
-   using route_array = __pointer_array(route);
-
-   __class(CLASS_DECL_APEX, id_route, ::id_map < __pointer(route_array) >);
+   using routine_map = ::id_map < ::promise::routine_array >;
 
    //using type_id_route = ::map < enum_type, enum_type, id_route >;
 

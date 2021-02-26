@@ -1183,7 +1183,7 @@ namespace user
                if(pinteraction != pmouse->userinteraction())
                {
 
-                  if(pinteraction->m_bFocus)
+                  if(pinteraction->m_ewindowflag & e_window_flag_focus)
                   {
 
                      pinteraction->post_message(e_message_kill_focus);

@@ -510,10 +510,11 @@ namespace promise
 
    class backing;
    class process;
-   class handler;
+   class manager;
    class subject;
    class context;
    class routine;
+   class handler;
    class process;
 
 
@@ -1451,7 +1452,7 @@ namespace promise
 {
 
 
-   using handler_pointer = __pointer(handler);
+   using manager_pointer = __pointer(manager);
    using subject_pointer = __pointer(subject);
    using context_pointer = __pointer(context);
 
@@ -2611,10 +2612,23 @@ inline bool is_set(const TYPE & t)
 using matter_pointer = __pointer(::matter);
 
 
+namespace message
+{
+
+
+    class message;
+
+
+} // namespace message
+
+
 #include "acme/primitive/promise_predicate/predicate_function_pointer.h"
 
 
 #include "acme/primitive/promise/routine.h"
+
+
+#include "acme/primitive/promise/handler1.h"
 
 
 #include "acme/primitive/promise/process.h"
@@ -2994,10 +3008,15 @@ namespace promise
 
    using routine_array = ::array < routine >;
 
+   using handler_array = ::array < handler >;
+
    using process_array = ::array < process >;
 
    template<typename PRED>
    void add_routine(routine_array &array, PRED pred);
+
+   template<typename PRED>
+   void add_handler(handler_array &array, PRED pred);
 
    template<typename PRED>
    void add_process(process_array &array, PRED pred);
@@ -3019,6 +3038,8 @@ namespace promise
 #include "acme/primitive/collection/_.h"
 
 #include "acme/primitive/promise_predicate/predicate_routine.h"
+
+#include "acme/primitive/promise_predicate/predicate_handler.h"
 
 #include "acme/primitive/promise_predicate/predicate_process.h"
 

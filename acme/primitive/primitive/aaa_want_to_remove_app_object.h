@@ -124,9 +124,9 @@ public:
 
    virtual ::matter * parent_property_set_holder() const;
 
-   ::e_status  bind_update(property * pproperty);
-   ::e_status  bind_update(const ::id & id, bool bCreate = true);
-   ::e_status  bind_update(const ::id & id, ::matter * pobject);
+   ::e_status add_update_notification(property * pproperty);
+   ::e_status add_update_notification(const ::id & id, bool bCreate = true);
+   ::e_status add_update_notification(const ::id & id, ::matter * pobject);
 
 
    inline ::papaya::topic topic(const ::id & id);

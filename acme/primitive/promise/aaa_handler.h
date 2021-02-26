@@ -17,7 +17,7 @@ namespace promise
    public:
 
 
-      __pointer(::promise::handler)          m_pbacking;
+      __pointer(::promise::manager)          m_pbacking;
       ::promise::matter_context              m_mattercontext;
       ::user::enum_key                          m_ekey;
       ::payload                              m_var;
@@ -27,7 +27,7 @@ namespace promise
 
 
       //handler(const ::id &id);
-      handler(::promise::handler * pbacking, const ::id & id);
+      handler(::promise::manager * pbacking, const ::id & id);
       virtual ~handler();
 
 

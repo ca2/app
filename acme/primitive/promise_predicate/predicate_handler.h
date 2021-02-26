@@ -91,78 +91,121 @@ public:
 };
 
 
-
-
 template < typename PRED >
-::promise::handler __handler(PRED pred)
-{
+::promise::handler __handler(PRED pred) {
 
-   return __new(predicate_handler<PRED>(pred));
+    return __new(predicate_handler<PRED>(pred));
 
 }
-
-
-
-
-
-::e_status run_task(::matter * pobjectTask);
-
-
-class processor
-{
-public:
-
-   virtual void schedule(::matter * pobjectTask, e_priority epriority = priority_normal) = 0;
-
-};
-
-
-template < typename PRED >
-inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = priority_normal)
-{
-
-   auto pobjectTask = create_predicate(pred);
-
-   pprocessor->schedule(pobjectTask, epriority);
-
-   return pobjectTask;
-
-}
-
-//
-//template < typename PRED >
-//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
-
-
-
-
-
-
-
-
-
-//CLASS_DECL_ACME void main_branch(::matter * pobjectTask, e_priority epriority);
-
-
-
-
-
-
 
 
 
 template < typename TYPE >
-inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
+class CLASS_DECL_ACME typed_handler :
+    virtual public ::matter
+{
+public:
+
+    TYPE * m_p;
+    void(TYPE::*m_phandler)(::message::message *);
+
+    typed_handler():
+            m_p(nullptr),
+            m_phandler(nullptr)
+    {
+
+    }
+
+
+    typed_handler(TYPE * p, void(TYPE::*phandler)(::message::message *)):
+            m_p(p),
+            m_phandler(phandler)
+    {
+
+    }
+
+
+    virtual void operator()(::message::message * pmessage)
+    {
+
+        (m_p->*m_phandler)(pmessage);
+
+    }
+
+
+};
+
+
+template < typename TYPE >
+::promise::handler __handler(TYPE * p, void(TYPE::*phandler)(::message::message *))
 {
 
-   return __runnable([p, pmethod]
-   {
-
-      (p->*pmethod)();
-
-   });
+    return __new(::typed_handler<TYPE>(p, phandler));
 
 }
 
-
-
+//
+//
+//
+//
+//::e_status run_task(::matter * pobjectTask);
+//
+//
+//class processor
+//{
+//public:
+//
+//   virtual void schedule(::matter * pobjectTask, e_priority epriority = priority_normal) = 0;
+//
+//};
+//
+//
+//template < typename PRED >
+//inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = priority_normal)
+//{
+//
+//   auto pobjectTask = create_predicate(pred);
+//
+//   pprocessor->schedule(pobjectTask, epriority);
+//
+//   return pobjectTask;
+//
+//}
+//
+////
+////template < typename PRED >
+////auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+////CLASS_DECL_ACME void main_branch(::matter * pobjectTask, e_priority epriority);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//template < typename TYPE >
+//inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
+//{
+//
+//   return __runnable([p, pmethod]
+//   {
+//
+//      (p->*pmethod)();
+//
+//   });
+//
+//}
+//
+//
+//

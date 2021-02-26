@@ -124,6 +124,8 @@ list(APPEND acme_source
    parallelization/multiple_lock.h
    parallelization/mutex.cpp
    parallelization/pool.cpp
+   primitive/promise/handler1.cpp
+   primitive/promise/manager.cpp
    primitive/promise/routine_array.cpp
    primitive/promise/_.h
    parallelization/semaphore.cpp
@@ -310,7 +312,6 @@ list(APPEND acme_source
    primitive/primitive/shared_memory.cpp
    primitive/primitive/traits.cpp
    primitive/primitive/type.cpp
-   primitive/promise/handler.cpp
    primitive/primitive/payload.cpp
    primitive/primitive/var_element.cpp
    primitive/primitive/virtual_memory.cpp
@@ -1088,7 +1089,8 @@ list(APPEND acme_source
    primitive/primitive/virtual_memory.h
    primitive/primitive/work.h
    primitive/promise/context.h
-   primitive/promise/handler.h
+   primitive/promise/handler1.h
+   primitive/promise/manager.h
    primitive/promise/promise.h
    primitive/promise/promise1.h
    primitive/promise/routine.h

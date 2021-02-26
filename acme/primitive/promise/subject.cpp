@@ -37,12 +37,12 @@ namespace promise
    }*/
 
 
-   subject::subject(::promise::handler * phandler, const ::id & id)
+   subject::subject(::promise::manager * pmanager, const ::id & id)
    {
 
       subject_common_construct();
 
-      m_phandler = phandler;
+      m_pmanager = pmanager;
 
       m_id = id;
 
@@ -131,14 +131,14 @@ namespace promise
 
       auto ptask = ::get_task();
 
-      if(::promise::handler::s_bDestroyAll || !ptask->thread_get_run())
+      if(::promise::manager::s_bDestroyAll || !ptask->thread_get_run())
       {
 
          return ::error_failed;
 
       }
 
-      m_phandler->process(this);
+      m_pmanager->process(this);
 
       return ::success;
 
@@ -160,7 +160,7 @@ namespace promise
 
          }
 
-         m_phandler->process(this);
+         m_pmanager->process(this);
 
          // fetch updated polling time
          auto iPollMillis = poll_time();
@@ -270,7 +270,7 @@ namespace promise
    void subject::reset_update(const ::id &id)
    {
 
-      //m_phandler = ::promise::handler::fork_handler(id);
+      //m_phandler = ::promise::manager::fork_handler(id);
 
    }
 
@@ -286,7 +286,7 @@ namespace promise
    bool subject::is_up_to_date(const ::promise::context * pcontext) const
    {
 
-      if (::is_null(m_phandler))
+      if (::is_null(m_pmanager))
       {
 
          return false;

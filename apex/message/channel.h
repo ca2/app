@@ -7,13 +7,13 @@ class CLASS_DECL_APEX channel :
 public:
 
 
-   static __pointer(::mutex)                       s_pmutexChannel;
-   __pointer(::channel)                            m_pchannel;
-   id_array                                        m_idaHandledCommands;
-   ::message::id_route                             m_idroute;
-   ::message::id_route                             m_idrouteNew;
-   bool                                            m_bNewChannel;
-   id_map < ::promise::routine_array >             m_mapRoutine;
+   static __pointer(::mutex)                    s_pmutexChannel;
+   __pointer(::channel)                         m_pchannel;
+   id_array                                         m_idaHandledCommands;
+   ::message::handler_map                           m_handlermap;
+   ::message::handler_map                           m_handlermapNew;
+   bool                                             m_bNewChannel;
+   ::message::routine_map                           m_routinemap;
 
 
    channel();
@@ -32,24 +32,22 @@ public:
 
    virtual void remove_receiver(::object * preceiver);
 
-   virtual void transfer_receiver(::message::id_route & router, ::object * preceiver);
+   virtual void transfer_receiver(::message::handler_map & handlermap, ::object * preceiver);
 
    virtual void remove_all_routes();
 
-   template < typename RECEIVER, typename MESSAGE >
-   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);
-
-   template < typename RECEIVER, typename MESSAGE >
-   void add_receiver_route(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(MESSAGE * pmessage));
+//   template < typename RECEIVER, typename MESSAGE >
+//   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);
 
    template < typename RECEIVER >
-   ::message::route & add_route(const ::id & id, RECEIVER * preceiver);
+   bool add_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
 
-   template < typename RECEIVER, typename MESSAGE_PRED >
-   void add_route(const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED pred);
+   template < typename MESSAGE_PRED >
+   //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);
+   bool add_handler(const ::id & id, MESSAGE_PRED pred);
 
-   template < typename RECEIVER >
-   void add_route(RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(::message::message * pmessage), const ::id & id = ::id());
+   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, ::matter * pmatterHandler);
+
 
    virtual void route_message(::message::message * pmessage);
 
@@ -65,6 +63,7 @@ public:
 //
 //#endif
 
+    ::e_status id_notify(const ::id & id, ::matter * pmatter);
 
 
    template < class T >
@@ -89,7 +88,7 @@ public:
    void connect_command_probe(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
    {
 
-      add_route(p, pfn, id.compounded(::id::e_type_command_probe));
+      add_handler(id.compounded(::id::e_type_command_probe), p, pfn);
 
    }
 
@@ -98,7 +97,7 @@ public:
    void connect_command(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
    {
 
-      add_route(p, pfn, id.compounded(::id::e_type_command));
+      add_handler(id.compounded(::id::e_type_command), p, pfn);
 
    }
 
@@ -107,35 +106,35 @@ public:
    void connect_command_predicate(const ::id & id, MESSAGE_PRED pred)
    {
 
-      add_route(id.compounded(::id::e_type_command), this) = pred;
+      _add_handler(id.compounded(::id::e_type_command), nullptr, nullptr, __handler(pred));
 
    }
 
 
-   template < typename RECEIVER, typename MESSAGE_PRED >
-   void add_update_route_predicate(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
-   {
-
-      add_route(id.compounded(::id::e_type_update), preceiver) = pred;
-
-   }
+//   template < typename RECEIVER, typename MESSAGE_PRED >
+//   void add_update_route_predicate(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
+//   {
+//
+//      add_route(id.compounded(::id::e_type_update), preceiver) = pred;
+//
+//   }
 
 
    void default_toggle_check_handling(const ::id& id);
 
 
-   template < typename RECEIVER >
-   void add_update_route(RECEIVER * preceiver, const ::id & id)
-   {
-
-      add_update_route_predicate(preceiver, id, [preceiver, id](::message::message * pmessage)
-      {
-
-         preceiver->process_subject(id, preceiver);
-
-      });
-
-   }
+//   template < typename RECEIVER >
+//   void add_update_route(RECEIVER * preceiver, const ::id & id)
+//   {
+//
+//      m_routinemap[id].add(__routine([preceiver, id]()
+//        {
+//
+//            preceiver->process_subject(id, preceiver);
+//
+//        });
+//
+//   }
 
    
    void _001SendCommand(::message::command * pmessage);

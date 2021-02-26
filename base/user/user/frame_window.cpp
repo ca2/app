@@ -1467,22 +1467,28 @@ namespace user
 
       }
 
-      __pointer(channel) ptarget = get_keyboard_focus();
+      auto puser = User;
 
-      if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
+      if(puser)
       {
 
-         ptarget->on_command_message(pcommand);
+         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
-         if (pcommand->m_bRet)
+         if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
          {
 
-            return;
+            ptarget->on_command_message(pcommand);
+
+            if (pcommand->m_bRet)
+            {
+
+               return;
+
+            }
 
          }
 
       }
-
 
       //for (auto& pinteraction : m_interactionaCommandHandlers)
       //{

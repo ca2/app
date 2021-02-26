@@ -24,7 +24,7 @@ namespace message
    public:
 
 
-      __pointer(route_array)        m_proutea;
+      handler_array *               m_phandlera;
       __pointer(channel)            m_pchannel;
       oswindow                      m_oswindow;
       wparam                        m_wparam;
@@ -46,6 +46,7 @@ namespace message
       inline void common_construct()
       {
 
+          m_phandlera = nullptr;
          m_pchannel = nullptr;
          m_wparam = 0;
          m_iRouteIndex = -1;
@@ -61,7 +62,7 @@ namespace message
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 
-      inline auto route_message() { m_proutea.m_p->m_pData[m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(this); return m_bRet; }
+      inline auto route_message() { m_phandlera->m_pData[m_iRouteIndex].m_handler(this); return m_bRet; }
 
       bool all_previous(); // returns bRet
 

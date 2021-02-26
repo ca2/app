@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-      virtual public ::promise::handler,
+      virtual public ::promise::manager,
       virtual public ::task
    {
    public:
@@ -77,7 +77,7 @@ namespace acme
       //virtual ::e_status run_system();
 
 
-      using ::promise::handler::on_subject;
+      using ::promise::manager::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;
 
 

@@ -3939,24 +3939,26 @@ namespace user
    primitive * primitive::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
+//      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
+//
+//      auto psession = Session;
+//
+//      if (pprimitive == nullptr || pprimitive == this)
+//      {
+//
+//         clear_keyboard_focus();
+//
+//      }
+//      else
+//      {
+//
+//         pprimitive->set_keyboard_focus();
+//
+//      }
+//
+//      return get_keyboard_focus(pthread);
 
-      auto psession = Session;
-
-      if (pprimitive == nullptr || pprimitive == this)
-      {
-
-         clear_keyboard_focus();
-
-      }
-      else
-      {
-
-         pprimitive->set_keyboard_focus();
-
-      }
-
-      return get_keyboard_focus();
+         return nullptr;
 
    }
 
@@ -3968,15 +3970,21 @@ namespace user
 
       __pointer(primitive) puiFocus = pfocus != nullptr ? pfocus : this;
 
-
-
       primitive * pfocusTry;
 
       if (puiFocus == nullptr)
+      {
+
          return nullptr;
 
+      }
+
       if (puiThis == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       single_lock(puiThis->get_context_application()->mutex(), true);
 
@@ -4073,7 +4081,7 @@ namespace user
    }
 
 
-   primitive * primitive::get_keyboard_focus() const
+   primitive * primitive::get_keyboard_focus()
    {
 
       return nullptr;

@@ -61,6 +61,12 @@ namespace promise
    inline bool routine::should_run_async() const { return m_p->should_run_async(); }
 
 
+   inline void handler::operator()(::message::message * pmessage) const { (*m_p)(pmessage); }
+
+
+   inline bool handler::should_run_async() const { return m_p->should_run_async(); }
+
+
    inline void process::operator()(const ::payload & payload) const { if (m_p) (*m_p)(payload); }
 
 

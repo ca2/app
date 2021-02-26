@@ -277,7 +277,7 @@ namespace user
       if (m_ppropertyCheck)
       {
 
-         bind_update(m_ppropertyCheck);
+         add_update_notification(m_ppropertyCheck);
 
       }
 

@@ -85,7 +85,7 @@ namespace user
       simple_object_ptra                        m_ptraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;
-      bool                                      m_bFocus;
+//      bool                                      m_bFocus;
       bool                                      m_bCursorRedraw;
       double                                    m_dConfigFps;
       double                                    m_dOutputFps;

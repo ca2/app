@@ -25,7 +25,7 @@ namespace promise
 #include "acme/primitive/promise/context.h"
 
 
-#include "acme/primitive/promise/handler.h"
+#include "acme/primitive/promise/manager.h"
 
 
 #include "acme/primitive/promise/promise.h"

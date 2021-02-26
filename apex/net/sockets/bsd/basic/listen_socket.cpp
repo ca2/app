@@ -310,20 +310,22 @@ namespace sockets
 
       auto lId = System.sockets().m_lListenSocket++;
 
+      string strTopicText;
+
       if (sizeof(lId) == 4)
       {
 
-         tmp->format_topic_text("listensckt_%" PRId32 "> ", lId);
+         strTopicText.Format("listensckt_%" PRId32 "> ", lId);
 
       }
       else
       {
 
-         tmp->format_topic_text("listensckt_%" PRId64 "> ", lId);
+         strTopicText.Format("listensckt_%" PRId64 "> ", lId);
 
       }
 
-      
+      tmp->set_topic_text(strTopicText);
 
       tmp->m_strCat = m_strCat;
       

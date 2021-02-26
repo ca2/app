@@ -41,7 +41,7 @@ namespace experience
       if (!m_pframewindow->is_docking_enabled())
       {
 
-         return false;
+         return;
 
       }
 
@@ -87,8 +87,6 @@ namespace experience
       m_iDockMove = 0;
 
       dock_window(pmouse);
-
-      return true;
 
    }
 

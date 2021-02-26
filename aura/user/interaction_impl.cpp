@@ -75,7 +75,7 @@ namespace user
 
       m_bOkToUpdateScreen = true;
       m_bUpdatingBuffer = false;
-      m_bFocus = false;
+      //m_bFocus = false;
       m_bCursorRedraw = false;
 
       defer_create_mutex();
@@ -904,8 +904,6 @@ namespace user
 //#endif
 
 
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction::_001OnKillFocus);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction::_001OnSetFocus);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
@@ -1536,7 +1534,7 @@ namespace user
 
             INFO(::str::demangle(m_puserinteraction->type_name()) + "::destroy_impl_only");
 
-            m_puserinteraction->transfer_receiver(m_idroute, this);
+            m_puserinteraction->transfer_receiver(m_handlermap, this);
 
          }
 
@@ -4213,16 +4211,16 @@ namespace user
 
       __pointer(::message::set_keyboard_focus) psetkeyboardfocus(pmessage);
 
-      if (m_puserinteraction->m_bFocus)
+      on_final_set_keyboard_focus(psetkeyboardfocus);
+
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
       {
 
          return;
 
       }
 
-      m_puserinteraction->m_bFocus = true;
-
-
+      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
 
    }
    
@@ -4259,14 +4257,14 @@ namespace user
 
       __pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);
 
-      if (!m_puserinteraction->m_bFocus)
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
       {
 
          return;
 
       }
 
-      m_puserinteraction->m_bFocus = false;
+      m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
       on_final_kill_keyboard_focus(pkillkeyboardfocus);
 

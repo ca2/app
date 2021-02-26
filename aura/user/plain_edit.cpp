@@ -862,9 +862,7 @@ namespace user
 
       set_cursor(e_cursor_text_select);
 
-
       pcreate->previous();
-
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -899,16 +897,16 @@ namespace user
 
       }
 
-      m_ppropertyText = fetch_property(m_id, true);
-
-      bind_update(m_ppropertyText);
-
-      if(m_ppropertyText && !m_ppropertyText->is_empty())
-      {
-
-         _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
-
-      }
+//      m_ppropertyText = fetch_property(m_id, true);
+//
+//      add_change_notification(m_ppropertyText);
+//
+//      if(m_ppropertyText && !m_ppropertyText->is_empty())
+//      {
+//
+//         _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
+//
+//      }
 
    }
 
@@ -1449,7 +1447,25 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      return strsize (m_ptree->m_peditfile->get_length());
+      auto ptree = m_ptree;
+
+      if(::is_null(ptree))
+      {
+
+         return 0;
+
+      }
+
+      auto peditfile = ptree->m_peditfile;
+
+      if(::is_null(peditfile))
+      {
+
+         return 0;
+
+      }
+
+      return peditfile->get_length();
 
    }
 
@@ -1921,7 +1937,9 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         ::point_i32 point = pmouse->m_point;
+          pmouse->previous();
+
+          ::point_i32 point = pmouse->m_point;
 
          _001ScreenToClient(point);
 
@@ -1955,8 +1973,6 @@ namespace user
 #endif
 
          }
-
-         pmouse->previous();
 
          set_need_redraw();
 
@@ -3381,7 +3397,7 @@ namespace user
 
       //replace_tab(0, strLineGraphics, m_iTabWidth);
 
-      strsize iSel;
+      strsize iSel = 0;
 
       string strExtent;
 
@@ -3437,7 +3453,14 @@ namespace user
 
       }
 
-      iSel = m_iaLineBeg[iLine] + (m_iaLineLen[iLine] - (m_iaLineEnd[iLine] & 0xf));
+      if(iLine < m_iaLineBeg.get_count()
+      && iLine < m_iaLineLen.get_count()
+      && iLine < m_iaLineEnd.get_count())
+      {
+
+          iSel = m_iaLineBeg[iLine] + (m_iaLineLen[iLine] - (m_iaLineEnd[iLine] & 0xf));
+
+      }
 
 end:
 
@@ -6225,7 +6248,7 @@ finished_update:
    void plain_edit::on_set_keyboard_focus()
    {
 
-      m_bFocus = true;
+      m_ewindowflag |= e_window_flag_focus;
 
       SetTimer(100, 50, nullptr);
 
@@ -6294,7 +6317,7 @@ finished_update:
 
       //DestroyImeWindow();
 
-      m_bFocus = false;
+      m_ewindowflag -= e_window_flag_focus;
 
    }
 
@@ -6559,7 +6582,9 @@ finished_update:
          strLine = m_straLines[iLine - m_iLineStart];
 
       }
-      else
+      else if(iLine >= 0
+      && iLine < m_iaLineLen.get_count()
+      && iLine < m_iaLineEnd.get_count())
       {
 
          strsize iLineLen = m_iaLineLen[iLine] - (m_iaLineEnd[iLine] & 0xf);

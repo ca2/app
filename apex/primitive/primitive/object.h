@@ -13,7 +13,7 @@ namespace user
 
 
 class CLASS_DECL_APEX object :
-   virtual public promise::handler
+   virtual public promise::manager
 {
 protected:
 
@@ -633,30 +633,30 @@ public:
 
 
 
-   ::e_status bind_update(property * pproperty);
-   ::e_status bind_update(const ::id & id, bool bCreate = true);
-   ::e_status bind_update(const ::id & id, ::object * pobject);
+   //::e_status add_update_notification(property * pproperty);
+   //::e_status add_update_notification(const ::id & id, bool bCreate = true);
+   //::e_status property_notify(const ::id & id, ::matter * pmatter);
 
 
-   inline void format_topic_text(const char * psz, ...)
-   {
-
-      va_list valist;
-      va_start(valist, psz);
-      format_topic_text_v(psz, valist);
-      va_end(valist);
-
-   }
-
-
-   inline void format_topic_text_v(const char * psz, va_list valist)
-   {
-
-      string str;
-      str.FormatV(psz, valist);
-      set_topic_text(str);
-
-   }
+//   inline void format_topic_text(const char * psz, ...)
+//   {
+//
+//      va_list valist;
+//      va_start(valist, psz);
+//      format_topic_text_v(psz, valist);
+//      va_end(valist);
+//
+//   }
+//
+//
+//   inline void format_topic_text_v(const char * psz, va_list valist)
+//   {
+//
+//      string str;
+//      str.FormatV(psz, valist);
+//      set_topic_text(str);
+//
+//   }
 
 
    //template < typename TYPE >

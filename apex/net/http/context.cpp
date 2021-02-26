@@ -1891,7 +1891,11 @@ namespace http
 
       }
 
-      psocket->format_topic_text(__prhttpget, iHttpGetSerial);
+      string strTopicText;
+
+      strTopicText.Format(__prhttpget, iHttpGetSerial);
+
+      psocket->set_topic_text(strTopicText);
 
       psocket->m_bEnablePool = handler.PoolEnabled();
 

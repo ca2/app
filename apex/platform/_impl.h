@@ -67,202 +67,204 @@ namespace apex
 } // namespace apex
 
 
-template < typename RECEIVER >
-void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), const ::id & id)
-{
-
-  add_receiver_route(id, preceiver, phandler);
-
-}
-
-
-template < typename RECEIVER, typename MESSAGE_PRED >
-void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
-{
-
-  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
-
-}
+//template < typename RECEIVER >
+//void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
+//{
+//
+//  add_receiver_route(id, preceiver, phandler);
+//
+//}
 
 
-template < typename RECEIVER, typename MESSAGE_TYPE >
-void channel::add_receiver_route(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
-{
-
-  add_route(id, preceiver).m_pmessageable = __new(::message::receiver_route<RECEIVER, MESSAGE_TYPE>(preceiver, phandler));
-
-}
+//template < typename RECEIVER, typename MESSAGE_PRED >
+//void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
+//{
+//
+//  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//
+//}
 
 
 template < typename RECEIVER >
-::message::route & channel::add_route(const ::id & idParam, RECEIVER * preceiverDerived)
+bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
 {
 
-   ::id id(idParam);
-
-   if (id.m_etype == ::id::e_type_integer)
-   {
-
-      id.m_etype = ::id::e_type_message;
-
-   }
-
-  synchronization_lock synchronizationlock(channel_mutex());
-
-  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
-
-  ::type typeReceiver(typeid(RECEIVER));
-
-  if (!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
-  {
-
-     m_idroute = m_idrouteNew;
-
-  }
-
-  auto & proutea = m_idroute[id];
-
-  __pointer(::message::route) proute;
-
-  if (proutea.is_set())
-  {
-
-     auto pred = [=](auto & proute)
-     {
-
-        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeReceiver == typeReceiver;
-
-     };
-
-     index iFind = proutea->predicate_find_first(pred);
-
-     if (iFind >= 0)
-     {
-
-        proute = proutea->sp_at(iFind);
-
-     }
-
-  }
-
-  object * preceiver = dynamic_cast <object*>(preceiverDerived);
-
-  if (preceiver == nullptr)
-  {
-
-     ASSERT(false);
-
-     __throw(invalid_argument_exception());
-
-  }
-
-  if (proute.is_null())
-  {
-
-     proute = ::message::create_typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver);
-
-     if (proute.is_null())
-     {
-
-        throw resource_exception();
-
-     }
-
-     if (proutea.is_null())
-     {
-
-        proutea = __new(::message::route_array);
-
-     }
-
-     proutea->add(proute);
-
-  }
-
-  if (proute.is_null())
-  {
-
-     throw resource_exception();
-
-  }
-
-  return *proute;
+    return _add_handler(id, preceiver, (void *) phandler, __handler(preceiver, phandler));
 
 }
 
 
-template < typename RECEIVER, typename MESSAGE >
-::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
-{
+//template < typename RECEIVER >
+//::message::route & channel::add_route(const ::id & idParam, RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(MESSAGE * pmessage))
+//{
+//
+//   ::id id(idParam);
+//
+//   if (id.m_etype == ::id::e_type_integer)
+//   {
+//
+//      id.m_etype = ::id::e_type_message;
+//
+//   }
+//
+//  synchronization_lock synchronizationlock(channel_mutex());
+//
+//  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
+//
+//  ::type typeReceiver(typeid(RECEIVER));
+//
+//  if (!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
+//  {
+//
+//     m_idroute = m_idrouteNew;
+//
+//  }
+//
+//  auto & proutea = m_idroute[id];
+//
+//  __pointer(::message::route) proute;
+//
+//  if (proutea.is_set())
+//  {
+//
+//     auto pred = [=](auto & proute)
+//     {
+//
+//        return proute->m_pobjectReceiver == pobjectReceiver
+//        && proute->m_typeReceiver == typeReceiver
+//        && proute->m_phandler = phandler;
+//
+//     };
+//
+//     index iFind = proutea->predicate_find_first(pred);
+//
+//     if (iFind >= 0)
+//     {
+//
+//        proute = proutea->sp_at(iFind);
+//
+//     }
+//
+//  }
+//
+//  object * preceiver = dynamic_cast <object*>(preceiverDerived);
+//
+//  if (preceiver == nullptr)
+//  {
+//
+//     ASSERT(false);
+//
+//     __throw(invalid_argument_exception());
+//
+//  }
+//
+//  if (proute.is_null())
+//  {
+//
+//     proute = ::message::create_typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver);
+//
+//     if (proute.is_null())
+//     {
+//
+//        throw resource_exception();
+//
+//     }
+//
+//     if (proutea.is_null())
+//     {
+//
+//        proutea = __new(::message::route_array);
+//
+//     }
+//
+//     proutea->add(proute);
+//
+//  }
+//
+//  if (proute.is_null())
+//  {
+//
+//     throw resource_exception();
+//
+//  }
+//
+//  return *proute;
+//
+//}
 
-  synchronization_lock synchronizationlock(s_pmutexChannel);
 
-  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
-
-  ::type typeReceiver(typeid(RECEIVER));
-
-  if(!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
-  {
-
-     m_idroute = m_idrouteNew;
-
-  }
-
-  __pointer(::message::route_array) & proutea = m_idroute[id];
-
-  __pointer(::message::typed_route < MESSAGE >) proute;
-
-  if (proutea.is_set())
-  {
-
-     auto pred = [=](auto & proute)
-     {
-
-        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeReceiver == typeReceiver;
-
-     };
-
-     index iFind = proutea->predicate_find_first(pred);
-
-     if(iFind >= 0)
-     {
-
-        proute = proutea->sp_at(iFind);
-
-     }
-
-  }
-
-  ::object * preceiver = dynamic_cast < object * >(preceiverDerived);
-
-  if (preceiver == nullptr)
-  {
-
-     ASSERT(false);
-
-     __throw(invalid_argument_exception());
-
-  }
-
-  if(proute.is_null())
-  {
-
-     proute = ::message::create_typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver);
-
-     if (proutea.is_null())
-     {
-
-        proutea = __new(::message::route_array);
-
-     }
-
-     proutea->add(proute);
-
-  }
-
-  return *proute;
-
-}
+//template < typename RECEIVER, typename MESSAGE >
+//::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
+//{
+//
+//  synchronization_lock synchronizationlock(s_pmutexChannel);
+//
+//  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
+//
+//  ::type typeReceiver(typeid(RECEIVER));
+//
+//  if(!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
+//  {
+//
+//     m_idroute = m_idrouteNew;
+//
+//  }
+//
+//  __pointer(::message::route_array) & proutea = m_idroute[id];
+//
+//  __pointer(::message::typed_route < MESSAGE >) proute;
+//
+//  if (proutea.is_set())
+//  {
+//
+//     auto pred = [=](auto & proute)
+//     {
+//
+//        return proute->m_pobjectReceiver == pobjectReceiver && proute->m_typeReceiver == typeReceiver;
+//
+//     };
+//
+//     index iFind = proutea->predicate_find_first(pred);
+//
+//     if(iFind >= 0)
+//     {
+//
+//        proute = proutea->sp_at(iFind);
+//
+//     }
+//
+//  }
+//
+//  ::object * preceiver = dynamic_cast < object * >(preceiverDerived);
+//
+//  if (preceiver == nullptr)
+//  {
+//
+//     ASSERT(false);
+//
+//     __throw(invalid_argument_exception());
+//
+//  }
+//
+//  if(proute.is_null())
+//  {
+//
+//     proute = ::message::create_typed_route<MESSAGE>(preceiver, pobjectReceiver, typeReceiver);
+//
+//     if (proutea.is_null())
+//     {
+//
+//        proutea = __new(::message::route_array);
+//
+//     }
+//
+//     proutea->add(proute);
+//
+//  }
+//
+//  return *proute;
+//
+//}
 
 
 CLASS_DECL_APEX inline ::object * get_app_object()

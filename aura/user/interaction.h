@@ -947,6 +947,13 @@ namespace user
 
       virtual void on_set_keyboard_focus() override;
       virtual void on_kill_keyboard_focus() override;
+
+
+      ::user::primitive * get_keyboard_focus() override;
+
+
+      virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
       virtual void get_child_rect(RECTANGLE_I32* prectangle);

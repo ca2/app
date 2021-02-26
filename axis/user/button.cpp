@@ -245,14 +245,14 @@ namespace user
 
       }
 
-      m_ppropertyCheck = fetch_property(m_id, true);
-
-      if (m_ppropertyCheck)
-      {
-
-         bind_update(m_ppropertyCheck);
-
-      }
+//      m_ppropertyCheck = fetch_property(m_id, true);
+//
+//      if (m_ppropertyCheck)
+//      {
+//
+//         add_update_notification(m_ppropertyCheck);
+//
+//      }
 
    }
 
@@ -726,7 +726,7 @@ namespace user
          pimage = m_pbitmap->m_pimageSel;
       else if(m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
-      else if(get_keyboard_focus() == this && ::is_ok(m_pbitmap->m_pimageFocus))
+      else if(::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
@@ -806,13 +806,13 @@ namespace user
 
          auto psession = Session;
 
-         if (echeck() == ::check_checked && m_pbitmap->m_pimageSel->is_set() && m_pbitmap->m_pimageSel->area() > 0)
+         if (echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
             pimage = m_pbitmap->m_pimageSel;
-         else if (m_itemHover.is_set() && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
+         else if (m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
             pimage = m_pbitmap->m_pimageHover;
-         else if (get_keyboard_focus() == this && m_pbitmap->m_pimageFocus->is_set() && m_pbitmap->m_pimageFocus->area() > 0)
+         else if (::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-         else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled->is_set() && m_pbitmap->m_pimageDisabled->area() > 0)
+         else if (!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
             pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
          if (pimage->area() > 0 && rectClient.area() > 0)

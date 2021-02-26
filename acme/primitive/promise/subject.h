@@ -11,7 +11,7 @@ namespace promise
    public:
 
 
-      __pointer(::promise::handler)       m_phandler;
+      __pointer(::promise::manager)       m_pmanager;
       ::promise::matter_context           m_mattercontext;
       ::user::enum_key                       m_ekey;
       ::payload                           m_payload;
@@ -32,12 +32,12 @@ namespace promise
       bool                                m_bRet;
 
 
-      subject(::promise::handler * phandler, const ::id & id);
+      subject(::promise::manager * phandler, const ::id & id);
       virtual ~subject();
 
 
       //handler(const ::id &id);
-      //handler(::promise::handler * pbacking, const ::id & id);
+      //handler(::promise::manager * pbacking, const ::id & id);
       //virtual ~handler();
 
 

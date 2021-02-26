@@ -195,7 +195,7 @@ namespace acme
 
       }
 
-      ::promise::handler::on_subject(psubject);
+      ::promise::manager::on_subject(psubject);
 
    }
 

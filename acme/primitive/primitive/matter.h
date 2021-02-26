@@ -252,6 +252,7 @@ public:
 
 
    virtual ::e_status operator()();
+   virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
    virtual ::e_status run();
    virtual ::e_status step();

@@ -1001,19 +1001,28 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 
 
 template < typename PRED >
-inline void add_routine(::promise::routine_array & procedurea, PRED pred)
+inline void add_routine(::promise::routine_array & routinea, PRED pred)
 {
-   
-   procedurea.add(__routine(pred));
+
+    routinea.add(__routine(pred));
 
 }
 
 
 template < typename PRED >
-inline void add_process(::promise::process_array & futurevara, PRED pred)
+inline void add_handler(::promise::handler_array & handlera, PRED pred)
 {
 
-   futurevara.add(__process(pred));
+    handlera.add(__handler(pred));
+
+}
+
+
+template < typename PRED >
+inline void add_process(::promise::process_array & processa, PRED pred)
+{
+
+    processa.add(__process(pred));
    
 }
 

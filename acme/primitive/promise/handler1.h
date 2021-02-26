@@ -5,7 +5,7 @@ namespace promise
 {
 
 
-   class CLASS_DECL_ACME handler1 :
+   class CLASS_DECL_ACME handler :
            public ::function_pointer
    {
    public:
@@ -20,6 +20,7 @@ namespace promise
 
 
    };
+
 
 
 } // namespace promise

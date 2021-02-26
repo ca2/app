@@ -410,7 +410,7 @@ void thread::term_thread()
    try
    {
 
-      m_idroute.remove_all();
+      m_handlermap.remove_all();
 
    }
    catch (...)

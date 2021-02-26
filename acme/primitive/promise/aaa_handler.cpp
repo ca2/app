@@ -19,7 +19,7 @@ namespace promise
    //}
 
 
-   handler::handler(::promise::handler * pbacking, const ::id &id) :
+   handler::handler(::promise::manager * pbacking, const ::id &id) :
            m_pbacking(pbacking)
    {
 
@@ -73,7 +73,7 @@ namespace promise
 
       auto psubject = __new(subject(this));
 
-      while (!::promise::handler::g_bDestroyAll && ptask->thread_get_run())
+      while (!::promise::manager::g_bDestroyAll && ptask->thread_get_run())
       {
 
          process(psubject);

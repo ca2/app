@@ -280,9 +280,9 @@ namespace user
       //else
       {
 
-         auto pprimitiveFocus = get_keyboard_focus();
+         bool bHasFocus = has_keyboard_focus();
 
-         if(pprimitiveFocus == this)
+         if(bHasFocus)
          {
 
             if (m_itemHover.is_set())

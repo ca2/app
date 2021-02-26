@@ -81,7 +81,7 @@ namespace user
       };
 
 
-      bool                          m_bFocus;
+      //bool                          m_bFocus;
       millis                        m_millisFocusStart;
       bool                          m_bUserPrimitiveOk;
 
@@ -705,10 +705,11 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
-      virtual primitive * get_keyboard_focus() const;
+      //virtual primitive * get_keyboard_focus() const;
       virtual ::e_status set_keyboard_focus();
       virtual ::e_status remove_keyboard_focus();
       virtual ::e_status clear_keyboard_focus();
+      virtual ::user::primitive * get_keyboard_focus();
       virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual bool has_keyboard_focus();
 

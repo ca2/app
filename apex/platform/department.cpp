@@ -42,7 +42,7 @@ namespace apex
    void department::connect_to_application_signal()
    {
 
-      get_context_application()->add_route(this,&department::on_application_message);
+      get_context_application()->add_handler(id_none, this,&department::on_application_message);
 
    }
 

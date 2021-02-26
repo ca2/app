@@ -21,7 +21,9 @@ namespace user
 	public:
 
 
-		__pointer(text_composition_client)		 m_ptextcompositionclient;
+      bool                                   m_bTextCompositionActive;
+	   string                                 m_strImeComposition;
+		__pointer(text_composition_client)		m_ptextcompositionclient;
 
 
 		text_composition_client();

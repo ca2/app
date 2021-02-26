@@ -358,19 +358,24 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto puser = User;
 
-      __pointer(channel) ptarget = get_keyboard_focus();
-
-      if (ptarget != nullptr && ptarget != this && ptarget != this)
+      if(puser)
       {
 
-         ptarget->on_command_message(pcommand);
+         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
-         if (pcommand->m_bRet)
+         if (ptarget != nullptr && ptarget != this && ptarget != this)
          {
 
-            return;
+            ptarget->on_command_message(pcommand);
+
+            if (pcommand->m_bRet)
+            {
+
+               return;
+
+            }
 
          }
 
@@ -1107,21 +1112,32 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
-         auto psession = Session;
+         auto puser = User;
 
-         __pointer(::user::interaction) oswindow_Focus = get_keyboard_focus();
+         if(puser)
+         {
 
-         if (pview == this &&
-               this != oswindow_Focus && !is_child(oswindow_Focus))
-         {
-            // re-activate this ::user::impact
-            OnActivateView(true, this, this);
+            __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+
+            if (pview == this
+            && this != puserinteractionFocus
+            && !is_child(puserinteractionFocus))
+            {
+
+               // re-activate this ::user::impact
+               OnActivateView(true, this, this);
+
+            }
+            else
+            {
+
+               // activate this ::user::impact
+               pParentFrame->set_active_view(this);
+
+            }
+
          }
-         else
-         {
-            // activate this ::user::impact
-            pParentFrame->set_active_view(this);
-         }
+
       }
 
       pmouseactivate->m_lresult = pmouseactivate->get_message();
@@ -1164,22 +1180,29 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
-         auto psession = Session;
+         auto puser = User;
 
-         __pointer(::user::interaction) oswindow_Focus = get_keyboard_focus();
+         __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
-         if (pview == this &&
-               this != oswindow_Focus && !is_child(oswindow_Focus))
+         if (pview == this
+         && this != puserinteractionFocus
+         && !is_child(puserinteractionFocus))
          {
+
             // re-activate this ::user::impact
             OnActivateView(true, this, this);
+
          }
          else
          {
+
             // activate this ::user::impact
             pParentFrame->set_active_view(this);
+
          }
+
       }
+
    }
 
 

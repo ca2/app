@@ -36,20 +36,20 @@ void channel::remove_receiver(::object * preceiver)
 
    synchronization_lock synchronizationlock(channel_mutex());
 
-   for (auto & id_route_array : m_idroute)
+   for (auto & pair : m_handlermap)
    {
 
-      if (id_route_array.element2().is_null())
+      if (pair.element2().is_empty())
       {
 
          continue;
 
       }
 
-      id_route_array.element2()->predicate_remove([=](auto & pitem)
+      pair.element2().predicate_remove([=](auto & item)
       {
 
-         return pitem->m_preceiver == preceiver;
+         return item.m_preceiver == preceiver;
 
       });
 
@@ -59,51 +59,43 @@ void channel::remove_receiver(::object * preceiver)
 }
 
 
-void channel::transfer_receiver(::message::id_route & router, ::object * preceiver)
+void channel::transfer_receiver(::message::handler_map & handlermap, ::object * preceiver)
 {
 
    synchronization_lock synchronizationlock(channel_mutex());
 
-   for (auto & id_route_array : m_idroute)
+   for (auto & pair : m_handlermap)
    {
 
-      if (id_route_array.element2().is_null())
+      if (pair.element2().is_empty())
       {
 
          continue;
 
       }
 
-      id_route_array.element2()->predicate_each([&](auto & pitem)
+      pair.element2().predicate_each([&](auto & item)
       {
 
-         if (pitem->m_preceiver == preceiver)
+         if (item.m_preceiver == preceiver)
          {
 
-            auto & routera = router[id_route_array.element1()];
+            auto & routera = handlermap[pair.element1()];
 
-            if (routera.is_null())
-            {
-
-               routera = __new(::message::route_array);
-
-            }
-
-            routera->add(pitem);
+            routera.add(item);
 
          }
 
       });
 
-      id_route_array.element2()->predicate_remove([&](auto & pitem)
+      pair.element2().predicate_remove([&](auto & item)
       {
 
-         return pitem->m_preceiver == preceiver;
+         return item.m_preceiver == preceiver;
 
       });
 
    }
-
 
 }
 
@@ -111,16 +103,17 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
 
-   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
+   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_phandlera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 
-      pmessage->m_proutea.m_p->m_pData[pmessage->m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(pmessage); if(pmessage->m_bRet) return;
+      pmessage->m_phandlera->m_pData[pmessage->m_iRouteIndex].m_handler(pmessage); if(pmessage->m_bRet) return;
 
    }
 
 }
+
 
 __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 {
@@ -208,13 +201,13 @@ void channel::remove_all_routes()
       if(m_bNewChannel)
       {
 
-         m_idrouteNew = m_idroute;
+         m_handlermapNew = m_handlermap;
 
          m_bNewChannel = false;
 
       }
 
-      m_idroute.remove_all();
+      m_handlermap.remove_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -280,11 +273,11 @@ void channel::finalize()
 
    m_idaHandledCommands.remove_all();
 
-   m_idroute.remove_all();
+   m_handlermap.remove_all();
 
-   m_idrouteNew.remove_all();
+   m_handlermapNew.remove_all();
 
-   for (auto& procedurea : m_mapRoutine.values())
+   for (auto& procedurea : m_routinemap.values())
    {
 
       procedurea.finalize();
@@ -293,7 +286,7 @@ void channel::finalize()
 
    }
 
-   m_mapRoutine.remove_all();
+   m_routinemap.remove_all();
 
    ::object::finalize();
 
@@ -452,7 +445,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    }
 
-   auto passoc = m_idroute.plookup(pcommand->m_id);
+   auto passoc = m_handlermap.plookup(pcommand->m_id);
 
    if (::is_null(passoc))
    {
@@ -461,14 +454,14 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    }
 
-   if (passoc->m_element2.is_null())
+   if (passoc->m_element2.is_empty())
    {
 
       return false;
 
    }
 
-   if (passoc->element2()->is_empty())
+   if (passoc->element2().is_empty())
    {
 
       return false;
@@ -502,6 +495,51 @@ void channel::on_command_probe(::message::command * pcommand)
 
 }
 
+
+bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, ::matter * pmatterHandler)
+{
+
+    auto & handlera = m_handlermap[id];
+
+    if(preceiver != nullptr || phandler != nullptr)
+    {
+
+        for (::index i = 0; i < handlera.get_count(); i++)
+        {
+
+            if (handlera.element_at(i).m_preceiver == preceiver
+                && handlera.element_at(i).m_pHandler == (void *) phandler)
+            {
+
+                return false;
+
+            }
+
+        }
+
+    }
+
+    ::message::handler handler(preceiver, phandler);
+
+    handler.m_handler = pmatterHandler;
+
+    handlera.add(handler);
+
+    return true;
+
+}
+
+
+::e_status channel::id_notify(const ::id & id, ::matter * pmatter)
+{
+
+    auto & routinea = m_routinemap[id];
+
+    routinea.add(pmatter); // pmatter is notified with id
+
+    return ::success;
+
+}
 
 
 void channel::default_toggle_check_handling(const ::id & id)

@@ -258,7 +258,11 @@ namespace sockets
       if (topic_text() == nullptr)
       {
 
-         format_topic_text("socket_%d> ", s);
+          string strTopicText;
+
+          strTopicText.Format("socket_%d> ", s);
+
+          set_topic_text(strTopicText);
 
       }
 

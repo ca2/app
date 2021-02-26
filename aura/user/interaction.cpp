@@ -85,7 +85,7 @@ namespace user
 
       //#endif
 
-      m_bFocus = false;
+      //m_bFocus = false;
 
       m_bParentScroll = true;
 
@@ -1411,6 +1411,32 @@ namespace user
    }
 
 
+   ::user::primitive * interaction::get_keyboard_focus()
+   {
+
+      auto puser = User;
+
+      if(::is_null(puser))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteractionKeyboardFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+
+      if(::is_null(puserinteractionKeyboardFocus))
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionKeyboardFocus;
+
+   }
+
+
    void interaction::install_message_routing(::channel *pchannel)
    {
 
@@ -1435,7 +1461,8 @@ namespace user
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
          MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
-         MESSAGE_LINK((enum_message) e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
+         MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
+         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
@@ -3803,12 +3830,14 @@ namespace user
       if(bOk)
       {
 
-         auto pprimitive = get_keyboard_focus();
+         auto puser = User;
 
-         if(pprimitive)
+         auto puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+
+         if (puserinteractionFocus)
          {
 
-            pprimitive->on_text_composition(strText);
+            puserinteractionFocus->on_text_composition(strText);
 
          }
          else
@@ -3819,6 +3848,40 @@ namespace user
          }
 
       }
+
+   }
+
+
+   primitive * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
+   {
+
+      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
+
+      auto psession = Session;
+
+      if (pprimitive == nullptr || pprimitive == this)
+      {
+
+         clear_keyboard_focus();
+
+      }
+      else
+      {
+
+         pprimitive->set_keyboard_focus();
+
+      }
+
+      auto puser = User;
+
+      if(::is_null(puser))
+      {
+
+         return nullptr;
+
+      }
+
+      return puser->get_keyboard_focus(m_pthreadUserInteraction);
 
    }
 
@@ -8706,41 +8769,6 @@ namespace user
    bool interaction::has_keyboard_focus() const
    {
 
-      auto psession = Session;
-
-      if (::is_null(psession))
-      {
-
-         return false;
-
-      }
-
-      auto puser = psession->user();
-
-      if (::is_null(puser))
-      {
-
-         return false;
-
-      }
-
-      auto pwindowing = puser->windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         return false;
-
-      }
-
-      auto pwindow = pwindowing->get_keyboard_focus(m_pthreadUserInteraction);
-
-      if (::is_null(pwindow))
-      {
-
-         return false;
-
-      }
 
       auto pwindowThis = get_window();
 
@@ -8751,23 +8779,23 @@ namespace user
 
       }
 
-      if (*pwindow != *pwindowThis)
+      if (!pwindowThis->has_keyboard_focus())
       {
 
          return false;
 
       }
 
-      auto pimpl = pwindowThis->m_pimpl;
+      auto pimplFocus = pwindowThis->m_pimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(pimplFocus))
       {
 
          return false;
 
       }
 
-      if (pimpl->m_puserinteractionFocus1 != this)
+      if (pimplFocus->m_puserinteractionFocus1 != this)
       {
 
          return false;
@@ -15297,7 +15325,7 @@ restart:
    ::user::enum_state interaction::get_state() const
    {
 
-      auto psession = Session;
+      auto puser = User;
 
       if (m_pdrawcontext != nullptr)
       {
@@ -15312,7 +15340,7 @@ restart:
          }
 
 
-         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+         auto pprimitiveFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
          if (pprimitiveFocus == this)
          {
@@ -15320,7 +15348,6 @@ restart:
             estate |= e_state_focused;
 
          }
-
 
          if (m_pdrawcontext->is_control_hover())
          {
@@ -15333,7 +15360,6 @@ restart:
          {
 
             estate |= e_state_selected;
-
 
          }
 
@@ -15359,8 +15385,7 @@ restart:
 
          }
 
-
-         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+         auto pprimitiveFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
          if (pprimitiveFocus == this)
          {

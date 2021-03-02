@@ -1,8 +1,8 @@
 #pragma once
 
-
-namespace promise
-{
+//
+//namespace promise
+//{
 
 
    class CLASS_DECL_ACME routine :
@@ -20,9 +20,9 @@ namespace promise
 
 
    };
-
-
-} // namespace promise
+//
+//
+//} // namespace promise
 
 
 

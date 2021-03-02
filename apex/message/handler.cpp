@@ -21,4 +21,31 @@
 //
 //}
 
+//
+//#pragma once
 
+//
+//namespace message
+//{
+//
+//
+//   void handler::operator()(::message::message* pmessage) const
+//   {
+//
+//   }
+//
+//   
+//   bool handler::should_run_async() const
+//   {
+//
+//
+//
+//   }
+//
+//
+//} // namespace message
+//
+//
+//
+//
+//

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -23,9 +23,9 @@ namespace promise
       virtual ::e_status start_task();
 
 
-      virtual bool is_up_to_date(const ::promise::subject * phandler) const;
+      virtual bool is_up_to_date(const ::subject::subject * phandler) const;
 
-      virtual void set_up_to_date(const ::promise::subject * phandler);
+      virtual void set_up_to_date(const ::subject::subject * phandler);
 
 
    };
@@ -34,7 +34,7 @@ namespace promise
    using context_pointer = __pointer(context);
 
 
-} // namespace promise
+} // namespace subject
 
 
 

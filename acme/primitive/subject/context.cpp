@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -28,7 +28,7 @@ namespace promise
    }
 
 
-   void context::set_up_to_date(const ::promise::subject *phandler)
+   void context::set_up_to_date(const ::subject::subject *phandler)
    {
 
       m_iUpdateSerial = phandler->m_iUpdateSerial;
@@ -36,7 +36,7 @@ namespace promise
    }
 
 
-   bool context::is_up_to_date(const ::promise::subject * phandler) const
+   bool context::is_up_to_date(const ::subject::subject * phandler) const
    {
 
       if (m_iUpdateSerial < 0)
@@ -58,7 +58,7 @@ namespace promise
    }
 
 
-} // namespace promise
+} // namespace subject
 
 
 

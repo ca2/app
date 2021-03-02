@@ -2,7 +2,7 @@
 #include "acme/platform/static_start.h"
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -19,7 +19,7 @@ namespace promise
    //}
 
 
-   handler::handler(::promise::manager * pbacking, const ::id &id) :
+   handler::handler(::subject::manager * pbacking, const ::id &id) :
            m_pbacking(pbacking)
    {
 
@@ -73,7 +73,7 @@ namespace promise
 
       auto psubject = __new(subject(this));
 
-      while (!::promise::manager::g_bDestroyAll && ptask->thread_get_run())
+      while (!::subject::manager::g_bDestroyAll && ptask->thread_get_run())
       {
 
          process(psubject);
@@ -138,7 +138,7 @@ namespace promise
    }
 
 
-   ::promise::context * handler::context(::matter *pmatter)
+   ::subject::context * handler::context(::matter *pmatter)
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -148,7 +148,7 @@ namespace promise
       if (!pcontext)
       {
 
-         pcontext = __new(::promise::context);
+         pcontext = __new(::subject::context);
 
       }
 
@@ -172,7 +172,7 @@ namespace promise
          if (!pcontext)
          {
 
-            pcontext = __new(::promise::context);
+            pcontext = __new(::subject::context);
 
          }
 
@@ -185,7 +185,7 @@ namespace promise
          else
          {
 
-            ::promise::subject subject(this, pcontext, pmatter);
+            ::subject::subject subject(this, pcontext, pmatter);
 
             e_id eid = (e_id) m_id.i64();
 
@@ -201,7 +201,7 @@ namespace promise
    void handler::process(const ::action_context &actioncontext)
    {
 
-      ::promise::subject subject(m_id, actioncontext);
+      ::subject::subject subject(m_id, actioncontext);
 
       m_pbacking->process(&subject);
 
@@ -211,7 +211,7 @@ namespace promise
    void handler::process()
    {
 
-      ::promise::subject subject(this);
+      ::subject::subject subject(this);
 
       m_pbacking->process(&subject);
 
@@ -221,7 +221,7 @@ namespace promise
    void handler::process(const ::payload & payload)
    {
 
-      ::promise::subject subject(this);
+      ::subject::subject subject(this);
 
       subject.m_var = payload;
 
@@ -235,7 +235,7 @@ namespace promise
       //
       //   auto& pchange = matterchange.m_element2;
 
-      //   ::promise::subject action(this, pchange, pmatter);
+      //   ::subject::subject action(this, pchange, pmatter);
 
       //   pchange->apply(&action);
 
@@ -254,7 +254,7 @@ namespace promise
 
          auto &pcontext = mattercontext.m_element2;
 
-         ::promise::subject subject(this, pcontext, pmatter);
+         ::subject::subject subject(this, pcontext, pmatter);
 
          subject.m_actioncontext = actioncontext;
 
@@ -296,7 +296,7 @@ namespace promise
       if (!pchange)
       {
 
-         pchange = __new(::promise::context);
+         pchange = __new(::subject::context);
 
       }
 
@@ -353,7 +353,7 @@ namespace promise
    }
 
 
-} // namespace promise
+} // namespace subject
 
 
 

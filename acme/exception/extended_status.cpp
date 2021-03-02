@@ -6,14 +6,14 @@
 
 
 
-namespace status
+namespace extended
 {
 
 
     i32 g_iSkipCallStack = SKIP_callstack;
 
 
-    void result::add(::enum_status estatus)
+    void status::add(::enum_status estatus)
     {
 
         if (m_estatus == undefined)
@@ -32,7 +32,7 @@ namespace status
     }
 
 
-    void result::set_skip_callstack(i32 iSkip)
+    void status::set_skip_callstack(i32 iSkip)
     {
 
         g_iSkipCallStack = iSkip;
@@ -40,7 +40,7 @@ namespace status
     }
 
 
-    i32 result::get_skip_callstack()
+    i32 status::get_skip_callstack()
     {
 
         return g_iSkipCallStack;

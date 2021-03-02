@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -11,7 +11,7 @@ namespace promise
    public:
 
 
-      __pointer(::id_map<__pointer(::promise::subject)>)    m_pmapSubject;
+      __pointer(::id_map<__pointer(::subject::subject)>)    m_pmapSubject;
 
       static critical_section                               s_criticalsection;
       // todo implement keyset
@@ -36,19 +36,19 @@ namespace promise
       //virtual ::e_status run() override;
 
 
-      ::promise::subject_pointer fork_subject(const ::id &id);
+      ::subject::subject_pointer fork_subject(const ::id &id);
 
-      ::promise::subject * subject(const ::id &id);
+      ::subject::subject * subject(const ::id &id);
 
-      virtual ::promise::subject * start_subject_handling(const ::id &id);
+      virtual ::subject::subject * start_subject_handling(const ::id &id);
       virtual void process_subject(const ::id & id);
       virtual void process_subject(const ::id & id, const ::payload & payload);
       virtual void process_subject(const ::id & id, const ::action_context &actioncontext);
-      virtual void process(::promise::subject * psubject);
+      virtual void process(::subject::subject * psubject);
 
       using ::context_object::on_subject;
-      virtual void on_subject(::promise::subject * psubject);
-      //virtual void on_subject(::promise::subject * psubject);
+      virtual void on_subject(::subject::subject * psubject);
+      //virtual void on_subject(::subject::subject * psubject);
 
       virtual void deliver(const ::id &id);
       virtual void deliver(const ::id &id, const ::action_context &actioncontext);
@@ -83,19 +83,21 @@ namespace promise
    };
 
 
-   /*inline ::promise::subject_pointer new_subject(::promise::subject * pmanager) { return __new(::promise::subject(pmanager)); }
+   /*inline ::subject::subject_pointer new_subject(::subject::subject * pmanager) { return __new(::subject::subject(pmanager)); }
 
 
-   inline ::promise::subject_pointer new_subject(::promise::subject * phandler, ::matter *pmatter)
+   inline ::subject::subject_pointer new_subject(::subject::subject * phandler, ::matter *pmatter)
    {
 
-      return __new(::promise::subject(phandler, pmatter));
+      return __new(::subject::subject(phandler, pmatter));
 
    }*/
 
+   
    //using manager_pointer = __pointer(promise::manager);
 
-} // namespace promise
+
+} // namespace subject
 
 
 

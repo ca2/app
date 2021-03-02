@@ -51,11 +51,15 @@
 
 
 
-CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::process & process)
-{
+//CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::future & process)
+//{
+//
+//   process(pmatter->realize());
+//
+//   return ::success;
+//
+//}
+//
 
-   process(pmatter->realize());
 
-   return ::success;
 
-}

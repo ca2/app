@@ -8,7 +8,7 @@ namespace promise
    CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id &id);
 
 
-   using matter_context = map<__pointer(::matter), __pointer(::promise::context)>;
+   using matter_context = map<__pointer(::matter), __pointer(::subject::context)>;
 
 
    class CLASS_DECL_ACME handler :
@@ -17,7 +17,7 @@ namespace promise
    public:
 
 
-      __pointer(::promise::manager)          m_pbacking;
+      __pointer(::subject::manager)          m_pbacking;
       ::promise::matter_context              m_mattercontext;
       ::user::enum_key                          m_ekey;
       ::payload                              m_var;
@@ -27,7 +27,7 @@ namespace promise
 
 
       //handler(const ::id &id);
-      handler(::promise::manager * pbacking, const ::id & id);
+      handler(::subject::manager * pbacking, const ::id & id);
       virtual ~handler();
 
 
@@ -53,7 +53,7 @@ namespace promise
 
       void set_modified();
 
-      virtual ::promise::context * context(::matter *pmatter);
+      virtual ::subject::context * context(::matter *pmatter);
 
       virtual ::e_status run() override;
 
@@ -77,7 +77,7 @@ namespace promise
 
       }
 
-      ::promise::subject & operator=(const ::id &id)
+      ::subject::subject & operator=(const ::id &id)
       {
 
          m_id = id;
@@ -96,7 +96,7 @@ namespace promise
    };
 
 
-   using manager_pointer = __pointer(promise::subject);
+   using manager_pointer = __pointer(subject::subject);
 
 
 } // namespace promise

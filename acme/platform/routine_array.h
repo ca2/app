@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-//class ::promise::routine_array :
+//class ::routine_array :
 //   virtual public array < object_procedure >
 //{
 //public:
 //
 //
-//   ::promise::routine_array(::matter * pobject) :
+//   ::routine_array(::matter * pobject) :
 //      ::matter(pobject)
 //   {
 //
@@ -78,10 +78,10 @@
 //   }
 //
 //
-//   inline ::status::result try_sync_catch_all()
+//   inline ::extended::status try_sync_catch_all()
 //   {
 //
-//      ::status::result result;
+//      ::extended::status result;
 //
 //      auto & a = *this;
 //
@@ -99,7 +99,7 @@
 //            }
 //
 //         }
-//         catch(::exception_pointer e)
+//         catch(const ::exception::exception & e)
 //         {
 //
 //            result.add(e);
@@ -118,7 +118,7 @@
 //            (get_object()->*proutine)();
 //
 //         }
-//         catch(::exception_pointer e)
+//         catch(const ::exception::exception & e)
 //         {
 //
 //            result.add(e);
@@ -141,4 +141,4 @@
 //};
 //
 //
-//typedef __pointer(::promise::routine_array) procedure_array_pointer;
+//typedef __pointer(::routine_array) procedure_array_pointer;

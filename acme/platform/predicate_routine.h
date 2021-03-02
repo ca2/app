@@ -45,7 +45,7 @@
 //   void receive_response(const ::payload&) override
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //   }
 //
@@ -96,7 +96,7 @@ public:
 
 
 template < typename PRED >
-::promise::routine __routine(PRED pred)
+::routine __routine(PRED pred)
 {
 
    return __new(predicate_routine<PRED>(pred));

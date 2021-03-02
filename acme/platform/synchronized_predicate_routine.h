@@ -55,7 +55,7 @@ namespace promise
 
 
 template < typename PRED >
-::promise::routine __sync_routine(PRED pred)
+::routine __sync_routine(PRED pred)
 {
 
    return __new(::promise::predicate_sync_routine<PRED>(pred));

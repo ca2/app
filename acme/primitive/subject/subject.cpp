@@ -2,7 +2,7 @@
 #include "acme/platform/obj_ref_dbg.h"
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -37,7 +37,7 @@ namespace promise
    }*/
 
 
-   subject::subject(::promise::manager * pmanager, const ::id & id)
+   subject::subject(::subject::manager * pmanager, const ::id & id)
    {
 
       subject_common_construct();
@@ -50,7 +50,7 @@ namespace promise
 
 
 
-   //subject::subject(::promise::subject * phandler, ::matter *pmatter) :
+   //subject::subject(::subject::subject * phandler, ::matter *pmatter) :
    //        m_phandler(phandler),
    //        m_pcontext(pmatter ? phandler->context(pmatter) : nullptr)
    //{
@@ -69,7 +69,7 @@ namespace promise
    //}
 
 
-   //subject::subject(::promise::subject * phandler, ::promise::context * pcontext, ::matter * pmatter) :
+   //subject::subject(::subject::subject * phandler, ::subject::context * pcontext, ::matter * pmatter) :
    //   m_phandler(phandler),
    //   m_pcontext(pcontext)
    //{
@@ -131,7 +131,7 @@ namespace promise
 
       auto ptask = ::get_task();
 
-      if(::promise::manager::s_bDestroyAll || !ptask->thread_get_run())
+      if(::subject::manager::s_bDestroyAll || !ptask->thread_get_run())
       {
 
          return ::error_failed;
@@ -203,7 +203,7 @@ namespace promise
          if (!pcontext)
          {
 
-            pcontext = __new(::promise::context);
+            pcontext = __new(::subject::context);
 
          }
 
@@ -225,7 +225,7 @@ namespace promise
    }
 
 
-   ::promise::context * subject::context(::matter * pmatter)
+   ::subject::context * subject::context(::matter * pmatter)
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -235,7 +235,7 @@ namespace promise
       if (!pcontext)
       {
 
-         pcontext = __new(::promise::context);
+         pcontext = __new(::subject::context);
 
       }
 
@@ -270,7 +270,7 @@ namespace promise
    void subject::reset_update(const ::id &id)
    {
 
-      //m_phandler = ::promise::manager::fork_handler(id);
+      //m_phandler = ::subject::manager::fork_handler(id);
 
    }
 
@@ -283,7 +283,7 @@ namespace promise
    }
 
 
-   bool subject::is_up_to_date(const ::promise::context * pcontext) const
+   bool subject::is_up_to_date(const ::subject::context * pcontext) const
    {
 
       if (::is_null(m_pmanager))
@@ -305,7 +305,7 @@ namespace promise
    }
 
 
-   void subject::set_up_to_date(::promise::context * pcontext)
+   void subject::set_up_to_date(::subject::context * pcontext)
    {
 
       pcontext->set_up_to_date(this);
@@ -361,7 +361,7 @@ namespace promise
       if (!pcontext)
       {
 
-         pcontext = __new(::promise::context);
+         pcontext = __new(::subject::context);
 
       }
 
@@ -411,7 +411,7 @@ namespace promise
    }
 
 
-} // namespace promise
+} // namespace subject
 
 
 

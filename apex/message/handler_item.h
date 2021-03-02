@@ -68,7 +68,7 @@ namespace message
 
 
 
-   class handler
+   class handler_item
    {
    public:
 
@@ -76,17 +76,19 @@ namespace message
       enum_message                  m_emessage;
       ::object *                    m_preceiver;
       void *                        m_pHandler;
-      ::promise::handler            m_handler;
+      ::message::handler            m_handler;
 
 
-      handler() :
+      handler_item() :
       m_preceiver(nullptr),
       m_pHandler(nullptr)
       {
 
 
       }
-        handler(::object * preceiver, void  * pHandler) :
+        
+      
+      handler_item(::object * preceiver, void  * pHandler) :
          m_preceiver(preceiver),
          m_pHandler(pHandler)
       {
@@ -156,13 +158,17 @@ namespace message
 //   }
 
 
-   using handler_array = ::array < handler >;
+   using handler_item_array = ::array < handler_item >;
 
-   using handler_map = ::id_map < handler_array >;
-
-   using routine_map = ::id_map < ::promise::routine_array >;
+   using handler_map = ::id_map < handler_item_array >;
 
    //using type_id_route = ::map < enum_type, enum_type, id_route >;
 
 
 } // namespace message
+
+
+using routine_map = ::id_map < ::routine_array >;
+
+
+

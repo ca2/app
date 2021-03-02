@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace promise
+namespace message
 {
 
 
-   class CLASS_DECL_ACME handler :
+   class CLASS_DECL_APEX handler :
            public ::function_pointer
    {
    public:
@@ -22,8 +22,14 @@ namespace promise
    };
 
 
+   using handler_array = ::array < handler >;
 
-} // namespace promise
+   
+   template<typename PRED>
+   void add_handler(handler_array& array, PRED pred);
+
+
+} // namespace message
 
 
 

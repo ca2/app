@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -23,7 +23,7 @@ namespace promise
    //}
 
 
-   ::promise::subject * manager::subject(const ::id & id)
+   ::subject::subject * manager::subject(const ::id & id)
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -31,7 +31,7 @@ namespace promise
       if (!m_pmapSubject)
       {
 
-         m_pmapSubject = __new(::id_map<__pointer(::promise::subject)>);
+         m_pmapSubject = __new(::id_map<__pointer(::subject::subject)>);
 
       }
 
@@ -40,7 +40,7 @@ namespace promise
       if(::is_null(psubject))
       {
 
-         psubject = __new(::promise::subject(this, id));
+         psubject = __new(::subject::subject(this, id));
 
          start_subject_handling(id);
 
@@ -51,7 +51,7 @@ namespace promise
    }
 
 
-   ::promise::subject_pointer manager::fork_subject(const ::id & id)
+   ::subject::subject_pointer manager::fork_subject(const ::id & id)
    {
 
       auto psubject = this->subject(id);
@@ -61,7 +61,7 @@ namespace promise
    }
 
 
-   ::promise::subject * manager::start_subject_handling(const ::id &id)
+   ::subject::subject * manager::start_subject_handling(const ::id &id)
    {
 
       auto psubject = this->subject(id);
@@ -135,7 +135,7 @@ namespace promise
    }
 
    
-   void manager::process(::promise::subject * psubject)
+   void manager::process(::subject::subject * psubject)
    {
 
       psubject->m_esubject = e_subject_prepare;
@@ -145,7 +145,7 @@ namespace promise
    }
 
 
-   void manager::on_subject(::promise::subject * psubject)
+   void manager::on_subject(::subject::subject * psubject)
    {
 
       if (psubject->m_esubject == e_subject_prepare)
@@ -226,14 +226,14 @@ namespace promise
    //{
 
 
-   //   auto psubject = __new(::promise::subject(id, pmatter));
+   //   auto psubject = __new(::subject::subject(id, pmatter));
 
    //   return psubject;
 
    //}
 
 
-//   action_pointer source::promise::subject(const ::id &id, ::matter *pmatter)
+//   action_pointer source::subject::subject(const ::id &id, ::matter *pmatter)
 //   {
 //
 //      auto pupdate = update(id);
@@ -304,7 +304,7 @@ namespace promise
 #include "acme/platform/static_start.h"
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -313,7 +313,7 @@ namespace promise
 
  
 
-   //manager::manager(::promise::manager * pmanager, const ::id & id) :
+   //manager::manager(::subject::manager * pmanager, const ::id & id) :
    //   m_pbacking(pbacking)
    //{
 
@@ -368,7 +368,7 @@ namespace promise
    //void manager::process(const ::action_context & actioncontext)
    //{
 
-   //   ::promise::subject subject(m_id, actioncontext);
+   //   ::subject::subject subject(m_id, actioncontext);
 
    //   m_pbacking->process(&subject);
 
@@ -378,7 +378,7 @@ namespace promise
    //void manager::process()
    //{
 
-   //   ::promise::subject subject(this);
+   //   ::subject::subject subject(this);
 
    //   m_pbacking->process(&subject);
 
@@ -388,7 +388,7 @@ namespace promise
    //void manager::process(const ::payload & payload)
    //{
 
-   //   ::promise::subject subject(this);
+   //   ::subject::subject subject(this);
 
    //   subject.m_var = payload;
 
@@ -402,7 +402,7 @@ namespace promise
    //   //
    //   //   auto& pchange = matterchange.m_element2;
 
-   //   //   ::promise::subject action(this, pchange, pmatter);
+   //   //   ::subject::subject action(this, pchange, pmatter);
 
    //   //   pchange->apply(&action);
 
@@ -413,7 +413,7 @@ namespace promise
 
 
 
-} // namespace promise
+} // namespace subject
 
 
 

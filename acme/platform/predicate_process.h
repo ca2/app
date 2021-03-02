@@ -28,7 +28,7 @@
 //   virtual ::e_status run() override
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return ::error_interface_only;
 //
@@ -79,13 +79,13 @@ public:
 };
 
 
-template < typename PRED >
-::promise::process __process(PRED pred)
-{
-
-    return __new(predicate_process< PRED >(pred));
-
-}
+//template < typename PRED >
+//::future __process(PRED pred)
+//{
+//
+//    return __new(predicate_process< PRED >(pred));
+//
+//}
 
 
 

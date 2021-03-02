@@ -45,7 +45,7 @@
 //   void receive_response(const ::payload&) override
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //   }
 //
@@ -92,7 +92,7 @@ public:
 
 
 template < typename PRED >
-::promise::handler __handler(PRED pred) {
+::message::handler __handler(PRED pred) {
 
     return __new(predicate_handler<PRED>(pred));
 
@@ -137,7 +137,7 @@ public:
 
 
 template < typename TYPE >
-::promise::handler __handler(TYPE * p, void(TYPE::*phandler)(::message::message *))
+::message::handler __handler(TYPE * p, void(TYPE::*phandler)(::message::message *))
 {
 
     return __new(::typed_handler<TYPE>(p, phandler));

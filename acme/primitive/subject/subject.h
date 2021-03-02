@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -11,33 +11,31 @@ namespace promise
    public:
 
 
-      __pointer(::promise::manager)       m_pmanager;
-      ::promise::matter_context           m_mattercontext;
-      ::user::enum_key                       m_ekey;
+      __pointer(::subject::manager)       m_pmanager;
+      ::subject::matter_context           m_mattercontext;
+      ::user::enum_key                    m_ekey;
       ::payload                           m_payload;
       ::i64                               m_iUpdateSerial;
       bool                                m_bModified;
       ::millis                            m_millisSleep;
 
-
-
       enum_subject                        m_esubject;
-      __pointer(::matter)            m_pmatter;
-      __pointer(::layered)           m_pobjectTopic;
+      __pointer(::matter)                 m_pmatter;
+      __pointer(::layered)                m_pobjectTopic;
       ::action_context                    m_actioncontext;
-      __pointer(::layered)           m_psender;
-      __pointer(::layered)           m_puserinteraction; // user::interaction
-      __pointer(::layered)           m_pcontrolevent; // user::control_event
-      __pointer(::file::item)        m_pfileitem;
+      __pointer(::layered)                m_psender;
+      __pointer(::layered)                m_puserinteraction; // user::interaction
+      __pointer(::layered)                m_pcontrolevent; // user::control_event
+      __pointer(::file::item)             m_pfileitem;
       bool                                m_bRet;
 
 
-      subject(::promise::manager * phandler, const ::id & id);
+      subject(::subject::manager * phandler, const ::id & id);
       virtual ~subject();
 
 
       //handler(const ::id &id);
-      //handler(::promise::manager * pbacking, const ::id & id);
+      //handler(::subject::manager * pbacking, const ::id & id);
       //virtual ~handler();
 
 
@@ -66,7 +64,7 @@ namespace promise
 
       void set_modified();
 
-      virtual ::promise::context * context(::matter * pmatter);
+      virtual ::subject::context * context(::matter * pmatter);
 
       //virtual ::e_status run() override;
 
@@ -92,7 +90,8 @@ namespace promise
 
       }
 
-      ::promise::subject & operator=(const ::id & id)
+
+      ::subject::subject & operator=(const ::id & id)
       {
 
          m_id = id;
@@ -100,6 +99,7 @@ namespace promise
          return *this;
 
       }
+
 
       inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
 
@@ -126,10 +126,10 @@ namespace promise
       operator const subject *() const { return this; }
 
 
-      virtual bool is_up_to_date(const ::promise::context * pcontext) const;
+      virtual bool is_up_to_date(const ::subject::context * pcontext) const;
 
 
-      virtual void set_up_to_date(::promise::context * pcontext);
+      virtual void set_up_to_date(::subject::context * pcontext);
 
 
       inline ::id &id() { return m_id; }
@@ -141,7 +141,7 @@ namespace promise
    };
 
 
-   //inline ::promise::subject_pointer new_action(const ::id &id, ::matter *pmatter = nullptr)
+   //inline ::subject::subject_pointer new_action(const ::id &id, ::matter *pmatter = nullptr)
    //{
 
    //   return __new(subject(id, pmatter));
@@ -149,14 +149,14 @@ namespace promise
    //}
 
 
-   //inline ::promise::subject_pointer new_action(const ::id &id, const ::action_context &actioncontext)
+   //inline ::subject::subject_pointer new_action(const ::id &id, const ::action_context &actioncontext)
    //{
 
    //   return __new(subject(id, actioncontext));
 
    //}
-
-
+//
+//
 } // namespace promise
 
 

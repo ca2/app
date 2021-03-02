@@ -1019,7 +1019,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //   /*
 //
@@ -1060,7 +1060,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -1092,7 +1092,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //

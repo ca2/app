@@ -138,7 +138,7 @@ namespace acme
    }
 
 
-   void system::on_subject(::promise::subject *psubject)
+   void system::on_subject(::subject::subject *psubject)
    {
 
       if (psubject->m_esubject == e_subject_prepare)
@@ -195,7 +195,7 @@ namespace acme
 
       }
 
-      ::promise::manager::on_subject(psubject);
+      ::subject::manager::on_subject(psubject);
 
    }
 
@@ -221,7 +221,7 @@ namespace acme
    }
 
 
-   ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
+   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -229,7 +229,7 @@ namespace acme
    }
 
 
-   ::e_status system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
       auto proutine = ___sync_routine(routine);
@@ -317,20 +317,20 @@ namespace acme
    }
 
 
-   ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox , const ::promise::process & process)
+   __pointer(::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto result = message_box_for_console(pszText, pszTitle, emessagebox);
+      auto presult = __new(::future < ::conversation >);
 
-      process(result);
+      presult->set_status(error_interface_only);
 
-      //printf("\n%s\n%s", pszTitle, pszText);
+      //return presult;
 
-      //getchar();
+      //auto pprocess = __new(with_status < enum_dialog_result >);
 
-      //getchar();
+      //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
-      return ::success;
+      return presult;
 
    }
 

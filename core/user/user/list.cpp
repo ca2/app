@@ -787,7 +787,7 @@ namespace user
 
             auto color = get_color(pstyle, ::user::e_element_item_text);
 
-            if (!color)
+            if (!color.is_ok())
             {
 
                color = argb(255, 96, 96, 96);
@@ -796,7 +796,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            color.alpha = 90;
+            color.m_result.alpha = 90;
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, color);
 
@@ -7495,7 +7495,7 @@ namespace user
 
          ::color::color color;
 
-         color.set_COLORREF(m_colorText);
+         color.set_COLORREF(m_colorText.m_result);
 
          color.alpha = color.alpha / 3;
 
@@ -7537,9 +7537,10 @@ namespace user
                      m_plist->m_blur,
                      pimage2,
                      m_pgraphics->m_pfont,
-                  m_ealign, m_edrawtext,
-                     m_colorText,
-                     m_colorTextBackground,
+                     m_ealign,
+                     m_edrawtext,
+                     m_colorText.m_result,
+                     m_colorTextBackground.m_result,
                      m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
                      m_plist->m_iTextBlur,
                      m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]))
@@ -7547,7 +7548,7 @@ namespace user
 
                   m_plist->m_mapText[m_iItem] = m_strText;
 
-                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground;
+                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground.m_result;
 
                }
 

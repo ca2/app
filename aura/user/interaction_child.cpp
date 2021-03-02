@@ -367,20 +367,20 @@ namespace user
    //}
 
 
-   u32 interaction_child::GetStyle() const
-   {
+   //u32 interaction_child::GetStyle() const
+   //{
 
-      return ::user::primitive_impl::GetStyle();
+   //   return ::user::primitive_impl::GetStyle();
 
-   }
+   //}
 
 
-   u32 interaction_child::GetExStyle() const
-   {
+   //u32 interaction_child::GetExStyle() const
+   //{
 
-      return ::user::primitive_impl::GetExStyle();
+   //   return ::user::primitive_impl::GetExStyle();
 
-   }
+   //}
 
 
    //lresult interaction_child::default_window_procedure()
@@ -456,26 +456,26 @@ namespace user
    }
 
 
-   iptr interaction_child::get_window_long_ptr(i32 nIndex) const
-   {
+   //iptr interaction_child::get_window_long_ptr(i32 nIndex) const
+   //{
 
-      return m_longptr[nIndex];
+   //   return m_longptr[nIndex];
 
-   }
+   //}
 
 
-   iptr interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
+   //::e_status interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //{
 
-      auto & l = m_longptr[nIndex];
+   //   auto & l = m_longptr[nIndex];
 
-      auto lOld = l;
+   //   auto lOld = l;
 
-      l = lValue;
+   //   l = lValue;
 
-      return lOld;
+   //   return lOld;
 
-   }
+   //}
 
 
    bool interaction_child::is_this_visible(enum_layout elayout)

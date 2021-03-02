@@ -106,7 +106,7 @@ namespace music
                   {
                      PrerollAndWait(link.m_tkRestart);
                   }
-                  catch(::exception_pointer e)
+                  catch(const ::exception::exception & e)
                   {
                      return;
                   }
@@ -121,7 +121,7 @@ namespace music
                   {
                      PrerollAndWait(link.m_tkRestart);
                   }
-                  catch(::exception_pointer e)
+                  catch(const ::exception::exception & e)
                   {
                      return;
                   }
@@ -143,7 +143,7 @@ namespace music
                   {
                      PrerollAndWait(link.m_tkRestart);
                   }
-                  catch(::exception_pointer e)
+                  catch(const ::exception::exception & e)
                   {
                      return;
                   }
@@ -255,7 +255,7 @@ namespace music
             }
             catch (::exception_pointer e)
             {
-               __throw(not_implemented());
+               __throw(error_not_implemented);
                /*string str;
                str.load_string(IDS_PREROLLUSERERROR001);
                pme->SetUserText(str);*/

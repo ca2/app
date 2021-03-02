@@ -24,10 +24,10 @@ namespace simple_ui
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      color32_t crBk;
-      color32_t crBkSel;
-      color32_t crSel;
-      color32_t cr;
+      with_status < ::color::color > crBk;
+      with_status < ::color::color > crBkSel;
+      with_status < ::color::color > crSel;
+      with_status < ::color::color > cr;
 
       auto pstyle = get_style(pgraphics);
 

@@ -531,7 +531,7 @@ namespace user
    }
 
 
-   void button::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       interaction::on_subject(psubject, pcontext);
@@ -877,19 +877,19 @@ namespace user
 
       auto color = get_color(pstyle, e_element_background);
 
-      color32_t cr;
+      with_status < ::color::color > cr;
 
       if(echeck() == ::check_checked)
       {
 
-         color.hls_rate(0.0,- 0.2,- 0.3);
+         color->hls_rate(0.0,- 0.2,- 0.3);
 
       }
 
       if(m_itemHover.is_set())
       {
 
-         color.hls_rate(0.0,0.2,0.0);
+         color->hls_rate(0.0,0.2,0.0);
 
       }
 

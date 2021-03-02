@@ -1268,7 +1268,7 @@ namespace user
       if (iPane < 0 || iPane >= get_pane_count())
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -1375,7 +1375,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.alpha > 0)
+      if (colorBackground.m_result.alpha > 0)
       {
 
          ::rectangle_i32 rectClient;

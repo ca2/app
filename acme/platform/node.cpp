@@ -45,7 +45,7 @@ namespace acme
    ::color::color node::get_system_color(enum_system_color esystemcolor)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return argb(0, 0, 0, 0);
 
@@ -317,13 +317,13 @@ namespace acme
    }
 
 
-   void node::node_fork(const ::promise::routine & routine)
+   void node::node_fork(const ::routine & routine)
    {
 
    }
 
 
-   void node::node_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
+   void node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
       auto proutine = __sync_routine(routine);
@@ -335,14 +335,14 @@ namespace acme
    }
 
 
-//   void node::user_fork(const ::promise::routine & routine)
+//   void node::user_fork(const ::routine & routine)
 //   {
 //
 //
 //   }
 
 
-//   void node::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
+//   void node::user_sync(const ::duration & durationTimeout, const ::routine & routine)
 //   {
 //
 //      auto proutine = __sync_routine(routine);
@@ -374,7 +374,7 @@ namespace acme
    }
 
 
-  bool node::should_launch_on_node(::promise::subject * psubject)
+  bool node::should_launch_on_node(::subject::subject * psubject)
   {
 
       return false;
@@ -382,7 +382,7 @@ namespace acme
   }
 
 
-  bool node::defer_launch_on_node(::promise::subject * psubject)
+  bool node::defer_launch_on_node(::subject::subject * psubject)
   {
 
       bool bShouldLaunchOnNode = should_launch_on_node(psubject);
@@ -408,7 +408,7 @@ namespace acme
   }
 
 
-  bool node::launch_on_node(::promise::subject * psubject)
+  bool node::launch_on_node(::subject::subject * psubject)
   {
 
       return false;
@@ -496,7 +496,7 @@ namespace acme
    ::e_status node::get_system_time(system_time_t * psystemtime)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -506,7 +506,7 @@ namespace acme
    ::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -516,7 +516,7 @@ namespace acme
    ::e_status node::open_folder(::file::path & pathFolder)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
      
       return ::error_interface_only;
 

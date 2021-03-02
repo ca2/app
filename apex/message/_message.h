@@ -43,7 +43,8 @@ namespace message
 #include "const.h"
 #include "id.h"
 #include "receiver.h"
-#include "route.h"
+#include "handler.h"
+#include "handler_item.h"
 #include "message.h"
 #include "definition.h"
 #include "channel.h"
@@ -51,7 +52,7 @@ namespace message
 #include "_impl.h"
 #include "listener_smart_pointer_array.h"
 
-
+#include "predicate_handler.h"
 //#ifdef WINDOWS_DESKTOP
 //
 //#define MESSAGE MSG

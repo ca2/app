@@ -456,7 +456,7 @@ int_bool is_windows_8_or_greater()
    if(!GetVersionEx(&osversioninfo))
       return 0;
 
-   __throw(todo());
+   __throw(todo);
 
    return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion >= 6 && osversioninfo.dwMinorVersion >= 2;
 
@@ -836,17 +836,71 @@ CLASS_DECL_ACME hinstance get_module_handle(const platform_char * psz)
 
 }
 
+namespace windows
+{
 
-void show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   class CLASS_DECL_ACME message_box :
+      virtual public ::conversation
+   {
+   public:
+
+      HWND                 m_hwnd;
+      string               m_strMessage;
+      string               m_strTitle;
+      ::e_message_box      m_emessagebox;
+
+      
+      message_box() { m_hwnd = nullptr; m_emessagebox = e_message_box_ok; }
+
+      ::enum_dialog_result show(HWND hwnd, const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
+      {
+
+         m_hwnd = hwnd;
+         m_strMessage = pszMessage;
+         m_strTitle = pszTitle;
+         m_emessagebox = emessagebox;
+
+         return __show();
+
+      }
+
+      
+         ::enum_dialog_result __show()
+         {
+
+            return
+               (::enum_dialog_result)
+               ::MessageBox(
+                  m_hwnd,
+                  wstring(m_strMessage),
+                  wstring(m_strTitle),
+                  (i32)m_emessagebox.m_eenum);
+
+         }
+
+   };
+
+
+} // namespace windows
+
+
+
+__pointer(::future < ::conversation >) show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox)
 {
 
    wstring wstrMessage(strMessage);
 
    wstring wstrTitle(strTitle);
 
-   auto result = ::MessageBox(nullptr, wstrMessage, wstrTitle, (i32)emessagebox);
+   auto pmessagebox = __new(windows::message_box);
 
-   process(result);
+   auto pfuture = pmessagebox->asynchronous <::conversation>::future();
+
+   pmessagebox->m_edialogresult = pmessagebox->show(nullptr, strMessage, strTitle, emessagebox);
+
+   pfuture->set_status(::success);
+
+   return pfuture;
 
 }
 

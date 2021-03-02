@@ -496,7 +496,7 @@ namespace sockets
 
    void udp_socket::SetBroadcast(bool b)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*
       int one = 1;
       int zero = 0;
@@ -524,7 +524,7 @@ namespace sockets
 
    bool udp_socket::IsBroadcast()
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*int is_broadcast = 0;
       socklen_t size;
 
@@ -542,7 +542,7 @@ namespace sockets
 
    void udp_socket::SetMulticastTTL(int ttl)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*if (GetSocket() == INVALID_SOCKET)
       {
       CreateConnection();
@@ -556,7 +556,7 @@ namespace sockets
 
    int udp_socket::GetMulticastTTL()
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*int ttl = 0;
       socklen_t size = sizeof(int);
 
@@ -574,7 +574,7 @@ namespace sockets
 
    void udp_socket::SetMulticastLoop(bool x)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*if (GetSocket() == INVALID_SOCKET)
       {
       CreateConnection();
@@ -598,7 +598,7 @@ namespace sockets
 
    bool udp_socket::IsMulticastLoop()
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*if (GetSocket() == INVALID_SOCKET)
       {
       CreateConnection();
@@ -625,7 +625,7 @@ namespace sockets
 
    void udp_socket::AddMulticastMembership(const string & group, const string & local_if, int if_index)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -664,7 +664,7 @@ namespace sockets
 
    void udp_socket::DropMulticastMembership(const string & group, const string & local_if, int if_index)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -703,7 +703,7 @@ namespace sockets
 
    void udp_socket::SetMulticastHops(int hops)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*if (GetSocket() == INVALID_SOCKET)
       {
       CreateConnection();
@@ -722,7 +722,7 @@ namespace sockets
 
    int udp_socket::GetMulticastHops()
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*
       if (GetSocket() == INVALID_SOCKET)
       {

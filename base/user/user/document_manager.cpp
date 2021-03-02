@@ -755,7 +755,7 @@ namespace user
       if(pcreate->m_pcommandline->m_varFile.is_empty())
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   void document_manager::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void document_manager::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       auto templateptra = m_templateptra;

@@ -76,7 +76,7 @@ namespace browser
    }
 
 
-   void gcom::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void gcom::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       UNREFERENCED_PARAMETER(psubject);

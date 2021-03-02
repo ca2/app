@@ -2369,7 +2369,7 @@ namespace aura
 
 #else
 
-            __throw(todo());
+            __throw(todo);
 
 #endif
 
@@ -2392,7 +2392,7 @@ namespace aura
 
 #if defined(_UWP)
 
-            __throw(todo());
+            __throw(todo);
 
 #else
             auto plauncher = __create_new<::apex::shell_launcher>();
@@ -2431,7 +2431,7 @@ namespace aura
 
 #ifdef _UWP
 
-            __throw(todo());
+            __throw(todo);
 
 #else
 
@@ -2465,7 +2465,7 @@ namespace aura
 
 #ifdef _UWP
 
-            __throw(todo());
+            __throw(todo);
 
 #else
 
@@ -2576,7 +2576,7 @@ namespace aura
    }
 
 
-   __result(::apex::session) system::on_create_session(index iEdge)
+   __transport(::apex::session) system::on_create_session(index iEdge)
    {
 
       return ::aqua::system::on_create_session(iEdge);
@@ -2935,7 +2935,7 @@ namespace aura
    //string system::url_encode(const string & str)
    //{
 
-   //   //__throw(interface_only_exception());
+   //   //__throw(error_interface_only);
 
    //   return url_encode(str);
 
@@ -3617,7 +3617,7 @@ namespace aura
 //
 //#else
 //
-//      //__throw(todo());
+//      //__throw(todo);
 //
 //      //::get_window_rect(::get_desktop_window(),prectangle);
 //
@@ -5490,7 +5490,7 @@ namespace aura
    __pointer(::data::node) system::load_xml(const char* pszXml)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -6339,7 +6339,7 @@ namespace aura
 
 
 
-   void system::on_subject(::promise::subject * psubject)
+   void system::on_subject(::subject::subject * psubject)
    {
 
       if (psubject->m_esubject == e_subject_prepare)
@@ -6369,7 +6369,7 @@ namespace aura
    }
 
 
-   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::aqua::system::on_subject(psubject, pcontext);
@@ -6714,7 +6714,7 @@ namespace aura
    //}
 
 
-   ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
+   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
    {
 
 #ifdef _UWP
@@ -6723,7 +6723,7 @@ namespace aura
 
 #else
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return ::error_interface_only;
 

@@ -3321,7 +3321,7 @@ namespace apex
    sp(::user::message) application::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       return nullptr;
 

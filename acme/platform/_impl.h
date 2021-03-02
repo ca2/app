@@ -36,7 +36,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -131,7 +131,7 @@ public:
 //
 //
 //   template < class APP >
-//   __result(::acme::application) single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
+//   __transport(::acme::application) single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -414,7 +414,7 @@ namespace str
 } // namespace str
 
 
-inline void copy(void *, const void *) /* = 0 */ {__throw(interface_only_exception()); }
+inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
 
 
 namespace papaya
@@ -721,6 +721,231 @@ inline i64 ref_count(c_derived * pca)
    }
 
    return pca->get_ref_count();
+
+}
+
+
+
+template < typename RESULT, typename TRANSPORT >
+future < RESULT, TRANSPORT > ::future()
+{
+
+   m_transport = this;
+
+   m_pevent = nullptr;
+
+}
+
+
+//template < typename RESULT >
+//void future < RESULT > ::set_object(const RESULT& result, const ::e_status& estatus)
+//{
+//
+//   critical_section_lock lock(get_future_critical_section());
+//
+//   if (m_transport.m_estatus == error_not_initialized)
+//   {
+//
+//      m_transport.m_estatus = estatus;
+//
+//      m_transport.m_result = result;
+//
+//      if (m_pevent)
+//      {
+//
+//         m_pevent->SetEvent();
+//
+//      }
+//
+//      if (m_preceptor)
+//      {
+//
+//         m_preceptor->get(this);
+//
+//      }
+//
+//   }
+//
+//}
+
+
+template < typename RESULT, typename TRANSPORT >
+void future < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
+{
+
+   critical_section_lock lock(get_future_critical_section());
+
+   if (m_transport.m_estatus == error_not_initialized)
+   {
+
+      m_transport.m_estatus = estatus;
+
+      if (m_pevent)
+      {
+
+         m_pevent->SetEvent();
+
+      }
+
+      if (m_preceptor)
+      {
+
+         m_preceptor->get(*this);
+
+      }
+
+   }
+
+}
+
+
+template < typename OBJECT, typename TRANSPORT >
+TRANSPORT & future < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
+{
+
+   critical_section_lock lock(get_future_critical_section());
+
+   if (m_transport.m_estatus == error_not_initialized)
+   {
+
+      m_pevent = new manual_reset_event();
+
+      if (!m_pevent->wait(duration).succeeded())
+      {
+
+         lock.lock();
+
+         if (m_transport.m_estatus == error_not_initialized)
+         {
+
+            m_transport.m_estatus = error_timeout;
+
+         }
+
+         lock.unlock();
+
+      }
+
+   }
+
+   return m_transport;
+
+}
+
+
+template < typename OBJECT, typename TRANSPORT >
+::e_status future < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
+{
+
+   critical_section_lock lock(get_future_critical_section());
+
+   if (m_transport.m_estatus == error_not_initialized)
+   {
+
+      m_pevent = new manual_reset_event();
+
+      lock.unlock();
+
+      if (!m_pevent->wait(duration).succeeded())
+      {
+
+         lock.lock();
+
+         if (m_transport.m_estatus == error_not_initialized)
+         {
+
+            m_transport.m_estatus = error_timeout;
+
+         }
+
+         lock.unlock();
+
+      }
+
+   }
+
+   return m_transport.m_estatus;
+
+}
+
+
+template < typename OBJECT, typename TRANSPORT >
+template < typename PREDICATE >
+future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
+{
+
+   critical_section_lock lock(get_future_critical_section());
+
+   if (m_transport.m_estatus == error_not_initialized)
+   {
+
+      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+
+   }
+   else
+   {
+
+      lock.unlock();
+
+      predicate(this);
+
+   }
+   
+   return *this;
+
+}
+
+
+template < typename OBJECT, typename TRANSPORT >
+template < typename PREDICATE >
+future < OBJECT, TRANSPORT >& future < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
+{
+
+   critical_section_lock lock(get_future_critical_section());
+
+   if (m_transport.m_estatus == error_not_initialized)
+   {
+
+      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+
+      m_pevent = new manual_reset_event();
+
+      lock.unlock();
+
+      if (!m_pevent->wait(duration).succeeded())
+      {
+
+         lock.lock();
+
+         if (m_transport.m_estatus == error_not_initialized)
+         {
+
+            m_transport.m_estatus = error_timeout;
+
+         }
+
+         lock.unlock();
+
+         if (m_transport.m_estatus == error_timeout)
+         {
+
+            predicate(this);
+
+         }
+
+      }
+
+   }
+   else
+   {
+
+      lock.unlock();
+
+      predicate(this);
+
+   }
+
+   return *this;
 
 }
 

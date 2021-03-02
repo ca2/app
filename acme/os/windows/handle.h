@@ -274,7 +274,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
       {
          pTemp = pfnAllocator(papp, h);
          if (pTemp == nullptr)
-            __throw(memory_exception());
+            __throw(error_no_memory);
       }
       else
       {
@@ -282,7 +282,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
    //      ASSERT((::u32)m_pClass->m_nObjectSize == m_alloc.GetAllocSize());
          pTemp = (CT*)m_alloc.Alloc();
          if (pTemp == nullptr)
-            __throw(memory_exception());
+            __throw(error_no_memory);
 
          // now construct the matter in place
          ASSERT(m_pfnConstructObject != nullptr);

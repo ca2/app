@@ -104,7 +104,7 @@ namespace str
 
 #ifdef _UWP
 
-      __throw(todo());
+      __throw(todo);
 
 #elif defined(WINDOWS_DESKTOP)
 

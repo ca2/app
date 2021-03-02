@@ -259,7 +259,7 @@ serial::list_ports(void)
       if( !description.empty() )
          port_info.description = description;
 
-      string serial_number = rtrim(get_string_property( parent, "USB Serial Number" ) );
+      string serial_number = rtrim(get_string_property( parent, "USB serial Number" ) );
       u16 vendor_id = get_int_property( parent, "idVendor" );
       u16 product_id = get_int_property( parent, "idProduct" );
 

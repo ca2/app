@@ -30,7 +30,7 @@ namespace macos
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
+   ::extended::status stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
    {
 
       if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
@@ -316,7 +316,7 @@ namespace macos
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
 
       return nullptr;
 
@@ -328,7 +328,7 @@ namespace macos
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
    void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -336,7 +336,7 @@ namespace macos
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
    void stdio_file::dump(dump_context & dumpcontext) const

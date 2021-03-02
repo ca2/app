@@ -209,7 +209,7 @@ namespace music
                {
                   //         PrerollAndWait(m_dNextPositionRate);
                }
-               catch(::exception_pointer e)
+               catch(const ::exception::exception & e)
                {
                   return;
                }

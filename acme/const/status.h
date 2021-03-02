@@ -91,6 +91,16 @@ enum enum_status : ::i64
    error_last_error,
    error_already_working_on_it,
    error_all_failed,
+   error_resource,
+   error_win32,
+   error_not_supported,
+   error_null_pointer,
+   todo,
+   error_what_exclamation_exclamation,
+   error_parsing,
+   error_invalid_character,
+   error_assert,
+
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,
@@ -146,9 +156,14 @@ enum enum_status : ::i64
    error_interface_only,
    error_cancelled,
    error_catch_all_exception,
-
+   error_overflow,
+   error_range,
+   error_invalid_type,
+   error_unexpected_situation,
 
    error_io = INT_FAILURE_STATUS(STATUS_RANGE_IO),
+   error_serial,
+   error_serial_io,
 
 
    error_file = INT_FAILURE_STATUS(STATUS_RANGE_FILE),

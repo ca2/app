@@ -104,7 +104,7 @@ namespace file
    //}
 
 
-   ::status::result file::open(const ::file::path & path, const ::file::e_open & eopen)
+   ::extended::status file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       UNREFERENCED_PARAMETER(path);
@@ -1025,7 +1025,7 @@ namespace file
       buf.set_size(uiBufSize);
 
       if(buf.get_data() == nullptr)
-         __throw(memory_exception());
+         __throw(error_no_memory);
 
       try
       {

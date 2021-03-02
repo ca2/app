@@ -10,7 +10,7 @@ inline number_cast<TYPE>::number_cast(::i64 i)
    if (i > (::i64)::numeric_info < TYPE >::maximum() || i < (::i64)::numeric_info < TYPE >::minimum())
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(TYPE) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(TYPE) ">\"");
 
    }
 
@@ -26,7 +26,7 @@ inline number_cast<TYPE>::number_cast(int i)
    if (i > (int)::numeric_info < TYPE >::maximum() || i < (int)::numeric_info < TYPE >::minimum())
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(TYPE) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(TYPE) ">\"");
 
    }
 
@@ -43,7 +43,7 @@ inline iptr_cast::iptr_cast(::i64 i)
    if (i > INT_MAX || i < INT_MIN)
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(NUMBER) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(NUMBER) ">\""));
 
    }
 
@@ -59,7 +59,7 @@ inline i32_cast::i32_cast(::i64 i)
    if (i > INT_MAX || i < INT_MIN)
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(NUMBER) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(NUMBER) ">\"");
 
    }
 
@@ -73,7 +73,7 @@ inline i32_cast::i32_cast(unsigned int u)
    if (u > INT_MAX)
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(NUMBER) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(NUMBER) ">\"");
 
    }
 
@@ -87,7 +87,7 @@ inline u32_cast::u32_cast(::i64 i)
    if (i > UINT_MAX || i < 0)
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(NUMBER) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(NUMBER) ">\"");
 
    }
 
@@ -102,7 +102,7 @@ inline u32_cast::u32_cast(int i)
    if (i < 0)
    {
 
-      __throw(invalid_type("not valid \"<" __STRING(NUMBER) ">\""));
+      __throw(error_invalid_type, "not valid \"<" __STRING(NUMBER) ">\"");
 
    }
 

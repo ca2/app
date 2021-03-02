@@ -86,7 +86,7 @@ namespace win32
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -101,7 +101,7 @@ namespace win32
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -116,7 +116,7 @@ namespace win32
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 

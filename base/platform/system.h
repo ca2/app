@@ -654,7 +654,7 @@ namespace base
 //
 //      virtual ::e_status create_session(index iEdge = 0);
 //
-//      virtual __result(::aura::session) on_create_session(index iEdge);
+//      virtual __transport(::aura::session) on_create_session(index iEdge);
 //
 //      virtual ::aura::session * session(index iEdge = 0);
 //
@@ -977,7 +977,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+//      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

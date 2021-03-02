@@ -3298,7 +3298,7 @@ namespace user
    }
 
 
-   void tab::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void tab::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::interaction::on_subject(psubject, pcontext);
@@ -3353,7 +3353,7 @@ namespace user
    void tab::rotate()
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 

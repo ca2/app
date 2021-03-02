@@ -217,7 +217,7 @@ namespace axis
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (::exception_pointer pe)
+   //      catch (const ::exception::exception & e)
    //      {
 
    //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)

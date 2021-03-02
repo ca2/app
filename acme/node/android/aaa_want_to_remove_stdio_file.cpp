@@ -24,7 +24,7 @@
 //   }
 //
 //
-//   ::status::result stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
+//   ::extended::status stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
 //   {
 //      ASSERT(lpszFileName != nullptr);
 //      //ASSERT(AfxIsValidString(lpszFileName));
@@ -318,7 +318,7 @@
 //      ASSERT_VALID(this);
 //      ASSERT(m_pStream != nullptr);
 //
-//      __throw(not_supported_exception());
+//      __throw(error_not_supported);
 //      return nullptr;
 //   }
 //
@@ -327,7 +327,7 @@
 //      ASSERT_VALID(this);
 //      ASSERT(m_pStream != nullptr);
 //
-//      __throw(not_supported_exception());
+//      __throw(error_not_supported);
 //   }
 //
 //   void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -335,7 +335,7 @@
 //      ASSERT_VALID(this);
 //      ASSERT(m_pStream != nullptr);
 //
-//      __throw(not_supported_exception());
+//      __throw(error_not_supported);
 //   }
 //
 //

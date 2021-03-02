@@ -18,7 +18,7 @@ namespace sockets
       http_batch_buffer();
 
 
-      virtual ::status::result open(const char * pszFileName, ::u32 nOpenFlags);
+      virtual ::extended::status open(const char * pszFileName, ::u32 nOpenFlags);
 
       virtual void close();
       virtual void flush();

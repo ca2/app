@@ -21,7 +21,7 @@ public:
 
    void call_update(::u64 uId);
    virtual void apply(::action * psubject);
-   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
+   virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    virtual bool update((::update * pupdate);
 
 

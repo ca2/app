@@ -139,7 +139,7 @@ namespace sockets
    //{
    //   UNREFERENCED_PARAMETER(pszUrl);
    //   //UNREFERENCED_PARAMETER(psocket);
-   //   //__throw(not_implemented());
+   //   //__throw(error_not_implemented);
    //   psocket->m_bDirect = true;
    //}
 

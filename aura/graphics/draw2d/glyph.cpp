@@ -526,7 +526,7 @@ namespace draw2d
 //
 //#else
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#endif
 
@@ -551,7 +551,7 @@ namespace draw2d
 //
 //#else
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#endif
 

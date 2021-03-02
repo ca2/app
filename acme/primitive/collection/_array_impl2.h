@@ -439,7 +439,7 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::append(const array& src)
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    ::count nOldSize = __count(this->m_nSize);
    this->allocate(__count(this->m_nSize) + __count(src.m_nSize));

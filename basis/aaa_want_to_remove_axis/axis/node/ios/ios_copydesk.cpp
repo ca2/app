@@ -24,7 +24,7 @@ namespace ios
 //      if(!m_p->OpenClipboard())
 //         return 0;
       i32 iCount = 0;
-      __throw(todo());
+      __throw(todo);
       /* xxx HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       if(hdrop != nullptr)
       {
@@ -42,7 +42,7 @@ namespace ios
          return;
 //      if(!m_p->OpenClipboard())
       //       return;
-      __throw(todo());
+      __throw(todo);
       /* HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       string str;
       for(i32 i = 0; i < iCount; i++)
@@ -69,7 +69,7 @@ namespace ios
          iLen += ::str::international::utf8_to_unicode_count(patha[i]) + 1;
       }
 
-      __throw(todo());
+      __throw(todo);
 
       /* xxx
 
@@ -164,7 +164,7 @@ namespace ios
 //         return;
 //      }
 
-      __throw(todo());
+      __throw(todo);
 
       /*
 
@@ -194,7 +194,7 @@ namespace ios
 
    string copydesk::get_plain_text()
    {
-      __throw(todo());
+      __throw(todo);
       return "";
       /* xxx
             if (IsClipboardFormatAvailable(CF_UNICODETEXT))
@@ -229,7 +229,7 @@ namespace ios
 //      if(!m_p->OpenClipboard())
 //         return false;
       bool bOk = false;
-      __throw(todo());
+      __throw(todo);
       /* xxx
             HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
             try

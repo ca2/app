@@ -50,7 +50,7 @@ namespace draw2d_direct2d
 //      ASSERT(get_os_data() != nullptr);
 //      return ::GetPaletteEntries((HPALETTE)get_os_data(), nStartIndex, nNumEntries, lpPaletteColors);
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 
       return 0;
@@ -63,7 +63,7 @@ namespace draw2d_direct2d
 //      ASSERT(get_os_data() != nullptr); return ::SetPaletteEntries((HPALETTE)get_os_data(), nStartIndex,
 //                                            nNumEntries, lpPaletteColors);
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 
       return 0;
@@ -72,7 +72,7 @@ namespace draw2d_direct2d
    void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
                                 LPPALETTEENTRY lpPaletteColors)
    {
-      __throw(todo());
+      __throw(todo);
 
       //   ASSERT(get_os_data() != nullptr); ::AnimatePalette((HPALETTE)get_os_data(), nStartIndex, nNumEntries,
       //lpPaletteColors);
@@ -82,7 +82,7 @@ namespace draw2d_direct2d
    ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       /*   ASSERT(get_os_data() != nullptr); return ::GetNearestPaletteIndex((HPALETTE)get_os_data(), crColor);
       */
@@ -90,7 +90,7 @@ namespace draw2d_direct2d
 
    bool palette::ResizePalette(::u32 nNumEntries)
    {
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(get_os_data() != nullptr);
       //return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != false;
@@ -98,7 +98,7 @@ namespace draw2d_direct2d
 
    int palette::GetEntryCount()
    {
-      __throw(todo());
+      __throw(todo);
 
       //   ASSERT(get_os_data() != nullptr); ::u16 nEntries;
       //::GetObject((HANDLE) get_os_data(), sizeof(::u16), &nEntries); return (int)nEntries;

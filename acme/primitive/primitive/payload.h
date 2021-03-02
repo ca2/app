@@ -91,8 +91,7 @@ public:
       ::i64_array *              m_pi64a;
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
-      ::promise::routine         m_routine;
-      ::promise::process         m_process;
+      ::routine                  m_routine;
       ::i64                      m_all[2];
 
 
@@ -142,8 +141,8 @@ public:
    payload(const property_set & set);
    payload(const payload & payload);
    payload(const property & prop);
-   payload(const ::promise::routine & routine);
-   payload(const ::promise::process & process);
+   payload(const ::routine & routine);
+   //payload(const ::future & process);
    payload(const property * pproperty);
    payload(const class duration & duration);
    payload(class duration * pduration);
@@ -162,7 +161,7 @@ public:
    }
 
    template < class T >
-   payload(const result_pointer<T> & resultpointer)
+   payload(const ::extended::transport<T> & resultpointer)
    {
       m_etype = e_type_new;
 
@@ -318,8 +317,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
-   ::promise::routine               get_routine() const;
-   ::promise::process               get_process() const;
+   ::routine               get_routine() const;
+   //::future               get_process() const;
    string                           to_r_string() const;
    string                           get_string(const char * pszOnNull = nullptr) const;
    string &                         get_ref_string(const char * pszOnNull = nullptr);
@@ -493,8 +492,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
-   payload& operator = (const ::promise::routine & routine);
-   payload& operator = (const ::promise::process & process);
+   payload& operator = (const ::routine & routine);
+   //payload& operator = (const ::future & process);
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
@@ -629,7 +628,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
    template < class T >
-   payload & operator = (const result_pointer < T > & resultpointer)
+   payload & operator = (const ::extended::transport < T > & resultpointer)
    {
 
       if (!resultpointer)
@@ -933,7 +932,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    void _001Add(const string_array & stra);
 
 
-   ::status::result run();
+   ::extended::status run();
 
 
    void receive_response(const payload & payload);

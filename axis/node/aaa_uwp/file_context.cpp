@@ -137,7 +137,7 @@ namespace uwp
 
          auto pbuffer = __new(::uwp::native_buffer);
 
-         //::status::result ::status::result = spfile->open(folder, strPath,nOpenFlags);
+         //::extended::status ::extended::status = spfile->open(folder, strPath,nOpenFlags);
 
          auto result = pbuffer->open(folder, path, eopen);
 

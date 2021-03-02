@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   void form_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void form_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::form_view::on_subject(psubject, pcontext);

@@ -14,7 +14,7 @@ multi_lock::multi_lock(const synchronization_array & synca,bool bInitialLock)
    if(synca.sync_count() <= 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -45,7 +45,7 @@ multi_lock::multi_lock(::count c, const synchronization_array & synca, bool bIni
    if (synca.m_hsyncaCache.is_empty() || c <= 0 || c > synca.m_hsyncaCache.get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

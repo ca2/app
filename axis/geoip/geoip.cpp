@@ -1079,7 +1079,7 @@ _GeoIP_lookupaddress_v6(const char *host)
    return ipnum;
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 #endif
 

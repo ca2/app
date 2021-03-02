@@ -183,7 +183,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void plugin::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::interaction::on_subject(psubject, pcontext);

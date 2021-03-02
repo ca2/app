@@ -220,9 +220,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               color32_t    crMoveableBorder;
-               color32_t    crMoveableBorderHilight;
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color > crMoveableBorder;
+               with_status < ::color::color > crMoveableBorderHilight;
+               with_status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -252,7 +252,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectA, rectangle, eside);
 
-                  pgraphics->fill_rectangle(rectangle, a_rgb(255, crMoveableBorder));//m_colorMoveableBorderDkShadow);
+                  pgraphics->fill_rectangle(rectangle, opaque(crMoveableBorder));//m_colorMoveableBorderDkShadow);
 
                   // rgb(255, 170, 136) RedOrange
                }
@@ -278,7 +278,7 @@ SizingNone:;
                      class imaging & imaging = System.imaging();
                      imaging.color_blend(pgraphics,
                                          rectangle,
-                                         crMoveableBorder,
+                                         crMoveableBorder.m_result,
                                          127);
 
                   }
@@ -293,7 +293,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
                }
                else
@@ -303,7 +303,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
 
                   ::rectangle_i32 rectClientB = rectA;

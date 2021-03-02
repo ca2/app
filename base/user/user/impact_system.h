@@ -97,9 +97,9 @@ namespace user
       //   bool bCreateView);
 
       virtual void update_all_views(::user::impact * pimpact, const ::id & id);
-      virtual void update_all_views(::promise::subject * psubject);
+      virtual void update_all_views(::subject::subject * psubject);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 

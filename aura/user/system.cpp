@@ -17,50 +17,52 @@ namespace user
 
       create_common_construct();
 
-#ifdef WINDOWS
-      m_createstruct = system.m_createstruct;
-      set_class_name(string(system.m_createstruct.lpszClass));
-      set_window_name(string(system.m_createstruct.lpszName));
-#else
-      m_createstruct = system.m_createstruct;
-      set_class_name(system.m_createstruct.lpszClass);
-      set_window_name(system.m_createstruct.lpszName);
-#endif
+//#ifdef WINDOWS
+//      //m_createstruct = system.m_createstruct;
+//      //set_class_name(string(system.m_createstruct.lpszClass));
+//      //set_window_name(string(system.m_createstruct.lpszName));
+//#else
+//      //m_createstruct = system.m_createstruct;
+//      //set_class_name(system.m_createstruct.lpszClass);
+//      //set_window_name(system.m_createstruct.lpszName);
+//#endif
       m_puserinteractionOwner = nullptr;
       m_routineFailure = system.m_routineFailure;
       m_routineSuccess = system.m_routineSuccess;
-      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
+      //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
    }
 
 
-   system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
-   system(rectangle)
+   //system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
+   //system(rectangle)
+   //{
+
+   //   m_createstruct.dwExStyle = uiExStyle;
+   //   set_class_name(pszClassName);
+   //   set_window_name(pszWindowName);
+   //   m_createstruct.style = uStyle;
+   //   m_pcreate = pcreate;
+   //   m_puserinteractionOwner = nullptr;
+
+   //}
+
+
+   //system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
+   //system::system(const ::rectangle_i32& rectangle, ::create* pcreate)
+   system::system(::create* pcreate)
    {
 
-      m_createstruct.dwExStyle = uiExStyle;
-      set_class_name(pszClassName);
-      set_window_name(pszWindowName);
-      m_createstruct.style = uStyle;
-      m_pcreate = pcreate;
-      m_puserinteractionOwner = nullptr;
-
-   }
-
-
-   system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
-   {
-
-      __zero(m_createstruct);
+      //__zero(m_createstruct);
 
       create_common_construct();
          
-      set_rect(rectangle);
+      //set_rect(rectangle);
 
-      m_createstruct.dwExStyle = uExStyle;
+      //m_createstruct.dwExStyle = uExStyle;
 
-      m_createstruct.style = uStyle;
+      //m_createstruct.style = uStyle;
 
-      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *)this;
+      //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *)this;
 
    }
 
@@ -81,35 +83,35 @@ namespace user
    }
 
 
-   void system::set_class_name(const char * pszClassName)
-   {
+   //void system::set_class_name(const char * pszClassName)
+   //{
 
-      m_strClassName = pszClassName;
+   //   m_strClassName = pszClassName;
 
-      m_createstruct.lpszClass = m_strClassName;
+   //   m_createstruct.lpszClass = m_strClassName;
 
-   }
-
-
-   void system::set_window_name(const char * pszWindowName)
-   {
-
-      m_strWindowName = pszWindowName;
-
-      m_createstruct.lpszName = m_strWindowName;
-
-   }
+   //}
 
 
-   void system::set_rect(const ::rectangle_i32 & rectangle)
-   {
+   //void system::set_window_name(const char * pszWindowName)
+   //{
 
-      m_createstruct.x = rectangle.left;
-      m_createstruct.y = rectangle.top;
-      m_createstruct.cx = rectangle.width();
-      m_createstruct.cy = rectangle.height();
+   //   m_strWindowName = pszWindowName;
 
-   }
+   //   m_createstruct.lpszName = m_strWindowName;
+
+   //}
+
+
+   //void system::set_rect(const ::rectangle_i32 & rectangle)
+   //{
+
+   //   m_createstruct.x = rectangle.left;
+   //   m_createstruct.y = rectangle.top;
+   //   m_createstruct.cx = rectangle.width();
+   //   m_createstruct.cy = rectangle.height();
+
+   //}
 
    void system::add_visible(bool bAdd)
    {
@@ -130,15 +132,15 @@ namespace user
 
    }
 
-   void system::get_rect(RECTANGLE_I32 * lprect)
-   {
+   //void system::get_rect(RECTANGLE_I32 * lprect)
+   //{
 
-      lprect->left = m_createstruct.x;
-      lprect->top = m_createstruct.y;
-      lprect->right = m_createstruct.x + m_createstruct.cx;
-      lprect->bottom = m_createstruct.y + m_createstruct.cy;
+   //   lprect->left = m_createstruct.x;
+   //   lprect->top = m_createstruct.y;
+   //   lprect->right = m_createstruct.x + m_createstruct.cx;
+   //   lprect->bottom = m_createstruct.y + m_createstruct.cy;
 
-   }
+   //}
 
 
 } // namespace user

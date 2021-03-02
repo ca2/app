@@ -1280,7 +1280,7 @@ namespace sort
          if (ia.get_size() != a.get_size())
          {
 
-            __throw(invalid_argument_exception());
+            __throw(error_invalid_argument);
 
          }
 

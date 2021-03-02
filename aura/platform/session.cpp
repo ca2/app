@@ -2557,7 +2557,7 @@ namespace aura
    //   //         }
 
    //   //      }
-   //   //      catch (::exception_pointer pe)
+   //   //      catch (const ::exception::exception & e)
    //   //      {
 
    //   //         if (e.is < ::exit_exception>())
@@ -2575,7 +2575,7 @@ namespace aura
    //   //   }
 
    //   //}
-   //   //catch (::exception_pointer pe)
+   //   //catch (const ::exception::exception & e)
    //   //{
 
    //   //   if (e.is < ::exit_exception>())

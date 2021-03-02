@@ -62,7 +62,7 @@ namespace draw2d_opengl
    {
       if (!attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
-         __throw(resource_exception());
+         __throw(error_resource);
    }*/
 
    /////////////////////////////////////////////////////////////////////////////

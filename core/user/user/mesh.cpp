@@ -3911,7 +3911,7 @@ namespace user
 
       return (i32)cx;
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 

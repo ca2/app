@@ -73,7 +73,7 @@ namespace aura
    {
       return "";
 
-      __throw(todo());
+      __throw(todo);
 
       /*      char pszModuleFilePath[MAX_PATH + 1];
 

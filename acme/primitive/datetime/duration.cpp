@@ -84,7 +84,7 @@ void duration::set(i64 i, enum_unit eunit)
       raw_set(i * 60 * 60, 0);
       break;
    default:
-      __throw(invalid_argument_exception("Unknown time duration unit"));
+      __throw(error_invalid_argument, "Unknown time duration unit");
 
    };
 
@@ -114,7 +114,7 @@ void duration::set(long double d, enum_unit eunit)
       fset(d * 60.0 * 60.0, 0.0);
       break;
    default:
-      __throw(invalid_argument_exception("Unknown time duration unit"));
+      __throw(error_invalid_argument, "Unknown time duration unit");
 
    };
 }

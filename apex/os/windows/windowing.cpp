@@ -367,10 +367,10 @@ CLASS_DECL_APEX int_bool release_capture()
 
 //
 //
-//CLASS_DECL_ACME::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
+//CLASS_DECL_ACME::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process);
 //
 //
-//CLASS_DECL_APEX ::e_status apex_os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//CLASS_DECL_APEX ::e_status apex_os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   if (System.is_dedicated_thread())

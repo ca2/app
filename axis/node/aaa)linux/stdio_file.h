@@ -33,7 +33,7 @@ namespace linux
 
       void dump(dump_context & dumpcontext) const override;
       virtual filesize get_position() const override;
-      virtual ::status::result open(const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) override;
+      virtual ::extended::status open(const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) override;
 
       virtual memsize read(void * pdata, memsize nCount) override;
 

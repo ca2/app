@@ -119,7 +119,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
       if (len > srclen)
       {
 
-         __throw(invalid_character("reached maximum source length"));
+         __throw(error_invalid_character, "reached maximum source length");
 
          break;
 

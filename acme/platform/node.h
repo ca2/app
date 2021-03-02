@@ -107,7 +107,7 @@ namespace acme
 
       }
 
-      virtual void node_fork(const ::promise::routine & routine);
+      virtual void node_fork(const ::routine & routine);
 
       template < typename PRED >
       void node_sync(const ::duration & durationTimeout, PRED pred)
@@ -117,7 +117,7 @@ namespace acme
 
       }
 
-      virtual void node_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
+      virtual void node_sync(const ::duration & durationTimeout, const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -127,7 +127,7 @@ namespace acme
 //
 //      }
 
-      //virtual void user_fork(const ::promise::routine & routine);
+      //virtual void user_fork(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_sync(const ::duration & durationTimeout, PRED pred)
@@ -137,7 +137,7 @@ namespace acme
 //
 //      }
 
-      //virtual void user_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
+      //virtual void user_sync(const ::duration & durationTimeout, const ::routine & routine);
 
 
       virtual void node_post_quit();
@@ -146,11 +146,11 @@ namespace acme
 
       virtual void os_post_quit();
 
-      virtual bool should_launch_on_node(::promise::subject * psubject);
+      virtual bool should_launch_on_node(::subject::subject * psubject);
 
-      virtual bool defer_launch_on_node(::promise::subject * psubject);
+      virtual bool defer_launch_on_node(::subject::subject * psubject);
 
-      virtual bool launch_on_node(::promise::subject * psubject);
+      virtual bool launch_on_node(::subject::subject * psubject);
 
 
       virtual string get_user_name();

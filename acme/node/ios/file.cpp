@@ -83,7 +83,7 @@ namespace ios
 //      return pFile;
 //   }
 
-   ::status::result file::open(const ::file::path& path, const ::file::e_open & eopenParam)
+   ::extended::status file::open(const ::file::path& path, const ::file::e_open & eopenParam)
    {
 
       if (m_iFile != (::u32)hFileNull)
@@ -747,7 +747,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 CLASS_DECL_ACME void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
-   __throw(todo());
+   __throw(todo);
 
 }
 

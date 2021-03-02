@@ -207,7 +207,7 @@ namespace user
    }
 
 
-   void menu_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void menu_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::process(psubject);

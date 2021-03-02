@@ -12,7 +12,7 @@ namespace user { class frame;  }
 class CLASS_DECL_APEX thread :
    virtual public task,
    virtual public channel
-   , virtual public promise::context
+   , virtual public subject::context
 #ifdef WINDOWS
    ,virtual public ::exception::translator
 #endif
@@ -61,7 +61,7 @@ public:
    bool                                               m_bAuraMessageQueue;
    ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;
-   ::status::result                                   m_result;
+   ::extended::status                                   m_result;
    __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
    __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
@@ -84,7 +84,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   ::promise::routine_array                                    m_routinea;
+   ::routine_array                                    m_routinea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -237,8 +237,8 @@ public:
 
    virtual bool send_object(const ::id & id, wparam wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(const ::promise::routine & routine);
-   virtual bool send_task(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite());
+   virtual bool post_task(const ::routine & routine);
+   virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
 
    template < typename PRED >
    bool pred(PRED pred)
@@ -253,7 +253,7 @@ public:
    }
 
 
-   bool send_routine(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   bool send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
    {
 
       return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
@@ -270,7 +270,7 @@ public:
    }
 
 
-   bool sync_procedure(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
    {
 
       if (this == ::get_task())
@@ -287,7 +287,7 @@ public:
    }
 
 
-   //virtual bool final_handle_exception(::exception_pointer e);
+   //virtual bool final_handle_exceptionconst ::exception::exception & e;
    __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
@@ -330,7 +330,7 @@ public:
    virtual void on_pos_run_thread();
    virtual void term_thread();
 
-   virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message * pmessage);
+   virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message * pmessage);
 
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 

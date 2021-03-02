@@ -65,7 +65,7 @@ namespace uwp
 
          //   //iCount = ::DragQueryFile(hglobal , 0xFFFFFFFF, nullptr, 0);
 
-         //   //__throw(todo());
+         //   //__throw(todo);
          //   // assumes true
 
          //   bHasFile = true;
@@ -183,7 +183,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

@@ -86,7 +86,7 @@ namespace user
          strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());
 #endif
 
-         message_box_timeout(strMessage, nullptr, 10_s, e_message_box_icon_exclamation);
+         message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_result(10_s);
 
       }
 
@@ -111,7 +111,7 @@ namespace user
    }
 
 
-   void split_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void split_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
    }

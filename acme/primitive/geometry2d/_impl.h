@@ -51,7 +51,7 @@ inline auto get_dimension(enum_orientation eorientation, X x, Y y)
    else
    {
 
-      __throw(invalid_argument_exception("invalid orientation"));
+      __throw(error_invalid_argument, "invalid orientation");
 
    }
 
@@ -77,7 +77,7 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
    else
    {
 
-      __throw(invalid_argument_exception("invalid orientation"));
+      __throw(error_invalid_argument, "invalid orientation");
 
    }
 
@@ -181,7 +181,7 @@ inline ___shape* __new_shape(const enum_shape& eshape)
    case e_shape_close_figure:
       return new close_figure_shape;
    default:
-      __throw(not_implemented("new geometry processor or not a geometry processor?"));
+      __throw(error_not_implemented, "new geometry processor or not a geometry processor?");
       return nullptr;
    }
 
@@ -192,7 +192,7 @@ template < typename GEOMETRY >
 inline ___shape* __new_shape(const GEOMETRY& geometry)
 {
 
-   __throw(not_implemented("unimplemented geometry"));
+   __throw(error_not_implemented, "unimplemented geometry");
 
    return nullptr;
 

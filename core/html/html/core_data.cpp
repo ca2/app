@@ -193,7 +193,7 @@ namespace html
    }
 
 
-   void core_data::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void core_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       html_data::on_subject(psubject, pcontext);

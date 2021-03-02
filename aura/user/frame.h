@@ -85,6 +85,10 @@ namespace user
    public:
 
 
+      bool                                         m_bSnapToBars : 1;
+      bool                                         m_bAddToTitle : 1;
+      bool                                         m_bPrefixTitle : 1;
+
       enum_style                                   m_estyle;
       string                                       m_strStyle;
       enum_display                                 m_edisplayRestore;
@@ -129,7 +133,7 @@ namespace user
       virtual void on_user_style_change();
 
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
 
 
       virtual void display_previous_restore();

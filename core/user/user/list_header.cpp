@@ -111,7 +111,7 @@ namespace user
 
 //#else
 
-      //__throw(todo());
+      //__throw(todo);
 
 //#endif
 

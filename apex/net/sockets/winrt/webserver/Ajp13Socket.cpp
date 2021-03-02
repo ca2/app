@@ -263,7 +263,7 @@ namespace sockets
             put_string(msg, ptr, prop.name());
 
          }
-         __throw(not_implemented());
+         __throw(error_not_implemented);
    /*      list<string> vec = m_response.CookieNames();
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

@@ -13,7 +13,7 @@ namespace gen
 #ifdef _AFX
       if( hr == E_OUTOFMEMORY )
       {
-         __throw(memory_exception());
+         __throw(error_no_memory);
       }
       else
       {

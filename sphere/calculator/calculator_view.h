@@ -26,7 +26,7 @@ namespace calculator
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       ::user::document * get_document();
 

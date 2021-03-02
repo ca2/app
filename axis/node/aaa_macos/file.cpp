@@ -89,7 +89,7 @@ namespace macos
    }
 
 
-   ::status::result file::open(const ::file::path & lpszFileName, const ::file::e_open & efileopenParam)
+   ::extended::status file::open(const ::file::path & lpszFileName, const ::file::e_open & efileopenParam)
    {
       
       ::file::e_open eopen(efileopenParam);
@@ -630,7 +630,7 @@ bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
-   __throw(todo());
+   __throw(todo);
 
 }
 

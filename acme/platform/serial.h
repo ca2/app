@@ -30,11 +30,9 @@
  *
  * \section DESCRIPTION
  *
- * This provides a cross platform interface for interacting with Serial Ports.
+ * This provides a cross platform interface for interacting with serial Ports.
  */
-
-#ifndef SERIAL_H
-#define SERIAL_H
+#pragma once
 
 //#include <limits>
 //#include <vector>
@@ -50,56 +48,60 @@
 namespace serial
 {
 
-   /*!
-    * Enumeration defines the possible bytesizes for the serial port.
-    */
-   typedef enum
-   {
-      fivebits = 5,
-      sixbits = 6,
-      sevenbits = 7,
-      eightbits = 8
-   } bytesize_t;
+
+   class serial_impl;
+
 
    /*!
-    * Enumeration defines the possible parity types for the serial port.
+    * Enumeration defines the possible ebytesizes for the serial port.
     */
-   typedef enum
+   enum enum_byte_size
    {
-      parity_none = 0,
-      parity_odd = 1,
-      parity_even = 2,
-      parity_mark = 3,
-      parity_space = 4
-   } parity_t;
+      e_byte_size_five = 5,
+      e_byte_size_six = 6,
+      e_byte_size_seven = 7,
+      e_byte_size_eight = 8
+   };
+
+   /*!
+    * Enumeration defines the possible eparity types for the serial port.
+    */
+   enum enum_parity
+   {
+      e_parity_none = 0,
+      e_parity_odd = 1,
+      e_parity_even = 2,
+      e_parity_mark = 3,
+      e_parity_space = 4
+   };
 
    /*!
     * Enumeration defines the possible stopbit types for the serial port.
     */
-   typedef enum
+   enum enum_stop_bit
    {
-      stopbits_one = 1,
-      stopbits_two = 2,
-      stopbits_one_point_five
-   } stopbits_t;
+      e_stop_bit_one = 1,
+      e_stop_bit_two = 2,
+      e_stop_bit_one_point_five
+   };
 
    /*!
-    * Enumeration defines the possible flowcontrol types for the serial port.
+    * Enumeration defines the possible eflowcontrol types for the serial port.
     */
-   typedef enum
+   enum enum_flow_control
    {
-      flowcontrol_none = 0,
-      flowcontrol_software,
-      flowcontrol_hardware
-   } flowcontrol_t;
+      e_flow_control_none = 0,
+      e_flow_control_software,
+      e_flow_control_hardware
+   };
 
    /*!
     * Structure for setting the timeout of the serial port, times are
     * in milliseconds.
     *
-    * In order to disable the interbyte timeout, set it to Timeout::maximum().
+    * In order to disable the interbyte timeout, set it to timeout::maximum().
     */
-   struct CLASS_DECL_ACME Timeout
+   struct CLASS_DECL_ACME timeout
    {
 #ifdef maximum
 # undef maximum
@@ -109,15 +111,15 @@ namespace serial
          return numeric_info<u32>::maximum();
       }
       /*!
-       * Convenience function to generate Timeout structs using a
+       * Convenience function to generate timeout structs using a
        * single absolute timeout.
        *
        * \lparam timeout A long that defines the time in milliseconds until a
        * timeout occurs after a call to read or write is made.
        *
-       * \return Timeout struct that represents this simple timeout provided.
+       * \return timeout struct that represents this simple timeout provided.
        */
-      static Timeout simpleTimeout(u32 timeout);
+      static timeout simpleTimeout(u32 timeout);
 
       /*! Number of milliseconds between bytes received to timeout on. */
       ::millis m_millisInterByteTimeout;
@@ -134,7 +136,7 @@ namespace serial
        */
       u32 m_uWriteTimeoutMultiplier;
 
-      explicit Timeout (::millis millisInterByteTimeout=0,
+      explicit timeout (::millis millisInterByteTimeout=0,
                         ::millis millisReadTimeoutConstant=0,
                         u32 uReadTimeoutMultiplier=0,
                         ::millis millisWriteTimeoutConstant=0,
@@ -150,14 +152,14 @@ namespace serial
    /*!
     * Class that provides a portable serial port interface.
     */
-   class CLASS_DECL_ACME Serial :
+   class CLASS_DECL_ACME serial :
       virtual public matter
    {
    public:
 
       /*!
-       * Creates a Serial matter and opens the port if a port is specified,
-       * otherwise it remains closed until serial::Serial::open is called.
+       * Creates a serial matter and opens the port if a port is specified,
+       * otherwise it remains closed until serial::serial::open is called.
        *
        * \lparam port A string containing the address of the serial port,
        *        which would be something like 'COM1' on Windows and '/dev/ttyS0'
@@ -165,38 +167,38 @@ namespace serial
        *
        * \lparam baudrate An unsigned 32-bit integer that represents the baudrate
        *
-       * \lparam timeout A serial::Timeout struct that defines the timeout
-       * conditions for the serial port. \see serial::Timeout
+       * \lparam timeout A serial::timeout struct that defines the timeout
+       * conditions for the serial port. \see serial::timeout
        *
-       * \lparam bytesize Size of each byte in the serial transmission of data,
-       * default is eightbits, possible values are: fivebits, sixbits, sevenbits,
-       * eightbits
+       * \lparam ebytesize Size of each byte in the serial transmission of data,
+       * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
+       * e_byte_size_eight
        *
-       * \lparam parity Method of parity, default is parity_none, possible values
-       * are: parity_none, parity_odd, parity_even
+       * \lparam eparity Method of eparity, default is e_parity_none, possible values
+       * are: e_parity_none, eparity_odd, eparity_even
        *
-       * \lparam stopbits Number of stop bits used, default is stopbits_one,
-       * possible values are: stopbits_one, stopbits_one_point_five, stopbits_two
+       * \lparam estopbit Number of stop bits used, default is e_stop_bit_one,
+       * possible values are: e_stop_bit_one, e_stop_bit_one_point_five, estopbit_two
        *
-       * \lparam flowcontrol Type of flowcontrol used, default is
-       * flowcontrol_none, possible values are: flowcontrol_none,
-       * flowcontrol_software, flowcontrol_hardware
+       * \lparam eflowcontrol Type of eflowcontrol used, default is
+       * e_flow_control_none, possible values are: e_flow_control_none,
+       * e_flow_control_software, e_flow_control_hardware
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::IOException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::io_exception
        * \__throw( invalid_argument
        */
-      Serial (
+      serial (
               const string &port = "",
               u32 baudrate = 9600,
-              Timeout timeout = Timeout(),
-              bytesize_t bytesize = eightbits,
-              parity_t parity = parity_none,
-              stopbits_t stopbits = stopbits_one,
-              flowcontrol_t flowcontrol = flowcontrol_none);
+              timeout timeout = timeout(),
+              enum_byte_size ebytesize = e_byte_size_eight,
+              enum_parity eparity = e_parity_none,
+              enum_stop_bit estopbit = e_stop_bit_one,
+              enum_flow_control eflowcontrol = e_flow_control_none);
 
       /*! Destructor */
-      virtual ~Serial ();
+      virtual ~serial ();
 
       /*!
        * Opens the serial port as long as the port is set and the port isn't
@@ -205,11 +207,11 @@ namespace serial
        * If the port is provided to the constructor then an explicit call to open
        * is not needed.
        *
-       * \see Serial::Serial
+       * \see serial::serial
        *
        * \__throw( invalid_argument
-       * \__throw( serial::SerialException
-       * \__throw( serial::IOException
+       * \__throw( serial::serial_exception
+       * \__throw( serial::io_exception
        */
       void
       open ();
@@ -268,8 +270,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       size_t
       read (u8 *buffer, size_t size);
@@ -282,8 +284,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       size_t
       read (memory &buffer, size_t size = 1);
@@ -296,8 +298,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       size_t
       read (string &buffer, size_t size = 1);
@@ -309,8 +311,8 @@ namespace serial
        *
        * \return A string containing the data read from the port.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       string
       read (size_t size = 1);
@@ -325,8 +327,8 @@ namespace serial
        *
        * \return A size_t representing the number of bytes read.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       virtual size_t
       readline (string &buffer, size_t size = 65536, string eol = "\n");
@@ -340,8 +342,8 @@ namespace serial
        *
        * \return A string containing the line.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       string
       readline (size_t size = 65536, string eol = "\n");
@@ -357,8 +359,8 @@ namespace serial
        *
        * \return A vector<string> containing the lines.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
        */
       string_array
       readlines (size_t size = 65536, string eol = "\n");
@@ -374,9 +376,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
-       * \__throw( serial::IOException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
+       * \__throw( serial::io_exception
        */
       size_t
       write (const u8 *data, size_t size);
@@ -389,9 +391,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
-       * \__throw( serial::IOException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
+       * \__throw( serial::io_exception
        */
       size_t
       write (const memory &data);
@@ -404,9 +406,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::PortNotOpenedException
-       * \__throw( serial::SerialException
-       * \__throw( serial::IOException
+       * \__throw( serial::port_not_opened_exception
+       * \__throw( serial::serial_exception
+       * \__throw( serial::io_exception
        */
       size_t
       write (const string &data);
@@ -424,24 +426,24 @@ namespace serial
 
       /*! Gets the serial port identifier.
        *
-       * \see Serial::setPort
+       * \see serial::setPort
        *
        * \__throw( invalid_argument
        */
       string
       getPort () const;
 
-      /*! Sets the timeout for reads and writes using the Timeout struct.
+      /*! Sets the timeout for reads and writes using the timeout struct.
        *
        * There are two timeout conditions described here:
        *  * The inter byte timeout:
-       *    * The inter_byte_timeout component of serial::Timeout defines the
+       *    * The inter_byte_timeout component of serial::timeout defines the
        *      maximum amount of time, in milliseconds, between receiving bytes on
        *      the serial port that can pass before a timeout occurs.  Setting this
        *      to zero will prevent inter byte timeouts from occurring.
        *  * Total time timeout:
        *    * The constant and multiplier component of this timeout condition,
-       *      for both read and write, are defined in serial::Timeout.  This
+       *      for both read and write, are defined in serial::timeout.  This
        *      timeout occurs if the total time since the read or write call was
        *      made exceeds the specified time in milliseconds.
        *    * The limit is defined by multiplying the multiplier component by the
@@ -449,7 +451,7 @@ namespace serial
        *      component.  In this way if you want a read call, for example, to
        *      timeout after exactly one second regardless of the number of bytes
        *      you asked for then set the read_timeout_constant component of
-       *      serial::Timeout to 1000 and the read_timeout_multiplier to zero.
+       *      serial::timeout to 1000 and the read_timeout_multiplier to zero.
        *      This timeout condition can be used in conjunction with the inter
        *      byte timeout condition with out any problems, timeout will simply
        *      occur when one of the two timeout conditions is met.  This allows
@@ -462,13 +464,13 @@ namespace serial
        *
        * A timeout of 0 enables non-blocking mode.
        *
-       * \lparam timeout A serial::Timeout struct containing the inter byte
+       * \lparam timeout A serial::timeout struct containing the inter byte
        * timeout, and the read and write timeout constants and multipliers.
        *
-       * \see serial::Timeout
+       * \see serial::timeout
        */
       void
-      setTimeout (Timeout &timeout);
+      setTimeout (timeout &timeout);
 
       /*! Sets the timeout for reads and writes. */
       void
@@ -476,7 +478,7 @@ namespace serial
                   u32 read_timeout_multiplier, u32 write_timeout_constant,
                   u32 write_timeout_multiplier)
       {
-         Timeout timeout(inter_byte_timeout, read_timeout_constant,
+         timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
                          write_timeout_multiplier);
          return setTimeout(timeout);
@@ -484,12 +486,12 @@ namespace serial
 
       /*! Gets the timeout for reads in seconds.
        *
-       * \return A Timeout struct containing the inter_byte_timeout, and read
+       * \return A timeout struct containing the inter_byte_timeout, and read
        * and write timeout constants and multipliers.
        *
-       * \see Serial::setTimeout
+       * \see serial::setTimeout
        */
-      Timeout
+      timeout
       getTimeout () const;
 
       /*! Sets the baudrate for the serial port.
@@ -511,89 +513,89 @@ namespace serial
        *
        * \return An integer that sets the baud rate for the serial port.
        *
-       * \see Serial::setBaudrate
+       * \see serial::setBaudrate
        *
        * \__throw( invalid_argument
        */
       u32
       getBaudrate () const;
 
-      /*! Sets the bytesize for the serial port.
+      /*! Sets the ebytesize for the serial port.
        *
-       * \lparam bytesize Size of each byte in the serial transmission of data,
-       * default is eightbits, possible values are: fivebits, sixbits, sevenbits,
-       * eightbits
+       * \lparam ebytesize Size of each byte in the serial transmission of data,
+       * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
+       * e_byte_size_eight
        *
        * \__throw( invalid_argument
        */
       void
-      setBytesize (bytesize_t bytesize);
+      setBytesize (enum_byte_size ebytesize);
 
-      /*! Gets the bytesize for the serial port.
+      /*! Gets the ebytesize for the serial port.
        *
-       * \see Serial::setBytesize
+       * \see serial::setBytesize
        *
        * \__throw( invalid_argument
        */
-      bytesize_t
+      enum_byte_size
       getBytesize () const;
 
-      /*! Sets the parity for the serial port.
+      /*! Sets the eparity for the serial port.
        *
-       * \lparam parity Method of parity, default is parity_none, possible values
-       * are: parity_none, parity_odd, parity_even
+       * \lparam eparity Method of eparity, default is e_parity_none, possible values
+       * are: e_parity_none, eparity_odd, eparity_even
        *
        * \__throw( invalid_argument
        */
       void
-      setParity (parity_t parity);
+      setParity (enum_parity eparity);
 
-      /*! Gets the parity for the serial port.
+      /*! Gets the eparity for the serial port.
        *
-       * \see Serial::setParity
+       * \see serial::setParity
        *
        * \__throw( invalid_argument
        */
-      parity_t
+      enum_parity
       getParity () const;
 
-      /*! Sets the stopbits for the serial port.
+      /*! Sets the estopbit for the serial port.
        *
-       * \lparam stopbits Number of stop bits used, default is stopbits_one,
-       * possible values are: stopbits_one, stopbits_one_point_five, stopbits_two
+       * \lparam estopbit Number of stop bits used, default is e_stop_bit_one,
+       * possible values are: e_stop_bit_one, e_stop_bit_one_point_five, estopbit_two
        *
        * \__throw( invalid_argument
        */
       void
-      setStopbits (stopbits_t stopbits);
+      setStopbits (enum_stop_bit estopbit);
 
-      /*! Gets the stopbits for the serial port.
+      /*! Gets the estopbit for the serial port.
        *
-       * \see Serial::setStopbits
+       * \see serial::setStopbits
        *
        * \__throw( invalid_argument
        */
-      stopbits_t
+      enum_stop_bit
       getStopbits () const;
 
       /*! Sets the flow control for the serial port.
        *
-       * \lparam flowcontrol Type of flowcontrol used, default is flowcontrol_none,
-       * possible values are: flowcontrol_none, flowcontrol_software,
-       * flowcontrol_hardware
+       * \lparam eflowcontrol Type of eflowcontrol used, default is e_flow_control_none,
+       * possible values are: e_flow_control_none, e_flow_control_software,
+       * e_flow_control_hardware
        *
        * \__throw( invalid_argument
        */
       void
-      setFlowcontrol (flowcontrol_t flowcontrol);
+      setFlowcontrol (enum_flow_control eflowcontrol);
 
       /*! Gets the flow control for the serial port.
        *
-       * \see Serial::setFlowcontrol
+       * \see serial::setFlowcontrol
        *
        * \__throw( invalid_argument
        */
-      flowcontrol_t
+      enum_flow_control
       getFlowcontrol () const;
 
       /*! Flush the input and output buffers */
@@ -636,7 +638,7 @@ namespace serial
        * \return Returns true if one of the lines changed, false if something else
        * occurred.
        *
-       * \__throw( SerialException
+       * \__throw( serial_exception
        */
       bool
       waitForChange ();
@@ -659,16 +661,11 @@ namespace serial
 
    private:
       // Disable copy constructors
-      Serial(const Serial&);
-      Serial& operator=(const Serial&);
+      serial(const serial&);
+      serial& operator=(const serial&);
 
       // Pimpl idiom, d_pointer
-      class SerialImpl;
-      __pointer(SerialImpl) pimpl_;
-
-      // Scoped Lock Classes
-      class ScopedReadLock;
-      class ScopedWriteLock;
+      __pointer(serial_impl) m_pimpl;
 
       // Read common function
       size_t
@@ -679,104 +676,114 @@ namespace serial
 
    };
 
-   class SerialException : public ::exception::exception
+
+
+   //::exception::exception exception(const string& description);
+   //::exception::exception io_exception(string file, int line, int errnum);
+   //::exception::exception io_exception_descripton(string file, int line, const char* description);
+   //::exception::exception port_opened_exception_descripton(string file, int line, const char* description);
+
+   class serial_exception : public ::exception::exception
    {
-      
-      // Disable copy constructors
-      SerialException& operator=(const SerialException&);
-      
-      string e_what_;
+   //   
+   //   // Disable copy constructors
+   //   serial_exception& operator=(const serial_exception&);
+   //   
+   //   string e_what_;
 
    public:
 
-      SerialException (const string & description)
+      serial_exception(const string & description) :
+         ::exception::exception(error_serial)
       {
-         ::string_stream str;
-         str << "SerialException " << description << " failed.";
-         e_what_ = str;
+//         ::string_stream str;
+  //       str << "serial_exception " << description << " failed.";
+    //     e_what_ = str;
       }
-      SerialException (const SerialException& other) : e_what_(other.e_what_) {}
-      virtual ~SerialException() noexcept {}
-      virtual const char* what () const noexcept
-      {
-         return e_what_.c_str();
-      }
+   //   serial_exception (const serial_exception& other) : e_what_(other.e_what_) {}
+   //   virtual ~serial_exception() noexcept {}
+   //   virtual const char* what () const noexcept
+   //   {
+   //      return e_what_.c_str();
+   //   }
    };
 
-   class IOException : public ::exception::exception
+   class io_exception : public ::exception::exception
    {
-      // Disable copy constructors
-      IOException& operator=(const IOException&);
-      string file_;
-      int line_;
-      string e_what_;
-      int errno_;
+//      // Disable copy constructors
+//      io_exception& operator=(const io_exception&);
+//      string file_;
+//      int line_;
+//      string e_what_;
+//      int errno_;
    public:
-      explicit IOException (string file, int line, int errnum)
-         : file_(file), line_(line), errno_(errnum)
+      explicit io_exception(string file, int line, int errnum) :
+         ::exception::exception(error_serial_io)
       {
-         ::string_stream str;
-#if defined(_WIN32) && !defined(__MINGW32__)
-         char error_str [1024];
-         strerror_s(error_str, 1024, errnum);
-#else
-         char * error_str = strerror(errnum);
-#endif
-         str << "IO Exception (" << errno_ << "): " << error_str;
-         set_file(file_);
-         m_iLine = line_;
-         e_what_ = str;
-      }
-      explicit IOException (string file, int line, const char * description)
-         : file_(file), line_(line), errno_(0)
-      {
-         ::string_stream str;
-         str << "IO Exception: " << description;
-         set_file(file_);
-         m_iLine = line_;
-         e_what_ = str;
-      }
-      virtual ~IOException() noexcept {}
-      IOException (const IOException& other) : line_(other.line_), e_what_(other.e_what_), errno_(other.errno_) {}
-
-      int getErrorNumber () const
-      {
-         return errno_;
+         //: file_(file), line_(line), errno_(errnum)
+//            ::string_stream str;
+//#if defined(_WIN32) && !defined(__MINGW32__)
+//         char error_str [1024];
+//         strerror_s(error_str, 1024, errnum);
+//#else
+//         char * error_str = strerror(errnum);
+//#endif
+//         str << "IO Exception (" << errno_ << "): " << error_str;
+//         set_file(file_);
+//         m_iLine = line_;
+//         e_what_ = str;
       }
 
-      virtual const char* what () const noexcept
+      explicit io_exception(string file, int line, const char * description) :
+         ::exception::exception(error_serial_io)
       {
-         return e_what_.c_str();
+//         ::string_stream str;
+//         str << "IO Exception: " << description;
+//         set_file(file_);
+//         m_iLine = line_;
+//         e_what_ = str;
       }
+//      virtual ~io_exception() noexcept {}
+//      io_exception (const io_exception& other) : line_(other.line_), e_what_(other.e_what_), errno_(other.errno_) {}
+//
+//      int getErrorNumber () const
+//      {
+//         return errno_;
+//      }
+//
+//      virtual const char* what () const noexcept
+//      {
+//         return e_what_.c_str();
+//      }
    };
 
-   class PortNotOpenedException : public ::exception::exception
+   class port_not_opened_exception : public ::exception::exception
    {
       // Disable copy constructors
-      const PortNotOpenedException& operator=(PortNotOpenedException);
-      string e_what_;
+   //   const port_not_opened_exception& operator=(port_not_opened_exception);
+   //   string e_what_;
    public:
-      PortNotOpenedException (const char * description)
+      port_not_opened_exception (const char * description)
       {
-         ::string_stream str;
-         str << "PortNotOpenedException " << description << " failed.";
-         e_what_ = str;
+         //::string_stream str;
+         //str << "port_not_opened_exception " << description << " failed.";
+         //e_what_ = str;
       }
-      PortNotOpenedException (const PortNotOpenedException& other) : e_what_(other.e_what_) {}
-      virtual ~PortNotOpenedException() noexcept {}
-      virtual const char* what () const noexcept
-      {
-         return e_what_.c_str();
-      }
+   //   port_not_opened_exception (const port_not_opened_exception& other) : e_what_(other.e_what_) {}
+   //   virtual ~port_not_opened_exception() noexcept {}
+   //   virtual const char* what () const noexcept
+   //   {
+   //      return e_what_.c_str();
+   //   }
    };
 
    /*!
     * Structure that describes a serial device.
     */
-   struct PortInfo
+   struct port_info
    {
 
-      /*! Address of the serial port (this can be passed to the constructor of Serial). */
+      /*! Address of the serial port (this can be passed to the constructor of serial). */
       string port;
 
       /*! Human readable description of serial device if available. */
@@ -790,15 +797,13 @@ namespace serial
    /* Lists the serial ports available on the system
     *
     * Returns a vector of available serial ports, each represented
-    * by a serial::PortInfo data structure:
+    * by a serial::port_info data structure:
     *
-    * \return vector of serial::PortInfo.
+    * \return vector of serial::port_info.
     */
-   CLASS_DECL_ACME array<PortInfo>  list_ports();
+   CLASS_DECL_ACME array<port_info>  list_ports();
 
 } // namespace serial
-
-#endif
 
 
 

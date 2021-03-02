@@ -837,7 +837,7 @@ namespace user
       }
 
 
-      bool edit_impl::_001IsPointInside(::point_i32 pointParam)
+      bool edit_impl::_001IsPointInside(const ::point_i32 & pointParam)
       {
 
          if (is_picture_enabled())

@@ -384,7 +384,7 @@ namespace user
    }
 
 
-   //void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -392,7 +392,7 @@ namespace user
    //}
 
 
-   //void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    //{
 
    //   ::user::box::on_subject(psubject, pcontext);
@@ -696,7 +696,7 @@ namespace user
 
    }
 
-   //void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    //{
 
    //   __pointer(::user::message) pusermessage(pmessage);
@@ -963,7 +963,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::promise::context * pcontext)
+   i32 impact::get_total_page_count(::subject::context * pcontext)
    {
 
       return 1;
@@ -1064,7 +1064,7 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   /*void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
@@ -1325,7 +1325,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->on_subject(::promise::subject * psubject, ::promise::context * pcontext);
+   pview->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::impact is
@@ -1361,7 +1361,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->on_subject(::promise::subject * psubject, ::promise::context * pcontext);
+   ( (pview))->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::user::impact is

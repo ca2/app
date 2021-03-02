@@ -370,34 +370,34 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectMargin = get_margin(pstyle);
+      auto rectMargin = get_margin(pstyle);
 
-      ::rectangle_i32 rectBorder = get_border(pstyle);
+      auto rectBorder = get_border(pstyle);
 
-      ::rectangle_i32 rectPadding = get_padding(pstyle);
+      auto rectPadding = get_padding(pstyle);
 
-      size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
+      size.cx += rectMargin.m_result.left + rectBorder.m_result.left + rectPadding.m_result.left;
 
-      size.cx += rectMargin.right;
+      size.cx += rectMargin.m_result.right;
 
       size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx += rectPadding.left;
+      size.cx += rectPadding.m_result.left;
 
       if (m_pmenuitem->IsPopup())
       {
 
-         size.cx += rectPadding.left;
+         size.cx += rectPadding.m_result.left;
 
          size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx += rectMargin.right + rectBorder.right + rectPadding.right;
+      size.cx += rectMargin.m_result.right + rectBorder.m_result.right + rectPadding.m_result.right;
 
-      size.cy += rectMargin.top + rectBorder.top + rectPadding.top;
+      size.cy += rectMargin.m_result.top + rectBorder.m_result.top + rectPadding.m_result.top;
 
-      size.cy += rectMargin.bottom + rectBorder.bottom + rectPadding.bottom;
+      size.cy += rectMargin.m_result.bottom + rectBorder.m_result.bottom + rectPadding.m_result.bottom;
 
       pcalcsize->m_size = size;
 

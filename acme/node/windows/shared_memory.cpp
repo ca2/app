@@ -124,7 +124,7 @@ void shared_memory::SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow)
    if (hGlobalMemory == nullptr)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

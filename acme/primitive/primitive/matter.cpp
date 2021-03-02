@@ -180,7 +180,7 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 ::matter * matter::clone() const
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return nullptr;
 
@@ -200,7 +200,7 @@ void matter::set_mutex(synchronization_object* psync)
 void matter::remove_from_any_source()
 {
 
-   ::promise::manager::__remove(this);
+   ::subject::manager::__remove(this);
 
 }
 
@@ -394,7 +394,7 @@ void matter::on_future(const ::payload & payload)
 ::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   __throw(not_implemented());
+   __throw(error_not_implemented);
 
    return ::error_not_implemented;
 
@@ -465,7 +465,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::task* matter::defer_fork(const ::id& id, const ::promise::routine & routine)
+::task* matter::defer_fork(const ::id& id, const ::routine & routine)
 {
 
    auto ptasktool = __task_pool(taskpool());
@@ -578,14 +578,14 @@ void matter::sync_wait(const ::duration & duration)
 }
 
 
-//void matter::promise::process(const ::id & id, const ::payload & payload)
+//void matter::future(const ::id & id, const ::payload & payload)
 //{
 //
 //
 //}
 
 
-//void matter::promise::process(::promise::update * psubject)
+//void matter::future(::promise::update * psubject)
 //{
 //
 //   if (!psubject->is_up_to_date())
@@ -798,7 +798,7 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-void matter::on_subject(::promise::subject * psubject, ::promise::context * pcontext) 
+void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext) 
 {
 
 
@@ -806,7 +806,7 @@ void matter::on_subject(::promise::subject * psubject, ::promise::context * pcon
 }
 
 
-CLASS_DECL_ACME ::e_status __call(const ::promise::routine & routine)
+CLASS_DECL_ACME ::e_status __call(const ::routine & routine)
 {
 
    return routine();

@@ -24,7 +24,7 @@ namespace message
    public:
 
 
-      handler_array *               m_phandlera;
+      handler_item_array *          m_phandlera;
       __pointer(channel)            m_pchannel;
       oswindow                      m_oswindow;
       wparam                        m_wparam;
@@ -46,7 +46,7 @@ namespace message
       inline void common_construct()
       {
 
-          m_phandlera = nullptr;
+         m_phandlera = nullptr;
          m_pchannel = nullptr;
          m_wparam = 0;
          m_iRouteIndex = -1;

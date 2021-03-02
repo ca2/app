@@ -438,7 +438,7 @@ namespace str
 //
 //#ifdef _UWP
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#elif defined(WINDOWS_DESKTOP)
 //
@@ -481,7 +481,7 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(invalid_argument_exception());
+   //      __throw(error_invalid_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
@@ -503,7 +503,7 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(invalid_argument_exception());
+   //      __throw(error_invalid_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;

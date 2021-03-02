@@ -128,7 +128,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void operation_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       BASE::on_subject(psubject, pcontext);

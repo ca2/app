@@ -257,7 +257,7 @@
       else if (ppath)
       {
 
-         __throw(not_supported_exception());
+         __throw(error_not_supported);
          //Gdiplus::Matrix m;
 
          //status = ppath->GetTransform(&m);

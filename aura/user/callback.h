@@ -6,7 +6,8 @@ namespace user
 
 
    class CLASS_DECL_AURA callback :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::conversation
    {
    public:
 

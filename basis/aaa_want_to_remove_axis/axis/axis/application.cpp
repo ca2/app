@@ -1326,7 +1326,7 @@ m_millisHeartBeat.Now();
    //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   return false;
 

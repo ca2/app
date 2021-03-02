@@ -51,7 +51,7 @@ bool simple_form_list_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_form_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+void simple_form_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
    BASE::on_subject(psubject, pcontext);

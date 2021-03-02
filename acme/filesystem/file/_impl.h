@@ -127,14 +127,14 @@ inline stream & operator >>(stream & s, ::millis & millis)
 //   }
 //   catch (...)
 //   {
-//      __throw(io_exception());
+//      __throw(error_io);
 //   }
 //   if (!s.fail())
 //   {
 //      memsize size = c * sizeof(a.get_data()[0]);
 //      if (read(a.get_data(), size) != size_i32)
 //      {
-//         __throw(io_exception());
+//         __throw(error_io);
 //      }
 //   }
 
@@ -1075,7 +1075,7 @@ inline ::file::file & operator >> (::file::file & file, TYPE & t)
    if (::is_null(file))
    {
 
-      __throw(io_exception());
+      __throw(error_io);
 
    }
 
@@ -1129,10 +1129,10 @@ void var_stream::default_exchange(TYPE & t)
       }
 
   }
-  catch (const ::exception_pointer & pe)
+  catch(const ::exception::exception & e)
   {
 
-     add_exception(pe);
+     add_exception(e);
 
   }
   catch (...)

@@ -306,33 +306,42 @@ public:
 
  void normalize() noexcept;
 
- void inflate(const rect_type & rectangle) noexcept
-
+ template < primitive_rectangle RECTANGLE >
+ void inflate(const RECTANGLE& rectangle) noexcept
  {
- this->left -= rectangle.left; this->top -= rectangle.top;
 
- this->right += rectangle.right; this->bottom += rectangle.bottom;
+    this->left = (decltype(this->left))(this->left - rectangle.left);
+    this->top = (decltype(this->top))(this->top - rectangle.top);
+    this->right = (decltype(this->right))(this->right + rectangle.right);
+    this->bottom = (decltype(this->bottom))(this->bottom + rectangle.bottom);
 
  }
 
  void inflate(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept {
- this->left -= l; this->top -= t;
- this->right += r; this->bottom += b;
+    this->left = (decltype(this->left))(this->left - l);
+    this->top = (decltype(this->top))(this->top - t);
+    this->right = (decltype(this->right))(this->right + r);
+    this->bottom = (decltype(this->bottom))(this->bottom + b);
  }
 
- void deflate(const rect_type & rectangle) noexcept
-
+ 
+ template < primitive_rectangle RECTANGLE >
+ void deflate(const RECTANGLE & rectangle) noexcept
  {
- this->left += rectangle.left; this->top += rectangle.top;
 
- this->right -= rectangle.right; this->bottom -= rectangle.bottom;
+    this->left = (decltype(this->left))(this->left+rectangle.left);
+    this->top = (decltype(this->top))(this->top+rectangle.top);
+    this->right = (decltype(this->right))(this->right-rectangle.right);
+    this->bottom = (decltype(this->bottom))(this->bottom-rectangle.bottom);
 
  }
 
  void deflate(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept
  {
- this->left += l; this->top += t;
- this->right -= r; this->bottom -= b;
+    this->left = (decltype(this->left))(this->left + l);
+    this->top = (decltype(this->top))(this->top + t);
+    this->right = (decltype(this->right))(this->right - r);
+    this->bottom = (decltype(this->bottom))(this->bottom - b);
  }
 
  template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >

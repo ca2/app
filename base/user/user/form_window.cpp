@@ -382,7 +382,7 @@ namespace user
    }
 
 
-   void form_window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void form_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
       
       
@@ -705,7 +705,7 @@ namespace user
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
    {
 
       synchronization_lock synchronizationlock(mutex());

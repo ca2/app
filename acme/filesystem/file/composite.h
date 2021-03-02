@@ -32,7 +32,7 @@ namespace file
 
 
 
-      virtual ::status::result open(const ::file::path & path, const ::file::e_open & eopen) override;
+      virtual ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
 
 

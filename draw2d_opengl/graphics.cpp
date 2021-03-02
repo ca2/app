@@ -4383,7 +4383,7 @@ namespace draw2d_opengl
 //            if (hObjOld == hStockFont)
 //            {
 //               // got the stock object back, so must be selecting a font
-//               __throw(not_implemented());
+//               __throw(error_not_implemented);
 ////                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
@@ -4399,7 +4399,7 @@ namespace draw2d_opengl
 //         {
 //            // play back as graphics::SelectObject(::write_text::font*)
 ////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
-//            __throw(not_implemented());
+//            __throw(error_not_implemented);
 //            break;  // don't play the default record
 //         }
 //      }

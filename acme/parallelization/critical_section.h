@@ -47,12 +47,66 @@ class CLASS_DECL_ACME critical_section_lock
 public:
 
 
+
+   bool m_bLocked;
    critical_section * m_pcriticalsection;
 
 
-   inline critical_section_lock(critical_section * pcs) : m_pcriticalsection(pcs) { if (m_pcriticalsection != nullptr) m_pcriticalsection->lock(); }
-   inline ~critical_section_lock() { if (m_pcriticalsection != nullptr) m_pcriticalsection->unlock(); }
+   inline critical_section_lock(critical_section* pcs, bool bInitialLock = true) : 
+      m_pcriticalsection(pcs), 
+      m_bLocked(false) 
+   { 
+      
+      if (bInitialLock)
+      {
 
+         lock();
+
+      }
+
+   }
+
+   inline ~critical_section_lock()
+   { 
+      
+      unlock(); 
+   
+   }
+
+
+   void lock()
+   {
+      if (m_pcriticalsection != nullptr)
+      {
+
+         if (!m_bLocked)
+         {
+
+            m_bLocked = true;
+
+            m_pcriticalsection->lock();
+
+         }
+
+      }
+
+   }
+   void unlock()
+   {
+
+      if (m_bLocked)
+      {
+
+
+         if (m_pcriticalsection != nullptr)
+         {
+
+            m_pcriticalsection->unlock();
+
+         }
+      }
+
+   }
 
 };
 

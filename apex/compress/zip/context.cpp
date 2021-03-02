@@ -299,7 +299,7 @@ namespace str
    }
 
 
-   __result(::zip::in_file) zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
+   __transport(::zip::in_file) zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
    {
 
       __pointer(::zip::in_file) pinfile;

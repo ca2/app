@@ -72,7 +72,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::e_status __call(const ::promise::routine & routine);
+CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 //namespace parallelization

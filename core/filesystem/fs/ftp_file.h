@@ -20,7 +20,7 @@ public:
    virtual ~ftpfs_file();
 
 
-   virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+   virtual ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
    virtual memsize read(void *pdata, memsize nCount) override;

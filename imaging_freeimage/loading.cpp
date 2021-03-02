@@ -133,7 +133,7 @@ namespace imaging_freeimage
 
 #ifdef _UWP
 
-         __throw(todo());
+         __throw(todo);
 
 #else
          FreeImage_Unload(pfibitmap);

@@ -17,7 +17,7 @@
 //
 //
 //
-//CLASS_DECL_ACME stream & operator << (stream & os, veri::exception_pointer pe)
+//CLASS_DECL_ACME stream & operator << (stream & os, vericonst ::exception::exception & e)
 //{
 //
 //   return os << "veri::exception::exception(" << e.m_strMessage << ")";

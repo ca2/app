@@ -96,7 +96,7 @@ namespace prompt
 
 
 
-   void view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
       
       if(psubject->id() == id_update_current_area)

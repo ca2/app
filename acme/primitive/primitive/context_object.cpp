@@ -368,7 +368,7 @@ bool context_object::is_alive()
 void context_object::exchange(::stream & stream)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -692,7 +692,7 @@ string context_object::get_text(const ::payload & payload, const ::id & id)
 }
 
 
-::status::result context_object::run_property(const ::id& id)
+::extended::status context_object::run_property(const ::id& id)
 {
 
    auto pproperty = find_property(id);

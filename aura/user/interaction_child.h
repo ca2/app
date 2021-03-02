@@ -20,7 +20,7 @@ namespace user
       __pointer(::user::interaction)      m_puiMessage;
       __pointer(primitive)                m_puiOwner;
       ::mutex                             m_mutexLongPtr;
-      iptr_to_iptr                  m_longptr;
+      //iptr_to_iptr                  m_longptr;
       uptr                                m_uStyle;
       uptr                                m_uExStyle;
 
@@ -46,8 +46,8 @@ namespace user
 
       virtual bool DestroyWindow() override;
 
-      virtual u32 GetStyle() const override;
-      virtual u32 GetExStyle() const override;
+      //virtual u32 GetStyle() const override;
+      //virtual u32 GetExStyle() const override;
 
 
       //virtual lresult default_window_procedure() override;
@@ -83,8 +83,8 @@ namespace user
       //virtual bool create_interaction() override;
 
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool is_this_visible(enum_layout elayout) override;
 

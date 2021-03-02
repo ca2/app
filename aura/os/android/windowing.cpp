@@ -1716,7 +1716,7 @@ CLASS_DECL_AURA::e_status _android_os_message_box(const char * pText, const char
 }
 
 
-CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::promise::process & processParam)
+CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::future & processParam)
 {
 
    string strText(pText);
@@ -1725,7 +1725,7 @@ CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char
 
    e_message_box emessagebox(emessageboxParam);
 
-   ::promise::process process = processParam;
+   ::future process = processParam;
 
    System.fork([=]()
       {

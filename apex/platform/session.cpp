@@ -826,7 +826,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return nullptr;
 
@@ -959,7 +959,7 @@ namespace apex
             papp = create_application(pszAppId, bSynch, pcreate);
 
          }
-         catch (::exception_pointer pe)
+         catch (const ::exception::exception & e)
          {
 
             // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
@@ -2784,7 +2784,7 @@ namespace apex
       //         }
 
       //      }
-      //      catch (::exception_pointer pe)
+      //      catch (const ::exception::exception & e)
       //      {
 
       //         if (e.is < ::exit_exception>())
@@ -2802,7 +2802,7 @@ namespace apex
       //   }
 
       //}
-      //catch (::exception_pointer pe)
+      //catch (const ::exception::exception & e)
       //{
 
       //   if (e.is < ::exit_exception>())

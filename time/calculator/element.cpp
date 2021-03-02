@@ -167,7 +167,7 @@ namespace datetime
       else if(m_ptoken->m_etoken == e_token_multiplication)
       {
 
-         __throw(not_supported_exception());
+         __throw(error_not_supported);
 
          //return "(" + m_pelement1->get_expression() + " * " + m_pelement2->get_expression() + ")";
 
@@ -175,7 +175,7 @@ namespace datetime
       else if(m_ptoken->m_etoken == e_token_division)
       {
 
-         __throw(not_supported_exception());
+         __throw(error_not_supported);
 
          //return "(" + m_pelement1->get_expression() + " / " + m_pelement2->get_expression() + ")";
 
@@ -183,7 +183,7 @@ namespace datetime
       else if(m_ptoken->m_etoken == e_token_function)
       {
 
-         __throw(not_supported_exception());
+         __throw(error_not_supported);
 
          /*if(m_ptoken->m_str == "sqr")
          {

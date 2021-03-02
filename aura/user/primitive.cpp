@@ -1019,10 +1019,10 @@ namespace user
 
 
 
-   ::e_status primitive::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status primitive::main_async(const ::routine & routine, e_priority epriority)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -1108,24 +1108,24 @@ namespace user
    //}
 
 
-   bool primitive::ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
+   //bool primitive::ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool primitive::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
+   //bool primitive::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //bool primitive::display(::e_display edisplay)
@@ -1314,7 +1314,7 @@ namespace user
    ::e_status primitive::create_host()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_no_interface;
 
@@ -1345,44 +1345,44 @@ namespace user
    }
 
 
-   ::i32 primitive::get_window_long(i32 nIndex) const
-   {
+   //::i32 primitive::get_window_long(i32 nIndex) const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return 0;
+   //   return 0;
 
-   }
-
-
-   ::i32 primitive::set_window_long(i32 nIndex,::i32 lValue)
-   {
-
-      ::exception::throw_interface_only();
-
-      return 0;
-
-   }
+   //}
 
 
-   iptr primitive::get_window_long_ptr(i32 nIndex) const
-   {
+   //::i32 primitive::set_window_long(i32 nIndex,::i32 lValue)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
-   iptr primitive::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
+   //iptr primitive::get_window_long_ptr(i32 nIndex) const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
+
+
+   //::e_status primitive::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return ::error_interface_only;
+
+   //}
 
 
    bool primitive::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
@@ -1678,24 +1678,24 @@ namespace user
    //}
 
 
-   u32 primitive::GetStyle() const
-   {
+   //u32 primitive::GetStyle() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
-   u32 primitive::GetExStyle() const
-   {
+   //u32 primitive::GetExStyle() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    bool primitive::DestroyWindow()
@@ -2565,9 +2565,11 @@ namespace user
    ::e_status primitive::set_cursor(enum_cursor ecursor)
    {
 
-      ::exception::throw_interface_only();
+      ///::exception::throw_interface_only();
 
-      return false;
+      ///return false;
+
+      return success_none;
 
    }
 
@@ -2874,7 +2876,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(bSet);
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_not_implemented;
 
@@ -3274,7 +3276,7 @@ namespace user
 //   bool primitive::open_clipboard()
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return false;
 //
@@ -3284,7 +3286,7 @@ namespace user
 //   bool primitive::close_clipboard()
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return false;
 //
@@ -3758,7 +3760,7 @@ namespace user
 //   }
 
 
-   i32 primitive::get_total_page_count(::promise::context * pcontext)
+   i32 primitive::get_total_page_count(::subject::context * pcontext)
    {
 
       return 1;

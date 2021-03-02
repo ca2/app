@@ -7,7 +7,8 @@ namespace user
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
-      virtual public ::timer_callback
+      virtual public ::timer_callback,
+      virtual public ::conversation
    {
    public:
 
@@ -171,6 +172,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
+      //__pointer(::future < ::id >)       m_pprocess;
       __pointer(::user::system)                    m_pusersystem;
       __pointer(::user::interaction)               m_puserinteractionParent;
 
@@ -444,12 +446,12 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
 
 
-      virtual ::e_status main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status main_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
-      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -491,7 +493,7 @@ namespace user
       virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
 
 
-      virtual __status< rectangle_i32 > rectangle(enum_element eelement)
+      virtual with_status < rectangle_i32 > rectangle(enum_element eelement)
       {
 
           ::rectangle_i32 rectangle;
@@ -514,14 +516,14 @@ namespace user
       virtual enum_translucency get_translucency(style* pstyle) const;
       virtual int get_int(style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0) const;
       virtual double get_double(style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.) const;
-      virtual __status < ::rectangle_f64 > get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline __status < ::rectangle_f64 > get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual __status < ::rectangle_f64 > get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline __status < ::rectangle_f64 > get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual __status < ::rectangle_f64 > get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline __status < ::rectangle_f64 > get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual __status < ::color::color > get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline __status < ::color::color > get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
+      virtual with_status < ::rectangle_f64 > get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline with_status < ::rectangle_f64 > get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual with_status < ::rectangle_f64 > get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline with_status < ::rectangle_f64 > get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual with_status < ::rectangle_f64 > get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline with_status < ::rectangle_f64 > get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual with_status < ::color::color > get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline with_status < ::color::color > get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
 
@@ -757,11 +759,11 @@ namespace user
 
       virtual void ExitHelpMode();
 
-      virtual ::i32 get_window_long(i32 nIndex) const override;
-      virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue) override;
+      //virtual ::i32 get_window_long(i32 nIndex) const override;
+      //virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue) override;
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool on_before_set_parent(::user::primitive * pinterface);
       virtual bool on_set_parent(::user::primitive * pinterface);
@@ -1063,10 +1065,10 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true) override;
 
 
-      virtual u32 GetStyle() const override;
-      virtual u32 GetExStyle() const override;
-      virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
+      //virtual u32 GetStyle() const override;
+      //virtual u32 GetExStyle() const override;
+      //virtual bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
+      //virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
 
       using ::user::primitive::send;
       virtual lresult send(::message::message* pmessage) override;
@@ -1552,7 +1554,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1788,11 +1790,11 @@ namespace user
       virtual e_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::promise::routine & routine);
-      virtual void prodevian_post_routine(const ::promise::routine & routine);
+      virtual void post_routine(const ::routine & routine);
+      virtual void prodevian_post_routine(const ::routine & routine);
 
 
-      virtual void send_routine(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite());
+      virtual void send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
 
 
    /*   template < typename PRED >

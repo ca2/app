@@ -54,7 +54,8 @@ public:
    e_status & operator =(const e_status & estatus) { m_estatus = estatus; return *this; }
    e_status & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
 
-
+   bool operator ==(enum_status estatus) const { return m_estatus == estatus; }
+   bool operator ==(const e_status& estatus) const { return m_estatus == estatus; }
 
    
 };

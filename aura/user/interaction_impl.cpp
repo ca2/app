@@ -2382,66 +2382,66 @@ namespace user
    }
 
 
-   u32 interaction_impl::GetStyle() const
-   {
+   //u32 interaction_impl::GetStyle() const
+   //{
 
-      return ::user::primitive_impl::GetStyle();
+   //   return ::user::primitive_impl::GetStyle();
 
-   }
-
-
-   u32 interaction_impl::GetExStyle() const
-   {
-
-      return ::user::primitive_impl::GetExStyle();
-
-   }
+   //}
 
 
-   bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   {
+   //u32 interaction_impl::GetExStyle() const
+   //{
 
-      if (!_is_window())
-      {
+   //   return ::user::primitive_impl::GetExStyle();
 
-         return false;
-
-      }
-
-      ::u32 dw = get_window_long(GWL_STYLE);
-
-      dw &= ~dwRemove;
-
-      dw |= dwAdd;
-
-      set_window_long(GWL_STYLE, dw);
-
-      return false;
-
-   }
+   //}
 
 
-   bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
-   {
+   //bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //{
 
-      if (!_is_window())
-      {
+   //   if (!_is_window())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      ::u32 dw = get_window_long(GWL_EXSTYLE);
+   //   ::u32 dw = get_window_long(GWL_STYLE);
 
-      dw &= ~dwRemove;
+   //   dw &= ~dwRemove;
 
-      dw |= dwAdd;
+   //   dw |= dwAdd;
 
-      set_window_long(GWL_EXSTYLE, dw);
+   //   set_window_long(GWL_STYLE, dw);
 
-      return false;
+   //   return false;
 
-   }
+   //}
+
+
+   //bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //{
+
+   //   if (!_is_window())
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   ::u32 dw = get_window_long(GWL_EXSTYLE);
+
+   //   dw &= ~dwRemove;
+
+   //   dw |= dwAdd;
+
+   //   set_window_long(GWL_EXSTYLE, dw);
+
+   //   return false;
+
+   //}
 
 
    ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
@@ -3939,7 +3939,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status interaction_impl::main_async(const ::routine & routine, e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -4185,7 +4185,7 @@ namespace user
    bool interaction_impl::is_composite()
    {
 
-      return (GetExStyle() & WS_EX_LAYERED) != 0;
+      return m_puserinteraction->m_ewindowflag & e_window_flag_composite;
 
    }
 
@@ -4739,7 +4739,7 @@ namespace user
 
       ::u32 uFlags = 0;
 
-      bool bLayered = GetExStyle() & WS_EX_LAYERED;
+      //bool bLayered = GetExStyle() & WS_EX_LAYERED;
 
       //if (bLayered)
       {
@@ -4876,9 +4876,9 @@ namespace user
       bool bHasSetWindowPosition = false;
 
       if (shouldGetVisible
-#ifdef WINDOWS_DESKTOP
-      && (!bLayered || bZ)
-#endif
+//#ifdef WINDOWS_DESKTOP
+  //    && !bLayered
+//#endif
          && (
             //#ifdef WINDOWS_DESKTOP
             //               !bLayered
@@ -4932,7 +4932,7 @@ namespace user
 
 //#if !defined(_UWP) && !defined(ANDROID)
 
-         bHasSetWindowPosition = m_pwindow->set_window_position(
+         bHasSetWindowPosition = m_pwindow->on_set_window_position(
              zorderNew, 
              pointOutput.x, 
              pointOutput.y,
@@ -4962,9 +4962,9 @@ namespace user
 
       }
 
-      if (edisplayOutput != edisplayWindow
-        && !::conditional(bLayered, bHasSetWindowPosition)
-        )
+      if (edisplayOutput != edisplayWindow)
+        //&& !::conditional(bLayered, bHasSetWindowPosition)
+        //)
       {
 
 //#ifdef WINDOWS
@@ -4986,7 +4986,7 @@ namespace user
       if (eactivationOutput & e_activation_set_foreground)
       {
 
-         //__throw(todo());
+         //__throw(todo);
          //m_puserinteraction->set();
 
          m_pwindow->set_foreground_window();
@@ -4996,7 +4996,7 @@ namespace user
       if (eactivationOutput & e_activation_set_active)
       {
 
-         //__throw(todo());
+         //__throw(todo);
          ///m_puserinteraction->SetActiveWindow();
 
          m_pwindow->set_active_window();
@@ -5328,20 +5328,20 @@ namespace user
 
       __pointer(::message::size) psize(pmessage);
 
-      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
-
-#ifndef WINDOWS_DESKTOP
-
-      bLayered = false;
-
-#endif
-
-      if(!bLayered)
-      {
-
-         m_puserinteraction->layout().window() = psize->m_size;
-
-      }
+//      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
+//
+//#ifndef WINDOWS_DESKTOP
+//
+//      bLayered = false;
+//
+//#endif
+//
+//      if(!bLayered)
+//      {
+//
+//         m_puserinteraction->layout().window() = psize->m_size;
+//
+//      }
 
       if (m_puserinteraction->layout().sketch().size() != psize->m_size)
       {

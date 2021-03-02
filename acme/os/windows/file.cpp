@@ -1529,58 +1529,58 @@ namespace file
 #ifdef WINDOWS
 
 
-   bool exception::get_error_message(string & str, unsigned int * pnHelpContext)
-   {
+   //bool exception::get_error_message(string & str, unsigned int * pnHelpContext)
+   //{
 
-      // if (pnHelpContext != nullptr)
-      //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
+   //   // if (pnHelpContext != nullptr)
+   //   //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
 
-      string strMessage;
+   //   string strMessage;
 
-      string strFileName = m_path;
+   //   string strFileName = m_path;
 
-      if (strFileName.is_empty())
-      {
+   //   if (strFileName.is_empty())
+   //   {
 
-         strFileName = "IDS_UNNAMED_FILE";
+   //      strFileName = "IDS_UNNAMED_FILE";
 
-      }
+   //   }
 
-      if (m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
-      {
+   //   if (m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
+   //   {
 
-         wstring wstr;
+   //      wstring wstr;
 
-         wstr = ::str::international::utf8_to_unicode(m_path.name());
+   //      wstr = ::str::international::utf8_to_unicode(m_path.name());
 
-         // #ifdef WINDOWS_DESKTOP
-         //          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uptr)this);
-         // #endif
+   //      // #ifdef WINDOWS_DESKTOP
+   //      //          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uptr)this);
+   //      // #endif
 
-         if (m_strAdd.has_char())
-         {
-            ((exception *)this)->m_strAdd = " Process Using the file = " + m_strAdd;
-         }
-         else
-         {
-            ((exception *)this)->m_strAdd = " Process Using the file Not Found ";
-         }
+   //      if (m_strAdd.has_char())
+   //      {
+   //         ((exception *)this)->m_strAdd = " Process Using the file = " + m_strAdd;
+   //      }
+   //      else
+   //      {
+   //         ((exception *)this)->m_strAdd = " Process Using the file Not Found ";
+   //      }
 
-      }
+   //   }
 
 
-      string strExtra;
+   //   string strExtra;
 
-      strExtra = get_system_error_message(m_lOsError);
+   //   strExtra = get_system_error_message(m_lOsError);
 
-      strExtra += m_strAdd;
+   //   strExtra += m_strAdd;
 
-      strMessage.Format("file error number: %d - %s - file: %s", m_estatus.m_estatus, strExtra.c_str(), strFileName.c_str());
+   //   strMessage.Format("file error number: %d - %s - file: %s", m_estatus.m_estatus, strExtra.c_str(), strFileName.c_str());
 
-      str = strMessage;
+   //   str = strMessage;
 
-      return true;
-   }
+   //   return true;
+   //}
 
 
 #endif

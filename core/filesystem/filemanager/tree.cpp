@@ -744,7 +744,7 @@ namespace filemanager
    }
 
 
-   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::filemanager::impact::on_subject(psubject, pcontext);

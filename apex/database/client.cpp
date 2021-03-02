@@ -125,7 +125,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const ::payload & payload, ::promise::subject * psubject)
+   bool client::_data_set(const key & key, const ::payload & payload, ::subject::subject * psubject)
    {
 
       if(::is_null(m_pdataserver))
@@ -144,7 +144,7 @@ namespace database
    }
 
 
-   bool client::_data_set(const selection & selection, const ::payload & payload, ::promise::subject * psubject)
+   bool client::_data_set(const selection & selection, const ::payload & payload, ::subject::subject * psubject)
    {
 
       if (::is_null(m_pdataserver))
@@ -232,7 +232,7 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::promise::subject * psubject)
+   bool client::data_pulse_change(const key & key, ::subject::subject * psubject)
    {
 
       if(m_pdataserver != nullptr)
@@ -399,14 +399,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::promise::subject * psubject)
+   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject::subject * psubject)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::promise::subject * psubject)
+   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject::subject * psubject)
    {
 
    }

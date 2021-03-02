@@ -55,7 +55,7 @@ _AFXMT_INLINE critical_sectioncritical_section() : synchronization_object < HAND
 
    bSuccess = Init();
    if (!bSuccess)
-      __throw(memory_exception());
+      __throw(error_no_memory);
 }
 
 _AFXMT_INLINE critical_section::operator CRITICAL_SECTION*()
@@ -70,7 +70,7 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      __throw(memory_exception());
+      __throw(error_no_memory);
    }
    return true;
 }
@@ -234,7 +234,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //            set_value(pred());
 //
 //         }
-//         catch(::exception_pointer e)
+//         catch(const ::exception::exception & e)
 //         {
 //
 //            set_error_message(e->get_message());
@@ -503,10 +503,10 @@ public:
                set_value(pred());
 
             }
-            catch (::exception_pointer e)
+            catch(const ::exception::exception & e)
             {
 
-               set_error_message(e->get_message());
+               set_error_message(e.get_message());
 
             }
 
@@ -536,7 +536,7 @@ inline ::thread_pointer object::fork(PRED pred)
 }
 
 
-inline ::thread_pointer object::launch(const ::promise::routine & routine)
+inline ::thread_pointer object::launch(const ::routine & routine)
 {
 
    auto pthread = __create_new < ::thread >();

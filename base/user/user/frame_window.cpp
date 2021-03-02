@@ -187,7 +187,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::promise::subject * psubject)
+   void frame_window::update_active_document(::subject::subject * psubject)
    {
 
       auto pdocument = get_active_document();
@@ -803,7 +803,7 @@ namespace user
       //         ::SetFocus(nullptr);
       //#else
       //
-      //         __throw(todo());
+      //         __throw(todo);
       //
       //#endif
       //
@@ -839,10 +839,10 @@ namespace user
    bool frame_window::pre_create_window(::user::system * pusersystem)
    {
 
-      if (pusersystem->m_createstruct.style & FWS_ADDTOTITLE)
+      if (m_bAddToTitle)
       {
 
-         pusersystem->m_createstruct.style |= FWS_PREFIXTITLE;
+         m_bPrefixTitle = true;
 
       }
 
@@ -2244,8 +2244,15 @@ namespace user
 
    void frame_window::on_update_frame_title(bool bAddToTitle)
    {
-      if ((GetStyle() & FWS_ADDTOTITLE) == 0)
-         return;     // leave it alone!
+      //if ((GetStyle() & FWS_ADDTOTITLE) == 0)
+        // return;     // leave it alone!
+
+      if (!m_bAddToTitle)
+      {
+
+         return;
+
+      }
 
 
       __pointer(::user::document) pdocument = get_active_document();
@@ -2262,7 +2269,8 @@ namespace user
 
       string WindowText;
 
-      if (GetStyle() & FWS_PREFIXTITLE)
+      //if (GetStyle() & FWS_PREFIXTITLE)
+      if(m_bPrefixTitle)
       {
          // get name of currently active ::user::impact
          if (pszDocName != nullptr)
@@ -2409,7 +2417,8 @@ namespace user
 
 
       // reposition all the child windows (regardless of ID)
-      if (GetStyle() & FWS_SNAPTOBARS)
+      //if (GetStyle() & FWS_SNAPTOBARS)
+      if(m_bSnapToBars)
       {
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);

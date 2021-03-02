@@ -378,7 +378,7 @@ namespace hotplugin
 
       m_bHostStarterStart = true;
 
-      __throw(todo());
+      __throw(todo);
 
       //::install::starter_start * pstart    = new ::install::starter_start(pobject);
 
@@ -411,7 +411,7 @@ namespace hotplugin
 
       m_bHostStarterStart = true;
 
-      __throw(todo());
+      __throw(todo);
 
       //::install::starter_start * pstart = new ::install::starter_start(pobject);
 
@@ -485,7 +485,7 @@ namespace hotplugin
       try
       {
 
-         __throw(todo());
+         __throw(todo);
 
          //::draw2d::bitmap_pointer b(e_create);
 
@@ -524,7 +524,7 @@ namespace hotplugin
       try
       {
 
-         __throw(todo());
+         __throw(todo);
 
          //simple_bitmap b;
 

@@ -4,7 +4,7 @@
 void throw_memory_exception()
 {
 
-   __throw(memory_exception());
+   __throw(error_no_memory);
 
 }
 

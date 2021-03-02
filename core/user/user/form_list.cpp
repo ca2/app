@@ -2112,7 +2112,7 @@ break_click:;
 
             auto crBackHover = get_color(pstyle, ::user::e_element_background, ::user::e_state_hover);
 
-            if (!crBackHover)
+            if (!crBackHover.is_ok())
             {
 
                crBackHover = argb(40, 0, 0, 0);

@@ -83,7 +83,7 @@ namespace userstack
    }
 
 
-   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::tab_view::on_subject(psubject, pcontext);
@@ -426,7 +426,7 @@ namespace userstack
 //         }
 //      }
 //#else
-//      __throw(todo());
+//      __throw(todo);
 #endif
    }
 
@@ -539,7 +539,7 @@ namespace userstack
 //         launcher.execute();
 //#else
 //
-//         __throw(todo());
+//         __throw(todo);
 //
 //#endif
 //

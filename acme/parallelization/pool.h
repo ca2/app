@@ -20,7 +20,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual ::task * defer_fork(const ::id& id, const ::promise::routine & routine) override;
+   virtual ::task * defer_fork(const ::id& id, const ::routine & routine) override;
 
 
    virtual void start_clock(enum_clock eclock, const duration & duration);

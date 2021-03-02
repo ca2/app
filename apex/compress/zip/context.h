@@ -13,7 +13,7 @@ public:
 
    virtual bool ls(::file::listing & listing);
 
-   virtual __result(::zip::in_file) get_in_file(::file::file * pfile, const string_array & strPath, ::file::enum_type * petype = nullptr);
+   virtual __transport(::zip::in_file) get_in_file(::file::file * pfile, const string_array & strPath, ::file::enum_type * petype = nullptr);
    virtual bool is_file_or_dir(::file::file * pfile, const string_array & strPath, ::file::enum_type * petype);
    virtual bool extract(memory & m, ::file::file * pfile, const string_array & strPath, ::file::enum_type * petype = nullptr);
 

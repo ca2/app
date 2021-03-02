@@ -71,7 +71,7 @@ namespace windows
       virtual void set_file_path(const ::file::path & path) override;
 
 
-      virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+      virtual ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
       virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;

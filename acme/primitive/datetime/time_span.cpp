@@ -34,7 +34,7 @@ namespace datetime
    {
       ASSERT(pFormat != nullptr);
       if(pFormat == nullptr)
-         __throw(::exception::exception(nullptr, error_invalid_argument));
+         __throw(error_invalid_argument);
 
       string strBuffer;
       // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};

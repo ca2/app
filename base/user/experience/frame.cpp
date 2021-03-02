@@ -177,7 +177,7 @@ namespace experience
       if (pframewindow != nullptr)
       {
 
-         if (pframewindow->GetStyle() & FWS_SNAPTOBARS)
+         if (pframewindow->m_bSnapToBars)
          {
 
             ::rectangle_i32 rectangle(0, 0, 32767, 32767);
@@ -226,7 +226,7 @@ namespace experience
    }
 
 
-   color32_t frame::get_border_main_body_color()
+   with_status < ::color::color > frame::get_border_main_body_color()
    {
 
       return m_colorMoveableBorder;
@@ -771,17 +771,17 @@ namespace experience
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.m_result.alpha = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderHilight.alpha = 255;
+      m_colorMoveableBorderHilight.m_result.alpha = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.alpha = 255;
+      m_colorMoveableBorderDkShadow.m_result.alpha = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -852,7 +852,7 @@ namespace experience
    }
 
 
-   void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)

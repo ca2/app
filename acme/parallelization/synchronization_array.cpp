@@ -171,7 +171,7 @@ void synchronization_array::remove(index index)
    if (index >= m_synchronizationa.size())
    {
 
-      __throw(range_exception("synchronization_array::remove: index out of bounds"));
+      __throw(error_range, "synchronization_array::remove: index out of bounds");
 
    }
 
@@ -301,7 +301,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 synchronization_result synchronization_array::contains( const synchronization_result& result ) const
 {
 
-   throw todo();
+   __throw(todo);
 
    //if ( !result.abandoned() && !result.signaled() )
    //   __throw(range_error("no matter signaled"));

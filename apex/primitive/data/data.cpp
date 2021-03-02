@@ -104,7 +104,7 @@ namespace data
    }
 
 
-   void data::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (m_pdatacontainerbase)

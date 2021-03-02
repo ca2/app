@@ -96,7 +96,7 @@ bool compress_context::gz(::file::file * pfileOut, ::file::file * pfileIn, int i
 bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -116,7 +116,7 @@ bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBlockSize, int iVerbosity, int iWorkFactor)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -289,7 +289,7 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 bool compress_context::zip(const ::file::path & psz, ::apex::application * pobject)
 {
 
-   __throw(todo());
+   __throw(todo);
 
    return false;
 

@@ -183,6 +183,7 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 
 }
 
+
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 

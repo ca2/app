@@ -75,7 +75,14 @@ namespace exception
 //   }
 //
 //
-   exception::exception(const char * pszMessage, const ::e_status & estatus, i32 iSkip, void * caller_address)
+
+   exception::exception()
+   {
+
+
+   }
+
+   exception::exception(const ::e_status& estatus, const char * pszMessage, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -122,106 +129,17 @@ namespace exception
 
       m_bContinue = true;
       
-      if(::is_set(pszMessage))
-      {
-
-         m_pszMessage = strdup(pszMessage);
+      m_strMessage = pszMessage;
          
-      }
-      else
-      {
-         
-         m_pszMessage = nullptr;
-         
-      }
-
-      m_pszException = nullptr;
-
-      m_pszFile = nullptr;
-
-
    }
 
 
    exception::~exception()
    {
 
-      if (m_pszException != nullptr)
-      {
-
-         free((void *)m_pszException);
-
-      }
-
-      if (m_pszMessage != nullptr)
-      {
-
-         free((void *)m_pszMessage);
-
-      }
-
-      if (m_pszFile != nullptr)
-      {
-
-         free((void *)m_pszFile);
-
-      }
-
    }
 
 
-   const char * exception::cat_message(const char * pszMessage)
-   {
-      
-      auto pszNew = strcatdup(m_pszMessage, pszMessage);
-      
-      free((void *) m_pszMessage);
-
-      m_pszMessage = pszNew;
-
-      return m_pszMessage;
-
-   }
-
-   const char * exception::set_file(const char * pszFile)
-   {
-
-      if (m_pszFile != nullptr)
-      {
-
-         free((void *) m_pszFile);
-
-      }
-      
-      if(pszFile == nullptr)
-      {
-         
-         m_pszFile = nullptr;
-         
-      }
-      else
-      {
-
-         m_pszFile = strdup(pszFile);
-         
-      }
-
-      return m_pszFile;
-
-   }
-
-   const char * exception::cat_exception(const char * pszException)
-   {
-
-      auto pszNew = strcatdup(m_pszException, pszException);
-      
-      free((void *) m_pszException);
-
-      m_pszException = pszNew;
-
-      return m_pszException;
-
-   }
 
 
    void exception::exception_enable_stack_trace(bool bEnable)
@@ -238,16 +156,9 @@ namespace exception
 
       string strMessage;
 
-      strMessage = string("exception: ") + typeid(*this).name();
+      strMessage = string("exception: ") + estatus_to_string(m_estatus);
 
-      if(::is_set(m_pszMessage))
-      {
-
-         strMessage += ", ";
-
-         strMessage += m_pszMessage;
-
-      }
+      strMessage += m_strMessage;
 
       return strMessage;
 
@@ -295,11 +206,11 @@ errno_t c_runtime_error_check(errno_t error)
    switch(error)
    {
    case ENOMEM:
-      __throw(memory_exception());
+      __throw(error_no_memory);
       break;
    case EINVAL:
    case ERANGE:
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
       break;
 #if defined(WINDOWS)
    case STRUNCATE:
@@ -307,7 +218,7 @@ errno_t c_runtime_error_check(errno_t error)
    case 0:
       break;
    default:
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
       break;
    }
    return error;
@@ -331,7 +242,7 @@ namespace exception
    CLASS_DECL_ACME void throw_interface_only(const char * pszMessage)
    {
 
-      __throw(interface_only_exception(pszMessage));
+      __throw(error_interface_only, pszMessage);
 
    }
 
@@ -339,12 +250,12 @@ namespace exception
    CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage)
    {
 
-      __throw(not_implemented(pszMessage));
+      __throw(error_not_implemented, pszMessage);
 
    }
 
 
-   string get_all_messages(const __pointer_array(exception)& a)
+   string get_all_messages(const array < exception > & a)
    {
 
       ::count c = a.get_count();
@@ -358,7 +269,7 @@ namespace exception
       else if (c == 1)
       {
 
-         return a[0]->m_pszMessage;
+         return a[0].m_strMessage;
 
       }
       else
@@ -370,14 +281,14 @@ namespace exception
 
          a.predicate_each(
 
-         [&](auto & pe)
+         [&](auto & e)
          {
 
             str += __str(++i);
 
             str += ". ";
 
-            str += pe->m_pszMessage;
+            str += e.m_strMessage;
 
             str += ";";
 
@@ -558,6 +469,25 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet)
 {
 
    t_bAvoidBadStatusException = bSet;
+
+}
+
+
+string estatus_to_string(::e_status estatus)
+{
+
+   if (::succeeded(estatus))
+   {
+      
+      return "success";
+
+   }
+   else
+   {
+
+      return "failed";
+
+   }
 
 }
 

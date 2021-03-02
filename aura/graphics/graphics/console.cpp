@@ -770,7 +770,7 @@ namespace graphics
    void console::to_string(const string_exchange & str) const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 

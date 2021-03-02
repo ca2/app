@@ -412,7 +412,7 @@ namespace zip
       }
       else
       {
-         __throw(invalid_argument_exception("zip::in_file::seek invalid seek option"));
+         __throw(error_invalid_argument, "zip::in_file::seek invalid seek option");
       }
 
       if(iNewPos < m_iPosition)
@@ -498,7 +498,7 @@ namespace zip
    void in_file::set_size(filesize dwNewLen)
    {
       
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
 
    }
 

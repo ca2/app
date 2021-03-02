@@ -147,7 +147,7 @@
 //
 //      // called when occurs an standard_exception exception in run
 //      // return true to call run again
-//      virtual bool on_run_exception(::exception_pointer pe);
+//      virtual bool on_run_exception(const ::exception::exception & e);
 //
 //   // Overridables
 //      // thread initialization

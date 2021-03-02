@@ -222,9 +222,9 @@ SizingNone:;
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               ::color::color    colorMoveableBorder;
-               ::color::color    colorMoveableBorderHilight;
-               ::color::color    colorMoveableBorderShadow;
+               with_status < ::color::color > colorMoveableBorder;
+               with_status < ::color::color > colorMoveableBorderHilight;
+               with_status < ::color::color > colorMoveableBorderShadow;
 
                if (pframewindow->is_active_window())
                {
@@ -254,8 +254,9 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
-                  imaging.color_blend(pgraphics,
+                  //class imaging & imaging = System.imaging();
+                  //imaging.color_blend(
+                     pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);
@@ -288,8 +289,9 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
-                  imaging.color_blend(pgraphics,
+                  //class imaging & imaging = System.imaging();
+                  //imaging.color_blend(
+                  pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);

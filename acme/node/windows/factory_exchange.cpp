@@ -52,7 +52,7 @@ void __node_acme_factory_exchange(::factory_map * pfactorymap)
    pfactorymap->create_factory < ::windows::file, ::file::file >();
    //pfactorymap->create_factory < ::windows::os_context, ::os_context >();
    pfactorymap->create_factory < ::windows::pipe, ::process::pipe >();
-   //pfactorymap->create_factory < ::windows::promise::process, ::process::process >();
+   //pfactorymap->create_factory < ::windows::future, ::process::process >();
 
    pfactorymap->create_factory < ::windows::console, ::console::console >();
    //pfactorymap->create_factory < ::windows::crypto, ::crypto::crypto >();

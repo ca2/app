@@ -303,7 +303,7 @@ payload::payload(const property & prop)
 }
 
 
-payload::payload(const ::promise::routine & routine)
+payload::payload(const ::routine & routine)
 {
 
     m_etype = e_type_new;
@@ -314,15 +314,15 @@ payload::payload(const ::promise::routine & routine)
 }
 
 
-payload::payload(const ::promise::process & process)
-{
-
-   m_etype = e_type_new;
-   __zero(m_all);
-   set_type(type_process);
-   m_process = process;
-
-}
+//payload::payload(const ::future & process)
+//{
+//
+//   m_etype = e_type_new;
+//   __zero(m_all);
+//   set_type(type_process);
+//   m_process = process;
+//
+//}
 
 
 payload::payload(property * pproperty)
@@ -2288,13 +2288,13 @@ id & payload::get_ref_id(const char * pszOnNull)
    case e_type_id:
    {
       if(!fits_i32(m_id.i64()))
-         __throw(overflow_exception("::payload contains id that does not fit 32 bit integer"));
+         __throw(error_overflow, "::payload contains id that does not fit 32 bit integer");
       return (::i32) (::i64) m_id;
    }
    case type_pid:
    {
       if(!fits_i32(m_pid->i64()))
-         __throw(overflow_exception("::payload contains id that does not fit 32 bit integer"));
+         __throw(error_overflow, "::payload contains id that does not fit 32 bit integer");
       return (::i32) (::i64) *m_pid;
    }
    default:
@@ -2444,13 +2444,13 @@ id & payload::get_ref_id(const char * pszOnNull)
 }
 
 
-::promise::routine payload::get_routine() const
+::routine payload::get_routine() const
 {
 
    if (get_type() != ::type_routine)
    {
 
-      return ::promise::routine();
+      return ::routine();
 
    }
 
@@ -2459,19 +2459,19 @@ id & payload::get_ref_id(const char * pszOnNull)
 }
 
 
-::promise::process payload::get_process() const
-{
-
-   if (get_type() != ::type_process)
-   {
-
-      return ::promise::process();
-
-   }
-
-   return m_process;
-
-}
+//::future payload::get_process() const
+//{
+//
+//   if (get_type() != ::type_process)
+//   {
+//
+//      return ::future();
+//
+//   }
+//
+//   return m_process;
+//
+//}
 
 
 float payload::get_float(float fDefault) const
@@ -4360,7 +4360,7 @@ payload::operator block ()
    if (get_type() != e_type_memory)
    {
 
-      __throw(exception::exception(nullptr, error_wrong_type));
+      __throw(error_wrong_type);
 
    }
 
@@ -4487,7 +4487,7 @@ void payload::consume_identifier(const char * & psz, const char * pszEnd)
    }
    else
    {
-      throw_parsing_exception("not expected identifier");
+      __throw(error_parsing, "not expected identifier");
    }
    psz = pszParse;
 }
@@ -4573,7 +4573,7 @@ end:
    if(pszParse == pszStart)
    {
 
-      throw_parsing_exception("empty string : not a number");
+      __throw(error_parsing, "empty string : not a number");
 
    }
 
@@ -4649,12 +4649,12 @@ void var_skip_identifier(const char *& psz, const char * pszEnd)
       }
       else
       {
-         throw_parsing_exception("not expected identifier");
+         __throw(error_parsing, "not expected identifier");
       }
    }
    else
    {
-      throw_parsing_exception("not expected identifier");
+      __throw(error_parsing, "not expected identifier");
    }
    psz = pszParse;
 }
@@ -4728,7 +4728,7 @@ void var_skip_number(const char *& psz, const char * pszEnd)
 end:
    if (pszParse == pszStart)
    {
-      throw_parsing_exception("empty string : not a number");
+      __throw(error_parsing, "empty string : not a number");
    }
    psz = pszParse;
 }
@@ -4915,7 +4915,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
 
             str += pszJson;
 
-            throw_json_parsing_exception(str);
+            __throw(error_parsing, str);
 
          }
 
@@ -5139,7 +5139,7 @@ bool payload::is_numeric() const
    case type_process:
       return false;
    default:
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    };
 
@@ -5486,8 +5486,8 @@ bool payload::is_false() const
       return m_pprop || !*m_pprop;
    case type_routine:
          return !m_routine;
-   case type_process:
-         return !m_process;
+   //case type_process:
+   //      return !m_process;
 
    // matter classes
    case e_type_element:
@@ -5627,8 +5627,8 @@ bool payload::is_set_false() const
       return m_pprop || !*m_pprop;
    case type_routine:
       return !m_routine;
-   case type_process:
-      return !m_process;
+   //case type_process:
+   //   return !m_process;
 
       // matter classes
    case e_type_element:
@@ -5889,7 +5889,7 @@ IMPL_VAR_ENUM(check);
 #undef IMPL_VAR_ENUM
 
 
-::status::result payload::run()
+::extended::status payload::run()
 {
 
    if (get_type() == type_pvar)
@@ -5913,7 +5913,7 @@ IMPL_VAR_ENUM(check);
    else if (get_type() == type_vara)
    {
 
-      ::status::result result;
+      ::extended::status result;
 
       for (auto & varFunction : vara())
       {
@@ -5955,33 +5955,33 @@ void payload::receive_response(const ::payload & payload)
       m_pprop->receive_response(payload);
 
    }
-   else if (get_type() == type_process)
-   {
+   //else if (get_type() == type_process)
+   //{
 
-      m_process(payload);
+   //   m_process(payload);
 
-   }
-   else if (get_type() == type_vara)
-   {
+   //}
+   //else if (get_type() == type_vara)
+   //{
 
-      for (auto& varFunction : this->vara())
-      {
+   //   for (auto& varFunction : this->vara())
+   //   {
 
-         if (varFunction.get_type() == type_process)
-         {
-            
-            varFunction.m_process(payload);
+   //      if (varFunction.get_type() == type_process)
+   //      {
+   //         
+   //         varFunction.m_process(payload);
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 }
 
 
-::payload& payload::operator = (const ::promise::routine & routine)
+::payload& payload::operator = (const ::routine & routine)
 {
 
    set_type(type_routine);
@@ -5993,16 +5993,16 @@ void payload::receive_response(const ::payload & payload)
 }
 
 
-::payload& payload::operator = (const ::promise::process & process)
-{
-
-   set_type(type_process);
-
-   m_process = process;
-
-   return *this;
-
-}
+//::payload& payload::operator = (const ::future & process)
+//{
+//
+//   set_type(type_process);
+//
+//   m_process = process;
+//
+//   return *this;
+//
+//}
 
 
 

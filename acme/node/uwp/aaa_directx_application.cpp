@@ -93,7 +93,7 @@ namespace uwp
       if (!estatus)
       {
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 

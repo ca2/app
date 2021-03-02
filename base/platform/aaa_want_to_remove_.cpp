@@ -403,7 +403,7 @@ string get_debug_report_type_text(int iType)
    else
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

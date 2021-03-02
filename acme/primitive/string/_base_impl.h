@@ -2593,7 +2593,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(const CHAR_TYP
 template < typename TYPE_CHAR >
 void string_base < TYPE_CHAR >::AnsiToOem()
 {
-   throw_what_exclamation_exclamation("AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM");
+   __throw(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
    //::str::ConvertToOem(pszBuffer, nLength + 1);
@@ -2604,7 +2604,7 @@ void string_base < TYPE_CHAR >::AnsiToOem()
 template < typename TYPE_CHAR >
 void string_base < TYPE_CHAR >::OemToAnsi()
 {
-   throw_what_exclamation_exclamation("AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM Ah?!?! :/ OEMtoANSI, now a bit lesser (or more?) WTF, WHAT?! WTF Power 10!!");
+   __throw(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM Ah?!?! :/ OEMtoANSI, now a bit lesser (or more?) WTF, WHAT?! WTF Power 10!!");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
    //::str::convert_to_ansi(pszBuffer, nLength + 1);
@@ -2753,7 +2753,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_including(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -2772,7 +2772,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_excluding(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -2817,7 +2817,7 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
    if (pszFormat == nullptr)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -5001,7 +5001,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, s
    ASSERT(iStart >= 0);
 
    if (iStart < 0)
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    if ((pszTokens == nullptr) || (*pszTokens == (char)0))
    {

@@ -24,7 +24,7 @@ namespace linux
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen)
+   ::extended::status stdio_file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen)
    {
 
       ASSERT(pszFileName.has_char());
@@ -360,7 +360,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
       return nullptr;
    }
 
@@ -370,7 +370,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
    void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -378,7 +378,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
 

@@ -456,9 +456,17 @@ namespace windows
       // FindNext() call
 
       if (m_hContext == nullptr)
+      {
+
          ASSERT(m_pFoundInfo == nullptr && m_pNextInfo == nullptr);
+
+      }
       else
+      {
+
          ASSERT(m_pFoundInfo != nullptr && m_pNextInfo != nullptr);
+
+      }
 
    }
 

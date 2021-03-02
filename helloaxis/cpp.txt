@@ -1,5 +1,5 @@
  Volume in drive C has no label.
- Volume Serial Number is CC8D-9F90
+ Volume serial Number is CC8D-9F90
 
  Directory of C:\nordroid\app-core\helloaxis
 

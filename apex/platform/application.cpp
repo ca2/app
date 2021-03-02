@@ -793,7 +793,7 @@ namespace apex
          //    __throw(exit_exception(esp->get_context_application(), ::exit_application));
 
          // }
-         catch (::exception_pointer pe)
+         catch (const ::exception::exception & e)
          {
 
             handle_exception(pe);
@@ -1431,7 +1431,7 @@ namespace apex
    //void application::_001CloseApplication()
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //}
 
@@ -1470,7 +1470,7 @@ namespace apex
 //   string CLASS_DECL_APEX application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(not_implemented());
+//  __throw(error_not_implemented);
 
 //}
 
@@ -1480,7 +1480,7 @@ namespace apex
    ::e_status application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return false;
 
@@ -1495,7 +1495,7 @@ namespace apex
    }
 
 
-   ::e_status application::process_exception(::exception_pointer pe)
+   ::e_status application::process_exception(const ::exception::exception & e)
    {
 
       return ::thread::process_exception(pe);
@@ -1546,7 +1546,7 @@ namespace apex
 //         }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          if (!handle_exception(pe))
@@ -1582,7 +1582,7 @@ namespace apex
          }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          handle_exception(pe);
@@ -1693,7 +1693,7 @@ namespace apex
          return true;
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          handle_exception(pe);
@@ -1794,7 +1794,7 @@ namespace apex
 //            estatus = run();
 //
 //         }
-//         catch (::exception_pointer pe)
+//         catch (const ::exception::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -1993,7 +1993,9 @@ namespace apex
 
 //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            message_box_timeout(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+            //message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+
+            message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
             INFO("apex::application::init_application exit");
 
@@ -2483,7 +2485,7 @@ namespace apex
          }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          handle_exception(pe);
@@ -3078,7 +3080,7 @@ retry_license:
 
          init_service();
 
-         __throw(todo());
+         __throw(todo);
 
          //service_main(m_pservice);
 
@@ -4977,7 +4979,7 @@ retry_license:
    }
 
 
-   void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
 
@@ -5385,7 +5387,7 @@ retry_license:
 
       //}
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -5395,7 +5397,7 @@ retry_license:
    bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       //__pointer(::user::interaction) pwnd;
 
@@ -6151,7 +6153,7 @@ retry_license:
    }
 
 
-   //bool application::process_exception(::exception_pointer pe)
+   //bool application::process_exception(const ::exception::exception & e)
    //{
 
    //   return apex::application::process_exception(e);
@@ -6223,7 +6225,7 @@ retry_license:
             m_estatus = run();
 
          }
-         catch (::exception::exception_pointer pe)
+         catch (::exceptionconst ::exception::exception & e)
          {
 
             if (handle_exception(pe))
@@ -6238,7 +6240,7 @@ retry_license:
          }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
       }
@@ -7084,7 +7086,7 @@ retry_license:
    //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   return false;
 
@@ -7637,7 +7639,7 @@ retry_license:
    }
 
 
-   void application::process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage)
+   void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
    {
 
       ENSURE_ARG(pe != nullptr);
@@ -8304,7 +8306,7 @@ retry_license:
    }
 
 
-   //bool application::process_exception(::exception_pointer pe)
+   //bool application::process_exception(const ::exception::exception & e)
    //{
 
    //   return ::apex::application::on_run_exception(pexception))
@@ -9294,7 +9296,7 @@ retry_license:
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(APPLEOS)
-//      __throw(todo());
+//      __throw(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronization_lock synchronizationlock(&user_mutex());
@@ -9837,7 +9839,7 @@ retry_license:
 //
 //      return (i32)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 //   }
 
@@ -9857,7 +9859,7 @@ retry_license:
 //
 //#else
 //
-//      //__throw(todo());
+//      //__throw(todo);
 //
 //#endif
 
@@ -9958,7 +9960,7 @@ retry_license:
    __throw(e);
 
    }
-   catch(const ::exception_pointer pe)
+   catch(const const ::exception::exception & e)
    {
 
    if(!Application.on_run_exception((::exception::exception &) e))
@@ -9999,7 +10001,7 @@ retry_license:
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
    {
 
 
@@ -10904,24 +10906,22 @@ retry_license:
    }
 
 
-   ::e_status application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   __pointer(::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
-
-      return estatus;
+      return System.message_box(pszMessage, pszTitle, emessagebox);
 
    }
 
 
-   ::e_status application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
-   {
+   //::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+   //{
 
-      auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
 

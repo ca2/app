@@ -685,7 +685,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    if ((byte *) 0x0000000200000020 == ((byte *)pParam))
    {
 
-      debug_break();
+      DEBUG_BREAK;
 
    }
    //else if ((((iptr)pParam) & 0xcccccc) == 0xcccccc)
@@ -797,7 +797,7 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    if (nMax == 0 || cbElement == 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -891,7 +891,7 @@ void plex_heap_alloc_sync::NewBlock()
    if ((byte *)0x0000000200000020 == ((byte *)pnodeNext))
    {
 
-      debug_break();
+      DEBUG_BREAK;
 
    }
 

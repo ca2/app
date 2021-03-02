@@ -26,7 +26,7 @@ namespace uwp
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & lpszFileName,::u32 nOpenFlags)
+   ::extended::status stdio_file::open(const ::file::path & lpszFileName,::u32 nOpenFlags)
    {
 
       ASSERT(lpszFileName != nullptr);
@@ -291,7 +291,7 @@ namespace uwp
 
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
 
       return nullptr;
 
@@ -303,7 +303,7 @@ namespace uwp
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
    void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -311,7 +311,7 @@ namespace uwp
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
 

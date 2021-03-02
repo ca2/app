@@ -270,7 +270,7 @@ namespace user
             if (is_debugger_attached())
             {
 
-               message_box("Window not created", "Window not created", e_message_box_icon_warning, nullptr);
+               message_box("Window not created", "Window not created", e_message_box_icon_warning);
 
             }
 
@@ -442,7 +442,7 @@ namespace user
          return true;
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          if (m_strDebugType.contains("filemanager"))

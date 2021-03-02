@@ -14,7 +14,7 @@ namespace acme
       
       DWORD dwError = ::GetLastError();
 
-      __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
+      throw win32_exception(dwError);
 
    }
 

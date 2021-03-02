@@ -50,7 +50,7 @@ namespace aura
 
       //using apex::node::user_fork;
 
-      //virtual void user_fork(const ::promise::routine & routine) override;
+      //virtual void user_fork(const ::routine & routine) override;
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
 

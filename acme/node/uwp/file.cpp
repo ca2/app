@@ -56,7 +56,7 @@ namespace uwp
    //}
 
 
-   ::status::result file::open(const ::file::path & path, const ::file::e_open & efileopenParam)
+   ::extended::status file::open(const ::file::path & path, const ::file::e_open & efileopenParam)
    {
 
       ::file::e_open eopen(efileopenParam);
@@ -516,7 +516,7 @@ namespace uwp
    void CLASS_DECL_ACME vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
    {
       
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -1203,7 +1203,7 @@ bool CLASS_DECL_ACME vfxResolveShortcut(string & strTarget, const char * pszSour
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 
 #endif

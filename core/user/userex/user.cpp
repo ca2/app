@@ -610,37 +610,47 @@ namespace core
    }
 
 
-   ::e_status user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process)
+   __pointer(::future < ::conversation >) user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
+
+      pbox->__construct_new(pbox->m_pfutureconversation);
+
+      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
 
       pbox->add_property_set(&propertyset);
 
       if (!pbox->show(pszMatter))
       {
 
-         return ::error_failed;
+         pbox->m_pfutureconversation->set_status(::error_failed);
+
+         return pbox->m_pfutureconversation;
 
       }
 
       process_subject(pbox->m_idResponse);
 
-      return ::success;
+      return pbox->m_pfutureconversation;
 
    }
 
 
-   ::e_status user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   __pointer(::future < ::conversation >) user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
+
+      pbox->__construct_new(pbox->m_pfutureconversation);
+
+      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
 
       property_set & propertyset = pbox->get_property_set();
 
       propertyset["message"] = pszMessage;
 
-      pbox->add_process(DIALOG_RESULT_PROCESS, process);
+      //pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
       auto psession = Session;
 
@@ -694,7 +704,9 @@ namespace core
 
             //return ::message_box(pwndOwner->get_safe_handle(),strMessage,Application.m_strAppName,fuStyle, functionargResult);
 
-            return ::error_failed;
+            pbox->m_pfutureconversation->set_status(::error_failed);
+
+            return pbox->m_pfutureconversation;
 
          }
 
@@ -702,7 +714,9 @@ namespace core
       catch(...)
       {
 
-         return ::error_failed;
+         pbox->m_pfutureconversation->set_status(::error_exception);
+
+         return pbox->m_pfutureconversation;
          //string strMessage = pszMessage;
 
          //strMessage.replace("<br>","\r\n");
@@ -713,7 +727,7 @@ namespace core
 
       //return 0;
 
-      return ::success;
+      return pbox->m_pfutureconversation;
 
       //if(pbox->m_idResponse == "ok")
       //{
@@ -756,16 +770,20 @@ namespace core
    }
 
 
-   ::e_status user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   __pointer(::future < ::conversation >) user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
+      pbox->__construct_new(pbox->m_pfutureconversation);
+
+      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
+
       pbox->payload("message") = pszMessage;
 
-      pbox->add_process(DIALOG_RESULT_PROCESS, process);
+      //pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 
@@ -793,11 +811,13 @@ namespace core
       if (!pbox->show(strMatter))
       {
 
-         return ::error_failed;
+         pbox->m_pfutureconversation->set_status(::error_failed);
+
+         return pbox->m_pfutureconversation;
 
       }
 
-      return ::success;
+      return pbox->m_pfutureconversation;
 
    }
 

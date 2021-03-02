@@ -86,7 +86,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::e_status __call(const ::promise::routine & routine);
+CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 //namespace parallelization
@@ -212,7 +212,7 @@ class synchronization_lock;
 //};
 
 
-#include "acme/primitive/promise_predicate/predicate_holder.h"
+#include "acme/platform/predicate_holder.h"
 
 
 #include "synchronization_object.h"
@@ -399,7 +399,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
 #include "synchronized_process.h"
 
 
-#include "acme/primitive/promise_predicate/synchronized_predicate_routine.h"
+#include "acme/platform/synchronized_predicate_routine.h"
 
 
 

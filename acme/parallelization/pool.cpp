@@ -18,7 +18,7 @@ task_pool::~task_pool()
 }
 
 
-::task * task_pool::defer_fork(const ::id& id, const ::promise::routine & routine)
+::task * task_pool::defer_fork(const ::id& id, const ::routine & routine)
 {
 
    auto & ptask = task(id);

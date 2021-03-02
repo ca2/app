@@ -260,7 +260,7 @@ inline ::payload & context_object::get_context_object(const ::id & id)
    if (!pproperty)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 
@@ -279,7 +279,7 @@ inline ::payload context_object::topic(const ::id& id)
    if (!pproperty)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 

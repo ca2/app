@@ -101,7 +101,7 @@ namespace user
       virtual void _001CloseTab(::index iTab);
 
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void rotate();
 

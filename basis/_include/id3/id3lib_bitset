@@ -152,15 +152,15 @@ struct _Base_bitset {
   }
 
   size_t _M_do_count() const {
-    size_t __result = 0;
+    size_t __transport = 0;
     const unsigned char* __byte_ptr = (const unsigned char*)_M_w;
     const unsigned char* __end_ptr = (const unsigned char*)(_M_w+_Nw);
 
     while ( __byte_ptr < __end_ptr ) {
-      __result += _Bit_count<true>::_S_bit_count[*__byte_ptr];
+      __transport += _Bit_count<true>::_S_bit_count[*__byte_ptr];
       __byte_ptr++;
     }
-    return __result;
+    return __transport;
   }
 
   unsigned long _M_do_to_ulong() const;
@@ -260,12 +260,12 @@ unsigned long _Base_bitset<_Nw, _WordT>::_M_do_to_ulong() const
         (_M_w[__min_nwords - 1] >> ((sizeof(_WordT) - __part) * CHAR_BIT)) != 0)
       __STL_THROW(__overflow);
 
-    unsigned long __result = 0;
+    unsigned long __transport = 0;
     for (size_t __i = 0; __i < __min_nwords; ++__i) {
-      __result |= static_cast<unsigned long>(
+      __transport |= static_cast<unsigned long>(
          _M_w[__i]) << (__i * sizeof(_WordT) * CHAR_BIT);
     }
-    return __result;
+    return __transport;
   }
 } // End _M_do_to_ulong
 
@@ -398,14 +398,14 @@ struct _Base_bitset<1, _WordT> {
   }
 
   size_t _M_do_count() const {
-    size_t __result = 0;
+    size_t __transport = 0;
     const unsigned char* __byte_ptr = (const unsigned char*)&_M_w;
     const unsigned char* __end_ptr = ((const unsigned char*)&_M_w)+sizeof(_M_w);
     while ( __byte_ptr < __end_ptr ) {
-      __result += _Bit_count<true>::_S_bit_count[*__byte_ptr];
+      __transport += _Bit_count<true>::_S_bit_count[*__byte_ptr];
       __byte_ptr++;
     }
-    return __result;
+    return __transport;
   }
 
   unsigned long _M_do_to_ulong() const {
@@ -759,9 +759,9 @@ public:
 #ifdef __STL_EXPLICIT_FUNCTION_TMPL_ARGS
   template <class _CharT, class _Traits, class _Alloc>
   basic_string<_CharT, _Traits, _Alloc> to_string() const {
-    basic_string<_CharT, _Traits, _Alloc> __result;
-    _M_copy_to_string(__result);
-    return __result;
+    basic_string<_CharT, _Traits, _Alloc> __transport;
+    _M_copy_to_string(__transport);
+    return __transport;
   }
 #endif /* __STL_EXPLICIT_FUNCTION_TMPL_ARGS */
 
@@ -864,26 +864,26 @@ void bitset<_Nb, _WordT>
 template <size_t _Nb, class _WordT>
 inline bitset<_Nb,_WordT> operator&(const bitset<_Nb,_WordT>& __x,
                                     const bitset<_Nb,_WordT>& __y) {
-  bitset<_Nb,_WordT> __result(__x);
-  __result &= __y;
-  return __result;
+  bitset<_Nb,_WordT> __transport(__x);
+  __transport &= __y;
+  return __transport;
 }
 
 
 template <size_t _Nb, class _WordT>
 inline bitset<_Nb,_WordT> operator|(const bitset<_Nb,_WordT>& __x,
                                     const bitset<_Nb,_WordT>& __y) {
-  bitset<_Nb,_WordT> __result(__x);
-  __result |= __y;
-  return __result;
+  bitset<_Nb,_WordT> __transport(__x);
+  __transport |= __y;
+  return __transport;
 }
 
 template <size_t _Nb, class _WordT>
 inline bitset<_Nb,_WordT> operator^(const bitset<_Nb,_WordT>& __x,
                                     const bitset<_Nb,_WordT>& __y) {
-  bitset<_Nb,_WordT> __result(__x);
-  __result ^= __y;
-  return __result;
+  bitset<_Nb,_WordT> __transport(__x);
+  __transport ^= __y;
+  return __transport;
 }
 
 // NOTE: these must be rewritten once we have templatized iostreams.

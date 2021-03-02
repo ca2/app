@@ -18,7 +18,7 @@ namespace data
       if (m_proot == nullptr)
       {
 
-         __throw(memory_exception());
+         __throw(error_no_memory);
 
       }
 
@@ -490,7 +490,7 @@ namespace data
       }
       break;
       default:
-         __throw(not_supported_exception());
+         __throw(error_not_supported);
       }
 
       pitemNew->m_ptree = this;
@@ -710,13 +710,13 @@ namespace data
    }
 
 
-   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
    }
 
 
-   //void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   //void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    //{
 
    //}

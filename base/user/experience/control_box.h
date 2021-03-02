@@ -36,35 +36,35 @@ namespace experience
       __declare_map(enum_button_item_map, enum_button_item, enum_button, m_ebutton, __pointer(item), m_pitem);
 
 
-      ::experience::frame_window *              m_pframewindow;
-      millis                                    m_millisShow;
-      bool                                      m_bShowAttempt;
-      bool                                      m_bDrag;
-      point_i32                                     m_pointDrag;
-      i32                                       m_iDefaultButtonMargin;
-      i32                                       m_iDefaultButtonSize;
-      ::size_i32                                    m_sizeButtonDefault;
-      ::write_text::font_pointer                    m_fontMarlett;
+      ::experience::frame_window *           m_pframewindow;
+      millis                                 m_millisShow;
+      bool                                   m_bShowAttempt;
+      bool                                   m_bDrag;
+      point_i32                              m_pointDrag;
+      i32                                    m_iDefaultButtonMargin;
+      i32                                    m_iDefaultButtonSize;
+      ::size_i32                             m_sizeButtonDefault;
+      ::write_text::font_pointer             m_fontMarlett;
 
-      ::draw2d::brush_pointer                   m_brushButtonBack;
-      ::draw2d::brush_pointer                   m_brushButtonBackSel;
-      ::draw2d::brush_pointer                   m_brushButtonBackFocus;
-      ::draw2d::brush_pointer                   m_brushButtonBackDisabled;
+      ::draw2d::brush_pointer                m_brushButtonBack;
+      ::draw2d::brush_pointer                m_brushButtonBackSel;
+      ::draw2d::brush_pointer                m_brushButtonBackFocus;
+      ::draw2d::brush_pointer                m_brushButtonBackDisabled;
 
-      ::draw2d::pen_pointer                     m_penButtonBack;
-      ::draw2d::pen_pointer                     m_penButtonBackSel;
-      ::draw2d::pen_pointer                     m_penButtonBackFocus;
-      ::draw2d::pen_pointer                     m_penButtonBackDisabled;
+      ::draw2d::pen_pointer                  m_penButtonBack;
+      ::draw2d::pen_pointer                  m_penButtonBackSel;
+      ::draw2d::pen_pointer                  m_penButtonBackFocus;
+      ::draw2d::pen_pointer                  m_penButtonBackDisabled;
 
-      ::color::color                                   m_colorButtonFore;
-      ::color::color                                   m_colorButtonForeSel;
-      ::color::color                                   m_colorButtonForeFocus;
-      ::color::color                                   m_colorButtonForeDisabled;
+      ::color::color                         m_colorButtonFore;
+      ::color::color                         m_colorButtonForeSel;
+      ::color::color                         m_colorButtonForeFocus;
+      ::color::color                         m_colorButtonForeDisabled;
 
-      enum_button_item_map                      m_itemmap;
-      id_map < enum_button >                    m_idmap;
+      enum_button_item_map                   m_itemmap;
+      id_map < enum_button >                 m_idmap;
             
-      __status < ::color::color  >              m_colorBackground;
+      with_status < ::color::color  >      m_colorBackground;
 
 
       control_box();

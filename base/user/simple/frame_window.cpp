@@ -1209,7 +1209,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
    //}
 
 #else
-   __throw(todo());
+   __throw(todo);
 #endif
 }
 
@@ -1983,7 +1983,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       rectFrame = layout().sketch().screen_rect();
 
-      pusersystem->set_rect(rectFrame);
+      //pusersystem->set_rect(rectFrame);
 
       INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
       INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
@@ -3109,7 +3109,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   }
 //
 //#else
-//   __throw(todo());
+//   __throw(todo);
 //#endif
 //}
 

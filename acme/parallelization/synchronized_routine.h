@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace promise
-{
+//namespace promise
+//{
 
 
    class sync_routine;
 
 
-   inline __pointer(sync_routine) ___sync_routine(const ::promise::routine & routine);
+   inline __pointer(sync_routine) ___sync_routine(const ::routine & routine);
 
 
    class CLASS_DECL_ACME sync_routine :
@@ -16,10 +16,10 @@ namespace promise
    {
    protected:
 
-      friend __pointer(sync_routine) ___sync_routine(const ::promise::routine &routine);
+      friend __pointer(sync_routine) ___sync_routine(const ::routine &routine);
 
 
-      sync_routine(const ::promise::routine & routine) :
+      sync_routine(const ::routine & routine) :
          m_routine(routine)
       {
 
@@ -34,7 +34,7 @@ namespace promise
       routine                          m_routine;
       __pointer(manual_reset_event)    m_peventCompletion;
       ::duration                       m_duration;
-      ::e_status                        m_estatus;
+      ::e_status                       m_estatus;
 
 
       virtual ~sync_routine() {}
@@ -63,7 +63,7 @@ namespace promise
    };
 
 
-   inline __pointer(sync_routine) ___sync_routine(const ::promise::routine & routine)
+   inline __pointer(sync_routine) ___sync_routine(const ::routine & routine)
    {
 
       return __new(sync_routine(routine));
@@ -71,7 +71,7 @@ namespace promise
    }
 
 
-} // namespace promise
+//} // namespace promise
 
 
 

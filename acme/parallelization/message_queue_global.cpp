@@ -172,7 +172,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wpar
    if (id.m_etype != ::id::e_type_message)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

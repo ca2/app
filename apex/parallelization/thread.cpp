@@ -617,7 +617,7 @@ bool thread::thread_step()
          }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          if (!handle_exception(pe))
@@ -925,7 +925,7 @@ bool thread::pump_message()
       return true;
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       if (m_strDebugType.contains("filemanager"))
@@ -1062,7 +1062,7 @@ bool thread::raw_pump_message()
       return true;
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       if (handle_exception(pe))
@@ -1130,7 +1130,7 @@ bool thread::raw_pump_message()
    catch (...)
    {
 
-      TRACE("application::process_thread_message : ::status::result processing application thread message (...)");
+      TRACE("application::process_thread_message : ::extended::status processing application thread message (...)");
 
    }
 
@@ -1160,12 +1160,12 @@ bool thread::raw_pump_message()
 //      pusermessage->m_puserinteraction->m_puiThis->message_handler(pusermessage);
 //
 //   }
-//   catch (::exception_pointer pe)
+//   catch (const ::exception::exception & e)
 //   {
 //
 //      process_window_procedure_exception(pe, pusermessage);
 //
-//      TRACE("application::process_window_message : ::status::result processing window message (const ::exception::exception & )");
+//      TRACE("application::process_window_message : ::extended::status processing window message (const ::exception::exception & )");
 //
 //      if (!handle_exception(pe))
 //      {
@@ -1180,7 +1180,7 @@ bool thread::raw_pump_message()
 //   catch (...)
 //   {
 //
-//      TRACE("application::process_window_message : ::status::result processing window message (...)");
+//      TRACE("application::process_window_message : ::extended::status processing window message (...)");
 //
 //   }
 //
@@ -1487,7 +1487,7 @@ void thread::task_remove(::task * ptask)
       if (::is_null(ptask))
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -1496,7 +1496,7 @@ void thread::task_remove(::task * ptask)
       if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       {
 
-         __throw(invalid_argument_exception("thread is no parent-child releationship between the threads"));
+         __throw(error_invalid_argument, "thread is no parent-child releationship between the threads"));
 
       }
 
@@ -2118,7 +2118,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 }
 
 
-void thread::process_window_procedure_exception(::exception_pointer pe,::message::message * pmessage)
+void thread::process_window_procedure_exception(const ::exception::exception & e,::message::message * pmessage)
 {
 
    if(pmessage->m_id == e_message_create)
@@ -2648,7 +2648,7 @@ void thread::__os_finalize()
       __os_initialize();
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       m_estatus = pe->m_estatus;
@@ -2815,7 +2815,7 @@ void thread::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
       //!!for e_message_quit please use post_quit_to_all_threads;
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -2836,7 +2836,7 @@ void thread::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
 }
 
 
-bool thread::post_task(const ::promise::routine & routine)
+bool thread::post_task(const ::routine & routine)
 {
 
    if (!routine)
@@ -2857,7 +2857,7 @@ bool thread::post_task(const ::promise::routine & routine)
 }
 
 
-bool thread::send_task(const ::promise::routine & routine, ::duration durationTimeout)
+bool thread::send_task(const ::routine & routine, ::duration durationTimeout)
 {
 
    return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
@@ -2956,7 +2956,7 @@ bool thread::send_object(const ::id & id, wparam wparam, lparam lparam, ::durati
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -3004,7 +3004,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -3145,7 +3145,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
       }
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       handle_exception(pe);
@@ -3759,7 +3759,7 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam,
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -4018,7 +4018,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_method)
          {
 
-            ::promise::routine routine(message.lParam);
+            ::routine routine(message.lParam);
 
             routine();
 
@@ -4091,7 +4091,7 @@ void thread::message_handler(::message::message * pmessage)
       return true;
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       if (handle_exception(pe))
@@ -4142,7 +4142,7 @@ void thread::message_handler(::message::message * pmessage)
       return true;
 
    }
-   catch (::exception_pointer pe)
+   catch (const ::exception::exception & e)
    {
 
       if (handle_exception(pe))

@@ -399,9 +399,9 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      __status < ::color::color >  color;
+      with_status < ::color::color > color;
 
-      string      strKey(m_strValue);
+      string strKey(m_strValue);
 
       strKey.make_lower();
 
@@ -454,7 +454,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
-   __status < ::color::color > color;
+   with_status < ::color::color > color;
 
    if(isNamedColorValue(preader))
    {
@@ -470,7 +470,7 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
          if (color.m_estatus == ::success_color_index)
          {
 
-            color = Sess(preader->get_context_session())->get_default_color(color.red);
+            color = Sess(preader->get_context_session())->get_default_color(::color::red);
 
          }
       }
@@ -479,13 +479,13 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      color.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color.m_result.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
 
       color.m_estatus = ::success;
 
    }
 
-   return color;
+   return color.m_result.u32;
 
 }
 

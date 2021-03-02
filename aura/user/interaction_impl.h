@@ -171,7 +171,7 @@ namespace user
       virtual bool create_host(::user::interaction * pinteraction);
 
 
-      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();
@@ -203,10 +203,10 @@ namespace user
       bool operator==(const interaction_impl& wnd) const;
       bool operator!=(const interaction_impl& wnd) const;
 
-      virtual u32 GetStyle() const override;
-      virtual u32 GetExStyle() const override;
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual u32 GetStyle() const override;
+      //virtual u32 GetExStyle() const override;
+      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
 
       virtual void mouse_hover_add(::user::interaction * pinterface) override;

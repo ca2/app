@@ -18,7 +18,7 @@ task_pool::~task_pool()
 }
 
 
-task_pointer & task_pool::defer_start(const ::id& id, const ::promise::routine & routine)
+task_pointer & task_pool::defer_start(const ::id& id, const ::routine & routine)
 {
 
    auto& pthread = task(id);

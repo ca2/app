@@ -255,7 +255,7 @@ namespace aura
       //virtual void SetCurrentHandles() override;
 
 
-      //virtual ::e_status process_exception(::exception_pointer pe) override;
+      //virtual ::e_status process_exception(const ::exception::exception & e) override;
 
 
       //virtual __pointer(::aura::application) assert_running(const char * pszAppId) override;
@@ -477,7 +477,7 @@ namespace aura
       //virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
 
 
-      //virtual bool process_exception(::exception_pointer pe) override;
+      //virtual bool process_exception(const ::exception::exception & e) override;
 
 
       //virtual bool is_system() const override;
@@ -754,7 +754,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -925,7 +925,7 @@ namespace aura
 
       // overrides for implementation
       virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
-      virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
 
       void EnableModelessEx(bool bEnable);
 //#ifdef WINDOWS
@@ -962,7 +962,7 @@ namespace aura
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
-      //virtual bool process_exception(::exception_pointer pe) override;
+      //virtual bool process_exception(const ::exception::exception & e) override;
 
       //virtual bool on_uninstall() override;
 
@@ -1117,7 +1117,7 @@ namespace aura
       //virtual ::e_status init_instance() override;
 
 
-//      virtual bool process_exception(::exception_pointer pe) override;
+//      virtual bool process_exception(const ::exception::exception & e) override;
 
 
 
@@ -1291,7 +1291,7 @@ namespace aura
       }
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::promise::subject * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
@@ -1349,7 +1349,7 @@ namespace aura
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual ::e_status process_init() override;
 

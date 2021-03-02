@@ -116,7 +116,7 @@ bool axis_term()
 //
 //#endif
 
-   //__throw(todo());
+   //__throw(todo);
    //try
    //{
 

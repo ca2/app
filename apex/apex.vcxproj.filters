@@ -1478,6 +1478,15 @@
     <ClInclude Include="message\command.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="message\handler.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\predicate_handler.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\handler_item.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -2177,6 +2186,9 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="message\command.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
   </ItemGroup>

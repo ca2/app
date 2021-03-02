@@ -663,7 +663,7 @@
  pDeltas = new i32[nCount];
  pOutputString = new char[nCount];
  }
- catch(::exception_pointer e)
+ catch(const ::exception::exception & e)
  {
  delete[] pDeltas;  // in case it was allocated
  // Note: DELETE_EXCEPTION(e) not required
@@ -715,7 +715,7 @@
  pDeltas = new i32[nCount];
  pOutputString = new char[nCount];
  }
- catch(::exception_pointer e)
+ catch(const ::exception::exception & e)
  {
  delete[] pDeltas;
  // Note: DELETE_EXCEPTION(e) not required

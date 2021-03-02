@@ -6,42 +6,49 @@ namespace aura
 {
 
 
-
-   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const promise::process & process)
+   __pointer(::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto psession = Session;
 
       auto puser = psession->m_puser;
 
-      auto pwindowing = puser->m_pwindowing;
+      auto pmessagebox = __create_new < ::user::message_box >();
 
-      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+      auto pfuture = pmessagebox->::asynchronous<::conversation>::future();
 
-      process(ret);
+      pmessagebox->show(pszMessage, pszTitle, emessagebox);
 
-      return ::success;
+      ///__throw(todo);
 
-   }
+//      auto pwindowing = puser->m_pwindowing;
 
+//      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
 
-   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const promise::process & process)
-   {
+//      process(ret);
 
-      auto psession = Session;
-
-      auto puser = psession->m_puser;
-
-      auto pwindowing = puser->m_pwindowing;
-
-      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
-
-      process(ret);
-
-      return ::success;
-
+      return pfuture;
 
    }
+
+
+   //::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+   //{
+
+   //   auto psession = Session;
+
+   //   auto puser = psession->m_puser;
+
+   //   auto pwindowing = puser->m_pwindowing;
+
+   //   auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+
+   //   process(ret);
+
+   //   return ::success;
+
+
+   //}
 
 
    ::e_status system::start()

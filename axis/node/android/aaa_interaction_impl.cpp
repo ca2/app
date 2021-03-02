@@ -253,7 +253,7 @@ namespace android
    bool interaction_impl::_native_create_window_ex(::user::system& cs)
    {
 
-//      __throw(not_implemented("no multiple native windows per application"));
+//      __throw(error_not_implemented, "no multiple native windows per application"));
 
 //      return false;
 
@@ -1768,7 +1768,7 @@ namespace android
    LRESULT interaction_impl::OnDragList(WPARAM, LPARAM lparam)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //
       //      LPDRAGLISTINFO lpInfo = (LPDRAGLISTINFO)lparam;
       //      ASSERT(lpInfo != nullptr);
@@ -1883,7 +1883,7 @@ namespace android
    void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    {
 
-      // __throw(not_implemented());
+      // __throw(error_not_implemented);
       // EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
 
    }
@@ -1961,7 +1961,7 @@ namespace android
       HRGN rgnIntersect;
       HRGN rgnUpdate = nullptr;
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -1980,7 +1980,7 @@ namespace android
 
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      __pointer(::user::message) pusermessage(pmessage);
       //
       //      if(pusermessage->m_wparam == nullptr)
@@ -2061,7 +2061,7 @@ namespace android
    //   // that only one was really sent and dispatched.
    //   {
    //      MESSAGE msg;
-   //      __throw(not_implemented());
+   //      __throw(error_not_implemented);
    //      //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, PM_REMOVE))
    //      //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, true))
    //      // DispatchMessage(&msg);
@@ -2087,7 +2087,7 @@ namespace android
 //   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, ::u32 nCtlColor,
 //         HBRUSH hbrGray, color32_t clrText)
 //   {
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //      if (hDC == nullptr)
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
@@ -2123,7 +2123,7 @@ namespace android
 
    void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //
       //      // determine owner interaction_impl to center against
@@ -2255,7 +2255,7 @@ namespace android
    //   if (lpResource != nullptr && hResource != nullptr)
    //   {
 
-   //      __throw(not_implemented());
+   //      __throw(error_not_implemented);
 
    // 
 
@@ -2269,7 +2269,7 @@ namespace android
    //bool interaction_impl::ExecuteDlgInit(LPVOID lpResource)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //}
 
@@ -2307,7 +2307,7 @@ namespace android
       // allow any other subclassing to occur
       pre_subclass_window();
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
 
    }
@@ -2318,7 +2318,7 @@ namespace android
 
       ASSERT(::is_window((oswindow)get_handle()));
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2409,7 +2409,7 @@ namespace android
 //      /*   return ::set_window_position(get_handle(), pWndInsertAfter->get_handle(),
 //      x, y, cx, cy, nFlags) != false; */
 //
-//      //__throw(not_implemented());
+//      //__throw(error_not_implemented);
 //
 //      //XSizeHints hints;
 //
@@ -2871,7 +2871,7 @@ namespace android
    //bool interaction_impl::DragDetect(POINT32 pt) const
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
 
    //   //return ::DragDetect(get_handle(), point) != false;
@@ -2904,7 +2904,7 @@ namespace android
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       //ASSERT(::is_window((oswindow) get_handle()));
       //::DragAcceptFiles(get_handle(), bAccept);
@@ -2998,7 +2998,7 @@ namespace android
    //::u32 interaction_impl::ArrangeIconicWindows()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle())); return ::ArrangeIconicWindows(get_handle());
 
@@ -3011,7 +3011,7 @@ namespace android
    //   UNREFERENCED_PARAMETER(hRgn);
    //   UNREFERENCED_PARAMETER(bRedraw);
 
-   //   //__throw(not_implemented());
+   //   //__throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
 
@@ -3023,7 +3023,7 @@ namespace android
    //i32 interaction_impl::GetWindowRgn(HRGN hRgn)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle()) && hRgn != nullptr); return ::GetWindowRgn(get_handle(), hRgn);
    //   return 0;
@@ -3034,7 +3034,7 @@ namespace android
    //bool interaction_impl::BringWindowToTop()
    //{
 
-   //   //      __throw(not_implemented());
+   //   //      __throw(error_not_implemented);
    //   //      return ::BringWindowToTop(get_handle()) != false;
 
    //   return true;
@@ -3045,7 +3045,7 @@ namespace android
    //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
@@ -3056,7 +3056,7 @@ namespace android
    //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT32 *)lpRect, 2);
@@ -3144,62 +3144,62 @@ namespace android
 
    //void interaction_impl::UpdateWindow()
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //::UpdateWindow(get_handle());
    //}
 
    //void interaction_impl::SetRedraw(bool bRedraw)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    //}
 
    //bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //return ::GetUpdateRect(get_handle(), lpRect, bErase) != false;
    //}
 
    //i32 interaction_impl::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    //}
 
    //void interaction_impl::Invalidate(bool bErase)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::InvalidateRect(get_handle(), nullptr, bErase);
    //}
 
    //void interaction_impl::InvalidateRect(LPCRECT32 lpRect, bool bErase)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::InvalidateRect(get_handle(), lpRect, bErase);
    //}
 
    //void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    //}
 
    //void interaction_impl::ValidateRect(LPCRECT32 lpRect)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::ValidateRect(get_handle(), lpRect);
    //}
 
    //void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    //{
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::ValidateRgn(get_handle(), (HRGN)pRgn->get_handle());
    //}
@@ -3240,7 +3240,7 @@ namespace android
    void interaction_impl::ShowOwnedPopups(bool bShow)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //ASSERT(::is_window((oswindow) get_handle()));
       //::ShowOwnedPopups(get_handle(), bShow);
 
@@ -3288,7 +3288,7 @@ namespace android
    //::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, ::u32 flags)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //::draw2d::graphics_pointer g(get_object());
    //   //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
@@ -3299,7 +3299,7 @@ namespace android
    bool interaction_impl::LockWindowUpdate()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //ASSERT(::is_window((oswindow) get_handle()));
       //return ::LockWindowUpdate(get_handle()) != false;
 
@@ -3308,7 +3308,7 @@ namespace android
    void interaction_impl::UnlockWindowUpdate()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //ASSERT(::is_window((oswindow) get_handle()));
       //::LockWindowUpdate(nullptr);
 
@@ -3356,7 +3356,7 @@ namespace android
    //bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //return ::DrawAnimatedRects(get_handle(), idAni, lprcFrom, lprcTo) != false;
 
@@ -3365,7 +3365,7 @@ namespace android
    //bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), lprc, uFlags) != false;
 
@@ -3385,7 +3385,7 @@ namespace android
 
    //   //return uEvent;
 
-   //   //__throw(not_implemented());
+   //   //__throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
    //   //return ::SetTimer(get_handle(), uEvent, nElapse, lpfnTimer);
 
@@ -3523,7 +3523,7 @@ namespace android
    void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::CheckDlgButton(get_handle(), nIDButton, nCheck);
 
@@ -3532,7 +3532,7 @@ namespace android
    void interaction_impl::CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::CheckRadioButton(get_handle(), nIDFirstButton, nIDLastButton, nIDCheckButton);
 
@@ -3541,7 +3541,7 @@ namespace android
    i32 interaction_impl::DlgDirList(char * lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::DlgDirList(get_handle(), lpPathSpec, nIDListBox, nIDStaticPath, nFileType);
 
@@ -3550,7 +3550,7 @@ namespace android
    i32 interaction_impl::DlgDirListComboBox(char * lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::DlgDirListComboBox(get_handle(), lpPathSpec, nIDComboBox, nIDStaticPath, nFileType);
 
@@ -3559,7 +3559,7 @@ namespace android
    bool interaction_impl::DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::DlgDirSelectEx(get_handle(), lpString, nSize, nIDListBox) != false;
 
@@ -3568,7 +3568,7 @@ namespace android
    bool interaction_impl::DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::DlgDirSelectComboBoxEx(get_handle(), lpString, nSize, nIDComboBox) != false;
 
@@ -3599,13 +3599,13 @@ namespace android
 //   i32 interaction_impl::GetDlgItemText(i32 nID, char * lpStr, i32 nMaxCount) const
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      ASSERT(::is_window((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
    //::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::android::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
@@ -3614,7 +3614,7 @@ namespace android
    //::user::interaction * interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious) const
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::android::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
@@ -3623,7 +3623,7 @@ namespace android
    ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::IsDlgButtonChecked(get_handle(), nIDButton);
 
@@ -3632,7 +3632,7 @@ namespace android
    LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::SendDlgItemMessage(get_handle(), nID, message, wparam, lparam);
 
@@ -3641,7 +3641,7 @@ namespace android
    void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
 
@@ -3650,7 +3650,7 @@ namespace android
    void interaction_impl::SetDlgItemText(i32 nID, const char * lpszString)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::SetDlgItemText(get_handle(), nID, lpszString);
 
@@ -3659,7 +3659,7 @@ namespace android
    i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip, ::draw2d::region * prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::ScrollWindowEx(get_handle(), dx, dy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 
@@ -3668,7 +3668,7 @@ namespace android
    void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::ShowScrollBar(get_handle(), nBar, bShow);
 
@@ -3678,7 +3678,7 @@ namespace android
    {
 
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::android::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
 
@@ -3687,7 +3687,7 @@ namespace android
    ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT32 point, ::u32 nFlags)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::android::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
@@ -3705,7 +3705,7 @@ namespace android
          return nullptr;
 
       return m_puserinteraction->m_uiptraChild[0];
-      //  __throw(not_implemented());
+      //  __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::android::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
@@ -3724,7 +3724,7 @@ namespace android
    {
 
 
-      __throw(todo());
+      __throw(todo);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::android::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
@@ -3745,7 +3745,7 @@ namespace android
    //{
 
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      return ::android::interaction_impl::from_handle(::oswindowFromPoint(point));
 
    //}
@@ -3754,7 +3754,7 @@ namespace android
    //{
 
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::FlashWindow(get_handle(), bInvert) != false;
 
@@ -3763,7 +3763,7 @@ namespace android
    //bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 
@@ -3772,7 +3772,7 @@ namespace android
    //oswindow interaction_impl::SetClipboardViewer()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::SetClipboardViewer(get_handle());
 
@@ -3781,7 +3781,7 @@ namespace android
    //bool interaction_impl::OpenClipboard()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      return ::OpenClipboard(get_handle()) != false;
 
@@ -3790,7 +3790,7 @@ namespace android
    //::user::interaction * PASCAL interaction_impl::GetOpenClipboardWindow()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      return ::android::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    //}
@@ -3798,7 +3798,7 @@ namespace android
    //::user::interaction * PASCAL interaction_impl::GetClipboardOwner()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      return ::android::interaction_impl::from_handle(::GetClipboardOwner());
 
    //}
@@ -3806,7 +3806,7 @@ namespace android
    //::user::interaction * PASCAL interaction_impl::GetClipboardViewer()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      return ::android::interaction_impl::from_handle(::GetClipboardViewer());
 
    //}
@@ -3816,7 +3816,7 @@ namespace android
    //point PASCAL interaction_impl::GetCaretPos()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ::point point;
    //   //      ::GetCaretPos((POINT32 *)&point); return point;
 
@@ -3825,7 +3825,7 @@ namespace android
    //void PASCAL interaction_impl::SetCaretPos(POINT32 point)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ::SetCaretPos(point.x, point.y);
 
    //}
@@ -3833,7 +3833,7 @@ namespace android
    //void interaction_impl::HideCaret()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ::HideCaret(get_handle());
 
    //}
@@ -3841,7 +3841,7 @@ namespace android
    //void interaction_impl::ShowCaret()
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //    ::ShowCaret(get_handle());
 
    //}
@@ -3849,7 +3849,7 @@ namespace android
    bool interaction_impl::SetForegroundWindow()
    {
 
-      //    __throw(not_implemented());
+      //    __throw(error_not_implemented);
       //      return ::SetForegroundWindow(get_handle()) != false;
 
       return false;
@@ -3861,7 +3861,7 @@ namespace android
 
       return nullptr;
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      return ::android::interaction_impl::from_handle(::GetForegroundWindow());
 
    }
@@ -3869,7 +3869,7 @@ namespace android
    bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 
    }
@@ -3877,7 +3877,7 @@ namespace android
    //void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
@@ -3886,7 +3886,7 @@ namespace android
    //void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
    //   //      ASSERT(::is_window((oswindow) get_handle()));
    //   //      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
@@ -3895,7 +3895,7 @@ namespace android
    bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 
@@ -3904,7 +3904,7 @@ namespace android
    ::u32 interaction_impl::GetWindowContextHelpId() const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::GetWindowContextHelpId(get_handle());
 
@@ -4013,7 +4013,7 @@ namespace android
             && psession->get_cursor()->m_ecursor != ::cursor_system)
       {
 
-         __throw(not_implemented());
+         __throw(error_not_implemented);
          //         ::SetCursor(nullptr);
       }
       pusermessage->set_lresult(1);
@@ -4378,7 +4378,7 @@ namespace android
    void interaction_impl::BeginModalState()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::EnableWindow(get_handle(), false);
 
@@ -4387,7 +4387,7 @@ namespace android
    void interaction_impl::EndModalState()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::EnableWindow(get_handle(), true);
 
@@ -4411,7 +4411,7 @@ namespace android
    void interaction_impl::CloseWindow()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      ::CloseWindow(get_handle());
 
@@ -4420,7 +4420,7 @@ namespace android
    bool interaction_impl::OpenIcon()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window((oswindow) get_handle()));
       //      return ::OpenIcon(get_handle()) != false;
 
@@ -4457,7 +4457,7 @@ namespace android
 //         hWndTemp = ::get_parent(hWndTop);
 //      }
 //
-//      __throw(todo());
+//      __throw(todo);
 //      // get last active popup of first non-child that was found
 //      //    if (hParent == nullptr && hWnd != nullptr)
 //      //       hWnd = ::GetLastActivePopup(hWnd);
@@ -4560,7 +4560,7 @@ namespace android
       else
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
       }
 

@@ -455,7 +455,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
          str += pszJson;
 
-         __throw(::exception::exception(str));
+         __throw(error_parsing, str);
 
       }
 
@@ -474,27 +474,42 @@ void var_array_skip_json(const char *& pszJson)
 
 void var_array_skip_json(const char *& pszJson, const char * pszEnd)
 {
+   
    ::str::consume_spaces(pszJson, 0, pszEnd);
+   
    ::str::consume(pszJson, "[", 1, pszEnd);
+
    while (true)
    {
+      
       var_skip_json(pszJson, pszEnd);
+      
       ::str::consume_spaces(pszJson, 0, pszEnd);
+
       if (*pszJson == ',')
       {
+         
          pszJson++;
+         
          continue;
+
       }
       else if (*pszJson == ']')
       {
+         
          pszJson++;
+         
          return;
+
       }
       else
       {
+         
          string str = "not expected character : ";
+         
          str += pszJson;
-         __throw(::exception::exception(str));
+
+         __throw(error_parsing, str);
 
       }
 

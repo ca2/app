@@ -18,7 +18,7 @@ namespace android
 
          file_system(::layered * pobjectContext);
 
-         virtual file_pointer get_file(::payload varFile, ::u32 nOpenFlags, ::status::result * pfesp, ::aura::application * papp);
+         virtual file_pointer get_file(::payload varFile, ::u32 nOpenFlags, ::extended::status * pfesp, ::aura::application * papp);
 
       };
 

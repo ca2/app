@@ -353,8 +353,6 @@ typedef char ansichar;
 
 
 
-CLASS_DECL_ACME void throw_todo(void);
-
 CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
@@ -398,10 +396,11 @@ CLASS_DECL_ACME int is_debugger_attached(void);
 
 CLASS_DECL_ACME void debug_print(const char *psz, ...);
 
+CLASS_DECL_ACME void throw_todo();
 
 CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNumber);
 
-CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
+//CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char* psz);
 
 #define __pass_array(A) A, sizeof(A)
 
@@ -414,11 +413,41 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 #else
 
 
-#ifdef __DEBUG
+#ifdef DEBUG
 
 
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
-#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
+
+
+#define ASSERT(f)                                              \
+{                                                              \
+                                                               \
+   if(!(f))                                                    \
+   {                                                           \
+                                                               \
+     if(is_debugger_attached())                                \
+     {                                                         \
+                                                               \
+        if(!__assert_failed_line(__FILE__, __LINE__))          \
+        {                                                      \
+                                                               \
+            DEBUG_BREAK;                                       \
+                                                               \
+        }                                                      \
+                                                               \
+     }                                                         \
+     else                                                      \
+     {                                                         \
+                                                               \
+         throw_assert_exception(__FILE__, __LINE__);           \
+                                                               \
+     }                                                         \
+                                                               \
+   }                                                           \
+                                                               \
+} 
+
+
+#define _ASSUME(cond)      do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 #define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
 
 
@@ -504,21 +533,21 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-namespace promise
+namespace subject
 {
 
 
    class backing;
-   class process;
    class manager;
    class subject;
    class context;
    class routine;
    class handler;
-   class process;
+   template < typename RESULT > class process;
 
 
-} // namespace promise
+
+} // namespace subject
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -1448,7 +1477,7 @@ class pointer_array;
 #define __address_array(TYPE) ::comparable_array < TYPE * >
 
 
-namespace promise
+namespace subject
 {
 
 
@@ -1457,7 +1486,7 @@ namespace promise
    using context_pointer = __pointer(context);
 
 
-} // namespace promise
+} // namespace subject
 
 
 template<typename THREAD_POINTER>
@@ -1484,11 +1513,19 @@ namespace write_text
 
 } // namespace write_text
 
-template<typename T>
-class result_pointer;
+
+namespace extended
+{
 
 
-#define __result(T) ::result_pointer < T >
+   template < typename OBJECT >
+   class transport;
+
+
+} // namespace extended
+
+
+#define __transport(T) ::extended::transport < T >
 
 
 template<class TYPE>
@@ -2480,7 +2517,7 @@ class type;
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::process & process);
+//CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::future & process);
 
 
 // C-includes
@@ -2622,16 +2659,13 @@ namespace message
 } // namespace message
 
 
-#include "acme/primitive/promise_predicate/predicate_function_pointer.h"
+#include "acme/platform/predicate_function_pointer.h"
 
 
-#include "acme/primitive/promise/routine.h"
+#include "acme/platform/routine.h"
 
 
-#include "acme/primitive/promise/handler.h"
-
-
-#include "acme/primitive/promise/process.h"
+//#include "acme/primitive/subject/handler.h"
 
 
 template<class POINTER_TYPE>
@@ -2645,7 +2679,7 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 using file_pointer = __pointer(::file::file);
 
-using file_result = __result(::file::file);
+using file_result = __transport(::file::file);
 
 class stream;
 
@@ -2687,12 +2721,12 @@ using wparam = c_number<iptr>;
 
 
 
-namespace status
-{
-
-   class result;
-
-} // namespace status
+//namespace status
+//{
+//
+//   class result;
+//
+//} // namespace status
 
 
 namespace message
@@ -2714,22 +2748,19 @@ class children;
 namespace exception
 {
 
+
    class exception;
 
+   //using exception_pointer = __pointer(exception);
 
-   using exception_pointer = __pointer(exception);
 
 } // namespace exception
-
-
-using exception_pointer = ::exception::exception_pointer;
 
 
 class event_map;
 
 
 class thread_ptra;
-//class traits;
 
 
 namespace papaya
@@ -2802,8 +2833,6 @@ namespace user
 #include "acme/platform/_global.h"
 
 
-CLASS_DECL_ACME void show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = nullptr);
-
 class function;
 
 
@@ -2822,11 +2851,23 @@ namespace factory
 
 
 
+
+
+
 #include "acme/primitive/geometry2d/_.h"
 
 
 
 class manual_reset_event;
+
+
+#include "acme/platform/future.h"
+
+
+#include "acme/user/conversation.h"
+
+
+CLASS_DECL_ACME __pointer(::future < ::conversation >) show_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
 
 
 #include "acme/primitive/primitive/work.h"
@@ -2837,6 +2878,8 @@ class manual_reset_event;
 
 #include "acme/platform/status.h"
 #include "acme/primitive/primitive/enumeration.h"
+
+
 
 
 namespace file
@@ -3003,26 +3046,20 @@ class task;
 
 #include "acme/exception/_.h"
 
-namespace promise
-{
 
    using routine_array = ::array < routine >;
 
-   using handler_array = ::array < handler >;
-
-   using process_array = ::array < process >;
+   //using process_array = ::array < process >;
 
    template<typename PRED>
    void add_routine(routine_array &array, PRED pred);
 
-   template<typename PRED>
-   void add_handler(handler_array &array, PRED pred);
 
-   template<typename PRED>
-   void add_process(process_array &array, PRED pred);
+   //template<typename PRED>
+   //void add_process(process_array &array, PRED pred);
 
 
-} // namespace promise
+//} // namespace subject
 
 
 #include "acme/primitive/primitive/context_object.h"
@@ -3037,11 +3074,11 @@ namespace promise
 
 #include "acme/primitive/collection/_.h"
 
-#include "acme/primitive/promise_predicate/predicate_routine.h"
+#include "acme/platform/predicate_routine.h"
 
-#include "acme/primitive/promise_predicate/predicate_handler.h"
+//#include "acme/platform/predicate_handler.h"
 
-#include "acme/primitive/promise_predicate/predicate_process.h"
+#include "acme/platform/predicate_process.h"
 
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
@@ -3440,7 +3477,7 @@ class mq_base;
 //#include "acme/parallelization/simple_thread.h"
 //#include "acme/parallelization/go_thread.h"
 //#include "acme/parallelization/signal_thread.h"
-#include "acme/primitive/promise/routine_array.h"
+#include "acme/platform/routine_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"
@@ -3988,12 +4025,6 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/compress/_.h"
 
 
-//#include "acme/graphics/graphics/graphics.h"
-
-
-//#include "acme/platform/application_consumer.h"
-
-
 #if !defined(_UWP)
 
 
@@ -4002,24 +4033,6 @@ CLASS_DECL_ACME string get_last_error_string();
 
 #endif
 
-
-
-
-//#include "acme/platform/async.h"
-
-
-
-
-//#include "acme/const/idpool.h"
-
-
-//#include "acme/user/_.h"
-
-
-#include "acme/platform/message_box.h"
-
-
-//#include "acme/parallelization/predicate_method.h"
 
 
 
@@ -4040,6 +4053,9 @@ namespace draw2d
 
 
 #include "acme/platform/node.h"
+
+
+#include "acme/user/conversation.h"
 
 
 #include "acme/platform/system.h"
@@ -4183,6 +4199,9 @@ namespace draw2d
 
 
 //#include "acme/os/_impl.h"
+
+
+#include "acme/primitive/subject/_impl.h"
 
 
 #include "acme/primitive/primitive/_id_impl.h"

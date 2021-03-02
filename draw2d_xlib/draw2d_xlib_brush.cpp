@@ -68,13 +68,13 @@ namespace draw2d_xlib
 //   void brush::construct(color32_t crColor)
 //   {
 ////      if (!Attach(::CreateSolidBrush(crColor)))
-//  //       __throw(resource_exception());
+//  //       __throw(error_resource);
 //   }
 //
 //   void brush::construct(i32 nIndex, color32_t crColor)
 //   {
 //    //  if (!Attach(::CreateHatchBrush(nIndex, crColor)))
-//      //   __throw(resource_exception());
+//      //   __throw(error_resource);
 //   }
 //
 //   void brush::construct(::draw2d::bitmap* pBitmap)
@@ -82,7 +82,7 @@ namespace draw2d_xlib
 //      //ASSERT_VALID(pBitmap);
 //
 //      //if (!Attach(::CreatePatternBrush((HBITMAP)pBitmap->get_os_data())))
-//        // __throw(resource_exception());
+//        // __throw(error_resource);
 //   }
 //
 //   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)

@@ -20,7 +20,7 @@
 //
 //#ifdef _DEBUG
 //
-//CLASS_DECL_ACME stream & operator << (stream & dumpcontext, veri::exception_pointer pe);
+//CLASS_DECL_ACME stream & operator << (stream & dumpcontext, vericonst ::exception::exception & e);
 //
 //#endif
 

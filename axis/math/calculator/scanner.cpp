@@ -72,7 +72,7 @@ namespace calculator
       if (m_ptoken.is_null())
       {
 
-         __throw(memory_exception());
+         __throw(error_no_memory);
 
       }
 

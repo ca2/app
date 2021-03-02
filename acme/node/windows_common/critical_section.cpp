@@ -27,7 +27,7 @@ critical_sectioncritical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      __throw(memory_exception());
+      __throw(error_no_memory);
 }
 
 critical_section::operator CRITICAL_SECTION*()
@@ -87,7 +87,7 @@ critical_sectioncritical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      __throw(memory_exception());
+      __throw(error_no_memory);
 }
 
 critical_section::operator pthread_mutex_t()
@@ -116,7 +116,7 @@ critical_section::~critical_section()
 //   catch(...)
 //   {
 //
-//      __throw(memory_exception());
+//      __throw(error_no_memory);
 //
 //   }
 //

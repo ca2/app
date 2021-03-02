@@ -589,6 +589,8 @@ namespace draw2d
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush);
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
+      virtual bool color_blend(const ::rectangle_f64& rectangle, const ::color::color& color, const ::opacity & opacity);
+
       //virtual bool rectangle_i32(const rectangle_f64 & rectangle_f64);
       //virtual bool draw_rectangle(const rectangle_f64 & rectangle_f64);
       //virtual bool draw_rectangle(const rectangle_f64 & rectangle_f64, ::draw2d::pen * ppen);

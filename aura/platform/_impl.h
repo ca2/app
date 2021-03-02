@@ -36,7 +36,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
    
@@ -131,7 +131,7 @@ namespace aura
 
 
    template < class APP >
-   __result(::aura::application) single_application_library < APP > ::get_new_application(::object * pobject, const char * pszAppId)
+   __transport(::aura::application) single_application_library < APP > ::get_new_application(::object * pobject, const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -332,7 +332,7 @@ template < typename RECEIVER >
 
       ASSERT(false);
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -420,7 +420,7 @@ template < typename RECEIVER, typename MESSAGE >
 
       ASSERT(false);
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -782,7 +782,7 @@ namespace str
 } // namespace str
 
 
-inline void copy(void *, const void *) /* = 0 */ {__throw(interface_only_exception()); }
+inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
 
 
 namespace papaya

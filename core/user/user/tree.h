@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      //size_i32                           m_sizeTotal;
+      //size_i32                                m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
       __composite(::data::tree)                 m_ptree;
@@ -28,13 +28,13 @@ namespace user
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
-      point_i32                                     m_pointLButtonUp;
+      point_i32                                 m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
-      //color32_t                                m_colorTextSelected;
-      //color32_t                                m_colorTextHighlight;
-      //color32_t                                m_colorTextSelectedHighlight;
+      //color32_t                               m_colorTextSelected;
+      //color32_t                               m_colorTextHighlight;
+      //color32_t                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
@@ -43,13 +43,13 @@ namespace user
       ::draw2d::brush_pointer                   m_brushTextSelectedHighlight;
       ::draw2d::brush_pointer                   m_brushTextHighlight;
       ::draw2d::brush_pointer                   m_brushText;
-      ::write_text::font_pointer                    m_fontTreeItem;
-      ::color::color                                   m_colorTreeBackground;
+      ::write_text::font_pointer                m_fontTreeItem;
+      with_status < ::color::color >          m_colorTreeBackground;
 
 
       bool                                      m_bHoverStart;
-      millis                                      m_millisHoverStart;
-      millis                                      m_millisHoverEnd;
+      millis                                    m_millisHoverStart;
+      millis                                    m_millisHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
@@ -171,7 +171,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 

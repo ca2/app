@@ -477,7 +477,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 c
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
    /*
 
@@ -518,7 +518,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 #endif
 
@@ -550,7 +550,7 @@ CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT3
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 #endif
 

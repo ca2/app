@@ -71,7 +71,7 @@ namespace datetime
       if(m_time == -1)
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -107,7 +107,7 @@ namespace datetime
       ASSUME(m_time != -1);       // indicates an illegal input time
 
       if(m_time == -1)
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
    }
 
@@ -171,7 +171,7 @@ namespace datetime
    ::datetime::time & time::operator+=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return *this;
    }
@@ -182,7 +182,7 @@ namespace datetime
 
        UNREFERENCED_PARAMETER(span);
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return *this;
 
@@ -194,7 +194,7 @@ namespace datetime
 
        UNREFERENCED_PARAMETER(span);
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -204,7 +204,7 @@ namespace datetime
 
        UNREFERENCED_PARAMETER(span);
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 

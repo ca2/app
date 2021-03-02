@@ -280,7 +280,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual __status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual with_status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(on_message_left_button_down);
@@ -343,7 +343,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
 

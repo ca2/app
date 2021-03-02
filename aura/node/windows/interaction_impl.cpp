@@ -1729,15 +1729,15 @@ namespace windows
    //iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    //{
 
-   //   return ::GetWindowLongPtr(get_handle(), nIndex);
+   //   return m_pwindow->get_window_long_ptr(nIndex);
 
    //}
 
 
-   //iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //::e_status interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    //{
 
-   //   return ::SetWindowLongPtr(get_handle(), nIndex, lValue);
+   //   return m_pwindow->set_window_long_ptr(nIndex, lValue);
 
    //}
 
@@ -2080,7 +2080,7 @@ namespace windows
 
    //   auto pgraphics = __create < ::draw2d::graphics > ();
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //pgraphics->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
 
@@ -2123,12 +2123,7 @@ namespace windows
 
       }
 
-      if (!(GetExStyle() & WS_EX_LAYERED))
-      {
-
-         m_pwindow->RedrawWindow(nullptr, nullptr, flags);
-
-      }
+     m_pwindow->on_redraw_window(flags);
 
       if (flags & RDW_UPDATENOW)
       {
@@ -3687,44 +3682,8 @@ namespace windows
 
       // https://www.daniweb.com/programming/software-development/threads/457564/mfc-application-disablehide-taskbar-icon
 
-      if (bShow)
-      {
+      m_pwindow->show_task(bShow);
 
-         ModifyStyleEx(WS_EX_TOOLWINDOW, 0, SWP_FRAMECHANGED);
-
-      }
-      else
-      {
-
-         ModifyStyleEx(0, WS_EX_TOOLWINDOW, SWP_FRAMECHANGED);
-
-      }
-
-      defer_co_initialize_ex(false);
-
-      comptr < ITaskbarList>                     tasklist;
-
-      HRESULT hr = tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_INPROC_SERVER);
-
-      if(SUCCEEDED(hr) && SUCCEEDED(hr = tasklist->HrInit()))
-      {
-
-         if (bShow)
-         {
-
-            hr = tasklist->AddTab((HWND)get_oswindow());
-
-            TRACE("result = %d", hr);
-
-         }
-         else
-         {
-
-            tasklist->DeleteTab((HWND)get_oswindow());
-
-         }
-
-      }
 
    }
 

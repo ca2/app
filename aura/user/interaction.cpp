@@ -479,8 +479,7 @@ namespace user
    }
 
 
-   __status<::rectangle_f64>
-   interaction::get_border(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   with_status < ::rectangle_f64 > interaction::get_border(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -488,10 +487,8 @@ namespace user
    }
 
 
-   __status<::rectangle_f64>
-   interaction::get_padding(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   with_status < ::rectangle_f64 > interaction::get_padding(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
-
 
       if (get_control_type() == ::user::e_control_type_button)
       {
@@ -513,8 +510,7 @@ namespace user
    }
 
 
-   __status<::rectangle_f64>
-   interaction::get_margin(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   with_status < ::rectangle_f64 > interaction::get_margin(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
@@ -535,8 +531,7 @@ namespace user
    }
 
 
-   __status<::color::color>
-   interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   with_status < ::color::color > interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -1221,13 +1216,9 @@ namespace user
 
          auto rectRequest = layout().sketch().screen_rect();
 
-         auto pusersystem = __new(
-            ::user::system(get_window_long(GWL_EXSTYLE), pszClassName, strName, get_window_long(GWL_STYLE),
-                           rectRequest));
+         //auto pusersystem = __new(::user::system);
 
-         pusersystem->m_createstruct.style &= ~WS_CHILD;
-
-         pusersystem->add_visible(is_visible(layout().sketch().display()));
+         //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
          if (pimplOld.is_set())
          {
@@ -1264,16 +1255,16 @@ namespace user
 
          string strName;
 
-         i32 iStyle = get_window_long(GWL_STYLE);
+         //i32 iStyle = get_window_long(GWL_STYLE);
 
-         iStyle |= WS_CHILD;
+         //iStyle |= WS_CHILD;
 
-         if (is_visible(layout().sketch().display()))
-         {
+         //if (is_visible(layout().sketch().display()))
+         //{
 
-            iStyle |= WS_VISIBLE;
+         //   iStyle |= WS_VISIBLE;
 
-         }
+         //}
 
          ::rectangle_i32 rectWindow;
 
@@ -1818,7 +1809,7 @@ namespace user
       else
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -2642,7 +2633,7 @@ namespace user
       if (pgraphics == nullptr)
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -3936,7 +3927,7 @@ namespace user
    }
 
    
-   ::e_status interaction::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status interaction::main_async(const ::routine & routine, e_priority epriority)
    {
 
       auto pwndHost = get_host_window();
@@ -3953,7 +3944,7 @@ namespace user
    }
 
 
-   ::e_status interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status interaction::main_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
       auto proutine = ___sync_routine(routine);
@@ -4003,7 +3994,7 @@ namespace user
 
       on_control_event(&ev);
 
-      auto psession = Session;
+      //auto psession = Session;
 
       if (is_top_level_window() && !is_message_only_window())
       {
@@ -4038,39 +4029,39 @@ namespace user
 
       defer_create_mutex();
 
-      try
-      {
-         if ((get_parent() != nullptr && get_parent() != psession->m_puiHost)
-               && !is_message_only_window()
-               && psession->m_puiHost != this
-            )
-         {
+      //try
+      //{
+      //   if ((get_parent() != nullptr && get_parent() != psession->m_puiHost)
+      //         && !is_message_only_window()
+      //         && psession->m_puiHost != this
+      //      )
+      //   {
 
-            //__pointer(place_holder) pholder = get_parent();
+      //      //__pointer(place_holder) pholder = get_parent();
 
-            //if (pholder.is_set())
-            //{
+      //      //if (pholder.is_set())
+      //      //{
 
-            //   // A Copy Paste error (the commented out code below)?
-            //   //single_lock synchronizationlock(puiParent->mutex(),true);
-            //   //single_lock sl2(mutex(),true);
+      //      //   // A Copy Paste error (the commented out code below)?
+      //      //   //single_lock synchronizationlock(puiParent->mutex(),true);
+      //      //   //single_lock sl2(mutex(),true);
 
-            //   if (!pholder->is_place_holding(this))
-            //   {
+      //      //   if (!pholder->is_place_holding(this))
+      //      //   {
 
-            //      pholder->place_hold(this);
+      //      //      pholder->place_hold(this);
 
-            //   }
+      //      //   }
 
-            //}
+      //      //}
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       send_message(e_message_change_experience);
 
@@ -5641,87 +5632,90 @@ namespace user
    }
 
 
-   ::i32 interaction::get_window_long(i32 nIndex) const
+   //::i32 interaction::get_window_long(i32 nIndex) const
+   //{
+
+   //   if (m_pimpl == nullptr)
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return m_pimpl->get_window_long(nIndex);
+
+   //}
+
+
+   //::i32 interaction::set_window_long(i32 nIndex, ::i32 lValue)
+   //{
+
+   //   if (m_pimpl == nullptr)
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return m_pimpl->set_window_long(nIndex, lValue);
+
+   //}
+
+   
+   ::object * interaction::parent_property_set_holder() const
    {
 
-      if (m_pimpl == nullptr)
+      ::object * pobject = get_parent();
+
+      if(::is_set(pobject))
       {
 
-         return 0;
+         return pobject;
 
       }
 
-      return m_pimpl->get_window_long(nIndex);
+      pobject = get_owner();
 
-   }
-
-
-   ::i32 interaction::set_window_long(i32 nIndex, ::i32 lValue)
-   {
-
-      if (m_pimpl == nullptr)
+      if(::is_set(pobject))
       {
 
-         return 0;
+         return pobject;
 
       }
 
-      return m_pimpl->set_window_long(nIndex, lValue);
-
-   }
-::object * interaction::parent_property_set_holder() const
-{
-
-   ::object * pobject = get_parent();
-
-   if(::is_set(pobject))
-   {
-
-      return pobject;
-
-   }
-
-   pobject = get_owner();
-
-   if(::is_set(pobject))
-   {
-
-      return pobject;
-
-   }
-
-   return ::user::primitive::parent_property_set_holder();
-
-}
-
-   iptr interaction::get_window_long_ptr(i32 nIndex) const
-   {
-
-      if (m_pimpl == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      return m_pimpl->get_window_long_ptr(nIndex);
+      return ::user::primitive::parent_property_set_holder();
 
    }
 
 
-   iptr interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
+   //iptr interaction::get_window_long_ptr(i32 nIndex) const
+   //{
 
-      if (m_pimpl == nullptr)
-      {
+   //   if (m_pimpl == nullptr)
+   //   {
 
-         return 0;
+   //      return 0;
 
-      }
+   //   }
 
-      return m_pimpl->set_window_long_ptr(nIndex, lValue);
+   //   return m_pimpl->get_window_long_ptr(nIndex);
 
-   }
+   //}
+
+
+   //::e_status interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //{
+
+   //   if (m_pimpl == nullptr)
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return m_pimpl->set_window_long_ptr(nIndex, lValue);
+
+   //}
 
 
    bool interaction::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
@@ -5918,7 +5912,7 @@ namespace user
       else
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 
@@ -6330,65 +6324,65 @@ namespace user
    //}
 
 
-   u32 interaction::GetStyle() const
-   {
+   //u32 interaction::GetStyle() const
+   //{
 
-      if (m_pimpl == nullptr)
-      {
+   //   if (m_pimpl == nullptr)
+   //   {
 
-         return 0;
+   //      return 0;
 
-      }
+   //   }
 
-      return m_pimpl->GetStyle();
+   //   return m_pimpl->GetStyle();
 
-   }
-
-
-   u32 interaction::GetExStyle() const
-   {
-
-      if (m_pimpl == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      return m_pimpl->GetExStyle();
-
-   }
+   //}
 
 
-   bool interaction::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   {
+   //u32 interaction::GetExStyle() const
+   //{
 
-      if (m_pimpl == nullptr)
-      {
+   //   if (m_pimpl == nullptr)
+   //   {
 
-         return false;
+   //      return 0;
 
-      }
+   //   }
 
-      return m_pimpl->ModifyStyle(dwRemove, dwAdd, nFlags);
+   //   return m_pimpl->GetExStyle();
 
-   }
-
-
-   bool interaction::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   {
-
-      if (m_pimpl == nullptr)
-      {
-
-         return false;
-
-      }
+   //}
 
 
-      return m_pimpl->ModifyStyleEx(dwRemove, dwAdd, nFlags);
+   //bool interaction::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //{
 
-   }
+   //   if (m_pimpl == nullptr)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return m_pimpl->ModifyStyle(dwRemove, dwAdd, nFlags);
+
+   //}
+
+
+   //bool interaction::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //{
+
+   //   if (m_pimpl == nullptr)
+   //   {
+
+   //      return false;
+
+   //   }
+
+
+   //   return m_pimpl->ModifyStyleEx(dwRemove, dwAdd, nFlags);
+
+   //}
 
 
    void interaction::on_finish()
@@ -7685,17 +7679,17 @@ namespace user
 
    bool interaction::pre_create_window(::user::system * pusersystem)
    {
-
-#ifdef WINDOWS_DESKTOP
-
-      if (m_bToolWindow)
-      {
-
-         pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-
-      }
-
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_bToolWindow)
+//      {
+//
+//         pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+//
+//      }
+//
+//#endif
 
       return true;
 
@@ -8251,13 +8245,16 @@ namespace user
       }
 
 #ifdef WINDOWS_DESKTOP
-      if (((GetExStyle() & WS_EX_LAYERED) &&
-         (::is_different(
-            ::is_screen_visible(edisplayOutputForOsShowWindow),
-            ::is_screen_visible(edisplayWindowForOsShowWindow))))
-         ||
-         (!(GetExStyle() & WS_EX_LAYERED) &&
-         (edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)))
+      if (
+         //((GetExStyle() & WS_EX_LAYERED) &&
+         //(::is_different(
+           // ::is_screen_visible(edisplayOutputForOsShowWindow),
+           // ::is_screen_visible(edisplayWindowForOsShowWindow))))
+         //||
+         //(!(GetExStyle() & WS_EX_LAYERED) &&
+         (edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
+         //)
+         )
 #else
       if(edisplayOutputForOsShowWindow != edisplayWindowForOsShowWindow)
 #endif
@@ -8279,17 +8276,17 @@ namespace user
       if(edisplayOutput == e_display_iconic)
       {
 
-#ifdef WINDOWS_DESKTOP
-
-         if (GetExStyle() & WS_EX_LAYERED)
-         {
-
-            layout().window() = edisplayOutput;
-
-         }
-
-#endif
-
+//#ifdef WINDOWS_DESKTOP
+//
+//         if (GetExStyle() & WS_EX_LAYERED)
+//         {
+//
+//            layout().window() = edisplayOutput;
+//
+//         }
+//
+//#endif
+//
          output_debug_string("blocking setting window state to iconic (1)");
 
       }
@@ -8520,7 +8517,14 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      send_payload(DIALOG_RESULT_PROCESS, idResult);
+      if (::asynchronous < ::conversation >::m_pfuture)
+      {
+
+         ::asynchronous < ::conversation >::future()->m_idResult = idResult;
+       
+         ::asynchronous < ::conversation >::future()->set_status(::success);
+
+      }
 
       post_message(e_message_close);
 
@@ -10099,19 +10103,19 @@ namespace user
    ::e_status interaction::set_cursor(enum_cursor ecursor)
    {
 
-      //if (!m_pimpl)
-      //{
+      if (!m_pimpl)
+      {
 
-      //   return false;
+         return false;
 
-      //}
+      }
 
-      //if (!m_pimpl->set_cursor(ecursor))
-      //{
+      if (!m_pimpl->set_cursor(ecursor))
+      {
 
-      //   return false;
+         return false;
 
-      //}
+      }
 
       m_ecursor = ecursor;
 
@@ -10955,9 +10959,9 @@ restart:
          __pointer(::user::interaction_impl) pimpl = m_pimpl;
 
          bool bStart = pimpl->m_bTransparentMouseEvents
-               && puiTop->is_this_visible()
-               || (puiTop->GetExStyle() & WS_EX_LAYERED
-                  && puiTop->layout().is_full_screen());
+            && puiTop->is_this_visible();
+            // || (puiTop->GetExStyle() & WS_EX_LAYERED
+              //    && puiTop->layout().is_full_screen());
 
          if (bStart && layout().is_changing())
          {
@@ -13806,7 +13810,7 @@ restart:
    void interaction::set_stock_icon(e_stock_icon eicon)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -13968,7 +13972,7 @@ restart:
    }
 
 
-   void interaction::post_routine(const ::promise::routine & routine)
+   void interaction::post_routine(const ::routine & routine)
    {
 
       if (::is_set(m_pthreadUserInteraction))
@@ -14035,7 +14039,7 @@ restart:
 #endif
 
 
-   void interaction::send_routine(const ::promise::routine & routine, ::duration durationTimeout)
+   void interaction::send_routine(const ::routine & routine, ::duration durationTimeout)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -14716,7 +14720,7 @@ restart:
 
       auto rectangle = this->rectangle(::user::e_element_client);
 
-      if (!rectangle.contains(item.m_pointClient))
+      if (!rectangle.m_result.contains(item.m_pointClient))
       {
 
          if(m_bMouseHoverOnCapture && has_mouse_capture())
@@ -14979,7 +14983,7 @@ restart:
    }
 
 
-   void interaction::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void interaction::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == REDRAW_ID || psubject->id() == m_id)
@@ -16245,7 +16249,7 @@ restart:
       case e_control_type_combo_box:
       {
 
-         //__throw(todo());
+         //__throw(todo);
 
 //            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
 

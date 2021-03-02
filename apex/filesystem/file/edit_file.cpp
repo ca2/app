@@ -18,7 +18,7 @@ namespace file
    bool edit_item_base::read_byte(u8 * pbyte, ::file::edit_file * pfile)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -481,7 +481,7 @@ namespace file
       }
 
       if(pfile == nullptr)
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       m_pfile = pfile;
 

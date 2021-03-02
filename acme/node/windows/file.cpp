@@ -57,7 +57,7 @@ namespace windows
    }
 
 
-   ::status::result file::open(const ::file::path& pszFileName, const ::file::e_open & eopenParam)
+   ::extended::status file::open(const ::file::path& pszFileName, const ::file::e_open & eopenParam)
    {
 
       auto eopen = eopenParam;

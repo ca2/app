@@ -197,7 +197,7 @@ namespace uwp
    //::file::path dir_system::userquicklaunch(::matter* pobject)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //}
 
@@ -205,7 +205,7 @@ namespace uwp
    //::file::path dir_system::userprograms(::matter* pobject)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //}
 
@@ -213,7 +213,7 @@ namespace uwp
    //::file::path dir_system::commonprograms()
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //}
 

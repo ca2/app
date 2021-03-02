@@ -113,7 +113,7 @@ namespace music
 
             void window::_001OnApp3388Message(::message::message * pmessage)
             {
-               __throw(not_implemented());
+               __throw(error_not_implemented);
                __pointer(::user::message) pusermessage(pmessage);
                /*            MSG msg;
 

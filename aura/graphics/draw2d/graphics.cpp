@@ -2196,6 +2196,16 @@ namespace draw2d
 
    }
 
+   
+   bool graphics::color_blend(const ::rectangle_f64& rectangle, const ::color::color& color, const ::opacity& opacity)
+   {
+
+      set_alpha_mode(alpha_mode_blend);
+
+      return fill_rectangle(rectangle, alpha(opacity, color));
+
+   }
+
 
    //void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color)
    //{
@@ -2687,7 +2697,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      return 0;
 //
 //      /*
@@ -2892,7 +2902,7 @@ namespace draw2d
    ::e_status graphics::_intersect_clip()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -2902,7 +2912,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
    
       return error_interface_only;
    
@@ -2912,7 +2922,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::rectangle_f64 & rectangle)
    //{
    //
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
    //
    //   return error_interface_only;
    //
@@ -2922,7 +2932,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::oval & oval)
    //{
    //
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
    //
    //   return error_interface_only;
    //
@@ -2932,7 +2942,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::ovald & oval)
    {
    
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
    
       return error_interface_only;
    
@@ -2942,7 +2952,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::polygon_i32 & polygon_i32)
    //{
    //
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
    //
    //   return error_interface_only;
    //
@@ -2952,7 +2962,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::polygon_f64 & polygon_i32)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -5552,7 +5562,7 @@ namespace draw2d
    ::e_status graphics::clear_current_point()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       return ::success_none;
 

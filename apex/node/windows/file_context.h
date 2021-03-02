@@ -35,7 +35,7 @@ namespace windows
 
 
       virtual bool get_status(const ::file::path & path, ::file::file_status & status);
-      virtual ::status::result set_status(const ::file::path & path, const ::file::file_status & status);
+      virtual ::extended::status set_status(const ::file::path & path, const ::file::file_status & status);
 
 
 
@@ -49,9 +49,9 @@ namespace windows
       virtual ::payload length(const ::file::path & path) override;
       virtual ::payload length(const ::file::path & path, ::payload * pvarQuery) override;
 
-      virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz) override;
+      virtual ::extended::status move(const ::file::path & pszNew, const ::file::path & psz) override;
 
-      virtual ::status::result del(const ::file::path & psz) override;
+      virtual ::extended::status del(const ::file::path & psz) override;
 
       virtual bool is_read_only(const ::file::path & psz) override;
 

@@ -32,7 +32,7 @@ const char * id_space::get_id(const char * psz)
    if (pszNew == nullptr)
    {
 
-      __throw(memory_exception());
+      __throw(error_no_memory);
 
    }
 

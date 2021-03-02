@@ -174,7 +174,7 @@ namespace sockets
    i32 stream_socket::Protocol()
    {
       
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 

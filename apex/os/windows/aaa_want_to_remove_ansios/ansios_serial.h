@@ -30,7 +30,7 @@
  *
  * \section DESCRIPTION
  *
- * This provides a unix based pimpl for the Serial class. This implementation is
+ * This provides a unix based pimpl for the serial class. This implementation is
  * based off termios.h and uses select for multiplexing the IO ports.
  *
  */
@@ -44,8 +44,8 @@
 namespace serial {
 
 
-using serial::SerialException;
-using serial::IOException;
+using serial::serial_exception;
+using serial::io_exception;
 
 class MillisecondTimer {
 public:
@@ -57,17 +57,17 @@ private:
   timespec expiry;
 };
 
-   class serial::Serial::SerialImpl :
+   class serial::serial::serial_impl :
    virtual public object{
 public:
-      SerialImpl (::object * pobject, const string &port,
+      serial_impl (::object * pobject, const string &port,
               unsigned long baudrate,
-              bytesize_t bytesize,
-              parity_t parity,
-              stopbits_t stopbits,
-              flowcontrol_t flowcontrol);
+              enum_byte_size ebytesize,
+              enum_parity eparity,
+              enum_stop_bit estopbit,
+              enum_flow_control eflowcontrol);
 
-  virtual ~SerialImpl ();
+  virtual ~serial_impl ();
 
   void
   open ();
@@ -148,27 +148,27 @@ public:
   getBaudrate () const;
 
   void
-  setBytesize (bytesize_t bytesize);
+  setBytesize (enum_byte_size ebytesize);
 
-  bytesize_t
+  enum_byte_size
   getBytesize () const;
 
   void
-  setParity (parity_t parity);
+  setParity (enum_parity eparity);
 
-  parity_t
+  enum_parity
   getParity () const;
 
   void
-  setStopbits (stopbits_t stopbits);
+  setStopbits (enum_stop_bit estopbit);
 
-  stopbits_t
+  enum_stop_bit
   getStopbits () const;
 
   void
-  setFlowcontrol (flowcontrol_t flowcontrol);
+  setFlowcontrol (enum_flow_control eflowcontrol);
 
-  flowcontrol_t
+  enum_flow_control
   getFlowcontrol () const;
 
   void
@@ -198,10 +198,10 @@ private:
   unsigned long baudrate_;    // Baudrate
   ::u32 byte_time_ns_;     // Nanoseconds to transmit/receive a single byte
 
-  parity_t parity_;           // Parity
-  bytesize_t bytesize_;       // Size of the bytes
-  stopbits_t stopbits_;       // Stop Bits
-  flowcontrol_t flowcontrol_; // Flow Control
+  enum_parity eparity_;           // Parity
+  enum_byte_size ebytesize_;       // Size of the bytes
+  enum_stop_bit estopbit_;       // Stop Bits
+  enum_flow_control eflowcontrol_; // Flow Control
 
   // Mutex used to lock the read functions
   pthread_mutex_t read_mutex;

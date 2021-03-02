@@ -53,7 +53,7 @@ namespace user
 
 
    class copydesk;
-   class system;
+   //class system;
    class control_event;
    //class control_descriptor;
    class interaction_child;

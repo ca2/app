@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   void style::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void style::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change 

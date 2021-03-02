@@ -159,7 +159,7 @@ LPITEMIDLIST itemidlist::_copy(LPCITEMIDLIST pidl)
    if (FAILED(SHGetMalloc(&pmalloc)))
    {
 
-      throw memory_exception();
+      __throw(error_no_memory);
 
       return nullptr;
 
@@ -247,7 +247,7 @@ itemidlist & itemidlist::operator=(const char * pszPath)
    if (!parse(pszPath))
    {
 
-      throw resource_exception("Failed to parse the path " + string (pszPath));
+      __throw(error_resource, "Failed to parse the path " + string (pszPath));
 
    }
 
@@ -319,7 +319,7 @@ LPITEMIDLIST itemidlist::_create(int nSize)
    if (FAILED(SHGetMalloc(&pmalloc)))
    {
 
-      throw memory_exception();
+      __throw(error_no_memory);
 
       return nullptr;
 
@@ -330,7 +330,7 @@ LPITEMIDLIST itemidlist::_create(int nSize)
    if (pidl == nullptr)
    {
 
-      throw memory_exception();
+      __throw(error_no_memory);
 
       return nullptr;
 

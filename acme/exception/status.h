@@ -2,83 +2,93 @@
 #pragma once
 
 
-
 template < typename TYPE >
-class __status :
-    public TYPE
+class status :
+   public TYPE
 {
 public:
 
 
-    ::e_status          m_estatus;
+   ::e_status              m_estatus;
 
 
-    __status() { }
-
-    __status(const TYPE & type) :
-        TYPE(type)
-    {
-
-        m_estatus = ::success;
-
-    }
-
-    __status(TYPE && type) :
-        TYPE(::move(type))
-    {
-
-        m_estatus = ::success;
-
-    }
-
-    __status(const ::e_status & estatus)
-    {
-
-        if (estatus)
-        {
-
-            estatus = ::error_failed;
-
-        }
-
-        m_estatus = estatus;
-
-    }
-
-    __status(const ::e_status & estatus, TYPE && type) :
-       TYPE(::move(type))
-    {
+   status() { m_estatus = error_not_initialized; }
 
 
+   status(const TYPE & _, const ::e_status& estatus = ::success) :
+      TYPE(_),
+      m_estatus(estatus)
+   {
 
-    }
+   }
 
-    __status(nullptr_t)
-    {
+   status(const TYPE&& _, const ::e_status& estatus = ::success) :
+      TYPE(::move(_)),
+      m_estatus(estatus)
+   {
 
-       m_estatus = error_null_result;
+   }
 
-    }
+   status(const ::e_status& estatus)
+   {
 
-    __status(::enum_status estatus)
-    {
+      if (estatus == error_not_initialized)
+      {
 
-        if (estatus)
-        {
+         estatus = ::error_failed;
 
-            estatus = ::error_failed;
+      }
 
-        }
+      m_estatus = estatus;
 
-        m_estatus = estatus;
+   }
 
-    }
 
-    operator TYPE & () { return *this; }
+   status(::enum_status estatus)
+   {
 
-    operator ::e_status & () { return m_estatus; }
+      if (estatus == error_not_initialized)
+      {
 
-    bool is_ok() const { return ::succeeded(m_estatus); }
+         estatus = ::error_failed;
+
+      }
+
+      m_estatus = estatus;
+
+   }
+
+
+   status(nullptr_t)
+   {
+
+      m_estatus = error_null_result;
+
+   }
+
+
+   operator int() const { return is_ok() != false; }
+
+   ::e_status estatus() const { return m_estatus; }
+
+   bool is_ok() const { return ::succeeded(m_estatus); }
+
+   using TYPE::operator =;
+
+
+};
+
+
+template < typename OBJECT >
+class transport :
+   public status < __pointer (OBJECT) >
+{
+public:
+
+
+   using status < __pointer(OBJECT) >::status;
+   using status < __pointer(OBJECT) >::operator =;
+
 
 };
 

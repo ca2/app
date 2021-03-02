@@ -111,7 +111,7 @@ namespace user
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
       ::draw2d::graphics_pointer spgraphicsScreen(e_create);
 
-      //__throw(todo());
+      //__throw(todo);
       /*         HGDIOBJ hOldFont = nullptr;
                if (hFont != nullptr)
                   hOldFont = spgraphicsScreen->set(hFont);*/
@@ -147,7 +147,7 @@ namespace user
 //            if (i == 0)
 //               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
 //#else
-//            __throw(todo());
+//            __throw(todo);
 //#endif
          }
          ++pSBP;
@@ -214,7 +214,7 @@ namespace user
 //                       ::GetSystemMetrics(SM_CXBORDER) * 2;
 //      }
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
    }
 //
@@ -297,7 +297,7 @@ namespace user
 //         }
 //      }
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
    }
 
@@ -344,7 +344,7 @@ namespace user
 //         ::SetRectEmpty(prectangle);
 //
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
    }
 //
@@ -567,7 +567,7 @@ namespace user
 //      pnccalcsize->m_pparams->rgrc[0].right += rectangle.right;
 //      pnccalcsize->m_pparams->rgrc[0].bottom += rectangle.bottom;
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 }
 //
@@ -665,7 +665,7 @@ namespace user
       pwindowpos->previous();
       m_dwStyle = uStyle;
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 
@@ -855,7 +855,7 @@ namespace user
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

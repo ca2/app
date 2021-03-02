@@ -572,7 +572,7 @@ namespace apex
    }
 
 
-   __result(::apex::application) library::new_application(const char * pszAppId)
+   __transport(::apex::application) library::new_application(const char * pszAppId)
    {
 
       synchronization_lock synchronizationlock(&System.m_mutexLibrary);

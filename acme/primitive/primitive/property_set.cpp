@@ -709,7 +709,7 @@ void property_set_skip_json(const char *& pszJson, const char * pszEnd)
 
          str += pszJson;
 
-         __throw(::exception::exception(str));
+         __throw(error_failed, str);
 
       }
 
@@ -848,7 +848,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 
          str += pszJson;
 
-         __throw(::exception::exception(str));
+         __throw(error_parsing, str);
 
       }
 
@@ -1201,7 +1201,7 @@ property_set& property_set::operator = (const ::payload & payload)
    else
    {
 
-      __throw(::exception::exception(nullptr, error_wrong_type));
+      __throw(error_wrong_type);
 
    }
 
@@ -1650,7 +1650,7 @@ string & property_set::get_http_post(string & strPost) const
 //      if (iFind < 0 || iFind >= m_propertyptra.get_count())
 //      {
 //
-//         __throw(index_out_of_bounds());
+//         __throw(error_index_out_of_bounds);
 //
 //      }
 //

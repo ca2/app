@@ -60,7 +60,7 @@ namespace write_text
    }
 
 
-   void font_list::defer_font_enumeration(::promise::subject * psubject)
+   void font_list::defer_font_enumeration(::subject::subject * psubject)
    {
 
       try
@@ -86,7 +86,7 @@ namespace write_text
    }
 
 
-   void font_list::update_font_enumeration(::promise::subject * psubject)
+   void font_list::update_font_enumeration(::subject::subject * psubject)
    {
 
       try
@@ -107,7 +107,7 @@ namespace write_text
    }
 
 
-   void font_list::sync_font_enumeration(::promise::subject * psubject)
+   void font_list::sync_font_enumeration(::subject::subject * psubject)
    {
 
       try
@@ -384,11 +384,11 @@ namespace write_text
          else if (!bCheckHover && i == m_iHover)
          {
 
-            color32_t cr = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_hover);
+            auto color = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_hover);
 
-            int iA = colorref_get_a_value(cr);
+            int iA = color->alpha;
 
-            pgraphics->fill_rectangle(rectangle, cr);
+            pgraphics->fill_rectangle(rectangle, color);
 
          }
 
@@ -628,7 +628,7 @@ namespace write_text
 
    }
 
-   void font_list::on_subject(::promise::subject * psubject)
+   void font_list::on_subject(::subject::subject * psubject)
    {
 
       if (psubject->m_esubject == e_subject_prepare)
@@ -667,7 +667,7 @@ namespace write_text
 
 
 
-   void font_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       e_id eid = (e_id)psubject->id().i64();

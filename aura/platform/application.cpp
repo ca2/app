@@ -476,7 +476,7 @@ namespace aura
          //    __throw(exit_exception(esp->get_context_application(), ::exit_application));
 
          // }
-         catch (::exception_pointer pe)
+         catch (const ::exception::exception & e)
          {
 
             handle_exception(pe);
@@ -1114,7 +1114,7 @@ namespace aura
    //void application::_001CloseApplication()
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //}
 
@@ -1153,7 +1153,7 @@ namespace aura
 //   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(not_implemented());
+//  __throw(error_not_implemented);
 
 //}
 
@@ -1163,7 +1163,7 @@ namespace aura
    //bool application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   return false;
 
@@ -1178,7 +1178,7 @@ namespace aura
    //}
 
 
-   //bool application::process_exception(::exception_pointer pe)
+   //bool application::process_exception(const ::exception::exception & e)
    //{
 
    //   return ::thread::process_exception(pe);
@@ -1211,7 +1211,7 @@ namespace aura
    //      }
 
    //   }
-   //   catch (::exception_pointer pe)
+   //   catch (const ::exception::exception & e)
    //   {
 
    //      handle_exception(pe);
@@ -1320,7 +1320,7 @@ namespace aura
 //         return true;
 //
 //      }
-//      catch (::exception_pointer pe)
+//      catch (const ::exception::exception & e)
 //      {
 //
 //         handle_exception(pe);
@@ -1421,7 +1421,7 @@ namespace aura
 //            estatus = run();
 //
 //         }
-//         catch (::exception_pointer pe)
+//         catch (const ::exception::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -3446,7 +3446,7 @@ retry_license:
 //   }
 //
 //
-//   void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+//   void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 //   {
 //
 //
@@ -4830,7 +4830,7 @@ retry_license:
    //}
 
 
-   //bool application::process_exception(::exception_pointer pe)
+   //bool application::process_exception(const ::exception::exception & e)
    //{
 
    //   return aura::application::process_exception(e);
@@ -4902,7 +4902,7 @@ retry_license:
    //         m_estatus = run();
 
    //      }
-   //      catch (::exception::exception_pointer pe)
+   //      catch (::exceptionconst ::exception::exception & e)
    //      {
 
    //         if (handle_exception(pe))
@@ -4917,7 +4917,7 @@ retry_license:
    //      }
 
    //   }
-   //   catch (::exception_pointer pe)
+   //   catch (const ::exception::exception & e)
    //   {
 
    //   }
@@ -5496,7 +5496,7 @@ retry_license:
    //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
    //{
 
-   //   __throw(not_implemented());
+   //   __throw(error_not_implemented);
 
    //   return false;
 
@@ -6111,7 +6111,7 @@ namespace aura
    }
 
 
-   void application::process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage)
+   void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
    {
 
       ENSURE_ARG(pe != nullptr);
@@ -6778,7 +6778,7 @@ namespace aura
 //   }
 //
 
-   //bool application::process_exception(::exception_pointer pe)
+   //bool application::process_exception(const ::exception::exception & e)
    //{
 
    //   return ::aura::application::on_run_exception(pexception))
@@ -7779,7 +7779,7 @@ namespace aura
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(APPLEOS)
-//      __throw(todo());
+//      __throw(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronization_lock synchronizationlock(&user_mutex());
@@ -8309,7 +8309,7 @@ namespace aura
 //
 //      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 //   }
 
@@ -8325,7 +8325,7 @@ namespace aura
 
       auto pwindowing = puser->m_pwindowing;
 
-      __throw(todo());
+      __throw(todo);
 
       //for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //{
@@ -8337,7 +8337,7 @@ namespace aura
 
 #else
 
-      //__throw(todo());
+      //__throw(todo);
 
 #endif
 
@@ -8347,7 +8347,7 @@ namespace aura
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
    {
 
    }
@@ -8485,7 +8485,7 @@ namespace aura
 
       auto puiMain1 = __user_interaction(m_puiMain1);
 
-      puiMain1->message_box(strMessage + ::enum_message_box(iMessageFlags));
+      puiMain1->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
 
    }
 
@@ -8681,7 +8681,7 @@ namespace aura
    //   }
 
 
-      //void application::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+      //void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
       //{
 
       //   ::aura::application::on_subject(psubject, pcontext);

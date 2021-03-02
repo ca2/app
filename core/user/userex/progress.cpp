@@ -219,7 +219,7 @@ namespace userex
    }
 
 
-   void progress_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void progress_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
    }

@@ -294,7 +294,7 @@ void memory_base::reserve(memsize dwNewLength)
       return;
 
    if(!allocate_internal(dwNewLength))
-      __throw(memory_exception());
+      __throw(error_no_memory);
 
 }
 
@@ -446,7 +446,7 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
          if (filesize > ::numeric_info < memsize> ::maximum())
          {
 
-            __throw(memory_exception());
+            __throw(error_no_memory);
 
          }
 
@@ -1022,7 +1022,7 @@ void memory_base::to_hex(string & str, memsize pos, memsize size)
    if (pos > this->get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -1664,7 +1664,7 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
    if (pos > get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -1717,14 +1717,14 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
    if (pos > (memsize) a->Length)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
    if (pos > (memsize) a->Length)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -1773,7 +1773,7 @@ void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, mem
 CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
 {
    if (pos > get_size())
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
    if(size < 0)
    {
       size = get_size() - pos;
@@ -1793,14 +1793,14 @@ void memory_base::set_os_cf_data(CFDataRef data, memsize pos, memsize size)
    if (pos > CFDataGetLength(data))
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
    if (pos > CFDataGetLength(data))
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

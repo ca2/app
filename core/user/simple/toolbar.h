@@ -17,7 +17,7 @@ class CLASS_DECL_CORE simple_toolbar :
 {
 public:
 
-
+   bool                       m_bStyleFlat : 1;
    
    int                     m_iImageSpacing;
    ::size_i32                  m_sizePress;

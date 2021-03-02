@@ -97,7 +97,7 @@ namespace draw2d_xlib
          case type_combine:
             return get_combine(pgraphics);
          default:
-            __throw(not_implemented());
+            __throw(error_not_implemented);
          }
 
          return false;

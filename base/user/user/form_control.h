@@ -76,7 +76,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       virtual bool update_data(bool bSaveAndValidate) override;
       virtual void _001Update(::user::interaction * pinteraction);
       virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
@@ -101,7 +101,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject = nullptr);
 
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
@@ -125,7 +125,7 @@ namespace user
 
       //      ::user::form_window(::layered * pobjectContext);
 
-      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       //      virtual void on_control_event(::user::control_event * pevent);
       //      DECL_GEN_SIGNAL(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;

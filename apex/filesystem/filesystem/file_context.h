@@ -21,12 +21,12 @@ public:
    virtual ::e_status update_module_path();
 
 
-   virtual ::status::result copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
-   virtual ::status::result move(const ::file::path & pathNew, const ::file::path & path);
-   virtual ::status::result del(const ::file::path & path);
+   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   virtual ::extended::status move(const ::file::path & pathNew, const ::file::path & path);
+   virtual ::extended::status del(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
    virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
-   virtual ::status::result rename(const ::file::path & pathNew, const ::file::path & path);
+   virtual ::extended::status rename(const ::file::path & pathNew, const ::file::path & path);
 
 
    virtual void trash_that_is_not_trash(const ::file::path & path);
@@ -34,10 +34,10 @@ public:
 
 
    virtual bool get_status(const ::file::path & path, ::file::file_status & status);
-   virtual ::status::result set_status(const ::file::path & path, const ::file::file_status & status);
+   virtual ::extended::status set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual ::status::result replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
 
 
    virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
@@ -233,17 +233,17 @@ public:
    virtual ::file::path onedrive_global_ini();
    virtual ::file::path onedrive_cid_ini();
 
-//   virtual ::status::result copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
-   //virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz);
-   //virtual ::status::result del(const ::file::path & psz);
-   //virtual ::status::result rename(const ::file::path & pszNew, const ::file::path & psz);
+//   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   //virtual ::extended::status move(const ::file::path & pszNew, const ::file::path & psz);
+   //virtual ::extended::status del(const ::file::path & psz);
+   //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);
 
 
    //virtual void trash_that_is_not_trash(const ::file::path & psz);
    //virtual void trash_that_is_not_trash(::file::patha & stra);
 
 
-   //virtual ::status::result replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   //virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
 
   virtual bool exists(const ::file::path & pszPath);
 

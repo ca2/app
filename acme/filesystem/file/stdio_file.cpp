@@ -25,7 +25,7 @@ stdio_file::~stdio_file()
 }
 
 
-::status::result stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
+::extended::status stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
 {
 
    string str;

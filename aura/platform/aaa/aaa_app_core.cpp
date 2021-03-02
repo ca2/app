@@ -1774,7 +1774,7 @@ bool app_core::has_aura_application_factory() const
 #endif
 
 
-__result(::aura::application) app_core::get_new_application(::object* pobjectContext)
+__transport(::aura::application) app_core::get_new_application(::object* pobjectContext)
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1809,7 +1809,7 @@ __result(::aura::application) app_core::get_new_application(::object* pobjectCon
 }
 
 
-__result(::aura::application) app_core::get_new_application(::object* pobjectContext, const char* pszAppId)
+__transport(::aura::application) app_core::get_new_application(::object* pobjectContext, const char* pszAppId)
 {
 
    __pointer(::aura::application) papp;

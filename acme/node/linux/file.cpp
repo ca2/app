@@ -89,7 +89,7 @@ namespace linux
 //   }
 //
 
-   ::status::result file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
+   ::extended::status file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
    {
 
       if (m_iFile != INVALID_FILE)

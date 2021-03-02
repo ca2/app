@@ -6,37 +6,37 @@ namespace file
 
 
    class CLASS_DECL_ACME exception :
-      public ::io_exception
+      public ::exception::exception
    {
    public:
 
 
-      ::i32                m_lOsError;
-      int                  m_iErrNo;
-      ::file::path         m_path;
-      string               m_strAdd;
-      ::file::e_open        m_eopen;
+   //   ::i32                m_lOsError;
+   //   int                  m_iErrNo;
+   //   ::file::path         m_path;
+   //   string               m_strAdd;
+   //   ::file::e_open        m_eopen;
 
 
-      exception(const ::e_status & estatus = error_file, ::i32 lOsError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::e_open & eopen = e_null);
+   exception(const ::e_status & estatus = error_file, ::u32 uLastError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::e_open & eopen = e_null);
 
-      virtual ~exception();
-
-      virtual void dump(dump_context &) const;
-
-
-      virtual ::e_status     get_status();
-      virtual ::i32 get_os_error();
-      virtual string get_file_path();
-
-#ifdef WINDOWS
-      virtual bool get_error_message(string & str, unsigned int * pnHelpContext = nullptr);
-#endif
-
+//      virtual ~exception();
+//
+//      virtual void dump(dump_context &) const;
+//
+//
+//      virtual ::e_status     get_status();
+//      virtual ::i32 get_os_error();
+//      virtual string get_file_path();
+//
+//#ifdef WINDOWS
+//      virtual bool get_error_message(string & str, unsigned int * pnHelpContext = nullptr);
+//#endif
+//
    };
 
 
-   using exception_pointer = __pointer(exception);
+   //using exception_pointer = __pointer(exception);
 
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status & estatus);

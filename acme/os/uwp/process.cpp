@@ -370,7 +370,7 @@ CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVaria
 
    string str;
 
-   __throw(todo());
+   __throw(todo);
 
    return str;
 

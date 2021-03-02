@@ -1143,6 +1143,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\channel.cpp" />
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\debug.cpp" />
+    <ClCompile Include="message\handler.cpp" />
     <ClCompile Include="message\id.cpp" />
     <ClCompile Include="message\message.cpp" />
     <ClCompile Include="message\receiver.cpp" />
@@ -1325,9 +1326,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="message\cross_windows.h" />
     <ClInclude Include="message\definition.h" />
     <ClInclude Include="message\global.h" />
+    <ClInclude Include="message\handler.h" />
+    <ClInclude Include="message\handler_item.h" />
     <ClInclude Include="message\id.h" />
     <ClInclude Include="message\listener_smart_pointer_array.h" />
     <ClInclude Include="message\message.h" />
+    <ClInclude Include="message\predicate_handler.h" />
     <ClInclude Include="message\receiver.h" />
     <ClInclude Include="message\route.h" />
     <ClInclude Include="message\simple_command.h" />

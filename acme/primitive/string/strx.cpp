@@ -204,7 +204,7 @@ void ansi_to_wd16_len(wd16char * pwsz, const char * psz, strsize srclen)
       if (iWd32)
       {
 
-         __throw(invalid_character());
+         __throw(error_invalid_character);
 
          return;
 
@@ -213,7 +213,7 @@ void ansi_to_wd16_len(wd16char * pwsz, const char * psz, strsize srclen)
       if (srclen < len)
       {
 
-         __throw(invalid_character());
+         __throw(error_invalid_character);
 
          return;
 
@@ -228,7 +228,7 @@ void ansi_to_wd16_len(wd16char * pwsz, const char * psz, strsize srclen)
       if (iWd16)
       {
 
-         __throw(invalid_character());
+         __throw(error_invalid_character);
 
          return;
 

@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   void plain_edit::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void plain_edit::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if(psubject->id() == id_current_text_changed)
@@ -365,14 +365,14 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      color32_t crBk;
-      color32_t crBkSel;
-      color32_t crSel;
-      color32_t cr;
+      with_status < ::color::color > crBk;
+      with_status < ::color::color > crBkSel;
+      with_status < ::color::color > crSel;
+      with_status < ::color::color > cr;
 
       ::rectangle_f64 rectClient = get_client_rect();
 
-      color32_t crEditBackground = get_color(pstyle, e_element_background);
+      auto crEditBackground = get_color(pstyle, e_element_background);
 
       pgraphics->fill_rectangle(rectClient, crEditBackground);
 
@@ -396,11 +396,11 @@ namespace user
       crSel = get_color(pstyle, e_element_text, e_state_selected);
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
-      ::color::color colorComposeBk;
+      with_status < ::color::color > colorComposeBk;
 
       colorComposeBk = crBk;
-      colorComposeBk.blend(crBkSel, 0.5);
-      colorComposeBk.alpha = 127;
+      colorComposeBk->blend(crBkSel, 0.5);
+      colorComposeBk->alpha = 127;
 
       pstyle->get(m_pcontrolstyle, pgraphics, this);
 
@@ -1099,7 +1099,7 @@ namespace user
    }
 
 
-   __status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   with_status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
        return ::user::interaction::get_margin(pstyle, eelement, estate);

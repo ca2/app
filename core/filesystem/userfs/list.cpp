@@ -153,7 +153,7 @@ namespace userfs
    }
 
 
-   void list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
 

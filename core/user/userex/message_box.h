@@ -9,6 +9,9 @@ namespace userex
       virtual public wait_message_dialog
    {
    public:
+
+
+      //__pointer(::future < ::id >)     m_pprocess;
       
       
       message_box();

@@ -286,7 +286,7 @@ namespace tranquillum
 
       auto pstyle = pframe->get_style(pgraphics);
 
-      color32_t crBackground = pframe->get_color(pstyle, ::user::e_element_background);
+      with_status < ::color::color > crBackground = pframe->get_color(pstyle, ::user::e_element_background);
 
       //crBackground = argb(255, 200, 180, 180);
 
@@ -606,7 +606,7 @@ namespace tranquillum
 
       auto pstyle = ptab->get_style(pgraphics);
 
-      color32_t crbk = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
+      auto crbk = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
 
       pgraphics->fill_rectangle(rcTabs, crbk);
 

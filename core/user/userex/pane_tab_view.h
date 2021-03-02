@@ -76,7 +76,7 @@ namespace userex
 
       virtual bool create_app_options(::user::impact_data * pimpactdata);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 

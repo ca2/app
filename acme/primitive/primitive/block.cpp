@@ -24,7 +24,7 @@ Array < uchar, 1U >^ block::get_os_bytes(memsize pos, memsize size) const
    if (pos > get_size())
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

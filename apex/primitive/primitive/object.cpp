@@ -314,7 +314,7 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::promise::routine >* object::routinea(const ::id & id)
+array < ::routine >* object::routinea(const ::id & id)
 {
 
    if (m_pmeta)
@@ -336,26 +336,26 @@ array < ::promise::routine >* object::routinea(const ::id & id)
 }
 
 
-array < ::promise::process >* object::processa(const ::id & idProcess)
-{
-
-   if (m_pmeta)
-   {
-
-      auto p = m_pmeta->m_mapProcess.plookup(idProcess);
-
-      if (p)
-      {
-
-         return &p->element2();
-
-      }
-
-   }
-
-   return nullptr;
-
-}
+//array < ::future >* object::processa(const ::id & idProcess)
+//{
+//
+//   if (m_pmeta)
+//   {
+//
+//      auto p = m_pmeta->m_mapProcess.plookup(idProcess);
+//
+//      if (p)
+//      {
+//
+//         return &p->element2();
+//
+//      }
+//
+//   }
+//
+//   return nullptr;
+//
+//}
 
 
 void object::call_routine(const ::id & id)
@@ -373,22 +373,22 @@ void object::call_routine(const ::id & id)
 }
 
 
-void object::send_payload(const ::id & idProcess, const ::payload & payload)
-{
+//void object::send_payload(const ::id & idProcess, const ::payload & payload)
+//{
+//
+//   auto pprocessa = processa(idProcess);
+//
+//   if(pprocessa)
+//   {
+//
+//      pprocessa->predicate_each([&payload](auto & process) { process(payload); });
+//
+//   }
+//
+//}
+//
 
-   auto pprocessa = processa(idProcess);
-
-   if(pprocessa)
-   {
-
-      pprocessa->predicate_each([&payload](auto & process) { process(payload); });
-
-   }
-
-}
-
-
-void object::add_routine(const ::id & id, const ::promise::routine & routine)
+void object::add_routine(const ::id & id, const ::routine & routine)
 {
 
    meta()->m_mapRoutine[id].add(routine);
@@ -396,12 +396,12 @@ void object::add_routine(const ::id & id, const ::promise::routine & routine)
 }
 
 
-void object::add_process(const ::id & id, const ::promise::process & process)
-{
-
-   meta()->m_mapProcess[id].add(process);
-
-}
+//void object::add_process(const ::id & id, const ::future & process)
+//{
+//
+//   meta()->m_mapProcess[id].add(process);
+//
+//}
 
 
 void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
@@ -424,24 +424,24 @@ void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
 }
 
 
-void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
-{
-
-   if (pobjectSource)
-   {
-
-      auto pprocessa = pobjectSource->processa(id);
-
-      if (pprocessa)
-      {
-
-         meta()->m_mapProcess[id].add(*pprocessa);
-
-      }
-
-   }
-
-}
+//void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
+//{
+//
+//   if (pobjectSource)
+//   {
+//
+//      auto pprocessa = pobjectSource->processa(id);
+//
+//      if (pprocessa)
+//      {
+//
+//         meta()->m_mapProcess[id].add(*pprocessa);
+//
+//      }
+//
+//   }
+//
+//}
 
 context& object::__context(const ::payload & payload)
 {
@@ -1608,7 +1608,7 @@ void object::start()
 }
 
 
-void object::single_fork(const ::promise::routine_array & procedurea)
+void object::single_fork(const ::routine_array & procedurea)
 {
 
    fork([procedurea]()
@@ -1635,7 +1635,7 @@ void object::single_fork(const ::promise::routine_array & procedurea)
 }
 
 
-void object::multiple_fork(const ::promise::routine_array & procedurea)
+void object::multiple_fork(const ::routine_array & procedurea)
 {
 
    for (auto & procedure : procedurea)
@@ -1653,7 +1653,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::e_status object::handle_exception(::exception_pointer pe)
+::e_status object::handle_exception(const ::exception::exception & e)
 {
 
    if(pe.is < exit_exception > ())
@@ -1668,7 +1668,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::e_status object::top_handle_exception(::exception_pointer pe)
+::e_status object::top_handle_exception(const ::exception::exception & e)
 {
 
    __pointer(exit_exception) pexitexception = pe;
@@ -1687,7 +1687,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::e_status object::process_exception(::exception_pointer pe)
+::e_status object::process_exception(const ::exception::exception & e)
 {
 
    if (pe->m_bHandled)
@@ -1745,7 +1745,7 @@ void object::task_remove(::task* ptask)
          if (::is_null(ptask))
          {
 
-            __throw(invalid_argument_exception());
+            __throw(error_invalid_argument);
 
          }
 
@@ -1754,7 +1754,7 @@ void object::task_remove(::task* ptask)
          if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
          {
 
-            __throw(invalid_argument_exception("thread is no parent-child releationship between the threads"));
+            __throw(error_invalid_argument, "thread is no parent-child releationship between the threads"));
 
          }
 
@@ -1908,7 +1908,7 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-   ::promise::subject subject(this, (::iptr)pmessage->m_wparam);
+   ::subject::subject subject(this, (::iptr)pmessage->m_wparam);
 
    subject.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
 
@@ -2100,7 +2100,7 @@ bool __no_continue(::e_status estatus)
 }
 
 
-::e_status call_sync(const ::promise::routine_array & methoda)
+::e_status call_sync(const ::routine_array & methoda)
 {
 
    try
@@ -2122,7 +2122,7 @@ bool __no_continue(::e_status estatus)
             }
 
          }
-         catch(::exception_pointer pe)
+         catch(const ::exception::exception & e)
          {
 
             if(__no_continue(pe->m_estatus))
@@ -2191,10 +2191,12 @@ string object::get_text(const ::payload & payload, const ::id& id)
 }
 
 
-::e_status object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+__pointer(::future < ::conversation >) object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
 {
 
-   ::e_status estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
+   //auto edialogresult =
+ 
+   auto presult = System.message_box(pszMessage, pszTitle, emessagebox);
 
    //auto psession = get_context_session();
 
@@ -2239,33 +2241,37 @@ string object::get_text(const ::payload & payload, const ::id& id)
 
    //}
 
-   return estatus;
+   //return estatus;
+
+   //return edialogresult;
+
+   return presult;
 
 }
 
 
-::e_status object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
-{
-
-   ::e_status estatus = error_failed;
-
-   //if (::is_null(get_context_session()) || ::is_null(get_context_session()->userex()))
-   //{
-
-   //   estatus = get_context_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
-
-   //}
-
-   if (!estatus)
-   {
-
-//      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
-
-   }
-
-   return estatus;
-
-}
+//::e_status object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//{
+//
+//   ::e_status estatus = error_failed;
+//
+//   //if (::is_null(get_context_session()) || ::is_null(get_context_session()->userex()))
+//   //{
+//
+//   //   estatus = get_context_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+//
+//   //}
+//
+//   if (!estatus)
+//   {
+//
+////      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
 #ifdef DEBUG

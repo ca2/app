@@ -374,7 +374,7 @@ namespace dir
 
       auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
 
-      __throw(todo());
+      __throw(todo);
 
       return wstrModuleFolder;
 

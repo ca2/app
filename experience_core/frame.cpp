@@ -112,7 +112,7 @@ namespace experience
             }
 
 
-            color32_t frame::get_border_main_body_color()
+            with_status < ::color::color > frame::get_border_main_body_color()
             {
 
                return rgb(63, 150, 106);
@@ -120,7 +120,7 @@ namespace experience
             }
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
             {
 
                System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
@@ -301,34 +301,34 @@ namespace experience
             }
 
 
-            void frame::set_moveable_border_color(color32_t cr)
+            void frame::set_moveable_border_color(const ::color::color& colorMoveableBorder)
             {
-               m_colorMoveableBorder = cr;
+               
+               m_colorMoveableBorder = colorMoveableBorder;
 
                ::color::color color;
 
-               color.set_rgb(cr);
+               color.set_rgb(colorMoveableBorder);
                color.hls_rate(0.0, 0.5, 0.0);
                m_colorMoveableBorderHilight = color;
-               m_colorMoveableBorderHilight.alpha = 255;
+               m_colorMoveableBorderHilight.m_result.alpha = 255;
 
-               color.set_rgb(cr);
+               color.set_rgb(colorMoveableBorder);
                color.hls_rate(0.0, -0.3, 0.0);
                m_colorMoveableBorderShadow = color;
-               m_colorMoveableBorderShadow.alpha = 255;
+               m_colorMoveableBorderShadow.m_result.alpha = 255;
 
-               color.set_rgb(cr);
+               color.set_rgb(colorMoveableBorder);
                color.hls_rate(8.0, -0.8, 0.0);
                m_colorMoveableBorderDkShadow = color;
-               m_colorMoveableBorderDkShadow.alpha = 255;
-
+               m_colorMoveableBorderDkShadow.m_result.alpha = 255;
 
                m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
             }
 
 
-            void frame::set_button_color_schema_001(color32_t crMoveableBorder)
+            void frame::set_button_color_schema_001(const ::color::color& colorMoveableBorder)
             {
 
 //               defer_create_user_schema(schema_button);
@@ -478,7 +478,7 @@ namespace experience
             //}
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
             {
 
                ::rectangle_i32 rectangle(rectParam);
@@ -497,7 +497,7 @@ namespace experience
 
                   pen.create(this);
 
-                  pen->create_solid(1.0,crTopLeft);
+                  pen->create_solid(1.0, colorTopLeft);
 
                   pgraphics->set(pen);
 
@@ -521,12 +521,12 @@ namespace experience
 
                }
 
-               if((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
+               if((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != colorBottomRight))
                {
 
                   pen.create(this);
 
-                  pen->create_solid(1.0,crBottomRight);
+                  pen->create_solid(1.0,colorBottomRight);
 
                   pgraphics->set(pen);
 
@@ -636,11 +636,11 @@ namespace experience
 
                   auto pframewindow = m_pframewindow;
 
-                  color32_t    crMoveableBorder;
+                  with_status < ::color::color > crMoveableBorder;
 
-                  color32_t    crMoveableBorderHilight;
+                  with_status < ::color::color > crMoveableBorderHilight;
 
-                  color32_t    crMoveableBorderShadow;
+                  with_status < ::color::color > crMoveableBorderShadow;
 
                   string str;
 

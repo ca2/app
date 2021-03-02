@@ -433,7 +433,7 @@
 // MessageText:
 //
 // The wrong diskette is in the drive.
-// Insert %2 (Volume Serial Number: %3) into drive %1.
+// Insert %2 (Volume serial Number: %3) into drive %1.
 //
 #define ERROR_WRONG_DISK                 34L
 
@@ -13210,7 +13210,7 @@
 //
 // MessageText:
 //
-// Log service encountered a log sector with invalid block parity.
+// Log service encountered a log sector with invalid block eparity.
 //
 #define ERROR_LOG_SECTOR_PARITY_INVALID  6601L
 

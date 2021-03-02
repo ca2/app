@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       UNREFERENCED_PARAMETER(psubject);

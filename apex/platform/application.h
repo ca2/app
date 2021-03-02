@@ -273,7 +273,7 @@ namespace apex
       //virtual void SetCurrentHandles() override;
 
 
-      virtual ::e_status process_exception(::exception_pointer pe) override;
+      virtual ::e_status process_exception(const ::exception::exception & e) override;
 
 
       //virtual __pointer(::apex::application) assert_running(const char * pszAppId) override;
@@ -499,7 +499,7 @@ namespace apex
       virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 
 
-      //virtual bool process_exception(::exception_pointer pe) override;
+      //virtual bool process_exception(const ::exception::exception & e) override;
 
 
 
@@ -772,7 +772,7 @@ namespace apex
 
       virtual string get_app_user_friendly_task_bar_name();
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -945,7 +945,7 @@ namespace apex
 
       // overrides for implementation
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
-      virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
 
       void EnableModelessEx(bool bEnable);
 //#ifdef WINDOWS
@@ -971,8 +971,8 @@ namespace apex
       virtual void route_command_message(::message::command * pcommand) override;
 
 
-      virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
-      virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual __pointer(::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
       void EnableHtmlHelp();
@@ -984,7 +984,7 @@ namespace apex
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
-      //virtual bool process_exception(::exception_pointer pe) override;
+      //virtual bool process_exception(const ::exception::exception & e) override;
 
       //virtual bool on_uninstall() override;
 
@@ -1136,7 +1136,7 @@ namespace apex
       //virtual ::e_status init_instance() override;
 
 
-//      virtual bool process_exception(::exception_pointer pe) override;
+//      virtual bool process_exception(const ::exception::exception & e) override;
 
 
 
@@ -1310,7 +1310,7 @@ namespace apex
       }
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::promise::subject * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
@@ -1367,7 +1367,7 @@ namespace apex
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual ::e_status process_init() override;
 

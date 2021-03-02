@@ -105,7 +105,7 @@ namespace windowing
 
 
 
-      virtual result_pointer < ::windowing::icon > load_icon(const ::payload & payloadFile);
+      virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
       virtual void term1();
@@ -146,9 +146,9 @@ namespace windowing
 
       //virtual bool set_window_icon(window * pwindow, const ::file::path & path);
 
-      virtual string message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox);
+      //virtual __pointer(::future < enum_dialog_result >) message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox);
 
-      virtual string message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration & duration, const ::e_message_box & emessagebox);
+      //virtual enum_dialog_result message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration & duration, const ::e_message_box & emessagebox);
 
       virtual class window * new_message_window(::user::interaction_impl * pimpl);
 
@@ -186,8 +186,8 @@ namespace windowing
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status user_sync(const ::duration & duration, const ::promise::routine & routine);
-      virtual ::e_status user_fork(const ::promise::routine & routine);
+      virtual ::e_status user_sync(const ::duration & duration, const ::routine & routine);
+      virtual ::e_status user_fork(const ::routine & routine);
 
 
       virtual void _main_loop();

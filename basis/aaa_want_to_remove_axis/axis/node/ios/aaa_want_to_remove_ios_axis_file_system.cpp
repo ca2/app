@@ -1151,7 +1151,7 @@ namespace ios
 //
 //#elif defined(_UWP)
 //
-//         __throw(todo());
+//         __throw(todo);
 //
 //#else
 //
@@ -1244,7 +1244,7 @@ namespace ios
 //         strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
 //      }
 
-      file_pointer file_system::get_file(::payload varFile,::u32 nOpenFlags,::status::result * pfesp,::aura::application * papp)
+      file_pointer file_system::get_file(::payload varFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)
       {
 
          file_pointer spfile;

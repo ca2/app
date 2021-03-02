@@ -518,7 +518,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //

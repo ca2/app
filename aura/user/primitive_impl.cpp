@@ -480,120 +480,120 @@ namespace user
    }
 
 
-   u32 primitive_impl::GetStyle() const
-   {
+   //u32 primitive_impl::GetStyle() const
+   //{
 
-      return get_window_long(GWL_STYLE);
+   //   return get_window_long(GWL_STYLE);
 
-   }
-
-
-   u32 primitive_impl::GetExStyle() const
-   {
-
-      return get_window_long(GWL_EXSTYLE);
-
-   }
+   //}
 
 
-   bool primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   {
+   //u32 primitive_impl::GetExStyle() const
+   //{
 
-      ::i32 l = GetStyle();
+   //   return get_window_long(GWL_EXSTYLE);
 
-      l |= dwAdd;
-
-      ::i32 lRemove = ~dwRemove;
-
-      l &= lRemove;
-
-      set_window_long(GWL_STYLE, l);
-
-      return true;
-
-   }
+   //}
 
 
-   bool primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   {
+   //bool primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //{
 
-      set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
+   //   ::i32 l = GetStyle();
 
-      return true;
+   //   l |= dwAdd;
 
-   }
+   //   ::i32 lRemove = ~dwRemove;
 
+   //   l &= lRemove;
 
-   ::i32 primitive_impl::get_window_long(i32 nIndex) const
-   {
+   //   set_window_long(GWL_STYLE, l);
 
-      return (::i32)get_window_long_ptr(nIndex);
+   //   return true;
 
-   }
-
-
-   ::i32 primitive_impl::set_window_long(i32 nIndex, ::i32 lValue)
-   {
-
-      return (::i32)set_window_long_ptr(nIndex, lValue);
-
-   }
+   //}
 
 
-   iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
-   {
+   //bool primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //{
 
-//      return 0;
+   //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
+
+   //   return true;
+
+   //}
+
+
+//   ::i32 primitive_impl::get_window_long(i32 nIndex) const
+//   {
+//
+//      return (::i32)get_window_long_ptr(nIndex);
+//
+//   }
+//
+//
+//   ::i32 primitive_impl::set_window_long(i32 nIndex, ::i32 lValue)
+//   {
+//
+//      return (::i32)set_window_long_ptr(nIndex, lValue);
+//
+//   }
+//
+//
+//   iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
+//   {
+//
+////      return 0;
+//////
+//////      if (nIndex == GWL_STYLE)
+//////      {
+//////
+//////         return  m_uStyle;
+//////
+//////      }
+//////      else if (nIndex == GWL_EXSTYLE)
+//////      {
+//////
+//////         return  m_uExStyle;
+//////
+//////      }
+//////
+//////      synchronization_lock synchronizationlock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////
+//////      return (LONG_PTR)m_longptr[nIndex];
 ////
+//      return m_iptrmap[nIndex];
+//
+//   }
+//
+//
+//   ::e_status primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   {
+//
 ////      if (nIndex == GWL_STYLE)
 ////      {
 ////
-////         return  m_uStyle;
+////         return m_uStyle = lValue;
 ////
 ////      }
 ////      else if (nIndex == GWL_EXSTYLE)
 ////      {
 ////
-////         return  m_uExStyle;
+////         return m_uExStyle = lValue;
 ////
 ////      }
 ////
-////      synchronization_lock synchronizationlock(&((primitive_impl *)this)->m_mutexLongPtr);
+////      synchronization_lock synchronizationlock(&m_mutexLongPtr);
 ////
-////      return (LONG_PTR)m_longptr[nIndex];
+////      m_longptr[nIndex] = lValue;
+////
+////      return lValue;
 //
-      return m_iptrmap[nIndex];
-
-   }
-
-
-   iptr primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
-
-//      if (nIndex == GWL_STYLE)
-//      {
+//      //return lValue;
 //
-//         return m_uStyle = lValue;
+//      return m_iptrmap[nIndex] = lValue;
 //
-//      }
-//      else if (nIndex == GWL_EXSTYLE)
-//      {
-//
-//         return m_uExStyle = lValue;
-//
-//      }
-//
-//      synchronization_lock synchronizationlock(&m_mutexLongPtr);
-//
-//      m_longptr[nIndex] = lValue;
-//
-//      return lValue;
-
-      //return lValue;
-
-      return m_iptrmap[nIndex] = lValue;
-
-   }
+//   }
 
 
    id primitive_impl::GetDlgCtrlId() const

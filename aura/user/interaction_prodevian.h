@@ -46,8 +46,8 @@ namespace user
       millis                                    m_millisOutOfDrawing;
 
       millis                                    m_millisLastScreenUpdate;
-      ::promise::routine                        m_routineUpdateScreen;
-      ::promise::routine                        m_routineWindowShow;
+      ::routine                        m_routineUpdateScreen;
+      ::routine                        m_routineWindowShow;
       
 
 

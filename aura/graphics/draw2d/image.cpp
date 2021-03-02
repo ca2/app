@@ -2706,7 +2706,7 @@ bool image::BitBlt(::image * pimage, i32 op)
    if (op == 123) // zero dest rgb, invert alpha, and OR src rgb
    {
 
-      __throw(todo());
+      __throw(todo);
       //stretch(pimage);
 
    }
@@ -5008,7 +5008,7 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
 {
 
-//      __throw(todo());
+//      __throw(todo);
 //
 //      // xxx todo create(width(), height());
 //
@@ -5021,7 +5021,7 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //      // White blend image_impl
 //      image_impl pimage1;
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //      // xxx todo pimage1->create(width(), height());
 //
@@ -5047,7 +5047,7 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //      image_impl pimage2;
 //
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //      // xxx todo pimage2->create(width(), height());
 //      pimage2->Fill(0, 0, 0, 0);
@@ -5070,7 +5070,7 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 //
 //      // Mask image_impl
 //      image_impl imageM;
-//      __throw(todo());
+//      __throw(todo);
 //
 //      // xxx todo imageM.create(width(), height());
 //

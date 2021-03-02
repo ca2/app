@@ -304,7 +304,7 @@ namespace draw2d_direct2d
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

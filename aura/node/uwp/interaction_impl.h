@@ -91,7 +91,7 @@ namespace uwp
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
 
       void _002OnDraw(::image * pimage);
 

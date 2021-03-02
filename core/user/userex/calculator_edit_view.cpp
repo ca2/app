@@ -86,7 +86,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void plain_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == id_after_change_text)

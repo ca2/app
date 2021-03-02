@@ -203,9 +203,6 @@ typedef struct _MEMORY_STATE
 #endif
 
 
-#if !defined(WINDOWS_DESKTOP) && !defined(_UWP)
-#define debug_break() debug_break()
-#endif
 
 
 #endif

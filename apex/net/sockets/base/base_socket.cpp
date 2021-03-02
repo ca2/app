@@ -2494,7 +2494,7 @@ namespace sockets
    }
 
 
-   bool base_socket::Timeout(time_t tnow)
+   bool base_socket::time_out(time_t tnow)
    {
 
       if (tnow - m_timeTimeoutStart > m_timeTimeoutLimit)

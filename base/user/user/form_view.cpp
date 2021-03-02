@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   void form_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::on_subject(psubject, pcontext);

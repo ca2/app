@@ -43,9 +43,6 @@ auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
 auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
 
-inline auto a_rgb(byte a, ::u32 rgb) { return rgb | (a << 24); }
-
-
 namespace color
 {
 
@@ -310,6 +307,10 @@ inline auto alpha(const ::color::color & color) { return color.alpha; }
 auto inline rgb(byte r, byte g, byte b) { return ::color::color(r, g, b); }
 auto inline rgba(byte r, byte g, byte b, byte a) { return ::color::color(r, g, b, a); }
 auto inline argb(byte a, byte r, byte g, byte b) { return ::color::color(r, g, b, a); }
+
+
+inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return (rgb.u32 & 0x00ffffff) | (opacity.get_alpha() << 24); }
+auto inline opaque(const ::color::color& color) { return alpha(255, color); }
 
 
 

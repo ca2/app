@@ -89,7 +89,7 @@ namespace draw2d_opengl
 
    bool printer::document_properties::close()
    {
-      //__throw(todo());
+      //__throw(todo);
       if (m_hdc != nullptr)
       {
          ::DeleteDC(m_hdc);

@@ -165,7 +165,7 @@ public:
    virtual ::layered * taskpool();
 
 
-   virtual ::task * defer_fork(const ::id & id, const ::promise::routine & routine);
+   virtual ::task * defer_fork(const ::id & id, const ::routine & routine);
 
 
    virtual void delete_this();
@@ -248,7 +248,7 @@ public:
    virtual void sync_wait(const ::duration & duration);
 
 
-   virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
+   virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
 
 
    virtual ::e_status operator()();

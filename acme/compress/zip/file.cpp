@@ -57,7 +57,7 @@ namespace zip
 //         }
 //
 //      }
-//      catch(::exception_pointer e)
+//      catch(const ::exception::exception & e)
 //      {
 //
 //         return false;
@@ -134,7 +134,7 @@ namespace zip
          }
 
       }
-      catch(::exception_pointer e)
+      catch(const ::exception::exception &)
       {
 
          return false;

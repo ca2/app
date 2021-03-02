@@ -144,7 +144,7 @@ namespace uwp
 
       }
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 
@@ -209,7 +209,7 @@ namespace uwp
 #elif defined(_UWP)
       strName = ":<unknown>";
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
       return strName;
    }
@@ -234,7 +234,7 @@ namespace uwp
 #elif defined(_UWP)
 
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 
@@ -259,7 +259,7 @@ namespace uwp
 #elif defined(_UWP)
       strPath = ":<unknown>";;
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
       return strPath;
    }
@@ -327,7 +327,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -347,7 +347,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -367,7 +367,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -386,7 +386,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -431,7 +431,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -538,7 +538,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -573,7 +573,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -647,7 +647,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -700,7 +700,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -756,7 +756,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -803,7 +803,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -852,7 +852,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -906,7 +906,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

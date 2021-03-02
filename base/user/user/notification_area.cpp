@@ -34,7 +34,7 @@ Contact : nish@voidnish.com
 //      //::DeleteObject(m_hfontHidden);
 //      //::DeleteObject(m_hfontRegular);
 //#else
-////      __throw(todo());
+////      __throw(todo);
 //#endif
 //   }
 //
@@ -168,7 +168,7 @@ Contact : nish@voidnish.com
 //      //      LVIS_FOCUSED|LVIS_SELECTED,
 //      //      LVIS_FOCUSED|LVIS_SELECTED);
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 //   }
 //
@@ -224,7 +224,7 @@ Contact : nish@voidnish.com
 //         ListTrayIcons(iItem - 1);
 //      }
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 //   }
 //
@@ -237,7 +237,7 @@ Contact : nish@voidnish.com
 //         ListTrayIcons(iItem + 1);
 //      }
 //#else
-//      __throw(todo());
+//      __throw(todo);
 //#endif
 //   }
 //

@@ -468,7 +468,7 @@ namespace experience
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  ::color::color colorText;
+                  with_status < ::color::color > colorText;
 
                   if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
                   {

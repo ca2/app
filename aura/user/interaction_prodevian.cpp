@@ -530,12 +530,12 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-   {
+   //if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+   //{
 
-      m_bUpdateWindow |= m_bUpdateBuffer;
+   //   m_bUpdateWindow |= m_bUpdateBuffer;
 
-   }
+   //}
 
    bool bStartWindowVisual = false;
 
@@ -886,28 +886,28 @@ bool prodevian::prodevian_iteration()
 
          i64 i1 = get_nanos();
 
-         bool bTransparentDraw;
+      //   bool bTransparentDraw;
 
-      #ifdef WINDOWS_DESKTOP
+      //#ifdef WINDOWS_DESKTOP
 
-         if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-         {
+      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+      //   {
 
-            bTransparentDraw = true;
+      //      bTransparentDraw = true;
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            bTransparentDraw = false;
+      //      bTransparentDraw = false;
 
-         }
+      //   }
 
-      #else
+      //#else
 
-         bTransparentDraw = true;
+      //   bTransparentDraw = true;
 
-      #endif
+      //#endif
 
          if (!::thread_get_run())
          {
@@ -1222,7 +1222,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void interaction::prodevian_post_routine(const ::promise::routine & routine)
+   void interaction::prodevian_post_routine(const ::routine & routine)
    {
 
       if (is_graphical())

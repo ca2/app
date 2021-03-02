@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-      virtual public ::promise::manager,
+      virtual public ::subject::manager,
       virtual public ::task
    {
    public:
@@ -77,8 +77,8 @@ namespace acme
       //virtual ::e_status run_system();
 
 
-      using ::promise::manager::on_subject;
-      virtual void on_subject(::promise::subject * psubject) override;
+      using ::subject::manager::on_subject;
+      virtual void on_subject(::subject::subject * psubject) override;
 
 
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -86,9 +86,9 @@ namespace acme
       virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
-      virtual ::e_status main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
+      virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
 
-      virtual ::e_status main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(ithread_t ithread);
@@ -105,7 +105,8 @@ namespace acme
 
 #endif
 
-      virtual ::e_status message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+
+      virtual __pointer(::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
       ::file::path get_memory_map_base_folder_path() const;

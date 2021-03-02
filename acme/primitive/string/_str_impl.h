@@ -788,7 +788,7 @@ namespace str
 //      if(strsize != 0)
 //      {
 //
-//         __throw(invalid_argument_exception());
+//         __throw(error_invalid_argument);
 //
 //      }
 //
@@ -842,7 +842,7 @@ namespace str
 //   if((iChar < 0) || (iChar >= get_length()))
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //   }
 //
@@ -878,7 +878,7 @@ namespace str
 //      if(pszSrc == nullptr)
 //      {
 //
-//         __throw(invalid_argument_exception());
+//         __throw(error_invalid_argument);
 //
 //      }
 //
@@ -936,7 +936,7 @@ namespace str
 //   if(nLength < 0)
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //   }
 //
@@ -1516,7 +1516,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (strsize >= strsizeStorage)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

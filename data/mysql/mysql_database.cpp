@@ -840,7 +840,7 @@ namespace mysql
       if (psz == nullptr)
       {
 
-         __throw(memory_exception());
+         __throw(error_no_memory);
 
       }
 

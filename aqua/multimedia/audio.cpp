@@ -22,7 +22,7 @@ namespace aqua
    void audio::play_audio(const ::payload & varFile, bool bSynch)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -30,7 +30,7 @@ namespace aqua
    __pointer(::tts::speaker) audio::create_tts_speaker()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -40,7 +40,7 @@ namespace aqua
    void audio::speak(const string & strText)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -48,7 +48,7 @@ namespace aqua
    void audio::speak(const string & strLang, const string & strText, bool bSynch)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -56,7 +56,7 @@ namespace aqua
    void audio::trans_speak(const string & strLang, const string & strText, bool bSynch)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -64,7 +64,7 @@ namespace aqua
    void audio::google_speak(const string & strLang, const string & strText, bool bSynch)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -80,7 +80,7 @@ namespace aqua
    ::file_pointer audio::get_rtp_file(const ::payload & varFile)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 

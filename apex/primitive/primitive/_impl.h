@@ -9,7 +9,7 @@
 
 
 template < typename BASE_TYPE >
-inline __result(BASE_TYPE) object::__create()
+inline __transport(BASE_TYPE) object::__create()
 {
 
  auto p = ::__create<BASE_TYPE>();
@@ -34,7 +34,7 @@ inline __result(BASE_TYPE) object::__create()
 
 
 template < typename BASE_TYPE >
-inline __result(BASE_TYPE) object::__id_create(const ::id & id)
+inline __transport(BASE_TYPE) object::__id_create(const ::id & id)
 {
 
   auto p = ::__id_create<BASE_TYPE>(id);
@@ -59,7 +59,7 @@ inline __result(BASE_TYPE) object::__id_create(const ::id & id)
 
 
 template < typename TYPE >
-inline __result(TYPE) object::__create_new()
+inline __transport(TYPE) object::__create_new()
 {
 
   ASSERT(::is_set(this));
@@ -1001,7 +1001,7 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 
 
 template < typename PRED >
-inline void add_routine(::promise::routine_array & routinea, PRED pred)
+inline void add_routine(::routine_array & routinea, PRED pred)
 {
 
     routinea.add(__routine(pred));
@@ -1010,7 +1010,7 @@ inline void add_routine(::promise::routine_array & routinea, PRED pred)
 
 
 template < typename PRED >
-inline void add_handler(::promise::handler_array & handlera, PRED pred)
+inline void add_handler(::message::handler_array & handlera, PRED pred)
 {
 
     handlera.add(__handler(pred));
@@ -1018,13 +1018,13 @@ inline void add_handler(::promise::handler_array & handlera, PRED pred)
 }
 
 
-template < typename PRED >
-inline void add_process(::promise::process_array & processa, PRED pred)
-{
-
-    processa.add(__process(pred));
-   
-}
+//template < typename PRED >
+//inline void add_process(::future_array & processa, PRED pred)
+//{
+//
+//    processa.add(__process(pred));
+//   
+//}
 
 
 //inline payload::operator ::memory & ()
@@ -1451,7 +1451,7 @@ inline ::e_status context_object::__construct_new(__pointer(TYPE)& pusermessage)
 
 
 
-inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::promise::routine & routine)
+inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::routine & routine)
 {
 
    auto estatus = __defer_construct(pthread);

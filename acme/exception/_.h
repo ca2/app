@@ -9,13 +9,17 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 #include "exception.h"
 
-#include "base.h"
+#include "extended_status.h"
 
-#include "simple.h"
+CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
+
+//#include "base.h"
+
+//#include "simple.h"
 #include "cancel.h"
 
-#include "memory.h"
-#include "invalid_argument.h"
+//#include "memory.h"
+//#include "invalid_argument.h"
 
 #include "standard_translator.h"
 #include "standard.h"
@@ -51,36 +55,36 @@ namespace exception
 
 
 
-#include "index_out_of_bounds.h"
-#include "overflow.h"
-#include "runtime.h"
-#include "range.h"
+//#include "index_out_of_bounds.h"
+//#include "overflow.h"
+//#include "runtime.h"
+//#include "range.h"
 
 
-#include "not_implemented.h"
-#include "void_implementation.h"
-#include "interface_only.h"
-#include "not_installed.h"
-#include "not_supported.h"
-#include "exit.h"
-#include "not_licensed.h"
-#include "temporary.h"
-#include "installing.h"
+//#include "not_implemented.h"
+//#include "void_implementation.h"
+//#include "interface_only.h"
+//#include "not_installed.h"
+//#include "not_supported.h"
+//#include "exit.h"
+//#include "not_licensed.h"
+//#include "temporary.h"
+//#include "installing.h"
 
-#include "assert.h"
-#include "misc.h"
-
-
-
-#include "io.h"
-#include "resource.h"
-#include "user.h"
+//#include "assert.h"
+//#include "misc.h"
 
 
 
+//#include "io.h"
+//#include "resource.h"
+//#include "user.h"
 
 
-#include "hresult.h"
+
+
+
+//#include "hresult.h"
 
 
 
@@ -204,8 +208,8 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, __throw(invalid_argument_exception()))
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, __throw(invalid_argument_exception()))
+#define ENSURE(cond)      ENSURE_THROW(cond, __throw(error_invalid_argument))
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, __throw(error_invalid_argument))
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
 #define ENSURE_VALID_THROW(pOb, exception)   \
@@ -326,20 +330,22 @@ CLASS_DECL_ACME void __dump(const ::matter * pOb);
 
 // mrs/src as of 2012-08-18
 // cyaxis/os/exception
-#include "os.h"
-#include "invalid_index.h"
-#include "invalid_handle.h"
-#include "operation_canceled.h"
+//#include "os.h"
+//#include "invalid_index.h"
+//#include "invalid_handle.h"
+//#include "operation_canceled.h"
 
 
-#include "invalid_character.h"
-
-#include "todo.h"
-
-#include "system.h"
+//#include "invalid_character.h"
 
 
-#include "parsing.h"
+//#include "todo.h"
 
 
-#include "invalid_type.h"
+//#include "system.h"
+
+
+//#include "parsing.h"
+
+
+//#include "invalid_type.h"

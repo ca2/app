@@ -246,7 +246,7 @@ namespace user
       if (psession->is_key_pressed(::user::e_key_lbutton))
          return;
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
 
    }
@@ -311,7 +311,7 @@ namespace user
 //      {
 //      }
 #else
-//      __throw(todo());
+//      __throw(todo);
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
@@ -398,7 +398,7 @@ namespace user
 ////               }
 ////            }
 ////#else
-////            __throw(todo());
+////            __throw(todo);
 ////#endif
 //         return;
 //      }
@@ -666,7 +666,7 @@ namespace user
 //    }
 
 
-   void control_bar::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void control_bar::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       // // update the indicators before becoming visible
@@ -685,12 +685,12 @@ namespace user
 
       u32 uStyleVisible = 0;
 
-      if (GetStyle() & WS_VISIBLE)
-      {
+      //if (GetStyle() & WS_VISIBLE)
+      //{
 
-         uStyleVisible |= WS_VISIBLE;
+      //   uStyleVisible |= WS_VISIBLE;
 
-      }
+      //}
 
       u32 uStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) | uStyleVisible;
 
@@ -1028,7 +1028,7 @@ namespace user
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

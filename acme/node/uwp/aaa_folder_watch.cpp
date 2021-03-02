@@ -74,7 +74,7 @@
 //      return 0;
 //#else
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#endif
 //   }

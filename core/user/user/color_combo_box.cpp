@@ -371,14 +371,14 @@ namespace user
 
             auto colorBackground = get_color(pstyle, ::user::e_element_background, estate);
 
-            if (!colorBackground)
+            if (!colorBackground.is_ok())
             {
 
                colorBackground = argb(210, 230, 230, 230);
 
             }
 
-            colorBackground.hls_rate(0.0, 0.6, -0.3);
+            colorBackground.m_result.hls_rate(0.0, 0.6, -0.3);
 
             pgraphics->fill_rectangle(rEdit, colorBackground);
 
@@ -389,22 +389,22 @@ namespace user
 
             auto color2 = get_color(pstyle, estate);
 
-            if (!color2)
+            if (!color2.is_ok())
             {
 
                color2 = argb(210, 230, 230, 230);
 
             }
 
-            color2.hls_rate(0.0, 0.3, 0.5);
+            color2.m_result.hls_rate(0.0, 0.3, 0.5);
 
             pgraphics->draw_rectangle(rEdit, color2);
 
          }
 
-         ::rectangle_i32 rectPadding = get_padding(pstyle);
+         auto rectPadding = get_padding(pstyle);
 
-         rEdit.deflate(rectPadding);
+         rEdit.deflate(rectPadding.m_result);
 
          pgraphics->fill_rectangle(rEdit, color.get_rgba());
 

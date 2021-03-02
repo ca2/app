@@ -287,7 +287,7 @@ namespace apex
       ::thread_tool * thread_tool(::enum_thread_tool etool);
 
 
-      virtual __pointer(::promise::subject) new_subject(const MESSAGE& message);
+      virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
@@ -414,7 +414,7 @@ namespace apex
 
       __pointer(::apex::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
 
-      result_pointer < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
+      ::extended::transport < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
 
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
@@ -677,7 +677,7 @@ namespace apex
 
       virtual ::e_status create_session(index iEdge = 0);
 
-      virtual __result(::apex::session) on_create_session(index iEdge);
+      virtual __transport(::apex::session) on_create_session(index iEdge);
 
       virtual ::apex::session * session(index iEdge = 0);
 
@@ -982,8 +982,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::promise::subject * psubject) override;
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 
@@ -994,10 +994,11 @@ namespace apex
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
 
-      virtual ::e_status message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+      virtual __pointer(::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    };
+
 
    CLASS_DECL_APEX ::mutex * get_image_mutex();
 

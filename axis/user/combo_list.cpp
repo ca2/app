@@ -233,9 +233,9 @@ namespace user
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         ::color::color colorBackground;
+         with_status < ::color::color > colorBackground;
 
-         ::color::color colorText;
+         with_status < ::color::color > colorText;
 
          string strDebug;
 
@@ -1153,7 +1153,7 @@ namespace user
 
             m_pcombo->m_plist.release();
 
-            __throw(resource_exception());
+            __throw(error_resource);
 
          }
 

@@ -696,7 +696,7 @@ namespace user
    }
 
 
-   void image_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::on_subject(psubject, pcontext);

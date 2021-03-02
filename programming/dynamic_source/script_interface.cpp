@@ -132,7 +132,7 @@ namespace dynamic_source
       else
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
       }
 
@@ -291,7 +291,7 @@ namespace dynamic_source
       property_set& script_interface::inattra()
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property_set *)nullptr;
 
@@ -317,7 +317,7 @@ namespace dynamic_source
       property_set& script_interface::geta()
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property_set *)nullptr;
 
@@ -328,7 +328,7 @@ namespace dynamic_source
       property_set& script_interface::posta()
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property_set *)nullptr;
 
@@ -339,7 +339,7 @@ namespace dynamic_source
       http::cookies& script_interface::cookies()
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(http::cookies *)nullptr;
 
@@ -349,7 +349,7 @@ namespace dynamic_source
       property_set& script_interface::requesta()
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property_set *)nullptr;
 
@@ -359,7 +359,7 @@ namespace dynamic_source
       property& script_interface::inheader(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -369,7 +369,7 @@ namespace dynamic_source
       property& script_interface::outheader(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -379,7 +379,7 @@ namespace dynamic_source
       property& script_interface::inattr(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -389,7 +389,7 @@ namespace dynamic_source
       property& script_interface::outattr(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -399,7 +399,7 @@ namespace dynamic_source
       string& script_interface::gstr(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(string *)nullptr;
 
@@ -409,7 +409,7 @@ namespace dynamic_source
       property& script_interface::gprop(id id)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -419,7 +419,7 @@ namespace dynamic_source
       property& script_interface::get(id idKey)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -429,7 +429,7 @@ namespace dynamic_source
       property& script_interface::post(id idKey)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(property *)nullptr;
 
@@ -439,7 +439,7 @@ namespace dynamic_source
       http::cookie& script_interface::get_cookie(id idKey)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(http::cookie *)nullptr;
 
@@ -449,7 +449,7 @@ namespace dynamic_source
       http::cookie& script_interface::set_cookie(id idKey)
       {
 
-         __throw(interface_only_exception());
+         __throw(error_interface_only);
 
          return *(http::cookie *)nullptr;
 

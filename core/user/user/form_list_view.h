@@ -32,7 +32,7 @@ namespace user
 
       virtual void route_command_message(::message::command * pcommand) override;
       virtual void on_command(::message::command* pcommand) override;
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
       virtual ::point_i32 get_viewport_offset() override;

@@ -2133,7 +2133,7 @@ namespace http
          if (tickStart.elapsed() > tickTotalTimeout)
          {
 
-            TRACE(__prhttpget "FAILING BY Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            TRACE(__prhttpget "FAILING BY time_out after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 
@@ -2204,7 +2204,7 @@ namespace http
             || psocket->m_estatus == error_on_connection_timeout)
          {
 
-            TRACE(__prhttpget "FAILING BY Connection Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            TRACE(__prhttpget "FAILING BY Connection time_out after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 

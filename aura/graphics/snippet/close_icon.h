@@ -45,13 +45,13 @@ namespace user
       if (puserinteraction->m_itemHover == ::user::e_element_close_icon)
       {
 
-         color.alpha = 180;
+         color.m_result.alpha = 180;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.m_result.alpha = 127;
 
       }
 

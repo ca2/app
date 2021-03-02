@@ -663,7 +663,7 @@ int_bool preview_dc::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_
          pDeltas = new i32[nCount];
          pOutputString = new char[nCount];
       }
-      catch(::exception_pointer e)
+      catch(const ::exception::exception & e)
       {
          delete[] pDeltas;  // in case it was allocated
          // Note: DELETE_EXCEPTION(e) not required
@@ -715,7 +715,7 @@ size_i32 preview_dc::TabbedTextOut(i32 x, i32 y, const char * lpszString, i32 nC
       pDeltas = new i32[nCount];
       pOutputString = new char[nCount];
    }
-   catch(::exception_pointer e)
+   catch(const ::exception::exception & e)
    {
       delete[] pDeltas;
       // Note: DELETE_EXCEPTION(e) not required

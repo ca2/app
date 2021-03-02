@@ -32,6 +32,7 @@ namespace app_message_box
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
+      virtual void show_message_box();
 
 
    };

@@ -84,21 +84,22 @@ namespace file
 
       }
 
-      exception::exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
-         ::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
+      exception::exception(const ::e_status& estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
+         ::exception::exception(estatus)
+         //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 
          m_estatus = estatus;
 
-         m_lOsError = lOsError;
+         m_uLastError = uLastError;
 
          m_iErrNo = iErrNo;
 
-         m_eopen = eopen;
+//         m_eopen = eopen;
 
-         m_path = path;
+  //       m_path = path;
 
-         m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
+         //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
          const char* psz = ::file::status_message(estatus);
 
@@ -113,7 +114,7 @@ namespace file
 
 #ifdef WINDOWS_DESKTOP
 
-         strException.Format(":file(%hs(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, lOsError, path.c_str());
+         strException.Format(":file(%hs(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, uLastError, path.c_str());
 
 #else
 
@@ -121,39 +122,39 @@ namespace file
 
 #endif
 
-         cat_exception(strException);
+         m_strException += strException;
 
       }
 
 
-      exception::~exception()
-      {
+      //exception::~exception()
+      //{
 
-      }
+      //}
 
 
-      ::e_status exception::get_status()
+    /*  ::e_status exception::get_status()
       {
 
          return m_estatus;
 
-      }
+      }*/
 
 
-      ::i32 exception::get_os_error()
-      {
+      //::i32 exception::get_os_error()
+      //{
 
-         return m_lOsError;
+      //   return m_lOsError;
 
-      }
+      //}
 
 
-      string exception::get_file_path()
-      {
+      //string exception::get_file_path()
+      //{
 
-         return m_path;
+      //   return m_path;
 
-      }
+      //}
 
 
       struct PROCESS_INFO_t
@@ -272,20 +273,20 @@ namespace file
       }
       */
 
-      void exception::dump(dump_context& dumpcontext) const
-      {
-         UNREFERENCED_PARAMETER(dumpcontext);
-         //matter::dump(dumpcontext);
+      //void exception::dump(dump_context& dumpcontext) const
+      //{
+      //   UNREFERENCED_PARAMETER(dumpcontext);
+      //   //matter::dump(dumpcontext);
 
-         /*   dumpcontext << "m_cause = ";
-         if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
-         dumpcontext << rgszFileExceptionCause[m_cause];
-         else
-         dumpcontext << szUnknown;
-         dumpcontext << "\nm_lOsError = " << (void *)m_lOsError;
+      //   /*   dumpcontext << "m_cause = ";
+      //   if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
+      //   dumpcontext << rgszFileExceptionCause[m_cause];
+      //   else
+      //   dumpcontext << szUnknown;
+      //   dumpcontext << "\nm_lOsError = " << (void *)m_lOsError;
 
-         dumpcontext << "\n";*/
-      }
+      //   dumpcontext << "\n";*/
+      //}
 
 
 

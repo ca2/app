@@ -40,7 +40,7 @@ namespace prompt
       virtual void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::view
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
       void _001OnTimer(::timer * ptimer) override;

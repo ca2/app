@@ -125,7 +125,7 @@ namespace experience
       }
 
       
-      color32_t frame::get_border_main_body_color()
+      with_status < ::color::color > frame::get_border_main_body_color()
       {
          //return argb(255, 63, 150, 106);
 
@@ -142,8 +142,7 @@ namespace experience
       //}
 
 
-      void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha)
-
+      void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
       {
 
          /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -248,8 +247,9 @@ namespace experience
       }
 
 
-      void frame::set_moveable_border_color(color32_t cr)
+      void frame::set_moveable_border_color(const ::color::color & cr)
       {
+
          m_colorMoveableBorder = cr;
 
          ::color::color color;
@@ -272,7 +272,7 @@ namespace experience
       }
 
 
-      void frame::set_button_color_schema_001(color32_t crMoveableBorder)
+      void frame::set_button_color_schema_001(const ::color::color & crMoveableBorder)
       {
 
          ///defer_create_user_schema(::user::schema_button);
@@ -332,10 +332,10 @@ namespace experience
          auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
          m_penText1->create_solid(1, argb(255, 255, 255, 255));
-         m_penFace1->create_solid(1, crButtonFace | 0xff000000);
-         m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
-         m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
-         m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
+         m_penFace1->create_solid(1, opaque(crButtonFace));
+         m_penHilight1->create_solid(1, opaque(crButtonHilite));
+         m_penShadow1->create_solid(1, opaque(crButtonShadow));
+         m_penDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
          m_colorDkShadow = crButtonDarkShadow;
          m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -421,7 +421,7 @@ namespace experience
       }
 
 
-      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
       {
 
          ::rectangle_i32 rectangle(rectParam);
@@ -497,7 +497,7 @@ namespace experience
       }
 
 
-      //void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+      //void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
       //{
 
       //   if(psubject->m_id == id_user_style_change)
@@ -710,11 +710,11 @@ namespace experience
 
             auto pframewindow = m_pframewindow;
 
-            color32_t    crMoveableBorder;
+            with_status < ::color::color > crMoveableBorder;
 
-            color32_t    crMoveableBorderHilight;
+            with_status < ::color::color > crMoveableBorderHilight;
 
-            color32_t    crMoveableBorderShadow;
+            with_status < ::color::color > crMoveableBorderShadow;
 
             string str;
 
@@ -732,17 +732,18 @@ namespace experience
             }
             else
             {
-                  auto psession = Session;
 
-                  auto pstyle = pframewindow->get_style(pgraphics);
+               auto psession = Session;
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+               auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+               crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+               crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-}
+               crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+
+            }
 
             //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 

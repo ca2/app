@@ -1487,7 +1487,7 @@ namespace user
                Context.file().del(newName);
 
             }
-            catch (const ::exception_pointer & pe)
+            catch(const ::exception::exception & e)
             {
 
                TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
@@ -1842,7 +1842,7 @@ namespace user
    }
 
 
-   void document::update_all_views(::promise::subject * psubject)
+   void document::update_all_views(::subject::subject * psubject)
    {
 
       ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
@@ -1871,7 +1871,7 @@ namespace user
    }
 
 
-   void document::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void document::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       update_all_views(psubject);

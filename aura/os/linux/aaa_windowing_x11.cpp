@@ -3457,7 +3457,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
-            ::promise::context context;
+            ::subject::context context;
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
@@ -4586,7 +4586,7 @@ namespace user
    __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       return nullptr;
 

@@ -201,8 +201,6 @@ SizingNone:;
             void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectClient,enum_border eside)
             {
 
-
-
                auto pframewindow = m_pframewindow;
 
                if (pframewindow == nullptr)
@@ -214,9 +212,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               color32_t    crMoveableBorder;
-               color32_t    crMoveableBorderHilight;
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color > crMoveableBorder;
+               with_status < ::color::color > crMoveableBorderHilight;
+               with_status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -249,7 +247,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
                }
                else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
@@ -281,7 +279,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
 
                   ::rectangle_i32 rectClientB = rectA;

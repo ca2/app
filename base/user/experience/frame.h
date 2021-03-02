@@ -22,51 +22,50 @@ namespace experience
       };
 
 
-      __status < ::color::color >      m_colorFrameBorder;
-      __status < ::color::color >      m_colorMoveableBorderHilight;
-      __status < ::color::color >      m_colorMoveableBorderDkShadow;
-      __status < ::color::color >      m_colorCaptionTextBk;
-      __status < ::color::color >      m_colorActiveCaptionTextBk;
-      __status < ::color::color >      m_colorCaptionText;
+      with_status < ::color::color >       m_colorMoveableBorderHilight;
+      with_status < ::color::color >       m_colorMoveableBorderDkShadow;
+      with_status < ::color::color >       m_colorCaptionTextBk;
+      with_status < ::color::color >       m_colorActiveCaptionTextBk;
+      with_status < ::color::color >       m_colorCaptionText;
 
-      bool                             m_bHollow;
-      string                           m_strLibrary;
-      string                           m_strName;
-      ::rectangle_i32                  m_rectCaption;
-      ::rectangle_i32                  m_rectWindowText;
-      int                              m_iControlBoxPosition;
-      //::rectangle_i32                m_rectControlBoxFullScreen;
-      //::rectangle_i32                m_rectControlBoxZoomed;
-      //::rectangle_i32                m_rectControlBoxNormal;
-      point_i32                        m_pointWindowIcon;
-      ///point_i32                     m_pointMoveGripMinimal;
+      bool                                   m_bHollow;
+      string                                 m_strLibrary;
+      string                                 m_strName;
+      ::rectangle_i32                        m_rectCaption;
+      ::rectangle_i32                        m_rectWindowText;
+      int                                    m_iControlBoxPosition;
+      //::rectangle_i32                      m_rectControlBoxFullScreen;
+      //::rectangle_i32                      m_rectControlBoxZoomed;
+      //::rectangle_i32                      m_rectControlBoxNormal;
+      point_i32                              m_pointWindowIcon;
+      ///point_i32                           m_pointMoveGripMinimal;
 
-      ::color::color                   m_colorMoveableBorder;
-      ::color::color                   m_colorMoveableBorderShadow;
-
-
-      ::experience::experience *       m_pexperience;
-      ::experience::frame_window *     m_pframewindow;
-
-      __composite(control_box)         m_pcontrolbox;
-
-      i32                              m_iCaptionHeight;
-
-      ::rectangle_i32                  m_rectMarginFullScreen;
-      ::rectangle_i32                  m_rectMarginZoomed;
-      ::rectangle_i32                  m_rectMarginNormal;
-      ::rectangle_i32                  m_rectMarginDock;
-
-      ::rectangle_i32                  m_rectCaptionTextPadding;
+      with_status < ::color::color >       m_colorMoveableBorder;
+      with_status < ::color::color >       m_colorMoveableBorderShadow;
 
 
-      ::rectangle_i32                  m_rectClient;
-      ::rectangle_i32                  m_rectWindow;
+      ::experience::experience *             m_pexperience;
+      ::experience::frame_window *           m_pframewindow;
 
-      bool                             m_bFirstLayoutDone;
-      bool                             m_bControlBoxAlignRight;
-      bool                             m_bInitialControlBoxPosition;
-      bool                             m_bPendingStyleChange;
+      __composite(control_box)               m_pcontrolbox;
+
+      i32                                    m_iCaptionHeight;
+
+      ::rectangle_i32                        m_rectMarginFullScreen;
+      ::rectangle_i32                        m_rectMarginZoomed;
+      ::rectangle_i32                        m_rectMarginNormal;
+      ::rectangle_i32                        m_rectMarginDock;
+
+      ::rectangle_i32                        m_rectCaptionTextPadding;
+
+
+      ::rectangle_i32                        m_rectClient;
+      ::rectangle_i32                        m_rectWindow;
+
+      bool                                   m_bFirstLayoutDone;
+      bool                                   m_bControlBoxAlignRight;
+      bool                                   m_bInitialControlBoxPosition;
+      bool                                   m_bPendingStyleChange;
 
 
 
@@ -137,7 +136,7 @@ namespace experience
       virtual void OnMove(__pointer(::user::interaction) pframewindow);
 
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void on_style_change();
 
@@ -157,7 +156,8 @@ namespace experience
       virtual e_hittest _001HitTest(const ::point_i32 & point);
 
 
-      virtual color32_t get_border_main_body_color();
+      virtual with_status < ::color::color > get_border_main_body_color();
+
 
       virtual bool on_message_left_button_down(::message::mouse * pmouse);
       virtual bool on_message_left_button_up(::message::mouse * pmouse);

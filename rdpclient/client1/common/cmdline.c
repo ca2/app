@@ -279,8 +279,8 @@ BOOL freerdp_client_print_command_line_help(int argc, char** argv)
 	printf("\n");
 	printf("Drive Redirection: /drive:home,/home/user\n");
 	printf("Smartcard Redirection: /smartcard:<device>\n");
-	printf("Serial Port Redirection: /serial:<name>,<device>,[SerCx2|SerCx|Serial],[permissive]\n");
-	printf("Serial Port Redirection: /serial:COM1,/dev/ttyS0\n");
+	printf("serial Port Redirection: /serial:<name>,<device>,[SerCx2|SerCx|serial],[permissive]\n");
+	printf("serial Port Redirection: /serial:COM1,/dev/ttyS0\n");
 	printf("Parallel Port Redirection: /parallel:<device>\n");
 	printf("Printer Redirection: /printer:<device>,<driver>\n");
 	printf("\n");

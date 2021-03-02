@@ -173,7 +173,7 @@ namespace windowing
    ::e_status windowing::set_cursor_position(const ::point_i32 & point)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -249,7 +249,7 @@ namespace windowing
    ::e_status windowing::clear_active_window(::thread *)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -259,7 +259,7 @@ namespace windowing
    ::windowing::display * windowing::display()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -269,7 +269,7 @@ namespace windowing
    void windowing::__hook_on_idle(class display * pdisplay)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -303,7 +303,7 @@ namespace windowing
    // int windowing::message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
    //{
 
-   //    __throw(interface_only_exception());
+   //    __throw(error_interface_only);
    //    return 0;
    //}
 
@@ -408,7 +408,7 @@ namespace windowing
 
 
 
-   result_pointer < ::windowing::icon > windowing::load_icon(const ::payload & payloadFile)
+   ::extended::transport < ::windowing::icon > windowing::load_icon(const ::payload & payloadFile)
    {
 
       return nullptr;
@@ -447,27 +447,27 @@ namespace windowing
    //}
 
 
-   string windowing::message_box(const char *pszMessage, const char *pszTitle, const ::e_message_box &emessagebox)
-   {
+   //__pointer(::future < enum_dialog_result >) windowing::message_box(const char *pszMessage, const char *pszTitle, const ::e_message_box &emessagebox)
+   //{
 
-      return "";
+   //   return nullptr;
 
-   }
+   //}
 
 
-   string windowing::message_box_timeout(const char *pszMessage, const char *pszTitle, const ::duration &duration,
-                                      const ::e_message_box &emessagebox)
-   {
+   //enum_dialog_result windowing::message_box_timeout(const char *pszMessage, const char *pszTitle, const ::duration &duration,
+   //                                   const ::e_message_box &emessagebox)
+   //{
 
-      return "";
+   //   return e_dialog_result_none;
 
-   }
+   //}
 
 
    window *windowing::new_message_window(::user::interaction_impl *pimpl)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -477,7 +477,7 @@ namespace windowing
    window *windowing::new_window(::user::interaction_impl *pimpl)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -502,7 +502,7 @@ namespace windowing
 //   ::e_status windowing::hook(class hook *phook)
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return
 //         error_interface_only;
@@ -513,7 +513,7 @@ namespace windowing
 //   ::e_status windowing::unhook(class hook * phook)
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return
 //         error_interface_only;
@@ -620,7 +620,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::promise::routine & routine)
+   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
       auto proutine = __sync_routine(routine);
@@ -634,10 +634,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_fork(const ::promise::routine & routine)
+   ::e_status windowing::user_fork(const ::routine & routine)
    {
 
-      //__throw(interface_only_exception());
+      //__throw(error_interface_only);
 
       return error_interface_only;
 

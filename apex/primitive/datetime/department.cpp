@@ -553,7 +553,7 @@ namespace datetime
       case 12:
          return 30;
       }
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
    }
 
    i32 department::LEAP(i32 y)

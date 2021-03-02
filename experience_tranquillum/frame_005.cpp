@@ -243,9 +243,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               color32_t    crMoveableBorder;
-               color32_t    crMoveableBorderHilight;
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color > crMoveableBorder;
+               with_status < ::color::color > crMoveableBorderHilight;
+               with_status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -282,29 +282,30 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-
                   ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
                }
                else if(estyle == ::user::StyleLightBlue)
                {
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, 0);//m_colorMoveableBorderDkShadow);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorderHilight.m_result, crMoveableBorderShadow.m_result);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, crMoveableBorder.m_result);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, crMoveableBorder.m_result);
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
-                  imaging.color_blend(pgraphics,
+                  //class imaging & imaging = System.imaging();
+                  //imaging.color_blend(
+                     
+                     pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -328,14 +329,14 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
 
                   rectA.top++;
                   rectA.bottom--;
@@ -343,7 +344,7 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
                   }
                }
 

@@ -68,7 +68,7 @@ namespace apex
    ::e_status node::register_dll(const ::file::path & pathDll)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 

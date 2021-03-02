@@ -23,7 +23,7 @@ namespace draw2d_direct2d
 #ifndef _UWP
       return OpenPrinterW((LPWSTR) (const widechar *) wstring(pszDeviceName), &m_hPrinter, nullptr) != false && m_hPrinter != nullptr;
 #else
-      __throw(todo());
+      __throw(todo);
       return false;
 #endif
    }
@@ -49,7 +49,7 @@ namespace draw2d_direct2d
 #ifndef _UWP
          bOk = ::ClosePrinter(m_hPrinter) != false;
 #else
-         __throw(todo());
+         __throw(todo);
          return false;
 #endif
          m_hPrinter = nullptr;
@@ -86,7 +86,7 @@ namespace draw2d_direct2d
          return false;
       }
 #else
-      __throw(todo());
+      __throw(todo);
       return false;
 #endif
       return true;
@@ -94,7 +94,7 @@ namespace draw2d_direct2d
 
    bool printer::document_properties::close()
    {
-      //__throw(todo());
+      //__throw(todo);
       return false;
 #ifndef _UWP
       if(m_hdc != nullptr)
@@ -103,7 +103,7 @@ namespace draw2d_direct2d
          m_hdc = nullptr;
       }
 #else
-      __throw(todo());
+      __throw(todo);
       return false;
 #endif
       if(m_pdevmode != nullptr)
@@ -128,7 +128,7 @@ namespace draw2d_direct2d
       g->attach_hdc(m_hdc);
       return g.detach();
 #else
-      __throw(todo());
+      __throw(todo);
       return nullptr;
 #endif
    }

@@ -314,7 +314,7 @@ namespace sockets
       void SetTimeout(time_t secs);
 
       /** Check timeout. \return true if time limit reached */
-      bool Timeout(time_t tnow);
+      bool time_out(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
       void SetRemoteHostname(const ::net::address & address);
@@ -362,7 +362,7 @@ namespace sockets
       virtual void OnReconnect();
       /** tcp_socket: When a disconnect has been detected (recv/SSL_read returns 0 bytes). */
       virtual void OnDisconnect();
-      /** Timeout callback. */
+      /** time_out callback. */
       virtual void OnTimeout();
       /** Connection timeout. */
       virtual void OnConnectTimeout();

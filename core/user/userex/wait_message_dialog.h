@@ -36,7 +36,7 @@ namespace userex
       virtual void on_timer_soft_reload(millis tickTimeout);
 
       
-      //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       
 
    };

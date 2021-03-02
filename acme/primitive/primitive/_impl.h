@@ -51,8 +51,8 @@ inline string ___pointer < T >::type_str()
 }
 
 
-namespace promise
-{
+//namespace promise
+//{
 
 
    inline ::e_status routine::operator()() const { return (*m_p)(); }
@@ -61,19 +61,14 @@ namespace promise
    inline bool routine::should_run_async() const { return m_p->should_run_async(); }
 
 
-   inline void handler::operator()(::message::message * pmessage) const { (*m_p)(pmessage); }
+
+   //inline void process::operator()(const ::payload & payload) const { if (m_p) (*m_p)(payload); }
 
 
-   inline bool handler::should_run_async() const { return m_p->should_run_async(); }
+   //inline bool process::should_run_async() const { return m_p->should_run_async(); }
 
 
-   inline void process::operator()(const ::payload & payload) const { if (m_p) (*m_p)(payload); }
-
-
-   inline bool process::should_run_async() const { return m_p->should_run_async(); }
-
-
-} // namespace promise
+//} // namespace promise
 
 
 inline type::type(const ::matter * pobject)
@@ -169,7 +164,7 @@ inline bool get_memory::get_base64(const string & str)
 //   if (!pproperty)
 //   {
 //
-//      __throw(resource_exception());
+//      __throw(error_resource);
 //
 //   }
 //
@@ -863,7 +858,7 @@ inline bool succeeded(const ::payload & payload)
    else
    {
 
-      __throw(::unexpected_situation());
+      __throw(error_unexpected_situation);
 
    }
 
@@ -882,7 +877,7 @@ inline bool succeeded(const ::property & property)
 
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) matter::__create()
+//inline __transport(BASE_TYPE) matter::__create()
 //{
 //
 //   auto p = ::__create<BASE_TYPE>();
@@ -907,7 +902,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __result(BASE_TYPE) matter::__id_create(const ::id & id)
+//inline __transport(BASE_TYPE) matter::__id_create(const ::id & id)
 //{
 //
 //   auto p = ::__id_create<BASE_TYPE>(id);
@@ -932,7 +927,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename TYPE >
-//inline __result(TYPE) matter::__create_new()
+//inline __transport(TYPE) matter::__create_new()
 //{
 //
 //   ASSERT(::is_set(this));
@@ -2359,7 +2354,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 //}
 
 
-inline ::payload operator + (::payload payload, const ::promise::routine & routine)
+inline ::payload operator + (::payload payload, const ::routine & routine)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -2377,21 +2372,21 @@ inline ::payload operator + (::payload payload, const ::promise::routine & routi
 
 
 
-inline ::payload operator + (::payload payload, const ::promise::process & process)
-{
-
-   if (payload.get_type() != e_type_propset)
-   {
-
-      payload["message"] = payload.get_string();
-
-   }
-
-   payload["process"] = process;
-
-   return payload;
-
-}
+//inline ::payload operator + (::payload payload, const ::future & process)
+//{
+//
+//   if (payload.get_type() != e_type_propset)
+//   {
+//
+//      payload["message"] = payload.get_string();
+//
+//   }
+//
+//   payload["process"] = process;
+//
+//   return payload;
+//
+//}
 
 
 

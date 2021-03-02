@@ -56,7 +56,7 @@
 //      memory mem;
 //      if(!mem.set_size(1024 * 1024))
 //      {
-//         __throw(memory_exception());
+//         __throw(error_no_memory);
 //      }
 //      while((nRead = spbuf->read(mem.get_data(), mem.get_size())) > 0)
 //      {

@@ -259,7 +259,7 @@ namespace windowing
    }
 
 
-   void simple_ui_display::on_subject(::promise::subject *psubject, ::promise::context *pcontext)
+   void simple_ui_display::on_subject(::subject::subject *psubject, ::subject::context *pcontext)
    {
 
       if (psubject->id() == id_os_user_theme)

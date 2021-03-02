@@ -32,14 +32,14 @@ namespace write_text
 
       }
 
-      System.add_process(id_os_font_change, this);
+      //System.add_process(id_os_font_change, this);
 
       return estatus;
 
    }
 
 
-   void font_enumeration::on_subject(::promise::subject * psubject)
+   void font_enumeration::on_subject(::subject::subject * psubject)
    {
 
       if (psubject->m_esubject == e_subject_prepare)
@@ -58,7 +58,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void font_enumeration::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == id_os_font_change)
@@ -167,7 +167,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::check_need_update(::promise::subject * psubject)
+   void font_enumeration::check_need_update(::subject::subject * psubject)
    {
 
       m_bUpdating = true;
@@ -204,7 +204,7 @@ namespace write_text
    }
 
 
-   bool font_enumeration::update(::promise::subject * psubject)
+   bool font_enumeration::update(::subject::subject * psubject)
    {
 
       m_bUpdating = true;

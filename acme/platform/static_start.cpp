@@ -21,7 +21,7 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 #endif
 
-::array < ::promise::routine > * g_proutineaOsTerm;
+::array < ::routine > * g_proutineaOsTerm;
 
 extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
 
@@ -545,6 +545,8 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+      ::initialize_future_critical_section();
+
 #ifdef WINDOWS
 
       ::windows::callstack::s_pcriticalsection = new critical_section();
@@ -979,6 +981,8 @@ namespace acme
       ::acme::del(::windows::callstack::s_pcriticalsection);
 
 #endif
+
+      ::initialize_future_critical_section();
 
       ::acme::del(g_pcsGlobal);
 

@@ -352,7 +352,7 @@ namespace introjection
 
 #ifdef _UWP
 
-      __throw(todo());
+      __throw(todo);
 
 #elif defined(LINUX)
 
@@ -384,7 +384,7 @@ namespace introjection
       //bResult = SetEnvironmentVariable("PATH",str) != false;
 #elif defined(_UWP)
 
-      __throw(todo());
+      __throw(todo);
 
 #elif defined(LINUX)
 #else

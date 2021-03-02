@@ -13,7 +13,7 @@ namespace user
 
 
 class CLASS_DECL_APEX object :
-   virtual public promise::manager
+   virtual public ::subject::manager
 {
 protected:
 
@@ -79,17 +79,17 @@ public:
    __pointer(BASE_TYPE) file_as(const ::payload & varFile);
 
 
-   virtual void add_routine(const ::id & idRoutine, const ::promise::routine & routine);
-   virtual void add_process(const ::id & idProcess, const ::promise::process & process);
+   virtual void add_routine(const ::id & idRoutine, const ::routine & routine);
+   //virtual void add_process(const ::id & idProcess, const ::future & process);
 
    virtual void add_each_routine_from(const ::id & idRoutine, ::object * pobjectSource);
-   virtual void add_each_process_from(const ::id & idProcess, ::object * pobjectSource);
+   //virtual void add_each_process_from(const ::id & idProcess, ::object * pobjectSource);
 
-   virtual array < ::promise::routine > * routinea(const ::id & idRoutine);
-   virtual array < ::promise::process > * processa(const ::id & idProcess);
+   virtual array < ::routine > * routinea(const ::id & idRoutine);
+   //virtual array < ::future > * processa(const ::id & idProcess);
 
    virtual void call_routine(const ::id & idRoutine);
-   virtual void send_payload(const ::id & idProcess, const ::payload & payload);
+   //virtual void send_payload(const ::id & idProcess, const ::payload & payload);
 
 
    //template < typename METHOD >
@@ -275,13 +275,13 @@ public:
    //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
-   inline __result(BASE_TYPE) __create();
+   inline __transport(BASE_TYPE) __create();
 
    template < typename BASE_TYPE >
-   inline __result(BASE_TYPE) __id_create(const ::id & id);
+   inline __transport(BASE_TYPE) __id_create(const ::id & id);
 
    template < typename TYPE >
-   inline __result(TYPE) __create_new();
+   inline __transport(TYPE) __create_new();
 
    //inline ::e_status __compose(__composite(::image) & pimage);
 
@@ -393,11 +393,11 @@ public:
 
    virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(::exception_pointer pe);
+   virtual ::e_status handle_exception(const ::exception::exception & e);
 
-   virtual ::e_status top_handle_exception(::exception_pointer pe);
+   virtual ::e_status top_handle_exception(const ::exception::exception& e);
 
-   virtual ::e_status process_exception(::exception_pointer pe);
+   virtual ::e_status process_exception(const ::exception::exception& e);
 
 
    ::object * parent_property_set_holder() const override;
@@ -435,7 +435,7 @@ public:
 
    virtual ::e_status do_request(::create * pcreate);
 
-   virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   virtual __pointer(::future < ::conversation >)  message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -443,15 +443,15 @@ public:
    //}
 
 
-   virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //}
 
-   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-   //virtual ::e_status message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
    virtual void release_references();
 
@@ -500,13 +500,13 @@ public:
    void start();
 
 
-   void single_fork(const ::promise::routine_array & routinea);
-   void multiple_fork(const ::promise::routine_array & routinea);
+   void single_fork(const ::routine_array & routinea);
+   void multiple_fork(const ::routine_array & routinea);
 
    using layered::defer_fork;
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::promise::routine & routine)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine & routine)
    {
 
       if (pthread && pthread->is_running())
@@ -541,7 +541,7 @@ public:
    }
 
 
-   inline ::e_status defer_fork(::thread_pointer& pthread, const ::promise::routine & routine);
+   inline ::e_status defer_fork(::thread_pointer& pthread, const ::routine & routine);
 
 
    //template < typename THREAD >
@@ -559,11 +559,11 @@ public:
    inline ::thread_pointer fork(PRED pred);
 
 
-   inline ::thread_pointer launch(const ::promise::routine & routine);
+   inline ::thread_pointer launch(const ::routine & routine);
 
 
    //template < typename METHOD >
-   inline ::task_pointer opt_fork(const ::promise::routine & routine)
+   inline ::task_pointer opt_fork(const ::routine & routine)
    {
 
       auto ptask = ::get_task();
@@ -732,7 +732,7 @@ do                                                                   \
    
 
 
-CLASS_DECL_APEX ::e_status call_sync(const ::promise::routine_array & routinea);
+CLASS_DECL_APEX ::e_status call_sync(const ::routine_array & routinea);
 
 
 

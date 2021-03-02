@@ -6,7 +6,7 @@
 #include <ctype.h>
 #endif
 
-#include "acme/exception/not_implemented.h"
+//#include "acme/exception/not_implemented.h"
 
 
 namespace math
@@ -59,7 +59,7 @@ namespace math
 //      binary_operation * pbinopNew;
       address_array < number * > stackptra;
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       /*
 

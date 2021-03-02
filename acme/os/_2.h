@@ -143,6 +143,7 @@ CLASS_DECL_ACME void output_debug_string(const char * psz);
 CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
 
 
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::e_message_box& emessagebox);
 
 
 

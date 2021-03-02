@@ -645,17 +645,17 @@ namespace user
 
       __pointer(::user::menu_item_ptra) pmenuitema = pitem->m_pmenuitema;
 
-      ::rectangle_i32 rectMargin = get_margin(pstyle);
+      auto rectMargin = get_margin(pstyle);
 
-      ::rectangle_i32 rectBorder = get_border(pstyle);
+      auto rectBorder = get_border(pstyle);
 
-      ::rectangle_i32 rectPadding = get_padding(pstyle);
+      auto rectPadding = get_padding(pstyle);
 
       //int iElementPadding = rectPadding.left;
 
-      int x = rectMargin.left + rectBorder.left + rectPadding.left;
+      int x = (int) (rectMargin.m_result.left + rectBorder.m_result.left + rectPadding.m_result.left);
 
-      int y = rectMargin.top + rectBorder.top + rectPadding.top;
+      int y = (int) (rectMargin.m_result.top + rectBorder.m_result.top + rectPadding.m_result.top);
 
       class calc_size calcsize;
 
@@ -729,15 +729,15 @@ namespace user
 
       }
 
-      m_size.cx = m_iaColumnWidth.get_total()
-                  + rectMargin.left + rectMargin.right
-                  + rectBorder.left + rectBorder.right
-                  + rectPadding.left + rectPadding.right;
+      m_size.cx = (int) (m_iaColumnWidth.get_total()
+                  + rectMargin.m_result.left + rectMargin.m_result.right
+                  + rectBorder.m_result.left + rectBorder.m_result.right
+                  + rectPadding.m_result.left + rectPadding.m_result.right);
 
-      m_size.cy = m_iaColumnHeight.get_maximum_value()
-                  + rectMargin.top + rectMargin.bottom
-                  + rectBorder.top + rectBorder.bottom
-                  + rectPadding.top + rectPadding.bottom;
+      m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
+                  + rectMargin.m_result.top + rectMargin.m_result.bottom
+                  + rectBorder.m_result.top + rectBorder.m_result.bottom
+                  + rectPadding.m_result.top + rectPadding.m_result.bottom);
 
 
       m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
@@ -846,9 +846,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      color32_t crBackground = get_color(pstyle, e_element_background);
+      auto crBackground = get_color(pstyle, e_element_background);
 
-      if ((crBackground & argb(255, 0, 0, 0)) != 0)
+      if (crBackground.m_result.is_translucent())
       {
 
          ::rectangle_i32 rectClient;

@@ -363,7 +363,7 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 
 
-//CLASS_DECL_ACME ::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//CLASS_DECL_ACME ::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   string strMessage(pszMessage);
@@ -387,7 +387,7 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //}
 ////
 ////
-//CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   //if (System.is_dedicated_thread())
@@ -561,7 +561,7 @@ namespace str
 
    #else
 
-         __throw(todo());
+         __throw(todo);
 
    #endif
 

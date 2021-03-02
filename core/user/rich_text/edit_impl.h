@@ -57,7 +57,7 @@ namespace user
          virtual void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, index iItem) override;
-         virtual bool _001IsPointInside(::point_i32 point) override;
+         virtual bool _001IsPointInside(const ::point_i32 & point) override;
          virtual bool update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 

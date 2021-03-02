@@ -394,7 +394,7 @@
 //      case e_control_type_combo_box:
 //      {
 //
-//         //__throw(todo());
+//         //__throw(todo);
 //
 ////            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
 //

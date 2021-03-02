@@ -23,12 +23,12 @@ namespace write_text
       virtual ::e_status initialize(::layered* pobjectContext) override;
 
 
-      virtual void on_subject(::promise::subject * psubject) override;
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
-      virtual void check_need_update(::promise::subject * psubject);
-      virtual bool update(::promise::subject * psubject);
+      virtual void check_need_update(::subject::subject * psubject);
+      virtual bool update(::subject::subject * psubject);
 
 
       //bool similar_font(char sz[256], const char* psz);

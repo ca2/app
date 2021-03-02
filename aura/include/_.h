@@ -925,8 +925,8 @@ using image_pointer = __pointer(::image);
 using icon_pointer = __pointer(::draw2d::icon);
 //
 //
-using image_result = __result(::image);
-using icon_result = __result(::draw2d::icon);
+using image_result = __transport(::image);
+using icon_result = __transport(::draw2d::icon);
 //
 //
 //class command_line;
@@ -1047,9 +1047,9 @@ using image_pointer_array = __pointer_array(::image);
 //} // namespace draw2d
 //
 //template < typename T >
-//class result_pointer;
+//class ::extended::transport;
 //
-//#define __result(T) ::result_pointer < T >
+//#define __transport(T) ::extended::transport < T >
 //
 //template < class TYPE >
 //inline auto & __typed(TYPE & t) { return t; }
@@ -1410,7 +1410,7 @@ namespace user
    class control_event;
    class item;
    class check;
-   class system;
+//   class system;
    class command;
    class interaction_impl;
    class primitive;
@@ -2417,7 +2417,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //using file_pointer = __pointer(::file::file);
 //
-//using file_result = __result(::file::file);
+//using file_result = __transport(::file::file);
 //
 //class stream;
 //class binary_stream;

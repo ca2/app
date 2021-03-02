@@ -46,7 +46,9 @@ namespace user
    class window_map;
    //class tree;
    class plain_edit;
-   class message_queue;
+#ifdef WINDOWS_DESKTOP
+   class message_window;
+#endif
    class scroll_base;
    template < class VIEW >  class show;
    using scroll_view = show < scroll_base >;

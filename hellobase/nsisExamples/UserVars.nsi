@@ -24,7 +24,7 @@
 ; Declaration of user variables (Var command), allowed charaters for variables names : [a-z][A-Z][0-9] and '_'
 
   Var "Name"
-  Var "Serial"
+  Var "serial"
   Var "Info"
 
 ;--------------------------------
@@ -34,8 +34,8 @@ Section "Dummy Section" SecDummy
 
      StrCpy $0 "Admin"
      StrCpy "$Name" $0
-     StrCpy "$Serial" "12345"
-     MessageBox e_message_box_ok "User Name: $Name $\n$\nSerial Number: $Serial"
+     StrCpy "$serial" "12345"
+     MessageBox e_message_box_ok "User Name: $Name $\n$\nSerial Number: $serial"
 
      CreateDirectory $INSTDIR
      WriteUninstaller "$INSTDIR\Uninst.exe"

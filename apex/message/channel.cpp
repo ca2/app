@@ -155,7 +155,7 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 //   if (id.m_etype != ::id::e_type_message)
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //   }
 //
@@ -178,7 +178,7 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 //__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
 //{
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //   return nullptr;
 //
@@ -406,7 +406,7 @@ void channel::on_command_message(::message::command * pcommand)
    else
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -496,7 +496,7 @@ void channel::on_command_probe(::message::command * pcommand)
 }
 
 
-bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::promise::handler & handler)
+bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler)
 {
 
     auto & handlera = m_handlermap[id];
@@ -519,11 +519,11 @@ bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandle
 
     }
 
-    ::message::handler messagehandler(preceiver, phandler);
+    ::message::handler_item handleritem(preceiver, phandler);
 
-    messagehandler.m_handler = handler;
+    handleritem.m_handler = handler;
 
-    handlera.add(messagehandler);
+    handlera.add(handleritem);
 
     return true;
 

@@ -303,7 +303,7 @@ namespace user
 
    }
 
-   void tree_data::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void tree_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
    }

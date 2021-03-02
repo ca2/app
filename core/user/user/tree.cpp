@@ -886,7 +886,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left);
 
-         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          prectangle->top    = (::i32)(drawitem.m_rectangle.top);
 
@@ -898,7 +898,7 @@ namespace user
       {
          prectangle->left   = (::i32)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right  = minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
 
          int iHDiff = 0;
@@ -2180,7 +2180,7 @@ namespace user
    }
 
 
-   void tree::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (m_ptree)

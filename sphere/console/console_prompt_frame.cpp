@@ -71,7 +71,7 @@ namespace console
 //
 //#else
 //
-//         __throw(todo());
+//         __throw(todo);
 //
 //#endif
 //

@@ -113,7 +113,7 @@ namespace user
 #elif defined(APPLE_IOS)
 
 #else
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -301,7 +301,7 @@ namespace user
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 
@@ -399,7 +399,7 @@ namespace user
 //#else
 //
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //      return true;
 //

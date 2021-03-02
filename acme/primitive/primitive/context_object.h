@@ -143,7 +143,7 @@ public:
 
    inline property * find_property(const ::id & id) const;
 
-   ::status::result run_property(const ::id& id);
+   ::extended::status run_property(const ::id& id);
 
    inline ::payload attribute(const ::id & id);
    ::property * find_attribute(const ::id & id);

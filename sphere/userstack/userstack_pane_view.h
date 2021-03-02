@@ -55,7 +55,7 @@ namespace userstack
 
       virtual void set_display(i32 iDisplay);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 

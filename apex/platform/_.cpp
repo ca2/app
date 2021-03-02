@@ -380,7 +380,7 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 //   else
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //   }
 //

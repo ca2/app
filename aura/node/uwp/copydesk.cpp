@@ -95,7 +95,7 @@ namespace uwp
    bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       return false;
 

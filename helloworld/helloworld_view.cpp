@@ -183,7 +183,7 @@ namespace helloworld
    }
 
 
-   void view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       impact_base::on_subject(psubject, pcontext);

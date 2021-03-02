@@ -210,12 +210,6 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{3b04ff9f-5bd9-45cc-afe3-93cb56f5f110}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\promise">
-      <UniqueIdentifier>{23471ee7-ce6a-40be-83de-dd525aebdb6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\promise">
-      <UniqueIdentifier>{c4748186-680d-41a0-ae59-396a54f55895}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\process">
       <UniqueIdentifier>{0c4f9178-4c9b-4b9f-993c-d99fda73a182}</UniqueIdentifier>
     </Filter>
@@ -258,8 +252,11 @@
     <Filter Include="Source Files\primitive\mathematics">
       <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\promise_predicate">
-      <UniqueIdentifier>{8bc2295b-574c-462d-bdf9-586b2e7a22e4}</UniqueIdentifier>
+    <Filter Include="Header Files\primitive\subject">
+      <UniqueIdentifier>{c4748186-680d-41a0-ae59-396a54f55895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\subject">
+      <UniqueIdentifier>{23471ee7-ce6a-40be-83de-dd525aebdb6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1262,9 +1259,6 @@
     <ClInclude Include="node\windows\registry.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\serial.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\uac_tools.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -1464,9 +1458,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\serial.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\serial_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\shell_launcher.h">
@@ -1682,18 +1673,6 @@
     <ClInclude Include="exception\_dump_context.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\assert.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\base.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\call_stack.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -1701,12 +1680,6 @@
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\cancel.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\debug.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\debug_stream.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\dump_context.h">
@@ -1724,67 +1697,7 @@
     <ClInclude Include="exception\exit.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\hresult.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\installing.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\interface_only.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_argument.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_character.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_handle.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_index.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_type.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\io.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\memory.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\misc.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_implemented.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_installed.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_licensed.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_supported.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\operation_canceled.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\os.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\parsing.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\resource.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\result.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\simple.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\standard.h">
@@ -1793,28 +1706,13 @@
     <ClInclude Include="exception\standard_translator.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\system.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\temporary.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\throw.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\todo.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\trap.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\unhandled_report.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\user.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\void_implementation.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="os\windows_common\_.h">
@@ -2153,27 +2051,6 @@
     <ClInclude Include="parallelization\zaa_update_task_item_array.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\promise\context.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\process.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\promise.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\promise1.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\routine.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\routine_array.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\subject.h">
-      <Filter>Header Files\primitive\promise</Filter>
-    </ClInclude>
     <ClInclude Include="process\bidirectional_pipe.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
@@ -2185,9 +2062,6 @@
     </ClInclude>
     <ClInclude Include="process\exit_status.h">
       <Filter>Header Files\process</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\handler.h">
-      <Filter>Header Files\primitive\promise</Filter>
     </ClInclude>
     <ClInclude Include="primitive\logic\bit.h">
       <Filter>Header Files\primitive\logic</Filter>
@@ -2245,9 +2119,6 @@
     </ClInclude>
     <ClInclude Include="memory\_impl.h">
       <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\promise\_.h">
-      <Filter>Header Files\primitive\promise</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -2408,18 +2279,6 @@
     <ClInclude Include="primitive\datetime\micro_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="exception\index_out_of_bounds.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\overflow.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\range.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\runtime.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="os\microsecond_sleep.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -2566,6 +2425,90 @@
     </ClInclude>
     <ClInclude Include="primitive\promise_predicate\predicate_handler.h">
       <Filter>Header Files\primitive\promise_predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_impl.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\aaa_handler.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\context.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\handler.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\manager.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise1.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\subject.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\future.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\predicate_function_pointer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\predicate_handler.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\predicate_holder.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\predicate_process.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\predicate_routine.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\printf.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\routine.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\routine_array.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\sprintf.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\string_exchange.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\synchronized_predicate_routine.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\text.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\timeout.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\title.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\user_parent.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\conversation.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\serial_impl.h">
+      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3061,15 +3004,6 @@
     <ClCompile Include="os\windows_common\unicode.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="exception\archive.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\archive_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\base.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\callstack.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3100,82 +3034,7 @@
     <ClCompile Include="exception\exception_engine.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exit.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\hresult.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\installing.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\interface_only.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\invalid_argument.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\invalid_character.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\invalid_handle.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\invalid_index.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\io.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\memory.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\not_implemented.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\not_installed.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\not_licensed.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\not_supported.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\operation_canceled.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\os.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\parsing.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\resource.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\simple.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\standard_translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\temporary.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\throw.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\todo.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\user.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\void_implementation.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\wtf.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="include\_.cpp">
@@ -3194,9 +3053,6 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\registry.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\serial.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\trace.cpp">
@@ -3463,9 +3319,6 @@
     <ClCompile Include="os\windows_common\time.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="exception\result.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -3523,24 +3376,6 @@
     <ClCompile Include="os\windows\parallelization.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise\context.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\process.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\promise.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\routine.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\routine_array.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\subject.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows_common\parallelization.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
@@ -3552,9 +3387,6 @@
     </ClCompile>
     <ClCompile Include="process\exit_status.cpp">
       <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise\handler.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
     <ClCompile Include="user\os_theme_colors.cpp">
       <Filter>Source Files\user</Filter>
@@ -3676,18 +3508,6 @@
     <ClCompile Include="node\windows\file_memory_map.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="exception\index_out_of_bounds.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\overflow.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\range.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\runtime.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\id_matter.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3763,20 +3583,50 @@
     <ClCompile Include="primitive\mathematics\value.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise_predicate\predicate_function.cpp">
-      <Filter>Source Files\primitive\promise_predicate</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\promise_predicate\predicate_holder.cpp">
-      <Filter>Source Files\primitive\promise_predicate</Filter>
-    </ClCompile>
     <ClCompile Include="process\main.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\promise\manager.cpp">
-      <Filter>Source Files\primitive\promise</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\message_queue_global.cpp">
       <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\predicate_function.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\predicate_holder.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\printf.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\routine_array.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\future.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\context.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\manager.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\process.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\promise.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\routine.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\subject.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\serial_impl.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\serial_impl.cpp">
+      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

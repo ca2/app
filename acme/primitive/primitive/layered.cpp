@@ -15,7 +15,7 @@ void layered::set_layer(byte bLayeredIndex, void* p)
    if (bLayeredIndex >= MAX_LAYERED_COUNT)
    {
 
-      __throw(index_out_of_bounds("layered::set_layer"));
+      __throw(error_index_out_of_bounds, "layered::set_layer");
 
    }
 
@@ -37,7 +37,7 @@ void layered::set_os_data(byte b, void * p)
    if (b >= MAX_LAYERED_COUNT)
    {
 
-      __throw(index_out_of_bounds("layered::set_os_data"));
+      __throw(error_index_out_of_bounds, "layered::set_os_data");
 
    }
 

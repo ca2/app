@@ -72,7 +72,7 @@ namespace userex
 #endif
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnDestroy);

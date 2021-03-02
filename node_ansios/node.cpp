@@ -384,7 +384,7 @@ namespace node_ansios
 //   }
 
 
-//   void node::node_fork(const ::promise::routine &routine)
+//   void node::node_fork(const ::routine &routine)
 //   {
 //
 //      //gdk_branch(routine);
@@ -505,7 +505,7 @@ namespace node_ansios
 //
 //   }
 
-//   bool node::should_launch_on_node(::promise::subject * psubject)
+//   bool node::should_launch_on_node(::subject::subject * psubject)
 //   {
 //
 //      if(::is_null(psubject))
@@ -527,7 +527,7 @@ namespace node_ansios
 //   }
 //
 //
-//   bool node::launch_on_node(::promise::subject * psubject)
+//   bool node::launch_on_node(::subject::subject * psubject)
 //   {
 //
 //      ::matter * pmatter = psubject;

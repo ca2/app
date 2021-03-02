@@ -207,7 +207,7 @@ bool graphics::IsPrinting()
 //bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
 //{
 //
-//    __throw(not_supported_exception());
+//    __throw(error_not_supported);
 //
 //}
 
@@ -215,7 +215,7 @@ bool graphics::IsPrinting()
 //bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
 //{
 //
-//    __throw(not_supported_exception());
+//    __throw(error_not_supported);
 //
 //}
 
@@ -5917,7 +5917,7 @@ bool graphics::flush()
 ////
 ////#else
 ////
-////    __throw(not_implemented());
+////    __throw(error_not_implemented);
 ////
 ////#endif
 ////

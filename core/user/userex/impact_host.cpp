@@ -156,7 +156,7 @@ namespace userex
    }
 
 
-   void impact_host::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void impact_host::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::on_subject(psubject, pcontext);

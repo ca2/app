@@ -12,22 +12,23 @@ namespace user
    {
    public:
 
-      list_item *             m_plistitem;
-      mesh *                  m_pmesh;
-      index           m_iGroup;
-      index           m_iItem;
-      index           m_iDisplayItem;
-      index           m_iColumn;
-      index           m_iOrder;
-      index           m_iSubItem;
-      index           m_iListItem;
-      string          m_strText;
-      __status < ::color::color >       m_colorText;
-      __status < ::color::color >       m_colorTextBackground;
-      __status < ::color::color >       m_colorItemBackground;
-      i32             m_iState;
-      index           m_iImage;
-      bool            m_bOk;
+
+      list_item *                            m_plistitem;
+      mesh *                                 m_pmesh;
+      index                                  m_iGroup;
+      index                                  m_iItem;
+      index                                  m_iDisplayItem;
+      index                                  m_iColumn;
+      index                                  m_iOrder;
+      index                                  m_iSubItem;
+      index                                  m_iListItem;
+      string                                 m_strText;
+      with_status < ::color::color >       m_colorText;
+      with_status < ::color::color >       m_colorTextBackground;
+      with_status < ::color::color >       m_colorItemBackground;
+      i32                                    m_iState;
+      index                                  m_iImage;
+      bool                                   m_bOk;
 
       index          m_iGroupTopDisplayIndex;
       ::count        m_iGroupCount;

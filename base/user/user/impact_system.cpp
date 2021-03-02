@@ -428,7 +428,7 @@ namespace user
    }
 
 
-   void impact_system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void impact_system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -436,7 +436,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::promise::subject * psubject)
+   void impact_system::update_all_views(::subject::subject * psubject)
    {
 
       ::count count = get_document_count();

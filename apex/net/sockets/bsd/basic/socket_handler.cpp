@@ -835,7 +835,7 @@ end_processing_adding:
                   // Out-Of-Band data
                   // recv with MSG_OOB
                   time_t tnow = time(nullptr);
-                  if (psocket->Timeout(tnow))
+                  if (psocket->time_out(tnow))
                   {
                      __pointer(stream_socket) pstreamsocket = (psocket);
                      if (pstreamsocket != nullptr && pstreamsocket->Connecting())
@@ -966,7 +966,7 @@ end_processing_adding:
                }
                if (psocket)
                {
-                  if (psocket->Timeout(tnow))
+                  if (psocket->time_out(tnow))
                   {
                      __pointer(stream_socket) pstreamsocket = psocket;
                      if (pstreamsocket && pstreamsocket->Connecting())
@@ -1736,7 +1736,7 @@ end_processing_adding:
       CheckList(m_fds_erase, "sockets to be erased"); // should always be is_empty anyway
       CheckList(m_fds_callonconnect, "checklist CallOnConnect");
       CheckList(m_fds_detach, "checklist detach");
-      CheckList(m_fds_timeout, "checklist Timeout");
+      CheckList(m_fds_timeout, "checklist time_out");
       CheckList(m_fds_retry, "checklist retry client connect");
       CheckList(m_fds_close, "checklist close and delete");
 
@@ -1794,7 +1794,7 @@ end_processing_adding:
       {
          /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
                      (which_one == LIST_DETACH) ? "detach" :
-                     (which_one == LIST_TIMEOUT) ? "Timeout" :
+                     (which_one == LIST_TIMEOUT) ? "time_out" :
                      (which_one == LIST_RETRY) ? "Retry" :
                      (which_one == LIST_CLOSE) ? "close" : "<undef>",
                      add ? "add" : "remove");*/

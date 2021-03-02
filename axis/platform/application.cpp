@@ -297,7 +297,7 @@ namespace axis
 //   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(not_implemented());
+//  __throw(error_not_implemented);
 
 //}
 
@@ -328,7 +328,7 @@ namespace axis
 //         }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          if (!handle_exception(pe))
@@ -1750,7 +1750,7 @@ namespace axis
             m_estatus = run();
 
          }
-         catch (::exception::exception_pointer pe)
+         catch (::exceptionconst ::exception::exception & e)
          {
 
             if (handle_exception(pe))
@@ -1765,7 +1765,7 @@ namespace axis
          }
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
       }

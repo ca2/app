@@ -177,7 +177,7 @@ i32                 cy)
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -216,7 +216,7 @@ i32                 cy)
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -330,7 +330,7 @@ return true;
 
 
 
-bool imaging::change_hue(image_list * pilHue, image_list * pil, color32_t crHue,double dCompress)
+bool imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::color& crHue,double dCompress)
 {
 
    pilHue->copy_from(pil);
@@ -342,7 +342,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, color32_t crHue,
 }
 
 
-bool imaging::color_blend(image_list * pilBlend, image_list * pil, color32_t cr, byte bAlpha)
+bool imaging::color_blend(image_list * pilBlend, image_list * pil, const ::color::color& cr, byte bAlpha)
 {
 
    //synchronization_lock ml(&user_mutex());
@@ -371,7 +371,7 @@ bool imaging::color_blend(image_list * pilBlend, image_list * pil, color32_t cr,
 //
 //#else
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#endif
 
@@ -396,7 +396,7 @@ bool imaging::color_blend(image_list * pilBlend, image_list * pil, color32_t cr,
 }
 
 
-bool imaging::color_blend(::image * pimage, color32_t cr, byte bAlpha)
+bool imaging::color_blend(::image * pimage, const ::color::color& cr, byte bAlpha)
 {
 
    try
@@ -572,7 +572,7 @@ return pil;
 ////
 ////#else
 ////
-////   __throw(todo());
+////   __throw(todo);
 ////
 ////#endif
 ////
@@ -621,7 +621,7 @@ return pil;
 ////
 ////#else
 ////
-////   __throw(todo());
+////   __throw(todo);
 ////
 ////#endif
 ////
@@ -935,7 +935,7 @@ return pil;
 ////
 ////#else
 ////
-////   __throw(todo());
+////   __throw(todo);
 ////
 ////#endif
 ////
@@ -1064,7 +1064,7 @@ return pil;
 //
 //#else
 //
-//         __throw(todo());
+//         __throw(todo);
 //
 //#endif
 //
@@ -1948,7 +1948,7 @@ return true;
 //
 //#ifdef _UWP
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#else
 //      FIBITMAP * fi= HBITMAPtoFI(pitmap);
@@ -1971,7 +1971,7 @@ return true;
 //
 //#ifdef _UWP
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //#else
 //      FIBITMAP * fi= HBITMAPtoFI(pitmap);
@@ -4445,7 +4445,7 @@ i32 w3)
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -4626,7 +4626,7 @@ i32 w3)
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -5712,7 +5712,7 @@ breakFilter2:
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //
@@ -6292,7 +6292,7 @@ i32      iSize)
 //
 //#else
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#endif
 //

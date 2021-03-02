@@ -77,16 +77,16 @@ public:
       }
 
       if(iStart < 0)
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       if(iStart >= a.get_count())
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       if(iEnd < 0)
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       if(iEnd >= a.get_count())
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       m_iBeg = iStart;
 

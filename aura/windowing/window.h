@@ -103,9 +103,9 @@ namespace windowing
       virtual bool is_window_visible();
       
       
-//      virtual iptr get_window_long_ptr(i32 nIndex) const;
-//      virtual bool set_window_long_ptr(i32 nIndex, iptr l);
-//
+      virtual iptr get_window_long_ptr(i32 nIndex) const;
+      virtual ::e_status set_window_long_ptr(i32 nIndex, iptr l);
+
 //      virtual iptr get_style() const;
 //      virtual iptr get_ex_style() const;
 //
@@ -121,7 +121,7 @@ namespace windowing
       virtual bool _001ScreenToClient(POINT_I32 * ppoint);
 
 
-
+      virtual bool on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 
       virtual bool set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
       virtual bool _set_window_pos(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
@@ -823,7 +823,7 @@ namespace windowing
 
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
       //virtual void register_drop_target();
-      virtual void show_task(bool bShow);
+      //virtual void show_task(bool bShow);
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
 
@@ -847,6 +847,12 @@ namespace windowing
 
       virtual float dpiy(float y);
       virtual float dpix(float x);
+
+
+      virtual void on_redraw_window(::u32 flags);
+
+
+      virtual void show_task(bool bShowTask);
 
 
       virtual void update_screen();

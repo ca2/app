@@ -89,7 +89,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       ASSUME(m_time != -1);   */    // indicates an illegal input zonetime
       if (m_time == -1)
       {
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
       }
    }
 

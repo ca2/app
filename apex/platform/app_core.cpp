@@ -610,7 +610,7 @@ void app_core::set_command_line(const char * psz)
 //      if (!bInApp)
 //      {
 //
-//         string strLibrary = ::promise::process::app_id_to_app_name(strAppId);
+//         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
 //         m_plibrary = __new(::apex::library);
 //
@@ -1707,7 +1707,7 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__result(::apex::application) app_core::new_application()
+__transport(::apex::application) app_core::new_application()
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1733,7 +1733,7 @@ __result(::apex::application) app_core::new_application()
 }
 
 
-__result(::apex::application) app_core::new_application(const char* pszAppId)
+__transport(::apex::application) app_core::new_application(const char* pszAppId)
 {
 
    __pointer(::apex::application) papp;

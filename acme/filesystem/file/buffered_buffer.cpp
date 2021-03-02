@@ -79,7 +79,7 @@ namespace file
       else
       {
 
-         __throw(invalid_argument_exception("::file::buffered_file::seek invalid seek option"));
+         __throw(error_invalid_argument, "::file::buffered_file::seek invalid seek option");
 
       }
 

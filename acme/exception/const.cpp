@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace status
+namespace extended
 {
 
 
-   string result::get_error_text(const ::e_status & estatus)
+   string status::get_error_text(const ::e_status & estatus)
    {
 
       string strError;

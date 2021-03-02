@@ -44,7 +44,7 @@ namespace file
       ::file::path            m_pathFinal;
       string_array            m_straPattern;
       string_array            m_straIgnoreName;
-      ::status::result        m_statusresult;
+      ::extended::status        m_statusresult;
       string_array            m_straTitle;
 
 

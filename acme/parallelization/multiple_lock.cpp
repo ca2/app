@@ -23,7 +23,7 @@ multi_lock::multi_lock(const synchronization_array & synchronizationa,bool bInit
    if(synchronizationa.synchronization_object_count() <= 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -54,7 +54,7 @@ multi_lock::multi_lock(::count c, const synchronization_array & synchronizationa
    if (synchronizationa.has_no_synchronization_object() || c <= 0 || c > synchronizationa.synchronization_object_count() || c > MAXIMUM_WAIT_OBJECTS)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 

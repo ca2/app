@@ -258,7 +258,7 @@ namespace windows
       if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
       {
 
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
 
       }
 

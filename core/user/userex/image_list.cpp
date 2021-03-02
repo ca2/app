@@ -319,7 +319,7 @@ namespace userex
    }
 
 
-   void image_list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::image_list_view::on_subject(psubject, pcontext);

@@ -178,11 +178,11 @@ namespace user
 
       virtual bool _is_window() const;
 
-      virtual ::i32 get_window_long(i32 nIndex) const;
-      virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
+      //virtual ::i32 get_window_long(i32 nIndex) const;
+      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
+      //virtual iptr get_window_long_ptr(i32 nIndex) const;
+      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue);
 
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * last_child();
@@ -336,11 +336,11 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      virtual u32 GetStyle() const;
-      virtual u32 GetExStyle() const;
+      //virtual u32 GetStyle() const;
+      //virtual u32 GetExStyle() const;
 
 
-      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
 
 
       //using ::channel::send;
@@ -363,8 +363,8 @@ namespace user
 
       virtual bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool _display(edisplay edisplay);
 
       //virtual void SetWindowDisplayChanged();
@@ -751,7 +751,7 @@ namespace user
       //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
-      virtual i32 get_total_page_count(::promise::context * pcontext);
+      virtual i32 get_total_page_count(::subject::context * pcontext);
 
 
       virtual void edit_on_text(string str);

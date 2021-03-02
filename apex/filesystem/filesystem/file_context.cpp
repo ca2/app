@@ -181,7 +181,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -784,7 +784,7 @@ bool file_context::put_contents(const ::payload &varFile, const void *pvoidConte
                         ::file::e_open_defer_create_directory);
 
    }
-   catch (::exception_pointer e)
+   catch const ::exception::exception & e
    {
 
       return false;
@@ -954,7 +954,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 }
 
 
-::status::result file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 {
 
    if (Context.dir().is(varSource.get_file_path()) &&
@@ -1197,10 +1197,10 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 }
 
 
-::status::result file_context::move(const ::file::path &pszNew, const ::file::path &psz)
+::extended::status file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return nullptr;
 
@@ -1309,10 +1309,10 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 }
 
 
-::status::result file_context::del(const ::file::path &psz)
+::extended::status file_context::del(const ::file::path &psz)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return nullptr;
 
@@ -1488,25 +1488,25 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
 
    UNREFERENCED_PARAMETER(path);
    UNREFERENCED_PARAMETER(status);
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
 
-::status::result file_context::set_status(const ::file::path &path, const ::file::file_status &status)
+::extended::status file_context::set_status(const ::file::path &path, const ::file::file_status &status)
 {
 
    UNREFERENCED_PARAMETER(path);
    UNREFERENCED_PARAMETER(status);
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
 
-::status::result file_context::replace(const ::file::path &pszContext, const string &pszFind, const string &pszReplace)
+::extended::status file_context::replace(const ::file::path &pszContext, const string &pszFind, const string &pszReplace)
 {
 
-   ::status::result e;
+   ::extended::status e;
 
    ::file::listing straTitle;
    Context.dir().ls(straTitle, pszContext);
@@ -1521,7 +1521,7 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
       strNew.replace(pszFind, pszReplace);
       if (strNew != strOld)
       {
-         // TODO(camilo) : should there be a way to chain or return multiple exceptions... instead of ::status::result specifile file smart...
+         // TODO(camilo) : should there be a way to chain or return multiple exceptions... instead of ::extended::status specifile file smart...
          // why not a super smart chained super hand heroe smarter pointerer that can contain vector of any excepction based on
          // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
          // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
@@ -1566,7 +1566,7 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -1585,7 +1585,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 //
 //#elif defined(_UWP)
 //
-//   __throw(todo());
+//   __throw(todo);
 //
 //#else
 //
@@ -1604,7 +1604,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 rp(::file::file) file_context::resource_get_file(const ::file::path & path)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return nullptr;
 
@@ -1746,7 +1746,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 }
 
 
-::status::result file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
+::extended::status file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 {
 
    ::file::path strDir = psz.folder();
@@ -2099,7 +2099,7 @@ string file_context::nessie(const ::payload &varFile)
 bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -2696,13 +2696,13 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
          //      spfile = App(papp).alloc(__type(::file::binary_file));
 
-         //      ::status::result = spfile->open(App(papp).dir().matter(strPath), nOpenFlags);
+         //      ::extended::status = spfile->open(App(papp).dir().matter(strPath), nOpenFlags);
 
          //   }
          //   else if (&Session != nullptr && psession->appptra().lookup(strApp, pappLookup))
          //   {
 
-         //      spfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::status::result);
+         //      spfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::extended::status);
 
          //   }
          //   else
@@ -2712,7 +2712,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
          //      strPath = Sys(papp).get_matter_cache_path(strPath);
 
-         //      spfile = get_file(strPath, nOpenFlags, &::status::result);
+         //      spfile = get_file(strPath, nOpenFlags, &::extended::status);
 
          //   }
 
@@ -2955,7 +2955,7 @@ bool file_context::is_link(string strPath)
 
 }
 //
-//::status::result file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
+//::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 //{
 //
 //   return System.m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_context_application());
@@ -2963,7 +2963,7 @@ bool file_context::is_link(string strPath)
 //}
 
 //
-//::status::result file_context::move(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::move(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //
 //   return System.m_spfile->move(pszNew, pszOld, get_context_application());
@@ -2971,12 +2971,12 @@ bool file_context::is_link(string strPath)
 //}
 
 //
-//::status::result file_context::del(const ::file::path & psz)
+//::extended::status file_context::del(const ::file::path & psz)
 //{
 //   return System.m_spfile->del(psz, get_context_application());
 //}
 
-//::status::result file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //   return System.m_spfile->rename(pszNew, pszOld, get_context_application());
 //}
@@ -2991,7 +2991,7 @@ bool file_context::is_link(string strPath)
 //   return System.m_spfile->trash_that_is_not_trash(stra, get_context_application());
 //}
 
-//::status::result file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
+//::extended::status file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
 //{
 //   return System.m_spfile->replace(pszContext, pszFind, pszReplace, get_context_application());
 //}
@@ -3187,7 +3187,7 @@ rp(::file::file) file_context::friendly_get_file(const ::payload &varFile, const
       return get_file(varFile, eopenFlags);
 
    }
-   catch (const ::exception_pointer &pe)
+   catch (const ::exception_pointer & e)
    {
 
       return pe;
@@ -3247,7 +3247,7 @@ rp(::file::file) file_context::friendly_get_file(const ::payload &varFile, const
 bool file_context::crypto_set(const ::payload &varFile, const char *pszData, const char *pszSalt)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -3257,7 +3257,7 @@ bool file_context::crypto_set(const ::payload &varFile, const char *pszData, con
 bool file_context::crypto_get(const ::payload &varFile, string &str, const char *pszSalt)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 

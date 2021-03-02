@@ -63,7 +63,7 @@ void dump_context::output_string(const char * psz)
    if (psz == nullptr)
    {
 
-      __throw(user_exception(error_failed));
+      __throw(error_null_pointer);
 
    }
 
@@ -127,7 +127,7 @@ void dump_context::write(const char * psz)
    if (psz == nullptr)
    {
 
-      __throw(user_exception(error_failed));
+      __throw(error_null_pointer);
 
    }
 
@@ -508,7 +508,7 @@ void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWi
    if (nBytes <= 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -517,7 +517,7 @@ void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWi
    if (nWidth <= 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -526,13 +526,13 @@ void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWi
    if (pszLine == nullptr)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
    ASSERT(__is_valid_address(pby, nBytes, false));
    if( pby == nullptr )
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    i32 nRow = 0;
    string str;

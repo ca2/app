@@ -27,7 +27,7 @@ namespace colorertake5
       //   ::exception_pointer esp(pe);
       //   __throw(ParserFactoryException(pe->get_message()));
       //}
-      catch(::exception_pointer e)
+      catch(const ::exception::exception & e)
       {
 
          __throw(ParserFactoryException(e->get_message()));
@@ -228,7 +228,7 @@ namespace colorertake5
                {
                   hrcParser->loadSource(path, strSource);
                }
-               catch(::exception_pointer e)
+               catch(const ::exception::exception & e)
                {
 
                   string str = e->get_message();

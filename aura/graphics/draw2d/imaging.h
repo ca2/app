@@ -231,9 +231,9 @@ public:
 //      i32 cy,
 //      color32_t crAlpha);
 
-   bool change_hue(image_list * pilHue, image_list * pil, color32_t crHue, double dCompress);
-   bool color_blend(image_list * pilBlend, image_list * pil, color32_t cr, byte bAlpha);
-   bool color_blend(::image * pimage, color32_t cr, byte bAlpha);
+   bool change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
+   bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color & cr, byte bAlpha);
+   bool color_blend(::image * pimage, const ::color::color & cr, byte bAlpha);
 
    bool BitmapBlend2(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc,
                      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)

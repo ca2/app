@@ -97,7 +97,7 @@ namespace windowing
 
       UNREFERENCED_PARAMETER(pimpl);
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
       
@@ -139,7 +139,7 @@ namespace windowing
    ::e_status window::set_mouse_capture()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -149,7 +149,7 @@ namespace windowing
    //::e_status window::get_capture()
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return m_pcapture;;
 
@@ -160,7 +160,7 @@ namespace windowing
    //::e_status window::set_capture()
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return error_interface_only;
 
@@ -170,7 +170,7 @@ namespace windowing
    ::e_status window::destroy_window()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -702,7 +702,7 @@ namespace windowing
 void window::on_visual_applied()
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -710,7 +710,7 @@ void window::on_visual_applied()
 void window::win_update_graphics()
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -736,7 +736,7 @@ bool window::post_message(const ::id & id, wparam wParam, lparam lParam)
 void window::set_window_text(const char * pszString)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -744,7 +744,7 @@ void window::set_window_text(const char * pszString)
 strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return 0;
 
@@ -753,7 +753,7 @@ strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
 void window::get_window_text(string & rectString)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -762,7 +762,7 @@ void window::get_window_text(string & rectString)
 strsize window::get_window_text_length()
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return 0;
 
@@ -772,7 +772,7 @@ strsize window::get_window_text_length()
 void window::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
 }
 
@@ -781,7 +781,7 @@ void window::on_layout(::draw2d::graphics_pointer & pgraphics)
 //bool window::window_is_iconic()
 //{
 //
-//   __throw(interface_only_exception());
+//   __throw(error_interface_only);
 //
 //   return false;
 //
@@ -791,7 +791,7 @@ void window::on_layout(::draw2d::graphics_pointer & pgraphics)
 bool window::is_zoomed()
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return false;
 
@@ -801,7 +801,7 @@ bool window::is_zoomed()
 ::u32 window::ArrangeIconicWindows()
 {
 
-   __throw(interface_only_exception());
+   __throw(error_interface_only);
 
    return 0;
 
@@ -841,7 +841,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::route_command_message(class ::message::command *)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -849,7 +849,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::present()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -883,7 +883,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    i32 window::store_name(const char *psz)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       //windowing_output_debug_string("\nwindow::store_name");
 
@@ -953,7 +953,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1014,7 +1014,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::LockWindowUpdate()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1031,7 +1031,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1041,7 +1041,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::is_this_enabled()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1049,7 +1049,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1059,7 +1059,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::user::interaction * window::GetActiveWindow()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1067,7 +1067,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::user::interaction * window::SetActiveWindow()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1078,7 +1078,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_foreground_window()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1088,7 +1088,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::user::interaction * window::get_foreground_window()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1100,7 +1100,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::SetFocus()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1110,7 +1110,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //bool window::has_keyboard_focus()
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return false;
 
@@ -1118,7 +1118,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::is_active_window() const
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1126,7 +1126,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //::user::interaction * window::GetFocus()
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return nullptr;
 
@@ -1134,7 +1134,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::user::interaction * window::get_desktop_window()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1143,7 +1143,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::CloseWindow()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       
 
@@ -1151,7 +1151,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::OpenIcon()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -1161,7 +1161,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_next_window(::u32 nFlag) 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1171,7 +1171,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_top_window() const 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1181,7 +1181,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_window(::u32 nCmd) const 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1191,7 +1191,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_last_active_popup() const 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1201,7 +1201,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_parent() const 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1211,7 +1211,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    oswindow window::get_parent_oswindow() const
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1221,7 +1221,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_parent(::windowing::window * pwindowNewParent) 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -1231,7 +1231,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::windowing::window * window::get_owner() const
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1241,7 +1241,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    oswindow window::get_owner_oswindow() const
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1251,7 +1251,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_owner(::windowing::window * pwindowNewOwner)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -1261,7 +1261,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //::user::interaction * window::set_owner(::user::interaction * pWndNewParent) 
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return nullptr;
 
@@ -1271,7 +1271,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //::user::interaction * window::get_owner() const 
    //{
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return nullptr;
 
@@ -1281,7 +1281,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    point_i32 window::GetCaretPos() 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1291,7 +1291,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::SetCaretPos(const ::point_i32 & point)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -1299,7 +1299,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::HideCaret() 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
      
@@ -1307,7 +1307,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::ShowCaret() 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -1316,7 +1316,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::DragAcceptFiles(bool bAccept) 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -1325,7 +1325,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_icon(::windowing::icon * picon) 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -1335,7 +1335,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    __pointer(::windowing::icon) window::get_icon() const
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -1345,7 +1345,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_cursor(::windowing::cursor * pcursor)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -1355,7 +1355,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_tool_window(bool bSet)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -1365,7 +1365,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    void window::on_set_parent(::user::interaction * pinteraction) 
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -1373,7 +1373,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    bool window::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
       
       return false;
    
@@ -1381,19 +1381,19 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
     //virtual void register_drop_target();
      void window::show_task(bool bShow) {
 
-        __throw(interface_only_exception());
+        __throw(error_interface_only);
      }
      void window::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
      {
 
-        __throw(interface_only_exception());
+        __throw(error_interface_only);
      }
 
    
    void window::non_top_most_upper_window_rects(::rect_array & recta)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
    }
 
@@ -1487,6 +1487,17 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    }
 
 
+   void window::on_redraw_window(::u32 flags)
+   {
+
+   }
+
+
+   //void window::show_task(bool bShowTask)
+   //{
+
+
+   //}
 
 
    //void window::set_user_interaction(::user::interaction_impl * pimpl)
@@ -1863,7 +1874,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_keyboard_focus()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -1873,7 +1884,7 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    ::e_status window::set_active_window()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return ::error_interface_only;
 
@@ -1886,46 +1897,31 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
    //   UNREFERENCED_PARAMETER(edisplay);
    //   UNREFERENCED_PARAMETER(eactivation);
 
-   //   __throw(interface_only_exception());
+   //   __throw(error_interface_only);
 
    //   return ::error_interface_only;
 
    //}
 
 
-//   iptr window::get_window_long_ptr(i32 nIndex) const
-//   {
-//
-//      return m_pimpl->get_window_long_ptr(nIndex);
-//
-//   }
-//
-//
-//   bool window::set_window_long_ptr(i32 nIndex, iptr i)
-//   {
-//
-//      return m_pimpl->set_window_long_ptr(nIndex, i);
-//
-//      //iptr iOld = m_plongmap->operator[](nIndex);
-//
-////   if(nIndex == GWL_EXSTYLE)
-////   {
-////
-////      if(is_different((l & WS_EX_TOOLWINDOW), (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW)))
-////      {
-////
-////         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
-////
-////      }
-////
-////   }
-//
-//      //m_plongmap->operator[](nIndex) = i;
-//
-//      //return iOld;
-//
-//   }
-//
+   iptr window::get_window_long_ptr(i32 nIndex) const
+   {
+
+      return 0;
+
+   }
+
+
+   ::e_status window::set_window_long_ptr(i32 nIndex, iptr i)
+   {
+
+      __throw(error_interface_only);
+
+      return ::error_interface_only;
+
+   }
+
+
 //
 //   iptr window::get_style() const
 //   {
@@ -2130,6 +2126,14 @@ bool window::client_rect_from_os(RECTANGLE_I32 * prectangle)
       }
 
       return false;
+
+   }
+
+   
+   bool window::on_set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   {
+
+      return set_window_position(zorder, x, y, cx, cy, nFlags);
 
    }
 

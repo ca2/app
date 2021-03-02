@@ -1,5 +1,6 @@
 #pragma once
 
+
 void RedirectIOToConsole();
 
 

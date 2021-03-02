@@ -629,7 +629,7 @@ namespace user
    }
 
 
-   void check_box::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void check_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       interaction::on_subject(psubject, pcontext);

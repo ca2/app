@@ -33,25 +33,25 @@ bool GetLogFont(LOGFONTW * pfontw, const ::write_text::font * pfont);
 
 
 
-
-inline void copy(CREATESTRUCTW * pcreatestructw, const ::user::create_struct * pcreatestruct)
-{
-
-   pcreatestructw->lpCreateParams      = pcreatestruct->lpCreateParams;
-   pcreatestructw->hInstance           = (HINSTANCE) pcreatestruct->hInstance;
-   pcreatestructw->hMenu               = (HMENU) pcreatestruct->hMenu;
-   pcreatestructw->hwndParent          = (HWND) pcreatestruct->hwndParent;
-   pcreatestructw->cy                  = pcreatestruct->cy;
-   pcreatestructw->cx                  = pcreatestruct->cx;
-   pcreatestructw->y                   = pcreatestruct->y;
-   pcreatestructw->x                   = pcreatestruct->x;
-   pcreatestructw->style               = pcreatestruct->style;
-   pcreatestructw->lpszName            = pcreatestruct->lpszName;
-   pcreatestructw->lpszClass           = pcreatestruct->lpszClass;
-   pcreatestructw->dwExStyle           = pcreatestruct->dwExStyle;
-   
-}
-
+//
+//inline void copy(CREATESTRUCTW * pcreatestructw, const ::user::create_struct * pcreatestruct)
+//{
+//
+//   pcreatestructw->lpCreateParams      = pcreatestruct->lpCreateParams;
+//   pcreatestructw->hInstance           = (HINSTANCE) pcreatestruct->hInstance;
+//   pcreatestructw->hMenu               = (HMENU) pcreatestruct->hMenu;
+//   pcreatestructw->hwndParent          = (HWND) pcreatestruct->hwndParent;
+//   pcreatestructw->cy                  = pcreatestruct->cy;
+//   pcreatestructw->cx                  = pcreatestruct->cx;
+//   pcreatestructw->y                   = pcreatestruct->y;
+//   pcreatestructw->x                   = pcreatestruct->x;
+//   pcreatestructw->style               = pcreatestruct->style;
+//   pcreatestructw->lpszName            = pcreatestruct->lpszName;
+//   pcreatestructw->lpszClass           = pcreatestruct->lpszClass;
+//   pcreatestructw->dwExStyle           = pcreatestruct->dwExStyle;
+//   
+//}
+//
 
 
 

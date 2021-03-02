@@ -280,7 +280,7 @@ namespace html
 
       i32 create_font(::html::element* pelemental);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
    };

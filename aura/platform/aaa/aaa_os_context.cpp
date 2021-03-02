@@ -235,7 +235,7 @@
 
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return false;
 
@@ -631,7 +631,7 @@
    bool os_context::browse_file_open(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -641,7 +641,7 @@
    bool os_context::browse_file_save(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -651,7 +651,7 @@
    bool os_context::browse_folder(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -660,7 +660,7 @@
    bool os_context::browse_file_or_folder(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 

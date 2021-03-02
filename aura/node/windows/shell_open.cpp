@@ -102,7 +102,7 @@ namespace windows
 
          str.release_string_buffer();
 
-         //__throw(not_implemented());
+         //__throw(error_not_implemented);
          /*
          // execute the command
          if (!System.OnDDECommand( (char *)(const wchar_t *)str))

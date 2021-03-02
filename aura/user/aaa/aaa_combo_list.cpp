@@ -1057,7 +1057,7 @@ namespace user
 
             m_pcombo->m_plist.release();
 
-            __throw(resource_exception());
+            __throw(error_resource);
 
          }
 

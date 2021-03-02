@@ -1266,7 +1266,7 @@ run_install:
       // this enables spaadmin to install ca files to ca folder, because npca2 would not use any ca shared libraries.
       if(m_phost->m_bRunningSpaAdmin)
       {
-         __throw(todo());
+         __throw(todo);
          /*if(!_c_lock_is_active("Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
          {
             m_phost->m_bRunningSpaAdmin = false;

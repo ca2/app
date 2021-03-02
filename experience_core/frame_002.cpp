@@ -17,12 +17,12 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-color32_t SetAValue(byte a, color32_t cr)
-{
-
-   return argb(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
-
-}
+//color32_t SetAValue(byte a, color32_t cr)
+//{
+//
+//   return argb(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
+//
+//}
 
 namespace experience
 {
@@ -212,9 +212,9 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               color32_t    crMoveableBorder;
-               color32_t    crMoveableBorderHilight;
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color > crMoveableBorder;
+               with_status < ::color::color > crMoveableBorderHilight;
+               with_status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -247,7 +247,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
                }
                else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
@@ -268,8 +268,8 @@ SizingNone:;
                   GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle,
-                                      crMoveableBorder,
+                     rectangle,
+                     crMoveableBorder.m_result ,
                                       127);
                }
                else
@@ -285,7 +285,7 @@ SizingNone:;
 
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       200);
 
                   GetBorderRect(rectClient, rectangle, eside);
@@ -301,14 +301,14 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+                     Draw3dRectSide(pgraphics, rectA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+                  Draw3dRectSide(pgraphics, rectA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
 
                   rectA.top++;
                   rectA.bottom--;
@@ -316,7 +316,7 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
+                     Draw3dRectSide(pgraphics, rectA, eside, opaque(m_colorDkShadow), opaque(m_colorDkShadow));
                   }
 
                }
@@ -1045,7 +1045,7 @@ SizingNone:;
             }
 
 
-            color32_t frame_002::get_border_main_body_color()
+            with_status < ::color::color > frame_002::get_border_main_body_color()
             {
 
                return m_colorMoveableBorder;

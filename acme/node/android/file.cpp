@@ -148,7 +148,7 @@ namespace android
    //}
 
 
-   ::status::result file::open(const ::file::path & path, const ::file::e_open & eopenParam)
+   ::extended::status file::open(const ::file::path & path, const ::file::e_open & eopenParam)
    {
 
       ::file::e_open eopen(eopenParam);

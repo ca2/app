@@ -350,8 +350,8 @@ namespace aura
       virtual string crypto_md5_text(const string & str) override;
 
 
-      virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
-      virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual __pointer(::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
       //virtual ::e_status create_html();
@@ -374,7 +374,7 @@ namespace aura
 
       //virtual bool verb();
 
-      virtual ::e_status main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal) override;
+      virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -685,7 +685,7 @@ namespace aura
 
       virtual ::e_status create_session(index iEdge = 0) override;
 
-      virtual __result(::apex::session) on_create_session(index iEdge) override;
+      virtual __transport(::apex::session) on_create_session(index iEdge) override;
 
       virtual ::apex::session * session(index iEdge = 0) override;
 
@@ -974,9 +974,9 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::promise::subject * psubject) override;
+      virtual void on_subject(::subject::subject * psubject) override;
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
 

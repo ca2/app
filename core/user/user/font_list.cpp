@@ -97,7 +97,7 @@ namespace user
       else
       {
 
-         __throw(todo());
+         __throw(todo);
 
       }
 
@@ -226,7 +226,7 @@ namespace user
    }
 
 
-   void font_list::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       combo_list::on_subject(psubject, pcontext);

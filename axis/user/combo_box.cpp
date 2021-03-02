@@ -816,7 +816,7 @@ namespace user
          if(m_plist == nullptr)
          {
 
-            __throw(resource_exception());
+            __throw(error_resource);
 
          }
 
@@ -952,7 +952,7 @@ namespace user
    }
 
 
-   void combo_box::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void combo_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if(m_bEdit)
@@ -1003,28 +1003,28 @@ namespace user
 //#ifdef WINDOWSEX
 //         DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo());
+//         __throw(todo);
 //#endif
 //         break;
 //      case e_message_measure_item:
 //#ifdef WINDOWSEX
 //         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo());
+//         __throw(todo);
 //#endif
 //         break;
 //      case WM_COMPAREITEM:
 //#ifdef WINODWSEX
 //         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo());
+//         __throw(todo);
 //#endif
 //         break;
 //      case WM_DELETEITEM:
 //#ifdef WINODWSEX
 //         DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo());
+//         __throw(todo);
 //#endif
 //         break;
 //      default:

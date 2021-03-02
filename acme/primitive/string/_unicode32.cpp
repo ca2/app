@@ -152,7 +152,7 @@ strsize ansi_to_wd32_len(const char* psz, strsize srclen)
       if (srclen > 0 && len > srclen)
       {
 
-         __throw(invalid_character("reached maximum string length"));
+         __throw(error_invalid_character, "reached maximum string length");
 
          break;
 

@@ -102,7 +102,7 @@ namespace app_shader
    }
 
 
-   void window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)

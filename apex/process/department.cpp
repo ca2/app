@@ -74,7 +74,7 @@ namespace process
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

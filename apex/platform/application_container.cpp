@@ -490,7 +490,7 @@ __pointer(::apex::application) application_container::start_application(const ch
          papp = create_application(pszAppId, bSynch, pcreate);
 
       }
-      catch (::exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
          if (handle_exception(pe))

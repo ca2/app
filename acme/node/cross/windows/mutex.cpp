@@ -125,7 +125,7 @@ static int g_iMutex = 0;
 
          DWORD dwError2 = ::GetLastError();
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -195,7 +195,7 @@ static int g_iMutex = 0;
          if (err != EEXIST)
          {
 
-            __throw(resource_exception());
+            __throw(error_resource);
 
          }
 
@@ -280,7 +280,7 @@ static int g_iMutex = 0;
 
          const char * pszError = strerror(iErr);
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -384,7 +384,7 @@ get_existing:
       if(m_semid < 0)
       {
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -1517,7 +1517,7 @@ __pointer(::mutex) open_mutex(const char * lpszName)
       {
 
          //__throw(resource_exception(papp,"failed to create named ::mutex"));
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -1574,7 +1574,7 @@ __pointer(::mutex) open_mutex(const char * lpszName)
    if (iFd < 0)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 

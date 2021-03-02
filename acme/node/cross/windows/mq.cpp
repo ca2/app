@@ -374,7 +374,7 @@
 //   if (id.m_etype != ::id::e_type_message)
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //   }
 //

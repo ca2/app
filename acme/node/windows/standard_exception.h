@@ -49,7 +49,7 @@ namespace windows
 
 
       standard_exception(EXCEPTION_POINTERS * ppointers) :
-         exception(nullptr, error_exception, DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP),
+         exception(error_exception, nullptr, DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP),
          m_ppointers(ppointers)
       {
 

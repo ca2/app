@@ -251,13 +251,13 @@ namespace app_message_box
 
       ::rectangle_i32 rectangleButton(rectangleClient);
 
-      rectangleButton.right -= x;
+      rectangleButton.right -= (int) x;
 
-      rectangleButton.bottom -= y;
+      rectangleButton.bottom -= (int) y;
 
-      rectangleButton.left = rectangleButton.right - x * 3.5;
+      rectangleButton.left = (int) (rectangleButton.right - x * 3.5);
 
-      rectangleButton.top = rectangleButton.bottom - y * 1.65;
+      rectangleButton.top = (int) (rectangleButton.bottom - y * 1.65);
 
       m_pbuttonShowMessageBox->place(rectangleButton);
 
@@ -278,19 +278,7 @@ namespace app_message_box
             try
             {
 
-               auto processResponse = __process([this](const ::payload & response)
-                  {
-
-                     //if (response == e_butt)
-                     {
-
-                        Application.finish();
-
-                     }
-
-                  });
-
-               message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel, processResponse);
+               show_message_box();
 
                pevent->m_bRet = true;
 
@@ -309,6 +297,30 @@ namespace app_message_box
    }
 
 
+   void window::show_message_box()
+   {
+
+      auto pprocess = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+
+      pprocess->then([this](::future < enum_dialog_result >* pfuture)
+         {
+
+            if (pfuture->m_statusresult.m_result == e_dialog_result_yes)
+            {
+
+               Application.finish();
+
+            }
+            else
+            {
+
+               show_message_box();
+
+            }
+
+         });
+
+   }
 
 
 } // namespace app_message_box

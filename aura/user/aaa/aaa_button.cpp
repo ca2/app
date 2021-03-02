@@ -548,7 +548,7 @@ namespace user
    }
 
 
-   void button::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       interaction::on_subject(psubject, pcontext);

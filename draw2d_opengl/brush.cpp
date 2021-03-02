@@ -68,13 +68,13 @@ namespace draw2d_opengl
 //   void brush::construct(color32_t crColor)
 //   {
 ////      if (!attach(::create_solid(crColor)))
-//  //       __throw(resource_exception());
+//  //       __throw(error_resource);
 //   }
 //
 //   void brush::construct(i32 nIndex, color32_t crColor)
 //   {
 //    //  if (!attach(::CreateHatchBrush(nIndex, crColor)))
-//      //   __throw(resource_exception());
+//      //   __throw(error_resource);
 //   }
 //
 //   void brush::construct(::draw2d::bitmap* pBitmap)
@@ -82,7 +82,7 @@ namespace draw2d_opengl
 //      //ASSERT_VALID(pBitmap);
 //
 //      //if (!attach(::CreatePatternBrush((HBITMAP)pBitmap->get_os_data())))
-//        // __throw(resource_exception());
+//        // __throw(error_resource);
 //   }
 //
 //   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)

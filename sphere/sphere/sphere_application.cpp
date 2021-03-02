@@ -660,7 +660,7 @@ namespace sphere
 
             return true;
 #else
-            __throw(todo());
+            __throw(todo);
 #endif
          }
 

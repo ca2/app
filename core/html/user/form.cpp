@@ -727,7 +727,7 @@ bool html_form::load_html(const string & str)
 
 
 
-void html_form::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+void html_form::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
    ::user::form_view::on_subject(psubject, pcontext);
@@ -762,7 +762,7 @@ void html_form::on_subject(::promise::subject * psubject, ::promise::context * p
 
 
 
-void html_form_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+void html_form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
    ::html_form::on_subject(psubject, pcontext);
@@ -845,7 +845,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
 
 
-void html_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+void html_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
    ::html_form::on_subject(psubject, pcontext);

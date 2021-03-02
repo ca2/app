@@ -41,7 +41,7 @@
 //   system_time_t node::time_to_system_time(const ::datetime::time & time)
 //   {
 //
-//      __throw(interface_only_exception());
+//      __throw(error_interface_only);
 //
 //      return {};
 //

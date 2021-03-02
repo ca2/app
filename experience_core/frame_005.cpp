@@ -235,9 +235,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               color32_t    crMoveableBorder;
-               color32_t    crMoveableBorderHilight;
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color > crMoveableBorder;
+               with_status < ::color::color > crMoveableBorderHilight;
+               with_status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -292,7 +292,7 @@ SizingNone:;
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder,
+                                      crMoveableBorder.m_result,
                                       127);
                }
                else
@@ -478,7 +478,7 @@ SizingNone:;
             }
 
 
-            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
+            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder,const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
             {
 
                auto psession = Session;
@@ -499,12 +499,12 @@ SizingNone:;
                   if(psession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
-                     pgraphics->fill_rectangle(rectDraw, crTopLeft);
+                     pgraphics->fill_rectangle(rectDraw, colorTopLeft);
 
                   }
                   else
                   {
-                     ColorGlass(pgraphics, rectDraw, crTopLeft, 127);
+                     ColorGlass(pgraphics, rectDraw, colorTopLeft, 127);
 
                   }
 
@@ -518,13 +518,13 @@ SizingNone:;
                   if(psession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
-                     pgraphics->fill_rectangle(rectDraw, crTopLeft);
+                     pgraphics->fill_rectangle(rectDraw, colorTopLeft);
 
                   }
                   else
                   {
 
-                     ColorGlass(pgraphics, rectDraw, crTopLeft, 127);
+                     ColorGlass(pgraphics, rectDraw, colorTopLeft, 127);
 
                   }
 
@@ -538,13 +538,13 @@ SizingNone:;
                   if(psession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
-                     pgraphics->fill_rectangle(rectDraw, crBottomRight);
+                     pgraphics->fill_rectangle(rectDraw, colorBottomRight);
 
                   }
                   else
                   {
 
-                     ColorGlass(pgraphics, rectDraw, crBottomRight, 127);
+                     ColorGlass(pgraphics, rectDraw, colorBottomRight, 127);
 
                   }
 
@@ -558,12 +558,12 @@ SizingNone:;
                   if(psession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
-                     pgraphics->fill_rectangle(rectDraw, crBottomRight);
+                     pgraphics->fill_rectangle(rectDraw, colorBottomRight);
 
                   }
                   else
                   {
-                     ColorGlass(pgraphics, rectDraw, crBottomRight, 127);
+                     ColorGlass(pgraphics, rectDraw, colorBottomRight, 127);
                   }
 
                }

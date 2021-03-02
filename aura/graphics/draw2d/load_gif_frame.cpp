@@ -26,7 +26,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   if (::is_null(pimageCanvas))
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //      return false;
 //
@@ -35,7 +35,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   if (pimageCanvas->m_size == pframea->m_size)
 //   {
 //
-//      __throw(invalid_argument_exception());
+//      __throw(error_invalid_argument);
 //
 //      return false;
 //

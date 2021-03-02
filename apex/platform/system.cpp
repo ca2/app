@@ -626,7 +626,7 @@ namespace apex
    }
 
 
-   result_pointer < ::apex::library > system::do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation)
+   ::extended::transport < ::apex::library > system::do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation)
    {
 
       string strComponent(pszComponent);
@@ -1986,21 +1986,23 @@ namespace apex
    ::e_status system::on_system_construct()
    {
 
-      auto estatus = create_os_node();
+      //auto estatus = create_os_node();
 
-      if(m_bUser)
-      {
+      //if(m_bUser)
+      //{
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            return estatus;
+      //      return estatus;
 
-         }
+      //   }
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
+
+      return ::success;
 
    }
 
@@ -3104,7 +3106,7 @@ namespace apex
 
 #else
 
-            __throw(todo());
+            __throw(todo);
 
 #endif
 
@@ -3127,7 +3129,7 @@ namespace apex
 
 #if defined(_UWP)
 
-            __throw(todo());
+            __throw(todo);
 
 #else
 
@@ -3167,7 +3169,7 @@ namespace apex
 
 #ifdef _UWP
 
-            __throw(todo());
+            __throw(todo);
 
 #else
 
@@ -3201,7 +3203,7 @@ namespace apex
 
 #ifdef _UWP
 
-            __throw(todo());
+            __throw(todo);
 
 #else
 
@@ -3312,7 +3314,7 @@ namespace apex
    }
 
 
-   __result(::apex::session) system::on_create_session(index iEdge)
+   __transport(::apex::session) system::on_create_session(index iEdge)
    {
 
       __pointer(::apex::session) psession;
@@ -3688,7 +3690,7 @@ namespace apex
    //string system::url_encode(const string & str)
    //{
 
-   //   //__throw(interface_only_exception());
+   //   //__throw(error_interface_only);
 
    //   return url_encode(str);
 
@@ -5002,7 +5004,7 @@ namespace apex
    }
 
 
-   __pointer(::promise::subject) system::new_subject(const MESSAGE& message)
+   __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
    {
 
       auto psubject = subject((::iptr) message.wParam);
@@ -5442,7 +5444,7 @@ namespace apex
    __pointer(::data::node) system::load_xml(const char* pszXml)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -5917,7 +5919,7 @@ namespace apex
    }
 
 
-   void system::on_subject(::promise::subject * psubject)
+   void system::on_subject(::subject::subject * psubject)
    {
 
       if (psubject->id() == id_open_hyperlink)
@@ -5950,7 +5952,7 @@ namespace apex
    }
 
 
-   void system::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       acme::system::on_subject(psubject, pcontext);
@@ -6157,11 +6159,10 @@ namespace apex
    }
 
 
-   ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   __pointer(::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::acme::system::message_box(pszText, pszTitle, emessagebox, process);
-
+      return ::acme::system::message_box(pszText, pszTitle, emessagebox);
 
    }
 

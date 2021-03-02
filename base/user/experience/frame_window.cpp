@@ -2225,7 +2225,7 @@ namespace experience
 
 
 
-   void frame_window::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void frame_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if(psubject->id() == id_app_activated)

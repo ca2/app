@@ -109,7 +109,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void save_as_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::on_subject(psubject, pcontext);
@@ -161,7 +161,7 @@ namespace filemanager
    }
 
 
-   void save_as_button::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void save_as_button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::filemanager::impact::on_subject(psubject, pcontext);
@@ -223,25 +223,43 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto pfuture = __process([this, strPath](const ::payload & payload)
-                  {
+               //auto pfuture = __process([this, strPath](const ::payload & payload)
+               //   {
 
-                     if (payload == "yes")
+               //      if (payload == "yes")
+               //      {
+
+               //         save_document(strPath);
+
+               //      }
+               //      else
+               //      {
+
+               //         cancel_save_document();
+
+               //      }
+
+               //   });
+
+               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
+                  ->then([this, strPath](auto pfuture)
                      {
 
-                        save_document(strPath);
+                        if (pfuture->m_statusresult.m_result->m_edialogresult == e_dialog_result_yes)
+                        {
 
-                     }
-                     else
-                     {
+                           save_document(strPath);
 
-                        cancel_save_document();
+                        }
+                        else
+                        {
 
-                     }
+                           cancel_save_document();
 
-                  });
+                        }
 
-               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no, pfuture);
+
+                     });
 
             }
             else
@@ -322,7 +340,7 @@ namespace filemanager
    }
 
 
-   void save_as_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void save_as_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::impact::on_subject(psubject, pcontext);

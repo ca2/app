@@ -25,7 +25,7 @@ namespace apex
    ::e_status shell_launcher::launch()
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return error_interface_only;
 

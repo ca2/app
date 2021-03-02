@@ -270,7 +270,7 @@ namespace draw2d_cairo
 //         pgraphics->set(bitmap);
 //         return false;
 //      }
-//      __throw(todo());
+//      __throw(todo);
 //      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
 //      // xxx pgraphics->SelectObject(pbitmap);
 //      // xxx return bOk;

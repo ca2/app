@@ -343,7 +343,7 @@
 //      else
 //      {
 //
-//         __throw(not_implemented());
+//         __throw(error_not_implemented);
 //
 //      }
 //

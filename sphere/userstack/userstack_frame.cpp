@@ -250,7 +250,7 @@ namespace userstack
             psession->open_by_file_extension(strPath);
          }
 #else
-         __throw(todo());
+         __throw(todo);
 #endif
       }
 
@@ -290,7 +290,7 @@ namespace userstack
                hide();
             }
 #else
-            __throw(todo());
+            __throw(todo);
 #endif
          }
       }
@@ -327,7 +327,7 @@ namespace userstack
 #ifdef WINDOWS_DESKTOP
          pusermessage->m_lresult = (LRESULT) top_level_frame()->get_safe_handle();
 #else
-         __throw(todo());
+         __throw(todo);
 #endif
       }
       pusermessage->m_bRet = true;
@@ -421,7 +421,7 @@ namespace userstack
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
 

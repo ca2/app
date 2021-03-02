@@ -68,7 +68,7 @@ namespace ios
       virtual ::file::path get_file_path() const override;
       virtual void set_file_path(const ::file::path & path) override;
 
-      virtual ::status::result open(const ::file::path & path, const ::file::e_open & eopen) override;
+      virtual ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
       virtual filesize seek(filesize uiCount, ::file::e_seek eseek) override;
       virtual void set_size(filesize uiCount) override;

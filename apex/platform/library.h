@@ -79,7 +79,7 @@ namespace apex
 
 
       // impl
-      virtual __result(::apex::application) new_application(const char * pszAppId);
+      virtual __transport(::apex::application) new_application(const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
       
@@ -140,7 +140,7 @@ namespace apex
       }
 
       // impl
-      virtual __result(::apex::application) new_application(const char * pszAppId) override;
+      virtual __transport(::apex::application) new_application(const char * pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;

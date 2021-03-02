@@ -568,7 +568,7 @@ void file_size_table::get_fs_size::write(::file::output_stream & ostream) const
 
 #else
 
-   __throw(not_implemented());
+   __throw(error_not_implemented);
 
 #endif
 
@@ -588,7 +588,7 @@ void file_size_table::get_fs_size::read(::file::input_stream & istream)
 
 #else
 
-   __throw(not_implemented());
+   __throw(error_not_implemented);
 
 #endif
 

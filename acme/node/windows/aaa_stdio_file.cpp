@@ -28,7 +28,7 @@ namespace windows
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
+   ::extended::status stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
 
    {
 
@@ -372,7 +372,7 @@ namespace windows
 
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
 
       return nullptr;
 
@@ -384,7 +384,7 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
    void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -392,7 +392,7 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(not_supported_exception());
+      __throw(error_not_supported);
    }
 
 

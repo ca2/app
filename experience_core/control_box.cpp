@@ -49,18 +49,18 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         color32_t crBackground;
+         ::color::color crBackground;
 
          if(get_top_level()->frame_is_transparent())
          {
 
-            crBackground = argb(90,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+            crBackground = argb(90, m_colorBackground.m_result.red, m_colorBackground.m_result.green, m_colorBackground.m_result.blue);
 
          }
          else
          {
 
-            crBackground = m_colorBackground;
+            crBackground = m_colorBackground.m_result;
 
          }
 

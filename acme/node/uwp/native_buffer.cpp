@@ -253,7 +253,7 @@ namespace uwp
    }
 
 
-   ::status::result native_buffer::open(const ::file::path & path, const ::file::e_open & eopenParam)
+   ::extended::status native_buffer::open(const ::file::path & path, const ::file::e_open & eopenParam)
    {
 
       ::file::e_open eopen(eopenParam);
@@ -288,7 +288,7 @@ namespace uwp
    }
 
 
-   ::status::result native_buffer::open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
+   ::extended::status native_buffer::open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
    {
 
       ::file::e_open eopen(efileopenParam);
@@ -511,7 +511,7 @@ namespace uwp
       if (u != nCount)
       {
 
-         __throw(io_exception());
+         __throw(error_io);
 
       }
 

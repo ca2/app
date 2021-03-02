@@ -123,7 +123,7 @@ void font_department::finalize()
 }
 
 
-void font_department::defer_create_font_enumeration(::promise::subject * psubject)
+void font_department::defer_create_font_enumeration(::subject::subject * psubject)
 {
 
    if (m_pfontenumeration.is_null())

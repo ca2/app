@@ -85,7 +85,7 @@ namespace ios2
    {
       if(m_hdc != nullptr)
       {
-         __throw(todo());
+         __throw(todo);
 //         ::DeleteDC(m_hdc);
          m_hdc = nullptr;
       }

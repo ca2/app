@@ -49,6 +49,8 @@ public: // re-implementations only
 simple_toolbar::simple_toolbar()
 {
 
+   m_bStyleFlat = true;
+
    m_econtroltype = ::user::e_control_type_toolbar;
 
    m_iImageSpacing = -1;
@@ -200,7 +202,8 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (GetStyle() & TBSTYLE_FLAT)
+   //if (GetStyle() & TBSTYLE_FLAT)
+   if (m_bStyleFlat)
    {
 
       sizeResult.cy += 2;
@@ -209,7 +212,7 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 #endif
 
@@ -1074,7 +1077,7 @@ void simple_toolbar::SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & 
 //      VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
 //      VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
 //#else
-//      //__throw(todo());
+//      //__throw(todo);
 //#endif
 //
 //      Invalidate();   // just to be nice if called when toolbar is visible
@@ -1772,7 +1775,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
    ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
-   __throw(todo());
+   __throw(todo);
 
    //auto pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
 
@@ -1787,7 +1790,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
 #else
 
-   __throw(todo());
+   __throw(todo);
 
 #endif
 

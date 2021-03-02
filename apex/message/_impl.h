@@ -39,3 +39,18 @@
 
 
 
+namespace message
+{
+
+
+   inline void handler::operator()(::message::message* pmessage) const { (*m_p)(pmessage); }
+
+
+   inline bool handler::should_run_async() const { return m_p->should_run_async(); }
+
+
+
+} // namespace message
+
+
+

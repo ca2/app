@@ -22,7 +22,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::handle(const ::promise::routine & routine, bool bSync)
+::e_status handler_manager::handle(const ::routine & routine, bool bSync)
 {
 
    if (bSync)
@@ -41,7 +41,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::synchronization_object(const ::promise::routine & routine)
+::e_status handler_manager::synchronization_object(const ::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
@@ -75,7 +75,7 @@ handler_manager::~handler_manager()
 
 
 
-::e_status handler_manager::async(const ::promise::routine & routine)
+::e_status handler_manager::async(const ::routine & routine)
 {
 
    {
@@ -109,7 +109,7 @@ handler_manager::~handler_manager()
 }
 
 
-::promise::routine handler_manager::pick_new_task()
+::routine handler_manager::pick_new_task()
 {
 
    synchronization_lock synchronizationlock(mutex());

@@ -5,22 +5,22 @@ namespace exception
 {
 
 
-   class CLASS_DECL_ACME exception :
-      public matter
+   class CLASS_DECL_ACME exception
    {
    public:
 
 
-      static bool             s_bDoStackTrace;
+      ::e_status              m_estatus;
 
-
+      //enum_exception          m_eexception;
       bool                    m_bDumpBackTrace;
       __pointer(callstack)    m_pcallstack;
       bool                    m_bHandled;
       bool                    m_bContinue;
-      const char *            m_pszMessage;
-      const char *            m_pszException;
-
+      string                  m_strMessage;
+      string                  m_strException;
+      HRESULT                 m_hresult;
+      
       // A exception class is meant to be a small utility/tool class.
       // m_bLog -> too much managing (micro-managing and also big-managing)
       // from utility/tool small class of the Logging System.
@@ -28,20 +28,20 @@ namespace exception
       // Log can be supressed or translated at optional middle-stack handlers.
       // bool        m_bLog;
 
-      const char *            m_pszFile;
+      string                  m_strFile;
       int                     m_iLine;
-      ::e_status              m_estatus;
-      int                     m_iLastError;
-      int                     m_iErr;
+      ::u32                   m_uLastError;
+      int                     m_iErrNo;
 
 
-      exception(const char * pszMessage = nullptr, const ::e_status & estatus = error_exception, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      static bool             s_bDoStackTrace;
+
+
+      exception();
+      exception(const ::e_status& estatus, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 
-      const char * cat_message(const char * pszMessage);
-      const char * cat_exception(const char * pszException);
-      const char * set_file(const char * pszFile);
 
       //virtual const char * what () const noexcept;
       static void exception_enable_stack_trace(bool bEnable);
@@ -101,7 +101,7 @@ public:
 
 
 
-#include "result.h"
+//#include "result.h"
 
 
 
@@ -117,21 +117,83 @@ inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
 }
 
 
-class CLASS_DECL_ACME status_exception :
+//class CLASS_DECL_ACME status_exception :
+//   public ::exception::exception
+//{
+//public:
+//
+//
+//   status_exception(const ::e_status & estatus, const char * pszStatus = nullptr) :
+//      ::exception::exception(pszStatus, estatus)
+//   {
+//
+//   }
+//   virtual ~status_exception(){}
+//
+//
+//};
+//
+
+
+using exception_array = ::array < ::exception::exception >;
+
+
+#ifdef WINDOWS
+
+
+class CLASS_DECL_ACME win32_exception :
    public ::exception::exception
 {
 public:
 
 
-   status_exception(const ::e_status & estatus, const char * pszStatus = nullptr) :
-      ::exception::exception(pszStatus, estatus)
+   win32_exception(::u32 uLastError) :
+      exception(error_win32)
    {
 
+      m_uLastError = uLastError;
+
    }
-   virtual ~status_exception(){}
 
 
 };
 
 
+#endif
+
+
+
+class CLASS_DECL_ACME assert_exception :
+   public ::exception::exception
+{
+public:
+
+
+   assert_exception(const char* pszFileName, int iLine) :
+      ::exception::exception(error_failed)
+   {
+
+      m_strMessage.Format("Assert Exception at file \"%s\", line %d", pszFileName, iLine);
+
+   }
+
+
+};
+
+
+
+class CLASS_DECL_ACME what_exclamation_exclamation :
+   public ::exception::exception
+{
+public:
+
+
+   what_exclamation_exclamation(const char* pszMessage) :
+      ::exception::exception(error_what_exclamation_exclamation, pszMessage)
+   {
+
+   }
+
+
+};
 

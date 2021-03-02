@@ -13,6 +13,7 @@ namespace user
    public:
 
 
+      //__pointer(::future < enum_dialog_result >) m_pprocess;
       bool                             m_bOsUserThemeColorModified;
       bool                             m_bInvalidated;
       string_array                     m_stra;
@@ -31,6 +32,8 @@ namespace user
       int                              m_iButtonTop;
       int                              m_iButtonHeight;
       int                              m_iButtonWidth;
+
+      __pointer(still)                 m_pstill;
 
       //XftFont * m_pfont;
       //XftDraw * m_pdraw;
@@ -72,7 +75,8 @@ namespace user
       int                              m_iResult;
 
 
-      message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      //message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      message_box();
       virtual ~message_box();
 
 
@@ -89,6 +93,13 @@ namespace user
 
       DECL_GEN_SIGNAL(on_message_create);
 
+
+      virtual ::e_status show(const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox);
+
+   protected:
+      void do_show();
+   public:
+
       //GC create_gc();
 
       virtual void invalidate();
@@ -99,7 +110,7 @@ namespace user
 
       //void call_expose(Display * pdisplay);
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -113,7 +124,7 @@ namespace user
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      int show();
+      
 
       void on_show();
 
@@ -158,7 +169,7 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA ::e_status os_message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const promise::process & process = ::promise::process());
+////CLASS_DECL_AURA ::e_status os_message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
 //
 //
 //

@@ -89,7 +89,7 @@ namespace datetime
                }
                else
                {
-                  __throw(not_implemented());
+                  __throw(error_not_implemented);
                }
                strNumber.Empty();
                strText1.Empty();

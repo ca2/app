@@ -13,6 +13,11 @@ namespace user
    {
 
       set_layer(LAYERED_USER_FRAME, this);
+      
+      m_bSnapToBars = false;
+      m_bAddToTitle = false;
+      m_bPrefixTitle = false;
+
       m_bDerivedHeight = false;
       m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
@@ -332,7 +337,7 @@ namespace user
 
 
 
-   void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)

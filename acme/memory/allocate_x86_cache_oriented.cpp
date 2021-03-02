@@ -128,7 +128,7 @@ public:
       if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((byte *)m_p) + m_iMaxSize))
       {
          // freeing memory in palace garden (not supposed to allocated memory in these places as they would cause a cache fault)
-         __throw(invalid_argument_exception());
+         __throw(error_invalid_argument);
       }
       else if(p < m_ba || p > &m_ba[m_iCurPos])
       {
@@ -170,7 +170,7 @@ CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolInde
    if(iPoolIndex < 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
       return false;
 
@@ -179,7 +179,7 @@ CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolInde
    if(iPoolIndex >= MAX_PROC_CACHE_ORIENTED_MEM_POOL)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
       return false;
    }

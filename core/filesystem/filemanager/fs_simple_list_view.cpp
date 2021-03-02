@@ -202,7 +202,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+         void list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
          {
 
             simple_list_view::on_subject(psubject, pcontext);

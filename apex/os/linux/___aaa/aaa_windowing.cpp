@@ -4175,7 +4175,7 @@ namespace user
    __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       return nullptr;
 

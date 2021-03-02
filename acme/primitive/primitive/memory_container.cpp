@@ -86,7 +86,7 @@ void memory_container::set_size(memsize dwNewLength)
          if(!m_pmemory->set_size(dwNewLength))
          {
 
-            __throw(memory_exception());
+            __throw(error_no_memory);
 
          }
 
@@ -100,7 +100,7 @@ void memory_container::set_size(memsize dwNewLength)
    if(!m_pmemory->set_size(dwNewLength))
    {
 
-      __throw(memory_exception());
+      __throw(error_no_memory);
 
    }
 
@@ -115,7 +115,7 @@ void memory_container::create_default_memory()
    if (!m_pmemory)
    {
 
-      __throw(memory_exception());
+      __throw(error_no_memory);
 
    }
 

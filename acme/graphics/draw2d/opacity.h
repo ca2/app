@@ -23,8 +23,8 @@ public:
    opacity(INTEGRAL i) { m_bAlpha = byte_clip(i); }
 
 
-   double get_opacity_rate() { return m_bAlpha / 255.; }
-   byte get_alpha() { return m_bAlpha; }
+   double get_opacity_rate() const { return m_bAlpha / 255.; }
+   byte get_alpha() const { return m_bAlpha; }
 
 
    bool is_opaque() const { return m_bAlpha == 255; }

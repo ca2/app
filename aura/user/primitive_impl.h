@@ -165,7 +165,7 @@ virtual bool setWMClass(const char * psz);
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
-      //virtual ::e_status post_routine(const ::promise::routine & routine);
+      //virtual ::e_status post_routine(const ::routine & routine);
 
 
 //#ifdef WINDOWS
@@ -199,16 +199,16 @@ virtual bool setWMClass(const char * psz);
 
 
 
-      virtual u32 GetStyle() const override;
-      virtual u32 GetExStyle() const override;
-      virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
-      virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual u32 GetStyle() const override;
+      //virtual u32 GetExStyle() const override;
+      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
-      virtual ::i32 get_window_long(i32 nIndex) const override;
-      virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
+      //virtual ::i32 get_window_long(i32 nIndex) const override;
+      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual id GetDlgCtrlId() const override;
       virtual id SetDlgCtrlId(::id id) override;

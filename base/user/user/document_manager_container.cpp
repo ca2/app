@@ -60,7 +60,7 @@ namespace user
       if (ptemplate == nullptr)
       {
 
-         __throw(invalid_argument_exception("impact system template should be valid"));
+         __throw(error_invalid_argument, "impact system template should be valid"));
 
          return;
 

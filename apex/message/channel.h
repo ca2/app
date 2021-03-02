@@ -9,11 +9,11 @@ public:
 
    static __pointer(::mutex)                    s_pmutexChannel;
    __pointer(::channel)                         m_pchannel;
-   id_array                                         m_idaHandledCommands;
-   ::message::handler_map                           m_handlermap;
-   ::message::handler_map                           m_handlermapNew;
-   bool                                             m_bNewChannel;
-   ::message::routine_map                           m_routinemap;
+   id_array                                     m_idaHandledCommands;
+   ::message::handler_map                       m_handlermap;
+   ::message::handler_map                       m_handlermapNew;
+   bool                                         m_bNewChannel;
+   ::routine_map                                m_routinemap;
 
 
    channel();
@@ -46,7 +46,7 @@ public:
    //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);
    bool add_handler(const ::id & id, MESSAGE_PRED pred);
 
-   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::promise::handler & handler);
+   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler);
 
 
    virtual void route_message(::message::message * pmessage);

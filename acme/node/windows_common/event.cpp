@@ -53,7 +53,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == NULL)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 
@@ -80,7 +80,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == nullptr)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 

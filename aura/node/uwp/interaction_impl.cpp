@@ -257,7 +257,7 @@ namespace uwp
          ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
       }
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
       return true;
 
@@ -455,7 +455,7 @@ namespace uwp
 
 #else
 
-      __throw(todo());
+      __throw(todo);
 
 #endif
       
@@ -496,7 +496,7 @@ namespace uwp
 #ifdef WINDOWS_DESKTOP
          ASSERT(::is_window(get_handle()));
 #else
-         __throw(todo());
+         __throw(todo);
 #endif
 
          // should also be in the permanent or temporary handle ::map
@@ -600,7 +600,7 @@ namespace uwp
       else
          return ::CallWindowProc(pfnWndProc, get_handle(), nMsg, wParam, lParam);
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 
@@ -736,7 +736,7 @@ namespace uwp
       ASSERT(::is_window((oswindow)get_os_data()));
       return  ::uwp::interaction_impl::from_handle(::GetAncestor((oswindow)get_os_data(), gaFlags));
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
 
 
@@ -766,13 +766,13 @@ namespace uwp
       ASSERT(::is_window((oswindow)get_os_data()));
       return ::AnimateWindow((oswindow)get_os_data(), millis, dwFlags) != false;
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 
    bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
    {
-      __throw(todo());
+      __throw(todo);
 
       //   ASSERT(::is_window((oswindow)get_os_data()));
       //   FLASHWINFO fwi;
@@ -789,7 +789,7 @@ namespace uwp
 
    //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
    //{
-   //   __throw(todo());
+   //   __throw(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
    //   //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != false;
    //}
@@ -797,7 +797,7 @@ namespace uwp
    //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,
    //      ::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
-   //   __throw(todo());
+   //   __throw(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
    //   //return ::UpdateLayeredWindow((oswindow)get_os_data(), WIN_HDC(pDCDst), pptDst, psize,
    //   //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != false;
@@ -806,14 +806,14 @@ namespace uwp
 
    //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
    //{
-   //   __throw(todo());
+   //   __throw(todo);
    //   //ASSERT(::is_window((oswindow)get_os_data()));
    //   //return ::GetLayeredWindowAttributes((oswindow)get_os_data(), pcrKey, pbAlpha, pdwFlags) != false;
    //}
 
    bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    {
-      __throw(todo());
+      __throw(todo);
       //ASSERT(::is_window((oswindow)get_os_data()));
       //return ::PrintWindow((oswindow)get_os_data(), (HDC)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), nFlags) != false;
    }
@@ -822,7 +822,7 @@ namespace uwp
    LRESULT interaction_impl::OnNTCtlColor(WPARAM wParam,LPARAM lParam)
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -845,7 +845,7 @@ namespace uwp
       pWnd->send_message(WM_CANCELMODE);
       pWnd->send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
 
-      __throw(todo());
+      __throw(todo);
       // attempt to cancel capture
       //oswindow hWndCapture = ::GetCapture();
       //if (hWndCapture != nullptr)
@@ -857,7 +857,7 @@ namespace uwp
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*
       application* pApp = &System;
       ASSERT_VALID(pApp);
@@ -904,7 +904,7 @@ namespace uwp
    }
 
 
-   ::e_status interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status interaction_impl::main_async(const ::routine & routine, e_priority epriority)
    {
 
       Windows::UI::Core::CoreDispatcher ^ pdispatcher;
@@ -936,7 +936,7 @@ namespace uwp
 
    void interaction_impl::_002OnDraw(::image * pimage)
    {
-      __throw(todo());
+      __throw(todo);
       //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
@@ -1732,7 +1732,7 @@ return true;
    //::user::interaction *  interaction_impl::GetTopLevelOwner()
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
 
    //   //if (get_handle() == nullptr) // no Window attached
@@ -1751,7 +1751,7 @@ return true;
    //::user::interaction *  interaction_impl::GetParentOwner()
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //if (get_handle() == nullptr) // no Window attached
    //   //   return nullptr;
@@ -1782,7 +1782,7 @@ return true;
    void interaction_impl::ActivateTopParent()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //// special activate logic for floating toolbars and palettes
       //::user::interaction_impl * pActiveWnd = GetForegroundWindow();
@@ -1835,7 +1835,7 @@ return true;
    int interaction_impl::SetScrollPos(int nBar,int nPos,bool bRedraw)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::SetScrollPos(get_handle(), nBar, nPos, bRedraw);
    }
@@ -1843,7 +1843,7 @@ return true;
    int interaction_impl::GetScrollPos(int nBar) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::GetScrollPos(get_handle(), nBar);
    }
@@ -1851,7 +1851,7 @@ return true;
    void interaction_impl::SetScrollRange(int nBar,int nMinPos,int nMaxPos,bool bRedraw)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::SetScrollRange(get_handle(), nBar, nMinPos, nMaxPos, bRedraw);
    }
@@ -1859,7 +1859,7 @@ return true;
    void interaction_impl::GetScrollRange(int nBar,LPINT lpMinPos,LPINT lpMaxPos) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::GetScrollRange(get_handle(), nBar, lpMinPos, lpMaxPos);
    }
@@ -1919,7 +1919,7 @@ return true;
    //void interaction_impl::ScrollWindow(int xAmount,int yAmount,const ::rectangle_i32 & rectangle,const RECTANGLE_I32 * lpClipRect)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
 
@@ -1956,7 +1956,7 @@ return true;
    void interaction_impl::CalcWindowRect(RECTANGLE_I32 * lpClientRect,::u32 nAdjustType)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //u32 dwExStyle = GetExStyle();
       //if (nAdjustType == 0)
@@ -1971,7 +1971,7 @@ return true;
    {
 
 
-      __throw(todo());
+      __throw(todo);
 
 
       //::user::interaction* pParent = get_top_level();
@@ -2185,7 +2185,7 @@ return true;
 
    void interaction_impl::OnSysColorChange()
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       /*      application* pApp = &System;
       if (pApp != nullptr && pApp->GetMainWnd() == this)
@@ -2218,7 +2218,7 @@ return true;
    void interaction_impl::OnDevModeChange(char * lpDeviceName)
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       /*application* pApp = &System;
       if (pApp != nullptr && pApp->GetMainWnd() == this)
       pApp->DevModeChange(lpDeviceName);
@@ -2277,7 +2277,7 @@ return true;
    LRESULT interaction_impl::OnDragList(WPARAM,LPARAM lParam)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //LPDRAGLISTINFO lpInfo = (LPDRAGLISTINFO)lParam;
       //ASSERT(lpInfo != nullptr);
@@ -2426,14 +2426,14 @@ return true;
    {
 
       //lock lock(m_puserinteraction, 2000);
-      __throw(todo());
+      __throw(todo);
 
    }
 
 
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
-      __throw(todo());
+      __throw(todo);
 
       //__pointer(::user::message) pusermessage(pmessage);
 
@@ -2508,7 +2508,7 @@ return true;
    void interaction_impl::OnEnterIdle(::u32 /*nWhy*/,::user::interaction_impl * /*pWho*/)
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //// In some OLE inplace active scenarios, OLE will post a
@@ -2578,7 +2578,7 @@ return true;
       //return true;
 
 
-      __throw(todo());
+      __throw(todo);
 
 
    }
@@ -2587,7 +2587,7 @@ return true;
    void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       ////ASSERT(::is_window(get_handle()));
 
@@ -2709,7 +2709,7 @@ return true;
       }
 
 
-      __throw(todo());
+      __throw(todo);
 
 
    }
@@ -2718,7 +2718,7 @@ return true;
    {
 
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -2941,14 +2941,14 @@ return true;
    void interaction_impl::EndModalLoop(id nResult)
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
    //void interaction_impl::EndAllModalLoops(id nResult)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   ASSERT(::is_window(get_handle()));
 
@@ -2990,7 +2990,7 @@ return true;
    bool interaction_impl::SubclassWindow(oswindow hWnd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
    
@@ -2998,7 +2998,7 @@ return true;
    bool interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //ASSERT(pParent != nullptr);
@@ -3016,7 +3016,7 @@ return true;
    oswindow interaction_impl::UnsubclassWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -3033,7 +3033,7 @@ return true;
    bool interaction_impl::IsChild(::user::interaction *  pWnd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //if(WIN_WINDOW(pWnd)->_get_handle() == nullptr)
@@ -3315,7 +3315,7 @@ return true;
    //      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
    //      if(m_puserinteraction == nullptr || m_puserinteraction == this)
    //      {
-   //      __throw(todo());
+   //      __throw(todo);
    //      //::rectangle_i32 rect32;
    //      //::get_window_rect(get_handle(), rect32);
    //      //::copy(lprect, rect32);
@@ -3351,7 +3351,7 @@ return true;
    //   // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
    //   //if(m_puserinteraction == nullptr || m_puserinteraction == this)
    //   {
-   //      // __throw(todo());
+   //      // __throw(todo);
    //      //::rectangle_i32 rect32;
    //      //::get_client_rect(get_handle(), rect32);
    //      //::copy(lprect, rect32);
@@ -3391,7 +3391,7 @@ return true;
    void interaction_impl::_001WindowRestore()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
@@ -3414,7 +3414,7 @@ return true;
    {
 
       return nullptr;
-      __throw(todo());
+      __throw(todo);
 
       //if(!::is_window(get_handle()))
       //   return nullptr;
@@ -3426,7 +3426,7 @@ return true;
    ::i32 interaction_impl::GetWindowLong(int nIndex)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::GetWindowLong(get_handle(), nIndex);
 
@@ -3436,7 +3436,7 @@ return true;
    ::i32 interaction_impl::SetWindowLong(int nIndex,::i32 lValue)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::SetWindowLong(get_handle(), nIndex, lValue);
 
@@ -3567,7 +3567,7 @@ return true;
       message_handler(spbase);
       return spbase->m_lresult;
 
-      //__throw(todo());
+      //__throw(todo);
 
       ////ASSERT(::is_window(get_handle()));
       //return ::SendMessage(get_handle(), message, wParam, lParam);
@@ -3588,7 +3588,7 @@ return true;
    {
 
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -3642,7 +3642,7 @@ return true;
 
    //   return str.get_length();
 
-   //   //__throw(todo());
+   //   //__throw(todo);
 
    //   ////ASSERT(::is_window(get_handle()));
 
@@ -3666,7 +3666,7 @@ return true;
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::DragAcceptFiles(get_handle(), bAccept);
@@ -3694,7 +3694,7 @@ return true;
    ::u32 interaction_impl::ArrangeIconicWindows()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle())); return ::ArrangeIconicWindows(get_handle());
    }
@@ -3703,7 +3703,7 @@ return true;
    bool interaction_impl::BringWindowToTop()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::BringWindowToTop(get_handle()) != false;
 
@@ -3713,7 +3713,7 @@ return true;
    void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT_I32 * lpPoint,::u32 nCount)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount);
@@ -3722,7 +3722,7 @@ return true;
    void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECTANGLE_I32 * lpRect)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (POINT_I32 *)lpRect, 2);
@@ -3731,7 +3731,7 @@ return true;
    ::draw2d::graphics * interaction_impl::GetDC()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::draw2d::graphics_pointer g(get_object());
       //if(get_handle() == nullptr)
@@ -3748,7 +3748,7 @@ return true;
    ::draw2d::graphics * interaction_impl::GetWindowDC()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::draw2d::graphics_pointer g(get_object());
@@ -3759,7 +3759,7 @@ return true;
   bool interaction_impl::ReleaseDC(::image * pimage)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //if(pgraphics == nullptr)
       //   return false;
@@ -3780,7 +3780,7 @@ return true;
    void interaction_impl::UpdateWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::UpdateWindow(get_handle());
    }
@@ -3788,7 +3788,7 @@ return true;
    void interaction_impl::SetRedraw(bool bRedraw)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
@@ -3797,7 +3797,7 @@ return true;
    //bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect,bool bErase)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //return ::GetUpdateRect(get_handle(), lpRect, bErase) != false;
@@ -3806,7 +3806,7 @@ return true;
    //int interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase);
@@ -3815,7 +3815,7 @@ return true;
    //void interaction_impl::Invalidate(bool bErase)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //::InvalidateRect(get_handle(), nullptr, bErase);
@@ -3824,7 +3824,7 @@ return true;
    //void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //::InvalidateRect(get_handle(), lpRect, bErase);
@@ -3833,7 +3833,7 @@ return true;
    //void interaction_impl::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase);
@@ -3842,7 +3842,7 @@ return true;
    //void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //
@@ -3853,7 +3853,7 @@ return true;
    //void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //
@@ -3881,7 +3881,7 @@ return true;
       }
 
 
-      __throw(todo());
+      __throw(todo);
 
 
       //if(!::IsWindowVisible(get_handle()))
@@ -3895,7 +3895,7 @@ return true;
    void interaction_impl::ShowOwnedPopups(bool bShow)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -3947,7 +3947,7 @@ return true;
    ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip,u32 flags)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //::draw2d::graphics_pointer g(get_object());
@@ -3959,7 +3959,7 @@ return true;
    bool interaction_impl::LockWindowUpdate()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -3970,7 +3970,7 @@ return true;
    void interaction_impl::UnlockWindowUpdate()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -3984,7 +3984,7 @@ return true;
 
       m_puserinteraction->m_bNeedRedraw = true;
 
-      //__throw(todo());
+      //__throw(todo);
 
       //if(System.get_twf() == nullptr)
       //   return false;
@@ -4005,7 +4005,7 @@ return true;
    bool interaction_impl::EnableScrollBar(int nSBFlags, ::u32 nArrowFlags)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4018,7 +4018,7 @@ return true;
    bool interaction_impl::DrawAnimatedRects(int idAni,const RECTANGLE_I32 *lprcFrom,const RECTANGLE_I32 *lprcTo)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4029,7 +4029,7 @@ return true;
    bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 * lprc,::u32 uFlags)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4066,7 +4066,7 @@ return true;
    bool interaction_impl::EnableWindow(bool bEnable)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4135,7 +4135,7 @@ return true;
    void interaction_impl::CheckDlgButton(int nIDButton,::u32 nCheck)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4146,7 +4146,7 @@ return true;
    void interaction_impl::CheckRadioButton(int nIDFirstButton,int nIDLastButton,int nIDCheckButton)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4159,7 +4159,7 @@ return true;
    int interaction_impl::DlgDirList(__inout_z char * lpPathSpec, __in int nIDListBox, __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4170,7 +4170,7 @@ return true;
    int interaction_impl::DlgDirListComboBox(__inout_z char * lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in ::u32 nFileType)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4181,7 +4181,7 @@ return true;
    bool interaction_impl::DlgDirSelect(char * lpString, int nSize, int nIDListBox)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4192,7 +4192,7 @@ return true;
    bool interaction_impl::DlgDirSelectComboBox(char * lpString, int nSize, int nIDComboBox)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4205,7 +4205,7 @@ return true;
    void interaction_impl::GetDlgItem(id id,oswindow* phWnd) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //ASSERT(phWnd != nullptr);
@@ -4216,7 +4216,7 @@ return true;
    ::u32 interaction_impl::GetDlgItemInt(int nID,BOOL * lpTrans,bool bSigned) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4229,7 +4229,7 @@ return true;
    int interaction_impl::GetDlgItemText(__in int nID, __out_ecount_part_z(nMaxCount, return + 1) char * lpStr, __in int nMaxCount) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4242,7 +4242,7 @@ return true;
    ::user::interaction_impl * interaction_impl::GetNextDlgGroupItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //return ::uwp::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
@@ -4251,7 +4251,7 @@ return true;
    ::user::interaction_impl * interaction_impl::GetNextDlgTabItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //return ::uwp::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
@@ -4260,7 +4260,7 @@ return true;
    ::u32 interaction_impl::IsDlgButtonChecked(int nIDButton) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4270,7 +4270,7 @@ return true;
    LPARAM interaction_impl::SendDlgItemMessage(int nID,const ::id & id,WPARAM wParam,LPARAM lParam)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4280,7 +4280,7 @@ return true;
    void interaction_impl::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4290,7 +4290,7 @@ return true;
    void interaction_impl::SetDlgItemText(int nID,const char * lpszString)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4302,7 +4302,7 @@ return true;
    //int interaction_impl::ScrollWindowEx(int dx,int dy,const ::rectangle_i32 & rectScroll,const ::rectangle_i32 & rectClip,::draw2d::region* prgnUpdate,RECTANGLE_I32 * lpRectUpdate,::u32 flags)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //
@@ -4314,7 +4314,7 @@ return true;
    void interaction_impl::ShowScrollBar(::u32 nBar,bool bShow)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4325,7 +4325,7 @@ return true;
    ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4336,7 +4336,7 @@ return true;
    ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point,::u32 nFlags)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4350,7 +4350,7 @@ return true;
    ::user::interaction *  interaction_impl::GetTopWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4362,7 +4362,7 @@ return true;
    ::user::interaction *  interaction_impl::GetWindow(::u32 nCmd)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4373,7 +4373,7 @@ return true;
    ::user::interaction *  interaction_impl::GetLastActivePopup()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -4384,7 +4384,7 @@ return true;
    //::user::interaction *  interaction_impl::set_parent(::user::interaction *  pWndNewParent)
    //{
 
-   //   __throw(todo());
+   //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
    //   //return ::uwp::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_os_data()));
@@ -4394,7 +4394,7 @@ return true;
    __pointer(::user::interaction_impl) interaction_impl::WindowFromPoint(POINT_I32 point_i32)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::uwp::interaction_impl::from_handle(::WindowFromPoint(point));
 
@@ -4404,7 +4404,7 @@ return true;
    bool interaction_impl::FlashWindow(bool bInvert)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4415,7 +4415,7 @@ return true;
    bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4426,7 +4426,7 @@ return true;
    oswindow interaction_impl::SetClipboardViewer()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4437,7 +4437,7 @@ return true;
    bool interaction_impl::OpenClipboard()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4449,7 +4449,7 @@ return true;
    ::user::interaction_impl * interaction_impl::GetOpenClipboardWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::uwp::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
@@ -4459,7 +4459,7 @@ return true;
    ::user::interaction_impl * interaction_impl::GetClipboardOwner()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::uwp::interaction_impl::from_handle(::GetClipboardOwner());
 
@@ -4469,7 +4469,7 @@ return true;
    ::user::interaction_impl * interaction_impl::GetClipboardViewer()
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -4477,7 +4477,7 @@ return true;
    point_i32 interaction_impl::GetCaretPos()
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -4485,7 +4485,7 @@ return true;
    void interaction_impl::SetCaretPos(POINT_I32 point_i32)
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -4493,7 +4493,7 @@ return true;
    void interaction_impl::HideCaret()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::HideCaret(get_handle());
 
@@ -4503,7 +4503,7 @@ return true;
    void interaction_impl::ShowCaret()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::ShowCaret(get_handle());
 
@@ -4513,7 +4513,7 @@ return true;
    bool interaction_impl::SetForegroundWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::SetForegroundWindow(get_handle()) != false;
 
@@ -4523,7 +4523,7 @@ return true;
    __pointer(::user::interaction_impl) interaction_impl::GetForegroundWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::uwp::interaction_impl::from_handle(::GetForegroundWindow());
 
@@ -4533,7 +4533,7 @@ return true;
    bool interaction_impl::SendNotifyMessage(const ::id & id,WPARAM wParam,LPARAM lParam)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return ::SendNotifyMessage(get_handle(), message, wParam, lParam) != false;
 
@@ -4543,7 +4543,7 @@ return true;
    HICON interaction_impl::SetIcon(HICON hIcon,bool bBigIcon)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //return (HICON)send_message(WM_SETICON, bBigIcon, (LPARAM)hIcon);
 
@@ -4553,7 +4553,7 @@ return true;
    HICON interaction_impl::GetIcon(bool bBigIcon) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
 
@@ -4567,7 +4567,7 @@ return true;
 
       ASSERT(::is_window(get_handle()));
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
 
    }
@@ -4578,7 +4578,7 @@ return true;
 
       ASSERT(::is_window(get_handle()));
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
 
    }
@@ -4587,7 +4587,7 @@ return true;
    bool interaction_impl::SetWindowContextHelpId(u32 dwContextHelpId)
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -4595,7 +4595,7 @@ return true;
    u32 interaction_impl::GetWindowContextHelpId() const
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -4724,7 +4724,7 @@ return true;
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //__pointer(::user::message) pusermessage(pmessage);
       //if(System.get_cursor() != nullptr
@@ -5109,7 +5109,7 @@ return true;
    void interaction_impl::BeginModalState()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::EnableWindow(get_handle(), false);
 
@@ -5118,7 +5118,7 @@ return true;
    void interaction_impl::EndModalState()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //::EnableWindow(get_handle(), true);
 
@@ -5142,7 +5142,7 @@ return true;
    void interaction_impl::CloseWindow()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -5153,7 +5153,7 @@ return true;
    bool interaction_impl::OpenIcon()
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
       //
@@ -5167,7 +5167,7 @@ return true;
    oswindow interaction_impl::GetSafeOwner_(oswindow hParent,oswindow* pWndTop)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //// get ::user::interaction_impl to start with
       //oswindow hWnd = hParent;
@@ -5253,7 +5253,7 @@ return true;
          if (nMsg == WM_INITDIALOG)
             __post_init_dialog(pinteraction, rectOld, uStyle);
       }
-      catch(const ::exception_pointer pe)
+      catch(const const ::exception::exception & e)
       {
          try
          {
@@ -5458,7 +5458,7 @@ lCallNextHook:
    void interaction_impl::_001OnTriggerMouseInside()
    {
 
-      //__throw(todo());
+      //__throw(todo);
 
 
 //      m_bMouseHover = true;
@@ -5639,7 +5639,7 @@ CLASS_DECL_AURA const char * __register_window_class(::u32 nClassStyle,
    wndcls.lpszMenuName = nullptr;
    wndcls.lpszClassName = lpszName;
    if (!__register_class(&wndcls))
-      __throw(resource_exception());
+      __throw(error_resource);
 
    // return thread-local pointer
    return lpszName;

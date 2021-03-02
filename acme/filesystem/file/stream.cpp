@@ -14,7 +14,7 @@
 }
 
 
-void stream::add_exception(::exception::exception * pexception)
+void stream::add_exception(const ::exception::exception & exception)
 {
 
    set_fail_bit();
@@ -202,7 +202,7 @@ void stream::set_length(filesize len)
    if (len != 0)
    {
 
-      __throw(invalid_argument_exception());
+      __throw(error_invalid_argument);
 
    }
 
@@ -969,7 +969,7 @@ void stream::exchange(const ::id & id, const char * psz)
    if(is_loading())
    {
 
-      throw io_exception();
+      __throw(error_io);
 
    }
    else
@@ -991,7 +991,7 @@ void stream::exchange(const ::id & id, const unichar * wch)
    if(is_loading())
    {
 
-      throw io_exception();
+      __throw(error_io);
 
    }
    else

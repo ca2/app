@@ -191,7 +191,7 @@ namespace windows
    }
 
 
-   ::status::result file_context::move(const ::file::path & pszNew, const ::file::path & psz)
+   ::extended::status file_context::move(const ::file::path & pszNew, const ::file::path & psz)
    {
 
 
@@ -300,7 +300,7 @@ namespace windows
    }
 
 
-   ::status::result file_context::del(const ::file::path & psz)
+   ::extended::status file_context::del(const ::file::path & psz)
    {
 
 
@@ -383,7 +383,7 @@ namespace windows
 
 #elif defined(_UWP)
 
-      __throw(todo());
+      __throw(todo);
 
 #else
 
@@ -659,7 +659,7 @@ namespace windows
    //   }
    //}
 
-   ::status::result file_context::set_status(const ::file::path & path, const ::file::file_status & status)
+   ::extended::status file_context::set_status(const ::file::path & path, const ::file::file_status & status)
    {
 
       wstring pszFileName(path);

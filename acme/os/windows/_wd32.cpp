@@ -105,7 +105,7 @@ u32 get_environment_variable(const wd32char * pszVar, wd32char * pszBuffer, u32 
 
 #ifdef _UWP
 
-   __throw(todo());
+   __throw(todo);
 
 #elif defined(WINDOWS_DESKTOP)
 

@@ -492,7 +492,7 @@ int GetVersion_ex1()
 ////   if (!GetVersionEx(&osversioninfo))
 ////      return 0;
 ////
-////   __throw(todo());
+////   __throw(todo);
 ////
 ////   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion >= 6 && osversioninfo.dwMinorVersion >= 2;
 ////

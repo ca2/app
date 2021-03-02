@@ -135,7 +135,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
          DWORD dwError2 = ::GetLastError();
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -205,7 +205,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
          if (err != EEXIST)
          {
 
-            __throw(resource_exception());
+            __throw(error_resource);
 
          }
 
@@ -290,7 +290,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
          const char * pszError = strerror(iErr);
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -394,7 +394,7 @@ get_existing:
       if(m_semid < 0)
       {
 
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -683,7 +683,7 @@ synchronization_result mutex::wait(const duration & duration)
          if (errno == ETIMEDOUT)
          {
 
-            return synchronization_result(synchronization_result::Timeout);
+            return synchronization_result(synchronization_result::time_out);
 
          }
 
@@ -845,7 +845,7 @@ synchronization_result mutex::wait(const duration & duration)
          if(errno == EAGAIN)
          {
 
-            return synchronization_result(synchronization_result::Timeout);
+            return synchronization_result(synchronization_result::time_out);
 
          }
 
@@ -1527,7 +1527,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
       {
 
          //__throw(resource_exception(papp,"failed to create named mutex"));
-         __throw(resource_exception());
+         __throw(error_resource);
 
       }
 
@@ -1584,7 +1584,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
    if (iFd < 0)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 

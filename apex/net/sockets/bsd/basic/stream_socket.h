@@ -39,7 +39,7 @@ namespace sockets
       bool Ready();
 
       /** set timeout to use for connection attempt.
-      \lparam x Timeout in seconds */
+      \lparam x time_out in seconds */
       void SetConnectTimeout(i32 x);
 
       /** Return number of seconds to wait for a connection.

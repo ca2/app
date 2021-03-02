@@ -6,7 +6,7 @@ namespace apex
 
 
    template < class APP >
-   __result(::apex::application) single_application_library < APP > ::new_application(const char * pszAppId)
+   __transport(::apex::application) single_application_library < APP > ::new_application(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -154,7 +154,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //     ASSERT(false);
 //
-//     __throw(invalid_argument_exception());
+//     __throw(error_invalid_argument);
 //
 //  }
 //
@@ -242,7 +242,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //     ASSERT(false);
 //
-//     __throw(invalid_argument_exception());
+//     __throw(error_invalid_argument);
 //
 //  }
 //

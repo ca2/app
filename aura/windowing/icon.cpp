@@ -48,7 +48,7 @@ namespace windowing
    ::e_status icon::load_file(string strPath)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
 
       return false;
 
@@ -105,7 +105,7 @@ namespace windowing
    image_pointer icon::get_image(const concrete < ::size_i32 > & size)
    {
 
-      __throw(interface_only_exception());
+      __throw(error_interface_only);
       
       return nullptr;
 

@@ -984,7 +984,7 @@ namespace macos
     {
     UNREFERENCED_PARAMETER(dwData);
     UNREFERENCED_PARAMETER(nCmd);
-    __throw(not_implemented());
+    __throw(error_not_implemented);
 
     application* pApp = &System;
     ASSERT_VALID(pApp);
@@ -1635,7 +1635,7 @@ namespace macos
 //
 //      // only OLE controls and permanent windows will get reflected msgs
 //      ASSERT(pWnd != nullptr);
-//      __throw(todo());
+//      __throw(todo);
 //      //return pWnd->SendChildNotifyLastMsg(pResult);
 //
 //      return false;
@@ -1752,7 +1752,7 @@ namespace macos
 //
 //   void interaction_impl::OnSysColorChange()
 //   {
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //      /*      application* pApp = &System;
 //       if (pApp != nullptr && pApp->GetMainWnd() == this)
@@ -1785,7 +1785,7 @@ namespace macos
    /*   void interaction_impl::OnDevModeChange(__in char * lpDeviceName)
     {
     UNREFERENCED_PARAMETER(lpDeviceName);
-    __throw(not_implemented());
+    __throw(error_not_implemented);
     application* pApp = &System;
     if (pApp != nullptr && pApp->GetMainWnd() == this)
     pApp->DevModeChange(lpDeviceName);
@@ -1832,7 +1832,7 @@ namespace macos
 //   LRESULT interaction_impl::OnDragList(WPARAM, LPARAM lparam)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //
 //      //      LPDRAGLISTINFO lpInfo = (LPDRAGLISTINFO)lparam;
 //      //      ASSERT(lpInfo != nullptr);
@@ -2039,7 +2039,7 @@ namespace macos
    void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
@@ -2117,14 +2117,14 @@ namespace macos
 
       //lock lock(m_puserinteraction, 2000);
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
 
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      __pointer(::user::message) pusermessage(pmessage);
       //
       //      if(pusermessage->m_wparam == nullptr)
@@ -2205,7 +2205,7 @@ namespace macos
 //      // that only one was really sent and dispatched.
 //      {
 //         //         MESSAGE msg;
-//         __throw(not_implemented());
+//         __throw(error_not_implemented);
 //         //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, PM_REMOVE))
 //         //while (PeekMessage(&msg, ::caNULL, WM_ENTERIDLE, WM_ENTERIDLE, true))
 //         // DispatchMessage(&msg);
@@ -2221,7 +2221,7 @@ namespace macos
 //      if (pWnd->SendChildNotifyLastMsg(&lResult))
 //         return (HBRUSH)lResult;     // eat it
 //      return (HBRUSH)Default();
-      __throw(todo());
+      __throw(todo);
       return nullptr;
    }
 
@@ -2234,7 +2234,7 @@ namespace macos
 //         HBRUSH hbrGray, color32_t clrText)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //      if (hDC == nullptr)
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
@@ -2274,7 +2274,7 @@ namespace macos
 
    void interaction_impl::CenterWindow(::user::interaction *  pAlternateOwner)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
    }
 
 //   bool interaction_impl::CheckAutoCenter()
@@ -2312,7 +2312,7 @@ namespace macos
       // cleanup
       if (lpResource != nullptr && hResource != nullptr)
       {
-         __throw(not_implemented());
+         __throw(error_not_implemented);
          //         UnlockResource(hResource);
       }
       return bResult;
@@ -2320,7 +2320,7 @@ namespace macos
 
    bool interaction_impl::ExecuteDlgInit(LPVOID lpResource)
    {
-      __throw(not_implemented());
+      __throw(error_not_implemented);
    }
 
    void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
@@ -2395,14 +2395,14 @@ namespace macos
       // allow any other subclassing to occur
       pre_subclass_window();
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
    }
 
    oswindow interaction_impl::UnsubclassWindow()
    {
       ASSERT(::is_window(get_handle()));
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      // set WNDPROC back to original value
       //      WNDPROC* lplpfn = GetSuperWndProcAddr();
       //      SetWindowLongPtr(get_handle(), GWLP_WNDPROC, (iptr)*lplpfn);
@@ -2717,7 +2717,7 @@ namespace macos
 //   bool interaction_impl::DragDetect(const ::point & point) const
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //      return true;
 //
@@ -2737,7 +2737,7 @@ namespace macos
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2753,7 +2753,7 @@ namespace macos
    ::u32 interaction_impl::ArrangeIconicWindows()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2761,7 +2761,7 @@ namespace macos
    i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2769,7 +2769,7 @@ namespace macos
    i32 interaction_impl::GetWindowRgn(HRGN hRgn)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2806,7 +2806,7 @@ namespace macos
 //   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //   }
 //
@@ -2814,7 +2814,7 @@ namespace macos
 //   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //   }
 //
@@ -2853,7 +2853,7 @@ namespace macos
    void interaction_impl::UpdateWindow()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2861,7 +2861,7 @@ namespace macos
    void interaction_impl::SetRedraw(bool bRedraw)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2869,7 +2869,7 @@ namespace macos
    bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2877,7 +2877,7 @@ namespace macos
    i32 interaction_impl::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2893,7 +2893,7 @@ namespace macos
    void interaction_impl::InvalidateRect(const ::rect & rect, bool bErase)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2901,7 +2901,7 @@ namespace macos
    void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2909,7 +2909,7 @@ namespace macos
    void interaction_impl::ValidateRect(const ::rect & rect)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2917,7 +2917,7 @@ namespace macos
    void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -2966,7 +2966,7 @@ namespace macos
    void interaction_impl::ShowOwnedPopups(bool bShow)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3034,7 +3034,7 @@ namespace macos
 //   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip, ::u32 flags)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //   }
 
@@ -3042,7 +3042,7 @@ namespace macos
    bool interaction_impl::LockWindowUpdate()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3050,7 +3050,7 @@ namespace macos
    void interaction_impl::UnlockWindowUpdate()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3183,7 +3183,7 @@ namespace macos
 //   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 * lprcTo)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //   }
 
@@ -3191,7 +3191,7 @@ namespace macos
    bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::u32 uFlags)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
       return false;
 
@@ -3343,7 +3343,7 @@ namespace macos
    void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3351,7 +3351,7 @@ namespace macos
    void interaction_impl::CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3359,7 +3359,7 @@ namespace macos
    i32 interaction_impl::DlgDirList(char * lpPathSpec, i32 nIDListBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3367,7 +3367,7 @@ namespace macos
    i32 interaction_impl::DlgDirListComboBox(char * lpPathSpec, i32 nIDComboBox, i32 nIDStaticPath, ::u32 nFileType)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3375,7 +3375,7 @@ namespace macos
    bool interaction_impl::DlgDirSelect(char * lpString, i32 nSize, i32 nIDListBox)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3383,7 +3383,7 @@ namespace macos
    bool interaction_impl::DlgDirSelectComboBox(char * lpString, i32 nSize, i32 nIDComboBox)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3391,7 +3391,7 @@ namespace macos
    ::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3399,7 +3399,7 @@ namespace macos
    ::user::interaction * interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious) const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3407,7 +3407,7 @@ namespace macos
    ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3415,7 +3415,7 @@ namespace macos
    LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3423,7 +3423,7 @@ namespace macos
    void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3431,7 +3431,7 @@ namespace macos
    void interaction_impl::SetDlgItemText(i32 nID, const char * lpszString)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3439,7 +3439,7 @@ namespace macos
    i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3447,7 +3447,7 @@ namespace macos
    void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3455,7 +3455,7 @@ namespace macos
    ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point & point)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3463,7 +3463,7 @@ namespace macos
    ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3503,7 +3503,7 @@ namespace macos
    ::user::interaction *  interaction_impl::GetLastActivePopup()
    {
 
-      __throw(todo());
+      __throw(todo);
 
    }
 
@@ -3528,7 +3528,7 @@ namespace macos
    ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT32 point)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
 
    }
 
@@ -3536,7 +3536,7 @@ namespace macos
    bool interaction_impl::FlashWindow(bool bInvert)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::FlashWindow(get_handle(), bInvert) != false;
 
@@ -3545,7 +3545,7 @@ namespace macos
    bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 
@@ -3554,7 +3554,7 @@ namespace macos
    oswindow interaction_impl::SetClipboardViewer()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::SetClipboardViewer(get_handle());
 
@@ -3563,7 +3563,7 @@ namespace macos
    bool interaction_impl::OpenClipboard()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::OpenClipboard(get_handle()) != false;
 
@@ -3572,7 +3572,7 @@ namespace macos
    ::user::interaction * PASCAL interaction_impl::GetOpenClipboardWindow()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      return ::macos::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    }
@@ -3580,7 +3580,7 @@ namespace macos
    ::user::interaction * PASCAL interaction_impl::GetClipboardOwner()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      return ::macos::interaction_impl::from_handle(::GetClipboardOwner());
 
    }
@@ -3588,7 +3588,7 @@ namespace macos
    ::user::interaction * PASCAL interaction_impl::GetClipboardViewer()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      return ::macos::interaction_impl::from_handle(::GetClipboardViewer());
 
    }
@@ -3598,7 +3598,7 @@ namespace macos
    point PASCAL interaction_impl::GetCaretPos()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ::point point;
       //      ::GetCaretPos((POINT32 *)&point); return point;
 
@@ -3607,7 +3607,7 @@ namespace macos
    void PASCAL interaction_impl::SetCaretPos(POINT32 point)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ::SetCaretPos(point.x, point.y);
 
    }
@@ -3615,7 +3615,7 @@ namespace macos
    void interaction_impl::HideCaret()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ::HideCaret(get_handle());
 
    }
@@ -3623,7 +3623,7 @@ namespace macos
    void interaction_impl::ShowCaret()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //    ::ShowCaret(get_handle());
 
    }
@@ -3650,7 +3650,7 @@ namespace macos
 //   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 //
 //   }
@@ -3659,7 +3659,7 @@ namespace macos
 //   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //      ASSERT(::is_window(get_handle()));
 //      //      const_cast < user::interaction * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -3668,7 +3668,7 @@ namespace macos
 //   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //      //      ASSERT(::is_window(get_handle()));
 //      //      const_cast < user::interaction * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -3677,7 +3677,7 @@ namespace macos
    bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 
@@ -3686,7 +3686,7 @@ namespace macos
    ::u32 interaction_impl::GetWindowContextHelpId() const
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::GetWindowContextHelpId(get_handle());
 
@@ -3799,7 +3799,7 @@ namespace macos
 //            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
 //
-//         __throw(not_implemented());
+//         __throw(error_not_implemented);
 //         //         ::SetCursor(nullptr);
 //      }
 //      pusermessage->set_lresult(1);
@@ -4142,7 +4142,7 @@ namespace macos
 //   void interaction_impl::BeginModalState()
 //   {
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //      //::EnableWindow(get_handle(), false);
 //
@@ -4151,7 +4151,7 @@ namespace macos
 //   void interaction_impl::EndModalState()
 //   {
 //
-//      __throw(todo());
+//      __throw(todo);
 //
 //      //::EnableWindow(get_handle(), true);
 //
@@ -4175,7 +4175,7 @@ namespace macos
    void interaction_impl::CloseWindow()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      ::CloseWindow(get_handle());
 
@@ -4184,7 +4184,7 @@ namespace macos
    bool interaction_impl::OpenIcon()
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
       //      return ::OpenIcon(get_handle()) != false;
 
@@ -4202,7 +4202,7 @@ namespace macos
 //   LRESULT CALLBACK __cbt_filter_hook(i32 code, WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      __throw(not_implemented());
+//      __throw(error_not_implemented);
 //
 //   }
 //
@@ -4230,7 +4230,7 @@ namespace macos
    void interaction_impl::_001OnTriggerMouseInside()
    {
 
-      //__throw(not_implemented());
+      //__throw(error_not_implemented);
       //      m_bMouseHover = true;
       //      TRACKMOUSEEVENT tme = { sizeof(tme) };
       //      tme.dwFlags = TME_LEAVE;
@@ -5390,7 +5390,7 @@ namespace macos
    __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction * pWndOther)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //   ASSERT(pWnd != nullptr);
       //
       //   // m_puserinteraction->send WM_ACTIVATETOPLEVEL when top-level parents change
@@ -5421,7 +5421,7 @@ namespace macos
    __handle_set_cursor(::user::interaction * pWnd, ::u32 nHitTest, ::u32 nMsg)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //   if (nHitTest == HTERROR &&
       //      (nMsg == e_message_left_button_down || nMsg == e_message_middle_button_down ||
       //      nMsg == e_message_right_button_down))
@@ -5449,7 +5449,7 @@ namespace macos
    __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam)
    {
 
-      __throw(not_implemented());
+      __throw(error_not_implemented);
       //   WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
       //   ASSERT(oldWndProc != nullptr);
       //

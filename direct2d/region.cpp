@@ -24,7 +24,7 @@ namespace draw2d_direct2d
    int region::GetRegionData(LPRGNDATA lpRgnData, int nDataSize) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //   ASSERT(get_os_data() != nullptr); return (int)::GetRegionData((HRGN)get_os_data(), nDataSize, lpRgnData);
 
@@ -32,7 +32,7 @@ namespace draw2d_direct2d
    void region::SetRectRgn(int x1, int y1, int x2, int y2)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(get_os_data() != nullptr); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2);
    }
@@ -40,7 +40,7 @@ namespace draw2d_direct2d
    void region::SetRectRgn(const ::rectangle_i32 & rectangle)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //   ::SetRectRgn((HRGN)get_os_data(), rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
    }
@@ -48,7 +48,7 @@ namespace draw2d_direct2d
    int region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int nCombineMode)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(get_os_data() != nullptr); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgn1->get_os_data(),
       //(HRGN)pRgn2->get_os_data(), nCombineMode);
@@ -56,7 +56,7 @@ namespace draw2d_direct2d
    int region::CopyRgn(const ::draw2d::region* pRgnSrc)
    {
 
-      __throw(todo());
+      __throw(todo);
 
       //ASSERT(get_os_data() != nullptr); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgnSrc->get_os_data(), nullptr, RGN_COPY);
    }
@@ -64,7 +64,7 @@ namespace draw2d_direct2d
    bool region::EqualRgn(const ::draw2d::region* pRgn) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //   ASSERT(get_os_data() != nullptr);
@@ -76,7 +76,7 @@ namespace draw2d_direct2d
    int region::OffsetRgn(int x, int y)
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y);
@@ -84,7 +84,7 @@ namespace draw2d_direct2d
    int region::OffsetRgn(const ::point_i32 & point)
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y);
@@ -92,7 +92,7 @@ namespace draw2d_direct2d
    int region::GetRgnBox(RECTANGLE_I32 * prectangle) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //ASSERT(get_os_data() != nullptr); return ::GetRgnBox((HRGN)get_os_data(), rectangle);
@@ -127,7 +127,7 @@ namespace draw2d_direct2d
 
       return contains(pgraphics, point.x, point.y);
 
-      //__throw(todo());
+      //__throw(todo);
 
 
       //return ::PtInRegion((HRGN)get_os_data(), point.x, point.y);
@@ -143,7 +143,7 @@ namespace draw2d_direct2d
    bool region::RectInRegion(const ::rectangle_i32 & rectangle) const
    {
 
-      __throw(todo());
+      __throw(todo);
 
 
       //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rectangle);

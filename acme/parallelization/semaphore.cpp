@@ -37,7 +37,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    if (m_hsync == nullptr)
    {
 
-      __throw(resource_exception());
+      __throw(error_resource);
 
    }
 
@@ -62,14 +62,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
 
          if (errno != EEXIST)
-            __throw(resource_exception());
+            __throw(error_resource);
 
          // We're not first.  Try again
 
          m_psem = sem_open(m_strName,0);
 
          if (m_psem == SEM_FAILED)
-            __throw(resource_exception());
+            __throw(error_resource);
 
       }
 

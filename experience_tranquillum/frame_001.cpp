@@ -204,11 +204,11 @@ SizingNone:;
 
                auto estyle = pframewindow->m_estyle;
 
-               ::color::color    colorMoveableBorder;
+               with_status < ::color::color > colorMoveableBorder;
 
-               ::color::color    colorMoveableBorderHilight;
+               with_status < ::color::color > colorMoveableBorderHilight;
 
-               ::color::color    colorMoveableBorderShadow;
+               with_status < ::color::color > colorMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -239,9 +239,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
-
-                  imaging.color_blend(pgraphics, rectangle, colorMoveableBorder, 127);
+                  pgraphics->color_blend(rectangle, colorMoveableBorder.m_result, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -281,9 +279,10 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
+                  //class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, colorMoveableBorder, 127);
+                  //imaging.color_blend(
+                     pgraphics->color_blend(rectangle, colorMoveableBorder, 127);
 
                }
 
@@ -1168,11 +1167,11 @@ SizingNone:;
 
                //rectangle.bottom++;
 
-               pgraphics->draw_3drect(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
 
                rectangle.deflate(1, 1);
 
-               pgraphics->draw_3drect(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
 
                rectangle.deflate(1, 1);
 
@@ -1180,7 +1179,7 @@ SizingNone:;
 
                //rectangle.bottom--;
 
-               pgraphics->fill_rectangle(rectangle, crButtonFace | 0xff000000);
+               pgraphics->fill_rectangle(rectangle, opaque(crButtonFace));
 
             }
 

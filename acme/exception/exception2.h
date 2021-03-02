@@ -22,11 +22,11 @@ inline errno_t c_runtime_error_check(errno_t error)
     switch(error)
     {
         case ENOMEM:
-            __throw(memory_exception());
+            __throw(error_no_memory);
             break;
         case EINVAL:
         case ERANGE:
-            __throw(invalid_argument_exception());
+            __throw(error_invalid_argument);
             break;
 #if defined(WINDOWS)
         case STRUNCATE:
@@ -34,7 +34,7 @@ inline errno_t c_runtime_error_check(errno_t error)
         case 0:
             break;
         default:
-            __throw(invalid_argument_exception());
+            __throw(error_invalid_argument);
             break;
     }
     return error;

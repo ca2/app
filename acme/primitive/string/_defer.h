@@ -97,7 +97,7 @@ namespace hex
       else
       {
 
-         __throw(invalid_argument_exception("not hexadecimal digit"));
+         __throw(error_invalid_argument, "not hexadecimal digit");
 
       }
 

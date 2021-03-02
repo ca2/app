@@ -195,11 +195,11 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               color32_t    crMoveableBorder;
+               with_status < ::color::color >    crMoveableBorder;
 
-               color32_t    crMoveableBorderHilight;
+               with_status < ::color::color >    crMoveableBorderHilight;
 
-               color32_t    crMoveableBorderShadow;
+               with_status < ::color::color >    crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -241,7 +241,7 @@ SizingNone:;
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder.m_result, 127);
 
                }
                /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -281,7 +281,7 @@ SizingNone:;
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder.m_result, 127);
 
                }
 
@@ -1155,11 +1155,11 @@ SizingNone:;
 
                auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-               pgraphics->draw_3drect(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
 
                rectangle.deflate(1, 1);
 
-               pgraphics->draw_3drect(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
 
                rectangle.deflate(1, 1);
 
@@ -1167,9 +1167,10 @@ SizingNone:;
 
                //rectangle.bottom--;
 
-               pgraphics->fill_rectangle(rectangle, crButtonFace | 0xff000000);
+               pgraphics->fill_rectangle(rectangle, opaque(crButtonFace));
 
             }
+
 
             void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
             {

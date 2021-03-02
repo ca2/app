@@ -91,7 +91,7 @@ namespace userstack
    }
 
 
-   void view::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       UNREFERENCED_PARAMETER(psubject);
@@ -299,7 +299,7 @@ namespace userstack
       m_oswindowWinutil           =  ::FindWindowW(nullptr, L"::ca2::account::message_wnd::winutil");
       m_oswindowBergedge          =  ::FindWindowW(nullptr, L"::ca2::account::message_wnd::bergedge");
 #else
-      __throw(todo());
+      __throw(todo);
 #endif
    }
 

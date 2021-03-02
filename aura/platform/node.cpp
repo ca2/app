@@ -62,7 +62,7 @@ namespace aura
 //   }
 
 
-//   void node::user_fork(const ::promise::routine & routine)
+//   void node::user_fork(const ::routine & routine)
 //   {
 //
 //#ifdef LINUX

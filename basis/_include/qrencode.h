@@ -288,11 +288,11 @@ typedef struct _QRinput_Struct QRinput_Struct;
 extern QRinput_Struct *QRinput_Struct_new(void);
 
 /**
- * Set parity of structured symbols.
+ * Set eparity of structured symbols.
  * @param s structured input object.
- * @param parity parity of s.
+ * @param eparity eparity of s.
  */
-extern void QRinput_Struct_setParity(QRinput_Struct *s, unsigned char parity);
+extern void QRinput_Struct_setParity(QRinput_Struct *s, unsigned char eparity);
 
 /**
  * Append a QRinput object to the set. QRinput created by QRinput_newMQR()
@@ -314,7 +314,7 @@ extern int QRinput_Struct_appendInput(QRinput_Struct *s, QRinput *input);
 extern void QRinput_Struct_free(QRinput_Struct *s);
 
 /**
- * Split a QRinput to QRinput_Struct. It calculates a parity, set it, then
+ * Split a QRinput to QRinput_Struct. It calculates a eparity, set it, then
  * insert structured-append headers. QRinput created by QRinput_newMQR() will
  * be rejected.
  * @param input input object. Version number and error correction level must be
@@ -329,7 +329,7 @@ extern QRinput_Struct *QRinput_splitQRinputToStruct(QRinput *input);
 
 /**
  * Insert structured-append headers to the input structure. It calculates
- * a parity and set it if the parity is not set yet.
+ * a eparity and set it if the eparity is not set yet.
  * @param s input structure
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.

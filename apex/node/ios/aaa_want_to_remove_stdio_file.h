@@ -31,7 +31,7 @@ namespace ios
 
       void dump(dump_context & dumpcontext) const;
       virtual filesize get_position() const;
-      virtual ::status::result open(const ::file::path & lpszFileName, ::u32 nOpenFlags);
+      virtual ::extended::status open(const ::file::path & lpszFileName, ::u32 nOpenFlags);
       virtual memsize read(void * lpBuf, memsize nCount);
       virtual void write(const void * lpBuf, memsize nCount);
       virtual filesize seek(filesize lOff, ::file::e_seek nFrom);

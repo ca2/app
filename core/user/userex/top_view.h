@@ -23,7 +23,7 @@ namespace userex
 
       virtual void on_create_split_impact() override;
 
-      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) override;
 

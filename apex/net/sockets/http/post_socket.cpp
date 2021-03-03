@@ -36,19 +36,19 @@ namespace sockets
 
       m_emethod = http_method_post;
 
-      single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
+      single_lock lock(&System->sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
 
       for (int i = 0; i < 12; i++)
       {
 
-         char c = System.sockets().m_countHttpPostBoundary++ % 128;
+         char c = System->sockets().m_countHttpPostBoundary++ % 128;
 
          while (!ansi_char_is_alphanumeric((unsigned char)c))
          {
 
-            c = System.sockets().m_countHttpPostBoundary++ % 128;
+            c = System->sockets().m_countHttpPostBoundary++ % 128;
 
          }
 
@@ -56,7 +56,7 @@ namespace sockets
 
       }
 
-      m_boundary += "__" + __str(System.sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + __str(System->sockets().m_countHttpPostBoundary++);
 
    }
 
@@ -145,7 +145,7 @@ namespace sockets
          else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
          {
 
-            __throw(todo("xml"));
+            __throw(todo, "xml");
 
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();

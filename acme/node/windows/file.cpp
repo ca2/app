@@ -594,7 +594,7 @@ namespace windows
 
          }
 
-         auto pnode = System.node();
+         auto pnode = System->node();
 
          // convert times as appropriate
          pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *) &information.ftCreationTime);

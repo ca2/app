@@ -75,8 +75,8 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(System.url().get_script(m_strPath))
-               + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + System->url().url_encode(System->url().get_script(m_strPath))
+               + "&server=" + System->url().url_encode(System->url().get_server(m_strPath));
 
       ::file::e_open eopenAdd;
 
@@ -100,8 +100,8 @@ namespace fs
       if(m_varFile["xmledit"].cast < ::memory_file >() != nullptr)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
-                  + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System->url().url_encode(System->url().get_script(m_varFile["url"]))
+                  + "&server=" + System->url().url_encode(System->url().get_server(m_varFile["url"]));
 
          property_set setRequest;
 
@@ -126,8 +126,8 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
-                  + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + System->url().url_encode(System->url().get_script(m_varFile["url"]))
+                  + "&server=" + System->url().url_encode(System->url().get_server(m_varFile["url"]));
 
          property_set setPut;
 
@@ -137,8 +137,8 @@ namespace fs
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_strPath))
-               + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + System->url().url_encode(System->url().get_script(m_strPath))
+               + "&server=" + System->url().url_encode(System->url().get_server(m_strPath));
 
       property_set set;
 

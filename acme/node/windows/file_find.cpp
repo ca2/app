@@ -213,7 +213,7 @@ namespace windows
       if (m_pFoundInfo != nullptr)
       {
 
-         auto pnode = System.node();
+         auto pnode = System->node();
 
          pnode->file_time_to_time(&refTime.m_time,(filetime_t*)&m_pFoundInfo->ftLastAccessTime);
 
@@ -239,7 +239,7 @@ namespace windows
 
       }
        
-      auto pnode = System.node();
+      auto pnode = System->node();
 
       pnode->file_time_to_time(&refTime.m_time, (filetime_t *)&m_pFoundInfo->ftLastWriteTime);
 
@@ -262,7 +262,7 @@ namespace windows
 
       }
          
-      auto pnode = System.node();
+      auto pnode = System->node();
 
       pnode->file_time_to_time(&refTime.m_time , (filetime_t *)&((LPWIN32_FIND_DATAW)m_pFoundInfo)->ftCreationTime);
       

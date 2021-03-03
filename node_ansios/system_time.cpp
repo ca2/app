@@ -11,7 +11,7 @@
 //{
 //
 //
-//   time_t node::system_time_to_time(const system_time_t &systemtime, i32 nDST)
+//   time_t node::system_time_to_time(const system_time_t Systemtime, i32 nDST)
 //   {
 //
 //

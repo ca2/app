@@ -45,7 +45,7 @@ namespace parallelization
 
       //return s_piaThread2->contains(id);
 
-      return System.get_task(id) != nullptr;
+      return System->get_task(id) != nullptr;
 
    }
 
@@ -53,7 +53,7 @@ namespace parallelization
    bool thread_registered(::task * ptask)
    {
 
-      return System.get_task_id(ptask) != 0;
+      return System->get_task_id(ptask) != 0;
 
    }
 
@@ -61,7 +61,7 @@ namespace parallelization
    void thread_register(ithread_t ithread, ::task * ptask)
    {
 
-      System.set_task(ithread, ptask);
+      System->set_task(ithread, ptask);
 
    }
 
@@ -93,9 +93,9 @@ namespace parallelization
 
       }
 
-      synchronization_lock synchronizationlock(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System->m_mutexTask);
 
-      for (auto & pair : System.m_taskidmap)
+      for (auto & pair : System->m_taskidmap)
       {
 
          try
@@ -126,9 +126,9 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      synchronization_lock synchronizationlock(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System->m_mutexTask);
 
-      for (auto& pair : System.m_taskidmap)
+      for (auto& pair : System->m_taskidmap)
       {
 
          try
@@ -150,9 +150,9 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
-      synchronization_lock synchronizationlock(&System.m_mutexTask);
+      synchronization_lock synchronizationlock(&System->m_mutexTask);
 
-      for (auto& pair : System.m_taskidmap)
+      for (auto& pair : System->m_taskidmap)
       {
 
          try
@@ -183,7 +183,7 @@ namespace parallelization
 
       }
 
-      if (pthread == &System)
+      if (pthread == System)
       {
 
          return nullptr;
@@ -235,7 +235,7 @@ namespace parallelization
 
       }
 
-      auto psystemContext = &System;
+      auto psystemContext = System;
 
       if (psystemContext != pthread && ::is_set(psystemContext))
       {
@@ -270,7 +270,7 @@ bool apex_thread_get_run()
       {
          ////////// and have short life, so it is safe to keep it running
          //return true;
-         return System.thread_get_run();
+         return System->thread_get_run();
 
       }
 
@@ -515,7 +515,7 @@ void set_global_application(::apex::application* papp)
    if (pthread == nullptr)
    {
 
-      return System.get_context_session();
+      return System->get_context_session();
 
    }
 
@@ -588,7 +588,7 @@ bool do_events()
       try
       {
 
-         auto psystem = &System;
+         auto psystem = System;
 
          if (::is_set(psystem))
          {

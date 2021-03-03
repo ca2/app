@@ -49,7 +49,7 @@ block & block::from_base64(const char * psz, strsize iSize) const
    ::str::base64 base64;
 
    base64.decode(*this, psz, iSize);
-   //System.m_pbase64->decode(*this, psz, iSize);
+   //System->m_pbase64->decode(*this, psz, iSize);
 
    return (block &)*this;
 

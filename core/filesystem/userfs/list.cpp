@@ -725,7 +725,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::message::show_window) pshow(pmessage);
 
-      //db_server * pcentral = dynamic_cast < db_server * > (&System.m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast < db_server * > (System.m_psimpledb->db());
       //if (pcentral == nullptr)
       //   return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

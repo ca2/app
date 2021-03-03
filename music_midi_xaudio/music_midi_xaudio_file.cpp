@@ -1004,7 +1004,7 @@ smf_Open_File_Cleanup:
             imedia_time               tkLastDelta = 0 ;
             imedia_time                   tkOnQuarterNoteDelta = 0;
             //   imedia_time               tkLastPositionCB = 0x7fffffff;
-            //CXfplayerApp *pApp = (CXfplayerApp *) &System;
+            //CXfplayerApp *pApp = (CXfplayerApp *) System;
             //ASSERT(pApp != nullptr);
             //CXfplayerDoc *pDoc = (CXfplayerDoc *) pApp->GetPlayingDocument();
             //ASSERT(pDoc != nullptr);

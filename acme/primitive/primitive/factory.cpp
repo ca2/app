@@ -174,7 +174,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   strLibrary = stra.implode("_");
 //
-//   auto plibrary = System.get_library(strLibrary);
+//   auto plibrary = System->get_library(strLibrary);
 //
 //   plibrary->create_factory();
 //

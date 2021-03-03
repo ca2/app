@@ -1102,6 +1102,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="compress\zip\unzip.cpp" />
     <ClCompile Include="compress\zip\zip.cpp" />
     <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="exception\aaa_not_installed.cpp" />
+    <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
     <ClCompile Include="exception\const.cpp" />
@@ -1112,6 +1114,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\dump_output.cpp" />
     <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exception_engine.cpp" />
+    <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
@@ -1680,6 +1683,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="const\timer.h" />
     <ClInclude Include="const\_const.h" />
+    <ClInclude Include="exception\parsing.h" />
     <ClInclude Include="exception\callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
     <ClInclude Include="exception\cancel.h" />

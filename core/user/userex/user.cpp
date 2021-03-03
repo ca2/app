@@ -900,7 +900,7 @@ namespace core
    bool user::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
    {
 
-      //db_server * pcentral = dynamic_cast <db_server *> (&System.m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (System.m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{

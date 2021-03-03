@@ -986,7 +986,7 @@ namespace macos
     UNREFERENCED_PARAMETER(nCmd);
     __throw(error_not_implemented);
 
-    application* pApp = &System;
+    application* pApp = System;
     ASSERT_VALID(pApp);
     if (pApp->m_eHelpType == afxHTMLHelp)
     {
@@ -1754,7 +1754,7 @@ namespace macos
 //   {
 //      __throw(error_not_implemented);
 //
-//      /*      application* pApp = &System;
+//      /*      application* pApp = System;
 //       if (pApp != nullptr && pApp->GetMainWnd() == this)
 //       {
 //       // recolor global brushes used by control bars
@@ -1786,7 +1786,7 @@ namespace macos
     {
     UNREFERENCED_PARAMETER(lpDeviceName);
     __throw(error_not_implemented);
-    application* pApp = &System;
+    application* pApp = System;
     if (pApp != nullptr && pApp->GetMainWnd() == this)
     pApp->DevModeChange(lpDeviceName);
 

@@ -74,7 +74,7 @@ namespace sockets
 
 
       int                           m_iSelectErrno;
-      __pointer(::apex::log)        m_splogger; ///< Registered log class, or nullptr
+      __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
 
 
       base_socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);

@@ -147,39 +147,94 @@ namespace extended
 
       }
 
-      template < typename EXCEPTION >
-      __pointer(EXCEPTION) get_exception()
+
+      bool get_exception(::exception::exception & e, const ::e_status & estatus)
       {
 
-         if (m_pexceptiona.is_null())
+         if (m_estatus == estatus)
          {
 
-            if (::failed(m_estatus))
-            {
+            e = ::exception::exception(m_estatus);
 
-               return __new(::exception::exception(nullptr, m_estatus, get_skip_callstack()));
-
-            }
-
-            return nullptr;
+            return true;
 
          }
 
-         for (auto & pexception : *m_pexceptiona)
+         if (!m_pexceptiona)
          {
 
-            __pointer(EXCEPTION) pe = pexception;
+            return false;
 
-            if (pe.is_set())
+         }
+
+         for (auto & exception : *m_pexceptiona)
+         {
+
+            if (exception.m_estatus == estatus)
             {
 
-               return pe;
+               e = exception;
+
+               return true;
 
             }
 
          }
 
-         return nullptr;
+         return false;
+
+      }
+
+
+      bool get_exit_status(::e_status & estatus) const
+      {
+
+         auto estatusExit = get_greatest_exception_on_range(error_exit_start, error_exit_end);
+
+         if (estatusExit == error_not_found)
+         {
+
+            return false;
+
+         }
+
+         estatus = estatusExit;
+
+         return true;
+
+      }
+
+
+      ::e_status get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
+      {
+
+         ::e_status estatus = ::error_not_found;
+
+         if (m_pexceptiona)
+         {
+
+            for (auto& exception : *m_pexceptiona)
+            {
+
+               if (exception.m_estatus > estatusOpenStart
+                  && exception.m_estatus < estatusOpenEnd)
+               {
+
+                  if (estatus == error_not_found ||
+                     estatus > exception.m_estatus)
+                  {
+
+                     estatus = exception.m_estatus;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+         return estatus;
 
       }
 
@@ -343,6 +398,7 @@ namespace extended
 
       }
 
+
       template < typename TYPE >
       transport(const __pointer(TYPE) & p) :
          ___pointer<T>(p)
@@ -357,6 +413,7 @@ namespace extended
 
       }
 
+
       template < typename TYPE >
       transport(transport&& p) :
          ___pointer<T>(::move(p)),
@@ -366,11 +423,13 @@ namespace extended
 
       }
 
+
       transport(std::nullptr_t) :
          status(::error_failed)
       {
 
       }
+
 
       transport(::enum_status estatus) :
          status(estatus)
@@ -384,54 +443,37 @@ namespace extended
          status(estatus)
       {
 
-         if (succeeded())
+         add(estatus);
+
+      }
+
+
+      transport(const ::exception::exception & e)
+      {
+
+         add(e);
+
+      }
+
+
+      transport(const std::initializer_list < ::exception::exception > &list)
+      {
+
+         for(auto & e : list)
          {
 
-            add(::error_null_result);
+            add(e);
 
          }
 
       }
 
 
-      transport(::exception::exception * pe) :
-         ::extended::status(pe)
+      transport(const ::extended::status & status) :
+         ::extended::status(status)
       {
 
-         if (succeeded())
-         {
-
-            add(::error_exception);
-
-         }
-
-      }
-
-
-      transport(const std::initializer_list < ::exception::exception_pointer > &list) :
-         result(list)
-      {
-
-         if (succeeded())
-         {
-
-            add(::error_exception);
-
-         }
-
-      }
-
-
-      transport(const ::extended::status & result) :
-         ::extended::status(result)
-      {
-
-         if (succeeded())
-         {
-
-            add(::error_null_result);
-
-         }
+           add(::error_null_result);
 
       }
 
@@ -548,6 +590,7 @@ namespace extended
          return *this;
 
       }
+
 
       transport & operator =(const T * p)
       {
@@ -695,7 +738,7 @@ CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exc
 
 
 
-#define rp(T) ::transport < T >
+//#define rp(T) ::transport < T >
 
 
 using unexpected_situation = ::exception::exception;

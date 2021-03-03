@@ -63,7 +63,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
 void os_post_quit();
 
-//extern ::mutex * &System.m_mutexLibrary;
+//extern ::mutex * System.m_mutexLibrary;
 
 
 
@@ -296,7 +296,7 @@ namespace aura
 //   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+//      synchronization_lock synchronizationlock(System.m_mutexLibrary);
 //
 //      string strLibrary(pszLibrary1);
 //
@@ -1068,7 +1068,7 @@ namespace aura
 
       }
 
-      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(System.m_mutexLibrary);
 
       estatus = __construct(m_pdraw2d);
 
@@ -1773,7 +1773,7 @@ namespace aura
       try
       {
 
-         synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+         synchronization_lock synchronizationlock(System.m_mutexLibrary);
 
          if (System.m_mapLibrary["draw2d"].is_set() && System.m_mapLibrary["draw2d"]->is_opened())
          {

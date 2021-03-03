@@ -50,7 +50,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   System.call_subject(id_wallpaper_changed);
+//   System->call_subject(id_wallpaper_changed);
 //
 //}
 //
@@ -58,19 +58,19 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   System.call_subject(id_app_activated);
+//   System->call_subject(id_app_activated);
 //
 //}
 //
 //
 void system_call_update_app_activated()
 {
-   System.process_subject(id_app_activated);
+   System->process_subject(id_app_activated);
 }
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   System.call_subject(id_app_changed_occlusion_state);
+//   System->call_subject(id_app_changed_occlusion_state);
 //
 //}
 
@@ -235,7 +235,7 @@ CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const
 
    }
 
-   System.__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   System->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
@@ -275,7 +275,7 @@ CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const
 
    }
 
-   System.__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+   System->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 
 }
 

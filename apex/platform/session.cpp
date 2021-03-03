@@ -117,7 +117,7 @@ namespace apex
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = System.m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = System->m_bSystemSynchronizedCursor;
 
       }
 
@@ -304,7 +304,7 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      auto pnode = System.node();
+      auto pnode = System->node();
 
       if (!pnode)
       {
@@ -553,7 +553,7 @@ namespace apex
    void session::process_term()
    {
 
-      System.session_remove(m_iEdge);
+      System->session_remove(m_iEdge);
 
    }
 
@@ -589,7 +589,7 @@ namespace apex
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (System.is_console_app())
+      if (System->is_console_app())
       {
 
          return false;
@@ -750,11 +750,11 @@ namespace apex
             if (papp == nullptr)
             {
 
-               if(System.has_property("install")
-                     || System.has_property("uninstall"))
+               if(System->has_property("install")
+                     || System->has_property("uninstall"))
                {
 
-                  ::parallelization::finish(&System);
+                  ::parallelization::finish(System);
 
                }
                else
@@ -762,12 +762,12 @@ namespace apex
 
                   message_box("Could not create requested application: \"" + strApp + "\"");
 
-                  ::count c = System.payload("app").array_get_count();
+                  ::count c = System->payload("app").array_get_count();
 
-                  if (c == 1 && System.payload("app").at(0) == strApp)
+                  if (c == 1 && System->payload("app").at(0) == strApp)
                   {
 
-                     ::parallelization::finish(&System);
+                     ::parallelization::finish(System);
 
                   }
 
@@ -789,13 +789,13 @@ namespace apex
 
                }
 
-               //if (System.is_true("install"))
+               //if (System->is_true("install"))
                if (is_true("install"))
                {
 
                   papp->do_install();
 
-                  System.finalize();
+                  System->finalize();
 
                }
                else
@@ -804,7 +804,7 @@ namespace apex
                   if (!papp->is_system() && !papp->is_session())
                   {
 
-                     System.merge_accumulated_on_open_file(pcreate);
+                     System->merge_accumulated_on_open_file(pcreate);
 
                   }
 
@@ -874,14 +874,14 @@ namespace apex
 
       }
 
-      string strProtocol = System.url().get_protocol(strPathName);
+      string strProtocol = System->url().get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = System.url().get_server(strPathName);
+         strId = System->url().get_server(strPathName);
 
-         string str = System.url().get_object(strPathName);
+         string str = System->url().get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -895,9 +895,9 @@ namespace apex
 
          string_array straApp;
 
-         __throw(todo("filehandler"));
+         __throw(todo, "filehandler");
 
-         //System.filehandler().get_extension_app(straApp, strExtension);
+         //System->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -965,7 +965,7 @@ namespace apex
             // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
             // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
-            handle_exception(pe);
+            handle_exception(e);
 
             //if (!Sys(this).on_run_exception(esp))
             //{
@@ -1288,7 +1288,7 @@ namespace apex
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction = System.ui_from_handle(oswindowCapture);
+   //   __pointer(::user::interaction) pinteraction = System->ui_from_handle(oswindowCapture);
 
    //   if (pinteraction.is_null())
    //   {
@@ -1738,7 +1738,7 @@ namespace apex
    //   if (m_bSystemSynchronizedScreen)
    //   {
 
-   //      return System.get_ui_workspace(pinteraction);
+   //      return System->get_ui_workspace(pinteraction);
 
    //   }
    //   else
@@ -1862,7 +1862,7 @@ ret:
       }
 
       // __throw(todo("interaction"));
-      //if (System.m_bUser)
+      //if (System->m_bUser)
       //{
 
       //   bool bCreateSessionWindow = defer_create_session_frame_window();
@@ -1991,7 +1991,7 @@ ret:
 
       INFO("apex::session::init2 .1");
 
-      if (System.m_bUser)
+      if (System->m_bUser)
       {
 
          //if (!m_paccount)
@@ -2518,7 +2518,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return System.draw2d()->get_cursor(m_ecursorDefault);
+   //   return System->draw2d()->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -2537,10 +2537,10 @@ namespace apex
 
    //   ::apex::session * psession = nullptr;
 
-   //   if(System.m_pbergedgemap == nullptr)
+   //   if(System->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!System.m_pbergedgemap->lookup(0,psession))
+   //   if(!System->m_pbergedgemap->lookup(0,psession))
    //   {
    //      return nullptr;
    //   }
@@ -2717,7 +2717,7 @@ namespace apex
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = System.url().url_decode(str);
+      //      str = System->url().url_decode(str);
 
       //   }
 

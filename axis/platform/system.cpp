@@ -58,7 +58,7 @@ CLASS_DECL_AXIS void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
 void os_post_quit();
 
-//extern ::mutex * &System.m_mutexLibrary;
+//extern ::mutex * System.m_mutexLibrary;
 
 
 

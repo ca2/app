@@ -66,7 +66,7 @@ namespace exception
 //#include "interface_only.h"
 //#include "not_installed.h"
 //#include "not_supported.h"
-//#include "exit.h"
+#include "exit.h"
 //#include "not_licensed.h"
 //#include "temporary.h"
 //#include "installing.h"
@@ -214,7 +214,7 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, __throw(invalid_argument_exception() ))
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, __throw(error_invalid_argument))
 
 #define ASSERT_POINTER(point, type) \
    ASSERT(((point) != nullptr) && __is_valid_address((point), sizeof(type), false))
@@ -260,7 +260,7 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
          strMsg.Format("%s (%s:%d)\n%s", szMsg, __FILE__, __LINE__, szErrorMessage); \
       else \
          strMsg.Format("%s (%s:%d)", szMsg, __FILE__, __LINE__); \
-      System.message_box(strMsg); \
+      System->message_box(strMsg); \
    } while (0)
 #endif //!NNDEBUG
 
@@ -345,7 +345,7 @@ CLASS_DECL_ACME void __dump(const ::matter * pOb);
 //#include "system.h"
 
 
-//#include "parsing.h"
+#include "parsing.h"
 
 
 //#include "invalid_type.h"

@@ -7,7 +7,7 @@
 //
 //#ifdef __DEBUG
 //
-//   *System.m_pdumpcontext << *pobject;
+//   *System->m_pdumpcontext << *pobject;
 //
 //#endif //__DEBUG
 //
@@ -34,7 +34,7 @@
 //
 //#ifdef __DEBUG
 //
-//   *System.m_pdumpcontext << szBuffer;
+//   *System->m_pdumpcontext << szBuffer;
 //
 //#endif // __DEBUG
 //

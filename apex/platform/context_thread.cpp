@@ -130,7 +130,7 @@ namespace apex
       if (::is_null(pcreate) || contains(pcreate))
       {
 
-         throw invalid_argument_exception();
+         __throw(error_invalid_argument);
 
       }
 

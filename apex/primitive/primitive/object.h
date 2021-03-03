@@ -71,6 +71,8 @@ public:
    //inline task_array & task_array() { ::__defer_construct_new(m_ptaska); return *m_ptaska; }
 
 
+   virtual void process_exit_status(const ::e_status& estatus);
+
 
    inline ::apex::application * get_context_application() { return m_pappContext.m_p; }
 

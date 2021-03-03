@@ -242,10 +242,10 @@ namespace windows
          }
 
       }
-      catch (const hresult_exception & e)
+      catch (const ::exception::exception & e)
       {
 
-         s_pservice->UpdateState(SERVICE_STOPPED, e);
+         s_pservice->UpdateState(SERVICE_STOPPED, e.m_hresult);
 
       }
 
@@ -285,7 +285,7 @@ namespace windows
          s_pservice->UpdateState(SERVICE_RUNNING);
 
       }
-      catch (const hresult_exception & e)
+      catch (const ::exception::exception & e)
       {
 
          //
@@ -294,7 +294,7 @@ namespace windows
          // SCM so that it can log the error code.
          //
 
-         s_pservice->UpdateState(SERVICE_STOPPED, e);
+         s_pservice->UpdateState(SERVICE_STOPPED, e.m_hresult);
 
       }
 

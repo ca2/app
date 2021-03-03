@@ -306,7 +306,7 @@ namespace experience
       if (pexperience.is_null())
       {
 
-         __throw(exit_exception(&System, "no experience_* plugin installed"));
+         __throw(exit_exception(System, "no experience_* plugin installed"));
 
       }
 

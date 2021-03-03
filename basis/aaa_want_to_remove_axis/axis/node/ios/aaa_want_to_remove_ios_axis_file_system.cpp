@@ -201,8 +201,8 @@ namespace ios
 //      string file_system::time(::aura::application *  papp, const char * psz, i32 iMaxLevel, const char * pszPrefix, const char * pszSuffix)
 //      {
 //         single_lock lockMachineEvent(
-//                                      (&System.machine_event_central() != nullptr) ?
-//                                      &System.machine_event_central().m_machineevent.m_mutex
+//                                      (System.machine_event_central() != nullptr) ?
+//                                      System.machine_event_central().m_machineevent.m_mutex
 //                                      : ((::mutex *) nullptr), true);
 //         i32 iIncLevel = -1;
 //         string str;

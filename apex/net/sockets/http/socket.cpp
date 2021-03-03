@@ -237,9 +237,9 @@ namespace sockets
                m_request.attr(__id(http_protocol)) = "http";
             }
             string strRequestUri = pa.getword();
-            string strScript = System.url().object_get_script(strRequestUri);
-            string strQuery = System.url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = System.url().url_decode(strScript) + ::str::has_char(strQuery, "?");
+            string strScript = System->url().object_get_script(strRequestUri);
+            string strQuery = System->url().object_get_query(strRequestUri);
+            m_request.m_strRequestUri = System->url().url_decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
             m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");
@@ -488,7 +488,7 @@ namespace sockets
             if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
             {
 
-               __throw(io_exception(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n"));
+               __throw(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n");
 
             }
 
@@ -496,7 +496,7 @@ namespace sockets
          catch (...)
          {
 
-            __throw(io_exception(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n"));
+            __throw(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n");
 
          }
 

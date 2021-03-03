@@ -62,7 +62,7 @@ public:
    ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;
    ::extended::status                                   m_result;
-   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System.m_puiMain)
+   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System->m_puiMain)
    __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;

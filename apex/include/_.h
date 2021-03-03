@@ -81,7 +81,7 @@
 #undef App
 
 
-#define System (*::get_context_system()->m_papexsystem)
+#define System (::get_context_system()->m_papexsystem)
 #define Node (::get_context_system()->node()->m_papexnode)
 #define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))

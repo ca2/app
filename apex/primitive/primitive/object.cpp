@@ -6,6 +6,20 @@
 #endif
 
 
+namespace exception
+{
+
+   
+   void finish(::e_status estatusExit, const ::object* pobject)
+   {
+
+
+   }
+
+
+}
+
+
 #ifdef DEBUG
 
 
@@ -571,10 +585,10 @@ void object::set_topic_text(const ::string & strTopicText)
          set_context(m_psessionContext.get());
 
       }
-      else if (&System)
+      else if (System)
       {
 
-         set_context(&System);
+         set_context(System);
 
       }
 
@@ -844,7 +858,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -853,7 +867,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -1656,10 +1670,10 @@ void object::multiple_fork(const ::routine_array & procedurea)
 ::e_status object::handle_exception(const ::exception::exception & e)
 {
 
-   if(pe.is < exit_exception > ())
+   if(::is_exit_exception_status(e.estatus()))
    {
 
-      __rethrow(pe);
+      __rethrow(e);
 
    }
 
@@ -1671,12 +1685,10 @@ void object::multiple_fork(const ::routine_array & procedurea)
 ::e_status object::top_handle_exception(const ::exception::exception & e)
 {
 
-   __pointer(exit_exception) pexitexception = pe;
-
-   if(pexitexception)
+   if(::is_exit_exception_status(e.estatus()))
    {
 
-      pexitexception->finish(this);
+      process_exit_status(e.estatus());
 
       return false;
 
@@ -1687,13 +1699,44 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
+void object::process_exit_status(const ::e_status& estatus)
+{
+
+   if (estatus == error_exit_system)
+   {
+
+      System->finish();
+
+   }
+   else if (estatus == error_exit_session)
+   {
+
+      Session->finish();
+
+   }
+   else if (estatus == error_exit_application)
+   {
+
+      Session->finish();
+
+   }
+   else if (estatus == error_exit_application)
+   {
+
+      ::get_thread()->finish();
+
+   }
+
+}
+
+
 ::e_status object::process_exception(const ::exception::exception & e)
 {
 
-   if (pe->m_bHandled)
+   if (e.m_bHandled)
    {
 
-      if (!pe->m_bContinue)
+      if (!e.m_bContinue)
       {
 
          return false;
@@ -1754,7 +1797,7 @@ void object::task_remove(::task* ptask)
          if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
          {
 
-            __throw(error_invalid_argument, "thread is no parent-child releationship between the threads"));
+            __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
 
          }
 
@@ -2125,10 +2168,10 @@ bool __no_continue(::e_status estatus)
          catch(const ::exception::exception & e)
          {
 
-            if(__no_continue(pe->m_estatus))
+            if(__no_continue(e.m_estatus))
             {
 
-               return pe->m_estatus;
+               return e.m_estatus;
 
             }
 
@@ -2196,7 +2239,7 @@ __pointer(::future < ::conversation >) object::message_box(const char* pszMessag
 
    //auto edialogresult =
  
-   auto presult = System.message_box(pszMessage, pszTitle, emessagebox);
+   auto presult = System->message_box(pszMessage, pszTitle, emessagebox);
 
    //auto psession = get_context_session();
 

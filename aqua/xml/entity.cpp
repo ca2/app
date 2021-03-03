@@ -276,12 +276,12 @@ namespace xml
 
 /*   string XRef2Entity( const char * estr )
    {
-      return System.m_entities.ref_to_entity( estr );
+      return System->m_entities.ref_to_entity( estr );
    }
 
    string XEntity2Ref( const char * str )
    {
-      return System.m_entities.entity_to_ref( str );
+      return System->m_entities.entity_to_ref( str );
    }*/
 
 } // namespace xml

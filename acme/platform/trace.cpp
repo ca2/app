@@ -124,7 +124,7 @@ namespace trace
 
    /*CLASS_DECL_ACME void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
    {
-   System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+   System->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
    }*/
 
 

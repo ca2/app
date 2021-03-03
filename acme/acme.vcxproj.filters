@@ -150,29 +150,17 @@
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\compress">
-      <UniqueIdentifier>{1851dfe9-1a38-4dbf-87df-d815c0ddf7ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress\zip">
-      <UniqueIdentifier>{034a40e6-dd06-45c6-8c5f-ee1d43fdb979}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\exception">
-      <UniqueIdentifier>{c22fb96e-946d-44d9-8848-e42334f99bd5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\os\windows_common">
       <UniqueIdentifier>{52ca7eb0-c1c7-4e43-abec-e9b5ba44a8c5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline\NewFilter1">
       <UniqueIdentifier>{1f1a5d9c-187c-42b3-a17a-dd8e896a1c10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{fc9f6629-f612-4e8d-bcc6-e33f1b8c4292}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
@@ -1562,9 +1550,6 @@
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="compress\aaa_want_to_move_compress_bz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1601,45 +1586,6 @@
     <ClInclude Include="primitive\primitive\layered.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="compress\_.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\gz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\_.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\_internal.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\api.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\crypt.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\file.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\impl.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\in_file.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\ioapi.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\iowin32.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\memory_buffer.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\unzip.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\path_object.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -1660,60 +1606,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\_id_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\_.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\_c.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\_const.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\_dump_context.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\call_stack.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\callstack.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\cancel.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\dump_context.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\engine.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception2.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exit.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\result.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\standard.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\standard_translator.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\throw.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\trap.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\unhandled_report.h">
-      <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="os\windows_common\_.h">
       <Filter>Header Files\os\windows_common</Filter>
@@ -1769,59 +1661,11 @@
     <ClInclude Include="filesystem\file\aaa_edit_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\promise1.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="const\future.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\future.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -2075,9 +1919,6 @@
     <ClInclude Include="user\os_colors.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="const\routine.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
@@ -2281,9 +2122,6 @@
     </ClInclude>
     <ClInclude Include="os\microsecond_sleep.h">
       <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\status.h">
-      <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\id_matter.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -2509,6 +2347,159 @@
     </ClInclude>
     <ClInclude Include="node\windows\serial_impl.h">
       <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\parsing.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\_.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\_c.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\_const.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\_dump_context.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\call_stack.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\callstack.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\cancel.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\dump_context.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\engine.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception2.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exit.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\result.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\standard.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\standard_translator.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\status.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\throw.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\trap.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\unhandled_report.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\_.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\_internal.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\api.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\crypt.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\file.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\impl.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\in_file.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\ioapi.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\iowin32.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\memory_buffer.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\unzip.h">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\_.h">
+      <Filter>Source Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\aaa_want_to_move_compress_bz.h">
+      <Filter>Source Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\gz.h">
+      <Filter>Source Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="const\_const.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\charset.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\check.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\context.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\future.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\GLOBAL_ID.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\id.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\impact.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\message.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\routine.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\simple_command.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\source.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status_range_authentication.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\thread.h">
+      <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\timer.h">
+      <Filter>Source Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3627,6 +3618,15 @@
     </ClCompile>
     <ClCompile Include="node\windows\serial_impl.cpp">
       <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exit.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\aaa_not_installed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\parsing.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

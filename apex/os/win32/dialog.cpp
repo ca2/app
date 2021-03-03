@@ -28,7 +28,7 @@ namespace win32
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -67,7 +67,7 @@ namespace win32
       int i2 = GetThreadLocale();
 
 
-      CreateDialogParamW((HINSTANCE) System.m_hinstance, m_pszResource,
+      CreateDialogParamW((HINSTANCE) System->m_hinstance, m_pszResource,
                          pwnd == nullptr ? nullptr : pwnd->m_hwnd, &DialogProc, (LPARAM)this);
 
       m_bCreated = true;

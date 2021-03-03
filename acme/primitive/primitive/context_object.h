@@ -101,7 +101,7 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
-   virtual void add_exception(::exception::exception * pexception);
+   virtual void add_exception(const ::exception::exception & e);
    virtual void on_catch_all_exception();
 
 

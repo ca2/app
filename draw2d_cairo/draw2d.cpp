@@ -1182,7 +1182,7 @@ namespace draw2d_cairo
 //      }
 //
 //
-//      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+//      synchronization_lock synchronizationlock(System.m_mutexLibrary);
 //
 //      estatus = __construct(m_pwritetext);
 //

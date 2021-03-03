@@ -205,7 +205,7 @@ namespace filemanager
 
    //   m_bFileSize = true;
 
-   //   db_server * pcentral = dynamic_cast <db_server *> (&System.m_psimpledb->db());
+   //   db_server * pcentral = dynamic_cast <db_server *> (System.m_psimpledb->db());
 
    //   if (pcentral == nullptr)
    //   {
@@ -1761,7 +1761,7 @@ namespace filemanager
 
    //   UNREFERENCED_PARAMETER(bClear);
 
-   //   db_server * pcentral = dynamic_cast <db_server *> (&System.m_psimpledb->db());
+   //   db_server * pcentral = dynamic_cast <db_server *> (System.m_psimpledb->db());
 
    //   if (pcentral == nullptr)
    //   {

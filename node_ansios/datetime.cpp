@@ -1186,7 +1186,7 @@ namespace node_ansios
 
       system_time_t systemtime;
 
-      auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+      auto estatus = file_time_to_system_time(Systemtime, pfiletime);
 
       if(!estatus)
       {
@@ -1197,7 +1197,7 @@ namespace node_ansios
 
       struct tm tm;
 
-      estatus = system_time_to_tm(&tm, &systemtime);
+      estatus = system_time_to_tm(&tm, Systemtime);
 
       if(!estatus)
       {

@@ -88,7 +88,7 @@ namespace console
       if(m_strCommand == ":q")
       {
 
-         ::parallelization::set_finish(&System);
+         ::parallelization::set_finish(System);
 
       }
       else

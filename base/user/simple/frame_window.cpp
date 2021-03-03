@@ -3202,7 +3202,7 @@ string simple_frame_window::get_window_default_matter()
 //         // finally, activate the frame
 //         // (send the default show command unless the main desktop u)
 //         edisplay edisplay = e_display_default;      // default
-//         ::aura::application* pApp = &System;
+//         ::aura::application* pApp = System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
 //         {
 //            edisplay = System.m_edisplay; // use the parameter from WinMain

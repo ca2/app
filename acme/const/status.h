@@ -100,6 +100,13 @@ enum enum_status : ::i64
    error_parsing,
    error_invalid_character,
    error_assert,
+   error_exit_start,
+   error_exit_thread,
+   error_exit_application,
+   error_exit_session,
+   error_exit_system,
+   error_exit_end,
+   error_user,
 
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
@@ -188,6 +195,7 @@ enum enum_status : ::i64
    error_connection_timed_out,
    error_connection_cancelled,
    error_on_connection_timeout,
+   error_socket,
 
 
 
@@ -243,4 +251,10 @@ enum enum_status : ::i64
 };
 
 
+inline constexpr bool is_exit_exception_status(::enum_status estatus)
+{
+
+   return estatus > error_exit_start && estatus < error_exit_end;
+
+}
 

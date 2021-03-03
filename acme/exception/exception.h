@@ -23,7 +23,7 @@ namespace exception
       
       // A exception class is meant to be a small utility/tool class.
       // m_bLog -> too much managing (micro-managing and also big-managing)
-      // from utility/tool small class of the Logging System.
+      // from utility/tool small class of the Logging System->
       // General-ever Log can be done by final handlers at Main Loop and crash handlers
       // Log can be supressed or translated at optional middle-stack handlers.
       // bool        m_bLog;
@@ -51,6 +51,9 @@ namespace exception
       //virtual string get_message(P::u32 pnHelpContext = nullptr);
 
       virtual string get_message() const;
+      
+      
+      inline ::e_status estatus() const { return m_estatus; }
 
 
       void defer_dump_back_trace();
@@ -66,7 +69,7 @@ namespace exception
 
 
    //   array() {}
-   //   array(::exception::exception * pexception) : __pointer_array(exception)({ pexception }) {}
+   //   array(const ::exception::exception & e) : __pointer_array(exception)({ pexception }) {}
    //   array(const std::initializer_list < ::exception::exception * > & list) : __pointer_array(exception)(list) {}
 
 

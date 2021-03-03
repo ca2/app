@@ -4902,7 +4902,7 @@ retry_license:
    //         m_estatus = run();
 
    //      }
-   //      catch (::exceptionconst ::exception::exception & e)
+   //      catch (const ::exception::exception & e)
    //      {
 
    //         if (handle_exception(pe))
@@ -6793,7 +6793,7 @@ namespace aura
    //}
 
 
-   //bool application::final_handle_exception(::exception::exception * pexception)
+   //bool application::final_handle_exception(const ::exception::exception & e)
    //{
 
    //   UNREFERENCED_PARAMETER(pexception);
@@ -8051,7 +8051,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(&System);
+            ::parallelization::finish(System);
 
          }
 
@@ -8059,7 +8059,7 @@ namespace aura
       else
       {
 
-         ::parallelization::finish(&System);
+         ::parallelization::finish(System);
 
       }
 
@@ -8098,7 +8098,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(&System);
+            ::parallelization::finish(System);
 
          }
 
@@ -8106,7 +8106,7 @@ namespace aura
       else
       {
 
-         ::parallelization::finish(&System);
+         ::parallelization::finish(System);
 
       }
 
@@ -8217,7 +8217,7 @@ namespace aura
    bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
    {
       return false;
-      //db_server * pcentral = dynamic_cast <db_server *> (&System.m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (System.m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{

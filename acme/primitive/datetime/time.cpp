@@ -120,7 +120,7 @@ namespace datetime
    time::time(const filetime & filetime)
    {
 
-      auto pnode = System.node();
+      auto pnode = System->node();
 
       pnode->file_time_to_time(&m_time, &filetime.m_filetime);
 
@@ -756,7 +756,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //filetime __filetime(const ::datetime::time & time)
 //{
 //
-//   auto pnode = System.node();
+//   auto pnode = System->node();
 //
 //   SYSTEMTIME systemtime;
 //
@@ -764,7 +764,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //
 //   filetime filetime = {};
 //
-//   if (!SystemTimeToFileTime(&systemtime, (FILETIME *) &filetime))
+//   if (!SystemTimeToFileTime(Systemtime, (FILETIME *) &filetime))
 //   {
 //
 //#ifdef WINDOWS

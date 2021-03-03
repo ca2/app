@@ -74,7 +74,7 @@ namespace acme
 #endif
 
 
-   //extern ::mutex * &System.g_mutexLibrary;
+   //extern ::mutex * System->g_mutexLibrary;
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 

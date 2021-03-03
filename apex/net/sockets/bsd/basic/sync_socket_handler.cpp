@@ -27,7 +27,7 @@ namespace sockets
    void sync_socket_handler::handle(socket * psocket)
    {
       if(m_psocket != nullptr)
-         __throw(::exception::exception()); // busy
+         __throw(error_socket); // busy
       m_psocket = psocket;
       m_psocket->m_pcallback = this;
       m_handler.add(m_psocket);
@@ -126,7 +126,7 @@ namespace sockets
       if (read(&uLen, 4) != 4)
       {
 
-         __throw(::exception::exception());
+         __throw(error_socket);
 
       }
 
@@ -139,7 +139,7 @@ namespace sockets
       if (read(memory, uLen) != uLen)
       {
 
-         __throw(::exception::exception());
+         __throw(error_socket);
 
       }
 

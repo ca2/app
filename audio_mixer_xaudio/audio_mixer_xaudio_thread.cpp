@@ -33,8 +33,8 @@ namespace multimedia
          ASSERT(GetMainWnd() == nullptr);
          // TODO:  perform and per-thread initialization here
 
-         //    CVMSApp * pApp = (CVMSApp *) &System;
-         //CVMSApp * pApp = (CVMSApp *) &System;
+         //    CVMSApp * pApp = (CVMSApp *) System;
+         //CVMSApp * pApp = (CVMSApp *) System;
          //   MessageFilterHookManager * pmfmh;
          //  MessageFilterHookManager::AppGetMessageFilterHookManager(&pmfmh);
          //pmfmh->MessageFilterHook();
@@ -47,7 +47,7 @@ namespace multimedia
       i32 thread::exit_thread()
       {
          // TODO:  perform any per-thread cleanup here
-         //    CVMSApp * pApp = (CVMSApp *) &System;
+         //    CVMSApp * pApp = (CVMSApp *) System;
          //MessageFilterHookManager * pmfmh;
          //MessageFilterHookManager::AppGetMessageFilterHookManager(&pmfmh);
          //pmfmh->MessageFilterUnhook();
@@ -149,7 +149,7 @@ namespace multimedia
       void thread::OnVmsmException(::message::message * pmessage)
       {
          UNREFERENCED_PARAMETER(pmessage);
-         //__pointer(base_application) pApp = (__pointer(base_application)) &System;
+         //__pointer(base_application) pApp = (__pointer(base_application)) System;
          //pApp->post_thread_message(VMSM_EXCEPTION, wParam, lParam);
       }
 

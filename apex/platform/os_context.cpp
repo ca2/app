@@ -20,7 +20,7 @@
    string os_context::get_command_line()
    {
 
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
 
       return "";
 
@@ -30,27 +30,27 @@
    bool os_context::shutdown(bool bIfPowerOff)
    {
       UNREFERENCED_PARAMETER(bIfPowerOff);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return false;
    }
 
    bool os_context::reboot()
    {
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return false;
    }
 
    void os_context::terminate_processes_by_title(const char * lpszName)
    {
       UNREFERENCED_PARAMETER(lpszName);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
    }
 
    bool os_context::get_pid_by_path(const char * lpszName, u32 & dwPid)
    {
       UNREFERENCED_PARAMETER(lpszName);
       UNREFERENCED_PARAMETER(dwPid);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return false;
    }
 
@@ -58,27 +58,27 @@
    {
       UNREFERENCED_PARAMETER(lpszName);
       UNREFERENCED_PARAMETER(dwPid);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return false;
    }
 
    int os_context::get_pid()
    {
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return -1;
    }
 
    ::file::path os_context::get_process_path(u32 dwPid)
    {
       UNREFERENCED_PARAMETER(dwPid);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
       return "";
    }
 
    void os_context::get_all_processes(u32_array & dwa )
    {
       UNREFERENCED_PARAMETER(dwa);
-      __throw(interface_only_exception("this is an interface"));
+      __throw(error_interface_only, "this is an interface");
    }
 
 //#ifdef WINDOWS
@@ -86,7 +86,7 @@
 //   ::file::path os_context::get_module_path(HMODULE hmodule)
 //   {
 //      UNREFERENCED_PARAMETER(hmodule);
-//      __throw(interface_only_exception("this is an interface"));
+//      __throw(error_interface_only, "this is an interface");
 //   }
 //
 //#endif

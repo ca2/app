@@ -486,9 +486,9 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      auto * psockets = &System.sockets();
+      auto psockets = &System->sockets();
 
-      auto * pnet = &psockets->net();
+      auto pnet = &psockets->net();
 
       if (pnet->isipv6(strAddress))
       {

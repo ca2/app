@@ -126,7 +126,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
    //if(pthread != nullptr)
    //{
 
-   //   pthread->System.assert_failed_line(pszFileName,iLineNumber);
+   //   pthread->System->assert_failed_line(pszFileName,iLineNumber);
 
    //}
 
@@ -140,7 +140,7 @@ CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLine
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   System.message_box(szMessage, szTitle, e_message_box_cancel_try_continue | e_message_box_icon_error);
+   System->message_box(szMessage, szTitle, e_message_box_cancel_try_continue | e_message_box_icon_error);
 
    //if(iResult == e_dialog_result_cancel)
    //{

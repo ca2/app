@@ -78,11 +78,9 @@ interprocess_intercommunication::~interprocess_intercommunication()
    if (!m_prx->create(strKey))
    {
 
-      __throw(::resource_exception());
+      __throw(error_resource);
 
    }
-
-
 
    return estatus;
 

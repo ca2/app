@@ -7,7 +7,7 @@
 //
 //   ::e_status estatus = ::error_failed;
 //
-//   auto psystem = &System;
+//   auto psystem = System;
 //
 //   if(psystem)
 //   {

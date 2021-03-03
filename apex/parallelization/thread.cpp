@@ -344,7 +344,7 @@ void thread::term_thread()
    //if (get_context_system())
    //{
 
-   //   System.release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   System->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    //}
 
@@ -620,7 +620,7 @@ bool thread::thread_step()
       catch (const ::exception::exception & e)
       {
 
-         if (!handle_exception(pe))
+         if (!handle_exception(e))
          {
 
             output_debug_string("exception occurred (2.1)");
@@ -935,7 +935,7 @@ bool thread::pump_message()
 
       }
 
-      if (handle_exception(pe))
+      if (handle_exception(e))
       {
 
          return true;
@@ -1065,7 +1065,7 @@ bool thread::raw_pump_message()
    catch (const ::exception::exception & e)
    {
 
-      if (handle_exception(pe))
+      if (handle_exception(e))
       {
 
          return true;
@@ -1115,7 +1115,7 @@ bool thread::raw_pump_message()
    catch (const ::exception::exception & e)
    {
 
-      if (!handle_exception(&e))
+      if (!handle_exception(e))
       {
 
          __post_quit_message(-1);
@@ -1496,7 +1496,7 @@ void thread::task_remove(::task * ptask)
       if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       {
 
-         __throw(error_invalid_argument, "thread is no parent-child releationship between the threads"));
+         __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
 
       }
 
@@ -1884,7 +1884,7 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (m_idContextReference == id_none && get_context_system() && &System != this)
+   if (m_idContextReference == id_none && get_context_system() && System != this)
    {
 
       try
@@ -2098,7 +2098,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
       if(get_context_system() != nullptr)
       {
 
-         System.pre_translate_message(pmessage);
+         System->pre_translate_message(pmessage);
 
          if(pmessage->m_bRet)
          {
@@ -2316,12 +2316,12 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
       if (failed(estatus))
       {
 
-         exception_pointer pexceptionRethrow = m_result.get_exception < ::exit_exception >();
+         ::e_status estatusExit;
 
-         if (pexceptionRethrow.is_set())
+         if(m_result.get_exit_status(estatusExit))
          {
 
-            __rethrow(pexceptionRethrow);
+            __rethrow(estatusExit);
 
          }
 
@@ -2651,7 +2651,7 @@ void thread::__os_finalize()
    catch (const ::exception::exception & e)
    {
 
-      m_estatus = pe->m_estatus;
+      m_estatus = e.m_estatus;
 
       if (succeeded(m_estatus))
       {
@@ -2660,9 +2660,9 @@ void thread::__os_finalize()
 
       }
 
-      m_result.add(pe);
+      m_result.add(e);
 
-      top_handle_exception(pe);
+      top_handle_exception(e);
 
    }
    catch (...)
@@ -3148,7 +3148,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
    catch (const ::exception::exception & e)
    {
 
-      handle_exception(pe);
+      handle_exception(e);
 
       bError = true;
 
@@ -3245,25 +3245,23 @@ error:;
       run();
 
    }
-   catch (::exit_exception* pe)
+   catch (const ::exit_exception & e)
    {
 
-      if (___thread(pe->m_pthreadExit) != this)
+      if (___thread(e.m_pthreadExit) != this)
       {
 
-         System.finish(::get_context_system());
+         System->finish(::get_context_system());
 
       }
 
-      ::release(pe);
+      //::release(pe);
 
    }
-   catch (::exception::exception * pe)
+   catch (const ::exception::exception & e)
    {
 
-      top_handle_exception(pe);
-
-      ::release(pe);
+      top_handle_exception(e);
 
    }
    catch(...)
@@ -3292,7 +3290,7 @@ error:;
 
    }
 
-   estatus = m_result.status();
+   estatus = m_result.estatus();
 
    //clear_finish_bit();
 
@@ -3986,7 +3984,7 @@ void thread::message_handler(::message::message * pmessage)
          //if(msg.lParam)
          {
 
-            auto psubject = System.new_subject(message);
+            auto psubject = System->new_subject(message);
 
             process(psubject);
 
@@ -4094,7 +4092,7 @@ void thread::message_handler(::message::message * pmessage)
    catch (const ::exception::exception & e)
    {
 
-      if (handle_exception(pe))
+      if (handle_exception(e))
       {
 
          return true;
@@ -4145,7 +4143,7 @@ void thread::message_handler(::message::message * pmessage)
    catch (const ::exception::exception & e)
    {
 
-      if (handle_exception(pe))
+      if (handle_exception(e))
       {
 
          return true;
@@ -4375,9 +4373,9 @@ bool thread::kick_thread()
 CLASS_DECL_APEX bool is_thread_on(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System.m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
 
-   return System.m_mapTaskOn.plookup(id) != nullptr;
+   return System->m_mapTaskOn.plookup(id) != nullptr;
 
 }
 
@@ -4399,9 +4397,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 CLASS_DECL_APEX void set_thread_on(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System.m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
 
-   System.m_mapTaskOn.set_at(id, id);
+   System->m_mapTaskOn.set_at(id, id);
 
 }
 
@@ -4409,9 +4407,9 @@ CLASS_DECL_APEX void set_thread_on(ithread_t id)
 CLASS_DECL_APEX void set_thread_off(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System.m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
 
-   System.m_mapTaskOn.remove_key(id);
+   System->m_mapTaskOn.remove_key(id);
 
 }
 
@@ -4641,7 +4639,7 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 ::e_status     thread::get_result_status()
 {
 
-   return m_result.status();
+   return m_result.estatus();
 
 }
 

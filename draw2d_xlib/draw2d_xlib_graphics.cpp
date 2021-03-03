@@ -1936,7 +1936,7 @@ namespace draw2d_xlib
       lpMetrics->tmDescent = sz2.cy - sz1.cy;
 
 
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
+      //retry_single_lock slGdiplus(System.s_mutexGdiplus, millis(1), millis(1));
 
       /*((::draw2d_xlib::graphics *) this)->set(m_pfont);
 

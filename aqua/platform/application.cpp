@@ -49,10 +49,10 @@ namespace aqua
    void application::_001OnFranceExit()
    {
 
-      if (System.m_pmultimedia)
+      if (System->m_pmultimedia)
       {
 
-         System.m_pmultimedia->_001OnFranceExit();
+         System->m_pmultimedia->_001OnFranceExit();
 
       }
 

@@ -213,7 +213,7 @@ bool __os_term_thread()
 CLASS_DECL_APEX void main_branch(matter * pmatter, e_priority epriority)
 {
 
-   System.sync_procedure(pmatter);
+   System->sync_procedure(pmatter);
 
 }
 

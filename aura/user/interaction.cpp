@@ -14065,7 +14065,7 @@ restart:
    CLASS_DECL_AURA ::mutex *  mutex_children()
    {
 
-      return &System.m_mutexUserChildren;
+      return System.m_mutexUserChildren;
 
    }
 

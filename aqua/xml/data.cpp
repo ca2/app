@@ -30,7 +30,7 @@ namespace xml
       if (!estatus)
       {
 
-         throw ::status_exception(estatus);
+         __throw(estatus);
 
       }
 

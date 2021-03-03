@@ -40,7 +40,7 @@ namespace filehandler
 
       m_plistWorking = __new(list(get_object()));
 
-      m_plistWorking->parse(&System.filehandler(), ::file::path(m_strName).extension());
+      m_plistWorking->parse(System.filehandler(), ::file::path(m_strName).extension());
 
       m_plist = m_plistWorking;
 

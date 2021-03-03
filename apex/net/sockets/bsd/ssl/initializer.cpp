@@ -365,7 +365,7 @@ SSLInitializer_rand_seed(const void * buf, i32 num)
 
 extern "C" i32 SSLInitializer_rand_bytes(uchar * buf, i32 num)
 {
-   System.math().gen_rand(buf, num);
+   System->math().gen_rand(buf, num);
    return 1;
 }
 
@@ -392,7 +392,7 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy)
 
 extern "C" i32 SSLInitializer_rand_pseudorand(uchar * buf, i32 num)
 {
-   System.math().gen_rand(buf, num);
+   System->math().gen_rand(buf, num);
    return num;
 }
 

@@ -1072,7 +1072,7 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 
    SYSTEMTIME systemtime;
 
-   if (!FileTimeToSystemTime((FILETIME *) &filetime, &systemtime))
+   if (!FileTimeToSystemTime((FILETIME *) &filetime, Systemtime))
    {
 
       time = 0;

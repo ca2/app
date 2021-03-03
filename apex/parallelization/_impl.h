@@ -401,7 +401,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //inline ::thread* get_task(ithread_t idthread)
 //{
 //
-//   return (::thread*) System.get_task(idthread);
+//   return (::thread*) System->get_task(idthread);
 //
 //}
 //

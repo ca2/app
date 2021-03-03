@@ -373,7 +373,7 @@ void context_object::exchange(::stream & stream)
 }
 
 
-void context_object::add_exception(::exception::exception * pexception)
+void context_object::add_exception(const ::exception::exception & e)
 {
 
    m_estatus = error_exception;
@@ -429,7 +429,7 @@ stream & context_object::read(::stream & stream)
 //   auto pimage = __create_image();
 //
 //
-//   //System.imaging().start_traits(System.imaging(), pimage);
+//   //System->imaging().start_traits(System->imaging(), pimage);
 //
 //}
 

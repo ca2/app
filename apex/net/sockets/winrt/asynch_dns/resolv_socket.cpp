@@ -135,7 +135,7 @@ namespace sockets
          // %! check cache
          {
 
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
 
             string result;
 
@@ -235,7 +235,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
    
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
@@ -262,7 +262,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
             
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
@@ -292,7 +292,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
 
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
@@ -322,7 +322,7 @@ namespace sockets
          if (!m_cached)
          {
          
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
    
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
@@ -532,7 +532,7 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(System.sockets().m_mutexResolvCache, true);
 
             string value;
 

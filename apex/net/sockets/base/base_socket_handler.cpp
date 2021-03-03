@@ -47,10 +47,10 @@ namespace sockets
 
          ::apex::application * papp = ::get_context_application(pobject);
 
-         if(&System != nullptr)
+         if(System != nullptr)
          {
 
-            m_splogger = &System.log();
+            m_plogger = &System->log();
 
          }
 
@@ -74,7 +74,7 @@ namespace sockets
    void base_socket_handler::set_logger(::apex::log * plogger)
    {
 
-      m_splogger = plogger;
+      m_plogger = plogger;
 
    }
 

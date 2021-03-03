@@ -1365,7 +1365,7 @@ namespace base
 
          pstyle->initialize(papp);
 
-         //synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+         //synchronization_lock synchronizationlock(System.m_mutexLibrary);
 
          //System.m_mapLibrary[strLibrary] = plibrary;
 

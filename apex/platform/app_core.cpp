@@ -16,7 +16,7 @@ CLASS_DECL_APEX void os_term_windowing();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex * &System.m_mutexLibrary;
+//extern ::mutex * System->m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -362,12 +362,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      System.message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
+      System->message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         System.message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
+         System->message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -379,7 +379,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         System.message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+         System->message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 
@@ -514,20 +514,20 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    }
 
-//   System.common_construct();
+//   System->common_construct();
 
    ::set_task(get_context_system());
 
    debug_context_object(get_context_system());
 
-   System.initialize(get_context_system());
+   System->initialize(get_context_system());
 
    //set_context_object(get_context_system());
 
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   System.m_millisMainStart = m_millisStart;
+   System->m_millisMainStart = m_millisStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
@@ -1697,7 +1697,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status estatus = System.__thread_procedure();
+//   ::e_status estatus = System->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1781,7 +1781,7 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         auto plibrary = System.get_library(strLibrary);
+         auto plibrary = System->get_library(strLibrary);
 
          if (!plibrary)
          {
@@ -1890,8 +1890,8 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      System.m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      System.m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      System->m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+      System->m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 

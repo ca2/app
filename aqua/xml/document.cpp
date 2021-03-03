@@ -9,11 +9,11 @@ namespace xml
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
    {
 
-      System.defer_xml();
+      System->defer_xml();
 
       m_pdocument            = this;
-      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : System.m_pxml->m_pparseinfoDefault.m_p;
-      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : System.m_pxml->m_pentitiesHashDefault.m_p;
+      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : System->m_pxml->m_pparseinfoDefault.m_p;
+      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : System->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
 
    }

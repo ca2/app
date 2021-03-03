@@ -6,7 +6,7 @@ namespace multimedia
 
 
    exception::exception(e_exception eexception, const ::e_status & estatus, const char * pszMessage) :
-      ::exception::exception(pszMessage, estatus)
+      ::exception::exception(estatus, pszMessage)
    {
 
       m_eexception = eexception;

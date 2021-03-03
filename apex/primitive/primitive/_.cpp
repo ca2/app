@@ -22,10 +22,9 @@ void __assert_valid_object(const ::context_object * pOb, const char * pszFileNam
    {
 
       if (__assert_failed_line(pszFileName, nLine))
-
       {
 
-         debug_break();
+         DEBUG_BREAK;
 
       }
 
@@ -39,10 +38,9 @@ void __assert_valid_object(const ::context_object * pOb, const char * pszFileNam
       ///TRACE(trace_category_appmsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
 
       if (__assert_failed_line(pszFileName, nLine))
-
       {
 
-         debug_break();
+         DEBUG_BREAK;
 
       }
 
@@ -59,10 +57,9 @@ void __assert_valid_object(const ::context_object * pOb, const char * pszFileNam
       //      TRACE(trace_category_appmsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
 
       if (__assert_failed_line(pszFileName, nLine))
-
       {
 
-         debug_break();
+         DEBUG_BREAK;
 
       }
 

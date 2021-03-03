@@ -35,13 +35,13 @@ namespace fs
 
       defer_initialize();
 
-      __throw(todo("xml"));
+      __throw(todo, "xml");
 
       //xml::document doc;
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(pszPath);
 
       //string strSource;
 
@@ -100,7 +100,7 @@ namespace fs
          if(str == "You have not logged in! Exiting!")
          {
 
-            __throw(::exception::exception(string("uifs:// You have not logged in!")));
+            __throw(error_authorization, "uifs://You are not authorized!!");
 
          }
 
@@ -108,14 +108,14 @@ namespace fs
 
       }
 
-      __throw(todo("xml"));
+      __throw(todo, "xml");
 
       //xml::document doc;
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(listing.m_pathUser))
-      //         + "&server=" + System.url().url_encode(System.url().get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(System->url().get_script(listing.m_pathUser))
+      //         + "&server=" + System->url().url_encode(System->url().get_server(listing.m_pathUser));
 
       //string strSource;
 
@@ -198,8 +198,8 @@ namespace fs
          return 1;
       }
 
-      if(System.url().get_script(path).is_empty() ||
-            System.url().get_script(path) == "/")
+      if(System->url().get_script(path).is_empty() ||
+            System->url().get_script(path) == "/")
       {
          return 1;
       }
@@ -264,7 +264,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(pszPath);
 
       string strSource;
 

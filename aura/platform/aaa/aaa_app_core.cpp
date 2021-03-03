@@ -10,7 +10,7 @@
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* &System.m_mutexLibrary;
+//extern ::mutex* System.m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -1816,7 +1816,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    string strAppId = pszAppId;
 
-   synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+   synchronization_lock synchronizationlock(System.m_mutexLibrary);
 
    __pointer(::apex::library)& plibrary = System.m_mapLibrary[strAppId];
 

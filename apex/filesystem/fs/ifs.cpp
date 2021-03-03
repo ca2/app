@@ -116,13 +116,13 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   __throw(todo("xml"));
+   __throw(todo, "xml");
 
    //xml::document doc;
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + System.url().url_encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + System->url().url_encode(listing.m_pathUser);
 
    //string strSource;
 

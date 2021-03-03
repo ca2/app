@@ -46,21 +46,21 @@ dir_system::~dir_system()
 
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
-   if (::dir::is(System.side_get_matter_path("app/_matter/main")))
+   if (::dir::is(System->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = System.side_get_matter_path("");
+      m_pathLocalAppMatterFolder = System->side_get_matter_path("");
 
-      m_pathLocalAppMatterCacheFolder = System.local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = System->local_get_matter_cache_path();
 
    }
    else
 #endif
    {
 
-      m_pathLocalAppMatterFolder = System.local_get_matter_path();
+      m_pathLocalAppMatterFolder = System->local_get_matter_path();
 
-      m_pathLocalAppMatterCacheFolder = System.local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = System->local_get_matter_cache_path();
 
    }
 
@@ -88,18 +88,18 @@ dir_system::~dir_system()
 
    string strAppFolder;
 
-   //if (System.m_plibrary)
+   //if (System->m_plibrary)
    //{
 
-   //   if (System.m_plibrary->get_ca2_library())
+   //   if (System->m_plibrary->get_ca2_library())
    //   {
 
-   //      strAppFolder = System.m_plibrary->get_ca2_library()->m_strFolder;
+   //      strAppFolder = System->m_plibrary->get_ca2_library()->m_strFolder;
 
    //      if (strAppFolder.is_empty())
    //      {
 
-   //         strAppFolder = System.m_plibrary->get_ca2_library()->m_strName;
+   //         strAppFolder = System->m_plibrary->get_ca2_library()->m_strName;
 
    //      }
 
@@ -110,22 +110,22 @@ dir_system::~dir_system()
    //if (strAppFolder.is_empty())
    //{
 
-      strAppFolder = _002Underscore(System.m_strAppId);
+      strAppFolder = _002Underscore(System->m_strAppId);
 
    //}
 
    m_pathDefaultAppData /= strAppFolder;
 
-   //m_strCa2DefaultAppData /= System.get_system_platform();
+   //m_strCa2DefaultAppData /= System->get_system_platform();
 
-   //m_strCa2DefaultAppData /= System.get_system_configuration();
+   //m_strCa2DefaultAppData /= System->get_system_configuration();
 
    ::file::path pathAppData;
 
-   if (System.has_property("app_folder"))
+   if (System->has_property("app_folder"))
    {
 
-      pathAppData = System.payload("app_folder");
+      pathAppData = System->payload("app_folder");
 
    }
 
@@ -153,7 +153,7 @@ bool dir_system::update_module_path()
 
    auto & context = Context;
 
-   auto pfile = System.m_pfilesystem;
+   auto pfile = System->m_pfilesystem;
 
    auto pathModule = pfile->m_pathModule;
 

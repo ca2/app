@@ -242,11 +242,11 @@ namespace interprocess_communication
 
              //}
 
-             //auto pappcore = System.m_pappcore;
+             //auto pappcore = System->m_pappcore;
 
              //auto pmaindata = pappcore->m_pmaindata;
 
-         //HINSTANCE hinstance = (HINSTANCE)System.m_hinstance;
+         //HINSTANCE hinstance = (HINSTANCE)System->m_hinstance;
 
          //ATOM atom = rx_register_class(hinstance);
 

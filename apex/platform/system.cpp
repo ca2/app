@@ -702,9 +702,9 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
 
-      __pointer(::apex::library) plibrary = System.m_mapLibrary[pszComponent];
+      __pointer(::apex::library) plibrary = System->m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -808,9 +808,9 @@ namespace apex
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      synchronization_lock synchronizationlock(&System.m_mutexContainerizedLibrary);
+      synchronization_lock synchronizationlock(&System->m_mutexContainerizedLibrary);
 
-      __pointer(::apex::library) plibrary = System.m_mapContainerizedLibrary[strComponent][strImplementation];
+      __pointer(::apex::library) plibrary = System->m_mapContainerizedLibrary[strComponent][strImplementation];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -1064,7 +1064,7 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      synchronization_lock synchronizationlock(&System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -1073,20 +1073,20 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __composite(::apex::library) & plibrary = System.m_mapLibrary[strLibrary];
+      __composite(::apex::library) & plibrary = System->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
       if (plibrary.is_null())
       {
 
-         __m_own(&System, plibrary, on_get_library(strLibrary));
+         __m_own(System, plibrary, on_get_library(strLibrary));
 
          if (plibrary.is_null())
 
          {
 
-            System.__compose_new(plibrary);
+            System->__compose_new(plibrary);
 
             if (!plibrary->open(strLibrary))
             {
@@ -1757,7 +1757,7 @@ namespace apex
 
       }
 
-      string strLogTime = System.datetime().international().get_gmt_date_time_for_file_with_no_spaces();
+      string strLogTime = System->datetime().international().get_gmt_date_time_for_file_with_no_spaces();
 
       strLogTime.replace("-", "/");
 
@@ -2026,9 +2026,9 @@ namespace apex
 
       pcreate->finish_initialization();
 
-      System.add_create(pcreate);
+      System->add_create(pcreate);
 
-      System.post_create_requests();
+      System->post_create_requests();
 
       return ::success;
 
@@ -4038,7 +4038,7 @@ namespace apex
 ////
 ////      m_monitorinfoa.remove_all();
 ////
-////      ::EnumDisplayMonitors(nullptr, nullptr, &system::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
+////      ::EnumDisplayMonitors(nullptr, nullptr, System::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
 ////
 ////#elif defined(LINUX)
 ////
@@ -4068,20 +4068,20 @@ namespace apex
    void system::on_extra(string str)
    {
 
-      string strProtocol = System.url().get_protocol(str);
+      string strProtocol = System->url().get_protocol(str);
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = System.url().get_server(str);
+         string strBase = System->url().get_server(str);
 
-         string strAppId = System.url().get_script(str);
+         string strAppId = System->url().get_script(str);
 
          ::str::begins_eat(strAppId, "/");
 
-         string strQuery = System.url().get_query(str);
+         string strQuery = System->url().get_query(str);
 
          string strMessage;
 
@@ -4116,9 +4116,9 @@ namespace apex
       if (strProtocol == "ca2project")
       {
 
-         string strBase = System.url().get_server(str);
+         string strBase = System->url().get_server(str);
 
-         string strScheme = System.url().get_script(str);
+         string strScheme = System->url().get_script(str);
 
          ::str::begins_eat(strScheme, "/");
 
@@ -4175,7 +4175,7 @@ namespace apex
    string system::get_user_language()
    {
 
-      return System.standalone_setting("current_language");
+      return System->standalone_setting("current_language");
 
    }
 
@@ -4183,16 +4183,16 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, index iSel)
    {
 
-      if (iSel < 0 || iSel >= System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
+      if (iSel < 0 || iSel >= System->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
       {
 
          return false;
 
       }
 
-      string strLang = System.get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
+      string strLang = System->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
 
-      if (strLang == System.get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
+      if (strLang == System->get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
       {
 
          return true;
@@ -4214,9 +4214,9 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, string strLang)
    {
 
-      System.get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
+      System->get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
 
-      return System.set_standalone_setting("current_language", strLang);
+      return System->set_standalone_setting("current_language", strLang);
 
    }
 
@@ -4325,13 +4325,13 @@ namespace apex
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.cc/open_f___?url=" + System.url_encode(strUrl) + "&profile=" + System.url_encode(strProfile) + "&target=" + System.url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_f___?url=" + System->url_encode(strUrl) + "&profile=" + System->url_encode(strProfile) + "&target=" + System->url_encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.cc/open_tab?url=" + System.url_encode(strUrl) + "&profile=" + System.url_encode(strProfile) + "&target=" + System.url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_tab?url=" + System->url_encode(strUrl) + "&profile=" + System->url_encode(strProfile) + "&target=" + System->url_encode(strTarget);
 
          }
 
@@ -4437,7 +4437,7 @@ namespace apex
          //if (strOpenUrl.has_char())
          {
 
-            // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+            // System->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
             ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
@@ -4670,7 +4670,7 @@ namespace apex
 
          argv.add(nullptr);
 
-         string strApp = System.url().url_decode(path);
+         string strApp = System->url().url_decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -5471,7 +5471,7 @@ namespace apex
    void system::on_start_find_applications_from_cache()
    {
 
-      __throw(todo("filehandler"));
+      __throw(todo, "filehandler");
      // m_pfilehandler->m_ptree->remove_all();
 
    }
@@ -5495,7 +5495,7 @@ namespace apex
    void system::on_map_application_library(::apex::library& library)
    {
 
-      __throw(todo("filehandler"));
+      __throw(todo, "filehandler");
       // m_pfilehandler->defer_add_library(library.m_pca2library);
 
    }
@@ -6075,7 +6075,7 @@ string get_bundle_app_library_name();
 
          }
 
-         __throw(::exception::exception(strMessage + "\n\nCould not open required library."));
+         __throw(error_failed, strMessage + "\n\nCould not open required library.");
 
          return nullptr;
 
@@ -6173,7 +6173,7 @@ namespace apex
 void apex_system_update(const ::id & id, const ::payload & payload)
 {
 
-   System.process_subject(id, payload);
+   System->process_subject(id, payload);
 
 }
 
@@ -6182,7 +6182,7 @@ void apex_system_update(const ::id & id, const ::payload & payload)
 void apex_system_set_modified(const ::id& id)
 {
 
-   System.set_modified(id);
+   System->set_modified(id);
 
 }
 

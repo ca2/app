@@ -40,7 +40,7 @@ namespace turboc
 
       }
 
-      ::aura::post_quit_thread(&System);
+      ::aura::post_quit_thread(System);
 
       return m_iReturnCode;
 

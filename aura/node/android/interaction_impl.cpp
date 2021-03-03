@@ -917,7 +917,7 @@ namespace android
       UNREFERENCED_PARAMETER(nCmd);
       ::exception::throw_not_implemented();
 
-      /*      application* pApp = &System;
+      /*      application* pApp = System;
       ASSERT_VALID(pApp);
       ASSERT(pApp->m_pszHelpFilePath != nullptr);
       ASSERT(pApp->m_eHelpType == afxWinHelp);
@@ -943,7 +943,7 @@ namespace android
    //{
    // ::exception::throw_not_implemented();
    /*
-   application* pApp = &System;
+   application* pApp = System;
    ASSERT_VALID(pApp);
    ASSERT(pApp->m_pszHelpFilePath != nullptr);
    // to call HtmlHelp the m_fUseHtmlHelp must be set in
@@ -1009,7 +1009,7 @@ namespace android
       UNREFERENCED_PARAMETER(nCmd);
       ::exception::throw_not_implemented();
       /*
-      application* pApp = &System;
+      application* pApp = System;
       ASSERT_VALID(pApp);
       if (pApp->m_eHelpType == afxHTMLHelp)
       {

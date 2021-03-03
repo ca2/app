@@ -272,7 +272,7 @@ namespace http
 
                         string strMessage;
 
-                        strMessage = System.datetime().international().get_gmt_date_time() + " " + strTempFile;
+                        strMessage = System->datetime().international().get_gmt_date_time() + " " + strTempFile;
 
                         file_append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

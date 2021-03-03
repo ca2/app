@@ -239,7 +239,7 @@ namespace sockets
 
          close_socket(s);
 
-         __throw(::exception::exception("listen() failed for port " + __str(ad.get_service_number()) + ": " + bsd_socket_error(Errno)));
+         __throw(error_socket, "listen() failed for port " + __str(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
 
          return -1;
 
@@ -308,7 +308,7 @@ namespace sockets
 
       __pointer(socket) tmp = create_listen_socket();
 
-      auto lId = System.sockets().m_lListenSocket++;
+      auto lId = System->sockets().m_lListenSocket++;
 
       string strTopicText;
 

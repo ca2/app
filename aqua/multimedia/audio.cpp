@@ -90,7 +90,7 @@ namespace aqua
    LPWAVEOUT audio::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    {
 
-      __throw(interface_only_exception(nullptr));
+      __throw(error_interface_only);
 
       return nullptr;
 
@@ -131,7 +131,7 @@ namespace aqua
 CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext)
 {
 
-   return System.defer_get_audio();
+   return System->defer_get_audio();
 
 }
 
@@ -139,7 +139,7 @@ CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext)
 CLASS_DECL_AQUA bool has_audio()
 {
 
-   return ::is_set(System.m_paudio);
+   return ::is_set(System->m_paudio);
 
 }
 

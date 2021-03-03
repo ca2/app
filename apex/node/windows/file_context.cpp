@@ -30,9 +30,9 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, System.m_pfilesystem);
+      __refer(m_pfilesystem, System->m_pfilesystem);
 
-      __refer(m_pdirsystem, System.m_pdirsystem);
+      __refer(m_pdirsystem, System->m_pdirsystem);
 
       return ::success;
 
@@ -238,7 +238,7 @@ namespace windows
 
          strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 
-         __throw(io_exception(::error_io, strError));
+         __throw(::error_io, strError);
 
       }
 
@@ -399,7 +399,7 @@ namespace windows
    }
 
 
-   rp(::file::file) file_context::resource_get_file(const ::file::path & path)
+   ::extended::transport < ::file::file > file_context::resource_get_file(const ::file::path & path)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -419,7 +419,7 @@ namespace windows
 
       }
 
-      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) System.m_hinstance, iId, psz))
+      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) System->m_hinstance, iId, psz))
       {
 
          return pfile;
@@ -487,7 +487,7 @@ namespace windows
       ASSERT(findFileData.nFileSizeHigh == 0);
       rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
-      auto pnode = System.node();
+      auto pnode = System->node();
 
       // convert times as appropriate
       pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *)&findFileData.ftCreationTime);

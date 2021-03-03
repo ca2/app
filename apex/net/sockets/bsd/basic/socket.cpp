@@ -149,7 +149,7 @@ namespace sockets
 
                SetCloseAndDelete();
 
-               __throw(::exception::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
+               __throw(error_socket, string("getprotobyname() failed: ") + bsd_socket_error(Errno));
 
                return INVALID_SOCKET;
 
@@ -176,7 +176,7 @@ namespace sockets
          FATAL(log_this, "socket", Errno, bsd_socket_error(Errno));
 
          SetCloseAndDelete();
-         __throw(::exception::exception(string("socket() failed: ") + bsd_socket_error(Errno)));
+         __throw(error_socket, string("socket() failed: ") + bsd_socket_error(Errno));
          return INVALID_SOCKET;
       }
       attach(s);

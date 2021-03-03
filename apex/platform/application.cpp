@@ -315,7 +315,7 @@ namespace apex
 
 #ifdef LINUX
 
-      if(System.m_bGtkApp)
+      if(System->m_bGtkApp)
       {
 
          auto pnode = Node;
@@ -706,7 +706,7 @@ namespace apex
                if (::str::begins_eat_ci(str, "send?message="))
                {
 
-                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, System.url().url_decode(str));
+                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, System->url().url_decode(str));
 
                }
                else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -721,7 +721,7 @@ namespace apex
 
                      memory m;
 
-                     System.base64().decode(m, System.url().url_decode(str.Mid(iFind + 1)));
+                     System->base64().decode(m, System->url().url_decode(str.Mid(iFind + 1)));
 
                      m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -788,7 +788,7 @@ namespace apex
 
          //    ::exception_pointer esp(pexception);
 
-         //    System.on_run_exception(esp);
+         //    System->on_run_exception(esp);
 
          //    __throw(exit_exception(esp->get_context_application(), ::exit_application));
 
@@ -796,15 +796,15 @@ namespace apex
          catch (const ::exception::exception & e)
          {
 
-            handle_exception(pe);
+            handle_exception(e);
 
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(get_context_system()) && System.m_millisAfterApplicationFirstRequest == 0)
+         if (::is_set(get_context_system()) && System->m_millisAfterApplicationFirstRequest == 0)
          {
 
-            System.m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            System->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -1131,7 +1131,7 @@ namespace apex
    //object * application::alloc(::type info)
    //{
 
-   //   return System.alloc(this, info);
+   //   return System->alloc(this, info);
 
    //}
 
@@ -1139,7 +1139,7 @@ namespace apex
    //object * application::alloc(const  id & idType)
    //{
 
-   //   return System.alloc(this, idType);
+   //   return System->alloc(this, idType);
 
    //}
 
@@ -1302,7 +1302,7 @@ namespace apex
    //::file::path application::defer_process_path(::file::path path)
    //{
 
-   //   return System.defer_process_path(path, this);
+   //   return System->defer_process_path(path, this);
 
    //}
 
@@ -1317,7 +1317,7 @@ namespace apex
 
    //   }
 
-   //   return System.full_process_path(path, this);
+   //   return System->full_process_path(path, this);
 
    //}
 
@@ -1498,12 +1498,12 @@ namespace apex
    ::e_status application::process_exception(const ::exception::exception & e)
    {
 
-      return ::thread::process_exception(pe);
+      return ::thread::process_exception(e);
 
    }
 
 
-   //bool application::final_handle_exception(::exception::exception * pe)
+   //bool application::final_handle_exception(const ::exception::exception & e)
    //{
 
    //   UNREFERENCED_PARAMETER(pe);
@@ -1514,7 +1514,7 @@ namespace apex
    //   {
 
    //      // get_context_application() may be it self, it is ok...
-   //      if (System.final_handle_exception(pe))
+   //      if (System->final_handle_exception(pe))
    //         return true;
 
 
@@ -1549,7 +1549,7 @@ namespace apex
       catch (const ::exception::exception & e)
       {
 
-         if (!handle_exception(pe))
+         if (!handle_exception(e))
          {
 
 
@@ -1585,7 +1585,7 @@ namespace apex
       catch (const ::exception::exception & e)
       {
 
-         handle_exception(pe);
+         handle_exception(e);
 
          return false;
 
@@ -1696,7 +1696,7 @@ namespace apex
       catch (const ::exception::exception & e)
       {
 
-         handle_exception(pe);
+         handle_exception(e);
 
       }
       catch (...)
@@ -1758,7 +1758,7 @@ namespace apex
 //      //if(::is_set(get_context_system()))
 //      //{
 //
-//      //   System.add_reference(this);
+//      //   System->add_reference(this);
 //
 //      //}
 //
@@ -2392,7 +2392,7 @@ namespace apex
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
 
-         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), true);
+         ::AttachThreadInput(GetCurrentThreadId(), (u32)System->get_ithread(), true);
 
       }
 
@@ -2470,7 +2470,7 @@ namespace apex
 
       }
 
-      System.install_progress_add_up();
+      System->install_progress_add_up();
 
       m_millisHeartBeat.Now();
 
@@ -2488,7 +2488,7 @@ namespace apex
       catch (const ::exception::exception & e)
       {
 
-         handle_exception(pe);
+         handle_exception(e);
 
          return false;
 
@@ -2508,7 +2508,7 @@ namespace apex
          //if (!is_system() && !is_session())
          {
 
-            if (System.is_true("uninstall"))
+            if (System->is_true("uninstall"))
             {
 
                do_uninstall();
@@ -2516,7 +2516,7 @@ namespace apex
                return false;
 
             }
-            else if (System.is_true("install"))
+            else if (System->is_true("install"))
             {
 
                do_install();
@@ -2537,18 +2537,18 @@ namespace apex
          on_update_matter_locator();
 
       }
-      catch (exit_exception * pexception)
+      catch (const ::exit_exception & exception)
       {
 
-         __rethrow(pexception);
+         __rethrow(exception);
 
       }
-      catch(::exception::exception * pexception)
+      catch(const ::exception::exception & e)
       {
 
-         ::exception_pointer esp(pexception);
+         m_result.add(e);
 
-         return false;
+         return m_result.estatus();
 
       }
       catch (...)
@@ -2640,7 +2640,7 @@ namespace apex
 
          ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-         System.m_result.add(error_failed);
+         System->m_result.add(error_failed);
 
          return false;
 
@@ -2665,11 +2665,11 @@ namespace apex
 
       string strLicense = get_license_id();
 
-      //::payload & varTopicQuey = System.m_varTopicQuery;
+      //::payload & varTopicQuey = System->m_varTopicQuery;
 
-      bool bHasInstall = System.is_true("install");
+      bool bHasInstall = System->is_true("install");
 
-      bool bHasUninstall = System.is_true("uninstall");
+      bool bHasUninstall = System->is_true("uninstall");
 
       if (!(bHasInstall || bHasUninstall)
             && m_bLicense
@@ -2723,7 +2723,7 @@ retry_license:
 
          return false;
 
-//         System.install().remove_spa_start(m_strAppId);
+//         System->install().remove_spa_start(m_strAppId);
 
       }
 
@@ -2804,11 +2804,11 @@ retry_license:
 
       }
 
-      synchronization_lock synchronizationlock(System.m_pmutexSystemAppData);
+      synchronization_lock synchronizationlock(System->m_pmutexSystemAppData);
 
       string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
+      string strSystemLocale = System->m_strLocale;
+      string strSystemSchema = System->m_strSchema;
       string_array straLocale;
       string_array straSchema;
 
@@ -2830,26 +2830,26 @@ retry_license:
 
          string strSchema = straSchema[i];
 
-         set_application_installed(pathExe, strId, strBuild, System.get_system_platform(), System.get_system_configuration(), strLocale, strSchema);
+         set_application_installed(pathExe, strId, strBuild, System->get_system_platform(), System->get_system_configuration(), strLocale, strSchema);
 
       }
 
-      //System.install().remove_spa_start(strId);
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-      //System.install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
+      //System->install().remove_spa_start(strId);
+      //System->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+      //System->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+      //System->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
       //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
-      //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
+      //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
       //}
 
       //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
-      //   System.install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
+      //   System->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
       //}
 
@@ -2859,33 +2859,33 @@ retry_license:
       //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //   {
 
-      //      System.install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
+      //      System->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
       //   }
 
       //}
 
-      //System.install().add_app_install(strId, strBuild, strSystemLocale, "");
-      //System.install().add_app_install(strId, strBuild, m_strLocale, "");
+      //System->install().add_app_install(strId, strBuild, strSystemLocale, "");
+      //System->install().add_app_install(strId, strBuild, m_strLocale, "");
 
       //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
-      //   System.install().add_app_install(strId, strBuild, straLocale[iLocale], "");
+      //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
       //}
 
-      //System.install().add_app_install(strId, strBuild, "", m_strSchema);
-      //System.install().add_app_install(strId, strBuild, "", strSystemSchema);
+      //System->install().add_app_install(strId, strBuild, "", m_strSchema);
+      //System->install().add_app_install(strId, strBuild, "", strSystemSchema);
 
       //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
-      //   System.install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
+      //   System->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
       //}
 
-      //System.install().add_app_install(strId, strBuild, "", "");
+      //System->install().add_app_install(strId, strBuild, "", "");
 
       return true;
 
@@ -2974,7 +2974,7 @@ retry_license:
       if (!is_serviceable())
       {
 
-         __throw(::status_exception(error_unsupported_function));
+         __throw(error_unsupported_function);
 
       }
 
@@ -3003,7 +3003,7 @@ retry_license:
 
       }
 
-      System.m_serviceptra.add(m_pservice);
+      System->m_serviceptra.add(m_pservice);
 
       return true;
 
@@ -3146,7 +3146,7 @@ retry_license:
 
 #else
 
-         //if (System.m_pappcore == nullptr)
+         //if (System->m_pappcore == nullptr)
          //{
 
          //   set_has_installer(false);
@@ -3155,7 +3155,7 @@ retry_license:
          //else
          {
 
-            set_has_installer(!System.has_apex_application_factory());
+            set_has_installer(!System->has_apex_application_factory());
 
          }
 
@@ -3181,7 +3181,7 @@ retry_license:
 
       INFO("apex::application::process_init");
 
-      m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
+      m_bThreadToolsForIncreasedFps = System->m_bThreadToolsForIncreasedFps;
 
       if (::get_task() == nullptr)
       {
@@ -3304,7 +3304,7 @@ retry_license:
          if (get_context_system() != nullptr)
          {
 
-            System.request({::command_check_exit});
+            System->request({::command_check_exit});
 
          }
 
@@ -3347,7 +3347,7 @@ retry_license:
 
       }
 
-      System.install_progress_add_up(); // 2
+      System->install_progress_add_up(); // 2
 
       //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
@@ -3362,7 +3362,7 @@ retry_license:
 
       }
 
-      System.install_progress_add_up(); // 3
+      System->install_progress_add_up(); // 3
 
       //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
@@ -3377,7 +3377,7 @@ retry_license:
 
       }
 
-      System.install_progress_add_up(); // 4
+      System->install_progress_add_up(); // 4
 
       //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
@@ -3412,7 +3412,7 @@ retry_license:
 
       }
 
-      System.install_progress_add_up(); // 5
+      System->install_progress_add_up(); // 5
 
 //      m_bAuraInitializeInstanceResult = true;
 
@@ -3455,19 +3455,19 @@ retry_license:
       if (get_context_system())
       {
 
-         if (System.m_pintstringLanguageResourceMap != nullptr)
+         if (System->m_pintstringLanguageResourceMap != nullptr)
          {
 
-            m_puserlanguagemap->set_language_resource_map(System.m_pintstringLanguageResourceMap);
+            m_puserlanguagemap->set_language_resource_map(System->m_pintstringLanguageResourceMap);
 
          }
 
       }
 
-      if (System.m_bLocalization)
+      if (System->m_bLocalization)
       {
 
-         string strLang = System.get_user_language();
+         string strLang = System->get_user_language();
 
          if (!m_puserlanguagemap->set_language(this, strLang))
          {
@@ -3487,17 +3487,17 @@ retry_license:
 
       }
 
-      if (System.m_bLocalization)
+      if (System->m_bLocalization)
       {
 
          string strLocale;
 
          string strSchema;
 
-         if (System.get_user_language().has_char())
+         if (System->get_user_language().has_char())
          {
 
-            m_strLocale = System.get_user_language();
+            m_strLocale = System->get_user_language();
 
             m_strSchema = m_strLocale;
 
@@ -3552,17 +3552,17 @@ retry_license:
 
          }
 
-         if (System.payload("locale").get_count() > 0)
+         if (System->payload("locale").get_count() > 0)
          {
 
-            strLocale = System.payload("locale").stra()[0];
+            strLocale = System->payload("locale").stra()[0];
 
          }
 
-         if (System.payload("schema").get_count() > 0)
+         if (System->payload("schema").get_count() > 0)
          {
 
-            strSchema = System.payload("schema").stra()[0];
+            strSchema = System->payload("schema").stra()[0];
 
          }
 
@@ -4187,26 +4187,26 @@ retry_license:
 
    string application::get_local_mutex_name()
    {
-      return System.get_local_mutex_name(get_mutex_name_gen());
+      return System->get_local_mutex_name(get_mutex_name_gen());
    }
 
 
    string application::get_local_id_mutex_name()
    {
 
-      return System.get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+      return System->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
    }
 
 
    string application::get_global_mutex_name()
    {
-      return System.get_global_mutex_name(get_mutex_name_gen());
+      return System->get_global_mutex_name(get_mutex_name_gen());
    }
 
    string application::get_global_id_mutex_name()
    {
-      return System.get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+      return System->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
    }
 
 
@@ -4250,7 +4250,7 @@ retry_license:
 
             pcall->add_arg(get_context()->os().get_pid());
 
-            pcall->add_arg(System.command_line_text());
+            pcall->add_arg(System->command_line_text());
 
             string strId;
 
@@ -4311,7 +4311,7 @@ retry_license:
 
             pcall->add_arg(get_context()->os().get_pid());
 
-            pcall->add_arg(System.command_line_text());
+            pcall->add_arg(System->command_line_text());
 
             pcall->add_arg(strId);
 
@@ -4606,7 +4606,7 @@ retry_license:
       UNREFERENCED_PARAMETER(context);
       UNREFERENCED_PARAMETER(pcsz);
 
-      //System.appa_load_string_table();
+      //System->appa_load_string_table();
    }
 
 
@@ -4616,7 +4616,7 @@ retry_license:
       UNREFERENCED_PARAMETER(context);
       UNREFERENCED_PARAMETER(pcsz);
 
-      //System.appa_load_string_table();
+      //System->appa_load_string_table();
    }
 
 
@@ -4897,7 +4897,7 @@ retry_license:
 
       string strMessage;
 
-      strMessage = System.datetime().international().get_gmt_date_time();
+      strMessage = System->datetime().international().get_gmt_date_time();
       strMessage += " ";
       strMessage += pszMessage;
       strMessage += "\n";
@@ -4989,7 +4989,7 @@ retry_license:
    //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
    //{
 
-   //   return System.compress().ungz(this, pfileUncompressed, pfileCompressed);
+   //   return System->compress().ungz(this, pfileUncompressed, pfileCompressed);
 
    //}
 
@@ -4997,7 +4997,7 @@ retry_license:
    //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
    //{
 
-   //   return System.compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
+   //   return System->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
 
 
    //}
@@ -5268,7 +5268,7 @@ retry_license:
 
       ::string strContents = file_as_string(strPath.c_str());
 
-      __throw(todo("xml"));
+      __throw(todo, "xml");
 
       //::xml::document doc;
 
@@ -5655,7 +5655,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      System.on_initial_frame_position(pframe);
+      System->on_initial_frame_position(pframe);
 
    }
 
@@ -5753,7 +5753,7 @@ retry_license:
          //else
          //{
 
-           // return System.translate_property_id(id);
+           // return System->translate_property_id(id);
 
          //}
 
@@ -5779,7 +5779,7 @@ retry_license:
 
       string strAppId = m_strAppId;
 
-      auto& file = System.file();
+      auto& file = System->file();
 
       string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
 
@@ -5789,7 +5789,7 @@ retry_license:
          try
          {
 
-            System.http().m_setHttp.parse_json(strJson);
+            System->http().m_setHttp.parse_json(strJson);
 
          }
          catch (...)
@@ -5872,7 +5872,7 @@ retry_license:
 
       //try
       //{
-      __throw(todo("interaction"));
+      __throw(todo, "interaction");
 
       //   if (m_puiMain1)
       //   {
@@ -6225,26 +6225,25 @@ retry_license:
             m_estatus = run();
 
          }
-         catch (::exceptionconst ::exception::exception & e)
+         catch (const ::exception::exception & e)
          {
 
-            if (handle_exception(pe))
+            if (handle_exception(e))
             {
 
                goto resume_on_exception;
 
             }
 
-            m_estatus = pe->m_estatus;
+            m_estatus = e.m_estatus;
 
          }
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception::exception &)
       {
 
       }
-
 
       try
       {
@@ -6749,7 +6748,7 @@ retry_license:
 
          update_appmatter(handler, psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         System.install_progress_add_up();
+         System->install_progress_add_up();
 
       }
 
@@ -6777,7 +6776,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System.url().url_encode(strRelative);
+      strUrl += System->url().url_encode(strRelative);
 
       if (psession == nullptr)
       {
@@ -6787,7 +6786,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (get_context()->http().open(handler, psession, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, nullptr))
+            if (get_context()->http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -6837,7 +6836,7 @@ retry_license:
 
          }
 
-         //System.compress().extract_all(strFile, this);
+         //System->compress().extract_all(strFile, this);
 
       }
 
@@ -7062,7 +7061,7 @@ retry_license:
    string application::dialog_box(const char* pszMatter, property_set& propertyset)
    {
 
-      __throw(todo("core and os"));
+      __throw(todo, "core and os");
 
       return"";
 
@@ -7370,7 +7369,7 @@ retry_license:
       //bool application::compress_ungz(const ::stream & os, const ::stream & is)
       //{
 
-      //   return System.compress().ungz(this, os, is);
+      //   return System->compress().ungz(this, os, is);
 
 
       //}
@@ -7379,7 +7378,7 @@ retry_license:
       //bool application::compress_ungz(memory_base & mem)
       //{
 
-      //   return System.compress().ungz(this, mem);
+      //   return System->compress().ungz(this, mem);
 
       //}
 
@@ -7388,7 +7387,7 @@ retry_license:
 
       //{
 
-      //   return System.compress().gz(this, os, is, iLevel);
+      //   return System->compress().gz(this, os, is, iLevel);
 
 
       //}
@@ -7397,7 +7396,7 @@ retry_license:
       //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
       //{
 
-      //   return System.compress().gz(this, os, is, iLevel);
+      //   return System->compress().gz(this, os, is, iLevel);
 
       //}
 
@@ -7642,8 +7641,6 @@ retry_license:
    void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
    {
 
-      ENSURE_ARG(pe != nullptr);
-
       ENSURE_ARG(pmessage != nullptr);
 
       //__pointer(::user::message) pusermessage(pmessage);
@@ -7655,7 +7652,7 @@ retry_license:
       case e_message_create:
       case e_message_paint:
 
-         return thread::process_window_procedure_exception(pe, pmessage);
+         return thread::process_window_procedure_exception(e, pmessage);
 
       }
 
@@ -7671,18 +7668,18 @@ retry_license:
          pmessage->m_lresult = (LRESULT)true;        // pretend the command was handled
       }
 
-      if (pe.is < memory_exception >())
+      if (e.estatus() == error_no_memory)
       {
 
-         report_error(pe, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
+         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nullptr);
 
       }
-      else if (pe.is < user_exception >())
+      else if (e.estatus() == error_user)
       {
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(pe, e_message_box_icon_stop, nIDP);
+         report_error(e, e_message_box_icon_stop, nullptr);
 
       }
 
@@ -8272,7 +8269,7 @@ retry_license:
    //   {
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
-   //      //   __pointer(::user::interaction) pMainWnd = System.m_puiMain;
+   //      //   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
    //      // return global cast help mode state to false (backward compatibility)
@@ -8321,7 +8318,7 @@ retry_license:
    //}
 
 
-   //bool application::final_handle_exception(::exception::exception * pexception)
+   //bool application::final_handle_exception(const ::exception::exception & e)
    //{
 
    //   UNREFERENCED_PARAMETER(pexception);
@@ -8329,7 +8326,7 @@ retry_license:
    //   if (!is_system())
    //   {
 
-   //      if (System.final_handle_exception(pexception))
+   //      if (System->final_handle_exception(pexception))
    //      {
 
    //         return true;
@@ -8429,7 +8426,7 @@ retry_license:
       }
 
       // otherwise, use window::OnHelp implementation
-      /* trans ::user::interaction_impl * pwindow = System.m_puiMain;
+      /* trans ::user::interaction_impl * pwindow = System->m_puiMain;
       ENSURE_VALID(pwindow);
       if (!pwindow->is_frame_window())
       pwindow->OnHelp();
@@ -8481,7 +8478,7 @@ retry_license:
    {
       // just use frame_window::OnContextHelp implementation
       /* trans   m_bHelpMode = HELP_ACTIVE;
-      __pointer(::user::frame_window) pMainWnd = (System.m_puiMain);
+      __pointer(::user::frame_window) pMainWnd = (System->m_puiMain);
       ENSURE_VALID(pMainWnd);
       ENSURE(pMainWnd->is_frame_window());
       pMainWnd->OnContextHelp();
@@ -8656,7 +8653,7 @@ retry_license:
 #endif
 
       // no-op if main window is nullptr or not a frame_window
-      /*   __pointer(::user::interaction) pMainWnd = System.m_puiMain;
+      /*   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
       if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
       return;*/
 
@@ -9312,7 +9309,7 @@ retry_license:
 //      */
 //#else
 //
-//      return System.ui_from_handle(::get_desktop_window());
+//      return System->ui_from_handle(::get_desktop_window());
 //
 //#endif
 //
@@ -9581,7 +9578,7 @@ retry_license:
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(&System);
+            ::parallelization::finish(System);
 
          }
 
@@ -9589,7 +9586,7 @@ retry_license:
       else
       {
 
-         ::parallelization::finish(&System);
+         ::parallelization::finish(System);
 
       }
 
@@ -9628,7 +9625,7 @@ retry_license:
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(&System);
+            ::parallelization::finish(System);
 
          }
 
@@ -9636,7 +9633,7 @@ retry_license:
       else
       {
 
-         ::parallelization::finish(&System);
+         ::parallelization::finish(System);
 
       }
 
@@ -9747,7 +9744,7 @@ retry_license:
    bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
    {
       return false;
-      //db_server * pcentral = dynamic_cast <db_server *> (&System.m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{
@@ -9853,7 +9850,7 @@ retry_license:
 //      {
 //         if (m_straAppInterest[i] != m_strAppName && !::is_window(m_mapAppInterest[m_straAppInterest[i]]))
 //         {
-//            System.assert_running_local(m_straAppInterest[i]);
+//            System->assert_running_local(m_straAppInterest[i]);
 //         }
 //      }
 //
@@ -9905,12 +9902,12 @@ retry_license:
 
    bool bFound = false;
 
-   for(i32 i  = 0; i < System.m_appptra.get_count(); i++)
+   for(i32 i  = 0; i < System->m_appptra.get_count(); i++)
    {
    try
    {
 
-   papp = System.m_appptra(i);
+   papp = System->m_appptra(i);
 
    if(papp->m_strAppName == pszAppId)
    {
@@ -10055,7 +10052,7 @@ retry_license:
    //}
 
 
-   void application::report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic)
+   void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
    {
 
       string strMessage;
@@ -10064,9 +10061,9 @@ retry_license:
 
       strMessage += " : ";
 
-      strMessage += pexception->get_message();
+      strMessage += e.get_message();
 
-      __throw(todo("interaction"));
+      __throw(todo, "interaction");
 
       //m_puiMain1->message_box(strMessage + ::enum_message_box(iMessageFlags));
 
@@ -10076,7 +10073,7 @@ retry_license:
    bool application::on_close_frame_window(::user::frame* pframe)
    {
 
-      __throw(todo("interaction"));
+      __throw(todo, "interaction");
 
       //if (pframe->m_bCloseApplicationIfLastVisibleFrame)
       //{
@@ -10479,7 +10476,7 @@ retry_license:
    ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
-      __throw(todo("interaction"));
+      __throw(todo, "interaction");
       //if (lCount <= 0)
       //{
 
@@ -10515,7 +10512,7 @@ retry_license:
       //         //   }
       //         //   try
       //         //   {
-      //         //      System.remove_frame(pinteraction);
+      //         //      System->remove_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {
@@ -10891,7 +10888,7 @@ retry_license:
             if (get_context_system())
             {
 
-               System.finish(get_context());
+               System->finish(get_context());
 
             }
 
@@ -10909,7 +10906,7 @@ retry_license:
    __pointer(::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return System.message_box(pszMessage, pszTitle, emessagebox);
+      return System->message_box(pszMessage, pszTitle, emessagebox);
 
    }
 
@@ -10917,7 +10914,7 @@ retry_license:
    //::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
    //{
 
-   //   auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   auto estatus = System->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //   return estatus;
 

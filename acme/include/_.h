@@ -72,7 +72,7 @@
 #undef Sys
 
 
-#define System (*::get_context_system())
+#define System (::get_context_system())
 
 
 #define Node (::get_context_system()->node())

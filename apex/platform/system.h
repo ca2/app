@@ -1027,7 +1027,7 @@ inline void set_enum_text(ENUM e, const char * psz)
 
    auto & system = System;
 
-   critical_section_lock synchronizationlock(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(System.m_csEnumText);
 
    system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -1042,7 +1042,7 @@ inline string enum_text(ENUM e)
 
    auto & system = System;
 
-   critical_section_lock synchronizationlock(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(System.m_csEnumText);
 
    return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1055,7 +1055,7 @@ inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 
    auto & system = System;
 
-   critical_section_lock synchronizationlock(&system.m_csEnumText);
+   critical_section_lock synchronizationlock(System.m_csEnumText);
 
    i64 iValue;
 
@@ -1105,7 +1105,7 @@ inline string enum_text(const base_enum < ENUM, edefault > & b)
 //inline ::traits & traits(::context_object * p)
 //{
 //
-//   auto traits = System.m_traits[p];
+//   auto traits = System->m_traits[p];
 //
 //   if (traits.m_pobjectTrait != p)
 //   {

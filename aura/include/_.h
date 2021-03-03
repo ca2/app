@@ -26,7 +26,7 @@
 #undef App
 
 
-#define System (*::get_context_system()->m_paurasystem)
+#define System (::get_context_system()->m_paurasystem)
 #define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
 #define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)

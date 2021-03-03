@@ -11,7 +11,7 @@ namespace xml
 
       m_bNewLine = true;
       m_bReferenceValue = true;
-      m_pentities = pentities; // &::get_context_application(pobjectContext)->System.m_pxml->m_entities;
+      m_pentities = pentities; // &::get_context_application(pobjectContext)->System->m_pxml->m_entities;
       m_iTabBase = 0;
       m_chQuote = '"';
 

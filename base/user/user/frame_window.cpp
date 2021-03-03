@@ -657,7 +657,7 @@ namespace user
    }
    if (lParam != 0)
    {
-   application* pApp = &System;
+   application* pApp = System;
    if (pApp != nullptr)
    pApp->WinHelpInternal(lParam);
    return true;
@@ -1268,7 +1268,7 @@ namespace user
       // ::user::document can't close right now -- don't close it
       return;
       }
-      application* pApp = &System;
+      application* pApp = System;
       if (pApp != nullptr && pApp->m_puiMain == this)
       {
       // attempt to save all documents

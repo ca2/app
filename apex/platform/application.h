@@ -1349,13 +1349,10 @@ namespace apex
       //virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      virtual void report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic);
-
+      virtual void report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic);
 
 
       virtual bool on_close_frame_window(::user::frame* pframe);
-
-
 
 
       //application();

@@ -47,7 +47,7 @@ namespace sockets
 
       }
 
-      System.math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+      System->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
       m_psslinit = new ::sockets::SSLInitializer(get_context_object());

@@ -970,7 +970,7 @@ namespace axis
 //               if (System.thread::get_os_data() != nullptr)
 //               {
 //
-//                  ::parallelization::finish(&System);
+//                  ::parallelization::finish(System);
 //
 //               }
 //
@@ -1750,7 +1750,7 @@ namespace axis
             m_estatus = run();
 
          }
-         catch (::exceptionconst ::exception::exception & e)
+         catch (const ::exception::exception & e)
          {
 
             if (handle_exception(pe))

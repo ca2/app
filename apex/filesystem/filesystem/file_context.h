@@ -163,7 +163,7 @@ public:
 
    virtual bool is_read_only(const ::file::path & psz);
 
-   virtual rp(::file::file) resource_get_file(const ::file::path & path);
+   virtual ::extended::transport < ::file::file > resource_get_file(const ::file::path & path);
 
    virtual ::file::path sys_temp(const ::file::path & lpszName, const char * pszExtension);
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
@@ -342,7 +342,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual rp(::file::file) friendly_get_file(const ::payload & varFile, const ::file::e_open & eopen);
+   virtual ::extended::transport < ::file::file > friendly_get_file(const ::payload & varFile, const ::file::e_open & eopen);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);

@@ -796,7 +796,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            color.m_result.alpha = 90;
+            color.alpha = 90;
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, color);
 
@@ -6311,7 +6311,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      m_pregexFilter1 = System.create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = System->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
 
@@ -7495,7 +7495,7 @@ namespace user
 
          ::color::color color;
 
-         color.set_COLORREF(m_colorText.m_result);
+         color.set_COLORREF(m_colorText);
 
          color.alpha = color.alpha / 3;
 
@@ -7530,7 +7530,7 @@ namespace user
 
                __defer_construct(pimage2);
 
-               if (System.draw2d()->embossed_text_out(
+               if (System->draw2d()->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,
@@ -7539,8 +7539,8 @@ namespace user
                      m_pgraphics->m_pfont,
                      m_ealign,
                      m_edrawtext,
-                     m_colorText.m_result,
-                     m_colorTextBackground.m_result,
+                     m_colorText,
+                     m_colorTextBackground,
                      m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
                      m_plist->m_iTextBlur,
                      m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]))
@@ -7548,7 +7548,7 @@ namespace user
 
                   m_plist->m_mapText[m_iItem] = m_strText;
 
-                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground.m_result;
+                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground;
 
                }
 

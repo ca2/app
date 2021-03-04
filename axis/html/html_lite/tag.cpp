@@ -24,10 +24,10 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
          m_pcollAttr = new LiteHTMLAttributes(*(rSource.m_pcollAttr), true);
 
       }
-      catch(memory_exception * pe)
+      catch(const ::exception::exception & e)
       {
 
-         __rethrow(pe);
+         __rethrow(e);
 
       }
 

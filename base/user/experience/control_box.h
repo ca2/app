@@ -64,7 +64,7 @@ namespace experience
       enum_button_item_map                   m_itemmap;
       id_map < enum_button >                 m_idmap;
             
-      with_status < ::color::color  >      m_colorBackground;
+      status < ::color::color  >      m_colorBackground;
 
 
       control_box();

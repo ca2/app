@@ -10903,7 +10903,7 @@ retry_license:
    }
 
 
-   __pointer(::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
       return System->message_box(pszMessage, pszTitle, emessagebox);

@@ -1102,6 +1102,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="compress\zip\unzip.cpp" />
     <ClCompile Include="compress\zip\zip.cpp" />
     <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="exception\hresult.cpp" />
     <ClCompile Include="exception\aaa_not_installed.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
@@ -1629,6 +1630,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
     <ClCompile Include="primitive\primitive\id_matter.cpp" />
+    <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\layered.cpp" />
@@ -1683,6 +1685,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\thread.h" />
     <ClInclude Include="const\timer.h" />
     <ClInclude Include="const\_const.h" />
+    <ClInclude Include="exception\hresult.h" />
     <ClInclude Include="exception\parsing.h" />
     <ClInclude Include="exception\callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
@@ -2063,6 +2066,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
     <ClInclude Include="primitive\primitive\context_object.h" />
     <ClInclude Include="primitive\primitive\id_matter.h" />
+    <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
@@ -2510,6 +2514,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="_.h" />
     <ClInclude Include="_c.h" />
     <ClInclude Include="_defer.h" />
+    <ClInclude Include="_start.h" />
     <None Include="acme.def" />
     <None Include="filesystem\_impl.h" />
     <None Include="filesystem\file\_impl.h" />

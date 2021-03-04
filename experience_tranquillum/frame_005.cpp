@@ -243,9 +243,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               with_status < ::color::color > crMoveableBorder;
-               with_status < ::color::color > crMoveableBorderHilight;
-               with_status < ::color::color > crMoveableBorderShadow;
+               status < ::color::color > crMoveableBorder;
+               status < ::color::color > crMoveableBorderHilight;
+               status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -288,21 +288,21 @@ SizingNone:;
                else if(estyle == ::user::StyleLightBlue)
                {
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, 0);//m_colorMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorderHilight.m_result, crMoveableBorderShadow.m_result);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, crMoveableBorder.m_result);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder.m_result, crMoveableBorder.m_result);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  //class imaging & imaging = System.imaging();
+                  //class imaging & imaging = System->imaging();
                   //imaging.color_blend(
                      
                      pgraphics->color_blend(
@@ -329,14 +329,14 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
+                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
 
                   rectA.top++;
                   rectA.bottom--;
@@ -344,7 +344,7 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow.m_result, m_colorDkShadow.m_result);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
                }
 

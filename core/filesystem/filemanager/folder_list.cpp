@@ -226,7 +226,7 @@ namespace filemanager
                else if(hr == S_FALSE)
                {
                HICON hicon = ExtractIcon(
-               System.m_hInstance,
+               System->m_hInstance,
                szPath,
                iIcon);*/
                /*HINSTANCE hinstance = (HINSTANCE) ::LoadLibrary(

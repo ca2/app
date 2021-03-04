@@ -11,14 +11,11 @@ namespace user
    check::check()
    {
 
-      m_ppropertyCheck = nullptr;
-
    }
 
 
    check::~check()
    {
-
 
    }
 
@@ -34,7 +31,7 @@ namespace user
    void check::_001SetCheck(::enum_check echeck, const ::action_context & context)
    {
 
-      if (!m_ppropertyCheck)
+      if (!m_propertyCheck)
       {
 
          return;
@@ -44,11 +41,11 @@ namespace user
       if(echeck != this->get_echeck())
       {
 
-         auto pcheck = &m_ppropertyCheck->echeck();
+         auto pcheck = &m_propertyCheck->echeck();
 
-         m_ppropertyCheck->echeck() = echeck;
+         m_propertyCheck->echeck() = echeck;
 
-         get_context_application()->process_subject(m_ppropertyCheck->m_id);
+         get_context_application()->process_subject(m_propertyCheck->m_id);
 
       }
 

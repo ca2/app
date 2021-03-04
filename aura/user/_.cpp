@@ -28,7 +28,7 @@
 //CLASS_DECL_AURA ::user::primitive * __user_primitive(::windowing::window * pwindow)
 //{
 //
-//   ::user::primitive * pprimitive = System.ui_from_handle(oswindow);
+//   ::user::primitive * pprimitive = System->ui_from_handle(oswindow);
 //
 //   return pprimitive;
 //

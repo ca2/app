@@ -362,7 +362,7 @@ namespace introjection
 
       string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build();
 
-      ::payload payload = System.process().get_output(strCommandLine);
+      ::payload payload = System->process().get_output(strCommandLine);
 
       TRACE("%s", payload.get_string().c_str());
 
@@ -1010,7 +1010,7 @@ namespace introjection
       strElem += "/";
       string strHmhLctvWildPdbPath;
       string strRndTitle;
-      System.math().gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
+      System->math().gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
 
       strRndTitle.release_string_buffer();
 

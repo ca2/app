@@ -106,7 +106,7 @@ namespace acme
 #endif
 
 
-      virtual __pointer(::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
       ::file::path get_memory_map_base_folder_path() const;

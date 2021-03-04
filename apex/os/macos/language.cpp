@@ -4,7 +4,7 @@
 CLASS_DECL_APEX ::file::path get_resource_path()
 {
 
-   ::file::path pathFolder = System.dir().module();
+   ::file::path pathFolder = System->dir().module();
 
    pathFolder -= 1;
 

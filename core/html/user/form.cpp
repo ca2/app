@@ -38,7 +38,7 @@ html_form::~html_form()
 
    }
 
-   estatus = System.defer_create_html();
+   estatus = System->defer_create_html();
 
    if (!estatus)
    {
@@ -219,7 +219,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   System.defer_create_html();
+   System->defer_create_html();
 
    if(pcreate->previous())
    {
@@ -495,7 +495,7 @@ void html_form::set_need_load_form_data()
       else if (varFile.cast < ::file::file >() != nullptr)
       {
 
-         path = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         path = System->datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else

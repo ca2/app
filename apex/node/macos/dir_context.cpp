@@ -44,7 +44,7 @@ namespace macos
          
       }
       
-      estatus = __refer(m_pdirsystem, System.m_pdirsystem);
+      estatus = __refer(m_pdirsystem, System->m_pdirsystem);
       
       if(!estatus)
       {
@@ -53,7 +53,7 @@ namespace macos
          
       }
       
-      estatus = __refer(m_pfilesystem, System.m_pfilesystem);
+      estatus = __refer(m_pfilesystem, System->m_pfilesystem);
       
       if(!estatus)
       {

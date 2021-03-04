@@ -286,7 +286,7 @@ namespace user
          return false;
       }
 
-      __throw(todo("xml"));
+      __throw(todo, "xml");
 
       //::xml::document doc;
 

@@ -206,7 +206,7 @@ namespace android
 //
 //                     string strParams;
 //
-//                     //if(Context.file().resolve_link(strTarget, strFilePath, System.ui_from_handle))
+//                     //if(Context.file().resolve_link(strTarget, strFilePath, System->ui_from_handle))
 //                     if (Context.file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //                     {
 //
@@ -1274,7 +1274,7 @@ namespace android
 
             if (crBk == 0)
             {
-               System.imaging().Createcolor_blend_ImageList(
+               System->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -1385,7 +1385,7 @@ namespace android
          if (crBk == 0)
          {
 
-            System.imaging().color_blend(
+            System->imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
             rgb(255, 255, 240),
@@ -1640,7 +1640,7 @@ namespace android
 
    //      return m_pilHover[iSize]->predicate_add_image([&](::image_pointer & pimage)
    //      {
-   //            System.imaging().color_blend(pimage, rgb(255, 255, 240), 64); 
+   //            System->imaging().color_blend(pimage, rgb(255, 255, 240), 64); 
    //         }
    //      , m_pil[iSize], iImage);
 

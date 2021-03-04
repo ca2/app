@@ -1463,7 +1463,7 @@ namespace draw2d_xlib
 
          return bOk;
 
-         //return System.imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), ::point_i32());
+         //return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), ::point_i32());
          */
 
       }
@@ -1700,7 +1700,7 @@ namespace draw2d_xlib
 
          /*           keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
-                    return System.imaging().true_blend(this, ::point_i32(x, y), rectText.size(), pimage1->get_graphics(), ::point_i32());
+                    return System->imaging().true_blend(this, ::point_i32(x, y), rectText.size(), pimage1->get_graphics(), ::point_i32());
 
                     /*BLENDFUNCTION bf;
                     bf.BlendOp     = AC_SRC_OVER;
@@ -1936,7 +1936,7 @@ namespace draw2d_xlib
       lpMetrics->tmDescent = sz2.cy - sz1.cy;
 
 
-      //retry_single_lock slGdiplus(System.s_mutexGdiplus, millis(1), millis(1));
+      //retry_single_lock slGdiplus(System->s_mutexGdiplus, millis(1), millis(1));
 
       /*((::draw2d_xlib::graphics *) this)->set(m_pfont);
 
@@ -2785,7 +2785,7 @@ namespace draw2d_xlib
                   keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-                  return System.imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
+                  return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
 
          */
       }
@@ -2918,7 +2918,7 @@ namespace draw2d_xlib
          keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-         return System.imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
+         return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
 
 
       }

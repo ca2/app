@@ -44,7 +44,7 @@ namespace userstack
       if(pmessage->previous())
          return;
 
-      if(!m_spqueue->create_message_queue("::ca2::account::message_wnd::bergedge::" + System.get_local_mutex_id(), this))
+      if(!m_spqueue->create_message_queue("::ca2::account::message_wnd::bergedge::" + System->get_local_mutex_id(), this))
       {
          pcreate->m_lresult= -1;
          pcreate->m_bRet = true;
@@ -313,7 +313,7 @@ namespace userstack
       */
       else if(pusermessage->m_wparam == 33)
       {
-         string str = System.get_local_mutex_id();
+         string str = System->get_local_mutex_id();
          ::str::begins_eat_ci(str, "bergedge");
          i32 iEdge = atoi(str);
          if(iEdge == 0)

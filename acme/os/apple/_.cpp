@@ -125,7 +125,7 @@ i32 defer_run_system()
 //void apple_on_app_activate()
 //{
 //
-//   System.call_subject(id_app_activated);
+//   System->call_subject(id_app_activated);
 //
 //}
 
@@ -133,7 +133,7 @@ i32 defer_run_system()
 //void apple_on_new_file()
 //{
 //
-//   System.on_open_file(::e_type_empty, "");
+//   System->on_open_file(::e_type_empty, "");
 //
 //}
 
@@ -158,13 +158,13 @@ i32 defer_run_system()
 //
 //         }
 //
-//         stra[i] = System.url().url_decode(stra[i]);
+//         stra[i] = System->url().url_decode(stra[i]);
 //
 //      }
 //
 //   }
 //
-//   System.defer_accumulate_on_open_file(stra, pszExtra);
+//   System->defer_accumulate_on_open_file(stra, pszExtra);
 //
 //}
 
@@ -182,7 +182,7 @@ i32 defer_run_system()
 //   else if(iCount == 1)
 //   {
 //
-//      System.on_open_file(psza[0], pszExtra);
+//      System->on_open_file(psza[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
@@ -196,7 +196,7 @@ i32 defer_run_system()
 //
 //      stra.c_add((char **) psza, iCount, false);
 //
-//      System.on_open_file(stra, pszExtra);
+//      System->on_open_file(stra, pszExtra);
 //
 //   }
 //

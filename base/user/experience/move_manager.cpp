@@ -323,7 +323,7 @@ namespace experience
 //      void move_manager::MoveWindow(void * oswindow, const ::point_i32 & point)
 //      {
 //
-//         __pointer(::user::interaction) pframewindow = System.ui_from_handle(oswindow);
+//         __pointer(::user::interaction) pframewindow = System->ui_from_handle(oswindow);
 //
 //
 //         ::rectangle_i32 rectWindow;

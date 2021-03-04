@@ -23,9 +23,9 @@ namespace user
       index                                  m_iSubItem;
       index                                  m_iListItem;
       string                                 m_strText;
-      with_status < ::color::color >       m_colorText;
-      with_status < ::color::color >       m_colorTextBackground;
-      with_status < ::color::color >       m_colorItemBackground;
+      status < ::color::color >       m_colorText;
+      status < ::color::color >       m_colorTextBackground;
+      status < ::color::color >       m_colorItemBackground;
       i32                                    m_iState;
       index                                  m_iImage;
       bool                                   m_bOk;

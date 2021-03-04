@@ -26,7 +26,7 @@ namespace datetime
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
       {
 
-         return ::datetime::time(System.datetime().strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
+         return ::datetime::time(System->datetime().strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)
@@ -121,13 +121,13 @@ namespace datetime
       if(m_ptoken->m_etoken == e_token_number)
       {
 
-         return System.datetime().international().get_gmt_date_time(::datetime::time((System.datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return System->datetime().international().get_gmt_date_time(::datetime::time((System->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
       {
 
-         return System.datetime().international().get_gmt_date_time(::datetime::time((System.datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return System->datetime().international().get_gmt_date_time(::datetime::time((System->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)

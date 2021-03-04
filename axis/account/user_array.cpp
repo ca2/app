@@ -44,7 +44,7 @@ namespace account
 
       {
 
-         string strHost = System.url().get_server(pathUrl);
+         string strHost = System->url().get_server(pathUrl);
 
          auto estatus = __construct(puser);
 
@@ -199,7 +199,7 @@ namespace account
 
       }
 
-      string strHost = System.url().get_server(pathUrl);
+      string strHost = System->url().get_server(pathUrl);
 
       {
 

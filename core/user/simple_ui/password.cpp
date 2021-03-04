@@ -24,10 +24,10 @@ namespace simple_ui
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      with_status < ::color::color > crBk;
-      with_status < ::color::color > crBkSel;
-      with_status < ::color::color > crSel;
-      with_status < ::color::color > cr;
+      status < ::color::color > crBk;
+      status < ::color::color > crBkSel;
+      status < ::color::color > crSel;
+      status < ::color::color > cr;
 
       auto pstyle = get_style(pgraphics);
 
@@ -73,7 +73,7 @@ namespace simple_ui
       {
 
       pgraphics->blur(true, 4, rectClient);
-      //class imaging & imaging = System.imaging();
+      //class imaging & imaging = System->imaging();
       //::rectangle_i32 rectClient;
       //         get_window_rect(rectClient);
       //       rectClient.offset(rectClient.top_left());
@@ -105,7 +105,7 @@ namespace simple_ui
       /*}
       else
       {
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
       //_001DrawBackground(pgraphics, rectClipBox);
       imaging.color_blend(
       pgraphics,

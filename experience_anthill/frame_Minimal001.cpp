@@ -256,7 +256,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -268,7 +268,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -296,7 +296,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 

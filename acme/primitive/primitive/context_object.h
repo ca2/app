@@ -190,7 +190,7 @@ public:
 
    virtual string get_text(const ::payload & payload, const ::id & id);
 
-   virtual property * parent_lookup_property(const id & id) const;
+   virtual linked_property parent_lookup_property(const id & id) const;
 
    virtual void property_set_replace(string & str) const;
    virtual string property_set_evaluate(const string & str) const;
@@ -201,11 +201,15 @@ public:
 
    virtual id translate_property_id(const ::id & id);
 
-   virtual void add_property_set(property_set * pset);
+   //virtual void add_property_set(property_set * pset);
 
-   virtual property * fetch_property(const ::id & id, bool bCreate = true);
+   virtual void notify_property_changed(property* pproperty, const ::action_context& actioncontext);
 
-   virtual property * on_fetch_property(const ::id & id) const;
+   virtual void on_property_changed(property * pproperty, const ::action_context& actioncontext);
+
+   virtual ::linked_property fetch_property(const ::id & id, bool bCreate = true);
+
+   virtual ::linked_property on_fetch_property(const ::id & id) const;
 
    virtual ::context_object * parent_property_set_holder() const;
 

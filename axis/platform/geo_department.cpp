@@ -465,7 +465,7 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __str(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      string strGetUrl = "https://ca2.cc/api/account/openweather?request=" + System.url_encode(strUrl);
+      string strGetUrl = "https://ca2.cc/api/account/openweather?request=" + System->url_encode(strUrl);
 
       string str = Context.http().get(strGetUrl, set);
 
@@ -501,7 +501,7 @@ namespace geo
    bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      auto pcity = System.geo().openweather_find_city(strLocality + ", " + strCountry);
+      auto pcity = System->geo().openweather_find_city(strLocality + ", " + strCountry);
 
       if (pcity == nullptr)
       {
@@ -696,7 +696,7 @@ namespace geo
 
       //    double dLon;
 
-      auto pcity = System.geo().openweather_find_city(strQ);
+      auto pcity = System->geo().openweather_find_city(strQ);
 
       return initial_locality_time_zone(pcity, dZone);
 

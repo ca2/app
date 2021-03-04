@@ -126,7 +126,7 @@ namespace net
 
       }
 
-      if (!System.url().is_valid_public_domain(strDomain))
+      if (!System->url().is_valid_public_domain(strDomain))
       {
 
          return false;

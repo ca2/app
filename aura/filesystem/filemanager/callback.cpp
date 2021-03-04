@@ -29,7 +29,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(straCommand);
       UNREFERENCED_PARAMETER(straCommandTitle);
       UNREFERENCED_PARAMETER(context);
-      __throw(todo("core"));
+      __throw(todo, "core");
       //if (pdata->m_pdocument != nullptr)
       //{
       //   pdata->m_pdocument->OpenSelectionProperties();
@@ -40,7 +40,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(itema);
       UNREFERENCED_PARAMETER(context);
-      __throw(todo("core"));
+      __throw(todo, "core");
       //if (pdata->m_pdocument != nullptr)
       //{
       //   pdata->m_pdocument->OpenSelectionProperties();

@@ -280,7 +280,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual with_status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(on_message_left_button_down);

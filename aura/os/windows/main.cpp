@@ -137,7 +137,7 @@ CLASS_DECL_AURA i32 ca2_main();
 void os_post_quit()
 {
 
-   System.exception::translator::detach();
+   System->exception::translator::detach();
 
 }
 
@@ -147,7 +147,7 @@ void os_post_quit()
 //
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   System.post_predicate([pobjectTask]()
+//   System->post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -162,7 +162,7 @@ void os_post_quit()
 //   
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   System.send_predicate([pobjectTask]()
+//   System->send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

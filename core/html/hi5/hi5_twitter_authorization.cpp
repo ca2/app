@@ -32,7 +32,7 @@ namespace hi5
          "system/auth",
          __type(::user::document),
          __type(simple_frame_window),
-         System.get_pane_tab_view_type_info());
+         System->get_pane_tab_view_type_info());
          m_pviewAuth       = nullptr;
          m_pdocAuth        = nullptr;
          m_pdocument            = nullptr;
@@ -70,7 +70,7 @@ namespace hi5
          __pointer(::create) pcreate(e_create);
 
          pcreate->m_bMakeVisible = false;
-         pcreate->m_puserinteractionParent = System.cast < ::user::interaction >("top_parent");
+         pcreate->m_puserinteractionParent = System->cast < ::user::interaction >("top_parent");
          pcreate->m_bOuterPopupAlertLike = true;
 
          m_ptemplatePane->do_request(pcreate);

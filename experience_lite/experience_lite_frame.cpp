@@ -79,7 +79,7 @@
 
                auto pframewindow = m_pframewindow;
 
-               //class imaging & imaging = System.imaging();
+               //class imaging & imaging = System->imaging();
 
                ::rectangle_i32 rectClient(lprect);
 
@@ -95,7 +95,7 @@
                rectInflate = rectClient;
                rectInflate.inflate(iInflate, iInflate);
 
-               //__pointer(::user::interaction) pwndDesktop = System.get_desktop_window();
+               //__pointer(::user::interaction) pwndDesktop = System->get_desktop_window();
 
                ::rectangle_i32 rectScreen;
 
@@ -165,7 +165,7 @@
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               System.imaging().color_blend(pgraphics, lprect, cr, bAlpha);
+               System->imaging().color_blend(pgraphics, lprect, cr, bAlpha);
 
             }
 
@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = System.draw2d()->fonts();
+                  //class font_department & fonts = System->draw2d()->fonts();
 
                   string wstrWindowText;
 

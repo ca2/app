@@ -359,7 +359,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = System->imaging();
 
          imaging.color_blend(
          pgraphics,
@@ -939,7 +939,7 @@ namespace user
 
       }
 
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
 
       ::rect rect = rectClient;
       imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,215,colorExt1BR,215);

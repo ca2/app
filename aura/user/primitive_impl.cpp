@@ -801,7 +801,7 @@ namespace user
       do
       {
 
-         if (puiProbe == m_puserinteraction)
+         if (puiProbe == m_puserinteraction.m_p)
          {
 
             return true;

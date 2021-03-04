@@ -316,7 +316,7 @@ namespace uwp
    bool copydesk::_has_image()
    {
 
-      return System.imaging()._desk_has_image();
+      return System->imaging()._desk_has_image();
 
    }
 
@@ -324,7 +324,7 @@ namespace uwp
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      return System.imaging()._desk_to_image(pimage);
+      return System->imaging()._desk_to_image(pimage);
 
    }
 
@@ -332,7 +332,7 @@ namespace uwp
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      return System.imaging()._image_to_desk(pimage);
+      return System->imaging()._image_to_desk(pimage);
 
    }
 

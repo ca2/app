@@ -53,7 +53,7 @@ namespace experience
 
          //auto pframewindow = m_pframewindow;
 
-         //class imaging & imaging = System.imaging();
+         //class imaging & imaging = System->imaging();
 
          ::rectangle_i32 rectClient(rectangle);
 
@@ -73,7 +73,7 @@ namespace experience
          //rectInflate = rectClient;
          //rectInflate.inflate(iInflate, iInflate);
 
-         ////__pointer(::user::interaction) pwndDesktop = System.get_desktop_window();
+         ////__pointer(::user::interaction) pwndDesktop = System->get_desktop_window();
 
          //::rectangle_i32 rectScreen;
 
@@ -125,7 +125,7 @@ namespace experience
       }
 
       
-      with_status < ::color::color > frame::get_border_main_body_color()
+      status < ::color::color > frame::get_border_main_body_color()
       {
          //return argb(255, 63, 150, 106);
 
@@ -151,7 +151,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+         System->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
 
       }
@@ -710,11 +710,11 @@ namespace experience
 
             auto pframewindow = m_pframewindow;
 
-            with_status < ::color::color > crMoveableBorder;
+            status < ::color::color > crMoveableBorder;
 
-            with_status < ::color::color > crMoveableBorderHilight;
+            status < ::color::color > crMoveableBorderHilight;
 
-            with_status < ::color::color > crMoveableBorderShadow;
+            status < ::color::color > crMoveableBorderShadow;
 
             string str;
 
@@ -777,7 +777,7 @@ namespace experience
 
             //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
 
-            //class font_department & fonts = System.draw2d()->fonts();
+            //class font_department & fonts = System->draw2d()->fonts();
 
             millis tick5;
 

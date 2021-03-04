@@ -48,7 +48,7 @@ void hyperlink::open_profile_link(string strUrl, string strProfile, string strTa
 {
 
 
-   System.open_profile_link(strUrl, strProfile, strTarget);
+   System->open_profile_link(strUrl, strProfile, strTarget);
 
 }
 
@@ -58,7 +58,7 @@ void hyperlink::open_profile_link(string strUrl, string strProfile, string strTa
 //void hyperlink::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
 //{
 //
-//   System.browser(strUrl, "", strProfile, strTarget);
+//   System->browser(strUrl, "", strProfile, strTarget);
 //
 //}
 

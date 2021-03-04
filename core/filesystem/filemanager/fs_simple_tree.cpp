@@ -87,7 +87,7 @@ namespace filemanager
             else
             {
 
-               System.message_box("error"); // simple parsing error check
+               System->message_box("error"); // simple parsing error check
 
                return;
 

@@ -303,7 +303,7 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            strUrl += System.url().url_encode(strKey);
+            strUrl += System->url().url_encode(strKey);
 
             strValue = get_context()->http().get(strUrl, set);
 
@@ -325,7 +325,7 @@ namespace simpledb
 
             string strListingTime = strFirstLine;
 
-            ::datetime::time timeListing(System.datetime().from_gmt(strListingTime));
+            ::datetime::time timeListing(System->datetime().from_gmt(strListingTime));
 
             if (timeListing.abs_diff(::datetime::now) > 5_s)
             {

@@ -168,7 +168,7 @@ namespace filemanager
 
             string strUrl;
 
-            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + System.url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + System->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
             if(m_prequestinterface != nullptr)
             {

@@ -282,7 +282,7 @@ namespace userstack
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
-         //System.message_box(str);
+         //System->message_box(str);
          if(i == ERROR_FILE_NOT_FOUND)
          {
          }
@@ -340,7 +340,7 @@ namespace userstack
 
       string strDir(psz);
 
-      POSITION pos = System.m_mapAppLibrary.get_start_position();
+      POSITION pos = System->m_mapAppLibrary.get_start_position();
 
       string strApp;
 
@@ -349,7 +349,7 @@ namespace userstack
       while(pos != nullptr)
       {
 
-         System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+         System->m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
 
          if(::str::begins_eat(strApp, "application:"))
          {
@@ -461,7 +461,7 @@ namespace userstack
 
                ::draw2d::memory_graphics pgraphics(this);
 
-               pfi = System.imaging().LoadImageFile(strWallpaper);
+               pfi = System->imaging().LoadImageFile(strWallpaper);
 
 /*               m_pimage->From((HDC)pgraphics->get_os_data(), pfi, true);
 

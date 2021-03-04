@@ -133,7 +133,7 @@ namespace draw2d_gdiplus
          break;
       };
 
-      //retry_single_lock slGdiplus(System.s_mutexGdiplus, millis(1), millis(1));
+      //retry_single_lock slGdiplus(System->s_mutexGdiplus, millis(1), millis(1));
 
       /*if (m_strFontFamilyName.begins_ci("matter://"))
       {

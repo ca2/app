@@ -228,7 +228,7 @@ retry:
 
    string strPath;
 
-   strPath = System.url().get_object(listing.m_pathUser);
+   strPath = System->url().get_object(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
    {
@@ -421,7 +421,7 @@ retry:
 
       ::file::path pathTemp = get_context()->file().time(get_context()->dir().time());
 
-      string strRemoteFile = System.url().get_object(path);
+      string strRemoteFile = System->url().get_object(path);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {
@@ -492,12 +492,12 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __new(::ftp::logon);
 
-   plogon->Hostname() = System.url().get_server(strPath);
-   //logon.Username() = System.url().get_username(listing.m_path);
+   plogon->Hostname() = System->url().get_server(strPath);
+   //logon.Username() = System->url().get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";
 
-   plogon->m_strToken = System.url().os_fspath(strUrl);
+   plogon->m_strToken = System->url().os_fspath(strUrl);
 
    __pointer(::ftp::client_socket) & pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 

@@ -79,14 +79,14 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const char 
 bool db_server::initialize()
 {
 
-   if(System.m_varTopicQuery["app"] == "app-core/netnodelite"
-         || System.m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
-         || System.m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
-         || System.m_varTopicQuery["app"] == "app-core/netnodecfg"
-         || System.m_varTopicQuery["app"] == "app-core/mydns"
-         || System.m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
-         || System.m_varTopicQuery["app"] == "app-gtech/sensible_service"
-         || System.has_property("no_remote_simpledb"))
+   if(System->m_varTopicQuery["app"] == "app-core/netnodelite"
+         || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
+         || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
+         || System->m_varTopicQuery["app"] == "app-core/netnodecfg"
+         || System->m_varTopicQuery["app"] == "app-core/mydns"
+         || System->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
+         || System->m_varTopicQuery["app"] == "app-gtech/sensible_service"
+         || System->has_property("no_remote_simpledb"))
    {
 
       m_bRemote = false;
@@ -95,7 +95,7 @@ bool db_server::initialize()
 
    m_pdb          = __new(::sqlite::database(get_object()));
 
-   __pointer(::handler) phandler = System.handler();
+   __pointer(::handler) phandler = System->handler();
 
    __pointer(command_line) pcommandline = phandler->m_spcommandline;
 
@@ -104,7 +104,7 @@ bool db_server::initialize()
    if(pcommandline.is_null())
    {
 
-      strAppName = System.m_strAppId;
+      strAppName = System->m_strAppId;
 
    }
    else
@@ -158,7 +158,7 @@ bool db_server::initialize()
 
    i32 iBufferSize = 128 * 1024;
 
-   __pointer(::handler) commandthread = System.handler();
+   __pointer(::handler) commandthread = System->handler();
 
    if(commandthread->has_property("filesizebuffer"))
    {

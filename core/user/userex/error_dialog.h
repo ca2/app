@@ -12,13 +12,13 @@ namespace userex
 
 
       
-      ::exception_pointer                m_pexception;
+      ::exception::exception                m_exception;
       ::image_pointer                       m_pimage;
 
 
       error_dialog();
 
-      void Initialize(::exception_pointer e);
+      void Initialize(const ::exception::exception & e);
 
 
       virtual bool OnInitDialog();

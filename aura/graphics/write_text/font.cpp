@@ -457,7 +457,7 @@ namespace write_text
 //   {
 //
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+//      System->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -512,7 +512,7 @@ namespace write_text
 
 //   {
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      System->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;

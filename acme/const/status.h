@@ -107,6 +107,7 @@ enum enum_status : ::i64
    error_exit_system,
    error_exit_end,
    error_user,
+   error_hresult,
 
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
@@ -224,6 +225,7 @@ enum enum_status : ::i64
    partial_one_third_or_less_has_failed, // <= 1/3 success
    partial_sorf_of_half_has_failed, // ~ 1/2 success (between 1/3 and 2/3)
    partial_two_thirds_or_more_but_not_all_has_failed, // >= 2/3 success
+   success_hresult,
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

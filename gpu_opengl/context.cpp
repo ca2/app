@@ -145,7 +145,7 @@ namespace opengl
    //::e_status context::create_offscreen_buffer(const ::size_i32& size)
    //{
 
-   //   auto pgpu = System.get_gpu();
+   //   auto pgpu = System->get_gpu();
 
    //   if (::is_null(pgpu))
    //   {

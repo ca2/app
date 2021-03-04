@@ -186,7 +186,7 @@ namespace userstack
    {
       if(iTab == 1)
       {
-         System.message_box(nullptr, "Playlist");
+         System->message_box(nullptr, "Playlist");
       }
    }
 

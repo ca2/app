@@ -23,6 +23,7 @@ enum enum_message : ::i64
 
    e_message_setting_change = 26,
    e_message_activate_app = 28, // 0x001C
+   e_message_font_change = 29, // 0x001D
    e_message_show_window = 30, // 0x001E
    e_message_set_cursor = 32, // 0x0020
    e_message_mouse_activate = 33, // 0x0021

@@ -119,6 +119,9 @@ public:
 //
 //   }
 
+   
+   virtual void on_property_changed(property* pproperty, const ::action_context& actioncontext) override;
+
 
    void default_toggle_check_handling(const ::id& id);
 

@@ -1059,15 +1059,15 @@ void android_mouse(unsigned int message, float x, float y)
    if (::get_context_system() == nullptr)
       return;
 
-   if (System.get_context_session() == nullptr)
+   if (System->get_context_session() == nullptr)
       return;
 
-   if (System.get_context_session()->m_puiHost == nullptr)
+   if (System->get_context_session()->m_puiHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = System.get_context_session()->m_puiHost->get_handle();
+   msg.hwnd = System->get_context_session()->m_puiHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //System.get_context_session()->m_puiHost->message_handler(&msg);
-   System.get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //System->get_context_session()->m_puiHost->message_handler(&msg);
+   System->get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1139,10 +1139,10 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::get_context_system() == nullptr)
       return;
 
-   if (System.get_context_session() == nullptr)
+   if (System->get_context_session() == nullptr)
       return;
 
-   if (System.get_context_session()->m_puiHost == nullptr)
+   if (System->get_context_session()->m_puiHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //System.get_context_session()->m_puiHost->message_handler(pkey);
-   System.get_context_session()->m_puiHost->post(pkey);
+   //System->get_context_session()->m_puiHost->message_handler(pkey);
+   System->get_context_session()->m_puiHost->post(pkey);
 
 }
 
@@ -1172,13 +1172,13 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (::get_context_system() == nullptr)
       return;
 
-   if (System.get_context_session() == nullptr)
+   if (System->get_context_session() == nullptr)
       return;
 
-   if (System.get_context_session()->m_puiHost == nullptr)
+   if (System->get_context_session()->m_puiHost == nullptr)
       return;
 
-   System.get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   System->get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1231,7 +1231,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_predicate([=]()
+   System->get_context_session()->m_puiHost->post_predicate([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1334,13 +1334,13 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
 
    string strText(pwch, len);
 
-   //System.fork([=]()
+   //System->fork([=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_predicate([=]()
+   System->get_context_session()->m_puiHost->post_predicate([=]()
       {
 
-         System.on_os_text(etext, strText);
+         System->on_os_text(etext, strText);
 
       });
 
@@ -1383,7 +1383,7 @@ namespace axis
 
       }
 
-      System.get_context_session()->m_puiHost->post(pkey);
+      System->get_context_session()->m_puiHost->post(pkey);
 
 
    }
@@ -1471,7 +1471,7 @@ i64 oswindow_id(oswindow w)
 CLASS_DECL_AXIS ::e_status os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
-   while (System.oslocal().m_iMessageBoxResult > 0)
+   while (System->oslocal().m_iMessageBoxResult > 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1516,20 +1516,20 @@ CLASS_DECL_AXIS ::e_status os_message_box(oswindow oswindow, const char * pText,
    if (::is_set(pText))
    {
 
-      System.oslocal().m_strMessageBox = ansi_dup(pText);
+      System->oslocal().m_strMessageBox = ansi_dup(pText);
 
    }
 
    if (::is_set(lpCaption))
    {
 
-      System.oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
+      System->oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
 
    }
 
-   System.oslocal().m_iMessageBoxButton = iButton;
+   System->oslocal().m_iMessageBoxButton = iButton;
 
-   while (System.oslocal().m_iMessageBoxResult <= 0)
+   while (System->oslocal().m_iMessageBoxResult <= 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1541,9 +1541,9 @@ CLASS_DECL_AXIS ::e_status os_message_box(oswindow oswindow, const char * pText,
 
    }
 
-   int iResult = System.oslocal().m_iMessageBoxResult;
+   int iResult = System->oslocal().m_iMessageBoxResult;
 
-   System.oslocal().m_iMessageBoxResult = 0;
+   System->oslocal().m_iMessageBoxResult = 0;
 
    if (iResult == 1)
    {
@@ -1606,7 +1606,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = System->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return true;
 
@@ -1620,7 +1620,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   System->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
 
    return true;
 

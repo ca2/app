@@ -922,14 +922,14 @@ namespace filemanager
    {
       //      __pointer(::message::command) pcommand(pmessage);
 
-      //         pcommand->enable(System.m_strCopy.is_empty());
+      //         pcommand->enable(System->m_strCopy.is_empty());
       pmessage->m_bRet = true;
    }
 
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //Context.file().paste(filemanager_data()->filemanager_item().m_strPath, System.m_strCopy);
+      //Context.file().paste(filemanager_data()->filemanager_item().m_strPath, System->m_strCopy);
       //update_all_views(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }

@@ -211,9 +211,9 @@ namespace aura
 
       //}
 
-      auto& system = System;
+      auto psystem = System;
 
-      if(system.m_bAvoidFirstResponder)
+      if(psystem->m_bAvoidFirstResponder)
       {
 
          m_bAcceptsFirstResponder = false;
@@ -259,7 +259,7 @@ namespace aura
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (System.is_console_app())
+      if (System->is_console_app())
       {
 
          return false;
@@ -320,14 +320,14 @@ namespace aura
 
       }
 
-      string strProtocol = System.url().get_protocol(strPathName);
+      string strProtocol = System->url().get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = System.url().get_server(strPathName);
+         strId = System->url().get_server(strPathName);
 
-         string str = System.url().get_object(strPathName);
+         string str = System->url().get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -341,9 +341,9 @@ namespace aura
 
          string_array straApp;
 
-         __throw(todo("filehandler"));
+         __throw(todo, "filehandler");
 
-         //System.filehandler().get_extension_app(straApp, strExtension);
+         //System->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -569,7 +569,7 @@ namespace aura
    //::user::primitive * session::GetActiveWindow()
    //{
 
-   //   return System.ui_from_handle(::get_active_window());
+   //   return System->ui_from_handle(::get_active_window());
 
    //}
 
@@ -1178,7 +1178,7 @@ namespace aura
 
    //   }
 
-   //   auto puserinteraction = System.ui_from_handle(window);
+   //   auto puserinteraction = System->ui_from_handle(window);
 
    //   if (!puserinteraction)
    //   {
@@ -1697,7 +1697,7 @@ ret:
 
       //}
 
-      //if (System.m_bUser)
+      //if (System->m_bUser)
       //{
 
       //}
@@ -1762,7 +1762,7 @@ ret:
 
       INFO(".2");
 
-      if (System.m_bUser)
+      if (System->m_bUser)
       {
 
          INFO("success");
@@ -1927,10 +1927,10 @@ ret:
 
       INFO("aura::session::init2 .1");
 
-      //if (System.m_bUser)
+      //if (System->m_bUser)
       //{
 
-      //   if(System.m_bDraw2d)
+      //   if(System->m_bDraw2d)
       //   {
 
       //
@@ -2404,7 +2404,7 @@ namespace aura
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = System.url().url_decode(str);
+      //      str = System->url().url_decode(str);
 
       //   }
 
@@ -2425,7 +2425,7 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = System.node();
+         auto pnode = System->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2448,7 +2448,7 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = System.node();
+         auto pnode = System->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2471,7 +2471,7 @@ namespace aura
 
          color32_t crText;
 
-         auto pnode = System.node();
+         auto pnode = System->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2617,7 +2617,7 @@ void os_on_finish_launching()
 
    auto psystem = ::get_context_system();
 
-   auto psession = System.get_context_session();
+   auto psession = System->get_context_session();
 
    auto puiHost = __user_interaction(psession->m_puiHost);
 

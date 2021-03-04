@@ -35,7 +35,7 @@ CLASS_DECL_AXIS MESSAGE * __get_current_message();
 
 CLASS_DECL_AXIS __pointer(::aura::application)  __get_app();
 CLASS_DECL_AXIS __pointer(::user::primitive) __get_main_window();
-//CLASS_DECL_AXIS HINSTANCE CLASS_DECL_AXIS System.m_hInstance;
+//CLASS_DECL_AXIS HINSTANCE CLASS_DECL_AXIS System->m_hInstance;
 CLASS_DECL_AXIS const char * __get_app_name();
 
 

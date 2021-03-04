@@ -73,7 +73,7 @@ namespace user
    ::e_status form_view::open_document(const ::payload & varFile)
    {
 
-      System.defer_create_html();
+      System->defer_create_html();
 
       __pointer(::user::form) pformOld;
 
@@ -88,7 +88,7 @@ namespace user
 
       ::file::path pathHtml;
 
-      bool bHtml = System.m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
+      bool bHtml = System->m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
 
       bool bOk = true;
 

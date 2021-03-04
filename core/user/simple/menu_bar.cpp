@@ -247,7 +247,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 
    //m_menuhook.Install((__pointer(::user::frame_window)) (__pointer(::user::interaction))this);
 
-   //   SetFont(System.draw2d()->fonts().GetMenuFont());
+   //   SetFont(System->draw2d()->fonts().GetMenuFont());
 
    UpdateWindow();
 
@@ -491,7 +491,7 @@ bool simple_menu_bar::ReloadMenuBar()
 {
    ::rectangle_i32 rectClient;
    get_client_rect(rectClient);
-   class imaging & imaging = System.imaging();
+   class imaging & imaging = System->imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(
@@ -515,7 +515,7 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pgraphics->set(System.draw2d()->fonts().GetMenuFont());
+   pgraphics->set(System->draw2d()->fonts().GetMenuFont());
    pgraphics->SetBkMode(TRANSPARENT);
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -609,7 +609,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 /*void simple_menu_bar::_001Layout()
 {
    ::draw2d::memory_graphics pgraphics(this);;
-   pgraphics->set(System.draw2d()->fonts().GetMenuFont());
+   pgraphics->set(System->draw2d()->fonts().GetMenuFont());
 
    ::size_i32 size;
    index ix = ITEMCHECKEDPADLEFT;

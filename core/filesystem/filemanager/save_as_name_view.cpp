@@ -245,7 +245,7 @@ namespace filemanager
                   ->then([this, strPath](auto pfuture)
                      {
 
-                        if (pfuture->m_statusresult.m_result->m_edialogresult == e_dialog_result_yes)
+                        if (pfuture->m_edialogresult == e_dialog_result_yes)
                         {
 
                            save_document(strPath);
@@ -314,7 +314,7 @@ namespace filemanager
    void save_as_button::cancel_save_document()
    {
 
-      __throw(todo("new_action?? (->new_subject)"));
+      __throw(todo, "new_action?? (->new_subject)");
 
       //auto psubject = new_action(subject(id_topic_cancel));
 

@@ -160,7 +160,7 @@ namespace windowing
 //                           &m_colorBorderPress);
 //
 //      }
-//      else auto pnode = System.node();
+//      else auto pnode = System->node();
 
                if (pnode->is_app_dark_mode())
 //      {
@@ -279,7 +279,7 @@ namespace windowing
 
       m_bInvalidated = true;
 
-      auto pwindowing = System.windowing();
+      auto pwindowing = System->windowing();
 
       if(pwindowing)
       {
@@ -572,9 +572,9 @@ namespace windowing
 //
 //            m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 //
-//            System.delivery_for(id_os_user_theme, this);
+//            System->delivery_for(id_os_user_theme, this);
 //
-//            //System.(id_dark_mode);
+//            //System->(id_dark_mode);
 //
 //            //on_alloc_colors(pdisplay);
 //

@@ -39,7 +39,7 @@
 //
 //
 //   template < typename RESULT >
-//   with_status < RESULT > & process < RESULT > ::get_result(const ::duration& duration)
+//   status < RESULT > & process < RESULT > ::get_result(const ::duration& duration)
 //   {
 //
 //      critical_section_lock lock(get_process_critical_section());

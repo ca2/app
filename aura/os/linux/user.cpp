@@ -21,7 +21,7 @@ namespace user
 //{
 //
 //
-//   auto pwindowing = System.windowing();
+//   auto pwindowing = System->windowing();
 //
 //   if(!pwindowing)
 //   {

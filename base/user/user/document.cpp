@@ -681,7 +681,7 @@ namespace user
       }
       else if (varFile.cast < ::file::file>() != nullptr)
       {
-         strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+         strPathName = System->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
       }
       else
       {
@@ -709,7 +709,7 @@ namespace user
 
       // store the path fully qualified
       ::file::path strFullPath;
-      //      System.file_system().FullPath(strFullPath, strPathName);
+      //      System->file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
       m_path = Context.defer_process_path(m_path);
       //m_filepathEx = strFullPath;
@@ -940,10 +940,10 @@ namespace user
          preader->close();
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception & exception)
       {
 
-         report_load_exception(varFile, pexception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -995,10 +995,10 @@ namespace user
          pwriter->close();
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception & exception)
       {
 
-         report_save_exception(varFile, pexception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_save_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -1249,7 +1249,7 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //System.message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
+         //System->message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
          message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
       }
@@ -1487,12 +1487,10 @@ namespace user
                Context.file().del(newName);
 
             }
-            catch(const ::exception::exception & e)
+            catch(const ::exception::exception &)
             {
 
                TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
-
-               ::exception_pointer esp(pe);
 
             }
 
@@ -1774,7 +1772,7 @@ namespace user
    //   }
    //   if(::str::begins_eat(strUrl,"hist://"))
    //   {
-   //      System.hist_hist(strUrl);
+   //      System->hist_hist(strUrl);
    //      *pbCancel = true;
    //      return;
    //   }

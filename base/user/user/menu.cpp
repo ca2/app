@@ -653,9 +653,9 @@ namespace user
 
       //int iElementPadding = rectPadding.left;
 
-      int x = (int) (rectMargin.m_result.left + rectBorder.m_result.left + rectPadding.m_result.left);
+      int x = (int) (rectMargin.left + rectBorder.left + rectPadding.left);
 
-      int y = (int) (rectMargin.m_result.top + rectBorder.m_result.top + rectPadding.m_result.top);
+      int y = (int) (rectMargin.top + rectBorder.top + rectPadding.top);
 
       class calc_size calcsize;
 
@@ -730,14 +730,14 @@ namespace user
       }
 
       m_size.cx = (int) (m_iaColumnWidth.get_total()
-                  + rectMargin.m_result.left + rectMargin.m_result.right
-                  + rectBorder.m_result.left + rectBorder.m_result.right
-                  + rectPadding.m_result.left + rectPadding.m_result.right);
+                  + rectMargin.left + rectMargin.right
+                  + rectBorder.left + rectBorder.right
+                  + rectPadding.left + rectPadding.right);
 
       m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
-                  + rectMargin.m_result.top + rectMargin.m_result.bottom
-                  + rectBorder.m_result.top + rectBorder.m_result.bottom
-                  + rectPadding.m_result.top + rectPadding.m_result.bottom);
+                  + rectMargin.top + rectMargin.bottom
+                  + rectBorder.top + rectBorder.bottom
+                  + rectPadding.top + rectPadding.bottom);
 
 
       m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
@@ -848,7 +848,7 @@ namespace user
 
       auto crBackground = get_color(pstyle, e_element_background);
 
-      if (crBackground.m_result.is_translucent())
+      if (crBackground.is_translucent())
       {
 
          ::rectangle_i32 rectClient;

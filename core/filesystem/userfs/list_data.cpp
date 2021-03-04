@@ -148,7 +148,7 @@ namespace userfs
          /*      bool bPendingSize = false;
 
                bool bGet;
-               bGet = System.get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
+               bGet = System->get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
                if(bGet)
                {
                   m_straFileSize.set_at_grow(iItem, str);

@@ -33,7 +33,7 @@ namespace sockets
 
       }
 
-      //System.math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+      //System->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
       //m_psslinit = new ::sockets::SSLInitializer(get_context_object());
@@ -102,7 +102,7 @@ namespace sockets
    //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
    //      //create_factory <::http::memory_file > ();
-   //      //create_factory < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
+   //      //create_factory < ::sockets::winrt_address  >  (System->template type_info < ::net::address_base > ());
    //      /*            create_factory < ::sockets::ipv4_address  > ();
    //               create_factory < ::sockets::ipv6_address  > ();*/
 

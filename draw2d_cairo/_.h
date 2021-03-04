@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/_.h" // System.ftlibrary()
+#include "aura/_.h" // System->ftlibrary()
 
 #include "aura/operating_system.h"
 #define TOY_FONT_SELECTION 0

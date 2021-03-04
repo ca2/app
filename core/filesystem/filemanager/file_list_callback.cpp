@@ -39,13 +39,13 @@ namespace filemanager
       m_pimagelistSubItemHover->add_file("matter://filemanager/check_off_16.png");
       m_pimagelistSubItemHover->add_file("matter://filemanager/check_on_16.png");
 
-      System.imaging().change_hue(
+      System->imaging().change_hue(
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
       rgb(220, 220, 215),
       0.50);
 
-      System.imaging().color_blend(
+      System->imaging().color_blend(
       m_pimagelistItemHover,
       m_pimagelistSubItemHover,
       rgb(220, 220, 215),

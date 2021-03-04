@@ -729,8 +729,8 @@ namespace draw2d_gdiplus
    //   double centerx    = (x2 + x1) / 2.0;
    //   double centery    = (y2 + y1) / 2.0;
 
-   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System.math().GetPi();
-   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System.math().GetPi();
+   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
+   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
    //   double sweep      = fabs(end - start);
 
    //   /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -750,8 +750,8 @@ namespace draw2d_gdiplus
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System.math().GetPi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System.math().GetPi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)

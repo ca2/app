@@ -30,7 +30,7 @@ namespace user
 //
 //      m_pparent = pparent;
 ////      i32 nClassStyle = 0;
-////      const char * pClassName = System.RegisterWndClass(
+////      const char * pClassName = System->RegisterWndClass(
 //
 //      //nClassStyle,
 //      //0,
@@ -41,7 +41,7 @@ namespace user
 //      if(!::user::interaction::create_child(pparent))
 //      {
 //
-//         System.message_box("Could not create Split Bar");
+//         System->message_box("Could not create Split Bar");
 //
 //         return false;
 //

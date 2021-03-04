@@ -413,7 +413,7 @@ namespace ios
    ::file::path dir_context::time()
    {
       
-      return System.m_pdirsystem->m_pathModule;
+      return System->m_pdirsystem->m_pathModule;
       
    }
 
@@ -447,7 +447,7 @@ namespace ios
    ::file::path dir_context::module()
    {
 
-      return System.m_pdirsystem->m_pathModule;
+      return System->m_pdirsystem->m_pathModule;
 
    }
 
@@ -455,7 +455,7 @@ namespace ios
    ::file::path dir_context::ca2module()
    {
 
-      return System.m_pdirsystem->m_pathCa2Module;
+      return System->m_pdirsystem->m_pathCa2Module;
 
    }
 
@@ -546,9 +546,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = System.m_pdirsystem;
+      m_pdirsystem = System->m_pdirsystem;
       
-      m_pfilesystem = System.m_pfilesystem;
+      m_pfilesystem = System->m_pfilesystem;
 
       
 //      if(!update_module_path())
@@ -581,11 +581,11 @@ namespace ios
 
       pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      System.m_strIosHome = pathHome;
+      System->m_strIosHome = pathHome;
 
       m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      //nodeos_set_home(System.m_strIosHome);
+      //nodeos_set_home(System->m_strIosHome);
 
       ::file::path str = m_pdirsystem->m_strCa2 / ".ca2/appdata";
 
@@ -673,9 +673,9 @@ namespace ios
 
       }
 
-      System.m_strIosTemp = strTime;
+      System->m_strIosTemp = strTime;
 
-      //nodeos_set_temp(System.m_strIosTemp);
+      //nodeos_set_temp(System->m_strIosTemp);
       
       string str;
 

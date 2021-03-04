@@ -476,15 +476,15 @@ namespace hi5
       memHmac.set_size(1024 * 16);
 
       //hmac_context context;
-      System.crypto().hmac(memHmac, sigBase, secretSigningKey);
+      System->crypto().hmac(memHmac, sigBase, secretSigningKey);
       //context.digest(memHmac.get_data(), sigBase, secretSigningKey);
 
 
       //string strHmac;
-      //System.memory_to_hex(strHmac, memHmac);
+      //System->memory_to_hex(strHmac, memHmac);
 
       /* Do a base64 encode of signature */
-      string base64Str = System.base64().encode(memHmac.get_data(), 20);
+      string base64Str = System->base64().encode(memHmac.get_data(), 20);
 
       /* Do an url encode */
       oAuthSignature = urlencode( base64Str );

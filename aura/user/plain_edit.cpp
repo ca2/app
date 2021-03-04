@@ -64,7 +64,7 @@ void _001AddPacks(string_to_string & base64map, string & str)
       if (strEncoding.compare_ci("base64") == 0)
       {
 
-         ::str::base64 & b64 = System.base64();
+         ::str::base64 & b64 = System->base64();
 
          index iBase64 = iEncoding + 1;
 
@@ -365,10 +365,10 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      with_status < ::color::color > crBk;
-      with_status < ::color::color > crBkSel;
-      with_status < ::color::color > crSel;
-      with_status < ::color::color > cr;
+      status < ::color::color > crBk;
+      status < ::color::color > crBkSel;
+      status < ::color::color > crSel;
+      status < ::color::color > cr;
 
       ::rectangle_f64 rectClient = get_client_rect();
 
@@ -396,11 +396,11 @@ namespace user
       crSel = get_color(pstyle, e_element_text, e_state_selected);
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
-      with_status < ::color::color > colorComposeBk;
+      status < ::color::color > colorComposeBk;
 
       colorComposeBk = crBk;
-      colorComposeBk->blend(crBkSel, 0.5);
-      colorComposeBk->alpha = 127;
+      colorComposeBk.blend(crBkSel, 0.5);
+      colorComposeBk.alpha = 127;
 
       pstyle->get(m_pcontrolstyle, pgraphics, this);
 
@@ -1099,7 +1099,7 @@ namespace user
    }
 
 
-   with_status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
        return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -4924,7 +4924,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //System.message_box("VK_RETURN reached plain_edit");
+                     //System->message_box("VK_RETURN reached plain_edit");
                   }
 
                   string str;

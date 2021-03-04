@@ -445,7 +445,7 @@ stream & context_object::read(::stream & stream)
 }
 
 
-property * context_object::parent_lookup_property(const id & id) const
+linked_property context_object::parent_lookup_property(const id & id) const
 {
 
    auto pobject = parent_property_set_holder();
@@ -462,7 +462,7 @@ property * context_object::parent_lookup_property(const id & id) const
 }
 
 
-property * context_object::on_fetch_property(const ::id & id) const
+::linked_property context_object::on_fetch_property(const ::id & id) const
 {
 
    auto pproperty = find_property(id);
@@ -470,39 +470,39 @@ property * context_object::on_fetch_property(const ::id & id) const
    if (pproperty)
    {
 
-      return pproperty;
+      return { (property *) pproperty, (context_object *) this };
 
    }
 
-   auto ppropertyArray = find_property("property_set_array");
+   //auto ppropertyArray = find_property("property_set_array");
 
-   __pointer(__pointer_array(property_set)) parray;
+   //__pointer(__pointer_array(property_set)) parray;
 
-   if (ppropertyArray)
-   {
+   //if (ppropertyArray)
+   //{
 
-      ppropertyArray->defer_get(parray);
+   //   ppropertyArray->defer_get(parray);
 
-      if (parray)
-      {
+   //   if (parray)
+   //   {
 
-         for (auto & pset : parray->ptra())
-         {
+   //      for (auto & pset : parray->ptra())
+   //      {
 
-            pproperty = pset->find(id); // first-level find
+   //         pproperty = pset->find(id); // first-level find
 
-            if (pproperty)
-            {
+   //         if (pproperty)
+   //         {
 
-               return pproperty;
+   //            return pproperty;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
    return parent_lookup_property(id);
 
@@ -525,25 +525,25 @@ id context_object::translate_property_id(const ::id & id)
 
 }
 
-void context_object::add_property_set(property_set * pset)
-{
-
-   auto * pproperty = find_property("property_set_array");
-
-   auto parray = pproperty->cast < __pointer_array(property_set) >();
-
-   if (!parray)
-   {
-
-      parray = __new(__pointer_array(property_set)());
-
-      *pproperty = parray;
-
-   }
-
-   parray->add(pset);
-
-}
+//void context_object::add_property_set(property_set * pset)
+//{
+//
+//   auto * pproperty = find_property("property_set_array");
+//
+//   auto parray = pproperty->cast < __pointer_array(property_set) >();
+//
+//   if (!parray)
+//   {
+//
+//      parray = __new(__pointer_array(property_set)());
+//
+//      *pproperty = parray;
+//
+//   }
+//
+//   parray->add(pset);
+//
+//}
 
 
 string context_object::property_set_evaluate(const string & str) const
@@ -612,7 +612,22 @@ void context_object::property_set_replace(string & str) const
 }
 
 
-property * context_object::fetch_property(const ::id & idParam, bool bCreate)
+void context_object::notify_property_changed(property* pproperty, const ::action_context & actioncontext)
+{
+
+   on_property_changed(pproperty, actioncontext);
+
+}
+
+
+void context_object::on_property_changed(property* pproperty, const action_context & actioncontext)
+{
+
+
+}
+
+
+::linked_property context_object::fetch_property(const ::id & idParam, bool bCreate)
 {
 
    auto id = translate_property_id(idParam);
@@ -620,12 +635,12 @@ property * context_object::fetch_property(const ::id & idParam, bool bCreate)
    if(!id.is_empty())
    {
 
-      auto pproperty = on_fetch_property(id);
+      auto linkedproperty = on_fetch_property(id);
 
-      if(pproperty)
+      if(linkedproperty)
       {
 
-         return pproperty;
+         return linkedproperty;
 
       }
 
@@ -634,7 +649,7 @@ property * context_object::fetch_property(const ::id & idParam, bool bCreate)
    if (bCreate)
    {
 
-      return &get_property_set().get_property(id);
+      return { &get_property_set().get_property(id), this };
 
    }
 

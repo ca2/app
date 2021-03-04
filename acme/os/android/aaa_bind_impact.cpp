@@ -169,12 +169,12 @@
 //
 //   size_t length = (size_t)env->GetStringLength(str);
 //
-//   if (System.get_context_session()->get_focus_ui())
+//   if (System->get_context_session()->get_focus_ui())
 //   {
 //
 //      wd16string wstr(utf16, length);
 //
-//      System.get_context_session()->get_focus_ui()->on_text_composition(wstr);
+//      System->get_context_session()->get_focus_ui()->on_text_composition(wstr);
 //
 //   }
 //   else
@@ -262,7 +262,7 @@
 //
 //   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 //
-//   ::user::interaction* puiHost = System.get_context_session()->m_puiHost;
+//   ::user::interaction* puiHost = System->get_context_session()->m_puiHost;
 //
 //   puiHost->m_statePrevious2.m_point = p;
 //   puiHost->m_stateRequest2.m_point = p;

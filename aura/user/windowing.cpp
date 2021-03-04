@@ -170,14 +170,14 @@ namespace user
 //
 //   {
 //
-//      synchronization_lock slSystem(System.mutex());
+//      synchronization_lock slSystem(System->mutex());
 //
-//      if (System.m_pwindowmap->m_map.remove_key(oswindow))
+//      if (System->m_pwindowmap->m_map.remove_key(oswindow))
 //      {
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("System.m_pwindowmap removed oswindow");
+//         ::output_debug_string("System->m_pwindowmap removed oswindow");
 //
 //#endif
 //

@@ -994,7 +994,7 @@ namespace apex
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
 
-      virtual __pointer(::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      virtual __pointer(::extended::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    };
@@ -1025,13 +1025,13 @@ template < typename ENUM >
 inline void set_enum_text(ENUM e, const char * psz)
 {
 
-   auto & system = System;
+   auto psystem = System;
 
-   critical_section_lock synchronizationlock(System.m_csEnumText);
+   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 
-   system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
+   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
-   system.m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
+   psystem->m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
 
 }
 
@@ -1042,7 +1042,7 @@ inline string enum_text(ENUM e)
 
    auto & system = System;
 
-   critical_section_lock synchronizationlock(System.m_csEnumText);
+   critical_section_lock synchronizationlock(System->m_csEnumText);
 
    return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1055,7 +1055,7 @@ inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 
    auto & system = System;
 
-   critical_section_lock synchronizationlock(System.m_csEnumText);
+   critical_section_lock synchronizationlock(System->m_csEnumText);
 
    i64 iValue;
 

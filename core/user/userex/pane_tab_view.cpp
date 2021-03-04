@@ -409,7 +409,7 @@ namespace userex
 
       ::apex::library * plibrary = nullptr;
 
-      if(pimpactdata->m_id.is_text() && System.m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+      if(pimpactdata->m_id.is_text() && System->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {
 
 

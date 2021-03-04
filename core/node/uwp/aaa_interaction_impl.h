@@ -626,7 +626,7 @@ namespace uwp
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
-      virtual bool is_frame_window(); // is_kind_of(System.template type_info < frame_window > ()))
+      virtual bool is_frame_window(); // is_kind_of(System->template type_info < frame_window > ()))
       virtual void on_final_release();
       static bool ModifyStyle(oswindow hWnd, u32 dwRemove, u32 dwAdd,
                               ::u32 nFlags);

@@ -359,7 +359,7 @@ namespace account
          {
             string strText;
             m_ppassword->_001GetText(strText);
-            strText = System.crypto().nessie(strText);
+            strText = System->crypto().nessie(strText);
             m_ppassword->_001SetText(strText, ::e_source_database);
          }
 

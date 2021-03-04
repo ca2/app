@@ -202,7 +202,7 @@ namespace user
             if (Application.image().save_image(mem, pimage, &si))
             {
 
-               str = System.base64().encode(mem);
+               str = System->base64().encode(mem);
 
                if (si.m_eformat == ::draw2d::format_png)
                {
@@ -263,7 +263,7 @@ namespace user
 
                      Context.file().as_memory(varFile, mem);
 
-                     string strBase64 = System.base64().encode(mem);
+                     string strBase64 = System->base64().encode(mem);
 
                      str = "data:image/gif;base64," + strBase64;
 

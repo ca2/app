@@ -49,7 +49,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   auto psession = System.get_context_session();
+   auto psession = System->get_context_session();
 
    if (psession == nullptr)
    {
@@ -205,13 +205,13 @@ void android_aura_main()
    rectangle.right = premote->getWidth();
    rectangle.bottom = premote->getHeight();
 
-   auto psession = System.get_context_session();
+   auto psession = System->get_context_session();
 
    psession->defer_initialize_host_window(rectangle);
 
    SetMainScreenRect(rectangle);
 
-   //auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+   //auto puserinteraction = __user_interaction(System->get_context_session()->m_puiHost);
 
    //puserinteraction->place(rectangle);
 

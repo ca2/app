@@ -730,8 +730,6 @@ template < typename RESULT, typename TRANSPORT >
 future < RESULT, TRANSPORT > ::future()
 {
 
-   m_transport = this;
-
    m_pevent = nullptr;
 
 }
@@ -887,7 +885,7 @@ future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE pre
 
       lock.unlock();
 
-      predicate(this);
+      predicate(*this);
 
    }
    

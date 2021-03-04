@@ -208,7 +208,7 @@ namespace axis
 //      ::window * pwnd = ::ios::window::FromHandlePermanent((oswindow) pdata);
 //      if(pwnd != nullptr)
 //         return pwnd;
-//      user::interaction_ptr_array wndptra = System.frames();
+//      user::interaction_ptr_array wndptra = System->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
@@ -266,9 +266,9 @@ namespace axis
 //       */
 //
 //      //      string strExeName;
-//      //string strTitle = System.load_string("System.title");
+//      //string strTitle = System->load_string("System->title");
 //      // get the exe title from the full path name [no extension]
-//      //    strExeName = System.get_module_title();
+//      //    strExeName = System->get_module_title();
 //
 //
 //
@@ -332,7 +332,7 @@ namespace axis
 //
 //         string strCmdLine          = pdata->m_strCommandLine;
 //
-////         System.m_strCmdLine = strCmdLine;
+////         System->m_strCmdLine = strCmdLine;
 //
 //         SetCurrentHandles();
 //
@@ -352,7 +352,7 @@ namespace axis
 //      // handle critical errors and avoid Windows message boxes
 //      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 //
-//      System.m_strCmdLine = strCmdLine;
+//      System->m_strCmdLine = strCmdLine;
 //      //pApp->SetCurrentHandles();
 //      SetCurrentHandles();
 //

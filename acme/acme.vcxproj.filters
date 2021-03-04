@@ -1745,9 +1745,6 @@
     <ClInclude Include="primitive\geometry2d\_collection_contains.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\context_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\promise.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2500,6 +2497,18 @@
     </ClInclude>
     <ClInclude Include="const\timer.h">
       <Filter>Source Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="_start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\hresult.h">
+      <Filter>Source Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\linked_property.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\context_object.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3627,6 +3636,12 @@
     </ClCompile>
     <ClCompile Include="exception\parsing.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\hresult.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\linked_property.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

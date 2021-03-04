@@ -629,7 +629,7 @@ namespace uwp
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
-      virtual bool is_frame_window(); // is_kind_of(System.template type_info < frame_window > ()))
+      virtual bool is_frame_window(); // is_kind_of(System->template type_info < frame_window > ()))
       virtual void on_final_release();
       //static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, ::u32 nFlag);

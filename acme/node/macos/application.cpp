@@ -200,9 +200,9 @@ namespace acme
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = System.load_string("System.title");
+//      //string strTitle = System->load_string("System->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = System.get_module_title();
+//  //    strExeName = System->get_module_title();
 //
 //
 //
@@ -365,5 +365,5 @@ namespace acme
 //
 //bool on_application_menu_action(const char * pszCommand)
 //{
-//   System.on_application_menu_action(pszCommand);
+//   System->on_application_menu_action(pszCommand);
 //}

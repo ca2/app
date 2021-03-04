@@ -331,7 +331,7 @@ namespace axis
       catch (const ::exception::exception & e)
       {
 
-         if (!handle_exception(pe))
+         if (!handle_exception(e))
          {
 
 
@@ -498,7 +498,7 @@ namespace axis
 
          data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         System.appa_load_string_table();
+         System->appa_load_string_table();
 
 
          // if system locale has changed (compared to last recorded one by aura)
@@ -634,7 +634,7 @@ namespace axis
 
          data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         System.appa_load_string_table();
+         System->appa_load_string_table();
 
       return true;
 
@@ -748,7 +748,7 @@ namespace axis
 //
 //#else
 //
-//         //if (System.m_pappcore == nullptr)
+//         //if (System->m_pappcore == nullptr)
 //         //{
 //
 //         //   set_has_installer(false);
@@ -757,7 +757,7 @@ namespace axis
 //         //else
 //         {
 //
-//            set_has_installer(!System.has_apex_application_factory());
+//            set_has_installer(!System->has_apex_application_factory());
 //
 //         }
 //
@@ -923,7 +923,7 @@ namespace axis
             if (get_context_system() != nullptr)
             {
 
-               System.request({::command_check_exit});
+               System->request({::command_check_exit});
 
             }
 
@@ -967,7 +967,7 @@ namespace axis
 //            if (psession->appptra().get_count() <= 1)
 //            {
 //
-//               if (System.thread::get_os_data() != nullptr)
+//               if (System->thread::get_os_data() != nullptr)
 //               {
 //
 //                  ::parallelization::finish(System);
@@ -1014,7 +1014,7 @@ namespace axis
 //
 //      }
 //
-//      System.install_progress_add_up(); // 2
+//      System->install_progress_add_up(); // 2
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
@@ -1029,7 +1029,7 @@ namespace axis
 //
 //      }
 //
-//      System.install_progress_add_up(); // 3
+//      System->install_progress_add_up(); // 3
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
@@ -1044,7 +1044,7 @@ namespace axis
 //
 //      }
 //
-//      System.install_progress_add_up(); // 4
+//      System->install_progress_add_up(); // 4
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
@@ -1079,7 +1079,7 @@ namespace axis
 //
 //      }
 //
-//      System.install_progress_add_up(); // 5
+//      System->install_progress_add_up(); // 5
 //
 ////      m_bAuraInitializeInstanceResult = true;
 //
@@ -1103,17 +1103,17 @@ namespace axis
 
 
 
-      //if (System.payload("locale").get_count() > 0)
+      //if (System->payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = System.payload("locale").stra()[0];
+      //   strLocale = System->payload("locale").stra()[0];
 
       //}
 
-      //if (System.payload("schema").get_count() > 0)
+      //if (System->payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = System.payload("schema").stra()[0];
+      //   strSchema = System->payload("schema").stra()[0];
 
       //}
 
@@ -1448,7 +1448,7 @@ namespace axis
          //if(::is_set(get_context_system()))
          //{
 
-         //   System.app_remove(this);
+         //   System->app_remove(this);
 
          //}
 
@@ -1609,7 +1609,7 @@ namespace axis
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System.appa_load_string_table();
+   //   //System->appa_load_string_table();
    //}
 
 
@@ -1619,7 +1619,7 @@ namespace axis
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System.appa_load_string_table();
+   //   //System->appa_load_string_table();
    //}
 
 
@@ -1753,19 +1753,19 @@ namespace axis
          catch (const ::exception::exception & e)
          {
 
-            if (handle_exception(pe))
+            if (handle_exception(e))
             {
 
                goto resume_on_exception;
 
             }
 
-            m_estatus = pe->m_estatus;
+            m_estatus = e.m_estatus;
 
          }
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception::exception &)
       {
 
       }

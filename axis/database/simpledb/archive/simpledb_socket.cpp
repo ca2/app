@@ -59,7 +59,7 @@ namespace simpledb
 
          string strUri(inattr("request_uri"));
          string strHost(inheader("host"));
-         string strScript = System.url().object_get_script(strUri);
+         string strScript = System->url().object_get_script(strUri);
          if(strUri.find("thesecret") >= 0)
          {
             //      debug_break();
@@ -126,14 +126,14 @@ namespace simpledb
       if(strKey.compare_ci("Location") == 0)
       {
          url_domain domain;
-         domain.create(System.url().get_server(strValue));
+         domain.create(System->url().get_server(strValue));
          if(domain.m_strRadix == "ca2open")
          {
-            strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
+            strValue = "https://" + Application.m_strFontopusServer + System->url().get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.cc" && System.url().get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.cc" && System->url().get_protocol(strValue) == "https")
          {
-            strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
+            strValue = "https://" + Application.m_strFontopusServer + System->url().get_object(strValue);
          }
       }
       strValue.trim();
@@ -145,7 +145,7 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.m_psimpledb->db().data_load(nullptr, "netnodec." + GetLocalAddress().get_display_number());
+      m_strCat = System->m_psimpledb->db().data_load(nullptr, "netnodec." + GetLocalAddress().get_display_number());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
@@ -185,7 +185,7 @@ namespace simpledb
       }
       else
       {
-         strRelative = System.url().url_decode(System.url().get_script(inattr("request_uri")));
+         strRelative = System->url().url_decode(System->url().get_script(inattr("request_uri")));
       }
       string strPath;
       strPath = psz / strRelative;
@@ -307,7 +307,7 @@ namespace simpledb
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().ostream() << System.base64().encode(*memfile.get_memory());
+               response().ostream() << System->base64().encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";

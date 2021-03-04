@@ -601,7 +601,7 @@ namespace user
             color32_t crTranslucid = rgb(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
-            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
+            System->imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
          }
       }
 
@@ -3260,9 +3260,9 @@ namespace user
       }
 
 
-      //m_font->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
+      //m_font->operator=(*System->draw2d()->fonts().GetMeshCtrlFont());
 
-      //m_fontHover->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*System->draw2d()->fonts().GetMeshCtrlFont());
 
       //m_fontHover->set_underline();
       ////m_fontHover->set_bold();
@@ -4478,7 +4478,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      m_pregexFilter1 = System.create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = System->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;
 
@@ -5588,15 +5588,15 @@ namespace user
 
             //::aura::application * get_context_application() = m_pmesh->get_context_application();
 
-            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
+            System->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
-            System.imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
+            System->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
             pimage2->fill(0,0,0,0);
-            System.imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
+            System->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
             pimage2->set_rgb(0,0,0);
 
 
-            System.imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
+            System->imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
 
 
             brushText->create_solid(argb(255,255,255,255));

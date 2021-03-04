@@ -31,9 +31,9 @@ namespace simpledb
       m_pmanager = new ::simpledb::manager(pbaseapp);
 
 
-      /*App(pbaseapp).m_strFontopusServer		= System.m_simpledb.db().data_load("account_server");
-      App(pbaseapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server");
-      App(pbaseapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port");
+      /*App(pbaseapp).m_strFontopusServer		= System->m_simpledb.db().data_load("account_server");
+      App(pbaseapp).m_strDatabaseServerHost	= System->m_simpledb.db().data_load("database_server");
+      App(pbaseapp).m_iDatabaseServerPort	= System->m_simpledb.db().data_load("database_port");
       if(App(pbaseapp).m_strDatabaseServerHost.is_empty())
       {
          App(pbaseapp).m_strDatabaseServerHost = "localhost";
@@ -45,7 +45,7 @@ namespace simpledb
 
 
       string_array stra;
-      stra = System.m_simpledb.db().data_load(nullptr, "simpledb");
+      stra = System->m_simpledb.db().data_load(nullptr, "simpledb");
       for(i32 i = 0; i < stra.get_size(); i++)
       {
          m_threadptra.add(__begin_thread < socket_thread > (get_object()));

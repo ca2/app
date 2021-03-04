@@ -885,7 +885,7 @@ namespace windows
 
 
 
-__pointer(::future < ::conversation >) show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox)
+__pointer(::extended::future < ::conversation >) show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox)
 {
 
    wstring wstrMessage(strMessage);
@@ -894,7 +894,7 @@ __pointer(::future < ::conversation >) show_error_message(const string & strMess
 
    auto pmessagebox = __new(windows::message_box);
 
-   auto pfuture = pmessagebox->asynchronous <::conversation>::future();
+   auto pfuture = pmessagebox->::extended::asynchronous <::conversation>::future();
 
    pmessagebox->m_edialogresult = pmessagebox->show(nullptr, strMessage, strTitle, emessagebox);
 

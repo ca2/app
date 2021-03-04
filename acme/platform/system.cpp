@@ -317,7 +317,7 @@ namespace acme
    }
 
 
-   __pointer(::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto presult = __new(::future < ::conversation >);
@@ -326,7 +326,7 @@ namespace acme
 
       //return presult;
 
-      //auto pprocess = __new(with_status < enum_dialog_result >);
+      //auto pprocess = __new(status < enum_dialog_result >);
 
       //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 

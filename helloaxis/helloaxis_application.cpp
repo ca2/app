@@ -109,7 +109,7 @@ namespace helloaxis
 
       ::helloaura::main_window(m_prender);
 
-      System.set_finish();
+      System->set_finish();
 
    }
 

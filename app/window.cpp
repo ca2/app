@@ -136,7 +136,7 @@ namespace app_app
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
-         double omega = 2.0 * System.math().GetPi() * dFrequency;
+         double omega = 2.0 * System->math().GetPi() * dFrequency;
 
          double angle = omega * time;
 
@@ -164,13 +164,13 @@ namespace app_app
 
             dFrequency = 1.0 / m_dBreathPeriod;
 
-            omega = 2.0 * System.math().GetPi() * dFrequency;
+            omega = 2.0 * System->math().GetPi() * dFrequency;
 
             double angleNew = omega * time;
 
             m_dPhaseShift = angle - angleNew;
 
-            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System.math().GetPi());
+            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System->math().GetPi());
 
          }
 

@@ -145,9 +145,9 @@ namespace user
 
       if (pdocument == nullptr)
       {
-         // linux System.message_box(__IDP_FAILED_TO_CREATE_DOC);
+         // linux System->message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         System.message_box("Failed to create document");
+         System->message_box("Failed to create document");
 
          return;
 
@@ -173,9 +173,11 @@ namespace user
          if (!pFrame)
          {
 
-            auto& result = System.m_result;
+            auto& result = System->m_result;
 
-            if(!result.has < exit_exception >())
+            ::e_status estatus;
+
+            if(!result.get_exit_status(estatus))
             {
 
                Context.message_box("Failed to create Document");

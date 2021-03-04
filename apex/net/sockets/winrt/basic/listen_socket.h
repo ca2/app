@@ -351,7 +351,7 @@ namespace sockets
          m_depth = depth;
          //::sockets::socket::os_data data;
          //data.o = m_listener;
-         //m_socket = System.sockets().net().m_
+         //m_socket = System->sockets().net().m_
          //attach(data);
          return 0;
 

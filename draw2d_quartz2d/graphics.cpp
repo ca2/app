@@ -2861,7 +2861,7 @@ namespace draw2d_quartz2d
     keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-    return System.imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
+    return System->imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
 
 
     }

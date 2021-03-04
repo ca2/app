@@ -53,7 +53,7 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
 
          pcreate->m_pcommandline = new command_line(::get_context_system(), get_command_line());
 
-         System.request({ pcreate });
+         System->request({ pcreate });
 
       }
 

@@ -99,7 +99,7 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = System.matter_cache_image(this, strMatter);
+      pimage = System->matter_cache_image(this, strMatter);
 
       if (::is_ok(pimage))
       {
@@ -141,7 +141,7 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = System.get_cache_image(this, varFile);
+      pimage = System->get_cache_image(this, varFile);
 
       if (::is_ok(pimage))
       {
@@ -183,7 +183,7 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = System.matter_cache_image(this, strMatter);
+      pimage = System->matter_cache_image(this, strMatter);
 
       if (::is_ok(pimage))
       {

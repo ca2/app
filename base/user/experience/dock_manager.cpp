@@ -146,7 +146,7 @@ namespace experience
       if (rectWork.is_empty())
       {
 
-         __throw(::status_exception(error_failed));
+         __throw(error_failed);
 
       }
 

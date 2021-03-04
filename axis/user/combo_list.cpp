@@ -233,9 +233,9 @@ namespace user
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         with_status < ::color::color > colorBackground;
+         status < ::color::color > colorBackground;
 
-         with_status < ::color::color > colorText;
+         status < ::color::color > colorText;
 
          string strDebug;
 

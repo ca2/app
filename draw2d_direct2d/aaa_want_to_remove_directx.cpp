@@ -181,8 +181,8 @@ namespace draw2d_direct2d
 
       ID2D1DeviceContext * pdevicecontext = m_d2dContext.Get();
 
-      System.m_pdevicecontext    = pdevicecontext;
-      System.m_pmutexDc          = &m_mutexDc;
+      System->m_pdevicecontext    = pdevicecontext;
+      System->m_pmutexDc          = &m_mutexDc;
 
 
 
@@ -236,10 +236,10 @@ namespace draw2d_direct2d
          CreateWindowSizeDependentResources();
       }
 
-      System.m_puserinteraction->m_rectParentClient.left     = 0;
-      System.m_puserinteraction->m_rectParentClient.top      = 0;
-      System.m_puserinteraction->m_rectParentClient.right    = (i64) m_window.Bounds.Width;
-      System.m_puserinteraction->m_rectParentClient.bottom   = (i64) m_window.Bounds.Height;
+      System->m_puserinteraction->m_rectParentClient.left     = 0;
+      System->m_puserinteraction->m_rectParentClient.top      = 0;
+      System->m_puserinteraction->m_rectParentClient.right    = (i64) m_window.Bounds.Width;
+      System->m_puserinteraction->m_rectParentClient.bottom   = (i64) m_window.Bounds.Height;
       */
    }
 
@@ -542,7 +542,7 @@ namespace draw2d_direct2d
       if(!m_bInitialized)
          return;
 
-      single_lock slDc(System.m_pmutexDc, true);
+      single_lock slDc(System->m_pmutexDc, true);
 
       // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
       // in certain scenarios.  In this sample, however, we do not utilize those features.
@@ -672,7 +672,7 @@ namespace draw2d_direct2d
       {
          ::draw2d::graphics_pointer dc(get_context_application()->create_new, this);
          dc->attach((ID2D1DeviceContext * ) m_d2dContext.Get());
-         System.m_puserinteraction->_000OnDraw(dc);
+         System->m_puserinteraction->_000OnDraw(dc);
          dc->detach();
       }
 

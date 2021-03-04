@@ -73,7 +73,7 @@ namespace account
 
       }
 
-      __throw(todo("xml->json"));
+      __throw(todo, "xml->json");
 
       //xml::document doc;
 
@@ -107,7 +107,7 @@ namespace account
 
       //   estatus = ::success_authenticated;
 
-      //   if(puser->m_strHost == System.url().get_server(psession->account()->get_default_url()))
+      //   if(puser->m_strHost == System->url().get_server(psession->account()->get_default_url()))
       //   {
 
       //      Context.file().put_contents(Context.dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
@@ -225,18 +225,18 @@ namespace account
       if(puser->m_bDeferRegistration)
       {
 
-         System.url().set_param(strAuthUrl, "defer_registration", "true");
+         System->url().set_param(strAuthUrl, "defer_registration", "true");
 
       }
 
       if(puser->m_bDeferRegistration)
       {
 
-         System.url().set_param(strAuthUrl, "ruri", System.url().url_encode(puser->m_pathRuri));
+         System->url().set_param(strAuthUrl, "ruri", System->url().url_encode(puser->m_pathRuri));
 
       }
 
-      System.url().set_param(strAuthUrl, "sessid", puser->m_strSessId);
+      System->url().set_param(strAuthUrl, "sessid", puser->m_strSessId);
 
       property_set set;
 
@@ -311,15 +311,15 @@ namespace account
 
       //auto pinteractive = pcredentials->m_pinteractive;
 
-      puser->m_strHost = System.url().get_server(puser->m_pathUrl);
+      puser->m_strHost = System->url().get_server(puser->m_pathUrl);
 
       string strGetFontopus;
 
       strGetFontopus = "https://ca2.cc/get_account_login";
 
-      System.url().set_param(strGetFontopus,strGetFontopus,"lang",Context.get_locale());
+      System->url().set_param(strGetFontopus,strGetFontopus,"lang",Context.get_locale());
 
-      System.url().set_param(strGetFontopus,strGetFontopus,"styl",Context.get_schema());
+      System->url().set_param(strGetFontopus,strGetFontopus,"styl",Context.get_schema());
 
       string strNode;
 
@@ -366,7 +366,7 @@ namespace account
 
       }
 
-      __throw(todo("xml->js"));
+      __throw(todo, "xml->js");
 
       //::xml::document doc;
 
@@ -450,7 +450,7 @@ namespace account
 //string department::get_server(::file::path pathUrl, i32 iRetry)
 //{
 //
-//   string strHost(System.url().get_server(pszUrl));
+//   string strHost(System->url().get_server(pszUrl));
 //
 //   if(iRetry <= 0)
 //   {
@@ -480,9 +480,9 @@ namespace account
 //
 //   strGetFontopus = "http://ca2.cc/get_account_login";
 //
-//   System.url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
+//   System->url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
-//   System.url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
+//   System->url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
 //
 //   __pointer(::sockets::http_session) psession;
 //
@@ -591,7 +591,7 @@ namespace account
 //
 //         m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
 //
-//         //System.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
+//         //System->sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 //
 //      }
 //

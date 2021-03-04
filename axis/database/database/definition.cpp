@@ -12,7 +12,7 @@ namespace database
 
       str = "Unknown CDatabase Error";
 
-      m_pszMessage = ansi_dup(str);
+      m_strMessage = str;
 
    }
 
@@ -41,7 +41,7 @@ namespace database
 
       str = "CDatabase Error: " + str;
 
-      m_pszMessage = ansi_dup(str);
+      m_strMessage = str;
 
    }
 

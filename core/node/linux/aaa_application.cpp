@@ -377,9 +377,9 @@ namespace aura
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = System.load_string("System.title");
+//      //string strTitle = System->load_string("System->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = System.get_module_title();
+//      //strExeName = System->get_module_title();
 //
 //      m_hthread      =  ::GetCurrentThread();
 //

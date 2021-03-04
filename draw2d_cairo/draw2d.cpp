@@ -1182,7 +1182,7 @@ namespace draw2d_cairo
 //      }
 //
 //
-//      synchronization_lock synchronizationlock(System.m_mutexLibrary);
+//      synchronization_lock synchronizationlock(System->m_mutexLibrary);
 //
 //      estatus = __construct(m_pwritetext);
 //
@@ -1248,7 +1248,7 @@ namespace draw2d_cairo
 //      if (strLibrary.has_char())
 //      {
 //
-//         estatus = System.do_factory_exchange("write_text", strLibrary);
+//         estatus = System->do_factory_exchange("write_text", strLibrary);
 //
 //         if (estatus)
 //         {
@@ -1276,7 +1276,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      estatus = System.do_factory_exchange("write_text", strLibrary);
+//      estatus = System->do_factory_exchange("write_text", strLibrary);
 //
 //      if (estatus)
 //      {
@@ -1292,7 +1292,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_gdiplus")
 //      {
 //
-//         estatus = System.do_factory_exchange("write_text", "gdiplus");
+//         estatus = System->do_factory_exchange("write_text", "gdiplus");
 //
 //         if (estatus)
 //         {
@@ -1307,7 +1307,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_direct2d")
 //      {
 //
-//         estatus = System.do_factory_exchange("write_text", "direct2d");
+//         estatus = System->do_factory_exchange("write_text", "direct2d");
 //
 //         if (estatus)
 //         {
@@ -1325,7 +1325,7 @@ namespace draw2d_cairo
 //      {
 //
 //
-//         estatus = System.do_factory_exchange("write_text", "cairo");
+//         estatus = System->do_factory_exchange("write_text", "cairo");
 //
 //         if (estatus)
 //         {

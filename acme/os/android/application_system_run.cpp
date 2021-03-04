@@ -79,7 +79,7 @@ namespace acme
 
       //::set_main_ithread(psystem->m_uThread);
 
-      //// System.m_strAppId = m_pmaindata->m_strAppId;
+      //// System->m_strAppId = m_pmaindata->m_strAppId;
 
       //if (!psystem->begin_synch())
       //{

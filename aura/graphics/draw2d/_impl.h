@@ -441,7 +441,7 @@ namespace draw2d
 
          pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rectangle.left, -rectCache.top + rectangle.top);
 
-         System.imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+         System->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
          for (iptr i = 0; i < iBlur; i++)
          {

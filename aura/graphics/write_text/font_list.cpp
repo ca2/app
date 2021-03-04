@@ -71,9 +71,9 @@ namespace write_text
          if (m_pfontenumeration.is_null())
          {
 
-            System.draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            System->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
 
-            m_pfontenumeration = System.draw2d()->write_text()->fonts()->m_pfontenumeration;
+            m_pfontenumeration = System->draw2d()->write_text()->fonts()->m_pfontenumeration;
 
          }
 
@@ -386,7 +386,7 @@ namespace write_text
 
             auto color = pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_hover);
 
-            int iA = color->alpha;
+            int iA = color.alpha;
 
             pgraphics->fill_rectangle(rectangle, color);
 
@@ -723,7 +723,7 @@ namespace write_text
 
          m_bUpdatesHooked = true;
 
-         System.delivery_for(id_font_enumeration, this, true);
+         System->delivery_for(id_font_enumeration, this, true);
 
          delivery_for(id_font_extents, this, true);
 

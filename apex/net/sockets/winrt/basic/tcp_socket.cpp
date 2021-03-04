@@ -843,7 +843,7 @@ namespace sockets
          {
             port_t port = ad.get_service_number();
             in_addr addr;
-            System.sockets().net().convert(addr, ad.get_display_number());
+            System->sockets().net().convert(addr, ad.get_display_number());
             ::memcpy_dup(request + 2, &port, sizeof(port_t)); // nwbo is ok here
             ::memcpy_dup(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }
@@ -1176,7 +1176,7 @@ namespace sockets
          /* create our context*/
    /*    if(m_spsslclientcontext.is_null())
        {
-          ::string_map < __pointer(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
+          ::string_map < __pointer(ssl_client_context) > & clientcontextmap = System->m_clientcontextmap;
           if(clientcontextmap.plookup(context) == nullptr)
           {
              m_spsslclientcontext(new ssl_client_context(get_context_application(), pmethod));

@@ -1307,7 +1307,7 @@ namespace user
    ASSERT(pContext->m_typeNewView != nullptr);
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-   __pointer(::user::interaction) pview =  (System.alloc(pContext->m_typeNewView));
+   __pointer(::user::interaction) pview =  (System->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
@@ -1344,7 +1344,7 @@ namespace user
    ASSERT(pContext->m_typeNewView != nullptr);
 
    // Note: can be a interaction_impl with PostNcDestroy self cleanup
-   ::user::interaction_impl * pview = (pwndParent->System.alloc(pContext->m_typeNewView));
+   ::user::interaction_impl * pview = (pwndParent->System->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",

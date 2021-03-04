@@ -2864,10 +2864,10 @@ class manual_reset_event;
 #include "acme/platform/future.h"
 
 
-#include "acme/user/conversation.h"
+//#include "acme/user/conversation.h"
 
 
-CLASS_DECL_ACME __pointer(::future < ::conversation >) show_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
+//#include "acme/user/conversation.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -3047,6 +3047,15 @@ class task;
 #include "acme/exception/_.h"
 
 
+#include "acme/user/conversation.h"
+
+
+CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
+
+
+
+
+
    using routine_array = ::array < routine >;
 
    //using process_array = ::array < process >;
@@ -3060,6 +3069,9 @@ class task;
 
 
 //} // namespace subject
+
+
+#include "acme/primitive/primitive/linked_property.h"
 
 
 #include "acme/primitive/primitive/context_object.h"
@@ -4053,9 +4065,6 @@ namespace draw2d
 
 
 #include "acme/platform/node.h"
-
-
-#include "acme/user/conversation.h"
 
 
 #include "acme/platform/system.h"

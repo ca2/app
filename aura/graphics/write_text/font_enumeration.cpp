@@ -32,7 +32,7 @@ namespace write_text
 
       }
 
-      //System.add_process(id_os_font_change, this);
+      //System->add_process(id_os_font_change, this);
 
       return estatus;
 
@@ -64,7 +64,7 @@ namespace write_text
       if (psubject->id() == id_os_font_change)
       {
 
-         auto psubject = System.subject(id_os_font_change);
+         auto psubject = System->subject(id_os_font_change);
 
          update(psubject);
 
@@ -104,7 +104,7 @@ namespace write_text
 
       double dMaxSimilarity = 0.2;
 
-      auto * pdraw2d = System.draw2d();
+      auto * pdraw2d = System->draw2d();
 
       auto * pwritetext = pdraw2d->write_text();
 
@@ -154,7 +154,7 @@ namespace write_text
       else
       {
 
-         auto pdraw2d = System.draw2d();
+         auto pdraw2d = System->draw2d();
 
          auto pwritetext = pdraw2d->write_text();
 
@@ -178,7 +178,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      System.draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      System->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
 
       if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
       {
@@ -215,7 +215,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      System.draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      System->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
 
       m_pitema = pitema;
 

@@ -1088,7 +1088,7 @@ namespace base
 ////inline ::traits & traits(::context_object * p)
 ////{
 ////
-////   auto traits = System.m_traits[p];
+////   auto traits = System->m_traits[p];
 ////
 ////   if (traits.m_pobjectTrait != p)
 ////   {

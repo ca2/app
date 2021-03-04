@@ -21,7 +21,7 @@ namespace windowing
    {
 
 
-      auto pwindowing = System.windowing();
+      auto pwindowing = System->windowing();
 
       auto estatus = pwindowing->hook(this);
 
@@ -40,7 +40,7 @@ namespace windowing
    ::e_status hook::unhook()
    {
 
-      auto pwindowing = System.windowing();
+      auto pwindowing = System->windowing();
 
       auto estatus = pwindowing->unhook(this);
 

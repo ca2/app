@@ -29,7 +29,7 @@ namespace account
 //      
 //      ASSERT(m_strToken.has_char());
 //      
-//      string strName = System.url().os_fsname(strToken);
+//      string strName = System->url().os_fsname(strToken);
 //      
 //      return ::dir::system() / "credential_storage" / strName;
 //      
@@ -39,7 +39,7 @@ namespace account
 //   bool storage::get(string strKey, string strToken, string & strValue)
 //   {
 //      
-//      return System.crypto().file_get(pathPrefix + strKey, strValue, strToken, get_context_application());
+//      return System->crypto().file_get(pathPrefix + strKey, strValue, strToken, get_context_application());
 //      
 //   }
 //   
@@ -47,7 +47,7 @@ namespace account
 //   bool storage::set(string strKey, string strToken, string strValue)
 //   {
 //      
-//      return System.crypto().file_set(pathPrefix + strKey, strValue, strToken, get_context_application());
+//      return System->crypto().file_set(pathPrefix + strKey, strValue, strToken, get_context_application());
 //      
 //   }
 

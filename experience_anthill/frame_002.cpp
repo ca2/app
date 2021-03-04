@@ -254,7 +254,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,
@@ -276,7 +276,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,
@@ -287,7 +287,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   rectClient.deflate(1, 1);
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,

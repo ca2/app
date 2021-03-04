@@ -174,10 +174,15 @@ namespace user
       bool operator == (const item & item)  const { return ITEM::operator==(item); }
       bool operator != (const item & item)  const { return ITEM::operator!=(item); }
 
-      item & operator = (enum_element eelement);
+      item& operator = (enum_element eelement);
 
       bool operator == (enum_element eelement)  const { return m_eelement == eelement; }
       bool operator != (enum_element eelement)  const { return !operator==(eelement); }
+
+      item& operator = (const e_element& eelement) { return operator = ((enum_element)eelement); }
+
+      bool operator == (const e_element & eelement)  const { return m_eelement == eelement; }
+      bool operator != (const e_element & eelement)  const { return !operator==(eelement); }
 
       item & operator = (::index iItem);
 

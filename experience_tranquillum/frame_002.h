@@ -35,7 +35,7 @@ namespace experience
 
                virtual e_hittest _001HitTest(const ::point_i32 & point);
 
-               with_status < ::color::color > get_border_main_body_color();
+               status < ::color::color > get_border_main_body_color();
 
 
             };

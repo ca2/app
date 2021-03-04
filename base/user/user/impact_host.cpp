@@ -143,7 +143,7 @@ namespace user
          on_prepare_impact_data(pimpactdata);
 
       }
-      catch (exception_pointer pe)
+      catch (const ::exception::exception & exception)
       {
 
          auto pthread = ::get_thread();
@@ -151,7 +151,7 @@ namespace user
          if (pthread)
          {
 
-            pthread->handle_exception(pe);
+            pthread->handle_exception(exception);
 
          }
 
@@ -169,10 +169,10 @@ namespace user
          on_after_create_impact_data(pimpactdata);
 
       }
-      catch (exception_pointer pe)
+      catch (const ::exception::exception & exception)
       {
 
-         handle_exception(pe);
+         handle_exception(exception);
 
       }
       catch (...)
@@ -196,30 +196,28 @@ namespace user
          create_impact(pimpactdata);
 
       }
-      catch (exception_pointer pe)
+      catch (const exception& exception)
       {
 
-         __pointer(exception) phostexception = pe;
-
-         if (phostexception.is_set())
+         if (exception.m_id == id)
          {
 
-            if(phostexception->m_id == id)
-            {
+            //::acme::del(pimpactdata);
+            // todo
+            //remove_impact_data(pimpactdata);
 
-               //::acme::del(pimpactdata);
-               // todo
-               //remove_impact_data(pimpactdata);
-
-               return nullptr;
-
-            }
-
-            throw ::move(pe);
+            return nullptr;
 
          }
 
-         handle_exception(pe);
+         throw ::move(exception);
+
+
+      }
+      catch (const ::exception::exception & exception)
+      {
+
+         handle_exception(exception);
 
          return nullptr;
 
@@ -300,30 +298,26 @@ namespace user
 
          }
       }
-      catch (exception_pointer pe)
+      catch (const exception& exception)
+      {
+         if (exception.m_id == pimpactdata->m_id)
+         {
+
+            //::acme::del(pimpactdata);
+
+            return false;
+
+         }
+
+         throw ::move(exception);
+
+      }
+      catch (const ::exception::exception & exception)
       {
 
          m_impactdatamap.remove_key(pimpactdata->m_id);
 
-         __pointer(exception) phostexception = pe;
-
-         if (phostexception.is_set())
-         {
-
-            if (phostexception->m_id == pimpactdata->m_id)
-            {
-
-               //::acme::del(pimpactdata);
-
-               return false;
-
-            }
-
-            throw ::move(pe);
-
-         }
-
-         handle_exception(pe);
+         handle_exception(exception);
 
          return false;
 

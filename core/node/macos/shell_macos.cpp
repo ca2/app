@@ -173,7 +173,7 @@ namespace macos
 
             if (crBk == 0)
             {
-               System.imaging().Createcolor_blend_ImageList(
+               System->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -282,7 +282,7 @@ namespace macos
          if (crBk == 0)
          {
 
-            System.imaging().color_blend(
+            System->imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
             rgb(255, 255, 240),

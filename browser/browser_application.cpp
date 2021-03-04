@@ -50,7 +50,7 @@ namespace browser
          // SimpleApp implements application-level callbacks for the browser process.
 // It will create the first browser instance in OnContextInitialized() after
 // CEF has initialized.
-         CefMainArgs mainargs(System.m_hinstance);
+         CefMainArgs mainargs(System->m_hinstance);
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;

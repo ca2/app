@@ -1757,7 +1757,7 @@ namespace experience
 
          }
 
-         double dMargin = System.m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
+         double dMargin = System->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
 
          if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
          {

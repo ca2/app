@@ -376,28 +376,28 @@ namespace user
 
       auto rectPadding = get_padding(pstyle);
 
-      size.cx += rectMargin.m_result.left + rectBorder.m_result.left + rectPadding.m_result.left;
+      size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
 
-      size.cx += rectMargin.m_result.right;
+      size.cx += rectMargin.right;
 
       size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx += rectPadding.m_result.left;
+      size.cx += rectPadding.left;
 
       if (m_pmenuitem->IsPopup())
       {
 
-         size.cx += rectPadding.m_result.left;
+         size.cx += rectPadding.left;
 
          size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx += rectMargin.m_result.right + rectBorder.m_result.right + rectPadding.m_result.right;
+      size.cx += rectMargin.right + rectBorder.right + rectPadding.right;
 
-      size.cy += rectMargin.m_result.top + rectBorder.m_result.top + rectPadding.m_result.top;
+      size.cy += rectMargin.top + rectBorder.top + rectPadding.top;
 
-      size.cy += rectMargin.m_result.bottom + rectBorder.m_result.bottom + rectPadding.m_result.bottom;
+      size.cy += rectMargin.bottom + rectBorder.bottom + rectPadding.bottom;
 
       pcalcsize->m_size = size;
 

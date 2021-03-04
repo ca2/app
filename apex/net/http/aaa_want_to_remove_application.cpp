@@ -54,9 +54,9 @@ namespace http
 
       ::url_domain domain;
 
-      domain.create(System.url().get_server(pmessage->m_strUrl));
+      domain.create(System->url().get_server(pmessage->m_strUrl));
 
-      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(pmessage->m_strUrl),astr.MatterUri))
+      if(domain.m_strRadix == "ca2" && ::str::begins(System->url().get_object(pmessage->m_strUrl),astr.MatterUri))
       {
 
          string strUrl(pmessage->m_strUrl);
@@ -271,7 +271,7 @@ namespace http
 
       }
 
-      if(::str::find_wwci("ca2", System.url().get_server(pszUrl)) < 0 && System.url().get_object(pszUrl).find_ci("/matter/") < 0)
+      if(::str::find_wwci("ca2", System->url().get_server(pszUrl)) < 0 && System->url().get_object(pszUrl).find_ci("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -483,8 +483,8 @@ namespace http
 //
 //      string strFontopusServer;
 //
-//      if(atoi(System.url().get_param(pszUrl, "authnone")) == 1
-//            || System.url().get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
+//      if(atoi(System->url().get_param(pszUrl, "authnone")) == 1
+//            || System->url().get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
 //      {
 //
 //         strFontopusServer = pszUrl;

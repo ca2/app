@@ -399,7 +399,7 @@ namespace dynamic_source
 
       ::ansi_zero_pad(strMillis, 3);
 
-      strRndTitle = "_" + System.datetime().international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
+      strRndTitle = "_" + System->datetime().international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
       string strTime = m_strTime;
 
@@ -641,7 +641,7 @@ namespace dynamic_source
          }
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception & exception)
       {
 
          ::exception_pointer esp(pexception);
@@ -661,7 +661,7 @@ namespace dynamic_source
          }
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception & exception)
       {
 
          ::exception_pointer esp(pexception);
@@ -681,7 +681,7 @@ namespace dynamic_source
          }
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception & exception)
       {
 
          ::exception_pointer esp(pexception);
@@ -1629,7 +1629,7 @@ namespace dynamic_source
 
             property_set set;
 
-            Context.http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            Context.http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + System->url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
@@ -3230,7 +3230,7 @@ ch_else:
 
       synchronization_lock synchronizationlock(m_pmanager->mutex());
 
-      System.str().set(pszTopic,idLocale,idSchema,psz);
+      System->str().set(pszTopic,idLocale,idSchema,psz);
 
    }
 

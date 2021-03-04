@@ -366,7 +366,7 @@ namespace user
 
          ::draw2d::brush_pointer br(e_create);
 
-         m_dPosition = ::sin((System.math().GetPi() / 2.0) * dRate);
+         m_dPosition = ::sin((System->math().GetPi() / 2.0) * dRate);
 
          double dRate = m_dPosition;
 

@@ -47,7 +47,7 @@ namespace draw2d_quartz2d
          
          //auto psystem = ::get_context_system();
          
-         auto & draw2d = System.draw2d();
+         auto & draw2d = System->draw2d();
          
          draw2d.fonts().m_pfontenumeration->adapt_font_name(m_strFontFamilyName);
          

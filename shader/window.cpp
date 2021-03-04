@@ -148,7 +148,7 @@ namespace app_shader
 
                saveimage.m_eformat = ::draw2d::format_png;
 
-               string strDate = System.datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+               string strDate = System->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
                Application.image().save_image("image://app_simple_shader-" + strDate + ".png", pimage, &saveimage);
 

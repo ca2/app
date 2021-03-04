@@ -93,9 +93,9 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, System.m_pfilesystem);
+      __refer(m_pfilesystem, System->m_pfilesystem);
 
-      __refer(m_pdirsystem, System.m_pdirsystem);
+      __refer(m_pdirsystem, System->m_pdirsystem);
 
       return ::success;
 

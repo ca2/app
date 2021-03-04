@@ -235,9 +235,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               with_status < ::color::color > crMoveableBorder;
-               with_status < ::color::color > crMoveableBorderHilight;
-               with_status < ::color::color > crMoveableBorderShadow;
+               status < ::color::color > crMoveableBorder;
+               status < ::color::color > crMoveableBorderHilight;
+               status < ::color::color > crMoveableBorderShadow;
 
                if(pframewindow->is_active_window())
                {
@@ -289,10 +289,10 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System.imaging();
+                  class imaging & imaging = System->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
-                                      crMoveableBorder.m_result,
+                                      crMoveableBorder,
                                       127);
                }
                else

@@ -6159,7 +6159,7 @@ namespace apex
    }
 
 
-   __pointer(::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
       return ::acme::system::message_box(pszText, pszTitle, emessagebox);

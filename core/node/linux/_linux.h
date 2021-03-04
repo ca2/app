@@ -21,7 +21,7 @@
 //
 //CLASS_DECL_CORE __pointer(::aura::application)  __get_app();
 //CLASS_DECL_CORE __pointer(::user::primitive) __get_main_window();
-////CLASS_DECL_CORE HINSTANCE CLASS_DECL_CORE System.m_hInstance;
+////CLASS_DECL_CORE HINSTANCE CLASS_DECL_CORE System->m_hInstance;
 //CLASS_DECL_CORE const char * __get_app_name();
 //
 //

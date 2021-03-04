@@ -141,7 +141,7 @@ namespace datetime
       string calendar::GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         return System.datetime().get_week_day_str(pcontext, iWeekDay);
+         return System->datetime().get_week_day_str(pcontext, iWeekDay);
 
       }
 
@@ -149,7 +149,7 @@ namespace datetime
       string calendar::GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         return System.datetime().get_tiny_week_day_str(pcontext, iWeekDay);
+         return System->datetime().get_tiny_week_day_str(pcontext, iWeekDay);
 
       }
 
@@ -157,7 +157,7 @@ namespace datetime
       string calendar::GetMonth(const ::apex::str_context* pcontext, int32_t iMonth)
       {
 
-         return System.datetime().get_month_str(pcontext, iMonth);
+         return System->datetime().get_month_str(pcontext, iMonth);
 
       }
 

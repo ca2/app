@@ -45,7 +45,7 @@ namespace write_text
 
          //}
          
-         System.process_subject(id_font_enumeration);
+         System->process_subject(id_font_enumeration);
 
       }
 

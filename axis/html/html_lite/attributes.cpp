@@ -359,7 +359,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = System.m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = System->m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
 
       if (iParseLen)
       {
@@ -380,7 +380,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      if (System.m_phtml->m_namedcolor.contains(m_strValue.lowered()))
+      if (System->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
       {
 
           return true;
@@ -399,13 +399,13 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      with_status < ::color::color > color;
+      status < ::color::color > color;
 
       string strKey(m_strValue);
 
       strKey.make_lower();
 
-      if (System.m_phtml->m_namedcolor.lookup(strKey, color))
+      if (System->m_phtml->m_namedcolor.lookup(strKey, color))
       {
 
          return color.m_estatus == ::success_color_index;
@@ -454,7 +454,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
-   with_status < ::color::color > color;
+   status < ::color::color > color;
 
    if(isNamedColorValue(preader))
    {
@@ -463,7 +463,7 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(System.m_phtml->m_namedcolor.lookup(strKey, color))
+      if(System->m_phtml->m_namedcolor.lookup(strKey, color))
       {
 
          // is this a system named color value?
@@ -479,13 +479,13 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      color.m_result.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
 
       color.m_estatus = ::success;
 
    }
 
-   return color.m_result.u32;
+   return color.u32;
 
 }
 

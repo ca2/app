@@ -47,7 +47,7 @@ namespace browser
 
       m_b001LayoutIgnoreEmpty = false;
 
-      m_ppcre = System.create_pcre("\\:\\-\\)");
+      m_ppcre = System->create_pcre("\\:\\-\\)");
 
    }
 
@@ -401,7 +401,7 @@ namespace browser
                //                        // main_async([=]()
                //{
 
-               //   cef_main(System.m_hinstance, get_handle(), rectangle);
+               //   cef_main(System->m_hinstance, get_handle(), rectangle);
 
                //});
 

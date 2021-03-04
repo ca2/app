@@ -715,7 +715,7 @@ namespace user
 
       /*
       // disable all windows connected to this frame (and add them to the list)
-      __pointer(::user::interaction) oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+      __pointer(::user::interaction) oswindow = System->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
       {
@@ -825,7 +825,7 @@ namespace user
       //   EndModalState();
 
       //   // cause normal focus logic to kick in
-      //   if (System.get_active_ui() == this)
+      //   if (System->get_active_ui() == this)
       //      send_message(e_message_activate, WA_ACTIVE);
       //}
 

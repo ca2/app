@@ -344,7 +344,7 @@ namespace helloworld
                //
                //   varFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = System.url().get_server(m_strImage).find_wci("ca2") < 0;
+               //   varFile["http_set"]["raw_http"] = System->url().get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //

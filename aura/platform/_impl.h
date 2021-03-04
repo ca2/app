@@ -721,7 +721,7 @@ template < typename PRED >
 
    synchronization_lock synchronizationlock(::aura::get_image_mutex());
 
-   ::image_pointer & pimage = System.m_mapImage[path];
+   ::image_pointer & pimage = System->m_mapImage[path];
 
    if (!pimage)
    {
@@ -732,7 +732,7 @@ template < typename PRED >
 
       synchronizationlock.unlock();
 
-      System.m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
+      System->m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
 
    }
 
@@ -868,7 +868,7 @@ namespace aura
 
       strPath.replace("::", "/");
 
-      synchronization_lock synchronizationlock(System.m_spmutexUserAppData);
+      synchronization_lock synchronizationlock(System->m_spmutexUserAppData);
 
       {
 
@@ -911,7 +911,7 @@ namespace aura
 
       strPath.replace("::", "/");
 
-      synchronization_lock synchronizationlock(System.m_spmutexUserAppData);
+      synchronization_lock synchronizationlock(System->m_spmutexUserAppData);
 
       {
 

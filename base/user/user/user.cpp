@@ -180,11 +180,11 @@ namespace base
       //string strLicense = Application.get_license_id();
 
 
-      //::payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System->commnam_varTopicQuery;
 
-      bool bHasInstall = System.is_true("install");
+      bool bHasInstall = System->is_true("install");
 
-      bool bHasUninstall = System.is_true("uninstall");
+      bool bHasUninstall = System->is_true("uninstall");
 
       debug_print("user::initialize bHasInstall %c", bHasInstall);
 
@@ -553,7 +553,7 @@ namespace base
    //         if (get_context_system())
    //         {
 
-   //            System.finish();
+   //            System->finish();
 
    //         }
 
@@ -1341,7 +1341,7 @@ namespace base
 
          }
 
-         auto plibrary = System.get_library(strLibrary, true);
+         auto plibrary = System->get_library(strLibrary, true);
 
          if (::is_null(plibrary))
          {
@@ -1365,9 +1365,9 @@ namespace base
 
          pstyle->initialize(papp);
 
-         //synchronization_lock synchronizationlock(System.m_mutexLibrary);
+         //synchronization_lock synchronizationlock(System->m_mutexLibrary);
 
-         //System.m_mapLibrary[strLibrary] = plibrary;
+         //System->m_mapLibrary[strLibrary] = plibrary;
 
          pstyle->m_plibrary = plibrary;
 

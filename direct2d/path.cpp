@@ -158,7 +158,7 @@ namespace draw2d_direct2d
 
       wstring szOutline(strText);
 
-      IDWriteFactory * pfactory = System.draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = System->draw2d()->direct2d()->dwrite_factory();
 
       Microsoft::WRL::ComPtr < IDWriteTextLayout> textLayout;
 
@@ -166,7 +166,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr < IDWriteTextRenderer > textRenderer;
 
-      CreatePathTextRenderer(System.m_dpi, &textRenderer);
+      CreatePathTextRenderer(System->m_dpi, &textRenderer);
 
       textLayout->Draw(this, textRenderer.Get(), 0, 0);
 

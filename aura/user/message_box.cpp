@@ -28,7 +28,7 @@
 //   ::payload message_box::realize()
 //   {
 //
-//      auto pwindowing = System.windowing();
+//      auto pwindowing = System->windowing();
 //
 //      int iResult = pwindowing->message_box(m_strText, m_strTitle, m_emessagebox);
 //
@@ -75,10 +75,10 @@
 //
 //   string strTitle(pszTitle);
 //
-//   System.fork([strMessage, strTitle, emessagebox, process]()
+//   System->fork([strMessage, strTitle, emessagebox, process]()
 //               {
 //
-//                  auto pwindowing = System.windowing();
+//                  auto pwindowing = System->windowing();
 //
 //                  auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
 //
@@ -717,9 +717,9 @@ namespace user
 
       //      m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-      //      System.delivery_for(id_os_user_theme, this);
+      //      System->delivery_for(id_os_user_theme, this);
 
-      //      //System.(id_dark_mode);
+      //      //System->(id_dark_mode);
 
       //      //on_alloc_colors(pdisplay);
 
@@ -949,7 +949,7 @@ namespace user
 
          m_edialogresult = (enum_dialog_result) pevent->m_id.i64();
 
-         ::asynchronous <::conversation>::future()->set_status(::success);
+         ::extended::asynchronous <::conversation>::future()->set_status(::success);
 
          finish();
 

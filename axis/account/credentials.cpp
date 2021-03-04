@@ -25,7 +25,7 @@ namespace account
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -76,7 +76,7 @@ namespace account
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -236,7 +236,7 @@ namespace account
          }
 
          bool bBadUser = strUser.is_empty()
-            || !System.email().is_valid_public_address(strUser);
+            || !System->email().is_valid_public_address(strUser);
 
          bool bBadHash = strHash.get_length() < 80
             || strOlen.is_empty()
@@ -429,7 +429,7 @@ namespace account
 
       get_mod(straHash,straSource);
 
-      m_strModHash = System.crypto().md5(straHash.implode(";"));
+      m_strModHash = System->crypto().md5(straHash.implode(";"));
 
       return m_strModHash;
 

@@ -19,11 +19,15 @@ namespace html
          {
          public:
 
+            
             check_box(){}
             virtual ~check_box() {}
 
             virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) {}
+
+
          };
+
 
       } // namespace user
 

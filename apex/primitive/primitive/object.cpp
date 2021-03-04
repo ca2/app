@@ -2234,7 +2234,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 }
 
 
-__pointer(::future < ::conversation >) object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
+__pointer(::extended::future < ::conversation >) object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
 {
 
    //auto edialogresult =

@@ -479,7 +479,7 @@ namespace user
    }
 
 
-   with_status < ::rectangle_f64 > interaction::get_border(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::rectangle_f64 > interaction::get_border(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -487,7 +487,7 @@ namespace user
    }
 
 
-   with_status < ::rectangle_f64 > interaction::get_padding(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::rectangle_f64 > interaction::get_padding(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (get_control_type() == ::user::e_control_type_button)
@@ -510,7 +510,7 @@ namespace user
    }
 
 
-   with_status < ::rectangle_f64 > interaction::get_margin(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::rectangle_f64 > interaction::get_margin(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
@@ -531,7 +531,7 @@ namespace user
    }
 
 
-   with_status < ::color::color > interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   status < ::color::color > interaction::get_color(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -2014,7 +2014,7 @@ namespace user
 
 #ifndef WINDOWS_DESKTOP
 
-      if (get_context_application() != nullptr && get_context_system() != nullptr && System.get_active_ui() == this)
+      if (get_context_application() != nullptr && get_context_system() != nullptr && System->get_active_ui() == this)
       {
 
          auto psession = Session;
@@ -3153,7 +3153,7 @@ namespace user
          else
          {
 
-            auto pnode = System.node();
+            auto pnode = System->node();
 
             if (pnode && pnode->is_app_dark_mode())
             {
@@ -3970,7 +3970,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      System.delivery_for(id_os_dark_mode, this);
+      System->delivery_for(id_os_dark_mode, this);
 
       on_create_user_interaction();
 
@@ -4004,7 +4004,7 @@ namespace user
          //if (get_context_application()->get_context_system() != nullptr)
          //{
 
-         //   System.add_frame(this);
+         //   System->add_frame(this);
 
          //}
 
@@ -8487,7 +8487,7 @@ namespace user
 
       }
 
-      //System.post_to_all_threads(WM_KICKIDLE, 0, 0);
+      //System->post_to_all_threads(WM_KICKIDLE, 0, 0);
 
       return m_idModalResult;
 
@@ -8517,12 +8517,12 @@ namespace user
       // make sure a message goes through to exit the modal loop
       m_bModal = false;
 
-      if (::asynchronous < ::conversation >::m_pfuture)
+      if (::extended::asynchronous < ::conversation >::m_pfuture)
       {
 
-         ::asynchronous < ::conversation >::future()->m_idResult = idResult;
+         ::extended::asynchronous < ::conversation >::future()->m_transport->m_idResult = idResult;
        
-         ::asynchronous < ::conversation >::future()->set_status(::success);
+         ::extended::asynchronous < ::conversation >::future()->set_status(::success);
 
       }
 
@@ -10552,6 +10552,13 @@ restart:
 
    bool interaction::is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const
    {
+
+      if (::is_null(m_pimpl))
+      {
+
+         return false;
+
+      }
 
       return m_pimpl->is_ascendant(puiIsAscendant, bIncludeSelf);
 
@@ -14065,7 +14072,7 @@ restart:
    CLASS_DECL_AURA ::mutex *  mutex_children()
    {
 
-      return System.m_mutexUserChildren;
+      return &System->m_mutexUserChildren;
 
    }
 
@@ -14720,7 +14727,7 @@ restart:
 
       auto rectangle = this->rectangle(::user::e_element_client);
 
-      if (!rectangle.m_result.contains(item.m_pointClient))
+      if (!rectangle.contains(item.m_pointClient))
       {
 
          if(m_bMouseHoverOnCapture && has_mouse_capture())

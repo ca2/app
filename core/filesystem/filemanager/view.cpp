@@ -65,7 +65,7 @@ namespace filemanager
          if (ppathview == nullptr)
          {
 
-            System.message_box("Could not create filemanager path view");
+            System->message_box("Could not create filemanager path view");
 
          }
 
@@ -83,7 +83,7 @@ namespace filemanager
       if (pmainview == nullptr)
       {
 
-         System.message_box("Could not create file list ::user::impact");
+         System->message_box("Could not create file list ::user::impact");
 
       }
 
@@ -174,7 +174,7 @@ namespace filemanager
                if (ptopview == nullptr)
                {
 
-                  System.message_box("Could not create folder tree ::user::impact");
+                  System->message_box("Could not create folder tree ::user::impact");
 
                }
 
@@ -208,7 +208,7 @@ namespace filemanager
 
                }
 
-               strName = strPrefix + System.datetime().international().get_gmt_date_time() + strSuffix;
+               strName = strPrefix + System->datetime().international().get_gmt_date_time() + strSuffix;
 
                strName.replace(":", "-");
 

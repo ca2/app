@@ -411,7 +411,7 @@ namespace uwp
          {
 
             keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-            keyPlugin.SetValue("Path", System.m_strCa2Module("npca2.dll"));
+            keyPlugin.SetValue("Path", System->m_strCa2Module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
             keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));

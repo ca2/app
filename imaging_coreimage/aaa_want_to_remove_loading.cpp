@@ -277,7 +277,7 @@ namespace coreimage_imaging
 
       }
 
-      auto estatus = System.imaging().load_svg(pimage, pmemory);
+      auto estatus = System->imaging().load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {

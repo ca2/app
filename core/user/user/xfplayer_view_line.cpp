@@ -1377,7 +1377,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       point.y = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      System.imaging().color_blend(pgraphics, point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
+      System->imaging().color_blend(pgraphics, point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
 
       if (m_bColonPrefix)
       {
@@ -1388,7 +1388,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          size = pgraphics->GetTextExtent(m_strPrefix);
 
-         System.imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), cr, dBlend);
+         System->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), cr, dBlend);
 
          pgraphics->set(m_font);
 
@@ -1407,7 +1407,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          }
 
-         System.imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.get_length(), cr, dBlend);
+         System->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.get_length(), cr, dBlend);
 
 
 
@@ -1417,7 +1417,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          pgraphics->set(m_font);
 
-         System.imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, cr, dBlend);
+         System->imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, cr, dBlend);
 
 
       }
@@ -1534,11 +1534,11 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    }
 
 
-   System.imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+   System->imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
-   System.imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
-   System.imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   System->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   System->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
 
    pimageCache->set_rgb(0, 0, 0);
 
@@ -1562,7 +1562,7 @@ void xfplayer_view_line::PrepareURLLinks()
 
    string str;
 
-   auto pregex = System.create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
+   auto pregex = System->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
    auto prangea = pregex->matches_ranges(m_str);
 

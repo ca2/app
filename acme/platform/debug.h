@@ -191,7 +191,7 @@ typedef struct _MEMORY_STATE
 #define _ASSERT_EXPR(expr, msg) \
         (void) ((!!(expr)) || \
                 (1 != debug_report(_DEBUG_ASSERT, _DEBUG_WIDE(__FILE__), __LINE__, nullptr, msg)) || \
-                (debug_break(), 0))
+                (DEBUG_BREAK, 0))
 
 
 #ifndef _ASSERT

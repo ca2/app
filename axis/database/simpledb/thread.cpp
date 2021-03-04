@@ -122,11 +122,11 @@ namespace simpledb
 
                strUrl = "https://ca2.cc/api/account/str_set_save?key=";
 
-               strUrl += System.url().url_encode(strKey);
+               strUrl += System->url().url_encode(strKey);
 
                strUrl += "&value=";
 
-               strUrl += System.url().url_encode(strBase64);
+               strUrl += System->url().url_encode(strBase64);
 
                {
 
@@ -141,7 +141,7 @@ namespace simpledb
 
                   sleep(500_ms);
 
-                  System.m_pdirsystem->m_strApiCc = "";
+                  System->m_pdirsystem->m_strApiCc = "";
 
                }
 

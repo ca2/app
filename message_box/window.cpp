@@ -142,7 +142,7 @@ namespace app_message_box
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
-         double omega = 2.0 * System.math().GetPi() * dFrequency;
+         double omega = 2.0 * System->math().GetPi() * dFrequency;
 
          double angle = omega * time;
 
@@ -170,13 +170,13 @@ namespace app_message_box
 
             dFrequency = 1.0 / m_dBreathPeriod;
 
-            omega = 2.0 * System.math().GetPi() * dFrequency;
+            omega = 2.0 * System->math().GetPi() * dFrequency;
 
             double angleNew = omega * time;
 
             m_dPhaseShift = angle - angleNew;
 
-            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System.math().GetPi());
+            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System->math().GetPi());
 
          }
 
@@ -302,10 +302,10 @@ namespace app_message_box
 
       auto pprocess = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-      pprocess->then([this](::future < enum_dialog_result >* pfuture)
+      pprocess->then([this](auto future)
          {
 
-            if (pfuture->m_statusresult.m_result == e_dialog_result_yes)
+            if (future->m_edialogresult == e_dialog_result_yes)
             {
 
                Application.finish();

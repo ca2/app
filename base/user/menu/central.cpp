@@ -59,7 +59,7 @@ namespace user
       ::draw2d::graphics_pointer spgraphics(e_create);
       spgraphics->CreateCompatibleDC(nullptr);
 
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
 
       imaging.change_hue(
       m_pilHue,

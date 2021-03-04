@@ -1329,7 +1329,7 @@ namespace aura
       virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      virtual void report_error(::exception::exception* pexception, int iMessageFlags, const char* pszTopic) override;
+      virtual void report_error(const ::exception::exception & exception, int iMessageFlags, const char* pszTopic) override;
 
 
       virtual bool _001CanCloseApplication() override;

@@ -379,7 +379,7 @@ namespace extended
 
 
       transport() :
-         status(::error_failed)
+         status(::error_not_initialized)
       {
 
       }
@@ -710,13 +710,18 @@ namespace extended
 
       bool operator !() const { return failed(); }
 
+      auto operator ->() { return ___pointer<T>::operator ->(); }
+
+      auto operator ->() const { return ___pointer<T>::operator ->(); }
+
+
    };
 
    template < typename OBJECT >
    using future = ::future < OBJECT, ::extended::transport < OBJECT > >;
 
    template < typename OBJECT >
-   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT > >;
+   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT >, ::extended::future < OBJECT > >;
 
 
 } // namespace extended

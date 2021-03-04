@@ -386,11 +386,11 @@ namespace user
       //string strLicense = Application.get_license_id();
 
 
-      //::payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System->commnam_varTopicQuery;
 
-      bool bHasInstall = System.is_true("install");
+      bool bHasInstall = System->is_true("install");
 
-      bool bHasUninstall = System.is_true("uninstall");
+      bool bHasUninstall = System->is_true("uninstall");
 
       debug_print("user::initialize bHasInstall %c", bHasInstall);
 
@@ -743,7 +743,7 @@ namespace aura
             if (get_context_system())
             {
 
-               System.finish(get_context());
+               System->finish(get_context());
 
             }
 
@@ -1223,29 +1223,29 @@ namespace user
 
 #ifdef LINUX
 
-         auto edesktop = System.get_edesktop();
+         auto edesktop = System->get_edesktop();
 
          if (edesktop & ::user::e_desktop_kde)
          {
 
-            estatus = System.do_factory_exchange("windowing", "xcb");
+            estatus = System->do_factory_exchange("windowing", "xcb");
 
          }
          else if (edesktop & ::user::e_desktop_gnome)
          {
 
-            estatus = System.do_factory_exchange("windowing", "x11");
+            estatus = System->do_factory_exchange("windowing", "x11");
 
          }
          else
          {
 
-            estatus = System.do_factory_exchange("windowing", "xcb");
+            estatus = System->do_factory_exchange("windowing", "xcb");
 
             //if (!estatus)
             {
 
-               estatus = System.do_factory_exchange("windowing", "x11");
+               estatus = System->do_factory_exchange("windowing", "x11");
 
             }
 
@@ -1253,7 +1253,7 @@ namespace user
 
 #elif defined(WINDOWS_DESKTOP)
 
-         estatus = System.do_factory_exchange("windowing", "win32");
+         estatus = System->do_factory_exchange("windowing", "win32");
 
 #endif
 

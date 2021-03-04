@@ -362,7 +362,7 @@ namespace account
          if(!m_bCred)
          {
 
-            strText = System.crypto().nessie(strText);
+            strText = System->crypto().nessie(strText);
 
             m_ppassword->_001SetText(strText,::e_source_database);
 

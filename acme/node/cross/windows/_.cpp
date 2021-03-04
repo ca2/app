@@ -11,7 +11,7 @@ namespace parallelization
    bool task_registered(::task * ptask)
    {
 
-      return System.get_task_id(ptask) != 0;
+      return System->get_task_id(ptask) != 0;
 
    }
 
@@ -19,7 +19,7 @@ namespace parallelization
    void task_register(ithread_t itask, ::task * ptask)
    {
 
-      System.set_task(itask, ptask);
+      System->set_task(itask, ptask);
 
    }
 
@@ -73,7 +73,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(id);
 
-   //   return System.get_task(id) != nullptr;
+   //   return System->get_task(id) != nullptr;
 
    //}
 
@@ -81,7 +81,7 @@ namespace parallelization
    //bool thread_registered(::thread * pthread)
    //{
 
-   //   return System.get_thread_id(pthread) != 0;
+   //   return System->get_thread_id(pthread) != 0;
 
    //}
 
@@ -89,7 +89,7 @@ namespace parallelization
    //void thread_register(ithread_t ithread, ::thread * pthread)
    //{
 
-   //   System.set_thread(ithread, pthread);
+   //   System->set_thread(ithread, pthread);
 
    //}
 
@@ -121,9 +121,9 @@ namespace parallelization
 
    //   }
 
-   //   synchronization_lock synchronizationlock(System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(System->m_mutexThread);
 
-   //   for (auto & pair : System.m_threadidmap)
+   //   for (auto & pair : System->m_threadidmap)
    //   {
 
    //      try
@@ -152,9 +152,9 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronization_lock synchronizationlock(System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(System->m_mutexThread);
 
-   //   for (auto& pair : System.m_threadidmap)
+   //   for (auto& pair : System->m_threadidmap)
    //   {
 
    //      try
@@ -176,9 +176,9 @@ namespace parallelization
    //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    //{
 
-   //   synchronization_lock synchronizationlock(System.m_mutexThread);
+   //   synchronization_lock synchronizationlock(System->m_mutexThread);
 
-   //   for (auto& pair : System.m_threadidmap)
+   //   for (auto& pair : System->m_threadidmap)
    //   {
 
    //      try
@@ -310,7 +310,7 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return System.thread_get_run();
+//         return System->thread_get_run();
 //
 //      }
 //

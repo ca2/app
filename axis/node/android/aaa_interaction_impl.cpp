@@ -91,10 +91,10 @@ namespace android
       if(get_context_session() != nullptr)
       {
 
-         if(System.m_pwindowmap != nullptr)
+         if(System->m_pwindowmap != nullptr)
          {
 
-            System.m_pwindowmap->m_map.remove_key(get_handle());
+            System->m_pwindowmap->m_map.remove_key(get_handle());
 
          }
 
@@ -924,8 +924,8 @@ namespace android
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
       {
-      // android System.message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-      System.message_box("Failed to launch help");
+      // android System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+      System->message_box("Failed to launch help");
       }*/
    }
 
@@ -952,8 +952,8 @@ namespace android
    // run the HTML Help engine
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    {
-   // android System.message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   System.message_box("Failed to launch help");
+   // android System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   System->message_box("Failed to launch help");
    }*/
    //}
 
@@ -1194,10 +1194,10 @@ namespace android
             {
                m_puserinteraction->get_window_rect(rectWindow);
             }
-            /*if(System.get_monitor_count() > 0)
+            /*if(System->get_monitor_count() > 0)
             {
             ::rect rcMonitor;
-            System.get_monitor_rectangle(0,&rcMonitor);
+            System->get_monitor_rectangle(0,&rcMonitor);
             if(rectWindow.left >= rcMonitor.left)
             pmouse->m_point.x += (::i32)rectWindow.left;
             if(rectWindow.top >= rcMonitor.top)
@@ -1246,7 +1246,7 @@ namespace android
 
       //   user::oswindow_array oswindowa;
       //   user::interaction_ptra wnda;
-      //   wnda = System.m_uiptraFrame;
+      //   wnda = System->m_uiptraFrame;
       //   oswindowa = wnda.get_hwnda();
       //   user::window_util::SortByZOrder(oswindowa);
       //   for(i32 i = 0; i < oswindowa.get_size(); i++)
@@ -2167,7 +2167,7 @@ namespace android
       //         // center within appropriate monitor coordinates
       //         if (hWndCenter == nullptr)
       //         {
-      //            oswindow hwDefault = System.GetMainWnd()->get_handle();
+      //            oswindow hwDefault = System->GetMainWnd()->get_handle();
       //
       //            GetMonitorInfo(
       //               MonitorFromWindow(hwDefault, MONITOR_DEFAULTTOPRIMARY), &mi);
@@ -4439,7 +4439,7 @@ namespace android
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
-//         hWnd = System.GetMainWnd()->get_handle();*/
+//         hWnd = System->GetMainWnd()->get_handle();*/
 //      }
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
@@ -4495,7 +4495,7 @@ namespace android
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      System.window_map().set(get_handle(), this);
+      System->window_map().set(get_handle(), this);
 
    }
 
@@ -4580,7 +4580,7 @@ namespace android
 
       UNREFERENCED_PARAMETER(pfocus);
 
-      System.oslocal().m_bShowKeyboard = true;
+      System->oslocal().m_bShowKeyboard = true;
 
       return true;
 
@@ -4592,7 +4592,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-      System.oslocal().m_bHideKeyboard = true;
+      System->oslocal().m_bHideKeyboard = true;
 
       return true;
 
@@ -4603,7 +4603,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
-      System.oslocal().m_bHideKeyboard = true;
+      System->oslocal().m_bHideKeyboard = true;
 
       return true;
 

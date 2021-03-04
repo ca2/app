@@ -349,7 +349,7 @@ bool FileSystemSizeWnd::CreateClient()
    m_bServer = false;
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  __pointer(::user::interaction) puiMessage = nullptr;
-      puiMessage = System.ui_from_handle(HWND_MESSAGE);
+      puiMessage = System->ui_from_handle(HWND_MESSAGE);
       return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rectangle_i32(0, 0, 0, 0), puiMessage, id()) != false;*/
 
 //#else
@@ -366,7 +366,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rectangle_i32(),System.ui_from_handle(HWND_MESSAGE),id()))
+   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rectangle_i32(),System->ui_from_handle(HWND_MESSAGE),id()))
       return false;
    m_p->SetTimer(100, 100, nullptr);
    return true;
@@ -384,7 +384,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const char * pszPath, bool & 
 
 #ifdef WINDOWS_DESKTOP
 
-   db_server * pcentral = dynamic_cast < db_server * > (System.m_simpledb.db());
+   db_server * pcentral = dynamic_cast < db_server * > (System->m_simpledb.db());
    oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
    if(oswindow == nullptr || ! ::IsWindow(oswindow))
    {
@@ -440,7 +440,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
    if(pstruct->dwData == 0)
    {
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
-      db_server * pcentral = System.m_simpledb.db();
+      db_server * pcentral = System->m_simpledb.db();
       file_size_table::get_fs_size size;
       ::file::byte_stream_memory_file file(get_context_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
@@ -521,7 +521,7 @@ FileSystemSizeServerThread::FileSystemSizeServerThread(::layered * pobjectContex
 
 bool FileSystemSizeServerThread::init_instance()
 {
-   db_server * pcentral = System.m_simpledb.db();
+   db_server * pcentral = System->m_simpledb.db();
    pcentral->m_pfilesystemsizeset->m_table.m_pwndServer->CreateServer();
    return true;
 }
@@ -531,13 +531,13 @@ void FileSystemSizeWnd::ClientStartServer()
 
 #ifdef WINDOWS_DESKTOP
 
-   db_server * pcentral = System.m_simpledb.db();
+   db_server * pcentral = System->m_simpledb.db();
 
    if(m_millisLastStartTime.elapsed() > 2000)
    {
       m_millisLastStartTime= ::millis::now();
 
-      simple_shell_launcher launcher(nullptr, nullptr, Context.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
+      simple_shell_launcher launcher(nullptr, nullptr, Context.dir().path(System->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 
       launcher.execute();
 

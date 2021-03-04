@@ -88,9 +88,12 @@ public:
 
 
 
+   template < primitive_point POINT >
+   inline bool operator==(const POINT & point) const noexcept { return (this->x == (UNIT_TYPE) point.x && this->y == (UNIT_TYPE) point.y); }
 
-   inline bool operator==(const point_type & point) const noexcept { return (this->x == point.x && this->y == point.y); }
-   inline bool operator!=(const point_type & point) const noexcept { return (this->x != point.x || this->y != point.y); }
+   template < primitive_point POINT >
+   inline bool operator!=(const POINT & point) const noexcept { return (this->x != (UNIT_TYPE) point.x || this->y != (UNIT_TYPE) point.y); }
+
 
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_point_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_point_null(this); }

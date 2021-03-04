@@ -150,7 +150,7 @@ namespace filemanager
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
          //   propertyset["dstfile"].get_value().set_string(pszDst);
-         //   System.message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
+         //   System->message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}
 

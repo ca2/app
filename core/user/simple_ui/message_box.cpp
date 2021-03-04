@@ -36,7 +36,7 @@ namespace simple_ui
       if (!estatus)
       {
 
-         __throw(::status_exception(estatus));
+         __throw(estatus);
 
       }
 

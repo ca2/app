@@ -608,7 +608,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = System->imaging();
 
          imaging.color_blend(
          pgraphics,

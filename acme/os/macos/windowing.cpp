@@ -419,7 +419,7 @@ void ns_main_async(dispatch_block_t block);
 //int_bool session_accepts_first_responder()
 //{
 //
-//   return System.get_context_session()->m_bAcceptsFirstResponder ? 1 : 0;
+//   return System->get_context_session()->m_bAcceptsFirstResponder ? 1 : 0;
 //
 //}
 //

@@ -35,7 +35,7 @@ CLASS_DECL_APEX MESSAGE * __get_current_message();
 
 CLASS_DECL_APEX __pointer(::apex::application)  __get_app();
 CLASS_DECL_APEX __pointer(::user::primitive) __get_main_window();
-//CLASS_DECL_APEX HINSTANCE CLASS_DECL_APEX System.m_hInstance;
+//CLASS_DECL_APEX HINSTANCE CLASS_DECL_APEX System->m_hInstance;
 CLASS_DECL_APEX const char * __get_app_name();
 
 

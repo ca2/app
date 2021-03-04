@@ -37,7 +37,7 @@ namespace axis
       //if (m_psystem != nullptr)
       //{
 
-      //   m_bInitializeDataCentral = System.m_bInitializeDataCentral;
+      //   m_bInitializeDataCentral = System->m_bInitializeDataCentral;
 
       //}
 
@@ -1013,7 +1013,7 @@ m_millisHeartBeat.Now();
 
          update_appmatter(handler, psession,pszRoot,pszRelative,strLocale,strSchema);
 
-         System.install_progress_add_up();
+         System->install_progress_add_up();
 
       }
 
@@ -1041,7 +1041,7 @@ m_millisHeartBeat.Now();
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System.url().url_encode(strRelative);
+      strUrl += System->url().url_encode(strRelative);
 
       if(psession == nullptr)
       {
@@ -1051,7 +1051,7 @@ m_millisHeartBeat.Now();
 
             property_set setEmpty;
 
-            if (Context.http().open(handler, psession, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, nullptr))
+            if (Context.http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -1101,7 +1101,7 @@ m_millisHeartBeat.Now();
 
          }
 
-         //System.compress().extract_all(strFile, this);
+         //System->compress().extract_all(strFile, this);
 
       }
 
@@ -1623,7 +1623,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(const ::stream & os, const ::stream & is)
    //{
 
-   //   return System.compress().ungz(this, os, is);
+   //   return System->compress().ungz(this, os, is);
 
 
    //}
@@ -1632,7 +1632,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(memory_base & mem)
    //{
 
-   //   return System.compress().ungz(this, mem);
+   //   return System->compress().ungz(this, mem);
 
    //}
 
@@ -1641,7 +1641,7 @@ m_millisHeartBeat.Now();
 
    //{
 
-   //   return System.compress().gz(this, os, is, iLevel);
+   //   return System->compress().gz(this, os, is, iLevel);
 
 
    //}
@@ -1650,7 +1650,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
    //{
 
-   //   return System.compress().gz(this, os, is, iLevel);
+   //   return System->compress().gz(this, os, is, iLevel);
 
    //}
 

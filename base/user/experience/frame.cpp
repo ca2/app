@@ -226,7 +226,7 @@ namespace experience
    }
 
 
-   with_status < ::color::color > frame::get_border_main_body_color()
+   status < ::color::color > frame::get_border_main_body_color()
    {
 
       return m_colorMoveableBorder;
@@ -771,17 +771,17 @@ namespace experience
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.m_result.alpha = 255;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderHilight.m_result.alpha = 255;
+      m_colorMoveableBorderHilight.alpha = 255;
 
       color = colorParam;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.m_result.alpha = 255;
+      m_colorMoveableBorderDkShadow.alpha = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 

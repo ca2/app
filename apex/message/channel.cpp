@@ -542,30 +542,36 @@ bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandle
 }
 
 
+void channel::on_property_changed(property * pproperty, const ::action_context& actioncontext)
+{
+
+   process_subject(pproperty->m_id, actioncontext);
+
+}
+
+
 void channel::default_toggle_check_handling(const ::id & id)
 {
 
-   auto pproperty = fetch_property(id);
+   auto linkedproperty = fetch_property(id);
 
-   connect_command_predicate(id, [this, id, pproperty](::message::message * pmessage)
+   connect_command_predicate(id, [linkedproperty](::message::message * pmessage)
       {
 
-         __pointer(::message::message) pcommand(pmessage);
-
-         if (pproperty->get_bool())
+         if (linkedproperty->get_bool())
          {
 
-            *pproperty = ::check_unchecked;
+            *linkedproperty = ::check_unchecked;
 
          }
          else
          {
 
-            *pproperty = ::check_checked;
+            *linkedproperty = ::check_checked;
 
          }
 
-         process_subject(pproperty->m_id, pcommand->m_actioncontext);
+         linkedproperty.notify_property_changed(pmessage->m_actioncontext);
 
       });
 

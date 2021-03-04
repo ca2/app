@@ -54,13 +54,13 @@ namespace experience
          if(get_top_level()->frame_is_transparent())
          {
 
-            crBackground = argb(90, m_colorBackground.m_result.red, m_colorBackground.m_result.green, m_colorBackground.m_result.blue);
+            crBackground = argb(90, m_colorBackground.red, m_colorBackground.green, m_colorBackground.blue);
 
          }
          else
          {
 
-            crBackground = m_colorBackground.m_result;
+            crBackground = m_colorBackground;
 
          }
 

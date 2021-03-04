@@ -79,7 +79,7 @@ namespace exception
    //};
 
 
-   using exception_pointer = __pointer(exception);
+   //using exception_pointer = __pointer(exception);
 
 
 } // namespace exception
@@ -199,4 +199,43 @@ public:
 
 
 };
-
+//
+//#ifdef WINDOWS
+//class CLASS_DECL_ACME hresult_exception :
+//   public ::exception::exception
+//{
+//public:
+//
+//
+//   hresult_exception(HRESULT hresult, const char* pszMessage = nullptr)
+//   {
+//
+//      if (hresult == S_OK)
+//      {
+//
+//         m_estatus = success;
+//
+//      } 
+//      else if (FAILED(hresult))
+//      {
+//
+//         m_estatus = error_hresult;
+//
+//      }
+//      else if(SUCCEEDED(hresult))
+//      {
+//
+//         m_estatus = success_hresult;
+//
+//      }
+//
+//      m_hresult = hresult;
+//
+//      m_strMessage = pszMessage;
+//
+//   }
+//
+//
+//};
+//
+//#endif

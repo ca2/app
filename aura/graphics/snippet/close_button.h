@@ -29,13 +29,13 @@ namespace user
       if (puserinteraction->m_itemHover == ::user::e_element_close_button)
       {
 
-         color.m_result.alpha = 180;
+         color.alpha = 180;
 
       }
       else
       {
 
-         color.m_result.alpha = 127;
+         color.alpha = 127;
 
       }
 
@@ -43,7 +43,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle_f64, color);
 
-      if (color.m_result.get_luminance() <= 0.5)
+      if (color.get_luminance() <= 0.5)
       {
 
          // If color is dark (dark mode?)
@@ -52,9 +52,9 @@ namespace user
 
          auto colorLighter = color;
 
-         colorLighter.m_result.hls_rate(0.0, 0.312569, 0.0);
+         colorLighter.hls_rate(0.0, 0.312569, 0.0);
 
-         colorLighter.m_result.alpha = 127;
+         colorLighter.alpha = 127;
 
          pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
 

@@ -565,7 +565,7 @@ namespace user
 
             m_bFirstShown = true;
 
-            System.set_modified(id_font_enumeration);
+            System->set_modified(id_font_enumeration);
 
             //fork([this]()
   //             {

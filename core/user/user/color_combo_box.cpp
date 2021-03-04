@@ -378,7 +378,7 @@ namespace user
 
             }
 
-            colorBackground.m_result.hls_rate(0.0, 0.6, -0.3);
+            colorBackground.hls_rate(0.0, 0.6, -0.3);
 
             pgraphics->fill_rectangle(rEdit, colorBackground);
 
@@ -396,7 +396,7 @@ namespace user
 
             }
 
-            color2.m_result.hls_rate(0.0, 0.3, 0.5);
+            color2.hls_rate(0.0, 0.3, 0.5);
 
             pgraphics->draw_rectangle(rEdit, color2);
 
@@ -404,7 +404,7 @@ namespace user
 
          auto rectPadding = get_padding(pstyle);
 
-         rEdit.deflate(rectPadding.m_result);
+         rEdit.deflate(rectPadding);
 
          pgraphics->fill_rectangle(rEdit, color.get_rgba());
 

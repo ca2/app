@@ -168,7 +168,7 @@ namespace draw2d_opengl
       int nHeight = size.cy;
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
-      HINSTANCE hInstance = System.m_hinstance;
+      HINSTANCE hInstance = System->m_hinstance;
       LPVOID lpParam = nullptr;
 
       HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y,  nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
@@ -666,8 +666,8 @@ namespace draw2d_opengl
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System.math().GetPi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System.math().GetPi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -687,8 +687,8 @@ namespace draw2d_opengl
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System.math().GetPi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System.math().GetPi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -2820,7 +2820,7 @@ namespace draw2d_opengl
          keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-         return System.imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
+         return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
 
 
       }
@@ -5554,7 +5554,7 @@ namespace draw2d_opengl
    bool graphics::is_valid_update_window_thread()
    {
 
-      //return ::GetCurrentThreadId() == System.get_twf()->m_uiThread;
+      //return ::GetCurrentThreadId() == System->get_twf()->m_uiThread;
       return ::GetCurrentThreadId() == ::GetWindowThreadProcessId(m_hwnd, NULL);
 
    }

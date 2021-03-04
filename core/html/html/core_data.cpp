@@ -506,7 +506,7 @@ namespace html
          ::str::begins(m_strPathName, "https://"))
       {
 
-         strUrl = System.url().path(m_strPathName, strUrl);
+         strUrl = System->url().path(m_strPathName, strUrl);
 
       }
       else
@@ -528,7 +528,7 @@ namespace html
 
       string strUrl = process_url(pszUrl);
 
-      auto pimage = System.get_image(this, strUrl);
+      auto pimage = System->get_image(this, strUrl);
 
       return pimage;
 
@@ -744,7 +744,7 @@ namespace html
       //   else
       //   {
       //      
-      //      varFile = System.url().override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
+      //      varFile = System->url().override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
 
       //      goto restart;
 

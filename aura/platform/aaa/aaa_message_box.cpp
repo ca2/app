@@ -31,8 +31,8 @@ message_box::~message_box()
 CLASS_DECL_AURA ::e_status message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
 
-   ::user::primitive* primitive = System.ui_from_handle(oswindow);
+   ::user::primitive* primitive = System->ui_from_handle(oswindow);
 
-   return System.message_box(primitive, pszText, pszTitle, emessagebox, callback);
+   return System->message_box(primitive, pszText, pszTitle, emessagebox, callback);
 
 }

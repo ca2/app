@@ -261,7 +261,7 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
       //pgraphics->BitBlt(rectClient,m_pimageTemplate->get_graphics());
 

@@ -10,10 +10,10 @@ public:
    ::size_f64     m_sizeRadius;
    point_f64      m_pointBeg;
    point_f64      m_pointEnd;
-   angle       m_angleBeg;
-   angle       m_angleExt;
-   angle       m_angleEnd2;
-   angle       m_angleRotation;
+   angle          m_angleBeg;
+   angle          m_angleExt;
+   angle          m_angleEnd2;
+   angle          m_angleRotation;
 
 
 };

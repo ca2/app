@@ -704,7 +704,7 @@ namespace user
       if (psubject->id() == id_after_change_text)
       {
 
-         __throw(todo("core"));
+         __throw(todo, "core");
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
          //if (peditview != nullptr && psubject->m_puserinteraction == peditview)

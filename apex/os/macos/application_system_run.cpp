@@ -29,7 +29,7 @@
 void os_system_start()
 {
 
-   System.begin();
+   System->begin();
    
 }
 

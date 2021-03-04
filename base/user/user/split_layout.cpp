@@ -1375,7 +1375,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.m_result.alpha > 0)
+      if (colorBackground.alpha > 0)
       {
 
          ::rectangle_i32 rectClient;

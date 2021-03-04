@@ -261,14 +261,14 @@ namespace core
 
 
 
-      auto& sys = System;
+      auto psystem = System;
 
-      auto typeinfo = sys.get_simple_frame_window_type_info();
+      auto typeinfo = psystem->get_simple_frame_window_type_info();
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(form_document),
-         System.get_simple_frame_window_type_info(),
+         System->get_simple_frame_window_type_info(),
          __type(::user::form_view)));
 
       ptemplate->initialize(this);
@@ -295,7 +295,7 @@ namespace core
       ptemplate = __new(::user::multiple_document_template(
             "system/form",
             __type(::user::document),
-         System.get_simple_frame_window_type_info(),
+         System->get_simple_frame_window_type_info(),
          __type(::user::place_holder)));
 
       ptemplate->initialize(this);
@@ -372,11 +372,11 @@ namespace core
       //string strLicense = Application.get_license_id();
 
 
-      //::payload & varTopicQuey = System.m_varTopicQuery;
+      //::payload & varTopicQuey = System->m_varTopicQuery;
 
-//      bool bHasInstall = System.has_property("install");
+//      bool bHasInstall = System->has_property("install");
 //
-//      bool bHasUninstall = System.has_property("uninstall");
+//      bool bHasUninstall = System->has_property("uninstall");
 //
 //      if (!(bHasInstall || bHasUninstall)
 //            && Application.m_bLicense
@@ -610,41 +610,42 @@ namespace core
    }
 
 
-   __pointer(::future < ::conversation >) user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset)
+   __pointer(::extended::future < ::conversation >) user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
 
-      pbox->__construct_new(pbox->m_pfutureconversation);
+      //auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
-      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
-      pbox->add_property_set(&propertyset);
+      // todo add property set to list;
+      pbox->get_property_set().merge(propertyset);
+
+      //r
 
       if (!pbox->show(pszMatter))
       {
 
-         pbox->m_pfutureconversation->set_status(::error_failed);
+         pfuture->set_status(::error_failed);
 
-         return pbox->m_pfutureconversation;
+         return pfuture;
 
       }
 
       process_subject(pbox->m_idResponse);
 
-      return pbox->m_pfutureconversation;
+      return pfuture;
 
    }
 
 
-   __pointer(::future < ::conversation >) user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
-      pbox->__construct_new(pbox->m_pfutureconversation);
-
-      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
       property_set & propertyset = pbox->get_property_set();
 
@@ -704,9 +705,9 @@ namespace core
 
             //return ::message_box(pwndOwner->get_safe_handle(),strMessage,Application.m_strAppName,fuStyle, functionargResult);
 
-            pbox->m_pfutureconversation->set_status(::error_failed);
+            pfuture->set_status(::error_failed);
 
-            return pbox->m_pfutureconversation;
+            return pfuture;
 
          }
 
@@ -714,9 +715,9 @@ namespace core
       catch(...)
       {
 
-         pbox->m_pfutureconversation->set_status(::error_exception);
+         pfuture->set_status(::error_exception);
 
-         return pbox->m_pfutureconversation;
+         return pfuture;
          //string strMessage = pszMessage;
 
          //strMessage.replace("<br>","\r\n");
@@ -727,7 +728,7 @@ namespace core
 
       //return 0;
 
-      return pbox->m_pfutureconversation;
+      return pfuture;
 
       //if(pbox->m_idResponse == "ok")
       //{
@@ -770,16 +771,14 @@ namespace core
    }
 
 
-   __pointer(::future < ::conversation >) user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
-      pbox->__construct_new(pbox->m_pfutureconversation);
-
-      pbox->m_pfutureconversation->m_statusresult.m_result = pbox;
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
       pbox->payload("message") = pszMessage;
 
@@ -811,13 +810,13 @@ namespace core
       if (!pbox->show(strMatter))
       {
 
-         pbox->m_pfutureconversation->set_status(::error_failed);
+         pfuture->set_status(::error_failed);
 
-         return pbox->m_pfutureconversation;
+         return pfuture;
 
       }
 
-      return pbox->m_pfutureconversation;
+      return pfuture;
 
    }
 
@@ -900,7 +899,7 @@ namespace core
    bool user::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
    {
 
-      //db_server * pcentral = dynamic_cast <db_server *> (System.m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{
@@ -1712,7 +1711,7 @@ namespace core
    bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      return System.android_set_user_wallpaper(strLocalImagePath);
+      return System->android_set_user_wallpaper(strLocalImagePath);
 
    }
 
@@ -1721,7 +1720,7 @@ namespace core
 
       string strLocalImagePath;
 
-      System.android_get_user_wallpaper(strLocalImagePath);
+      System->android_get_user_wallpaper(strLocalImagePath);
 
       return strLocalImagePath;
 
@@ -2089,13 +2088,13 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         System.draw2d()->write_text()->fonts();
+         System->draw2d()->write_text()->fonts();
 
 
 
          //fork([&]()
          //{
-         //         System.draw2d()->fonts().m_pfontenumeration->check_need_update();
+         //         System->draw2d()->fonts().m_pfontenumeration->check_need_update();
 
 
          //});

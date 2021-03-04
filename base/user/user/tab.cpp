@@ -2424,7 +2424,7 @@ namespace user
    void tab::on_message_create(::message::message * pmessage)
    {
 
-      m_bNoTabs = System.has_property("no_tabs");
+      m_bNoTabs = System->has_property("no_tabs");
 
       __pointer(::user::message) pusermessage(pmessage);
 
@@ -3124,10 +3124,8 @@ namespace user
          __rethrow(pexception);
 
       }
-      catch (const ::exception_pointer & pexception)
+      catch (const ::exception::exception &)
       {
-
-         ::exception_pointer esp(pexception);
 
          return false;
 

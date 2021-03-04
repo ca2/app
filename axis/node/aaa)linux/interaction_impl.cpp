@@ -451,13 +451,13 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     System.message_box("cannot create a top-level child interaction_impl.");
+                     System->message_box("cannot create a top-level child interaction_impl.");
 
                   }
                   else
                   {
 
-                     System.message_box(strMessage);
+                     System->message_box(strMessage);
 
                   }
 
@@ -1560,10 +1560,10 @@ namespace linux
             {
                m_puserinteraction->get_window_rect(rectWindow);
             }
-            if(System.get_monitor_count() > 0)
+            if(System->get_monitor_count() > 0)
             {
                ::rectangle_i32 rcMonitor;
-               System.get_monitor_rectangle(0, &rcMonitor);
+               System->get_monitor_rectangle(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -4686,7 +4686,7 @@ namespace linux
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
-//         hWnd = System.GetMainWnd()->get_handle();*/
+//         hWnd = System->GetMainWnd()->get_handle();*/
 //      }
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl

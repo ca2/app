@@ -61,7 +61,7 @@ namespace userpresence
 
       m_millisLastPulse= ::millis::now();
 
-      //if(System.m_strAppName == "netnode" || System.m_strAppName == "simpledbcfg")
+      //if(System->m_strAppName == "netnode" || System->m_strAppName == "simpledbcfg")
         // return;
 
       string strHost = Context.file().as_string(Context.dir().appdata() / "database\\text\\last_good_known_account_com.txt");
@@ -75,8 +75,8 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System.url().string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
-      System.url().string_set(strUrl, "long_status", m_strLongStatus);
+      System->url().string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
+      System->url().string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 

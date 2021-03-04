@@ -520,7 +520,7 @@ namespace helloaxis
 
 /*                  m_pimage->map();
 
-/*                  System.imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
+/*                  System->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
 
 /*                  m_pimage->blur();
 
@@ -593,7 +593,7 @@ namespace helloaxis
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.imaging().bitmap_blend(pgraphics,
+      System->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->m_size,
                                          m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
@@ -1076,7 +1076,7 @@ auto m_tick23 = ::millis::now();
 
 /*                     pimage->defer_update();
 
-/*                     System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
+/*                     System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
 
                   }
 
@@ -1094,7 +1094,7 @@ auto m_tick23 = ::millis::now();
 
 /*                     pimage->defer_update();
 
-/*                     System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
+/*                     System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
 
                   }
 
@@ -1274,9 +1274,9 @@ auto m_tick23 = ::millis::now();
 
          uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
-/*         System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
+/*         System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
-         System.imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
+         System->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
 
       }
       else

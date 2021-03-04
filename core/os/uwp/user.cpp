@@ -582,7 +582,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    CLASS_DECL_CORE color32_t get_system_app_background_color()
 //    {
 
-//       auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //       auto r = color.R;
 
@@ -597,7 +597,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    CLASS_DECL_CORE double get_system_app_luminance()
 //    {
 
-//       auto color = System.get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //       double r = color.R;
 

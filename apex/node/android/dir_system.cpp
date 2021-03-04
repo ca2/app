@@ -32,7 +32,7 @@ namespace android
 
       m_pathInstall = ::dir::install();
 
-      m_pathHome = System.m_pathCacheDirectory / "home";
+      m_pathHome = System->m_pathCacheDirectory / "home";
 
       return estatus;
 

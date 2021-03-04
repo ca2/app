@@ -45,7 +45,7 @@ void direct2d_factory_exchange(::factory_map * pfactorymap)
 //void draw2d_factory_exchange(::factory_map * pfactorymap)
 //{
 //
-//   System.m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
+//   System->m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange();
 //
 //}
 

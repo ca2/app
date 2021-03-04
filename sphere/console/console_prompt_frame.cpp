@@ -498,7 +498,7 @@ namespace console
 
       ::rectangle_i32 rectangle;
 
-      System.get_monitor_rectangle(0,rectangle_i32);
+      System->get_monitor_rectangle(0,rectangle_i32);
 
       int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 

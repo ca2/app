@@ -620,7 +620,7 @@ namespace windows
    //::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
-   //   return  System.ui_from_handle(::GetAncestor(((interaction_impl *)this)->get_handle(), gaFlags));
+   //   return  System->ui_from_handle(::GetAncestor(((interaction_impl *)this)->get_handle(), gaFlags));
    //}
 
 
@@ -727,8 +727,8 @@ namespace windows
    //   // finally, run the Windows Help engine
    //   /* trans   if (!::WinHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    //   {
-   //   // linux System.message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   //   System.message_box("Failed to launch help");
+   //   // linux System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   //   System->message_box("Failed to launch help");
    //   }*/
    //}
 
@@ -755,8 +755,8 @@ namespace windows
    //// run the HTML Help engine
    ///* trans   if (!::aura::HtmlHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    //{
-   //// linux System.message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   //System.message_box("Failed to launch help");
+   //// linux System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   //System->message_box("Failed to launch help");
    //}*/
    ////}
 
@@ -951,7 +951,7 @@ namespace windows
    //{
 
    //   // check if in permanent map, if it is reflect it (could be OLE control)
-   //   auto pwindow = System.ui_from_handle(oswindow_Child);
+   //   auto pwindow = System->ui_from_handle(oswindow_Child);
    //   ASSERT(!pwindow || (pwindow)->get_handle() == oswindow_Child);
    //   if (!pwindow)
    //   {
@@ -1680,7 +1680,7 @@ namespace windows
 
       //ASSERT(_is_window());
 
-      //return System.ui_from_handle(::SetParent(get_handle(), pWndNewParent->get_handle()));
+      //return System->ui_from_handle(::SetParent(get_handle(), pWndNewParent->get_handle()));
 
       return nullptr;
 
@@ -1701,7 +1701,7 @@ namespace windows
       //if (hwndParent == nullptr)
       //   return get_parent();
 
-      //return System.ui_from_handle(hwndParent);
+      //return System->ui_from_handle(hwndParent);
       return nullptr;
 
    }
@@ -2400,7 +2400,7 @@ namespace windows
 
    ////   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
 
-   ////   return System.ui_from_handle(::GetNextDlgGroupItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
+   ////   return System->ui_from_handle(::GetNextDlgGroupItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
 
    ////}
 
@@ -2410,7 +2410,7 @@ namespace windows
 
    ////   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
 
-   ////   return System.ui_from_handle(::GetNextDlgTabItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
+   ////   return System->ui_from_handle(::GetNextDlgTabItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
 
    ////}
 
@@ -2470,7 +2470,7 @@ namespace windows
    //{
    //   ASSERT(_is_window());
 
-   //   return  System.ui_from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
+   //   return  System->ui_from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
 
 
    //}
@@ -2479,7 +2479,7 @@ namespace windows
    //{
    //   ASSERT(_is_window());
 
-   //   return  System.ui_from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+   //   return  System->ui_from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
 
    //}
@@ -2498,7 +2498,7 @@ namespace windows
       //if (!_is_window())
       //   return nullptr;
 
-      //return  System.ui_from_handle(::GetNextWindow(get_handle(), nFlag));
+      //return  System->ui_from_handle(::GetNextWindow(get_handle(), nFlag));
 
    }
 
@@ -2532,7 +2532,7 @@ namespace windows
 
       /*ASSERT(_is_window());
 
-      return System.ui_from_handle(::GetLastActivePopup(get_handle()));*/
+      return System->ui_from_handle(::GetLastActivePopup(get_handle()));*/
 
       return nullptr;
 
@@ -2620,21 +2620,21 @@ namespace windows
    //::user::interaction * interaction_impl::GetOpenClipboardWindow()
    //{
 
-   //   return System.ui_from_handle(::GetOpenClipboardWindow());
+   //   return System->ui_from_handle(::GetOpenClipboardWindow());
 
    //}
 
    //::user::interaction * interaction_impl::GetClipboardOwner()
    //{
 
-   //   return System.ui_from_handle(::GetClipboardOwner());
+   //   return System->ui_from_handle(::GetClipboardOwner());
 
    //}
 
    //::user::interaction * interaction_impl::GetClipboardViewer()
    //{
 
-   //   return System.ui_from_handle(::GetClipboardViewer());
+   //   return System->ui_from_handle(::GetClipboardViewer());
 
    //}
 
@@ -3448,7 +3448,7 @@ namespace windows
    //      if (pFrame != nullptr)
    //      oswindow = pFrame->get_handle();
    //      else
-   //      oswindow = System.m_puiMain->get_handle();*/
+   //      oswindow = System->m_puiMain->get_handle();*/
    //   }
 
    //   // a popup interaction_impl cannot be owned by a child interaction_impl
@@ -4783,7 +4783,7 @@ namespace windows
 //
 //         //user::oswindow_array oswindowa;
 //         //user::interaction_pointer_array wnda;
-//         //wnda = *System.m_puiptraFrame;
+//         //wnda = *System->m_puiptraFrame;
 //         //oswindowa = wnda.get_hwnda();
 //         //user::window_util::SortByZOrder(oswindowa);
 //         //for (i32 i = 0; i < oswindowa.get_size(); i++)

@@ -183,9 +183,9 @@ repeat:;
 
 
              strUrl = "https://" + Context.dir().get_api_cc() + "/account/str_set_save?key=";
-             strUrl += System.url().url_encode(m_itema[0]->m_strKey);
+             strUrl += System->url().url_encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
-             strUrl += System.url().url_encode(m_itema[0]->m_str);
+             strUrl += System->url().url_encode(m_itema[0]->m_str);
 
              m_itema.remove_at(0);
 
@@ -301,7 +301,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       strUrl = "https://" + Context.dir().get_api_cc() + "/account/str_set_load?key=";
 
-      strUrl += System.url().url_encode(lpKey);
+      strUrl += System->url().url_encode(lpKey);
 
       set["user"] = psession->account()->get_user();
 

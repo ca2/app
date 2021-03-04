@@ -549,7 +549,7 @@ CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
    if (iWindow == GW_OWNER)
    {
 
-      ::user::interaction * pinteraction = System.ui_from_handle(oswindow);
+      ::user::interaction * pinteraction = System->ui_from_handle(oswindow);
 
       if (pinteraction == nullptr || pinteraction->m_puiOwner)
       {

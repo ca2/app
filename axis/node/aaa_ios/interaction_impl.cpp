@@ -1224,10 +1224,10 @@ namespace ios
 
             ((::user::interaction_impl *)this)->m_puserinteraction->get_window_rect(rectWindow);
 
-            if(System.get_monitor_count() > 0)
+            if(System->get_monitor_count() > 0)
             {
                ::rect rcMonitor;
-               System.get_monitor_rectangle(0, &rcMonitor);
+               System->get_monitor_rectangle(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -1932,7 +1932,7 @@ namespace ios
    //   {
    //      if (!(GetStyle() & WS_CHILD))
    //      {
-   //         ::user::interaction* pMainWnd = System.GetMainWnd();
+   //         ::user::interaction* pMainWnd = System->GetMainWnd();
    //         if (pMainWnd != nullptr &&
    //            GetKeyState(VK_SHIFT) >= 0 &&
    //            GetKeyState(VK_CONTROL) >= 0 &&
@@ -4805,7 +4805,7 @@ namespace ios
           if (pFrame != nullptr)
           hWnd = pFrame->get_handle();
           else
-          hWnd = System.GetMainWnd()->get_handle();*/
+          hWnd = System->GetMainWnd()->get_handle();*/
       }
 
       // a popup ::user::interaction cannot be owned by a child ::user::interaction
@@ -4858,7 +4858,7 @@ namespace ios
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      //System.window_map().set((iptr)get_handle(), this);
+      //System->window_map().set((iptr)get_handle(), this);
 
    }
 

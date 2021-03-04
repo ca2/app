@@ -45,7 +45,7 @@ namespace userpresence
 
       }
 
-      if(!System.is_true("do_not_initialize_user_presence"))
+      if(!System->is_true("do_not_initialize_user_presence"))
       {
          // xxx
          // defer_initialize_user_presence();

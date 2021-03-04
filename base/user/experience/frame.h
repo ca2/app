@@ -22,11 +22,11 @@ namespace experience
       };
 
 
-      with_status < ::color::color >       m_colorMoveableBorderHilight;
-      with_status < ::color::color >       m_colorMoveableBorderDkShadow;
-      with_status < ::color::color >       m_colorCaptionTextBk;
-      with_status < ::color::color >       m_colorActiveCaptionTextBk;
-      with_status < ::color::color >       m_colorCaptionText;
+      status < ::color::color >       m_colorMoveableBorderHilight;
+      status < ::color::color >       m_colorMoveableBorderDkShadow;
+      status < ::color::color >       m_colorCaptionTextBk;
+      status < ::color::color >       m_colorActiveCaptionTextBk;
+      status < ::color::color >       m_colorCaptionText;
 
       bool                                   m_bHollow;
       string                                 m_strLibrary;
@@ -40,8 +40,8 @@ namespace experience
       point_i32                              m_pointWindowIcon;
       ///point_i32                           m_pointMoveGripMinimal;
 
-      with_status < ::color::color >       m_colorMoveableBorder;
-      with_status < ::color::color >       m_colorMoveableBorderShadow;
+      status < ::color::color >       m_colorMoveableBorder;
+      status < ::color::color >       m_colorMoveableBorderShadow;
 
 
       ::experience::experience *             m_pexperience;
@@ -156,7 +156,7 @@ namespace experience
       virtual e_hittest _001HitTest(const ::point_i32 & point);
 
 
-      virtual with_status < ::color::color > get_border_main_body_color();
+      virtual status < ::color::color > get_border_main_body_color();
 
 
       virtual bool on_message_left_button_down(::message::mouse * pmouse);

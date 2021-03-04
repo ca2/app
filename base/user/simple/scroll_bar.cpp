@@ -1327,7 +1327,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_client_rect(rectClient);
 
-   if (crBackground.m_result.is_translucent())
+   if (crBackground.is_translucent())
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1830,7 +1830,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_scrollbar_strong, ::user::e_state_hover);
 
-      return color.is_ok() ? color.m_result : argb(130, 190, 180, 250);
+      return color.is_ok() ? color : argb(130, 190, 180, 250);
 
    }
    else
@@ -1838,7 +1838,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_scrollbar_strong);
 
-      return color.is_ok() ? color.m_result : argb(150, 150, 150, 150);
+      return color.is_ok() ? color : argb(150, 150, 150, 150);
 
    }
 
@@ -1853,7 +1853,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, eelement, ::user::e_state_hover);
 
-      return color.is_ok() ? color.m_result : argb(100, 190, 180, 250);
+      return color.is_ok() ? color : argb(100, 190, 180, 250);
 
    }
    else
@@ -1861,7 +1861,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, eelement);
 
-      return color.is_ok() ? color.m_result : argb(150, 150, 150, 150);
+      return color.is_ok() ? color : argb(150, 150, 150, 150);
 
    }
 
@@ -1876,7 +1876,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_border, ::user::e_state_hover);
 
-      return color.is_ok() ? color.m_result : argb(190, 180, 180, 180);
+      return color.is_ok() ? color : argb(190, 180, 180, 180);
 
    }
    else
@@ -1884,7 +1884,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_border);
 
-      return color.is_ok() ? color.m_result : argb(190, 160, 160, 160);
+      return color.is_ok() ? color : argb(190, 160, 160, 160);
 
    }
 
@@ -1899,7 +1899,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_lite_border, ::user::e_state_hover);
 
-      return color.is_ok() ? color.m_result : argb(190, 90, 110, 180);
+      return color.is_ok() ? color : argb(190, 90, 110, 180);
 
    }
    else
@@ -1907,7 +1907,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_lite_border);
 
-      return color.is_ok() ? color.m_result : argb(190, 110, 110, 100);
+      return color.is_ok() ? color : argb(190, 110, 110, 100);
 
    }
 
@@ -1922,7 +1922,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_scrollbar_draw, ::user::e_state_hover);
 
-      return color.is_ok() ? color.m_result : argb(127, 90, 90, 90);
+      return color.is_ok() ? color : argb(127, 90, 90, 90);
 
    }
    else
@@ -1930,7 +1930,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       auto color = get_color(pstyle, ::user::e_element_scrollbar_draw);
 
-      return color.is_ok() ? color.m_result : argb(127, 65, 65, 65);
+      return color.is_ok() ? color : argb(127, 65, 65, 65);
 
    }
 

@@ -86,7 +86,7 @@ namespace user
          strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());
 #endif
 
-         message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_result(10_s);
+         message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
 
       }
 

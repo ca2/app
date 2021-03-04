@@ -61,7 +61,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto imaging = System.imaging();
+               auto imaging = System->imaging();
 
                ::rectangle_i32 rectClient(rectParam);
 
@@ -112,7 +112,7 @@ namespace experience
             }
 
 
-            with_status < ::color::color > frame::get_border_main_body_color()
+            status < ::color::color > frame::get_border_main_body_color()
             {
 
                return rgb(63, 150, 106);
@@ -123,7 +123,7 @@ namespace experience
             void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
             {
 
-               System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+               System->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
             }
 
@@ -311,17 +311,17 @@ namespace experience
                color.set_rgb(colorMoveableBorder);
                color.hls_rate(0.0, 0.5, 0.0);
                m_colorMoveableBorderHilight = color;
-               m_colorMoveableBorderHilight.m_result.alpha = 255;
+               m_colorMoveableBorderHilight.alpha = 255;
 
                color.set_rgb(colorMoveableBorder);
                color.hls_rate(0.0, -0.3, 0.0);
                m_colorMoveableBorderShadow = color;
-               m_colorMoveableBorderShadow.m_result.alpha = 255;
+               m_colorMoveableBorderShadow.alpha = 255;
 
                color.set_rgb(colorMoveableBorder);
                color.hls_rate(8.0, -0.8, 0.0);
                m_colorMoveableBorderDkShadow = color;
-               m_colorMoveableBorderDkShadow.m_result.alpha = 255;
+               m_colorMoveableBorderDkShadow.alpha = 255;
 
                m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -636,11 +636,11 @@ namespace experience
 
                   auto pframewindow = m_pframewindow;
 
-                  with_status < ::color::color > crMoveableBorder;
+                  status < ::color::color > crMoveableBorder;
 
-                  with_status < ::color::color > crMoveableBorderHilight;
+                  status < ::color::color > crMoveableBorderHilight;
 
-                  with_status < ::color::color > crMoveableBorderShadow;
+                  status < ::color::color > crMoveableBorderShadow;
 
                   string str;
 

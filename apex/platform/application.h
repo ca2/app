@@ -971,7 +971,7 @@ namespace apex
       virtual void route_command_message(::message::command * pcommand) override;
 
 
-      virtual __pointer(::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      virtual __pointer(::extended::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 

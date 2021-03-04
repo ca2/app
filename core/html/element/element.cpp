@@ -919,7 +919,7 @@ namespace html
             else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
                     ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
-               strUrl = System.url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+               strUrl = System->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
             }
             else
             {

@@ -40,7 +40,7 @@ namespace account
          
       }
       
-      string strName = System.url().os_fsname(strToken);
+      string strName = System->url().os_fsname(strToken);
       
       return m_paccount->system_storage_default_path_prefix() / strName;
       
@@ -54,9 +54,9 @@ namespace account
       
       path = path_prefix(strToken);
       
-      path /= System.crypto().md5(strToken + strKey);
+      path /= System->crypto().md5(strToken + strKey);
       
-      return System.crypto().file_get(path, strValue, strToken, get_context_application());
+      return System->crypto().file_get(path, strValue, strToken, get_context_application());
       
    }
    
@@ -70,9 +70,9 @@ namespace account
       
       dir::mk(path);
       
-      path /= System.crypto().md5(strToken + strKey);
+      path /= System->crypto().md5(strToken + strKey);
       
-      return System.crypto().file_set(path, strValue, strToken, get_context_application());
+      return System->crypto().file_set(path, strValue, strToken, get_context_application());
       
    }
    

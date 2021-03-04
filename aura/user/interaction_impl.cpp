@@ -118,7 +118,7 @@ namespace user
          ////      if (m_puserthread->m_peditwnd == nullptr)
          ////      {
 
-         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(System.m_hinstance, m_puserinteraction->get_handle());
+         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(System->m_hinstance, m_puserinteraction->get_handle());
 
          ////         m_puserthread->m_peditwnd->_Initialize(m_puserthread->m_pthreadmgr, m_puserthread->m_tfClientID);
 
@@ -3637,7 +3637,7 @@ namespace user
    //void interaction_impl::_001BaseWndInterfaceMap()
    //{
 
-   //   System.window_map().set(get_handle(), this);
+   //   System->window_map().set(get_handle(), this);
 
    //}
 
@@ -4142,7 +4142,7 @@ namespace user
 
    //   //set_handle(oswindowNew);
 
-   //   ASSERT(System.ui_from_handle(get_handle()) == m_puserinteraction);
+   //   ASSERT(System->ui_from_handle(get_handle()) == m_puserinteraction);
 
    //   return true;
 

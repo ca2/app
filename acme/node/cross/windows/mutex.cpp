@@ -155,7 +155,7 @@ static int g_iMutex = 0;
 
 #ifdef ANDROID
 
-         strName = ::file::path(System.m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
+         strName = ::file::path(System->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 
 #else
 

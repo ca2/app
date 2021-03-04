@@ -248,7 +248,7 @@ namespace user
 
       //      set_thread_name("test");
 
-            //windows_desktop1_main(System.m_hinstance, SW_SHOWNORMAL);
+            //windows_desktop1_main(System->m_hinstance, SW_SHOWNORMAL);
 
       //  });
 
@@ -452,7 +452,7 @@ namespace user
 
          }
 
-         if (handle_exception(pe))
+         if (handle_exception(e))
          {
 
             return true;

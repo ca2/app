@@ -105,7 +105,7 @@ namespace user
 
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 

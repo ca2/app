@@ -3644,10 +3644,10 @@ namespace user
          message_handler(pmessage);
 
       }
-      catch (exception_pointer pe)
+      catch (const ::exception::exception & e)
       {
 
-         if (::get_thread()->handle_exception(pe))
+         if (::get_thread()->handle_exception(e))
          {
 
             return false;

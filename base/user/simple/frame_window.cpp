@@ -78,6 +78,8 @@ simple_frame_window::simple_frame_window()
 
    m_bLayered = true;
 
+   m_ewindowflag |= e_window_flag_composite;
+
    m_pdocumenttemplate = nullptr;
 
 }
@@ -174,7 +176,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 #ifdef WINDOWS_DESKTOP
 
-   MESSAGE_LINK(System.m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
+   MESSAGE_LINK(System->m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
 
 #endif
 
@@ -635,7 +637,7 @@ bool simple_frame_window::initialize_frame_window_experience()
       pexperienceframe = ::move_transfer(experience_get_frame());
 
    }
-   catch (::exception::exception_pointer e)
+   catch (const ::exception::exception &)
    {
 
    }
@@ -1621,7 +1623,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       auto pnode = Node;
 
-      auto edesktop = System.get_edesktop();
+      auto edesktop = System->get_edesktop();
 
       if(edesktop == ::user::e_desktop_unity_gnome
             || edesktop == ::user::e_desktop_ubuntu_gnome)
@@ -1717,10 +1719,10 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
       //else if (papp->is_system() || papp->is_session())
       //{
 
-      //   // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
+      //   // TODO: instead of closing all applications in process System->m_apptra, should close application that make part of
       //   // cube, bergedge, session or system.
 
-      //   auto applicationa = System.get_applicationa();
+      //   auto applicationa = System->get_applicationa();
 
       //   for (auto & papp : applicationa)
       //   {
@@ -2484,7 +2486,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
 
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
 
       ::rectangle_i32 rectClient;
 
@@ -3026,7 +3028,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   // execute the command
 //   //LPWSTR pszCommand = strCommand.alloc(strCommand.get_length());
 //
-//   //if (!System.OnDDECommand(pszCommand))
+//   //if (!System->OnDDECommand(pszCommand))
 //
 //   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
@@ -3205,8 +3207,8 @@ string simple_frame_window::get_window_default_matter()
 //         ::aura::application* pApp = System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
 //         {
-//            edisplay = System.m_edisplay; // use the parameter from WinMain
-//            System.m_edisplay = e_display_undefined; // set to default after first time
+//            edisplay = System->m_edisplay; // use the parameter from WinMain
+//            System->m_edisplay = e_display_undefined; // set to default after first time
 //         }
 //         bool bFullScreen;
 //         data_get("FullScreen", bFullScreen);

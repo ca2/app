@@ -117,7 +117,7 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      if (System.url().get_server(pathUrl).lowered() == "server.ca2.cc")
+      if (System->url().get_server(pathUrl).lowered() == "server.ca2.cc")
       {
 
          return false;
@@ -145,14 +145,14 @@ namespace account
 
       }
 
-      if(::str::find_ci("/matter/",System.url().get_script(pathUrl)) >= 0)
+      if(::str::find_ci("/matter/",System->url().get_script(pathUrl)) >= 0)
       {
 
          return false;
 
       }
 
-      string strServer = System.url().get_server(pathUrl);
+      string strServer = System->url().get_server(pathUrl);
 
       url_domain domain;
 
@@ -197,7 +197,7 @@ namespace account
 //   string department::get_account_server(::file::path pathUrl, i32 iRetry)
 //   {
 //
-//      string strRequestingServer = System.url().get_server(pathUrl);
+//      string strRequestingServer = System->url().get_server(pathUrl);
 //
 //      ::u32 dwGetFontopusBeg= ::millis::now();
 //

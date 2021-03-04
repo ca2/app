@@ -42,7 +42,7 @@ void defer_term_ui();
 //bool is_verbose();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
-//extern ::mutex * System.m_mutexLibrary;
+//extern ::mutex * System->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -273,10 +273,10 @@ namespace axis
 //      if (!papp)
 //      {
 //
-//         if (System.m_pappcore != nullptr && System.m_pmaindata && System.m_pfnNewAuraApplication != nullptr)
+//         if (System->m_pappcore != nullptr && System->m_pmaindata && System->m_pfnNewAuraApplication != nullptr)
 //         {
 //
-//            papp = System.m_pfnNewAuraApplication();
+//            papp = System->m_pfnNewAuraApplication();
 //
 //            if (papp.is_null())
 //            {
@@ -300,17 +300,17 @@ namespace axis
 //
 //
 //         }
-//         synchronization_lock synchronizationlock(System.m_mutexLibrary);
+//         synchronization_lock synchronizationlock(System->m_mutexLibrary);
 //
-//         __pointer(::apex::library) & plibrary = System.m_mapLibrary[pszAppId];
+//         __pointer(::apex::library) & plibrary = System->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
 //
-//            if (System.m_pappcore != nullptr && System.m_pfnNewAuraLibrary != nullptr)
+//            if (System->m_pappcore != nullptr && System->m_pfnNewAuraLibrary != nullptr)
 //            {
 //
-//               plibrary = __move_transfer(System.m_pfnNewAuraLibrary());
+//               plibrary = __move_transfer(System->m_pfnNewAuraLibrary());
 //
 //            }
 //            else
@@ -506,8 +506,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         System.m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-//         System.m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+//         System->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+//         System->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 //
 //      }
 //

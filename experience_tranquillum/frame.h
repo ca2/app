@@ -20,18 +20,18 @@ namespace experience
                //::write_text::font_pointer           m_fontCaption;
                //e_style                              m_estyle;
                //::user::front_end_schema             m_schema;
-               with_status < ::color::color >       m_colorFrameBorder;
-               with_status < ::color::color >       m_colorMoveableBorderHilight;
-               with_status < ::color::color >       m_colorMoveableBorderDkShadow;
-               with_status < ::color::color >       m_colorCaptionTextBk;
-               with_status < ::color::color >       m_colorActiveCaptionTextBk;
-               with_status < ::color::color >       m_colorCaptionText;
+               status < ::color::color >       m_colorFrameBorder;
+               status < ::color::color >       m_colorMoveableBorderHilight;
+               status < ::color::color >       m_colorMoveableBorderDkShadow;
+               status < ::color::color >       m_colorCaptionTextBk;
+               status < ::color::color >       m_colorActiveCaptionTextBk;
+               status < ::color::color >       m_colorCaptionText;
                ::draw2d::pen_pointer                  m_penText1;
                ::draw2d::pen_pointer                  m_penFace1;
                ::draw2d::pen_pointer                  m_penHilight1;
                ::draw2d::pen_pointer                  m_penShadow1;
                ::draw2d::pen_pointer                  m_penDkShadow1;
-               with_status < ::color::color >       m_colorDkShadow;
+               status < ::color::color >       m_colorDkShadow;
                size_i32                               m_minSize;
 
                ::draw2d::pen_pointer                  m_penHollow1;
@@ -46,7 +46,7 @@ namespace experience
 
                virtual ~frame();
 
-               virtual with_status < ::color::color > get_border_main_body_color() override;
+               virtual status < ::color::color > get_border_main_body_color() override;
 
                virtual bool is_translucid_style(::user::enum_style estyle);
 

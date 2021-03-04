@@ -8,7 +8,7 @@ int main(int argc, char * argv[])
 
    printf("Hello!!");
 
-   return System.m_estatus.error_status();
+   return System->m_estatus.error_status();
 
 }
 

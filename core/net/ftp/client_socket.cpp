@@ -984,7 +984,7 @@ namespace ftp
          string strMessage;
          strMessage.Format("could not bind to address %s %d", strIp.c_str(), iPort);
          TRACE(strMessage);
-         //System.message_box(nullptr, strMessage);
+         //System->message_box(nullptr, strMessage);
          return false;
       }
       m_handler.add(&sckDataConnection);

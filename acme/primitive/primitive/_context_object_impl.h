@@ -274,16 +274,16 @@ inline ::payload & context_object::get_context_object(const ::id & id)
 inline ::payload context_object::topic(const ::id& id)
 {
 
-   auto pproperty = fetch_property(id);
+   auto property = fetch_property(id);
 
-   if (!pproperty)
+   if (!property)
    {
 
       __throw(error_resource);
 
    }
 
-   return pproperty;
+   return property.m_pproperty;
 
 }
 

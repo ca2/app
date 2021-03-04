@@ -22,7 +22,7 @@ int console_end(::e_status estatus)
 
       iError = 0;
 
-      if (System.is_true("show_application_information"))
+      if (System->is_true("show_application_information"))
       {
 
          printf("return code is %d", iStatus);
@@ -31,7 +31,7 @@ int console_end(::e_status estatus)
 
    }
 
-   System.system_end();
+   System->system_end();
 
    return iError;
 

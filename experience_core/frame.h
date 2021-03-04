@@ -16,17 +16,17 @@
             public:
 
                //e_style                           m_pframewindow->m_estyle;
-               with_status < ::color::color >    m_colorFrameBorder;
-               with_status < ::color::color >    m_colorMoveableBorderHilight;
-               with_status < ::color::color >    m_colorMoveableBorderDkShadow;
-               with_status < ::color::color >    m_colorCaptionTextBk;
-               with_status < ::color::color >    m_colorCaptionText;
+               status < ::color::color >    m_colorFrameBorder;
+               status < ::color::color >    m_colorMoveableBorderHilight;
+               status < ::color::color >    m_colorMoveableBorderDkShadow;
+               status < ::color::color >    m_colorCaptionTextBk;
+               status < ::color::color >    m_colorCaptionText;
                ::draw2d::pen_pointer               m_penText1;
                ::draw2d::pen_pointer               m_penFace1;
                ::draw2d::pen_pointer               m_penHilight1;
                ::draw2d::pen_pointer               m_penShadow1;
                ::draw2d::pen_pointer               m_penDkShadow1;
-               with_status < ::color::color >    m_colorDkShadow;
+               status < ::color::color >    m_colorDkShadow;
                size_i32                            m_minSize;
 
                ::draw2d::pen_pointer               m_penHollow0;
@@ -45,7 +45,7 @@
 
                virtual string get_default_user_style() const;
 
-               virtual with_status < ::color::color > get_border_main_body_color();
+               virtual status < ::color::color > get_border_main_body_color();
 
                virtual void set_moveable_border_color(const ::color::color& colorMoveableBorder);
 

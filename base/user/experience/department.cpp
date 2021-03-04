@@ -25,7 +25,7 @@ namespace experience
 
       string strBuild;
       
-      strBuild = System.payload("build");
+      strBuild = System->payload("build");
 
       if(strBuild.is_empty())
       {
@@ -67,7 +67,7 @@ namespace experience
 
 #endif
 
-      auto plibrary = System.get_library(strLibrary, true);
+      auto plibrary = System->get_library(strLibrary, true);
 
       if (!plibrary)
       {
@@ -137,7 +137,7 @@ namespace experience
 
       string_array straLibrary;
 
-      auto strExperience = System.payload("experience").get_string();
+      auto strExperience = System->payload("experience").get_string();
 
       if (strExperience.has_char())
       {

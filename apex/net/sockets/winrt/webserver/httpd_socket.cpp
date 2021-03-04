@@ -50,7 +50,7 @@ namespace sockets
       else*/
       {
          memory mem;
-         System.base64().decode(mem, str64);
+         System->base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 

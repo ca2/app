@@ -130,7 +130,7 @@ namespace dynamic_source
    inline void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload)
    {
 
-      System.url().set_key(strUrl, pszUrl, pszKey, payload);
+      System->url().set_key(strUrl, pszUrl, pszKey, payload);
 
    }
 
@@ -138,7 +138,7 @@ namespace dynamic_source
    inline void script_interface::uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam)
    {
 
-      System.url().set_param(strUrl, pszUrl, pszKey, strParam);
+      System->url().set_param(strUrl, pszUrl, pszKey, strParam);
 
    }
 
@@ -146,7 +146,7 @@ namespace dynamic_source
    inline string script_interface::query_get_param(const char* pszUrl, const char* pszKey)
    {
 
-      return System.url().get_param(pszUrl, pszKey);
+      return System->url().get_param(pszUrl, pszKey);
 
    }
 
@@ -154,7 +154,7 @@ namespace dynamic_source
    inline ::payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
    {
 
-      return System.url().get_var(pszUrl, pszKey);
+      return System->url().get_var(pszUrl, pszKey);
 
    }
 

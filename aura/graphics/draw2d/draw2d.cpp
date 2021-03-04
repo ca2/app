@@ -86,7 +86,7 @@ namespace draw2d
 
       }
 
-      if (System.m_bWriteText)
+      if (System->m_bWriteText)
       {
 
          if (!initialize_write_text())
@@ -1212,7 +1212,7 @@ breakFilter2:
       }
 
 
-      synchronization_lock synchronizationlock(System.m_mutexLibrary);
+      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 
@@ -1278,7 +1278,7 @@ breakFilter2:
       if (strLibrary.has_char())
       {
 
-         estatus = System.do_factory_exchange("write_text", strLibrary);
+         estatus = System->do_factory_exchange("write_text", strLibrary);
 
          if (estatus)
          {
@@ -1306,7 +1306,7 @@ breakFilter2:
 
       }
 
-      estatus = System.do_factory_exchange("write_text", strLibrary);
+      estatus = System->do_factory_exchange("write_text", strLibrary);
 
       if (estatus.succeeded())
       {
@@ -1322,7 +1322,7 @@ breakFilter2:
       if (strLibrary != "write_text_gdiplus")
       {
 
-         estatus = System.do_factory_exchange("write_text", "gdiplus");
+         estatus = System->do_factory_exchange("write_text", "gdiplus");
 
          if (estatus)
          {
@@ -1337,7 +1337,7 @@ breakFilter2:
       if (strLibrary != "write_text_direct2d")
       {
 
-         estatus = System.do_factory_exchange("write_text", "direct2d");
+         estatus = System->do_factory_exchange("write_text", "direct2d");
 
          if (estatus)
          {
@@ -1355,7 +1355,7 @@ breakFilter2:
       {
 
 
-         estatus = System.do_factory_exchange("write_text", "pango");
+         estatus = System->do_factory_exchange("write_text", "pango");
 
          if (estatus)
          {

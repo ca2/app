@@ -7,8 +7,6 @@
 //#include "aura/os/windows/d2d1_1.h"
 
 
-
-
 #include <winapifamily.h>
 #include <windows.h>
 #include <shlwapi.h>
@@ -84,7 +82,11 @@ namespace dx
    {
 
       if (FAILED(hr))
+      {
+       
          __throw(hresult_exception(hr));
+
+      }
       //if(FAILED(hr))
       // __throw(hr);
 

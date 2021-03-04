@@ -72,6 +72,9 @@ public:
    template < typename PREDICATE >
    future& then(const ::duration& duration, PREDICATE predicate);
 
+   auto operator ->() { return m_transport.operator ->(); }
+   auto operator ->() const { return m_transport.operator ->(); }
+
 };
 
 
@@ -83,3 +86,31 @@ CLASS_DECL_ACME void finalize_future_critical_section();
 
 
 
+
+template < typename OBJECT, typename TRANSPORT = ::transport < OBJECT >, typename FUTURE = ::future < OBJECT > >
+class asynchronous :
+   virtual public matter
+{
+public:
+
+
+   __pointer(FUTURE)          m_pfuture;
+
+
+   FUTURE* future()
+   {
+
+      if (!m_pfuture)
+      {
+
+         ::__construct_new(m_pfuture);
+
+         m_pfuture->m_transport = this;
+
+      }
+
+      return m_pfuture;
+
+   }
+
+};

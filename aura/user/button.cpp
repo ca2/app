@@ -343,7 +343,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = System->imaging();
 
          imaging.color_blend(
          pgraphics,
@@ -877,19 +877,19 @@ namespace user
 
       auto color = get_color(pstyle, e_element_background);
 
-      with_status < ::color::color > cr;
+      status < ::color::color > cr;
 
       if(echeck() == ::check_checked)
       {
 
-         color->hls_rate(0.0,- 0.2,- 0.3);
+         color.hls_rate(0.0,- 0.2,- 0.3);
 
       }
 
       if(m_itemHover.is_set())
       {
 
-         color->hls_rate(0.0,0.2,0.0);
+         color.hls_rate(0.0,0.2,0.0);
 
       }
 
@@ -924,7 +924,7 @@ namespace user
 
       }
 
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = System->imaging();
 
       ::rectangle_i32 rectangle = rectClient;
       imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,215,colorExt1BR,215);

@@ -1151,7 +1151,7 @@ namespace dynamic_source
 
       single_lock synchronizationlock(&m_mutexRsa, true);
 
-      return  System.crypto().generate_rsa_key();
+      return  System->crypto().generate_rsa_key();
 
    }
 
@@ -1175,7 +1175,7 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      __pointer(::crypto::rsa) prsa = System.crypto().generate_rsa_key();
+      __pointer(::crypto::rsa) prsa = System->crypto().generate_rsa_key();
 
       single_lock synchronizationlock(&m_mutexRsa, true);
 

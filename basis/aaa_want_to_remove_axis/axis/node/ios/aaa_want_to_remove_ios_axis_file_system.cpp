@@ -101,7 +101,7 @@ namespace ios
 //         string_array stra;
 //         get_ascendants_name(pcsz, stra);
 //         string str;
-//         bool bUrl = System.url().is_url(pcsz);
+//         bool bUrl = System->url().is_url(pcsz);
 //#ifdef LINUX
 //         bool bLinux = true;
 //         str += "/";
@@ -201,8 +201,8 @@ namespace ios
 //      string file_system::time(::aura::application *  papp, const char * psz, i32 iMaxLevel, const char * pszPrefix, const char * pszSuffix)
 //      {
 //         single_lock lockMachineEvent(
-//                                      (System.machine_event_central() != nullptr) ?
-//                                      System.machine_event_central().m_machineevent.m_mutex
+//                                      (System->machine_event_central() != nullptr) ?
+//                                      System->machine_event_central().m_machineevent.m_mutex
 //                                      : ((::mutex *) nullptr), true);
 //         i32 iIncLevel = -1;
 //         string str;
@@ -760,7 +760,7 @@ namespace ios
 //
 //            ::file::input_stream istream(ifile);
 //
-//            System.compress().null(ostream, istream);
+//            System->compress().null(ostream, istream);
 //
 //
 //

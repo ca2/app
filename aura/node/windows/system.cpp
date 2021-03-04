@@ -6,7 +6,7 @@ namespace aura
 {
 
 
-   __pointer(::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto psession = Session;
@@ -15,7 +15,7 @@ namespace aura
 
       auto pmessagebox = __create_new < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::asynchronous<::conversation>::future();
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 
       pmessagebox->show(pszMessage, pszTitle, emessagebox);
 
@@ -54,6 +54,15 @@ namespace aura
    ::e_status system::start()
    {
 
+      auto estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       if (m_pnode)
       {
 
@@ -61,7 +70,7 @@ namespace aura
 
       }
 
-      auto estatus = ::aqua::system::start();
+      estatus = ::aqua::system::start();
 
       if (!estatus)
       {

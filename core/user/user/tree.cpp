@@ -461,7 +461,7 @@ namespace user
 
          //   }
 
-         //   class imaging & imaging = System.imaging();
+         //   class imaging & imaging = System->imaging();
 
          //   color32_t crTranslucid = rgb(0, 0, 0);
 
@@ -1503,7 +1503,7 @@ namespace user
       //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*System.draw2d()->fonts().GetListCtrlFont());
+      //font->operator=(*System->draw2d()->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 

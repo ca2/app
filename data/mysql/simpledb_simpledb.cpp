@@ -123,7 +123,7 @@ namespace simpledb
       }
 
 
-//      ::aura::application_request * prequest = System.get_application_request();
+//      ::aura::application_request * prequest = System->get_application_request();
 
 
       get_context_application()->m_psession->fill_locale_schema(*get_context_application()->m_psession->str_context()->m_plocaleschema);

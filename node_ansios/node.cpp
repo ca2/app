@@ -55,10 +55,10 @@ namespace node_ansios
    {
 
 
-//      if (System.m_bGtkApp)
+//      if (System->m_bGtkApp)
 //      {
 //
-//         apex_application_run(System.m_strAppId, System.m_strProgName);
+//         apex_application_run(System->m_strAppId, System->m_strProgName);
 //
 //      }
 //      else
@@ -131,7 +131,7 @@ namespace node_ansios
 //
 //         //x11_add_filter();
 //
-//System.fork([]()
+//System->fork([]()
 //     {
 //
 //      x11_main();
@@ -185,7 +185,7 @@ namespace node_ansios
 //
 //      // indirect wall-changer sourceforge.net contribution
 //
-//      auto edesktop = System.get_edesktop();
+//      auto edesktop = System->get_edesktop();
 //
 //      switch (edesktop)
 //      {
@@ -266,7 +266,7 @@ namespace node_ansios
 //
 //      auto pnode = Node;
 //
-//      auto edesktop = System.get_edesktop();
+//      auto edesktop = System->get_edesktop();
 //
 //      switch (edesktop)
 //      {
@@ -314,7 +314,7 @@ namespace node_ansios
 //   void node::enable_wallpaper_change_notification()
 //   {
 //
-//      auto edesktop = System.get_edesktop();
+//      auto edesktop = System->get_edesktop();
 //
 //      switch (edesktop)
 //      {

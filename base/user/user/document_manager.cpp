@@ -68,7 +68,7 @@ namespace user
 
       string strPathName, strTemp;
 
-      __get_module_short_file_name(System.m_hInstance, strPathName);
+      __get_module_short_file_name(System->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
@@ -158,7 +158,7 @@ namespace user
 
       string strPathName, strTemp;
 
-      __get_module_short_file_name(System.m_hInstance, strPathName);
+      __get_module_short_file_name(System->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
@@ -173,7 +173,7 @@ namespace user
       if (bCompat)
       {
       string strIconIndex;
-      HICON hIcon = ::ExtractIcon(System.m_hInstance, strPathName, nTemplateIndex);
+      HICON hIcon = ::ExtractIcon(System->m_hInstance, strPathName, nTemplateIndex);
       if (hIcon != nullptr)
       {
       strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
@@ -486,7 +486,7 @@ namespace user
 
       throw_todo();
 
-      //return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      //return System->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
       return false;
 
@@ -517,7 +517,7 @@ namespace user
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
       // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-      command & cmdInfo = System.handler();
+      command & cmdInfo = System->handler();
       command.m_nShellCommand = command_line::FileDDE;
 
       if (strCommand.Left(7) == _T("[open(\""))
@@ -549,13 +549,13 @@ namespace user
       bool bRetVal = true;
 
       // // If we were started up for DDE retrieve the Show state
-      //   System.command_line() = cmdInfo;
+      //   System->command_line() = cmdInfo;
 
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
       // show the application window
-      __pointer(::user::interaction) pMainWnd = System.m_puiMain;
-      edisplay edisplay = System.m_nCmdShow;
+      __pointer(::user::interaction) pMainWnd = System->m_puiMain;
+      edisplay edisplay = System->m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
        trans         if (pMainWnd->is_iconic())
@@ -568,11 +568,11 @@ namespace user
       pMainWnd->SetForegroundWindow();
 
       // then open the document
-      System.open_document_file(get_context_application(), cmdInfo.m_varFile);
+      System->open_document_file(get_context_application(), cmdInfo.m_varFile);
 
 
       // next time, show the window as default
-      System.m_nCmdShow = -1;
+      System->m_nCmdShow = -1;
       goto RestoreAndReturn;
       }
 
@@ -646,10 +646,10 @@ namespace user
       i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
-      pDoc = System.open_document_file(get_context_application(), cmdInfo.m_varFile);
-      //System.m_pCmdInfo = &cmdInfo;
-      System.m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
-      //System.m_pCmdInfo = nullptr;
+      pDoc = System->open_document_file(get_context_application(), cmdInfo.m_varFile);
+      //System->m_pCmdInfo = &cmdInfo;
+      System->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
+      //System->m_pCmdInfo = nullptr;
 
       // close the document if it wasn't open previously (based on doc count)
       if (get_document_count() > nOldCount)
@@ -657,7 +657,7 @@ namespace user
 
 
       RestoreAndReturn:
-      //System.m_pCmdInfo = pOldInfo;
+      //System->m_pCmdInfo = pOldInfo;
       return bRetVal;*/
       return true;
    }
@@ -670,8 +670,8 @@ namespace user
    if (m_templateptra.is_empty())
    {
    TRACE(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
-   // linux System.message_box(__IDP_FAILED_TO_CREATE_DOC);
-   System.message_box(nullptr, "Failed to create document");
+   // linux System->message_box(__IDP_FAILED_TO_CREATE_DOC);
+   System->message_box(nullptr, "Failed to create document");
    return;
    }
 
@@ -686,7 +686,7 @@ namespace user
    ASSERT(ptemplate != nullptr);
    ASSERT_KINDOF(impact_system, ptemplate);
 
-   ptemplate->open_document_file(get_context_application(), nullptr, true, System.m_puiInitialPlaceHolderContainer);
+   ptemplate->open_document_file(get_context_application(), nullptr, true, System->m_puiInitialPlaceHolderContainer);
    // if returns nullptr, the ::account::user has already been alerted*/
    //   return true;
    //}
@@ -791,7 +791,7 @@ namespace user
       //}
 
       /*   char szLinkName[_MAX_PATH];
-      if (::aura::ResolveShortcut(System.m_puiMain, szPath, szLinkName, _MAX_PATH))
+      if (::aura::ResolveShortcut(System->m_puiMain, szPath, szLinkName, _MAX_PATH))
       ::aura::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
@@ -843,9 +843,9 @@ namespace user
       if (pBestTemplate == nullptr)
       {
 
-         // linux System.message_box(__IDP_FAILED_TO_OPEN_DOC);
+         // linux System->message_box(__IDP_FAILED_TO_OPEN_DOC);
 
-         System.message_box("Failed to open document");
+         System->message_box("Failed to open document");
 
          return;
 

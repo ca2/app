@@ -412,7 +412,7 @@ namespace user
       UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
-         //System.remove_frame(m_pdroptargetwindow);
+         //System->remove_frame(m_pdroptargetwindow);
          //m_pdroptargetwindow->DestroyWindow();
          //m_pdroptargetwindow = nullptr;
       }
@@ -985,7 +985,7 @@ namespace user
 
       ::user::impact_host::on_after_host_impact(pimpactdata);
 
-      __throw(todo("experience"));
+      __throw(todo, "experience");
 
       //__pointer(::user::frame) pframewindow = pimpactdata->m_puserinteraction;
 

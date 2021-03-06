@@ -91,7 +91,11 @@ namespace file
 
          m_estatus = estatus;
 
+#ifdef WINDOWS
+
          m_uLastError = uLastError;
+
+#endif
 
          m_iErrNo = iErrNo;
 
@@ -118,7 +122,7 @@ namespace file
 
 #else
 
-         strException.Format(":file(%s(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, lOsError, path.c_str());
+         strException.Format(":file(%s(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, iErrNo, path.c_str());
 
 #endif
 

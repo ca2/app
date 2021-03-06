@@ -151,17 +151,6 @@ namespace linux
    }
 
 
-   bool interaction_impl::setWMClass(const char * psz)
-   {
-
-      string str(psz);
-
-      m_pwindow->set_wm_class(str);
-
-      return true;
-
-   }
-
    oswindow interaction_impl::Detach()
    {
 
@@ -204,8 +193,8 @@ namespace linux
 
       }
 
-      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
-
+//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+//
       if (!m_puserinteraction->pre_create_window(pusersystem))
       {
 
@@ -546,7 +535,8 @@ namespace linux
       else
       {
 
-         m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
+         //m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
+         m_puserinteraction->m_bVisible = false;
 
       }
 
@@ -4213,7 +4203,7 @@ namespace linux
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
    {
 
 //      auto psession = Session;

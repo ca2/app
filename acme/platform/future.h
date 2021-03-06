@@ -97,20 +97,6 @@ public:
    __pointer(FUTURE)          m_pfuture;
 
 
-   FUTURE* future()
-   {
-
-      if (!m_pfuture)
-      {
-
-         ::__construct_new(m_pfuture);
-
-         m_pfuture->m_transport = this;
-
-      }
-
-      return m_pfuture;
-
-   }
+   FUTURE* future();
 
 };

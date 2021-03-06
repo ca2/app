@@ -949,3 +949,20 @@ future < OBJECT, TRANSPORT >& future < OBJECT, TRANSPORT > ::then(const ::durati
 
 
 
+template < typename OBJECT, typename TRANSPORT , typename FUTURE >
+FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
+{
+
+    if (!m_pfuture)
+    {
+
+        ::__construct_new(m_pfuture);
+
+        m_pfuture->m_transport = this;
+
+    }
+
+    return m_pfuture;
+
+}
+

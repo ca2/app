@@ -22,7 +22,7 @@
 //bool __x11_hook_list_is_empty();
 //
 //
-//extern ::mutex * x11_mutex();
+//extern ::mutex * user_mutex();
 //
 //
 //Display * g_pdisplayX11= nullptr;
@@ -197,7 +197,7 @@
 //}
 //
 //
-//::mutex * x11_mutex() {return g_pmutexX11;}
+//::mutex * user_mutex() {return g_pmutexX11;}
 //
 //
 //void x11_defer_handle_just_hooks()

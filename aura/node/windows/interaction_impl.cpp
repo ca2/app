@@ -4941,7 +4941,7 @@ namespace windows
 //   }
 //
 //
-//   void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
+//   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
 //   {
 //
 //      /// from top to bottom

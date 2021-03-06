@@ -1,6 +1,28 @@
 <code_scheme name="Default copy" version="173">
-  <codeStyleSettings language="ObjectiveC">
+  <Objective-C>
+    <option name="INDENT_NAMESPACE_MEMBERS" value="3" />
+    <option name="INDENT_C_STRUCT_MEMBERS" value="3" />
+    <option name="INDENT_CLASS_MEMBERS" value="3" />
+    <option name="INDENT_INSIDE_CODE_BLOCK" value="3" />
+    <option name="NAMESPACE_BRACE_PLACEMENT" value="2" />
+    <option name="FUNCTION_BRACE_PLACEMENT" value="2" />
+    <option name="BLOCK_BRACE_PLACEMENT" value="2" />
+    <option name="SPACE_AFTER_POINTER_IN_DECLARATION" value="true" />
+    <option name="SPACE_AFTER_REFERENCE_IN_DECLARATION" value="true" />
+  </Objective-C>
+  <codeStyleSettings language="CMake">
     <indentOptions>
+      <option name="INDENT_SIZE" value="3" />
+      <option name="CONTINUATION_INDENT_SIZE" value="3" />
+      <option name="TAB_SIZE" value="3" />
+    </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="ObjectiveC">
+    <option name="BRACE_STYLE" value="2" />
+    <option name="CLASS_BRACE_STYLE" value="2" />
+    <indentOptions>
+      <option name="INDENT_SIZE" value="3" />
+      <option name="CONTINUATION_INDENT_SIZE" value="3" />
       <option name="TAB_SIZE" value="3" />
     </indentOptions>
   </codeStyleSettings>

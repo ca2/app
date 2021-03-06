@@ -1341,7 +1341,7 @@
     <ClInclude Include="primitive\geometry2d\rect.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rect_array.h">
+    <ClInclude Include="primitive\geometry2d\rectangle_i32_array.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\size.h">
@@ -5662,7 +5662,7 @@
     <ClCompile Include="primitive\collection\point_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\rect_array.cpp">
+    <ClCompile Include="primitive\collection\rectangle_i32_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\sort.cpp">

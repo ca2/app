@@ -35,189 +35,174 @@
  *
  */
 
+
 #if !defined(_WIN32)
 
-#ifndef SERIAL_IMPL_UNIX_H
-#define SERIAL_IMPL_UNIX_H
+
+#pragma once
 
 
-//#include <pthread.h>
-
-
-   using serial::serial_exception;
-   using serial::io_exception;
-
-//namespace serial
-//{
-//
-////   class MillisecondTimer
-////   {
-////   public:
-////      MillisecondTimer(const u32 millis);
-////      ::millis remaining();
-////
-////   private:
-////      static timespec timespec_now();
-////      timespec expiry;
-////   };
-//
-//}
-
-class serial::serial::serial_impl :
-  virtual public matter
+namespace serial
 {
-public:
-  serial_impl (const string &port,
-              unsigned long baudrate,
-              enum_byte_size ebytesize,
-              enum_parity eparity,
-              enum_stop_bit estopbit,
-              enum_flow_control eflowcontrol);
-
-  virtual ~serial_impl ();
-
-  void
-  open ();
-
-  void
-  close ();
-
-  bool
-  isOpen () const;
-
-  size_t
-  available ();
-
-  bool
-  waitReadable (::millis timeout);
-
-  void
-  waitByteTimes (size_t count);
-
-  size_t
-  read (u8 *buf, size_t size = 1);
-
-  size_t
-  write (const u8 *data, size_t length);
-
-  void
-  flush ();
-
-  void
-  flushInput ();
-
-  void
-  flushOutput ();
-
-  void
-  sendBreak (int duration);
-
-  void
-  setBreak (bool level);
-
-  void
-  setRTS (bool level);
-
-  void
-  setDTR (bool level);
-
-  bool
-  waitForChange ();
-
-  bool
-  getCTS ();
-
-  bool
-  getDSR ();
-
-  bool
-  getRI ();
-
-  bool
-  getCD ();
-
-  void
-  setPort (const string &port);
-
-  string
-  getPort () const;
-
-  void
-  setTimeout (Timeout &timeout);
-
-  Timeout
-  getTimeout () const;
-
-  void
-  setBaudrate (unsigned long baudrate);
-
-  unsigned long
-  getBaudrate () const;
-
-  void
-  setBytesize (enum_byte_size ebytesize);
-
-  enum_byte_size
-  getBytesize () const;
-
-  void
-  setParity (enum_parity eparity);
-
-  enum_parity
-  getParity () const;
-
-  void
-  setStopbits (enum_stop_bit estopbit);
-
-  enum_stop_bit
-  getStopbits () const;
-
-  void
-  setFlowcontrol (enum_flow_control eflowcontrol);
-
-  enum_flow_control
-  getFlowcontrol () const;
-
-  void
-  readLock ();
-
-  void
-  readUnlock ();
-
-  void
-  writeLock ();
-
-  void
-  writeUnlock ();
-
-protected:
-  void reconfigurePort ();
-
-private:
-  string             m_strPort;               // Path to the file descriptor
-  int                m_iFd;                    // The current file descriptor
-
-  bool               m_bOpened;
-  bool               m_bXonXoff;
-  bool               m_bRtsCts;
-
-  Timeout            m_timeout;           // Timeout for read operations
-  unsigned long      m_ulBaudrate;    // Baudrate
-  u32           m_uiByteTimeNs;     // Nanoseconds to transmit/receive a single byte
-
-  enum_parity           m_eparity;           // Parity
-  enum_byte_size         m_ebytesize;       // Size of the bytes
-  enum_stop_bit         m_estopbit;       // Stop Bits
-  enum_flow_control      m_eflowcontrol; // Flow Control
-
-  // Mutex used to lock the read functions
-  pthread_mutex_t    m_mutexRead;
-  // Mutex used to lock the write functions
-  pthread_mutex_t    m_mutexWrite;
-};
 
 
 
-#endif // SERIAL_IMPL_UNIX_H
+   class serial_impl :
+      virtual public matter
+   {
+   public:
+
+      serial_impl (const string &port,
+                  unsigned long baudrate,
+                  enum_byte_size ebytesize,
+                  enum_parity eparity,
+                  enum_stop_bit estopbit,
+                  enum_flow_control eflowcontrol);
+
+      virtual ~serial_impl ();
+
+      void
+      open ();
+
+      void
+      close ();
+
+      bool
+      isOpen () const;
+
+      size_t
+      available ();
+
+      bool
+      waitReadable (::millis timeout);
+
+      void
+      waitByteTimes (size_t count);
+
+      size_t
+      read (u8 *buf, size_t size = 1);
+
+      size_t
+      write (const u8 *data, size_t length);
+
+      void
+      flush ();
+
+      void
+      flushInput ();
+
+      void
+      flushOutput ();
+
+      void
+      sendBreak (int duration);
+
+      void
+      setBreak (bool level);
+
+      void
+      setRTS (bool level);
+
+      void
+      setDTR (bool level);
+
+      bool
+      waitForChange ();
+
+      bool
+      getCTS ();
+
+      bool
+      getDSR ();
+
+      bool
+      getRI ();
+
+      bool
+      getCD ();
+
+      void
+      setPort (const string &port);
+
+      string
+      getPort () const;
+
+      void
+      setTimeout (timeout &timeout);
+
+      timeout
+      getTimeout () const;
+
+      void
+      setBaudrate (unsigned long baudrate);
+
+      unsigned long
+      getBaudrate () const;
+
+      void
+      setBytesize (enum_byte_size ebytesize);
+
+      enum_byte_size
+      getBytesize () const;
+
+      void
+      setParity (enum_parity eparity);
+
+      enum_parity
+      getParity () const;
+
+      void
+      setStopbits (enum_stop_bit estopbit);
+
+      enum_stop_bit
+      getStopbits () const;
+
+      void
+      setFlowcontrol (enum_flow_control eflowcontrol);
+
+      enum_flow_control
+      getFlowcontrol () const;
+
+      void
+      readLock ();
+
+      void
+      readUnlock ();
+
+      void
+      writeLock ();
+
+      void
+      writeUnlock ();
+
+    protected:
+      void reconfigurePort ();
+
+    private:
+      string             m_strPort;               // Path to the file descriptor
+      int                m_iFd;                    // The current file descriptor
+
+      bool               m_bOpened;
+      bool               m_bXonXoff;
+      bool               m_bRtsCts;
+
+      timeout            m_timeout;           // Timeout for read operations
+      unsigned long      m_ulBaudrate;    // Baudrate
+      u32           m_uiByteTimeNs;     // Nanoseconds to transmit/receive a single byte
+
+      enum_parity           m_eparity;           // Parity
+      enum_byte_size         m_ebytesize;       // Size of the bytes
+      enum_stop_bit         m_estopbit;       // Stop Bits
+      enum_flow_control      m_eflowcontrol; // Flow Control
+
+      // Mutex used to lock the read functions
+      pthread_mutex_t    m_mutexRead;
+      // Mutex used to lock the write functions
+      pthread_mutex_t    m_mutexWrite;
+    };
+
+
+} // namespace serial
+
 
 #endif // !defined(_WIN32)

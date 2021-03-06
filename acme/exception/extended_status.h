@@ -499,7 +499,7 @@ namespace extended
 
          this->release();
 
-         result::operator=(::error_failed);
+         m_estatus = ::error_failed;
 
          return *this;
 

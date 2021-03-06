@@ -22,14 +22,14 @@ list(APPEND acme_source
    const/_.h
    const/code_page.h
    const/idpool.cpp
-   exception/overflow.cpp
-   exception/range.cpp
-   exception/runtime.cpp
-   exception/archive.cpp
-   exception/archive_exception.cpp
-   exception/base.cpp
+   #exception/overflow.cpp
+        #exception/range.cpp
+        #exception/runtime.cpp
+        #exception/archive.cpp
+        #exception/archive_exception.cpp
+        #exception/base.cpp
    exception/callstack.cpp
-   exception/cancel.cpp
+        #exception/cancel.cpp
    exception/const.cpp
    exception/debug.cpp
    exception/dump.cpp
@@ -38,34 +38,34 @@ list(APPEND acme_source
    exception/dump_output.cpp
    exception/exception.cpp
    exception/exception_engine.cpp
-   exception/exit.cpp
+        #exception/exit.cpp
    exception/hresult.cpp
-   exception/index_out_of_bounds.cpp
-   exception/installing.cpp
-   exception/interface_only.cpp
-   exception/invalid_argument.cpp
-   exception/invalid_character.cpp
-   exception/invalid_handle.cpp
-   exception/invalid_index.cpp
-   exception/io.cpp
-   exception/memory.cpp
-   exception/not_implemented.cpp
-   exception/not_installed.cpp
-   exception/not_licensed.cpp
-   exception/not_supported.cpp
-   exception/operation_canceled.cpp
-   exception/os.cpp
+        #exception/index_out_of_bounds.cpp
+        #exception/installing.cpp
+        #exception/interface_only.cpp
+        #exception/invalid_argument.cpp
+        #exception/invalid_character.cpp
+        #exception/invalid_handle.cpp
+        #exception/invalid_index.cpp
+        #exception/io.cpp
+        #exception/memory.cpp
+        #exception/not_implemented.cpp
+        #exception/not_installed.cpp
+        #exception/not_licensed.cpp
+        #exception/not_supported.cpp
+        #exception/operation_canceled.cpp
+        #exception/os.cpp
    exception/parsing.cpp
-   exception/resource.cpp
-   exception/result.cpp
-   exception/simple.cpp
-   exception/standard_translator.cpp
-   exception/temporary.cpp
+        #exception/resource.cpp
+        #exception/result.cpp
+        #exception/simple.cpp
+        #exception/standard_translator.cpp
+        #exception/temporary.cpp
    exception/throw.cpp
-   exception/todo.cpp
-   exception/user.cpp
-   exception/void_implementation.cpp
-   exception/wtf.cpp
+        #exception/todo.cpp
+        #exception/user.cpp
+        #exception/void_implementation.cpp
+        #exception/wtf.cpp
    filesystem/file/_.cpp
    filesystem/file/binary_stream.cpp
    filesystem/file/buffered_buffer.cpp
@@ -124,10 +124,10 @@ list(APPEND acme_source
    parallelization/multiple_lock.h
    parallelization/mutex.cpp
    parallelization/pool.cpp
-   primitive/promise/handler1.cpp
-   primitive/promise/manager.cpp
-   primitive/promise/routine_array.cpp
-   primitive/promise/_.h
+   #primitive/promise/handler1.cpp
+   #primitive/promise/manager.cpp
+   #primitive/promise/routine_array.cpp
+   #primitive/promise/_.h
    parallelization/semaphore.cpp
    parallelization/single_lock.cpp
    parallelization/socket_event.cpp
@@ -222,7 +222,7 @@ list(APPEND acme_source
    primitive/collection/map_test_51778915.cpp
    primitive/collection/numeric_array.cpp
    primitive/collection/point_array.cpp
-   primitive/collection/rect_array.cpp
+   primitive/collection/rectangle_array.cpp
    primitive/collection/sort.cpp
    primitive/collection/string_array_base.cpp
    primitive/collection/string_list.cpp
@@ -272,12 +272,12 @@ list(APPEND acme_source
    primitive/mathematics/scalar.cpp
    primitive/mathematics/value.cpp
    primitive/primitive/_.cpp
-   primitive/promise/subject.cpp
+   #primitive/promise/subject.cpp
    primitive/primitive/application_bias.cpp
    primitive/primitive/bit.cpp
    primitive/primitive/block.cpp
    primitive/primitive/block.inl
-   primitive/promise/context.cpp
+   #primitive/promise/context.cpp
    primitive/primitive/command.cpp
    primitive/primitive/context_object.cpp
    primitive/primitive/context_object_traits.cpp
@@ -285,8 +285,8 @@ list(APPEND acme_source
    primitive/primitive/estatus.cpp
    primitive/primitive/element_array.cpp
    primitive/primitive/factory.cpp
-   primitive/promise_predicate/predicate_function.cpp
-   primitive/promise/process.cpp
+        #primitive/promise_predicate/predicate_function.cpp
+        #primitive/promise/process.cpp
    primitive/primitive/handler.cpp
    primitive/primitive/id.cpp
    primitive/primitive/id_array.cpp
@@ -296,14 +296,16 @@ list(APPEND acme_source
    primitive/primitive/interlocked_long.cpp
    primitive/primitive/interlocked_long_pulse.cpp
    primitive/primitive/layered.cpp
+   primitive/primitive/linked_property.cpp
+   primitive/primitive/linked_property.h
    primitive/primitive/match.cpp
    primitive/primitive/matter.cpp
    primitive/primitive/memory.cpp
    primitive/primitive/memory_base.cpp
    primitive/primitive/memory_c.cpp
    primitive/primitive/memory_container.cpp
-   primitive/promise/routine.cpp
-   primitive/promise/promise.cpp
+        #primitive/promise/routine.cpp
+        #primitive/promise/promise.cpp
    primitive/primitive/property.cpp
    primitive/primitive/property_set.cpp
    primitive/primitive/property_set_composite.cpp
@@ -420,51 +422,52 @@ list(APPEND acme_source
    exception/_c.h
    exception/_const.h
    exception/_dump_context.h
-   exception/assert.h
-   exception/base.h
+    #exception/assert.h
+        #exception/base.h
    exception/call_stack.h
    exception/callstack.h
    exception/cancel.h
-   exception/debug_stream.h
+        #exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
    exception/exception.h
    exception/exception2.h
+   exception/exit.cpp
    exception/exit.h
    exception/hresult.h
-   exception/installing.h
-   exception/interface_only.h
-   exception/invalid_argument.h
-   exception/invalid_character.h
-   exception/invalid_handle.h
-   exception/invalid_index.h
-   exception/invalid_type.h
-   exception/io.h
-   exception/memory.h
-   exception/misc.h
-   exception/not_implemented.h
-   exception/not_installed.h
-   exception/not_licensed.h
-   exception/not_supported.h
-   exception/operation_canceled.h
-   exception/os.h
-   exception/overflow.h
-   exception/parsing.h
-   exception/range.h
-   exception/resource.h
-   exception/result.h
-   exception/runtime.h
-   exception/simple.h
+        #exception/installing.h
+        #exception/interface_only.h
+        #exception/invalid_argument.h
+        #exception/invalid_character.h
+        #exception/invalid_handle.h
+        #exception/invalid_index.h
+        #exception/invalid_type.h
+        #exception/io.h
+        #exception/memory.h
+        #exception/misc.h
+        #exception/not_implemented.h
+        #exception/not_installed.h
+        #exception/not_licensed.h
+        #exception/not_supported.h
+        #exception/operation_canceled.h
+        #exception/os.h
+        #exception/overflow.h
+        #exception/parsing.h
+        #exception/range.h
+        #exception/resource.h
+        #exception/result.h
+        #exception/runtime.h
+        #exception/simple.h
    exception/standard.h
    exception/standard_translator.h
-   exception/system.h
-   exception/temporary.h
+        #exception/system.h
+        #exception/temporary.h
    exception/throw.h
-   exception/todo.h
+        #exception/todo.h
    exception/trap.h
-   exception/unhandled_report.h
-   exception/user.h
-   exception/void_implementation.h
+        #exception/unhandled_report.h
+        #exception/user.h
+        #exception/void_implementation.h
    filesystem/_impl.h
    filesystem/file/_.h
    filesystem/file/___serialization_draft.h
@@ -804,6 +807,8 @@ list(APPEND acme_source
    platform/fixed_alloc.h
    platform/fixed_alloc_impl.h
    platform/flags.h
+   platform/future.cpp
+   platform/future.h
    platform/hyperlink.h
    platform/international.h
    platform/keep.h
@@ -812,7 +817,7 @@ list(APPEND acme_source
    platform/logic.h
    platform/lparam.h
    platform/main.h
-   platform/message_box.h
+        #platform/message_box.h
    platform/muldiv32.h
    platform/muldiv64.h
    platform/nano_timer.h
@@ -826,7 +831,7 @@ list(APPEND acme_source
    platform/regex.h
    platform/restore.h
    platform/serial.h
-   platform/serial_impl.h
+        #platform/serial_impl.h
    platform/simple_app.h
    platform/simple_trace.cpp
    platform/simple_trace.h
@@ -1088,20 +1093,20 @@ list(APPEND acme_source
    primitive/primitive/var2.h
    primitive/primitive/virtual_memory.h
    primitive/primitive/work.h
-   primitive/promise/context.h
-   primitive/promise/handler1.h
-   primitive/promise/manager.h
-   primitive/promise/promise.h
-   primitive/promise/promise1.h
-   primitive/promise/routine.h
-   primitive/promise/routine_array.h
-   primitive/promise/subject.h
-   primitive/promise_predicate/predicate_function_pointer.h
-   primitive/promise_predicate/predicate_process.h
-   primitive/promise_predicate/predicate_function.cpp
-   primitive/promise_predicate/predicate_holder.cpp
-   primitive/promise_predicate/predicate_holder.h
-   primitive/promise_predicate/synchronized_predicate_routine.h
+        #primitive/promise/context.h
+        #primitive/promise/handler1.h
+        #primitive/promise/manager.h
+        #primitive/promise/promise.h
+        #primitive/promise/promise1.h
+        #primitive/promise/routine.h
+        #primitive/promise/routine_array.h
+        #primitive/promise/subject.h
+        #primitive/promise_predicate/predicate_function_pointer.h
+        #primitive/promise_predicate/predicate_process.h
+        #primitive/promise_predicate/predicate_function.cpp
+        #primitive/promise_predicate/predicate_holder.cpp
+        #primitive/promise_predicate/predicate_holder.h
+        #primitive/promise_predicate/synchronized_predicate_routine.h
    primitive/string/_.h
    primitive/string/___ch_impl.h
    primitive/string/__c_ansi.h
@@ -1181,6 +1186,12 @@ list(APPEND acme_source
    primitive/string/x/x_defines.h
    primitive/string/x/x_encodings.h
    primitive/string/x/x_tables.h
+   primitive/subject/context.cpp
+   primitive/subject/context.h
+   primitive/subject/manager.cpp
+   primitive/subject/manager.h
+   primitive/subject/subject.cpp
+   primitive/subject/subject.h
    procedure.h
    process/main.cpp
    template/list.h
@@ -1310,6 +1321,7 @@ else ()
    list(APPEND acme_source
       node/posix/file_memory_map.cpp
       node/posix/file_memory_map.h
+      os/ansios/dir.cpp
       os/ansios/parallelization.cpp
       os/cross/windows/user.cpp
       os/cross/windows/file.cpp
@@ -1748,17 +1760,10 @@ if (MSVC)
    target_link_options(acme PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 elseif (LINUX)
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-   # sudo apt install libgtk-3-dev
-   #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-   #pkg_check_modules(PKGCONFIG freetype2 xcb)
    pkg_check_modules(PKGCONFIG freetype2)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
-   #target_compile_options(acme PRIVATE -std=c++14)
-   #target_link_options(acme PRIVATE ${GTK_LDFLAGS})
    target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
-   #target_link_libraries(acme PRIVATE z dl pthread ncurses X11 Xrender Xinerama Xft ${PKGCONFIG_LIBRARIES})
    target_link_libraries(acme PRIVATE z dl pthread ncurses ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

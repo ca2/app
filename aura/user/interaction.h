@@ -714,13 +714,8 @@ namespace user
 
       virtual bool create_message_queue(const char* lpszName) override;
 
-      //virtual bool create_native_window(::user::native_window_initialize* pinitialize) override;
-
-      virtual bool setWMClass(const char * psz);
-
 
       virtual bool has_text_input();
-      //virtual color32_t get_action_hover_border_color();
 
       virtual bool kick_queue();
 

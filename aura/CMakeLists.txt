@@ -313,10 +313,14 @@ list(APPEND aura_source
    user/_user.h
    user/box.cpp
    user/box.h
+   user/button.cpp
+   user/button.h
    user/call_message_handler_task.cpp
    user/call_message_handler_task.h
    user/callback.cpp
    user/callback.h
+   user/check_box.cpp
+   user/check_box.h
    user/control_descriptor.cpp
    user/control_descriptor.h
    user/control_event.cpp
@@ -353,6 +357,8 @@ list(APPEND aura_source
    user/main_window.h
    user/message.cpp
    user/message.h
+   user/message_box.cpp
+   user/message_box.h
    user/message_window.cpp
    user/message_window.h
    user/message_window_listener.h
@@ -382,6 +388,8 @@ list(APPEND aura_source
    user/scroll_info.h
    user/shell.cpp
    user/shell.h
+   user/still.cpp
+   user/still.h
    user/style.cpp
    user/style.h
    user/style_base.cpp
@@ -721,7 +729,7 @@ if (LINUX)
       os/linux/library.cpp
       os/linux/linux.inl
       os/linux/linux_linux.h
-      os/linux/list_serial_ports.cpp
+      #os/linux/list_serial_ports.cpp
       os/linux/lock.cpp
       os/linux/message_loop.cpp
       #os/linux/monitor.cpp
@@ -1161,17 +1169,9 @@ if (MSVC)
    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX)
-   #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
-   #pkg_check_modules(PKGCONFIG xft xcb)
-   #pkg_check_modules(PKGCONFIG xft xcb)
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
-
-   #target_compile_options(aura PRIVATE -std=c++14)
-   #target_link_options(aura PRIVATE ${GTK_LDFLAGS})
    target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
-   #target_link_libraries(aura PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-   #target_link_libraries(aura PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
    target_link_libraries(aura PRIVATE dl pthread ncurses)
    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(aura PRIVATE acme apex aqua)

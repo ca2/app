@@ -5,7 +5,7 @@
 ////#include "third/sn/sn.h"
 
 
-//extern ::mutex * x11_mutex();
+//extern ::mutex * user_mutex();
 
 
 int g_iIgnoreXDisplayError = 0;

@@ -549,7 +549,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
       if (strlen(psz) >= n)
       {
 
-         __throw(::status_exception(error_would_reach_buffer_limit));
+         __throw(error_would_reach_buffer_limit);
 
       }
 
@@ -564,7 +564,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
       if (utf_to_utf_length(sz, psz) >= n)
       {
 
-         __throw(::status_exception(error_would_reach_buffer_limit));
+         __throw(error_would_reach_buffer_limit);
 
       }
 
@@ -579,7 +579,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
       if (utf_to_utf_length(sz, psz) >= n)
       {
 
-         __throw(::status_exception(error_would_reach_buffer_limit));
+         __throw(error_would_reach_buffer_limit);
 
       }
 

@@ -2765,7 +2765,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\collection\map_misc.cpp" />
     <ClCompile Include="primitive\collection\numeric_array.cpp" />
     <ClCompile Include="primitive\collection\point_array.cpp" />
-    <ClCompile Include="primitive\collection\rect_array.cpp" />
+    <ClCompile Include="primitive\collection\rectangle_i32_array.cpp" />
     <ClCompile Include="primitive\collection\sort.cpp" />
     <ClCompile Include="primitive\collection\stringl.cpp" />
     <ClCompile Include="primitive\collection\string_array_base.cpp" />
@@ -3399,7 +3399,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\geometry2d\point_array.h" />
     <ClInclude Include="primitive\geometry2d\polygon.h" />
     <ClInclude Include="primitive\geometry2d\rect.h" />
-    <ClInclude Include="primitive\geometry2d\rect_array.h" />
+    <ClInclude Include="primitive\geometry2d\rectangle_i32_array.h" />
     <ClInclude Include="primitive\geometry2d\size.h" />
     <ClInclude Include="primitive\geometry2d\size_array.h" />
     <ClInclude Include="primitive\geometry2d\types.h" />

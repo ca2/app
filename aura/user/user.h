@@ -42,6 +42,9 @@ namespace user
 
       __pointer(::windowing::windowing)      m_pwindowing;
 
+      ::mutex                                  m_mutexRunnable;
+      list < __pointer(::matter) >        m_listRunnable;
+
 
       user();
       virtual ~user();
@@ -108,11 +111,13 @@ namespace user
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
 
 
-
+      virtual bool runnable_step();
 
 
 
    };
+
+
 
 
 } // namespace user

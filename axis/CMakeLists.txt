@@ -286,10 +286,10 @@ list(APPEND axis_source
         platform/system.h
         user/_.h
         user/_user.h
-        user/button.cpp
-        user/button.h
-        user/check_box.cpp
-        user/check_box.h
+        #user/button.cpp
+        #user/button.h
+        #user/check_box.cpp
+        #user/check_box.h
         user/combo_box.cpp
         user/combo_box.h
         user/combo_list.cpp
@@ -298,8 +298,8 @@ list(APPEND axis_source
         user/simple_ui_draw.h
         user/slider.cpp
         user/slider.h
-        user/still.cpp
-        user/still.h
+        #user/still.cpp
+        #user/still.h
         user/style.cpp
         user/style.h
         user/user.cpp
@@ -705,20 +705,12 @@ if (MSVC)
     target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
     target_link_libraries(axis PRIVATE acme apex aqua aura pcre sqlite bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
 elseif(LINUX)
-    #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
-    #pkg_check_modules(PKGCONFIG freetype2  )
     target_compile_options(axis PRIVATE -fpermissive)
-    #target_compile_options(axis PRIVATE ${PKGCONFIG_CFLAGS})
-
-    #target_compile_options(axis PRIVATE -std=c++14)
-    #target_link_options(axis PRIVATE ${GTK_LDFLAGS})
     target_link_options(axis PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(axis PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-    target_link_libraries(axis PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
+    #target_link_libraries(axis PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)z
     target_link_libraries(axis PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(axis PRIVATE acme apex aqua aura pcre2-8 sqlite3 bz2)
     target_link_options(axis PRIVATE -Wl,-z,defs)
-    ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 

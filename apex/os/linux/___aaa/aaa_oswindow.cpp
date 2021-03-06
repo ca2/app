@@ -6,7 +6,7 @@
 
 
 extern SnLauncheeContext* g_psncontext;
-mutex * x11_mutex();
+mutex * user_mutex();
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)

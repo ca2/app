@@ -127,6 +127,12 @@ namespace acme
 
       }
 
+      auto operator ->() {return m_p;}
+      auto operator ->() const  {return m_p;}
+
+      auto operator *() {return *m_p;}
+      auto operator *() const  {return *m_p;}
+
    };
 
 
@@ -274,6 +280,15 @@ namespace str
 
 
 } // namespace str
+
+
+template < typename POINTER >
+::acme::malloc < POINTER > __malloc(POINTER p)
+{
+
+   return ::acme::malloc < POINTER >(p);
+
+}
 
 
 

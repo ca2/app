@@ -5407,14 +5407,6 @@ namespace user
    }
 
 
-   bool interaction_impl::setWMClass(const char * psz)
-   {
-
-    return true;
-
-   }
-
-
    ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
@@ -5431,7 +5423,7 @@ namespace user
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
    {
 
       m_pwindow->non_top_most_upper_window_rects(recta);
@@ -5442,7 +5434,7 @@ namespace user
    bool interaction_impl::is_occluded()
    {
 
-      ::rect_array recta;
+      ::rectangle_i32_array recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -5469,12 +5461,12 @@ namespace user
    }
 
 
-   void interaction_impl::approximate_occlusion_rects(rect_array& raTest)
+   void interaction_impl::approximate_occlusion_rects(rectangle_i32_array& raTest)
    {
 
       raTest.remove_all();
 
-      ::rect_array ra;
+      ::rectangle_i32_array ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -5590,7 +5582,7 @@ namespace user
    i64 interaction_impl::approximate_occlusion_area()
    {
 
-      rect_array ra;
+      rectangle_i32_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -5658,7 +5650,7 @@ namespace user
    i64 interaction_impl::approximate_occlusion_area_except_self_transparent()
    {
 
-      rect_array ra;
+      rectangle_i32_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -5687,7 +5679,7 @@ namespace user
    i64 interaction_impl::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      rect_array ra;
+      rectangle_i32_array ra;
 
       approximate_occlusion_rects(ra);
 

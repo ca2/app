@@ -19,8 +19,7 @@ namespace exception
       bool                    m_bContinue;
       string                  m_strMessage;
       string                  m_strException;
-      HRESULT                 m_hresult;
-      
+
       // A exception class is meant to be a small utility/tool class.
       // m_bLog -> too much managing (micro-managing and also big-managing)
       // from utility/tool small class of the Logging System->
@@ -30,8 +29,11 @@ namespace exception
 
       string                  m_strFile;
       int                     m_iLine;
-      ::u32                   m_uLastError;
       int                     m_iErrNo;
+#ifdef WINDOWS
+      HRESULT                 m_hresult;
+      ::u32                   m_uLastError;
+#endif
 
 
       static bool             s_bDoStackTrace;

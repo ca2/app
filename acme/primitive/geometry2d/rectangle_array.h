@@ -2,7 +2,7 @@
 
 
 template < typename RECT_TYPE >
-class rect_array_base :
+class rectangle_array_base :
    public array < RECT_TYPE >
 {
 public:
@@ -14,7 +14,7 @@ public:
    using SIZE_TYPE = typename RECT_TYPE::SIZE_TYPE;
 
 
-   virtual ~rect_array_base();
+   virtual ~rectangle_array_base();
 
    using array < RECT_TYPE >::add;
    void add(const RECT_TYPE & rectangle);
@@ -54,7 +54,7 @@ public:
 };
 
 template < typename RECT_TYPE >
-inline void rect_array_base < RECT_TYPE >::offset(POINT_TYPE point)
+inline void rectangle_array_base < RECT_TYPE >::offset(POINT_TYPE point)
 {
    offset(point.x, point.y);
 }
@@ -63,13 +63,13 @@ inline void rect_array_base < RECT_TYPE >::offset(POINT_TYPE point)
 
 
 template < typename RECT_TYPE >
-rect_array_base < RECT_TYPE >::~rect_array_base()
+rectangle_array_base < RECT_TYPE >::~rectangle_array_base()
 {
 
 }
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
+void rectangle_array_base < RECT_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
    for (i32 i = 0; i < this->get_size(); i++)
@@ -88,7 +88,7 @@ void rect_array_base < RECT_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 
 
 template < typename RECT_TYPE >
-RECT_TYPE rect_array_base < RECT_TYPE >::union_rect()
+RECT_TYPE rectangle_array_base < RECT_TYPE >::union_rect()
 {
 
    RECT_TYPE rectUnion(0, 0, 0, 0);
@@ -104,7 +104,7 @@ RECT_TYPE rect_array_base < RECT_TYPE >::union_rect()
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::get_box(RECT_BASE_TYPE * prectangle)
+void rectangle_array_base < RECT_TYPE >::get_box(RECT_BASE_TYPE * prectangle)
 
 {
 
@@ -115,7 +115,7 @@ void rect_array_base < RECT_TYPE >::get_box(RECT_BASE_TYPE * prectangle)
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
+void rectangle_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
 {
 
    for (index i = 0; i < this->get_size();)
@@ -134,42 +134,42 @@ void rect_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
 }
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::add(const RECT_TYPE & rectangle)
+void rectangle_array_base < RECT_TYPE >::add(const RECT_TYPE & rectangle)
 {
    array < RECT_TYPE >::add(rectangle);
 }
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
+void rectangle_array_base < RECT_TYPE >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
 {
    add(RECT_TYPE(left, top, right, bottom));
 }
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
+void rectangle_array_base < RECT_TYPE >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
    add(rect_dim(x, y, cx, cy));
 }
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::add(const POINT_TYPE & point, const SIZE_TYPE & size)
+void rectangle_array_base < RECT_TYPE >::add(const POINT_TYPE & point, const SIZE_TYPE & size)
 {
    add(RECT_TYPE(point, size));
 }
 
 
 template < typename RECT_TYPE >
-void rect_array_base < RECT_TYPE >::add(const SIZE_TYPE & size)
+void rectangle_array_base < RECT_TYPE >::add(const SIZE_TYPE & size)
 {
    this->add(RECT_TYPE(size));
 }
 
 
 template < typename RECT_TYPE >
-index rect_array_base < RECT_TYPE >::max_normal_intersect_area(const RECT_TYPE & rectParam, const RECT_TYPE & rectModel)
+index rectangle_array_base < RECT_TYPE >::max_normal_intersect_area(const RECT_TYPE & rectParam, const RECT_TYPE & rectModel)
 {
 
    index iFound = -1;
@@ -211,9 +211,10 @@ index rect_array_base < RECT_TYPE >::max_normal_intersect_area(const RECT_TYPE &
 
 
 
-using rect_array = rect_array_base < rectangle_i32 >;
-using rect64_array = rect_array_base < rectangle_i64 >;
-using rectd_array = rect_array_base < rectangle_f64 >;
+using rectangle_i32_array = rectangle_array_base < rectangle_i32 >;
+using rectangle_i64_array = rectangle_array_base < rectangle_i64 >;
+using rectangle_f32_array = rectangle_array_base < rectangle_f32 >;
+using rectangle_f64_array = rectangle_array_base < rectangle_f64 >;
 
 
 

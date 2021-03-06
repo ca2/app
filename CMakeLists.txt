@@ -2025,7 +2025,7 @@ add_executable(app
         acme/primitive/collection/ptr_array.h
         acme/primitive/collection/queue.h
         acme/primitive/collection/raw_array_decl.h
-        acme/primitive/collection/rect_array.cpp
+        acme/primitive/collection/rectangle_i32_array.cpp
         acme/primitive/collection/runnable_array.h
         acme/primitive/collection/set.h
         acme/primitive/collection/sort.cpp
@@ -2114,7 +2114,7 @@ add_executable(app
         acme/primitive/geometry2d/polygon.h
         acme/primitive/geometry2d/rect.cpp
         acme/primitive/geometry2d/rect.h
-        acme/primitive/geometry2d/rect_array.h
+        acme/primitive/geometry2d/rectangle_i32_array.h
         acme/primitive/geometry2d/shape.cpp
         acme/primitive/geometry2d/shape.h
         acme/primitive/geometry2d/shape_array.h

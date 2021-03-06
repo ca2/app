@@ -66,7 +66,7 @@ namespace str
 #ifdef WINDOWS
          return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
 #else
-         __throw(todo("multibyte"));
+         __throw(todo, "multibyte");
 #endif
 
       }
@@ -76,7 +76,7 @@ namespace str
 #ifdef WINDOWS
 return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
 #else
-         __throw(todo("multibyte"));
+         __throw(todo, "multibyte");
 #endif
       }
 

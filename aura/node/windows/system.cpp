@@ -5,31 +5,31 @@
 namespace aura
 {
 
-
-   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
-   {
-
-      auto psession = Session;
-
-      auto puser = psession->m_puser;
-
-      auto pmessagebox = __create_new < ::user::message_box >();
-
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
-
-      pmessagebox->show(pszMessage, pszTitle, emessagebox);
-
-      ///__throw(todo);
-
-//      auto pwindowing = puser->m_pwindowing;
-
-//      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
-
-//      process(ret);
-
-      return pfuture;
-
-   }
+//
+//   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+//   {
+//
+//      auto psession = Session;
+//
+//      auto puser = psession->m_puser;
+//
+//      auto pmessagebox = __create_new < ::user::message_box >();
+//
+//      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+//
+//      pmessagebox->show(pszMessage, pszTitle, emessagebox);
+//
+//      ///__throw(todo);
+//
+////      auto pwindowing = puser->m_pwindowing;
+//
+////      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+//
+////      process(ret);
+//
+//      return pfuture;
+//
+//   }
 
 
    //::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)

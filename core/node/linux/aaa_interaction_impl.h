@@ -68,9 +68,6 @@ namespace linux
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual bool setWMClass(const char * psz) override;
-      //void _002OnDraw(::image * pimage);
-
       DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
@@ -502,7 +499,7 @@ namespace linux
 
       void show_task(bool bShow) override;
 
-      virtual void non_top_most_upper_window_rects(::rect_array& recta) override;
+      virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta) override;
 
    };
 

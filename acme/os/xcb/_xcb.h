@@ -15,7 +15,7 @@ void x11_wait_timer_or_event(Display * pdisplay);
 void __x11_hook_on_idle(Display * pdisplay);
 
 
-CLASS_DECL_ACME ::mutex * x11_mutex();
+CLASS_DECL_ACME ::mutex * user_mutex();
 
 
 #include "xcb_hook.h"

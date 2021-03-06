@@ -146,11 +146,11 @@ public:
    static void siginfofree(void * psiginfo);
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP, void * caller_address = nullptr) :
-      exception(nullptr, error_exception, iSkip, caller_address),
+      ::exception::exception(error_exception, nullptr, iSkip, caller_address),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
 #ifndef ANDROID
-      ,m_ucontext(*(ucontext_t *)pc)
+      ,m_ucontext(*((ucontext_t *)pc))
 #endif
    { /*_ASSERTE(psiginfo != 0);*/ }
 

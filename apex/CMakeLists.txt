@@ -188,7 +188,7 @@ list(APPEND apex_source
    message/message.h
    message/receiver.cpp
    message/receiver.h
-   message/route.h
+        #message/route.h
    message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
@@ -1336,19 +1336,10 @@ if (MSVC)
    target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
    target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX)
-
-   # Ubuntu libappindicator3-dev
-
-   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator3-0.1)
    pkg_check_modules(PKGCONFIG libcrypto libssl)
-   #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
    target_compile_options(apex PRIVATE -fpermissive)
    target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
-
-   #target_compile_options(apex PRIVATE -std=c++14)
-   #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
    target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
-   #target_link_libraries(apex PRIVATE dl pthread idn z X11)
    target_link_libraries(apex PRIVATE dl pthread idn z)
    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(apex PRIVATE acme)

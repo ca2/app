@@ -270,72 +270,72 @@ namespace aura
    }
 
 
-   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const future & process)
-   {
+//   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const future & process)
+//   {
+//
+//      auto psession = Session;
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(!pwindowing)
+//      {
+//
+//         return ::error_no_windowing;
+//
+//      }
+//
+//      string strMessage(pszMessage);
+//
+//      string strTitle(pszTitle);
+//
+//      fork([strMessage, strTitle, emessagebox, process, pwindowing]()
+//      {
+//
+//         auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
+//
+//         process(result);
+//
+//      });
+//
+//      return ::success;
+//
+//   }
 
-      auto psession = Session;
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      if(!pwindowing)
-      {
-
-         return ::error_no_windowing;
-
-      }
-
-      string strMessage(pszMessage);
-
-      string strTitle(pszTitle);
-
-      fork([strMessage, strTitle, emessagebox, process, pwindowing]()
-      {
-
-         auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
-
-         process(result);
-
-      });
-
-      return ::success;
-
-   }
-
-
-   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
-   {
-
-      auto psession = Session;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      if(!pwindowing)
-      {
-
-         return ::error_no_windowing;
-
-      }
-
-      string strMessage(pszMessage);
-
-      string strTitle(pszTitle);
-
-      fork([strMessage, strTitle, durationTimeout,  emessagebox, process, pwindowing]()
-           {
-
-              auto result = pwindowing->message_box_timeout(strMessage, strTitle, durationTimeout, emessagebox);
-
-              process(result);
-
-           });
-
-      return ::success;
-
-   }
+//   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+//   {
+//
+//      auto psession = Session;
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if(!pwindowing)
+//      {
+//
+//         return ::error_no_windowing;
+//
+//      }
+//
+//      string strMessage(pszMessage);
+//
+//      string strTitle(pszTitle);
+//
+//      fork([strMessage, strTitle, durationTimeout,  emessagebox, process, pwindowing]()
+//           {
+//
+//              auto result = pwindowing->message_box_timeout(strMessage, strTitle, durationTimeout, emessagebox);
+//
+//              process(result);
+//
+//           });
+//
+//      return ::success;
+//
+//   }
 
 
 } // namespace aura

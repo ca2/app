@@ -11,7 +11,7 @@
 
 void x11_store_name(oswindow oswindow, const char * pszName);
 void x11_defer_check_configuration(oswindow oswindow);
-void upper_window_rects(oswindow oswindow, rect_array & ra);
+void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra);
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
@@ -208,18 +208,6 @@ namespace linux
 
    }
 
-
-   bool interaction_impl::setWMClass(const char * psz)
-   {
-
-    string str(psz);
-
-        m_oswindow->set_wm_class(str);
-
-
-    return true;
-
-   }
 
    oswindow interaction_impl::Detach()
    {
@@ -4886,7 +4874,7 @@ namespace linux
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rect_array& recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
    {
 
       upper_window_rects(get_safe_handle(), recta);

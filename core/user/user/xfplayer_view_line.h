@@ -180,7 +180,7 @@ public:
 
    void SetAnimateType(i32 iAnimateType);
 
-   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, rect_array &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, rectangle_i32_array &   rectaModified);
 
    void Show(bool bShow = true);
    virtual xfplayer_view_line & operator = (const xfplayer_view_line & src);
@@ -202,9 +202,9 @@ public:
 
    void add_char(widechar wch, strsize &index, ::write_text::font * pFont);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rect_array & rectaModified, bool bRecalcLayout);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rect_array & rectaModified, strsize * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, strsize * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove);

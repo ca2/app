@@ -7,6 +7,13 @@
 #include "apex/message/simple_command.h"
 
 
+::mutex * g_pmutexUser = nullptr;
+
+
+CLASS_DECL_ACME void initialize_user_mutex();
+CLASS_DECL_ACME void finalize_user_mutex();
+
+
 namespace user
 {
 
@@ -18,11 +25,15 @@ namespace user
       //m_pufeschema = nullptr;
       //m_pufe = nullptr;
 
+      ::initialize_user_mutex();
+
    }
 
 
    user::~user()
    {
+
+      ::finalize_user_mutex();
 
    }
 
@@ -1295,9 +1306,75 @@ namespace user
    }
 
 
+
+
+   bool user::runnable_step()
+   {
+
+      bool bDoneALotOfThings = false;
+
+      synchronization_lock synchronizationlock(&m_mutexRunnable);
+
+      while (m_listRunnable.has_elements() && ::thread_get_run())
+      {
+
+         auto prunnable = m_listRunnable.pop_front();
+
+         synchronizationlock.unlock();
+
+         prunnable->operator()();
+
+         synchronizationlock.lock();
+
+         bDoneALotOfThings = true;
+
+      }
+
+      return bDoneALotOfThings;
+
+   }
+
+
    __namespace_object_factory(user, ::static_setup::flag_object_user);
 
 
 } // namespace user
+
+
+CLASS_DECL_ACME ::mutex * user_mutex()
+{
+
+   return g_pmutexUser;
+
+}
+
+
+CLASS_DECL_ACME void initialize_user_mutex()
+{
+
+   if(g_pmutexUser)
+   {
+
+      return;
+
+   }
+
+}
+
+
+CLASS_DECL_ACME void finalize_user_mutex()
+{
+
+   if(!g_pmutexUser)
+   {
+
+      return;
+
+   }
+
+   delete g_pmutexUser;
+
+}
+
 
 

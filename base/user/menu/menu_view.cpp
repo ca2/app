@@ -392,7 +392,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rect_array raMenu;
+      rectangle_i32_array raMenu;
 
       int iPos = 0;
 

@@ -149,7 +149,7 @@ int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
 ::mutex * g_pmutexX11 = nullptr;
 
 
-mutex * x11_mutex() {return g_pmutexX11;}
+mutex * user_mutex() {return g_pmutexX11;}
 
 //int get_best_ordered_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
 //int get_best_monitor(::user::interaction * pinteraction, int & l, int & t, int & cx, int & cy);
@@ -1075,7 +1075,7 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 
 
-void upper_window_rects(oswindow oswindow, rect_array & ra)
+void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 {
 
    synchronization_lock synchronizationlock(x11_mutex());

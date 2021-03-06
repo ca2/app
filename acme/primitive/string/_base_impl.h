@@ -2849,8 +2849,6 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
 
    release_string_buffer(nLength);
 
-
-
 }
 
 
@@ -2860,23 +2858,32 @@ bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar
 {
 
    u32 nLength = ::str::get_environment_variable(pszVar, nullptr, 0);
+
    bool bRetVal = false;
 
    if (nLength == 0)
    {
+
       Empty();
+
    }
    else
    {
+
       CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
+
       ::str::get_environment_variable(pszVar, pszBuffer, nLength);
+
       release_string_buffer();
+
       bRetVal = true;
+
    }
 
    return(bRetVal);
 
 }
+
 
 template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
@@ -2887,48 +2894,9 @@ bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
 }
 
 
-// Load the string_base < TYPE_CHAR > from resource 'nID'
-//bool load_string(id id);
-
-// Load the string_base < TYPE_CHAR > from resource 'nID' in module 'hInstance'
-/*    bool load_string(HINSTANCE hInstance,::u32 nID )
-{
-const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
-if( pImage == nullptr )
-{
-return( false );
-}
-
-strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
-CHAR_TYPE * pszBuffer = get_string_buffer( nLength );
-::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-release_string_buffer( nLength );
-
-return( true );
-}*/
-
-// Load the string_base < TYPE_CHAR > from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-/*bool load_string(HINSTANCE hInstance,::u32 nID,::u16 wLanguageID )
-{
-const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
-if( pImage == nullptr )
-{
-return( false );
-}
-
-strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
-CHAR_TYPE * pszBuffer = get_string_buffer( nLength );
-::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-release_string_buffer( nLength );
-
-return( true );
-}*/
-
-
 #ifndef _CSTRING_BUFFER_SIZE
 #define _CSTRING_BUFFER_SIZE(_CStringObj) ((_CStringObj).GetAllocLength() + 1)
 #endif
-
 
 
 template < typename TYPE_CHAR >
@@ -2952,26 +2920,18 @@ void string_base < TYPE_CHAR >::Format(const CHAR_TYPE * pszFormat, ...)
 template < typename TYPE_CHAR >
 void __cdecl string_base < TYPE_CHAR >::AppendFormat(const CHAR_TYPE* pszFormat, ...)
 {
+
    ASSERT(__is_valid_string(pszFormat));
 
    va_list argList;
+
    va_start(argList, pszFormat);
 
    AppendFormatV(pszFormat, argList);
 
    va_end(argList);
+
 }
-
-//#endif
-
-//template < typename TYPE_CHAR >
-//bool string_base < TYPE_CHAR >::load_string(::matter* pobject, id id)
-//{
-//   string str;
-//   bool bOk = pobject->get_context_application()->load_string(str, id);
-//   if (!bOk) return false;
-//   return string_base(str);
-//}
 
 
 template < typename TYPE_CHAR >
@@ -4502,113 +4462,136 @@ inline strsize string_base < TYPE_CHAR > ::find_first_in(const string_base < TYP
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_in(const CHAR_TYPE * s, strsize pos, strsize n) const RELEASENOTHROW
 {
+
    return find_first_of(s, pos, n);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_in(const CHAR_TYPE * s, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_of(s, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_in(CHAR_TYPE ca, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_of(ca, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_not_in(const string_base < TYPE_CHAR > & ansistr, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_not_of(ansistr, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_not_in(const CHAR_TYPE * s, strsize pos, strsize n) const RELEASENOTHROW
 {
+
    return find_first_not_of(s, pos, n);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_not_in(const CHAR_TYPE * s, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_not_of(s, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_first_not_in(CHAR_TYPE ca, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_not_of(ca, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_not_in(const string_base < TYPE_CHAR > & ansistr, strsize pos) const RELEASENOTHROW
 {
+
    return find_first_not_of(ansistr, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_not_in(const CHAR_TYPE * s, strsize pos, strsize n) const RELEASENOTHROW
 {
+
    return find_last_not_of(s, pos, n);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_not_in(const CHAR_TYPE * s, strsize pos) const RELEASENOTHROW
 {
+
    return find_last_not_of(s, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_not_in(CHAR_TYPE ca, strsize pos) const RELEASENOTHROW
 {
+
    return find_last_not_of(ca, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_in(const string_base < TYPE_CHAR > & ansistr, strsize pos) const RELEASENOTHROW
 {
+
    return find_last_of(ansistr, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_in(const CHAR_TYPE * s, strsize pos, strsize n) const RELEASENOTHROW
 {
+
    return find_last_of(s, pos, n);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_in(const CHAR_TYPE * s, strsize pos) const RELEASENOTHROW
 {
+
    return find_last_of(s, pos);
+
 }
 
 
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::find_last_in(CHAR_TYPE ca, strsize pos) const RELEASENOTHROW
 {
+
    return find_last_of(ca, pos);
+
 }
-
-
-//template < typename TYPE_CHAR >
-//inline strsize string_base < TYPE_CHAR > ::length() const
-//{
-//   return this->get_length();
-//}
 
 
 template < typename TYPE_CHAR >
@@ -4643,14 +4626,6 @@ inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::unichar_mid(strsiz
 }
 
 
-
-
-
-
-
-
-
-
 template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR > ::remove(strsize iIndex, strsize nCount)
 {
@@ -4681,70 +4656,46 @@ inline bool operator > (TYPE_CHAR ch, const string_base < TYPE_CHAR > & ansistr)
 template < typename TYPE_CHAR >
 inline bool operator > (widechar ch, const string_base < TYPE_CHAR > & ansistr)
 {
+
    return ansistr < ch;
+
 }
 
 
 template < typename TYPE_CHAR >
 inline bool operator>(i32 i, const string_base < TYPE_CHAR > & ansistr)
 {
+
    return ansistr < i;
+
 }
 
 
 template < typename TYPE_CHAR >
 inline bool operator<(const TYPE_CHAR * psz, const string_base < TYPE_CHAR > & ansistr)
 {
+
    return ansistr > psz;
+
 }
 
 
 template < typename TYPE_CHAR >
 inline bool operator<(TYPE_CHAR ch, const string_base < TYPE_CHAR > & ansistr)
 {
+
    return ansistr > ch;
+
 }
 
 
 template < typename TYPE_CHAR >
 inline bool operator<(i32 i, const string_base < TYPE_CHAR > & ansistr)
 {
+
    return ansistr > i;
+
 }
-
-
-//namespace ansistr
-//{
-//
-//   template < typename TYPE_CHAR >
-//   inline bool ends_eat(string_base < TYPE_CHAR > & ansistr, const CHAR_TYPE* pcszSuffix)
-//   {
-//
-//      strsize iLen = strlen(pcszSuffix);
-//
-//      if (iLen > ansistr.length())
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      if (ansi_count_compare(&ansistr[(ansistr.length() - iLen)], pcszSuffix, (strsize)iLen) != 0)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      ansistr.truncate(ansistr.length() - iLen);
-//
-//      return true;
-//
-//   }
-//
-//
-//} // namespace ansistr
-//
 
 
 template < typename TYPE_CHAR >
@@ -4831,39 +4782,6 @@ inline string_base < TYPE_CHAR >::string_base(const natural_wd32string& wd32str)
 {
 
 }
-
-
-
-
-//
-//
-//#if defined(_UWP)
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::operator String ^ () const
-//{
-//   return ref new String(widestring(*this));
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::operator String ^ ()
-//{
-//   return ref new String(widestring(*this));
-//}
-//
-//
-//#endif
-
-
-
-
-
-
-
-
-#pragma once
 
 
 template < typename TYPE_CHAR >

@@ -11,7 +11,7 @@
 #include <string.h>
 
 
-extern ::mutex * x11_mutex();
+extern ::mutex * user_mutex();
 
 
 

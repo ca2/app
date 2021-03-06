@@ -32,18 +32,14 @@
 #define GWL_EXSTYLE         (-20)
 
 
-/*
- * Key State Masks for Mouse Messages
- */
 #define MK_LBUTTON          0x0001
 #define MK_RBUTTON          0x0002
 #define MK_SHIFT            0x0004
 #define MK_CONTROL          0x0008
 #define MK_MBUTTON          0x0010
-//#if(_WIN32_WINNT >= 0x0500)
+
 #define MK_XBUTTON1         0x0020
 #define MK_XBUTTON2         0x0040
-//#endif /* _WIN32_WINNT >= 0x0500 */
 
 
 #define WS_CHILD            0x40000000L

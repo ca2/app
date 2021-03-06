@@ -195,6 +195,7 @@ public:
    void append_from_string(const char * psz);
    void append_from_string(const string & str);
    void append_from_string(const ::payload & payload);
+   void append_byte(byte b){ append(&b, 1);}
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
    virtual void to_string(const string_exchange & str) const override;
    string to_string(memsize iStart, memsize uiSize = -1) const;

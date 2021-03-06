@@ -143,7 +143,7 @@ namespace apex
 
       string strParams = get_params();
 
-      if (call_async(strPath, strParams, strDir, e_display_none, false) == 0)
+      if (::succeeded(call_async(strPath, strParams, strDir, e_display_none, false)))
       {
 
          return true;

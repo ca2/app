@@ -15013,21 +15013,6 @@ restart:
    }
 
 
-   bool interaction::setWMClass(const char * psz)
-   {
-
-      if(!m_pimpl)
-      {
-
-         return false;
-
-      }
-
-      return m_pimpl->setWMClass(psz);
-
-   }
-
-
    double interaction::_001GetTopLeftWeightedOccludedOpaqueRate()
    {
 

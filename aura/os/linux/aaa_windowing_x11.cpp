@@ -1084,7 +1084,7 @@ bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, in
 
 
 
-void upper_window_rects(oswindow oswindow, rect_array & ra)
+void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 {
 
    synchronization_lock synchronizationlock(x11_mutex());

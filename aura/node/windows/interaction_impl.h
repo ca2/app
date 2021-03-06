@@ -735,7 +735,7 @@ namespace windows
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      //virtual void non_top_most_upper_window_rects(::rect_array& recta) override;
+      //virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta) override;
 
 
       virtual void activate_top_parent();

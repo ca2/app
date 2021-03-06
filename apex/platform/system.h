@@ -1040,11 +1040,11 @@ template < typename ENUM >
 inline string enum_text(ENUM e)
 {
 
-   auto & system = System;
+   auto psystem = System;
 
-   critical_section_lock synchronizationlock(System->m_csEnumText);
+   critical_section_lock synchronizationlock(&System->m_csEnumText);
 
-   return system.m_mapEnumToText[typeid(e).name()][(i64)e];
+   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 
 }
 
@@ -1053,13 +1053,13 @@ template < class ENUM >
 inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 {
 
-   auto & system = System;
+   auto * psystem = System;
 
    critical_section_lock synchronizationlock(System->m_csEnumText);
 
    i64 iValue;
 
-   if (system.m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+   if (psystem->m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
    {
 
       e = (ENUM)iValue;

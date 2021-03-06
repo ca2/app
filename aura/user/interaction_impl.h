@@ -235,7 +235,6 @@ namespace user
       virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
       virtual bool has_pending_redraw_flags() override;
-      virtual bool setWMClass(const char * psz) override;
 
       virtual ::user::interaction_impl * from_os_data(void * pdata);
       virtual void * get_os_data() const;
@@ -744,12 +743,12 @@ namespace user
       virtual i64 _001GetRectTopLeftWeightedArea(const RECTANGLE_I32 * lpcrect);
 
       virtual i64 opaque_area(const RECTANGLE_I32 * lpcrect);
-      virtual void approximate_occlusion_rects(rect_array& raTest);
+      virtual void approximate_occlusion_rects(rectangle_i32_array& raTest);
 
       virtual i64 opaque_area();
 
       /// from top to bottom
-      virtual void non_top_most_upper_window_rects(::rect_array& recta);
+      virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta);
 
 
       virtual ::windowing::window * get_window() const override;

@@ -33,7 +33,7 @@ void x11_fork(PRED pred)
 }
 
 
-mutex * x11_mutex();
+mutex * user_mutex();
 
 
 template < typename PRED >

@@ -70,113 +70,23 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      //virtual void finish() override;
-
-virtual bool setWMClass(const char * psz);
       virtual void finalize() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
-      //virtual bool check_need_translation();
-      //virtual void clear_need_translation();
-      //virtual void on_reposition() override;
-
-      //virtual bool check_show_flags();
-      //virtual void clear_show_flags();
-      //virtual void on_show_window() override;
-
-      //virtual bool check_need_zorder();
-      //virtual void clear_need_zorder();
-      //virtual void on_zorder();
-
-
-      //virtual bool has_pending_redraw_flags() override;
 
       virtual bool start_window_visual();
 
-      //virtual void SetWindowDisplayChanged() override;
-
-
-      //virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
       virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
       
-      //virtual bool create_interaction();
-      
-      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, id id);
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr);
-
-      //virtual bool _create_window(::user::interaction * pinteraction,__pointer(::user::system) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
-
-      //virtual bool _create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent);
-
-
-
-
       virtual bool prodevian_update_screen();
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectClient = nullptr, bool bStretch = true) override;
 
       virtual bool window_move(i32 x, i32 y);
 
-      //virtual bool _get_client_rect(RECTANGLE_I64 * prectangle) override;
-      //virtual bool _get_window_rect(RECTANGLE_I64 * prectangle) override;
-
-      //virtual bool _001ClientToScreen(RECTANGLE_F64 * prectangle) override;
-
-      //virtual bool _001ClientToScreen(RECTANGLE_I32 * prectangle) override;
-
-      //virtual bool _001ClientToScreen(RECTANGLE_I64 * prectangle) override;
-
-      //virtual bool _001ClientToScreen(POINT_F64 * ppoint) override;
-
-      //virtual bool _001ClientToScreen(POINT_I32 * ppoint) override;
-
-      //virtual bool _001ClientToScreen(POINT_I64 * ppoint) override;
-
-      //virtual bool _001ScreenToClient(RECTANGLE_F64 * prectangle) override;
-
-      //virtual bool _001ScreenToClient(RECTANGLE_I32 * prectangle) override;
-
-      //virtual bool _001ScreenToClient(RECTANGLE_I64 * prectangle) override;
-
-      //virtual bool _001ScreenToClient(POINT_F64 * ppoint) override;
-
-      //virtual bool _001ScreenToClient(POINT_I32 * ppoint) override;
-
-      //virtual bool _001ScreenToClient(POINT_I64 * prectangle) override;
-
-      //svirtual bool SetPlacement(const ::rectangle_i32 & rectangle,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool place(const ::rectangle_i32 & rectangle) override;
-      //virtual bool RepositionWindow(i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
-      // virtual bool MoveWindow(i32 x, i32 y, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool move_to(const ::point_i32 & point) override;
-      //virtual bool SizeWindow(i32 x,i32 y,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool SizeWindow(const size_i32 & sz,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool ResizeWindow(i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_size(const size_i32 & sz) override;
-      //virtual bool set_window_position(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
-
-      //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_window_position(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
-      //virtual bool defer_set_window_pos(zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
-
-      //virtual bool defer_set_window_pos(zorder zorder, i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
-
-      //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
-      //virtual i32 GetWindowRgn(HRGN hRgn);
-
-      //virtual ::e_status post_routine(const ::routine & routine);
-
-
-//#ifdef WINDOWS
-//
-//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
-//
-//#else
 
       virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
-
-//#endif
 
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

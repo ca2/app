@@ -156,8 +156,8 @@ namespace base
 //
 //#else
 //
-//      rect_array                                         m_rectaMonitor;
-//      rect_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectaMonitor;
+//      rectangle_i32_array                                         m_rectaWork;
 //
 //#endif
 //

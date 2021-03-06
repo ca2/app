@@ -166,7 +166,7 @@ void xfplayer_view_line::GetPlacement(RECTANGLE_I32 * prectangle)
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rect_array & rectaModified, bool bRecalcLayout)
+bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout)
 {
 
    single_lock synchronizationlock(m_pContainer->mutex());
@@ -380,7 +380,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rect_array & rectaModified, ::count * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen)
 {
 
    single_lock synchronizationlock(m_pContainer->mutex());
@@ -1059,7 +1059,7 @@ void xfplayer_view_line::Show(bool bShow)
 }
 
 
-void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, rect_array &  rectaModified)
+void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, rectangle_i32_array &  rectaModified)
 {
 
    single_lock synchronizationlock(m_pContainer->mutex());

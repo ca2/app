@@ -73,7 +73,7 @@ namespace user
 //   }
 //
 //
-//   void primitive::RedrawOptimize(rect_array &array)
+//   void primitive::RedrawOptimize(rectangle_i32_array &array)
 //   {
 //
 //      ::rectangle_i32 rectangle;
@@ -321,7 +321,7 @@ namespace user
    }
 
 
-   //bool primitive::Redraw(rect_array & recta)
+   //bool primitive::Redraw(rectangle_i32_array & recta)
    //{
 
    //   bool bOk = true;

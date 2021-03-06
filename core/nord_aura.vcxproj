@@ -890,7 +890,7 @@
     <ClCompile Include="primitive\collection\map_test_51778915.cpp" />
     <ClCompile Include="primitive\collection\numeric_array.cpp" />
     <ClCompile Include="primitive\collection\point_array.cpp" />
-    <ClCompile Include="primitive\collection\rect_array.cpp" />
+    <ClCompile Include="primitive\collection\rectangle_i32_array.cpp" />
     <ClCompile Include="primitive\collection\sort.cpp" />
     <ClCompile Include="primitive\collection\stringl.cpp" />
     <ClCompile Include="primitive\collection\string_array_base.cpp" />

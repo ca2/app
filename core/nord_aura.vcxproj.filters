@@ -556,7 +556,7 @@
     <ClCompile Include="primitive\collection\sort.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\rect_array.cpp">
+    <ClCompile Include="primitive\collection\rectangle_i32_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\point_array.cpp">

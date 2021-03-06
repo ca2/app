@@ -2068,7 +2068,7 @@
 		<Unit filename="primitive/collection/ptr_array.h" />
 		<Unit filename="primitive/collection/queue.h" />
 		<Unit filename="primitive/collection/raw_array_decl.h" />
-		<Unit filename="primitive/collection/rect_array.cpp" />
+		<Unit filename="primitive/collection/rectangle_i32_array.cpp" />
 		<Unit filename="primitive/collection/runnable_array.h" />
 		<Unit filename="primitive/collection/set.h" />
 		<Unit filename="primitive/collection/sort.cpp" />
@@ -2163,7 +2163,7 @@
 		<Unit filename="primitive/geometry2d/polygon.h" />
 		<Unit filename="primitive/geometry2d/rect.cpp" />
 		<Unit filename="primitive/geometry2d/rect.h" />
-		<Unit filename="primitive/geometry2d/rect_array.h" />
+		<Unit filename="primitive/geometry2d/rectangle_i32_array.h" />
 		<Unit filename="primitive/geometry2d/size.cpp" />
 		<Unit filename="primitive/geometry2d/size.h" />
 		<Unit filename="primitive/geometry2d/size_array.h" />

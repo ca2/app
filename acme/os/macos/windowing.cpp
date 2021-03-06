@@ -667,10 +667,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //// front first
-//rect_array cg_get_window_rect_list_above(CGWindowID windowid)
+//rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
 //{
 //
-//   rect_array recta;
+//   rectangle_i32_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenAboveWindow, windowid);
 //
@@ -796,7 +796,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//rect_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
+//rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 //{
 //
 //   bool bFound = false;
@@ -811,7 +811,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#endif
 //
-//   rect_array recta;
+//   rectangle_i32_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
 //
@@ -1065,7 +1065,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowida)
+//void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > & windowida)
 //{
 //
 //   bool bFound = false;
@@ -1286,7 +1286,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   rect_array recta = cg_get_window_rect_list_intersect_above(windowid);
+//   rectangle_i32_array recta = cg_get_window_rect_list_intersect_above(windowid);
 //
 //
 //   if(recta.is_empty())
@@ -1323,14 +1323,14 @@ void ns_main_async(dispatch_block_t block);
 //
 //}
 //
-//void cg_get_window_rect_list(rect_array & recta, array < CGWindowID > & windowida);
+//void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > & windowida);
 //
 //int_bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);
 //
-//   rect_array recta;
+//   rectangle_i32_array recta;
 //
 //   array < CGWindowID > windowida;
 //

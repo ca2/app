@@ -1768,14 +1768,6 @@ namespace user
    }
 
 
-   bool primitive_impl::setWMClass(const char * psz)
-   {
-
-      return true;
-
-   }
-
-
    void primitive_impl::user_interaction_on_hide()
    {
 

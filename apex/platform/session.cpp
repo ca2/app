@@ -294,7 +294,7 @@ namespace apex
    //}
 
 
-   //void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rectangle_i32& rectangle)
+   //void session::get_monitor(rectangle_i32_array& rectaMonitor, rectangle_i32_array& rectaIntersect, const ::rectangle_i32& rectangle)
    //{
 
 
@@ -1349,9 +1349,9 @@ namespace apex
    //   if (bMove)
    //   {
 
-   //      rect_array rectaMonitor;
+   //      rectangle_i32_array rectaMonitor;
 
-   //      rect_array rectaIntersect;
+   //      rectangle_i32_array rectaIntersect;
 
    //      get_monitor(rectaMonitor, rectaIntersect, rectParam);
 

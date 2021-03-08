@@ -1088,7 +1088,7 @@ namespace aura
 //#endif
 
       //void OnAppExit();
-      //// System Policy Settings
+      //// ::aura::get_system() Policy Settings
       //virtual bool LoadSysPolicies() override; // Override to load policies other than the system policies that aura API loads.
       //bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
       //bool _LoadSysPolicies() noexcept; // Implementation helper
@@ -1218,7 +1218,7 @@ namespace aura
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // System/System
+      // ::aura::get_system()/::aura::get_system()
       //
       //::user::document * place_hold(::user::interaction * pinteraction)  override;
 

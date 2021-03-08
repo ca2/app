@@ -18,11 +18,11 @@ class CLASS_DECL_APEX object :
 protected:
 
 
-   __pointer(::thread)                                m_pthreadContext;
-   __pointer(::apex::application)                     m_pappContext;
-   __pointer(::apex::session)                         m_psessionContext;
-   //__pointer(::apex::system)                          m_psystemContext;
-   __pointer(::context)                               m_pcontextContext;
+   __pointer(::layered)                                m_pthread;
+   __pointer(::layered)                     m_papplication;
+   __pointer(::layered)                         m_psession;
+   //__pointer(::layered)                          m_psystemContext;
+   __pointer(::layered)                               m_pcontext;
    __pointer(matter_array)                            m_pcompositea;
    __pointer(matter_array)                            m_preferencea;
 
@@ -63,18 +63,17 @@ public:
 
    inline matter_array * _composite_array() { return m_pcompositea; }
    inline matter_array * _reference_array() { return m_preferencea; }
-   //inline task_array * _task_array() { return m_ptaska; }
 
 
    inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
    inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
-   //inline task_array & task_array() { ::__defer_construct_new(m_ptaska); return *m_ptaska; }
+
 
 
    virtual void process_exit_status(const ::e_status& estatus);
 
 
-   inline ::apex::application * get_context_application() { return m_pappContext.m_p; }
+   inline ::apex::application * application() { return (::apex::application *) m_papplication->layer(LAYERED_APEX); }
 
 
    template < typename BASE_TYPE >
@@ -82,107 +81,21 @@ public:
 
 
    virtual void add_routine(const ::id & idRoutine, const ::routine & routine);
-   //virtual void add_process(const ::id & idProcess, const ::future & process);
+
 
    virtual void add_each_routine_from(const ::id & idRoutine, ::object * pobjectSource);
-   //virtual void add_each_process_from(const ::id & idProcess, ::object * pobjectSource);
+
 
    virtual array < ::routine > * routinea(const ::id & idRoutine);
-   //virtual array < ::future > * processa(const ::id & idProcess);
+
 
    virtual void call_routine(const ::id & idRoutine);
-   //virtual void send_payload(const ::id & idProcess, const ::payload & payload);
 
-
-   //template < typename METHOD >
-   //inline object & operator +=(const ::method & method)
-   //{
-
-   //   add(method);
-
-   //   return *this;
-
-   //}
-
-   //template < typename FUTURE >
-   //inline object& operator +=(const ::future & future)
-   //{
-
-   //   add(future);
-
-   //   return *this;
-
-   //}
-
-
-
-   //void add_method(const ::id& id, const ::method& method);
-
-
-   //void add_process(const ::id& id, const ::future& future);
-
-
-   //template < typename METHOD >
-   //inline void add_method(const ::id & id, METHOD method, ::matter* pobjectHold = nullptr)
-   //{
-
-   //   add(::method(id, method, pobjectHold));
-
-   //}
-
-   //template < typename FUTURE >
-   //inline void add_process(const ::id & id, const ::future & future, ::matter * pobjectHold = nullptr)
-   //{
-
-   //   add(::future(id, future, pobjectHold));
-
-   //}
-
-   //template < typename METHOD >
-   //inline void add(enum_method emethod, METHOD method)
-   //{
-
-   //   add(::method((::i64) emethod, method));
-
-   //}
-
-   //template < typename FUTURE >
-   //inline void add(enum_future efuture, FUTURE future)
-   //{
-
-   //   add(::future((::i64) efuture, future));
-
-   //}
 
    inline ::payload context_value(const ::payload & payload);
 
 
-   //virtual ::index task_add(::task* ptask) override;
    virtual void task_remove(::task* ptask) override;
-   //virtual void task_remove_all();
-   //virtual bool task_is_empty() const;
-   //virtual const ::task_array * task_array_get() const;
-   //virtual ::task_array* task_array_get();
-
-
-   //virtual void notify_on_finish(::context_object * pcontextobject) override;
-   
-
-   //template < typename THREAD >
-   //inline __pointer(THREAD) start(
-   //   ::matter* pmatter,
-   //   ::e_priority epriority = priority_normal,
-   //   u32 nStackSize = 0,
-   //   u32 dwCreateFlags = 0)
-   //{
-
-   //   auto pthread = __create_new < THREAD >();
-
-   //   ::task::start(pthread);
-
-   //   return pthread;
-
-   //}
 
 
    template < typename BASE_TYPE >
@@ -203,21 +116,21 @@ public:
 
    inline void defer_object_meta() { if (::is_null(m_pmeta)) create_object_meta(); }
 
-   ::object_meta * meta() { defer_object_meta(); return m_pmeta; }
+   inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   ::context * get_context() const { return m_pcontextContext; }
+   inline ::context * get_context() const { return m_pcontext; }
 
-   ::thread * get_context_thread() const { return m_pthreadContext; }
+   inline ::thread * get_thread() const { return m_pthread; }
 
-   ::apex::application * get_context_application() const { return m_pappContext; }
+   inline ::apex::application * get_application() const { return m_papplication; }
 
-   ::apex::session * get_context_session() const { return m_psessionContext; }
+   inline ::apex::session * get_session() const { return m_psession; }
 
    //::apex::system * get_context_system() const { return m_psystemContext; }
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   ::apex::application * get_app() const { return get_context_application(); }
+   //inline ::apex::application * application() const { return m_papplication; }
 
    virtual string get_text(const ::payload & payload, const ::id& id) override;
 

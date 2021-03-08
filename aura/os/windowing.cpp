@@ -108,7 +108,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //#endif
 //
-//   auto & system = System;
+//   auto & system = ::aura::get_system();
 //
 //   synchronization_lock slSystem(system.mutex());
 //

@@ -15,7 +15,7 @@ namespace parallelization
    bool task_registered(::task * ptask)
    {
 
-      return System->get_task_id(ptask) != 0;
+      return ::acme::get_system()->get_task_id(ptask) != 0;
 
    }
 
@@ -23,7 +23,7 @@ namespace parallelization
    void task_register(ithread_t itask, ::task * ptask)
    {
 
-      System->set_task(itask, ptask);
+      ::acme::get_system()->set_task(itask, ptask);
 
    }
 

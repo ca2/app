@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#define _System System
+#define _System ::apex::get_system()
 #define _Platform Platform
 #define _Application Application
 #define _Session Session

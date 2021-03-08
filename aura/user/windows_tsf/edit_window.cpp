@@ -495,7 +495,7 @@ namespace tsf
    lresult edit_window::_OnCreate(VOID)
    {
 
-      m_hInst = System->m_hinstance;
+      m_hInst = ::aura::get_system()->m_hinstance;
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 

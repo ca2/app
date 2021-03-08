@@ -64,7 +64,7 @@ void _001AddPacks(string_to_string & base64map, string & str)
       if (strEncoding.compare_ci("base64") == 0)
       {
 
-         ::str::base64 & b64 = System->base64();
+         ::str::base64 & b64 = ::aura::get_system()->base64();
 
          index iBase64 = iEncoding + 1;
 
@@ -4924,7 +4924,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //System->message_box("VK_RETURN reached plain_edit");
+                     //::aura::get_system()->message_box("VK_RETURN reached plain_edit");
                   }
 
                   string str;

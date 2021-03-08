@@ -31,7 +31,7 @@ namespace linux
    //Office       An office type application
    //Science      Scientific software
    //Settings     Settings applications                                                         Entries may appear in a separate menu or as part of a "Control Center"
-   //System       System application, "System Tools" such as say a log viewer or network monitor
+   //::aura::get_system()       ::aura::get_system() application, "::aura::get_system() Tools" such as say a log viewer or network monitor
    //Utility      Small utility application, "Accessories"
 
    string_array desktop_file::registered_categories()
@@ -50,7 +50,7 @@ namespace linux
       stra.add("Office");
       stra.add("Science");
       stra.add("Settings");
-      stra.add("System");
+      stra.add("::aura::get_system()");
       stra.add("Utility");
 
       return stra;

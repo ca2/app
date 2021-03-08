@@ -208,7 +208,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      if (System->m_bImaging)
+      if (::aura::get_system()->m_bImaging)
       {
 
          //fork([this, pcursor, path, bFromCache]()

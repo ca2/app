@@ -1043,7 +1043,7 @@ namespace ios
     UNREFERENCED_PARAMETER(nCmd);
     __throw(error_not_implemented);
 
-    application* pApp = System;
+    application* pApp = ::aura::get_system();
     ASSERT_VALID(pApp);
     if (pApp->m_eHelpType == afxHTMLHelp)
     {
@@ -1230,10 +1230,10 @@ namespace ios
 
             ((::user::interaction_impl *)this)->m_puserinteraction->get_window_rect(rectWindow);
 
-            if(System->get_monitor_count() > 0)
+            if(::aura::get_system()->get_monitor_count() > 0)
             {
                ::rectangle_i32 rcMonitor;
-               System->get_monitor_rectangle(0, &rcMonitor);
+               ::aura::get_system()->get_monitor_rectangle(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -1887,7 +1887,7 @@ namespace ios
    {
       __throw(error_not_implemented);
 
-      /*      application* pApp = System;
+      /*      application* pApp = ::aura::get_system();
        if (pApp != nullptr && pApp->GetMainWnd() == this)
        {
        // recolor global brushes used by control bars
@@ -1919,7 +1919,7 @@ namespace ios
     {
     UNREFERENCED_PARAMETER(lpDeviceName);
     __throw(error_not_implemented);
-    application* pApp = System;
+    application* pApp = ::aura::get_system();
     if (pApp != nullptr && pApp->GetMainWnd() == this)
     pApp->DevModeChange(lpDeviceName);
 
@@ -1938,7 +1938,7 @@ namespace ios
    //   {
    //      if (!(GetStyle() & WS_CHILD))
    //      {
-   //         ::user::interaction* pMainWnd = System->GetMainWnd();
+   //         ::user::interaction* pMainWnd = ::aura::get_system()->GetMainWnd();
    //         if (pMainWnd != nullptr &&
    //            GetKeyState(VK_SHIFT) >= 0 &&
    //            GetKeyState(VK_CONTROL) >= 0 &&
@@ -4811,7 +4811,7 @@ namespace ios
           if (pFrame != nullptr)
           hWnd = pFrame->get_handle();
           else
-          hWnd = System->GetMainWnd()->get_handle();*/
+          hWnd = ::aura::get_system()->GetMainWnd()->get_handle();*/
       }
 
       // a popup ::user::interaction cannot be owned by a child ::user::interaction
@@ -4864,7 +4864,7 @@ namespace ios
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      //System->window_map().set((iptr)get_handle(), this);
+      //::aura::get_system()->window_map().set((iptr)get_handle(), this);
 
    }
 

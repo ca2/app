@@ -127,7 +127,7 @@ CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority)
 
 
 
-#undef System
+#undef ::apex::get_system()
 #undef Platform
 
 using namespace Platform;
@@ -137,9 +137,9 @@ using namespace Windows::UI::Core;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
+using namespace Windows::::apex::get_system();
 using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace Windows::::apex::get_system()::Threading;
 
 uptr keycode_to_char(uptr n)
 {
@@ -147,103 +147,103 @@ uptr keycode_to_char(uptr n)
 }
 
 
-uptr virtualkey_to_char(::Windows::System::VirtualKey e)
+uptr virtualkey_to_char(::Windows::::apex::get_system()::VirtualKey e)
 {
    switch (e)
    {
-   case ::Windows::System::VirtualKey::Number0:
+   case ::Windows::::apex::get_system()::VirtualKey::Number0:
       return '0';
-   case ::Windows::System::VirtualKey::Number1:
+   case ::Windows::::apex::get_system()::VirtualKey::Number1:
       return '1';
-   case ::Windows::System::VirtualKey::Number2:
+   case ::Windows::::apex::get_system()::VirtualKey::Number2:
       return '2';
-   case ::Windows::System::VirtualKey::Number3:
+   case ::Windows::::apex::get_system()::VirtualKey::Number3:
       return '3';
-   case ::Windows::System::VirtualKey::Number4:
+   case ::Windows::::apex::get_system()::VirtualKey::Number4:
       return '4';
-   case ::Windows::System::VirtualKey::Number5:
+   case ::Windows::::apex::get_system()::VirtualKey::Number5:
       return '5';
-   case ::Windows::System::VirtualKey::Number6:
+   case ::Windows::::apex::get_system()::VirtualKey::Number6:
       return '6';
-   case ::Windows::System::VirtualKey::Number7:
+   case ::Windows::::apex::get_system()::VirtualKey::Number7:
       return '7';
-   case ::Windows::System::VirtualKey::Number8:
+   case ::Windows::::apex::get_system()::VirtualKey::Number8:
       return '8';
-   case ::Windows::System::VirtualKey::Number9:
+   case ::Windows::::apex::get_system()::VirtualKey::Number9:
       return '9';
-   case ::Windows::System::VirtualKey::A:
+   case ::Windows::::apex::get_system()::VirtualKey::A:
       return 'a';
-   case ::Windows::System::VirtualKey::B:
+   case ::Windows::::apex::get_system()::VirtualKey::B:
       return 'b';
-   case ::Windows::System::VirtualKey::C:
+   case ::Windows::::apex::get_system()::VirtualKey::C:
       return 'c';
-   case ::Windows::System::VirtualKey::D:
+   case ::Windows::::apex::get_system()::VirtualKey::D:
       return 'd';
-   case ::Windows::System::VirtualKey::E:
+   case ::Windows::::apex::get_system()::VirtualKey::E:
       return 'e';
-   case ::Windows::System::VirtualKey::F:
+   case ::Windows::::apex::get_system()::VirtualKey::F:
       return 'f';
-   case ::Windows::System::VirtualKey::G:
+   case ::Windows::::apex::get_system()::VirtualKey::G:
       return 'g';
-   case ::Windows::System::VirtualKey::H:
+   case ::Windows::::apex::get_system()::VirtualKey::H:
       return 'h';
-   case ::Windows::System::VirtualKey::I:
+   case ::Windows::::apex::get_system()::VirtualKey::I:
       return 'i';
-   case ::Windows::System::VirtualKey::J:
+   case ::Windows::::apex::get_system()::VirtualKey::J:
       return 'j';
-   case ::Windows::System::VirtualKey::K:
+   case ::Windows::::apex::get_system()::VirtualKey::K:
       return 'k';
-   case ::Windows::System::VirtualKey::L:
+   case ::Windows::::apex::get_system()::VirtualKey::L:
       return 'l';
-   case ::Windows::System::VirtualKey::M:
+   case ::Windows::::apex::get_system()::VirtualKey::M:
       return 'm';
-   case ::Windows::System::VirtualKey::N:
+   case ::Windows::::apex::get_system()::VirtualKey::N:
       return 'n';
-   case ::Windows::System::VirtualKey::O:
+   case ::Windows::::apex::get_system()::VirtualKey::O:
       return 'o';
-   case ::Windows::System::VirtualKey::P:
+   case ::Windows::::apex::get_system()::VirtualKey::P:
       return 'p';
-   case ::Windows::System::VirtualKey::Q:
+   case ::Windows::::apex::get_system()::VirtualKey::Q:
       return 'q';
-   case ::Windows::System::VirtualKey::R:
+   case ::Windows::::apex::get_system()::VirtualKey::R:
       return 'r';
-   case ::Windows::System::VirtualKey::S:
+   case ::Windows::::apex::get_system()::VirtualKey::S:
       return 's';
-   case ::Windows::System::VirtualKey::T:
+   case ::Windows::::apex::get_system()::VirtualKey::T:
       return 't';
-   case ::Windows::System::VirtualKey::U:
+   case ::Windows::::apex::get_system()::VirtualKey::U:
       return 'u';
-   case ::Windows::System::VirtualKey::V:
+   case ::Windows::::apex::get_system()::VirtualKey::V:
       return 'v';
-   case ::Windows::System::VirtualKey::W:
+   case ::Windows::::apex::get_system()::VirtualKey::W:
       return 'w';
-   case ::Windows::System::VirtualKey::X:
+   case ::Windows::::apex::get_system()::VirtualKey::X:
       return 'x';
-   case ::Windows::System::VirtualKey::Y:
+   case ::Windows::::apex::get_system()::VirtualKey::Y:
       return 'y';
-   case ::Windows::System::VirtualKey::Z:
+   case ::Windows::::apex::get_system()::VirtualKey::Z:
       return 'z';
-   case ::Windows::System::VirtualKey::Shift:
+   case ::Windows::::apex::get_system()::VirtualKey::Shift:
       return VK_SHIFT;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftShift:
       return VK_LSHIFT;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::Windows::::apex::get_system()::VirtualKey::RightShift:
       return VK_RSHIFT;
-   case ::Windows::System::VirtualKey::Control:
+   case ::Windows::::apex::get_system()::VirtualKey::Control:
       return VK_CONTROL;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftControl:
       return VK_LCONTROL;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::Windows::::apex::get_system()::VirtualKey::RightControl:
       return VK_RCONTROL;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::Windows::::apex::get_system()::VirtualKey::Menu:
       return VK_MENU;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftMenu:
       return VK_LMENU;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::RightMenu:
       return VK_RMENU;
-   case ::Windows::System::VirtualKey::Tab:
+   case ::Windows::::apex::get_system()::VirtualKey::Tab:
       return VK_TAB;
-   case ::Windows::System::VirtualKey::Enter:
+   case ::Windows::::apex::get_system()::VirtualKey::Enter:
       return VK_RETURN;
    default:
       ;
@@ -252,147 +252,147 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
+::user::enum_key virtualkey_to_userkey(::Windows::::apex::get_system()::VirtualKey e, bool& bSpecialKey)
 {
    bSpecialKey = false;
    switch (e)
    {
-   case ::Windows::System::VirtualKey::Number0:
+   case ::Windows::::apex::get_system()::VirtualKey::Number0:
       return ::user::e_key_0;
-   case ::Windows::System::VirtualKey::Number1:
+   case ::Windows::::apex::get_system()::VirtualKey::Number1:
       return ::user::e_key_1;
-   case ::Windows::System::VirtualKey::Number2:
+   case ::Windows::::apex::get_system()::VirtualKey::Number2:
       return ::user::e_key_2;
-   case ::Windows::System::VirtualKey::Number3:
+   case ::Windows::::apex::get_system()::VirtualKey::Number3:
       return ::user::e_key_3;
-   case ::Windows::System::VirtualKey::Number4:
+   case ::Windows::::apex::get_system()::VirtualKey::Number4:
       return ::user::e_key_4;
-   case ::Windows::System::VirtualKey::Number5:
+   case ::Windows::::apex::get_system()::VirtualKey::Number5:
       return ::user::e_key_5;
-   case ::Windows::System::VirtualKey::Number6:
+   case ::Windows::::apex::get_system()::VirtualKey::Number6:
       return ::user::e_key_6;
-   case ::Windows::System::VirtualKey::Number7:
+   case ::Windows::::apex::get_system()::VirtualKey::Number7:
       return ::user::e_key_7;
-   case ::Windows::System::VirtualKey::Number8:
+   case ::Windows::::apex::get_system()::VirtualKey::Number8:
       return ::user::e_key_8;
-   case ::Windows::System::VirtualKey::Number9:
+   case ::Windows::::apex::get_system()::VirtualKey::Number9:
       return ::user::e_key_9;
-   case ::Windows::System::VirtualKey::A:
+   case ::Windows::::apex::get_system()::VirtualKey::A:
       return ::user::e_key_a;
-   case ::Windows::System::VirtualKey::B:
+   case ::Windows::::apex::get_system()::VirtualKey::B:
       return ::user::e_key_b;
-   case ::Windows::System::VirtualKey::C:
+   case ::Windows::::apex::get_system()::VirtualKey::C:
       return ::user::e_key_c;
-   case ::Windows::System::VirtualKey::D:
+   case ::Windows::::apex::get_system()::VirtualKey::D:
       return ::user::e_key_d;
-   case ::Windows::System::VirtualKey::E:
+   case ::Windows::::apex::get_system()::VirtualKey::E:
       return ::user::e_key_e;
-   case ::Windows::System::VirtualKey::F:
+   case ::Windows::::apex::get_system()::VirtualKey::F:
       return ::user::e_key_f;
-   case ::Windows::System::VirtualKey::G:
+   case ::Windows::::apex::get_system()::VirtualKey::G:
       return ::user::e_key_g;
-   case ::Windows::System::VirtualKey::H:
+   case ::Windows::::apex::get_system()::VirtualKey::H:
       return ::user::e_key_h;
-   case ::Windows::System::VirtualKey::I:
+   case ::Windows::::apex::get_system()::VirtualKey::I:
       return ::user::e_key_i;
-   case ::Windows::System::VirtualKey::J:
+   case ::Windows::::apex::get_system()::VirtualKey::J:
       return ::user::e_key_j;
-   case ::Windows::System::VirtualKey::K:
+   case ::Windows::::apex::get_system()::VirtualKey::K:
       return ::user::e_key_k;
-   case ::Windows::System::VirtualKey::L:
+   case ::Windows::::apex::get_system()::VirtualKey::L:
       return ::user::e_key_l;
-   case ::Windows::System::VirtualKey::M:
+   case ::Windows::::apex::get_system()::VirtualKey::M:
       return ::user::e_key_m;
-   case ::Windows::System::VirtualKey::N:
+   case ::Windows::::apex::get_system()::VirtualKey::N:
       return ::user::e_key_n;
-   case ::Windows::System::VirtualKey::O:
+   case ::Windows::::apex::get_system()::VirtualKey::O:
       return ::user::e_key_o;
-   case ::Windows::System::VirtualKey::P:
+   case ::Windows::::apex::get_system()::VirtualKey::P:
       return ::user::e_key_p;
-   case ::Windows::System::VirtualKey::Q:
+   case ::Windows::::apex::get_system()::VirtualKey::Q:
       return ::user::e_key_q;
-   case ::Windows::System::VirtualKey::R:
+   case ::Windows::::apex::get_system()::VirtualKey::R:
       return ::user::e_key_r;
-   case ::Windows::System::VirtualKey::S:
+   case ::Windows::::apex::get_system()::VirtualKey::S:
       return ::user::e_key_s;
-   case ::Windows::System::VirtualKey::T:
+   case ::Windows::::apex::get_system()::VirtualKey::T:
       return ::user::e_key_t;
-   case ::Windows::System::VirtualKey::U:
+   case ::Windows::::apex::get_system()::VirtualKey::U:
       return ::user::e_key_u;
-   case ::Windows::System::VirtualKey::V:
+   case ::Windows::::apex::get_system()::VirtualKey::V:
       return ::user::e_key_v;
-   case ::Windows::System::VirtualKey::W:
+   case ::Windows::::apex::get_system()::VirtualKey::W:
       return ::user::e_key_w;
-   case ::Windows::System::VirtualKey::X:
+   case ::Windows::::apex::get_system()::VirtualKey::X:
       return ::user::e_key_x;
-   case ::Windows::System::VirtualKey::Y:
+   case ::Windows::::apex::get_system()::VirtualKey::Y:
       return ::user::e_key_y;
-   case ::Windows::System::VirtualKey::Z:
+   case ::Windows::::apex::get_system()::VirtualKey::Z:
       return ::user::e_key_z;
-   case ::Windows::System::VirtualKey::Shift:
+   case ::Windows::::apex::get_system()::VirtualKey::Shift:
       bSpecialKey = true;
       return ::user::e_key_shift;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftShift:
       bSpecialKey = true;
       return ::user::e_key_lshift;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::Windows::::apex::get_system()::VirtualKey::RightShift:
       bSpecialKey = true;
       return ::user::e_key_rshift;
-   case ::Windows::System::VirtualKey::Control:
+   case ::Windows::::apex::get_system()::VirtualKey::Control:
       bSpecialKey = true;
       return ::user::e_key_control;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftControl:
       bSpecialKey = true;
       return ::user::e_key_lcontrol;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::Windows::::apex::get_system()::VirtualKey::RightControl:
       bSpecialKey = true;
       return ::user::e_key_rcontrol;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::Windows::::apex::get_system()::VirtualKey::Menu:
       bSpecialKey = true;
       return ::user::e_key_alt;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftMenu:
       bSpecialKey = true;
       return ::user::e_key_lalt;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::RightMenu:
       bSpecialKey = true;
       return ::user::e_key_ralt;
-   case ::Windows::System::VirtualKey::Tab:
+   case ::Windows::::apex::get_system()::VirtualKey::Tab:
       bSpecialKey = true;
       return ::user::e_key_tab;
-   case ::Windows::System::VirtualKey::Enter:
+   case ::Windows::::apex::get_system()::VirtualKey::Enter:
       bSpecialKey = true;
       return ::user::e_key_return;
-   case ::Windows::System::VirtualKey::Delete:
+   case ::Windows::::apex::get_system()::VirtualKey::Delete:
       bSpecialKey = true;
       return ::user::e_key_delete;
-   case ::Windows::System::VirtualKey::Back:
+   case ::Windows::::apex::get_system()::VirtualKey::Back:
       bSpecialKey = true;
       return ::user::e_key_back;
-   case ::Windows::System::VirtualKey::Left:
+   case ::Windows::::apex::get_system()::VirtualKey::Left:
       bSpecialKey = true;
       return ::user::e_key_left;
-   case ::Windows::System::VirtualKey::Right:
+   case ::Windows::::apex::get_system()::VirtualKey::Right:
       bSpecialKey = true;
       return ::user::e_key_right;
-   case ::Windows::System::VirtualKey::Up:
+   case ::Windows::::apex::get_system()::VirtualKey::Up:
       bSpecialKey = true;
       return ::user::e_key_up;
-   case ::Windows::System::VirtualKey::Down:
+   case ::Windows::::apex::get_system()::VirtualKey::Down:
       bSpecialKey = true;
       return ::user::e_key_down;
-   case ::Windows::System::VirtualKey::PageUp:
+   case ::Windows::::apex::get_system()::VirtualKey::PageUp:
       bSpecialKey = true;
       return ::user::e_key_up;
-   case ::Windows::System::VirtualKey::PageDown:
+   case ::Windows::::apex::get_system()::VirtualKey::PageDown:
       bSpecialKey = true;
       return ::user::e_key_down;
-   case ::Windows::System::VirtualKey::Home:
+   case ::Windows::::apex::get_system()::VirtualKey::Home:
       bSpecialKey = true;
       return ::user::e_key_home;
-   case ::Windows::System::VirtualKey::End:
+   case ::Windows::::apex::get_system()::VirtualKey::End:
       bSpecialKey = true;
       return ::user::e_key_end;
-   case ::Windows::System::VirtualKey::Escape:
+   case ::Windows::::apex::get_system()::VirtualKey::Escape:
       bSpecialKey = true;
       return ::user::e_key_escape;
    case 186:
@@ -409,7 +409,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::e_key_semicolon2;
    case 193:
       return ::user::e_key_slash2;
-   case ::Windows::System::VirtualKey::Space:
+   case ::Windows::::apex::get_system()::VirtualKey::Space:
       return ::user::e_key_space;
    default:
       ;
@@ -424,99 +424,99 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-uptr virtualkey_to_code(::Windows::System::VirtualKey e)
+uptr virtualkey_to_code(::Windows::::apex::get_system()::VirtualKey e)
 {
    switch (e)
    {
    case 190:
       return '.';
-   case ::Windows::System::VirtualKey::Number0:
+   case ::Windows::::apex::get_system()::VirtualKey::Number0:
       return 1;
-   case ::Windows::System::VirtualKey::Number1:
+   case ::Windows::::apex::get_system()::VirtualKey::Number1:
       return 2;
-   case ::Windows::System::VirtualKey::Number2:
+   case ::Windows::::apex::get_system()::VirtualKey::Number2:
       return 3;
-   case ::Windows::System::VirtualKey::Number3:
+   case ::Windows::::apex::get_system()::VirtualKey::Number3:
       return 4;
-   case ::Windows::System::VirtualKey::Number4:
+   case ::Windows::::apex::get_system()::VirtualKey::Number4:
       return 5;
-   case ::Windows::System::VirtualKey::Number5:
+   case ::Windows::::apex::get_system()::VirtualKey::Number5:
       return 6;
-   case ::Windows::System::VirtualKey::Number6:
+   case ::Windows::::apex::get_system()::VirtualKey::Number6:
       return 7;
-   case ::Windows::System::VirtualKey::Number7:
+   case ::Windows::::apex::get_system()::VirtualKey::Number7:
       return 8;
-   case ::Windows::System::VirtualKey::Number8:
+   case ::Windows::::apex::get_system()::VirtualKey::Number8:
       return 9;
-   case ::Windows::System::VirtualKey::Number9:
+   case ::Windows::::apex::get_system()::VirtualKey::Number9:
       return 10;
-   case ::Windows::System::VirtualKey::A:
+   case ::Windows::::apex::get_system()::VirtualKey::A:
       return 'a';
-   case ::Windows::System::VirtualKey::B:
+   case ::Windows::::apex::get_system()::VirtualKey::B:
       return 'b';
-   case ::Windows::System::VirtualKey::C:
+   case ::Windows::::apex::get_system()::VirtualKey::C:
       return 'ca';
-   case ::Windows::System::VirtualKey::D:
+   case ::Windows::::apex::get_system()::VirtualKey::D:
       return 'd';
-   case ::Windows::System::VirtualKey::E:
+   case ::Windows::::apex::get_system()::VirtualKey::E:
       return 'e';
-   case ::Windows::System::VirtualKey::F:
+   case ::Windows::::apex::get_system()::VirtualKey::F:
       return 'f';
-   case ::Windows::System::VirtualKey::G:
+   case ::Windows::::apex::get_system()::VirtualKey::G:
       return 'g';
-   case ::Windows::System::VirtualKey::H:
+   case ::Windows::::apex::get_system()::VirtualKey::H:
       return 'h';
-   case ::Windows::System::VirtualKey::I:
+   case ::Windows::::apex::get_system()::VirtualKey::I:
       return 'i';
-   case ::Windows::System::VirtualKey::J:
+   case ::Windows::::apex::get_system()::VirtualKey::J:
       return 'j';
-   case ::Windows::System::VirtualKey::K:
+   case ::Windows::::apex::get_system()::VirtualKey::K:
       return 'k';
-   case ::Windows::System::VirtualKey::L:
+   case ::Windows::::apex::get_system()::VirtualKey::L:
       return 'l';
-   case ::Windows::System::VirtualKey::M:
+   case ::Windows::::apex::get_system()::VirtualKey::M:
       return 'm';
-   case ::Windows::System::VirtualKey::N:
+   case ::Windows::::apex::get_system()::VirtualKey::N:
       return 'n';
-   case ::Windows::System::VirtualKey::O:
+   case ::Windows::::apex::get_system()::VirtualKey::O:
       return 'o';
-   case ::Windows::System::VirtualKey::P:
+   case ::Windows::::apex::get_system()::VirtualKey::P:
       return 'p';
-   case ::Windows::System::VirtualKey::Q:
+   case ::Windows::::apex::get_system()::VirtualKey::Q:
       return 'q';
-   case ::Windows::System::VirtualKey::R:
+   case ::Windows::::apex::get_system()::VirtualKey::R:
       return 'r';
-   case ::Windows::System::VirtualKey::S:
+   case ::Windows::::apex::get_system()::VirtualKey::S:
       return 's';
-   case ::Windows::System::VirtualKey::T:
+   case ::Windows::::apex::get_system()::VirtualKey::T:
       return 't';
-   case ::Windows::System::VirtualKey::U:
+   case ::Windows::::apex::get_system()::VirtualKey::U:
       return 'u';
-   case ::Windows::System::VirtualKey::V:
+   case ::Windows::::apex::get_system()::VirtualKey::V:
       return 'v';
-   case ::Windows::System::VirtualKey::W:
+   case ::Windows::::apex::get_system()::VirtualKey::W:
       return 'w';
-   case ::Windows::System::VirtualKey::Y:
+   case ::Windows::::apex::get_system()::VirtualKey::Y:
       return 'y';
-   case ::Windows::System::VirtualKey::Z:
+   case ::Windows::::apex::get_system()::VirtualKey::Z:
       return 'z';
-   case ::Windows::System::VirtualKey::Shift:
+   case ::Windows::::apex::get_system()::VirtualKey::Shift:
       return VK_SHIFT;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftShift:
       return VK_LSHIFT;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::Windows::::apex::get_system()::VirtualKey::RightShift:
       return VK_RSHIFT;
-   case ::Windows::System::VirtualKey::Control:
+   case ::Windows::::apex::get_system()::VirtualKey::Control:
       return VK_CONTROL;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftControl:
       return VK_LCONTROL;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::Windows::::apex::get_system()::VirtualKey::RightControl:
       return VK_RCONTROL;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::Windows::::apex::get_system()::VirtualKey::Menu:
       return VK_MENU;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::LeftMenu:
       return VK_LMENU;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::Windows::::apex::get_system()::VirtualKey::RightMenu:
       return VK_RMENU;
    default:
       ;
@@ -585,7 +585,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    CLASS_DECL_APEX color32_t get_system_app_background_color()
 //    {
 
-//       auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //       auto r = color.R;
 
@@ -600,7 +600,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    //CLASS_DECL_APEX double get_system_app_luminance()
 //    //{
 
-//    //   auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //   auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //   double r = color.R;
 
@@ -620,7 +620,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    //   {
 
 
-//    //      auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //      auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //      auto r = color.R;
 
@@ -637,7 +637,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    //   {
 
 
-//    //      auto color = System->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //      auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //      double r = color.R;
 

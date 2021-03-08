@@ -66,7 +66,7 @@ namespace sockets
 
       m_bInitialized = true;
 
-      //if(System->m_bGudoNetCache)
+      //if(::apex::get_system()->m_bGudoNetCache)
       {
 
          //Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
@@ -358,7 +358,7 @@ namespace sockets
    item.m_millisLastChecked.Now();
    m_mapCache.set_at(str, item);
 
-   //if(System->m_bGudoNetCache)
+   //if(::apex::get_system()->m_bGudoNetCache)
    {
 
       //Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
@@ -705,7 +705,7 @@ string net::Sa2String(struct sockaddr *sa)
          }
          if (!vec.get_count())
             return false;
-         ai = vec[System->math().rnd() % vec.get_count()];
+         ai = vec[::apex::get_system()->math().rnd() % vec.get_count()];
          {
             ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
          }
@@ -891,7 +891,7 @@ bool net::reverse_schedule(reverse_cache_item * pitem)
    if (!m_pthreadReverse)
    {
 
-      m_pthreadReverse = System->fork([this]()
+      m_pthreadReverse = ::apex::get_system()->fork([this]()
          {
 
             ::set_thread_name("reverse_dns");

@@ -39,7 +39,7 @@ namespace multimedia
       if (::str::begins_ci(strPath, "rtp://") || ::str::begins_ci(strPath, "rtprx://"))
       {
 
-         return Audio.get_rtp_file(strPath);
+         return ::aqua::get_system()->audio()->get_rtp_file(strPath);
 
       }
 

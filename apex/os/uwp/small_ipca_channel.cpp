@@ -93,11 +93,11 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + System->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apex::get_system()->url_encode(pszMessage);
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 
-         System->main_user_sync(__routine([uri, durationTimeout]()
+         ::apex::get_system()->main_user_sync(__routine([uri, durationTimeout]()
             {
 
                ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
@@ -128,7 +128,7 @@
 
          memory m;
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message) + "," + System->url_encode(System->base64().encode({ pdata, len }));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message) + "," + ::apex::get_system()->url_encode(::apex::get_system()->base64().encode({ pdata, len }));
 
          ::Windows::Foundation::Uri ^uri = ref new ::Windows::Foundation::Uri(anotherappURI);
 

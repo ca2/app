@@ -44,6 +44,8 @@ namespace axis
 
       virtual void on_user_logon(::account::user* puser);
 
+      inline ::axis::user* user() { return m_puser ? (::axis::user *) m_puser->get_os_data(LAYERED_AXIS) : nullptr; }
+
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 
       virtual void on_remove_user(::account::user * puser);

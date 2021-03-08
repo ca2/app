@@ -26,12 +26,6 @@ namespace apex
       void* m_pnativeapp;
 
 
-      ::aqua::application *                           m_paquaapplication;
-      ::aura::application *                           m_pauraapplication;
-      ::axis::application *                           m_paxisapplication;
-      ::base::application *                           m_pbaseapplication;
-      ::bred::application *                           m_pbredapplication;
-      ::core::application *                           m_pcoreapplication;
 
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
@@ -1107,7 +1101,7 @@ namespace apex
 //#endif
 
       void OnAppExit();
-      // System Policy Settings
+      // ::apex::get_system() Policy Settings
       virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
       bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() noexcept; // Implementation helper
@@ -1237,7 +1231,7 @@ namespace apex
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // System/System
+      // ::apex::get_system()/::apex::get_system()
       //
       //::user::document * place_hold(::user::interaction * pinteraction)  override;
 

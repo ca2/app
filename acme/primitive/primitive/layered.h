@@ -36,6 +36,15 @@ public:
 };
 
 
+#define LAYERED_ACME 0
+#define LAYERED_APEX 1
+#define LAYERED_AQUA 2
+#define LAYERED_AURA 3
+#define LAYERED_AXIS 4
+#define LAYERED_BASE 5
+#define LAYERED_BRED 6
+#define LAYERED_CORE 7
+
 #define LAYERED_OBJECT 0
 #define LAYERED_DRAW2D_GRAPHICS 1
 #define LAYERED_USER_CREATE 1

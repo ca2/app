@@ -789,7 +789,7 @@ namespace user
    //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
-   //            System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+   //            ::aura::get_system()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
    //         }
    //      , m_pil[iSize], iImage, iImage);
@@ -847,7 +847,7 @@ namespace user
          return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
-               System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+               ::aura::get_system()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
             }
          , m_pil[iSize], iImage, iImage);

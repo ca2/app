@@ -51,7 +51,7 @@ namespace sockets
       array < ssl_ticket_key >   m_ticketkeya;
 
 
-      static bool s_bReuseSession; // Default System Wide Setting
+      static bool s_bReuseSession; // Default ::apex::get_system() Wide Setting
 
       /** Output buffer struct.
       \ingroup internal */

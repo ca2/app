@@ -30,9 +30,9 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
 
       return ::success;
 
@@ -419,7 +419,7 @@ namespace windows
 
       }
 
-      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) System->m_hinstance, iId, psz))
+      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) ::apex::get_system()->m_hinstance, iId, psz))
       {
 
          return pfile;
@@ -487,7 +487,7 @@ namespace windows
       ASSERT(findFileData.nFileSizeHigh == 0);
       rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
-      auto pnode = System->node();
+      auto pnode = ::apex::get_system()->node();
 
       // convert times as appropriate
       pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *)&findFileData.ftCreationTime);

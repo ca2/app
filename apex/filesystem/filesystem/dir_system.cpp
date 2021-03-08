@@ -44,23 +44,24 @@ dir_system::~dir_system()
 
    }
 
+   auto psystem = ::apex::get_system();
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
-   if (::dir::is(System->side_get_matter_path("app/_matter/main")))
+   if (::dir::is(psystem->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = System->side_get_matter_path("");
+      m_pathLocalAppMatterFolder = psystem->side_get_matter_path("");
 
-      m_pathLocalAppMatterCacheFolder = System->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = psystem->local_get_matter_cache_path();
 
    }
    else
 #endif
    {
 
-      m_pathLocalAppMatterFolder = System->local_get_matter_path();
+      m_pathLocalAppMatterFolder = psystem->local_get_matter_path();
 
-      m_pathLocalAppMatterCacheFolder = System->local_get_matter_cache_path();
+      m_pathLocalAppMatterCacheFolder = psystem->local_get_matter_cache_path();
 
    }
 
@@ -88,18 +89,18 @@ dir_system::~dir_system()
 
    string strAppFolder;
 
-   //if (System->m_plibrary)
+   //if (::apex::get_system()->m_plibrary)
    //{
 
-   //   if (System->m_plibrary->get_ca2_library())
+   //   if (::apex::get_system()->m_plibrary->get_ca2_library())
    //   {
 
-   //      strAppFolder = System->m_plibrary->get_ca2_library()->m_strFolder;
+   //      strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strFolder;
 
    //      if (strAppFolder.is_empty())
    //      {
 
-   //         strAppFolder = System->m_plibrary->get_ca2_library()->m_strName;
+   //         strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strName;
 
    //      }
 
@@ -110,22 +111,22 @@ dir_system::~dir_system()
    //if (strAppFolder.is_empty())
    //{
 
-      strAppFolder = _002Underscore(System->m_strAppId);
+      strAppFolder = _002Underscore(psystem->m_strAppId);
 
    //}
 
    m_pathDefaultAppData /= strAppFolder;
 
-   //m_strCa2DefaultAppData /= System->get_system_platform();
+   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_platform();
 
-   //m_strCa2DefaultAppData /= System->get_system_configuration();
+   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_configuration();
 
    ::file::path pathAppData;
 
-   if (System->has_property("app_folder"))
+   if (::apex::get_system()->has_property("app_folder"))
    {
 
-      pathAppData = System->payload("app_folder");
+      pathAppData = ::apex::get_system()->payload("app_folder");
 
    }
 
@@ -153,7 +154,9 @@ bool dir_system::update_module_path()
 
    auto & context = Context;
 
-   auto pfile = System->m_pfilesystem;
+   auto psystem = ::apex::get_system();
+
+   auto pfile = psystem->m_pfilesystem;
 
    auto pathModule = pfile->m_pathModule;
 

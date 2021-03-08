@@ -17,7 +17,7 @@ hyperlink::~hyperlink()
 bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 {
 
-   System->open_profile_link(strLink, strProfile, strTarget);
+   ::acme::get_system()->open_profile_link(strLink, strProfile, strTarget);
 
    return true;
 
@@ -27,7 +27,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 void hyperlink::open_profile_link(string strUrl, string strProfile, string strTarget)
 {
 
-   System->open_profile_link(strUrl, strProfile, strTarget);
+   ::acme::get_system()->open_profile_link(strUrl, strProfile, strTarget);
 
 }
 

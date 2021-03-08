@@ -172,7 +172,7 @@ namespace acme
 
       filetime filetime;
 
-      auto pnode = System->node();
+      auto pnode = ::acme::get_system()->node();
 
       pnode->get_system_time_as_file_time(&filetime.m_filetime);
 
@@ -403,7 +403,7 @@ void copy(payload * ppayload, const filetime * pfiletime)
 bool filetime_set::modified_timeout(int iSeconds) const
 {
 
-   auto pnode = System->node();
+   auto pnode = ::acme::get_system()->node();
 
    auto filetimeNow = pnode->get_filetime_now();
 

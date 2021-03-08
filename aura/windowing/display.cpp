@@ -45,7 +45,7 @@ namespace windowing
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedScreen = System->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen = ::aura::get_system()->m_bSystemSynchronizedScreen;
 
       }
 
@@ -503,7 +503,7 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      double dMargin = System->m_dpi;
+      double dMargin = ::aura::get_system()->m_dpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {

@@ -9,7 +9,7 @@
 extern int g_iMouse;
 
 
-#undef System
+#undef ::aura::get_system()
 #undef Platform
 
 
@@ -20,9 +20,9 @@ using namespace Windows::UI::Core;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
+using namespace Windows::::aura::get_system();
 using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace Windows::::aura::get_system()::Threading;
 
 
 
@@ -415,7 +415,7 @@ namespace uwp
 
    void directx_framework_view::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
+      if (args->VirtualKey == ::Windows::::aura::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -489,7 +489,7 @@ namespace uwp
       pusermessage = pkey;
 
 
-      if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
+      if (args->VirtualKey == ::Windows::::aura::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }

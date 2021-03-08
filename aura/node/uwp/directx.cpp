@@ -83,7 +83,7 @@ namespace uwp
 
       m_dpi = m_dpiIni;
 
-      System->m_dpi = m_dpiIni;
+      ::aura::get_system()->m_dpi = m_dpiIni;
 
       m_bInitialized = true;
 
@@ -114,19 +114,19 @@ namespace uwp
       {
 
          ID3D11RenderTargetView * nullViews[] = { nullptr };
-         if (System->draw2d()->direct2d()->m_pd3devicecontext)
+         if (::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext)
          {
-            System->draw2d()->direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
+            ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
 
          }
          m_d3dRenderTargetView = nullptr;
-         if (System->draw2d()->direct2d()->m_pd2devicecontext)
+         if (::aura::get_system()->draw2d()->direct2d()->m_pd2devicecontext)
          {
-            System->draw2d()->direct2d()->m_pd2devicecontext->SetTarget(nullptr);
+            ::aura::get_system()->draw2d()->direct2d()->m_pd2devicecontext->SetTarget(nullptr);
          }
          m_d2dTargetBitmap = nullptr;
          m_d3dDepthStencilView = nullptr;
-         System->draw2d()->direct2d()->m_pd3devicecontext->Flush();
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->Flush();
 
          m_pd2d1devicecontext = nullptr;
          m_d2dTargetBitmap = nullptr;
@@ -266,13 +266,13 @@ namespace uwp
 
       ::draw2d::lock draw2dlock;
 
-      //System->draw2d()->direct2d() = __new(::draw2d_direct2d::plugin);
+      //::aura::get_system()->draw2d()->direct2d() = __new(::draw2d_direct2d::plugin);
 
-      //System->draw2d()->direct2d()->initialize();
+      //::aura::get_system()->draw2d()->direct2d()->initialize();
 
       // m_d3dDevice = global_draw_get_d3d11_device1();
 
-      //System->draw2d()->direct2d()->m_pd3devicecontext = global_draw_get_d3d11_device_context1();
+      //::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext = global_draw_get_d3d11_device_context1();
 
       //m_d2dDevice = global_draw_get_d2d1_device();
 
@@ -290,7 +290,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         System->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::aura::get_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -307,7 +307,7 @@ namespace uwp
 
          m_dpi = dpi;
 
-         System->m_dpi = dpi;
+         ::aura::get_system()->m_dpi = dpi;
 
          if (m_bCreated)
          {
@@ -406,7 +406,7 @@ namespace uwp
    //void directx_base::defer_resize_top_level_windows()
    //{
 
-   //   if (System->has_property("client_only"))
+   //   if (::aura::get_system()->has_property("client_only"))
    //   {
 
    //      auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
@@ -460,12 +460,12 @@ namespace uwp
       {
          return;
          ID3D11RenderTargetView * nullViews[] = { nullptr };
-         System->draw2d()->direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
          m_d3dRenderTargetView = nullptr;
          m_pd2d1devicecontext->SetTarget(nullptr);
          m_d2dTargetBitmap = nullptr;
          m_d3dDepthStencilView = nullptr;
-         System->draw2d()->direct2d()->m_pd3devicecontext->Flush();
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->Flush();
 
          m_pd2d1devicecontext = nullptr;
          m_d2dTargetBitmap = nullptr;
@@ -474,12 +474,12 @@ namespace uwp
          //m_windowSizeChangeInProgress = true;
 
 
-         System->draw2d()->direct2d()->m_pd3devicecontext->Flush();
-         System->draw2d()->direct2d()->m_pd3devicecontext->ClearState();
-         System->draw2d()->direct2d()->m_pd2device->ClearResources();
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->Flush();
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->ClearState();
+         ::aura::get_system()->draw2d()->direct2d()->m_pd2device->ClearResources();
          {
             Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
-            hr = System->draw2d()->direct2d()->m_pd3devicecontext->FinishCommandList(false, &pcommandlist);
+            hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {
             }
@@ -538,7 +538,7 @@ namespace uwp
 
          ComPtr<IDXGIDevice1> dxgiDevice;
          
-         hr = System->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice);
+         hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice);
 
          ::uwp::throw_if_failed(hr);
 
@@ -557,7 +557,7 @@ namespace uwp
          CoreWindow ^ window = m_window.Get();
 
          hr = dxgiFactory->CreateSwapChainForCoreWindow(
-            System->draw2d()->direct2d()->m_pd3device.Get(),
+            ::aura::get_system()->draw2d()->direct2d()->m_pd3device.Get(),
             reinterpret_cast<IUnknown *>(window),
             &swapChainDesc,
             nullptr,
@@ -584,7 +584,7 @@ namespace uwp
          
          ::uwp::throw_if_failed(hr);
 
-         hr = System->draw2d()->direct2d()->m_pd3device->CreateRenderTargetView(
+         hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device->CreateRenderTargetView(
             backBuffer.Get(),
             nullptr,
             &m_d3dRenderTargetView
@@ -609,7 +609,7 @@ namespace uwp
          );
 
          ComPtr<ID3D11Texture2D> depthStencil;
-         hr = System->draw2d()->direct2d()->m_pd3device->CreateTexture2D(
+         hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device->CreateTexture2D(
             &depthStencilDesc,
             nullptr,
             &depthStencil
@@ -619,7 +619,7 @@ namespace uwp
 
          auto viewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);
          
-         hr = System->draw2d()->direct2d()->m_pd3device->CreateDepthStencilView(
+         hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device->CreateDepthStencilView(
          depthStencil.Get(),
          &viewDesc,
          &m_d3dDepthStencilView
@@ -635,7 +635,7 @@ namespace uwp
          static_cast<float>(backBufferDesc.Height)
          );
 
-         System->draw2d()->direct2d()->m_pd3devicecontext->RSSetViewports(1, &viewport);
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->RSSetViewports(1, &viewport);
 
       }
 
@@ -650,7 +650,7 @@ namespace uwp
       );
 
 
-      hr = System->draw2d()->direct2d()->m_pd2device->CreateDeviceContext(
+      hr = ::aura::get_system()->draw2d()->direct2d()->m_pd2device->CreateDeviceContext(
          //D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
          D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
          &m_pd2d1devicecontext
@@ -757,7 +757,7 @@ namespace uwp
                // frames that will never be displayed to the screen.
                hr = m_swapChain->Present1(1, 0, &parameters);
 
-               if (System->draw2d()->direct2d()->m_pd3devicecontext.Get())
+               if (::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext.Get())
                {
 
                   if (m_d3dRenderTargetView.Get())
@@ -766,7 +766,7 @@ namespace uwp
                      // Discard the contents of the render target.
                      // This is a valid operation only when the existing contents will be entirely
                      // overwritten. If dirty or scroll rects are used, this call should be removed.
-                     System->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dRenderTargetView.Get());
+                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dRenderTargetView.Get());
 
                   }
 
@@ -774,7 +774,7 @@ namespace uwp
                   {
 
                      // Discard the contents of the depth stencil.
-                     System->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dDepthStencilView.Get());
+                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dDepthStencilView.Get());
 
                   }
 
@@ -846,7 +846,7 @@ namespace uwp
       ComPtr<IDXGIDevice1> dxgiDevice;
       ComPtr<IDXGIAdapter> deviceAdapter;
       DXGI_ADAPTER_DESC deviceDesc;
-      ::uwp::throw_if_failed(System->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice));
+      ::uwp::throw_if_failed(::aura::get_system()->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice));
       ::uwp::throw_if_failed(dxgiDevice->GetAdapter(&deviceAdapter));
       ::uwp::throw_if_failed(deviceAdapter->GetDesc(&deviceDesc));
 
@@ -864,7 +864,7 @@ namespace uwp
 
       if((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
             (deviceDesc.AdapterLuid.HighPart != currentDesc.AdapterLuid.HighPart) ||
-            FAILED(System->draw2d()->direct2d()->m_pd3device->GetDeviceRemovedReason()))
+            FAILED(::aura::get_system()->draw2d()->direct2d()->m_pd3device->GetDeviceRemovedReason()))
       {
          // Release references to resources related to the old device.
          dxgiDevice = nullptr;

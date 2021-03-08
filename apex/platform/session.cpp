@@ -56,11 +56,8 @@ namespace apex
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
-      m_paurasession = nullptr;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pcoresession = nullptr;
 
+      set_layer(LAYERED_APEX, this);
 
       //create_factory < ::user::user >();
       create_factory < ::apex::session, ::apex::session >();
@@ -117,7 +114,7 @@ namespace apex
       if (get_context_system() != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = System->m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = ::apex::get_system()->m_bSystemSynchronizedCursor;
 
       }
 
@@ -304,7 +301,7 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      auto pnode = System->node();
+      auto pnode = ::apex::get_system()->node();
 
       if (!pnode)
       {
@@ -553,7 +550,7 @@ namespace apex
    void session::process_term()
    {
 
-      System->session_remove(m_iEdge);
+      ::apex::get_system()->session_remove(m_iEdge);
 
    }
 
@@ -589,7 +586,7 @@ namespace apex
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (System->is_console_app())
+      if (::apex::get_system()->is_console_app())
       {
 
          return false;
@@ -750,11 +747,11 @@ namespace apex
             if (papp == nullptr)
             {
 
-               if(System->has_property("install")
-                     || System->has_property("uninstall"))
+               if(::apex::get_system()->has_property("install")
+                     || ::apex::get_system()->has_property("uninstall"))
                {
 
-                  ::parallelization::finish(System);
+                  ::parallelization::finish(::apex::get_system());
 
                }
                else
@@ -762,12 +759,12 @@ namespace apex
 
                   message_box("Could not create requested application: \"" + strApp + "\"");
 
-                  ::count c = System->payload("app").array_get_count();
+                  ::count c = ::apex::get_system()->payload("app").array_get_count();
 
-                  if (c == 1 && System->payload("app").at(0) == strApp)
+                  if (c == 1 && ::apex::get_system()->payload("app").at(0) == strApp)
                   {
 
-                     ::parallelization::finish(System);
+                     ::parallelization::finish(::apex::get_system());
 
                   }
 
@@ -789,13 +786,13 @@ namespace apex
 
                }
 
-               //if (System->is_true("install"))
+               //if (::apex::get_system()->is_true("install"))
                if (is_true("install"))
                {
 
                   papp->do_install();
 
-                  System->finalize();
+                  ::apex::get_system()->finalize();
 
                }
                else
@@ -804,7 +801,7 @@ namespace apex
                   if (!papp->is_system() && !papp->is_session())
                   {
 
-                     System->merge_accumulated_on_open_file(pcreate);
+                     ::apex::get_system()->merge_accumulated_on_open_file(pcreate);
 
                   }
 
@@ -874,14 +871,14 @@ namespace apex
 
       }
 
-      string strProtocol = System->url().get_protocol(strPathName);
+      string strProtocol = ::apex::get_system()->url().get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = System->url().get_server(strPathName);
+         strId = ::apex::get_system()->url().get_server(strPathName);
 
-         string str = System->url().get_object(strPathName);
+         string str = ::apex::get_system()->url().get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -897,7 +894,7 @@ namespace apex
 
          __throw(todo, "filehandler");
 
-         //System->filehandler().get_extension_app(straApp, strExtension);
+         //::apex::get_system()->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -1288,7 +1285,7 @@ namespace apex
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction = System->ui_from_handle(oswindowCapture);
+   //   __pointer(::user::interaction) pinteraction = ::apex::get_system()->ui_from_handle(oswindowCapture);
 
    //   if (pinteraction.is_null())
    //   {
@@ -1738,7 +1735,7 @@ namespace apex
    //   if (m_bSystemSynchronizedScreen)
    //   {
 
-   //      return System->get_ui_workspace(pinteraction);
+   //      return ::apex::get_system()->get_ui_workspace(pinteraction);
 
    //   }
    //   else
@@ -1862,7 +1859,7 @@ ret:
       }
 
       // __throw(todo("interaction"));
-      //if (System->m_bUser)
+      //if (::apex::get_system()->m_bUser)
       //{
 
       //   bool bCreateSessionWindow = defer_create_session_frame_window();
@@ -1991,7 +1988,7 @@ ret:
 
       INFO("apex::session::init2 .1");
 
-      if (System->m_bUser)
+      if (::apex::get_system()->m_bUser)
       {
 
          //if (!m_paccount)
@@ -2518,7 +2515,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return System->draw2d()->get_cursor(m_ecursorDefault);
+   //   return ::apex::get_system()->draw2d()->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -2537,10 +2534,10 @@ namespace apex
 
    //   ::apex::session * psession = nullptr;
 
-   //   if(System->m_pbergedgemap == nullptr)
+   //   if(::apex::get_system()->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!System->m_pbergedgemap->lookup(0,psession))
+   //   if(!::apex::get_system()->m_pbergedgemap->lookup(0,psession))
    //   {
    //      return nullptr;
    //   }
@@ -2717,7 +2714,7 @@ namespace apex
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = System->url().url_decode(str);
+      //      str = ::apex::get_system()->url().url_decode(str);
 
       //   }
 

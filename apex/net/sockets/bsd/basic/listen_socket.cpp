@@ -308,7 +308,7 @@ namespace sockets
 
       __pointer(socket) tmp = create_listen_socket();
 
-      auto lId = System->sockets().m_lListenSocket++;
+      auto lId = ::apex::get_system()->sockets().m_lListenSocket++;
 
       string strTopicText;
 

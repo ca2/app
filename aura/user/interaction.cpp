@@ -2014,7 +2014,7 @@ namespace user
 
 #ifndef WINDOWS_DESKTOP
 
-      if (get_context_application() != nullptr && get_context_system() != nullptr && System->get_active_ui() == this)
+      if (get_context_application() != nullptr && get_context_system() != nullptr && ::aura::get_system()->get_active_ui() == this)
       {
 
          auto psession = Session;
@@ -3153,7 +3153,7 @@ namespace user
          else
          {
 
-            auto pnode = System->node();
+            auto pnode = ::aura::get_system()->node();
 
             if (pnode && pnode->is_app_dark_mode())
             {
@@ -3970,7 +3970,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      System->delivery_for(id_os_dark_mode, this);
+      ::aura::get_system()->delivery_for(id_os_dark_mode, this);
 
       on_create_user_interaction();
 
@@ -4004,7 +4004,7 @@ namespace user
          //if (get_context_application()->get_context_system() != nullptr)
          //{
 
-         //   System->add_frame(this);
+         //   ::aura::get_system()->add_frame(this);
 
          //}
 
@@ -8487,7 +8487,7 @@ namespace user
 
       }
 
-      //System->post_to_all_threads(WM_KICKIDLE, 0, 0);
+      //::aura::get_system()->post_to_all_threads(WM_KICKIDLE, 0, 0);
 
       return m_idModalResult;
 
@@ -14072,7 +14072,7 @@ restart:
    CLASS_DECL_AURA ::mutex *  mutex_children()
    {
 
-      return &System->m_mutexUserChildren;
+      return &::aura::get_system()->m_mutexUserChildren;
 
    }
 

@@ -120,7 +120,7 @@ namespace datetime
    time::time(const filetime & filetime)
    {
 
-      auto pnode = System->node();
+      auto pnode = ::acme::get_system()->node();
 
       pnode->file_time_to_time(&m_time, &filetime.m_filetime);
 

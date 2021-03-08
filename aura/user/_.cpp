@@ -7,7 +7,7 @@
 //
 //   ::e_status estatus = ::error_failed;
 //
-//   auto psystem = System;
+//   auto psystem = ::aura::get_system();
 //
 //   if(psystem)
 //   {
@@ -28,7 +28,7 @@
 //CLASS_DECL_AURA ::user::primitive * __user_primitive(::windowing::window * pwindow)
 //{
 //
-//   ::user::primitive * pprimitive = System->ui_from_handle(oswindow);
+//   ::user::primitive * pprimitive = ::aura::get_system()->ui_from_handle(oswindow);
 //
 //   return pprimitive;
 //

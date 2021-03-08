@@ -113,7 +113,7 @@ namespace uwp
 
                   auto applicationview1 = m_applicationview;
 
-                  //auto applicationview2 = System->m_pimplMain->m_applicationview;
+                  //auto applicationview2 = ::aura::get_system()->m_pimplMain->m_applicationview;
 
                   auto Id1 = applicationview1->Id;
 
@@ -352,7 +352,7 @@ namespace uwp
       if(get_context_application() != nullptr)
       {
 
-         System->window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
+         ::aura::get_system()->window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
 
       }
 
@@ -859,7 +859,7 @@ namespace uwp
       UNREFERENCED_PARAMETER(nCmd);
       __throw(error_not_implemented);
       /*
-      application* pApp = System;
+      application* pApp = ::aura::get_system();
       ASSERT_VALID(pApp);
       if (pApp->m_eHelpType == afxHTMLHelp)
       {
@@ -1085,7 +1085,7 @@ namespace uwp
          //__pointer(base_session) psession;
          //if(get_context_application()->m_pcoreapp->is_system())
          //{
-         //   psession = System->query_session(0);
+         //   psession = ::aura::get_system()->query_session(0);
          //   if(psession != nullptr && psession->m_bSessionSynchronizedCursor)
          //   {
          //      psession->m_pointCursor = pmouse->m_point;
@@ -2187,7 +2187,7 @@ return true;
    {
       __throw(error_not_implemented);
 
-      /*      application* pApp = System;
+      /*      application* pApp = ::aura::get_system();
       if (pApp != nullptr && pApp->GetMainWnd() == this)
       {
       // recolor global brushes used by control bars
@@ -2219,7 +2219,7 @@ return true;
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
       __throw(error_not_implemented);
-      /*application* pApp = System;
+      /*application* pApp = ::aura::get_system();
       if (pApp != nullptr && pApp->GetMainWnd() == this)
       pApp->DevModeChange(lpDeviceName);
 
@@ -2239,7 +2239,7 @@ return true;
    {
       if (!(GetStyle() & WS_CHILD))
       {
-         ::user::interaction* pMainWnd = System->GetMainWnd();
+         ::user::interaction* pMainWnd = ::aura::get_system()->GetMainWnd();
          if (pMainWnd != nullptr &&
                GetKeyState(VK_SHIFT) >= 0 &&
                GetKeyState(VK_CONTROL) >= 0 &&
@@ -2257,7 +2257,7 @@ return true;
    LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
    {
       // update metrics if this interaction_impl is the main interaction_impl
-      //if(System->GetMainWnd() == this)
+      //if(::aura::get_system()->GetMainWnd() == this)
       //{
       //   // update any system metrics cache
       //   //         afxData.UpdateSysMetrics();
@@ -2418,8 +2418,8 @@ return true;
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      System->get_event(m_pthread)->SetEvent();
-      //    System->get_event(System->get_twf())->wait(millis(8400));
+      //      ::aura::get_system()->get_event(m_pthread)->SetEvent();
+      //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
    }
 
    void interaction_impl::_001OnPaint(::message::message * pmessage)
@@ -2632,7 +2632,7 @@ return true;
       ////   // center within appropriate monitor coordinates
       ////   if (hWndCenter == nullptr)
       ////   {
-      ////      oswindow hwDefault = System->GetMainWnd()->_get_handle();
+      ////      oswindow hwDefault = ::aura::get_system()->GetMainWnd()->_get_handle();
 
       ////      GetMonitorInfo(
       ////         MonitorFromWindow(hwDefault, MONITOR_DEFAULTTOPRIMARY), &mi);
@@ -3986,10 +3986,10 @@ return true;
 
       //__throw(todo);
 
-      //if(System->get_twf() == nullptr)
+      //if(::aura::get_system()->get_twf() == nullptr)
       //   return false;
 
-      //if(System->get_twf()->m_bProDevianMode)
+      //if(::aura::get_system()->get_twf()->m_bProDevianMode)
       //   return true;
 
       //ASSERT(::is_window(get_handle()));
@@ -4727,8 +4727,8 @@ return true;
       __throw(todo);
 
       //__pointer(::user::message) pusermessage(pmessage);
-      //if(System->get_cursor() != nullptr
-      //   && System->get_cursor()->m_ecursor != cursor_system)
+      //if(::aura::get_system()->get_cursor() != nullptr
+      //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
       //{
       //   ::SetCursor(nullptr);
       //}
@@ -5177,7 +5177,7 @@ return true;
       //   if (pFrame != nullptr)
       //   hWnd = pFrame->get_handle();
       //   else
-      //   hWnd = System->GetMainWnd()->get_handle();*/
+      //   hWnd = ::aura::get_system()->GetMainWnd()->get_handle();*/
       //}
 
       //// a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
@@ -5450,7 +5450,7 @@ lCallNextHook:
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      System->window_map().set((oswindow)(iptr)(void *)get_handle(),this);
+      ::aura::get_system()->window_map().set((oswindow)(iptr)(void *)get_handle(),this);
 
    }
 

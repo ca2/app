@@ -223,7 +223,7 @@ namespace user
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////
 ////#ifndef _UWP
-////      pusersystem->m_createstruct.hInstance = System->m_hinstance;
+////      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hinstance;
 ////#endif
 ////
 ////#else

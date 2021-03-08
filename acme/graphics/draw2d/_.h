@@ -23,13 +23,6 @@ inline byte clampAndConvert(double v)
 
 
 
-typedef struct tagWINRGBQUAD {
-   byte    rgbBlue;
-   byte    rgbGreen;
-   byte    rgbRed;
-   byte    rgbReserved;
-} WINRGBQUAD, * LPWINRGBQUAD;
-
 
 #include "_const.h"
 

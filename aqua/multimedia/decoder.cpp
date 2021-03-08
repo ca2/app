@@ -99,11 +99,9 @@ namespace multimedia
 
       {
 
-         auto& multimedia = Multimedia;
+         auto pmultimedia = ::aqua::get_system()->multimedia();
 
-         auto pmultimedia = get_context_multimedia(this);
-
-         synchronization_lock synchronizationlock(multimedia.mutex());
+         synchronization_lock synchronizationlock(pmultimedia->mutex());
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 
@@ -198,8 +196,7 @@ namespace multimedia
       if (bMediaCall)
       {
 
-         Multimedia.on_decoder_fill_title_info(this, wstraFormat, wstr2aTitle);
-
+         ::aqua::get_system()->multimedia()->on_decoder_fill_title_info(this, wstraFormat, wstr2aTitle);
 
       }
 

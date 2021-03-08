@@ -409,6 +409,7 @@ namespace aura
 
       virtual string_array get_user_wallpaper() override;
 
+
       inline ::user::user* user() { return m_puser; }
 
 

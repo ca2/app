@@ -13,7 +13,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::context_object
+      virtual public ::layered
    {
    public:
 

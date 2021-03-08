@@ -135,14 +135,14 @@ namespace sockets
          // %! check cache
          {
 
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
 
             string result;
 
-            if(System->sockets().m_resolvcache[m_query].lookup(m_data, result))
+            if(::apex::get_system()->sockets().m_resolvcache[m_query].lookup(m_data, result))
             {
 
-               if (time(nullptr) - System->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
+               if (time(nullptr) - ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
                   
                   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
@@ -235,13 +235,13 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
    
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
-            System->sockets().m_resolvcache[m_query][m_data] = value;
+            ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
-            System->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+            ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
 
          }
 
@@ -262,13 +262,13 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
             
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
-            System->sockets().m_resolvcache[m_query][m_data] = value;
+            ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
-            System->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+            ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
 
          }
 
@@ -292,13 +292,13 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
 
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
-            System->sockets().m_resolvcache[m_query][m_data] = value;
+            ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
-            System->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+            ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
 
          }
 
@@ -322,13 +322,13 @@ namespace sockets
          if (!m_cached)
          {
          
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
    
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
-            System->sockets().m_resolvcache[m_query][m_data] = value;
+            ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
             
-            System->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+            ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
 
          }
 
@@ -349,12 +349,12 @@ namespace sockets
 
          //in_addr sa;
 
-         //if(System->sockets().net().convert(sa, m_data))
+         //if(::apex::get_system()->sockets().net().convert(sa, m_data))
          //{
 
          //   string ip;
          //   
-         //   System->sockets().net().convert(ip, sa);
+         //   ::apex::get_system()->sockets().net().convert(ip, sa);
 
          //   write("A: " + ip + "\n");
 
@@ -373,7 +373,7 @@ namespace sockets
 
          in6_addr sa;
 
-         if(System->sockets().net().convert(sa, m_data))
+         if(::apex::get_system()->sockets().net().convert(sa, m_data))
          {
             
             string ip;
@@ -500,7 +500,7 @@ namespace sockets
 
       string tmp;
 
-      System->sockets().net().convert(tmp, m_resolv_address);
+      ::apex::get_system()->sockets().net().convert(tmp, m_resolv_address);
 
       m_query = "gethostbyaddr";
 
@@ -532,15 +532,15 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(System->sockets().m_mutexResolvCache, true);
+            single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
 
             string value;
 
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
-            System->sockets().m_resolvcache[m_query][m_data] = value;
+            ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
             
-            System->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
+            ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
 
          }
 

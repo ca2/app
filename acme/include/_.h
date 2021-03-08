@@ -69,10 +69,10 @@
 #pragma once
 
 
-#undef Sys
+//#undef Sys
 
 
-#define System (::get_context_system())
+//#define System (::get_context_system())
 
 
 #define Node (::get_context_system()->node())
@@ -120,7 +120,12 @@ CLASS_DECL_ACME void acme_ref();
 namespace acme
 {
 
+
    class system;
+
+
+   CLASS_DECL_ACME system * get_system();
+
 
 } // namespace acme
 
@@ -1670,14 +1675,21 @@ inline INTEGRAL_RESULT __random(INTEGRAL1 i1, INTEGRAL2 i2);
 //inline i32 __random(i32 i1, i32 i2);
 
 
-template<typename TYPE>
-inline void swap(TYPE &a, TYPE &b)
+namespace sort
 {
-   auto t = a;
-   a = b;
-   b = t;
 
-}
+
+   template<typename TYPE>
+   inline void swap(TYPE & a, TYPE & b)
+   {
+      auto t = a;
+      a = b;
+      b = t;
+
+   }
+
+
+} // namespace sort
 
 
 inline bool is_null(const void * p, size_t s)

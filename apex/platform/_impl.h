@@ -267,36 +267,36 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-CLASS_DECL_APEX inline ::object * get_app_object()
-{
-
-   return ::get_context_application();
-
-}
-
-
-CLASS_DECL_APEX inline ::context * get_context(::context * pcontext)
-{
-
-   return pcontext;
-
-}
+//CLASS_DECL_APEX inline ::object * get_app_object()
+//{
+//
+//   return ::get_context_application();
+//
+//}
 
 
-CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp)
-{
+//CLASS_DECL_APEX inline ::context * get_context(::context * pcontext)
+//{
+//
+//   return pcontext;
+//
+//}
 
-  return papp;
 
-}
+//CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp)
+//{
+//
+//  return papp;
+//
+//}
 
 
-CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession)
-{
-
-  return psession;
-
-}
+//CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession)
+//{
+//
+//  return psession;
+//
+//}
 
 
 CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem)

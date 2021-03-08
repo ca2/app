@@ -51,9 +51,9 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
 
          ::create * pcreate = new ::create(::get_context_system());
 
-         pcreate->m_pcommandline = new command_line(::get_context_system(), System->get_command_line());
+         pcreate->m_pcommandline = new command_line(::get_context_system(), ::aura::get_system()->get_command_line());
 
-         System->request({ pcreate });
+         ::aura::get_system()->request({ pcreate });
 
       }
 

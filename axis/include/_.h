@@ -17,19 +17,32 @@
 #pragma once
 
 
-#undef System
-#undef Sess
-#undef App
-
-
-#define System (::get_context_system()->m_paxissystem)
-#define Sess(pcontextsession) (pcontextsession->m_paxissession)
-#define App(pobject) (*pobject->get_app()->m_paxisapplication)
+//#undef System
+//#undef Sess
+//#undef App
+//
+//
+//#define System (::get_context_system()->m_paxissystem)
+//#define Sess(pcontextsession) (pcontextsession->m_paxissession)
+//#define App(pobject) (*pobject->get_app()->m_paxisapplication)
 
 
 #define __spin_namespace axis // back bone / four-letter "spin*" namespace name
 
 
+namespace axis
+{
+
+
+   class system;
+   class session;
+   class application;
+
+
+   inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
+
+
+} // namespace axis
 
 
 // C-includes

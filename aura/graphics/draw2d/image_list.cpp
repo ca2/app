@@ -156,7 +156,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   return System->imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
+   return ::aura::get_system()->imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
 
 }
 

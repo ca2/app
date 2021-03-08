@@ -1166,13 +1166,13 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        synchronization_lock synchronizationlock(&System->sockets().m_mutexPool);
+                        synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
 
                         __pointer(pool_socket) ppoolsocket = __new(pool_socket(*this, psocket));
 
                         ppoolsocket->SetDeleteByHandler();
 
-                        System->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+                        ::apex::get_system()->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
                         ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
 
@@ -1405,7 +1405,7 @@ end_processing_adding:
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      System->sockets().net().convert(m_socks4_host, host);
+      ::apex::get_system()->sockets().net().convert(m_socks4_host, host);
    }
 
 
@@ -1434,7 +1434,7 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      System->sockets().net().convert(addrLocal, "127.0.0.1");
+      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
 
       if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1467,7 +1467,7 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      System->sockets().net().convert(addrLocal, "127.0.0.1");
+      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1498,7 +1498,7 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      System->sockets().net().convert(addrLocal, "127.0.0.1");
+      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1529,7 +1529,7 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      System->sockets().net().convert(addrLocal, "127.0.0.1");
+      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1633,9 +1633,9 @@ end_processing_adding:
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
    {
 
-      synchronization_lock synchronizationlock(&System->sockets().m_mutexPool);
+      synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
 
-      auto p = System->sockets().m_pool.begin();
+      auto p = ::apex::get_system()->sockets().m_pool.begin();
 
       for(; p; p++)
       {
@@ -1651,7 +1651,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               System->sockets().m_pool.remove_key(p->m_socket);
+               ::apex::get_system()->sockets().m_pool.remove_key(p->m_socket);
 
                psocket->SetRetain(); // avoid close in socket destructor
 

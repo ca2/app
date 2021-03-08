@@ -49,7 +49,7 @@ namespace macos
 
       string strUserFolderShift;
 
-      if(System->has_property("user_folder_relative_path"))
+      if(::apex::get_system()->has_property("user_folder_relative_path"))
       {
 
          strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();

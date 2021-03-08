@@ -146,7 +146,7 @@ CLASS_DECL_APEX void main_async_runnable(const ::routine & routine)
 
    //__pointer(::object) pobjectTask = pobjectTaskParam;
    
-   System->post_predicate([routine]()
+   ::apex::get_system()->post_predicate([routine]()
    {
 
       routine();
@@ -159,7 +159,7 @@ CLASS_DECL_APEX void main_async_runnable(const ::routine & routine)
 CLASS_DECL_APEX void main_sync_runnable(const ::routine & routine, ::duration durationTimeout)
 {
    
-   System->send_routine(routine, durationTimeout);
+   ::apex::get_system()->send_routine(routine, durationTimeout);
 
 }
 

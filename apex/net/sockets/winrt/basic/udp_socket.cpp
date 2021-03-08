@@ -384,7 +384,7 @@ namespace sockets
       if (m_b_read_ts)
       {
       struct timeval ts;
-      System->get_time(&ts);
+      ::apex::get_system()->get_time(&ts);
       #if !defined(LINUX) && !defined(MACOSX)
       int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
       #else
@@ -436,7 +436,7 @@ namespace sockets
       if (m_b_read_ts)
       {
       struct timeval ts;
-      System->get_time(&ts);
+      ::apex::get_system()->get_time(&ts);
       #if !defined(LINUX) && !defined(MACOSX)
       int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
       #else
@@ -789,7 +789,7 @@ namespace sockets
    port_t udp_socket::GetRemotePort()
    {
 
-      return System->sockets().net().service_port(m_datagramsocket->Information->RemotePort);
+      return ::apex::get_system()->sockets().net().service_port(m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -805,7 +805,7 @@ namespace sockets
    port_t udp_socket::GetLocalPort()
    {
 
-      return System->sockets().net().service_port(m_datagramsocket->Information->LocalPort);
+      return ::apex::get_system()->sockets().net().service_port(m_datagramsocket->Information->LocalPort);
 
    }
 

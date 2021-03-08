@@ -200,9 +200,9 @@ namespace apex
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = ::apex::get_system()->load_string("::apex::get_system()->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = System->get_module_title();
+//  //    strExeName = ::apex::get_system()->get_module_title();
 //
 //
 //
@@ -365,5 +365,5 @@ namespace apex
 
 bool on_application_menu_action(const char * pszCommand)
 {
-   System->on_application_menu_action(pszCommand);
+   ::apex::get_system()->on_application_menu_action(pszCommand);
 }

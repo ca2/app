@@ -48,6 +48,10 @@ namespace aqua
       virtual ::aqua::multimedia* defer_get_multimedia();
 
 
+      inline ::aqua::audio * audio() { return m_paudio; }
+
+      inline ::aqua::multimedia * multimedia() { return m_pmultimedia; }
+
 
    };
 

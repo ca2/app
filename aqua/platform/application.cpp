@@ -8,16 +8,13 @@ namespace aqua
    application::application()
    {
 
-      m_paquaapplication = this;
+      set_layer(LAYERED_AQUA, this);
 
    }
 
 
    application::~application()
    {
-
-
-      m_paquaapplication = nullptr;
 
    }
 
@@ -49,10 +46,10 @@ namespace aqua
    void application::_001OnFranceExit()
    {
 
-      if (System->m_pmultimedia)
+      if (::aqua::get_system()->m_pmultimedia)
       {
 
-         System->m_pmultimedia->_001OnFranceExit();
+         ::aqua::get_system()->m_pmultimedia->_001OnFranceExit();
 
       }
 

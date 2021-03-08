@@ -767,22 +767,12 @@ typedef struct _AppIndicator AppIndicator;
 
 
 #define Usr(pobject) (Sess(pobject)->user())
-#define User (Usr(get_context_session()))
 
-
-
-
-//#include "aura/message/user.h"
-//#include "aura/message/timer.h"
 
 #include "main_window.h"
 
 
 #include "message_box.h"
-
-
-//#include "command.h"
-
 
 
 #include "box.h"

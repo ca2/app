@@ -543,7 +543,7 @@ namespace apex
 
 #if !defined(_UWP)
 
-         if (is_debugger_attached() && !System->has_apex_application_factory())
+         if (is_debugger_attached() && !::apex::get_system()->has_apex_application_factory())
          {
 
             fork([this]()
@@ -653,7 +653,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    bool log::process_init()
    {
 
-      if (is_debugger_attached() && !System->has_apex_application_factory())
+      if (is_debugger_attached() && !::apex::get_system()->has_apex_application_factory())
       {
 
          /*fork([this]()

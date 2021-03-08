@@ -88,7 +88,7 @@ in read operations - helps on ECOS */
 #ifndef _WIN32
 
 // all typedefs in this file will be declared outside the sockets namespace,
-// because some System's will already have one or more of the type defined.
+// because some ::apex::get_system()'s will already have one or more of the type defined.
 typedef i32 SOCKET;
 #define Errno errno
 #define bsd_socket_error strerror

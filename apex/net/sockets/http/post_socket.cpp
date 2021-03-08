@@ -36,19 +36,19 @@ namespace sockets
 
       m_emethod = http_method_post;
 
-      single_lock lock(&System->sockets().m_mutexHttpPostBoundary, true);
+      single_lock lock(&::apex::get_system()->sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
 
       for (int i = 0; i < 12; i++)
       {
 
-         char c = System->sockets().m_countHttpPostBoundary++ % 128;
+         char c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
 
          while (!ansi_char_is_alphanumeric((unsigned char)c))
          {
 
-            c = System->sockets().m_countHttpPostBoundary++ % 128;
+            c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
 
          }
 
@@ -56,7 +56,7 @@ namespace sockets
 
       }
 
-      m_boundary += "__" + __str(System->sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + __str(::apex::get_system()->sockets().m_countHttpPostBoundary++);
 
    }
 

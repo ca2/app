@@ -185,7 +185,7 @@ namespace sockets
    port_t stream_socket::GetRemotePort()
    {
 
-      return System->sockets().net().service_port(m_streamsocket->Information->RemotePort);
+      return ::apex::get_system()->sockets().net().service_port(m_streamsocket->Information->RemotePort);
 
    }
 
@@ -201,7 +201,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return System->sockets().net().service_port(m_streamsocket->Information->LocalPort);
+      return ::apex::get_system()->sockets().net().service_port(m_streamsocket->Information->LocalPort);
 
    }
 

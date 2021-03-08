@@ -585,10 +585,10 @@ void object::set_topic_text(const ::string & strTopicText)
          set_context(m_psessionContext.get());
 
       }
-      else if (System)
+      else if (::apex::get_system())
       {
 
-         set_context(System);
+         set_context(::apex::get_system());
 
       }
 
@@ -1705,7 +1705,7 @@ void object::process_exit_status(const ::e_status& estatus)
    if (estatus == error_exit_system)
    {
 
-      System->finish();
+      ::apex::get_system()->finish();
 
    }
    else if (estatus == error_exit_session)
@@ -2239,7 +2239,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 
    //auto edialogresult =
  
-   auto presult = System->message_box(pszMessage, pszTitle, emessagebox);
+   auto presult = ::apex::get_system()->message_box(pszMessage, pszTitle, emessagebox);
 
    //auto psession = get_context_session();
 

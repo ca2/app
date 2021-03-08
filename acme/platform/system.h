@@ -24,16 +24,9 @@ namespace acme
       map < ithread_t, ithread_t >                       m_mapTaskOn;
 
 
-      ::apex::system *                                   m_papexsystem;
-      ::aqua::system *                                   m_paquasystem;
-      ::aura::system *                                   m_paurasystem;
-      ::axis::system *                                   m_paxissystem;
-      ::base::system *                                   m_pbasesystem;
-      ::bred::system *                                   m_pbredsystem;
-      ::core::system *                                   m_pcoresystem;
 
       string                                             m_strOsUserTheme;
-      __pointer(::acme::node)                      m_pnode;
+      __pointer(::acme::node)                         m_pnode;
 
       
       ::millis                                           m_millisFileListingCache;
@@ -46,7 +39,7 @@ namespace acme
       void os_construct();
 
 
-      ::acme::node * node();
+      inline ::acme::node * node() { return m_pnode; }
 
 
       virtual ::e_status create_os_node();

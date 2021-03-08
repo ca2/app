@@ -160,7 +160,7 @@ namespace windowing
 //                           &m_colorBorderPress);
 //
 //      }
-//      else auto pnode = System->node();
+//      else auto pnode = ::aura::get_system()->node();
 
                if (pnode->is_app_dark_mode())
 //      {
@@ -279,7 +279,7 @@ namespace windowing
 
       m_bInvalidated = true;
 
-      auto pwindowing = System->windowing();
+      auto pwindowing = ::aura::get_system()->windowing();
 
       if(pwindowing)
       {
@@ -572,9 +572,9 @@ namespace windowing
 //
 //            m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 //
-//            System->delivery_for(id_os_user_theme, this);
+//            ::aura::get_system()->delivery_for(id_os_user_theme, this);
 //
-//            //System->(id_dark_mode);
+//            //::aura::get_system()->(id_dark_mode);
 //
 //            //on_alloc_colors(pdisplay);
 //

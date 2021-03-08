@@ -119,7 +119,7 @@ namespace apex
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -133,7 +133,7 @@ namespace apex
          if (m_strCa2Name.has_char())
          {
 
-            __own(System, m_mapLibrary[m_strCa2Name], this);
+            __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
 
          }
 
@@ -183,7 +183,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(System, m_mapLibrary[m_strCa2Name], this);
+         __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -195,7 +195,7 @@ namespace apex
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -213,7 +213,7 @@ namespace apex
       try
       {
       
-         m_pca2library = System->on_get_library(m_strName);
+         m_pca2library = ::apex::get_system()->on_get_library(m_strName);
 
       }
       catch (...)
@@ -346,7 +346,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(System, m_mapLibrary[m_strCa2Name], this);
+         __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -366,7 +366,7 @@ namespace apex
    string library::get_library_name()
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -411,7 +411,7 @@ namespace apex
    bool library::close()
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       try
       {
@@ -461,7 +461,7 @@ namespace apex
    string library::get_app_id(const char * pszAppName)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -515,7 +515,7 @@ namespace apex
    string library::get_app_name(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -575,7 +575,7 @@ namespace apex
    __transport(::apex::application) library::new_application(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       try
       {
@@ -682,7 +682,7 @@ namespace apex
    void library::get_app_list(string_array & stra)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -751,7 +751,7 @@ namespace apex
    __pointer(::matter) library::create_object(const char * pszClass)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       ::matter * p = nullptr;
 
@@ -785,7 +785,7 @@ namespace apex
    bool library::has_object_class(const char * pszClassId)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if (get_ca2_library() == nullptr)
       {
@@ -802,7 +802,7 @@ namespace apex
    bool library::contains_app(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       string_array stra;
 
@@ -816,7 +816,7 @@ namespace apex
    string library::get_root()
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -833,7 +833,7 @@ namespace apex
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -843,7 +843,7 @@ namespace apex
    bool library::is_opened()
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -861,7 +861,7 @@ namespace apex
    void * library::raw_get(const char * pszEntryName)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -1008,19 +1008,19 @@ namespace apex
 ::apex::library * lib(const char * psz)
 {
 
-   //if (System->m_mapLibCall == nullptr)
+   //if (::apex::get_system()->m_mapLibCall == nullptr)
    //{
 
    //   return nullptr;
 
    //}
 
-   auto & plibrary = System->m_mapLibCall[psz];
+   auto & plibrary = ::apex::get_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {
       
-      __own(System, m_mapLibCall[psz], __new(::apex::library));
+      __own(::apex::get_system(), m_mapLibCall[psz], __new(::apex::library));
 
       plibrary->initialize(::get_task());
 

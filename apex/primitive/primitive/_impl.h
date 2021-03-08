@@ -1296,11 +1296,13 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
   }
 
-  auto pgroup = System->thread_group(epriority);
+  auto psystem = ::apex::get_system();
+
+  auto pgroup = psystem->thread_group(epriority);
 
   synchronization_lock slGroup(pgroup->mutex());
 
-  ///   auto ptool = System->thread_tool(op_fork_count);
+  ///   auto ptool = ::apex::get_system()->thread_tool(op_fork_count);
 
   if (pgroup == nullptr || pgroup->get_count() <= 1)
   {

@@ -3015,7 +3015,7 @@ bool x11_process_message(Display * pdisplay)
 //      if(msg.hwnd == nullptr)
 //      {
 //
-//         System->post_message(msg.message, msg.wParam, msg.lParam);
+//         ::aura::get_system()->post_message(msg.message, msg.wParam, msg.lParam);
 //
 //      }
 //      else
@@ -3053,7 +3053,7 @@ bool x11_process_message(Display * pdisplay)
 //      try
 //      {
 //
-//         if(System->m_bProdevianMouse)
+//         if(::aura::get_system()->m_bProdevianMouse)
 //         {
 //
 //            __axis_x11_prodevian_input_thread(pdata);
@@ -3099,7 +3099,7 @@ bool x11_process_message(Display * pdisplay)
 ////
 ////   while(::get_context_system() != nullptr
 ////   && pthread->thread_get_run())
-////   //&& !System->m_bProdevianMouse)
+////   //&& !::aura::get_system()->m_bProdevianMouse)
 ////   {
 ////
 ////      pmsg = nullptr;

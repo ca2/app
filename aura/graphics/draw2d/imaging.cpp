@@ -4880,7 +4880,7 @@ color32_t cr)
 
    }
 
-   if (!System->draw2d()->channel_spread__32CC(
+   if (!::aura::get_system()->draw2d()->channel_spread__32CC(
          pimageDst,
          pimageSrc,
          iChannel,
@@ -5057,9 +5057,9 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
 
 
-   synchronization_lock synchronizationlock(System->draw2d()->mutex());
+   synchronization_lock synchronizationlock(::aura::get_system()->draw2d()->mutex());
 
-   auto & pmemory = System->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
+   auto & pmemory = ::aura::get_system()->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
 
    pmemory.defer_create_new();
 

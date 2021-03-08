@@ -63,7 +63,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
 void os_post_quit();
 
-//extern ::mutex * System->m_mutexLibrary;
+//extern ::mutex * ::aura::get_system()->m_mutexLibrary;
 
 
 
@@ -296,7 +296,7 @@ namespace aura
 //   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
 //
 //      string strLibrary(pszLibrary1);
 //
@@ -305,7 +305,7 @@ namespace aura
 //      strLibrary.ends_eat_ci(".dylib");
 //      strLibrary.begins_eat_ci("lib");
 //
-//      auto & plibrary = System->m_mapLibrary[strLibrary];
+//      auto & plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
 //
 //      bool bLibraryOk = true;
 //
@@ -1055,7 +1055,7 @@ namespace aura
 
       }
 
-      synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&::aura::get_system()->m_mutexLibrary);
 
       estatus = __construct(m_pdraw2d);
 
@@ -1760,9 +1760,9 @@ namespace aura
       try
       {
 
-         synchronization_lock synchronizationlock(&System->m_mutexLibrary);
+         synchronization_lock synchronizationlock(&::aura::get_system()->m_mutexLibrary);
 
-         if (System->m_mapLibrary["draw2d"].is_set() && System->m_mapLibrary["draw2d"]->is_opened())
+         if (::aura::get_system()->m_mapLibrary["draw2d"].is_set() && ::aura::get_system()->m_mapLibrary["draw2d"]->is_opened())
          {
 
             if (m_pDraw2dFactoryExchange != nullptr)
@@ -3766,20 +3766,20 @@ namespace aura
    void system::on_extra(string str)
    {
 
-      string strProtocol = System->url().get_protocol(str);
+      string strProtocol = ::aura::get_system()->url().get_protocol(str);
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = System->url().get_server(str);
+         string strBase = ::aura::get_system()->url().get_server(str);
 
-         string strAppId = System->url().get_script(str);
+         string strAppId = ::aura::get_system()->url().get_script(str);
 
          ::str::begins_eat(strAppId, "/");
 
-         string strQuery = System->url().get_query(str);
+         string strQuery = ::aura::get_system()->url().get_query(str);
 
          string strMessage;
 
@@ -3814,9 +3814,9 @@ namespace aura
       if (strProtocol == "ca2project")
       {
 
-         string strBase = System->url().get_server(str);
+         string strBase = ::aura::get_system()->url().get_server(str);
 
-         string strScheme = System->url().get_script(str);
+         string strScheme = ::aura::get_system()->url().get_script(str);
 
          ::str::begins_eat(strScheme, "/");
 
@@ -3992,13 +3992,13 @@ namespace aura
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.cc/open_f___?url=" + System->url_encode(strUrl) + "&profile=" + System->url_encode(strProfile) + "&target=" + System->url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_f___?url=" + ::aura::get_system()->url_encode(strUrl) + "&profile=" + ::aura::get_system()->url_encode(strProfile) + "&target=" + ::aura::get_system()->url_encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.cc/open_tab?url=" + System->url_encode(strUrl) + "&profile=" + System->url_encode(strProfile) + "&target=" + System->url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_tab?url=" + ::aura::get_system()->url_encode(strUrl) + "&profile=" + ::aura::get_system()->url_encode(strProfile) + "&target=" + ::aura::get_system()->url_encode(strTarget);
 
          }
 
@@ -4104,7 +4104,7 @@ namespace aura
          //if (strOpenUrl.has_char())
          {
 
-            // System->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+            // ::aura::get_system()->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
             ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
@@ -4337,7 +4337,7 @@ namespace aura
 
          argv.add(nullptr);
 
-         string strApp = System->url().url_decode(path);
+         string strApp = ::aura::get_system()->url().url_decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -4647,11 +4647,11 @@ namespace aura
 
       }
 
-      //System->load_library("gpu_opengl");
+      //::aura::get_system()->load_library("gpu_opengl");
 
-      auto estatus = System->do_factory_exchange("gpu", "opengl");
+      auto estatus = ::aura::get_system()->do_factory_exchange("gpu", "opengl");
 
-      //System->get_library("gpu_opengl");
+      //::aura::get_system()->get_library("gpu_opengl");
 
 
 

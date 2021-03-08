@@ -105,7 +105,7 @@ namespace windows
          //__throw(error_not_implemented);
          /*
          // execute the command
-         if (!System->OnDDECommand( (char *)(const wchar_t *)str))
+         if (!::aura::get_system()->OnDDECommand( (char *)(const wchar_t *)str))
             TRACE1("Error: failed to execute DDE command '%S'.\n", str);
          */
          //
@@ -133,7 +133,7 @@ namespace windows
 
          m_hszAppName = DdeCreateStringHandleW(m_dwDde, L"vmpLight", 0);
 
-         m_hszSystemTopic = DdeCreateStringHandleW(m_dwDde, L"System", 0);
+         m_hszSystemTopic = DdeCreateStringHandleW(m_dwDde, L"::aura::get_system()", 0);
 
          DdeNameService(m_dwDde, m_hszAppName, 0, DNS_REGISTER);
 

@@ -33,9 +33,9 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
 
       return ::success;
 
@@ -848,7 +848,7 @@ namespace windows
    ::file::path dir_context::module()
    {
 
-      return System->m_pdirsystem->m_pathModule;
+      return ::apex::get_system()->m_pdirsystem->m_pathModule;
 
    }
 
@@ -856,7 +856,7 @@ namespace windows
    ::file::path dir_context::ca2module()
    {
 
-      return System->m_pdirsystem->m_pathCa2Module;
+      return ::apex::get_system()->m_pdirsystem->m_pathCa2Module;
 
    }
 

@@ -507,7 +507,7 @@ namespace uwp
       void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
       void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
-      // System message handler member functions
+      // ::aura::get_system() message handler member functions
       //      void OnDropFiles(HDROP hDropInfo);
       void OnPaletteIsChanging(::user::interaction_impl * pRealizeWnd);
       void OnSysChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
@@ -629,7 +629,7 @@ namespace uwp
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
-      virtual bool is_frame_window(); // is_kind_of(System->template type_info < frame_window > ()))
+      virtual bool is_frame_window(); // is_kind_of(::aura::get_system()->template type_info < frame_window > ()))
       virtual void on_final_release();
       //static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, ::u32 nFlag);

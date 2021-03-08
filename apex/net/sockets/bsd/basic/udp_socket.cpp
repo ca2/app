@@ -384,7 +384,7 @@ namespace sockets
             
             micro_duration microduration;
             
-            System->get_time(&microduration);
+            ::apex::get_system()->get_time(&microduration);
 
             struct timeval timeval;
 
@@ -464,7 +464,7 @@ namespace sockets
          
          micro_duration microduration;
          
-         System->get_time(&microduration);
+         ::apex::get_system()->get_time(&microduration);
 
          timeval timeval;
 
@@ -632,7 +632,7 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (System->sockets().net().convert( addr, group ))
+         if (::apex::get_system()->sockets().net().convert( addr, group ))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -647,10 +647,10 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       in_addr addr;
-      if (System->sockets().net().convert(addr,  group ))
+      if (::apex::get_system()->sockets().net().convert(addr,  group ))
       {
          ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         System->sockets().net().convert(addr,  local_if);
+         ::apex::get_system()->sockets().net().convert(addr,  local_if);
          ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
          //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
@@ -673,7 +673,7 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (System->sockets().net().convert(addr, group))
+         if (::apex::get_system()->sockets().net().convert(addr, group))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -688,10 +688,10 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       in_addr addr;
-      if (System->sockets().net().convert(addr, group))
+      if (::apex::get_system()->sockets().net().convert(addr, group))
       {
          ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         System->sockets().net().convert(addr, local_if);
+         ::apex::get_system()->sockets().net().convert(addr, local_if);
          ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
          //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)

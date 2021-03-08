@@ -309,6 +309,7 @@ namespace apex
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
+      inline ::apex::node * node() { return (::apex::node *) m_pnode->layer(LAYERED_APEX); }
 
       virtual ::layered * get_layered_window(oswindow oswindow);
 
@@ -1025,7 +1026,7 @@ template < typename ENUM >
 inline void set_enum_text(ENUM e, const char * psz)
 {
 
-   auto psystem = System;
+   auto psystem = ::apex::get_system();
 
    critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 
@@ -1040,9 +1041,9 @@ template < typename ENUM >
 inline string enum_text(ENUM e)
 {
 
-   auto psystem = System;
+   auto psystem = get_system();
 
-   critical_section_lock synchronizationlock(&System->m_csEnumText);
+   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
 
    return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1053,9 +1054,9 @@ template < class ENUM >
 inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 {
 
-   auto * psystem = System;
+   auto * psystem = get_system();
 
-   critical_section_lock synchronizationlock(System->m_csEnumText);
+   critical_section_lock synchronizationlock(psystem->m_csEnumText);
 
    i64 iValue;
 
@@ -1105,7 +1106,7 @@ inline string enum_text(const base_enum < ENUM, edefault > & b)
 //inline ::traits & traits(::context_object * p)
 //{
 //
-//   auto traits = System->m_traits[p];
+//   auto traits = ::apex::get_system()->m_traits[p];
 //
 //   if (traits.m_pobjectTrait != p)
 //   {

@@ -248,7 +248,7 @@ namespace user
 
       //      set_thread_name("test");
 
-            //windows_desktop1_main(System->m_hinstance, SW_SHOWNORMAL);
+            //windows_desktop1_main(::aura::get_system()->m_hinstance, SW_SHOWNORMAL);
 
       //  });
 

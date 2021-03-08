@@ -62,7 +62,7 @@ public:
    ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;
    ::extended::status                                   m_result;
-   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same System->m_puiMain)
+   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same ::apex::get_system()->m_puiMain)
    __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
@@ -143,14 +143,6 @@ public:
    virtual ::e_status set_finish(::context_object * pcontextobjectFinish) override;
    virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
-
-   //virtual context_object* calc_parent_thread() override;
-
-//#ifdef WINDOWS_DESKTOP
-//
-//   virtual void associate_imc(::user::interaction* pinteraction);
-//
-//#endif
 
    void add_waiting_event(event * pevent);
    void remove_waiting_event(event * pevent);

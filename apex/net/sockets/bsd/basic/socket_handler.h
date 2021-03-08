@@ -45,7 +45,7 @@ namespace sockets
       string                     m_socks4_userid; ///< Socks4 userid
       bool                       m_bTryDirect; ///< Try direct connection if socks4 server fails
       i32                        m_resolv_id; ///< Resolver id counter
-      __pointer(thread)          m_resolver; ///< Resolver thread pointer
+      __pointer(::thread)         m_resolver; ///< Resolver thread pointer
       port_t                     m_resolver_port; ///< Resolver listen port
       socket_flag_map            m_resolve_q; ///< resolve queue
       bool                       m_b_enable_pool; ///< Connection pool enabled if true

@@ -231,10 +231,10 @@ __pointer(::apex::application) application_container::instantiate_application(co
    else
    {
 
-      if (System->m_papplicationStartup.is_set())
+      if (::apex::get_system()->m_papplicationStartup.is_set())
       {
 
-         if (System->m_papplicationStartup->m_strAppId != strAppId)
+         if (::apex::get_system()->m_papplicationStartup->m_strAppId != strAppId)
          {
 
             TRACE("Wrong Application Data Type");
@@ -243,15 +243,15 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
          }
 
-         papp = System->m_papplicationStartup;
+         papp = ::apex::get_system()->m_papplicationStartup;
 
-         __unbind(System, m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(System, ""));
+         __unbind(::apex::get_system(), m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(::apex::get_system(), ""));
 
       }
       else
       {
 
-         papp = System->new_application(strAppId);
+         papp = ::apex::get_system()->new_application(strAppId);
 
          estatus = ::g_pappcore->initialize_application(papp, this);
 
@@ -389,8 +389,8 @@ __pointer(::apex::application) application_container::start_application(const ch
 
    ::file::path pathExe = ::file::app_module();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, System->get_system_platform(),
-      System->get_system_configuration(), strLocale, strSchema))
+   if (!is_application_installed(pathExe, strApp, strBuild, ::apex::get_system()->get_system_platform(),
+      ::apex::get_system()->get_system_configuration(), strLocale, strSchema))
    {
 
       if (papp->m_bRequiresInstallation)
@@ -445,7 +445,7 @@ __pointer(::apex::application) application_container::start_application(const ch
    //      if (strApp != "session")
    //      {
 
-   System->merge_accumulated_on_open_file(pcreate);
+   ::apex::get_system()->merge_accumulated_on_open_file(pcreate);
 
    papp->do_request(pcreate);
 

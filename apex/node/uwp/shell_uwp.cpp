@@ -267,7 +267,7 @@ namespace uwp
 
             if (crBk == 0)
             {
-               System->imaging().Createcolor_blend_ImageList(
+               ::apex::get_system()->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -383,7 +383,7 @@ namespace uwp
          if (imagekey.m_cr == 0)
          {
 
-            System->imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
+            ::apex::get_system()->imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
 
          }
          else

@@ -328,7 +328,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::__swap(::index index1, ::index index2)
 {
 
-   ::swap(m_pData[index1], m_pData[index2]);
+   ::sort::swap(m_pData[index1], m_pData[index2]);
 
 }
 

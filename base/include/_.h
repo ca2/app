@@ -17,18 +17,32 @@
 #pragma once
 
 
-#undef System
-#undef Sess
-#undef App
-
-
-#define System (::get_context_system()->m_pbasesystem)
-#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
-#define App(pobject) (*pobject->get_app()->m_pbaseapplication)
+//#undef System
+//#undef Sess
+//#undef App
+//
+//
+//#define System (::get_context_system()->m_pbasesystem)
+//#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
+//#define App(pobject) (*pobject->get_app()->m_pbaseapplication)
 
 
 #define __spin_namespace base // back bone / four-letter "spin*" namespace name
 
+
+namespace base
+{
+
+
+   class system;
+   class session;
+   class application;
+
+
+   inline system * get_system() { return ::base::get_system()->layer(LAYERED_BASE); }
+
+
+} // namespace base
 
 
 #include "base/user/experience/_const.h"

@@ -77,7 +77,7 @@ void ifs_file::get_file_data()
 
    string strUrl;
 
-   strUrl = "http://file.ca2.cc/ifs/get?path=" + System->url().url_encode(m_strPath);
+   strUrl = "http://file.ca2.cc/ifs/get?path=" + ::apex::get_system()->url().url_encode(m_strPath);
 
    ::file::e_open eopenAdd;
 
@@ -101,7 +101,7 @@ void ifs_file::set_file_data()
    if(m_varFile["xmledit"].cast < ::memory_file > () != nullptr)
    {
 
-      strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + System->url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + ::apex::get_system()->url().url_encode(m_varFile["url"]);
 
       property_set setRequest;
 
@@ -130,7 +130,7 @@ void ifs_file::set_file_data()
 
       }
 
-      strUrl = "http://file.ca2.cc/ifs/set?path=" + System->url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.ca2.cc/ifs/set?path=" + ::apex::get_system()->url().url_encode(m_varFile["url"]);
 
       property_set setPut;
 
@@ -140,7 +140,7 @@ void ifs_file::set_file_data()
 
    }
 
-   strUrl = "http://file.ca2.cc/ifs/set?path=" + System->url().url_encode(m_strPath);
+   strUrl = "http://file.ca2.cc/ifs/set?path=" + ::apex::get_system()->url().url_encode(m_strPath);
 
    property_set setPut;
 

@@ -148,7 +148,7 @@ namespace macos
 
       }
 
-      //    if(!m_p->CreateEx(0, System->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
+      //    if(!m_p->CreateEx(0, ::apex::get_system()->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
       //     return false;
 
 //      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
@@ -281,7 +281,7 @@ namespace macos
 //
 //      }
 //
-//      if(!System->imaging()._load_image(pimage, w, h, iScan, pcolorref))
+//      if(!::apex::get_system()->imaging()._load_image(pimage, w, h, iScan, pcolorref))
 //      {
 //
 //         return false;

@@ -19,7 +19,7 @@ namespace aqua
    system::system()
    {
 
-      m_paquasystem = this;
+      set_layer(LAYERED_AQUA, this);
 
       common_construct();
 
@@ -29,9 +29,6 @@ namespace aqua
    system::~system()
    {
 
-
-
-      m_paquasystem = nullptr;
 
    }
 

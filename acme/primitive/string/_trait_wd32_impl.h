@@ -245,7 +245,7 @@ namespace str
       while (p2 > p1)
       {
 
-         swap(*p1, *p2);
+         sort::swap(*p1, *p2);
 
          p1++;
 

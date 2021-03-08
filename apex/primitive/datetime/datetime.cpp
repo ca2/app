@@ -360,7 +360,7 @@ namespace datetime
 
       string_array stra;
 
-      auto pcre1 = System->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = ::apex::get_system()->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       if(!bBaseTime && pcre1->matches(stra, str) >= 5)
       {

@@ -28,7 +28,7 @@
 //#elif defined(APPLE_IOS)
 //#include "axis/axis/os/ios/ios.h"
 //#else
-//#error Not Supported Operational System
+//#error Not Supported Operational ::aura::get_system()
 //#endif
 
 

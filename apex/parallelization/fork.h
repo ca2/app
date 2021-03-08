@@ -587,7 +587,7 @@ template < typename PRED, typename PRED_END >
 ::count fork_count_end_predicate(::object * pobjectParent, ::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
 {
 
-   ASSERT(pobjectParent != nullptr && pobjectParent->get_context_application() != nullptr);
+   ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
 
    int iAffinityOrder = get_current_process_affinity_order();
 

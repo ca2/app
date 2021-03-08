@@ -659,8 +659,13 @@ namespace crypto
    {
       memory storage;
       key(storage);
-      return System->base64().encode(storage);
+
+      auto psystem = ::apex::get_system();
+
+      return psystem->base64().encode(storage);
+
    }
+
 
    i32 crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
    {
@@ -673,11 +678,19 @@ namespace crypto
          return 0;
       }
       storageDecrypt.from_string(pszDecrypt);
-      System->base64().decode(storageKey, pszKey);
+
+      auto psystem = ::apex::get_system();
+
+      psystem->base64().decode(storageKey, pszKey);
+
       i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
-      strEncrypt = System->base64().encode(storageEncrypt);
+
+      strEncrypt = psystem->base64().encode(storageEncrypt);
+
       return cipherlen;
+
    }
+
 
    i32 crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
    {
@@ -688,9 +701,9 @@ namespace crypto
 
       memory storageKey;
 
-      System->base64().decode(storageEncrypt, pszEncrypt);
+      ::apex::get_system()->base64().decode(storageEncrypt, pszEncrypt);
 
-      System->base64().decode(storageKey, pszKey);
+      ::apex::get_system()->base64().decode(storageKey, pszKey);
 
       i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 

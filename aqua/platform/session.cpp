@@ -9,7 +9,7 @@ namespace aqua
    session::session()
    {
 
-      m_paquasession = this;
+      set_layer(LAYERED_AQUA, this);
 
    }
 
@@ -17,11 +17,8 @@ namespace aqua
    session::~session()
    {
 
-
-
-      m_paquasession = nullptr;
-
    }
+
 
    void session::common_construct()
    {

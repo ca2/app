@@ -28,7 +28,7 @@ namespace xml
       if (opt == nullptr)
       {
 
-         opt = System->xml().m_poptionDefault;
+         opt = ::aqua::get_system()->xml().m_poptionDefault;
 
       }
 

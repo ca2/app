@@ -45,7 +45,7 @@ namespace parallelization
 
       //return s_piaThread2->contains(id);
 
-      return System->get_task(id) != nullptr;
+      return ::apex::get_system()->get_task(id) != nullptr;
 
    }
 
@@ -53,7 +53,7 @@ namespace parallelization
    bool thread_registered(::task * ptask)
    {
 
-      return System->get_task_id(ptask) != 0;
+      return ::apex::get_system()->get_task_id(ptask) != 0;
 
    }
 
@@ -61,7 +61,7 @@ namespace parallelization
    void thread_register(ithread_t ithread, ::task * ptask)
    {
 
-      System->set_task(ithread, ptask);
+      ::apex::get_system()->set_task(ithread, ptask);
 
    }
 
@@ -93,9 +93,9 @@ namespace parallelization
 
       }
 
-      synchronization_lock synchronizationlock(&System->m_mutexTask);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
 
-      for (auto & pair : System->m_taskidmap)
+      for (auto & pair : ::apex::get_system()->m_taskidmap)
       {
 
          try
@@ -126,9 +126,9 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexTask);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
 
-      for (auto& pair : System->m_taskidmap)
+      for (auto& pair : ::apex::get_system()->m_taskidmap)
       {
 
          try
@@ -150,9 +150,9 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
-      synchronization_lock synchronizationlock(&System->m_mutexTask);
+      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
 
-      for (auto& pair : System->m_taskidmap)
+      for (auto& pair : ::apex::get_system()->m_taskidmap)
       {
 
          try
@@ -183,14 +183,14 @@ namespace parallelization
 
       }
 
-      if (pthread == System)
+      if (pthread == ::apex::get_system())
       {
 
          return nullptr;
 
       }
 
-      auto pthreadContext = pthread->get_context_thread();
+      auto pthreadContext = pthread->get_thread();
 
       if (::is_set(pthreadContext))
       {
@@ -217,7 +217,7 @@ namespace parallelization
 
       }
 
-      auto papplicationContext = pthread->get_context_application();
+      auto papplicationContext = pthread->application();
 
       if (::is_set(papplicationContext) && papplicationContext != pthread)
       {
@@ -226,7 +226,7 @@ namespace parallelization
 
       }
 
-      auto psessionContext = pthread->get_context_session();
+      auto psessionContext = pthread->get_session();
 
       if (psessionContext != pthread && ::is_set(psessionContext))
       {
@@ -235,7 +235,7 @@ namespace parallelization
 
       }
 
-      auto psystemContext = System;
+      auto psystemContext = ::apex::get_system();
 
       if (psystemContext != pthread && ::is_set(psystemContext))
       {
@@ -270,7 +270,7 @@ bool apex_thread_get_run()
       {
          ////////// and have short life, so it is safe to keep it running
          //return true;
-         return System->thread_get_run();
+         return ::apex::get_system()->thread_get_run();
 
       }
 
@@ -425,10 +425,10 @@ namespace parallelization
 
    }
 
-   if (pthread->get_context_application())
+   if (pthread->application())
    {
 
-      return pthread->get_context_application();
+      return pthread->application();
 
    }
 
@@ -456,72 +456,72 @@ void set_global_application(::apex::application* papp)
 }
 
 
-::apex::application * get_context_application()
-{
+//::apex::application * get_context_application()
+//{
+//
+//   task* ptask = get_task();
+//
+//   if (ptask == nullptr)
+//   {
+//
+//      return get_global_application();
+//
+//   }
+//
+//   ::thread* pthread = ___thread(ptask);
+//
+//   if (pthread != nullptr)
+//   {
+//
+//      auto papplication = pthread->get_application();
+//
+//      if (papplication)
+//      {
+//
+//         return papplication;
+//
+//      }
+//
+//   }
+//
+//   auto pobject = ptask->get_context_object();
+//
+//   if (!pobject)
+//   {
+//
+//      return get_global_application();
+//
+//   }
+//
+//   auto papplication = pobject->get_context();
+//
+//   if (!pobject)
+//   {
+//
+//      return get_global_application();
+//
+//   }
+//
+//   return papplication;
+//
+//}
 
-   task* ptask = get_task();
 
-   if (ptask == nullptr)
-   {
-
-      return get_global_application();
-
-   }
-
-   ::thread* pthread = ___thread(ptask);
-
-   if (pthread != nullptr)
-   {
-
-      auto papp = pthread->get_context_application();
-
-      if (papp)
-      {
-
-         return papp;
-
-      }
-
-   }
-
-   auto pobject = ptask->get_context_object();
-
-   if (!pobject)
-   {
-
-      return get_global_application();
-
-   }
-
-   auto papp = pobject->get_context_application();
-
-   if (!pobject)
-   {
-
-      return get_global_application();
-
-   }
-
-   return papp;
-
-}
-
-
-::apex::session * get_context_session()
-{
-
-   thread * pthread = get_thread();
-
-   if (pthread == nullptr)
-   {
-
-      return System->get_context_session();
-
-   }
-
-   return pthread->get_context_session();
-
-}
+//::apex::session * get_context_session()
+//{
+//
+//   thread * pthread = get_thread();
+//
+//   if (pthread == nullptr)
+//   {
+//
+//      return ::apex::get_system()->get_context_session();
+//
+//   }
+//
+//   return pthread->get_context_session();
+//
+//}
 
 //::apex::system * g_papexsystem = nullptr;
 //
@@ -588,7 +588,7 @@ bool do_events()
       try
       {
 
-         auto psystem = System;
+         auto psystem = ::apex::get_system();
 
          if (::is_set(psystem))
          {
@@ -598,7 +598,7 @@ bool do_events()
             try
             {
 
-               ::apex::session* psession = psystem->get_context_session();
+               ::apex::session* psession = psystem->get_session();
 
                if (::is_set(psession))
                {

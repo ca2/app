@@ -21,7 +21,7 @@ namespace user
 //{
 //
 //
-//   auto pwindowing = System->windowing();
+//   auto pwindowing = ::aura::get_system()->windowing();
 //
 //   if(!pwindowing)
 //   {

@@ -47,7 +47,7 @@ namespace apex
    ::e_status node::start()
    {
 
-      auto estatus = System->on_start();
+      auto estatus = ::apex::get_system()->on_start();
 
       if(!estatus)
       {

@@ -62,7 +62,7 @@ namespace macos
          
       }
       
-      ::file::path pathCa2Module = System->m_pfilesystem->m_pathCa2Module;
+      ::file::path pathCa2Module = ::apex::get_system()->m_pfilesystem->m_pathCa2Module;
       
       m_pathHome = getenv("HOME");
       

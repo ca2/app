@@ -486,7 +486,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      auto psockets = &System->sockets();
+      auto psockets = &::apex::get_system()->sockets();
 
       auto pnet = &psockets->net();
 

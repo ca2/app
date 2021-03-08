@@ -614,7 +614,7 @@ namespace apex
 CLASS_DECL_APEX void apex_generate_random_bytes(void * p, memsize s)
 {
 
-   System->m_pmath->m_posdata->generate_random_bytes(p, s);
+   ::apex::get_system()->m_pmath->m_posdata->generate_random_bytes(p, s);
 
 }
 

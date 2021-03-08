@@ -135,7 +135,7 @@ namespace gpu
    ::e_status context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      auto pgpu = System->get_gpu();
+      auto pgpu = ::aura::get_system()->get_gpu();
 
       if (::is_null(pgpu))
       {
@@ -282,9 +282,9 @@ namespace gpu
 
       ::file::path path(pszPath);
 
-      auto & app = Application;
+      auto pcontext = get_context();
 
-      auto & file = app.file();
+      auto & file = pcontext->file();
 
       string strFragment = file.as_string(path);
 

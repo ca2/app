@@ -560,9 +560,9 @@ namespace sockets
 
          m.set_size(16);
 
-         System->math().random_bytes(m.get_data(), m.get_size());
+         ::apex::get_system()->math().random_bytes(m.get_data(), m.get_size());
 
-         m_strBase64 = System->base64().encode(m);
+         m_strBase64 = ::apex::get_system()->base64().encode(m);
 
          int iLen;
 
@@ -674,9 +674,9 @@ namespace sockets
 
                memory mem2;
 
-               System->crypto().sha1(mem2, mem);
+               ::apex::get_system()->crypto().sha1(mem2, mem);
 
-               strKey = System->base64().encode(mem2);
+               strKey = ::apex::get_system()->base64().encode(mem2);
 
                if (strAccept == strKey)
                {

@@ -419,7 +419,7 @@ namespace sockets
    void socket_handler::SetSocks4Host(const string & host)
    {
 
-      System->sockets().net().convert(m_socks4_host, host);
+      ::apex::get_system()->sockets().net().convert(m_socks4_host, host);
 
    }
 

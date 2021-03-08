@@ -170,7 +170,7 @@ namespace file
 
       watch_id             m_idLast;
 
-      __pointer(thread)    m_pthread;
+      __pointer(::thread)    m_pthread;
 
       bool                 m_bCreateWatchThread;
       

@@ -13,6 +13,7 @@ namespace gpu
 
    };
 
+
    class CLASS_DECL_AURA context :
       virtual public ::object
    {
@@ -21,13 +22,18 @@ namespace gpu
 
       enum enum_mode
       {
+
+
          e_mode_none,
          e_mode_system,
          e_mode_egl,
          e_mode_glx,
          e_mode_cgl,
          e_mode_fbo,
+
+
       };
+
 
       enum_mode                        m_emode;
 
@@ -43,6 +49,7 @@ namespace gpu
 
       context();
       virtual ~context();
+
 
       virtual ::e_status lock_context();
       virtual ::e_status unlock_context();

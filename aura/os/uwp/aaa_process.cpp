@@ -309,7 +309,7 @@ int get_current_process_affinity_order()
 
 
 
-#undef System
+#undef ::aura::get_system()
 
 CLASS_DECL_AURA int ui_open_url(const char * pszUrl)
 {
@@ -318,7 +318,7 @@ CLASS_DECL_AURA int ui_open_url(const char * pszUrl)
 
    auto uri = ref new Windows::Foundation::Uri(strUrl);
 
-   Windows::System::Launcher::LaunchUriAsync(uri);
+   Windows::::aura::get_system()::Launcher::LaunchUriAsync(uri);
 
    return 0;
 

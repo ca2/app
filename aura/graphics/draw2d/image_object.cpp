@@ -12,7 +12,7 @@
 //::image_result object::matter_image(const string & strMatter, bool bCache, bool bSync)
 //{
 //
-//   return System->matter_image(get_context_object(), strMatter, bCache, bSync);
+//   return ::aura::get_system()->matter_image(get_context_object(), strMatter, bCache, bSync);
 //
 //}
 //

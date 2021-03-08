@@ -36,6 +36,6 @@
 #include "aura/os/ansios/_c.h"
 #include "aura/os/ios/_c.h"
 #else
-#error Not Supported Operational System
+#error Not Supported Operational ::aura::get_system()
 #endif
 

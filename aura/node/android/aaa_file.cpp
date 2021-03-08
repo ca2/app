@@ -16,7 +16,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring& wstrFullPath, const wstring& wstrPath)
 struct errentry
 {
    unsigned long oscode;   /* OS return value */
-   int sysv_errno;  /* System V error code */
+   int sysv_errno;  /* ::aura::get_system() V error code */
 };
 //#elif defined(MACOS)
 ////#include <dlfcn.h>

@@ -206,7 +206,7 @@ namespace sockets
       if (m_host.is_empty())
       {
 
-         m_strInitSSLClientContext = System->url().get_server(strRequestUri);
+         m_strInitSSLClientContext = ::apex::get_system()->url().get_server(strRequestUri);
 
       }
       else
@@ -574,8 +574,8 @@ namespace sockets
       string url;
       url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
       m_request.attr("url") = url;
-      host = System->url().get_server(url);
-      port = (port_t) System->url().get_port(url);
+      host = ::apex::get_system()->url().get_server(url);
+      port = (port_t) ::apex::get_system()->url().get_port(url);
    }
 
 

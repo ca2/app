@@ -120,7 +120,7 @@ namespace uwp
 
       }
 
-      System->main_user_sync(__routine([this]()
+      ::aura::get_system()->main_user_sync(__routine([this]()
          {
 
             on_content_changed();

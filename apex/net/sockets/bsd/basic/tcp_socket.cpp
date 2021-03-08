@@ -370,7 +370,7 @@ namespace sockets
          ::net::address sa(GetSocks4Host(),GetSocks4Port());
          {
             string sockshost;
-            System->sockets().net().convert(sockshost,GetSocks4Host());
+            ::apex::get_system()->sockets().net().convert(sockshost,GetSocks4Host());
 
             INFO(log_this, "open",0,"Connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
 
@@ -443,12 +443,12 @@ namespace sockets
       if(IsIpv6())
       {
 
-         if(!Handler().ResolverEnabled() || System->sockets().net().isipv6(host))
+         if(!Handler().ResolverEnabled() || ::apex::get_system()->sockets().net().isipv6(host))
          {
 
             in6_addr a;
 
-            if(!System->sockets().net().convert(a,host))
+            if(!::apex::get_system()->sockets().net().convert(a,host))
             {
 
                SetCloseAndDelete();
@@ -478,15 +478,15 @@ namespace sockets
 
       }
 
-      if(!Handler().ResolverEnabled() || System->sockets().net().isipv4(host))
+      if(!Handler().ResolverEnabled() || ::apex::get_system()->sockets().net().isipv4(host))
       {
 
          in_addr l;
 
-         if (!System->sockets().net().convert(l, host))
+         if (!::apex::get_system()->sockets().net().convert(l, host))
          {
             
-            WARN("System->sockets().net().convert failed");
+            WARN("::apex::get_system()->sockets().net().convert failed");
             
             SetCloseAndDelete();
             
@@ -521,7 +521,7 @@ namespace sockets
    void tcp_socket::OnResolved(i32 id,const ::net::address & a)
    {
 
-      INFO("OnResolved id %d addr %s port %d\n",id,System->sockets().net().canonical_name(a).c_str(),a.u.s.m_port);
+      INFO("OnResolved id %d addr %s port %d\n",id,::apex::get_system()->sockets().net().canonical_name(a).c_str(),a.u.s.m_port);
 
       if(id == m_resolver_id)
       {
@@ -1370,7 +1370,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(System->sockets().m_clientcontextmap.m_mutex);
+      //synchronization_lock slMap(::apex::get_system()->sockets().m_clientcontextmap.m_mutex);
 
       if (is_true("from_pool"))
          return;
@@ -1477,7 +1477,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(System->sockets().m_servercontextmap.m_mutex);
+      //synchronization_lock slMap(::apex::get_system()->sockets().m_servercontextmap.m_mutex);
 
       {
          if(m_psslcontext.is_set()
@@ -1800,7 +1800,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      ssl_client_context_map & clientcontextmap = System->sockets().m_clientcontextmap;
+      ssl_client_context_map & clientcontextmap = ::apex::get_system()->sockets().m_clientcontextmap;
 
       __pointer(ssl_client_context) psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
@@ -2006,15 +2006,15 @@ namespace sockets
       {
          synchronization_lock synchronizationlock(mutex());
          int i;
-         int cnt = sizeof(System->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+         int cnt = sizeof(::apex::get_system()->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);
          int j;
          for (i = 0; i < cnt; ++i)
          {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);
-            ::memcpy_dup(m_ticketkeya[i].key_name, System->sockets().m_baTicketKey + j, 16);
-            ::memcpy_dup(m_ticketkeya[i].hmac_key, System->sockets().m_baTicketKey + j + 16, 16);
-            ::memcpy_dup(m_ticketkeya[i].aes_key, System->sockets().m_baTicketKey + j + 32, 16);
+            ::memcpy_dup(m_ticketkeya[i].key_name, ::apex::get_system()->sockets().m_baTicketKey + j, 16);
+            ::memcpy_dup(m_ticketkeya[i].hmac_key, ::apex::get_system()->sockets().m_baTicketKey + j + 16, 16);
+            ::memcpy_dup(m_ticketkeya[i].aes_key, ::apex::get_system()->sockets().m_baTicketKey + j + 32, 16);
          }
       }
 

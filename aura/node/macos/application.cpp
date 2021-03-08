@@ -200,9 +200,9 @@ namespace aura
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = ::aura::get_system()->load_string("::aura::get_system()->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = System->get_module_title();
+//  //    strExeName = ::aura::get_system()->get_module_title();
 //
 //
 //
@@ -365,5 +365,5 @@ namespace aura
 
 bool on_application_menu_action(const char * pszCommand)
 {
-   System->on_application_menu_action(pszCommand);
+   ::aura::get_system()->on_application_menu_action(pszCommand);
 }

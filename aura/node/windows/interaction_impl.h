@@ -554,7 +554,7 @@ namespace windows
       //void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
       //void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
-      //// System message handler member functions
+      //// ::aura::get_system() message handler member functions
       //void OnDropFiles(HDROP hDropInfo);
       //void OnPaletteIsChanging(::user::interaction_impl * pRealizeWnd);
       //void OnSysChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);

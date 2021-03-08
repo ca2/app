@@ -12,27 +12,39 @@
 //
 //  c(s)t(s)<tb(s)!!
 //
-
-
-
-
 #pragma once
 
 
 
-#undef System
-#undef Node
-#undef Sess
-#undef App
-
-
-#define System (::get_context_system()->m_paurasystem)
-#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
-#define Sess(pcontextsession) (pcontextsession->m_paurasession)
-#define App(playered) (*::get_context_application(playered)->m_pauraapplication)
+//#undef ::aura::get_system()
+//#undef Node
+//#undef Sess
+//#undef App
+//
+//
+//#define ::aura::get_system() (::get_context_system()->m_paurasystem)
+//#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
+//#define Sess(pcontextsession) (pcontextsession->m_paurasession)
+//#define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
 
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
+
+
+namespace aura
+{
+
+
+   class system;
+   class session;
+   class application;
+   class node;
+
+
+   inline system * get_system() { return ::acme::get_system()->layer(LAYERED_AURA); }
+
+
+} // namespace aura
 
 
 #if defined _UWP
@@ -1971,6 +1983,7 @@ namespace aura
    }
 
    class session;
+   class user;
 
 } // namespace aura
 
@@ -2139,7 +2152,7 @@ namespace draw2d
 //#define App(pobject) (*::get_context_application(pobject))
 //
 //
-//#define System Sys(get_context())
+//#define ::aura::get_system() Sys(get_context())
 //#define Session Sess(get_context())
 //#define Application App(get_context())
 //#define ThisApp (*::application_consumer < application >::get_app())

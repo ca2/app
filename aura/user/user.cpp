@@ -397,11 +397,11 @@ namespace user
       //string strLicense = Application.get_license_id();
 
 
-      //::payload & varTopicQuey = System->commnam_varTopicQuery;
+      //::payload & varTopicQuey = ::aura::get_system()->commnam_varTopicQuery;
 
-      bool bHasInstall = System->is_true("install");
+      bool bHasInstall = ::aura::get_system()->is_true("install");
 
-      bool bHasUninstall = System->is_true("uninstall");
+      bool bHasUninstall = ::aura::get_system()->is_true("uninstall");
 
       debug_print("user::initialize bHasInstall %c", bHasInstall);
 
@@ -754,7 +754,7 @@ namespace aura
             if (get_context_system())
             {
 
-               System->finish(get_context());
+               ::aura::get_system()->finish(get_context());
 
             }
 
@@ -1234,29 +1234,29 @@ namespace user
 
 #ifdef LINUX
 
-         auto edesktop = System->get_edesktop();
+         auto edesktop = ::aura::get_system()->get_edesktop();
 
          if (edesktop & ::user::e_desktop_kde)
          {
 
-            estatus = System->do_factory_exchange("windowing", "xcb");
+            estatus = ::aura::get_system()->do_factory_exchange("windowing", "xcb");
 
          }
          else if (edesktop & ::user::e_desktop_gnome)
          {
 
-            estatus = System->do_factory_exchange("windowing", "x11");
+            estatus = ::aura::get_system()->do_factory_exchange("windowing", "x11");
 
          }
          else
          {
 
-            estatus = System->do_factory_exchange("windowing", "xcb");
+            estatus = ::aura::get_system()->do_factory_exchange("windowing", "xcb");
 
             //if (!estatus)
             {
 
-               estatus = System->do_factory_exchange("windowing", "x11");
+               estatus = ::aura::get_system()->do_factory_exchange("windowing", "x11");
 
             }
 
@@ -1264,7 +1264,7 @@ namespace user
 
 #elif defined(WINDOWS_DESKTOP)
 
-         estatus = System->do_factory_exchange("windowing", "win32");
+         estatus = ::aura::get_system()->do_factory_exchange("windowing", "win32");
 
 #endif
 

@@ -52,7 +52,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System->get_context_session() == nullptr)
+   if (::apex::get_system()->get_context_session() == nullptr)
    {
 
       output_debug_string("android_fill_plasma : context_session is null");
@@ -61,7 +61,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System->get_context_session()->m_puiHost == nullptr)
+   if (::apex::get_system()->get_context_session()->m_puiHost == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window is null");
@@ -70,7 +70,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System->get_context_session()->m_puiHost->m_pimpl == nullptr)
+   if (::apex::get_system()->get_context_session()->m_puiHost->m_pimpl == nullptr)
    {
 
       output_debug_string("android_fill_plasma : Host Window impl is null");
@@ -79,7 +79,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (System->get_context_session()->m_puiHost->get_window_graphics() == nullptr)
+   if (::apex::get_system()->get_context_session()->m_puiHost->get_window_graphics() == nullptr)
    {
 
       //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
@@ -88,7 +88,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (System->get_context_session()->m_puiHost->get_window_graphics());
+   auto pbuffer = dynamic_cast <::graphics::double_buffer *> (::apex::get_system()->get_context_session()->m_puiHost->get_window_graphics());
 
    if(pbuffer == nullptr)
    {
@@ -203,7 +203,7 @@ void android_apex_main()
    rect.right = premote->getWidth();
    rect.bottom = premote->getHeight();
 
-   System->get_context_session()->defer_initialize_host_window(rect);
+   ::apex::get_system()->get_context_session()->defer_initialize_host_window(rect);
 
    SetMainScreenRect(rect);
 

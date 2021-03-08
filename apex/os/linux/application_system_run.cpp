@@ -66,7 +66,7 @@ CLASS_DECL_APEX i32 ca2_main();
 ///*void sn_start_context()
 //{
 //
-//   System->sn_start_context();
+//   ::apex::get_system()->sn_start_context();
 //
 //}*/
 

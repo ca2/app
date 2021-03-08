@@ -20,6 +20,9 @@ namespace core
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
+      inline ::core::user* user() { return m_puser ? m_puser->m_pcoreuser : nullptr; }
+
+
    };
 
 

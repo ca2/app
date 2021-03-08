@@ -2,7 +2,7 @@
 #include "_uwp.h"
 
 
-#undef System
+#undef ::apex::get_system()
 
 
 using namespace Platform;
@@ -12,9 +12,9 @@ using namespace Windows::UI::Core;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
+using namespace Windows::::apex::get_system();
 using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace Windows::::apex::get_system()::Threading;
 using namespace Windows::UI::Text::Core;
 using namespace Windows::UI::ViewManagement;
 

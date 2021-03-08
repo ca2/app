@@ -223,7 +223,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate)
 //{
 //
-//   ::thread * pthread = System->get_task(idthread);
+//   ::thread * pthread = ::aura::get_system()->get_task(idthread);
 //
 //   if (!pthread)
 //   {

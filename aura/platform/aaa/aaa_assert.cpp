@@ -27,7 +27,7 @@ CLASS_DECL_AURA int __assert_failed_line(const char * pszFileName, int iLineNumb
 //   if(pthread != nullptr)
 //   {
 //
-//      pthread->System->assert_failed_line(pszFileName,iLineNumber);
+//      pthread->::aura::get_system()->assert_failed_line(pszFileName,iLineNumber);
 //
 //   }
 //

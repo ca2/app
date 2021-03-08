@@ -1555,11 +1555,11 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    }
 
-   auto pgroup = System->thread_group();
+   auto pgroup = ::aura::get_system()->thread_group();
 
    synchronization_lock slGroup(pgroup->mutex());
 
-   auto ptool = System->thread_tool(::e_thread_tool_draw2d);
+   auto ptool = ::aura::get_system()->thread_tool(::e_thread_tool_draw2d);
 
    synchronization_lock slTool(ptool->mutex());
 
@@ -8176,7 +8176,7 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
 
          pimage->gradient_vertical_fill(clr1, clr2, point1.x, point2.x);
 
-         pimage->rotate(this, System->math().GetPi() - angle, 1.0);
+         pimage->rotate(this, ::aura::get_system()->math().GetPi() - angle, 1.0);
 
       }
 
@@ -8659,7 +8659,7 @@ bool image::on_exif_orientation()
 //bool image::read_from_pdata->m_file(file_pointer spfile)
 //{
 //
-//   if (!System->imaging().LoadImageFromFile(this, spfile))
+//   if (!::aura::get_system()->imaging().LoadImageFromFile(this, spfile))
 //   {
 //
 //      m_eload = load_fail;
@@ -8698,12 +8698,12 @@ save_image::save_image()
 save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 {
 
-   auto eformat = System->draw2d()->text_to_format(varOptions["format"]);
+   auto eformat = ::aura::get_system()->draw2d()->text_to_format(varOptions["format"]);
 
    if (eformat != ::draw2d::format_none)
    {
 
-      eformat = System->draw2d()->file_extension_to_format(varFile.get_file_path());
+      eformat = ::aura::get_system()->draw2d()->file_extension_to_format(varFile.get_file_path());
 
    }
 
@@ -8779,7 +8779,7 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 //   bool image::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
 //   {
 //
-//      return System->imaging().from(m_p, pgraphics, pfi, bUnload);
+//      return ::aura::get_system()->imaging().from(m_p, pgraphics, pfi, bUnload);
 //
 //   }
 //

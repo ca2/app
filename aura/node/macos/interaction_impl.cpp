@@ -343,7 +343,7 @@ namespace macos
       //      pusersystem->m_createstruct.hwndParent = hWndParent;
       //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
       pusersystem->m_createstruct.hMenu = nullptr;
-      //      pusersystem->m_createstruct.hInstance = System->m_hInstance;
+      //      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hInstance;
       //pusersystem->m_createstruct.lpCreateParams = lpParam;
 
       if (!m_puserinteraction->pre_create_window(pusersystem))
@@ -988,7 +988,7 @@ namespace macos
     UNREFERENCED_PARAMETER(nCmd);
     __throw(error_not_implemented);
 
-    application* pApp = System;
+    application* pApp = ::aura::get_system();
     ASSERT_VALID(pApp);
     if (pApp->m_eHelpType == afxHTMLHelp)
     {
@@ -1760,7 +1760,7 @@ namespace macos
 //   {
 //      __throw(error_not_implemented);
 //
-//      /*      application* pApp = System;
+//      /*      application* pApp = ::aura::get_system();
 //       if (pApp != nullptr && pApp->GetMainWnd() == this)
 //       {
 //       // recolor global brushes used by control bars
@@ -1792,7 +1792,7 @@ namespace macos
     {
     UNREFERENCED_PARAMETER(lpDeviceName);
     __throw(error_not_implemented);
-    application* pApp = System;
+    application* pApp = ::aura::get_system();
     if (pApp != nullptr && pApp->GetMainWnd() == this)
     pApp->DevModeChange(lpDeviceName);
 
@@ -1811,7 +1811,7 @@ namespace macos
    //   {
    //      if (!(GetStyle() & WS_CHILD))
    //      {
-   //         ::user::interaction* pMainWnd = System->GetMainWnd();
+   //         ::user::interaction* pMainWnd = ::aura::get_system()->GetMainWnd();
    //         if (pMainWnd != nullptr &&
    //            GetKeyState(VK_SHIFT) >= 0 &&
    //            GetKeyState(VK_CONTROL) >= 0 &&
@@ -1989,7 +1989,7 @@ namespace macos
       if(::is_null(g_pappPreTranslateMouseMessage))
       {
 
-         g_pappPreTranslateMouseMessage = System->payload("pre_translate_mouse_message").cast < ::aura::application >();
+         g_pappPreTranslateMouseMessage = ::aura::get_system()->payload("pre_translate_mouse_message").cast < ::aura::application >();
 
       }
       
@@ -2116,8 +2116,8 @@ namespace macos
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      System->get_event(get_context_application()->get_context_application())->SetEvent();
-      //    System->get_event(System->get_twf())->wait(millis(8400));
+      //      ::aura::get_system()->get_event(get_context_application()->get_context_application())->SetEvent();
+      //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
    }
 
    void interaction_impl::_001OnPaint(::message::message * pmessage)
@@ -4236,7 +4236,7 @@ namespace macos
 //   void interaction_impl::_001BaseWndInterfaceMap()
 //   {
 //
-//      System->window_map().set(get_handle(), this);
+//      ::aura::get_system()->window_map().set(get_handle(), this);
 //
 //   }
 

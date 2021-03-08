@@ -32,12 +32,7 @@ namespace acme
 
       }
 
-      m_papexsystem = nullptr;
-      m_paquasystem = nullptr;
-      m_paurasystem = nullptr;
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pcoresystem = nullptr;
+      set_os_data(LAYERED_ACME, this);
 
    }
 
@@ -55,12 +50,12 @@ namespace acme
    }
 
 
-   ::acme::node * system::node()
-   {
-
-      return m_pnode;
-
-   }
+//   ::acme::node * system::node()
+//   {
+//
+//      return m_pnode;
+//
+//   }
 
 
    ::e_status system::create_os_node()
@@ -368,6 +363,21 @@ CLASS_DECL_ACME void acme_system_term()
    ::acme::del(g_psystem);
 
 }
+
+
+namespace acme
+{
+
+
+   CLASS_DECL_ACME system * get_system()
+   {
+
+      return ::g_psystem;
+
+   }
+
+
+} // namespace acme
 
 
 

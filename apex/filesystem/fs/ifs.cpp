@@ -65,7 +65,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    path.m_iDir = 1;
 
-   listing.m_straTitle.add("User Intelligent File System");
+   listing.m_straTitle.add("User Intelligent File ::apex::get_system()");
 
 
 
@@ -122,7 +122,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + System->url().url_encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + ::apex::get_system()->url().url_encode(listing.m_pathUser);
 
    //string strSource;
 

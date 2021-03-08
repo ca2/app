@@ -389,7 +389,7 @@ namespace aura
                if (::str::begins_eat_ci(str, "send?message="))
                {
 
-                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, System->url().url_decode(str));
+                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, ::aura::get_system()->url().url_decode(str));
 
                }
                else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -404,7 +404,7 @@ namespace aura
 
                      memory m;
 
-                     System->base64().decode(m, System->url().url_decode(str.Mid(iFind + 1)));
+                     ::aura::get_system()->base64().decode(m, ::aura::get_system()->url().url_decode(str.Mid(iFind + 1)));
 
                      m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -471,7 +471,7 @@ namespace aura
 
          //    ::exception_pointer esp(pexception);
 
-         //    System->on_run_exception(esp);
+         //    ::aura::get_system()->on_run_exception(esp);
 
          //    __throw(exit_exception(esp->get_context_application(), ::exit_application));
 
@@ -484,10 +484,10 @@ namespace aura
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(get_context_system()) && System->m_millisAfterApplicationFirstRequest == 0)
+         if (::is_set(get_context_system()) && ::aura::get_system()->m_millisAfterApplicationFirstRequest == 0)
          {
 
-            System->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            ::aura::get_system()->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -814,7 +814,7 @@ namespace aura
    //object * application::alloc(::type info)
    //{
 
-   //   return System->alloc(this, info);
+   //   return ::aura::get_system()->alloc(this, info);
 
    //}
 
@@ -822,7 +822,7 @@ namespace aura
    //object * application::alloc(const  id & idType)
    //{
 
-   //   return System->alloc(this, idType);
+   //   return ::aura::get_system()->alloc(this, idType);
 
    //}
 
@@ -986,7 +986,7 @@ namespace aura
    //::file::path application::defer_process_path(::file::path path)
    //{
 
-   //   return System->defer_process_path(path, this);
+   //   return ::aura::get_system()->defer_process_path(path, this);
 
    //}
 
@@ -1001,7 +1001,7 @@ namespace aura
 
    //   }
 
-   //   return System->full_process_path(path, this);
+   //   return ::aura::get_system()->full_process_path(path, this);
 
    //}
 
@@ -1385,7 +1385,7 @@ namespace aura
 //      //if(::is_set(get_context_system()))
 //      //{
 //
-//      //   System->add_reference(this);
+//      //   ::aura::get_system()->add_reference(this);
 //
 //      //}
 //
@@ -1637,7 +1637,7 @@ namespace aura
 
          ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-         System->m_result.add(error_failed);
+         ::aura::get_system()->m_result.add(error_failed);
 
          return false;
 
@@ -1666,11 +1666,11 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      //::payload & varTopicQuey = System->m_varTopicQuery;
+      //::payload & varTopicQuey = ::aura::get_system()->m_varTopicQuery;
 
-      bool bHasInstall = System->is_true("install");
+      bool bHasInstall = ::aura::get_system()->is_true("install");
 
-      bool bHasUninstall = System->is_true("uninstall");
+      bool bHasUninstall = ::aura::get_system()->is_true("uninstall");
 
       if (!(bHasInstall || bHasUninstall)
             && m_bLicense
@@ -1723,7 +1723,7 @@ retry_license:
 
          return false;
 
-//         System->install().remove_spa_start(m_strAppId);
+//         ::aura::get_system()->install().remove_spa_start(m_strAppId);
 
       }
 
@@ -1755,7 +1755,7 @@ retry_license:
 
 #ifdef WINDOWS_DESKTOP
 
-         string strModuleName = System->file().module();
+         string strModuleName = ::aura::get_system()->file().module();
 
          windows_install_crash_dump_reporting(strModuleName);
 
@@ -1806,11 +1806,11 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(System->m_spmutexSystemAppData);
+   //   synchronization_lock synchronizationlock(::aura::get_system()->m_spmutexSystemAppData);
 
    //   string strId(pszId);
-   //   string strSystemLocale = System->m_strLocale;
-   //   string strSystemSchema = System->m_strSchema;
+   //   string strSystemLocale = ::aura::get_system()->m_strLocale;
+   //   string strSystemSchema = ::aura::get_system()->m_strSchema;
    //   string_array straLocale;
    //   string_array straSchema;
 
@@ -1832,26 +1832,26 @@ retry_license:
 
    //      string strSchema = straSchema[i];
 
-   //      set_application_installed(pathExe, strId, strBuild, System->get_system_platform(), System->get_system_configuration(), strLocale, strSchema);
+   //      set_application_installed(pathExe, strId, strBuild, ::aura::get_system()->get_system_platform(), ::aura::get_system()->get_system_configuration(), strLocale, strSchema);
 
    //   }
 
-   //   //System->install().remove_spa_start(strId);
-   //   //System->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-   //   //System->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-   //   //System->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
+   //   //::aura::get_system()->install().remove_spa_start(strId);
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
    //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    //   //{
 
-   //   //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
+   //   //   ::aura::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
    //   //}
 
    //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //   //{
 
-   //   //   System->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
+   //   //   ::aura::get_system()->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
    //   //}
 
@@ -1861,33 +1861,33 @@ retry_license:
    //   //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //   //   {
 
-   //   //      System->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
+   //   //      ::aura::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
    //   //   }
 
    //   //}
 
-   //   //System->install().add_app_install(strId, strBuild, strSystemLocale, "");
-   //   //System->install().add_app_install(strId, strBuild, m_strLocale, "");
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, "");
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, m_strLocale, "");
 
    //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    //   //{
 
-   //   //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
+   //   //   ::aura::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
    //   //}
 
-   //   //System->install().add_app_install(strId, strBuild, "", m_strSchema);
-   //   //System->install().add_app_install(strId, strBuild, "", strSystemSchema);
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, "", m_strSchema);
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, "", strSystemSchema);
 
    //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //   //{
 
-   //   //   System->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
+   //   //   ::aura::get_system()->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
    //   //}
 
-   //   //System->install().add_app_install(strId, strBuild, "", "");
+   //   //::aura::get_system()->install().add_app_install(strId, strBuild, "", "");
 
    //   return true;
 
@@ -2018,7 +2018,7 @@ retry_license:
 //
 //      }
 //
-//      System->install_progress_add_up(); // 2
+//      ::aura::get_system()->install_progress_add_up(); // 2
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
@@ -2033,7 +2033,7 @@ retry_license:
 //
 //      }
 //
-//      System->install_progress_add_up(); // 3
+//      ::aura::get_system()->install_progress_add_up(); // 3
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
@@ -2048,7 +2048,7 @@ retry_license:
 //
 //      }
 //
-//      System->install_progress_add_up(); // 4
+//      ::aura::get_system()->install_progress_add_up(); // 4
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
@@ -2083,7 +2083,7 @@ retry_license:
 //
 //      }
 //
-//      System->install_progress_add_up(); // 5
+//      ::aura::get_system()->install_progress_add_up(); // 5
 //
 ////      m_bAuraInitializeInstanceResult = true;
 //
@@ -2123,7 +2123,7 @@ retry_license:
 
       }
 
-      if (System->m_bImaging)
+      if (::aura::get_system()->m_bImaging)
       {
 
          estatus = __compose(m_pcontextimage);
@@ -2637,26 +2637,26 @@ retry_license:
 
    //string application::get_local_mutex_name()
    //{
-   //   return System->get_local_mutex_name(get_mutex_name_gen());
+   //   return ::aura::get_system()->get_local_mutex_name(get_mutex_name_gen());
    //}
 
 
    //string application::get_local_id_mutex_name()
    //{
 
-   //   return System->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+   //   return ::aura::get_system()->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
    //}
 
 
    //string application::get_global_mutex_name()
    //{
-   //   return System->get_global_mutex_name(get_mutex_name_gen());
+   //   return ::aura::get_system()->get_global_mutex_name(get_mutex_name_gen());
    //}
 
    //string application::get_global_id_mutex_name()
    //{
-   //   return System->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+   //   return ::aura::get_system()->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
    //}
 
 
@@ -2700,7 +2700,7 @@ retry_license:
 
    //         pcall->add_arg(Context.os().get_pid());
 
-   //         pcall->add_arg(System->command_line_text());
+   //         pcall->add_arg(::aura::get_system()->command_line_text());
 
    //         string strId;
 
@@ -2761,7 +2761,7 @@ retry_license:
 
    //         pcall->add_arg(Context.os().get_pid());
 
-   //         pcall->add_arg(System->command_line_text());
+   //         pcall->add_arg(::aura::get_system()->command_line_text());
 
    //         pcall->add_arg(strId);
 
@@ -3057,7 +3057,7 @@ retry_license:
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System->appa_load_string_table();
+   //   //::aura::get_system()->appa_load_string_table();
    //}
 
 
@@ -3067,7 +3067,7 @@ retry_license:
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System->appa_load_string_table();
+   //   //::aura::get_system()->appa_load_string_table();
    //}
 
 
@@ -3318,10 +3318,10 @@ retry_license:
    //void application::_001OnFranceExit()
    //{
 
-   //   //if (System->m_pmultimedia)
+   //   //if (::aura::get_system()->m_pmultimedia)
    //   //{
 
-   //   //   System->m_pmultimedia->_001OnFranceExit();
+   //   //   ::aura::get_system()->m_pmultimedia->_001OnFranceExit();
 
    //   //}
 
@@ -3364,7 +3364,7 @@ retry_license:
 //
 //      string strMessage;
 //
-//      strMessage = System->datetime().international().get_gmt_date_time();
+//      strMessage = ::aura::get_system()->datetime().international().get_gmt_date_time();
 //      strMessage += " ";
 //      strMessage += pszMessage;
 //      strMessage += "\n";
@@ -3458,7 +3458,7 @@ retry_license:
    //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
    //{
 
-   //   return System->compress().ungz(this, pfileUncompressed, pfileCompressed);
+   //   return ::aura::get_system()->compress().ungz(this, pfileUncompressed, pfileCompressed);
 
    //}
 
@@ -3466,7 +3466,7 @@ retry_license:
    //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
    //{
 
-   //   return System->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
+   //   return ::aura::get_system()->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
 
 
    //}
@@ -4347,7 +4347,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      System->on_initial_frame_position(pframe);
+      ::aura::get_system()->on_initial_frame_position(pframe);
 
    }
 
@@ -4435,7 +4435,7 @@ retry_license:
          //else
          //{
 
-           // return System->translate_property_id(id);
+           // return ::aura::get_system()->translate_property_id(id);
 
          //}
 
@@ -4461,7 +4461,7 @@ retry_license:
 
    //   string strAppId = m_strAppId;
 
-   //   auto& file = System->file();
+   //   auto& file = ::aura::get_system()->file();
 
    //   string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
 
@@ -4471,7 +4471,7 @@ retry_license:
    //      try
    //      {
 
-   //         System->http().m_setHttp.parse_json(strJson);
+   //         ::aura::get_system()->http().m_setHttp.parse_json(strJson);
 
    //      }
    //      catch (...)
@@ -5159,7 +5159,7 @@ retry_license:
 
          update_appmatter(handler, psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         System->install_progress_add_up();
+         ::aura::get_system()->install_progress_add_up();
 
       }
 
@@ -5187,7 +5187,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System->url().url_encode(strRelative);
+      strUrl += ::aura::get_system()->url().url_encode(strRelative);
 
       if (psession == nullptr)
       {
@@ -5197,7 +5197,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (Context.http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (Context.http().open(handler, psession, ::aura::get_system()->url().get_server(strUrl), ::aura::get_system()->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -5247,7 +5247,7 @@ retry_license:
 
          }
 
-         //System->compress().extract_all(strFile, this);
+         //::aura::get_system()->compress().extract_all(strFile, this);
 
       }
 
@@ -5780,7 +5780,7 @@ retry_license:
       //bool application::compress_ungz(const ::stream & os, const ::stream & is)
       //{
 
-      //   return System->compress().ungz(this, os, is);
+      //   return ::aura::get_system()->compress().ungz(this, os, is);
 
 
       //}
@@ -5789,7 +5789,7 @@ retry_license:
       //bool application::compress_ungz(memory_base & mem)
       //{
 
-      //   return System->compress().ungz(this, mem);
+      //   return ::aura::get_system()->compress().ungz(this, mem);
 
       //}
 
@@ -5798,7 +5798,7 @@ retry_license:
 
       //{
 
-      //   return System->compress().gz(this, os, is, iLevel);
+      //   return ::aura::get_system()->compress().gz(this, os, is, iLevel);
 
 
       //}
@@ -5807,7 +5807,7 @@ retry_license:
       //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
       //{
 
-      //   return System->compress().gz(this, os, is, iLevel);
+      //   return ::aura::get_system()->compress().gz(this, os, is, iLevel);
 
       //}
 
@@ -6742,7 +6742,7 @@ namespace aura
    //   {
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
-   //      //   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
+   //      //   __pointer(::user::interaction) pMainWnd = ::aura::get_system()->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
    //      // return global cast help mode state to false (backward compatibility)
@@ -6799,7 +6799,7 @@ namespace aura
    //   if (!is_system())
    //   {
 
-   //      if (System->final_handle_exception(pexception))
+   //      if (::aura::get_system()->final_handle_exception(pexception))
    //      {
 
    //         return true;
@@ -6899,7 +6899,7 @@ namespace aura
    //   }
 
    //   // otherwise, use window::OnHelp implementation
-   //   /* trans ::user::interaction_impl * pwindow = System->m_puiMain;
+   //   /* trans ::user::interaction_impl * pwindow = ::aura::get_system()->m_puiMain;
    //   ENSURE_VALID(pwindow);
    //   if (!pwindow->is_frame_window())
    //   pwindow->OnHelp();
@@ -6951,7 +6951,7 @@ namespace aura
    //{
    //   // just use frame_window::OnContextHelp implementation
    //   /* trans   m_bHelpMode = HELP_ACTIVE;
-   //   __pointer(::user::frame_window) pMainWnd = (System->m_puiMain);
+   //   __pointer(::user::frame_window) pMainWnd = (::aura::get_system()->m_puiMain);
    //   ENSURE_VALID(pMainWnd);
    //   ENSURE(pMainWnd->is_frame_window());
    //   pMainWnd->OnContextHelp();
@@ -7132,7 +7132,7 @@ namespace aura
 //#endif
 //
 //      // no-op if main window is nullptr or not a frame_window
-//      /*   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
+//      /*   __pointer(::user::interaction) pMainWnd = ::aura::get_system()->m_puiMain;
 //      if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
 //      return;*/
 //
@@ -8049,7 +8049,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(System);
+            ::parallelization::finish(::aura::get_system());
 
          }
 
@@ -8057,7 +8057,7 @@ namespace aura
       else
       {
 
-         ::parallelization::finish(System);
+         ::parallelization::finish(::aura::get_system());
 
       }
 
@@ -8096,7 +8096,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(System);
+            ::parallelization::finish(::aura::get_system());
 
          }
 
@@ -8104,7 +8104,7 @@ namespace aura
       else
       {
 
-         ::parallelization::finish(System);
+         ::parallelization::finish(::aura::get_system());
 
       }
 
@@ -8215,7 +8215,7 @@ namespace aura
    bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
    {
       return false;
-      //db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (::aura::get_system()->m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{
@@ -8244,7 +8244,7 @@ namespace aura
 
       // Closing just this application.
       // It is different of a system exit.
-      // System (a single ca2 process) can host
+      // ::aura::get_system() (a single ca2 process) can host
       // multiple ca2 application objects.
 
       // attempt to save all documents
@@ -8329,7 +8329,7 @@ namespace aura
       //{
       //   if (m_straAppInterest[i] != m_strAppName || pwindowing->is_window(m_mapAppInterest[m_straAppInterest[i]]))
       //   {
-      //      System->assert_running_local(m_straAppInterest[i]);
+      //      ::aura::get_system()->assert_running_local(m_straAppInterest[i]);
       //   }
       //}
 
@@ -8413,13 +8413,13 @@ namespace aura
    //bool application::platform_open_by_file_extension(int iEdge, const char * pszPathName, application_bias * papplicationbias)
    //{
 
-   //   return System->get_platform(iEdge)->open_by_file_extension(pszPathName, papplicationbias);
+   //   return ::aura::get_system()->get_platform(iEdge)->open_by_file_extension(pszPathName, papplicationbias);
    //}
 
    //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
    //{
 
-   //   return System->get_platform(iEdge)->open_by_file_extension(pcc);
+   //   return ::aura::get_system()->get_platform(iEdge)->open_by_file_extension(pcc);
    //}
 
 
@@ -8923,7 +8923,7 @@ namespace aura
               //   }
               //   try
               //   {
-              //      System->remove_frame(pinteraction);
+              //      ::aura::get_system()->remove_frame(pinteraction);
               //   }
               //   catch(...)
               //   {

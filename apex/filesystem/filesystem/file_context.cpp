@@ -246,7 +246,9 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::file::path file_context::module()
 {
 
-   auto pfilesystem = System->m_pfilesystem;
+   auto psystem = ::apex::get_system();
+
+   auto pfilesystem = psystem->m_pfilesystem;
 
    return pfilesystem->m_pathModule;
 
@@ -256,7 +258,9 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::file::path file_context::ca2module()
 {
 
-   return System->m_pfilesystem->m_pathCa2Module;
+   auto psystem = ::apex::get_system();
+
+   return psystem->m_pfilesystem->m_pathCa2Module;
 
 }
 
@@ -280,7 +284,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   synchronization_lock lockMachineEvent(System->mutex());
+   synchronization_lock lockMachineEvent(::apex::get_system()->mutex());
 
    ::file::path str;
 
@@ -2030,7 +2034,9 @@ string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
 
    mem.set_size(1024 * 256);
 
-   auto phasher = System->crypto().create_hasher(ehash);
+   auto psystem = ::apex::get_system();
+
+   auto phasher = psystem->crypto().create_hasher(ehash);
 
    memsize iRead;
 
@@ -2103,7 +2109,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 ::e_status file_context::init_system()
 {
 
-   auto estatus = System->m_pfilesystem->update_module_path();
+   auto estatus = ::apex::get_system()->m_pfilesystem->update_module_path();
 
    if (!estatus)
    {
@@ -2317,7 +2323,7 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
 
             __pointer(memory_file) pmemoryfile = __new(memory_file());
 
-            if (System->base64().decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
+            if (::apex::get_system()->base64().decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
             {
 
                TRACE("::file::file_context::data_get_file Succeeded");
@@ -2379,9 +2385,9 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    ::url_domain domain;
 
-   domain.create(System->url().get_server(path));
+   domain.create(::apex::get_system()->url().get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str::begins(System->url().get_object(path), astr.MatterUri);
+   bool bSaveCache = domain.m_strRadix != "ca2" || !::str::begins(::apex::get_system()->url().get_object(path), astr.MatterUri);
 
    ::file::path pathCache;
 
@@ -2683,12 +2689,12 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
          //   __pointer(::apex::application) pappLookup;
 
-         //   string strApp = System->url().get_server("matter://" + strPath);
+         //   string strApp = ::apex::get_system()->url().get_server("matter://" + strPath);
 
          //   if (strApp == papp->m_strAppName)
          //   {
 
-         //      strPath = System->url().get_object("matter://" + strPath).Mid(1);
+         //      strPath = ::apex::get_system()->url().get_object("matter://" + strPath).Mid(1);
 
          //      spfile = App(papp).alloc(__type(::file::binary_file));
 
@@ -2954,7 +2960,7 @@ bool file_context::is_link(string strPath)
 //::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 //{
 //
-//   return System->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_context_application());
+//   return ::apex::get_system()->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_context_application());
 //
 //}
 
@@ -2962,41 +2968,41 @@ bool file_context::is_link(string strPath)
 //::extended::status file_context::move(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //
-//   return System->m_spfile->move(pszNew, pszOld, get_context_application());
+//   return ::apex::get_system()->m_spfile->move(pszNew, pszOld, get_context_application());
 //
 //}
 
 //
 //::extended::status file_context::del(const ::file::path & psz)
 //{
-//   return System->m_spfile->del(psz, get_context_application());
+//   return ::apex::get_system()->m_spfile->del(psz, get_context_application());
 //}
 
 //::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
-//   return System->m_spfile->rename(pszNew, pszOld, get_context_application());
+//   return ::apex::get_system()->m_spfile->rename(pszNew, pszOld, get_context_application());
 //}
 
 //void file_context::trash_that_is_not_trash(const ::file::path & psz)
 //{
-//   return System->m_spfile->trash_that_is_not_trash(psz, get_context_application());
+//   return ::apex::get_system()->m_spfile->trash_that_is_not_trash(psz, get_context_application());
 //}
 //
 //void file_context::trash_that_is_not_trash(::file::patha & stra)
 //{
-//   return System->m_spfile->trash_that_is_not_trash(stra, get_context_application());
+//   return ::apex::get_system()->m_spfile->trash_that_is_not_trash(stra, get_context_application());
 //}
 
 //::extended::status file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
 //{
-//   return System->m_spfile->replace(pszContext, pszFind, pszReplace, get_context_application());
+//   return ::apex::get_system()->m_spfile->replace(pszContext, pszFind, pszReplace, get_context_application());
 //}
 
 
 //bool file_context::exists(const ::file::path & pszPath)
 //{
 //
-//   return System->m_spfile->exists(pszPath, get_context_application());
+//   return ::apex::get_system()->m_spfile->exists(pszPath, get_context_application());
 //
 //}
 
@@ -3012,7 +3018,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 /*  bool file_context::exists(const string & strPath)
    {
 
-      return System->m_spfile->exists(strPath, get_context_application());
+      return ::apex::get_system()->m_spfile->exists(strPath, get_context_application());
 
    }
 
@@ -3022,7 +3028,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
       const string & strPath = payload.get_string();
 
 
-      return System->m_spfile->exists(strPath, get_context_application());
+      return ::apex::get_system()->m_spfile->exists(strPath, get_context_application());
 
    }*/
 
@@ -3030,7 +3036,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::length(const ::file::path & pszPath)
 //{
 //
-//   return System->m_spfile->length(pszPath, get_context_application());
+//   return ::apex::get_system()->m_spfile->length(pszPath, get_context_application());
 //
 //}
 
@@ -3039,7 +3045,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //{
 
 
-//   return System->m_spfile->length(strPath, get_context_application());
+//   return ::apex::get_system()->m_spfile->length(strPath, get_context_application());
 
 //}
 
@@ -3047,7 +3053,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::length(const ::payload & payload)
 //{
 
-//   return System->m_spfile->length(payload.get_string(), get_context_application());
+//   return ::apex::get_system()->m_spfile->length(payload.get_string(), get_context_application());
 
 //}
 
@@ -3055,7 +3061,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::file::path file_context::time(const ::file::path & pszBasePath, i32 iDepth, const string & pszPrefix, const string & pszSuffix)
 //{
 //
-//   return System->m_spfile->time(get_context_application(), pszBasePath, iDepth, pszPrefix, pszSuffix);
+//   return ::apex::get_system()->m_spfile->time(get_context_application(), pszBasePath, iDepth, pszPrefix, pszSuffix);
 //
 //}
 
@@ -3063,25 +3069,25 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
 //{
 //
-//   return System->m_spfile->time_square(get_context_application(), pszPrefix, pszSuffix);
+//   return ::apex::get_system()->m_spfile->time_square(get_context_application(), pszPrefix, pszSuffix);
 //
 //}
 
 //::file::path file_context::time_log(const string & pszId)
 //{
-//   return System->m_spfile->time_log(get_context_application(), pszId);
+//   return ::apex::get_system()->m_spfile->time_log(get_context_application(), pszId);
 //}
 //
 //file_pointer file_context::time_square_file(const char * pszPrefix, const char * pszSuffix)
 //{
-//   return System->m_spfile->time_square_file(get_context_application(), pszPrefix, pszSuffix);
+//   return ::apex::get_system()->m_spfile->time_square_file(get_context_application(), pszPrefix, pszSuffix);
 //}
 
 
 //file_pointer file_context::get(const ::file::path & name)
 //{
 //
-//   return System->m_spfile->get(name, get_context_application());
+//   return ::apex::get_system()->m_spfile->get(name, get_context_application());
 //
 //}
 
@@ -3089,7 +3095,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::as_json(const ::payload & varFile)
 //{
 //
-//   return System->m_spfile->as_json(get_context_application(), varFile);
+//   return ::apex::get_system()->m_spfile->as_json(get_context_application(), varFile);
 //
 //}
 
@@ -3097,7 +3103,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //string file_context::as_string(const ::payload & varFile)
 //{
 //
-//   return System->m_spfile->as_string(get_context_application(), varFile);
+//   return ::apex::get_system()->m_spfile->as_string(get_context_application(), varFile);
 //
 //}
 //
@@ -3105,7 +3111,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::as_memory(const ::payload & varFile, memory_base & mem)
 //{
 //
-//   return System->m_spfile->as_memory(get_context_application(), varFile, mem);
+//   return ::apex::get_system()->m_spfile->as_memory(get_context_application(), varFile, mem);
 //
 //}
 
@@ -3113,25 +3119,25 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::lines(string_array & stra, const ::payload & varFile)
 //{
 //
-//   return System->m_spfile->lines(stra, varFile, get_context_application());
+//   return ::apex::get_system()->m_spfile->lines(stra, varFile, get_context_application());
 //
 //}
 //
 //
 //void file_context::put_lines(const ::payload & varFile, const string_array & stra)
 //{
-//   return System->m_spfile->put_lines(varFile, stra, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_lines(varFile, stra, get_context_application());
 //}
 //
 //bool file_context::put_contents(const ::payload & varFile, const void * pvoidContents, ::count count)
 //{
-//   return System->m_spfile->put_contents(varFile, pvoidContents, count, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_contents(varFile, pvoidContents, count, get_context_application());
 //}
 //
 //bool file_context::put_contents(const ::payload & varFile, const char * pcszContents)
 //
 //{
-//   return System->m_spfile->put_contents(varFile, pcszContents, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_contents(varFile, pcszContents, get_context_application());
 //
 //}
 //
@@ -3139,7 +3145,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::add_contents(const ::payload & varFile, const char * pcszContents)
 //{
 //
-//   return System->m_spfile->add_contents(varFile, pcszContents, get_context_application());
+//   return ::apex::get_system()->m_spfile->add_contents(varFile, pcszContents, get_context_application());
 //
 //}
 
@@ -3147,7 +3153,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_contents(const ::payload & varFile, const ::stream & stream)
 //{
 
-//   return System->m_spfile->put_contents(varFile, stream, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_contents(varFile, stream, get_context_application());
 
 //}
 
@@ -3155,7 +3161,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_contents(const ::payload & varFile, memory & mem)
 //{
 //
-//   return System->m_spfile->put_contents(varFile, mem, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_contents(varFile, mem, get_context_application());
 //
 //}
 //
@@ -3163,14 +3169,14 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_contents_utf8(const ::payload & varFile, const char * pcszContents)
 //{
 //
-//   return System->m_spfile->put_contents_utf8(varFile, pcszContents, get_context_application());
+//   return ::apex::get_system()->m_spfile->put_contents_utf8(varFile, pcszContents, get_context_application());
 //
 //}
 
 //
 //string file_context::sys_temp(const char * lpszName, const char * pszExtension)
 //{
-//   return System->m_spfile->sys_temp(lpszName, pszExtension, get_context_application());
+//   return ::apex::get_system()->m_spfile->sys_temp(lpszName, pszExtension, get_context_application());
 //}
 
 
@@ -3213,21 +3219,21 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
 //{
 //
-//   return System->m_spfile->dtf(pszFile, pszDir, get_context_application());
+//   return ::apex::get_system()->m_spfile->dtf(pszFile, pszDir, get_context_application());
 //
 //}
 
 //bool file_context::is_read_only(const path & psz)
 //{
 //
-//   return System->m_spfile->is_read_only(psz, get_context_application());
+//   return ::apex::get_system()->m_spfile->is_read_only(psz, get_context_application());
 //}
 
 
 //void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra, ::file::patha & straRelative)
 //{
 //
-//   return System->m_spfile->dtf(pszFile, stra, get_context_application());
+//   return ::apex::get_system()->m_spfile->dtf(pszFile, stra, get_context_application());
 //
 //}
 //
@@ -3235,7 +3241,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
 //{
 //
-//   return System->m_spfile->ftd(pszDir, pszFile, get_context_application());
+//   return ::apex::get_system()->m_spfile->ftd(pszDir, pszFile, get_context_application());
 //
 //}
 
@@ -3381,19 +3387,19 @@ bool file_context::touch(const ::file::path &path)
 
 //string file_context::md5(const ::payload & varFile)
 //{
-//   return System->m_spfile->md5(varFile, get_context_application());
+//   return ::apex::get_system()->m_spfile->md5(varFile, get_context_application());
 //}
 
 //string file_context::nessie(const ::payload & varFile)
 //{
-//   return System->m_spfile->nessie(varFile, get_context_application());
+//   return ::apex::get_system()->m_spfile->nessie(varFile, get_context_application());
 //}
 
 //
 //::file::path file_context::dropbox_info_json()
 //{
 //
-//   return System->m_spfile->dropbox_info_json(get_context_application());
+//   return ::apex::get_system()->m_spfile->dropbox_info_json(get_context_application());
 //
 //}
 
@@ -3401,7 +3407,7 @@ bool file_context::touch(const ::file::path &path)
 //::file::path file_context::onedrive_global_ini()
 //{
 //
-//   return System->m_spfile->onedrive_global_ini(get_context_application());
+//   return ::apex::get_system()->m_spfile->onedrive_global_ini(get_context_application());
 //
 //}
 
@@ -3409,7 +3415,7 @@ bool file_context::touch(const ::file::path &path)
 //::file::path file_context::onedrive_cid_ini()
 //{
 //
-//   return System->m_spfile->onedrive_cid_ini(get_context_application());
+//   return ::apex::get_system()->m_spfile->onedrive_cid_ini(get_context_application());
 //
 //}
 
@@ -3425,7 +3431,7 @@ bool file_context::touch(const ::file::path &path)
 {
 
 
-   auto estatus = System->m_pfilesystem->update_module_path();
+   auto estatus = ::apex::get_system()->m_pfilesystem->update_module_path();
 
    if (!estatus)
    {

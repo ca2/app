@@ -373,10 +373,10 @@ CLASS_DECL_APEX int_bool release_capture()
 //CLASS_DECL_APEX ::e_status apex_os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   if (System->is_dedicated_thread())
+//   if (::apex::get_system()->is_dedicated_thread())
 //   {
 //
-//      System->fork([=]()
+//      ::apex::get_system()->fork([=]()
 //         {
 //
 //            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);

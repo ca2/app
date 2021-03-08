@@ -75,23 +75,43 @@
 #pragma once
 
 
-#undef Node
-#undef System
-#undef Sess
-#undef App
+//#undef Node
+//#undef ::apex::get_system()
+//#undef Sess
+//#undef App
 
 
-#define System (::get_context_system()->m_papexsystem)
-#define Node (::get_context_system()->node()->m_papexnode)
-#define Sess(pcontextsession) (pcontextsession)
-#define App(playered) (*::get_context_application(playered))
+//#define ::apex::get_system() (::get_context_system()->m_papexsystem)
+//#define Node (::get_context_system()->node()->m_papexnode)
+//#define Sess(pcontextsession) (pcontextsession)
+#define App(playered) (::get_context_application(playered))
 
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
 
 
+namespace apex
+{
+
+
+   class system;
+   class node;
+   class session;
+   class application;
+
+
+   inline system * get_system() { return (system *) ::acme::get_system()->layer(LAYERED_APEX); }
+
+
+} // namespace apex
+
+
+
 CLASS_DECL_APEX void apex_ref();
+
+
+
 
 
 #include "apex/message/global.h"
@@ -687,37 +707,37 @@ CLASS_DECL_APEX bool __node_apex_pre_term();
 CLASS_DECL_APEX bool __node_apex_pos_term();
 
 
-extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char * psz);
-extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
+//extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char * psz);
+//extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
-CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
-CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
+//CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
+//CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
 
-CLASS_DECL_APEX ::context * get_context();
-CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext);
-CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
-
-
-inline ::object * get_context_object();
+//CLASS_DECL_APEX ::context * get_context();
+//CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext);
+//CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
-CLASS_DECL_APEX void set_global_application(::apex::application * papp);
-CLASS_DECL_APEX ::apex::application * get_global_application();
+//inline ::object * get_context_object();
 
 
-CLASS_DECL_APEX ::apex::application * get_context_application();
-CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext);
-CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
-CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
+//CLASS_DECL_APEX void set_global_application(::apex::application * papp);
+//CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
-CLASS_DECL_APEX ::apex::session * get_context_session();
-CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext);
-CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
+//CLASS_DECL_APEX ::apex::application * get_context_application();
+//CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext);
+//CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
+//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
 
 
-CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_APEX ::apex::session * get_context_session();
+//CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext);
+//CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
+
+
+//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 
 
 #define BAD_WCHAR ((widechar)(-1))

@@ -19,6 +19,9 @@ namespace base
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
+      inline ::base::user* user() { return m_puser ? m_puser->m_pbaseuser : nullptr; }
+
+
    };
 
 

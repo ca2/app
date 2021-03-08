@@ -100,13 +100,15 @@ string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efo
 string os_font_name(enum_font efont)
 {
 
+   auto psystem = ::acme::get_system();
+
 #ifdef WINDOWS
 
    return windows_font_name(efont);
 
 #elif defined(LINUX)
 
-   auto elinuxdistribution = System->get_linux_distribution();
+   auto elinuxdistribution = psystem->get_linux_distribution();
 
    return linux_font_name(elinuxdistribution, efont);
 

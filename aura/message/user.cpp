@@ -87,7 +87,7 @@ namespace message
 
 #ifdef __DEBUG
 
-      System->log().print(pcszErrorMessage);
+      ::aura::get_system()->log().print(pcszErrorMessage);
 
 #endif //__DEBUG
 
@@ -477,7 +477,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      //m_puserinteraction = System->ui_from_handle(reinterpret_cast<oswindow>(wparam));
+      //m_puserinteraction = ::aura::get_system()->ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
       //m_puserinteraction = nullptr;
 

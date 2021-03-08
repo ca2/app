@@ -360,7 +360,7 @@ void tool_thread::set_ready()
 //CLASS_DECL_APEX ::thread_group * get_thread_group(::e_priority epriority)
 //{
 //
-//   return  System->tools(epriority);
+//   return  ::apex::get_system()->tools(epriority);
 //
 //}
 //
@@ -368,7 +368,7 @@ void tool_thread::set_ready()
 //CLASS_DECL_APEX ::thread_groupet * get_thread_groupet(::enum_thread_tool etool)
 //{
 //
-//   return System->toolset(etool);
+//   return ::apex::get_system()->toolset(etool);
 //
 //}
 

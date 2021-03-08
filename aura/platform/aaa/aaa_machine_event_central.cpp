@@ -75,7 +75,7 @@ machine_event_central::~machine_event_central()
 
          //m_machineevent.read(&data);
 
-         //System->process_machine_event_data(&data);
+         //::aura::get_system()->process_machine_event_data(&data);
       }
 
       sleep(500_ms);
@@ -98,7 +98,7 @@ bool machine_event_central::is_close_application()
 
    m_machineevent.read(&data);
 
-   System->process_machine_event_data(&data);
+   ::aura::get_system()->process_machine_event_data(&data);
 
    return data.m_fixed.m_bRequestCloseApplication;
 

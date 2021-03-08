@@ -337,7 +337,7 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
  * Convert a system time into a local time.
  *
  * PARAMS
- *   SystemTime [I] System time to convert.
+ *   SystemTime [I] ::aura::get_system() time to convert.
  *   LocalTime  [O] Destination for the converted time.
  *
  * RETURNS

@@ -244,7 +244,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         System->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::apex::get_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -261,7 +261,7 @@ namespace uwp
 
          m_dpi = dpi;
 
-         System->m_dpi = dpi;
+         ::apex::get_system()->m_dpi = dpi;
 
          m_size.cx = (::i32)m_window->Bounds.Width;
 
@@ -341,7 +341,7 @@ namespace uwp
 
       m_pimpl->m_puserinteraction->set_window_position(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
-      if (System->has_property("client_only"))
+      if (::apex::get_system()->has_property("client_only"))
       {
 
          ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;

@@ -67,8 +67,6 @@ namespace interprocess_communication
    };
 
 
-
-
    class CLASS_DECL_APEX tx:
       virtual public  base
    {
@@ -128,7 +126,7 @@ namespace interprocess_communication
 
       bool                    m_bRunning;
       bool                    m_bRun;
-      thread *                m_pthread;
+      ::thread *              m_pthread;
 
 #endif
 

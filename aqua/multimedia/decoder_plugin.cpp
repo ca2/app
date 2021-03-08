@@ -65,7 +65,7 @@ namespace multimedia
 
       //m_plibrary.create(this);
 
-      m_plibrary = System->get_library(pszTitle);
+      m_plibrary = ::aqua::get_system()->get_library(pszTitle);
 
       if (m_plibrary.is_null())
       {

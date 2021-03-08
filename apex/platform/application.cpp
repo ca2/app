@@ -119,10 +119,7 @@ namespace apex
       m_strAppId(::is_set(pszAppId) ? pszAppId : "")
    {
 
-      m_pauraapplication = nullptr;
-      m_paxisapplication = nullptr;
-      m_pbaseapplication = nullptr;
-      m_pcoreapplication = nullptr;
+      set_layer(LAYERED_APEX, this);
 
 #ifdef LINUX
       m_bSnLauncheeSetup = false;
@@ -315,10 +312,10 @@ namespace apex
 
 #ifdef LINUX
 
-      if(System->m_bGtkApp)
+      if(::apex::get_system()->m_bGtkApp)
       {
 
-         auto pnode = Node;
+         auto pnode = ::apex::get_system()->node();
 
          if(pnode)
          {
@@ -706,7 +703,7 @@ namespace apex
                if (::str::begins_eat_ci(str, "send?message="))
                {
 
-                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, System->url().url_decode(str));
+                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, ::apex::get_system()->url().url_decode(str));
 
                }
                else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -721,7 +718,7 @@ namespace apex
 
                      memory m;
 
-                     System->base64().decode(m, System->url().url_decode(str.Mid(iFind + 1)));
+                     ::apex::get_system()->base64().decode(m, ::apex::get_system()->url().url_decode(str.Mid(iFind + 1)));
 
                      m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -788,7 +785,7 @@ namespace apex
 
          //    ::exception_pointer esp(pexception);
 
-         //    System->on_run_exception(esp);
+         //    ::apex::get_system()->on_run_exception(esp);
 
          //    __throw(exit_exception(esp->get_context_application(), ::exit_application));
 
@@ -801,10 +798,10 @@ namespace apex
          }
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(get_context_system()) && System->m_millisAfterApplicationFirstRequest == 0)
+         if (::is_set(get_context_system()) && ::apex::get_system()->m_millisAfterApplicationFirstRequest == 0)
          {
 
-            System->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            ::apex::get_system()->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -1131,7 +1128,7 @@ namespace apex
    //object * application::alloc(::type info)
    //{
 
-   //   return System->alloc(this, info);
+   //   return ::apex::get_system()->alloc(this, info);
 
    //}
 
@@ -1139,7 +1136,7 @@ namespace apex
    //object * application::alloc(const  id & idType)
    //{
 
-   //   return System->alloc(this, idType);
+   //   return ::apex::get_system()->alloc(this, idType);
 
    //}
 
@@ -1302,7 +1299,7 @@ namespace apex
    //::file::path application::defer_process_path(::file::path path)
    //{
 
-   //   return System->defer_process_path(path, this);
+   //   return ::apex::get_system()->defer_process_path(path, this);
 
    //}
 
@@ -1317,7 +1314,7 @@ namespace apex
 
    //   }
 
-   //   return System->full_process_path(path, this);
+   //   return ::apex::get_system()->full_process_path(path, this);
 
    //}
 
@@ -1514,7 +1511,7 @@ namespace apex
    //   {
 
    //      // get_context_application() may be it self, it is ok...
-   //      if (System->final_handle_exception(pe))
+   //      if (::apex::get_system()->final_handle_exception(pe))
    //         return true;
 
 
@@ -1758,7 +1755,7 @@ namespace apex
 //      //if(::is_set(get_context_system()))
 //      //{
 //
-//      //   System->add_reference(this);
+//      //   ::apex::get_system()->add_reference(this);
 //
 //      //}
 //
@@ -2392,7 +2389,7 @@ namespace apex
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
 
-         ::AttachThreadInput(GetCurrentThreadId(), (u32)System->get_ithread(), true);
+         ::AttachThreadInput(GetCurrentThreadId(), (u32)::apex::get_system()->get_ithread(), true);
 
       }
 
@@ -2470,7 +2467,7 @@ namespace apex
 
       }
 
-      System->install_progress_add_up();
+      ::apex::get_system()->install_progress_add_up();
 
       m_millisHeartBeat.Now();
 
@@ -2508,7 +2505,7 @@ namespace apex
          //if (!is_system() && !is_session())
          {
 
-            if (System->is_true("uninstall"))
+            if (::apex::get_system()->is_true("uninstall"))
             {
 
                do_uninstall();
@@ -2516,7 +2513,7 @@ namespace apex
                return false;
 
             }
-            else if (System->is_true("install"))
+            else if (::apex::get_system()->is_true("install"))
             {
 
                do_install();
@@ -2640,7 +2637,7 @@ namespace apex
 
          ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-         System->m_result.add(error_failed);
+         ::apex::get_system()->m_result.add(error_failed);
 
          return false;
 
@@ -2665,11 +2662,11 @@ namespace apex
 
       string strLicense = get_license_id();
 
-      //::payload & varTopicQuey = System->m_varTopicQuery;
+      //::payload & varTopicQuey = ::apex::get_system()->m_varTopicQuery;
 
-      bool bHasInstall = System->is_true("install");
+      bool bHasInstall = ::apex::get_system()->is_true("install");
 
-      bool bHasUninstall = System->is_true("uninstall");
+      bool bHasUninstall = ::apex::get_system()->is_true("uninstall");
 
       if (!(bHasInstall || bHasUninstall)
             && m_bLicense
@@ -2723,7 +2720,7 @@ retry_license:
 
          return false;
 
-//         System->install().remove_spa_start(m_strAppId);
+//         ::apex::get_system()->install().remove_spa_start(m_strAppId);
 
       }
 
@@ -2804,11 +2801,11 @@ retry_license:
 
       }
 
-      synchronization_lock synchronizationlock(System->m_pmutexSystemAppData);
+      synchronization_lock synchronizationlock(::apex::get_system()->m_pmutexSystemAppData);
 
       string strId(pszId);
-      string strSystemLocale = System->m_strLocale;
-      string strSystemSchema = System->m_strSchema;
+      string strSystemLocale = ::apex::get_system()->m_strLocale;
+      string strSystemSchema = ::apex::get_system()->m_strSchema;
       string_array straLocale;
       string_array straSchema;
 
@@ -2830,26 +2827,26 @@ retry_license:
 
          string strSchema = straSchema[i];
 
-         set_application_installed(pathExe, strId, strBuild, System->get_system_platform(), System->get_system_configuration(), strLocale, strSchema);
+         set_application_installed(pathExe, strId, strBuild, ::apex::get_system()->get_system_platform(), ::apex::get_system()->get_system_configuration(), strLocale, strSchema);
 
       }
 
-      //System->install().remove_spa_start(strId);
-      //System->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-      //System->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-      //System->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
+      //::apex::get_system()->install().remove_spa_start(strId);
+      //::apex::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+      //::apex::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+      //::apex::get_system()->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
       //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
-      //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
+      //   ::apex::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
       //}
 
       //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
-      //   System->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
+      //   ::apex::get_system()->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
       //}
 
@@ -2859,33 +2856,33 @@ retry_license:
       //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //   {
 
-      //      System->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
+      //      ::apex::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
       //   }
 
       //}
 
-      //System->install().add_app_install(strId, strBuild, strSystemLocale, "");
-      //System->install().add_app_install(strId, strBuild, m_strLocale, "");
+      //::apex::get_system()->install().add_app_install(strId, strBuild, strSystemLocale, "");
+      //::apex::get_system()->install().add_app_install(strId, strBuild, m_strLocale, "");
 
       //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
-      //   System->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
+      //   ::apex::get_system()->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
       //}
 
-      //System->install().add_app_install(strId, strBuild, "", m_strSchema);
-      //System->install().add_app_install(strId, strBuild, "", strSystemSchema);
+      //::apex::get_system()->install().add_app_install(strId, strBuild, "", m_strSchema);
+      //::apex::get_system()->install().add_app_install(strId, strBuild, "", strSystemSchema);
 
       //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
-      //   System->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
+      //   ::apex::get_system()->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
       //}
 
-      //System->install().add_app_install(strId, strBuild, "", "");
+      //::apex::get_system()->install().add_app_install(strId, strBuild, "", "");
 
       return true;
 
@@ -3003,7 +3000,7 @@ retry_license:
 
       }
 
-      System->m_serviceptra.add(m_pservice);
+      ::apex::get_system()->m_serviceptra.add(m_pservice);
 
       return true;
 
@@ -3146,7 +3143,7 @@ retry_license:
 
 #else
 
-         //if (System->m_pappcore == nullptr)
+         //if (::apex::get_system()->m_pappcore == nullptr)
          //{
 
          //   set_has_installer(false);
@@ -3155,7 +3152,7 @@ retry_license:
          //else
          {
 
-            set_has_installer(!System->has_apex_application_factory());
+            set_has_installer(!::apex::get_system()->has_apex_application_factory());
 
          }
 
@@ -3181,7 +3178,7 @@ retry_license:
 
       INFO("apex::application::process_init");
 
-      m_bThreadToolsForIncreasedFps = System->m_bThreadToolsForIncreasedFps;
+      m_bThreadToolsForIncreasedFps = ::apex::get_system()->m_bThreadToolsForIncreasedFps;
 
       if (::get_task() == nullptr)
       {
@@ -3304,7 +3301,7 @@ retry_license:
          if (get_context_system() != nullptr)
          {
 
-            System->request({::command_check_exit});
+            ::apex::get_system()->request({::command_check_exit});
 
          }
 
@@ -3347,7 +3344,7 @@ retry_license:
 
       }
 
-      System->install_progress_add_up(); // 2
+      ::apex::get_system()->install_progress_add_up(); // 2
 
       //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
@@ -3362,7 +3359,7 @@ retry_license:
 
       }
 
-      System->install_progress_add_up(); // 3
+      ::apex::get_system()->install_progress_add_up(); // 3
 
       //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
@@ -3377,7 +3374,7 @@ retry_license:
 
       }
 
-      System->install_progress_add_up(); // 4
+      ::apex::get_system()->install_progress_add_up(); // 4
 
       //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
@@ -3412,7 +3409,7 @@ retry_license:
 
       }
 
-      System->install_progress_add_up(); // 5
+      ::apex::get_system()->install_progress_add_up(); // 5
 
 //      m_bAuraInitializeInstanceResult = true;
 
@@ -3455,19 +3452,19 @@ retry_license:
       if (get_context_system())
       {
 
-         if (System->m_pintstringLanguageResourceMap != nullptr)
+         if (::apex::get_system()->m_pintstringLanguageResourceMap != nullptr)
          {
 
-            m_puserlanguagemap->set_language_resource_map(System->m_pintstringLanguageResourceMap);
+            m_puserlanguagemap->set_language_resource_map(::apex::get_system()->m_pintstringLanguageResourceMap);
 
          }
 
       }
 
-      if (System->m_bLocalization)
+      if (::apex::get_system()->m_bLocalization)
       {
 
-         string strLang = System->get_user_language();
+         string strLang = ::apex::get_system()->get_user_language();
 
          if (!m_puserlanguagemap->set_language(this, strLang))
          {
@@ -3487,17 +3484,17 @@ retry_license:
 
       }
 
-      if (System->m_bLocalization)
+      if (::apex::get_system()->m_bLocalization)
       {
 
          string strLocale;
 
          string strSchema;
 
-         if (System->get_user_language().has_char())
+         if (::apex::get_system()->get_user_language().has_char())
          {
 
-            m_strLocale = System->get_user_language();
+            m_strLocale = ::apex::get_system()->get_user_language();
 
             m_strSchema = m_strLocale;
 
@@ -3552,17 +3549,17 @@ retry_license:
 
          }
 
-         if (System->payload("locale").get_count() > 0)
+         if (::apex::get_system()->payload("locale").get_count() > 0)
          {
 
-            strLocale = System->payload("locale").stra()[0];
+            strLocale = ::apex::get_system()->payload("locale").stra()[0];
 
          }
 
-         if (System->payload("schema").get_count() > 0)
+         if (::apex::get_system()->payload("schema").get_count() > 0)
          {
 
-            strSchema = System->payload("schema").stra()[0];
+            strSchema = ::apex::get_system()->payload("schema").stra()[0];
 
          }
 
@@ -4187,26 +4184,26 @@ retry_license:
 
    string application::get_local_mutex_name()
    {
-      return System->get_local_mutex_name(get_mutex_name_gen());
+      return ::apex::get_system()->get_local_mutex_name(get_mutex_name_gen());
    }
 
 
    string application::get_local_id_mutex_name()
    {
 
-      return System->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+      return ::apex::get_system()->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
    }
 
 
    string application::get_global_mutex_name()
    {
-      return System->get_global_mutex_name(get_mutex_name_gen());
+      return ::apex::get_system()->get_global_mutex_name(get_mutex_name_gen());
    }
 
    string application::get_global_id_mutex_name()
    {
-      return System->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+      return ::apex::get_system()->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
    }
 
 
@@ -4250,7 +4247,7 @@ retry_license:
 
             pcall->add_arg(get_context()->os().get_pid());
 
-            pcall->add_arg(System->command_line_text());
+            pcall->add_arg(::apex::get_system()->command_line_text());
 
             string strId;
 
@@ -4311,7 +4308,7 @@ retry_license:
 
             pcall->add_arg(get_context()->os().get_pid());
 
-            pcall->add_arg(System->command_line_text());
+            pcall->add_arg(::apex::get_system()->command_line_text());
 
             pcall->add_arg(strId);
 
@@ -4606,7 +4603,7 @@ retry_license:
       UNREFERENCED_PARAMETER(context);
       UNREFERENCED_PARAMETER(pcsz);
 
-      //System->appa_load_string_table();
+      //::apex::get_system()->appa_load_string_table();
    }
 
 
@@ -4616,7 +4613,7 @@ retry_license:
       UNREFERENCED_PARAMETER(context);
       UNREFERENCED_PARAMETER(pcsz);
 
-      //System->appa_load_string_table();
+      //::apex::get_system()->appa_load_string_table();
    }
 
 
@@ -4897,7 +4894,7 @@ retry_license:
 
       string strMessage;
 
-      strMessage = System->datetime().international().get_gmt_date_time();
+      strMessage = ::apex::get_system()->datetime().international().get_gmt_date_time();
       strMessage += " ";
       strMessage += pszMessage;
       strMessage += "\n";
@@ -4989,7 +4986,7 @@ retry_license:
    //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
    //{
 
-   //   return System->compress().ungz(this, pfileUncompressed, pfileCompressed);
+   //   return ::apex::get_system()->compress().ungz(this, pfileUncompressed, pfileCompressed);
 
    //}
 
@@ -4997,7 +4994,7 @@ retry_license:
    //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
    //{
 
-   //   return System->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
+   //   return ::apex::get_system()->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
 
 
    //}
@@ -5655,7 +5652,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      System->on_initial_frame_position(pframe);
+      ::apex::get_system()->on_initial_frame_position(pframe);
 
    }
 
@@ -5753,7 +5750,7 @@ retry_license:
          //else
          //{
 
-           // return System->translate_property_id(id);
+           // return ::apex::get_system()->translate_property_id(id);
 
          //}
 
@@ -5779,7 +5776,7 @@ retry_license:
 
       string strAppId = m_strAppId;
 
-      auto& file = System->file();
+      auto& file = ::apex::get_system()->file();
 
       string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
 
@@ -5789,7 +5786,7 @@ retry_license:
          try
          {
 
-            System->http().m_setHttp.parse_json(strJson);
+            ::apex::get_system()->http().m_setHttp.parse_json(strJson);
 
          }
          catch (...)
@@ -6748,7 +6745,7 @@ retry_license:
 
          update_appmatter(handler, psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         System->install_progress_add_up();
+         ::apex::get_system()->install_progress_add_up();
 
       }
 
@@ -6776,7 +6773,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System->url().url_encode(strRelative);
+      strUrl += ::apex::get_system()->url().url_encode(strRelative);
 
       if (psession == nullptr)
       {
@@ -6786,7 +6783,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (get_context()->http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (get_context()->http().open(handler, psession, ::apex::get_system()->url().get_server(strUrl), ::apex::get_system()->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -6836,7 +6833,7 @@ retry_license:
 
          }
 
-         //System->compress().extract_all(strFile, this);
+         //::apex::get_system()->compress().extract_all(strFile, this);
 
       }
 
@@ -7369,7 +7366,7 @@ retry_license:
       //bool application::compress_ungz(const ::stream & os, const ::stream & is)
       //{
 
-      //   return System->compress().ungz(this, os, is);
+      //   return ::apex::get_system()->compress().ungz(this, os, is);
 
 
       //}
@@ -7378,7 +7375,7 @@ retry_license:
       //bool application::compress_ungz(memory_base & mem)
       //{
 
-      //   return System->compress().ungz(this, mem);
+      //   return ::apex::get_system()->compress().ungz(this, mem);
 
       //}
 
@@ -7387,7 +7384,7 @@ retry_license:
 
       //{
 
-      //   return System->compress().gz(this, os, is, iLevel);
+      //   return ::apex::get_system()->compress().gz(this, os, is, iLevel);
 
 
       //}
@@ -7396,7 +7393,7 @@ retry_license:
       //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
       //{
 
-      //   return System->compress().gz(this, os, is, iLevel);
+      //   return ::apex::get_system()->compress().gz(this, os, is, iLevel);
 
       //}
 
@@ -8269,7 +8266,7 @@ retry_license:
    //   {
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
-   //      //   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
+   //      //   __pointer(::user::interaction) pMainWnd = ::apex::get_system()->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
    //      // return global cast help mode state to false (backward compatibility)
@@ -8326,7 +8323,7 @@ retry_license:
    //   if (!is_system())
    //   {
 
-   //      if (System->final_handle_exception(pexception))
+   //      if (::apex::get_system()->final_handle_exception(pexception))
    //      {
 
    //         return true;
@@ -8426,7 +8423,7 @@ retry_license:
       }
 
       // otherwise, use window::OnHelp implementation
-      /* trans ::user::interaction_impl * pwindow = System->m_puiMain;
+      /* trans ::user::interaction_impl * pwindow = ::apex::get_system()->m_puiMain;
       ENSURE_VALID(pwindow);
       if (!pwindow->is_frame_window())
       pwindow->OnHelp();
@@ -8478,7 +8475,7 @@ retry_license:
    {
       // just use frame_window::OnContextHelp implementation
       /* trans   m_bHelpMode = HELP_ACTIVE;
-      __pointer(::user::frame_window) pMainWnd = (System->m_puiMain);
+      __pointer(::user::frame_window) pMainWnd = (::apex::get_system()->m_puiMain);
       ENSURE_VALID(pMainWnd);
       ENSURE(pMainWnd->is_frame_window());
       pMainWnd->OnContextHelp();
@@ -8653,7 +8650,7 @@ retry_license:
 #endif
 
       // no-op if main window is nullptr or not a frame_window
-      /*   __pointer(::user::interaction) pMainWnd = System->m_puiMain;
+      /*   __pointer(::user::interaction) pMainWnd = ::apex::get_system()->m_puiMain;
       if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
       return;*/
 
@@ -9309,7 +9306,7 @@ retry_license:
 //      */
 //#else
 //
-//      return System->ui_from_handle(::get_desktop_window());
+//      return ::apex::get_system()->ui_from_handle(::get_desktop_window());
 //
 //#endif
 //
@@ -9578,7 +9575,7 @@ retry_license:
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(System);
+            ::parallelization::finish(::apex::get_system());
 
          }
 
@@ -9586,7 +9583,7 @@ retry_license:
       else
       {
 
-         ::parallelization::finish(System);
+         ::parallelization::finish(::apex::get_system());
 
       }
 
@@ -9625,7 +9622,7 @@ retry_license:
          if (is_false("session_start"))
          {
 
-            ::parallelization::finish(System);
+            ::parallelization::finish(::apex::get_system());
 
          }
 
@@ -9633,7 +9630,7 @@ retry_license:
       else
       {
 
-         ::parallelization::finish(System);
+         ::parallelization::finish(::apex::get_system());
 
       }
 
@@ -9744,7 +9741,7 @@ retry_license:
    bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
    {
       return false;
-      //db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (::apex::get_system()->m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{
@@ -9773,7 +9770,7 @@ retry_license:
 
    //   // Closing just this application.
    //   // It is different of a system exit.
-   //   // System (a single ca2 process) can host
+   //   // ::apex::get_system() (a single ca2 process) can host
    //   // multiple ca2 application objects.
 
    //   // attempt to save all documents
@@ -9850,7 +9847,7 @@ retry_license:
 //      {
 //         if (m_straAppInterest[i] != m_strAppName && !::is_window(m_mapAppInterest[m_straAppInterest[i]]))
 //         {
-//            System->assert_running_local(m_straAppInterest[i]);
+//            ::apex::get_system()->assert_running_local(m_straAppInterest[i]);
 //         }
 //      }
 //
@@ -9902,12 +9899,12 @@ retry_license:
 
    bool bFound = false;
 
-   for(i32 i  = 0; i < System->m_appptra.get_count(); i++)
+   for(i32 i  = 0; i < ::apex::get_system()->m_appptra.get_count(); i++)
    {
    try
    {
 
-   papp = System->m_appptra(i);
+   papp = ::apex::get_system()->m_appptra(i);
 
    if(papp->m_strAppName == pszAppId)
    {
@@ -10512,7 +10509,7 @@ retry_license:
       //         //   }
       //         //   try
       //         //   {
-      //         //      System->remove_frame(pinteraction);
+      //         //      ::apex::get_system()->remove_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {
@@ -10888,7 +10885,7 @@ retry_license:
             if (get_context_system())
             {
 
-               System->finish(get_context());
+               ::apex::get_system()->finish(get_context());
 
             }
 
@@ -10906,7 +10903,7 @@ retry_license:
    __pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return System->message_box(pszMessage, pszTitle, emessagebox);
+      return ::apex::get_system()->message_box(pszMessage, pszTitle, emessagebox);
 
    }
 
@@ -10914,7 +10911,7 @@ retry_license:
    //::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
    //{
 
-   //   auto estatus = System->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   auto estatus = ::apex::get_system()->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //   return estatus;
 

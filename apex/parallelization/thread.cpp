@@ -174,10 +174,10 @@ void thread::thread_common_construct()
 
    m_bDedicated = false;
 
-   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr)
+   if (get_context_application() != nullptr && get_context_application()->get_session() != nullptr)
    {
 
-      m_bZipIsDir2 = get_context_application()->get_context_session()->m_bZipIsDir2;
+      m_bZipIsDir2 = get_context_application()->get_session()->m_bZipIsDir2;
 
    }
 
@@ -306,12 +306,12 @@ void thread::term_thread()
    case id_thread:
    {
 
-      auto pcontextthread = get_context_thread();
+      auto pthread = get_thread();
       
-      if (pcontextthread)
+      if (pthread)
       {
 
-         pcontextthread->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextthread));
+         pthread->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextthread));
 
       }
 
@@ -344,7 +344,7 @@ void thread::term_thread()
    //if (get_context_system())
    //{
 
-   //   System->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   ::apex::get_system()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
 
    //}
 
@@ -1884,7 +1884,7 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (m_idContextReference == id_none && get_context_system() && System != this)
+   if (m_idContextReference == id_none && get_context_system() && ::apex::get_system() != this)
    {
 
       try
@@ -1902,13 +1902,13 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (m_idContextReference == id_none && get_context_thread() && get_context_thread() != this)
+   if (m_idContextReference == id_none && get_thread() && get_thread() != this)
    {
 
       try
       {
 
-         get_context_thread()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+         get_thread()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
 
          m_idContextReference = id_thread;
 
@@ -2064,10 +2064,10 @@ void thread::session_pre_translate_message(::message::message * pmessage)
       if(get_context_application() != nullptr)
       {
 
-         if(get_context_application()->get_context_session() != nullptr)
+         if(get_context_application()->get_session() != nullptr)
          {
 
-            get_context_application()->get_context_session()->pre_translate_message(pmessage);
+            get_context_application()->get_session()->pre_translate_message(pmessage);
 
             if(pmessage->m_bRet)
             {
@@ -2098,7 +2098,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
       if(get_context_system() != nullptr)
       {
 
-         System->pre_translate_message(pmessage);
+         ::apex::get_system()->pre_translate_message(pmessage);
 
          if(pmessage->m_bRet)
          {
@@ -3251,7 +3251,7 @@ error:;
       if (___thread(e.m_pthreadExit) != this)
       {
 
-         System->finish(::get_context_system());
+         ::apex::get_system()->finish(::get_context_system());
 
       }
 
@@ -3984,7 +3984,7 @@ void thread::message_handler(::message::message * pmessage)
          //if(msg.lParam)
          {
 
-            auto psubject = System->new_subject(message);
+            auto psubject = ::apex::get_system()->new_subject(message);
 
             process(psubject);
 
@@ -4373,9 +4373,9 @@ bool thread::kick_thread()
 CLASS_DECL_APEX bool is_thread_on(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTaskOn);
 
-   return System->m_mapTaskOn.plookup(id) != nullptr;
+   return ::apex::get_system()->m_mapTaskOn.plookup(id) != nullptr;
 
 }
 
@@ -4397,9 +4397,9 @@ CLASS_DECL_APEX bool is_active(::thread * pthread)
 CLASS_DECL_APEX void set_thread_on(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTaskOn);
 
-   System->m_mapTaskOn.set_at(id, id);
+   ::apex::get_system()->m_mapTaskOn.set_at(id, id);
 
 }
 
@@ -4407,9 +4407,9 @@ CLASS_DECL_APEX void set_thread_on(ithread_t id)
 CLASS_DECL_APEX void set_thread_off(ithread_t id)
 {
 
-   synchronization_lock synchronizationlock(&System->m_mutexTaskOn);
+   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTaskOn);
 
-   System->m_mapTaskOn.remove_key(id);
+   ::apex::get_system()->m_mapTaskOn.remove_key(id);
 
 }
 

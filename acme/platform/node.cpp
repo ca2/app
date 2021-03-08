@@ -221,7 +221,7 @@ namespace acme
 
          m_bLastDarkModeSystem = bDarkModeSystem;
 
-         System->deliver(id_os_dark_mode);
+         ::acme::get_system()->deliver(id_os_dark_mode);
 
          on_os_dark_mode_change();
 

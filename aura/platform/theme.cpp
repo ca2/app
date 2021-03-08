@@ -126,7 +126,7 @@ namespace aura
 
       m_pathTheme = ::file::path("theme") / get_theme();
 
-      //auto applicationa = System->m_applicationa;
+      //auto applicationa = ::aura::get_system()->m_applicationa;
 
       //for (auto & papp : applicationa)
       //{

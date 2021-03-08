@@ -28,7 +28,7 @@
 //   ::payload message_box::realize()
 //   {
 //
-//      auto pwindowing = System->windowing();
+//      auto pwindowing = ::aura::get_system()->windowing();
 //
 //      int iResult = pwindowing->message_box(m_strText, m_strTitle, m_emessagebox);
 //
@@ -75,10 +75,10 @@
 //
 //   string strTitle(pszTitle);
 //
-//   System->fork([strMessage, strTitle, emessagebox, process]()
+//   ::aura::get_system()->fork([strMessage, strTitle, emessagebox, process]()
 //               {
 //
-//                  auto pwindowing = System->windowing();
+//                  auto pwindowing = ::aura::get_system()->windowing();
 //
 //                  auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
 //
@@ -717,9 +717,9 @@ namespace user
 
       //      m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-      //      System->delivery_for(id_os_user_theme, this);
+      //      ::aura::get_system()->delivery_for(id_os_user_theme, this);
 
-      //      //System->(id_dark_mode);
+      //      //::aura::get_system()->(id_dark_mode);
 
       //      //on_alloc_colors(pdisplay);
 
@@ -771,7 +771,9 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      User->windowing()->display()->get_main_monitor(rectangleMonitor);
+      auto puser = Session->user();
+
+      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 
       int iButtonGroupWidth = (int) (iMaxWidth * 1.25 * m_buttona.get_count());
 

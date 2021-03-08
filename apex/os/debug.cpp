@@ -40,7 +40,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //
 //   }
 //
-//   System->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+//   ::apex::get_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
@@ -79,7 +79,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //
 //   }
 //
-//   System->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//   ::apex::get_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 //
 //}
 //

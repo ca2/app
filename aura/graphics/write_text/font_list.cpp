@@ -71,9 +71,9 @@ namespace write_text
          if (m_pfontenumeration.is_null())
          {
 
-            System->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            ::aura::get_system()->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
 
-            m_pfontenumeration = System->draw2d()->write_text()->fonts()->m_pfontenumeration;
+            m_pfontenumeration = ::aura::get_system()->draw2d()->write_text()->fonts()->m_pfontenumeration;
 
          }
 
@@ -723,7 +723,7 @@ namespace write_text
 
          m_bUpdatesHooked = true;
 
-         System->delivery_for(id_font_enumeration, this, true);
+         ::aura::get_system()->delivery_for(id_font_enumeration, this, true);
 
          delivery_for(id_font_extents, this, true);
 

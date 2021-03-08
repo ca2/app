@@ -41,7 +41,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
 
       //string strSource;
 
@@ -77,7 +77,7 @@ namespace fs
 
       path.m_iDir = 1;
 
-      listing.m_straTitle.add("Remote File System");
+      listing.m_straTitle.add("Remote File ::apex::get_system()");
 
       return listing;
 
@@ -114,8 +114,8 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(System->url().get_script(listing.m_pathUser))
-      //         + "&server=" + System->url().url_encode(System->url().get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(listing.m_pathUser))
+      //         + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(listing.m_pathUser));
 
       //string strSource;
 
@@ -198,8 +198,8 @@ namespace fs
          return 1;
       }
 
-      if(System->url().get_script(path).is_empty() ||
-            System->url().get_script(path) == "/")
+      if(::apex::get_system()->url().get_script(path).is_empty() ||
+         ::apex::get_system()->url().get_script(path) == "/")
       {
          return 1;
       }
@@ -264,7 +264,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System->url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
 
       string strSource;
 

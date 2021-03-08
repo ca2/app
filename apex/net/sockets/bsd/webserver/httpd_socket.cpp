@@ -99,7 +99,7 @@ namespace sockets
          else*/
       {
          memory mem;
-         System->base64().decode(mem, str64);
+         ::apex::get_system()->base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
@@ -254,7 +254,7 @@ namespace sockets
       if (strId.begins_ci("cat://"))
       {
 
-         strId = "cat://" + System->crypto().md5(strId);
+         strId = "cat://" + ::apex::get_system()->crypto().md5(strId);
 
       }
       InitializeContext(strId, m_strCat, "", TLS_server_method());

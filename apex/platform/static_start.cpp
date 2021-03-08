@@ -100,7 +100,7 @@ namespace apex
 #endif
 
 
-   //::mutex * System->g_mutexLibrary;
+   //::mutex * ::apex::get_system()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -522,7 +522,7 @@ namespace apex
 
       //g_pmapRTL = nullptr;
 
-      //System->g_mutexLibrary = new ::mutex;
+      //::apex::get_system()->g_mutexLibrary = new ::mutex;
 
       //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
 
@@ -627,7 +627,7 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(System->g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(::apex::get_system()->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -641,9 +641,9 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(System->g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(::apex::get_system()->g_mutexLibrary);
 
-      //   System->g_mapLibrary.remove_all();
+      //   ::apex::get_system()->g_mapLibrary.remove_all();
 
       //}
       //catch (...)
@@ -742,7 +742,7 @@ namespace apex
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(System->g_mutexLibrary);
+      //del(::apex::get_system()->g_mutexLibrary);
 
 #if OBJ_TYP_CTR
 

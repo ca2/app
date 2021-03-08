@@ -77,7 +77,7 @@ namespace apex
 
       //::set_main_ithread(m_uthread);
 
-      //// System->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::apex::get_system()->m_strAppId = m_pmaindata->m_strAppId;
 
       //if (!begin_synch())
       //{

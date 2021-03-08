@@ -455,22 +455,22 @@ namespace datetime
 
    string department::get_week_day_str(const apex::str_context * pcontext, i32 iWeekDay) // 1 - domingo
    {
-      return System->str().get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
+      return ::apex::get_system()->str().get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
    }
 
    string department::get_tiny_week_day_str(const apex::str_context * pcontext, i32 iWeekDay) // 1 - domingo
    {
-      return System->str().get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
+      return ::apex::get_system()->str().get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
    }
 
    string department::get_month_str(const apex::str_context * pcontext, i32 iMonth)
    {
-      return System->str().get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
+      return ::apex::get_system()->str().get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
    }
 
    string department::get_short_month_str(const apex::str_context * pcontext, i32 iMonth)
    {
-      return System->str().get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
+      return ::apex::get_system()->str().get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
    }
 
    ::datetime::time department::from_gmt_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)

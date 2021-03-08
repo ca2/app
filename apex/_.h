@@ -175,6 +175,7 @@ namespace apex
    class application;
    class session;
    class system;
+   class user;
 
 
 } // namespace apex

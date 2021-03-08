@@ -20,6 +20,9 @@ namespace bred
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
+      //inline ::bred::user* user() { return m_puser ? m_puser->m_pbreduser : nullptr; }
+
+
    };
 
 

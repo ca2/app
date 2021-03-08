@@ -20,26 +20,40 @@
 
 
 
-#undef System
-#undef Sess
-#undef App
+//#undef ::aqua::get_system()
+//#undef Sess
+//#undef App
 
 
-#define System (::get_context_system()->m_paquasystem)
-#define Sess(pcontextsession) (pcontextsession->m_paquasession)
-#define App(playered) (*::get_context_application(playered)->m_paquaapplication)
+//#define ::aqua::get_system() (::get_context_system()->m_paquasystem)
+//#define Sess(pcontextsession) (pcontextsession->m_paquasession)
+//#define App(playered) (*::get_context_application(playered)->m_paquaapplication)
 
 
-#define Au(playered) (*(::get_context_audio(playered)))
-#define Audio (Au(get_context()))
+//#define Au(playered) (*(::get_context_audio(playered)))
+//#define Audio (Au(get_context()))
 
-#define Mm(playered) (*(::get_context_multimedia(playered)))
-#define Multimedia (Mm(get_context()))
+//#define Mm(playered) (*(::get_context_multimedia(playered)))
+//#define Multimedia (Mm(get_context()))
 
 
 #define __spin_namespace aqua // back bone / four-letter "spin*" namespace name
 
 
+namespace aqua
+{
+
+
+   class system;
+   class session;
+   class application;
+   class node;
+
+
+   inline system * get_system() { return ::acme::get_system()->layer(LAYERED_AQUA); }
+
+
+} // namespace aqua
 
 
 namespace audio

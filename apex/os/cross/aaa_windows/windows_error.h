@@ -487,7 +487,7 @@
 //
 // MessageText:
 //
-// You were not connected because a dupliCAte name exists on the network. If joining a domain, go to System in Control Panel to change the computer name and try again. If joining a workgroup, choose another workgroup name.
+// You were not connected because a dupliCAte name exists on the network. If joining a domain, go to ::apex::get_system() in Control Panel to change the computer name and try again. If joining a workgroup, choose another workgroup name.
 //
 #define ERROR_DUP_NAME                   52L
 
@@ -1189,7 +1189,7 @@
 //
 // MessageText:
 //
-// System trace information was not specified in your CONFIG.SYS file, or tracing is disallowed.
+// ::apex::get_system() trace information was not specified in your CONFIG.SYS file, or tracing is disallowed.
 //
 #define ERROR_SYSTEM_TRACE               150L
 
@@ -2450,7 +2450,7 @@
 //
 // MessageText:
 //
-// {Missing System File}
+// {Missing ::apex::get_system() File}
 // The required system file %hs is bad or missing.
 //
 #define ERROR_MISSING_SYSTEMFILE         573L
@@ -2623,7 +2623,7 @@
 //
 // MessageText:
 //
-// {Fatal System Error}
+// {Fatal ::apex::get_system() Error}
 // The %hs system process terminated unexpectedly with a status of 0x%08x (0x%08x 0x%08x).
 // The system has been shut down.
 //
@@ -2929,7 +2929,7 @@
 //
 // MessageText:
 //
-// {Illegal System DLL ReloCAtion}
+// {Illegal ::apex::get_system() DLL ReloCAtion}
 // The system DLL %hs was reloCAted in memory. The appliCAtion will not run properly.
 // The reloCAtion occurred because the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a new DLL.
 //
@@ -3024,7 +3024,7 @@
 //
 // MessageText:
 //
-// {System Standby Failed}
+// {::apex::get_system() Standby Failed}
 // The driver %hs does not support standby mode. Updating this driver may allow the system to go to standby mode.
 //
 #define ERROR_DRIVER_FAILED_SLEEP        633L
@@ -3063,7 +3063,7 @@
 //
 // MessageText:
 //
-// {Fatal System Error}
+// {Fatal ::apex::get_system() Error}
 // The system image %s is not properly signed.
 // The file has been replaced with the signed file.
 // The system has been shut down.
@@ -3202,7 +3202,7 @@
 //
 // MessageText:
 //
-// System hive size has exceeded its limit.
+// ::apex::get_system() hive size has exceeded its limit.
 //
 #define ERROR_SYSTEM_HIVE_TOO_LARGE      653L
 
@@ -4677,7 +4677,7 @@
 //
 // MessageText:
 //
-// System could not alloCAte the required space in a registry log.
+// ::apex::get_system() could not alloCAte the required space in a registry log.
 //
 #define ERROR_NO_LOG_SPACE               1019L
 
@@ -8586,7 +8586,7 @@
 //
 // MessageText:
 //
-// The Windows Installer service is not accessible in Safe Mode. Please try again when your computer is not in Safe Mode or you can use System Restore to return your machine to a previous good state.
+// The Windows Installer service is not accessible in Safe Mode. Please try again when your computer is not in Safe Mode or you can use ::apex::get_system() Restore to return your machine to a previous good state.
 //
 #define ERROR_INSTALL_SERVICE_SAFEBOOT   1652L
 
@@ -13177,7 +13177,7 @@
 //
 // MessageText:
 //
-// The Task Scheduler service must be configured to run in the System account to function properly. Individual tasks may be configured to run in other accounts.
+// The Task Scheduler service must be configured to run in the ::apex::get_system() account to function properly. Individual tasks may be configured to run in other accounts.
 //
 #define SCHED_E_SERVICE_NOT_LOCALSYSTEM  6200L
 
@@ -17977,7 +17977,7 @@
 //
 // MessageText:
 //
-// CritiCAl Directory Service System objects Cannot be deleted during tree delete operations. The tree delete may have been partially performed.
+// CritiCAl Directory Service ::apex::get_system() objects Cannot be deleted during tree delete operations. The tree delete may have been partially performed.
 //
 #define ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ 8560L
 
@@ -22668,7 +22668,7 @@
 //
 // MessageText:
 //
-// Manifest Parse Error : System does not support the specified encoding.
+// Manifest Parse Error : ::apex::get_system() does not support the specified encoding.
 //
 #define ERROR_SXS_XML_E_INVALIDENCODING  14067L
 
@@ -28440,7 +28440,7 @@
 //
 // MessageText:
 //
-// System call failed.
+// ::apex::get_system() call failed.
 //
 #define RPC_E_SYS_CALL_FAILED            _HRESULT_TYPEDEF_(0x80010100L)
 
@@ -31123,7 +31123,7 @@
 //
 // MessageText:
 //
-// OSS ASN.1 Error: System resource error.
+// OSS ASN.1 Error: ::apex::get_system() resource error.
 //
 #define OSS_MUTEX_NOT_CREATED            _HRESULT_TYPEDEF_(0x8009302DL)
 
@@ -34239,7 +34239,7 @@
 //
 // MessageText:
 //
-// System appliCAtion is not exportable
+// ::apex::get_system() appliCAtion is not exportable
 //
 #define COMADMIN_E_CAN_NOT_EXPORT_SYS_APP _HRESULT_TYPEDEF_(0x8011044CL)
 
@@ -34698,7 +34698,7 @@
 //
 // MessageText:
 //
-// A component Cannot be moved (or copied) from the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
+// A component Cannot be moved (or copied) from the ::apex::get_system() AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
 //
 #define COMADMIN_E_COMP_MOVE_SOURCE      _HRESULT_TYPEDEF_(0x8011081CL)
 
@@ -34707,7 +34707,7 @@
 //
 // MessageText:
 //
-// A component Cannot be moved (or copied) to the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
+// A component Cannot be moved (or copied) to the ::apex::get_system() AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
 //
 #define COMADMIN_E_COMP_MOVE_DEST        _HRESULT_TYPEDEF_(0x8011081DL)
 
@@ -35844,7 +35844,7 @@
 //
 // MessageText:
 //
-// System failed to determine a mode that is supported by both the display adapter and the monitor connected to it.
+// ::apex::get_system() failed to determine a mode that is supported by both the display adapter and the monitor connected to it.
 //
 #define ERROR_GRAPHICS_EMPTY_ADAPTER_MONITOR_MODE_SUPPORT_INTERSECTION _HRESULT_TYPEDEF_(0xC0262325L)
 
@@ -36588,7 +36588,7 @@
 //
 // MessageText:
 //
-// The HDCP System Renewability Message passed to this function did not comply with section 5 of the HDCP 1.1 specifiCAtion.
+// The HDCP ::apex::get_system() Renewability Message passed to this function did not comply with section 5 of the HDCP 1.1 specifiCAtion.
 //
 #define ERROR_GRAPHICS_OPM_INVALID_SRM   _HRESULT_TYPEDEF_(0xC0262512L)
 
@@ -36597,7 +36597,7 @@
 //
 // MessageText:
 //
-// The video output Cannot enable the High-bandwidth Digital Content Protection (HDCP) System because it does not support HDCP.
+// The video output Cannot enable the High-bandwidth Digital Content Protection (HDCP) ::apex::get_system() because it does not support HDCP.
 //
 #define ERROR_GRAPHICS_OPM_OUTPUT_DOES_NOT_SUPPORT_HDCP _HRESULT_TYPEDEF_(0xC0262513L)
 
@@ -36615,7 +36615,7 @@
 //
 // MessageText:
 //
-// The video output Cannot enable the Content Generation Management System Analogue (CGMS-A) protection technology because it does not support CGMS-A.
+// The video output Cannot enable the Content Generation Management ::apex::get_system() Analogue (CGMS-A) protection technology because it does not support CGMS-A.
 //
 #define ERROR_GRAPHICS_OPM_OUTPUT_DOES_NOT_SUPPORT_CGMSA _HRESULT_TYPEDEF_(0xC0262515L)
 
@@ -40079,7 +40079,7 @@
 //
 // MessageText:
 //
-// This drive Cannot be encrypted because it is reserved for Windows System Recovery Options.
+// This drive Cannot be encrypted because it is reserved for Windows ::apex::get_system() Recovery Options.
 //
 #define FVE_E_RECOVERY_PARTITION         _HRESULT_TYPEDEF_(0x80310082L)
 

@@ -621,7 +621,7 @@ namespace sockets
                      break;
                }
                
-               response().println(System->base64().encode(*pfile->get_memory()));
+               response().println(::apex::get_system()->base64().encode(*pfile->get_memory()));
 
             }
             

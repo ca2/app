@@ -620,7 +620,7 @@ namespace windows
    //::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
-   //   return  System->ui_from_handle(::GetAncestor(((interaction_impl *)this)->get_handle(), gaFlags));
+   //   return  ::aura::get_system()->ui_from_handle(::GetAncestor(((interaction_impl *)this)->get_handle(), gaFlags));
    //}
 
 
@@ -710,7 +710,7 @@ namespace windows
    //   UNREFERENCED_PARAMETER(nCmd);
    //   ::exception::throw_not_implemented();
 
-   //   /*      application* pApp = System;
+   //   /*      application* pApp = ::aura::get_system();
    //   ASSERT_VALID(pApp);
    //   ASSERT(pApp->m_pszHelpFilePath != nullptr);
    //   ASSERT(pApp->m_eHelpType == afxWinHelp);
@@ -727,8 +727,8 @@ namespace windows
    //   // finally, run the Windows Help engine
    //   /* trans   if (!::WinHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    //   {
-   //   // linux System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   //   System->message_box("Failed to launch help");
+   //   // linux ::aura::get_system()->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   //   ::aura::get_system()->message_box("Failed to launch help");
    //   }*/
    //}
 
@@ -736,7 +736,7 @@ namespace windows
    ////{
    //// ::exception::throw_not_implemented();
    ///*
-   //application* pApp = System;
+   //application* pApp = ::aura::get_system();
    //ASSERT_VALID(pApp);
    //ASSERT(pApp->m_pszHelpFilePath != nullptr);
    //// to call HtmlHelp the m_fUseHtmlHelp must be set in
@@ -755,8 +755,8 @@ namespace windows
    //// run the HTML Help engine
    ///* trans   if (!::aura::HtmlHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    //{
-   //// linux System->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   //System->message_box("Failed to launch help");
+   //// linux ::aura::get_system()->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   //::aura::get_system()->message_box("Failed to launch help");
    //}*/
    ////}
 
@@ -796,7 +796,7 @@ namespace windows
    //   UNREFERENCED_PARAMETER(nCmd);
    //   ::exception::throw_not_implemented();
    //   /*
-   //   application* pApp = System;
+   //   application* pApp = ::aura::get_system();
    //   ASSERT_VALID(pApp);
    //   if (pApp->m_eHelpType == afxHTMLHelp)
    //   {
@@ -951,7 +951,7 @@ namespace windows
    //{
 
    //   // check if in permanent map, if it is reflect it (could be OLE control)
-   //   auto pwindow = System->ui_from_handle(oswindow_Child);
+   //   auto pwindow = ::aura::get_system()->ui_from_handle(oswindow_Child);
    //   ASSERT(!pwindow || (pwindow)->get_handle() == oswindow_Child);
    //   if (!pwindow)
    //   {
@@ -1085,7 +1085,7 @@ namespace windows
 //   {
 //      ::exception::throw_not_implemented();
 //
-//      /*      application* pApp = System;
+//      /*      application* pApp = ::aura::get_system();
 //      if (pApp != nullptr && pApp->m_puiMain == this)
 //      {
 //      // recolor global brushes used by control bars
@@ -1121,7 +1121,7 @@ namespace windows
 //      UNREFERENCED_PARAMETER(pDeviceName);
 //
 //      ::exception::throw_not_implemented();
-//      /*application* pApp = System;
+//      /*application* pApp = ::aura::get_system();
 //      if (pApp != nullptr && pApp->m_puiMain == this)
 //      pApp->DevModeChange(pDeviceName);
 //
@@ -1680,7 +1680,7 @@ namespace windows
 
       //ASSERT(_is_window());
 
-      //return System->ui_from_handle(::SetParent(get_handle(), pWndNewParent->get_handle()));
+      //return ::aura::get_system()->ui_from_handle(::SetParent(get_handle(), pWndNewParent->get_handle()));
 
       return nullptr;
 
@@ -1701,7 +1701,7 @@ namespace windows
       //if (hwndParent == nullptr)
       //   return get_parent();
 
-      //return System->ui_from_handle(hwndParent);
+      //return ::aura::get_system()->ui_from_handle(hwndParent);
       return nullptr;
 
    }
@@ -2400,7 +2400,7 @@ namespace windows
 
    ////   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
 
-   ////   return System->ui_from_handle(::GetNextDlgGroupItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
+   ////   return ::aura::get_system()->ui_from_handle(::GetNextDlgGroupItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
 
    ////}
 
@@ -2410,7 +2410,7 @@ namespace windows
 
    ////   ASSERT(::is_window(((interaction_impl *)this)->get_handle()));
 
-   ////   return System->ui_from_handle(::GetNextDlgTabItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
+   ////   return ::aura::get_system()->ui_from_handle(::GetNextDlgTabItem(((interaction_impl *)this)->get_handle(), pWndCtl->get_handle(), bPrevious));
 
    ////}
 
@@ -2470,7 +2470,7 @@ namespace windows
    //{
    //   ASSERT(_is_window());
 
-   //   return  System->ui_from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
+   //   return  ::aura::get_system()->ui_from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
 
 
    //}
@@ -2479,7 +2479,7 @@ namespace windows
    //{
    //   ASSERT(_is_window());
 
-   //   return  System->ui_from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+   //   return  ::aura::get_system()->ui_from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
 
    //}
@@ -2498,7 +2498,7 @@ namespace windows
       //if (!_is_window())
       //   return nullptr;
 
-      //return  System->ui_from_handle(::GetNextWindow(get_handle(), nFlag));
+      //return  ::aura::get_system()->ui_from_handle(::GetNextWindow(get_handle(), nFlag));
 
    }
 
@@ -2532,7 +2532,7 @@ namespace windows
 
       /*ASSERT(_is_window());
 
-      return System->ui_from_handle(::GetLastActivePopup(get_handle()));*/
+      return ::aura::get_system()->ui_from_handle(::GetLastActivePopup(get_handle()));*/
 
       return nullptr;
 
@@ -2620,21 +2620,21 @@ namespace windows
    //::user::interaction * interaction_impl::GetOpenClipboardWindow()
    //{
 
-   //   return System->ui_from_handle(::GetOpenClipboardWindow());
+   //   return ::aura::get_system()->ui_from_handle(::GetOpenClipboardWindow());
 
    //}
 
    //::user::interaction * interaction_impl::GetClipboardOwner()
    //{
 
-   //   return System->ui_from_handle(::GetClipboardOwner());
+   //   return ::aura::get_system()->ui_from_handle(::GetClipboardOwner());
 
    //}
 
    //::user::interaction * interaction_impl::GetClipboardViewer()
    //{
 
-   //   return System->ui_from_handle(::GetClipboardViewer());
+   //   return ::aura::get_system()->ui_from_handle(::GetClipboardViewer());
 
    //}
 
@@ -3448,7 +3448,7 @@ namespace windows
    //      if (pFrame != nullptr)
    //      oswindow = pFrame->get_handle();
    //      else
-   //      oswindow = System->m_puiMain->get_handle();*/
+   //      oswindow = ::aura::get_system()->m_puiMain->get_handle();*/
    //   }
 
    //   // a popup interaction_impl cannot be owned by a child interaction_impl
@@ -3987,7 +3987,7 @@ namespace windows
 //
 //   }
 //
-//   if (System == nullptr)
+//   if (::aura::get_system() == nullptr)
 //   {
 //
 //      return 0;
@@ -4783,7 +4783,7 @@ namespace windows
 //
 //         //user::oswindow_array oswindowa;
 //         //user::interaction_pointer_array wnda;
-//         //wnda = *System->m_puiptraFrame;
+//         //wnda = *::aura::get_system()->m_puiptraFrame;
 //         //oswindowa = wnda.get_hwnda();
 //         //user::window_util::SortByZOrder(oswindowa);
 //         //for (i32 i = 0; i < oswindowa.get_size(); i++)

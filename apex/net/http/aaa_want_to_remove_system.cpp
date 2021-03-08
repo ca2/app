@@ -268,9 +268,9 @@ namespace http
 
       string strHost;
 
-      strHost = System->url().get_server(pszUrl);
+      strHost = ::apex::get_system()->url().get_server(pszUrl);
 
-      i32 port = System->url().get_port(pszUrl);
+      i32 port = ::apex::get_system()->url().get_port(pszUrl);
 
       ::net::address ad(strHost, port);
 
@@ -403,9 +403,9 @@ namespace http
 
       bool bOk = true;
 
-      string strHost = System->url().get_server(pszUrl);
+      string strHost = ::apex::get_system()->url().get_server(pszUrl);
 
-      i32 iHostPort = System->url().get_port(pszUrl);
+      i32 iHostPort = ::apex::get_system()->url().get_port(pszUrl);
 
       ::net::address ipHost(strHost, iHostPort);
       for(i32 iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
@@ -565,13 +565,13 @@ namespace http
       if(strSessId.is_empty())
       {
 
-         System->url().string_set(strUrl, "authnone", 1);
+         ::apex::get_system()->url().string_set(strUrl, "authnone", 1);
 
          return;
 
       }
 
-      //System->url().string_set(strUrl, "sessid", strSessId);
+      //::apex::get_system()->url().string_set(strUrl, "sessid", strSessId);
 
    }
 
@@ -616,19 +616,19 @@ namespace http
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
 
-         string strScript = System->url().url_encode(System->url().url_decode(System->url().get_script(strUrl)));
+         string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
 
          strScript.replace("+", "%20");
 
          strScript.replace("%2F", "/");
 
-         strUrl = System->url().set_script(strUrl, strScript);
+         strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
 
       }
 
       property_set setQuery;
 
-      setQuery.parse_url_query(System->url().get_query(strUrl));
+      setQuery.parse_url_query(::apex::get_system()->url().get_query(strUrl));
 
       string strIp;
 
@@ -751,7 +751,7 @@ retry:
 
             auto tickBeg = ::millis::now();
 
-            if (!open(handler, psession, System->url().get_server(pszRequest), System->url().get_protocol(pszRequest), set, set["http_protocol_version"]))
+            if (!open(handler, psession, ::apex::get_system()->url().get_server(pszRequest), ::apex::get_system()->url().get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
 
                return false;
@@ -779,28 +779,28 @@ retry:
 
          ::apex::application * papp = handler.get_context_application();
 
-         string strRequest = System->url().get_object(pszRequest);
+         string strRequest = ::apex::get_system()->url().get_object(pszRequest);
 
-         string strServer = System->url().get_server(pszRequest);
+         string strServer = ::apex::get_system()->url().get_server(pszRequest);
 
          string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
          // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
          {
 
-            string strScript = System->url().url_encode(System->url().url_decode(System->url().get_script(strUrl)));
+            string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
 
             strScript.replace("+", "%20");
 
             strScript.replace("%2F", "/");
 
-            strUrl = System->url().set_script(strUrl, strScript);
+            strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
 
          }
 
          property_set setQuery;
 
-         setQuery.parse_url_query(System->url().get_query(strUrl));
+         setQuery.parse_url_query(::apex::get_system()->url().get_query(strUrl));
 
          string strSessId;
 
@@ -808,7 +808,7 @@ retry:
 
          on_auth(set, papp, strUrl, strSessId, puser);
 
-         strRequest = System->url().get_object(strUrl);
+         strRequest = ::apex::get_system()->url().get_object(strUrl);
 
          psession->inheaders().clear();
          psession->outheaders().clear();
@@ -866,9 +866,9 @@ retry:
 
          }
 
-         psession->m_host  =System->url().get_server(pszRequest);
+         psession->m_host  =::apex::get_system()->url().get_server(pszRequest);
          
-         psession->m_strHost  =System->url().get_server(pszRequest);
+         psession->m_strHost  =::apex::get_system()->url().get_server(pszRequest);
          
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
 
@@ -1259,11 +1259,11 @@ retry:
 
       auto tickTimeProfile1 = ::millis::now();
 
-      string strServer = System->url().get_root(pszUrl);
+      string strServer = ::apex::get_system()->url().get_root(pszUrl);
 
-      string strProtocol = System->url().get_protocol(pszUrl);
+      string strProtocol = ::apex::get_system()->url().get_protocol(pszUrl);
 
-      string strObject = System->url().get_object(pszUrl);
+      string strObject = ::apex::get_system()->url().get_object(pszUrl);
 
       __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
@@ -1318,13 +1318,13 @@ retry_session:
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
 
-         string strScript = System->url().url_encode(System->url().url_decode(System->url().get_script(strUrl)));
+         string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
 
          strScript.replace("+", "%20");
 
          strScript.replace("%2F", "/");
 
-         strUrl = System->url().set_script(strUrl, strScript);
+         strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
 
       }
 
@@ -1401,7 +1401,7 @@ retry_session:
       if (strProtocol == "https")
       {
          
-         psocket->m_strTlsHostName = System->url().get_server(strUrl);
+         psocket->m_strTlsHostName = ::apex::get_system()->url().get_server(strUrl);
 
       }
 
@@ -1841,7 +1841,7 @@ retry_session:
             else
             {
 
-               strLocation = System->url().get_protocol(pszUrl) + System->url().get_server(pszUrl) + System->url().get_object(strLocation);
+               strLocation = ::apex::get_system()->url().get_protocol(pszUrl) + ::apex::get_system()->url().get_server(pszUrl) + ::apex::get_system()->url().get_object(strLocation);
 
                return http_get(handler,psocket,strLocation,set);
 
@@ -2115,9 +2115,9 @@ retry_session:
 
          ::url_domain domain;
 
-         domain.create(System->url().get_server(pszUrl));
+         domain.create(::apex::get_system()->url().get_server(pszUrl));
 
-         if (::str::begins(System->url().get_object(pszUrl), astr.MatterUri))
+         if (::str::begins(::apex::get_system()->url().get_object(pszUrl), astr.MatterUri))
          {
 
             set["raw_http"] = true;
@@ -2192,9 +2192,9 @@ retry_session:
 
       ::url_domain domain;
 
-      domain.create(System->url().get_server(pszUrl));
+      domain.create(::apex::get_system()->url().get_server(pszUrl));
 
-      if (::str::begins(System->url().get_object(pszUrl), astr.MatterUri))
+      if (::str::begins(::apex::get_system()->url().get_object(pszUrl), astr.MatterUri))
       {
 
          set["disable_ca2_sessid"] = true;
@@ -2291,14 +2291,14 @@ retry_session:
       
       bool bOk = true;
 
-      if(!System->crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
+      if(!::apex::get_system()->crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
       {
          
          bOk = false;
 
       }
 
-      if(!System->crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
+      if(!::apex::get_system()->crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
       {
 
          bOk = false;
@@ -2319,9 +2319,9 @@ retry_session:
          if(psession->get_auth("system/account/proxy_authenticate.xhtml", strUserName, strPassword))
          {
             
-            System->crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
+            ::apex::get_system()->crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
             
-            System->crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
+            ::apex::get_system()->crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
             
             psocket->m_strUserNameFile = strUserNameFile;
             

@@ -33,9 +33,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = System->m_pdirsystem;
+      m_pdirsystem = ::apex::get_system()->m_pdirsystem;
       
-      m_pfilesystem = System->m_pfilesystem;
+      m_pfilesystem = ::apex::get_system()->m_pfilesystem;
 
       string str = getenv("HOME");
 
@@ -43,7 +43,7 @@ namespace ios
 
       string strUserFolderShift;
 
-      if(System->has_property("user_folder_relative_path"))
+      if(::apex::get_system()->has_property("user_folder_relative_path"))
       {
 
          strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();

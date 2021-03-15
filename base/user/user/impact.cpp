@@ -746,7 +746,7 @@ namespace user
 
       auto pusersystem = __new(::user::system);
 
-      pcreate->m_pusersystem = pusersystem;
+      pcreate->m_pmatterUserPayload = pusersystem;
 
       if (::is_set(pimpactdata))
       {

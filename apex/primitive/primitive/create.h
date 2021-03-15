@@ -32,8 +32,8 @@ public:
    bool                                                        m_bClientOnly;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
-   ::user::primitive *                                         m_puserinteractionParent;
-   ::user::primitive *                                         m_puiAlloc;
+   __pointer(::user::primitive)                                m_puserprimitiveParent;
+   __pointer(::user::primitive)                                m_puserprimitiveAlloc;
    __pointer(command_line)                                     m_pcommandline;
    __pointer(::matter)                                         m_pmatterUserPayload;
    ewindowflag                                                 m_ewindowflag;

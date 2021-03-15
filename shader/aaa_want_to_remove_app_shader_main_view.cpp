@@ -76,7 +76,7 @@ namespace simple_shader
          if (m_ptopview == NULL)
          {
 
-            psystem->message_box(NULL, "Could not create folder edit view");
+            message_box(NULL, "Could not create folder edit view");
 
          }
 
@@ -103,7 +103,7 @@ namespace simple_shader
       if(m_pview == NULL)
       {
 
-         psystem->message_box(NULL,"Could not create file list ::user::impact");
+         message_box(NULL,"Could not create file list ::user::impact");
 
       }
 

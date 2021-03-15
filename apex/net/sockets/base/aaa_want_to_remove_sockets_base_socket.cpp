@@ -915,7 +915,7 @@ namespace sockets
    ::e_status     base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
-      auto estatus = initialize(psocket->this);
+      auto estatus = initialize(psocket);
 
       if (!estatus)
       {

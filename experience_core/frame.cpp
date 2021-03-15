@@ -61,6 +61,8 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
+               auto psystem = get_system();
+
                auto imaging = psystem->imaging();
 
                ::rectangle_i32 rectClient(rectParam);

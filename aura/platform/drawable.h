@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA drawable:
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

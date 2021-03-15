@@ -382,6 +382,8 @@ namespace user
    void document::update_title()
    {
 
+      auto papplication = get_application();
+
       string str = papplication->m_strAppName;
 
       str += " : ";
@@ -681,7 +683,11 @@ namespace user
       }
       else if (varFile.cast < ::file::file>() != nullptr)
       {
+
+         auto psystem = get_system();
+
          strPathName = psystem->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+
       }
       else
       {
@@ -711,6 +717,9 @@ namespace user
       ::file::path strFullPath;
       //      psystem->file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
+
+      auto pcontext = get_context();
+
       m_path = pcontext->defer_process_path(m_path);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
@@ -916,6 +925,8 @@ namespace user
    bool document::on_open_document(const ::payload & varFile)
    {
 
+      auto pcontext = get_context();
+
       auto preader = pcontext->file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
@@ -966,6 +977,8 @@ namespace user
 
    bool document::on_save_document(const ::payload & varFile)
    {
+
+      auto pcontext = get_context();
 
       auto pwriter = pcontext->file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
@@ -1249,7 +1262,7 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //psystem->message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
+         //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
          message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
       }
@@ -1326,6 +1339,8 @@ namespace user
          if (strName.is_empty())
          {
 
+            auto papplication = get_application();
+
             strName = papplication->load_string("Untitled");
 
          }
@@ -1360,7 +1375,7 @@ namespace user
 
       }
 
-      //switch (papplication->message_box(nullptr, prompt, MB_YESNOCANCEL))
+      //switch (message_box(nullptr, prompt, MB_YESNOCANCEL))
       //{
       //case e_dialog_result_cancel:
       //{
@@ -1474,8 +1489,11 @@ namespace user
 
       wait_cursor wait(this);
 
+      auto pcontext = get_context();
+
       if (!on_save_document(newName))
       {
+
          if (varFile.is_empty())
          {
 
@@ -1508,6 +1526,8 @@ namespace user
 
    bool document::do_file_save()
    {
+
+      auto pcontext = get_context();
 
       if (is_new_document() || pcontext->file().is_read_only(m_path))
       {

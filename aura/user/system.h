@@ -32,47 +32,28 @@ namespace user
    {
    public:
 
-      //      CREATESTRUCTW        m_createstruct;
-      //#ifdef WINDOWS
-      //      wstring              m_strClassName;
-      //      wstring              m_strWindowName;
-      //#else
-      //      string               m_strClassName;
-      //      string               m_strWindowName;
-      //#endif
 
-      ::user::interaction* m_puserinteractionOwner;
+      __pointer(::user::primitive)           m_puserprimitiveOwner;
       ::routine                              m_routineSuccess;
       ::routine                              m_routineFailure;
       __pointer(::user::interaction_impl)    m_pimpl;
       __pointer(::create)                    m_pcreate;
-      ::windowing::window* m_pwindow;
+      ::windowing::window *                  m_pwindow;
 
       bool                                   m_bAutoWindowFrame;
       bool                                   m_bWindowFrame;
       ::type                                 m_typeNewView;
-      ::object* m_pdocumentCurrent;
-      ::user::primitive* m_puiNew;
+      __pointer(::object)                    m_pdocumentCurrent;
+      __pointer(::user::primitive)           m_puserprimitiveNew;
 
-      // multiple document interface children
-      //::user::impact_system *              m_ptemplateNewDocument;
-      ::object* m_ptemplateNewDocument;
+      __pointer(::object)                    m_ptemplateNewDocument;
 
-      // original view/frame
-      ::user::primitive* m_puiLastView;
-      ::user::primitive* m_puiCurrentFrame;
-      //__pointer(impact_data)               m_pimpactdata;
+      __pointer(::user::primitive)           m_puserprimitiveLastView;
+      __pointer(::user::primitive)           m_puserprimitiveCurrentFrame;
       __pointer(::matter)                    m_pimpactdata;
 
 
-      //create();
-      //virtual ~create();
-
-
-
-
       system(const system&);
-
       system(
          //u32 uExStyle = 0,
          //const char* pszClassName = 0,

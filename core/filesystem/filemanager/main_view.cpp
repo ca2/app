@@ -96,7 +96,7 @@ namespace filemanager
       if(pleftview == nullptr)
       {
 
-         psystem->message_box("Could not create folder tree ::user::impact");
+         message_box("Could not create folder tree ::user::impact");
 
       }
 

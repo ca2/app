@@ -70,7 +70,7 @@ namespace turboc
          if(m_ptopview == NULL)
          {
 
-            psystem->message_box(NULL,"Could not create folder edit view");
+            message_box(NULL,"Could not create folder edit view");
 
          }
 
@@ -85,7 +85,7 @@ namespace turboc
       if(m_pview == NULL)
       {
 
-         psystem->message_box(NULL,"Could not create file list ::aura::impact");
+         message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 

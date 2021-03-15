@@ -115,7 +115,7 @@ namespace simpledb
                      string strMessage;
                      strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);
                      TRACE(strMessage);
-                     //psystem->message_box(nullptr, strMessage);
+                     //message_box(nullptr, strMessage);
                      return;
                   }
                   ::sockets::socket_handler::add(&ll);

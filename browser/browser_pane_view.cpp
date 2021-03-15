@@ -202,7 +202,7 @@ namespace browser
          if (!m_pdocMenu->open_document(path))
          {
 
-            papplication->message_box(get_parent_frame(), "Failed to open the menu.", e_message_box_ok);
+            message_box(get_parent_frame(), "Failed to open the menu.", e_message_box_ok);
 
             return;
 

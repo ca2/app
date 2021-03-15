@@ -1010,14 +1010,20 @@ namespace aura
    {
 
 
-      ::user::interaction * puiParent = nullptr;
+      __pointer(::user::interaction) puserinteractionParent;
 
       if (pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >() != nullptr)
-         puiParent = pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >();
-
-      if (puiParent == nullptr && pcreate->m_puserinteractionParent != nullptr)
       {
-         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent);
+
+         puserinteractionParent = pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >();
+
+      }
+
+      if (!puserinteractionParent && pcreate->m_puserprimitiveParent)
+      {
+
+         puserinteractionParent = pcreate->m_puserprimitiveParent;
+
       }
 
 //      if (puiParent == nullptr && pcreate != nullptr)
@@ -1051,9 +1057,10 @@ namespace aura
             papplication->has_property("client_only") ||
             pcreate->m_bOuterPopupAlertLike)
       {
-         return puiParent;
-      }
+         
+         return puserinteractionParent;
 
+      }
 
       //bool bCreateBergedge = false;
 
@@ -1098,9 +1105,10 @@ namespace aura
 
       //}
 
-      return puiParent;
+      return puserinteractionParent;
 
    }
+
 
 } // namespace aura
 

@@ -14,7 +14,7 @@
 //
 //stream::stream(::file::file * pfile, index iVersion) :
 //   m_pfile(pfile)
-//   //::matter(pfile->this),
+//   //::matter(pfile),
 //   //stream(pfile, iVersion)
 //{
 //   m_iVersion = iVersion;

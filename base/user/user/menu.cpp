@@ -229,6 +229,8 @@ namespace user
    bool menu::load_xml_menu(const ::payload & varXml)
    {
 
+      auto papplication = get_application();
+
       auto strXml = papplication->as_string(varXml.get_string());
 
       if (strXml.is_empty())
@@ -1462,20 +1464,20 @@ namespace user
 
       }
 
-      ::user::menu_command command(this);
+      auto pmenucommand= __create_new< ::user::menu_command>();
 
-      command.m_pitema = pitemParent->m_pmenuitema;
+      pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 
-      command.m_iCount = pitemParent->m_pmenuitema->get_size();
+      pmenucommand->m_iCount = pitemParent->m_pmenuitema->get_size();
 
-      for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
+      for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(command.m_iIndex);
+         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
-         command.m_id = pitem->m_id;
+         pmenucommand->m_id = pitem->m_id;
 
-         command.m_puiOther = pitem->m_puserinteraction;
+         pmenucommand->m_puiOther = pitem->m_puserinteraction;
 
          if (m_puiMenuNotify.is_null())
          {
@@ -1487,7 +1489,7 @@ namespace user
          try
          {
 
-            m_puiMenuNotify->_001SendCommandProbe(&command);
+            m_puiMenuNotify->_001SendCommandProbe(pmenucommand);
 
          }
          catch (...)
@@ -1499,14 +1501,14 @@ namespace user
 
       }
 
-      for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
+      for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(command.m_iIndex);
+         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
-         command.m_id = pitem->m_id;
+         pmenucommand->m_id = pitem->m_id;
 
-         command.m_puiOther = pitem->m_puserinteraction;
+         pmenucommand->m_puiOther = pitem->m_puserinteraction;
 
          if (pitem->m_pmenu != nullptr)
          {
@@ -1516,7 +1518,7 @@ namespace user
          }
 
       }
-      if (command.m_bEnableChanged || command.m_bRadioChanged)
+      if (pmenucommand->m_bEnableChanged || pmenucommand->m_bRadioChanged)
       {
 
          set_need_redraw();
@@ -1531,7 +1533,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto puser = User;
+      __pointer(::base::session) psession = get_session();
+
+      auto puser = psession->user();
 
       auto pinteraction = puser->create_menu_button(pstyle, pitem);
 

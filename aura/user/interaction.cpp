@@ -5630,7 +5630,7 @@ namespace user
 
          //   //   }
 
-         //   //   if (!m_pimpl->this)
+         //   //   if (!m_pimpl)
          //   //   {
 
          //   //      auto estatus = m_pimpl->initialize(this);
@@ -16220,7 +16220,7 @@ restart:
    //         //   if (::is_null(this))
    //         //   {
 
-   //         //      set_object(playout->this);
+   //         //      set_object(playout);
 
    //         //   }
 

@@ -13,7 +13,7 @@ namespace user
 
       string                           m_strPath;
       string                           m_strOpenOnCreate;
-      ::rectangle_i32                           m_rectOpen;
+      ::rectangle_i32                  m_rectOpen;
 
 
 
@@ -22,6 +22,12 @@ namespace user
       
       form_view();
       virtual ~form_view();
+
+
+      inline ::base::application * get_application() const { return form_control::get_application(); }
+      inline ::base::session * get_session() const { return form_control::get_session(); }
+      inline ::base::system * get_system() const { return form_control::get_system(); }
+      inline ::base::user * user() const { return form_control::user(); }
 
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;

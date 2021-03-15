@@ -897,7 +897,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr)
+         if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             if (::user::create_view(pusersystem, this, "pane_first").is_null())
@@ -1469,7 +1469,9 @@ namespace user
 
       }
 
-      auto puser = User;
+      auto psession = get_session();
+
+      auto puser = psession->user();
 
       if(puser)
       {

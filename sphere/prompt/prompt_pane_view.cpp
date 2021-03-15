@@ -362,7 +362,7 @@ namespace prompt
 
          //str.Format("%d", i);
 
-         ////papplication->message_box(str);
+         ////message_box(str);
 
          //if(i == ERROR_FILE_NOT_FOUND)
          //{

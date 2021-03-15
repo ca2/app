@@ -112,7 +112,7 @@
 //            //   if (::is_null(this))
 //            //   {
 //
-//            //      set_object(playout->this);
+//            //      set_object(playout);
 //
 //            //   }
 //

@@ -70,7 +70,7 @@ namespace userex
       if (m_peditview == nullptr)
       {
 
-         psystem->message_box("Could not create folder edit view");
+         message_box("Could not create folder edit view");
 
       }
 
@@ -81,7 +81,7 @@ namespace userex
       if (m_ptoggleview == nullptr)
       {
 
-         psystem->message_box("Could not create file list ::user::impact");
+         message_box("Could not create file list ::user::impact");
 
       }
 

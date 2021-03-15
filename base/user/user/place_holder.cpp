@@ -134,6 +134,8 @@ namespace user
 
       }
 
+      __pointer(::base::application) papplication = get_application();
+
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
       if (puserinteractionpointeraChild)
@@ -167,6 +169,8 @@ namespace user
 
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
+
+      __pointer(::base::application) papplication = get_application();
 
       return papplication->place_hold(pinteraction) != nullptr;
 

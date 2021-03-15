@@ -4930,7 +4930,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //psystem->message_box("VK_RETURN reached plain_edit");
+                     //message_box("VK_RETURN reached plain_edit");
                   }
 
                   string str;

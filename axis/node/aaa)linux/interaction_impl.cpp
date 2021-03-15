@@ -439,13 +439,13 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     psystem->message_box("cannot create a top-level child interaction_impl.");
+                     message_box("cannot create a top-level child interaction_impl.");
 
                   }
                   else
                   {
 
-                     psystem->message_box(strMessage);
+                     message_box(strMessage);
 
                   }
 

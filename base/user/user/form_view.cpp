@@ -73,6 +73,8 @@ namespace user
    ::e_status form_view::open_document(const ::payload & varFile)
    {
 
+      auto psystem = get_system();
+
       psystem->defer_create_html();
 
       __pointer(::user::form) pformOld;

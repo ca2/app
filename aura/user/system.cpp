@@ -26,7 +26,6 @@ namespace user
 //      //set_class_name(system.m_createstruct.lpszClass);
 //      //set_window_name(system.m_createstruct.lpszName);
 //#endif
-      m_puserinteractionOwner = nullptr;
       m_routineFailure = system.m_routineFailure;
       m_routineSuccess = system.m_routineSuccess;
       //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
@@ -72,11 +71,6 @@ namespace user
 
       m_bAutoWindowFrame = true;
       m_bWindowFrame = false;
-      m_pdocumentCurrent = nullptr;
-      m_ptemplateNewDocument = nullptr;
-      m_puiLastView = nullptr;
-      m_puiCurrentFrame = nullptr;
-      m_puiNew = nullptr;
 
    }
 

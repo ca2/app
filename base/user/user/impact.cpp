@@ -728,9 +728,9 @@ namespace user
 
       pusersystem = pusersystem;
 
-      pusersystem->m_puiNew = pimpactAlloc;
+      pusersystem->m_puserprimitiveNew = pimpactAlloc;
 
-      pusersystem->m_puiLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastView = pviewLast;
 
       pusersystem->m_pdocumentCurrent = get_document();
 
@@ -757,7 +757,7 @@ namespace user
 
       pusersystem->m_typeNewView = type;
 
-      pusersystem->m_puiLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastView = pviewLast;
 
       if (pdocument == nullptr)
       {
@@ -804,7 +804,7 @@ namespace user
 
       pusersystem->m_typeNewView = type;
 
-      pusersystem->m_puiLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastView = pviewLast;
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
@@ -818,7 +818,7 @@ namespace user
 
       ASSERT(pusersystem != nullptr);
 
-      ASSERT(pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr);
+      ASSERT(pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr);
 
       ::apex::application * papp = puserinteractionParent->get_application();
 
@@ -826,10 +826,10 @@ namespace user
 
       ::e_status estatus = ::success;
 
-      if (pusersystem->m_puiNew != nullptr)
+      if (pusersystem->m_puserprimitiveNew != nullptr)
       {
 
-         pinteraction = pusersystem->m_puiNew;
+         pinteraction = pusersystem->m_puserprimitiveNew;
 
       }
       else
@@ -1112,7 +1112,9 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
-         auto puser = User;
+         auto psession = get_session();
+
+         auto puser = psession->user();
 
          if(puser)
          {
@@ -1180,7 +1182,9 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
-         auto puser = User;
+         auto psession = get_session();
+
+         auto puser = psession->user();
 
          __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 

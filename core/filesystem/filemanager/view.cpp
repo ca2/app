@@ -65,7 +65,7 @@ namespace filemanager
          if (ppathview == nullptr)
          {
 
-            psystem->message_box("Could not create filemanager path view");
+            message_box("Could not create filemanager path view");
 
          }
 
@@ -83,7 +83,7 @@ namespace filemanager
       if (pmainview == nullptr)
       {
 
-         psystem->message_box("Could not create file list ::user::impact");
+         message_box("Could not create file list ::user::impact");
 
       }
 
@@ -174,7 +174,7 @@ namespace filemanager
                if (ptopview == nullptr)
                {
 
-                  psystem->message_box("Could not create folder tree ::user::impact");
+                  message_box("Could not create folder tree ::user::impact");
 
                }
 

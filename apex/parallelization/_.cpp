@@ -415,7 +415,7 @@ namespace parallelization
 //
 //   }
 //
-//   auto pobject = ptask->this;
+//   auto pobject = ptask;
 //
 //   if (!pobject)
 //   {

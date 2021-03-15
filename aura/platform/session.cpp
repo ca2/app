@@ -283,7 +283,7 @@ namespace aura
 
       pcreateNew->m_pcommandline->m_varFile = pszPathName;
 
-      pcreateNew->m_puserinteractionParent = pcreate->m_puserinteractionParent;
+      pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
       return open_by_file_extension(pcreateNew);
 

@@ -142,6 +142,8 @@ namespace user
    void split_view::on_create_split_impact()
    {
 
+      auto papplication = get_application();
+
       papplication->on_create_split_view(this);
 
    }

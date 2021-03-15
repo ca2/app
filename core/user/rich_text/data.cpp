@@ -1890,7 +1890,7 @@ namespace user
          for (index i = 0; i < m_spana.get_count(); i++)
          {
 
-            //m_spana[i]->m_pformat->this = this;
+            //m_spana[i]->m_pformat = this;
 
             m_spana[i]->m_pformat->m_pcontainer = m_pformata;
 

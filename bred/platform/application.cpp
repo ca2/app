@@ -8,16 +8,11 @@ namespace bred
    application::application()
    {
 
-      m_paquaapplication = this;
-
    }
 
 
    application::~application()
    {
-
-
-      m_paquaapplication = nullptr;
 
    }
 

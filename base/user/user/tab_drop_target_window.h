@@ -11,16 +11,19 @@ namespace user
    public:
 
 
-      array < enum_position >                   m_positiona;
-      ::user::tab* m_ptab;
+      array < enum_position >                m_positiona;
+      __pointer(::user::tab)                 m_ptab;
       index                                  m_iTab;
 
 
-      tab_drop_target_window(::user::tab* ptab, index iTab);
+      tab_drop_target_window();
       virtual ~tab_drop_target_window();
 
 
+      virtual ::e_status initialize_tab_drop_target_window(::user::tab* ptab, index iTab);
+
       //virtual bool get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, style_context * pcontext) override;
+
 
       virtual void install_message_routing(::channel* pchannel) override;
 

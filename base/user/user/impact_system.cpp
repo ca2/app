@@ -182,14 +182,14 @@ namespace user
 
       }
 
-      pusersystem->m_puiCurrentFrame = pOther;
+      pusersystem->m_puserprimitiveCurrentFrame = pOther;
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      if (pcreate->m_puiAlloc != nullptr)
+      if (pcreate->m_puserprimitiveAlloc != nullptr)
       {
 
-         pusersystem->m_puiNew = pcreate->m_puiAlloc;
+         pusersystem->m_puserprimitiveNew = pcreate->m_puserprimitiveAlloc;
 
       }
       else
@@ -270,11 +270,13 @@ namespace user
 
       }
 
+      __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
+
       // create new from resource
       if (!pframe->LoadFrame(m_strMatter,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
-                             pcreate->m_puserinteractionParent, 
+         puserinteractionParent,
                               pusersystem))
       {
 

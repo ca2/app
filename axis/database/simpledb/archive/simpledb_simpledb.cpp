@@ -62,7 +62,7 @@ namespace simpledb
 
       if (!m_pserver->initialize())
       {
-         papplication->message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
+         message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
          return false;
       }
 
@@ -161,7 +161,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         papplication->message_box(nullptr, "Could not initialize data central");
+         message_box(nullptr, "Could not initialize data central");
          return false;
       }
 

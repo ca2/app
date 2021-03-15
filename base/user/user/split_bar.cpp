@@ -41,7 +41,7 @@ namespace user
 //      if(!::user::interaction::create_child(pparent))
 //      {
 //
-//         psystem->message_box("Could not create Split Bar");
+//         message_box("Could not create Split Bar");
 //
 //         return false;
 //

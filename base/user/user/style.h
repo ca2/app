@@ -11,15 +11,18 @@ namespace base
    public:
 
 
-      //using style_map = ::map < e_control, e_control, style_pointer >;
-
-      //style_map               m_map;
-
       __pointer(::apex::library)     m_plibrary;
 
 
       style();
       virtual ~style();
+
+
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
 
       virtual void construct_fallback_theme();
 

@@ -43,6 +43,8 @@ namespace user
 
          }
 
+         auto papplication = get_application();
+
          pcreate->initialize_create(papplication->m_strAppId, ::e_type_empty, true);
 
          if (!estatus)

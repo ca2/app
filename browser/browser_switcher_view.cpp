@@ -66,7 +66,7 @@ namespace browser
       if(m_ptopview == nullptr)
       {
 
-         psystem->message_box(nullptr,"Could not create folder edit view");
+         message_box(nullptr,"Could not create folder edit view");
 
       }
 
@@ -77,7 +77,7 @@ namespace browser
       if(m_pview == nullptr)
       {
 
-         psystem->message_box(nullptr,"Could not create file list ::user::impact");
+         message_box(nullptr,"Could not create file list ::user::impact");
 
       }
 

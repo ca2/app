@@ -12,7 +12,7 @@
 //   if(psystem)
 //   {
 //
-//      psystem->message_box(pszMessage, pszTitle, emessagebox, process);
+//      message_box(pszMessage, pszTitle, emessagebox, process);
 //
 //   }
 //

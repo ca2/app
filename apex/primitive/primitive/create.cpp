@@ -116,8 +116,6 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
    m_bClientOnly                       = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
-   m_puiAlloc                          = nullptr;
-   m_puserinteractionParent            = puiParent;
    m_bMakeVisible                      = m_varOptions.is_true("visible", true);
 
 }

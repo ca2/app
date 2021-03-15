@@ -808,7 +808,7 @@ namespace user
 
    //   payload["title"] = get_title();
 
-   //   return papplication->message_box(payload);
+   //   return message_box(payload);
 
    //}
 

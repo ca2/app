@@ -1404,14 +1404,14 @@ auto tickStart = ::millis::now();
       if(!plibrary->m_plibrary->open(strTargetPath))
       {
 
-         papplication->message_box("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+         message_box("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 
       if(!plibrary->m_plibrary->open_ca2_library(strLibTitle))
       {
 
-         papplication->message_box("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
+         message_box("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 

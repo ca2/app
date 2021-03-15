@@ -17,7 +17,7 @@ namespace user
       menu_item *          m_pitemContainer;
 
 
-      menu_command(::context_object * pcontextobject);
+      menu_command();
 
 
       //void delete_this() override;

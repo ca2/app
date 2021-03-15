@@ -816,6 +816,8 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
+      auto papplication = get_application();
+
       for(auto pinteraction : proper_children())
       {
 

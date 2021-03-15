@@ -284,7 +284,7 @@ namespace user
          //if(is_debugger_attached())
          //{
 
-         //   papplication->message_box(nullptr,"keyboard default.xml is empty?!?!?!?!");
+         //   message_box(nullptr,"keyboard default.xml is empty?!?!?!?!");
 
          //}
          return false;
@@ -300,7 +300,7 @@ namespace user
       //   //if(is_debugger_attached())
       //   //{
 
-      //   //   papplication->message_box(nullptr,"keyboard default.xml syntax is incorrect?!?!?!?!");
+      //   //   message_box(nullptr,"keyboard default.xml syntax is incorrect?!?!?!?!");
 
       //   //}
       //   return false;
@@ -365,7 +365,7 @@ namespace user
       //   if(is_debugger_attached())
       //   {
 
-      //      papplication->message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
+      //      message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
 
       //   }
 

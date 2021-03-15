@@ -146,7 +146,7 @@ namespace account
 //
 //#endif // WINDOWS
 //
-//         papplication->message_box(nullptr, "No license for using application/feature \"" + string(m_strAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, e_message_box_icon_exclamation);
+//         message_box(nullptr, "No license for using application/feature \"" + string(m_strAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, e_message_box_icon_exclamation);
 //
 //         return;
 //

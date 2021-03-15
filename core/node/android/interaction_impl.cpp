@@ -924,8 +924,8 @@ namespace android
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
       {
-      // android psystem->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-      psystem->message_box("Failed to launch help");
+      // android message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+      message_box("Failed to launch help");
       }*/
    }
 
@@ -952,8 +952,8 @@ namespace android
    // run the HTML Help engine
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    {
-   // android psystem->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   psystem->message_box("Failed to launch help");
+   // android message_box(__IDP_FAILED_TO_LAUNCH_HELP);
+   message_box("Failed to launch help");
    }*/
    //}
 

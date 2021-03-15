@@ -212,7 +212,7 @@
 ////
 ////         trait.m_pobjectTaskaNotify->add(traitPayload.m_pobjectTaskTransport);
 ////
-////         trait._notify(m_pobjectTrait->this);
+////         trait._notify(m_pobjectTrait);
 ////
 ////      }
 ////      else
@@ -233,7 +233,7 @@
 ////
 ////            trait.m_pobjectTaskaNotify->add(traitPayload.m_pobjectTaskTransport);
 ////
-////            trait._notify(m_pobjectTrait->this);
+////            trait._notify(m_pobjectTrait);
 ////
 ////         }
 ////         else
@@ -325,7 +325,7 @@
 ////
 ////   }
 ////
-////   return m_pappobject->this->fork([this, uId, prefResult]()
+////   return m_pappobject->fork([this, uId, prefResult]()
 ////                                        {
 ////
 ////                                           set_result(uId, prefResult);
@@ -445,7 +445,7 @@
 ////thread_pointer traits::_fork_notify(__pointer(::trait) ptrait)
 ////{
 ////
-////   return m_pobjectTrait->this->fork([this, ptrait] { _notify(ptrait); });
+////   return m_pobjectTrait->fork([this, ptrait] { _notify(ptrait); });
 ////
 ////}
 ////
@@ -465,7 +465,7 @@
 ////      try
 ////      {
 ////
-////         threada.add(m_pobjectTrait->this->fork([pnotify, ptrait] { pnotify->call(*ptrait); }));
+////         threada.add(m_pobjectTrait->fork([pnotify, ptrait] { pnotify->call(*ptrait); }));
 ////
 ////      }
 ////      catch (...)

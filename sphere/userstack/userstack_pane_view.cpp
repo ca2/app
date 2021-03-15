@@ -282,7 +282,7 @@ namespace userstack
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
-         //psystem->message_box(str);
+         //message_box(str);
          if(i == ERROR_FILE_NOT_FOUND)
          {
          }

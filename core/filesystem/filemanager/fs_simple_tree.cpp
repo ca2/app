@@ -87,7 +87,7 @@ namespace filemanager
             else
             {
 
-               psystem->message_box("error"); // simple parsing error check
+               message_box("error"); // simple parsing error check
 
                return;
 

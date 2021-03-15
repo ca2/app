@@ -257,9 +257,15 @@ namespace user
 
 
       synchronization_lock synchronizationlock(mutex());
+      
+      auto papplication = get_application();
 
-      if(id.is_empty())
+      if (id.is_empty())
+      {
+
          id = get_data()->m_panea.get_size();
+
+      }
 
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
@@ -2424,6 +2430,8 @@ namespace user
    void tab::on_message_create(::message::message * pmessage)
    {
 
+      auto psystem = get_system();
+
       m_bNoTabs = psystem->has_property("no_tabs");
 
       __pointer(::user::message) pusermessage(pmessage);
@@ -2870,6 +2878,8 @@ namespace user
          get_data()->m_pcallback->_001OnShowTab(this);
 
       }
+
+      __pointer(::base::application) papplication = get_application();
 
       papplication->on_change_cur_sel(this);
 

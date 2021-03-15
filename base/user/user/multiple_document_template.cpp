@@ -120,10 +120,10 @@ namespace user
 
          string strId;
 
-         if (pcreate->m_puiAlloc != nullptr)
+         if (pcreate->m_puserprimitiveAlloc)
          {
 
-            strId = ::type(pcreate->m_puiAlloc).name();
+            strId = ::type(pcreate->m_puserprimitiveAlloc).name();
 
          }
 
@@ -227,7 +227,9 @@ namespace user
       else
       {
 
-         strDocName = App(pdocument).load_string("untitled");
+         auto papplication = get_application();
+
+         strDocName = papplication->load_string("untitled");
 
       }
 

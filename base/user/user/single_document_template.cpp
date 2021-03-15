@@ -145,9 +145,9 @@ namespace user
 
       if (pdocument == nullptr)
       {
-         // linux psystem->message_box(__IDP_FAILED_TO_CREATE_DOC);
+         // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         psystem->message_box("Failed to create document");
+         message_box("Failed to create document");
 
          return;
 
@@ -170,6 +170,8 @@ namespace user
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
+         auto psystem = get_system();
+
          if (!pFrame)
          {
 
@@ -180,7 +182,7 @@ namespace user
             if(!result.get_exit_status(estatus))
             {
 
-               pcontext->message_box("Failed to create Document");
+               message_box("Failed to create Document");
 
             }
 
@@ -226,7 +228,7 @@ namespace user
       else
       {
 
-         wait_cursor wait(pcreate->this);
+         wait_cursor wait(pcreate);
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();
@@ -292,41 +294,55 @@ namespace user
 
    void single_document_template::set_default_title(::user::document * pdocument)
    {
+      
       string strDocName;
-      if (!GetDocString(strDocName, impact_system::docName) ||
-            strDocName.is_empty())
-      {
-         strDocName = App(pdocument).load_string("untitled");
-      }
-      pdocument->set_title(strDocName);
-   }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // single_document_template diagnostics
+      if (!GetDocString(strDocName, impact_system::docName) || strDocName.is_empty())
+      {
+
+         auto papplication = get_application();
+
+         strDocName = papplication->load_string("untitled");
+
+      }
+
+      pdocument->set_title(strDocName);
+
+   }
 
 
    void single_document_template::dump(dump_context & dumpcontext) const
    {
+
       impact_system::dump(dumpcontext);
 
       if (m_pdocument)
-         dumpcontext << "with ::user::document: " << (void *)m_pdocument;
+      {
+
+         dumpcontext << "with ::user::document: " << (void*)m_pdocument;
+
+      }
       else
+      {
+
          dumpcontext << "with no ::user::document";
 
+      }
+
       dumpcontext << "\n";
+
    }
+
 
    void single_document_template::assert_valid() const
    {
+
       impact_system::assert_valid();
+
    }
 
 
 } // namespace user
-
-
-
 
 
 

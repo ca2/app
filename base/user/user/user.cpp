@@ -182,6 +182,8 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
+      auto psystem = get_system();
+
       bool bHasInstall = psystem->is_true("install");
 
       bool bHasUninstall = psystem->is_true("uninstall");
@@ -298,18 +300,20 @@ namespace base
    void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
+      auto papplicationBase = get_application();
+
       auto psession = get_session();
 
-      for (auto& papp : psession->m_applicationa)
+      for (auto& papplicationApex : psession->m_applicationa)
       {
 
-         auto & app = App(papp);
+         __pointer(::base::application) papplicationItem = papplicationApex;
 
-         synchronization_lock synchronizationlock(&app.m_mutexFrame);
+         synchronization_lock synchronizationlock(&papplicationItem->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (app.get_frame(pinteraction))
+         while (papplicationItem->get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -389,25 +393,27 @@ namespace base
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pitem)
+   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pmenuitem)
    {
 
-      auto pinteraction = __new(::user::menu_button(pitem));
+      auto pmenubutton = __new(::user::menu_button);
 
-      if (pitem->m_pimage->is_set())
+      pmenubutton->initialize_menu_interaction(pmenuitem);
+
+      if (pmenuitem->m_pimage->is_set())
       {
 
-         pinteraction->set_button_style(::user::button::style_image_and_text);
+         pmenubutton->set_button_style(::user::button::style_image_and_text);
 
-         enum_image eimage = (enum_image)pitem->m_pmenu->payload("image_transform").i32();
+         auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
 
-         ::image_pointer pimage = pitem->m_pimage + eimage;
+         ::image_pointer pimage = pmenuitem->m_pimage + eimage;
 
-         pinteraction->LoadBitmaps(pimage);
+         pmenubutton->LoadBitmaps(pimage);
 
       }
 
-      return pinteraction;
+      return pmenubutton;
 
    }
 
@@ -1140,6 +1146,8 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
+      auto pcontext = get_context();
+
       string strXml = pcontext->file().as_string(varXmlFile);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
@@ -1176,7 +1184,7 @@ namespace base
    ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      auto psession = Sess(get_session());
+      auto psession = get_session();
 
       return psession->user()->controltype_to_typeinfo(econtroltype);
 
@@ -1230,9 +1238,13 @@ namespace base
 
       }
 
+      __pointer(::base::application) papplication = papp;
+
+      auto pcontext = papplication->get_context();
+
       {
 
-         string strId(App(papp).preferred_experience());
+         string strId(papplication->preferred_experience());
 
          if (strId.has_char())
          {
@@ -1267,7 +1279,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / App(papp).m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->file().as_string(::dir::config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1280,7 +1292,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1293,7 +1305,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1306,7 +1318,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / "system/experience.txt");
+         string strWndFrm = pcontext->file().as_string(::dir::config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1340,6 +1352,8 @@ namespace base
             strLibrary = "experience_" + strLibrary;
 
          }
+
+         auto psystem = get_system();
 
          auto plibrary = psystem->get_library(strLibrary, true);
 
@@ -1382,7 +1396,7 @@ namespace base
 
          message_box("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         __throw(exit_exception(get_context_system()));
+         __throw(exit_exception(get_system()));
 
       }
 

@@ -32,7 +32,7 @@ wait_cursor::wait_cursor(::context_object * pcontextobject)
 }
 
 
-void wait_cursor::Restore()
+void wait_cursor::restore()
 {
 
    __pointer(::aura::application) papplication = get_application();

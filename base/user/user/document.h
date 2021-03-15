@@ -47,7 +47,6 @@ namespace user
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-
       virtual ::user::interaction* impact_at(::index iImpact) const override;
       virtual ::count impact_count() const override;
 

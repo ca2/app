@@ -670,8 +670,8 @@ namespace user
    if (m_templateptra.is_empty())
    {
    TRACE(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
-   // linux psystem->message_box(__IDP_FAILED_TO_CREATE_DOC);
-   psystem->message_box(nullptr, "Failed to create document");
+   // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
+   message_box(nullptr, "Failed to create document");
    return;
    }
 

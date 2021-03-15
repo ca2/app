@@ -182,7 +182,7 @@ namespace prompt
    {
       if(iTab == 1)
       {
-         papplication->message_box(nullptr, "Playlist");
+         message_box(nullptr, "Playlist");
       }
    }
 

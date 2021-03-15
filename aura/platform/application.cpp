@@ -7697,35 +7697,18 @@ namespace aura
    ::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem)
    {
 
-      ::user::interaction* puiParent = nullptr;
+      __pointer(::user::interaction) puserinteractionParent;
 
-      if (puiParent == nullptr && pusersystem->m_pcreate)
+      if (puserinteractionParent && pusersystem->m_pcreate)
       {
 
-         puiParent = dynamic_cast <::user::interaction*> (pusersystem->m_pcreate->m_puserinteractionParent);
+         puserinteractionParent = pusersystem->m_pcreate->m_puserprimitiveParent;
 
       }
 
-      //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
-      //      {
-      //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
-      //      }
-
-            //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bClientOnly
-            /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
-                  && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
-            {
-               puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
-            }*/
-
-      return puiParent;
+      return puserinteractionParent;
 
    }
-
-
-
-
-
 
 
    void application::_001OnFileNew(::message::message* pmessage)

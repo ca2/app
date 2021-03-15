@@ -34,7 +34,14 @@ namespace base
       virtual ~user();
 
 
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+
+
       virtual ::e_status initialize(::context_object * pcontextobject) override;
+
+
 
 
       //inline ::user::shell* shell() { return m_pshell; }

@@ -813,6 +813,8 @@ namespace user
    void form_control::_001UpdateFunctionStatic()
    {
 
+      auto papplication = get_application();
+
       for(auto pinteraction : proper_children())
       {
 
@@ -1448,6 +1450,8 @@ namespace user
          ev.m_uiEvent = ptimer->m_uEvent;
 
          ev.m_etimer = ptimer->m_etimer;
+
+         auto papplication = get_application();
 
          papplication->on_control_event(&ev);
 

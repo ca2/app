@@ -66,7 +66,7 @@ namespace music
                }
                catch(memory_exception *pe)
                {
-                  psystem->message_box(nullptr, _T("No memory to perform this operation." ));
+                  message_box(nullptr, _T("No memory to perform this operation." ));
                   ::exception_pointer esp(pe);
                   return false;
                }

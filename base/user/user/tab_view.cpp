@@ -368,7 +368,9 @@ namespace user
 
       create_tab_by_id(::user::tab::tab_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __new(tab_drop_target_window(this, (i32) pchannel->get_data()->m_iClickTab));
+      m_pdroptargetwindow = __new(tab_drop_target_window());
+
+      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
       ::rectangle_i32 rectangle;
 
@@ -654,6 +656,8 @@ namespace user
          pframe->set_active_view(pview);
 
       }
+
+      auto papplication = get_application();
 
       papplication->on_change_cur_sel(this);
 
@@ -1018,9 +1022,30 @@ namespace user
    }
 
 
-   tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, index iTab) :
-      ::object(ptab->get_application())
+   tab_drop_target_window::tab_drop_target_window()
    {
+   }
+
+
+   tab_drop_target_window::~tab_drop_target_window()
+   {
+
+   }
+
+
+   ::e_status tab_drop_target_window::initialize_tab_drop_target_window(::user::tab* ptab, index iTab)
+   {
+
+      auto estatus = ::user::interaction::initialize(ptab);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
 
       m_positiona.add(e_position_top);
 
@@ -1030,15 +1055,11 @@ namespace user
 
       m_positiona.add(e_position_left);
 
-      m_ptab         = ptab;
+      m_ptab = ptab;
 
-      m_iTab         = iTab;
+      m_iTab = iTab;
 
-   }
-
-
-   tab_drop_target_window::~tab_drop_target_window()
-   {
+      return estatus;
 
    }
 

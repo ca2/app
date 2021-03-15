@@ -102,7 +102,7 @@ namespace subject
    i64 subject::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -110,7 +110,7 @@ namespace subject
    i64 subject::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::dec_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -118,7 +118,7 @@ namespace subject
    i64 subject::release(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::release(OBJ_REF_DBG_ARGS);
+      return ::property_object::release(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -131,7 +131,7 @@ namespace subject
 
       auto ptask = ::get_task();
 
-      if(::subject::manager::s_bDestroyAll || !ptask->thread_get_run())
+      if(::subject::manager::s_bDestroyAll || !ptask->task_get_run())
       {
 
          return ::error_failed;

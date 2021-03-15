@@ -73,7 +73,7 @@ namespace subject
 
       auto psubject = __new(subject(this));
 
-      while (!::subject::manager::g_bDestroyAll && ptask->thread_get_run())
+      while (!::subject::manager::g_bDestroyAll && ptask->task_get_run())
       {
 
          process(psubject);

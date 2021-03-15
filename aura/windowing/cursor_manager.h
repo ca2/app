@@ -11,18 +11,23 @@ namespace windowing
    // help/chatting LilCold_ (Dunno, Duck)
    // with him in Chat again, now at windowing component...
 
-   class CLASS_DECL_AURA cursor_set :
-      virtual public ::matter
+   class CLASS_DECL_AURA cursor_manager :
+      virtual public ::context_object
    {
    public:
-
 
 
       map < enum_cursor, __pointer(cursor) >   m_cursormap;
 
 
-      cursor_set();
-      virtual ~cursor_set();
+      cursor_manager();
+      virtual ~cursor_manager();
+
+
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
+
 
       void load_hotspot(const ::file::path & pszDir);
 

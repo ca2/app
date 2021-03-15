@@ -78,20 +78,20 @@ namespace windowing
    };
 
 
-   cursor_set::cursor_set()
+   cursor_manager::cursor_manager()
    {
 
    }
 
 
-   cursor_set::~cursor_set()
+   cursor_manager::~cursor_manager()
    {
 
 
    }
 
 
-   void cursor_set::finalize()
+   void cursor_manager::finalize()
    {
 
       for (auto & pcursor : m_cursormap.values())
@@ -108,7 +108,7 @@ namespace windowing
    }
 
 
-   string cursor_set::cursor_name(enum_cursor ecursor)
+   string cursor_manager::cursor_name(enum_cursor ecursor)
    {
 
       auto pcursorpair = g_pcursorpaira;
@@ -132,7 +132,7 @@ namespace windowing
    }
 
 
-   enum_cursor cursor_set::cursor_enum(string strCursor)
+   enum_cursor cursor_manager::cursor_enum(string strCursor)
    {
 
       strCursor.make_lower();
@@ -168,7 +168,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_set::get_cursor(enum_cursor ecursor)
+   __pointer(cursor) cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -193,7 +193,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_set::set_cursor_file(enum_cursor ecursor, const ::file::path & pathParam, bool bFromCache)
+   __pointer(cursor) cursor_manager::set_cursor_file(enum_cursor ecursor, const ::file::path & pathParam, bool bFromCache)
    {
 
       cursor * pcursor = nullptr;
@@ -208,7 +208,9 @@ namespace windowing
 
       auto path = pathParam;
 
-      if (::aura::get_system()->m_bImaging)
+      auto psystem = get_system();
+
+      if (psystem->m_bImaging)
       {
 
          //fork([this, pcursor, path, bFromCache]()
@@ -216,7 +218,7 @@ namespace windowing
 
             pcursor->initialize_system_default();
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -250,14 +252,18 @@ namespace windowing
 
    }
 
-   void cursor_set::load_hotspot(const ::file::path & pathDir)
+
+   void cursor_manager::load_hotspot(const ::file::path & pathDir)
    {
 
-      parse_hotspot_text(Context.file().as_string(pathDir / "hotspot.txt"));
+      auto pcontext = get_context();
+
+      parse_hotspot_text(pcontext->file().as_string(pathDir / "hotspot.txt"));
 
    }
 
-   void cursor_set::parse_hotspot_text(string strText)
+
+   void cursor_manager::parse_hotspot_text(string strText)
    {
 
       string_array straLines;
@@ -305,12 +311,14 @@ namespace windowing
    }
    
    
-   ::e_status cursor_set::set_cursor_set_from_matter(const ::file::path & pathMatter)
+   ::e_status cursor_manager::set_cursor_set_from_matter(const ::file::path & pathMatter)
    {
 
       // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 
-      ::file::path pathArrow = Context.dir().matter(pathMatter / "arrow.png");
+      auto pcontext = get_context();
+
+      ::file::path pathArrow = pcontext->dir().matter(pathMatter / "arrow.png");
 
       ::file::path pathFolder = pathArrow.folder();
 
@@ -319,7 +327,7 @@ namespace windowing
    }
 
 
-   ::e_status cursor_set::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
+   ::e_status cursor_manager::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
    {
 
       ::count countSuccess = 0;
@@ -543,7 +551,7 @@ namespace windowing
    }
 
 
-   ::e_status cursor_set::set_cursor_set_system_default()
+   ::e_status cursor_manager::set_cursor_set_system_default()
    {
 
 
@@ -644,7 +652,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_set::set_system_default_cursor(enum_cursor ecursor)
+   __pointer(cursor) cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
       synchronization_lock synchronizationlock(mutex());

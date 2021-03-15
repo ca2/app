@@ -1,5 +1,5 @@
 //
-//  context_object.h
+//  property_object.h
 //  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 02/06/19.
@@ -11,29 +11,28 @@ class object;
 //class runnable_array;
 
 
-class CLASS_DECL_ACME context_object :
+class CLASS_DECL_ACME property_object :
    virtual public id_matter
 {
 public:
 
 
    ::e_status                          m_estatus;
-   __pointer(::layered)                m_pobjectContext;
    __pointer(::i64_array)              m_pia;
    __pointer(property_set)             m_pset;
    __pointer(matter_array)             m_pnotifya;
 
 
-   context_object() { }
-   context_object(const ::id& id) : id_matter(id) {}
-   context_object(const context_object & object);
-   context_object(context_object && object) :
+   property_object() { }
+   property_object(const ::id& id) : id_matter(id) {}
+   property_object(const property_object & object);
+   property_object(property_object && object) :
       id_matter(::move(object)),
       m_pia(::move(object.m_pia)),
       m_estatus(object.m_estatus),
       m_pset(::move(object.m_pset))
       {  }
-   virtual ~context_object();
+   virtual ~property_object();
 
 
    inline matter_array * _notify_array() { return m_pnotifya; }
@@ -42,26 +41,24 @@ public:
    inline matter_array & notify_array() { ::__defer_construct_new(m_pnotifya); return *m_pnotifya; }
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & action_context) const override;
+   //virtual void assert_valid() const override;
+   //virtual void dump(dump_context & action_context) const override;
 
 
-   virtual ::e_status    initialize(::layered * pobjectContext) override;
+   //virtual ::e_status    initialize(::context_object * pcontextobject) override;
    virtual void         finalize() override;
 
 
-   virtual ::context_object * _get_context_object() override;
+   //virtual ::property_object * _get_context_object() override;
 
 
-   virtual void notify_on_finish(::context_object * pcontextobjectFinish) override;
-
-
-   inline ::object * get_context_object() const { return __object(m_pobjectContext); }
-   virtual void set_context_object(::layered * pobjectContext OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void notify_on_finish(::property_object * pcontextobjectFinish) override;
 
 
 
-   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
+
+
+   virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
 
 
 
@@ -101,6 +98,9 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
+   virtual ::e_status handle_exception(const ::exception::exception& e);
+
+
    virtual void add_exception(const ::exception::exception & e);
    virtual void on_catch_all_exception();
 
@@ -113,7 +113,7 @@ public:
    inline __pointer(TYPE) cast() {return this;}
 
    template < typename TYPE >
-   inline __pointer(TYPE) cast() const {return (::context_object *) this;}
+   inline __pointer(TYPE) cast() const {return (::property_object *) this;}
 
    template < typename TYPE >
    inline bool is() const {return cast < TYPE > ();}
@@ -153,8 +153,8 @@ public:
 
 
 
-   //using matter::get_context_object;
-   inline ::payload & get_context_object(const ::id & id);
+   //using matter::get_object;
+   inline ::payload & get_object(const ::id & id);
 
    inline ::payload operator()(const ::id & id) const;
    inline ::payload operator()(const ::id & id, const ::payload & varDefault) const;
@@ -211,11 +211,16 @@ public:
 
    virtual ::linked_property on_fetch_property(const ::id & id) const;
 
-   virtual ::context_object * parent_property_set_holder() const;
+   virtual ::property_object * parent_property_set_holder() const;
 
-   virtual void to_string(const string_exchange & str) const override;
-   virtual strsize sz_len() const override;
-   virtual void to_sz(char * sz, strsize len) const override;
+
+   template < typename TYPE >
+   inline __transport(TYPE) __create_new();
+
+
+   //virtual void to_string(const string_exchange & str) const override;
+   //virtual strsize sz_len() const override;
+   //virtual void to_sz(char * sz, strsize len) const override;
 
    //virtual void call_update(const ::__id& id, const ::action_context& context) override;
    //virtual void call_update(const ::__id& id) override;
@@ -225,7 +230,7 @@ public:
 };
 
 
-using reference_pointer = __pointer(::context_object);
+using reference_pointer = __pointer(::property_object);
 
 
 #define __add_runnable(array, ID) add_predicate(array, [this]() { ID(); } )

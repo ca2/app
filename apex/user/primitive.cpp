@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "aura/user/_user.h"
-#include "aura/message.h"
+//#include "apex/user/_user.h"
+//#include "aura/message.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
-#include "aura/message/timer.h"
+//#include "aura/message/timer.h"
 
 
 namespace user
@@ -22,12 +22,12 @@ namespace user
    }
 
 
-   ::user::callback* primitive::get_user_callback()
-   {
+   //::user::callback* primitive::get_user_callback()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    void primitive::install_message_routing(::channel * pchannel)
@@ -58,7 +58,7 @@ namespace user
    //void primitive::TwfGetWndArray(::user::interaction_pointer_array & wndpa)
    //{
 
-   //   wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(get_object());
+   //   wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(this);
 
    //}
 
@@ -66,7 +66,7 @@ namespace user
 //   void primitive::TwfGetWndArray(::user::oswindow_array & oswindowa)
 //   {
 //
-//      ::user::interaction_pointer_array & wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(get_object());
+//      ::user::interaction_pointer_array & wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(this);
 //
 //      oswindowa = wndpa.get_hwnda();
 //
@@ -162,54 +162,56 @@ namespace user
    ::thread * primitive::get_task() const
    {
 
-      auto pwnd = get_wnd();
-
-      if (::is_null(pwnd))
-      {
-
-         return get_context_application();
-
-      }
-
-      return pwnd->m_pthreadUserInteraction;
-
-   }
-
-
-
-   ::user::interaction_impl * primitive::get_impl() const
-   {
-
-      ::user::interaction * pinteraction = get_wnd();
-
-      if (pinteraction == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      if (pinteraction->m_pimpl.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      try
-      {
-
-         return pinteraction->m_pimpl->get_impl();
-
-      }
-      catch (...)
-      {
-
-      }
-
       return nullptr;
 
+      //auto puserinteraction = get_wnd();
+
+      //if (::is_null(puserinteraction))
+      //{
+
+      //   return get_application();
+
+      //}
+
+      //return puserinteraction->m_pthreadUserInteraction;
+
    }
+
+
+
+   //::user::interaction_impl * primitive::get_impl() const
+   //{
+
+   //   ::user::interaction * pinteraction = get_wnd();
+
+   //   if (pinteraction == nullptr)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   if (pinteraction->m_pimpl.is_null())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   try
+   //   {
+
+   //      return pinteraction->m_pimpl->get_impl();
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //   return nullptr;
+
+   //}
 
 
    //bool primitive::is_window_enabled() const
@@ -245,26 +247,26 @@ namespace user
    ::user::interaction* primitive::get_host_window() const
    {
 
-      if (get_context_session() == nullptr
-         || get_context_session()->m_paurasession == nullptr)
-      {
+      //if (get_session() == nullptr
+      //   || get_session()->m_paurasession == nullptr)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      if (get_context_session()->m_paurasession->m_puiHost)
-      {
+      //if (get_session()->m_paurasession->m_puserinteractionHost)
+      //{
 
-         return __user_interaction(get_context_session()->m_paurasession->m_puiHost);
+      //   return __user_interaction(get_session()->m_paurasession->m_puserinteractionHost);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
          return get_wnd();
 
-      }
+      //}
 
    }
 
@@ -279,19 +281,19 @@ namespace user
    }
 
 
-   void primitive::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-   }
+   //}
 
 
-   void primitive::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      _001OnDraw(pgraphics);
-      _008OnDraw(pgraphics);
+   //   _001OnDraw(pgraphics);
+   //   _008OnDraw(pgraphics);
 
-   }
+   //}
 
 
    void primitive::UpdateWindow()
@@ -775,7 +777,7 @@ namespace user
    //i32 primitive::sync_message_box_timeout(const char * pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
-   //   return Application.sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
+   //   return papplication->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
 
    //}
 
@@ -806,7 +808,7 @@ namespace user
 
    //   payload["title"] = get_title();
 
-   //   return Application.message_box(payload);
+   //   return papplication->message_box(payload);
 
    //}
 
@@ -932,52 +934,52 @@ namespace user
    //}
 
 
-   void primitive::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
-
-
-   void primitive::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::exception::throw_interface_only();
-
-   }
+   //}
 
 
-   void primitive::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
-
-
-   void primitive::_001Print(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::exception::throw_interface_only();
-
-   }
+   //}
 
 
-   void primitive::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
-   void primitive::draw_control_background(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001Print(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
+
+
+   //void primitive::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //}
+
+
+   //void primitive::draw_control_background(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //}
 
 
    ::user::interaction * primitive::_001FromPoint(::point_i32 point,bool bTestedIfParentVisible)
@@ -1145,14 +1147,14 @@ namespace user
    // }
 
 
-   ::user::frame * primitive::top_level_frame() const
-   {
+   //::user::frame * primitive::top_level_frame() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    void primitive::send_message_to_descendants(const ::id & id,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
@@ -1178,12 +1180,12 @@ namespace user
    }
 
 
-   oswindow primitive::get_oswindow() const
-   {
+   //oswindow primitive::get_oswindow() const
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    ::windowing::window * primitive::get_window() const
@@ -1197,11 +1199,7 @@ namespace user
    string primitive::get_class_name()
    {
 
-      auto econtroltype = get_control_type();
-
-      string strClassName = Application.get_window_class_name(econtroltype);
-
-      return strClassName;
+      return "";
 
    }
 
@@ -1345,6 +1343,136 @@ namespace user
    }
 
 
+   ::user::interaction* primitive::first_child()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::last_child()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::last_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::next_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::previous_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::first_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::next_sibling(::user::interaction* pinteraction)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::previous_sibling(::user::interaction* pinteraction)
+   {
+
+      return nullptr;
+
+   }
+
+   
+   ::user::interaction* primitive::bottom_child()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::top_child()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::bottom_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::under_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+
+   ::user::interaction* primitive::above_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::top_sibling()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::above_sibling(::user::interaction* pinteraction)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive::under_sibling(::user::interaction* pinteraction)
+   {
+
+      return nullptr;
+
+   }
+
+
+
    //::i32 primitive::get_window_long(i32 nIndex) const
    //{
 
@@ -1385,14 +1513,14 @@ namespace user
    //}
 
 
-   bool primitive::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
-   {
+   //bool primitive::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    ::user::interaction * primitive::ChildWindowFromPoint(const ::point_i32 & point)
@@ -1732,14 +1860,14 @@ namespace user
    }
 
 
-   ::user::frame * primitive::get_parent_frame() const
-   {
+   //::user::frame * primitive::get_parent_frame() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //void primitive::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
@@ -1789,47 +1917,47 @@ namespace user
    }
 
 
-   ::user::frame * primitive::get_owner_frame() const
+   /*::user::frame * primitive::get_owner_frame() const
    {
 
       ::exception::throw_interface_only();
 
       return nullptr;
 
-   }
+   }*/
 
 
    bool primitive::is_top_level_window() const
    {
 
-      auto puiParent = get_parent();
+     auto puiParent = get_parent_primitive();
 
-      if (::is_null(puiParent))
-      {
+     if (::is_null(puiParent))
+     {
 
-         return true;
+        return true;
 
-      }
+     }
 
-      if (::is_set(get_context_session()))
-      {
+     if (::is_set(get_session()))
+     {
 
-         if (this == __user_primitive(get_context_session()->m_puiHost))
-         {
+        if (this == get_session()->m_puserprimitiveHost)
+        {
 
-            return true;
+           return true;
 
-         }
-         else if (puiParent == __user_primitive(get_context_session()->m_puiHost))
-         {
+        }
+        else if (puiParent == get_session()->m_puserprimitiveHost)
+        {
 
-            return true;
+           return true;
 
-         }
+        }
 
-      }
+     }
 
-      return false;
+     return false;
 
    }
 
@@ -1844,14 +1972,14 @@ namespace user
    //}
 
 
-   ::user::frame * primitive::frame() const
-   {
+   //::user::frame * primitive::frame() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    ::user::interaction * primitive::get_parent_owner() const
@@ -2014,7 +2142,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool primitive::GetWindowPlacement(WINDOWPLACEMENT* pwndpl)
+//   bool primitive::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //
@@ -2025,7 +2153,7 @@ namespace user
 //   }
 //
 //
-//   bool primitive::SetWindowPlacement(const WINDOWPLACEMENT* pwndpl)
+//   bool primitive::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //
@@ -2039,35 +2167,35 @@ namespace user
 //#endif
 
 
-   bool primitive::pre_create_window(::user::system * pusersystem)
-   {
+   //bool primitive::pre_create_window(::user::system * pusersystem)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool primitive::IsTopParentActive()
-   {
+   //bool primitive::IsTopParentActive()
+   //{
 
-      ::user::interaction * puiTopLevel = get_top_level();
+   //   ::user::interaction * puiTopLevel = get_top_level();
 
-      if (puiTopLevel == nullptr)
-      {
+   //   if (puiTopLevel == nullptr)
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      //::user::interaction * puiActive = puiTopLevel->GetActiveWindow();
+   //   //::user::interaction * puiActive = puiTopLevel->GetActiveWindow();
 
-      return puiTopLevel->is_active_window();
+   //   return puiTopLevel->is_active_window();
 
-      //return  puiActive == puiTopLevel;
+   //   //return  puiActive == puiTopLevel;
 
-   }
+   //}
 
 
    void primitive::ActivateTopParent()
@@ -2103,48 +2231,48 @@ namespace user
    }
 
 
-   i32 primitive::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
-   {
+   //i32 primitive::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return -1;
+   //   return -1;
 
-   }
-
-
-   void primitive::InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase)
-
-   {
-
-      ::exception::throw_interface_only();
-
-   }
+   //}
 
 
-   void primitive::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
-   {
+   //void primitive::InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase)
 
-      ::exception::throw_interface_only();
+   //{
 
-   }
+   //   ::exception::throw_interface_only();
 
-
-   void primitive::ValidateRect(const ::rectangle_i32 & rectangle)
-
-   {
-
-      ::exception::throw_interface_only();
-
-   }
+   //}
 
 
-   void primitive::ValidateRgn(::draw2d::region* pRgn)
-   {
+   //void primitive::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
+
+
+   //void primitive::ValidateRect(const ::rectangle_i32 & rectangle)
+
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //}
+
+
+   //void primitive::ValidateRgn(::draw2d::region* pRgn)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //}
 
 
    void primitive::on_start_layout_experience(enum_layout_experience elayoutexperience)
@@ -2205,12 +2333,12 @@ namespace user
    //}
 
 
-   void primitive::ShowOwnedPopups(bool bShow)
-   {
+   //void primitive::ShowOwnedPopups(bool bShow)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
    //bool primitive::attach(oswindow oswindow)
@@ -2450,20 +2578,20 @@ namespace user
    }
 
 
-   void primitive::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
-   void primitive::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void primitive::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
    void primitive::OnLinkClick(const char * psz,const char * pszTarget)
@@ -2474,46 +2602,47 @@ namespace user
    }
 
 
-   void primitive::set_config_fps(double dConfigFps)
-   {
+   //void primitive::set_config_fps(double dConfigFps)
+   //{
 
-      get_host_window()->m_pimpl->set_config_fps(dConfigFps);
+   //   //get_host_window()->m_pimpl->set_config_fps(dConfigFps);
 
-   }
-
-
-   double primitive::get_config_fps()
-   {
-
-      return get_host_window()->m_pimpl->get_config_fps();
-
-   }
+   //}
 
 
-   double primitive::get_output_fps()
-   {
+   //double primitive::get_config_fps()
+   //{
 
-      auto pinteraction = get_host_window();
+   //   //return get_host_window()->m_pimpl->get_config_fps();
 
-      if (pinteraction == nullptr)
-      {
+   //}
 
-         return 0.0;
 
-      }
+   //double primitive::get_output_fps()
+   //{
 
-      auto pimpl = pinteraction->m_pimpl;
+   //   //auto pinteraction = get_host_window();
 
-      if (pimpl.is_null())
-      {
+   //   //if (pinteraction == nullptr)
+   //   //{
 
-         return 0.0;
+   //   //   return 0.0;
 
-      }
+   //   //}
 
-      return pimpl->get_output_fps();
+   //   //auto pimpl = pinteraction->m_pimpl;
 
-   }
+   //   //if (pimpl.is_null())
+   //   //{
+
+   //   //   return 0.0;
+
+   //   //}
+
+   //   //return pimpl->get_output_fps();
+   //   return 0.0;
+
+   //}
 
 
    bool primitive::create_message_queue(const char * lpszName)
@@ -2574,14 +2703,14 @@ namespace user
    }
 
 
-   ::e_status primitive::set_cursor(::windowing::cursor * pcursor)
-   {
+   //::e_status primitive::set_cursor(::windowing::/*cursor * pcursor)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    //::point_i32 primitive::get_cursor_position() const
    //{
@@ -2591,211 +2720,211 @@ namespace user
    //}
 
    
-   ::size_f64 primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
-   {
+   //::size_f64 primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      return { 0.0, 0.0 };
+   //   return { 0.0, 0.0 };
 
-   }
+   //}
 
 
-   ::size_f64 primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
-   {
+   //::size_f64 primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      ::rectangle_f64 rectPadding(2.0, 2.0, 2.0, 2.0);
+   //   ::rectangle_f64 rectPadding(2.0, 2.0, 2.0, 2.0);
 
-      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+   //   auto sizeFitting = _001CalculateFittingSize(pgraphics);
 
-      ::size_f64 sizePaddedFitting;
+   //   ::size_f64 sizePaddedFitting;
 
-      sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
+   //   sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
 
-      sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
+   //   sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
 
-      return sizePaddedFitting;
+   //   return sizePaddedFitting;
 
-   }
+   //}
 
 
-   bool primitive::can_merge(::user::interaction * pinteraction)
-   {
+   //bool primitive::can_merge(::user::interaction * pinteraction)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool primitive::merge(::user::interaction * pinteraction)
-   {
+   //bool primitive::merge(::user::interaction * pinteraction)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::top_child()
-   {
+   //::user::interaction * primitive::top_child()
+   //{
 
-      return last_child();
+   //   return last_child();
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::bottom_child()
-   {
+   //::user::interaction * primitive::bottom_child()
+   //{
 
-      return first_child();
+   //   return first_child();
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::above_sibling(::user::interaction * pinteraction)
-   {
+   //::user::interaction * primitive::above_sibling(::user::interaction * pinteraction)
+   //{
 
-      return next_sibling(pinteraction);
+   //   return next_sibling(pinteraction);
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::above_sibling()
-   {
+   //::user::interaction * primitive::above_sibling()
+   //{
 
-      return next_sibling();
+   //   return next_sibling();
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::under_sibling(::user::interaction * pinteraction)
-   {
+   //::user::interaction * primitive::under_sibling(::user::interaction * pinteraction)
+   //{
 
-      return previous_sibling(pinteraction);
+   //   return previous_sibling(pinteraction);
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::under_sibling()
-   {
+   //::user::interaction * primitive::under_sibling()
+   //{
 
-      return previous_sibling();
+   //   return previous_sibling();
 
-   }
+   //}
 
-   ::user::interaction * primitive::top_sibling()
-   {
+   //::user::interaction * primitive::top_sibling()
+   //{
 
-      return last_sibling();
+   //   return last_sibling();
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::bottom_sibling()
-   {
+   //::user::interaction * primitive::bottom_sibling()
+   //{
 
-      return first_sibling();
+   //   return first_sibling();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   ::user::interaction * primitive::first_child()
-   {
+   //::user::interaction * primitive::first_child()
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::last_child()
-   {
+   //::user::interaction * primitive::last_child()
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   ::user::interaction * primitive::first_sibling()
-   {
+   //::user::interaction * primitive::first_sibling()
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::last_sibling()
-   {
+   //::user::interaction * primitive::last_sibling()
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   ::user::interaction * primitive::previous_sibling()
-   {
+   //::user::interaction * primitive::previous_sibling()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   ::user::interaction * primitive::previous_sibling(::user::interaction * pinteraction)
-   {
+   //::user::interaction * primitive::previous_sibling(::user::interaction * pinteraction)
+   //{
 
-      UNREFERENCED_PARAMETER(pinteraction);
+   //   UNREFERENCED_PARAMETER(pinteraction);
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   ::user::interaction * primitive::next_sibling()
-   {
+   //::user::interaction * primitive::next_sibling()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   ::user::interaction * primitive::next_sibling(::user::interaction * pinteraction)
-   {
+   //::user::interaction * primitive::next_sibling(::user::interaction * pinteraction)
+   //{
 
-      UNREFERENCED_PARAMETER(pinteraction);
+   //   UNREFERENCED_PARAMETER(pinteraction);
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   void primitive::mouse_hover_add(::user::interaction * pinterface)
-   {
+   //void primitive::mouse_hover_add(::user::interaction * pinterface)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-   }
+   //}
 
 
-   bool primitive::mouse_hover_remove(::user::interaction * pinterface)
-   {
+   //bool primitive::mouse_hover_remove(::user::interaction * pinterface)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   void primitive::_task_transparent_mouse_event()
-   {
+   //void primitive::_task_transparent_mouse_event()
+   //{
 
 
-   }
+   //}
 
 
    void primitive::on_set_keyboard_focus()
@@ -3307,20 +3436,20 @@ namespace user
    //}
 
 
-   ::graphics::graphics * primitive::get_window_graphics()
-   {
+   //::graphics::graphics * primitive::get_window_graphics()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   bool primitive::is_composite()
-   {
+   //bool primitive::is_composite()
+   //{
 
-      return true; // optimistic response, assume always true alpha blendable
+   //   return true; // optimistic response, assume always true alpha blendable
 
-   }
+   //}
 
 
    //void primitive::_user_message_handler(::message::message * pmessage)
@@ -3476,7 +3605,7 @@ namespace user
       if (psimplecommand->command() == e_simple_command_full_screen)
       {
 
-         get_wnd()->display(e_display_full_screen);
+         //get_wnd()->display(e_display_full_screen);
 
          psimplecommand->m_bRet = true;
 
@@ -3485,152 +3614,152 @@ namespace user
    }
 
 
-   __pointer(::message::message) primitive::get_message(const ::id & id, wparam wparam, lparam lparam)
-   {
-
-      __pointer(::message::message) pmessage;
-
-      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
-
-      switch (eprototype)
-      {
-      case ::message::PrototypeNone:
-      {
-
-         pmessage = __new(::user::message);
-
-      }
-      break;
-      case ::message::PrototypeCreate:
-      {
-         pmessage = __new(::message::create);
-      }
-      break;
-      case ::message::PrototypeEnable:
-      {
-         pmessage = __new(::message::enable);
-      }
-      break;
-      case ::message::PrototypeNcActivate:
-      {
-         pmessage = __new(::message::nc_activate);
-      }
-      break;
-      case ::message::PrototypeKey:
-      {
-         pmessage = __new(::message::key);
-      }
-      break;
-      case ::message::PrototypeTimer:
-      {
-         
-         //__throw(::exception::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
-         
-         pmessage = __new(::message::timer);
-
-      }
-      break;
-      case ::message::PrototypeShowWindow:
-      {
-         pmessage = __new(::message::show_window);
-      }
-      break;
-      case ::message::PrototypeSetCursor:
-      {
-         pmessage = __new(::message::set_cursor);
-      }
-      break;
-      case ::message::PrototypeNcHitTest:
-      {
-         pmessage = __new(::message::nc_hit_test);
-      }
-      break;
-      case ::message::PrototypeMove:
-      {
-         pmessage = __new(::message::move);
-      }
-      break;
-      case ::message::PrototypeEraseBkgnd:
-      {
-         pmessage = __new(::message::erase_bkgnd);
-      }
-      break;
-      case ::message::PrototypeScroll:
-      {
-         pmessage = __new(::message::scroll);
-      }
-      break;
-      case ::message::PrototypeSetFocus:
-      {
-         pmessage = __new(::message::set_keyboard_focus);
-      }
-      break;
-      case ::message::PrototypeKillFocus:
-      {
-         pmessage = __new(::message::kill_keyboard_focus);
-      }
-      break;
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
-      case ::message::PrototypeWindowPos:
-      {
-         pmessage = __new(::message::window_pos);
-      }
-      break;
-      case ::message::PrototypeNcCalcSize:
-      {
-         pmessage = __new(::message::nc_calc_size);
-      }
-      break;
-#endif
-      case ::message::PrototypeMouse:
-      {
-         pmessage = __new(::message::mouse);
-      }
-      break;
-      case ::message::PrototypeMouseWheel:
-      {
-         pmessage = __new(::message::mouse_wheel);
-      }
-      break;
-      case ::message::PrototypeSize:
-      {
-         pmessage = __new(::message::size);
-      }
-      break;
-      case ::message::PrototypeActivate:
-      {
-         pmessage = __new(::message::activate);
-      }
-      break;
-      case ::message::PrototypeMouseActivate:
-      {
-         pmessage = __new(::message::mouse_activate);
-      }
-      break;
-      case ::message::PrototypeSimpleCommand:
-      {
-         pmessage = __new(::message::simple_command);
-      }
-      break;
-      default:
-      {
-         pmessage = __new(::message::message);
-      }
-      break;
-      }
-
-      if (pmessage.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
-
-      return pmessage;
-
-   }
+//   __pointer(::message::message) primitive::get_message(const ::id & id, wparam wparam, lparam lparam)
+//   {
+//
+//      __pointer(::message::message) pmessage;
+//
+//      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
+//
+//      switch (eprototype)
+//      {
+//      case ::message::PrototypeNone:
+//      {
+//
+//         pmessage = __new(::user::message);
+//
+//      }
+//      break;
+//      case ::message::PrototypeCreate:
+//      {
+//         pmessage = __new(::message::create);
+//      }
+//      break;
+//      case ::message::PrototypeEnable:
+//      {
+//         pmessage = __new(::message::enable);
+//      }
+//      break;
+//      case ::message::PrototypeNcActivate:
+//      {
+//         pmessage = __new(::message::nc_activate);
+//      }
+//      break;
+//      case ::message::PrototypeKey:
+//      {
+//         pmessage = __new(::message::key);
+//      }
+//      break;
+//      case ::message::PrototypeTimer:
+//      {
+//         
+//         //__throw(::exception::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+//         
+//         pmessage = __new(::message::timer);
+//
+//      }
+//      break;
+//      case ::message::PrototypeShowWindow:
+//      {
+//         pmessage = __new(::message::show_window);
+//      }
+//      break;
+//      case ::message::PrototypeSetCursor:
+//      {
+//         pmessage = __new(::message::set_cursor);
+//      }
+//      break;
+//      case ::message::PrototypeNcHitTest:
+//      {
+//         pmessage = __new(::message::nc_hit_test);
+//      }
+//      break;
+//      case ::message::PrototypeMove:
+//      {
+//         pmessage = __new(::message::move);
+//      }
+//      break;
+//      case ::message::PrototypeEraseBkgnd:
+//      {
+//         pmessage = __new(::message::erase_bkgnd);
+//      }
+//      break;
+//      case ::message::PrototypeScroll:
+//      {
+//         pmessage = __new(::message::scroll);
+//      }
+//      break;
+//      case ::message::PrototypeSetFocus:
+//      {
+//         pmessage = __new(::message::set_keyboard_focus);
+//      }
+//      break;
+//      case ::message::PrototypeKillFocus:
+//      {
+//         pmessage = __new(::message::kill_keyboard_focus);
+//      }
+//      break;
+//#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//      case ::message::PrototypeWindowPos:
+//      {
+//         pmessage = __new(::message::window_pos);
+//      }
+//      break;
+//      case ::message::PrototypeNcCalcSize:
+//      {
+//         pmessage = __new(::message::nc_calc_size);
+//      }
+//      break;
+//#endif
+//      case ::message::PrototypeMouse:
+//      {
+//         pmessage = __new(::message::mouse);
+//      }
+//      break;
+//      case ::message::PrototypeMouseWheel:
+//      {
+//         pmessage = __new(::message::mouse_wheel);
+//      }
+//      break;
+//      case ::message::PrototypeSize:
+//      {
+//         pmessage = __new(::message::size);
+//      }
+//      break;
+//      case ::message::PrototypeActivate:
+//      {
+//         pmessage = __new(::message::activate);
+//      }
+//      break;
+//      case ::message::PrototypeMouseActivate:
+//      {
+//         pmessage = __new(::message::mouse_activate);
+//      }
+//      break;
+//      case ::message::PrototypeSimpleCommand:
+//      {
+//         pmessage = __new(::message::simple_command);
+//      }
+//      break;
+//      default:
+//      {
+//         pmessage = __new(::message::message);
+//      }
+//      break;
+//      }
+//
+//      if (pmessage.is_null())
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+//
+//      return pmessage;
+//
+//   }
 
 
    bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, lresult * plresult)
@@ -3647,7 +3776,7 @@ namespace user
       catch (const ::exception::exception & e)
       {
 
-         if (::get_thread()->handle_exception(e))
+         if (::get_task()->handle_exception(e))
          {
 
             return false;
@@ -3706,11 +3835,11 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
 
-   //bool primitive::GetWindowPlacement(WINDOWPLACEMENT * pwndpl)
+   //bool primitive::GetWindowPlacement(WINDOWPLACEMENT * puserinteractionpl)
 
    //{
 
-   //   UNREFERENCED_PARAMETER(pwndpl);
+   //   UNREFERENCED_PARAMETER(puserinteractionpl);
 
 
    //   return false;
@@ -3744,7 +3873,7 @@ namespace user
 
    //   }
 
-   //   return get_context_application();
+   //   return get_application();
 
    //}
 
@@ -3898,26 +4027,27 @@ namespace user
    }
 
 
-   void primitive::route_control_event(::user::control_event* pevent)
-   {
+   //void primitive::route_control_event(::user::control_event* pevent)
+   //{
 
-      on_control_event(pevent);
+   //   on_control_event(pevent);
 
-   }
+   //}
 
 
-   void primitive::on_control_event(control_event * pevent)
-   {
+   //void primitive::on_control_event(control_event * pevent)
+   //{
 
-      UNREFERENCED_PARAMETER(pevent);
+   //   UNREFERENCED_PARAMETER(pevent);
 
-   }
+   //}
 
 
    bool primitive::keyboard_focus_is_focusable() const
    {
 
-      return Application.keyboard_focus_is_focusable(this);
+      //return papplication->keyboard_focus_is_focusable(this);
+      return false;
 
    }
 
@@ -3943,7 +4073,7 @@ namespace user
 
 //      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      if (pprimitive == nullptr || pprimitive == this)
 //      {
@@ -3968,117 +4098,138 @@ namespace user
    primitive * primitive::keyboard_get_next_focusable(primitive * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-      __pointer(primitive) puiThis = this;
+     __pointer(primitive) puiThis = this;
 
-      __pointer(primitive) puiFocus = pfocus != nullptr ? pfocus : this;
+     __pointer(primitive) puiFocus = pfocus != nullptr ? pfocus : this;
 
-      primitive * pfocusTry;
+     primitive * pfocusTry;
 
-      if (puiFocus == nullptr)
-      {
+     if (puiFocus == nullptr)
+     {
 
-         return nullptr;
+        return nullptr;
 
-      }
+     }
 
-      if (puiThis == nullptr)
-      {
+     if (puiThis == nullptr)
+     {
 
-         return nullptr;
+        return nullptr;
 
-      }
+     }
 
-      single_lock(puiThis->get_context_application()->mutex(), true);
+     single_lock(puiThis->get_application()->mutex(), true);
 
-      __pointer(primitive) pinteraction;
+     __pointer(primitive) pprimitive;
 
-      if (!bSkipChild)
-      {
+     if (!bSkipChild)
+     {
 
-         pinteraction = puiThis->first_child_user_primitive();
+        pprimitive = puiThis->first_child_user_primitive();
 
-         if (pinteraction != nullptr)
-         {
+        if (pprimitive != nullptr)
+        {
 
-            if (pinteraction->keyboard_focus_is_focusable())
-               return pinteraction;
+           if (pprimitive->keyboard_focus_is_focusable())
+           {
 
-            pinteraction = pinteraction->keyboard_get_next_focusable(puiFocus, false, false, true);
+              return pprimitive;
 
-            if (pinteraction != nullptr)
-               return pinteraction;
+           }
 
-         }
+           pprimitive = pprimitive->keyboard_get_next_focusable(puiFocus, false, false, true);
 
-      }
+           if (pprimitive != nullptr)
+           {
 
-      if (!bSkipSiblings)
-      {
+              return pprimitive;
 
-         pinteraction = puiThis->next_user_primitive();
+           }
 
-         while (pinteraction != nullptr)
-         {
+        }
 
-            if (pinteraction->keyboard_focus_is_focusable())
-               return pinteraction;
+     }
 
-            pfocusTry = pinteraction->keyboard_get_next_focusable(puiFocus, false, true, true);
+     if (!bSkipSiblings)
+     {
 
-            if (pfocusTry != nullptr)
-               return pfocusTry;
+        pprimitive = puiThis->next_user_primitive();
 
-            pinteraction = pinteraction->next_user_primitive();
+        while (pprimitive != nullptr)
+        {
 
-         }
+           if (pprimitive->keyboard_focus_is_focusable())
+           {
 
-      }
+              return pprimitive;
 
-      if (!bSkipParent)
-      {
+           }
+
+           pfocusTry = pprimitive->keyboard_get_next_focusable(puiFocus, false, true, true);
+
+           if (pfocusTry != nullptr)
+           {
+
+              return pfocusTry;
+
+           }
+
+           pprimitive = pprimitive->next_user_primitive();
+
+        }
+
+     }
+
+     if (!bSkipParent)
+     {
+
+        auto pprimitiveParent = get_parent_primitive();
+
+        if (pprimitiveParent)
+        {
+
+           pprimitive = pprimitiveParent->keyboard_get_next_focusable(puiFocus, true);
+
+           if (pprimitive.is_set())
+           {
+
+              return pprimitive;
+
+           }
+
+        }
+
+     }
+
+     if (!bSkipSiblings)
+     {
+
+        pprimitive = puiThis->first_child_user_primitive();
+
+        if (pprimitive != puiThis)
+        {
+
+           while (pprimitive != nullptr && pprimitive != puiFocus)
+           {
+
+              if (pprimitive->keyboard_focus_is_focusable())
+                 return pprimitive;
+
+              pfocusTry = pprimitive->keyboard_get_next_focusable(puiFocus, false, true, true);
+
+              if (pfocusTry != nullptr)
+                 return pfocusTry;
+
+              pprimitive = pprimitive->next_user_primitive();
+
+           }
+
+        }
+
+     }
 
 
-         if (puiThis->get_parent() != nullptr)
-         {
-
-            pinteraction = puiThis->get_parent_window()->keyboard_get_next_focusable(puiFocus, true);
-
-            if (pinteraction.is_set())
-               return pinteraction;
-
-         }
-
-      }
-
-      if (!bSkipSiblings)
-      {
-
-         pinteraction = puiThis->first_child_user_primitive();
-
-         if (pinteraction != puiThis)
-         {
-
-            while (pinteraction != nullptr && pinteraction != puiFocus)
-            {
-
-               if (pinteraction->keyboard_focus_is_focusable())
-                  return pinteraction;
-
-               pfocusTry = pinteraction->keyboard_get_next_focusable(puiFocus, false, true, true);
-
-               if (pfocusTry != nullptr)
-                  return pfocusTry;
-
-               pinteraction = pinteraction->next_user_primitive();
-
-            }
-
-         }
-
-      }
-
-
-      return nullptr;
+     return nullptr;
 
    }
 
@@ -4181,6 +4332,14 @@ namespace user
 
 
    ::user::interaction * primitive::get_parent_window() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::primitive* primitive::get_parent_primitive() const
    {
 
       return nullptr;
@@ -4378,12 +4537,12 @@ namespace user
    }
 
 
-   ::e_status primitive::set_icon(::windowing::icon * picon)
-   {
+   //::e_status primitive::set_icon(::windowing::icon * picon)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool primitive::display(::e_display edisplay, ::e_activation eactivation)

@@ -5,7 +5,7 @@ namespace subject
 {
 
 
-   class CLASS_DECL_ACME context :
+   class CLASS_DECL_APEX context :
       virtual public matter
    {
    public:

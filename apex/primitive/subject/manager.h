@@ -5,8 +5,8 @@ namespace subject
 {
 
 
-   class CLASS_DECL_ACME manager :
-      virtual public ::layered
+   class CLASS_DECL_APEX manager :
+      virtual public ::context_object
    {
    public:
 
@@ -46,7 +46,7 @@ namespace subject
       virtual void process_subject(const ::id & id, const ::action_context &actioncontext);
       virtual void process(::subject::subject * psubject);
 
-      using ::context_object::on_subject;
+      using ::property_object::on_subject;
       virtual void on_subject(::subject::subject * psubject);
       //virtual void on_subject(::subject::subject * psubject);
 

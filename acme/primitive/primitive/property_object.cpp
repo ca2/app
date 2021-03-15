@@ -1,40 +1,40 @@
 #include "framework.h"
 
 
-context_object::~context_object()
+property_object::~property_object()
 {
 
 }
 
 
-void context_object::assert_valid() const
-{
-
-}
-
-
-void context_object::dump(dump_context& context) const
-{
-
-}
+//void property_object::assert_valid() const
+//{
+//
+//}
 
 
-::e_status     context_object::initialize(::layered * pobjectContext)
-{
-
-   set_context_object(pobjectContext);
-
-   return ::success;
-
-}
+//void property_object::dump(dump_context& context) const
+//{
+//
+//}
 
 
-void context_object::finalize()
+//::e_status     property_object::initialize(::context_object * pcontextobject)
+//{
+//
+//   set_object(pobject);
+//
+//   return ::success;
+//
+//}
+
+
+void property_object::finalize()
 {
 
    ::id_matter::finalize();
 
-   m_pobjectContext.release(OBJ_REF_DBG_THIS);
+   //m_pobject.release(OBJ_REF_DBG_THIS);
 
    m_pia.release(OBJ_REF_DBG_THIS);
 
@@ -43,15 +43,15 @@ void context_object::finalize()
 }
 
 
-::context_object * context_object::_get_context_object()
-{
+//::property_object * property_object::_get_context_object()
+//{
+//
+//   return this;
+//
+//}
 
-   return this;
 
-}
-
-
-void context_object::notify_on_finish(::context_object * pcontextobjectFinish)
+void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 {
 
    if (m_bFinishing)
@@ -64,15 +64,15 @@ void context_object::notify_on_finish(::context_object * pcontextobjectFinish)
 }
 
 
-void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_COMMA_PARAMS_DEF)
-{
+//void property_object::set_object(::object * pobject  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//{
+//
+//   m_pobject.reset(pobject OBJ_REF_DBG_COMMA_ARGS);
+//
+//}
 
-   m_pobjectContext.reset(pobjectContext OBJ_REF_DBG_COMMA_ARGS);
 
-}
-
-
-::e_status context_object::finish(::context_object * pcontextobjectFinish)
+::e_status property_object::finish(::property_object * pcontextobjectFinish)
 {
 
    return ::matter::finish(pcontextobjectFinish);
@@ -80,7 +80,7 @@ void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_
 }
 
 
-void context_object::on_finish()
+void property_object::on_finish()
 {
 
    id_matter::on_finish();
@@ -128,7 +128,7 @@ void context_object::on_finish()
 }
 
 
-::object * context_object::source_channel()
+::object * property_object::source_channel()
 {
 
    return nullptr;
@@ -136,7 +136,7 @@ void context_object::on_finish()
 }
 
 
-::e_status context_object::run()
+::e_status property_object::run()
 {
 
    return ::success;
@@ -250,7 +250,7 @@ CLASS_DECL_ACME void debug_debug_reference()
    output_debug_string("-");
 
 }
-//void context_object::add_trait(::i64 i)
+//void property_object::add_trait(::i64 i)
 //{
 //
 //   if (!m_ptraits)
@@ -264,7 +264,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //}
 
-void context_object::keep_alive()
+void property_object::keep_alive()
 {
 
    try
@@ -281,13 +281,13 @@ void context_object::keep_alive()
 }
 
 
-void context_object::on_keep_alive()
+void property_object::on_keep_alive()
 {
 
 }
 
 
-bool context_object::is_alive()
+bool property_object::is_alive()
 {
 
    return true;
@@ -295,7 +295,7 @@ bool context_object::is_alive()
 }
 
 
-::e_status context_object::operator()()
+::e_status property_object::operator()()
 {
 
    ::e_status estatus;
@@ -318,10 +318,10 @@ bool context_object::is_alive()
 }
 
 
-//::e_status context_object::call(::trait & trait)
+//::e_status property_object::call(::trait & trait)
 //{
 //
-//   //auto estatus = ::context_object::call(trait);
+//   //auto estatus = ::property_object::call(trait);
 //
 //   //m_cRun++;
 //
@@ -330,7 +330,7 @@ bool context_object::is_alive()
 //}
 
 
-//void context_object::notify(::u64 uId)
+//void property_object::notify(::u64 uId)
 //{
 //
 //   m_uid |= uId;
@@ -338,14 +338,14 @@ bool context_object::is_alive()
 //}
 
 
-//void context_object::io(stream & s)
+//void property_object::io(stream & s)
 //{
 //
 //
 //}
 //
 //
-//stream & context_object::do_property_exchange(stream & stream) const
+//stream & property_object::do_property_exchange(stream & stream) const
 //{
 //
 //   ASSERT(stream.is_storing());
@@ -354,7 +354,7 @@ bool context_object::is_alive()
 //
 //   set += object_storing;
 //
-//   ((context_object *)this)->exchange(set);
+//   ((property_object *)this)->exchange(set);
 //
 //   stream << set;
 //
@@ -365,7 +365,7 @@ bool context_object::is_alive()
 //
 
 
-void context_object::exchange(::stream & stream)
+void property_object::exchange(::stream & stream)
 {
 
    __throw(error_interface_only);
@@ -373,7 +373,16 @@ void context_object::exchange(::stream & stream)
 }
 
 
-void context_object::add_exception(const ::exception::exception & e)
+::e_status property_object::handle_exception(const ::exception::exception& e)
+{
+
+   return ::success;
+
+}
+
+
+
+void property_object::add_exception(const ::exception::exception & e)
 {
 
    m_estatus = error_exception;
@@ -383,7 +392,7 @@ void context_object::add_exception(const ::exception::exception & e)
 }
 
 
-void context_object::on_catch_all_exception()
+void property_object::on_catch_all_exception()
 {
 
    m_estatus = error_catch_all_exception;
@@ -393,21 +402,21 @@ void context_object::on_catch_all_exception()
 }
 
 
-stream & context_object::write(::stream & stream) const
+stream & property_object::write(::stream & stream) const
 {
 
-   ((context_object*)this)->exchange(stream);
+   ((property_object*)this)->exchange(stream);
 
    return stream;
 
 }
 
 
-stream & context_object::read(::stream & stream)
+stream & property_object::read(::stream & stream)
 {
 
    exchange(stream);
-   //context_object::read(stream);
+   //property_object::read(stream);
 
    //if (has_flag(object_default_property_exchange))
    //{
@@ -429,7 +438,7 @@ stream & context_object::read(::stream & stream)
 //   auto pimage = __create_image();
 //
 //
-//   //System->imaging().start_traits(System->imaging(), pimage);
+//   //get_system()->imaging().start_traits(get_system()->imaging(), pimage);
 //
 //}
 
@@ -437,7 +446,7 @@ stream & context_object::read(::stream & stream)
 
 
 
-::context_object * context_object::parent_property_set_holder() const
+::property_object * property_object::parent_property_set_holder() const
 {
 
    return nullptr;
@@ -445,7 +454,7 @@ stream & context_object::read(::stream & stream)
 }
 
 
-linked_property context_object::parent_lookup_property(const id & id) const
+linked_property property_object::parent_lookup_property(const id & id) const
 {
 
    auto pobject = parent_property_set_holder();
@@ -462,7 +471,7 @@ linked_property context_object::parent_lookup_property(const id & id) const
 }
 
 
-::linked_property context_object::on_fetch_property(const ::id & id) const
+::linked_property property_object::on_fetch_property(const ::id & id) const
 {
 
    auto pproperty = find_property(id);
@@ -470,7 +479,7 @@ linked_property context_object::parent_lookup_property(const id & id) const
    if (pproperty)
    {
 
-      return { (property *) pproperty, (context_object *) this };
+      return { (property *) pproperty, (property_object *) this };
 
    }
 
@@ -509,7 +518,7 @@ linked_property context_object::parent_lookup_property(const id & id) const
 }
 
 
-id context_object::translate_property_id(const ::id & id)
+id property_object::translate_property_id(const ::id & id)
 {
 
    auto pparent = parent_property_set_holder();
@@ -525,7 +534,7 @@ id context_object::translate_property_id(const ::id & id)
 
 }
 
-//void context_object::add_property_set(property_set * pset)
+//void property_object::add_property_set(property_set * pset)
 //{
 //
 //   auto * pproperty = find_property("property_set_array");
@@ -546,7 +555,7 @@ id context_object::translate_property_id(const ::id & id)
 //}
 
 
-string context_object::property_set_evaluate(const string & str) const
+string property_object::property_set_evaluate(const string & str) const
 {
 
    return ::papaya::property_set::evaluate(*this, str);
@@ -554,7 +563,7 @@ string context_object::property_set_evaluate(const string & str) const
 }
 
 
-string context_object::property_set_get_evaluation(const string & str) const
+string property_object::property_set_get_evaluation(const string & str) const
 {
 
    return property_set_get_string(str.c_str() + 1);
@@ -562,14 +571,14 @@ string context_object::property_set_get_evaluation(const string & str) const
 }
 
 
-bool context_object::property_set_get_evaluation(string & strResult, const string& str) const
+bool property_object::property_set_get_evaluation(string & strResult, const string& str) const
 {
 
    return property_set_get_string(strResult, str.c_str() + 1);
 
 }
 
-string context_object::property_set_get_string(const string & str) const
+string property_object::property_set_get_string(const string & str) const
 {
 
    auto pproperty = on_fetch_property(str);
@@ -585,7 +594,7 @@ string context_object::property_set_get_string(const string & str) const
 
 }
 
-bool context_object::property_set_get_string(string & strResult, const string& str) const
+bool property_object::property_set_get_string(string & strResult, const string& str) const
 {
 
    auto pproperty = on_fetch_property(str);
@@ -604,7 +613,7 @@ bool context_object::property_set_get_string(string & strResult, const string& s
 }
 
 
-void context_object::property_set_replace(string & str) const
+void property_object::property_set_replace(string & str) const
 {
 
    str = property_set_evaluate(str);
@@ -612,7 +621,7 @@ void context_object::property_set_replace(string & str) const
 }
 
 
-void context_object::notify_property_changed(property* pproperty, const ::action_context & actioncontext)
+void property_object::notify_property_changed(property* pproperty, const ::action_context & actioncontext)
 {
 
    on_property_changed(pproperty, actioncontext);
@@ -620,14 +629,14 @@ void context_object::notify_property_changed(property* pproperty, const ::action
 }
 
 
-void context_object::on_property_changed(property* pproperty, const action_context & actioncontext)
+void property_object::on_property_changed(property* pproperty, const action_context & actioncontext)
 {
 
 
 }
 
 
-::linked_property context_object::fetch_property(const ::id & idParam, bool bCreate)
+::linked_property property_object::fetch_property(const ::id & idParam, bool bCreate)
 {
 
    auto id = translate_property_id(idParam);
@@ -658,7 +667,7 @@ void context_object::on_property_changed(property* pproperty, const action_conte
 }
 
 //
-//string context_object::property_set_get_evaluation(const string & str) const
+//string property_object::property_set_get_evaluation(const string & str) const
 //{
 //
 //   return property_set_get_string(str.c_str() + 1);
@@ -666,7 +675,7 @@ void context_object::on_property_changed(property* pproperty, const action_conte
 //}
 //
 //
-//string context_object::property_set_evaluate(const string & strParam) const
+//string property_object::property_set_evaluate(const string & strParam) const
 //{
 //
 //   return ::lemon::property_set::evaluate(*this, strParam);
@@ -675,7 +684,7 @@ void context_object::on_property_changed(property* pproperty, const action_conte
 //
 //
 //
-//string context_object::property_set_get_string(const string & str) const
+//string property_object::property_set_get_string(const string & str) const
 //{
 //
 //   auto pproperty = on_fetch_property(str);
@@ -692,7 +701,7 @@ void context_object::on_property_changed(property* pproperty, const action_conte
 //}
 
 
-string context_object::get_text(const ::payload & payload, const ::id & id)
+string property_object::get_text(const ::payload & payload, const ::id & id)
 {
 
    if (payload.has_property(id) && payload[id].has_char())
@@ -707,7 +716,7 @@ string context_object::get_text(const ::payload & payload, const ::id & id)
 }
 
 
-::extended::status context_object::run_property(const ::id& id)
+::extended::status property_object::run_property(const ::id& id)
 {
 
    auto pproperty = find_property(id);
@@ -724,36 +733,36 @@ string context_object::get_text(const ::payload & payload, const ::id & id)
 }
 
 
-void context_object::to_string(const class string_exchange & str) const
-{
-
-   str = typeid(*this).name();
-
-}
-
-
-strsize context_object::sz_len() const
-{
-
-   string str;
-
-   to_string(str);
-
-   return str.get_length();
-
-}
+//void property_object::to_string(const class string_exchange & str) const
+//{
+//
+//   str = typeid(*this).name();
+//
+//}
 
 
-void context_object::to_sz(char * sz, strsize len) const
-{
-
-   string str;
-
-   to_string(str);
-
-   strncpy(sz, str, len);
-
-}
+//strsize property_object::sz_len() const
+//{
+//
+//   string str;
+//
+//   to_string(str);
+//
+//   return str.get_length();
+//
+//}
+//
+//
+//void property_object::to_sz(char * sz, strsize len) const
+//{
+//
+//   string str;
+//
+//   to_string(str);
+//
+//   strncpy(sz, str, len);
+//
+//}
 
 
 

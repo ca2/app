@@ -1,9 +1,9 @@
 #pragma once
 
 
-//CLASS_DECL_APEX void generate_random_bytes(void* p, memsize s);
-CLASS_DECL_APEX void transform_alphanumeric(void* p, memsize s);
-CLASS_DECL_APEX void generate_random_alphanumeric(void * p, memsize s);
+//CLASS_DECL_ACME void generate_random_bytes(void* p, memsize s);
+CLASS_DECL_ACME void transform_alphanumeric(void* p, memsize s);
+CLASS_DECL_ACME void generate_random_alphanumeric(void * p, memsize s);
 
 template < typename TYPE >
 inline TYPE* __random_bytes(TYPE* p, memsize s);
@@ -23,33 +23,33 @@ TYPE __random();
 //::i32 __random_int(::i32 i1, ::i32 i2);
 
 
-namespace math
+namespace mathematics
 {
 
    struct math_os_data;
 
-   class CLASS_DECL_APEX math :
-      virtual public ::apex::department
+   class CLASS_DECL_ACME mathematics :
+      virtual public ::matter
    {
    private:
 
 
-      double         dPi;
-      float          fPi;
+      double         m_dPi;
+      float          m_fPi;
       u32            dwMode;
       byte           pbData[16];
 
    public:
 
 
-      __composite(math_os_data)  m_posdata;
+      math_os_data *  m_posdata;
 
 
-      math();
-      virtual ~math();
+      mathematics();
+      virtual ~mathematics();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       virtual void finalize() override;
 
 
@@ -67,8 +67,8 @@ namespace math
       i32 rand_max();
 
       double LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax);
-      double GetPi();
-      float get_pi_f();
+      inline double get_pi() const { return m_dPi; }
+      inline float get_pi_f() const { return m_fPi; }
 
       static bool IsPowerOfTwo(u64 uiValue);
       static u32 ReverseBits(u32 index, u32 NumBits);
@@ -81,7 +81,7 @@ namespace math
    };
 
 
-   inline void math::MaxClip(double * pnClipValue, double nMaxValue)
+   inline void mathematics::MaxClip(double * pnClipValue, double nMaxValue)
    {
 
       if (*pnClipValue > nMaxValue)
@@ -94,7 +94,7 @@ namespace math
    }
 
 
-   inline void math::MinClip(double * pnClipValue, double nMinValue)
+   inline void mathematics::MinClip(double * pnClipValue, double nMinValue)
    {
    
       if (*pnClipValue < nMinValue)
@@ -107,6 +107,9 @@ namespace math
    }
 
 
-} // namespace math
+   CLASS_DECL_ACME class mathematics * mathematics();
+
+
+} // namespace mathematics
 
 

@@ -72,7 +72,11 @@ namespace subject
 
       process(psubject);
 
-      auto pnode = Node;
+      //auto pnode = Node;
+
+      auto psystem = get_system();
+
+      auto pnode = psystem->node();
 
       if(pnode && pnode->defer_launch_on_node(psubject))
       {
@@ -89,6 +93,19 @@ namespace subject
 
    }
 
+
+   void manager::remove_from_any_source(::matter* pmatter)
+   {
+
+//      void matter::remove_from_any_source()
+  //    {
+
+         ::subject::manager::__remove(pmatter);
+
+    //  }
+
+
+   }
 
    void manager::deliver(const ::id &id)
    {
@@ -248,7 +265,7 @@ namespace subject
    void manager::finalize()
    {
 
-      context_object::finalize();
+      property_object::finalize();
 
       m_pmapSubject.release();
 
@@ -336,7 +353,7 @@ namespace subject
    i64 manager::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -344,7 +361,7 @@ namespace subject
    i64 manager::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::dec_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -352,7 +369,7 @@ namespace subject
    i64 manager::release(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::release(OBJ_REF_DBG_ARGS);
+      return ::property_object::release(OBJ_REF_DBG_ARGS);
 
    }
 

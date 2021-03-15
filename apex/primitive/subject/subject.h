@@ -5,8 +5,8 @@ namespace subject
 {
 
 
-   class CLASS_DECL_ACME subject :
-      virtual public context_object
+   class CLASS_DECL_APEX subject :
+      virtual public property_object
    {
    public:
 
@@ -21,11 +21,11 @@ namespace subject
 
       enum_subject                        m_esubject;
       __pointer(::matter)                 m_pmatter;
-      __pointer(::layered)                m_pobjectTopic;
+      __pointer(::property_object)        m_pobjectTopic;
       ::action_context                    m_actioncontext;
-      __pointer(::layered)                m_psender;
-      __pointer(::layered)                m_puserinteraction; // user::interaction
-      __pointer(::layered)                m_pcontrolevent; // user::control_event
+      __pointer(::property_object)        m_psender;
+      __pointer(::property_object)        m_puserinteraction; // user::interaction
+      __pointer(::property_object)        m_pcontrolevent; // user::control_event
       __pointer(::file::item)             m_pfileitem;
       bool                                m_bRet;
 

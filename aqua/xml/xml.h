@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_AQUA department :
+   class CLASS_DECL_AQUA xml :
       public ::apex::department
    {
    public:
@@ -18,8 +18,8 @@ namespace xml
       
 
 
-      department();
-      virtual ~department();
+      xml();
+      virtual ~xml();
 
       virtual ::e_status init1();
 
@@ -29,10 +29,18 @@ namespace xml
 
       string special_chars(const char * psz);
 
+      // get XML from the property considering it a node
+      string from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/);
+    
+
+      // get XML from the property considering it XML attributes part of a node
+      string from(const property& prop, ::xml::disp_option* opt /*= &optDefault*/);
+
 
    };
 
 
-} // namespace bas
+} // namespace xml
+
 
 

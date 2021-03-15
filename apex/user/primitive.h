@@ -4,20 +4,18 @@
 namespace user
 {
 
+
    enum enum_next
    {
 
       e_next_sibling,
       e_next_proper,
 
-
    };
 
 
-   class CLASS_DECL_AURA primitive :
+   class CLASS_DECL_APEX primitive :
       virtual public channel,
-      virtual public ::user::callback,
-      virtual public ::aura::drawable,
       virtual public ::user::check,
       virtual public ::user::text
    {
@@ -90,28 +88,24 @@ namespace user
       virtual ~primitive();
 
 
-      virtual ::user::callback* get_user_callback();
-
-
       virtual void _001OnTimer(::timer * ptimer);
 
 
       virtual bool create_message_queue(const char * lpszName);
 
 
-      virtual void set_config_fps(double dConfigFps);
-      virtual double get_config_fps();
-      virtual double get_output_fps();
+      //virtual void set_config_fps(double dConfigFps);
+      //virtual double get_config_fps();
+      //virtual double get_output_fps();
 
 
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
+      //__pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       virtual ::user::interaction* get_host_window() const;
 
 
       virtual bool enable_window(bool bEnable = true);
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void PreSubClassWindow();
 
@@ -154,8 +148,6 @@ namespace user
 
       virtual bool has_pending_redraw_flags();
 
-      virtual ::e_status set_icon(::windowing::icon * picon);
-
       virtual void default_message_handler(::message::message * pmessage);
 
       virtual void message_handler(::message::message * pmessage);
@@ -171,8 +163,6 @@ namespace user
       virtual enum_cursor get_cursor();
 
       virtual ::e_status set_cursor(enum_cursor ecursor);
-
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 
@@ -203,10 +193,10 @@ namespace user
       virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
 
 
-      virtual void mouse_hover_add(::user::interaction * pinterface);
-      virtual bool mouse_hover_remove(::user::interaction * pinterface);
+      //virtual void mouse_hover_add(::user::interaction * pinterface);
+      //virtual bool mouse_hover_remove(::user::interaction * pinterface);
 
-      virtual void _task_transparent_mouse_event();
+      //virtual void _task_transparent_mouse_event();
 
       virtual bool CheckAutoCenter();
 
@@ -222,8 +212,6 @@ namespace user
       virtual void EndModalLoop(id nResult);
 
 
-      virtual void route_control_event(::user::control_event* pevent);
-      virtual void on_control_event(::user::control_event * pevent) override;
 
       // Dialog data support
       virtual bool update_data(bool bSaveAndValidate = true);
@@ -273,16 +261,15 @@ namespace user
       //virtual bool BringWindowToTop();
 //
 //#ifdef WINDOWS_DESKTOP
-//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 //
-//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 //
 //#endif
 
       //virtual bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
 
-      virtual bool pre_create_window(::user::system * pusersystem);
 
 
       virtual bool subclass_window(oswindow posdata);
@@ -302,7 +289,7 @@ namespace user
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
-      virtual bool IsTopParentActive();
+      //virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
 
       virtual bool DestroyWindow();
@@ -316,7 +303,6 @@ namespace user
 
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
 //#endif
 
@@ -325,15 +311,6 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true);
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
-//      virtual void Invalidate(bool bErase = true);
-      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true);
-
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
-      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
-
-      virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual void ShowOwnedPopups(bool bShow = true);
 
 
       //virtual u32 GetStyle() const;
@@ -373,13 +350,6 @@ namespace user
       virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
-      virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001Print(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const;
@@ -442,15 +412,13 @@ namespace user
 
       virtual ::user::interaction * get_wnd() const;
       virtual ::user::interaction * get_wnd(::u32 nCmd) const;
-      virtual ::user::interaction_impl * get_impl() const;
+      //virtual ::user::interaction_impl * get_impl() const;
       virtual ::thread * get_task() const;
 
       virtual ::user::primitive * set_parent(::user::primitive * pinteraction);
       virtual ::user::primitive * set_owner(::user::primitive * pinteraction);
 
 
-      virtual ::user::frame * frame() const;
-      virtual ::user::frame * top_level_frame() const;
 
 
       virtual ::user::interaction * get_parent() const;
@@ -459,8 +427,6 @@ namespace user
       virtual ::user::interaction * get_parent_owner() const;
       virtual ::user::interaction * get_parent_or_owner() const;
       virtual ::user::interaction * get_top_level_owner() const;
-      virtual ::user::frame * get_parent_frame() const;
-      virtual ::user::frame * get_owner_frame() const;
 
       virtual bool is_top_level_window() const;
 
@@ -515,25 +481,20 @@ namespace user
 
       virtual void GuieProc(::message::message * pmessage);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
-
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      oswindow get_safe_oswindow() const;
-      virtual oswindow get_oswindow() const override;
       //virtual bool attach(::windowing::window * pwindow_New);
       virtual oswindow detach();
 
 
       virtual windowing::window * get_window() const;
       
-      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool can_merge(::user::interaction * pinteraction);
-      virtual bool merge(::user::interaction * pinteraction);
+      //virtual bool can_merge(::user::interaction * pinteraction);
+      //virtual bool merge(::user::interaction * pinteraction);
 
 
       virtual void _001OnTriggerMouseInside();
@@ -622,10 +583,6 @@ namespace user
       virtual void keep_alive(::object * pliveobject = nullptr);
 
 
-      virtual ::graphics::graphics * get_window_graphics() override;
-
-
-      virtual bool is_composite() override;
 
 
       //virtual void _user_message_handler(::message::message * pmessage);
@@ -697,6 +654,8 @@ namespace user
       
       virtual ::user::interaction * get_parent_window() const;
 
+      virtual ::user::primitive * get_parent_primitive() const;
+
 
       virtual ::user::interaction * get_first_child_window() const;
 
@@ -740,10 +699,10 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      //virtual bool GetWindowPlacement(WINDOWPLACEMENT * pwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT * puserinteractionpl);
 
 
-      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT * pwndpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT * puserinteractionpl);
 
 
 #endif
@@ -807,21 +766,6 @@ namespace user
 
    };
 
-
-
-   inline oswindow primitive::get_safe_oswindow() const
-   {
-
-      if (::is_null(this))
-      {
-
-         return nullptr;
-
-      }
-
-      return get_oswindow();
-
-   }
 
 
 } // namespace user

@@ -6,7 +6,7 @@
 #define new ACME_NEW
 
 template < typename PRED >
-class predicate_thread:
+class predicate_task:
    virtual public ::task
 {
 public:
@@ -15,7 +15,7 @@ public:
    PRED m_predicate;
 
 
-   predicate_thread(::layered * pobjectContext, PRED pred) :
+   predicate_task(::context_object * pcontextobject, PRED pred) :
       m_predicate(pred)
    {
 
@@ -25,7 +25,7 @@ public:
 
       //m_bFork = true;
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ public:
    }
 
 
-   virtual ~predicate_thread()
+   virtual ~predicate_task()
    {
 
    }
@@ -57,20 +57,20 @@ public:
 
 
 template < typename PRED >
-inline auto new_predicateicate_thread(::layered * pobjectContext, PRED pred)
+inline auto new_predicateicate_task(::object * pobject, PRED pred)
 {
 
-   return __new(predicate_thread < PRED > (pobjectContext, pred));
+   return __new(predicate_task < PRED > (pobject, pred));
 
 }
 
-//class CLASS_DECL_APEX runner :
+//class CLASS_DECL_ACME runner :
 //   virtual public ::object
 //{
 //public:
 //
 //
-//   ::thread_pointer                          m_pthread;
+//   ::task_pointer                          m_ptask;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
 //   ::millis                                       m_millisStart;
@@ -106,7 +106,7 @@ inline auto new_predicateicate_thread(::layered * pobjectContext, PRED pred)
 //
 //                   sleep(100_ms);
 //
-//                   if(!::thread_get_run())
+//                   if(!::task_get_run())
 //                   {
 //
 //                      break;
@@ -135,7 +135,7 @@ inline auto new_predicateicate_thread(::layered * pobjectContext, PRED pred)
 //
 //             };
 //
-//      __object(get_context_object())->start(m_pthread, predDelayed);
+//      __object(this)->start(m_ptask, predDelayed);
 //
 //   }
 //
@@ -143,26 +143,26 @@ inline auto new_predicateicate_thread(::layered * pobjectContext, PRED pred)
 
 
 template < typename PRED >
-__pointer(::thread) & fork(__pointer(::thread) & pthread, ::layered * pobjectContext, PRED pred)
+__pointer(::task) & fork(__pointer(::task) & ptask, ::object * pobject, PRED pred)
 {
 
-   pthread = __new(predicate_thread < PRED >(pobjectContext, pred));
+   ptask = __new(predicate_task < PRED >(pobject, pred));
 
-   pthread->begin();
+   ptask->begin();
 
-   return pthread;
+   return ptask;
 
 }
 
 
 
 //template < typename PRED >
-//::thread * fork(::object * pobject, PRED pred)
+//::task * fork(::object * pobject, PRED pred)
 //{
 //
-//   ::thread * pthread = nullptr;
+//   ::task * ptask = nullptr;
 //
-//   return fork(pthread, pobject, pred);
+//   return fork(ptask, pobject, pred);
 //
 //}
 
@@ -183,35 +183,27 @@ __pointer(::thread) & fork(__pointer(::thread) & pthread, ::layered * pobjectCon
 
 
 //template < typename PRED >
-//inline ::task_pointer object::__thread(PRED pred)
+//inline ::task_pointer object::__task(PRED pred)
 //{
 //
 //   auto ppred = __predicate(pred);
 //
-//   return ::thread::start(ppred);
+//   return ::task::start(ppred);
 //
 //}
 
 
 
-template < typename PRED >
-inline auto ::object::new_predicateicate_thread(PRED pred)
-{
-
-   return ::new_predicateicate_thread(this, pred);
-
-}
-
 
 
 
 
 
 template < typename PRED >
-::thread * predicate_run(::object * pobjectParent, bool bSync, PRED pred);
+::task * predicate_run(::object * pobjectParent, bool bSync, PRED pred);
 
 
-//CLASS_DECL_APEX int get_current_process_affinity_order();
+//CLASS_DECL_ACME int get_current_process_affinity_order();
 
 #undef new
 
@@ -222,22 +214,22 @@ template < typename PRED >
 //__pointer(task) fork(::object * pobject, PRED pred)
 //{
 //
-//   pthread = new predicate_thread < PRED >(pobject, pred);
+//   ptask = new predicate_task < PRED >(pobject, pred);
 //
-//   pthread->begin();
+//   ptask->begin();
 //
-//   pthread->release();
+//   ptask->release();
 //
-//   return pthread;
+//   return ptask;
 //
 //}
 //
 
 //template < typename PRED >
-//::thread * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, e_priority epriority = priority_normal)
+//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, e_priority epriority = priority_normal)
 //{
 //
-//   auto ppredthread = __new(predicate_thread < PRED >(pobject, pred));
+//   auto ppredtask = __new(predicate_task < PRED >(pobject, pred));
 //
 //   string strTag(pszTag);
 //
@@ -259,18 +251,18 @@ template < typename PRED >
 //
 //   }
 //
-//   ppredthread->set_thread_name(strTag);
+//   ppredtask->set_task_name(strTag);
 //
-//   ppredthread->begin(epriority);
+//   ppredtask->begin(epriority);
 //
-//   return ppredthread;
+//   return ppredtask;
 //
 //}
 
 
 ///// optimized: forks if not forked
 //template < typename PRED >
-//::thread * opt_fork(::object * pobject,  PRED pred)
+//::task * opt_fork(::object * pobject,  PRED pred)
 //{
 //
 //   if (::get_task() != nullptr && ::get_task()->m_bFork)
@@ -297,9 +289,9 @@ template < typename PRED >
 //
 //   synchronization_lock synchronizationlock(mutex());
 //
-//   pthread = ::fork(pthread, this, pred, pszTag, iCallStackAddUp);
+//   ptask = ::fork(ptask, this, pred, pszTag, iCallStackAddUp);
 //
-//   return pthread;
+//   return ptask;
 //
 //}
 
@@ -321,15 +313,15 @@ template < typename PRED >
 
 
 //template < typename PRED >
-//inline ::thread_pointer object::defer_fork(const char * pszTag, PRED pred)
+//inline ::task_pointer object::defer_fork(const char * pszTag, PRED pred)
 //{
 //
-//   __pointer(thread) pthread = running(pszTag);
+//   __pointer(task) ptask = running(pszTag);
 //
-//   if (pthread)
+//   if (ptask)
 //   {
 //
-//      return pthread;
+//      return ptask;
 //
 //   }
 //
@@ -345,15 +337,6 @@ template < typename PRED >
 //   return ::opt_fork(this, pred);
 //
 //}
-
-
-template < typename PRED >
-inline ::thread_pointer object::predicate_run(bool bSync, PRED pred)
-{
-
-   return ::predicate_run(this, bSync, pred);
-
-}
 
 
 
@@ -447,8 +430,8 @@ public:
 
 
 template < typename PRED >
-class forking_count_thread :
-virtual public thread
+class forking_count_task :
+virtual public task
 {
 public:
 
@@ -467,8 +450,7 @@ public:
    __pointer(object)  m_pholdref;
 
 
-   forking_count_thread(::object * pobject, __pointer(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
-   ::object(pobject),
+   forking_count_task(::context_object * pcontextobject, __pointer(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_pholdref(pholdref),
    m_predicate(pred),
    m_iOrder(iOrder),
@@ -478,10 +460,10 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
+      initialize(pcontextobject);
    }
 
-   forking_count_thread(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
-   ::object(pobject),
+   forking_count_task(::context_object * pcontextobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_predicate(pred),
    m_iOrder(iOrder),
    m_iIndex(iIndex),
@@ -490,6 +472,7 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
+      initialize(pcontextobject);
    }
 
    
@@ -501,7 +484,7 @@ public:
    }
 
 
-   virtual ~forking_count_thread()
+   virtual ~forking_count_task()
    {
 
    }
@@ -558,23 +541,23 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    auto pcounter = __new(::counter<i32>(long(iScan)));
 
-   auto pthread = ::get_task();
+   auto ptask = ::get_task();
 
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
-      auto ppredthread = __new(forking_count_thread < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+      auto ppredtask = __new(forking_count_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-      if (::is_set(pthread))
+      if (::is_set(ptask))
       {
 
-         pthread->add_reference(ppredthread);
+         ptask->add_reference(ppredtask);
 
       }
 
-      ppredthread->m_pcounter = pcounter;
+      ppredtask->m_pcounter = pcounter;
 
-      ppredthread->begin();
+      ppredtask->begin();
 
    }
 
@@ -584,10 +567,10 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
 
 template < typename PRED, typename PRED_END >
-::count fork_count_end_predicate(::object * pobjectParent, ::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
+::count fork_count_end_predicate(::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
 {
 
-   ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
+   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
 
    int iAffinityOrder = get_current_process_affinity_order();
 
@@ -605,9 +588,9 @@ template < typename PRED, typename PRED_END >
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
-      auto ppredthread = __new(forking_count_thread < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
+      auto ppredtask = __new(forking_count_task < PRED >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
 
-      ppredthread->begin();
+      ppredtask->begin();
 
    }
 
@@ -617,8 +600,8 @@ template < typename PRED, typename PRED_END >
 
 
 template < typename PRED >
-class forking_for_thread :
-virtual public thread
+class forking_for_task :
+virtual public task
 {
 public:
 
@@ -633,7 +616,7 @@ public:
 
    __pointer(::object)  m_pobjectTaskEnd;
 
-   forking_for_thread(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
    ::object(pobject),
    m_predicate(pred),
    m_iOrder(iOrder),
@@ -651,7 +634,7 @@ public:
 
    }
 
-   virtual ~forking_for_thread()
+   virtual ~forking_for_task()
    {
 
    }
@@ -707,11 +690,11 @@ auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart 
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
-      auto ppredthread = __new(forking_for_thread < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-      ppredthread->m_pcounter = pcounter;
+      ppredtask->m_pcounter = pcounter;
 
-      ppredthread->begin();
+      ppredtask->begin();
 
    }
 
@@ -743,13 +726,13 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
-      auto ppredthread = __new(forking_for_thread < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-      ppredthread->m_pcounter = pcounter;
+      ppredtask->m_pcounter = pcounter;
 
-      ppredthread->m_pobjectTaskEnd = pobjectTaskEnd;
+      ppredtask->m_pobjectTaskEnd = pobjectTaskEnd;
 
-      ppredthread->begin();
+      ppredtask->begin();
 
    }
 
@@ -759,13 +742,14 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
 
 
 
-CLASS_DECL_APEX u32 random_processor_index_generator();
+CLASS_DECL_ACME u32 processor_index_generator();
+
 
 template < typename PRED >
-__pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
+__pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
 {
 
-   __pointer_array(::thread) threadptra;
+   __pointer_array(::task) taskptra;
 
    int iProcCount = get_current_process_affinity_order();
 
@@ -788,77 +772,77 @@ __pointer_array(::thread) fork_proc(::object * pobjectParent, PRED pred, index i
    for (index iProcessor = 0; iProcessor < iCount; iProcessor++)
    {
 
-      auto ppredthread = __new(predicate_thread < PRED >(pobjectParent, pred));
+      auto ppredtask = __new(predicate_task < PRED >(pobjectParent, pred));
 
-      ::thread * pthread = dynamic_cast < ::thread * > (ppredthread);
+      ::task * ptask = dynamic_cast < ::task * > (ppredtask);
 
-      pthread->m_uThreadAffinityMask = translate_processor_affinity(random_processor_index_generator() % iProcCount);
+      ptask->m_uThreadAffinityMask = translate_processor_affinity(processor_index_generator() % iProcCount);
 
-      pthread->m_bThreadToolsForIncreasedFps = false;
+      ptask->m_bThreadToolsForIncreasedFps = false;
 
-      //pthread->m_bAvoidProcFork = true;
+      //ptask->m_bAvoidProcFork = true;
 
-      threadptra.add(pthread);
+      taskptra.add(ptask);
 
-      pthread->begin();
+      ptask->begin();
 
    }
 
-   return threadptra;
+   return taskptra;
 
 }
 
 
-template < typename PRED >
-::thread * predicate_run(::object * pobject, bool bSync, PRED pred)
-{
-
-   if (bSync)
-   {
-
-      pred();
-
-      return nullptr;
-
-   }
-   else
-   {
-
-      return pobject->fork(pred);
-
-   }
-
-}
+//template < typename PRED >
+//::task * predicate_run(::object * pobject, bool bSync, PRED pred)
+//{
+//
+//   if (bSync)
+//   {
+//
+//      pred();
+//
+//      return nullptr;
+//
+//   }
+//   else
+//   {
+//
+//      return pobject->fork(pred);
+//
+//   }
+//
+//}
 
 
 //template < typename PRED >
 //inline ::task_pointer & object::start(::task_pointer & ptask, PRED pred)
 //{
 //
-//   if (pthread && pthread->is_running())
+//   if (ptask && ptask->is_running())
 //   {
 //
-//      return pthread;
+//      return ptask;
 //
 //   }
 //
-//   return fork(pthread, pred);
+//   return fork(ptask, pred);
 //
 //}
 //
 //
 //template < typename PRED >
-//inline ::thread_pointer & object::defer_fork(::thread_pointer& pthread, PRED pred)
+//inline ::task_pointer & object::defer_fork(::task_pointer& ptask, PRED pred)
 //{
 //
-//   if (pthread && pthread->is_running())
+//   if (ptask && ptask->is_running())
 //   {
 //
-//      return pthread;
+//      return ptask;
 //
 //   }
 //
-//   return fork(pthread, pred);
+//   return fork(ptask, pred);
 //
 //}
 //
@@ -891,7 +875,7 @@ template < typename PRED >
 
 
 //template < typename PRED >
-//inline ::thread_pointer& object::fork(::thread_pointer& pthread, PRED pred)
+//inline ::task_pointer& object::fork(::task_pointer& ptask, PRED pred)
 //{
 //
 //   ptask->m_pmatter = __predicate(pred);

@@ -5,8 +5,8 @@ namespace draw2d
 {
 
 
-   class thread_tool_item :
-      virtual public ::thread_tool_item
+   class task_tool_item :
+      virtual public ::task_tool_item
    {
    public:
 

@@ -10,7 +10,7 @@
 #endif
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -18,10 +18,10 @@ namespace math
       virtual public ::object
    {
 
-      int                  m_i;
-      i32                  m_iRngReSeedCountDown;
-      critical_section     m_criticalsection;
-      rng                  m_rng;
+      int                              m_i;
+      i32                              m_iRngReSeedCountDown;
+      critical_section                 m_criticalsection;
+      random_number_generator          m_randomnumbergenerator;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -205,7 +205,7 @@ namespace math
          while(s > 4)
          {
 
-            *pu = m_rng.get();
+            *pu = m_randomnumbergenerator.get();
 
             s-=4;
 
@@ -215,7 +215,7 @@ namespace math
 
          char * pc = (char *)pu;
 
-         u32 uSrc = m_rng.get();
+         u32 uSrc = m_randomnumbergenerator.get();
 
          char * pcSrc = (char *)&uSrc;
 
@@ -281,10 +281,10 @@ namespace math
 
    }
 
-   ::e_status math::initialize(::layered * pobjectContext)
+   ::e_status math::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -398,7 +398,7 @@ namespace math
 
 
 
-   double math::GetPi()
+   double math::get_pi()
    {
       return dPi;
    }
@@ -542,27 +542,29 @@ namespace math
       return (i32)d;
    }
 
-   double math::LinearMap(
-   double dMin, double dMax,
-   double dValue,
-   double dValueMin,
-   double dValueMax)
+   double math::LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax)
    {
+      
       double d = dValue - dValueMin;
+
       d *= (dMax - dMin) / (double)(dValueMax - dValueMin);
+
       d += dMin;
+
       return d;
+
    }
 
 
    i32 math::RangeRate(i32 iMin, i32 iMax, double dRate)
    {
+      
       return (i32)((iMax - iMin) * dRate) + iMin;
+
    }
 
 
-
-} // namespace math
+} // namespace mathematics
 
 
 
@@ -606,6 +608,7 @@ namespace apex
 
    } // papaya
 
+
 } // namespace apex
 
 
@@ -614,7 +617,7 @@ namespace apex
 CLASS_DECL_APEX void apex_generate_random_bytes(void * p, memsize s)
 {
 
-   ::apex::get_system()->m_pmath->m_posdata->generate_random_bytes(p, s);
+   psystem->m_pmath->m_posdata->generate_random_bytes(p, s);
 
 }
 

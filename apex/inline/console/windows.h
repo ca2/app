@@ -50,7 +50,7 @@ public:
 
       }
 
-      __bind(psystem, m_papplicationStartup, papplicationStartup);
+      psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
 
       psystem->m_bConsole = false;
 

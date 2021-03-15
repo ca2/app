@@ -67,6 +67,8 @@ namespace windows
       virtual ::e_status start_service() override;
       virtual ::e_status stop_service() override;
 
+      virtual bool _getCredentialsForService(const string& strService, WCHAR* szUsername, WCHAR* szPassword);
+
       virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "") override;
       virtual bool remove_service(const string & strServiceName) override;
 

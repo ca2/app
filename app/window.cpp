@@ -51,9 +51,11 @@ namespace app_app
 
   //    ModifyStyleEx(0, WS_EX_LAYERED);
 
-      auto & app = App(this);
+      //auto & app = App(this);
 
-      app.m_bInterprocessIntercommunication = false;
+      auto papplication = get_application();
+
+      papplication->m_bInterprocessIntercommunication = false;
 
       ::user::interaction * p = this;
 
@@ -136,7 +138,9 @@ namespace app_app
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
-         double omega = 2.0 * System->math().GetPi() * dFrequency;
+         auto pmathematics = ::mathematics::mathematics();
+
+         double omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
          double angle = omega * time;
 
@@ -164,13 +168,17 @@ namespace app_app
 
             dFrequency = 1.0 / m_dBreathPeriod;
 
-            omega = 2.0 * System->math().GetPi() * dFrequency;
+            auto pmathematics = ::mathematics::mathematics();
+
+            omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
             double angleNew = omega * time;
 
             m_dPhaseShift = angle - angleNew;
 
-            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System->math().GetPi());
+            //auto pmathematics = ::mathematics::mathematics();
+
+            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
 
          }
 
@@ -182,7 +190,7 @@ namespace app_app
 
          pitem->m_rectangle.bottom = pitem->m_rectangle.top + iSize;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

@@ -359,7 +359,7 @@ namespace account
          {
             string strText;
             m_ppassword->_001GetText(strText);
-            strText = System->crypto().nessie(strText);
+            strText = psystem->crypto().nessie(strText);
             m_ppassword->_001SetText(strText, ::e_source_database);
          }
 
@@ -430,7 +430,7 @@ namespace account
 
       //add_ref(OBJ_REF_DBG_ARGS);
 
-      //__begin_thread(get_context_application(),thread_proc_pre_login,get_context_application());
+      //__begin_thread(get_application(),thread_proc_pre_login,get_application());
 
    }
 

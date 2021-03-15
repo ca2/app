@@ -10,8 +10,6 @@ namespace base
    session::session()
    {
 
-      m_pbasesession = this;
-
    }
 
 
@@ -23,10 +21,10 @@ namespace base
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::axis::session::initialize(pobjectContext);
+      auto estatus = ::axis::session::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -43,7 +41,7 @@ namespace base
 
       m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       m_puiMouseMoveCapture = nullptr;
 

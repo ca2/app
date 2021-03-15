@@ -151,7 +151,7 @@ namespace user
       }
 
 
-      ::e_status shell::initialize(::layered * pobjectContext)
+      ::e_status shell::initialize(::context_object * pcontextobject)
       {
 
          if (m_bInitialized)
@@ -161,7 +161,7 @@ namespace user
 
          }
 
-         auto estatus = ::object::initialize(pobjectContext);
+         auto estatus = ::object::initialize(pcontextobject);
 
          if (!estatus)
          {
@@ -393,7 +393,7 @@ namespace user
       {
 
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             {
@@ -701,14 +701,14 @@ namespace user
       ::e_status shell::thread::run()
       {
 
-         while(thread_get_run())
+         while(task_get_run())
          {
 
             image_key imagekey;
 
             m_pshell->get_scheduled_image_key(imagekey);
 
-            if (!thread_get_run())
+            if (!task_get_run())
             {
 
                break;
@@ -789,7 +789,7 @@ namespace user
    //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
-   //            System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+   //            psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
    //         }
    //      , m_pil[iSize], iImage, iImage);
@@ -847,7 +847,7 @@ namespace user
          return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
-               System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+               psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
             }
          , m_pil[iSize], iImage, iImage);
@@ -900,7 +900,7 @@ namespace user
    }
 
 
-   ::e_status shell::thread::finish(::context_object * pcontextobject)
+   ::e_status shell::thread::finish(::property_object * pcontextobject)
    {
 
       return ::thread::finish(pcontextobject);
@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   ::e_status shell::finish(::context_object * pcontextobject)
+   ::e_status shell::finish(::property_object * pcontextobject)
    {
 
       ::object::finish(pcontextobject);

@@ -17,7 +17,7 @@ namespace datetime
 {
 
 
-   result span_strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext, const char * pszSpanExpression)
+   result department::span_strtotime(const ::apex::str_context * pcontext, const char * pszSpanExpression)
    {
 
       static id idCalendarDay("calendar:day");
@@ -29,7 +29,7 @@ namespace datetime
       static id idCalendarHour("calendar:hour");
       static id idCalendarHours("calendar:hours");
       static id idCalendarNow("calendar:now");
-      UNREFERENCED_PARAMETER(pobjectContext);
+
       result time;
       time.m_bSpan = true;
       string str(pszSpanExpression);
@@ -225,7 +225,7 @@ namespace datetime
    }
 
 
-   result strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+   result department::strtotime( const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -246,7 +246,8 @@ namespace datetime
                && str.Mid(13,1) == ":")
          {
             bBaseTime = true;
-            Sys(pobjectContext).datetime().international().parse_str(str,set);
+            __pointer(::apex::system) psystem = get_system();
+            psystem->datetime().international().parse_str(str,set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord," ");
@@ -291,7 +292,8 @@ namespace datetime
                && str.Mid(7,1) == "-")
          {
             bBaseTime = true;
-            Sys(pobjectContext).datetime().international().parse_str(str,set);
+            __pointer(::apex::system) psystem = get_system();
+            psystem->datetime().international().parse_str(str,set);
             time = ::datetime::time(
                    set["year"],
                    set["month"],
@@ -359,8 +361,8 @@ namespace datetime
       }
 
       string_array stra;
-
-      auto pcre1 = ::apex::get_system()->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      __pointer(::apex::system) psystem = get_system();
+      auto pcre1 = psystem->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       if(!bBaseTime && pcre1->matches(stra, str) >= 5)
       {
@@ -372,14 +374,14 @@ namespace datetime
          if(i1 != i2
                && i1 >= 1 && i1 <= 12
                && i2 >= 1 && i2 <=
-               Sys(pobjectContext).datetime().get_month_day_count(time.GetYear(),i1))
+               psystem->datetime().get_month_day_count(time.GetYear(),i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
                && i1 >= 1 && i1 <=
-               Sys(pobjectContext).datetime().get_month_day_count(time.GetYear(),i2))
+               psystem->datetime().get_month_day_count(time.GetYear(),i2))
          {
             iCount++;
          }
@@ -415,22 +417,24 @@ namespace datetime
 
          }
 
-         return result(time) + span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
+         return result(time) + span_strtotime(pcontext,str.Mid(iStart));
 
       }
       else
       {
 
-         return span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
+         return span_strtotime(pcontext,str.Mid(iStart));
 
       }
 
    }
 
 
-   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::result & result)
+   string department::to_string(const ::apex::str_context * pcontext,const ::datetime::result & result)
    {
+
       string str;
+
       if(result.m_bSpan)
       {
          string_array stra;
@@ -523,25 +527,40 @@ namespace datetime
          {
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
+               
                str = time.Format("%Y-");
-               Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
+               
+               get_month_str(pcontext,time.GetMonth());
+
                str += time.Format("-%d");
+
             }
             else
             {
+               
                str = time.Format("%Y-");
-               str += Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
+               
+               str += get_month_str(pcontext,time.GetMonth());
+               
                str += time.Format("-%d %H:%M");
+
             }
          }
          else
          {
+            
             str = time.Format("%Y-");
-            str += Sys(pobjectContext).datetime().get_month_str(pcontext,time.GetMonth());
+
+            str += get_month_str(pcontext,time.GetMonth());
+
             str += time.Format("-%d %H:%M:%S");
+
          }
+
       }
+
       return str;
+
    }
 
 

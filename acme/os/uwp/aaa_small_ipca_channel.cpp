@@ -93,7 +93,7 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + System->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::acme::get_system()->url_encode(pszMessage);
 
          Uri ^uri = ref new Uri(anotherappURI);
 
@@ -130,7 +130,7 @@
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + System->url_encode(System->base64().encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + ::acme::get_system()->url_encode(::acme::get_system()->base64().encode((byte *)pdata, len));
 
          Uri ^uri = ref new Uri(anotherappURI);
 

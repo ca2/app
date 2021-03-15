@@ -141,27 +141,29 @@ namespace apex
 //}
 
 
-CLASS_DECL_APEX void main_async_runnable(const ::routine & routine)
-{
-
-   //__pointer(::object) pobjectTask = pobjectTaskParam;
-   
-   ::apex::get_system()->post_predicate([routine]()
-   {
-
-      routine();
-
-   });
-
-}
-
-
-CLASS_DECL_APEX void main_sync_runnable(const ::routine & routine, ::duration durationTimeout)
-{
-   
-   ::apex::get_system()->send_routine(routine, durationTimeout);
-
-}
+//CLASS_DECL_APEX void main_async_runnable(const ::routine & routine)
+//{
+//
+//   //__pointer(::object) pobjectTask = pobjectTaskParam;
+//
+//
+//   
+//   psystem->post_predicate([routine]()
+//   {
+//
+//      routine();
+//
+//   });
+//
+//}
+//
+//
+//CLASS_DECL_APEX void main_sync_runnable(const ::routine & routine, ::duration durationTimeout)
+//{
+//   
+//   psystem->send_routine(routine, durationTimeout);
+//
+//}
 
 
 void apex_application_main(int argc, char* argv[], const char* pszCommandLine)

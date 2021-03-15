@@ -6,14 +6,9 @@ namespace experience
 {
 
 
-   size_manager::size_manager(::experience::frame_window * pframewindow) :
-      object(pframewindow),
+   size_manager::size_manager() :
       m_sizeMinimumBorder(33, 33)
    {
-
-      ASSERT(pframewindow != nullptr);
-
-      m_pframewindow = pframewindow;
 
       m_ehittestSizing = hittest_none;
 
@@ -26,6 +21,25 @@ namespace experience
 
    size_manager::~size_manager()
    {
+
+   }
+
+
+   ::e_status size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
+   {
+
+      auto estatus = ::object::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 
@@ -105,7 +119,7 @@ namespace experience
 //         //   return true;
 //      }
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       if(ehittest != hittest_none)
       {
@@ -237,7 +251,7 @@ namespace experience
 
       m_ehittestSizing = hittest_none;
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 

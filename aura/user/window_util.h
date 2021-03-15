@@ -37,25 +37,31 @@ namespace user
 
 
 
-   class CLASS_DECL_AURA primitive_ptra :
-      public address_array < ::user::primitive * >
+   class CLASS_DECL_AURA primitive_pointer_array :
+      virtual public matter
    {
    public:
 
 
-      //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ref_array < ::user::interaction >)
+      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::primitive);
 
 
-      //interaction_ptra(const interaction_array & a);
+      primitive_pointer_array();
+      primitive_pointer_array(const address_array < ::user::primitive * > & a);
+      primitive_pointer_array(const __pointer_array(::user::primitive) & a)
+      {
+
+         m_primitivea.copy(a);
+
+      }
+      primitive_pointer_array(const ::user::primitive_pointer_array & a)
+      {
+
+         m_primitivea.copy(a.m_primitivea);
+
+      }
 
 
-      primitive_ptra & operator = (const primitive_ptra & a);
-
-
-      //::user::oswindow_array get_hwnda();
-
-
-      using address_array < ::user::primitive * >::find_first;
       ::user::primitive * find_first_typed(const ::type & type);
       ::user::primitive * find_first(oswindow oswindow);
 

@@ -19,10 +19,10 @@ namespace user
    }
 
 
-   ::e_status print_task::initialize(::layered * pobjectContext)
+   ::e_status print_task::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::task::initialize(pobjectContext);
+      auto estatus = ::task::initialize(pcontextobject);
 
       if (!estatus)
       {

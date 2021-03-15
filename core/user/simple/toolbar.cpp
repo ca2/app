@@ -9,7 +9,7 @@ class simple_tool_command : public ::message::command        // class private to
 {
 public: // re-implementations only
 
-   simple_tool_command(::layered * pobjectContext);
+   simple_tool_command(::context_object * pcontextobject);
    virtual void enable(bool bOn = true, const ::action_context & context = ::e_source_system);
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
@@ -303,7 +303,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   rectWindow.offset(-rectWindow.top_left());
 //   if (m_bTransparentBackground)
 //   {
-//      class imaging & imaging = System->imaging();
+//      class imaging & imaging = psystem->imaging();
 //      if (m_itemHover)
 //      {
 //         imaging.color_blend(
@@ -410,7 +410,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler)
 {
 
-   simple_tool_command state(get_context_object());
+   simple_tool_command state(this);
 
    state.m_puiOther = (this);
 
@@ -732,7 +732,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
-               System->imaging().color_blend(
+               psystem->imaging().color_blend(
                pgraphics,
                rectItem.left,
                rectItem.top,
@@ -798,7 +798,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.85);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.85);
 
             }
             else if (uImage != 0xffffffffu)
@@ -846,7 +846,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-            System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+            psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
          }
          else if (uImage != 0xffffffff)
@@ -893,7 +893,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //    }
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.23);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.23);
 
             }
 
@@ -1374,7 +1374,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 
    }
 
-   auto psession = Session;
+   auto psession = get_session();
 
    if (has_mouse_capture())
    {
@@ -1478,7 +1478,7 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 bool simple_toolbar::on_click(const ::user::item & item)
 {
 
-   __pointer(::user::interaction) pwnd = get_owner();
+   __pointer(::user::interaction) puserinteraction = get_owner();
 
    if (!item.is_set())
    {
@@ -1489,7 +1489,7 @@ bool simple_toolbar::on_click(const ::user::item & item)
 
    ::message::command command(m_itema[item]->m_id);
 
-   pwnd->_001SendCommand(&command);
+   puserinteraction->_001SendCommand(&command);
 
    return command.m_bRet;
 
@@ -1559,7 +1559,7 @@ void simple_toolbar::_001OnImageListAttrib()
 
    spgraphics->CreateDC("DISPLAY", nullptr, nullptr, nullptr);
 
-   System->imaging().CreateHueImageList(
+   psystem->imaging().CreateHueImageList(
       &spgraphics,
       m_pimagelistHue,
       m_pimagelist,
@@ -1574,7 +1574,7 @@ void simple_toolbar::_001OnImageListAttrib()
 
    }
 
-   System->imaging().Createcolor_blend_ImageList(
+   psystem->imaging().Createcolor_blend_ImageList(
       m_pimagelistBlend,
       m_pimagelist,
       rgb(255, 255, 240),
@@ -1588,7 +1588,7 @@ void simple_toolbar::_001OnImageListAttrib()
 
    }
 
-   System->imaging().CreateHueImageList(
+   psystem->imaging().CreateHueImageList(
       &spgraphics,
       m_pimagelistHueLight,
       m_pimagelist,
@@ -1604,8 +1604,8 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through simple_tool_command class
 
-simple_tool_command::simple_tool_command(::layered * pobjectContext) :
-   ::message::command(pobjectContext)
+simple_tool_command::simple_tool_command(::context_object * pcontextobject) :
+   ::message::command(pobject)
 {
 
 }

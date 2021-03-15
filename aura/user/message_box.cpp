@@ -28,7 +28,7 @@
 //   ::payload message_box::realize()
 //   {
 //
-//      auto pwindowing = ::aura::get_system()->windowing();
+//      auto pwindowing = psystem->windowing();
 //
 //      int iResult = pwindowing->message_box(m_strText, m_strTitle, m_emessagebox);
 //
@@ -75,10 +75,10 @@
 //
 //   string strTitle(pszTitle);
 //
-//   ::aura::get_system()->fork([strMessage, strTitle, emessagebox, process]()
+//   psystem->fork([strMessage, strTitle, emessagebox, process]()
 //               {
 //
-//                  auto pwindowing = ::aura::get_system()->windowing();
+//                  auto pwindowing = psystem->windowing();
 //
 //                  auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
 //
@@ -177,6 +177,8 @@ namespace user
          pbutton->initialize(this);
 
       }
+
+      set_tool_window();
 
       auto estatus = create_host();
 
@@ -717,9 +719,9 @@ namespace user
 
       //      m_pdraw = XftDrawCreate(pdisplay, m_window, m_pvisual, m_colormap);
 
-      //      ::aura::get_system()->delivery_for(id_os_user_theme, this);
+      //      psystem->delivery_for(id_os_user_theme, this);
 
-      //      //::aura::get_system()->(id_dark_mode);
+      //      //psystem->(id_dark_mode);
 
       //      //on_alloc_colors(pdisplay);
 
@@ -771,7 +773,9 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      auto puser = Session->user();
+      auto psession = get_session();
+
+      auto puser = psession->user();
 
       puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 
@@ -1115,14 +1119,14 @@ namespace aura
 {
 
 
-   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::context_object* pcontextobject, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->m_puser;
 
-      auto pmessagebox = __create_new < ::user::message_box >();
+      auto pmessagebox = pcontextobject->__create_new < ::user::message_box >();
 
       auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 

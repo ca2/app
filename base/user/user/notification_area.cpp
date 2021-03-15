@@ -38,7 +38,7 @@ Contact : nish@voidnish.com
 //#endif
 //   }
 //
-//   void notification_area::Initialize(::layered * pobjectContext)
+//   void notification_area::Initialize(::context_object * pcontextobject)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

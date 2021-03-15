@@ -74,7 +74,7 @@ namespace acme
 #endif
 
 
-   //extern ::mutex * System->g_mutexLibrary;
+   //extern ::mutex * get_system()->g_mutexLibrary;
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -133,7 +133,7 @@ namespace acme
 
 #endif
 
-   //extern map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
    extern i64 g_iFirstNano;

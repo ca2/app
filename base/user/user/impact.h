@@ -31,6 +31,12 @@ namespace user
 
 
 
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       virtual ::e_status set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
@@ -75,15 +81,15 @@ namespace user
       virtual void set_impact_title(const string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual ::e_status initialize_view(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::interaction * pwndParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::interaction * puserinteractionParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
@@ -228,10 +234,10 @@ namespace user
       }
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override
+      virtual ::e_status initialize(::context_object * pcontextobject) override
       {
 
-         auto estatus = ::user::impact::initialize(pobjectContext);
+         auto estatus = ::user::impact::initialize(pcontextobject);
 
          if (!estatus)
          {
@@ -240,7 +246,7 @@ namespace user
 
          }
 
-         estatus = VIEW::initialize(pobjectContext);
+         estatus = VIEW::initialize(pcontextobject);
 
          if (!estatus)
          {
@@ -383,8 +389,8 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id);
    CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 

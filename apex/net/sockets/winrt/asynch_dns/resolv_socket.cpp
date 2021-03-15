@@ -38,8 +38,8 @@ namespace sockets
 {
 
 
-   resolv_socket::resolv_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   resolv_socket::resolv_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -55,8 +55,8 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, const string & host, port_t port, bool ipv6) :
-      ::object(h.get_context_application()),
+   resolv_socket::resolv_socket(base_socket *parent, const string & host, port_t port, bool ipv6) :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -74,8 +74,8 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in_addr a) :
-      ::object(h.get_context_application()),
+   resolv_socket::resolv_socket(base_socket *parent, in_addr a) :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -93,8 +93,8 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in6_addr& a) :
-      ::object(h.get_context_application()),
+   resolv_socket::resolv_socket(base_socket *parent, in6_addr& a) :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -224,7 +224,7 @@ namespace sockets
 
          TRACE(" ************ Resolve failed\n");
 
-         if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
+         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {
 
             m_parent -> OnResolveFailed(m_resolv_id);
@@ -251,7 +251,7 @@ namespace sockets
       else if (key == "Name" && !m_resolv_host.get_length() && m_parent)
       {
 
-         if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
+         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {
 
             m_parent -> OnReverseResolved(m_resolv_id, value);
@@ -278,7 +278,7 @@ namespace sockets
       else if (key == "A" && m_parent)
       {
 
-         if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
+         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {
 
             //in_addr l;
@@ -308,7 +308,7 @@ namespace sockets
       else if (key == "AAAA" && m_parent)
       {
 
-         if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
+         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {
 
             //in6_addr a;
@@ -521,7 +521,7 @@ namespace sockets
       if (m_parent)
       {
 
-         if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
+         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
          {
 
             m_parent -> OnResolveFailed(m_resolv_id);

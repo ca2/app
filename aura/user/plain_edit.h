@@ -42,7 +42,7 @@ namespace user
 
 
       class callback :
-         virtual public object
+         virtual public ::object
       {
       public:
 

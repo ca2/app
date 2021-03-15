@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(::layered * pobjectContext);
+      library_class(::context_object * pcontextobject);
       ~library_class();
 
 
@@ -57,7 +57,7 @@ namespace dynamic_source
       void Unload();
 
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::aura::application * get_application() const override;
 
 
    };

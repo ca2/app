@@ -25,10 +25,13 @@
 #include "acme/user/_const_key.h"
 
 
-#include "acme/primitive/primitive/context_object.h"
+//#include "acme/primitive/primitive/context_object.h"
 
 
-#include "acme/primitive/primitive/layered.h"
+#include "acme/primitive/primitive/property_object.h"
+
+
+//#include "acme/primitive/primitive/layered.h"
 
 
 #if OBJ_REF_DBG
@@ -58,14 +61,14 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //   ::e_priority epriority = priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0,
-//   ithread_t* pithread = nullptr,
-//   hthread_t* phthread = nullptr);
+//   itask_t* pithread = nullptr,
+//   htask_t* phthread = nullptr);
 
 
 //CLASS_DECL_ACME void launch_action(action* psubject);
 
 
-#include "acme/primitive/subject/_.h"
+//#include "acme/primitive/subject/_.h"
 
 
 // class CLASS_DECL_ACME parents :

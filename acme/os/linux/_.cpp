@@ -41,7 +41,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const char * pszDebug, ithread_t id, bool bClose);
+//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 

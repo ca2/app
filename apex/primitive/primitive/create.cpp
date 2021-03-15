@@ -126,12 +126,12 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 ::apex::application* create::create_get_application(::apex::application* pappFallback)
 {
 
-   auto pobject = get_context_object();
+   auto pobject = this;
 
    if (pobject)
    {
 
-      auto papp = pobject->get_context_application();
+      auto papp = pobject->get_application();
 
       if (papp)
       {

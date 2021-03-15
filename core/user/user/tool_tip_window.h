@@ -90,7 +90,7 @@ namespace user
 
       void ShowTip(i32 iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);
-      void relay_event(tool_tip_tool * pwnd, ::message::message * pmessage);
+      void relay_event(tool_tip_tool * puserinteraction, ::message::message * pmessage);
 
       void OnPaint();
       void OnTimer(::u32 uEvent);

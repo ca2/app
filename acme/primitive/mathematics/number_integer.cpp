@@ -2,7 +2,7 @@
 #include "number_integer.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -16,7 +16,7 @@ namespace math
    }
 
 
-} // namespace math
+} // namespace mathematics
 
 
 

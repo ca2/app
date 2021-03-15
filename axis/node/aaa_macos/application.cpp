@@ -10,7 +10,7 @@ namespace axis
 {
 
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::context_object * pcontextobject) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
@@ -200,9 +200,9 @@ namespace axis
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = psystem->load_string("psystem->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = System->get_module_title();
+//  //    strExeName = psystem->get_module_title();
 //
 //
 //
@@ -244,7 +244,7 @@ namespace axis
 //   }
 //
 //
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::GetCurrentThreadId();
@@ -311,7 +311,7 @@ namespace axis
    bool application::os_on_start_application()
    {
 
-      ::file::path path = Context.file().module();
+      ::file::path path = pcontext->file().module();
 
       path -= 3;
       
@@ -365,5 +365,5 @@ namespace axis
 
 bool on_application_menu_action(const char * pszCommand)
 {
-   System->on_application_menu_action(pszCommand);
+   psystem->on_application_menu_action(pszCommand);
 }

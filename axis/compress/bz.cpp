@@ -176,9 +176,10 @@ stop1:
 
 
 
-uncompress_bz::uncompress_bz(::layered * pobjectContext) :
-   ::object(pobjectContext)
+uncompress_bz::uncompress_bz(::context_object * pcontextobject)
 {
+
+   initialize(pcontextobject);
 
 }
 

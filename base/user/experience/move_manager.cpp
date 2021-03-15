@@ -5,13 +5,11 @@
 namespace experience
 {
 
-   move_manager::move_manager(::experience::frame_window * pframewindow) :
-      object(pframewindow)
+   
+   move_manager::move_manager()
    {
 
       m_iConsiderMove = 0;
-      ASSERT(pframewindow != nullptr);
-      m_pframewindow = pframewindow;
       m_bMoving = false;
       //SetSWPFlags(0);
       m_eborderMask = e_border_all;
@@ -21,6 +19,25 @@ namespace experience
 
    move_manager::~move_manager()
    {
+
+   }
+
+
+   ::e_status move_manager::initialize_move_manager(::experience::frame_window* pframewindow)
+   {
+
+      auto estatus = ::object::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 
@@ -192,7 +209,7 @@ namespace experience
 
       m_bMoving = false;
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -225,7 +242,7 @@ namespace experience
 
                pmouse->m_point = -m_pointWindowOrigin + rectRequest.top_left() + m_pointCursorOrigin;
 
-               //auto psession = Session;
+               //auto psession = get_session();
 
                //auto puser = psession->user();
 
@@ -323,7 +340,7 @@ namespace experience
 //      void move_manager::MoveWindow(void * oswindow, const ::point_i32 & point)
 //      {
 //
-//         __pointer(::user::interaction) pframewindow = System->ui_from_handle(oswindow);
+//         __pointer(::user::interaction) pframewindow = psystem->ui_from_handle(oswindow);
 //
 //
 //         ::rectangle_i32 rectWindow;

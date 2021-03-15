@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::layered * pobjectContext)
+::e_status machine_event_central::initialize(::context_object * pcontextobject)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ machine_event_central::~machine_event_central()
 
    }
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -65,7 +65,7 @@ machine_event_central::~machine_event_central()
 
 #if 0
 
-   while(thread_get_run())
+   while(task_get_run())
    {
 
       {

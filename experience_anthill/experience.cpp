@@ -24,10 +24,10 @@ namespace experience
          }
 
 
-         ::e_status experience::initialize(::layered * pobjectContext)
+         ::e_status experience::initialize(::context_object * pcontextobject)
          {
 
-            auto estatus = ::experience::experience::initialize(pobjectContext);
+            auto estatus = ::experience::experience::initialize(pcontextobject);
 
             if (!estatus)
             {
@@ -39,7 +39,7 @@ namespace experience
             fork([this]()
                {
 
-                  //System->draw2d()->set_cursor_set_from_matter("cursor/polar");
+                  //psystem->draw2d()->set_cursor_set_from_matter("cursor/polar");
 
                });
 

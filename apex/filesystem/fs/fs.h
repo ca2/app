@@ -15,7 +15,7 @@ namespace fs
       virtual ~fs();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
    };

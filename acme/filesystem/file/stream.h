@@ -310,7 +310,7 @@ public:
 
 class CLASS_DECL_ACME stream :
    public stream_meta,
-   virtual public ::context_object
+   virtual public ::property_object
 {
 public:
 

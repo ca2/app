@@ -31,7 +31,7 @@ namespace database
 
       auto idProcedure = translate_property_id(id);
 
-      ::add_routine(Application.m_routinemap[idProcedure], [this, id]()
+      ::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
          {
 
             auto pproperty = fetch_property(id);
@@ -210,7 +210,7 @@ namespace database
 
             }
 
-            is.set_context_object(this);
+            is.initialize(this);
 
             is >> payload;
 
@@ -343,7 +343,7 @@ namespace database
    key client::calc_parent_data_key()
    {
 
-      return Application.calc_data_key();
+      return get_application()->calc_data_key();
 
    }
 

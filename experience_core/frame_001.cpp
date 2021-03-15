@@ -214,7 +214,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -239,7 +239,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -251,7 +251,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -279,7 +279,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -1141,7 +1141,7 @@ SizingNone:;
 
                //rectangle.bottom++;
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

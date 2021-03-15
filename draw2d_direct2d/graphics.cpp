@@ -149,7 +149,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertargetTemplate;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -3012,7 +3012,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage;
    if(imageWork == nullptr)
    {
-   pimage = create_image(get_object());
+   pimage = create_image(this);
    imageWork = pimage;
    }
    if(imageWork == nullptr)
@@ -3028,7 +3028,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage2;
    if(imageWork2 == nullptr)
    {
-   pimage2 = create_image(get_object());
+   pimage2 = create_image(this);
    imageWork2 = pimage2;
    }
 
@@ -3036,7 +3036,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage4;
    if(imageWork4 == nullptr)
    {
-   image4 = create_image(get_object());
+   image4 = create_image(this);
    imageWork4 = image4;
    }
    if(imageWork4 == nullptr)
@@ -3056,7 +3056,7 @@ namespace draw2d_direct2d
    keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-   return Application.m_visual.imaging().true_blend(this, pointDest, ::size_f64, imageWork.get_graphics(), pointSrc);
+   return papplication->m_visual.imaging().true_blend(this, pointDest, ::size_f64, imageWork.get_graphics(), pointSrc);
 
 
    }
@@ -3294,7 +3294,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::layered * pobjectContext)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
    {
       /*
       ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
@@ -3343,7 +3343,7 @@ namespace draw2d_direct2d
    //   ::draw2d::brush* pBrushOld = nullptr;
    //   if (pBrush == nullptr)
    //   {
-   //   pBrush = graphics::GetHalftoneBrush(get_object());
+   //   pBrush = graphics::GetHalftoneBrush(this);
    //   }
 
    //   ENSURE(pBrush);
@@ -4439,7 +4439,7 @@ namespace draw2d_direct2d
             {
                // got the stock object back, so must be selecting a font
                __throw(error_not_implemented);
-               //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_context_application(), (HFONT)hObject));
+               //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_application(), (HFONT)hObject));
                break;  // don't play the default record
             }
             else
@@ -4453,7 +4453,7 @@ namespace draw2d_direct2d
          else if (nObjType == OBJ_FONT)
          {
             // play back as graphics::SelectObject(::write_text::font*)
-            //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_context_application(), (HFONT)hObject));
+            //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_application(), (HFONT)hObject));
             __throw(error_not_implemented);
             break;  // don't play the default record
          }

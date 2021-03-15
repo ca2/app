@@ -10,7 +10,7 @@ namespace simpledb
 {
 
 
-   service::service(::layered * pobjectContext) :
+   service::service(::context_object * pcontextobject) :
       ::object(pobject),
       plain_service(pobject)
    {
@@ -23,7 +23,7 @@ namespace simpledb
    void service::serve()
    {
 
-      __pointer(::aura::application) pbaseapp = get_context_application();
+      __pointer(::aura::application) pbaseapp = get_application();
 
       ::set_thread(&Sys(pbaseapp));
 
@@ -31,9 +31,9 @@ namespace simpledb
       m_pmanager = new ::simpledb::manager(pbaseapp);
 
 
-      /*App(pbaseapp).m_strFontopusServer		= System->m_simpledb.db().data_load("account_server");
-      App(pbaseapp).m_strDatabaseServerHost	= System->m_simpledb.db().data_load("database_server");
-      App(pbaseapp).m_iDatabaseServerPort	= System->m_simpledb.db().data_load("database_port");
+      /*App(pbaseapp).m_strFontopusServer		= psystem->m_simpledb.db().data_load("account_server");
+      App(pbaseapp).m_strDatabaseServerHost	= psystem->m_simpledb.db().data_load("database_server");
+      App(pbaseapp).m_iDatabaseServerPort	= psystem->m_simpledb.db().data_load("database_port");
       if(App(pbaseapp).m_strDatabaseServerHost.is_empty())
       {
          App(pbaseapp).m_strDatabaseServerHost = "localhost";
@@ -45,10 +45,10 @@ namespace simpledb
 
 
       string_array stra;
-      stra = System->m_simpledb.db().data_load(nullptr, "simpledb");
+      stra = psystem->m_simpledb.db().data_load(nullptr, "simpledb");
       for(i32 i = 0; i < stra.get_size(); i++)
       {
-         m_threadptra.add(__begin_thread < socket_thread > (get_object()));
+         m_threadptra.add(__begin_thread < socket_thread > (this));
          socket_thread * pthread = m_threadptra.last();
          {
             pthread->m_evInitialized.wait();
@@ -59,7 +59,7 @@ namespace simpledb
          }
       }
 
-      while (thread_get_run())
+      while (task_get_run())
       {
          sleep(1_s);
       }

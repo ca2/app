@@ -13,7 +13,7 @@
 ::file::path macos_app_path(string strApp)
 {
 
-   ::file::path path = ::dir::home() / "Library/Application Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path = ::dir::home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
 
    return file_as_string(path);
 
@@ -315,7 +315,7 @@ CLASS_DECL_APEX ::file::path core_app_path(string strApp)
 
    ::file::path path = getenv("HOME");
 
-   path /= "Library/Application Support/ca2/mypath" / strApp;
+   path /= "Library/papplication Support/ca2/mypath" / strApp;
 
    path += ".txt";
 

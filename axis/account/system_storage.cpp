@@ -12,9 +12,7 @@ namespace account
 {
    
    
-   system_storage::system_storage(department * paccount) :
-      ::object(paccount),
-      m_paccount(paccount)
+   system_storage::system_storage()
    {
       
       
@@ -27,6 +25,25 @@ namespace account
       
    }
    
+
+   ::e_status system_storage::initialize_system_storage(department* pdepartment)
+   {
+
+      auto estatus = storage::initialize(pdepartment);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_paccount = pdepartment;
+
+      return estatus;
+
+   }
+
    
    ::file::path system_storage::path_prefix(string strToken)
    {
@@ -39,8 +56,10 @@ namespace account
          strToken = "(empty)";
          
       }
+
+      auto psystem = get_system();
       
-      string strName = System->url().os_fsname(strToken);
+      string strName = psystem->url().os_fsname(strToken);
       
       return m_paccount->system_storage_default_path_prefix() / strName;
       
@@ -53,10 +72,12 @@ namespace account
       ::file::path path;
       
       path = path_prefix(strToken);
+
+      __pointer(::apex::system) psystem = get_system();
       
-      path /= System->crypto().md5(strToken + strKey);
+      path /= psystem->crypto().md5(strToken + strKey);
       
-      return System->crypto().file_get(path, strValue, strToken, get_context_application());
+      return psystem->crypto().file_get(path, strValue, strToken, get_application());
       
    }
    
@@ -69,10 +90,12 @@ namespace account
       path = path_prefix(strToken);
       
       dir::mk(path);
+
+      __pointer(::apex::system) psystem = get_system();
       
-      path /= System->crypto().md5(strToken + strKey);
+      path /= psystem->crypto().md5(strToken + strKey);
       
-      return System->crypto().file_set(path, strValue, strToken, get_context_application());
+      return psystem->crypto().file_set(path, strValue, strToken, get_application());
       
    }
    

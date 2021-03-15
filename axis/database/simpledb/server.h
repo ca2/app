@@ -40,7 +40,7 @@ namespace simpledb
       virtual bool create_server_dataset();
 
 
-      virtual ::e_status initialize_simpledb_server(::layered * pobjectContext, const char * pszDatabase);
+      virtual ::e_status initialize_simpledb_server(::context_object * pcontextobject, const char * pszDatabase);
       virtual void finalize() override;
 
 

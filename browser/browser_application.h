@@ -27,7 +27,7 @@ namespace browser
       string                                 m_strAlternateHelloBrowserDefault;
 
       bool                                   m_bBrowserChat;
-      CefRefPtr<SimpleApp> get_context_application();
+      CefRefPtr<SimpleApp> get_application();
       ::user::document *                     m_pdocMenu;
       ::user::plain_edit_view *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloBrowserMain;
@@ -36,7 +36,7 @@ namespace browser
       pane_view *                            m_ppaneview;
 
 
-      application(::layered * pobjectContext);
+      application(::context_object * pcontextobject);
       virtual ~application();
 
 

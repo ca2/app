@@ -8,7 +8,7 @@
 extern int g_iMouse;
 
 
-#undef System
+#undef ::acme::get_system()
 #undef Platform
 
 
@@ -19,9 +19,9 @@ using namespace Windows::UI::Core;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
+using namespace Windows::::acme::get_system();
 using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace Windows::::acme::get_system()::Threading;
 
 bool g_bCoreWindowOnceVisible = false;
 
@@ -61,7 +61,7 @@ namespace uwp
 
       m_psystem = psystem;
 
-//      psystem->get_context_session()->m_frameworkview = this;
+//      psystem->get_session()->m_frameworkview = this;
 
       m_pdxi = __new(directx_interaction);
 
@@ -97,9 +97,9 @@ namespace uwp
 
       }
 
-      m_psystem->get_context_session()->m_frameworkview = this;
+      m_psystem->get_session()->m_frameworkview = this;
 
-      m_psystem->get_context_session()->m_puiHost = m_pdxi;
+      m_psystem->get_session()->m_puserinteractionHost = m_pdxi;
 
       m_directx->defer_init();
 
@@ -107,7 +107,7 @@ namespace uwp
 
       ::user::system cs;
 
-      if (!m_psystem->get_context_session()->m_puiHost->create_window_ex(cs))
+      if (!m_psystem->get_session()->m_puserinteractionHost->create_window_ex(cs))
       {
 
          __throw(resource_exception("Couldn't create Main Window"));
@@ -118,7 +118,7 @@ namespace uwp
 
       auto puserinteraction = m_pdxi;
 
-      auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
+      auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
       auto puwpui = pimpl->cast < ::uwp::interaction_impl >();
 
@@ -305,7 +305,7 @@ namespace uwp
             //if (papp == nullptr)
             //{
 
-            //   papp = m_psystem->get_context_session()->m_pappCurrent;
+            //   papp = m_psystem->get_session()->m_papplicationCurrent;
 
             //}
 
@@ -334,13 +334,13 @@ namespace uwp
    void directx_framework_view::OnCharacterReceived(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
-      if(m_psystem->get_context_session() == nullptr)
+      if(m_psystem->get_session() == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       pointer < ::user::message > spbase;
@@ -350,17 +350,17 @@ namespace uwp
       spbase = pkey;
 
       pkey->m_id = e_message_char;
-      pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pkey->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 
 
    void directx_framework_view::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
+      if (args->VirtualKey == ::Windows::::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -368,10 +368,10 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       pointer < ::user::message > spbase;
@@ -380,18 +380,18 @@ namespace uwp
 
       spbase = pkey;
 
-      bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = m_psystem->get_session()->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
       ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
-         pkey->m_puserinteraction       = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_puserinteraction       = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -405,7 +405,7 @@ namespace uwp
    //      pkey->m_key = args;
 
 
-         m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+         m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
       }
 
@@ -417,10 +417,10 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost == nullptr)
          return;
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       pointer < ::user::message > spbase;
@@ -430,12 +430,12 @@ namespace uwp
       spbase = pkey;
 
 
-      if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
+      if (args->VirtualKey == ::Windows::::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }
       
-      bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = m_psystem->get_session()->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -445,7 +445,7 @@ namespace uwp
       {
 
          pkey->m_id = e_message_key_up;
-         pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -483,7 +483,7 @@ namespace uwp
                //}
                //else
                //{
-         m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+         m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
          //}
 
       }
@@ -522,10 +522,10 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost == nullptr)
+      if(m_psystem->get_session()->m_puserinteractionHost == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if(m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -541,11 +541,11 @@ namespace uwp
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_id            = e_message_mouse_move;
-      pmouse->m_puserinteraction  = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_puserinteraction  = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
       m_millisLastMouseMove= ::millis::now();
 
@@ -558,10 +558,10 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost == nullptr)
+      if(m_psystem->get_session()->m_puserinteractionHost == nullptr)
          return;
 
-      if(m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if(m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -609,11 +609,11 @@ namespace uwp
 
       }
 
-      pmouse->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 
@@ -664,25 +664,25 @@ namespace uwp
 
       }
 
-      if (m_psystem->get_context_session()->m_puiHost == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost == nullptr)
       {
 
          return;
 
       }
 
-      if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
+      if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
       {
 
          return;
 
       }
 
-      pmouse->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+      m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 

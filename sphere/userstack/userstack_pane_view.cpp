@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),
@@ -53,30 +53,30 @@ namespace userstack
       pframe->m_ppaneview = this;
 
 
-      Application.m_ppaneview = this;
+      papplication->m_ppaneview = this;
 
 
 
       add_tab("menu", CONTEXT_MENU_IMPACT);
 
-      for(i32 i = 0; i < Application.m_varTopicQuery["app"].stra().get_count(); i++)
+      for(i32 i = 0; i < papplication->m_varTopicQuery["app"].stra().get_count(); i++)
       {
 
-         string strId = Application.m_varTopicQuery["app"].stra()[i];
+         string strId = papplication->m_varTopicQuery["app"].stra()[i];
 
          if(i == 0 && strId == "app/sphere/userstack")
             continue;
 
          add_tab(strId, "app:" + strId);
 
-         set_cur_tab_by_id("app:" + Application.m_varTopicQuery["app"].stra()[i]);
+         set_cur_tab_by_id("app:" + papplication->m_varTopicQuery["app"].stra()[i]);
 
       }
 
-      for (i32 i = 0; i < Application.m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
+      for (i32 i = 0; i < papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
       {
 
-         set_cur_tab_by_id("app:" + Application.m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
+         set_cur_tab_by_id("app:" + papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
 
       }
 
@@ -103,8 +103,8 @@ namespace userstack
 
          if(psession->appptra().lookup("application:" + strId, pappTab))
          {
-            psession->m_pappCurrent = pappTab;
-            //psession->m_pappCurrent = pappTab;
+            psession->m_papplicationCurrent = pappTab;
+            //psession->m_papplicationCurrent = pappTab;
          }
          /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
@@ -116,7 +116,7 @@ namespace userstack
       //   {
       //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
       //      __pointer(::filemanager::document) pdocument = (pview->get_document());
-      //      pdocument->FileManagerBrowse(Context.dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
+      //      pdocument->FileManagerBrowse(pcontext->dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
       //   {
@@ -135,7 +135,7 @@ namespace userstack
       //   {
       //      string strDirName;
       //      strDirName.Format("desktop-%d", m_iDisplay);
-      //      string strDir = Context.dir().userfolder(strDirName);
+      //      string strDir = pcontext->dir().userfolder(strDirName);
       //      if(m_iDisplay <= 0)
       //      {
       //         check_desktop_dir(strDir);
@@ -187,15 +187,15 @@ namespace userstack
 
             string str;
 
-            if(Application.has_property(strId))
+            if(papplication->has_property(strId))
             {
 
-               pcreate->m_pcommandline->m_varQuery.propset().merge(Application.m_varTopicQuery[(const char *) strId].propset());
+               pcreate->m_pcommandline->m_varQuery.propset().merge(papplication->m_varTopicQuery[(const char *) strId].propset());
 
-               if(Application.m_varTopicQuery[(const char *) strId].has_property("file"))
+               if(papplication->m_varTopicQuery[(const char *) strId].has_property("file"))
                {
 
-                  pcreate->m_pcommandline->m_varFile = Application.m_varTopicQuery[(const char *) strId]["file"];
+                  pcreate->m_pcommandline->m_varFile = papplication->m_varTopicQuery[(const char *) strId]["file"];
 
                }
 
@@ -211,9 +211,9 @@ namespace userstack
 
          }
 
-         __pointer(::aura::application) pappCurrent = psession->m_pappCurrent;
+         __pointer(::aura::application) pappCurrent = psession->m_papplicationCurrent;
 
-         Application.appptra_add(pappCurrent);
+         papplication->appptra_add(pappCurrent);
 
          string strTypeId = typeid(*pappCurrent.m_p).name();
 
@@ -221,7 +221,7 @@ namespace userstack
 
          ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pimpactdata->m_id);
 
-         pappCurrent = psession->m_pappCurrent;
+         pappCurrent = psession->m_papplicationCurrent;
 
          if(Sess(pappCurrent).file().exists(strIcon))
          {
@@ -278,11 +278,11 @@ namespace userstack
             nullptr,
             L"\"" + ::str::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             nullptr,
-            L"\"" + ::str::international::utf8_to_unicode(Context.dir().name(itema[0].m_strPath)) + L"\"",
+            L"\"" + ::str::international::utf8_to_unicode(pcontext->dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
-         //System->message_box(str);
+         //psystem->message_box(str);
          if(i == ERROR_FILE_NOT_FOUND)
          {
          }
@@ -293,33 +293,33 @@ namespace userstack
    void pane_view::check_menu_dir(const ::file::path & psz)
    {
 
-      ::file::listing straPath(get_context_application());
+      ::file::listing straPath(get_application());
 
-      straPath.rls(Context.dir().commonprograms());
+      straPath.rls(pcontext->dir().commonprograms());
 
       for(i32 i = 0; i < straPath.get_size(); i++)
       {
 
          ::file::path str = psz/straPath[i].relative();
 
-         Context.dir().mk(str.folder());
+         pcontext->dir().mk(str.folder());
 
-         Context.file().copy(str, straPath[i], true);
+         pcontext->file().copy(str, straPath[i], true);
 
       }
 
       straPath.clear_results();
 
-      straPath.rls(Context.dir().userprograms(nullptr));
+      straPath.rls(pcontext->dir().userprograms(nullptr));
 
       for(i32 i = 0; i < straPath.get_size(); i++)
 
       {
          ::file::path str = psz / straPath[i].relative();
 
-         Context.dir().mk(str.folder());
+         pcontext->dir().mk(str.folder());
 
-         Context.file().copy(str, straPath[i], true);
+         pcontext->file().copy(str, straPath[i], true);
 
       }
 
@@ -329,18 +329,18 @@ namespace userstack
    void pane_view::check_3click_dir(const ::file::path & psz)
    {
 
-      if(Context.dir().is(psz))
+      if(pcontext->dir().is(psz))
       {
 
          return;
 
       }
 
-      Context.dir().mk(psz);
+      pcontext->dir().mk(psz);
 
       string strDir(psz);
 
-      POSITION pos = System->m_mapAppLibrary.get_start_position();
+      POSITION pos = psystem->m_mapAppLibrary.get_start_position();
 
       string strApp;
 
@@ -349,26 +349,26 @@ namespace userstack
       while(pos != nullptr)
       {
 
-         System->m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+         psystem->m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
 
          if(::str::begins_eat(strApp, "application:"))
          {
 
-            Context.file().put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);
+            pcontext->file().put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);
 
          }
 
       }
 
-      //Context.file().put_contents(Context.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //pcontext->file().put_contents(pcontext->dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
       /*      string_array straPath;
             string_array straRelative;
             straPath.remove_all();
-            Context.dir().rls(Context.dir().userquicklaunch(), &straPath, nullptr, &straRelative);
+            pcontext->dir().rls(pcontext->dir().userquicklaunch(), &straPath, nullptr, &straRelative);
             for(i32 i = 0; i < straPath.get_size(); i++)
             {
-               string str = Context.dir().path(psz, straRelative[i]);
-               Context.dir().mk(Context.dir().name(str));
+               string str = pcontext->dir().path(psz, straRelative[i]);
+               pcontext->dir().mk(pcontext->dir().name(str));
                ::CopyFile(straPath[i], str, true);
             }*/
    }
@@ -379,7 +379,7 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      ::file::listing listing(get_context_application());
+      ::file::listing listing(get_application());
 
 //      wchar_t buf[4096];
 //      __memset(buf, 0, sizeof(buf));
@@ -398,7 +398,7 @@ namespace userstack
 //
 //               ::file::path str = psz / listing[i].relative();
 //
-//               Context.dir().mk(str.folder());
+//               pcontext->dir().mk(str.folder());
 //
 //               ::CopyFileW(wstring(listing[i]), wstring(str), true);
 //
@@ -420,7 +420,7 @@ namespace userstack
 //            for(i32 i = 0; i < listing.get_size(); i++)
 //            {
 //               ::file::path str = psz / listing[i].relative();
-//               Context.dir().mk(listing[i].folder());
+//               pcontext->dir().mk(listing[i].folder());
 //               ::CopyFile(listing[i], str, true);
 //            }
 //         }
@@ -442,26 +442,26 @@ namespace userstack
                switch(m_iArea)
                {
                case 0:
-                  strWallpaper = Context.dir().standard_square_matter("windeskframe1_23.bmp");
+                  strWallpaper = pcontext->dir().standard_square_matter("windeskframe1_23.bmp");
                   break;
                case 1:
-                  strWallpaper = Context.dir().standard_square_matter("windeskframe1_24.bmp");
+                  strWallpaper = pcontext->dir().standard_square_matter("windeskframe1_24.bmp");
                   break;
                case 2:
-                  strWallpaper = Context.dir().standard_square_matter("windeskframe1_25.bmp");
+                  strWallpaper = pcontext->dir().standard_square_matter("windeskframe1_25.bmp");
                   break;
                case 3:on_create_on_crea
-                  strWallpaper = Context.dir().standard_square_matter("windeskframe1_26.bmp");
+                  strWallpaper = pcontext->dir().standard_square_matter("windeskframe1_26.bmp");
                   break;
                default:
-                  strWallpaper = Context.dir().standard_square_matter("windeskframe1_23.bmp");
+                  strWallpaper = pcontext->dir().standard_square_matter("windeskframe1_23.bmp");
                   break;
                }
                FIBITMAP * pfi;
 
                ::draw2d::memory_graphics pgraphics(this);
 
-               pfi = System->imaging().LoadImageFile(strWallpaper);
+               pfi = psystem->imaging().LoadImageFile(strWallpaper);
 
 /*               m_pimage->From((HDC)pgraphics->get_os_data(), pfi, true);
 
@@ -488,9 +488,9 @@ namespace userstack
 //      __pointer(::message::mouse) pmouse(pmessage);
       /*if(get_view_id() == ::bergedge::impact_winactionarea)
       {
-         ::user::menu menu(get_object());
+         ::user::menu menu(this);
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         ::user::menu menuPopup(get_context_application(), menu.GetSubMenu(0));
+         ::user::menu menuPopup(get_application(), menu.GetSubMenu(0));
          get_parent_frame()->set_active_view(this);
          menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, get_parent_frame());
       }*/

@@ -14,8 +14,8 @@ namespace simple_ui
 //
 //
 //   interaction::interaction():
-//      ::object(get_object()),
-//      ::user::interaction(get_object())
+//      ::object(this),
+//      ::user::interaction(this)
 //
 //   {
 //

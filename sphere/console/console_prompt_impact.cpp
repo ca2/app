@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt_impact::prompt_impact(::layered * pobjectContext) :
+   prompt_impact::prompt_impact(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -124,7 +124,7 @@ namespace console
 
          GetTypedParent < prompt_frame > ()->hide();
 
-         Application.m_puiMain->m_puiThis->SetActiveWindow();
+         papplication->m_puiMain->m_puiThis->SetActiveWindow();
 
          clear();
 

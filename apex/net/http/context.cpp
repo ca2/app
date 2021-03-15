@@ -45,9 +45,11 @@ namespace http
    property_set & context::process_set(property_set & set, const char * pszUrl)
    {
 
-      set["app"] = get_context_application();
+      set["app"] = get_application();
 
-      string strServer = ::apex::get_system()->url().get_root(pszUrl);
+      auto psystem = get_system();
+
+      string strServer = psystem->url().get_root(pszUrl);
 
       if (strServer == "server.ca2.cc")
       {
@@ -67,10 +69,10 @@ namespace http
    }
 
 
-   bool context::get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psession, const char * pszUrl, property_set & set)
+   bool context::get(__pointer(::sockets::http_client_socket) & psession, const char * pszUrl, property_set & set)
    {
 
-      return http_get(handler, psession, pszUrl, process_set(set, pszUrl));
+      return http_get(psession, pszUrl, process_set(set, pszUrl));
 
    }
 
@@ -241,7 +243,9 @@ namespace http
 
       }
 
-      if (::str::find_wwci("ca2", ::apex::get_system()->url().get_server(pszUrl)) < 0 && ::apex::get_system()->url().get_object(pszUrl).find_ci("/matter/") < 0)
+      auto psystem = get_system();
+
+      if (::str::find_wwci("ca2", psystem->url().get_server(pszUrl)) < 0 && psystem->url().get_object(pszUrl).find_ci("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -381,10 +385,10 @@ namespace http
    //}
 
 
-   //bool context::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set)
+   //bool context::download(__pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set)
    //{
 
-   //   return download(handler, psession, pszUrl, varFile, process_set(set, pszUrl));
+   //   return download(psession, pszUrl, varFile, process_set(set, pszUrl));
 
    //}
 
@@ -453,8 +457,8 @@ namespace http
       //
       //      string strFontopusServer;
       //
-      //      if(atoi(::apex::get_system()->url().get_param(pszUrl, "authnone")) == 1
-      //            || ::apex::get_system()->url().get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
+      //      if(atoi(psystem->url().get_param(pszUrl, "authnone")) == 1
+      //            || psystem->url().get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
       //      {
       //
       //         strFontopusServer = pszUrl;
@@ -467,7 +471,7 @@ namespace http
       //
       //      }
       //
-      //      while(::get_task() == nullptr || thread_get_run())
+      //      while(::get_task() == nullptr || task_get_run())
       //      {
       //
       //         {
@@ -601,14 +605,24 @@ namespace http
 
    }
 
-   context::pac::pac(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   //context::pac::pac(::context_object * pcontextobject) :
+   //   ::object(pobject)
+   //{
+
+   //   __throw(todo, "scripting");
+   //   //m_pjs = new tinyjs();
+
+   //}
+
+
+   context::pac::pac()
    {
 
       __throw(todo, "scripting");
       //m_pjs = new tinyjs();
 
    }
+
 
    context::pac::~pac()
    {
@@ -641,7 +655,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         auto ppac = __new(class pac(get_context_object()));
+         auto ppac = __create_new < class pac >();
 
          ppac->m_millisLastChecked= ::millis::now();
 
@@ -686,14 +700,21 @@ namespace http
    }
 
 
-   context::proxy::proxy(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   //context::proxy::proxy(::context_object * pcontextobject) :
+   //   ::object(pobject)
+   //{
+
+   //   m_bDirect = true;
+
+   //}
+
+
+   context::proxy::proxy()
    {
 
       m_bDirect = true;
 
    }
-
 
    ::http::context::proxy * context::get_proxy(const char * pszUrl)
    {
@@ -710,7 +731,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         auto pproxy = __new(class ::http::context::proxy(get_context_object()));
+         auto pproxy = __create_new < class ::http::context::proxy >();
 
          pproxy->m_millisLastChecked= ::millis::now();
 
@@ -751,9 +772,11 @@ namespace http
 
       string strHost;
 
-      strHost = ::apex::get_system()->url().get_server(pszUrl);
+      auto psystem = get_system();
 
-      i32 port = ::apex::get_system()->url().get_port(pszUrl);
+      strHost = psystem->url().get_server(pszUrl);
+
+      i32 port = psystem->url().get_port(pszUrl);
 
       ::net::address ad(strHost, port);
 
@@ -889,9 +912,9 @@ namespace http
 
       //bool bOk = true;
 
-      //string strHost = ::apex::get_system()->url().get_server(pszUrl);
+      //string strHost = psystem->url().get_server(pszUrl);
 
-      //i32 iHostPort = ::apex::get_system()->url().get_port(pszUrl);
+      //i32 iHostPort = psystem->url().get_port(pszUrl);
 
       //::net::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
@@ -1051,18 +1074,18 @@ namespace http
    //   if (strSessId.is_empty())
    //   {
 
-   //      ::apex::get_system()->url().string_set(strUrl, "authnone", 1);
+   //      psystem->url().string_set(strUrl, "authnone", 1);
 
    //      return;
 
    //   }
 
-   //   //::apex::get_system()->url().string_set(strUrl, "sessid", strSessId);
+   //   //psystem->url().string_set(strUrl, "sessid", strSessId);
 
    //}
 
 
-   bool context::open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
+   bool context::open(__pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
    {
 
       auto tickTimeProfile1 = ::millis::now();
@@ -1102,25 +1125,29 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
+         auto psystem = get_system();
+
+         string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
 
          strScript.replace("+", "%20");
 
          strScript.replace("%2F", "/");
 
-         strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
+         strUrl = psystem->url().set_script(strUrl, strScript);
 
       }
 
       property_set setQuery;
 
-      setQuery.parse_url_query(::apex::get_system()->url().get_query(strUrl));
+      auto psystem = get_system();
+
+      setQuery.parse_url_query(psystem->url().get_query(strUrl));
 
       string strIp;
 
       string strSessId;
 
-      psession = __new(::sockets::http_session(handler, strProtocol, pszHost));
+      psession = __new(::sockets::http_session(strProtocol, pszHost));
 
       /*__pointer(::account::user) puser;
 
@@ -1162,7 +1189,7 @@ namespace http
    }
 
 
-   bool context::request(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
+   bool context::request(__pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
    {
 
       TRACE("http context request : %s", pszRequest);
@@ -1231,6 +1258,8 @@ namespace http
 
       }
 
+      auto psystem = get_system();
+
       if (!bSeemsOk)
       {
 
@@ -1239,7 +1268,7 @@ namespace http
 
             auto tickBeg = ::millis::now();
 
-            if (!open(handler, psession, ::apex::get_system()->url().get_server(pszRequest), ::apex::get_system()->url().get_protocol(pszRequest), set, set["http_protocol_version"]))
+            if (!open(psession, psystem->url().get_server(pszRequest), psystem->url().get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
 
                return false;
@@ -1265,30 +1294,30 @@ namespace http
 
          auto tickTimeProfile1 = ::millis::now();
 
-         ::apex::application * papp = handler.get_context_application();
+         ::apex::application * papp = psession->m_phandler->get_application();
 
-         string strRequest = ::apex::get_system()->url().get_object(pszRequest);
+         string strRequest = psystem->url().get_object(pszRequest);
 
-         string strServer = ::apex::get_system()->url().get_server(pszRequest);
+         string strServer = psystem->url().get_server(pszRequest);
 
          string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
          {
 
-            string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
+            string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
 
             strScript.replace("+", "%20");
 
             strScript.replace("%2F", "/");
 
-            strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
+            strUrl = psystem->url().set_script(strUrl, strScript);
 
          }
 
          property_set setQuery;
 
-         setQuery.parse_url_query(::apex::get_system()->url().get_query(strUrl));
+         setQuery.parse_url_query(psystem->url().get_query(strUrl));
 
          string strSessId;
 
@@ -1296,7 +1325,7 @@ namespace http
 
          //on_auth(set, papp, strUrl, strSessId, puser);
 
-         strRequest = ::apex::get_system()->url().get_object(strUrl);
+         strRequest = psystem->url().get_object(strUrl);
 
          psession->inheaders().clear();
          psession->outheaders().clear();
@@ -1354,9 +1383,9 @@ namespace http
 
          }
 
-         psession->m_host = ::apex::get_system()->url().get_server(pszRequest);
+         psession->m_host = psystem->url().get_server(pszRequest);
 
-         psession->m_strHost = ::apex::get_system()->url().get_server(pszRequest);
+         psession->m_strHost = psystem->url().get_server(pszRequest);
 
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
 
@@ -1416,7 +1445,7 @@ namespace http
 
          }
 
-         handler.add(psession);
+         psession->m_phandler->add(psession);
 
          i32 iIteration = 0;
 
@@ -1441,13 +1470,13 @@ namespace http
 
          TRACE("Higher Level Diagnosis : iNTERTIMe context::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
-         while ((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::thread_get_run()))
+         while ((psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
             tick1 = ::millis::now();
 
-            handler.select(240, 0);
+            psession->m_phandler->select(240, 0);
 
 //            keeplive.keep_alive();
 
@@ -1666,7 +1695,7 @@ namespace http
    bool context::get(::http::session & session, const char * pszUrl, string & str, property_set & set)
    {
 
-      bool bOk = http_get(session.m_handler, session.m_psocket, pszUrl, set);
+      bool bOk = http_get(session.m_psocket, pszUrl, set);
 
       if (bOk)
       {
@@ -1702,14 +1731,16 @@ namespace http
 
 
 
-   bool context::http_get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
+   bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
    {
 
       auto ptask = ::get_task();
 
       __keep(ptask->payload("work_url"), pszUrl);
 
-      i64 iHttpGetSerial = ++::apex::get_system()->sockets().m_lHttpGetSerial;
+      auto psystem = get_system();
+
+      i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
       TRACE("");
       TRACE("");
@@ -1752,11 +1783,11 @@ namespace http
 
       auto tickTimeProfile1 = ::millis::now();
 
-      string strServer = ::apex::get_system()->url().get_root(pszUrl);
+      string strServer = psystem->url().get_root(pszUrl);
 
-      string strProtocol = ::apex::get_system()->url().get_protocol(pszUrl);
+      string strProtocol = psystem->url().get_protocol(pszUrl);
 
-      string strObject = ::apex::get_system()->url().get_object(pszUrl);
+      string strObject = psystem->url().get_object(pszUrl);
 
       __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
@@ -1790,9 +1821,9 @@ namespace http
 
       string strUrl(pszUrl);
 
-//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) && ::is_set(psession->account());
+//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
 
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_context_session()) ;
+      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) ;
 
 //      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
 
@@ -1821,13 +1852,13 @@ namespace http
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
          {
 
-            string strScript = ::apex::get_system()->url().url_encode(::apex::get_system()->url().url_decode(::apex::get_system()->url().get_script(strUrl)));
+            string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
 
             strScript.replace("+", "%20");
 
             strScript.replace("%2F", "/");
 
-            strUrl = ::apex::get_system()->url().set_script(strUrl, strScript);
+            strUrl = psystem->url().set_script(strUrl, strScript);
 
          }
 
@@ -1844,7 +1875,7 @@ namespace http
 
          bPut = true;
 
-         psocket = __new(::sockets::http_put_socket(handler, strUrl));
+         psocket = __new(::sockets::http_put_socket(strUrl));
 
          dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
 
@@ -1858,7 +1889,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __new(::sockets::http_post_socket(handler, strUrl));
+         psocket = __new(::sockets::http_post_socket(strUrl));
 
          dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
 
@@ -1879,7 +1910,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __new(::http::get_socket(handler, strUrl));
+         psocket = __new(::http::get_socket(strUrl));
 
          psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
 
@@ -1888,7 +1919,7 @@ namespace http
       if (pappAgent.is_set())
       {
 
-         psocket->set_context_object(pappAgent);
+         psocket->initialize(pappAgent);
 
       }
 
@@ -1898,7 +1929,7 @@ namespace http
 
       psocket->set_topic_text(strTopicText);
 
-      psocket->m_bEnablePool = handler.PoolEnabled();
+      psocket->m_bEnablePool = psocket->m_phandler->PoolEnabled();
 
       if ((bool)set["disable_common_name_cert_check"])
       {
@@ -1910,7 +1941,7 @@ namespace http
       if (strProtocol == "https")
       {
 
-         psocket->m_strTlsHostName = ::apex::get_system()->url().get_server(strUrl);
+         psocket->m_strTlsHostName = psystem->url().get_server(strUrl);
 
       }
 
@@ -2076,7 +2107,7 @@ namespace http
 
       }
 
-      handler.add(psocket);
+      psocket->m_phandler->add(psocket);
 
       i32 iIteration = 1;
 
@@ -2111,9 +2142,9 @@ namespace http
 
       //}
 
-      psocket->m_bEnablePool = handler.PoolEnabled();
+      psocket->m_bEnablePool = psocket->m_phandler->PoolEnabled();
 
-      if (handler.PoolEnabled())
+      if (psocket->m_phandler->PoolEnabled())
       {
 
          psocket->SetRetain();
@@ -2128,7 +2159,7 @@ namespace http
 
       tick1 = ::millis::now();
 
-      while (handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
+      while (psocket->m_phandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
 
          if (tickStart.elapsed() > tickTotalTimeout)
@@ -2150,7 +2181,7 @@ namespace http
 
          iContentLength = psocket->m_content_length;
 
-         handler.select((i32)iSelectTimeoutSeconds, 0);
+         psocket->m_phandler->select((i32)iSelectTimeoutSeconds, 0);
 
          set["http_content_length"] = iContentLength;
 
@@ -2298,7 +2329,7 @@ namespace http
 
             task_sleep(300_ms);
 
-            if (::thread_get_run())
+            if (::task_get_run())
             {
 
                goto retry;
@@ -2366,15 +2397,15 @@ namespace http
             if (strLocation.find_ci("http://") == 0 || strLocation.find_ci("https://") == 0)
             {
 
-               return http_get(handler, psocket, strLocation, set);
+               return http_get(psocket, strLocation, set);
 
             }
             else
             {
 
-               strLocation = ::apex::get_system()->url().get_protocol(pszUrl) + ::apex::get_system()->url().get_server(pszUrl) + ::apex::get_system()->url().get_object(strLocation);
+               strLocation = psystem->url().get_protocol(pszUrl) + psystem->url().get_server(pszUrl) + psystem->url().get_object(strLocation);
 
-               return http_get(handler, psocket, strLocation, set);
+               return http_get(psocket, strLocation, set);
 
             }
 
@@ -2470,9 +2501,11 @@ namespace http
 
       ::url_domain domain;
 
-      domain.create(::apex::get_system()->url().get_server(pmessageMessage->m_strUrl));
+      auto psystem = get_system();
 
-      if (domain.m_strRadix == "ca2" && ::str::begins(::apex::get_system()->url().get_object(pmessageMessage->m_strUrl), astr.MatterUri))
+      domain.create(psystem->url().get_server(pmessageMessage->m_strUrl));
+
+      if (domain.m_strRadix == "ca2" && ::str::begins(psystem->url().get_object(pmessageMessage->m_strUrl), astr.MatterUri))
       {
 
          string strUrl(pmessageMessage->m_strUrl);
@@ -2498,7 +2531,7 @@ namespace http
 
       pmessage->get_property_set() = process_set(*pmessage->m_pset, pmessageMessage->m_strUrl);
 
-      ::sockets::socket_handler handler(get_context_object());
+      auto phandler = __create_new < ::sockets::socket_handler >();
 
       property_set & set = pmessage->get_property_set();
 
@@ -2532,7 +2565,7 @@ namespace http
 
       __pointer(::sockets::http_client_socket) psocket;
 
-      if (!http_get(handler, psocket, pmessageMessage->m_strUrl, set))
+      if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
          pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
@@ -2556,7 +2589,7 @@ namespace http
    }
 
 
-   bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
+   bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
    {
 
       file_pointer spfile = get_context()->file().get_file(varFile,
@@ -2564,7 +2597,7 @@ namespace http
 
       set["file"] = spfile;
 
-      bool bOk = request(handler, psession, pszRequest, set);
+      bool bOk = request(psession, pszRequest, set);
 
       set["file"].null();
 
@@ -2576,7 +2609,7 @@ namespace http
    bool context::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
 
-      ::sockets::socket_handler handler(get_context_object());
+      auto phandler = __create_new < ::sockets::socket_handler >();
 
       __pointer(::sockets::http_client_socket) psocket;
 
@@ -2596,7 +2629,7 @@ namespace http
 
          set["file"] = (::file_pointer) rfile;
 
-         bOk = http_get(handler, psocket, pszUrl, set);
+         bOk = http_get(psocket, pszUrl, set);
 
          set["file"].null();
 
@@ -2651,15 +2684,17 @@ namespace http
 
          synchronizationlock.unlock();
 
-         ::sockets::socket_handler handler(get_context_object());
+         auto phandler = __create_new < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 
          ::url_domain domain;
 
-         domain.create(::apex::get_system()->url().get_server(pszUrl));
+         auto psystem = get_system();
 
-         if (::str::begins(::apex::get_system()->url().get_object(pszUrl), astr.MatterUri))
+         domain.create(psystem->url().get_server(pszUrl));
+
+         if (::str::begins(psystem->url().get_object(pszUrl), astr.MatterUri))
          {
 
             set["raw_http"] = true;
@@ -2668,7 +2703,7 @@ namespace http
 
          __pointer(::sockets::http_client_socket) psocket;
 
-         if (!http_get(handler, psocket, pszUrl, set))
+         if (!http_get(psocket, pszUrl, set))
          {
 
             synchronizationlock.lock();
@@ -2726,17 +2761,17 @@ namespace http
    ::payload context::length(const char * pszUrl, ::property_set & set)
    {
 
-      ::sockets::socket_handler handler(get_context_object());
-
       set["only_headers"] = true;
 
       set["minimal_headers"] = true;
 
       ::url_domain domain;
 
-      domain.create(::apex::get_system()->url().get_server(pszUrl));
+      auto psystem = get_system();
 
-      if (::str::begins(::apex::get_system()->url().get_object(pszUrl), astr.MatterUri))
+      domain.create(psystem->url().get_server(pszUrl));
+
+      if (::str::begins(psystem->url().get_object(pszUrl), astr.MatterUri))
       {
 
          set["disable_ca2_sessid"] = true;
@@ -2745,7 +2780,7 @@ namespace http
 
       __pointer(::sockets::http_client_socket) psocket;
 
-      if (http_get(handler, psocket, pszUrl, set))
+      if (http_get(psocket, pszUrl, set))
       {
 
          return false;
@@ -2833,14 +2868,14 @@ namespace http
 
    //   bool bOk = true;
 
-   //   if (!::apex::get_system()->crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
+   //   if (!psystem->crypto().file_get(strUserNameFile, strUserName, nullptr, get_application()) || strUserName.is_empty())
    //   {
 
    //      bOk = false;
 
    //   }
 
-   //   if (!::apex::get_system()->crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
+   //   if (!psystem->crypto().file_get(strPasswordFile, strPassword, nullptr, get_application()) || strPassword.is_empty())
    //   {
 
    //      bOk = false;
@@ -2861,9 +2896,9 @@ namespace http
    //      if (psession->get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
    //      {
 
-   //         ::apex::get_system()->crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
+   //         psystem->crypto().file_set(strUserNameFile, strUserName, nullptr, get_application());
 
-   //         ::apex::get_system()->crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
+   //         psystem->crypto().file_set(strPasswordFile, strPassword, nullptr, get_application());
 
    //         psocket->m_strUserNameFile = strUserNameFile;
 

@@ -391,10 +391,10 @@ namespace macos
        {
 
        keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-       keyPlugin.SetValue("Path", System->m_strCa2Module("npca2.dll"));
+       keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
        keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
        keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-       keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+       keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
        registry::Key keyApplicationCa2;
 
@@ -781,11 +781,11 @@ namespace macos
    bool os_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder, string * pstrParams, ::user::primitive * puiMessageParentOptional)
    {
 
-      pathTarget = Context.defer_process_path(strSource);
+      pathTarget = pcontext->defer_process_path(strSource);
 
       pathTarget = node_full_file_path(pathTarget);
 
-      while(Context.os_resolve_alias(pathTarget, pathTarget, puiMessageParentOptional))
+      while(pcontext->os_resolve_alias(pathTarget, pathTarget, puiMessageParentOptional))
       {
 
          pathTarget = node_full_file_path(pathTarget);
@@ -842,7 +842,7 @@ namespace macos
       {
 
          //string strDir;
-         //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+         //strDir = pcontext->dir().path(getenv("HOME"), "Pictures");
          //imagefileset.add_search(strDir);
          string strDir;
          strDir = "/Library/Desktop Pictures";
@@ -941,7 +941,7 @@ namespace macos
 
       }
 
-      if(Context.dir().is(strAppReturn))
+      if(pcontext->dir().is(strAppReturn))
       {
 
          return strAppReturn;
@@ -967,7 +967,7 @@ namespace macos
    void os_context::on_process_command(::create * pcommand)
    {
 
-//      __pointer(::handler) phandler = System->handler();
+//      __pointer(::handler) phandler = psystem->handler();
 
       if(pcommand->m_pcommandline->m_strExe[0] == '/')
       {
@@ -1061,7 +1061,7 @@ namespace macos
 //      if (status.m_mtime.get_time() != 0)
 //      {
 //
-//         ::windows::TimeToFileTime(get_context_application(), status.m_mtime, &lastWriteTime);
+//         ::windows::TimeToFileTime(get_application(), status.m_mtime, &lastWriteTime);
 //
 //         lpLastWriteTime = &lastWriteTime;
 //
@@ -1071,7 +1071,7 @@ namespace macos
 //      if (status.m_atime.get_time() != 0)
 //      {
 //
-//         ::windows::TimeToFileTime(get_context_application(),status.m_atime, &lastAccessTime);
+//         ::windows::TimeToFileTime(get_application(),status.m_atime, &lastAccessTime);
 //
 //         lpLastAccessTime = &lastAccessTime;
 //
@@ -1081,7 +1081,7 @@ namespace macos
 //      if (status.m_ctime.get_time() != 0)
 //      {
 //
-//         ::windows::TimeToFileTime(get_context_application(),status.m_ctime, &creationTime);
+//         ::windows::TimeToFileTime(get_application(),status.m_ctime, &creationTime);
 //
 //         lpCreationTime = &creationTime;
 //
@@ -1128,7 +1128,7 @@ namespace macos
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      path = Context.defer_process_path(path);
+      path = pcontext->defer_process_path(path);
 
       ns_main_async(^
       {

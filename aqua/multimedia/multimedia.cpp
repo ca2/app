@@ -25,10 +25,10 @@ namespace aqua
    }
 
 
-   ::e_status multimedia::initialize_multimedia(::object* pobjectContext)
+   ::e_status multimedia::initialize_multimedia(::context_object* pcontextobject)
    {
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -76,7 +76,7 @@ namespace aqua
    }
 
 
-   __pointer(::user::controller) multimedia::defer_create_view(::object* pobjectContext, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   __pointer(::user::controller) multimedia::defer_create_view(::object* pobject, const string& strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    {
 
       return nullptr;
@@ -186,20 +186,20 @@ CLASS_DECL_AQUA ::aqua::multimedia * get_new_multimedia()
 }
 
 
-CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::layered * pobjectContext)
-{
+//CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::context_object * pcontextobject)
+//{
+//
+//   return get_system()->defer_get_multimedia();
+//
+//}
 
-   return ::aqua::get_system()->defer_get_multimedia();
 
-}
-
-
-CLASS_DECL_AQUA bool has_multimedia()
-{
-
-   return ::is_set(::aqua::get_system()->m_pmultimedia);
-
-}
+//CLASS_DECL_AQUA bool has_multimedia()
+//{
+//
+//   return ::is_set(get_system()->m_pmultimedia);
+//
+//}
 
 
 

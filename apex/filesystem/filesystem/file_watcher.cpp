@@ -282,7 +282,7 @@ namespace file
       
       m_pthread = ::get_task();
 
-      while (::thread_get_run())
+      while (::task_get_run())
       {
 
          if (!step())

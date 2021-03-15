@@ -14,8 +14,15 @@ namespace user
       __pointer(menu_item)        m_pmenuitem;
 
 
-      menu_interaction(menu_item * pitem);
+      menu_interaction();
       virtual ~menu_interaction();
+
+      
+      virtual ::e_status initialize_menu_interaction(menu_item* pitem);
+
+
+      inline ::base::session* get_session() const;
+
 
       virtual void install_message_routing(::channel * pchannel) override;
 

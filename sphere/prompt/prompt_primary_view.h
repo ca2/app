@@ -19,7 +19,7 @@ namespace prompt
       strsize m_iCompromised;
 
 
-      primary_view(::layered * pobjectContext);
+      primary_view(::context_object * pcontextobject);
 
 
       virtual void install_message_routing(::channel * pchannel);

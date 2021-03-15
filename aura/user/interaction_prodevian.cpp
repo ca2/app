@@ -187,7 +187,7 @@ namespace user
 
       }
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          pump_runnable();
@@ -434,7 +434,7 @@ bool prodevian::prodevian_iteration()
             return true;
 
          }
-         else if (!this->thread_get_run())
+         else if (!this->task_get_run())
          {
 
             return false;
@@ -467,7 +467,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (!this->thread_get_run())
+         if (!this->task_get_run())
          {
 
             return false;
@@ -523,7 +523,7 @@ bool prodevian::prodevian_iteration()
 
    m_nanosNow = get_nanos();
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -682,7 +682,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -734,7 +734,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -909,7 +909,7 @@ bool prodevian::prodevian_iteration()
 
       //#endif
 
-         if (!::thread_get_run())
+         if (!::task_get_run())
          {
 
             return;
@@ -954,7 +954,7 @@ bool prodevian::prodevian_iteration()
 
             }
 
-            if (!this->thread_get_run())
+            if (!this->task_get_run())
             {
 
                return;

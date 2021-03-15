@@ -18,10 +18,10 @@ namespace filehandler
    }
 
 
-   ::e_status handler::initialize(::layered * pobjectContext)
+   ::e_status handler::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if(!estatus)
       {

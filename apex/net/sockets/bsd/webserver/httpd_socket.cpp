@@ -51,14 +51,7 @@ namespace sockets
 #define TMPSIZE 10000
 
 
-   httpd_socket::httpd_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_base_socket(h),
-      http_socket(h),
+   httpd_socket::httpd_socket() :
       m_received(0)
    {
 
@@ -67,17 +60,17 @@ namespace sockets
    }
 
 
-   httpd_socket::httpd_socket(const httpd_socket& s) :
-      ::object(s.get_context_object()),
-      base_socket(s),
-      socket(s),
-      stream_socket(s),
-      tcp_socket(s),
-      http_base_socket(s),
-      http_socket(s)
-   {
+   //httpd_socket::httpd_socket(const httpd_socket& s) :
+   //   ::object(&s),
+   //   base_socket(s),
+   //   socket(s),
+   //   stream_socket(s),
+   //   tcp_socket(s),
+   //   http_base_socket(s),
+   //   http_socket(s)
+   //{
 
-   }
+   //}
 
 
    httpd_socket::~httpd_socket()
@@ -98,8 +91,11 @@ namespace sockets
          }
          else*/
       {
+
+         auto psystem = get_system();
+
          memory mem;
-         ::apex::get_system()->base64().decode(mem, str64);
+         psystem->base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
@@ -251,10 +247,12 @@ namespace sockets
 
       string strId = m_strCat;
 
+      auto psystem = get_system();
+
       if (strId.begins_ci("cat://"))
       {
 
-         strId = "cat://" + ::apex::get_system()->crypto().md5(strId);
+         strId = "cat://" + psystem->crypto().md5(strId);
 
       }
       InitializeContext(strId, m_strCat, "", TLS_server_method());

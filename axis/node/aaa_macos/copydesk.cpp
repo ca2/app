@@ -136,10 +136,10 @@ namespace macos
 
 
 
-   ::e_status copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobjectContext);
+      auto estatus = ::user::copydesk::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -148,7 +148,7 @@ namespace macos
 
       }
 
-      //    if(!m_p->CreateEx(0, System->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
+      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
       //     return false;
 
 //      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
@@ -281,7 +281,7 @@ namespace macos
 //
 //      }
 //
-//      if(!System->imaging()._load_image(pimage, w, h, iScan, pcolorref))
+//      if(!psystem->imaging()._load_image(pimage, w, h, iScan, pcolorref))
 //      {
 //
 //         return false;

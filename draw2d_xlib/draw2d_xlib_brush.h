@@ -17,7 +17,7 @@ namespace draw2d_xlib
       color    m_color;
 
 
-      brush(::layered * pobjectContext);
+      brush(::context_object * pcontextobject);
       //virtual void construct(color32_t crColor);                // CreateSolidBrush
       //virtual void construct(i32 nIndex, color32_t crColor);    // CreateHatchBrush
       //virtual void construct(::draw2d::bitmap * pbitmap);                // CreatePatternBrush

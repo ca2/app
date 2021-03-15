@@ -96,7 +96,7 @@ namespace user
       pcreate->m_pcommandline->m_varQuery["document"].release();
 
       //bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
-      //   __pointer(::user::interaction) pwndParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
+      //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   __pointer(::user::impact) pviewAlloc = pcreate->m_pcommandline->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
       __pointer(::user::document) pdocument;
@@ -145,9 +145,9 @@ namespace user
 
       if (pdocument == nullptr)
       {
-         // linux System->message_box(__IDP_FAILED_TO_CREATE_DOC);
+         // linux psystem->message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         System->message_box("Failed to create document");
+         psystem->message_box("Failed to create document");
 
          return;
 
@@ -173,14 +173,14 @@ namespace user
          if (!pFrame)
          {
 
-            auto& result = System->m_result;
+            auto& result = psystem->m_result;
 
             ::e_status estatus;
 
             if(!result.get_exit_status(estatus))
             {
 
-               Context.message_box("Failed to create Document");
+               pcontext->message_box("Failed to create Document");
 
             }
 
@@ -226,7 +226,7 @@ namespace user
       else
       {
 
-         wait_cursor wait(pcreate->get_context_object());
+         wait_cursor wait(pcreate->this);
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();

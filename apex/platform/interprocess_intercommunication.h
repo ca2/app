@@ -102,7 +102,7 @@
       virtual ~interprocess_intercommunication();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void finalize() override;
 

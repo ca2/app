@@ -16,7 +16,7 @@ namespace multimedia
    {
 
 
-      out::out(::layered * pobjectContext) :
+      out::out(::context_object * pcontextobject) :
          object(pobject),
          ::thread(pobject),
          wave_base(pobject),
@@ -182,7 +182,7 @@ namespace multimedia
          m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize = 0;
 
-         __pointer(::audio::wave) audiowave = Application.audiowave();
+         __pointer(::audio::wave) audiowave = papplication->audiowave();
 
          translate(*&m_dataformat, m_pwaveformat);
          if(::success == (m_estatusWave = translate(AudioQueueNewOutput(                              // 1

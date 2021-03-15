@@ -161,7 +161,7 @@ public:
 //
 //      }
 //
-//      auto estatus = papp->initialize(pobject);
+//      auto estatus = papp->initialize(pcontextobject);
 //
 //      if (!estatus)
 //      {
@@ -356,10 +356,10 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & ___pointer < T >::clone(::matter * pobjectContext)
+inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 {
 
-   if (::is_null(pobjectContext))
+   if (::is_null(pobject))
    {
 
       release();
@@ -368,7 +368,7 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobjectContext)
 
    }
 
-   return operator = (pobjectContext->clone());
+   return operator = (pobject->clone());
 
 }
 
@@ -965,4 +965,20 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
     return m_pfuture;
 
 }
+
+
+
+
+template < typename TYPE >
+inline __transport(TYPE) property_object::__create_new()
+{
+
+   auto p = __new(TYPE);
+
+   p->initialize_matter(this);
+
+   return p;
+
+}
+
 

@@ -47,11 +47,7 @@ namespace sockets
 #define ENABLE_IPV6
 
 
-#ifdef WINDOWS
 
-using port_t = u16;
-
-#endif
 
 
 /* SCTP support. */
@@ -123,7 +119,7 @@ in read operations - helps on ECOS */
 
 
 // all typedefs in this file will be declared outside the sockets namespace,
-// because some ::apex::get_system()'s will already have one or more of the type defined.
+// because some psystem's will already have one or more of the type defined.
 typedef i32 SOCKET;
 #define Errno errno
 #define bsd_socket_error strerror

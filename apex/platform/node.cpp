@@ -47,7 +47,9 @@ namespace apex
    ::e_status node::start()
    {
 
-      auto estatus = ::apex::get_system()->on_start();
+      __pointer(::apex::system) psystem = get_system();
+
+      auto estatus = psystem->on_start();
 
       if(!estatus)
       {
@@ -76,6 +78,15 @@ namespace apex
 
 
 #endif
+
+   void node::on_os_dark_mode_change()
+   {
+
+      __pointer(::apex::system) psystem = get_system();
+
+      psystem->deliver(id_os_dark_mode);
+
+   }
 
 
 } // namespace apex

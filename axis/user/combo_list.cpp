@@ -208,7 +208,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -651,7 +651,7 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -789,7 +789,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -818,7 +818,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -1051,7 +1051,7 @@ namespace user
 
       ::rectangle_i32 rectMonitor;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1190,13 +1190,13 @@ namespace user
 
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             synchronization_lock synchronizationlock(psession->mutex());
 
             auto pinteraction = __create_new < ::user::interaction >();
 
-            auto puser = User;
+            auto puser = psession->user();
 
             puser->m_uiptraToolWindow.add(pinteraction);
 
@@ -1210,18 +1210,16 @@ namespace user
 
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             synchronization_lock synchronizationlock(psession->mutex());
 
-            auto puser = User;
+            auto puser = psession->user();
 
             ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {
-
-               auto puser = User;
 
                puser->m_uiptraToolWindow.remove_at(iFind);
 

@@ -5,8 +5,7 @@
 namespace xml
 {
 
-   var_exchange::var_exchange(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   var_exchange::var_exchange()
    {
       m_pvar = nullptr;
    }

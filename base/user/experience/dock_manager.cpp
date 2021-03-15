@@ -6,14 +6,11 @@ namespace experience
 {
 
 
-   dock_manager::dock_manager(::experience::frame_window * pframewindow) :
-      object(pframewindow)
+   dock_manager::dock_manager()
    {
 
       m_iConsiderDockMove = 49;
       m_bPendingCursorPos = false;
-      ASSERT(pframewindow != nullptr);
-      m_pframewindow = pframewindow;
       m_bDocking = false;
       m_eborder = e_border_all;
 
@@ -22,6 +19,25 @@ namespace experience
 
    dock_manager::~dock_manager()
    {
+
+   }
+
+
+   ::e_status dock_manager::initialize_dock_manager(::experience::frame_window* pframewindow)
+   {
+
+      auto estatus = channel::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 
@@ -124,7 +140,7 @@ namespace experience
 
       ::rectangle_i32 rectWork;
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -426,7 +442,7 @@ namespace experience
 
    //      //   auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
 
-   //      //   auto psession = Session;
+   //      //   auto psession = get_session();
 
    //      //   psession->set_cursor_pos(pointCursor);
 
@@ -502,7 +518,7 @@ namespace experience
 
       }
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 

@@ -18,7 +18,7 @@ namespace simpledb
       address_array < socket_thread * >   m_threadptra;
 
 
-      service(::layered * pobjectContext);
+      service(::context_object * pcontextobject);
       virtual ~service();
 
 

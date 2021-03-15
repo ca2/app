@@ -363,7 +363,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 
    millis.Now();
 
-   while (::thread_get_run())
+   while (::task_get_run())
    {
       // Thanks from Blehman@Twitch from Slovakia through Googling...
       // 2020-02-19
@@ -1130,7 +1130,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //         {
 //            DWORD dwLastError = GetLastError();
 //
-//            //            TRACE(get_object())("%d", dwLastError);
+//            //            TRACE(this)("%d", dwLastError);
 //         }
 //      }
 //

@@ -326,7 +326,7 @@ void memory_base::remove_offset()
 //   if (get_size() > 0)
 //   {
 //
-//      System->math().random_bytes(get_data(), get_size());
+//      get_system()->math().random_bytes(get_data(), get_size());
 //
 //   }
 //

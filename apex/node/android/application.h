@@ -14,7 +14,7 @@
 //      ::create            m_commandStartup;
 //
 //
-//      application(::layered * pobjectContext);
+//      application(::context_object * pcontextobject);
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();
@@ -47,7 +47,7 @@
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
-//      virtual ithread_t get_thread_id();
+//      virtual itask_t get_thread_id();
 //      string draw2d_get_default_library_name();
 //
 //

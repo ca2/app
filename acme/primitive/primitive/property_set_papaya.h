@@ -1,7 +1,7 @@
 #pragma once
 
 
-class context_object;
+class property_object;
 
 
 namespace papaya
@@ -12,10 +12,10 @@ namespace papaya
    {
 
 
-      inline bool get_string(string & strResult, const ::context_object& object, const string& strKey);
-      inline bool get_string(string & strResult, const ::context_object& object, string& strKey);
-      inline bool get_evaluation(string & strResult, const ::context_object& object, const string& strKey);
-      inline bool get_evaluation(string & strResult, const ::context_object& object, string& strKey);
+      inline bool get_string(string & strResult, const ::property_object& object, const string& strKey);
+      inline bool get_string(string & strResult, const ::property_object& object, string& strKey);
+      inline bool get_evaluation(string & strResult, const ::property_object& object, const string& strKey);
+      inline bool get_evaluation(string & strResult, const ::property_object& object, string& strKey);
       inline bool get_evaluation(string & strResult, const ::property_set & set, string & strExpression);
 
 
@@ -97,7 +97,7 @@ namespace papaya
       //}
 
 
-      inline string get_string(const ::context_object & object, const string & strKey)
+      inline string get_string(const ::property_object & object, const string & strKey)
       {
 
          return object.property_set_get_string(strKey);
@@ -105,7 +105,7 @@ namespace papaya
       }
 
 
-      inline bool get_string(string & strResult, const ::context_object& object, const string& strKey)
+      inline bool get_string(string & strResult, const ::property_object& object, const string& strKey)
       {
 
          return object.property_set_get_string(strResult, strKey);
@@ -113,7 +113,7 @@ namespace papaya
       }
 
 
-      inline bool get_string(string & strResult, const ::context_object& object, string& strKey)
+      inline bool get_string(string & strResult, const ::property_object& object, string& strKey)
       {
 
          return object.property_set_get_string(strResult, strKey);
@@ -122,7 +122,7 @@ namespace papaya
 
 
 
-      inline bool get_evaluation(string & strResult, const ::context_object& object, const string& strKey)
+      inline bool get_evaluation(string & strResult, const ::property_object& object, const string& strKey)
       {
 
          return object.property_set_get_evaluation(strResult, strKey);
@@ -130,7 +130,7 @@ namespace papaya
       }
 
 
-      inline bool get_evaluation(string & strResult, const ::context_object& object, string& strKey)
+      inline bool get_evaluation(string & strResult, const ::property_object& object, string& strKey)
       {
 
          return get_evaluation(strResult, object, (const string &)strKey);
@@ -158,7 +158,7 @@ namespace papaya
       //}
 
 
-      inline string get_evaluation(const ::context_object & object, const string & strExpression)
+      inline string get_evaluation(const ::property_object & object, const string & strExpression)
       {
 
          return object.property_set_get_evaluation(strExpression);

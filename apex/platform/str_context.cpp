@@ -188,10 +188,10 @@ namespace apex
    }
 
 
-   ::e_status str::initialize(::layered * pobjectContext)
+   ::e_status str::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -206,7 +206,7 @@ namespace apex
 
 #endif
 
-      auto strMain = Context.dir().install() / "app/_appmatter/main";
+      auto strMain = get_context()->dir().install() / "app/_appmatter/main";
 
       if (!load(strMain))
       {
@@ -229,21 +229,21 @@ namespace apex
 //
 //      string strMain = pszBaseDir;
 //
-//      ::file::listing locales(get_object());
+//      ::file::listing locales(this);
 //
 //      locales.ignore(".svn").ls_dir(strMain);
 //
 //      for(auto & locale : locales)
 //      {
 //
-//         ::file::listing schemas(get_object());
+//         ::file::listing schemas(this);
 //
 //         schemas.ignore(".svn").ls_dir(locale);
 //
 //         for(auto & schema : schemas)
 //         {
 //
-//            ::file::listing listing(get_object());
+//            ::file::listing listing(this);
 //
 //            listing.ignore(".svn").rls_file(schema / "uistr");
 //
@@ -635,7 +635,7 @@ namespace apex
 
       memory mem;
 
-      Context.file().as_memory(pszFilePath,mem);
+      get_context()->file().as_memory(pszFilePath,mem);
 
 
       strsize len;
@@ -1061,7 +1061,9 @@ end:
 
          string_array straResult;
 
-         auto pregex = ::apex::get_system()->create_regular_expression("pcre", strExp);
+         __pointer(::apex::system) psystem = get_system();
+
+         auto pregex = psystem->create_regular_expression("pcre", strExp);
 
          if(pregex->matches(straResult, psz) > 0)
          {

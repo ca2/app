@@ -69,7 +69,7 @@ namespace windowing
 //#include "message_box.h"
 
 
-#include "cursor_set.h"
+#include "cursor_manager.h"
 
 #include "windowing.h"
 

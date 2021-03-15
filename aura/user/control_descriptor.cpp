@@ -78,10 +78,10 @@
 //            //if (pinteraction)
 //            //{
 //
-//            //   if (::is_null(get_context_object()))
+//            //   if (::is_null(this))
 //            //   {
 //
-//            //      set_context_object(pinteraction);
+//            //      set_object(pinteraction);
 //
 //            //   }
 //
@@ -109,10 +109,10 @@
 //            //if (playout)
 //            //{
 //
-//            //   if (::is_null(get_context_object()))
+//            //   if (::is_null(this))
 //            //   {
 //
-//            //      set_context_object(playout->get_context_object());
+//            //      set_object(playout->this);
 //
 //            //   }
 //
@@ -120,10 +120,10 @@
 //
 //            //}
 //
-//            //if (::is_null(get_context_object()))
+//            //if (::is_null(this))
 //            //{
 //
-//            //   set_context_object(argument.cast < ::object > ());
+//            //   set_object(argument.cast < ::object > ());
 //
 //            //}
 //

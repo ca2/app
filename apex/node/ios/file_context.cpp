@@ -21,10 +21,10 @@ namespace ios
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::context_object * pcontextobject)
    {
       
-      auto estatus = ::file_context::initialize(pobjectContext);
+      auto estatus = ::file_context::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -46,7 +46,7 @@ namespace ios
       if(::apex::get_system()->has_property("user_folder_relative_path"))
       {
 
-         strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();
+         strUserFolderShift = strRelative / get_application()->payload("user_folder_relative_path").get_string();
 
       }
       else

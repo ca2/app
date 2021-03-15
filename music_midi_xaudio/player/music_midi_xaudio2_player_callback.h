@@ -27,7 +27,7 @@ namespace music
                friend class window;
                window m_wnd;
 
-               callback(::layered * pobjectContext);
+               callback(::context_object * pcontextobject);
                virtual ~callback();
 
                virtual bool initialize();

@@ -50,10 +50,14 @@ namespace user
       virtual ~user();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
+      inline ::aura::application* get_application();
+      inline ::aura::session * get_session();
+      inline ::aura::system* get_system();
+      
 
       virtual ::user::interaction * interaction(oswindow oswindow);
 

@@ -9,7 +9,7 @@ namespace colorertake5
    const i32 StyledRegion::RD_UNDERLINE = 4;
    const i32 StyledRegion::RD_STRIKEOUT = 8;
 
-   StyledHRDMapper::StyledHRDMapper(::layered * pobjectContext) :
+   StyledHRDMapper::StyledHRDMapper(::context_object * pcontextobject) :
       object(pobject),
       RegionMapperImpl(pobject)
    {
@@ -32,7 +32,7 @@ namespace colorertake5
 
       istream >> str;
 
-      xml::document hbasedoc(get_context_application());
+      xml::document hbasedoc(get_application());
 
       if(!hbasedoc.load(str))
       {

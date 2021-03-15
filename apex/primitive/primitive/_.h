@@ -59,7 +59,7 @@
 //
 //
 ////    virtual __pointer(::object) running(const char * pszTag) const;
-////    virtual bool running(::layered * pobjectContext) const;
+////    virtual bool running(::context_object * pcontextobject) const;
 //
 //
 ////    friend class object;

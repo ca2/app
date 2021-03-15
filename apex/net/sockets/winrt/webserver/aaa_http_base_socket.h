@@ -12,7 +12,7 @@ namespace sockets
    public:
 
 
-      http_base_socket(base_socket_handler& h);
+      http_base_socket();
       ~http_base_socket();
 
 

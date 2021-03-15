@@ -25,7 +25,7 @@ namespace user
       virtual ~menu_central();
 
 
-      void defer_initialize();
+      virtual void defer_initialize();
 
 
       __pointer(::image_list) MenuV033GetImageList();
@@ -34,7 +34,7 @@ namespace user
       __pointer(::image_list) MenuV033GetImageListHueLight();
 
 
-      bool MenuV033AddImageMap(::layered * pobjectContext, ::xml::node * pnode);
+      bool MenuV033AddImageMap(::object * pobject, ::xml::node * pnode);
       
 
       int command_image(id id);

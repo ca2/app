@@ -32,7 +32,7 @@ void simple_frame_window::defer_set_icon()
 
       }
 
-      auto d = Application.image().load_image("matter://icon.png");
+      auto d = papplication->image().load_image("matter://icon.png");
 
       //if(d.load_matter_icon(straMatter, "icon.png"))
       //{

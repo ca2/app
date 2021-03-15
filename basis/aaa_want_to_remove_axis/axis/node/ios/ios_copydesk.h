@@ -11,7 +11,7 @@ namespace ios
    public:
 
 
-      copydesk(::layered * pobjectContext);
+      copydesk(::context_object * pcontextobject);
       virtual ~copydesk();
 
 

@@ -15,7 +15,7 @@ namespace hellobase
 {
 
 
-   render::render(::layered * pobjectContext) :
+   render::render(::context_object * pcontextobject) :
       object(pobject),
       thread(pobject),
       helloaura::render(pobject),
@@ -142,9 +142,9 @@ namespace hellobase
 
       return ::helloaxis::render::initialize_render(strId);
 
-      ////      ::database::client::initialize_data_client(&Application.dataserver());
+      ////      ::database::client::initialize_data_client(&papplication->dataserver());
 
-      //if (Application.m_strAppId == "app-core/flag")
+      //if (papplication->m_strAppId == "app-core/flag")
       //{
 
       //   m_bilboa.add(bilbo("matter://cat.gif"));
@@ -221,7 +221,7 @@ namespace hellobase
 
       //index iFrameId;
 
-      //while (thread_get_run())
+      //while (task_get_run())
       //{
 
       //   try
@@ -495,7 +495,7 @@ namespace hellobase
 //
 //                  m_pimage->map();
 //
-/*                  System->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
 //
 //                  m_pimage->blur();
 //
@@ -568,7 +568,7 @@ namespace hellobase
 //
 //      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//      System->imaging().bitmap_blend(pgraphics,
+//      psystem->imaging().bitmap_blend(pgraphics,
 //                                             point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
 //                                             , m_pimageTemplate2->m_size,
 //                                             m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
@@ -848,12 +848,12 @@ namespace hellobase
 //      }
 //
 //#if 0
-//      if (Application.m_iErrorAiFont == 0)
+//      if (papplication->m_iErrorAiFont == 0)
 //      {
 //
-//         synchronization_lock slAiFont(&Application.m_mutexAiFont);
+//         synchronization_lock slAiFont(&papplication->m_mutexAiFont);
 //
-//         FT_Face & face = (FT_Face &)Application.m_faceAi;
+//         FT_Face & face = (FT_Face &)papplication->m_faceAi;
 //
 //         i32 error;
 //
@@ -1055,7 +1055,7 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
 
       //            }
 
@@ -1073,7 +1073,7 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
 
       //            }
 
@@ -1106,7 +1106,7 @@ namespace hellobase
 
       //}
 
-      //if (Application.m_etype == application::type_mili)
+      //if (papplication->m_etype == application::type_mili)
       //{
 
       //   {
@@ -1250,9 +1250,9 @@ namespace hellobase
 
       //   uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
-/*      //   System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
+/*      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
-      //   System->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
+      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
 
       //}
       //else
@@ -1282,7 +1282,7 @@ namespace hellobase
 
    //      pimage->m_eload = ::draw2d::load_going_to_load;
 
-   //      ::fork(get_context_application(), [=]()
+   //      ::fork(get_application(), [=]()
    //      {
 
    //         if (!m_mapDib23[strImage].load_image(strImage, true, true))

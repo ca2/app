@@ -38,7 +38,7 @@ public:
    virtual ~simple_frame_window();
 
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
@@ -88,7 +88,7 @@ public:
    virtual void show_control_bars(const ::e_display & edisplay = e_display_normal, bool bLeaveFullScreenBarsOnHide = false);
 
    virtual bool _001OnBeforeAppearance() override;
-   virtual bool initialize_frame_window_experience() override;
+   virtual ::e_status initialize_frame_window_experience() override;
 
 
    virtual void _001OnAfterAppearance() override;

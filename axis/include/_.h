@@ -37,9 +37,9 @@ namespace axis
    class system;
    class session;
    class application;
+   class user;
 
-
-   inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
+   //inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
 
 
 } // namespace axis

@@ -8,13 +8,13 @@ namespace sockets
 {
 
 
-   http_tunnel::http_tunnel(base_socket_handler & h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h)
+   http_tunnel::http_tunnel() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h)
    {
 
       SetLineProtocol();

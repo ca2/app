@@ -113,13 +113,13 @@ namespace file
          if(bRecursive)
          {
 
-            Context.dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
+            get_context()->dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
          else
          {
 
-            Context.dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
+            get_context()->dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
 
@@ -211,7 +211,7 @@ namespace file
    bool set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      if (!Context.os().initialize_wallpaper_fileset(this, bAddSearch))
+      if (!get_context()->os().initialize_wallpaper_fileset(this, bAddSearch))
       {
 
          return false;
@@ -226,14 +226,14 @@ namespace file
          if (!bAddSearch)
          {
 
-            Context.os().initialize_wallpaper_fileset(this, true);
+            get_context()->os().initialize_wallpaper_fileset(this, true);
 
             ::file::set::refresh();
 
             if (m_listing.is_empty())
             {
 
-               Context.os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
+               get_context()->os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

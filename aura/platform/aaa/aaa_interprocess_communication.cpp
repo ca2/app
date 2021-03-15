@@ -126,7 +126,7 @@ namespace aura
    void interprocess_communication::call::exclude_this_app()
    {
 
-      m_iaExclude.add(Context.os().get_pid());
+      m_iaExclude.add(pcontext->os().get_pid());
 
    }
 
@@ -249,10 +249,10 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::initialize(::layered * pobjectContext)
+   ::e_status interprocess_communication::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -274,9 +274,9 @@ namespace aura
 
       }
 
-      int iPid = Context.os().get_pid();
+      int iPid = pcontext->os().get_pid();
 
-      //defer_add_module(Context.file().module(), iPid);
+      //defer_add_module(pcontext->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -361,7 +361,7 @@ namespace aura
 
             int iSubStep;
 
-            while(iStep < 8 && ::thread_get_run())
+            while(iStep < 8 && ::task_get_run())
             {
 
                iStep++;
@@ -375,7 +375,7 @@ namespace aura
 
                }
 
-               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
+               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::task_get_run(); iSubStep++)
                {
 
                   sleep(100_ms);
@@ -729,7 +729,7 @@ started:
          else if(strMember == "on_additional_local_instance")
          {
 
-            payload["continue"] = Application.on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
+            payload["continue"] = papplication->on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
 
          }
          else if (strMember == "on_new_instance")
@@ -749,7 +749,7 @@ started:
 
       defer_add_module(strModule, idPid);
 
-      Application.on_new_instance(strModule, idPid);
+      papplication->on_new_instance(strModule, idPid);
 
    }
 
@@ -946,7 +946,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = Context.file().module();
+      ::file::path pathThisModule = pcontext->file().module();
 
       string strItem;
 
@@ -967,7 +967,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      Context.file().put_contents(pathModule,strModuleList);
+      pcontext->file().put_contents(pathModule,strModuleList);
 
 #endif
 

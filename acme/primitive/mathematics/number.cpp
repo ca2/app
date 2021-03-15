@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "number.h"
 
-namespace math
+namespace mathematics
 {
 
 
@@ -16,4 +16,4 @@ namespace math
    }
 
 
-} // namespace math
+} // namespace mathematics

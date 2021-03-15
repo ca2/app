@@ -539,12 +539,25 @@ typedef struct _AppIndicator AppIndicator;
 #include "user.h"
 
 
-#undef Usr
-#define Usr(pobject) (Sess(pobject)->user()->m_pbaseuser)
 
 
 #include "_impl.h"
 
+
+
+namespace base
+{
+
+
+   inline ::base::user* session::user() const
+   { 
+      
+      return m_puser ? m_puser.cast < ::base::user >() : nullptr; 
+   
+   }
+
+
+} // namespace base
 
 
 

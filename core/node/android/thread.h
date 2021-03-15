@@ -10,7 +10,7 @@
 //   public:
 //
 //
-//      thread(::layered * pobjectContext);
+//      thread(::context_object * pcontextobject);
 //      virtual ~thread();
 //
 //

@@ -499,7 +499,7 @@ namespace linux
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -705,7 +705,7 @@ namespace linux
 
    }
 
-   bool os_context::create_service(::layered * pobjectContext)
+   bool os_context::create_service(::context_object * pcontextobject)
    {
 
       //__throw(error_not_implemented);
@@ -758,7 +758,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::layered * pobjectContext)
+   bool os_context::remove_service(::context_object * pcontextobject)
    {
 //      __throw(error_not_implemented);
       return false;
@@ -799,7 +799,7 @@ namespace linux
       */
    }
 
-   bool os_context::start_service(::layered * pobjectContext)
+   bool os_context::start_service(::context_object * pcontextobject)
    {
       //__throw(error_not_implemented);
       return false;
@@ -840,7 +840,7 @@ namespace linux
             */
    }
 
-   bool os_context::stop_service(::layered * pobjectContext)
+   bool os_context::stop_service(::context_object * pcontextobject)
    {
       __throw(error_not_implemented);
       return false;
@@ -950,7 +950,7 @@ namespace linux
    //
    //#elif defined(MACos_context)
    //   //string strDir;
-   //   //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+   //   //strDir = get_context()->dir().path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";
@@ -1019,7 +1019,7 @@ namespace linux
    bool os_context::file_open(::file::path strTarget, string strParams, string strFolder)
    {
 
-      strTarget = Context.defer_process_path(strTarget);
+      strTarget = get_context()->defer_process_path(strTarget);
 
       if(linux_can_exec(strTarget))
       {

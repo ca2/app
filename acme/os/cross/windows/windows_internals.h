@@ -1173,7 +1173,7 @@ typedef struct _RTL_RWLOCK
    PVOID pDebugInfo;
 } RTL_RWLOCK, *LPRTL_RWLOCK;
 
-/* System Information Class 0x00 */
+/* ::acme::get_system() Information Class 0x00 */
 
 typedef struct _SYSTEM_BASIC_INFORMATION
 {
@@ -1196,7 +1196,7 @@ typedef struct _SYSTEM_BASIC_INFORMATION
 #endif
 } SYSTEM_BASIC_INFORMATION, *PSYSTEM_BASIC_INFORMATION;
 
-/* System Information Class 0x01 */
+/* ::acme::get_system() Information Class 0x01 */
 
 typedef struct _SYSTEM_CPU_INFORMATION
 {
@@ -1227,7 +1227,7 @@ typedef struct _SYSTEM_CPU_INFORMATION
 #define CPU_FEATURE_DS     0x00020000   /* Debug Store */
 #define CPU_FEATURE_HTT    0x00040000   /* Hyper Threading Technology */
 
-/* System Information Class 0x02 */
+/* ::acme::get_system() Information Class 0x02 */
 
 /* Documented in "Windows NT/2000 Native API Reference" by Gary Nebbett. */
 typedef struct _SYSTEM_PERFORMANCE_INFORMATION
@@ -1307,7 +1307,7 @@ typedef struct _SYSTEM_PERFORMANCE_INFORMATION
    WINULONG SystemCalls;
 } SYSTEM_PERFORMANCE_INFORMATION, *PSYSTEM_PERFORMANCE_INFORMATION;
 
-/* System Information Class 0x03 */
+/* ::acme::get_system() Information Class 0x03 */
 
 typedef struct _SYSTEM_TIMEOFDAY_INFORMATION
 {
@@ -1322,7 +1322,7 @@ typedef struct _SYSTEM_TIMEOFDAY_INFORMATION
 #endif
 } SYSTEM_TIMEOFDAY_INFORMATION, *PSYSTEM_TIMEOFDAY_INFORMATION; /* was SYSTEM_TIME_INFORMATION */
 
-/* System Information Class 0x08 */
+/* ::acme::get_system() Information Class 0x08 */
 
 typedef struct _SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION
 {
@@ -1333,7 +1333,7 @@ typedef struct _SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION
    WINULONG Reserved2;
 } SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION, *PSYSTEM_PROCESSOR_PERFORMANCE_INFORMATION;
 
-/* System Information Class 0x0b */
+/* ::acme::get_system() Information Class 0x0b */
 
 typedef struct _SYSTEM_DRIVER_INFORMATION
 {
@@ -1345,7 +1345,7 @@ typedef struct _SYSTEM_DRIVER_INFORMATION
    char szName[MAX_PATH + 1];
 } SYSTEM_DRIVER_INFORMATION, *PSYSTEM_DRIVER_INFORMATION;
 
-/* System Information Class 0x10 */
+/* ::acme::get_system() Information Class 0x10 */
 
 typedef struct _SYSTEM_HANDLE_ENTRY
 {
@@ -1363,7 +1363,7 @@ typedef struct _SYSTEM_HANDLE_INFORMATION
    SYSTEM_HANDLE_ENTRY Handle[1];
 } SYSTEM_HANDLE_INFORMATION, *PSYSTEM_HANDLE_INFORMATION;
 
-/* System Information Class 0x15 */
+/* ::acme::get_system() Information Class 0x15 */
 
 typedef struct _SYSTEM_CACHE_INFORMATION
 {
@@ -1377,7 +1377,7 @@ typedef struct _SYSTEM_CACHE_INFORMATION
 #endif
 } SYSTEM_CACHE_INFORMATION, *PSYSTEM_CACHE_INFORMATION;
 
-/* System Information Class 0x17 */
+/* ::acme::get_system() Information Class 0x17 */
 
 typedef struct _SYSTEM_INTERRUPT_INFORMATION
 {
@@ -1424,7 +1424,7 @@ typedef struct _SYSTEM_KERNEL_DEBUGGER_INFORMATION
    int_bool DebuggerNotPresent;
 } SYSTEM_KERNEL_DEBUGGER_INFORMATION, *PSYSTEM_KERNEL_DEBUGGER_INFORMATION;
 
-/* System Information Class 0x05 */
+/* ::acme::get_system() Information Class 0x05 */
 
 typedef struct _VM_COUNTERS_
 {
@@ -1685,7 +1685,7 @@ typedef struct _RTL_HANDLE_TABLE
 #define FILE_OVERWRITE_IF               5
 #define FILE_MAXIMUM_DISPOSITION        5
 
-/* Characteristics of a File System */
+/* Characteristics of a File ::acme::get_system() */
 #define FILE_REMOVABLE_MEDIA            0x00000001
 #define FILE_READ_ONLY_DEVICE           0x00000002
 #define FILE_FLOPPY_DISKETTE            0x00000004

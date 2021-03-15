@@ -144,7 +144,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   ::e_status  CLASS_DECL_AXIS credentials::interactive_credentials()
+   ::e_status CLASS_DECL_AXIS credentials::interactive_credentials()
    {
 
       m_estatus = error_none;
@@ -169,7 +169,9 @@ namespace account
 
       }
 
-      Application.interactive_credentials(this);
+      __pointer(::axis::application) papplication = get_application();
+
+      papplication->interactive_credentials(this);
 
       return m_estatus;
 
@@ -235,8 +237,10 @@ namespace account
 
          }
 
+         __pointer(::axis::system) psystem = get_system();
+
          bool bBadUser = strUser.is_empty()
-            || !System->email().is_valid_public_address(strUser);
+            || !psystem->email().is_valid_public_address(strUser);
 
          bool bBadHash = strHash.get_length() < 80
             || strOlen.is_empty()
@@ -429,7 +433,9 @@ namespace account
 
       get_mod(straHash,straSource);
 
-      m_strModHash = System->crypto().md5(straHash.implode(";"));
+      __pointer(::axis::system) psystem = get_system();
+
+      m_strModHash = psystem->crypto().md5(straHash.implode(";"));
 
       return m_strModHash;
 
@@ -494,10 +500,12 @@ namespace account
 
       set["post"]["source"] = straHash.implode(";");
 
+      auto pcontext = get_context();
+
       for(i32 i = 0; i < 3; i++)
       {
 
-         if(Context.http().get(strUrl,strResponse,set))
+         if(pcontext->http().get(strUrl,strResponse,set))
          {
 
             break;

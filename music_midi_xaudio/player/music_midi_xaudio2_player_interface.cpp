@@ -17,7 +17,7 @@ namespace music
          {
 
 
-            player_interface::player_interface(::layered * pobjectContext) :
+            player_interface::player_interface(::context_object * pcontextobject) :
                ::object(pobject),
                callback(pobject),
                ::music::midi::player::player_interface(pobject)
@@ -59,14 +59,14 @@ namespace music
                try
                {
                   m_pmidiplayer = dynamic_cast < ::music::midi::player::player * > (__begin_thread < player >(
-                                  get_context_application(),
+                                  get_application(),
                                   ::aura::scheduling_priority_normal,
                                   0,
                                   CREATE_SUSPENDED));
                }
                catch(memory_exception *pe)
                {
-                  System->message_box(nullptr, _T("No memory to perform this operation." ));
+                  psystem->message_box(nullptr, _T("No memory to perform this operation." ));
                   ::exception_pointer esp(pe);
                   return false;
                }

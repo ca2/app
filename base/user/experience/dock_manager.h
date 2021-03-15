@@ -26,8 +26,11 @@ namespace experience
       int                                 m_iConsiderDockMove;
 
 
-      dock_manager(::experience::frame_window * pframewindow);
+      dock_manager();
       virtual ~dock_manager();
+
+
+      virtual ::e_status initialize_dock_manager(::experience::frame_window* pframewindow);
 
 
       DECL_GEN_SIGNAL(dock_button_on_message_left_button_down);

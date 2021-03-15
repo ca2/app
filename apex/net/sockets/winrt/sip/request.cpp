@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   request::request(::layered * pobjectContext) :
+   request::request(::context_object * pcontextobject) :
       ::object(pobject),
       transaction(pobject),
       m_file(pobject),
@@ -15,11 +15,11 @@ namespace sip
 
 
    request::request(const request& src) :
-   ::object(((request&) src).get_context_application()),
+   ::object(((request&) src).get_application()),
    transaction(src),
    m_null(src.m_null),
-   m_file(((request&) src).get_context_application()),
-   m_form(((request&) src).get_context_application())
+   m_file(((request&) src).get_application()),
+   m_form(((request&) src).get_application())
    {
       m_file = src.m_file;
    }

@@ -6,8 +6,8 @@ namespace sockets
 {
 
 
-   http_base_socket::http_base_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   http_base_socket::http_base_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -258,7 +258,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, Context.file().get_reader(response().m_strFile));
+               compress.gz(pfile, get_context()->file().get_reader(response().m_strFile));
 
                response().m_strFile.Empty();
 

@@ -7,13 +7,13 @@ namespace sockets
 {
 
 
-   http_debug_socket::http_debug_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
+   http_debug_socket::http_debug_socket() :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
       m_content_length(-1),
       m_read_ptr(0)
    {

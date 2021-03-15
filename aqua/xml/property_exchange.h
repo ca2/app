@@ -16,7 +16,7 @@ namespace xml
       property_set * m_ppropertyset;
 
 
-      property_set_exchange(::layered * pobjectContext);
+      property_set_exchange(::context_object * pcontextobject);
       virtual ~property_set_exchange();
 
 

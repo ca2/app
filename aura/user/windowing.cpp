@@ -6,7 +6,7 @@
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc);
+//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC puserinteractionproc);
 //
 //
 //CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure();
@@ -170,14 +170,14 @@ namespace user
 //
 //   {
 //
-//      synchronization_lock slSystem(::aura::get_system()->mutex());
+//      synchronization_lock slSystem(psystem->mutex());
 //
-//      if (::aura::get_system()->m_pwindowmap->m_map.remove_key(oswindow))
+//      if (psystem->m_pwindowmap->m_map.remove_key(oswindow))
 //      {
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("::aura::get_system()->m_pwindowmap removed oswindow");
+//         ::output_debug_string("psystem->m_pwindowmap removed oswindow");
 //
 //#endif
 //

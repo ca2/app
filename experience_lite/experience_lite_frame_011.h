@@ -22,7 +22,7 @@
             public:
 
 
-               frame_011(::layered * pobjectContext);
+               frame_011(::context_object * pcontextobject);
                virtual ~frame_011();
 
 

@@ -157,7 +157,7 @@ namespace user
 //
 //         ::file::path path = pathFolder / (strNotifyIcon + "_128.png");
 //
-//         path = Context.defer_process_path(path);
+//         path = pcontext->defer_process_path(path);
 //
 //         pathFolder = path.folder();
 //
@@ -228,11 +228,11 @@ namespace user
 //
 //      string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
 //
-//      strFile = Context.dir().appdata() / strFolder / strFile;
+//      strFile = pcontext->dir().appdata() / strFolder / strFile;
 //
 //      int iRetry = 3;
 //
-//      while(iRetry >= 0 && (!Context.file().exists(strFile) || Context.file().length(strFile) <= 0))
+//      while(iRetry >= 0 && (!pcontext->file().exists(strFile) || pcontext->file().length(strFile) <= 0))
 //      {
 //
 //         ::property_set set;
@@ -240,7 +240,7 @@ namespace user
 //         set["raw_http"] = true;
 //         set["disable_common_name_cert_check"] = true;
 //
-//         Context.http().download(strUrl, strFile, set);
+//         pcontext->http().download(strUrl, strFile, set);
 //
 //         iRetry--;
 //
@@ -248,7 +248,7 @@ namespace user
 
       string strFile;
 
-      strFile = Context.defer_process_matter_path("matter://main/menubar-icon-22.png");
+      strFile = pcontext->defer_process_matter_path("matter://main/menubar-icon-22.png");
 
       notify_icon_init(strFile);
 
@@ -309,10 +309,10 @@ namespace user
    }
 
 
-   void notify_icon::AddHiddenWindow(__pointer(::user::interaction) pwnd)
+   void notify_icon::AddHiddenWindow(__pointer(::user::interaction) puserinteraction)
    {
 
-      m_wndptraHidden.add_unique(pwnd);
+      m_wndptraHidden.add_unique(puserinteraction);
 
    }
 

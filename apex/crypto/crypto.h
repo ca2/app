@@ -14,7 +14,6 @@ namespace crypto
    public:
 
 
-
       // salt here may be dangerous for the universe
 
 

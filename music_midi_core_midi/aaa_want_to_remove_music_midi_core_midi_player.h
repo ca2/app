@@ -22,7 +22,7 @@ namespace music
          public:
 
 
-            player(::layered * pobjectContext);
+            player(::context_object * pcontextobject);
             virtual ~player();
 
 

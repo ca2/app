@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view(::layered * pobjectContext):
+   plain_edit_view::plain_edit_view(::context_object * pcontextobject):
       object(pobject),
       ::user::interaction(pobject),
       ::user::plain_edit(pobject)
@@ -39,7 +39,7 @@ namespace calculator
             _001GetText(strExp);
 
 
-            parser parser(get_object());
+            parser parser(this);
 
             error e;
 

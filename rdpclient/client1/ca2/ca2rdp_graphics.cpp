@@ -44,7 +44,7 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 
    ::draw2d::image_pointer * dib = ::cursor_get_dib(ca2rdp_pointer->m_pcursor);
 
-   //.m_pimage->alloc(((ca2rdpContext*)context)->get_context_application()->create_new, this);
+   //.m_pimage->alloc(((ca2rdpContext*)context)->get_application()->create_new, this);
    ::draw2d::image_create(dib, ca2rdp_pointer->pointer.width,ca2rdp_pointer->pointer.height);
 
    if ((pointer->andMaskData != 0) && (pointer->xorMaskData != 0))

@@ -145,9 +145,9 @@ namespace user
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_config_fps(double dConfigFps) override;
-      virtual double get_config_fps() override;
-      virtual double get_output_fps() override;
+      virtual void set_config_fps(double dConfigFps);
+      virtual double get_config_fps();
+      virtual double get_output_fps();
 
       void user_common_construct();
 
@@ -209,7 +209,11 @@ namespace user
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
 
-      virtual void mouse_hover_add(::user::interaction * pinterface) override;
+      virtual ::e_status set_icon(::windowing::icon* picon);
+      virtual __pointer(::windowing::icon) get_icon() const;
+
+
+      virtual bool mouse_hover_add(::user::interaction * pinterface) override;
       virtual bool mouse_hover_remove(::user::interaction * pinterface) override;
 
 
@@ -313,7 +317,7 @@ namespace user
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rectangle_i32 adjustment hooks
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
@@ -372,16 +376,16 @@ namespace user
       //virtual bool BringWindowToTop() override;
 
 //#ifdef WINDOWS_DESKTOP
-//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 //
-//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 //
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl* pwndTo,POINT_I32 * pPoint,::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,POINT_I32 * pPoint,::u32 nCount);
 
-      virtual void MapWindowPoints(::user::interaction_impl* pwndTo,RECTANGLE_I32 * prectangle);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,RECTANGLE_I32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
@@ -391,17 +395,17 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true) override;
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
       virtual void Invalidate(bool bErase = true) override;
-      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
+      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
-      virtual void ValidateRect(const ::rectangle_i32 & rectangle) override;
+      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
+      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
 
-      virtual void ValidateRgn(::draw2d::region* pRgn) override;
+      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
       //virtual bool _is_window_visible() override;
-      virtual void ShowOwnedPopups(bool bShow = true) override;
+      virtual void ShowOwnedPopups(bool bShow = true);
 
       //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual bool LockWindowUpdate();
@@ -435,7 +439,7 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor) override;
+      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
       virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
@@ -616,7 +620,7 @@ namespace user
 
 
       virtual bool HandleFloatingSysCommand(::u32 nID,lparam lParam);
-      virtual bool IsTopParentActive() override;
+      virtual bool IsTopParentActive();
       virtual void ActivateTopParent() override;
       virtual void on_final_release();
 
@@ -648,7 +652,7 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
       //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual interaction_impl * get_impl() const override;
+      virtual interaction_impl * get_impl() const;
 
       virtual void _001UpdateWindow() override;
 
@@ -668,14 +672,15 @@ namespace user
 
       //virtual void set_handle(::windowing::window * pwindow);
       
-      virtual oswindow get_oswindow() const override;
+      virtual oswindow get_oswindow() const;
 
-      virtual ::graphics::graphics * get_window_graphics() override;
+      virtual ::graphics::graphics * get_window_graphics();
 
-      virtual bool is_composite() override;
+      
+      virtual bool is_composite();
 
 
-      virtual ::e_status set_finish(::context_object * pcontextobject) override;
+      virtual ::e_status set_finish(::context_object * pcontextobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -766,7 +771,7 @@ namespace user
       ::user::interaction * m_puiForward;
 
 
-      guie_message_wnd(::layered * pobjectContext);
+      guie_message_wnd(::property_object * pcontextobject);
 
 
       virtual void message_handler(::message::message * pusermessage);

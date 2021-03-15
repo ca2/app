@@ -62,11 +62,10 @@ namespace apex
       //__composite(class ::account::user_set)             m_puserset;
 
       __composite_array(service_base)                    m_serviceptra;
-      __composite(class ::xml::department)               m_pxml;
       __composite(class ::apex::log)                     m_ptrace;
 
       // apex commented
-      __composite(math::math)                            m_pmath;
+      //__composite(math::math)                            m_pmath;
 
       __composite(geometry::geometry)                    m_pgeometry;
 
@@ -156,11 +155,8 @@ namespace apex
 
 
 
-      critical_section                                   m_csEnumText;
-      string_map < i64_map < string > >                  m_mapEnumToText;
-      string_map < string_map < i64 > >                  m_mapTextToEnum;
-      thread_group_map                                   m_threadgroupmap;
-      thread_tool_map                                    m_threadtoolmap;
+      task_group_map                                   m_taskgroupmap;
+      task_tool_map                                    m_tasktoolmap;
 
 
       //stridsp(type)                                      m_typemap;
@@ -242,7 +238,31 @@ namespace apex
 
       void common_construct();
 
-      virtual ::e_status  initialize(::layered * pobjectContext) override;
+      virtual ::e_status  initialize(::context_object * pcontextobject) override;
+
+
+      virtual void system_construct(int argc, char** argv, char** envp);
+      virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
+
+
+#ifdef WINDOWS_DESKTOP
+
+      ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
+
+#elif defined(_UWP)
+
+      ::e_status system_construct(Array < String^ >^ refstra);
+
+#else
+
+      ::e_status system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+      ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
+
+#endif
+
+
+      virtual ::apex::application* get_main_application() override;
+
 
       virtual ::e_status init();
       //virtual ::e_status init_instance() override;
@@ -263,17 +283,28 @@ namespace apex
 
       virtual string get_application_server_name();
 
+      virtual ::apex::library* lib(const char* psz);
+      //CLASS_DECL_APEX::apex::library* lib(const char* psz);
+      //
+      //template < typename FUNCTION >
+      //FUNCTION library_function(const char* pszLibrary)
+      //{
 
-      virtual bool thread_get_run() const override;
+      //   return lib(pszLibrary)->get<decltype(&entry)>(#entry))
+
+      //}
+
+
+      virtual bool task_get_run() const override;
 
 
       virtual ::e_status create_os_node() override;
 
 
-      //::thread * get_task(ithread_t ithread);
-      //ithread_t get_thread_id(::thread * pthread);
-      //void set_thread(ithread_t ithread, ::thread * pthread);
-      //void unset_thread(ithread_t ithread, ::thread * pthread);
+      //::thread * get_task(itask_t itask);
+      //itask_t get_thread_id(::thread * pthread);
+      //void set_thread(itask_t itask, ::thread * pthread);
+      //void unset_thread(itask_t itask, ::thread * pthread);
       //::url::department & url() { return m_urldepartment; }
 
 
@@ -282,9 +313,9 @@ namespace apex
       //virtual ::e_status create_gpu();
 
 
-      ::thread_group * thread_group(::e_priority epriority = ::priority_none);
+      //::task_group * task_group(::e_priority epriority = ::priority_none);
 
-      ::thread_tool * thread_tool(::enum_thread_tool etool);
+      //::task_tool * task_tool(::enum_task_tool etool);
 
 
       virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
@@ -309,9 +340,9 @@ namespace apex
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      inline ::apex::node * node() { return (::apex::node *) m_pnode->layer(LAYERED_APEX); }
+      //inline ::apex::node * node() { return (::apex::node *) m_pnode->layer(LAYERED_APEX); }
 
-      virtual ::layered * get_layered_window(oswindow oswindow);
+      //virtual ::layered * get_layered_window(oswindow oswindow);
 
 
       virtual ::e_status process_init();
@@ -379,7 +410,7 @@ namespace apex
 
 
 
-      //virtual string dir_appmatter_locator(::layered * pobjectContext);
+      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
 
 
       virtual void hist_hist(const char * psz);
@@ -398,10 +429,10 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize_system(::layered * pobjectContext, app_core * pappcore);
+      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
 
 
-      //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
+      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
       //thread_tools * tools(::e_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
@@ -438,9 +469,8 @@ namespace apex
       ::apex::str                                  &  str();
       ::process::department                        &  process();
 
-      using acme::system::process;
+      //using acme::system::process;
 
-      ::xml::department                            &  xml();
       class ::str::base64                          &  base64();
       class ::apex::log                            &  log();
       class ::machine_event_central                &  machine_event_central();
@@ -456,12 +486,12 @@ namespace apex
 
       virtual ::sockets::sockets & sockets() { return *m_psockets; }
 
-      math::math                                   &  math()
-      {
+      //math::math                                   &  math()
+      //{
 
-         return *m_pmath;
+      //   return *m_pmath;
 
-      }
+      //}
 
       // apex commented
       //inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
@@ -515,8 +545,8 @@ namespace apex
       }
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      virtual ::e_status browser(string strUrl, string strBrowser, string strProfile, string strTarget);
+      virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;
@@ -590,6 +620,9 @@ namespace apex
       virtual void term_thread() override;
 
 
+      //virtual void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
+
+
       virtual ::e_status thread_loop() override;
 
       //virtual ::e_status init();
@@ -618,14 +651,6 @@ namespace apex
 
 
 
-
-      static inline ::id id(const ::std::type_info & info);
-      static inline ::id id(const char * psz);
-      static inline ::id id(const string & str);
-      static inline ::id id(i64 i);
-      static inline ::id_space & id();
-      inline ::id id(const ::payload & payload);
-      inline ::id id(const property & prop);
 
 
       virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args);
@@ -796,7 +821,7 @@ namespace apex
 
 
 
-      //virtual ::e_status  initialize_system(::object* pobjectContext, app_core* pappcore) override;
+      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
 
       virtual void discard_to_factory(__pointer(object) pca);
 
@@ -954,7 +979,7 @@ namespace apex
       //virtual ~system();
 
 
-      ///virtual ::e_status initialize_system(::object* pobjectContext, app_core* pappcore) override;
+      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
 
 
       //virtual ::e_status process_init() override;
@@ -972,6 +997,11 @@ namespace apex
       //virtual int install_canvas_increment_mode() override;
 
 
+      virtual bool do_events();
+
+
+      void post_quit_to_all_threads();
+      void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
 
       //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 
@@ -994,8 +1024,10 @@ namespace apex
 
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
+      virtual int console_end(::e_status estatus);
 
-      virtual __pointer(::extended::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::context_object * pcontextobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    };
@@ -1022,83 +1054,11 @@ namespace apex
 CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 
-template < typename ENUM >
-inline void set_enum_text(ENUM e, const char * psz)
-{
-
-   auto psystem = ::apex::get_system();
-
-   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
-
-   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
-
-   psystem->m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
-
-}
-
-
-template < typename ENUM >
-inline string enum_text(ENUM e)
-{
-
-   auto psystem = get_system();
-
-   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
-
-   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
-
-}
-
-
-template < class ENUM >
-inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
-{
-
-   auto * psystem = get_system();
-
-   critical_section_lock synchronizationlock(psystem->m_csEnumText);
-
-   i64 iValue;
-
-   if (psystem->m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
-   {
-
-      e = (ENUM)iValue;
-
-   }
-   else
-   {
-
-      e = eDefault;
-
-   }
-
-   return e;
-
-}
-
-
-template < class ENUM, ENUM edefault = 0>
-inline base_enum < ENUM, edefault > & text_enum(base_enum < ENUM, edefault > & b, const char * psz, ENUM eDefault = edefault)
-{
-
-   return b = text_enum(b.m_evalue, psz, eDefault);
-
-}
-
-
-template < class ENUM, ENUM edefault = 0>
-inline string enum_text(const base_enum < ENUM, edefault > & b)
-{
-
-   return enum_text(b.m_evalue, (i64)(ENUM)b);
-
-}
 
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
-#define SET_ENUM_TEXT(enum_value) set_enum_text(enum_value, TOSTRING(enum_value))
+#define SET_ENUM_TEXT(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
 
 
 //
@@ -1106,7 +1066,7 @@ inline string enum_text(const base_enum < ENUM, edefault > & b)
 //inline ::traits & traits(::context_object * p)
 //{
 //
-//   auto traits = ::apex::get_system()->m_traits[p];
+//   auto traits = psystem->m_traits[p];
 //
 //   if (traits.m_pobjectTrait != p)
 //   {

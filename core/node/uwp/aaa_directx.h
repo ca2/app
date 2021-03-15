@@ -47,10 +47,10 @@ namespace uwp
       directx_base();
 
 
-      ::aura::application * get_context_application() const
+      ::aura::application * get_application() const
       {
 
-         return get_context_application();
+         return get_application();
 
       }
 

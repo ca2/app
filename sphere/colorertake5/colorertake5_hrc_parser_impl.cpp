@@ -6,7 +6,7 @@ namespace colorertake5
 {
 
 
-   HRCParserImpl::HRCParserImpl(::layered * pobjectContext) :
+   HRCParserImpl::HRCParserImpl(::context_object * pcontextobject) :
       object(pobject),
       fileTypeHash(pobject),
       schemeHash(pobject),
@@ -60,7 +60,7 @@ namespace colorertake5
       }
       thisType->inputSourceLoading = true;
 
-      thisType->m_strSource = Context.file().as_string(thisType->m_strSourceLocation);
+      thisType->m_strSource = pcontext->file().as_string(thisType->m_strSourceLocation);
 
       try
       {
@@ -181,7 +181,7 @@ namespace colorertake5
 
    void HRCParserImpl::parseHRC(const char * psz)
    {
-      xml::document doc(get_object());
+      xml::document doc(this);
       doc.m_pparseinfo->m_chEscapeValue = '\0';
       doc.load(psz);
       if(doc.get_root() == nullptr)
@@ -296,7 +296,7 @@ namespace colorertake5
             };
             type->m_strSourceLocation = m_strCurrentSourceLocation.sibling(locationLink);
             /*type->m_strSource =
-            Context.file().as_string(
+            pcontext->file().as_string(
             type->m_strSourceLocation);*/
 
          };

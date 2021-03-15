@@ -17,7 +17,7 @@
 //      ::u32                    m_uiLastSent;
 //
 //
-//      timer_item(::layered * pobjectContext);
+//      timer_item(::context_object * pcontextobject);
 //      virtual ~timer_item();
 //
 //

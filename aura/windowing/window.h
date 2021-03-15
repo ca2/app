@@ -8,7 +8,8 @@ namespace windowing
 
 
    class CLASS_DECL_AURA window :
-      virtual public ::channel
+      virtual public ::channel,
+      virtual public osdata_array
    {
    public:
 
@@ -36,6 +37,10 @@ namespace windowing
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
+
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
 
 
       virtual void install_message_routing(::channel * pchannel);
@@ -76,7 +81,7 @@ namespace windowing
 
       virtual ::e_status show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 
-      virtual void set_user_interaction(::layered * pinteraction);
+      virtual void set_user_interaction(::user::interaction *pinteraction);
 
       virtual void post_nc_destroy();
 

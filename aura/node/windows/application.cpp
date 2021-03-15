@@ -23,7 +23,7 @@ namespace aura
    //
    //      //m_pthreadimpl->m_pthread = this;
    //
-   //      get_context_system()                    =  papp->get_context_application()->get_context_system();
+   //      get_context_system()                    =  papp->get_application()->get_context_system();
    //
    //      m_atomApp = m_atomSystemTopic    = nullptr;
    //

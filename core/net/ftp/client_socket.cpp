@@ -82,7 +82,7 @@ namespace ftp
    /// @lparam[in] uiResponseWait sleep time between receive calls to socket when getting
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
-   client_socket::client_socket(::sockets::base_socket_handler & handler,
+   client_socket::client_socket(
                                 unsigned int uiTimeout/*=10*/,
                                 unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
                                 const string& strRemoteDirectorySeparator/*="/"*/) :
@@ -878,10 +878,10 @@ namespace ftp
       //   try
       //   {
 
-      //      while (pbasesocket->Handler().contains(pbasesocket) && tickStart.elapsed() < nSeconds * 1000)
+      //      while (pbasesocket->socket_handler()->contains(pbasesocket) && tickStart.elapsed() < nSeconds * 1000)
       //      {
 
-      //         pbasesocket->Handler().select(0, 100 * 1000);
+      //         pbasesocket->socket_handler()->select(0, 100 * 1000);
 
       //      }
 
@@ -899,10 +899,10 @@ namespace ftp
       //   try
       //   {
 
-      //      while (pbasesocket2->Handler().contains(pbasesocket2) && tickStart.elapsed() < nSeconds * 1000)
+      //      while (pbasesocket2->socket_handler()->contains(pbasesocket2) && tickStart.elapsed() < nSeconds * 1000)
       //      {
 
-      //         pbasesocket2->Handler().select(0, 100 * 1000);
+      //         pbasesocket2->socket_handler()->select(0, 100 * 1000);
 
       //      }
 
@@ -984,7 +984,7 @@ namespace ftp
          string strMessage;
          strMessage.Format("could not bind to address %s %d", strIp.c_str(), iPort);
          TRACE(strMessage);
-         //System->message_box(nullptr, strMessage);
+         //psystem->message_box(nullptr, strMessage);
          return false;
       }
       m_handler.add(&sckDataConnection);

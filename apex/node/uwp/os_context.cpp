@@ -414,7 +414,7 @@ namespace uwp
             keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", get_application()->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 
@@ -476,7 +476,7 @@ namespace uwp
 
       ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
 
-      path = Context.defer_process_path(path);
+      path = get_context()->defer_process_path(path);
 
       try
       {

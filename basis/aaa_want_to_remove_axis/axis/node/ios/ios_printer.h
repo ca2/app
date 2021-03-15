@@ -21,7 +21,7 @@ namespace ios2
          HDC            m_hdc;
 
 
-         document_properties(::layered * pobjectContext);
+         document_properties(::context_object * pcontextobject);
          virtual ~document_properties();
 
 
@@ -37,7 +37,7 @@ namespace ios2
       document_properties     m_documentproperties;
 
 
-      printer(::layered * pobjectContext);
+      printer(::context_object * pcontextobject);
       virtual ~printer();
 
 

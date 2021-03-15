@@ -200,7 +200,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   }
 //
 //
-//   hold(::layered * pobjectContext)
+//   hold(::context_object * pcontextobject)
 //   {
 //
 //   }
@@ -225,7 +225,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      m_bInitialized = false;
 //
-//      ::fork(::get_context_application(), [&]()
+//      ::fork(::get_application(), [&]()
 //      {
 //
 //         try
@@ -259,7 +259,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      millis tickStart = millis::now();
 //
-//      while(pthread.is_set() && pthread->thread_get_run() && ::thread_get_run())
+//      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
 //      {
 //
 //         if(!do_events())
@@ -325,7 +325,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //         sleep(100_ms);
 //
-//         if(!::thread_get_run() || !pred())
+//         if(!::task_get_run() || !pred())
 //         {
 //
 //            break;
@@ -336,7 +336,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //   }
 //
-//   return ::thread_get_run();
+//   return ::task_get_run();
 //
 //}
 //
@@ -398,10 +398,10 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //}
 //
 //
-//inline ::thread* get_task(ithread_t idthread)
+//inline ::thread* get_task(itask_t idthread)
 //{
 //
-//   return (::thread*) ::apex::get_system()->get_task(idthread);
+//   return (::thread*) psystem->get_task(idthread);
 //
 //}
 //
@@ -409,112 +409,112 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //
 
 
-
-
-template <typename T>
-struct hold
-{
-public:
-
-   __pointer(::layered)    m_pobject;
-   T                       m_t;
-   bool                    m_bInitialized = false;
-   manual_reset_event      m_evReady;
-   string                  m_strErrorMessage;
-
-
-   void wait()
-   {
-
-      m_evReady.wait();
-
-   }
-
-   T& get()
-   {
-
-      wait();
-
-      if (m_bInitialized)
-      {
-
-         return m_t;
-
-      }
-
-      __throw(::exception::exception(m_strErrorMessage));
-
-   }
-
-   template <typename U>
-   void set_value(const U& value)
-   {
-
-      m_t = value;
-
-      m_bInitialized = true;
-
-      m_evReady.set_event();
-
-   }
-
-   void set_error_message(const string& strErrorMessage)
-   {
-
-      m_strErrorMessage = strErrorMessage;
-
-      m_evReady.set_event();
-
-   }
-
-
-   hold(::layered* pobjectContext) :
-      m_pobject(pobjectContext)
-   {
-
-   }
-
-
-   ~hold()
-   {
-
-   }
-
-
-   bool valid() const noexcept
-   {
-
-      return m_bInitialized;
-
-   }
-
-   template < typename PRED >
-   void work(PRED pred)
-   {
-
-      m_bInitialized = false;
-
-      __object(m_pobject)->fork([&]()
-         {
-
-            try
-            {
-
-               set_value(pred());
-
-            }
-            catch(const ::exception::exception & e)
-            {
-
-               set_error_message(e.get_message());
-
-            }
-
-         });
-
-   }
-
-};
+//
+//
+//template <typename T>
+//struct hold
+//{
+//public:
+//
+//   __pointer(::layered)    m_pobject;
+//   T                       m_t;
+//   bool                    m_bInitialized = false;
+//   manual_reset_event      m_evReady;
+//   string                  m_strErrorMessage;
+//
+//
+//   void wait()
+//   {
+//
+//      m_evReady.wait();
+//
+//   }
+//
+//   T& get()
+//   {
+//
+//      wait();
+//
+//      if (m_bInitialized)
+//      {
+//
+//         return m_t;
+//
+//      }
+//
+//      __throw(::exception::exception(m_strErrorMessage));
+//
+//   }
+//
+//   template <typename U>
+//   void set_value(const U& value)
+//   {
+//
+//      m_t = value;
+//
+//      m_bInitialized = true;
+//
+//      m_evReady.set_event();
+//
+//   }
+//
+//   void set_error_message(const string& strErrorMessage)
+//   {
+//
+//      m_strErrorMessage = strErrorMessage;
+//
+//      m_evReady.set_event();
+//
+//   }
+//
+//
+//   hold(::context_object * pcontextobject) :
+//      m_pobject(pobject)
+//   {
+//
+//   }
+//
+//
+//   ~hold()
+//   {
+//
+//   }
+//
+//
+//   bool valid() const noexcept
+//   {
+//
+//      return m_bInitialized;
+//
+//   }
+//
+//   template < typename PRED >
+//   void work(PRED pred)
+//   {
+//
+//      m_bInitialized = false;
+//
+//      __object(m_pobject)->fork([&]()
+//         {
+//
+//            try
+//            {
+//
+//               set_value(pred());
+//
+//            }
+//            catch(const ::exception::exception & e)
+//            {
+//
+//               set_error_message(e.get_message());
+//
+//            }
+//
+//         });
+//
+//   }
+//
+//};
 
 
 template < typename PRED >
@@ -535,21 +535,6 @@ inline ::thread_pointer object::fork(PRED pred)
 
 }
 
-
-inline ::thread_pointer object::launch(const ::routine & routine)
-{
-
-   auto pthread = __create_new < ::thread >();
-
-   pthread->m_pmatter = routine;
-
-   pthread->m_id = pthread->m_pmatter->type_name();
-
-   pthread->begin_thread();
-
-   return pthread;
-
-}
 
 
 

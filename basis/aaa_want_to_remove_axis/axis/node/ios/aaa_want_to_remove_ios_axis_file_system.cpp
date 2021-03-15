@@ -19,7 +19,7 @@ namespace ios
    {
 
 
-      file_system::file_system(::layered * pobjectContext) :
+      file_system::file_system(::context_object * pcontextobject) :
          ::object(pobject),
          ::file::system(pobject),
          ::file::axis::system(pobject),
@@ -101,7 +101,7 @@ namespace ios
 //         string_array stra;
 //         get_ascendants_name(pcsz, stra);
 //         string str;
-//         bool bUrl = System->url().is_url(pcsz);
+//         bool bUrl = psystem->url().is_url(pcsz);
 //#ifdef LINUX
 //         bool bLinux = true;
 //         str += "/";
@@ -189,20 +189,20 @@ namespace ios
 //      string file_system::time_square(::aura::application *  papp, const char * pszPrefix, const char * pszSuffix)
 //      {
 //         string str;
-//         Context.dir().time_square(str);
+//         pcontext->dir().time_square(str);
 //         return time(papp, str, 25, pszPrefix, pszSuffix);
 //      }
 //
 //      string file_system::time_log(::aura::application *  papp, const char * pszId)
 //      {
-//         return time(papp, Context.dir().time_log(pszId), 9);
+//         return time(papp, pcontext->dir().time_log(pszId), 9);
 //      }
 //
 //      string file_system::time(::aura::application *  papp, const char * psz, i32 iMaxLevel, const char * pszPrefix, const char * pszSuffix)
 //      {
 //         single_lock lockMachineEvent(
-//                                      (System->machine_event_central() != nullptr) ?
-//                                      System->machine_event_central().m_machineevent.m_mutex
+//                                      (psystem->machine_event_central() != nullptr) ?
+//                                      psystem->machine_event_central().m_machineevent.m_mutex
 //                                      : ((::mutex *) nullptr), true);
 //         i32 iIncLevel = -1;
 //         string str;
@@ -211,23 +211,23 @@ namespace ios
 //      restart:
 //         str.Empty();
 //         str = psz;
-//         Context.dir().mk(str, papp);
+//         pcontext->dir().mk(str, papp);
 //         string_array straTitle;
 //         string strFormat;
 //         for(i32 i = 1; i <= iMaxLevel;)
 //         {
-//            Context.dir().mk(str, papp);
-//            if(!Context.dir().is(str, papp))
+//            pcontext->dir().mk(str, papp);
+//            if(!pcontext->dir().is(str, papp))
 //               __throw(::exception::exception("time square dir does not exist"));
 //            straTitle.remove_all();
-//            Context.dir().ls(papp, str, nullptr, &straTitle);
+//            pcontext->dir().ls(papp, str, nullptr, &straTitle);
 //            if(i < iMaxLevel)
 //            {
 //               i32 iMax = filterex_time_square("", straTitle);
 //               if(iMax == -1)
 //               {
-//                  str = Context.dir().path(str, "00");
-//                  Context.dir().mk(str, papp);
+//                  str = pcontext->dir().path(str, "00");
+//                  pcontext->dir().mk(str, papp);
 //               }
 //               else if(iMax == 99)
 //               {
@@ -241,21 +241,21 @@ namespace ios
 //                     iMax++;
 //                  }
 //                  strFormat.Format("%02d", iMax);
-//                  str = Context.dir().path(str, strFormat);
+//                  str = pcontext->dir().path(str, strFormat);
 //                  if(i == iIncLevel)
 //                  {
-//                     Context.dir().mk(str, papp);
+//                     pcontext->dir().mk(str, papp);
 //                  }
 //               }
 //               i++;
 //            }
 //            else // if i == iMaxLevel
 //            {
-//               Context.dir().ls(papp, str, nullptr, &straTitle);
+//               pcontext->dir().ls(papp, str, nullptr, &straTitle);
 //               i32 iMax = filterex_time_square(pszPrefix, straTitle);
 //               if(iMax == -1)
 //               {
-//                  str = Context.dir().path(str, strPrefix+"00"+strSuffix);
+//                  str = pcontext->dir().path(str, strPrefix+"00"+strSuffix);
 //                  if(file_system::mk_time(str))
 //                     break;
 //               }
@@ -268,7 +268,7 @@ namespace ios
 //               {
 //                  iMax++;
 //                  strFormat.Format("%02d", iMax);
-//                  str = Context.dir().path(str, strPrefix+strFormat+strSuffix);
+//                  str = pcontext->dir().path(str, strPrefix+strFormat+strSuffix);
 //                  if(file_system::mk_time(str))
 //                     break;
 //               }
@@ -311,7 +311,7 @@ namespace ios
 //      bool file_system::mk_time(const char * lpcszCandidate)
 //      {
 //         file_pointer spfile(e_create);
-//         if(Context.file().exists(lpcszCandidate, get_context_application()))
+//         if(pcontext->file().exists(lpcszCandidate, get_application()))
 //            return false;
 //         try
 //         {
@@ -344,7 +344,7 @@ namespace ios
 //            if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
 //            {
 //               ::memory_file memfile(papp, &storage);
-//               zip::InFile infile(get_object());
+//               zip::InFile infile(this);
 //               if(!infile.unzip_open(strFilePath, 0))
 //                  return "";
 //               if(!infile.dump(&memfile))
@@ -686,10 +686,10 @@ namespace ios
 //            if(exists(pszNew, papp))
 //               __throw(::exception::exception("Failed to copy file"));
 //         }
-//         if(Context.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
+//         if(pcontext->dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
 //         {
 //            string_array straPath;
-//            Context.dir().rls(papp, psz, &straPath);
+//            pcontext->dir().rls(papp, psz, &straPath);
 //            string strDst;
 //            string strSrc;
 //            string strDirSrc(psz);
@@ -703,22 +703,22 @@ namespace ios
 //               strSrc = straPath[i];
 //               strDst = strSrc;
 //               ::str::begins_eat_ci(strDst, strDirSrc);
-//               strDst = Context.dir().path(strDirDst, strDst);
-//               if(Context.dir().is(strSrc, papp))
+//               strDst = pcontext->dir().path(strDirDst, strDst);
+//               if(pcontext->dir().is(strSrc, papp))
 //               {
 //                  if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
 //                  {
 //                  }
 //                  else
 //                  {
-//                     Context.dir().mk(strDst, papp);
+//                     pcontext->dir().mk(strDst, papp);
 //                  }
 //               }
 //               else
 //               {
-//                  if(!Context.dir().is(Context.dir().name(strDst), papp))
+//                  if(!pcontext->dir().is(pcontext->dir().name(strDst), papp))
 //                  {
-//                     Context.dir().mk(Context.dir().name(strDst), papp);
+//                     pcontext->dir().mk(pcontext->dir().name(strDst), papp);
 //                  }
 //                  copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
 //               }
@@ -729,9 +729,9 @@ namespace ios
 //
 //            string strNew;
 //
-//            if(Context.dir().is(pszNew, papp))
+//            if(pcontext->dir().is(pszNew, papp))
 //            {
-//               strNew = Context.dir().path(pszNew, name_(psz));
+//               strNew = pcontext->dir().path(pszNew, name_(psz));
 //            }
 //            else
 //            {
@@ -760,7 +760,7 @@ namespace ios
 //
 //            ::file::input_stream istream(ifile);
 //
-//            System->compress().null(ostream, istream);
+//            psystem->compress().null(ostream, istream);
 //
 //
 //
@@ -779,7 +779,7 @@ namespace ios
 //
 //            ifile->GetStatus(st);
 //
-//            Context.os().set_file_status(strNew, st);
+//            pcontext->os().set_file_status(strNew, st);
 //
 //            try
 //            {
@@ -834,10 +834,10 @@ namespace ios
 //         if(file == nullptr)
 //            __throw(::exception::exception("file::file_system::move Could not move file, could not open source file"));
 //
-//         string strDirOld     = Context.dir().name(psz);
-//         string strDirNew     = Context.dir().name(pszNew);
-//         string strNameOld    = Context.file().name_(psz);
-//         string strNameNew    = Context.file().name_(pszNew);
+//         string strDirOld     = pcontext->dir().name(psz);
+//         string strDirNew     = pcontext->dir().name(pszNew);
+//         string strNameOld    = pcontext->file().name_(psz);
+//         string strNameNew    = pcontext->file().name_(pszNew);
 //
 //         if(strDirOld == strDirNew)
 //         {
@@ -905,7 +905,7 @@ namespace ios
 //      {
 //         string strCopy("copy");
 //         string strNew;
-//         if(Context.dir().is(psz, papp))
+//         if(pcontext->dir().is(psz, papp))
 //         {
 //            i32 i = 1;
 //            while( i <= 100)
@@ -1060,16 +1060,16 @@ namespace ios
 //
 //      string file_system::paste(const char * pszLocation, const char * path, ::aura::application *  papp)
 //      {
-//         string strDir = Context.dir().name(path);
-//         string strDest = Context.dir().path(pszLocation, "");
-//         string strSrc = Context.dir().path(strDir, "");
+//         string strDir = pcontext->dir().name(path);
+//         string strDest = pcontext->dir().path(pszLocation, "");
+//         string strSrc = pcontext->dir().path(strDir, "");
 //         if(strDest == strSrc)
 //         {
 //            return copy(path, papp);
 //         }
 //         else
 //         {
-//            string strNew = Context.dir().path(strDest, name_(path));
+//            string strNew = pcontext->dir().path(strDest, name_(path));
 //            copy(strNew, path, false, extract_all, papp);
 //            return strNew;
 //         }
@@ -1081,16 +1081,16 @@ namespace ios
 //         if(stra.get_size() <= 0)
 //            return;
 //
-//         string strDir = Context.dir().trash_that_is_not_trash(stra[0]);
+//         string strDir = pcontext->dir().trash_that_is_not_trash(stra[0]);
 //
-//         Context.dir().mk(strDir, papp);
+//         pcontext->dir().mk(strDir, papp);
 //
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
 //#ifdef WINDOWS
-//            move(Context.dir().path(strDir, name_(stra[i])), stra[i]);
+//            move(pcontext->dir().path(strDir, name_(stra[i])), stra[i]);
 //#else
-//            ::rename(stra[i], Context.dir().path(strDir, name_(stra[i])));
+//            ::rename(stra[i], pcontext->dir().path(strDir, name_(stra[i])));
 //#endif
 //         }
 //
@@ -1099,15 +1099,15 @@ namespace ios
 //      void file_system::trash_that_is_not_trash(const char * psz, ::aura::application *  papp)
 //      {
 //
-//         string strDir = Context.dir().trash_that_is_not_trash(psz);
+//         string strDir = pcontext->dir().trash_that_is_not_trash(psz);
 //
-//         Context.dir().mk(strDir, papp);
+//         pcontext->dir().mk(strDir, papp);
 //
 //#ifdef WINDOWS
-//         //         ::MoveFile(psz, Context.dir().path(strDir, name_(psz)));
-//         move(Context.dir().path(strDir, name_(psz)), psz);
+//         //         ::MoveFile(psz, pcontext->dir().path(strDir, name_(psz)));
+//         move(pcontext->dir().path(strDir, name_(psz)), psz);
 //#else
-//         ::rename(psz, Context.dir().path(strDir, name_(psz)));
+//         ::rename(psz, pcontext->dir().path(strDir, name_(psz)));
 //#endif
 //
 //      }
@@ -1115,7 +1115,7 @@ namespace ios
 //      void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application *  papp)
 //      {
 //         string_array straTitle;
-//         Context.dir().ls(papp, pszContext, nullptr, &straTitle);
+//         pcontext->dir().ls(papp, pszContext, nullptr, &straTitle);
 //         string strOld;
 //         string strNew;
 //         for(i32 i = 0; i < straTitle.get_size(); i++)
@@ -1127,13 +1127,13 @@ namespace ios
 //            {
 //#ifdef WINDOWS
 //               //               ::MoveFileW(
-//               //                ::str::international::utf8_to_unicode(Context.dir().path(pszContext, strOld)),
-//               //              ::str::international::utf8_to_unicode(Context.dir().path(pszContext, strNew)));
-//               move(Context.dir().path(pszContext, strNew), Context.dir().path(pszContext, strOld));
+//               //                ::str::international::utf8_to_unicode(pcontext->dir().path(pszContext, strOld)),
+//               //              ::str::international::utf8_to_unicode(pcontext->dir().path(pszContext, strNew)));
+//               move(pcontext->dir().path(pszContext, strNew), pcontext->dir().path(pszContext, strOld));
 //#else
 //               ::rename(
-//                        Context.dir().path(pszContext, strOld),
-//                        Context.dir().path(pszContext, strNew));
+//                        pcontext->dir().path(pszContext, strOld),
+//                        pcontext->dir().path(pszContext, strNew));
 //#endif
 //            }
 //         }
@@ -1204,7 +1204,7 @@ namespace ios
 //      string file_system::sys_temp_unique(const char * pszName)
 //      {
 //
-//         return Context.dir().path(get_sys_temp_path(), pszName);
+//         return pcontext->dir().path(get_sys_temp_path(), pszName);
 //
 //      }
 //
@@ -1218,7 +1218,7 @@ namespace ios
 //      file_pointer file_system::get(const char * name, ::aura::application *  papp)
 //      {
 //
-//         Context.dir().mk(Context.dir().name(name), papp);
+//         pcontext->dir().mk(pcontext->dir().name(name), papp);
 //
 //         file_pointer fileOut = App(papp).file().get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //

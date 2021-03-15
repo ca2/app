@@ -211,7 +211,7 @@ __pointer(::aura::application) application_container::instantiate_application(co
    if (strAppId == "session")
    {
 
-      papp = create_platform(get_context_application()->get_context_session());
+      papp = create_platform(get_application()->get_session());
 
       if (!papp)
       {
@@ -226,27 +226,27 @@ __pointer(::aura::application) application_container::instantiate_application(co
    else
    {
 
-      if (System->m_papplicationStartup.is_set())
+      if (psystem->m_papplicationStartup.is_set())
       {
 
-         if (System->m_papplicationStartup->m_strAppId != strAppId)
+         if (psystem->m_papplicationStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong Application Data Type");
+            TRACE("Wrong papplication Data Type");
 
             return nullptr;
 
          }
 
-         papp = System->m_papplicationStartup;
+         papp = psystem->m_papplicationStartup;
 
-         System->m_papplicationStartup.release();
+         psystem->m_papplicationStartup.release();
 
       }
       else
       {
 
-         papp = System->get_new_application(this, strAppId);
+         papp = psystem->get_new_application(this, strAppId);
 
       }
 
@@ -384,8 +384,8 @@ __pointer(::aura::application) application_container::start_application(const ch
 
    ::file::path pathExe = ::file::app_module();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, System->get_system_platform(),
-      System->get_system_configuration(), strLocale, strSchema))
+   if (!is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+      psystem->get_system_configuration(), strLocale, strSchema))
    {
 
       if (papp->m_bRequiresInstallation)
@@ -408,7 +408,7 @@ __pointer(::aura::application) application_container::start_application(const ch
          else
          {
 
-            message_box("Application \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            message_box("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -427,7 +427,7 @@ __pointer(::aura::application) application_container::start_application(const ch
 
    m_applicationa.add_unique(papp);
 
-   m_pappCurrent = papp;
+   m_papplicationCurrent = papp;
 
    if (!papp->on_start_application())
    {
@@ -440,11 +440,11 @@ __pointer(::aura::application) application_container::start_application(const ch
    //      if (strApp != "session")
    //      {
 
-   System->merge_accumulated_on_open_file(pcreate);
+   psystem->merge_accumulated_on_open_file(pcreate);
 
    papp->do_request(pcreate);
 
-   //         while (thread_get_run())
+   //         while (task_get_run())
    //         {
    //
    //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())

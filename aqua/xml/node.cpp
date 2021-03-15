@@ -255,8 +255,10 @@ namespace xml
 
    const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
+
+      auto pxml = get_system()->xml();
       if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+         pparseinfo = pxml->m_pparseinfoDefault;
       if(pszXml[0] != '<' || pszXml[1] != '!')
          return pszXml;
 
@@ -357,7 +359,7 @@ namespace xml
       if(pparseinfo == nullptr)
       {
 
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -524,8 +526,13 @@ namespace xml
    //========================================================
    const char * node::LoadProcessingInstruction( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of pparseinfo
       const char * end = _tcsenistr( pszXml, astr.XMLPIClose, astr.XMLPIClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -577,8 +584,13 @@ namespace xml
    //========================================================
    const char * node::LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszAttrs;
 
@@ -677,8 +689,13 @@ namespace xml
    //========================================================
    const char * node::LoadComment( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of comment
       const char * end = _tcsenistr( pszXml, astr.XMLCommentClose, astr.XMLCommentClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -722,8 +739,13 @@ namespace xml
    //========================================================
    const char * node::LoadCDATA( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of CDATA
       const char * end = _tcsenistr( pszXml, astr.XMLCDATAClose, astr.XMLCDATAClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -769,8 +791,13 @@ namespace xml
    //========================================================
    const char * node::LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszXml;
       bool do_other_type = true;
@@ -890,8 +917,12 @@ namespace xml
       // close it
       close();
 
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszXml;
 
@@ -1142,7 +1173,7 @@ namespace xml
       if(opt == nullptr)
       {
 
-         opt = ::aqua::get_system()->xml().m_poptionDefault;
+         opt = get_system()->xml()->m_poptionDefault;
 
       }
 
@@ -1193,9 +1224,11 @@ namespace xml
                ostring += ' ';
             }
 
+            auto pxml = get_system()->m_pxml;
+
             for (auto & pproperty : m_set)
             {
-               ostring += ::xml::from(pproperty, opt);
+               ostring += pxml->from(pproperty, opt);
             }
             //?>
             ostring += astr.XMLPIClose;
@@ -1227,12 +1260,14 @@ namespace xml
       //if (m_set.has_elements())
         // ostring += ' ';
 
+      auto pxml = get_system()->xml();
+
       for (auto & pproperty : m_set)
       {
 
          ostring += " ";
 
-         ostring += ::xml::from(pproperty, opt);
+         ostring += pxml->from(pproperty, opt);
 
       }
 
@@ -1349,7 +1384,7 @@ namespace xml
 
       if(opt == nullptr)
       {
-         opt = ::aqua::get_system()->xml().m_poptionDefault;
+         opt = get_system()->xml()->m_poptionDefault;
       }
 
       if( m_enode == ::data::e_node_xml_document )
@@ -1425,7 +1460,7 @@ namespace xml
    /*attr_array node::attrs( const char * lpszName )
    {
 
-      attr_array attra(get_object());
+      attr_array attra(this);
 
       for( i32 i = 0 ; i < m_attra.get_count(); i++ )
       {
@@ -1851,6 +1886,8 @@ namespace xml
    {
       
       auto pnode = __new(node((node *) this));
+
+      pnode->initialize_matter(this);
       
       pnode->m_strName = lpszName;
 
@@ -1867,6 +1904,8 @@ namespace xml
    {
 
       auto pnode = __new(node((node *) this));
+
+      pnode->initialize_matter(this);
 
       pnode->m_strName = lpszName;
 

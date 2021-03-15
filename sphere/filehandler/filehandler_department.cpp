@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   department::department(::layered * pobjectContext) :
+   department::department(::context_object * pcontextobject) :
       ::apex::department(pobject)
    {
 
@@ -50,7 +50,7 @@ namespace filehandler
       __type(document),
       __type(frame),       // top level SDI frame::user::interaction_impl
       __type(pane_view));
-      Application.add_document_template(pdoctemplate);
+      papplication->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 

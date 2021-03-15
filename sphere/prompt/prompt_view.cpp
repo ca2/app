@@ -7,7 +7,7 @@ namespace prompt
 {
 
 
-   view::view(::layered * pobjectContext) :
+   view::view(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::interaction(pobject)
    {
@@ -182,7 +182,7 @@ namespace prompt
    {
       if(iTab == 1)
       {
-         Application.message_box(nullptr, "Playlist");
+         papplication->message_box(nullptr, "Playlist");
       }
    }
 

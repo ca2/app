@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   session::session(::layered * pobjectContext) :
+   session::session(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -24,7 +24,7 @@ namespace simpledb
    {
       if(m_pserver != nullptr)
          close();
-      server * pserver = new server(get_object());
+      server * pserver = new server(this);
       if(pserver == nullptr)
          return false;
       if(!pserver->open(pszDatabase))

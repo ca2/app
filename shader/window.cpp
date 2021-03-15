@@ -144,13 +144,17 @@ namespace app_shader
          fork([this, pimage]()
             {
 
-               save_image saveimage;
+               auto psaveimage = __new(save_image(this));
 
-               saveimage.m_eformat = ::draw2d::format_png;
+               psaveimage->m_eformat = ::draw2d::format_png;
 
-               string strDate = System->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+               auto psystem = get_system();
 
-               Application.image().save_image("image://app_simple_shader-" + strDate + ".png", pimage, &saveimage);
+               string strDate = psystem->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+
+               auto papplication = get_application();
+
+               papplication->image().save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
 
             });
 

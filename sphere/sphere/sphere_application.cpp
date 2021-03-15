@@ -6,7 +6,7 @@ namespace sphere
 
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::context_object * pcontextobject) :
       ::aura::application(pobject),
       ::axis::application(pobject),
       ::base::application(pobject),
@@ -19,7 +19,7 @@ namespace sphere
 
       m_bDrawCursor = true;
       m_bShowPlatform = false;
-      m_pappCurrent = nullptr;
+      m_papplicationCurrent = nullptr;
       m_bLicense = false;
 
       m_ppaneview = nullptr;
@@ -648,7 +648,7 @@ namespace sphere
          if (eexclusive == ::ExclusiveInstanceLocalId)
          {
 #ifdef WINDOWS_DESKTOP
-            ::memory_file file(get_object());
+            ::memory_file file(this);
             file.from_string(m_varTopicFile);
             COPYDATASTRUCT data;
             data.dwData = 2000;
@@ -675,15 +675,15 @@ namespace sphere
    /*   void department::request(::create * pcreate)
       {
 
-         if(m_pappCurrent != nullptr && m_pappCurrent != this
+         if(m_papplicationCurrent != nullptr && m_papplicationCurrent != this
             && (pcreate->m_pcommandline->m_strApp.is_empty()
-            ||App(m_pappCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
+            ||App(m_papplicationCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
          {
             if(get_document() != nullptr && get_document()->get_typed_view < pane_view >() != nullptr)
             {
-               get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+               get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_papplicationCurrent).m_strAppName);
             }
-            App(m_pappCurrent).do_request(pcreate);
+            App(m_papplicationCurrent).do_request(pcreate);
             if(pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document > () == nullptr)
             {
                goto alt1;
@@ -697,7 +697,7 @@ namespace sphere
             {
                if(::str::ends_ci(pcreate->m_pcommandline->m_varFile, ".ca2"))
                {
-                  string strCommand = Context.file().as_string(pcreate->m_pcommandline->m_varFile);
+                  string strCommand = pcontext->file().as_string(pcreate->m_pcommandline->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                   || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -717,7 +717,7 @@ namespace sphere
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
                get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
-               App(m_pappCurrent).do_request(pcreate);
+               App(m_papplicationCurrent).do_request(pcreate);
             }
             else
             {
@@ -794,7 +794,7 @@ namespace sphere
 
    __pointer(::aura::application) application::get_current_application()
    {
-      return m_pappCurrent;
+      return m_papplicationCurrent;
    }
 
 
@@ -815,9 +815,9 @@ namespace sphere
 
    //   string strSentinelPath;
 
-   //   strSentinelPath = Context.dir().install() / "stage/x86/app.sentinel.exe";
+   //   strSentinelPath = pcontext->dir().install() / "stage/x86/app.sentinel.exe";
 
-   //   Context.os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
+   //   pcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 
    //   return ::asphere::department::on_install();
    //}

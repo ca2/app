@@ -285,7 +285,7 @@ namespace experience
    bool frame::_001OnMouseMove(::message::mouse * pmouse)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->m_pointCursor = pmouse->m_point;
 

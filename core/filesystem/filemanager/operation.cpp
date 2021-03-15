@@ -122,16 +122,16 @@ namespace filemanager
    bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
    {
 
-      if(Context.dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
+      if(pcontext->dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
 
-         Context.dir().mk(strDst.folder());
+         pcontext->dir().mk(strDst.folder());
 
          return false;
 
       }
 
-      m_fileSrc = Context.file().get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+      m_fileSrc = pcontext->file().get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -145,16 +145,16 @@ namespace filemanager
       if(!m_bReplaceAll)
       {
 
-         //if(Context.file().exists(pszDst))
+         //if(pcontext->file().exists(pszDst))
          //{
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
          //   propertyset["dstfile"].get_value().set_string(pszDst);
-         //   System->message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
+         //   psystem->message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}
 
-         if(Context.file().exists(strDst) || Context.dir().is(strDst))
+         if(pcontext->file().exists(strDst) || pcontext->dir().is(strDst))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -174,7 +174,7 @@ namespace filemanager
 
             //   });
 
-            //Application.sync_message_box("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papplication->sync_message_box("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{
@@ -199,9 +199,9 @@ namespace filemanager
 
       }
 
-      Context.dir().mk(strDst.folder());
+      pcontext->dir().mk(strDst.folder());
 
-      m_fileDst = Context.file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
+      m_fileDst = pcontext->file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       if(m_fileDst.is_null())
       {
@@ -212,7 +212,7 @@ namespace filemanager
 
          propertyset["filepath"] = strDst;
 
-         Application.dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
+         papplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
          return false;
 
@@ -324,7 +324,7 @@ namespace filemanager
                   try
                   {
 
-                     Context.os().set_file_status(strDestPath,st);
+                     pcontext->os().set_file_status(strDestPath,st);
 
                   }
                   catch(...)
@@ -353,7 +353,7 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && Context.dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_stra.get_size() && pcontext->dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile],".zip"))
             {
                m_iFile++;
             }
@@ -383,7 +383,7 @@ namespace filemanager
          if(m_iFile >= m_stra.get_size())
             return false;
 
-         Context.file().del(m_stra[m_iFile]);
+         pcontext->file().del(m_stra[m_iFile]);
 
          m_iFile++;
 
@@ -410,7 +410,7 @@ namespace filemanager
 
             m_fileDst->close();
 
-            Context.file().del(m_stra[m_iFile]);
+            pcontext->file().del(m_stra[m_iFile]);
 
             m_iFile++;
 
@@ -474,7 +474,7 @@ namespace filemanager
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(Context.dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i],".zip"))
+         if(pcontext->dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -485,7 +485,7 @@ namespace filemanager
          else
          {
 
-            varLen = Context.file().length(m_stra[i]);
+            varLen = pcontext->file().length(m_stra[i]);
 
             if(varLen.is_null())
             {
@@ -696,7 +696,7 @@ namespace filemanager
          {
             strFormat = set_number_value(strName, iValue + i);
             str = strDir /strFormat + strExtension;
-            if(!Context.file().exists(str))
+            if(!pcontext->file().exists(str))
                return true;
          }
       }
@@ -708,7 +708,7 @@ namespace filemanager
          {
             strFormat.Format("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
-            if(!Context.file().exists(str))
+            if(!pcontext->file().exists(str))
                return true;
          }
       }
@@ -724,10 +724,10 @@ namespace filemanager
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
-         if(Context.dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
+         if(pcontext->dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
          {
 
-            Application.dir().rls(listingExpanded, pathaExpand[i]);
+            papplication->dir().rls(listingExpanded, pathaExpand[i]);
 
          }
          else

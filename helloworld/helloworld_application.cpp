@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::context_object * pcontextobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -54,7 +54,7 @@ namespace helloworld
    ::e_status application::init_instance()
    {
 
-      ::aura::session * pcoression = get_context_application()->m_psession;
+      ::aura::session * pcoression = get_application()->m_psession;
 
       pcoression->use_font_sel();
 
@@ -209,7 +209,7 @@ namespace helloworld
 
 
 extern "C"
-::apex::library * app_helloworld_get_new_library(::layered * pobjectContext)
+::apex::library * app_helloworld_get_new_library(::context_object * pcontextobject)
 {
 
    return new ::apex::single_application_library < ::helloworld::application > (pobject, "app/helloworld");

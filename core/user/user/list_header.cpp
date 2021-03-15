@@ -64,7 +64,7 @@ namespace user
 
       string str;
 
-      str = Application.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
+      str = papplication->load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
       //m_font->create_point_font("Verdana", 10.0);
 
       if (str.has_char())
@@ -381,7 +381,7 @@ namespace user
 
          }
 
-         if (!Application.data_set(datakey, iaWidth))
+         if (!papplication->data_set(datakey, iaWidth))
          {
 
             return false;
@@ -392,7 +392,7 @@ namespace user
       else
       {
 
-         if (Application.data_get(datakey, iaWidth))
+         if (papplication->data_get(datakey, iaWidth))
          {
 
             ::count c = minimum(iaWidth.get_count(), m_plistctrlinterface->_001GetColumnCount());
@@ -500,7 +500,7 @@ namespace user
       enum_element eelement;
       index iItem;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(hit_test(pointCursor, eelement, iItem))
       {
@@ -520,7 +520,7 @@ namespace user
 
             m_bTrack = false;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 

@@ -283,7 +283,7 @@ namespace fs
       {
          try
          {
-            Context.file().copy(pszDst, pszSrc);
+            get_context()->file().copy(pszDst, pszSrc);
          }
          catch(...)
          {

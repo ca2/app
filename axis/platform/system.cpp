@@ -35,7 +35,7 @@ void ___compile_test_sort_array_21304528734();
 void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::layered * pobjectContext);
+CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::context_object * pcontextobject);
 #endif
 
 
@@ -46,7 +46,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -58,7 +58,7 @@ CLASS_DECL_AXIS void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
 void os_post_quit();
 
-//extern ::mutex * System->m_mutexLibrary;
+//extern ::mutex * psystem->m_mutexLibrary;
 
 
 
@@ -92,8 +92,6 @@ namespace axis
    system::system()
    {
 
-      m_paxissystem = this;
-
       create_factory < ::axis::application, ::apex::application >();
       create_factory < ::axis::session, ::apex::session >();
       create_factory < ::axis::idpool, ::apex::idpool >();
@@ -104,8 +102,6 @@ namespace axis
 
    system::~system()
    {
-
-      m_paxissystem = nullptr;
 
    }
 
@@ -127,10 +123,10 @@ namespace axis
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::aura::system::initialize(pobjectContext);
+      auto estatus = ::aura::system::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -349,12 +345,12 @@ namespace axis
 
 
 
-   ::xml::department & system::xml()
-   {
+   //::xml::department & system::xml()
+   //{
 
-      return *m_pxml;
+   //   return *m_pxml;
 
-   }
+   //}
 
 
 

@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \lparam h base_socket_handler context_object
          \lparam ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
          \lparam ipv6 'true' if this is an ipv6 socket */
-         udp_socket(base_socket_handler& h,i32 ibufsz = 16384,bool ipv6 = false, i32 retries = 0);
+         udp_socket(i32 ibufsz = 16384,bool ipv6 = false, i32 retries = 0);
          ~udp_socket();
 
          /** Called when incoming data has been received.

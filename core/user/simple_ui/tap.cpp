@@ -174,7 +174,7 @@ namespace simple_ui
 
       get_window_rect(&rectWindow);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

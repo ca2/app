@@ -59,7 +59,7 @@ public:
 
 //#ifdef LINUX
 //
-//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
+//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * puserinteraction = nullptr);
 //
 //#endif
 

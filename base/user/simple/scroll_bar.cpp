@@ -220,7 +220,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    KillTimer(((uptr)this)+1);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puser = psession->user();
 
@@ -749,7 +749,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puser = psession->user();
 
@@ -1003,7 +1003,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
    //if (m_puserstyle == nullptr)
    //{
 
-   //   m_puserstyle = Application.userstyle();
+   //   m_puserstyle = papplication->userstyle();
 
    //}
 
@@ -1332,7 +1332,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->savings().is_trying_to_save(::e_resource_processing))
       {

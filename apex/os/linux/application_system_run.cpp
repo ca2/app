@@ -99,18 +99,18 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //   }
 //
-//   auto psystem = get_context_system();
+//   auto psystem = ::apex::get_system();
 //
 //   psystem->add_ref(OBJ_REF_DBG_ARGS);
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_context_session()->set_context_app(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->m_papplicationStartup);
 //
 //      psystem->set_context_app(psystem->m_papplicationStartup);
 //
-//      psystem->get_context_session()->set_context(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context(psystem->m_papplicationStartup);
 //
 //      psystem->set_context(psystem->m_papplicationStartup);
 //

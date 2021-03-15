@@ -10,8 +10,8 @@ namespace html
 {
 
 
-   style::style(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   style::style(::context_object * pcontextobject) :
+      ::object(pobject)
    {
 
       m_edisplay = display_inline;

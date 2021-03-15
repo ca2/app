@@ -164,7 +164,7 @@ namespace apex
       virtual ~application();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       virtual void assert_valid() const override;
@@ -260,8 +260,8 @@ namespace apex
 
 
 
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
 
 
       //virtual void SetCurrentHandles() override;
@@ -387,7 +387,7 @@ namespace apex
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       application_menu & applicationmenu();
@@ -459,7 +459,7 @@ namespace apex
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -603,7 +603,7 @@ namespace apex
       //virtual void SetCurrentHandles();
 
       //virtual void set_env_var(const string & payload,const string & value);
-      //virtual ithread_t get_thread_id();
+      //virtual itask_t get_thread_id();
 
 
       virtual bool _001OnDDECommand(const char * pcsz);
@@ -805,8 +805,8 @@ namespace apex
 
 
       //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      //virtual void add_frame(::user::interaction * pwnd);
-      //virtual void remove_frame(::user::interaction * pwnd);
+      //virtual void add_frame(::user::interaction * puserinteraction);
+      //virtual void remove_frame(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 
@@ -867,7 +867,7 @@ namespace apex
       virtual void HideApplication();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -886,7 +886,7 @@ namespace apex
 
       //virtual ::e_status     main() override;
 
-      //virtual ::apex::application * get_context_application() const override;
+      //virtual ::apex::application * get_application() const override;
 
 
       virtual u32 guess_code_page(const string& str);
@@ -1101,7 +1101,7 @@ namespace apex
 //#endif
 
       void OnAppExit();
-      // ::apex::get_system() Policy Settings
+      // psystem Policy Settings
       virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
       bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() noexcept; // Implementation helper
@@ -1156,7 +1156,7 @@ namespace apex
 
       //virtual ::e_status     run() override;
 
-      //::apex::application * get_context_system();
+      //::apex::application * psystem;
 
       //virtual bool set_keyboard_layout(const char* pszPath, const ::action_context& action_context) override;
 
@@ -1186,7 +1186,7 @@ namespace apex
       virtual void set_title(const char* pszTitle);
 
 
-      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1231,7 +1231,7 @@ namespace apex
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // ::apex::get_system()/::apex::get_system()
+      // psystem/psystem
       //
       //::user::document * place_hold(::user::interaction * pinteraction)  override;
 
@@ -1246,7 +1246,7 @@ namespace apex
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // Session/Session
+      // get_session()/get_session()
       //
       //         virtual __pointer(::bergedge::view) get_view();
       //       virtual __pointer(::bergedge::document) get_document();
@@ -1278,7 +1278,7 @@ namespace apex
 
       //virtual void on_request(::create * pcreate);
 
-      //__pointer(::apex::application) get_context_system();
+      //__pointer(::apex::application) psystem;
 
       //virtual __pointer(::apex::application) assert_running(const char * pszAppdId);
 
@@ -1303,6 +1303,8 @@ namespace apex
 
       }
 
+      //virtual application_sleep(millis millis)
+
 
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
 
@@ -1311,7 +1313,7 @@ namespace apex
 
 
 
-      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * puserinteractionExcept);
       //virtual i32 GetVisibleFrameCount();
 
       //virtual void on_create_keyboard() override;
@@ -1353,7 +1355,7 @@ namespace apex
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;

@@ -36,7 +36,7 @@ namespace sockets
       socket_map                                   m_pool; ///< Active sockets map
 
 
-      sockets(::layered * pobjectContext);
+      sockets(::context_object * pcontextobject);
       virtual ~sockets();
 
       class ::sockets::net                         & net();

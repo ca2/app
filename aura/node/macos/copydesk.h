@@ -21,7 +21,7 @@ namespace macos
       virtual ~copydesk();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       virtual void finalize() override;
 
       virtual bool _set_filea(const ::file::patha & stra, e_op eop) override;

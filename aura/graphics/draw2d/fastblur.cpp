@@ -421,7 +421,7 @@ auto tick2 = ::millis::now();
          output_debug_string(str2);
          output_debug_string("| \n");
 
-         ::aura::application * papp = m_p->get_context_application();
+         ::aura::application * papp = m_p->get_application();
          TRACE("/--------------------------------");
          TRACE("| fastblur::blur");
          TRACE("| ");
@@ -531,7 +531,7 @@ auto tickA0 = ::millis::now();
             output_debug_string(str2);
             output_debug_string("| \n");
 
-            //::aura::application * papp = pimage->get_context_application();
+            //::aura::application * papp = pimage->get_application();
             TRACE("/--------------------------------");
             TRACE("| fastblur::blur");
             TRACE("| ");
@@ -619,7 +619,7 @@ auto tick2 = ::millis::now();
       output_debug_string(str2);
       output_debug_string("| \n");
 
-      ::aura::application * papp = m_p->get_context_application();
+      ::aura::application * papp = m_p->get_application();
       TRACE("/--------------------------------");
       TRACE("| fastblur::blur");
       TRACE("| ");

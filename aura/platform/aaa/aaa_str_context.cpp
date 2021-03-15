@@ -188,10 +188,10 @@
 //   }
 //
 //
-//   ::e_status str::initialize(::layered * pobjectContext)
+//   ::e_status str::initialize(::context_object * pcontextobject)
 //   {
 //
-//      auto estatus = ::object::initialize(pobjectContext);
+//      auto estatus = ::object::initialize(pcontextobject);
 //
 //      if (!estatus)
 //      {
@@ -206,7 +206,7 @@
 //
 //#endif
 //
-//      auto strMain = Context.dir().install() / "app/_appmatter/main";
+//      auto strMain = pcontext->dir().install() / "app/_appmatter/main";
 //
 //      if (!load(strMain))
 //      {
@@ -229,21 +229,21 @@
 ////
 ////      string strMain = pszBaseDir;
 ////
-////      ::file::listing locales(get_object());
+////      ::file::listing locales(this);
 ////
 ////      locales.ignore(".svn").ls_dir(strMain);
 ////
 ////      for(auto & locale : locales)
 ////      {
 ////
-////         ::file::listing schemas(get_object());
+////         ::file::listing schemas(this);
 ////
 ////         schemas.ignore(".svn").ls_dir(locale);
 ////
 ////         for(auto & schema : schemas)
 ////         {
 ////
-////            ::file::listing listing(get_object());
+////            ::file::listing listing(this);
 ////
 ////            listing.ignore(".svn").rls_file(schema / "uistr");
 ////
@@ -635,7 +635,7 @@
 //
 //      memory mem;
 //
-//      Context.file().as_memory(pszFilePath,mem);
+//      pcontext->file().as_memory(pszFilePath,mem);
 //
 //
 //      strsize len;

@@ -205,7 +205,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

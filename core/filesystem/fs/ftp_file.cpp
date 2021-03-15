@@ -64,7 +64,7 @@ retry:
 
    }
 
-   string strRemoteFile = System->url().get_object(m_filepath);
+   string strRemoteFile = psystem->url().get_object(m_filepath);
 
    if (!pclient->UploadFile(m_varFile, strRemoteFile))
    {

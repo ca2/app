@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt::prompt(::layered * pobjectContext) :
+   prompt::prompt(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -13,13 +13,13 @@ namespace console
       ::user::single_document_template* pdoctemplate;
 
       pdoctemplate = new ::user::single_document_template(
-      get_context_application(),
+      get_application(),
       "system/form",
       __type(prompt_document),
       __type(prompt_frame),
       __type(prompt_impact));
 
-      Application.add_document_template(pdoctemplate);
+      papplication->add_document_template(pdoctemplate);
 
       m_pdocumenttemplate = pdoctemplate;
 
@@ -34,7 +34,7 @@ namespace console
       if(m_pdocumenttemplate->get_document() == nullptr)
       {
 
-         Application.send_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
+         papplication->send_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
 
       }
 

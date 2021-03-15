@@ -22,13 +22,13 @@ namespace multimedia
       }
 
       destination::destination(const destination & destination) :
-         ::matter(((class destination &) destination).get_context_application()),
-         ::multimedia::audio_mixer::source(((class destination &)destination).get_context_application()),
-         ::multimedia::audio_mixer_mmsystem::source(((class destination &)destination).get_context_application()),
-         ::multimedia::audio_mixer::destination(((class destination &)destination).get_context_application())
+         ::matter(((class destination &) destination).get_application()),
+         ::multimedia::audio_mixer::source(((class destination &)destination).get_application()),
+         ::multimedia::audio_mixer_mmsystem::source(((class destination &)destination).get_application()),
+         ::multimedia::audio_mixer::destination(((class destination &)destination).get_application())
       {
 
-         m_mixersourcea.set_app(((class destination &)destination).get_context_application());
+         m_mixersourcea.set_app(((class destination &)destination).get_application());
 
          operator = (destination);
 

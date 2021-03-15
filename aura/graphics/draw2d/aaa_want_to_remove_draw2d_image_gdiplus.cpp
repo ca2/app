@@ -267,7 +267,7 @@ const char * pszId)
 {
 ::exception::throw_not_implemented();
 /*
-::memory_file file(get_object());
+::memory_file file(this);
 
 ::aura::Resource resource;
 
@@ -398,7 +398,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
    pstream->Seek(l, STREAM_SEEK_SET, nullptr);
 
 
-   memory mem(pobject->get_context_application());
+   memory mem(pobject->get_application());
 
    mem.set_size(1024 * 1024);
 

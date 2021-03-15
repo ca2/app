@@ -10,7 +10,7 @@ namespace helloworld
 
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::context_object * pcontextobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -41,7 +41,7 @@ namespace helloworld
       m_prender                  = nullptr;
 
 
-      m_prender = new render(get_object());
+      m_prender = new render(this);
 
       m_prender->m_pview = this;
 
@@ -120,7 +120,7 @@ namespace helloworld
 
 
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -320,7 +320,7 @@ namespace helloworld
             m_strImage = strImage;
 
 
-            ::fork(get_context_application(),[=]()
+            ::fork(get_application(),[=]()
             {
 
 
@@ -344,7 +344,7 @@ namespace helloworld
                //
                //   varFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = System->url().get_server(m_strImage).find_wci("ca2") < 0;
+               //   varFile["http_set"]["raw_http"] = psystem->url().get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //
@@ -414,11 +414,11 @@ namespace helloworld
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strAlternateHelloWorld;
+               return "Rolling " + papplication->m_strAlternateHelloWorld;
             }
             else
             {
-               return Application.m_strAlternateHelloWorld;
+               return papplication->m_strAlternateHelloWorld;
             }
 
 
@@ -428,11 +428,11 @@ namespace helloworld
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strHelloWorld;
+               return "Rolling " + papplication->m_strHelloWorld;
             }
             else
             {
-               return Application.m_strHelloWorld;
+               return papplication->m_strHelloWorld;
             }
 
 

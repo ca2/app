@@ -71,9 +71,11 @@ namespace write_text
          if (m_pfontenumeration.is_null())
          {
 
-            ::aura::get_system()->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            __pointer(::aura::system) psystem = m_psystem;
 
-            m_pfontenumeration = ::aura::get_system()->draw2d()->write_text()->fonts()->m_pfontenumeration;
+            psystem->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+
+            m_pfontenumeration = psystem->draw2d()->write_text()->fonts()->m_pfontenumeration;
 
          }
 
@@ -292,7 +294,7 @@ namespace write_text
 
       rectClient += pgraphics->m_puserinteraction->get_viewport_offset();
 
-      auto psession = Session;
+      __pointer(::aura::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -612,10 +614,10 @@ namespace write_text
    }
 
 
-   ::e_status font_list::initialize(::layered* pobjectContext)
+   ::e_status font_list::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -723,7 +725,9 @@ namespace write_text
 
          m_bUpdatesHooked = true;
 
-         ::aura::get_system()->delivery_for(id_font_enumeration, this, true);
+         __pointer(::aura::system) psystem = m_psystem;
+
+         psystem->delivery_for(id_font_enumeration, this, true);
 
          delivery_for(id_font_extents, this, true);
 
@@ -1096,7 +1100,7 @@ namespace write_text
 
             ::rectangle_i32 rectangle;
 
-            for (index i = iStart; i < iCount && ::thread_get_run(); i += iScan)
+            for (index i = iStart; i < iCount && ::task_get_run(); i += iScan)
             {
 
                auto pitem = plistdata->element_at(i);

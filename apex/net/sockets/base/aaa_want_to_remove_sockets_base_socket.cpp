@@ -52,7 +52,7 @@ namespace sockets
    ::mutex * base_socket::s_pmutex = nullptr;
 
 
-   base_socket::base_socket(base_socket_handler & h) :
+   base_socket::base_socket() :
       m_handler(h)
       ,m_bDelete(false)
       ,m_bClose(false)
@@ -79,7 +79,7 @@ namespace sockets
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
 #if !defined(BSD_STYLE_SOCKETS)
-      ,m_event(h.get_context_application())
+      ,m_event(h.get_application())
 #endif
    {
       m_pmemfileInput = nullptr;
@@ -243,7 +243,7 @@ namespace sockets
    {
       if (x ^ m_bClose)
       {
-         Handler().AddList(m_socket, LIST_CLOSE, x);
+         socket_handler()->AddList(m_socket, LIST_CLOSE, x);
          m_bClose = x;
          if (x)
          {
@@ -275,7 +275,7 @@ namespace sockets
    }
 
 
-   base_socket_handler& base_socket::Handler() const
+   base_socket::socket_handler() const
    {
 
       if (IsDetached())
@@ -290,7 +290,7 @@ namespace sockets
    }
 
 
-   base_socket_handler& base_socket::MasterHandler() const
+   base_socket::master_socket_handler() const
    {
       return m_handler;
    }
@@ -422,7 +422,7 @@ namespace sockets
 
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
-      Handler().set(m_socket, bRead, bWrite, bException);
+      socket_handler()->set(m_socket, bRead, bWrite, bException);
    }
 
 
@@ -875,7 +875,7 @@ namespace sockets
 
    void base_socket::SetDetach(bool x)
    {
-      Handler().AddList(m_socket, LIST_DETACH, x);
+      socket_handler()->AddList(m_socket, LIST_DETACH, x);
       m_detach = x;
    }
 
@@ -915,7 +915,7 @@ namespace sockets
    ::e_status     base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
-      auto estatus = initialize(psocket->get_object());
+      auto estatus = initialize(psocket->this);
 
       if (!estatus)
       {
@@ -926,7 +926,7 @@ namespace sockets
 
       m_psocket = psocket;
          
-      m_phandler = __new(socket_handler(get_object()));
+      m_phandler = __new(socket_handler(this));
 
       begin_synch();
 
@@ -971,7 +971,7 @@ namespace sockets
 
       socket_handler & h = *m_phandler;
 
-      while (thread_get_run() && h.get_count())
+      while (task_get_run() && h.get_count())
       {
 
          try
@@ -998,25 +998,25 @@ namespace sockets
 
    int base_socket::Resolve(const string & host,port_t port)
    {
-      return Handler().Resolve(this, host, port);
+      return socket_handler()->Resolve(this, host, port);
    }
 
 
    int base_socket::Resolve6(const string & host,port_t port)
    {
-      return Handler().Resolve6(this, host, port);
+      return socket_handler()->Resolve6(this, host, port);
    }
 
 
    int base_socket::Resolve(in_addr a)
    {
-      return Handler().Resolve(this, a);
+      return socket_handler()->Resolve(this, a);
    }
 
 
    int base_socket::Resolve(in6_addr& a)
    {
-      return Handler().Resolve(this, a);
+      return socket_handler()->Resolve(this, a);
    }
 
 
@@ -2300,13 +2300,13 @@ namespace sockets
 
    void base_socket::Subscribe(int id)
    {
-      Handler().Subscribe(id, this);
+      socket_handler()->Subscribe(id, this);
    }
 
 
    void base_socket::Unsubscribe(int id)
    {
-      Handler().Unsubscribe(id, this);
+      socket_handler()->Unsubscribe(id, this);
    }
 
 
@@ -2326,13 +2326,13 @@ namespace sockets
       if (!secs)
       {
          
-         Handler().AddList(m_socket, LIST_TIMEOUT, false);
+         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
          
          return;
 
       }
       
-      Handler().AddList(m_socket, LIST_TIMEOUT, true);
+      socket_handler()->AddList(m_socket, LIST_TIMEOUT, true);
       
       m_timeTimeoutStart = time(nullptr);
 

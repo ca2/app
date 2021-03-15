@@ -29,7 +29,7 @@ namespace simpledb
       __pointer(db_server)        m_pserver;
 
 
-      simpledb(::layered * pobjectContext);
+      simpledb(::context_object * pcontextobject);
       virtual ~simpledb();
 
       virtual bool init2();

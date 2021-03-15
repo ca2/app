@@ -17,7 +17,7 @@ namespace bred
       void common_construct();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       //inline ::bred::user* user() { return m_puser ? m_puser->m_pbreduser : nullptr; }

@@ -6,7 +6,8 @@ namespace fs
 
 
    class CLASS_DECL_APEX remote_native_file : 
-      virtual public ::sockets::http_batch_buffer
+      virtual public ::sockets::http_batch_buffer,
+      virtual public ::context_object
    {
    public:
 

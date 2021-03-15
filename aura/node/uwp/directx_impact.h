@@ -110,7 +110,7 @@ namespace uwp
       impact();
 
 
-      //inline ::user::interaction* host() { return Sess(m_psystem->get_context_session())->host(); }
+      //inline ::user::interaction* host() { return Sess(m_psystem->get_session())->host(); }
       //inline ::user::interaction * host() { return m_puserinteraction->get_host_window(); }
       inline ::user::interaction * host() { return m_puserinteraction; }
 

@@ -136,7 +136,7 @@ namespace user
 
       }
 
-      ::apex::application * papp = pcreate->create_get_application(get_context_application());
+      ::apex::application * papp = pcreate->create_get_application(get_application());
 
       __pointer(::user::document) pdocument;
 
@@ -169,16 +169,18 @@ namespace user
 
       ASSERT(m_strMatter.has_char());
 
-      if (pcreate->m_pusersystem.is_null())
+      __pointer(::user::system) pusersystem = pcreate->m_pmatterUserPayload;
+
+      if (!pusersystem)
       {
 
-         pcreate->m_pusersystem = __new(::user::system);
+         pusersystem = __new(::user::system);
 
-         __user_system(pcreate->m_pusersystem)->m_pcreate = pcreate;
+         pusersystem->m_pcreate = pcreate;
+
+         pcreate->m_pmatterUserPayload = pusersystem;
 
       }
-
-      __pointer(::user::system) pusersystem = __user_system(pcreate->m_pusersystem);
 
       pusersystem->m_puiCurrentFrame = pOther;
 
@@ -210,7 +212,7 @@ namespace user
 
       }
 
-      ::apex::application * papp = pcreate->create_get_application(get_context_application());
+      ::apex::application * papp = pcreate->create_get_application(get_application());
 
       __pointer(::user::frame_window) pframe;
 
@@ -225,7 +227,7 @@ namespace user
 
          strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.name().c_str());
 
-         Application.message_box(strMessage);
+         papplication->message_box(strMessage);
 
          return nullptr;
 

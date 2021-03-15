@@ -27,7 +27,7 @@ namespace sockets
 
       m_port = port;
 
-      begin_task();
+      begin();
 
       return estatus;
 
@@ -44,25 +44,25 @@ namespace sockets
    {
 
       //   trace_log log;
-      socket_handler h(get_context_object());
+      auto phanlder = __create_new < socket_handler > ();
 
-      listen_socket<resolv_socket> l(h);
+      auto plistensocket = __create_new < listen_socket<resolv_socket> >();
 
-      if (l.Bind("127.0.0.1", m_port))
+      if (plistensocket->Bind("127.0.0.1", m_port))
       {
 
          return;
 
       }
 
-      h.add(&l);
+      phanlder->add(plistensocket);
 
       m_ready = true;
 
-      while (!m_quit && thread_get_run())
+      while (!m_quit && task_get_run())
       {
 
-         h.select(0, 500000);
+         phanlder->select(0, 500000);
 
       }
 

@@ -27,8 +27,8 @@ namespace aura
       library() {}
       virtual ~library();
 
-      virtual ::e_status     initialize(::layered * pobjectContext);
-      virtual ::e_status     initialize_aura_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      virtual ::e_status     initialize(::context_object * pcontextobject);
+      virtual ::e_status     initialize_aura_library(::object * pobject, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
@@ -72,14 +72,14 @@ namespace aura
 
 
       // impl
-      virtual __transport(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
+      virtual __transport(::aura::application) get_new_application(::object * pobject, const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::matter* new_object(::object* pobjectContext, const char* pszClass);
+      virtual ::matter* new_object(::object* pobject, const char* pszClass);
 
 
-      virtual __pointer(::matter) create_object(::object* pobjectContext, const char* pszClass);
+      virtual __pointer(::matter) create_object(::object* pobject, const char* pszClass);
       virtual bool has_object_class(const char * lpszClass);
 
 
@@ -91,10 +91,10 @@ namespace aura
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
+      virtual ::matter * factory_new(::object * pobject, const char * lpszClass);
 
 
-      virtual __pointer(::matter) factory_create(::layered * pobjectContext, const char * lpszClass);
+      virtual __pointer(::matter) factory_create(::object * pobject, const char * lpszClass);
       virtual bool factory_has_object_class(const char * lpszClass);
 
       library_object_allocator_base * find_allocator(const char * lpszClass);
@@ -175,7 +175,7 @@ class library :                                                         \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::layered * pobjectContext) : ::apex::library(pobject) {}          \
+     library(::context_object * pcontextobject) : ::apex::library(pobject) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -202,7 +202,7 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::layered * pobjectContext) \
+CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::context_object * pcontextobject) \
 { \
 \
    return new library(pobject); \

@@ -9,7 +9,7 @@ namespace aqua
    session::session()
    {
 
-      set_layer(LAYERED_AQUA, this);
+      //set_layer(LAYERED_AQUA, this);
 
    }
 
@@ -27,10 +27,10 @@ namespace aqua
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::session::initialize(pobjectContext);
+      auto estatus = ::apex::session::initialize(pcontextobject);
 
       if (!estatus)
       {

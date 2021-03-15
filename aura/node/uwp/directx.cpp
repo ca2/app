@@ -89,7 +89,7 @@ namespace uwp
 
       dpi_os_initialize();
 
-      //m_pimage->alloc(get_context_application()->create_new, this);
+      //m_pimage->alloc(get_application()->create_new, this);
       //m_pimage = create_image({1000,  1000});
 
 
@@ -409,12 +409,12 @@ namespace uwp
    //   if (::aura::get_system()->has_property("client_only"))
    //   {
 
-   //      auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
+   //      auto puserinteractionpointeraChild = m_pimpl->m_puserinteraction->m_puserinteractionpointeraChild;
 
-   //      if (puiptraChild)
+   //      if (puserinteractionpointeraChild)
    //      {
 
-   //         auto children = puiptraChild->m_interactiona;
+   //         auto children = puserinteractionpointeraChild->m_interactiona;
 
    //         for (auto & pinteraction : children)
    //         {
@@ -909,7 +909,7 @@ namespace uwp
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
+   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 

@@ -1865,6 +1865,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="include\_.h" />
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />
+    <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\account\_account.h" />

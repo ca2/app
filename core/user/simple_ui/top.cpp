@@ -143,7 +143,7 @@ namespace simple_ui
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

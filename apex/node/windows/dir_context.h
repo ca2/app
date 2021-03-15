@@ -19,7 +19,7 @@ namespace windows
       virtual ~dir_context();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual ::e_status init_system() override;
 
@@ -67,11 +67,11 @@ namespace windows
       //virtual ::file::path userdata();
       //virtual ::file::path userfolder();
       //virtual ::file::path default_os_user_path_prefix();
-      //virtual ::file::path default_userappdata(,const string & pcszPrefix,const string & lpcszLogin );
+      //virtual ::file::path default_userappdata(const string & pcszPrefix,const string & lpcszLogin );
 
-      //virtual ::file::path default_userdata(,const string & pcszPrefix,const string & lpcszLogin);
+      //virtual ::file::path default_userdata(const string & pcszPrefix,const string & lpcszLogin);
 
-      //virtual ::file::path default_userfolder(,const string & pcszPrefix,const string & lpcszLogin);
+      //virtual ::file::path default_userfolder(const string & pcszPrefix,const string & lpcszLogin);
 
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();

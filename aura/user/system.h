@@ -28,7 +28,7 @@ namespace user
 
 
    class CLASS_DECL_AURA system :
-      virtual public ::layered
+      virtual public ::context_object
    {
    public:
 

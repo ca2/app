@@ -42,7 +42,7 @@ namespace uwp
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::context_object * pcontextobject);
       virtual ~interaction_impl();
 
 
@@ -228,12 +228,12 @@ namespace uwp
       //virtual bool _001ScreenToClient(RECTANGLE_I64 * lprect);
       //virtual bool _001ScreenToClient(POINT_I64 * lppoint);
 
-      //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
+      //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * lpRect);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * lpRect);
 
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -482,8 +482,8 @@ namespace uwp
       void OnShowWindow(bool bShow, ::u32 nStatus);
       void OnSize(::u32 nType, int cx, int cy);
       void OnTCard(::u32 idAction, u32 dwActionData);
-      //      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      //    void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      //      void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
+      //    void OnWindowPosChanged(WINDOWPOS* lpuserinteractionpos);
 
       void OnChangeUIState(::u32 nAction, ::u32 nUIElement);
       void OnUpdateUIState(::u32 nAction, ::u32 nUIElement);

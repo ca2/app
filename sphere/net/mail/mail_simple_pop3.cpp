@@ -7,7 +7,7 @@ namespace mail
 {
 
 
-   simple_pop3::simple_pop3(::layered * pobjectContext) :
+   simple_pop3::simple_pop3(::context_object * pcontextobject) :
       ::object(pobject),
       pop3(pobject)
    {

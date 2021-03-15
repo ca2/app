@@ -12,8 +12,6 @@ namespace user
    frame::frame()
    {
 
-      set_layer(LAYERED_USER_FRAME, this);
-      
       m_bSnapToBars = false;
       m_bAddToTitle = false;
       m_bPrefixTitle = false;
@@ -70,7 +68,9 @@ namespace user
 
       }
 
-      Application._001TryCloseApplication();
+      __pointer(::aura::application) papplication = get_application();
+
+      papplication->_001TryCloseApplication();
 
 //      DestroyWindow();
 
@@ -431,7 +431,7 @@ namespace user
       else
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->m_puser;
 

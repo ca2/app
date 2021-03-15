@@ -48,7 +48,7 @@ namespace sockets
 
 
 
-      http_socket(base_socket_handler& );
+      http_socket();
       virtual ~http_socket();
 
       virtual void OnEndChunk();

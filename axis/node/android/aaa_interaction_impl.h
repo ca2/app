@@ -51,8 +51,8 @@ namespace android
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
-      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
+      void OnWindowPosChanged(WINDOWPOS* lpuserinteractionpos);
 
       virtual void win_update_graphics();
 
@@ -159,11 +159,11 @@ namespace android
       //virtual bool _001ScreenToClient(RECT64 * lprect);
       //virtual bool _001ScreenToClient(POINT64 * lppoint);
 
-      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
-      //virtual void MapWindowPoints(::user::interaction * pwndTo,POINT32 * lpPoint,::u32 nCount);
-      //virtual void MapWindowPoints(::user::interaction * pwndTo,RECTANGLE_I32 * lpRect);
+      //virtual void MapWindowPoints(::user::interaction * puserinteractionTo,POINT32 * lpPoint,::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction * puserinteractionTo,RECTANGLE_I32 * lpRect);
 
       //virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
       //virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;

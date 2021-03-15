@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   frame::frame(::layered * pobjectContext) :
+   frame::frame(::context_object * pcontextobject) :
       ::object(pobject),
       simple_frame_window(pobject),
       m_spqueue(e_create)
@@ -44,7 +44,7 @@ namespace userstack
       if(pmessage->previous())
          return;
 
-      if(!m_spqueue->create_message_queue("::ca2::account::message_wnd::bergedge::" + System->get_local_mutex_id(), this))
+      if(!m_spqueue->create_message_queue("::ca2::account::message_wnd::bergedge::" + psystem->get_local_mutex_id(), this))
       {
          pcreate->m_lresult= -1;
          pcreate->m_bRet = true;
@@ -161,8 +161,8 @@ namespace userstack
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       psession->m_pointCursor = pmouse->m_point;
-//      ::aspheresp(::aura::application) pappParent = &App(Application.get_context_application()->m_pcoreapp);
-//      ::aspheresp(::aura::application) papp = &Application;
+//      ::aspheresp(::aura::application) pappParent = &App(papplication->get_application()->m_pcoreapp);
+//      ::aspheresp(::aura::application) papp = &papplication;
       /*      if(pmouse->m_uiMessage == e_message_mouse_move
             && m_pdocument != nullptr
             && m_pdocument->m_pplatformdocument != nullptr
@@ -198,7 +198,7 @@ namespace userstack
 
 //      __pointer(::message::mouse) pmouse(pmessage);
 //      m_bMouseOver = false;
-//      bergedgesp(::aura::application) papp = dynamic_cast < bergedgesp(::aura::application) > (get_object());
+//      bergedgesp(::aura::application) papp = dynamic_cast < bergedgesp(::aura::application) > (this);
    }
 
    void frame::pre_translate_message(::message::message * pmessage)
@@ -212,7 +212,7 @@ namespace userstack
    {
       if(layout().is_full_screen())
       {
-         //      bergedge::get_context_application()->show_platform();
+         //      bergedge::get_application()->show_platform();
       }
       else
       {
@@ -313,7 +313,7 @@ namespace userstack
       */
       else if(pusermessage->m_wparam == 33)
       {
-         string str = System->get_local_mutex_id();
+         string str = psystem->get_local_mutex_id();
          ::str::begins_eat_ci(str, "bergedge");
          i32 iEdge = atoi(str);
          if(iEdge == 0)
@@ -396,7 +396,7 @@ namespace userstack
 
             ::pointer < ::user::message > spbase;
 
-            spbase = Application.get_message_base(pmsg);
+            spbase = papplication->get_message_base(pmsg);
 
             pre_translate_message(spbase);
 

@@ -9,7 +9,7 @@ namespace mail
 {
 
 
-   pop3::pop3(::layered * pobjectContext) :
+   pop3::pop3(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -50,7 +50,7 @@ namespace mail
 
       m_phandler->select(240,0);
 
-      while(thread_get_run() && m_psocket->m_estate != pop3_socket::state_finished)
+      while(task_get_run() && m_psocket->m_estate != pop3_socket::state_finished)
       {
 
          m_phandler->select(240,0);

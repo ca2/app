@@ -765,7 +765,7 @@ namespace user
 
          defer_create_combo_list();
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->on_show_user_input_popup(m_plist);
 

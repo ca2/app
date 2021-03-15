@@ -101,7 +101,7 @@ namespace filemanager
 
             property_set set;
 
-//            Context.http().get("http://file.ca2.cc/", set);
+//            pcontext->http().get("http://file.ca2.cc/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -113,7 +113,7 @@ namespace filemanager
 
             property_set set;
 
-            //          Context.http().get("http://file.ca2.cc/", set);
+            //          pcontext->http().get("http://file.ca2.cc/", set);
 
             open_folder(1); // user root folder
 
@@ -154,7 +154,7 @@ namespace filemanager
 
                phttpmessage->want_memory_response();
 
-               Context.http().get(phttpmessage);
+               pcontext->http().get(phttpmessage);
 
                on_request_response(phttpmessage);
 
@@ -168,7 +168,7 @@ namespace filemanager
 
             string strUrl;
 
-            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + System->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + psystem->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
             if(m_prequestinterface != nullptr)
             {

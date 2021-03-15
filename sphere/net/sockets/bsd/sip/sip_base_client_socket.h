@@ -58,7 +58,7 @@ namespace sockets
       i32 m_chunk_state;
       string m_chunk_line;
 
-      sip_base_client_socket(base_socket_handler& );
+      sip_base_client_socket();
       ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);

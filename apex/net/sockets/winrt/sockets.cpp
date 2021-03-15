@@ -21,10 +21,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::layered* pobjectContext)
+   ::e_status sockets::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -36,7 +36,7 @@ namespace sockets
       //::apex::get_system()->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
-      //m_psslinit = new ::sockets::SSLInitializer(get_context_object());
+      //m_psslinit = new ::sockets::SSLInitializer(this);
 
       m_spnet = __create_new<::sockets::net>();
       //m_spnet.create(this);
@@ -80,7 +80,7 @@ namespace sockets
    //bool sockets::init1()
    //{
 
-   //   m_spnet = __new(::sockets::net(get_object()));
+   //   m_spnet = __new(::sockets::net(this));
    //   //m_spnet.create(this);
 
    //   if(m_spnet.is_null())
@@ -96,7 +96,7 @@ namespace sockets
    //   if(!m_spnet->initialize())
    //      return false;
 
-   //   if(Application.is_system())
+   //   if(get_application()->is_system())
    //   {
 
    //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
@@ -121,7 +121,7 @@ namespace sockets
 
       //bool bOk = true;
 
-      //if(Application.is_system())
+      //if(get_application()->is_system())
       //{
       //   if(m_pajpbasesocketinit != nullptr)
       //   {

@@ -45,10 +45,10 @@ namespace dynamic_source
 #endif
 
 
-   ::e_status script_main::initialize(::layered * pobjectContext)
+   ::e_status script_main::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::html::file::initialize(pobjectContext);
+      auto estatus = ::html::file::initialize(pcontextobject);
 
       if (!estatus)
       {

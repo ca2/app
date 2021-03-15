@@ -16,7 +16,7 @@
 
 //extern ::apex::system* g_papexsystem;
 
-CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
+//CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
 //int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
@@ -58,7 +58,7 @@ extern "C"
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -100,6 +100,7 @@ string get_user_name()
 #endif
 
 
+
 namespace apex
 {
 
@@ -111,7 +112,7 @@ namespace apex
 
       m_edisplay = e_display_default;
 
-      set_layer(LAYERED_APEX, this);
+      //set_layer(LAYERED_APEX, this);
 
 #ifdef _UWP
 
@@ -156,10 +157,10 @@ namespace apex
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::context_thread::initialize(pobjectContext);
+      auto estatus = ::apex::context_thread::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -174,10 +175,10 @@ namespace apex
 
       set_context_thread(this);
 
-      if (::is_set(get_context_application()))
+      if (::is_set(get_application()))
       {
 
-         //__compose(m_psystemParent, get_context_application()->get_context_system());
+         //__compose(m_psystemParent, get_application()->psystem);
 
       }
 
@@ -296,16 +297,16 @@ namespace apex
 
       m_nSafetyPoolSize = 512;        // default size_i32
 
-      estatus = __compose_new(m_pmath);
+      //estatus = __compose_new(m_pmath);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      set_generate_random_bytes(&::apex_generate_random_bytes);
+      //set_generate_random_bytes(&::apex_generate_random_bytes);
 
       estatus = __compose_new(m_pgeometry);
 
@@ -423,7 +424,7 @@ namespace apex
 
 
 
-      //estatus = ::apex::application::initialize(pobjectContext);
+      //estatus = ::apex::application::initialize(pcontextobject);
 
      //if (!estatus)
      //{
@@ -447,7 +448,7 @@ namespace apex
 
 
 
-            //estatus = ::apex::application::initialize(pobject);
+            //estatus = ::apex::application::initialize(pcontextobject);
 
             //if (!estatus)
             //{
@@ -478,7 +479,7 @@ namespace apex
       //      m_window                                  = nullptr;
       //#endif
 
-            //::apex::application * papp = ::get_context_application(pobject);
+            //::apex::application * papp = ::get_application(pobject);
 
             //if(papp == nullptr)
             //{
@@ -702,9 +703,11 @@ namespace apex
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
 
-      __pointer(::apex::library) plibrary = ::apex::get_system()->m_mapLibrary[pszComponent];
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+
+      __pointer(::apex::library) plibrary = psystem->m_mapLibrary[pszComponent];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -808,9 +811,11 @@ namespace apex
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexContainerizedLibrary);
+      __pointer(::apex::system) psystem = get_system();
 
-      __pointer(::apex::library) plibrary = ::apex::get_system()->m_mapContainerizedLibrary[strComponent][strImplementation];
+      synchronization_lock synchronizationlock(&psystem->m_mutexContainerizedLibrary);
+
+      __pointer(::apex::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
 
       if (plibrary && plibrary->is_opened())
       {
@@ -1009,7 +1014,7 @@ namespace apex
       if (iEdge == 0)
       {
 
-         if (!get_context_session())
+         if (!get_session())
          {
 
             set_context_session(psession);
@@ -1064,7 +1069,9 @@ namespace apex
    ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -1073,20 +1080,20 @@ namespace apex
       strLibrary.ends_eat_ci(".dylib");
       strLibrary.begins_eat_ci("lib");
 
-      __composite(::apex::library) & plibrary = ::apex::get_system()->m_mapLibrary[strLibrary];
+      __composite(::apex::library) & plibrary = psystem->m_mapLibrary[strLibrary];
 
       bool bLibraryOk = true;
 
       if (plibrary.is_null())
       {
 
-         __m_own(::apex::get_system(), plibrary, on_get_library(strLibrary));
+         __m_own(psystem, plibrary, on_get_library(strLibrary));
 
          if (plibrary.is_null())
 
          {
 
-            ::apex::get_system()->__compose_new(plibrary);
+            psystem->__compose_new(plibrary);
 
             if (!plibrary->open(strLibrary))
             {
@@ -1315,12 +1322,12 @@ namespace apex
    }
 
 
-   ::layered * system::get_layered_window(oswindow oswindow)
-   {
+   //::layered * system::get_layered_window(oswindow oswindow)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    ::e_status system::process_init()
@@ -1342,7 +1349,7 @@ namespace apex
       if (!create_session())
       {
 
-         message_box("Failed to allocate Session!!");
+         message_box("Failed to allocate get_session()!!");
 
          return false;
 
@@ -1357,12 +1364,12 @@ namespace apex
 
       }
 
-      estatus = m_papplicationStartup->initialize(get_context_session());
+      estatus = m_papplicationStartup->initialize(get_session());
 
       if (!estatus)
       {
 
-         message_box("Failed to initialize Application object!!");
+         message_box("Failed to initialize papplication object!!");
 
          return false;
 
@@ -1757,7 +1764,9 @@ namespace apex
 
       }
 
-      string strLogTime = ::apex::get_system()->datetime().international().get_gmt_date_time_for_file_with_no_spaces();
+      __pointer(::apex::system) psystem = get_system();
+
+      string strLogTime = psystem->datetime().international().get_gmt_date_time_for_file_with_no_spaces();
 
       strLogTime.replace("-", "/");
 
@@ -2026,9 +2035,11 @@ namespace apex
 
       pcreate->finish_initialization();
 
-      ::apex::get_system()->add_create(pcreate);
+      __pointer(::apex::system) psystem = get_system();
 
-      ::apex::get_system()->post_create_requests();
+      psystem->add_create(pcreate);
+
+      psystem->post_create_requests();
 
       return ::success;
 
@@ -2180,7 +2191,7 @@ namespace apex
 
       //}
 
-      get_context_session()->m_puserstrcontext->defer_ok(m_puserstr);
+      get_session()->m_puserstrcontext->defer_ok(m_puserstr);
 
       //__throw(todo("filehandler"));
 
@@ -2253,7 +2264,7 @@ namespace apex
 
       m_papplicationStartup->inline_init();
 
-      get_context_application()->get_property_set().merge(get_property_set());
+      get_application()->get_property_set().merge(get_property_set());
 
       __unbind(this, m_papplicationStartup OBJ_REF_DBG_COMMA_THIS);
 
@@ -2296,8 +2307,22 @@ namespace apex
 
 #endif
 
+      if (m_papplication)
+      {
+
+         estatus = m_papplication->m_estatus;
+
+      }
 
       return estatus;
+
+   }
+
+
+   ::apex::application* system::get_main_application()
+   {
+
+      return m_papplication;
 
    }
 
@@ -2308,7 +2333,7 @@ namespace apex
       if (m_bConsole)
       {
 
-         auto estatus = get_context_session()->inline_init();
+         auto estatus = get_session()->inline_init();
 
          if (!estatus)
          {
@@ -2321,7 +2346,7 @@ namespace apex
       else
       {
 
-         if (!get_context_session()->begin_synch())
+         if (!get_session()->begin_synch())
          {
 
             output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -2390,6 +2415,28 @@ namespace apex
    }
 
 
+   ::apex::library * system::lib(const char * psz)
+   {
+
+      synchronization_lock synchronizationlock(&m_mutexLibrary);
+
+      auto & plibrary = m_mapLibCall[psz];
+
+      if(!plibrary)
+      {
+      
+         __compose(m_mapLibCall[psz], __new(::apex::library));
+
+         plibrary->initialize(this);
+
+         plibrary->open(psz);
+
+      }
+
+      return plibrary;
+
+   }
+
    string system::get_application_server_name()
    {
 
@@ -2403,10 +2450,10 @@ namespace apex
 
    }
 
-   bool system::thread_get_run() const
+   bool system::task_get_run() const
    {
 
-      return ::apex::context_thread::thread_get_run();
+      return ::apex::context_thread::task_get_run();
 
    }
 
@@ -2520,6 +2567,31 @@ namespace apex
    }
 
 
+   //void system::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   //{
+
+   //   synchronization_lock synchronizationlock(m_mutexThread);
+
+   //   for (auto& pair : get_system()->m_threadidmap)
+   //   {
+
+   //      try
+   //      {
+
+   //         pair.element1()->post_message(message, wparam, lparam);
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //      }
+
+   //   }
+
+   //}
+
+
+
    void system::term_system()
    {
 
@@ -2587,14 +2659,14 @@ namespace apex
       //::apex::application::TermSystem();
 
 
-#ifdef LINUX
-
-      // dirty
-      // (forcing premature gtk event loop (main loop) quitting)
-      // the "most elegant" is to let just ~system (::apex::system destructor)...
-      // ... do this call, but this requires all references to ::apex::system ...
-      // ... to be released. This is a bit of an ideal situation that may not ...
-      // ... always happen as the wish the program finishes when it is closed ...
+//#ifdef LINUX
+//
+//      // dirty
+//      // (forcing premature gtk event loop (main loop) quitting)
+//      // the "most elegant" is to let just ~system (::apex::system destructor)...
+//      // ... do this call, but this requires all references to ::apex::system ...
+//      // ... to be released. This is a bit of an ideal situation that may not ...
+//      // ... always happen as the wish the program finishes when it is closed ...
       auto pnode = m_pnode;
 
       if(pnode)
@@ -2604,12 +2676,12 @@ namespace apex
 
       }
 
-#elif defined(__APPLE__)
-
-      os_post_quit();
-
-#endif
-
+//#elif defined(__APPLE__)
+//
+//      os_post_quit();
+//
+//#endif
+//
    }
 
 
@@ -2648,8 +2720,6 @@ namespace apex
 
       }
 
-
-
 #elif defined(WINDOWS_DESKTOP)
 
       estatus = do_factory_exchange("node", "windows");
@@ -2664,6 +2734,15 @@ namespace apex
       }
 
       estatus = ::acme::system::create_os_node();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnode->initialize(this);
 
       if(!estatus)
       {
@@ -2904,12 +2983,6 @@ namespace apex
    //}
 
 
-   ::xml::department & system::xml()
-   {
-
-      return *m_pxml;
-
-   }
 
 
    class ::str::base64 & system::base64()
@@ -3792,7 +3865,7 @@ namespace apex
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto appptra = psession->get_applicationa();
 
@@ -3898,7 +3971,7 @@ namespace apex
    bool system::on_open_file(::payload varFile, string strExtra)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto applicationa = psession->get_applicationa();
 
@@ -4038,7 +4111,7 @@ namespace apex
 ////
 ////      m_monitorinfoa.remove_all();
 ////
-////      ::EnumDisplayMonitors(nullptr, nullptr, ::apex::get_system()::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
+////      ::EnumDisplayMonitors(nullptr, nullptr, psystem::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
 ////
 ////#elif defined(LINUX)
 ////
@@ -4068,20 +4141,22 @@ namespace apex
    void system::on_extra(string str)
    {
 
-      string strProtocol = ::apex::get_system()->url().get_protocol(str);
+      __pointer(::apex::system) psystem = get_system();
+
+      string strProtocol = psystem->url().get_protocol(str);
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = ::apex::get_system()->url().get_server(str);
+         string strBase = psystem->url().get_server(str);
 
-         string strAppId = ::apex::get_system()->url().get_script(str);
+         string strAppId = psystem->url().get_script(str);
 
          ::str::begins_eat(strAppId, "/");
 
-         string strQuery = ::apex::get_system()->url().get_query(str);
+         string strQuery = psystem->url().get_query(str);
 
          string strMessage;
 
@@ -4116,9 +4191,9 @@ namespace apex
       if (strProtocol == "ca2project")
       {
 
-         string strBase = ::apex::get_system()->url().get_server(str);
+         string strBase = psystem->url().get_server(str);
 
-         string strScheme = ::apex::get_system()->url().get_script(str);
+         string strScheme = psystem->url().get_script(str);
 
          ::str::begins_eat(strScheme, "/");
 
@@ -4154,19 +4229,19 @@ namespace apex
    }
 
 
-   void system::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
       {
 
-         __simple_tracea(trace_object(pobjectContext), elevel, pszFunction, pszFile, iLine, psz);
+         __simple_tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
 
          return;
 
       }
 
-      log().__tracea(trace_object(pobjectContext), elevel, pszFunction, pszFile, iLine, psz);
+      log().__tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
 
    }
 
@@ -4175,7 +4250,9 @@ namespace apex
    string system::get_user_language()
    {
 
-      return ::apex::get_system()->standalone_setting("current_language");
+      __pointer(::apex::system) psystem = get_system();
+
+      return psystem->standalone_setting("current_language");
 
    }
 
@@ -4183,16 +4260,18 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, index iSel)
    {
 
-      if (iSel < 0 || iSel >= ::apex::get_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
+      __pointer(::apex::system) psystem = get_system();
+
+      if (iSel < 0 || iSel >= psystem->get_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
       {
 
          return false;
 
       }
 
-      string strLang = ::apex::get_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
+      string strLang = psystem->get_session()->get_current_application()->m_puserlanguagemap->m_straLang[iSel];
 
-      if (strLang == ::apex::get_system()->get_context_session()->get_current_application()->m_puserlanguagemap->m_strLang)
+      if (strLang == psystem->get_session()->get_current_application()->m_puserlanguagemap->m_strLang)
       {
 
          return true;
@@ -4214,9 +4293,11 @@ namespace apex
    bool system::set_user_language(::apex::application * papp, string strLang)
    {
 
-      ::apex::get_system()->get_context_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
+      __pointer(::apex::system) psystem = get_system();
 
-      return ::apex::get_system()->set_standalone_setting("current_language", strLang);
+      psystem->get_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
+
+      return psystem->set_standalone_setting("current_language", strLang);
 
    }
 
@@ -4234,12 +4315,12 @@ namespace apex
    }
 
 
-   void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
        get_context()->os().link_open(strUrl);
 
-       return;
+       return ::success;
 
 #if 0
 
@@ -4325,13 +4406,13 @@ namespace apex
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.cc/open_f___?url=" + ::apex::get_system()->url_encode(strUrl) + "&profile=" + ::apex::get_system()->url_encode(strProfile) + "&target=" + ::apex::get_system()->url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_f___?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.cc/open_tab?url=" + ::apex::get_system()->url_encode(strUrl) + "&profile=" + ::apex::get_system()->url_encode(strProfile) + "&target=" + ::apex::get_system()->url_encode(strTarget);
+            //strUrl = "https://ca2.cc/open_tab?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
 
          }
 
@@ -4437,7 +4518,7 @@ namespace apex
          //if (strOpenUrl.has_char())
          {
 
-            // ::apex::get_system()->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+            // psystem->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
             ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
@@ -4467,7 +4548,7 @@ namespace apex
 
          //path /= strProfile;
 
-         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\Application", SW_SHOWNORMAL, 0);
+         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\papplication", SW_SHOWNORMAL, 0);
 
 #else
 
@@ -4670,7 +4751,7 @@ namespace apex
 
          argv.add(nullptr);
 
-         string strApp = ::apex::get_system()->url().url_decode(path);
+         string strApp = psystem->url().url_decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -4893,115 +4974,56 @@ namespace apex
       return strMutex;
    }
 
+   
+   //::task_group * system::task_group(::e_priority epriority)
+   //{
 
-//   ::thread* system::get_task(ithread_t ithread)
-//   {
-//
-//      synchronization_lock synchronizationlock(&m_mutexThread);
-//
-//      return m_threadmap[ithread];
-//
-//   }
-//
-//
-//   ithread_t system::get_thread_id(::thread* pthread)
-//   {
-//
-//      synchronization_lock synchronizationlock(&m_mutexThread);
-//
-//      ithread_t ithread = null_ithread;
-//
-//      if (!m_threadidmap.lookup(pthread, ithread))
-//      {
-//
-//         return 0;
-//
-//      }
-//
-//      return ithread;
-//
-//   }
-//
-//
-//   void system::set_thread(ithread_t ithread, ::thread* pthread)
-//   {
-//
-//      synchronization_lock synchronizationlock(&m_mutexThread);
-//
-//      m_threadmap[ithread].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
-//
-//      m_threadidmap[pthread] = ithread;
-//
-//   }
-//
-//
-//   void system::unset_thread(ithread_t ithread, ::thread * pthread)
-//   {
-//
-//      synchronization_lock synchronizationlock(&m_mutexThread);
-//
-//#if OBJ_REF_DBG
-//
-//      m_threadmap[ithread].release(this);
-//
-//#endif
-//
-//      m_threadmap.remove_key(ithread);
-//
-//      m_threadidmap.remove_key(pthread);
-//
-//   }
+   //   if (m_bitAvoidProcFork)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   synchronization_lock synchronizationlock(mutex());
+
+   //   auto & threadgroupa = m_taskgroupmap[epriority];
+
+   //   if (threadgroupa.is_empty())
+   //   {
+
+   //      auto pgroup = __new(::task_group(this, epriority));
+
+   //      threadgroupa.add(pgroup);
+
+   //   }
+
+   //   return threadgroupa.last();
+
+   //}
 
 
-   ::thread_group * system::thread_group(::e_priority epriority)
-   {
+   //::task_tool * system::task_tool(::enum_task_tool etool)
+   //{
 
-      if (m_bitAvoidProcFork)
-      {
+   //   synchronization_lock synchronizationlock(mutex());
 
-         return nullptr;
+   //   auto& threadtoola = m_tasktoolmap[etool];
 
-      }
+   //   if (threadtoola.is_empty())
+   //   {
 
-      synchronization_lock synchronizationlock(mutex());
+   //      auto ptool = __new(::task_tool);
 
-      auto & threadgroupa = m_threadgroupmap[epriority];
+   //      ptool->m_id = etool;
 
-      if (threadgroupa.is_empty())
-      {
+   //      threadtoola.add(ptool);
 
-         auto pgroup = __new(::thread_group(this, epriority));
+   //   }
 
-         threadgroupa.add(pgroup);
+   //   return threadtoola.last();
 
-      }
-
-      return threadgroupa.last();
-
-   }
-
-
-   ::thread_tool * system::thread_tool(::enum_thread_tool etool)
-   {
-
-      synchronization_lock synchronizationlock(mutex());
-
-      auto& threadtoola = m_threadtoolmap[etool];
-
-      if (threadtoola.is_empty())
-      {
-
-         auto ptool = __new(::thread_tool);
-
-         ptool->m_id = etool;
-
-         threadtoola.add(ptool);
-
-      }
-
-      return threadtoola.last();
-
-   }
+   //}
 
 
    __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
@@ -5016,7 +5038,7 @@ namespace apex
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
       fork([this, strUrl, strProfile, strTarget]()
@@ -5025,6 +5047,8 @@ namespace apex
          browser(strUrl, "", strProfile, strTarget);
 
       });
+
+      return ::success;
 
    }
 
@@ -5228,7 +5252,7 @@ namespace apex
   //
   //      }
   //
-  //      //estatus = ::apex::application::initialize(pobjectContext);
+  //      //estatus = ::apex::application::initialize(pcontextobject);
   //
   //     //if (!estatus)
   //     //{
@@ -5252,7 +5276,7 @@ namespace apex
   //
   //
   //
-  //            //estatus = ::apex::application::initialize(pobject);
+  //            //estatus = ::apex::application::initialize(pcontextobject);
   //
   //            //if (!estatus)
   //            //{
@@ -5283,7 +5307,7 @@ namespace apex
   //      //      m_window                                  = nullptr;
   //      //#endif
   //
-  //            //::apex::application * papp = ::get_context_application(pobject);
+  //            //::apex::application * papp = ::get_application(pobject);
   //
   //            //if(papp == nullptr)
   //            //{
@@ -5740,7 +5764,7 @@ namespace apex
 
    //   }
 
-   //   if (get_context_session(iNewEdge, pbiasCreation) == nullptr)
+   //   if (get_session(iNewEdge, pbiasCreation) == nullptr)
    //   {
 
    //      return -1;
@@ -5864,7 +5888,7 @@ namespace apex
    bool system::get_window_rect(RECTANGLE_I32* prectangle)
    {
 
-      if (::is_null(get_context_session()))
+      if (::is_null(get_session()))
       {
 
          return false;
@@ -5946,8 +5970,62 @@ namespace apex
          }
 
       }
+      if (psubject->m_esubject == e_subject_prepare)
+      {
 
-      acme::system::on_subject(psubject);
+         if (psubject->id() == id_os_dark_mode)
+         {
+
+            auto pnode = node();
+
+            if (pnode)
+            {
+
+               pnode->os_calc_user_dark_mode();
+
+            }
+
+         }
+         else if (psubject->id() == id_os_user_theme)
+         {
+
+            string strTheme = ::user::_os_get_user_theme();
+
+            if (strTheme != m_strOsUserTheme)
+            {
+
+               m_strOsUserTheme = strTheme;
+
+               psubject->m_esubject = e_subject_process;
+
+            }
+            else
+            {
+
+               psubject->m_esubject = e_subject_not_modified;
+
+            }
+
+         }
+
+      }
+
+      if (psubject->m_esubject == e_subject_process)
+      {
+
+         if (psubject->id() == id_os_user_theme)
+         {
+
+            ::user::_os_process_user_theme(m_strOsUserTheme);
+
+         }
+
+         psubject->m_esubject = e_subject_deliver;
+
+      }
+
+
+      //acme::system::on_subject(psubject);
 
    }
 
@@ -6020,6 +6098,100 @@ namespace apex
       m_mapLibrary.remove_all();
 
    }
+
+
+   int system::console_end(::e_status estatus)
+   {
+
+      int iStatus = (int)estatus;
+
+      int iError = 0;
+
+      if (iStatus < 0)
+      {
+
+         iError = iStatus;
+
+      }
+      else if (iStatus > 1)
+      {
+
+         iError = 0;
+
+         if (is_true("show_application_information"))
+         {
+
+            printf("return code is %d", iStatus);
+
+         }
+
+      }
+
+      system_end();
+
+      return iError;
+
+   }
+
+
+   void system::system_construct(int argc, char** argv, char** envp)
+   {
+
+      apex_main_data::system_construct(argc, argv, envp);
+
+   }
+
+
+   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   {
+
+      apex_main_data::system_construct(argc, argv, envp);
+
+   }
+
+
+#ifdef WINDOWS_DESKTOP
+
+   
+   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
+   {
+
+      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
+
+   }
+
+
+#elif defined(_UWP)
+
+   
+   ::e_status system::system_construct(Array < String^ >^ refstra)
+   {
+
+      return ::success;
+
+   }
+
+
+#else
+
+
+   ::e_status system::system_construct(const char* pszCommandLine, const ::e_display& edisplay)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
+   {
+
+      return ::success;
+
+   }
+
+
+#endif
 
 
    __namespace_system_factory(system);
@@ -6159,10 +6331,10 @@ namespace apex
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::context_object * pcontextobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::acme::system::message_box(pszText, pszTitle, emessagebox);
+      return ::acme::system::_message_box(pcontextobject, pszText, pszTitle, emessagebox);
 
    }
 
@@ -6170,21 +6342,39 @@ namespace apex
 } // namespace apex
 
 
-void apex_system_update(const ::id & id, const ::payload & payload)
-{
+//void apex_system_update(const ::id & id, const ::payload & payload)
+//{
+//
+//   psystem->process_subject(id, payload);
+//
+//}
 
-   ::apex::get_system()->process_subject(id, payload);
-
-}
-
-
-
-void apex_system_set_modified(const ::id& id)
-{
-
-   ::apex::get_system()->set_modified(id);
-
-}
-
+//
+//
+//void apex_system_set_modified(const ::id& id)
+//{
+//
+//
+//
+//   psystem->set_modified(id);
+//
+//}
+//
+//namespace apex
+//{
+//
+//
+//   void system::on_subject(::subject::subject* psubject)
+//   {
+//
+//
+//      ::subject::manager::on_subject(psubject);
+//
+//   }
+//
+//
+//
+//} // namespace apex
+//
 
 

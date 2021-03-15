@@ -16,7 +16,7 @@ CLASS_DECL_APEX void os_term_windowing();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex * ::apex::get_system()->m_mutexLibrary;
+//extern ::mutex * psystem->m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -87,7 +87,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::layered * pobjectContext);
+void debug_context_object(::context_object * pcontextobject);
 
 
 #ifdef __APPLE__
@@ -362,12 +362,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      ::apex::get_system()->message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
+      psystem->message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         ::apex::get_system()->message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
+         psystem->message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -379,7 +379,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         ::apex::get_system()->message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+         psystem->message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 
@@ -501,11 +501,13 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 //
 //}
 
-   // get_context_system() = __move_transfer(g_pfn_create_system());
+   // psystem = __move_transfer(g_pfn_create_system());
 
-   //get_context_system() = __move_transfer(apex_create_apex_system());
+   //psystem = __move_transfer(apex_create_apex_system());
 
-   if (!get_context_system())
+   __pointer(::apex::system) psystem = get_system();
+
+   if (!psystem)
    {
 
       on_result(error_failed);
@@ -514,20 +516,20 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    }
 
-//   ::apex::get_system()->common_construct();
+//   psystem->common_construct();
 
-   ::set_task(get_context_system());
+   ::set_task(psystem);
 
-   debug_context_object(get_context_system());
+   debug_context_object(psystem);
 
-   ::apex::get_system()->initialize(get_context_system());
+   psystem->initialize(psystem);
 
-   //set_context_object(get_context_system());
+   //set_object(psystem);
 
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   ::apex::get_system()->m_millisMainStart = m_millisStart;
+   psystem->m_millisMainStart = m_millisStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
@@ -614,7 +616,7 @@ void app_core::set_command_line(const char * psz)
 //
 //         m_plibrary = __new(::apex::library);
 //
-//         m_plibrary->initialize(get_context_system());
+//         m_plibrary->initialize(psystem);
 //
 //         m_plibrary->m_strCa2Name = strAppId;
 //
@@ -766,7 +768,7 @@ void app_core::system_end()
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
@@ -866,7 +868,7 @@ void app_core::system_end()
 
             char szTimeMessage1[2048];
 
-            sprintf(szTimeMessage1, " Just After First Application Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
 
             if (file_length_raw(szEllapsed) > 0)
             {
@@ -1697,7 +1699,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status estatus = ::apex::get_system()->__thread_procedure();
+//   ::e_status estatus = psystem->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1781,14 +1783,16 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         auto plibrary = ::apex::get_system()->get_library(strLibrary);
+         __pointer(::apex::system) psystem = get_system();
+
+         auto plibrary = psystem->get_library(strLibrary);
 
          if (!plibrary)
          {
 
 #ifndef _UWP
 
-            message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+            message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 
@@ -1830,7 +1834,7 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 //         if(papp)
 //         {
 //
-//            estatus = papp->initialize(pobjectContext);
+//            estatus = papp->initialize(pcontextobject);
 //
 //         }
 
@@ -1887,11 +1891,13 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
 #if !defined(ANDROID)
 
+   __pointer(::apex::system) psystem = get_system();
+
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::apex::get_system()->m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      ::apex::get_system()->m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      psystem->m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+      psystem->m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 
@@ -1914,10 +1920,11 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
 }
 
-::e_status app_core::initialize_application(::apex::application *papplication, ::object *pobjectContext)
+
+::e_status app_core::initialize_application(::apex::application *papplication, ::context_object * pcontextobject)
 {
 
-   auto estatus = papplication->initialize(pobjectContext);
+   auto estatus = papplication->initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -2134,7 +2141,7 @@ bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 //void set_apex_system_as_thread()
 //{
 //
-//   ::set_thread(::get_context_system());
+//   ::set_thread(::psystem);
 //
 //}
 

@@ -1,10 +1,9 @@
 #pragma once
 
 
-class context_object;
+class property_object;
 class task;
 class action_context;
-class layered;
 class object;
 class dump_context;
 class synchronization_object;
@@ -12,7 +11,7 @@ class __id;
 class string_exchange;
 
 
-inline ::object* __object(::layered* playered);
+//inline ::object* __object(::p* playered);
 
 
 
@@ -50,18 +49,31 @@ public:
 
    ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
+   ::acme::system *                    m_psystem;
 
+
+//#if OBJ_REF_DBG
+//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
+//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+//#else
+//   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_psystem(nullptr) { }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); }
+//   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; }
+//#endif
 
 #if OBJ_REF_DBG
-   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0)  { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
-   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_psystem(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; }
 #endif
 
    virtual ~matter();
@@ -81,6 +93,10 @@ public:
 
 #endif
 
+
+   virtual ::e_status initialize_matter(::matter* pmatter);
+
+
    inline bool is_set() const { return ::is_set(this); }
 
    // synchronization_object/::mutex
@@ -89,8 +105,11 @@ public:
    void defer_create_mutex();
 
 
-   virtual ::context_object * _get_context_object();
+   inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
+   inline ::apex::application* get_application() { return _get_application(); }
+
+   virtual ::apex::application* _get_application();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();
@@ -103,7 +122,7 @@ public:
    virtual void task_remove(::task* pthread);
 
 
-   virtual void notify_on_finish(::context_object * pcontextobject);
+   virtual void notify_on_finish(::property_object * pcontextobject);
 
 
    virtual void kick_idle();
@@ -132,8 +151,11 @@ public:
    inline i64 release(OBJ_REF_DBG_PARAMS);
 #endif
 
-   virtual ::e_status initialize(::layered* pobjectContext);
+   virtual ::e_status initialize(::context_object * pcontextobject);
+   //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS);
    virtual void finalize();
+
+
 
 
    virtual ::e_status do_task();
@@ -162,7 +184,7 @@ public:
    virtual ::matter * get_taskpool_container();
 
 
-   virtual ::layered * taskpool();
+   virtual ::task_pool * taskpool();
 
 
    virtual ::task * defer_fork(const ::id & id, const ::routine & routine);
@@ -190,13 +212,13 @@ public:
 
 
    virtual void on_finish();
-   virtual ::e_status set_finish(::context_object * pcontextobjectFinish);
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish);
+   virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
+   virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish);
 
 
    // returns success when object is ready to have finalize called
    // returns error_pending if any child or ascendant is still active
-   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr);
+   virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
 
 
    virtual void post_quit();

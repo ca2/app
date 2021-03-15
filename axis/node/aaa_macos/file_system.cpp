@@ -31,10 +31,10 @@ namespace macos
    }
 
 
-   ::e_status file_system::initialize(::layered * pobjectContext)
+   ::e_status file_system::initialize(::context_object * pcontextobject)
    {
       
-      auto estatus = ::file_system::initialize(pobjectContext);
+      auto estatus = ::file_system::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -49,10 +49,10 @@ namespace macos
 
       string strUserFolderShift;
 
-      if(System->has_property("user_folder_relative_path"))
+      if(psystem->has_property("user_folder_relative_path"))
       {
 
-         strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();
+         strUserFolderShift = strRelative / papplication->payload("user_folder_relative_path").get_string();
 
       }
       else

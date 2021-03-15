@@ -18,10 +18,10 @@ namespace filemanager
    }
 
 
-   ::e_status file_properties_form::initialize(::layered * pobjectContext)
+   ::e_status file_properties_form::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::user::impact_host::initialize(pobjectContext);
+      auto estatus = ::user::impact_host::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -89,7 +89,7 @@ namespace filemanager
    void file_properties_form::page1()
    {
 
-      if(!m_pdocGeneral->on_open_document(Context.dir().matter("filemanager/file_properties.html")))
+      if(!m_pdocGeneral->on_open_document(pcontext->dir().matter("filemanager/file_properties.html")))
       {
 
          return;

@@ -12,7 +12,7 @@ namespace sphere
    public:
 
 
-      library(::layered * pobjectContext);
+      library(::context_object * pcontextobject);
       
 
       virtual void get_app_list(string_array & stra);

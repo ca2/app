@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::context_object * pcontextobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,
@@ -106,21 +106,21 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          if(!m_bLite)
          {
 
-            Application.load_ai_font();
+            papplication->load_ai_font();
 
          }
 
-         __begin_thread(get_context_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+         __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
 
       }
 
-      Application.start_main();
+      papplication->start_main();
 
 
    }
@@ -185,10 +185,10 @@ namespace turboc
 
       GetClientRect(rectClient);
 
-/*      pgraphics->BitBlt(rectClient,Application.m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectClient,papplication->m_pcontext->m_pimage->g());
 
 
-      if(Application.m_etype == application::type_mili)
+      if(papplication->m_etype == application::type_mili)
       {
 
          string strHelloMultiverse = get_processed_turboc();
@@ -351,9 +351,9 @@ namespace turboc
 
          //pgraphics->FillSolidRect(rectClient,0);
 
-/*         System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
+/*         psystem->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
 
-         System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
+         psystem->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
 
       }
       else
@@ -363,7 +363,7 @@ namespace turboc
 
       }
 
-      //System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
+      //psystem->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
 
 
       //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
@@ -709,7 +709,7 @@ namespace turboc
 
          __pointer(view) pview = pviewParam;
 
-         while(::thread_get_run() && pview->IsWindow())
+         while(::task_get_run() && pview->IsWindow())
          {
 
             try
@@ -845,13 +845,13 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            return Application.m_strAlternateTurboC;
+            return papplication->m_strAlternateTurboC;
 
          }
          else
          {
 
-            return Application.m_strTurboC;
+            return papplication->m_strTurboC;
 
          }
 

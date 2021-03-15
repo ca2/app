@@ -5,13 +5,13 @@ namespace sockets
 {
 
 
-   Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
+   Ajp13Socket::Ajp13Socket() :
       socket(h),
       base_socket(h),
       stream_socket(h),
       AjpBaseSocket(h),
-      m_request(h.get_context_application()),
-      m_response(h.get_context_application()),
+      m_request(h.get_application()),
+      m_response(h.get_application()),
       m_body_size_left(0)
    {
    }
@@ -268,8 +268,8 @@ namespace sockets
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
             {
-               Utility::ncmap<int>::const_iterator it2 = dynamic_cast < application_interface * >(::get_context_application())->m_pajpbasesocketinit->ResponseHeader.find( "set-cookie" );
-               if (it2 != dynamic_cast < application_interface * >(::get_context_application())->m_pajpbasesocketinit->ResponseHeader.end())
+               Utility::ncmap<int>::const_iterator it2 = dynamic_cast < application_interface * >(::get_application())->m_pajpbasesocketinit->ResponseHeader.find( "set-cookie" );
+               if (it2 != dynamic_cast < application_interface * >(::get_application())->m_pajpbasesocketinit->ResponseHeader.end())
                {
                   put_integer(msg, ptr, it2 -> second);
                }

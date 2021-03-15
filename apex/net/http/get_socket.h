@@ -15,8 +15,8 @@ namespace http
       ::http::cookies *    m_pcookies;
 
 
-      get_socket(::sockets::socket_handler & handler, const string & url);
-      get_socket(::sockets::socket_handler & handler, const string & host,port_t port,const string & url);
+      get_socket(const string & url);
+      get_socket(const string & host,port_t port,const string & url);
       virtual ~get_socket();
 
 

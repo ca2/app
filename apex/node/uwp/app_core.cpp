@@ -5,7 +5,7 @@
 #include "apex/node/_node.h"
 
 
-#undef Application
+#undef papplication
 #undef new
 
 

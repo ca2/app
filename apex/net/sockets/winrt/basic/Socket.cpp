@@ -48,8 +48,8 @@ namespace sockets
 
    socket_map socket::s_mapSocket;
 
-   socket::socket(base_socket_handler & h) :
-      ::object(h.get_context_application()),
+   socket::socket() :
+      ::object(h.get_application()),
       base_socket(h),
       m_handler(h)
    {
@@ -65,7 +65,7 @@ namespace sockets
 
    socket::~socket()
    {
-      Handler().remove(this);
+      socket_handler()->remove(this);
    }
 
 
@@ -167,12 +167,12 @@ namespace sockets
 
       }
 
-      Handler().set(m_socket, false, false, false); // remove from fd_set's
-      Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
-      Handler().AddList(m_socket, LIST_DETACH, false);
-      Handler().AddList(m_socket, LIST_TIMEOUT, false);
-      Handler().AddList(m_socket, LIST_RETRY, false);
-      Handler().AddList(m_socket, LIST_CLOSE, false);
+      socket_handler()->set(m_socket, false, false, false); // remove from fd_set's
+      socket_handler()->AddList(m_socket, LIST_CALLONCONNECT, false);
+      socket_handler()->AddList(m_socket, LIST_DETACH, false);
+      socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
+      socket_handler()->AddList(m_socket, LIST_RETRY, false);
+      socket_handler()->AddList(m_socket, LIST_CLOSE, false);
       synchronization_lock ml(s_pmutex);
       s_mapSocket.remove_key(m_socket);
       m_socket = INVALID_SOCKET;

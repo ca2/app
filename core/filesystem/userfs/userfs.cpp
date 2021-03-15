@@ -19,10 +19,10 @@ namespace userfs
    }
 
    
-   ::e_status userfs::initialize(::layered * pobjectContext)
+   ::e_status userfs::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -31,7 +31,7 @@ namespace userfs
 
       }
 
-      if(Application.is_system())
+      if(papplication->is_system())
       {
 
          create_factory <::userfs::main_view > ();

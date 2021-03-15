@@ -6,7 +6,7 @@
 int main2()
 {
 
-   ::file pfile = Context.file().get_file("C:\\window.window");
+   ::file pfile = get_context()->file().get_file("C:\\window.window");
 
    in_addr addr;
 
@@ -44,7 +44,7 @@ void __exchange(stream & s, const ::id & id,)
 int main()
 {
 
-    ::file pfile = Context.file().get_file("C:\\window.window");
+    ::file pfile = get_context()->file().get_file("C:\\window.window");
 
     auto pinteraction = new window();
 

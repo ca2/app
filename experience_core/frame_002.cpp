@@ -206,7 +206,7 @@ SizingNone:;
             void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto rectClient(rectClientParam);
 
@@ -244,7 +244,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       crMoveableBorder,
@@ -266,7 +266,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                      rectangle,
                      crMoveableBorder ,
@@ -281,7 +281,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics,
                                       rectangle,
@@ -961,7 +961,7 @@ SizingNone:;
             void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

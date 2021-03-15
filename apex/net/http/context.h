@@ -26,7 +26,8 @@ namespace http
          millis           m_millisLastChecked;
 
 
-         pac(::layered * pobjectContext);
+         //pac(::context_object * pcontextobject);
+         pac();
          virtual ~pac();
 
 
@@ -46,7 +47,8 @@ namespace http
          millis m_millisLastChecked;
 
 
-         proxy(::layered * pobjectContext);
+         //proxy(::context_object * pcontextobject);
+         proxy();
 
 
       };
@@ -63,7 +65,7 @@ namespace http
 
 
 
-      //context(::layered * pobjectContext);
+      //context(::context_object * pcontextobject);
       context();
       virtual ~context();
 
@@ -73,7 +75,7 @@ namespace http
 
       DECL_GEN_SIGNAL(get);
 
-      virtual bool http_get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & m_psocket, const char * pszUrl, property_set & set);
+      virtual bool http_get(__pointer(::sockets::http_client_socket) & m_psocket, const char * pszUrl, property_set & set);
       virtual bool get(::http::session & session, const char * pszUrl, string & str, property_set & set);
       virtual string get(::http::session & session, const char * pszUrl, property_set & set);
 
@@ -82,10 +84,10 @@ namespace http
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion);
+      virtual bool open(__pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion);
 
 
-      virtual bool request(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & spsession, const char * pszUrl, property_set & set);
+      virtual bool request(__pointer(::sockets::http_session) & spsession, const char * pszUrl, property_set & set);
 
       virtual bool exists(const char * pszUrl, property_set & set);
       virtual bool is_file_or_dir(const char * pszUrl, property_set & set, ::file::enum_type * petype = nullptr);
@@ -96,7 +98,7 @@ namespace http
 
       virtual bool request(const char * pszMethod, const char * pszUrl, property_set & set);
 
-      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set);
+      virtual bool download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set);
       virtual bool download(const char * pszUrl, ::payload varFile, property_set & set);
 
       virtual bool put(const char * pszUrl, memory_base & memory, property_set & set);
@@ -125,7 +127,7 @@ namespace http
 
       //DECL_GEN_SIGNAL(get);
 
-      virtual bool get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set);
+      virtual bool get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set);
 
       virtual string api_get(const char * pszUrl, property_set & set);
       virtual string api_get(const char * pszUrl);
@@ -144,7 +146,7 @@ namespace http
 
       //virtual bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 
-      //virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set);
+      //virtual bool download(__pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set);
       //virtual bool download(const char * pszUrl, ::payload varFile, property_set & set);
 
 

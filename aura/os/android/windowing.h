@@ -71,7 +71,7 @@ struct CLASS_DECL_AURA oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_impl *    m_pimpl;
-   hthread_t                       m_hthread;
+   htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    //RECTANGLE_I32                          m_rectangle;
    bool                          m_bDestroying;

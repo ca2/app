@@ -23,7 +23,7 @@ namespace sockets
       };
 
 
-      http_tunnel(base_socket_handler & h);
+      http_tunnel();
       bool        m_bSslTunnel;
       bool        m_bOk ;
       string m_host; ///< Hostname from url_in

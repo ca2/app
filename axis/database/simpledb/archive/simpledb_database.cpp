@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   database::database(::layered * pobjectContext):
+   database::database(::context_object * pcontextobject):
       ::object(pobject)
    {
 

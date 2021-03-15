@@ -40,10 +40,10 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::draw2d::draw2d::initialize(pobjectContext);
+      auto estatus = ::draw2d::draw2d::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -902,7 +902,7 @@ namespace draw2d_cairo
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = Context.file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
 //
 //      auto pdoc = create_xml_document();
 //
@@ -1182,7 +1182,7 @@ namespace draw2d_cairo
 //      }
 //
 //
-//      synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//      synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
 //
 //      estatus = __construct(m_pwritetext);
 //
@@ -1209,7 +1209,7 @@ namespace draw2d_cairo
 //      if (::succeeded(estatus))
 //      {
 //
-//         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+//         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 //
 //      }
 //
@@ -1248,7 +1248,7 @@ namespace draw2d_cairo
 //      if (strLibrary.has_char())
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", strLibrary);
+//         estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
 //         if (estatus)
 //         {
@@ -1276,7 +1276,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      estatus = System->do_factory_exchange("write_text", strLibrary);
+//      estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
 //      if (estatus)
 //      {
@@ -1292,7 +1292,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_gdiplus")
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", "gdiplus");
+//         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
 //
 //         if (estatus)
 //         {
@@ -1307,7 +1307,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_direct2d")
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", "direct2d");
+//         estatus = psystem->do_factory_exchange("write_text", "direct2d");
 //
 //         if (estatus)
 //         {
@@ -1325,7 +1325,7 @@ namespace draw2d_cairo
 //      {
 //
 //
-//         estatus = System->do_factory_exchange("write_text", "cairo");
+//         estatus = psystem->do_factory_exchange("write_text", "cairo");
 //
 //         if (estatus)
 //         {

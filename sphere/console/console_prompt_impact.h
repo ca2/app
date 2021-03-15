@@ -32,7 +32,7 @@ namespace console
       bool                 m_bOk;
 
 
-      prompt_impact(::layered * pobjectContext);
+      prompt_impact(::context_object * pcontextobject);
       virtual ~prompt_impact();
 
 

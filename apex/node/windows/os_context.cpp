@@ -135,7 +135,6 @@ namespace windows
          return false;
       }
 
-
       if(!LIBCALL(wtsapi32,WTSShutdownSystem)(WTS_CURRENT_SERVER_HANDLE,WTS_WSD_REBOOT))
       {
          TRACELASTERROR();
@@ -969,33 +968,8 @@ namespace windows
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   bool getCredentialsForService(const string & strService,WCHAR * szUsername,WCHAR *szPassword)
+   bool os_context::_getCredentialsForService(const string & strService,WCHAR * szUsername,WCHAR *szPassword)
    {
-
-
-
-
-
 
       HRESULT hr = S_OK;
       u32   dwResult;
@@ -1014,16 +988,13 @@ namespace windows
 
       HICON hicon = nullptr;
 
-
       // Display a dialog box to request credentials.
       __zero(u);
       u.cbSize = sizeof(u);
       u.hwndParent = nullptr;
 
-
-
       // Retrieve the user name and domain name.
-//      SID_NAME_USE    SidUse;
+      // SID_NAME_USE    SidUse;
       u32           cchTmpUsername = CREDUI_MAX_USERNAME_LENGTH +1;
       u32           cchTmpDomain = CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
       u32           cchDomainAndUser = CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
@@ -1035,13 +1006,9 @@ namespace windows
 
       //::GetUserNameW(szUsername,&lenUserName);
 
-
       u32 dwLastError = 0;
 
-
-
       bool bOk;
-
 
       //if(!GetCurrentUserIdentity(ti))
       //   return false;
@@ -1191,8 +1158,6 @@ retry:
 
          HANDLE h;
 
-
-
          if(::LogonUserW(
                szUsername,
                szDomain,
@@ -1201,26 +1166,36 @@ retry:
                LOGON32_PROVIDER_DEFAULT,
                &h))
          {
+
             ::CloseHandle(h);
+
          }
          else
          {
+
             dwLastError = ::GetLastError();
+
             goto retry;
+
          }
 
          wcscpy(szUsername,szDomainAndUser);
-
 
       }
       else
       {
 
-         if(dwResult != ERROR_CANCELLED)
+         if (dwResult != ERROR_CANCELLED)
+         {
+
             goto retry;
 
+         }
+
          hr = HRESULT_FROM_WIN32(dwResult);
+         
          bOk = false;
+
       }
 
       if(u.hbmBanner != nullptr)
@@ -1235,49 +1210,17 @@ retry:
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    string os_context::calc_service_name()
    {
 
-      ::apex::application * papp = get_context_application();
+      ::apex::application * papp = get_application();
 
-      if(Application.m_strAppName.is_empty()
-            || Application.m_strAppName.compare_ci("bergedge") == 0
-            || !Application.is_serviceable())
+      if(get_application()->m_strAppName.is_empty()
+            || get_application()->m_strAppName.compare_ci("bergedge") == 0
+            || !get_application()->is_serviceable())
          return "";
 
-      string strServiceName = Application.m_strAppId;
+      string strServiceName = get_application()->m_strAppId;
 
       strServiceName.replace("/","-");
 
@@ -1336,12 +1279,12 @@ retry:
       WCHAR lpszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
 
-      ::apex::application * papp = get_context_application();
+      ::apex::application * papp = get_application();
 
-      if(Application.is_user_service())
+      if(get_application()->is_user_service())
       {
 
-         if(getCredentialsForService(Application.m_strAppId,lpszName,pszPass))
+         if(_getCredentialsForService(get_application()->m_strAppId,lpszName,pszPass))
          {
 
             pname = lpszName;
@@ -1367,30 +1310,44 @@ retry:
 
       string strServiceName = calc_service_name();
 
-      if(strServiceName.is_empty())
+      if (strServiceName.is_empty())
+      {
+
          return false;
+
+      }
 
       return remove_service(strServiceName);
 
    }
+
 
    ::e_status os_context::start_service()
    {
 
       string strServiceName = calc_service_name();
 
-      if(strServiceName.is_empty())
+      if (strServiceName.is_empty())
+      {
+
          return false;
+
+      }
 
       return start_service(strServiceName);
 
    }
 
+
    bool os_context::create_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
    {
 
-      if(strServiceName.is_empty())
+      if (strServiceName.is_empty())
+      {
+
          return false;
+
+      }
 
       SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_CREATE_SERVICE);
 
@@ -1398,6 +1355,7 @@ retry:
       {
          //::GetLastError()
          return false;
+
       }
 
       WCHAR lpszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
@@ -1424,10 +1382,15 @@ retry:
 
       if(!hdlServ)
       {
+
          u32 Ret = ::GetLastError();
+
          TRACELASTERROR();
+
          CloseServiceHandle(hdlSCM);
+
          return false;
+
       }
 
       SecureZeroMemory(lpszName,sizeof(lpszName));
@@ -1445,8 +1408,12 @@ retry:
    bool os_context::remove_service(const string & strServiceName)
    {
 
-      if(strServiceName.is_empty())
+      if (strServiceName.is_empty())
+      {
+
          return false;
+
+      }
 
       SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_ALL_ACCESS);
 
@@ -1455,7 +1422,6 @@ retry:
          //::GetLastError();
          return false;
       }
-
 
       SC_HANDLE hdlServ = ::OpenServiceW(
                           hdlSCM,                    // SCManager database
@@ -1635,7 +1601,7 @@ retry:
       if (status.m_mtime.get_time() != 0)
       {
 
-         ::windows::time_to_filetime(get_context_application(), status.m_mtime, &lastWriteTime);
+         ::windows::time_to_filetime(get_application(), status.m_mtime, &lastWriteTime);
 
          pLastWriteTime = &lastWriteTime;
 
@@ -1646,7 +1612,7 @@ retry:
       if (status.m_atime.get_time() != 0)
       {
 
-         ::windows::time_to_filetime(get_context_application(),status.m_atime, &lastAccessTime);
+         ::windows::time_to_filetime(get_application(),status.m_atime, &lastAccessTime);
 
          pLastAccessTime = &lastAccessTime;
 
@@ -1657,7 +1623,7 @@ retry:
       if (status.m_ctime.get_time() != 0)
       {
 
-         ::windows::time_to_filetime(get_context_application(),status.m_ctime, &creationTime);
+         ::windows::time_to_filetime(get_application(),status.m_ctime, &creationTime);
 
          pCreationTime = &creationTime;
 
@@ -2021,7 +1987,7 @@ retry:
    }
 //#elif defined(LINUX)
 //   //string strDir;
-//   //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+//   //strDir = get_context()->dir().path(getenv("HOME"), "Pictures");
 //   //imagefileset.add_search(strDir);
 //   string strDir;
 //   strDir = "/usr/share/backgrounds";
@@ -2030,7 +1996,7 @@ retry:
 //
 //#elif defined(MACOS)
 //   //string strDir;
-//   //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+//   //strDir = get_context()->dir().path(getenv("HOME"), "Pictures");
 //   //imagefileset.add_search(strDir);
 //   string strDir;
 //   strDir = "/Library/Desktop Pictures";
@@ -2250,12 +2216,12 @@ repeat:
    {
 
 
-      ::apex::application * papp = get_context_application();
+      ::apex::application * papp = get_application();
 
       string strTargetProgId;
       string strModule = solve_relative(::file::app_module());
 
-      strTargetProgId = Application.m_strAppName;
+      strTargetProgId = get_application()->m_strAppName;
 
       strTargetProgId.replace("-", "_");
       strTargetProgId.replace("\\", "_");
@@ -2279,7 +2245,7 @@ repeat:
 
          string strValue;
 
-         regkey.set("", Application.find_string("ApplicationName"));
+         regkey.set("", get_application()->find_string("ApplicationName"));
 
       }
 
@@ -2289,9 +2255,9 @@ repeat:
 
          string strValue;
 
-         regkey.set("ApplicationDescription", Application.find_string("ApplicationDescription"));
-         regkey.set("ApplicationIcon", Application.find_string("ApplicationIcon"));
-         regkey.set("ApplicationName", Application.find_string("ApplicationName"));
+         regkey.set("ApplicationDescription", get_application()->find_string("ApplicationDescription"));
+         regkey.set("ApplicationIcon", get_application()->find_string("ApplicationIcon"));
+         regkey.set("ApplicationName", get_application()->find_string("ApplicationName"));
 
       }
 
@@ -2385,25 +2351,25 @@ repeat:
          registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId, true);
 
          regkey.set("", strTargetProgId + " HTML Document");
-         regkey.set("AppUserModelId", Application.find_string("AppUserModelId"));
+         regkey.set("AppUserModelId", get_application()->find_string("AppUserModelId"));
 
       }
       {
 
-         registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\Application", true);
+         registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\papplication", true);
 
-         regkey.set("ApplicationCompany", Application.find_string("ApplicationCompany"));
-         regkey.set("ApplicationDescription", Application.find_string("ApplicationDescription"));
-         regkey.set("ApplicationIcon", Application.find_string("ApplicationIcon"));
-         regkey.set("ApplicationName", Application.find_string("ApplicationName"));
-         regkey.set("AppUserModelId", Application.find_string("AppUserModelId"));
+         regkey.set("ApplicationCompany", get_application()->find_string("ApplicationCompany"));
+         regkey.set("ApplicationDescription", get_application()->find_string("ApplicationDescription"));
+         regkey.set("ApplicationIcon", get_application()->find_string("ApplicationIcon"));
+         regkey.set("ApplicationName", get_application()->find_string("ApplicationName"));
+         regkey.set("AppUserModelId", get_application()->find_string("AppUserModelId"));
 
       }
       {
 
          registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\DefaultIcon", true);
 
-         regkey.set("", Application.find_string("DefaultIcon"));
+         regkey.set("", get_application()->find_string("DefaultIcon"));
 
       }
 
@@ -2528,7 +2494,7 @@ repeat:
 
       pathApplication /= strTargetProgId;
 
-      strTargetProgId = Application.m_strAppName;
+      strTargetProgId = get_application()->m_strAppName;
 
       strTargetProgId.replace("-", "_");
       strTargetProgId.replace("\\", "_");
@@ -2542,7 +2508,7 @@ repeat:
 
          string strValue;
 
-         auto estatusRegistry = regkey._set("", Application.find_string("ApplicationName"));
+         auto estatusRegistry = regkey._set("", get_application()->find_string("ApplicationName"));
 
          if(!estatusRegistry)
          {
@@ -2656,19 +2622,19 @@ repeat:
 
          string strValue;
 
-         auto estatusRegistry = regkey._set("ApplicationDescription", Application.find_string("ApplicationDescription"));
+         auto estatusRegistry = regkey._set("ApplicationDescription", get_application()->find_string("ApplicationDescription"));
 
          if (estatusRegistry)
          {
 
-            estatusRegistry = regkey._set("ApplicationIcon", Application.find_string("ApplicationIcon"));
+            estatusRegistry = regkey._set("ApplicationIcon", get_application()->find_string("ApplicationIcon"));
 
          }
 
          if (estatusRegistry)
          {
 
-            estatusRegistry = regkey._set("ApplicationName", Application.find_string("ApplicationName"));
+            estatusRegistry = regkey._set("ApplicationName", get_application()->find_string("ApplicationName"));
 
          }
 
@@ -2760,40 +2726,40 @@ repeat:
       //   registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId, true);
 
       //   regkey.set("", strTargetProgId + " HTML Document");
-      //   regkey.set("AppUserModelId", Application.prop("AppUserModelId"));
+      //   regkey.set("AppUserModelId", get_application()->prop("AppUserModelId"));
 
       //}
       {
 
-         registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\Application", true);
+         registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\papplication", true);
 
-         auto estatusRegistry = regkey._set("ApplicationCompany", Application.find_string("ApplicationCompany"));
+         auto estatusRegistry = regkey._set("ApplicationCompany", get_application()->find_string("ApplicationCompany"));
 
          if (estatusRegistry)
          {
 
-            estatusRegistry = regkey._set("ApplicationDescription", Application.find_string("ApplicationDescription"));
+            estatusRegistry = regkey._set("ApplicationDescription", get_application()->find_string("ApplicationDescription"));
 
          }
 
          if (estatusRegistry)
          {
 
-            estatusRegistry = regkey._set("ApplicationIcon", Application.find_string("ApplicationIcon"));
-
-         }
-         
-         if (estatusRegistry)
-         {
-
-            estatusRegistry = regkey._set("ApplicationName", Application.find_string("ApplicationName"));
+            estatusRegistry = regkey._set("ApplicationIcon", get_application()->find_string("ApplicationIcon"));
 
          }
          
          if (estatusRegistry)
          {
 
-            estatusRegistry = regkey._set("AppUserModelId", Application.find_string("AppUserModelId"));
+            estatusRegistry = regkey._set("ApplicationName", get_application()->find_string("ApplicationName"));
+
+         }
+         
+         if (estatusRegistry)
+         {
+
+            estatusRegistry = regkey._set("AppUserModelId", get_application()->find_string("AppUserModelId"));
 
          }
 
@@ -2809,7 +2775,7 @@ repeat:
 
          registry::key regkey(HKEY_CLASSES_ROOT, strTargetProgId + "\\DefaultIcon", true);
 
-         auto estatusRegistry = regkey._set("", Application.find_string("DefaultIcon"));
+         auto estatusRegistry = regkey._set("", get_application()->find_string("DefaultIcon"));
 
          if (!estatusRegistry)
          {
@@ -2936,7 +2902,7 @@ repeat:
       //file_association_set_shell_open_command("http", strTargetProgId, strModule, "\"%1\"");
       //file_association_set_shell_open_command("https", strTargetProgId, strModule, "\"%1\"");
 
-      fork([]()
+      fork([this]()
          {
 
             if (defer_co_initialize_ex(false))
@@ -2944,7 +2910,7 @@ repeat:
 
                SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_DWORD | SHCNF_FLUSH, nullptr, nullptr);
 
-               sleep(3000_ms);
+               sleep(3_s);
 
             }
 

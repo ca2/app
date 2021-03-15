@@ -33,7 +33,7 @@ namespace http
          millis m_millisLastChecked;
 
 
-         pac(::layered * pobjectContext);
+         pac(::context_object * pcontextobject);
          virtual ~pac();
 
 
@@ -53,7 +53,7 @@ namespace http
          millis m_millisLastChecked;
 
 
-         proxy(::layered * pobjectContext);
+         proxy(::context_object * pcontextobject);
 
 
       };
@@ -70,7 +70,7 @@ namespace http
 
 
 
-      system(::layered * pobjectContext);
+      system(::context_object * pcontextobject);
       virtual ~system();
 
 

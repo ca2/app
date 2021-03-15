@@ -10,7 +10,7 @@ class single_lock;
 
 //#ifdef WINDOWS
 //
-//typedef u32 ithread_t;
+//typedef u32 itask_t;
 //typedef ::u32 thread_data_index;
 //
 //#else
@@ -48,7 +48,7 @@ class single_lock;
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // ::apex::get_system() V Semaphore
+//#define MUTEX_NAMED_VSEM // psystem V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #endif
@@ -70,7 +70,7 @@ class multi_lock;
 //typedef ::u32(c_cdecl *__THREADPROC)(LPVOID);
 
 
-CLASS_DECL_APEX bool do_events();
+//CLASS_DECL_APEX bool do_events();
 //CLASS_DECL_APEX bool do_events(const duration & duration);
 
 
@@ -125,7 +125,7 @@ CLASS_DECL_APEX bool do_events();
 //{
 //public:
 //
-//   predicate_holder_base(::layered * pobjectContext) :
+//   predicate_holder_base(::context_object * pcontextobject) :
 //      ::object(pobject),
 //      m_pholdref(pholdref)
 //   {
@@ -180,4 +180,4 @@ namespace exception
 
 
 
-//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, ithread_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

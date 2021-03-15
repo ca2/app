@@ -32,7 +32,7 @@ namespace user
          virtual ~edit_impl();
 
 
-         virtual ::e_status initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
          virtual void on_after_change(::user::enum_event eevent) override;

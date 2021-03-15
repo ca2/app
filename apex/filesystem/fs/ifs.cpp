@@ -20,7 +20,9 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   if(dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   __pointer(::apex::system) psystem = get_system();
+
+   if(dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -38,7 +40,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   auto psystem = get_system();
+
+   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -65,7 +69,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    path.m_iDir = 1;
 
-   listing.m_straTitle.add("User Intelligent File ::apex::get_system()");
+   listing.m_straTitle.add("User Intelligent File psystem");
 
 
 
@@ -81,7 +85,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
-   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   auto psystem = get_system();
+
+   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       listing = dir;
@@ -122,7 +128,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + ::apex::get_system()->url().url_encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + psystem->url().url_encode(listing.m_pathUser);
 
    //string strSource;
 
@@ -288,7 +294,9 @@ int ifs::is_dir(const ::file::path & path)
 
    dir_listing & dir = m_map[path.folder()];
 
-   if(dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+   auto psystem = get_system();
+
+   if(dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
    {
 
       ::file::listing listing;

@@ -11,10 +11,12 @@ string context::get_latest_build_number(const char * pszConfiguration, const cha
 
    string strConfiguration(pszConfiguration);
 
+   __pointer(::apex::system) psystem = get_system();
+
    if (strConfiguration.is_empty())
    {
 
-      strConfiguration = ::apex::get_system()->get_system_configuration();
+      strConfiguration = psystem->get_system_configuration();
 
    }
 
@@ -132,9 +134,11 @@ bool context::is_local_data() const
    if(is_system())
    {
 
-      get_context_session()->set_context_object(get_context_system());
+      __pointer(::apex::system) psystem = get_system();
 
-      estatus = get_context_session()->initialize_context();
+      get_session()->initialize(psystem);
+
+      estatus = get_session()->initialize_context();
 
       if (!estatus)
       {
@@ -340,7 +344,7 @@ string context::defer_get_file_title(string strParam)
 
             __keep_thread_flag(id_thread_resolve_alias);
 
-            //if (!os_resolve_alias(path, path,::is_set(get_context_application())? Application.m_puiCurrent.get(): nullptr))
+            //if (!os_resolve_alias(path, path,::is_set(get_application())? get_application()->m_puiCurrent.get(): nullptr))
             if (!os_resolve_alias(path, path))
             {
 
@@ -430,7 +434,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "appconfig://"))
    {
 
-      path = Application.appconfig_folder() / path;
+      path = get_application()->appconfig_folder() / path;
 
    }
    else if (::str::begins_eat_ci(path, "download://"))
@@ -517,7 +521,9 @@ string context::defer_get_file_title(string strParam)
 ::file::path context::side_get_matter_path(string strMatter)
 {
 
-   auto pdirsystem = ::apex::get_system()->m_pdirsystem;
+   __pointer(::apex::system) psystem = get_system();
+
+   auto pdirsystem = psystem->m_pdirsystem;
 
    ::file::path pathResource = pdirsystem->m_pathInstall;
 
@@ -538,7 +544,9 @@ string context::defer_get_file_title(string strParam)
    if (::str::begins_eat_ci((string &) path, "appmatter://"))
    {
 
-      ::file::path pathCache = ::apex::get_system()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      __pointer(::apex::system) psystem = get_system();
+
+      ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       if ((path & ::file::e_flag_get_local_path)
          || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
@@ -606,7 +614,9 @@ string context::defer_get_file_title(string strParam)
 
       }
 
-      if (!::apex::get_system()->m_pdirsystem->m_bMatterFromHttpCache)
+      //__pointer(::apex::system) psystem = get_system();
+
+      if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
       {
 
          return "";
@@ -864,22 +874,29 @@ string context::get_schema()
 void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
 {
 
-   if (get_context_application())
+   if (get_application())
    {
 
-      get_context_application()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      get_application()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
-   else if (get_context_session())
+   else if (get_session())
    {
 
-      get_context_session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      get_session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
-   else if (get_context_system())
+   else
    {
 
-      ::apex::get_system()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem)
+      {
+
+         psystem->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+
+      }
 
    }
 
@@ -889,28 +906,35 @@ void context::locale_schema_matter(string_array & stra, const string_array & str
 string context::get_locale_schema_dir()
 {
 
-   if (get_context_application())
+   if (get_application())
    {
 
-      return get_context_application()->get_locale_schema_dir();
+      return get_application()->get_locale_schema_dir();
 
    }
-   else if (get_context_session())
+   else if (get_session())
    {
 
-      return get_context_session()->get_locale_schema_dir();
-
-   }
-   else if (get_context_system())
-   {
-
-      return ::apex::get_system()->get_locale_schema_dir();
+      return get_session()->get_locale_schema_dir();
 
    }
    else
    {
 
-      return "_std/_std";
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem)
+      {
+
+         return psystem->get_locale_schema_dir();
+
+      }
+      else
+      {
+
+         return "_std/_std";
+
+      }
 
    }
 
@@ -1078,7 +1102,7 @@ void context::add_matter_locator(::apex::application * papp)
 ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(Context.file().get_reader(varFile));
+   binary_stream reader(get_context()->file().get_reader(varFile));
 
    read(reader);
 
@@ -1090,7 +1114,7 @@ void context::add_matter_locator(::apex::application * papp)
 ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
-   binary_stream writer(Context.file().get_writer(varFile));
+   binary_stream writer(get_context()->file().get_writer(varFile));
 
    write(writer);
 

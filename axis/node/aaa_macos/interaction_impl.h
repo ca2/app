@@ -31,7 +31,7 @@ namespace macos
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::context_object * pcontextobject);
       virtual ~interaction_impl();
 
 
@@ -198,11 +198,11 @@ namespace macos
 //        virtual bool _001ScreenToClient(RECT64 * lprect) override;
 //        virtual bool _001ScreenToClient(POINT64 * lppoint) override;
 
-      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
-      //virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount);
-      //virtual void MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect);
+      //virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * lpPoint, ::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect);
 
       //virtual ::draw2d::graphics * GetDC();
       //virtual ::draw2d::graphics * GetWindowDC();
@@ -492,8 +492,8 @@ namespace macos
 //      void OnShowWindow(bool bShow, ::u32 nStatus);
 //      void OnSize(::u32 nType, i32 cx, i32 cy);
 //      void OnTCard(::u32 idAction, ::u32 dwActionData);
-//      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-//      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+//      void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
+//      void OnWindowPosChanged(WINDOWPOS* lpuserinteractionpos);
 //
 //      void OnChangeUIState(::u32 nAction, ::u32 nUIElement);
 //      void OnUpdateUIState(::u32 nAction, ::u32 nUIElement);

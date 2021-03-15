@@ -63,7 +63,7 @@ namespace write_text
    font::font()
    {
 
-      m_strFontFamilyName = os_font_name(e_font_serif);
+      //m_strFontFamilyName;
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
       m_eunitFontSize = ::draw2d::unit_point;
@@ -106,20 +106,19 @@ namespace write_text
 
 #ifdef WINDOWS
 
-      if (ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
+      //if (ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
+      //{
 
-      {
+      //   m_strFontFamilyName = os_font_name(e_font_sans);
 
-         m_strFontFamilyName = os_font_name(e_font_sans);
+      //}
+      //else
+      //{
 
-      }
-      else
-      {
-
-         m_strFontFamilyName = pszFacename;
+      //   m_strFontFamilyName = pszFacename;
 
 
-      }
+      //}
 
 #else
 
@@ -457,7 +456,7 @@ namespace write_text
 //   {
 //
 //
-//      ::aura::get_system()->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -512,7 +511,7 @@ namespace write_text
 
 //   {
 //
-//      ::aura::get_system()->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;

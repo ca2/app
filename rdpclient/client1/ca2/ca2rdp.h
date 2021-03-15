@@ -38,9 +38,9 @@
 
 
 #ifdef _WIN32
-typedef ::u32 ithread_t;
+typedef ::u32 itask_t;
 #else
-typedef pthread_t ithread_t;
+typedef pthread_t itask_t;
 #endif
 
 

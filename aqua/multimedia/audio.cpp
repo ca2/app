@@ -128,20 +128,20 @@ namespace aqua
 //}
 
 
-CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext)
-{
+//CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::context_object * pcontextobject)
+//{
+//
+//   return get_system()->defer_get_audio();
+//
+//}
 
-   return ::aqua::get_system()->defer_get_audio();
-
-}
-
-
-CLASS_DECL_AQUA bool has_audio()
-{
-
-   return ::is_set(::aqua::get_system()->m_paudio);
-
-}
+//
+//CLASS_DECL_AQUA bool has_audio()
+//{
+//
+//   return ::is_set(get_system()->m_paudio);
+//
+//}
 
 
 

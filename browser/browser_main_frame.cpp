@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   main_frame::main_frame(::layered * pobjectContext) :
+   main_frame::main_frame(::context_object * pcontextobject) :
       object(pobject),
       simple_frame_window(pobject),
       simple_main_frame(pobject)
@@ -17,11 +17,11 @@ namespace browser
 
       window_enable_full_screen();
 
-      m_bWindowFrame = !Application.has_property("client_only");
+      m_bWindowFrame = !papplication->has_property("client_only");
 
       set_translucent();
 
-      if (Application.has_property("opaque"))
+      if (papplication->has_property("opaque"))
       {
 
          m_bExplicitTranslucency = true;
@@ -66,7 +66,7 @@ namespace browser
    ::experience::frame * main_frame::experience_get_frame()
    {
 
-      auto pframe = Application.experience()->experience_get_frame(nullptr, "013");
+      auto pframe = papplication->experience()->experience_get_frame(nullptr, "013");
 
       pframe->set_style("LightBlue");
 

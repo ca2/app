@@ -35,7 +35,7 @@ namespace datetime
          virtual ~visual();
 
 
-         virtual ::e_status initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
          virtual void _001GetHtml(::html::file* pfile);

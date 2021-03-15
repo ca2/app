@@ -25,7 +25,7 @@
                bool     m_bHollow;
 
 
-               frame_008(::layered * pobjectContext);
+               frame_008(::context_object * pcontextobject);
                virtual ~frame_008();
 
 

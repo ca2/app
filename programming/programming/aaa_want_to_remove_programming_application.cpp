@@ -60,7 +60,7 @@ namespace programming
 
          }
 
-         __pointer(object) p = lib->alloc(get_context_application(), "plugin", this);
+         __pointer(object) p = lib->alloc(get_application(), "plugin", this);
 
          if (p.is_null())
             return;
@@ -79,7 +79,7 @@ namespace programming
 
       ::file::path path = dir::config() / "programming/vs_build.txt";
 
-      string strBuild = Context.file().as_string(path);
+      string strBuild = pcontext->file().as_string(path);
 
       strBuild.trim();
 

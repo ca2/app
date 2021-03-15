@@ -70,7 +70,6 @@ public:
    }
 
 
-
    void remove_bigger()
    {
 
@@ -78,21 +77,21 @@ public:
 
       u64 uAreaMax = 0;
 
-      assoc * passoc = get_start();
+      auto passociation = get_start();
 
-      while (passoc != nullptr)
+      while (passociation != nullptr)
       {
 
-         if (!passoc->element2()->is_shared() && passoc->element2()->area() > uAreaMax)
+         if (!passociation->element2()->is_shared() && passociation->element2()->area() > uAreaMax)
          {
 
-            uAreaMax = passoc->element2()->area();
+            uAreaMax = passociation->element2()->area();
 
-            keyFind = passoc->element1();
+            keyFind = passociation->element1();
 
          }
 
-         passoc = passoc->m_pnext;
+         passociation = passociation->m_pnext;
 
       }
 

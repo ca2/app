@@ -39,18 +39,18 @@ namespace windowing
 
 
       bool                                      m_bSettingCursorMatter;
-      __pointer(::windowing::cursor_set)   m_pcursorset;
-      __composite(::windowing::keyboard)   m_pkeyboard;
+      __pointer(::windowing::cursor_manager)    m_pcursormanager;
+      __composite(::windowing::keyboard)        m_pkeyboard;
 
 
 
-      __pointer(::windowing::cursor)       m_pcursor;
-      __pointer(::windowing::cursor)       m_pcursorCursor;
+      __pointer(::windowing::cursor)            m_pcursor;
+      __pointer(::windowing::cursor)            m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      __reference(::user::user)            m_puser;
+      __reference(::user::user)                 m_puser;
 
 
       windowing();
@@ -58,6 +58,11 @@ namespace windowing
 
 
       ::windowing::keyboard * keyboard();
+
+
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
 
 
       virtual ::e_status initialize_windowing(::user::user * puser);
@@ -205,6 +210,19 @@ namespace windowing
 
 
 #endif
+
+
+      //virtual wstring _windows_register_window_class(::object* pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
+      //CLASS_DECL_WINDOWING_WIN32 wstring windows_register_window_class(::object * pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
+      //CLASS_DECL_WINDOWING_WIN32 bool windows_register_class(WNDCLASSEXW* puserinteractionclass);
+      //
+      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter);
+      virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
+      //virtual bool _windows_register_with_icon(WNDCLASSEXW* puserinteractionclass, const unichar* pszClassName, ::u32 nIDIcon);
+
+      //virtual void _window_create_caret(HWND hwnd, HBITMAP hbitmap);
+      //virtual void _window_create_solid_caret(HWND hwnd, i32 nWidth, i32 nHeight);
+      //virtual void _window_create_gray_caret(HWND hwnd, i32 nWidth, i32 nHeight);
 
 
    };

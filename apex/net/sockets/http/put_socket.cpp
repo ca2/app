@@ -8,15 +8,15 @@ namespace sockets
 {
 
 
-   http_put_socket::http_put_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h)
+   http_put_socket::http_put_socket() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h)
    {
 
       m_content_length = -1;
@@ -24,15 +24,16 @@ namespace sockets
    }
 
 
-   http_put_socket::http_put_socket(base_socket_handler& h,const string & url_in) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   http_put_socket::http_put_socket(const string & url_in) :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h, url_in)
+      http_client_socket(url_in)
    {
 
       m_content_length = -1;

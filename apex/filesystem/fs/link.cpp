@@ -18,10 +18,10 @@ namespace fs
    }
 
 
-   ::e_status link::initialize(::layered* pobjectContext) 
+   ::e_status link::initialize(::context_object * pcontextobject) 
    {
 
-      auto estatus = ::fs::native::initialize(pobjectContext);
+      auto estatus = ::fs::native::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -153,7 +153,7 @@ namespace fs
 
       m_plisting->clear_results();
 
-      Context.dir().ls(*m_plisting);
+      get_context()->dir().ls(*m_plisting);
 
    }
 

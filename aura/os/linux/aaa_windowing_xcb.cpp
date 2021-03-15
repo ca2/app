@@ -37,7 +37,7 @@ oswindow _x11_get_active_window();
 bool x11_runnable_step();
 
 
-message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);

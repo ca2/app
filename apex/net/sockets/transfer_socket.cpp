@@ -79,12 +79,13 @@ namespace sockets
    ///////////////////////////////////////////////////////////////////////////////////////
 
 
-   transfer_socket::transfer_socket(::sockets::base_socket_handler & handler) :
-      ::object(&handler),
-      base_socket(handler),
-      socket(handler),
-      stream_socket(handler),
-      tcp_socket(handler)
+   transfer_socket::transfer_socket()
+      //:
+      //::object(&handler),
+      //base_socket(handler),
+      //socket(handler),
+      //stream_socket(handler),
+      //tcp_socket(handler)
    {
 
       defer_create_mutex();
@@ -295,13 +296,13 @@ namespace sockets
 
 
 
-   read_socket::read_socket(::sockets::base_socket_handler & handler) :
-      ::object(&handler),
-      base_socket(handler),
-      socket(handler),
-      stream_socket(handler),
-      tcp_socket(handler),
-      transfer_socket(handler)
+   read_socket::read_socket() //:
+      //::object(&handler),
+      //base_socket(handler),
+      //socket(handler),
+      //stream_socket(handler),
+      //tcp_socket(handler),
+      //transfer_socket(handler)
    {
 
       //defer_initialize_winsock();
@@ -399,13 +400,14 @@ namespace sockets
 
 
 
-   write_socket::write_socket(::sockets::base_socket_handler & handler) :
-      ::object(&handler),
-      base_socket(handler),
-      socket(handler),
-      stream_socket(handler),
-      tcp_socket(handler),
-      transfer_socket(handler)
+   write_socket::write_socket() 
+      //:
+      //::object(&handler),
+      //base_socket(handler),
+      //socket(handler),
+      //stream_socket(handler),
+      //tcp_socket(handler),
+      //transfer_socket(handler)
    {
 
       //defer_initialize_winsock();
@@ -477,8 +479,8 @@ namespace sockets
    ////**************************** Class http_transfer_socket ****************************//
    /////////////////////////////////////////////////////////////////////////////////////////
 
-   //http_transfer_socket::http_transfer_socket(base_socket_handler & handler) :
-   //   ::object(handler.get_context_application()),
+   //http_transfer_socket::http_transfer_socket() :
+   //   ::object(handler.get_application()),
    //   base_socket(handler),
    //   socket(handler),
    //   stream_socket(handler),
@@ -559,7 +561,7 @@ namespace sockets
    //}
 
 
-   //__pointer(transfer_socket) create_default_transfer_socket(base_socket_handler & handler)
+   //__pointer(transfer_socket) create_default_transfer_socket()
    //{
 
    //   return new transfer_socket(handler);

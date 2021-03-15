@@ -14,7 +14,7 @@
 namespace aura
 {
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::context_object * pcontextobject) :
 //      ::object(pobject)
 //   {
 //
@@ -384,7 +384,7 @@ namespace aura
 //      // get the exe title from the full path name [no extension]
 //      //strExeName = ::aura::get_system()->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -436,7 +436,7 @@ namespace aura
 //   }
 
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::pthread_self();
@@ -458,7 +458,7 @@ namespace aura
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -528,7 +528,7 @@ namespace aura
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 
       }
 

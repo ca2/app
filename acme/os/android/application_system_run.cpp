@@ -75,11 +75,11 @@ namespace acme
 
       //psystem->m_strProgName = "com." + strPrgName;
 
-      //::set_main_hthread(psystem->m_hthread);
+      //::set_main_hthread(psystem->m_htask);
 
       //::set_main_ithread(psystem->m_uThread);
 
-      //// System->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::acme::get_system()->m_strAppId = m_pmaindata->m_strAppId;
 
       //if (!psystem->begin_synch())
       //{

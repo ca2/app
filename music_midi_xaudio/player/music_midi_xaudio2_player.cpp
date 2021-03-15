@@ -17,7 +17,7 @@ namespace music
          {
 
 
-            player::player(::layered * pobjectContext) :
+            player::player(::context_object * pcontextobject) :
                ::object(pobject),
                thread(pobject),
                ::music::midi::player::player(pobject)
@@ -75,7 +75,7 @@ namespace music
             bool player::Play(imedia_time tkStart, u32 dwEllapse)
             {
 
-               ::music::midi::player::command * pcommand = new ::music::midi::player::command(get_object());
+               ::music::midi::player::command * pcommand = new ::music::midi::player::command(this);
 
                pcommand->m_ecommand = ::music::midi::player::command_play;
                pcommand->m_dwEllapse = dwEllapse;
@@ -94,7 +94,7 @@ namespace music
             bool player::Play(double dRate, u32 dwEllapse)
             {
 
-               ::music::midi::player::command * pcommand = new ::music::midi::player::command(get_object());
+               ::music::midi::player::command * pcommand = new ::music::midi::player::command(this);
 
                pcommand->m_ecommand = ::music::midi::player::command_play;
                pcommand->m_dwEllapse = dwEllapse;
@@ -130,7 +130,7 @@ namespace music
             bool player::ExecuteCommand(::music::midi::player::enum_command ecommand, u32 dwEllapse)
             {
 
-               ::music::midi::player::command * pcommand = new ::music::midi::player::command(get_object());
+               ::music::midi::player::command * pcommand = new ::music::midi::player::command(this);
 
                pcommand->m_ecommand = ecommand;
                pcommand->m_dwEllapse = dwEllapse;
@@ -399,7 +399,7 @@ namespace music
             u32 player::GetMidiOutDevice()
             {
 
-               return Application.midi()->GetMidiOutDevice();
+               return papplication->midi()->GetMidiOutDevice();
             }
 
             void player::SetCallbackWindow(__pointer(::user::interaction) puie)

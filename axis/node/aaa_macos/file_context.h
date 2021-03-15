@@ -26,7 +26,7 @@ namespace macos
       virtual ~file_context();
       
       
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual ::payload length(const ::file::path & path) override;
 

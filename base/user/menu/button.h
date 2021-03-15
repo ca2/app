@@ -12,8 +12,12 @@ namespace user
    public:
 
 
-      menu_button(menu_item * pitem);
+      menu_button();
       virtual ~menu_button();
+
+
+      virtual ::e_status initialize_menu_interaction(menu_item* pitem) override;
+
 
       virtual void install_message_routing(::channel * pchannel) override;
 

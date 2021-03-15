@@ -53,7 +53,7 @@ namespace experience
 
          //auto pframewindow = m_pframewindow;
 
-         //class imaging & imaging = System->imaging();
+         //class imaging & imaging = psystem->imaging();
 
          ::rectangle_i32 rectClient(rectangle);
 
@@ -73,7 +73,7 @@ namespace experience
          //rectInflate = rectClient;
          //rectInflate.inflate(iInflate, iInflate);
 
-         ////__pointer(::user::interaction) pwndDesktop = System->get_desktop_window();
+         ////__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
 
          //::rectangle_i32 rectScreen;
 
@@ -151,7 +151,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         System->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+         psystem->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
 
       }
@@ -315,7 +315,7 @@ namespace experience
       void frame::set_frame_color_system_default_001()
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto pframewindow = m_pframewindow;
 
@@ -538,7 +538,7 @@ namespace experience
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -733,7 +733,7 @@ namespace experience
             else
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -777,7 +777,7 @@ namespace experience
 
             //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
 
-            //class font_department & fonts = System->draw2d()->fonts();
+            //class font_department & fonts = psystem->draw2d()->fonts();
 
             millis tick5;
 

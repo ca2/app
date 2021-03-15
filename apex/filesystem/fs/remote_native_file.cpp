@@ -75,8 +75,10 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_strPath))
-               + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_strPath));
+      __pointer(::apex::system) psystem = get_system();
+
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + psystem->url().url_encode(psystem->url().get_script(m_strPath))
+               + "&server=" + psystem->url().url_encode(psystem->url().get_server(m_strPath));
 
       ::file::e_open eopenAdd;
 
@@ -94,14 +96,16 @@ namespace fs
 
    void remote_native_file::set_file_data()
    {
+
       string strUrl;
 
+      auto psystem = get_system();
 
       if(m_varFile["xmledit"].cast < ::memory_file >() != nullptr)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_varFile["url"]))
-                  + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + psystem->url().url_encode(psystem->url().get_script(m_varFile["url"]))
+                  + "&server=" + psystem->url().url_encode(psystem->url().get_server(m_varFile["url"]));
 
          property_set setRequest;
 
@@ -126,8 +130,8 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_varFile["url"]))
-                  + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + psystem->url().url_encode(psystem->url().get_script(m_varFile["url"]))
+                  + "&server=" + psystem->url().url_encode(psystem->url().get_server(m_varFile["url"]));
 
          property_set setPut;
 
@@ -137,8 +141,8 @@ namespace fs
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_strPath))
-               + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + psystem->url().url_encode(psystem->url().get_script(m_strPath))
+               + "&server=" + psystem->url().url_encode(psystem->url().get_server(m_strPath));
 
       property_set set;
 

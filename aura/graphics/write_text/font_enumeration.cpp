@@ -20,10 +20,10 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::initialize(::layered* pobjectContext)
+   ::e_status font_enumeration::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace write_text
 
       }
 
-      //::aura::get_system()->add_process(id_os_font_change, this);
+      //psystem->add_process(id_os_font_change, this);
 
       return estatus;
 
@@ -64,7 +64,9 @@ namespace write_text
       if (psubject->id() == id_os_font_change)
       {
 
-         auto psubject = ::aura::get_system()->subject(id_os_font_change);
+         __pointer(::aura::system) psystem = m_psystem;
+
+         auto psubject = psystem->subject(id_os_font_change);
 
          update(psubject);
 
@@ -104,7 +106,9 @@ namespace write_text
 
       double dMaxSimilarity = 0.2;
 
-      auto * pdraw2d = ::aura::get_system()->draw2d();
+      __pointer(::aura::system) psystem = m_psystem;
+
+      auto * pdraw2d = psystem->draw2d();
 
       auto * pwritetext = pdraw2d->write_text();
 
@@ -154,7 +158,9 @@ namespace write_text
       else
       {
 
-         auto pdraw2d = ::aura::get_system()->draw2d();
+         __pointer(::aura::system) psystem = m_psystem;
+
+         auto pdraw2d = psystem->draw2d();
 
          auto pwritetext = pdraw2d->write_text();
 
@@ -178,7 +184,9 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      ::aura::get_system()->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      __pointer(::aura::system) psystem = m_psystem;
+
+      psystem->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
 
       if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
       {
@@ -215,7 +223,9 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      ::aura::get_system()->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      __pointer(::aura::system) psystem = m_psystem;
+
+      psystem->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
 
       m_pitema = pitema;
 

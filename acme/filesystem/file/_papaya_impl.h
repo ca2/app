@@ -4,7 +4,7 @@
 //inline ::file_result matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return Context.file().get_reader(varFile, eopen);
+//   return get_context()->file().get_reader(varFile, eopen);
 //
 //}
 //
@@ -12,7 +12,7 @@
 //inline ::file_result matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
-//   return Context.file().get_writer(varFile, eopen);
+//   return get_context()->file().get_writer(varFile, eopen);
 //
 //}
 

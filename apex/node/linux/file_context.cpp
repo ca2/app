@@ -27,10 +27,10 @@ namespace linux
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if(!estatus)
       {

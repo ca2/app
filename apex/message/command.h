@@ -38,9 +38,9 @@ namespace message
       bool                                         m_bRadioChanged;
 
       // if a menu item
-      __pointer(::layered)                         m_pmenu;         // nullptr if not a menu
-      __pointer(::layered)                         m_pmenuChild;      // sub containing menu item
-      __pointer(::layered)                         m_pmenuParent;   // nullptr if parent menu not easily determined
+      //__pointer(::layered)                         m_pmenu;         // nullptr if not a menu
+      //__pointer(::layered)                         m_pmenuChild;      // sub containing menu item
+      //__pointer(::layered)                         m_pmenuParent;   // nullptr if parent menu not easily determined
       // if a popup sub menu - ID is for first in popup
 
       // if from some other interaction_impl
@@ -50,7 +50,7 @@ namespace message
       bool                                         m_bHasCommandHandler;
 
 
-      command(::layered * pobjectContext = nullptr);
+      command(::object * pobject = nullptr);
       command(const ::id & id);
 
 

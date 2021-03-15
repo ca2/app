@@ -336,15 +336,15 @@ namespace sockets
       PONG = 0xa,
    };
 
-   websocket_client::websocket_client(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h)
+   websocket_client::websocket_client() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h)
    {
 
 //      m_millisLastSpontaneousPong = 0;
@@ -374,15 +374,16 @@ namespace sockets
    }
 
 
-   websocket_client::websocket_client(base_socket_handler& h, const string & url_in, const string & strProtocol) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   websocket_client::websocket_client(const string & url_in, const string & strProtocol) :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h, url_in)
+      http_client_socket(url_in)
    {
 
       m_memPong.set_size(2);
@@ -416,8 +417,8 @@ namespace sockets
    }
 
 
-   //websocket_client::websocket_client(base_socket_handler& h, const string & host, port_t port, const string & url_in) :
-   //   object(h.get_context_application()),
+   //websocket_client::websocket_client(const string & host, port_t port, const string & url_in) :
+   //   object(h.get_application()),
    //   base_socket(h),
    //   socket(h),
    //   stream_socket(h),
@@ -560,9 +561,11 @@ namespace sockets
 
          m.set_size(16);
 
-         ::apex::get_system()->math().random_bytes(m.get_data(), m.get_size());
+         generate_random_bytes(m.get_data(), m.get_size());
 
-         m_strBase64 = ::apex::get_system()->base64().encode(m);
+         auto psystem = get_system();
+
+         m_strBase64 = psystem->base64().encode(m);
 
          int iLen;
 
@@ -674,9 +677,11 @@ namespace sockets
 
                memory mem2;
 
-               ::apex::get_system()->crypto().sha1(mem2, mem);
+               __pointer(::apex::system) psystem = get_system();
 
-               strKey = ::apex::get_system()->base64().encode(mem2);
+               psystem->crypto().sha1(mem2, mem);
+
+               strKey = psystem->base64().encode(mem2);
 
                if (strAccept == strKey)
                {
@@ -1079,7 +1084,7 @@ namespace sockets
 
       string str((const char *) pdata, len);
 
-      //::fork(get_context_application(), [=]()
+      //::fork(get_application(), [=]()
       //{
 
       // DO FORK if necessary only in inner loops,

@@ -5,7 +5,7 @@ namespace ios2
 {
 
 
-   printer::printer(::layered * pobjectContext) :
+   printer::printer(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::printer(pobject),
       m_documentproperties(pobject)
@@ -50,7 +50,7 @@ namespace ios2
    }
 
 
-   printer::document_properties::document_properties(::layered * pobjectContext) :
+   printer::document_properties::document_properties(::context_object * pcontextobject) :
       ::object(pobject)
    {
       m_hdc = nullptr;
@@ -106,7 +106,7 @@ namespace ios2
       if(m_hdc != nullptr)
          return nullptr;
 //      m_hdc = ::CreateDC("WINSPOOL", (const char *) m_pdevmode->dmDeviceName, nullptr, m_pdevmode);
-  //    ::draw2d::graphics_pointer g(get_object());
+  //    ::draw2d::graphics_pointer g(this);
     //  g->Attach(m_hdc);
 //      return g.detach();
 return nullptr;

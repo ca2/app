@@ -820,8 +820,10 @@ namespace allocator
 #define new ACME_NEW
 
 
+#include "tiny_array.h"
+
+
 #include "array_base.h"
 #include "array.h"
-
 
 

@@ -8,8 +8,8 @@ namespace xml
    class disp_option;
 
 
-   CLASS_DECL_AQUA string from(const property* pprop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);
-   CLASS_DECL_AQUA string from(const property& prop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);
+   //CLASS_DECL_AQUA string from(const property* pprop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);
+   //CLASS_DECL_AQUA string from(const property& prop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);
 
 
 } // namespace xml
@@ -41,7 +41,7 @@ namespace xml
 #include "data.h"
 
 
-#include "department.h"
+#include "xml.h"
 
 
 

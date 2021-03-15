@@ -52,7 +52,8 @@ namespace sockets
       string                  m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
       string_map < item >     m_map;
 
-      multipart(::layered * pobjectContext): ::object(pobjectContext) {}
+      //multipart(::context_object * pcontextobject): ::object(pobject) {}
+      multipart(::object* pobject) { initialize(pobject); }
       virtual ~multipart() {}
 
    };
@@ -77,10 +78,10 @@ namespace sockets
       //static ::mutex                   m_boundary_mutex;
 
 
-      http_post_socket(base_socket_handler&);
+      http_post_socket();
       /* client constructor,
       \lparam url_in = 'http://host:port/resource' */
-      http_post_socket(base_socket_handler&,const string & url_in);
+      http_post_socket(const string & url_in);
       virtual ~http_post_socket();
 
       // these must be specified before connecting / adding to handler

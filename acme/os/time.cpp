@@ -53,3 +53,72 @@ CLASS_DECL_ACME void sleep(const duration & duration)
 
 
 
+// SYSTEMTIME
+// Specifies a date and time, using individual members for 
+// the month, day, year, weekday, hour, minute, second, and millisecond. 
+// The time is either in coordinated universal time (UTC) or local time, 
+// depending on the function that is being called.
+// 
+// wYear - 1601 - 30827
+// wMonth - 1 - 12
+// wDayOfWeek - 0 Sunday
+// wDay - 1 - 31
+// wHour - 0 - 23
+// wMinute - 0 - 59
+// wSecond - 0 - 59
+// wMilliseconds - 0 - 999
+
+
+// struct tm
+// Structure containing a calendar date and time broken down into its components.
+//
+// The structure contains nine members of type int(in any order), which are :
+//
+// C90(C++98)C99(C++11)
+// Member	Type	Meaning	Range
+// tm_sec	int	seconds after the minute	0 - 61 *
+// tm_min	int	minutes after the hour	0 - 59
+// tm_hour	int	hours since midnight	0 - 23
+// tm_mday	int	day of the month	1 - 31
+// tm_mon	int	months since January	0 - 11
+// tm_year	int	years since 1900
+// tm_wday	int	days since Sunday	0 - 6
+// tm_yday	int	days since January 1	0 - 365
+// tm_isdst	int	Daylight Saving Time flag
+// 
+// The Daylight Saving Time flag(tm_isdst) is greater than zero if
+// Daylight Saving Time is in effect, zero if Daylight Saving Time is not in effect,
+// and less than zero if the information is not available.
+// * tm_sec is generally 0 - 59. The extra range is to accommodate for 
+// leap seconds in certain systems.
+
+
+void copy(system_time_t* psystemtimeUTC, const struct tm* ptmUTC)
+{
+
+   psystemtimeUTC->wYear = ptmUTC->tm_year + 1900; 
+   psystemtimeUTC->wMonth = ptmUTC->tm_mon + 1;
+   psystemtimeUTC->wDay = ptmUTC->tm_mday;
+   psystemtimeUTC->wDayOfWeek = ptmUTC->tm_wday;
+   psystemtimeUTC->wHour = ptmUTC->tm_hour;
+   psystemtimeUTC->wMinute = ptmUTC->tm_min;
+   psystemtimeUTC->wSecond = ptmUTC->tm_sec;
+   psystemtimeUTC->wMilliseconds = 0;
+
+}
+
+
+void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
+{
+
+   ptmUTC->tm_year = psystemtimeUTC->wYear - 1900;
+   ptmUTC->tm_mon = psystemtimeUTC->wMonth - 1;
+   ptmUTC->tm_mday = psystemtimeUTC->wDay;
+   ptmUTC->tm_wday = psystemtimeUTC->wDayOfWeek;
+   ptmUTC->tm_yday = -1; // todo
+   ptmUTC->tm_hour = psystemtimeUTC->wHour;
+   ptmUTC->tm_min = psystemtimeUTC->wMinute;
+   ptmUTC->tm_sec = psystemtimeUTC->wSecond + (psystemtimeUTC->wMilliseconds >= 500 ? (psystemtimeUTC->wMilliseconds >= 1500 ? 2 : 1) : 0);
+   ptmUTC->tm_isdst = ISDST_NO_DAYLIGHT_SAVINGS; // UTC doesn't observe daylight savings (this is what camilox guess...)
+
+}

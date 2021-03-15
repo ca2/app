@@ -119,53 +119,18 @@ CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumb
 CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
-   //__throw(todo("thread"));
 
-   //thread * pthread = get_task();
-
-   //if(pthread != nullptr)
-   //{
-
-   //   pthread->System->assert_failed_line(pszFileName,iLineNumber);
-
-   //}
-
-#ifdef __DEBUG
-
-   char szTitle[1024];
+   //char szTitle[1024];
 
    char szMessage[1024*4];
 
-   strcpy(szTitle, "Assert failed");
+   //strcpy(szTitle, "Assert failed");
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   ::acme::get_system()->message_box(szMessage, szTitle, e_message_box_cancel_try_continue | e_message_box_icon_error);
+   __throw(error_assert, szMessage);
 
-   //if(iResult == e_dialog_result_cancel)
-   //{
-
-   //   exit(0);
-
-   //   return false;
-
-   //}
-   //else if(iResult == IDTRYAGAIN)
-   //{
-
-   //   return false;
-
-   //}
-   //else
-   //{
-
-   //   return true;
-
-   //}
-
-#endif //__DEBUG
-
-   return false;
+   return 0;
 
 }
 

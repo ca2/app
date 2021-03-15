@@ -100,7 +100,7 @@ namespace calculator
 
             _001GetText(strExp);
 
-            parser parser(get_context_object());
+            parser parser(this);
 
             error e;
 

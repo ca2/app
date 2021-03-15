@@ -19,10 +19,10 @@ namespace user
    }
 
 
-   ::e_status copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -31,7 +31,11 @@ namespace user
 
       }
 
-      m_pfont = ::write_text::point_font(os_font_name(e_font_sans), 14.0);
+      auto psystem = get_system();
+
+      auto pnode = psystem->node();
+
+      m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans), 14.0);
 
       return true;
 
@@ -53,10 +57,12 @@ namespace user
 
       stra.add_lines(str);
 
+      auto pcontext = get_context();
+
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (Context.dir().is(strPath) || Context.file().exists(strPath)))
+         if (strPath.has_char() && (pcontext->dir().is(strPath) || pcontext->file().exists(strPath)))
          {
 
             if (ppatha == nullptr)
@@ -183,34 +189,37 @@ namespace user
 
             memory mem;
 
-
-            ::save_image si;
+            ::save_image saveimage(this);
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {
 
-               si.m_eformat = ::draw2d::format_gif;
+               saveimage.m_eformat = ::draw2d::format_gif;
 
             }
             else
             {
 
-               si.m_eformat = ::draw2d::format_png;
+               saveimage.m_eformat = ::draw2d::format_png;
 
             }
 
-            if (Application.image().save_image(mem, pimage, &si))
+            __pointer(::aura::application) papplication = get_application();
+
+            auto psystem = get_system();
+
+            if (papplication->image().save_image(mem, pimage, &saveimage))
             {
 
-               str = ::aura::get_system()->base64().encode(mem);
+               str = psystem->base64().encode(mem);
 
-               if (si.m_eformat == ::draw2d::format_png)
+               if (saveimage.m_eformat == ::draw2d::format_png)
                {
 
                   str = "data:image/png;base64;" + str;
 
                }
-               else if (si.m_eformat == ::draw2d::format_gif)
+               else if (saveimage.m_eformat == ::draw2d::format_gif)
                {
 
                   str = "data:image/gif;base64;" + str;
@@ -254,16 +263,22 @@ namespace user
                   varFile["raw_http"] = true;
                   varFile["disable_common_name_cert_check"] = true;
 
-                  auto pimage = Application.image().load_image(varFile, false);
+                  __pointer(::aura::application) papplication = get_application();
+
+                  auto pimage = papplication->image().load_image(varFile, false);
 
                   if (pimage)
                   {
 
                      ::memory mem;
 
-                     Context.file().as_memory(varFile, mem);
+                     auto pcontext = get_context();
 
-                     string strBase64 = ::aura::get_system()->base64().encode(mem);
+                     pcontext->file().as_memory(varFile, mem);
+
+                     auto psystem = get_system();
+
+                     string strBase64 = psystem->base64().encode(mem);
 
                      str = "data:image/gif;base64," + strBase64;
 
@@ -371,11 +386,15 @@ namespace user
                varFile["http_set"]["raw_http"] = true;
                varFile["http_set"]["disable_common_name_cert_check"] = true;
 
-               Context.file().as_memory(varFile, *pmemory);
+               auto pcontext = get_context();
+
+               pcontext->file().as_memory(varFile, *pmemory);
 
             }
 
-            if (!Application.image().load_image(pimage, pmemory))
+            __pointer(::aura::application) papplication = get_application();
+
+            if (!papplication->image().load_image(pimage, pmemory))
             {
 
                // Couldn't load image from file/URL path...

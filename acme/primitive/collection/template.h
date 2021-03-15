@@ -8,7 +8,10 @@
 #include "_comparable_array.h"
 #include "_base_array.h"
 
+#include "single.h"
 
+
+#include "set.h"
 
 #include "_list.h"
 #include "_comparable_eq_list.h"

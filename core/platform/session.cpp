@@ -30,10 +30,10 @@ namespace core
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::base::session::initialize(pobjectContext);
+      auto estatus = ::base::session::initialize(pcontextobject);
 
       if (!estatus)
       {

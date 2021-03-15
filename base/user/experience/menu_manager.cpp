@@ -6,11 +6,9 @@ namespace experience
 {
 
 
-   menu_manager::menu_manager(frame_window * pframewindow) :
-      ::object(pframewindow)
+   menu_manager::menu_manager()
    {
 
-      m_pframewindow = pframewindow;
       m_enumState = e_state_initial;
 
    }
@@ -18,6 +16,25 @@ namespace experience
 
    menu_manager::~menu_manager()
    {
+
+   }
+
+
+   ::e_status menu_manager::initialize_menu_manager(frame_window* pframewindow)
+   {
+
+      auto estatus = ::object::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 

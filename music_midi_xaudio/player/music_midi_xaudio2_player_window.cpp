@@ -17,7 +17,7 @@ namespace music
          {
 
 
-            window::window(::layered * pobjectContext) :
+            window::window(::context_object * pcontextobject) :
                ::object(pobject)
             {
                m_pcallback = nullptr;

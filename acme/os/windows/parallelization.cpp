@@ -3,9 +3,9 @@
 
 
 static HANDLE g_hMainThread = nullptr;
-static ithread_t g_iMainThread = -1;
+static itask_t g_iMainThread = -1;
 
-void set_main_hthread(hthread_t hthread)
+void set_main_hthread(htask_t hthread)
 {
 
    MSG msg;
@@ -17,30 +17,30 @@ void set_main_hthread(hthread_t hthread)
 }
 
 
-void set_main_ithread(ithread_t ithread)
+void set_main_ithread(itask_t itask)
 {
 
    MSG msg;
 
    PeekMessage(&msg,nullptr,0,0xffffffff,false);
 
-   g_iMainThread = ithread;
+   g_iMainThread = itask;
 
 }
 
 
-hthread_t get_main_hthread()
+htask_t get_main_hthread()
 {
 
-   return (hthread_t) g_hMainThread;
+   return (htask_t) g_hMainThread;
 
 }
 
 
-ithread_t get_main_ithread()
+itask_t get_main_ithread()
 {
 
-   return (ithread_t) g_iMainThread;
+   return (itask_t) g_iMainThread;
 
 }
 
@@ -62,18 +62,18 @@ void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-hthread_t get_current_hthread()
+htask_t get_current_hthread()
 {
 
-   return (hthread_t) ::GetCurrentThread();
+   return (htask_t) ::GetCurrentThread();
 
 }
 
 
-ithread_t get_current_ithread()
+itask_t get_current_ithread()
 {
 
-   return (ithread_t) ::GetCurrentThreadId();
+   return (itask_t) ::GetCurrentThreadId();
 
 }
 

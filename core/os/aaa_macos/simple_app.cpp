@@ -21,7 +21,7 @@
 //   {
 //
 //
-////      TCHAR *cmd = Context.os().get_command_line();
+////      TCHAR *cmd = pcontext->os().get_command_line();
 ////
 ////      // Skip program name
 ////      if(*cmd == _T('"'))

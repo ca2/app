@@ -6,7 +6,7 @@ namespace dynamic_source
 {
 
 
-   httpd_socket::httpd_socket(::sockets::base_socket_handler& h) :
+   httpd_socket::httpd_socket(::sockets::) :
       ::object(&h),
       base_socket(h),
       ::sockets::socket(h),
@@ -25,7 +25,7 @@ namespace dynamic_source
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
-      ::object(s.get_context_object()),
+      ::object(&s),
       base_socket(s),
       ::sockets::socket(s),
       stream_socket(s),

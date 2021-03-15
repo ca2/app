@@ -13,31 +13,18 @@ namespace simpledb
 
       single_lock synchronizationlock(mutex());
 
+      __pointer(::axis::application) papplication = get_application();
+
+      __pointer(::axis::session) psession = papplication->get_session();
+
       try
       {
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             try
             {
-
-
-               if (get_context_application() == nullptr)
-               {
-
-                  break;
-
-               }
-
-               if (get_context_application()->get_context_session() == nullptr)
-               {
-
-                  break;
-
-               }
-
-               auto psession = Session;
 
                if (psession->m_paccount == nullptr)
                {
@@ -46,7 +33,7 @@ namespace simpledb
 
                }
 
-               if (Application.interactive_get_user() == nullptr)
+               if (papplication->interactive_get_user() == nullptr)
                {
 
                   sleep(5000_ms);
@@ -122,11 +109,13 @@ namespace simpledb
 
                strUrl = "https://ca2.cc/api/account/str_set_save?key=";
 
-               strUrl += System->url().url_encode(strKey);
+               auto psystem = get_system();
+
+               strUrl += psystem->url().url_encode(strKey);
 
                strUrl += "&value=";
 
-               strUrl += System->url().url_encode(strBase64);
+               strUrl += psystem->url().url_encode(strBase64);
 
                {
 
@@ -141,7 +130,7 @@ namespace simpledb
 
                   sleep(500_ms);
 
-                  System->m_pdirsystem->m_strApiCc = "";
+                  psystem->m_pdirsystem->m_strApiCc = "";
 
                }
 

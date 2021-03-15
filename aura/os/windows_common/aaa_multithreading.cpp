@@ -5,7 +5,7 @@
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE hthread, PWSTR* ppszThreadDescription);
 
 
-string get_thread_name(hthread_t hthread)
+string get_thread_name(htask_t hthread)
 {
 
    HRESULT hr;
@@ -74,10 +74,10 @@ string get_thread_name(hthread_t hthread)
 
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ hthread_t hthread, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t hthread, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
+CLASS_DECL_AURA bool set_thread_name(htask_t hthread, const char* pszName)
 {
 
    bool bOk1 = false;
@@ -128,7 +128,7 @@ CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
 
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ hthread_t hthread, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t hthread, _In_ PCWSTR pThreadDescription);
 
 
 i32 get_os_thread_priority(::e_priority epriority)

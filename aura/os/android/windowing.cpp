@@ -57,7 +57,7 @@ oswindow_data::oswindow_data()
 
    m_pmq = nullptr;
 
-   m_hthread = (hthread_t) nullptr;
+   m_htask = (htask_t) nullptr;
 
    m_pimpl = nullptr;
 
@@ -411,7 +411,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_hthread = m_pimpl->m_puserinteraction->get_context_application()->get_os_handle();
+   m_htask = m_pimpl->m_puserinteraction->get_application()->get_os_handle();
 
 }
 
@@ -1130,15 +1130,15 @@ void android_mouse(unsigned int message, float x, float y)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1163,7 +1163,7 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   //auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1229,10 +1229,10 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1246,7 +1246,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1270,13 +1270,13 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1295,7 +1295,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    puserinteraction->post_redraw();
 
-   //::aura::get_system()->get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   //::aura::get_system()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 }
 
@@ -1347,7 +1347,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1460,7 +1460,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    //::aura::get_system()->fork([=]()
    //{
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1485,7 +1485,7 @@ namespace aura
    void system::on_os_text(e_os_text etext, string strText)
    {
 
-      if (get_context_session() == nullptr || ::is_null(get_context_session()->m_puiHost))
+      if (get_session() == nullptr || ::is_null(get_session()->m_puserinteractionHost))
          return;
 
       __pointer(::message::key) pkey = __new(::message::key());
@@ -1503,17 +1503,17 @@ namespace aura
 
          pkey->m_ekey = ::user::e_key_return;
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
       else
       {
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
 
-      auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+      auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
       if (!puserinteraction)
       {
@@ -1772,7 +1772,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1791,7 +1791,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(const RECTANGLE_I32 * lpcrect)
 {
 
-   auto psession = ::aura::get_system()->get_context_session();
+   auto psession = ::aura::get_system()->get_session();
 
    if (!psession)
    {
@@ -1800,7 +1800,7 @@ int SetMainScreenRect(const RECTANGLE_I32 * lpcrect)
 
    }
 
-   auto puserinteraction = __user_interaction(psession->m_puiHost);
+   auto puserinteraction = __user_interaction(psession->get_user_interaction_host());
 
    if (!puserinteraction)
    {

@@ -16,7 +16,7 @@ namespace xml
       ::payload * m_pvar;
 
 
-      var_exchange(::layered * pobjectContext);
+      var_exchange();
       virtual ~var_exchange();
 
 

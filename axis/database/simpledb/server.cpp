@@ -22,10 +22,10 @@ namespace simpledb
    }
 
 
-   ::e_status server::initialize_simpledb_server(::layered * pobjectContext, const char * pszDatabase)
+   ::e_status server::initialize_simpledb_server(::context_object * pcontextobject, const char * pszDatabase)
    {
 
-      auto estatus = ::database::server::initialize(pobjectContext);
+      auto estatus = ::database::server::initialize(pcontextobject);
 
       if (!estatus)
       {

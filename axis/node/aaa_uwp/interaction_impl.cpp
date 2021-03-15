@@ -46,7 +46,7 @@ namespace uwp
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext):
+   interaction_impl::interaction_impl(::context_object * pcontextobject):
       ::object(pobject)
    {
 
@@ -234,7 +234,7 @@ namespace uwp
    //   //fork([&]()
    //   //{
 
-   //   //   while (::thread_get_run())
+   //   //   while (::task_get_run())
    //   //   {
 
    //   //      {
@@ -273,7 +273,7 @@ namespace uwp
    //   //               synchronizationlock.lock();
 
    //   //            }
-   //   //            while (m_messageaQueue.is_empty() && ::thread_get_run());
+   //   //            while (m_messageaQueue.is_empty() && ::task_get_run());
 
    //   //         }
 
@@ -301,10 +301,10 @@ namespace uwp
    interaction_impl::~interaction_impl()
    {
 
-      if(get_context_application() != nullptr)
+      if(get_application() != nullptr)
       {
 
-         Sys(get_context_application()).window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
+         Sys(get_application()).window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
 
       }
 
@@ -619,18 +619,18 @@ namespace uwp
 #endif
 
 #ifdef WINDOWS_DESKTOP
-   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl)
    {
       ASSERT(::is_window(get_handle()));
-      lpwndpl->length = sizeof(WINDOWPLACEMENT);
-      return ::GetWindowPlacement(get_handle(), lpwndpl) != false;
+      lpuserinteractionpl->length = sizeof(WINDOWPLACEMENT);
+      return ::GetWindowPlacement(get_handle(), lpuserinteractionpl) != false;
    }
 
-   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    {
       ASSERT(::is_window(get_handle()));
-      ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
-      return ::SetWindowPlacement(get_handle(), lpwndpl) != false;
+      ((WINDOWPLACEMENT*)lpuserinteractionpl)->length = sizeof(WINDOWPLACEMENT);
+      return ::SetWindowPlacement(get_handle(), lpuserinteractionpl) != false;
    }
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl will delegate owner draw messages to self drawing controls
@@ -939,18 +939,18 @@ namespace uwp
 
       if(pusermessage->m_id == e_message_timer)
       {
-//         m_puserinteraction->get_context_application()->step_timer();
+//         m_puserinteraction->get_application()->step_timer();
       }
       else if(pusermessage->m_id == e_message_left_button_down)
       {
-         //g_pwndLastLButtonDown = m_puserinteraction;
+         //g_puserinteractionLastLButtonDown = m_puserinteraction;
       }
       /*      else if(pusermessage->m_id == CA2M_BERGEDGE)
       {
       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
       ::aura::application ** ppapp= (::aura::application **) pusermessage->m_lparam;
-      *ppapp = get_context_application();
+      *ppapp = get_application();
       pusermessage->m_bRet = true;
       return;
       }
@@ -986,20 +986,20 @@ namespace uwp
          psession->on_ui_mouse_message(pmouse);
 
 
-         //Application.m_pointCursor = pmouse->m_point;
-         //if(get_context_application()->m_pcoreapp->m_psession != nullptr)
+         //papplication->m_pointCursor = pmouse->m_point;
+         //if(get_application()->m_pcoreapp->m_psession != nullptr)
          //{
          //   psession->m_pointCursor = pmouse->m_point;
          //}
-         //if(m_puserinteraction != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != get_context_application()->m_pcoreapp->m_psession)
+         //if(m_puserinteraction != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != get_application()->m_pcoreapp->m_psession)
          //{
-         //   Sess(m_puserinteraction->get_context_application()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
+         //   Sess(m_puserinteraction->get_application()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
          //}
 
          //__pointer(base_session) psession;
-         //if(get_context_application()->m_pcoreapp->is_system())
+         //if(get_application()->m_pcoreapp->is_system())
          //{
-         //   psession = System->query_session(0);
+         //   psession = psystem->query_session(0);
          //   if(psession != nullptr && psession->m_bSessionSynchronizedCursor)
          //   {
          //      psession->m_pointCursor = pmouse->m_point;
@@ -1023,12 +1023,12 @@ namespace uwp
 
             }
 
-            if(get_context_session()->get_monitor_count() > 0)
+            if(get_session()->get_monitor_count() > 0)
             {
                
                ::rect rcMonitor;
 
-               get_context_session()->get_monitor_rectangle(0,&rcMonitor);
+               get_session()->get_monitor_rectangle(0,&rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -1739,7 +1739,7 @@ return true;
    //int interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
-   //      lpszCaption = Application.m_strAppName;
+   //      lpszCaption = papplication->m_strAppName;
    //   int nResult = ::message_box(get_handle(),lpszText,lpszCaption,nType,callback);
    //   return nResult;
    //}
@@ -2151,7 +2151,7 @@ return true;
    {
       if (!(GetStyle() & WS_CHILD))
       {
-         ::user::interaction* pMainWnd = System->GetMainWnd();
+         ::user::interaction* pMainWnd = psystem->GetMainWnd();
          if (pMainWnd != nullptr &&
                GetKeyState(VK_SHIFT) >= 0 &&
                GetKeyState(VK_CONTROL) >= 0 &&
@@ -2169,7 +2169,7 @@ return true;
    LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
    {
       // update metrics if this interaction_impl is the main interaction_impl
-      //if(System->GetMainWnd() == this)
+      //if(psystem->GetMainWnd() == this)
       //{
       //   // update any system metrics cache
       //   //         afxData.UpdateSysMetrics();
@@ -2235,7 +2235,7 @@ return true;
    //void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    //{
 
-   //   __throw(todo(::get_context_application()));
+   //   __throw(todo(::get_application()));
 
    //   //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    //}
@@ -2272,7 +2272,7 @@ return true;
 
    //    ::e_status     c_cdecl print_window(LPVOID pvoid)
    //   {
-   //      __throw(todo(::get_context_application()));
+   //      __throw(todo(::get_application()));
 
    //      //print_window * pprintwindow = (print_window *) pvoid;
    //      //try
@@ -2296,8 +2296,8 @@ return true;
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      System->get_event(m_pthread)->SetEvent();
-      //    System->get_event(System->get_twf())->wait(millis(8400));
+      //      psystem->get_event(m_pthread)->SetEvent();
+      //    psystem->get_event(psystem->get_twf())->wait(millis(8400));
    }
 
    void interaction_impl::_001OnPaint(::message::message * pmessage)
@@ -2318,7 +2318,7 @@ return true;
       //if(pusermessage->m_wparam == nullptr)
       //   return;
 
-      //::draw2d::graphics_pointer graphics(get_object());
+      //::draw2d::graphics_pointer graphics(this);
       //METROWIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //::rect rectx;
       //::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2334,7 +2334,7 @@ return true;
       //   ::rect rectWindow;
       //   get_window_rect(rectWindow);
 
-      //   ::image_pointer pimage(get_object());
+      //   ::image_pointer pimage(this);
       //   if(!pimage = create_image(rectWindow.bottom_right()))
       //      return;
 
@@ -2510,7 +2510,7 @@ return true;
       ////   // center within appropriate monitor coordinates
       ////   if (hWndCenter == nullptr)
       ////   {
-      ////      oswindow hwDefault = System->GetMainWnd()->_get_handle();
+      ////      oswindow hwDefault = psystem->GetMainWnd()->_get_handle();
 
       ////      GetMonitorInfo(
       ////         MonitorFromWindow(hwDefault, MONITOR_DEFAULTTOPRIMARY), &mi);
@@ -2605,7 +2605,7 @@ return true;
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      //::message::command state(get_object());
+      //::message::command state(this);
       //interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
@@ -2675,8 +2675,8 @@ return true;
       //  m_puserinteraction->m_iModalCount++;
 
       //m_puserinteraction->m_threadptraModal.add(::get_task());
-      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_context_application());
-      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_context_application());
+      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_application());
+      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_application());
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
       for(;;)
@@ -2937,8 +2937,8 @@ ExitModal:
    //{
    //   /*bool b;
    //   bool * pb = &b;
-   //   if(get_context_application()->m_pcoreapp->s_ptwf != nullptr)
-   //   pb = &get_context_application()->m_pcoreapp->s_ptwf->m_bProDevianMode;
+   //   if(get_application()->m_pcoreapp->s_ptwf != nullptr)
+   //   pb = &get_application()->m_pcoreapp->s_ptwf->m_bProDevianMode;
    //   keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
    //   */
    //   //ASSERT(::is_window(get_handle()));
@@ -3597,22 +3597,22 @@ ExitModal:
 
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT32 * lpPoint,::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,POINT32 * lpPoint,::u32 nCount)
    {
 
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount);
+      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECTANGLE_I32 * lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,RECTANGLE_I32 * lpRect)
    {
 
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (POINT32 *)lpRect, 2);
+      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), (POINT32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3620,7 +3620,7 @@ ExitModal:
 
       __throw(todo);
 
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //if(get_handle() == nullptr)
       //{
       //   (dynamic_cast < ::uwp::graphics * >(g.m_p))->Attach(::GetDC(nullptr));
@@ -3638,7 +3638,7 @@ ExitModal:
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //g->attach(::GetWindowDC(get_handle()));
       //return g.detach();
    }
@@ -3837,7 +3837,7 @@ ExitModal:
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
       //return g.detach();
 
@@ -3873,10 +3873,10 @@ ExitModal:
 
       //__throw(todo);
 
-      //if(System->get_twf() == nullptr)
+      //if(psystem->get_twf() == nullptr)
       //   return false;
 
-      //if(System->get_twf()->m_bProDevianMode)
+      //if(psystem->get_twf()->m_bProDevianMode)
       //   return true;
 
       //ASSERT(::is_window(get_handle()));
@@ -4610,8 +4610,8 @@ ExitModal:
       __throw(todo);
 
       //__pointer(::user::message) pusermessage(pmessage);
-      //if(System->get_cursor() != nullptr
-      //   && System->get_cursor()->m_ecursor != cursor_system)
+      //if(psystem->get_cursor() != nullptr
+      //   && psystem->get_cursor()->m_ecursor != cursor_system)
       //{
       //   ::SetCursor(nullptr);
       //}
@@ -5060,7 +5060,7 @@ ExitModal:
       //   if (pFrame != nullptr)
       //   hWnd = pFrame->get_handle();
       //   else
-      //   hWnd = System->GetMainWnd()->get_handle();*/
+      //   hWnd = psystem->GetMainWnd()->get_handle();*/
       //}
 
       //// a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
@@ -5140,7 +5140,7 @@ ExitModal:
       {
          try
          {
-            if(App(pinteraction->get_context_application()).on_run_exception((::exception::exception &) e))
+            if(App(pinteraction->get_application()).on_run_exception((::exception::exception &) e))
                goto run;
          }
          catch(...)
@@ -5333,7 +5333,7 @@ lCallNextHook:
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
-      Sys(get_context_application()).window_map().set((oswindow)(iptr)(void *)get_handle(),this);
+      Sys(get_application()).window_map().set((oswindow)(iptr)(void *)get_handle(),this);
 
    }
 
@@ -5484,7 +5484,7 @@ CLASS_DECL_BASE const char * __register_window_class(::u32 nClassStyle,
    char * lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
-   HINSTANCE hInst = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
+   HINSTANCE hInst = Sys(::uwp::get_task()->get_application()).m_hInstance;
 
    if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
    {
@@ -5634,7 +5634,7 @@ bool CLASS_DECL_BASE __end_defer_register_class(::i32 fToRegisterParam, const ch
    WNDCLASS wndcls;
    __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
+   wndcls.hInstance = Sys(::uwp::get_task()->get_application()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;

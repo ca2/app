@@ -50,7 +50,7 @@ namespace music
 
 
 
-//::music::midi::message_out * music_midi_audio_unit_new_message_out(::layered * pobjectContext);
+//::music::midi::message_out * music_midi_audio_unit_new_message_out(::context_object * pcontextobject);
 
 //::music::midi::play_thread * music_midi_real_time_new_play_thread(::music::midi::sequence * psequence, index iPort);
 

@@ -20,7 +20,7 @@ namespace write_text
       virtual ~font_enumeration();
 
 
-      virtual ::e_status initialize(::layered* pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       virtual void on_subject(::subject::subject * psubject) override;

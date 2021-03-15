@@ -7,8 +7,8 @@
 namespace simpledb
 {
 
-   socket::socket(::sockets::base_socket_handler & h) :
-      matter(h.get_context_application()),
+   socket::socket() :
+      matter(h.get_application()),
       base_socket(h),
       ::sockets::socket(h),
       stream_socket(h),
@@ -50,11 +50,11 @@ namespace simpledb
       else
       {
 
-         http::response res(get_object());
+         http::response res(this);
 
          string strUri(inattr("request_uri"));
          string strHost(inheader("host"));
-         string strScript = System->url().object_get_script(strUri);
+         string strScript = psystem->url().object_get_script(strUri);
          if(strUri.find("thesecret") >= 0)
          {
             //      debug_break();
@@ -102,7 +102,7 @@ namespace simpledb
 
    class manager & socket::manager()
    {
-      return *dynamic_cast < ::simpledb::socket_thread & > (Handler()).m_pservice->m_pmanager;
+      return *dynamic_cast < ::simpledb::socket_thread & > (socket_handler()).m_pservice->m_pmanager;
    }
 
 
@@ -121,14 +121,14 @@ namespace simpledb
       if(strKey.compare_ci("Location") == 0)
       {
          url_domain domain;
-         domain.create(System->url().get_server(strValue));
+         domain.create(psystem->url().get_server(strValue));
          if(domain.m_strRadix == "ca2open")
          {
-            strValue = "https://" + Application.m_strFontopusServer + System->url().get_object(strValue);
+            strValue = "https://" + papplication->m_strFontopusServer + psystem->url().get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.cc" && System->url().get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.cc" && psystem->url().get_protocol(strValue) == "https")
          {
-            strValue = "https://" + Application.m_strFontopusServer + System->url().get_object(strValue);
+            strValue = "https://" + papplication->m_strFontopusServer + psystem->url().get_object(strValue);
          }
       }
       strValue.trim();
@@ -140,7 +140,7 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System->m_simpledb.db().data_load(nullptr, "netnodec." + GetLocalAddress().get_display_number());
+      m_strCat = psystem->m_simpledb.db().data_load(nullptr, "netnodec." + GetLocalAddress().get_display_number());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
@@ -180,17 +180,17 @@ namespace simpledb
       }
       else
       {
-         strRelative = System->url().url_decode(System->url().get_script(inattr("request_uri")));
+         strRelative = psystem->url().url_decode(psystem->url().get_script(inattr("request_uri")));
       }
       string strPath;
-      strPath = Context.dir().path(psz, strRelative);
+      strPath = pcontext->dir().path(psz, strRelative);
       read_file(strPath, &rangea);
    }
 
 
    bool socket::read_file(const char * lpcsz, pointer_array < int_array > * prangea, const char * pszContentType)
    {
-      string strExtension = Context.file().extension(lpcsz);
+      string strExtension = pcontext->file().extension(lpcsz);
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
@@ -247,7 +247,7 @@ namespace simpledb
       }
       else
       {
-         i32 iLen = Context.file().length(lpcsz);
+         i32 iLen = pcontext->file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;
@@ -262,7 +262,7 @@ namespace simpledb
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                memsize uRead;
-               ::memory_file memfile(get_object());
+               ::memory_file memfile(this);
                memsize iPos = iStart;
                if(iEnd >= iStart)
                {
@@ -298,7 +298,7 @@ namespace simpledb
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().ostream() << System->base64().encode(*memfile.get_memory());
+               response().ostream() << psystem->base64().encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
@@ -315,7 +315,7 @@ namespace simpledb
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                memsize uRead;
-               ::memory_file memfile(get_object());
+               ::memory_file memfile(this);
                memsize iPos = iStart;
                if(iEnd >= iStart)
                {

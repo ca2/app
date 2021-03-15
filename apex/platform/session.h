@@ -35,9 +35,9 @@ namespace apex
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
-      // The Main Application window?
-      __reference(::layered)                                m_puiHost;
-      __pointer(::layered)     m_pimplLastSeed;
+      // The Main papplication window?
+      __pointer(::user::primitive)                         m_puserprimitiveHost;
+      //__pointer(::layered)     m_pimplLastSeed;
       //__pointer(::layered)                        m_puiMain2;
 
       // apex commented
@@ -92,11 +92,6 @@ namespace apex
       __composite(::apex::str_context)                      m_puserstrcontext;
 
 
-      
-
-
-
-
 
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
@@ -127,7 +122,7 @@ namespace apex
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -224,7 +219,7 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -354,7 +349,7 @@ namespace apex
 
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
@@ -373,15 +368,15 @@ namespace apex
       virtual void finalize() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -411,7 +406,7 @@ namespace apex
 
       //virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
+      //virtual void on_app_request_bergedge_callback(::context_object * pcontextobject);
 
       // apex commented
       //virtual ::write_text::font_list* get_single_column_font_list();
@@ -464,13 +459,14 @@ namespace apex
 
       virtual void set_app_title(const char* pszAppId, const char* pszTitle);
 
-      virtual __pointer(::apex::session) get_context_session();
+      virtual __pointer(::apex::session) get_session();
 
       virtual bool is_remote_session();
 
       virtual string_array get_user_wallpaper();
 
-      virtual ::user::interaction * get_host_window() override;
+      virtual ::user::primitive * get_user_interaction_host();
+      virtual ::user::primitive * get_host_primitive();
 
 
    };

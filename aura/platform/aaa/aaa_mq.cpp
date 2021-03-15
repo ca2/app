@@ -9,7 +9,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool aura_defer_process_x_message(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool aura_defer_process_x_message(htask_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -220,7 +220,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 }
 
 
-//__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate)
+//__pointer(message_queue) get_message_queue(itask_t idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = ::aura::get_system()->get_task(idthread);
@@ -319,7 +319,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //
 //   pthread->__raw_compose_new(pthread->m_pmq);
 //
-//   pthread->m_pmq->m_ithread = idthread;
+//   pthread->m_pmq->m_itask = idthread;
 //
 //   return pthread->m_pmq;
 //
@@ -348,7 +348,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+//   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
 //   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 //
@@ -376,14 +376,14 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   if(pinteraction->get_context_application() == nullptr)
+//   if(pinteraction->get_application() == nullptr)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
+//   itask_t idthread = pinteraction->get_application()->get_os_int();
 //
 //   message_queue * pmq = __get_mq(idthread, false);
 //
@@ -408,7 +408,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 }
 
 
-CLASS_DECL_AURA void mq_clear(ithread_t idthread)
+CLASS_DECL_AURA void mq_clear(itask_t idthread)
 {
 
    auto pmq = ::get_message_queue(idthread, false);
@@ -427,7 +427,7 @@ CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 }
 
 
-int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(itask_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    auto pmq = get_message_queue(idthread, true);

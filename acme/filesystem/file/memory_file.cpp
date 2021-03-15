@@ -462,7 +462,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = Context.file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = get_context()->file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

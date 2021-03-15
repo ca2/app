@@ -61,25 +61,25 @@ namespace user
 
       //split_layout::Pane * pcomponent;
 
-      //__pointer(::user::interaction) pwnd;
+      //__pointer(::user::interaction) puserinteraction;
 
       //i32 i;
 
       //for (i = 0; i < iSplitBarCount; i++)
       //{
 
-      //   pwnd = m_splitbara.element_at(i);
+      //   puserinteraction = m_splitbara.element_at(i);
 
       //   if (!bIsWindowVisible)
       //   {
 
-      //      pwnd->display(e_display_none);
+      //      puserinteraction->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(e_display_normal);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -101,9 +101,9 @@ namespace user
 
       //   }
 
-      //   pwnd = pcomponent->m_pholder;
+      //   puserinteraction = pcomponent->m_pholder;
 
-      //   if ( pwnd == nullptr)
+      //   if ( puserinteraction == nullptr)
       //   {
 
       //      continue;
@@ -117,13 +117,13 @@ namespace user
       //   if (rectPane.area() <= 0 || !bIsWindowVisible)
       //   {
 
-      //      pwnd->display(e_display_none);
+      //      puserinteraction->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(e_display_normal);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -487,7 +487,7 @@ namespace user
 
       split_layout::Pane * pcomponent;
 
-      __pointer(::user::interaction) pwnd;
+      __pointer(::user::interaction) puserinteraction;
 
       ::u32 uBaseFlags = SWP_NOZORDER;
 
@@ -496,12 +496,12 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         pwnd = m_splitbara.element_at(i);
+         puserinteraction = m_splitbara.element_at(i);
 
          if (!m_bSplitBar || !is_pane_visible(i) || !bIsWindowVisible || m_panea[i]->m_bFixedSize)
          {
 
-            pwnd->hide();
+            puserinteraction->hide();
 
             continue;
 
@@ -515,11 +515,11 @@ namespace user
          if (bIsWindowVisible)
          {
 
-            pwnd->order(e_zorder_top);
+            puserinteraction->order(e_zorder_top);
 
-            pwnd->place(rectBar);
+            puserinteraction->place(rectBar);
 
-            pwnd->display();
+            puserinteraction->display();
 
          }
 
@@ -536,9 +536,9 @@ namespace user
 
          pcomponent = m_panea.element_at(i);
 
-         pwnd = pcomponent->m_pholder;
+         puserinteraction = pcomponent->m_pholder;
 
-         if (pwnd == nullptr)
+         if (puserinteraction == nullptr)
          {
 
             continue;
@@ -549,20 +549,20 @@ namespace user
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
 
-         pwnd->order(e_zorder_top);
+         puserinteraction->order(e_zorder_top);
 
-         pwnd->place(rectClient);
+         puserinteraction->place(rectClient);
 
-         if (pwnd->is_request_visible())
+         if (puserinteraction->is_request_visible())
          {
 
-            pwnd->display();
+            puserinteraction->display();
 
          }
          else
          {
 
-            pwnd->hide();
+            puserinteraction->hide();
 
          }
 

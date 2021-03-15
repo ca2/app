@@ -73,7 +73,7 @@ namespace draw2d_direct2d
 
       D3D_FEATURE_LEVEL m_featurelevel;
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       static IDWriteFactory * dwrite_factory(bool bCreate = true);

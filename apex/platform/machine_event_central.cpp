@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::layered * pobjectContext)
+::e_status machine_event_central::initialize(::context_object * pcontextobject)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ machine_event_central::~machine_event_central()
 
    }
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -65,7 +65,7 @@ machine_event_central::~machine_event_central()
 
 #if 0
 
-   while(thread_get_run())
+   while(task_get_run())
    {
 
       {
@@ -75,7 +75,7 @@ machine_event_central::~machine_event_central()
 
          //m_machineevent.read(&data);
 
-         //::apex::get_system()->process_machine_event_data(&data);
+         //psystem->process_machine_event_data(&data);
       }
 
       sleep(500_ms);
@@ -98,7 +98,9 @@ bool machine_event_central::is_close_application()
 
    m_machineevent.read(&data);
 
-   ::apex::get_system()->process_machine_event_data(&data);
+   __pointer(::apex::system) psystem = get_system();
+
+   psystem->process_machine_event_data(&data);
 
    return data.m_fixed.m_bRequestCloseApplication;
 

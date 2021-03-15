@@ -3,7 +3,7 @@
 
 #undef System
 #undef Platform
-#undef Application
+#undef papplication
 #undef Session
 
 

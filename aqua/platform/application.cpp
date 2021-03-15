@@ -8,7 +8,7 @@ namespace aqua
    application::application()
    {
 
-      set_layer(LAYERED_AQUA, this);
+      ///set_layer(LAYERED_AQUA, this);
 
    }
 
@@ -26,10 +26,10 @@ namespace aqua
    }
 
 
-   ::e_status application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobjectContext);
+      auto estatus = ::apex::application::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -46,16 +46,25 @@ namespace aqua
    void application::_001OnFranceExit()
    {
 
-      if (::aqua::get_system()->m_pmultimedia)
+      if (get_system()->m_pmultimedia)
       {
 
-         ::aqua::get_system()->m_pmultimedia->_001OnFranceExit();
+         get_system()->m_pmultimedia->_001OnFranceExit();
 
       }
 
       ::apex::application::_001OnFranceExit();
 
    }
+
+
+   //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //{
+
+   //   get_system()-
+
+   //}
+
 
 
 } // namespace aqua

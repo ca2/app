@@ -27,7 +27,7 @@ namespace account
 {
 
 
-   user::user(::layered * pobjectContext) :
+   user::user(::object * pobject) :
       ::object(pobject)
    {
 

@@ -60,10 +60,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_cached;
 
 
-         resolv_socket(base_socket_handler&);
-         resolv_socket(base_socket_handler&, base_socket * parent, const string & host, port_t port, bool ipv6 = false);
-         resolv_socket(base_socket_handler&, base_socket * parent, in_addr);
-         resolv_socket(base_socket_handler&, base_socket * parent, in6_addr&);
+         resolv_socket();
+         resolv_socket(base_socket * parent, const string & host, port_t port, bool ipv6 = false);
+         resolv_socket(base_socket * parent, in_addr);
+         resolv_socket(base_socket * parent, in6_addr&);
          ~resolv_socket();
 
          void OnAccept() { m_bServer = true; }

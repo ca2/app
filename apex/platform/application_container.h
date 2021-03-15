@@ -8,12 +8,12 @@ class CLASS_DECL_APEX application_container :
 public:
 
 
-   application_array             m_applicationa;
+   application_array                m_applicationa;
 
-   bool                          m_bFinalizeIfNoApplicationSetting;
-   bool                          m_bFinalizeIfNoApplication;
+   bool                             m_bFinalizeIfNoApplicationSetting;
+   bool                             m_bFinalizeIfNoApplication;
 
-   ::apex::application *         m_pappCurrent;
+   __pointer(::apex::application)   m_papplicationCurrent;
 
 
 

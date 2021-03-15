@@ -2806,7 +2806,7 @@ bool x11_step()
 
       synchronization_lock synchronizationlock(g_pmutexX11Runnable);
 
-      while(g_prunnableptrlX11->has_elements() && ::thread_get_run())
+      while(g_prunnableptrlX11->has_elements() && ::task_get_run())
       {
 
          __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
@@ -2886,7 +2886,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    int retval = fcntl(g_fdX11[0], F_SETFL, fcntl(g_fdX11[0], F_GETFL) | O_NONBLOCK);
 
-   while(::get_context_system() != nullptr && ::thread_get_run())
+   while(::::apex::get_system() != nullptr && ::task_get_run())
    {
 
       try
@@ -2944,7 +2944,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
          xdisplay d(pdisplay);
 
-         while(XPending(pdisplay) && ::thread_get_run())
+         while(XPending(pdisplay) && ::task_get_run())
          {
 
             try
@@ -2993,7 +2993,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
       }
 
-      while(::thread_get_run())
+      while(::task_get_run())
       {
 
          try
@@ -3836,7 +3836,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                else
                {
 
-                  TRACE("cannot create Input Context.\n");
+                  TRACE("cannot create Input get_context()->\n");
 
                }
 
@@ -4172,7 +4172,7 @@ namespace user
 //{
 //
 //
-   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
       __throw(todo);
@@ -4962,7 +4962,7 @@ void x11_thread(osdisplay_data * pdisplaydata);
 //pthread_t g_pthreadX11;
 
 __pointer(::thread) g_pthreadXlib;
-ithread_t g_ithreadXlib;
+itask_t g_ithreadXlib;
 
 //void * x11_thread_proc(void * p)
 //{
@@ -4990,9 +4990,9 @@ osdisplay_data * x11_main_display();
 void x11_start()
 {
 
-   auto psystem = ::get_context_system();
+   auto psystem = ::::apex::get_system();
 
-   auto psession = psystem->get_context_session();
+   auto psession = psystem->get_session();
 
    g_pthreadXlib = psession->fork([]()
    {

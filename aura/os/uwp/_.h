@@ -28,11 +28,11 @@
 //CLASS_DECL_AURA int_bool main_finalize();
 //
 //
-//CLASS_DECL_AURA void set_main_hthread(hthread_t hthread);
-//CLASS_DECL_AURA void set_main_ithread(ithread_t ithread);
+//CLASS_DECL_AURA void set_main_hthread(htask_t hthread);
+//CLASS_DECL_AURA void set_main_ithread(itask_t itask);
 //
 //
-//CLASS_DECL_AURA hthread_t get_main_hthread();
+//CLASS_DECL_AURA htask_t get_main_hthread();
 //CLASS_DECL_AURA ::u32 get_main_ithread();
 //
 //CLASS_DECL_AURA oswindow get_focus();

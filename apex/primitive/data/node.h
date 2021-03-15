@@ -20,9 +20,11 @@ namespace data
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::matter
+      virtual public ::context_object
    {
    protected:
+
+
       ::xml::node* m_pxmlnode;
 
    public:

@@ -308,10 +308,10 @@ namespace apex
    //}
 
 
-   void log::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
-      const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;
+      const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
 
       synchronization_lock sl2(&m_mutexTrace);
 
@@ -320,7 +320,7 @@ namespace apex
       if (elevel != e_trace_level_none)
       {
 
-         pcategory = m_ptrace->enabled_get(object_trace_category(pobjectContext), elevel);
+         pcategory = m_ptrace->enabled_get(object_trace_category(pobject), elevel);
 
          if (pcategory == nullptr)
          {
@@ -543,7 +543,9 @@ namespace apex
 
 #if !defined(_UWP)
 
-         if (is_debugger_attached() && !::apex::get_system()->has_apex_application_factory())
+         __pointer(::apex::system) psystem = get_system();
+
+         if (is_debugger_attached() && !psystem->has_apex_application_factory())
          {
 
             fork([this]()
@@ -653,16 +655,18 @@ skip_further_possible_recursive_impossible_logging_in_file:
    bool log::process_init()
    {
 
-      if (is_debugger_attached() && !::apex::get_system()->has_apex_application_factory())
+      __pointer(::apex::system) psystem = get_system();
+
+      if (is_debugger_attached() && !psystem->has_apex_application_factory())
       {
 
          /*fork([this]()
             {
 
-               while (::thread_get_run())
+               while (::task_get_run())
                {
 
-                  load_flags(Context.local_ini());
+                  load_flags(get_context()->local_ini());
 
                   //task_sleep(10_s);
 

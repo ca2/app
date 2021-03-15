@@ -15,7 +15,7 @@ namespace multimedia
          //m_mixerdestinationa(pobject)
       {
 
-         //m_mixerdestinationa.set_app(get_object());
+         //m_mixerdestinationa.set_app(this);
 
          m_pmixer = nullptr;
 
@@ -56,7 +56,7 @@ namespace multimedia
             if(::success != mmrct)
             {
 
-               System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
+               psystem->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
 
             }
 
@@ -67,7 +67,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            psystem->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -78,7 +78,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            psystem->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -107,7 +107,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
+            psystem->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
 
             return mmrc;
 

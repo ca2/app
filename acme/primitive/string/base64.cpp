@@ -325,21 +325,21 @@ namespace str
    }
 
 
-   ::e_status base64::initialize(::layered * pobjectContext)
-   {
+   //::e_status base64::initialize(::context_object * pcontextobject)
+   //{
 
-      auto estatus = ::matter::initialize(pobjectContext);
+   //   auto estatus = ::matter::initialize(pcontextobject);
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
    void base64::encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode)

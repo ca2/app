@@ -13,11 +13,8 @@ namespace account
 {
 
 
-   network_authenticator::network_authenticator(::layered * pobjectContext) :
-      ::object(pobjectContext),
-      authenticator(pobjectContext)
+   network_authenticator::network_authenticator()
    {
-
 
    }
 
@@ -107,10 +104,10 @@ namespace account
 
       //   estatus = ::success_authenticated;
 
-      //   if(puser->m_strHost == System->url().get_server(psession->account()->get_default_url()))
+      //   if(puser->m_strHost == psystem->url().get_server(psession->account()->get_default_url()))
       //   {
 
-      //      Context.file().put_contents(Context.dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
+      //      pcontext->file().put_contents(pcontext->dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
 
       //   }
 
@@ -222,21 +219,23 @@ namespace account
 
       string strDeferRegistration;
 
+      auto psystem = get_system();
+
       if(puser->m_bDeferRegistration)
       {
 
-         System->url().set_param(strAuthUrl, "defer_registration", "true");
+         psystem->url().set_param(strAuthUrl, "defer_registration", "true");
 
       }
 
       if(puser->m_bDeferRegistration)
       {
 
-         System->url().set_param(strAuthUrl, "ruri", System->url().url_encode(puser->m_pathRuri));
+         psystem->url().set_param(strAuthUrl, "ruri", psystem->url().url_encode(puser->m_pathRuri));
 
       }
 
-      System->url().set_param(strAuthUrl, "sessid", puser->m_strSessId);
+      psystem->url().set_param(strAuthUrl, "sessid", puser->m_strSessId);
 
       property_set set;
 
@@ -257,7 +256,7 @@ namespace account
 
       set["post"]["entered_user"] = puser->m_strLogin;
 
-      set["app"] = get_context_application();
+      set["app"] = get_application();
 
       set["user"] = puser;
 
@@ -265,13 +264,15 @@ namespace account
 
       auto tickTimeProfile1 = ::millis::now();
 
-      auto strResponse = Context.http().get(strAuthUrl, set);
+      auto pcontext = get_context();
+
+      auto strResponse = pcontext->http().get(strAuthUrl, set);
 
       pcredentials->m_strResponse = strResponse;
 
       pcredentials->m_estatusHttp = (::e_status    ) set["get_status"].i64();
 
-      TRACE("login_task::NetLogin Total time Context.http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
+      TRACE("login_task::NetLogin Total time pcontext->http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
 
       TRACE("NetLogin: Authentication Millis = " __prtick, __pr(tickAuthBeg.elapsed()));
 
@@ -311,15 +312,19 @@ namespace account
 
       //auto pinteractive = pcredentials->m_pinteractive;
 
-      puser->m_strHost = System->url().get_server(puser->m_pathUrl);
+      auto psystem = get_system();
+
+      puser->m_strHost = psystem->url().get_server(puser->m_pathUrl);
 
       string strGetFontopus;
 
       strGetFontopus = "https://ca2.cc/get_account_login";
 
-      System->url().set_param(strGetFontopus,strGetFontopus,"lang",Context.get_locale());
+      auto pcontext = get_context();
 
-      System->url().set_param(strGetFontopus,strGetFontopus,"styl",Context.get_schema());
+      psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",pcontext->get_locale());
+
+      psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",pcontext->get_schema());
 
       string strNode;
 
@@ -338,7 +343,7 @@ namespace account
 
          set["raw_http"] = true;
 
-         strNode = Context.http().get(strGetFontopus, set);
+         strNode = pcontext->http().get(strGetFontopus, set);
 
          if(::failed(set["get_status"]))
          {
@@ -450,7 +455,7 @@ namespace account
 //string department::get_server(::file::path pathUrl, i32 iRetry)
 //{
 //
-//   string strHost(System->url().get_server(pszUrl));
+//   string strHost(psystem->url().get_server(pszUrl));
 //
 //   if(iRetry <= 0)
 //   {
@@ -480,9 +485,9 @@ namespace account
 //
 //   strGetFontopus = "http://ca2.cc/get_account_login";
 //
-//   System->url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
+//   psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
-//   System->url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
+//   psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
 //
 //   __pointer(::sockets::http_session) psession;
 //
@@ -501,7 +506,7 @@ namespace account
 //
 //      set["raw_http"] = true;
 //
-//      strNode = Context.http().get(strGetFontopus, set);
+//      strNode = pcontext->http().get(strGetFontopus, set);
 //
 //      ::u32 tickEnd= ::millis::now();
 //
@@ -522,7 +527,7 @@ namespace account
 //
 //   }
 //
-//   ::xml::document doc(get_object());
+//   ::xml::document doc(this);
 //
 //   if(!doc.load(strNode))
 //   {
@@ -591,7 +596,7 @@ namespace account
 //
 //         m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
 //
-//         //System->sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
+//         //psystem->sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 //
 //      }
 //

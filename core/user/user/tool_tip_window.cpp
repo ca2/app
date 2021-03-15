@@ -38,7 +38,7 @@ namespace user
          if(ptool->BaseToolTipGetWnd()->get_top_level() == pusermessage->userinteraction())
          {
             
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -77,7 +77,7 @@ namespace user
       if(!bForce)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -109,7 +109,7 @@ namespace user
       m_ealign = m_ealignDefault;
 
 
-      __pointer(::user::interaction) pwnd = m_puserinteraction;
+      __pointer(::user::interaction) puserinteraction = m_puserinteraction;
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 
       bool bVRetry = false;
@@ -143,7 +143,7 @@ namespace user
 
          ::rectangle_i32 rectScreen;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -636,7 +636,7 @@ namespace user
          m_point.y = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
-         System->geometry().deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
+         psystem->geometry().deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
          point =  rectangle.random_point();
          break;
       default:

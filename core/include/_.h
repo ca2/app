@@ -106,7 +106,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 
 //CLASS_DECL_CORE ::core::user * get_context_user();
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::layered * pobjectContext);
+//CLASS_DECL_CORE inline ::core::user * get_context_user(::context_object * pcontextobject);
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
 //
 //
@@ -266,6 +266,9 @@ class ifs;
 
 
 #include "core/os/_impl.h"
+
+
+#include "core/platform/_impl.h"
 
 
 

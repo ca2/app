@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -660,7 +660,7 @@ namespace android
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = Context.file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = get_context()->file().as_string("/system/etc/system_fonts.xml");
 //
 //      auto pdoc = create_xml_document();
 //

@@ -13,7 +13,7 @@ namespace aura
    }
 
 
-   //history::history(::layered * pobjectContext) :
+   //history::history(::context_object * pcontextobject) :
    //   ::object(pobject)
    //{
 

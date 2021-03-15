@@ -1,3 +1,4 @@
+// Created on 2021-03-08 by GOD:ThomasBS_-Creature-camilo 09:56 I love you, ThomasBS_!!
 #pragma once
 
 
@@ -18,11 +19,6 @@ class CLASS_DECL_APEX object :
 protected:
 
 
-   __pointer(::layered)                                m_pthread;
-   __pointer(::layered)                     m_papplication;
-   __pointer(::layered)                         m_psession;
-   //__pointer(::layered)                          m_psystemContext;
-   __pointer(::layered)                               m_pcontext;
    __pointer(matter_array)                            m_pcompositea;
    __pointer(matter_array)                            m_preferencea;
 
@@ -30,27 +26,27 @@ protected:
 
 public:
 
-   ::object_meta *                                    m_pmeta;
+   ::object_meta* m_pmeta;
    ::i64                                              m_cRun;
 
 
-   object() : m_pmeta(nullptr) { set_layer(0, this); }
-   object(::layered * pobjectContext);
+   object() : m_pmeta(nullptr) { }
+   //object(::context_object * pcontextobject);
    object(enum_default_initialization) : ::object() {};
    virtual ~object();
 
 
 #ifdef DEBUG
-   
-   
+
+
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 
 
 #else
-   
-   
+
+
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
    virtual i64 release(OBJ_REF_DBG_PARAMS);
@@ -58,81 +54,96 @@ public:
 
 #endif
 
-   
 
 
-   inline matter_array * _composite_array() { return m_pcompositea; }
-   inline matter_array * _reference_array() { return m_preferencea; }
+
+   inline matter_array* _composite_array() { return m_pcompositea; }
+   inline matter_array* _reference_array() { return m_preferencea; }
 
 
-   inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   inline matter_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   inline matter_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
 
 
    virtual void process_exit_status(const ::e_status& estatus);
 
+   //inline ::object* this const { return this; }
+   //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
-   inline ::apex::application * application() { return (::apex::application *) m_papplication->layer(LAYERED_APEX); }
+   //inline ::apex::application* application() { return m_papplication; }
+
+   //template < typename TYPE, typename TYPE2 >
+   //void __bind(reference < TYPE >& r, TYPE2& t)
+   //{
+
+   //   __refr(r, t);
+
+   //}
+   ///__bind(referer, referee, ...) __m_bind(referer, (referer)->referee, __VA_ARGS__)
+
 
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const ::payload & varFile);
+   __pointer(BASE_TYPE) file_as(const ::payload& varFile);
 
 
-   virtual void add_routine(const ::id & idRoutine, const ::routine & routine);
+   virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
 
 
-   virtual void add_each_routine_from(const ::id & idRoutine, ::object * pobjectSource);
+   virtual void add_each_routine_from(const ::id& idRoutine, ::object* pobjectSource);
 
 
-   virtual array < ::routine > * routinea(const ::id & idRoutine);
+   virtual array < ::routine >* routinea(const ::id& idRoutine);
 
 
-   virtual void call_routine(const ::id & idRoutine);
+   virtual void call_routine(const ::id& idRoutine);
 
 
-   inline ::payload context_value(const ::payload & payload);
+   inline ::payload context_value(const ::payload& payload);
 
 
    virtual void task_remove(::task* ptask) override;
 
 
-   template < typename BASE_TYPE >
-   void save_to(const ::payload & varFile, BASE_TYPE * pobject);
+   virtual ::e_status sleep(const ::duration& duration);
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+
+   template < typename BASE_TYPE >
+   void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+
+   virtual ::e_status initialize(::context_object * pcontextobject) override;
    virtual void finalize() override;
 
-   inline const char * topic_text();
+   inline const char* topic_text();
 
-   context& __context(const ::payload & payload);
+   context& __context(const ::payload& payload);
 
-   ::payload __context_value(const ::payload & payload);
+   ::payload __context_value(const ::payload& payload);
 
-   virtual void set_topic_text(const string & str);
+   virtual void set_topic_text(const string& str);
 
    void create_object_meta();
 
    inline void defer_object_meta() { if (::is_null(m_pmeta)) create_object_meta(); }
 
-   inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
+   inline ::object_meta* get_meta() { defer_object_meta(); return m_pmeta; }
 
-   inline ::context * get_context() const { return m_pcontext; }
+   inline ::context* get_context() const { return m_pcontext; }
 
-   inline ::thread * get_thread() const { return m_pthread; }
+   inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::apex::application * get_application() const { return m_papplication; }
+   inline ::apex::application* get_application() const { return m_papplication; }
 
-   inline ::apex::session * get_session() const { return m_psession; }
+   inline ::apex::session* get_session() const { return m_psession; }
 
-   //::apex::system * get_context_system() const { return m_psystemContext; }
+   //::apex::system * psystem const { return m_psystemContext; }
 
    //::object * get_context_user() const { return m_puserContext; }
 
    //inline ::apex::application * application() const { return m_papplication; }
 
-   virtual string get_text(const ::payload & payload, const ::id& id) override;
+   virtual string get_text(const ::payload& payload, const ::id& id) override;
 
 #ifdef DEBUG
    virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
@@ -151,10 +162,10 @@ public:
 #endif
 
 
-   //virtual void set_context_object(::layered * pobjectContext) override;
+   //virtual void set_object(::context_object * pcontextobject) override;
 
 
-   inline void defer_set_context_object(::layered * pobjectContext);
+   //inline void defer_set_object(::context_object * pcontextobject);
 
    virtual ::e_status operator()() override;
 
@@ -167,21 +178,21 @@ public:
    }
 
 
-   virtual ::user::primitive* get_user_interaction_host();
-   virtual ::user::interaction * get_host_window();
-   
+   //virtual ::user::primitive* get_user_interaction_host();
+   //virtual ::user::interaction * get_host_window();
+
 
    virtual void dev_log(string str) const;
 
-   ::object & operator = (const ::payload & payload);
+   ::object& operator = (const ::payload& payload);
 
-   
+
 
 
    //static u32 s_thread_proc(void* p);
 
 
-   virtual void to_string(const string_exchange & str) const override;
+   virtual void to_string(const string_exchange& str) const override;
 
    //::image_result create_image();
    //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
@@ -189,14 +200,14 @@ public:
    //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
    //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
-   template < typename BASE_TYPE >
-   inline __transport(BASE_TYPE) __create();
+   //template < typename BASE_TYPE >
+   //inline __transport(BASE_TYPE) __create();
 
-   template < typename BASE_TYPE >
-   inline __transport(BASE_TYPE) __id_create(const ::id & id);
+   //template < typename BASE_TYPE >
+   //inline __transport(BASE_TYPE) __id_create(const ::id& id);
 
-   template < typename TYPE >
-   inline __transport(TYPE) __create_new();
+   //template < typename TYPE >
+   //inline __transport(TYPE) __create_new();
 
    //inline ::e_status __compose(__composite(::image) & pimage);
 
@@ -207,89 +218,88 @@ public:
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage);
+   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::e_status __id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id);
+   inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
 
    template < typename BASE_TYPE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
 
    template < typename TYPE >
-   inline ::e_status __raw_compose_new(__composite(TYPE) & ptype);
+   inline ::e_status __raw_compose_new(__composite(TYPE)& ptype);
 
    template < typename TYPE >
-   inline ::e_status __compose_new(__composite(TYPE) & ptype);
+   inline ::e_status __compose_new(__composite(TYPE)& ptype);
 
 
 
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_compose(__composite(BASE_TYPE) & pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
+   inline ::e_status __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
+   inline ::e_status __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
 
    template < typename TYPE >
-   inline ::e_status __defer_raw_compose_new(__composite(TYPE) & ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
+   inline ::e_status __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
 
    template < typename TYPE >
-   inline ::e_status __defer_compose_new(__composite(TYPE) & ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
+   inline ::e_status __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
 
 
 
+   //template < typename BASE_TYPE >
+   //inline ::e_status __construct(__pointer(BASE_TYPE)& pusermessage);
 
-   template < typename BASE_TYPE >
-   inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage);
+   //template < typename BASE_TYPE >
+   //inline ::e_status __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
 
-   template < typename BASE_TYPE >
-   inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
-
-   template < typename TYPE >
-   inline ::e_status __construct_new(__pointer(TYPE) & pusermessage);
-
-   template < typename BASE_TYPE >
-   inline ::e_status __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+   //template < typename TYPE >
+   //inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
 
    template < typename BASE_TYPE >
-   inline ::e_status __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+
+   template < typename BASE_TYPE >
+   inline ::e_status __release(__reference(BASE_TYPE)& preference OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status release_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::e_status add_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::e_status add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
-   virtual ::e_status release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::e_status finalize_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::e_status release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status release_composite2(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >
-   inline ::e_status add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
    inline ::e_status add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
@@ -304,31 +314,31 @@ public:
 
    virtual void destruct();
 
-   static void system(const char * pszProjectName);
+   static void system(const char* pszProjectName);
 
    virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception::exception & e);
+   virtual ::e_status handle_exception(const ::exception::exception& e);
 
    virtual ::e_status top_handle_exception(const ::exception::exception& e);
 
    virtual ::e_status process_exception(const ::exception::exception& e);
 
 
-   ::object * parent_property_set_holder() const override;
+   ::object* parent_property_set_holder() const override;
 
-   void copy_from(const object & o);
+   void copy_from(const object& o);
 
 
    virtual string get_tag() const;
    virtual bool is_thread() const override;
-   virtual bool thread_get_run() const;
+   virtual bool task_get_run() const;
    virtual bool is_running() const;
-   virtual void child_post_quit(const char * pszTag);
-   virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
-   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
-   virtual ::e_status set_finish(::context_object * pcontextobjectFinish) override;
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual void child_post_quit(const char* pszTag);
+   virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
+   virtual ::e_status finish(::property_object* pcontextobjectFinish = nullptr) override;
+   virtual ::e_status set_finish(::property_object* pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
    virtual void on_finish() override;
 
 
@@ -336,11 +346,11 @@ public:
    virtual ::id calc_default_object_id() const;
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   virtual void install_message_routing(::channel* pchannel);
 
    void message_receiver_destruct();
 
-   void _001OnUpdate(::message::message * pmessage);
+   void _001OnUpdate(::message::message* pmessage);
 
    virtual ::e_status request_file(const ::payload& varFile);
 
@@ -348,9 +358,9 @@ public:
 
    virtual ::e_status request(arguments arguments);
 
-   virtual ::e_status do_request(::create * pcreate);
+   virtual ::e_status do_request(::create* pcreate);
 
-   virtual __pointer(::extended::future < ::conversation >)  message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >)  message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -366,21 +376,21 @@ public:
    //}
 
    //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-   //virtual ::e_status message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
    virtual void release_references();
 
-   virtual __pointer(::matter) running(const char * pszTag) const;
+   virtual __pointer(::matter) running(const char* pszTag) const;
 
-   virtual bool ___is_reference(::matter * pobject) const;
+   virtual bool ___is_reference(::matter* pobject) const;
 
-   virtual bool __is_composite(::matter * pobject) const;
+   virtual bool __is_composite(::matter* pobject) const;
 
-   virtual bool __is_child_task(::task * ptask) const;
+   virtual bool __is_child_task(::task* ptask) const;
 
    virtual void on_finalize();
 
-   virtual ::e_status call_request(::create * pcreate);
+   virtual ::e_status call_request(::create* pcreate);
 
    //// former user::server
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
@@ -393,7 +403,7 @@ public:
 
    virtual ::e_status run() override;
 
-   virtual string lstr(const ::id & id, string strDefault = "");
+   virtual string lstr(const ::id& id, string strDefault = "");
 
    virtual string __get_text(string str);
 
@@ -415,13 +425,13 @@ public:
    void start();
 
 
-   void single_fork(const ::routine_array & routinea);
-   void multiple_fork(const ::routine_array & routinea);
+   void single_fork(const ::routine_array& routinea);
+   void multiple_fork(const ::routine_array& routinea);
 
-   using layered::defer_fork;
+   using subject::manager::defer_fork;
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine & routine)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
    {
 
       if (pthread && pthread->is_running())
@@ -456,7 +466,7 @@ public:
    }
 
 
-   inline ::e_status defer_fork(::thread_pointer& pthread, const ::routine & routine);
+   inline ::e_status defer_fork(::thread_pointer& pthread, const ::routine& routine);
 
 
    //template < typename THREAD >
@@ -474,11 +484,11 @@ public:
    inline ::thread_pointer fork(PRED pred);
 
 
-   inline ::thread_pointer launch(const ::routine & routine);
+   //inline ::thread_pointer launch(const ::routine& routine);
 
 
    //template < typename METHOD >
-   inline ::task_pointer opt_fork(const ::routine & routine)
+   inline ::task_pointer opt_fork(const ::routine& routine)
    {
 
       auto ptask = ::get_task();
@@ -504,16 +514,16 @@ public:
 
 
    template < typename PRED >
-   inline auto new_predicateicate_thread(PRED pred);
+   inline auto new_predicate_task(PRED pred);
 
    template < typename TYPE >
-   inline auto async(void (TYPE:: * pfnMemberProcedure)())
+   inline auto async(void (TYPE::* pfnMemberProcedure)())
    {
 
-      return fork([this,pfnMemberProcedure]()
+      return fork([this, pfnMemberProcedure]()
          {
 
-            TYPE * ptype = dynamic_cast <TYPE *> (this);
+            TYPE* ptype = dynamic_cast <TYPE*> (this);
 
             (ptype->*pfnMemberProcedure)();
 
@@ -542,9 +552,9 @@ public:
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open & eopen);
-   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary);
-   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen);
+   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
@@ -591,7 +601,7 @@ public:
 
 
    template < typename TYPE >
-   ::thread_pointer start_below_normal(void (TYPE:: * pfn)())
+   ::thread_pointer start_below_normal(void (TYPE::* pfn)())
    {
 
       return fork(pfn, ::priority_below_normal);
@@ -599,15 +609,15 @@ public:
    }
 
 
-   template < typename TYPE >
-   ::e_status __construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority);
+   //template < typename TYPE >
+   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
 
    template < typename TYPE >
-   ::e_status __construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)());
+   ::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    template < typename TYPE >
-   ::thread_pointer __start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority = priority_normal);
+   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
 
 
    virtual matter* get_taskpool_container() override;
@@ -644,10 +654,12 @@ do                                                                   \
                                                                      \
 } while(false)                                                       \
                                                                      \
-   
 
 
-CLASS_DECL_APEX ::e_status call_sync(const ::routine_array & routinea);
+
+CLASS_DECL_APEX::e_status call_sync(const ::routine_array& routinea);
+
+
 
 
 

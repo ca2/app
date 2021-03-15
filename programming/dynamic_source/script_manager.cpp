@@ -103,10 +103,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_manager::initialize(::layered * pobjectContext)
+   ::e_status script_manager::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::user::message_queue_listener::initialize(pobjectContext);
+      auto estatus = ::user::message_queue_listener::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -181,17 +181,17 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = __new(clear_include_matches_file_watcher(get_context_object()));
+         auto pwatcher = __new(clear_include_matches_file_watcher(this));
 
          pwatcher->m_pmanager = this;
 
-         Context.dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         pcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
       ::file::listing listing;
 
-      Application.dir().ls_dir(listing, m_strNetnodePath);
+      papplication->dir().ls_dir(listing, m_strNetnodePath);
 
       forallref(listing)
       {
@@ -199,11 +199,11 @@ namespace dynamic_source
          if(::str::begins_ci(item.title(),"net-"))
          {
 
-            auto pwatcher = __new(clear_include_matches_file_watcher(get_context_object()));
+            auto pwatcher = __new(clear_include_matches_file_watcher(this));
 
             pwatcher->m_pmanager = this;
 
-            Context.dir().watcher().add_watch(item, pwatcher, true);
+            pcontext->dir().watcher().add_watch(item, pwatcher, true);
 
          }
 
@@ -661,12 +661,12 @@ namespace dynamic_source
       delete buf;*/
 
       ::file::path str;
-      str = Context.dir().module();
+      str = pcontext->dir().module();
       str.go_up(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = Context.dir().module();
+      str2 = pcontext->dir().module();
       str2.go_up(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
@@ -869,7 +869,7 @@ namespace dynamic_source
          return ppair->element2();
       else
       {
-         bool bFileExists = Context.file().exists(strPath);
+         bool bFileExists = pcontext->file().exists(strPath);
          m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;
       }
@@ -892,7 +892,7 @@ namespace dynamic_source
          return ppair->element2();
       else
       {
-         bool bIsDir = Context.dir().is(strPath);
+         bool bIsDir = pcontext->dir().is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
       }
@@ -913,7 +913,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = Context.file().as_string(strPath).find("<?") >= 0;
+         bool bHasScript = pcontext->file().as_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -935,8 +935,8 @@ namespace dynamic_source
    }
 
 
-   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::context_object * pcontextobject) :
+      ::object(pobject)
    {
 
    }
@@ -1151,7 +1151,7 @@ namespace dynamic_source
 
       single_lock synchronizationlock(&m_mutexRsa, true);
 
-      return  System->crypto().generate_rsa_key();
+      return  psystem->crypto().generate_rsa_key();
 
    }
 
@@ -1175,7 +1175,7 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      __pointer(::crypto::rsa) prsa = System->crypto().generate_rsa_key();
+      __pointer(::crypto::rsa) prsa = psystem->crypto().generate_rsa_key();
 
       single_lock synchronizationlock(&m_mutexRsa, true);
 
@@ -1404,7 +1404,7 @@ namespace dynamic_source
       try
       {
 
-         f = Context.file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
+         f = pcontext->file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
 
       }
       catch(...)
@@ -1567,11 +1567,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return Context.dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
+      return pcontext->dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
 
 #else
 
-      return Context.dir().install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return pcontext->dir().install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

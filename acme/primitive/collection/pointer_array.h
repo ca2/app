@@ -61,17 +61,17 @@ public:
 
 
    template < typename OBJECT >
-   __pointer(T) & add_new(OBJECT * pobjectContext)
+   __pointer(T) & add_new(OBJECT * pcontextobject)
    {
 
       __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
       p.create();
 
-      if (::is_set(pobjectContext))
+      if (::is_set(pcontextobject))
       {
 
-         p->initialize(pobjectContext);
+         p->initialize(pcontextobject);
 
       }
 
@@ -270,7 +270,9 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         if (this->operator[]((iptr_cast) i).m_p == p)
+         auto& pointer = this->operator[]((iptr_cast)i);
+
+         if (pointer && pointer.m_p == p)
          {
 
             return i;
@@ -1059,9 +1061,9 @@ public:
 //   }
 //
 //
-//   smart_pointer_array2(::matter * pobjectContext):
-//      ::matter(pobjectContext),
-//      comparable_array < pointer < T > >(pobjectContext)
+//   smart_pointer_array2(::matter * pobject):
+//      ::matter(pobject),
+//      comparable_array < pointer < T > >(pobject)
 //   {
 //   }
 //

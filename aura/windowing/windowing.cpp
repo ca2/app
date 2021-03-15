@@ -63,10 +63,10 @@ namespace windowing
    void windowing::finalize_windowing()
    {
 
-      if (m_pcursorset)
+      if (m_pcursormanager)
       {
 
-         m_pcursorset->finalize();
+         m_pcursormanager->finalize();
 
       }
 
@@ -76,7 +76,7 @@ namespace windowing
    void windowing::finalize()
    {
 
-      m_pcursorset.release();
+      m_pcursormanager.release();
 
       ::apex::department::finalize();
 
@@ -110,10 +110,10 @@ namespace windowing
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (m_pcursorset.is_null())
+      if (m_pcursormanager.is_null())
       {
 
-         auto estatus = __construct_new(m_pcursorset);
+         auto estatus = __construct_new(m_pcursormanager);
 
          if (!estatus)
          {
@@ -122,11 +122,11 @@ namespace windowing
 
          }
 
-         m_pcursorset->set_cursor_set_system_default();
+         m_pcursormanager->set_cursor_set_system_default();
 
       }
 
-      return m_pcursorset->get_cursor(ecursor);
+      return m_pcursormanager->get_cursor(ecursor);
 
    }
 
@@ -147,7 +147,7 @@ namespace windowing
 
       synchronizationlock.unlock();
 
-      auto estatus = __construct(m_pcursorset);
+      auto estatus = __construct(m_pcursormanager);
 
       if (!estatus)
       {
@@ -156,7 +156,7 @@ namespace windowing
 
       }
 
-      estatus = m_pcursorset->set_cursor_set_from_matter(pathDir);
+      estatus = m_pcursormanager->set_cursor_set_from_matter(pathDir);
 
       if (!estatus)
       {
@@ -584,7 +584,7 @@ namespace windowing
 
       }
 
-      ////pcursor->m_pimage = Application.image().load_image(path, bFromCache, bSync);
+      ////pcursor->m_pimage = papplication->image().load_image(path, bFromCache, bSync);
 
       return true;
 
@@ -681,7 +681,7 @@ namespace windowing
          //
          //#endif
 
-                  //Application.on_create_keyboard();
+                  //papplication->on_create_keyboard();
 
          initialize_keyboard(m_pkeyboard);
 
@@ -702,6 +702,23 @@ namespace windowing
    {
 
    }
+
+
+   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter)
+   {
+   
+      return "windows_interaction_impl";
+
+   }
+
+   
+   wstring windowing::_windows_get_user_interaction_window_class(::user::interaction* pinteraction)
+   {
+   
+      return "windows_interaction_impl";
+
+   }
+
 
 
 #ifdef LINUX

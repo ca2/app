@@ -19,9 +19,9 @@ namespace experience
       virtual ~department();
 
 
-      virtual ::experience::experience * get_new_experience2(::layered * pobjectContext, const char * pszExperienceLibrary);
-      virtual ::experience::experience * get_experience2(::layered * pobjectContext, const char * pszExperienceLibrary);
-      virtual ::experience::frame * experience_get_frame2(::layered * pobjectContext, const char * pszExperienceLibrary, const char * pszFrame);
+      virtual ::experience::experience * get_new_experience2(::object * pobject, const char * pszExperienceLibrary);
+      virtual ::experience::experience * get_experience2(::object * pobject, const char * pszExperienceLibrary);
+      virtual ::experience::frame * experience_get_frame2(::object * pobject, const char * pszExperienceLibrary, const char * pszFrame);
 
    };
 

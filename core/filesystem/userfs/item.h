@@ -22,7 +22,7 @@ namespace userfs
       item(::userfs::tree * ptree);
       virtual ~item();
 
-      virtual string data_item_get_text(::object * pobject) const override;
+      virtual string data_item_get_text(::context_object * pcontextobject) const override;
       virtual index data_item_get_image(::object* pobject) const override;
       virtual ::image_list * data_item_get_image_list(::object* pobject) const override;
 

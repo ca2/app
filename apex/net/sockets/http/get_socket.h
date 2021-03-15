@@ -42,9 +42,9 @@ namespace sockets
    public:
 
 
-      http_get_socket(base_socket_handler &);
-      http_get_socket(base_socket_handler &,const string & url);
-      http_get_socket(base_socket_handler &,const string & host,port_t port,const string & url);
+      http_get_socket();
+      http_get_socket(const string & url);
+      http_get_socket(const string & host,port_t port,const string & url);
       virtual ~http_get_socket();
 
       virtual ::e_status step() override;

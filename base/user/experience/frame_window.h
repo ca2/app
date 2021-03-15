@@ -25,9 +25,8 @@ namespace experience
 
       ::logic::bit                                 m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
-
-
-      ::u32                                         m_uiSWPFlags;
+      
+      ::u32                                        m_uiSWPFlags;
 
       __composite(class move_manager)              m_pmovemanager;
       __composite(class size_manager)              m_psizemanager;
@@ -80,7 +79,7 @@ namespace experience
 
       virtual void toggle_restore();
 
-      virtual bool initialize_frame_window_experience();
+      virtual ::e_status initialize_frame_window_experience();
 
       virtual void on_command_message(::message::command* pcommand) override;
       virtual void route_command_message(::message::command* pcommand) override;
@@ -163,7 +162,7 @@ namespace experience
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
-      void ChildWnd(::user::interaction * pframewindow, ::user::interaction * pwndParent);
+      void ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent);
       void FrameWnd(::user::interaction * pframewindow);
       bool Start();
 

@@ -766,9 +766,6 @@ typedef struct _AppIndicator AppIndicator;
 #include "user.h"
 
 
-#define Usr(pobject) (Sess(pobject)->user())
-
-
 #include "main_window.h"
 
 

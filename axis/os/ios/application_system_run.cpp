@@ -30,7 +30,7 @@
       
    }
    
-   set_main_hthread(psystem->m_hthread);
+   set_main_hthread(psystem->m_htask);
 
    set_main_ithread(psystem->m_uThread);
 

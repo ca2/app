@@ -22,10 +22,10 @@ namespace apex
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::e_status department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -42,7 +42,7 @@ namespace apex
    void department::connect_to_application_signal()
    {
 
-      get_context_application()->add_handler(id_none, this, &department::on_application_message);
+      get_application()->add_handler(id_none, this, &department::on_application_message);
 
    }
 

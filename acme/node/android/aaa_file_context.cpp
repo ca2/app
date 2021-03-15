@@ -18,10 +18,10 @@ namespace android
    }
 
 
-   ::e_status file_context::initialize(::matter * pobjectContext)
+   ::e_status file_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::file_context::initialize(pobjectContext);
+      auto estatus = ::file_context::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -30,7 +30,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, System->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
 
       if (!estatus)
       {
@@ -39,7 +39,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pfilesystem, System->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
 
       if (!estatus)
       {

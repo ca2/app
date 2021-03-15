@@ -11,8 +11,6 @@ namespace axis
       ::aura::application(pszAppId)
    {
 
-      m_paxisapplication = this;
-
       m_bInitializeDataCentral = true;
 
    }
@@ -21,16 +19,13 @@ namespace axis
    application::~application()
    {
 
-      m_paxisapplication = nullptr;
-
    }
 
 
-
-   ::e_status     application::initialize(::layered * pobjectContext)
+   ::e_status     application::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::aura::application::initialize(pobjectContext);
+      auto estatus = ::aura::application::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -90,10 +85,10 @@ namespace axis
    //::user::style* application::get_user_style() const
    //{
 
-   //   if (m_psessionContext)
+   //   if (m_psession)
    //   {
 
-   //      return m_psessionContext->user()->get_user_style();
+   //      return m_psession->user()->get_user_style();
 
    //   }
 
@@ -498,8 +493,9 @@ namespace axis
 
          data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         System->appa_load_string_table();
+         auto psystem = get_system();
 
+         psystem->appa_load_string_table();
 
          // if system locale has changed (compared to last recorded one by aura)
          // use the system locale
@@ -634,7 +630,7 @@ namespace axis
 
          data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         System->appa_load_string_table();
+         psystem->appa_load_string_table();
 
       return true;
 
@@ -748,7 +744,7 @@ namespace axis
 //
 //#else
 //
-//         //if (System->m_pappcore == nullptr)
+//         //if (psystem->m_pappcore == nullptr)
 //         //{
 //
 //         //   set_has_installer(false);
@@ -757,7 +753,7 @@ namespace axis
 //         //else
 //         {
 //
-//            set_has_installer(!System->has_apex_application_factory());
+//            set_has_installer(!psystem->has_apex_application_factory());
 //
 //         }
 //
@@ -920,10 +916,12 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            if (get_context_system() != nullptr)
+            auto psystem = get_system();
+
+            if (psystem != nullptr)
             {
 
-               System->request({::command_check_exit});
+               psystem->request({::command_check_exit});
 
             }
 
@@ -967,7 +965,7 @@ namespace axis
 //            if (psession->appptra().get_count() <= 1)
 //            {
 //
-//               if (System->thread::get_os_data() != nullptr)
+//               if (psystem->thread::get_os_data() != nullptr)
 //               {
 //
 //                  ::parallelization::finish(System);
@@ -1014,7 +1012,7 @@ namespace axis
 //
 //      }
 //
-//      System->install_progress_add_up(); // 2
+//      psystem->install_progress_add_up(); // 2
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
@@ -1029,7 +1027,7 @@ namespace axis
 //
 //      }
 //
-//      System->install_progress_add_up(); // 3
+//      psystem->install_progress_add_up(); // 3
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
@@ -1044,7 +1042,7 @@ namespace axis
 //
 //      }
 //
-//      System->install_progress_add_up(); // 4
+//      psystem->install_progress_add_up(); // 4
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
@@ -1079,7 +1077,7 @@ namespace axis
 //
 //      }
 //
-//      System->install_progress_add_up(); // 5
+//      psystem->install_progress_add_up(); // 5
 //
 ////      m_bAuraInitializeInstanceResult = true;
 //
@@ -1103,31 +1101,31 @@ namespace axis
 
 
 
-      //if (System->payload("locale").get_count() > 0)
+      //if (psystem->payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = System->payload("locale").stra()[0];
+      //   strLocale = psystem->payload("locale").stra()[0];
 
       //}
 
-      //if (System->payload("schema").get_count() > 0)
+      //if (psystem->payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = System->payload("schema").stra()[0];
+      //   strSchema = psystem->payload("schema").stra()[0];
 
       //}
 
-      //if (Application.payload("locale").get_count() > 0)
+      //if (papplication->payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = Application.payload("locale").stra()[0];
+      //   strLocale = papplication->payload("locale").stra()[0];
 
       //}
 
-      //if (Application.payload("schema").get_count() > 0)
+      //if (papplication->payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = Application.payload("schema").stra()[0];
+      //   strSchema = papplication->payload("schema").stra()[0];
 
       //}
 
@@ -1196,7 +1194,9 @@ namespace axis
 
          ::file::path pathDatabase;
 
-         ::file::path pathFolder = Context.dir().appdata();
+         auto pcontext = get_context();
+
+         ::file::path pathFolder = pcontext->dir().appdata();
 
          if (is_system())
          {
@@ -1438,17 +1438,17 @@ namespace axis
 
          }
 
-         if(::is_set(get_context_session()))
+         if(::is_set(get_session()))
          {
 
-            get_context_session()->app_remove(this);
+            get_session()->app_remove(this);
 
          }
 
          //if(::is_set(get_context_system()))
          //{
 
-         //   System->app_remove(this);
+         //   psystem->app_remove(this);
 
          //}
 
@@ -1609,7 +1609,7 @@ namespace axis
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System->appa_load_string_table();
+   //   //psystem->appa_load_string_table();
    //}
 
 
@@ -1619,7 +1619,7 @@ namespace axis
    //   UNREFERENCED_PARAMETER(context);
    //   UNREFERENCED_PARAMETER(pcsz);
 
-   //   //System->appa_load_string_table();
+   //   //psystem->appa_load_string_table();
    //}
 
 
@@ -1629,7 +1629,7 @@ namespace axis
    void application::interactive_credentials(::account::credentials * pcredentials)
    {
 
-      auto psession = Session;
+      __pointer(::axis::session) psession = get_session();
 
       psession->interactive_credentials(pcredentials);
 
@@ -1639,14 +1639,14 @@ namespace axis
    ::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
    {
 
-      if(::is_null(get_context_session()))
+      if(::is_null(get_session()))
       {
 
          return nullptr;
 
       }
 
-      auto psession = Session;
+      __pointer(::axis::session) psession = get_session();
 
       return psession->get_user(pathUrl, bFetch, bInteractive);
 
@@ -1710,7 +1710,7 @@ namespace axis
 
       //}
 
-      ::thread * pthread = ::get_thread();
+      ::thread * pthread = get_thread();
 
       install_message_routing(pthread);
 
@@ -2120,14 +2120,14 @@ namespace axis
 
       }
 
-      if (get_context_session() == nullptr)
+      if (get_session() == nullptr)
       {
 
          return false;
 
       }
 
-      auto psession = Session;
+      __pointer(::axis::session) psession = get_session();
 
       if (psession->account() == nullptr)
       {

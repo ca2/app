@@ -729,8 +729,8 @@ namespace draw2d_gdiplus
    //   double centerx    = (x2 + x1) / 2.0;
    //   double centery    = (y2 + y1) / 2.0;
 
-   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
-   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
+   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / psystem->math().get_pi();
+   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / psystem->math().get_pi();
    //   double sweep      = fabs(end - start);
 
    //   /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -750,8 +750,8 @@ namespace draw2d_gdiplus
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / psystem->math().get_pi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / psystem->math().get_pi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -3416,7 +3416,7 @@ namespace draw2d_gdiplus
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::layered * pobjectContext)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
@@ -3471,7 +3471,7 @@ namespace draw2d_gdiplus
    //         ::draw2d::brush* pBrushOld = nullptr;
    //         if (pBrush == nullptr)
    //         {
-   //            pBrush = graphics::GetHalftoneBrush(get_context_application());
+   //            pBrush = graphics::GetHalftoneBrush(get_application());
    //         }
 
    //         ENSURE(pBrush);
@@ -5241,7 +5241,7 @@ namespace draw2d_gdiplus
 //            {
 //               // got the stock object back, so must be selecting a font
 //               __throw(error_not_implemented);
-////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
 //            else
@@ -5255,7 +5255,7 @@ namespace draw2d_gdiplus
 //         else if (nObjType == OBJ_FONT)
 //         {
 //            // play back as graphics::set(::write_text::font*)
-////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
 //            __throw(error_not_implemented);
 //            break;  // don't play the default record
 //         }

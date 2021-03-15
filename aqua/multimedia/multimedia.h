@@ -40,7 +40,7 @@ namespace aqua
       virtual ~multimedia();
 
 
-      virtual ::e_status initialize_multimedia(::object* pobjectContext);
+      virtual ::e_status initialize_multimedia(::context_object* pcontextobject);
 
       virtual void on_song_added(const string& strId);
 
@@ -48,7 +48,7 @@ namespace aqua
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      virtual __pointer(::user::controller) defer_create_view(::object* pobjectContext, const string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
+      virtual __pointer(::user::controller) defer_create_view(::object* pobject, const string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
 
       virtual void _001OnFranceExit();
 
@@ -84,7 +84,7 @@ extern "C"
 CLASS_DECL_AQUA ::aqua::multimedia * get_get_new_multimedia();
 
 
-CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::layered * pobjectContext);
+CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::context_object * pcontextobject);
 
 
 CLASS_DECL_AQUA bool has_multimedia();

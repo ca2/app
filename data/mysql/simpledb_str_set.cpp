@@ -66,9 +66,9 @@ public:
 
 
    db_str_set_core(db_server * pserver):
-      matter(pserver->get_context_application()),
+      matter(pserver->get_application()),
       db_set(pserver,"stringtable"),
-      m_handler(get_object()),
+      m_handler(this),
       
       m_phttpsession(nullptr),
       m_pqueue(nullptr),
@@ -101,7 +101,7 @@ public:
    pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(::layered * pobjectContext):
+   db_str_sync_queue(::context_object * pcontextobject):
       ::object(pobject),
       thread(pobject),
       ::thread(pobject),
@@ -134,12 +134,12 @@ i32 db_str_sync_queue::run()
    try
    {
 
-      while(thread_get_run())
+      while(task_get_run())
       {
 
 repeat:;
 
-      if(!thread_get_run())
+      if(!task_get_run())
          break;
        {
 
@@ -182,10 +182,10 @@ repeat:;
 
 
 
-             strUrl = "https://" + Context.dir().get_api_cc() + "/account/str_set_save?key=";
-             strUrl += System->url().url_encode(m_itema[0]->m_strKey);
+             strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/str_set_save?key=";
+             strUrl += psystem->url().url_encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
-             strUrl += System->url().url_encode(m_itema[0]->m_str);
+             strUrl += psystem->url().url_encode(m_itema[0]->m_str);
 
              m_itema.remove_at(0);
 
@@ -193,12 +193,12 @@ repeat:;
 
              set["user"] = psession->account()->get_user();
 
-             m_phttpsession = Context.http().request(m_phttpsession, strUrl, set);
+             m_phttpsession = pcontext->http().request(m_phttpsession, strUrl, set);
 
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
                 sleep(2000_ms);
-                Context.dir().m_strApiCc = "";
+                pcontext->dir().m_strApiCc = "";
                 goto repeat;
              }
 
@@ -238,8 +238,8 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-matter(pserver->get_context_application()),
-m_mutex(pserver->get_context_application())
+matter(pserver->get_application()),
+m_mutex(pserver->get_application())
 {
 
    m_pcore = new db_str_set_core(pserver);
@@ -272,7 +272,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find("&data_source=local&") < 0)
    {
 
-      Application.assert_user_logged_in();
+      papplication->assert_user_logged_in();
 
       synchronization_lock synchronizationlock(&m_mutex);
 
@@ -299,15 +299,15 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://" + Context.dir().get_api_cc() + "/account/str_set_load?key=";
+      strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/str_set_load?key=";
 
-      strUrl += System->url().url_encode(lpKey);
+      strUrl += psystem->url().url_encode(lpKey);
 
       set["user"] = psession->account()->get_user();
 
       set["get_response"] = "";
 
-      m_pcore->m_phttpsession = Context.http().request(m_pcore->m_phttpsession,strUrl,set);
+      m_pcore->m_phttpsession = pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {
@@ -452,7 +452,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       if(m_pcore->m_pqueue == nullptr)
       {
 
-         m_pcore->m_pqueue = new db_str_sync_queue(get_object());
+         m_pcore->m_pqueue = new db_str_sync_queue(this);
          m_pcore->m_pqueue->m_pset = this;
          m_pcore->m_pqueue->begin();
 

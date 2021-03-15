@@ -75,16 +75,11 @@ namespace aura
    session::session()
    {
 
-      m_paurasession = this;
-
       m_bAcceptsFirstResponder = true;
 
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pcoresession = nullptr;
 
 
       create_factory < ::user::user >();
@@ -115,10 +110,10 @@ namespace aura
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::aqua::session::initialize(pobjectContext);
+      auto estatus = ::aqua::session::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -129,7 +124,7 @@ namespace aura
 
       m_pimplPendingFocus2             = nullptr;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -211,7 +206,7 @@ namespace aura
 
       //}
 
-      auto psystem = ::aura::get_system();
+      __pointer(::aura::system) psystem = get_system();
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -259,7 +254,9 @@ namespace aura
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (::aura::get_system()->is_console_app())
+      __pointer(::aura::system) psystem = get_system();
+
+      if (psystem->is_console_app())
       {
 
          return false;
@@ -290,7 +287,7 @@ namespace aura
 
       return open_by_file_extension(pcreateNew);
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return papplication->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -298,7 +295,7 @@ namespace aura
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pcc);
+      //return papplication->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -320,14 +317,16 @@ namespace aura
 
       }
 
-      string strProtocol = ::aura::get_system()->url().get_protocol(strPathName);
+      __pointer(::aura::system) psystem = get_system();
+
+      string strProtocol = psystem->url().get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = ::aura::get_system()->url().get_server(strPathName);
+         strId = psystem->url().get_server(strPathName);
 
-         string str = ::aura::get_system()->url().get_object(strPathName);
+         string str = psystem->url().get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -343,7 +342,7 @@ namespace aura
 
          __throw(todo, "filehandler");
 
-         //::aura::get_system()->filehandler().get_extension_app(straApp, strExtension);
+         //psystem->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -569,7 +568,7 @@ namespace aura
    //::user::primitive * session::GetActiveWindow()
    //{
 
-   //   return ::aura::get_system()->ui_from_handle(::get_active_window());
+   //   return psystem->ui_from_handle(::get_active_window());
 
    //}
 
@@ -1178,7 +1177,7 @@ namespace aura
 
    //   }
 
-   //   auto puserinteraction = ::aura::get_system()->ui_from_handle(window);
+   //   auto puserinteraction = psystem->ui_from_handle(window);
 
    //   if (!puserinteraction)
    //   {
@@ -1246,7 +1245,7 @@ namespace aura
          main_async([this]()
          {
 
-            __pointer(::ios::interaction_impl) pimpl = psession->m_puiHost->m_pimpl;
+            __pointer(::ios::interaction_impl) pimpl = psession->get_user_interaction_host()->m_pimpl;
 
             if (pimpl.is_set())
             {
@@ -1524,7 +1523,7 @@ namespace aura
 
 
 
-   ::e_status session::finish(::context_object * pcontextobjectFinish)
+   ::e_status session::finish(::property_object * pcontextobjectFinish)
    {
 
       return ::aqua::session::finish(pcontextobjectFinish);
@@ -1697,7 +1696,7 @@ ret:
 
       //}
 
-      //if (::aura::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
       //}
@@ -1762,7 +1761,9 @@ ret:
 
       INFO(".2");
 
-      if (::aura::get_system()->m_bUser)
+      __pointer(::aura::system) psystem = get_system();
+
+      if (psystem->m_bUser)
       {
 
          INFO("success");
@@ -1836,7 +1837,7 @@ ret:
 
 #else
 
-      if(m_puiHost)
+      if(m_puserinteractionHost)
       {
 
          return ::success;
@@ -1861,7 +1862,7 @@ ret:
 
       }
 
-      estatus = __refer(m_puiHost, puserinteraction);
+      estatus = __refer(m_puserinteractionHost, puserinteraction);
 
       if (!estatus)
       {
@@ -1887,9 +1888,9 @@ ret:
 
       auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
 
-      auto puiHost = __user_interaction(m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 
-      if (!puiHost->create_window_ex(pcs))
+      if (!puserinteractionHost->create_window_ex(pcs))
       {
 
          return ::error_failed;
@@ -1927,10 +1928,10 @@ ret:
 
       INFO("aura::session::init2 .1");
 
-      //if (::aura::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
-      //   if(::aura::get_system()->m_bDraw2d)
+      //   if(psystem->m_bDraw2d)
       //   {
 
       //
@@ -2103,10 +2104,10 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
+      if (::is_set(m_papplicationCurrent))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         m_papplicationCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -2129,10 +2130,10 @@ namespace aura
 
 
 
-   //::e_status session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::context_object * pcontextobject)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobjectContext);
+   //   auto estatus = ::aura::session::initialize(pcontextobject);
 
    //   if (!estatus)
    //   {
@@ -2194,7 +2195,7 @@ namespace aura
    void session::request_topic_file(::payload& varQuery)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       request_file(psession->m_varTopicFile, varQuery);
 
@@ -2204,7 +2205,7 @@ namespace aura
    void session::request_topic_file()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       request_file(psession->m_varTopicFile);
 
@@ -2214,18 +2215,19 @@ namespace aura
    __pointer(::aura::application) session::get_current_application()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      return psession->m_pappCurrent;
+      return psession->m_papplicationCurrent;
 
    }
+
 
    bool session::is_remote_session()
    {
 
+      auto pcontext = get_context();
 
-      return Context.os().is_remote_session();
-
+      return pcontext->os().is_remote_session();
 
    }
 
@@ -2233,32 +2235,32 @@ namespace aura
    bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    {
 
-      auto psession = Session;
-
-
       if (emouse == ::user::e_mouse_left_button)
       {
-         return psession->is_key_pressed(::user::e_key_lbutton);
+
+         return is_key_pressed(::user::e_key_lbutton);
+
       }
       else if (emouse == ::user::e_mouse_right_button)
       {
-         return psession->is_key_pressed(::user::e_key_rbutton);
+
+         return is_key_pressed(::user::e_key_rbutton);
+
       }
       else if (emouse == ::user::e_mouse_middle_button)
       {
-         return psession->is_key_pressed(::user::e_key_mbutton);
+
+         return is_key_pressed(::user::e_key_mbutton);
+
       }
       else
       {
+
          __throw(::exception::exception("not expected enum_mouse value"));
+
       }
 
-
    }
-
-
-
-
 
 
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
@@ -2309,12 +2311,10 @@ namespace aura
    void session::check_topic_file_change()
    {
 
-      auto psession = Session;
-
-      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+      if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
       {
 
-         psession->m_varCurrentViewFile = psession->m_varTopicFile;
+         m_varCurrentViewFile = m_varTopicFile;
 
          request_topic_file();
 
@@ -2370,12 +2370,12 @@ namespace aura
    }
 
 
-   __pointer(::apex::session) session::get_context_session()
-   {
+   //__pointer(::apex::session) session::get_session()
+   //{
 
-      return this;
+   //   return this;
 
-   }
+   //}
 
 
 
@@ -2404,7 +2404,7 @@ namespace aura
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = ::aura::get_system()->url().url_decode(str);
+      //      str = psystem->url().url_decode(str);
 
       //   }
 
@@ -2425,7 +2425,9 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
+
+         auto pnode = psystem->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2448,7 +2450,9 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
+
+         auto pnode = psystem->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2471,7 +2475,9 @@ namespace aura
 
          color32_t crText;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
+
+         auto pnode = psystem->node();
 
          if (pnode && pnode->is_app_dark_mode())
          {
@@ -2610,26 +2616,29 @@ namespace aura
 } // namespace aura
 
 
-
-
-void os_on_finish_launching()
+namespace aura
 {
 
-   auto psystem = ::get_context_system();
 
-   auto psession = ::aura::get_system()->get_context_session();
+   void system::on_finish_launching()
+   {
 
-   auto puiHost = __user_interaction(psession->m_puiHost);
+      auto psession = get_session();
 
-   puiHost->display(e_display_full_screen);
+      auto puserinteractionHost = psession->m_puserprimitiveHost.cast < ::user::interaction>();
 
-   puiHost->set_need_layout();
+      puserinteractionHost->display(e_display_full_screen);
 
-   puiHost->set_need_redraw();
+      puserinteractionHost->set_need_layout();
 
-   puiHost->post_redraw();
+      puserinteractionHost->set_need_redraw();
 
-}
+      puserinteractionHost->post_redraw();
+
+   }
+
+
+} // namespace aura
 
 
 

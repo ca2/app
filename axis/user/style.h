@@ -51,7 +51,7 @@ namespace axis
 
 
       style();
-      style(::layered * pobjectContext);
+      style(::context_object * pcontextobject);
       virtual ~style();
 
       void default_style_construct();

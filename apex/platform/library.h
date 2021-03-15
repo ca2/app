@@ -31,8 +31,8 @@ namespace apex
       virtual void assert_valid() const override;
       virtual void dump(dump_context &) const override;
 
-      virtual ::e_status     initialize(::layered * pobjectContext);
-      virtual ::e_status     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      virtual ::e_status     initialize(::context_object * pcontextobject);
+      virtual ::e_status     initialize_apex_library(::context_object * pcontextobject, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
@@ -98,7 +98,7 @@ namespace apex
       virtual void get_extension_list(string_array & stra);
 
 
-      // virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
+      // virtual ::matter * factory_new(::object * pobject, const char * lpszClass);
 
 
       //virtual __pointer(::matter) factory_create(const char * lpszClass);
@@ -167,9 +167,9 @@ CLASS_DECL_APEX bool __node_library_close(void * plibrary);
 CLASS_DECL_APEX void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 
-CLASS_DECL_APEX ::apex::library * lib(const char * psz);
+//CLASS_DECL_APEX ::apex::library * lib(const char * psz);
 
-#define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
+#define LIBCALL(library, entry)  (get_system()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
 CLASS_DECL_APEX ::file::path libfilename(const string & str);
@@ -187,7 +187,7 @@ class library :                                                         \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::layered * pobjectContext) : ::apex::library(pobject) {}          \
+     library(::context_object * pcontextobject) : ::apex::library(pobject) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -214,7 +214,7 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::layered * pobjectContext) \
+CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::context_object * pcontextobject) \
 { \
 \
    return new library(pobject); \

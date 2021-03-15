@@ -5,8 +5,8 @@ namespace sockets
 {
 
 
-   smtpd_socket::smtpd_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   smtpd_socket::smtpd_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),

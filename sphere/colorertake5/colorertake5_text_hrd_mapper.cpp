@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   TextHRDMapper::TextHRDMapper(::layered * pobjectContext) :
+   TextHRDMapper::TextHRDMapper(::context_object * pcontextobject) :
       object(pobject),
       RegionMapperImpl(pobject)
    {
@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      __pointer(::xml::document) hbase = new xml::document(get_context_application());
+      __pointer(::xml::document) hbase = new xml::document(get_application());
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")

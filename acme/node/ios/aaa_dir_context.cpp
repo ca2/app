@@ -29,7 +29,7 @@ namespace ios
 
       listing.add("/");
 
-      listing.m_straTitle.add("File System");
+      listing.m_straTitle.add("File ::acme::get_system()");
 
       return listing;
 
@@ -61,7 +61,7 @@ namespace ios
 
             }
 
-            ::file::listing dira(get_context_application());
+            ::file::listing dira(get_application());
 
             dira.ls_dir(listing.m_pathFinal);
 
@@ -413,7 +413,7 @@ namespace ios
    ::file::path dir_context::time()
    {
       
-      return System->m_pdirsystem->m_pathModule;
+      return ::acme::get_system()->m_pdirsystem->m_pathModule;
       
    }
 
@@ -447,7 +447,7 @@ namespace ios
    ::file::path dir_context::module()
    {
 
-      return System->m_pdirsystem->m_pathModule;
+      return ::acme::get_system()->m_pdirsystem->m_pathModule;
 
    }
 
@@ -455,7 +455,7 @@ namespace ios
    ::file::path dir_context::ca2module()
    {
 
-      return System->m_pdirsystem->m_pathCa2Module;
+      return ::acme::get_system()->m_pdirsystem->m_pathCa2Module;
 
    }
 
@@ -534,10 +534,10 @@ namespace ios
 //   }
 
 
-   ::e_status dir_context::initialize(::matter * pobjectContext)
+   ::e_status dir_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -546,9 +546,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = System->m_pdirsystem;
+      m_pdirsystem = ::acme::get_system()->m_pdirsystem;
       
-      m_pfilesystem = System->m_pfilesystem;
+      m_pfilesystem = ::acme::get_system()->m_pfilesystem;
 
       
 //      if(!update_module_path())
@@ -559,7 +559,7 @@ namespace ios
 //      }
 
       
-//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/Application Support";
+//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/papplication Support";
       {
 
          string str;
@@ -581,11 +581,11 @@ namespace ios
 
       pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      System->m_strIosHome = pathHome;
+      ::acme::get_system()->m_strIosHome = pathHome;
 
       m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
 
-      //nodeos_set_home(System->m_strIosHome);
+      //nodeos_set_home(::acme::get_system()->m_strIosHome);
 
       ::file::path str = m_pdirsystem->m_strCa2 / ".ca2/appdata";
 
@@ -623,7 +623,7 @@ namespace ios
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = Context.file().as_string(strPath);
+      string strDocument = get_context()->file().as_string(strPath);
 
       if(doc.load(strDocument))
       {
@@ -673,9 +673,9 @@ namespace ios
 
       }
 
-      System->m_strIosTemp = strTime;
+      ::acme::get_system()->m_strIosTemp = strTime;
 
-      //nodeos_set_temp(System->m_strIosTemp);
+      //nodeos_set_temp(::acme::get_system()->m_strIosTemp);
       
       string str;
 

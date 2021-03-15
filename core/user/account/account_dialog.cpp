@@ -227,7 +227,7 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -302,7 +302,7 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::apex::application) papp = puiParent->get_context_application();
+         __pointer(::apex::application) papp = puiParent->get_application();
 
          if(papp != nullptr)
          {
@@ -336,7 +336,7 @@ namespace account
       while (!synchronizationlock.wait(one_second()).signaled())
       {
 
-         if (!::thread_get_run())
+         if (!::task_get_run())
          {
 
             return;
@@ -453,7 +453,7 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            m_plogin->m_pimage = Application.image().load_matter_image(stra[0]);
+            m_plogin->m_pimage = papplication->image().load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 
@@ -533,7 +533,7 @@ namespace account
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -607,7 +607,7 @@ namespace account
 
       __pointer(::message::show_window) pshowwindow(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

@@ -58,7 +58,7 @@ namespace filemanager
 
       _001GetText(str);
 
-      if (Context.dir().is(str))
+      if (pcontext->dir().is(str))
       {
 
          filemanager_document()->browse(str, context + ::e_source_sync);
@@ -74,7 +74,7 @@ namespace filemanager
 
             strName = strName.folder();
 
-            if (Context.dir().is(strName))
+            if (pcontext->dir().is(strName))
             {
 
                if (filemanager_item()->m_filepathUser != strName)
@@ -215,7 +215,7 @@ namespace filemanager
       else
       {
 
-         bool bSave = !Context.dir().is(strPath);
+         bool bSave = !pcontext->dir().is(strPath);
 
          if (bSave)
          {

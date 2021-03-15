@@ -5,14 +5,14 @@
 //{
 //
 //
-//   command::command(::layered * pobjectContext)
+//   command::command(::context_object * pcontextobject)
 //   {
 //
 //         common_construct();
-//         if (::is_set(pobjectContext))
+//         if (::is_set(pobject))
 //         {
 //
-//            initialize(pobjectContext);
+//            initialize(pcontextobject);
 //
 //         }
 //
@@ -83,7 +83,7 @@
 //      //}
 //
 //
-//      //command::command(::layered * pobjectContext) :
+//      //command::command(::context_object * pcontextobject) :
 //      //   ::object(pobject)
 //      //{
 //

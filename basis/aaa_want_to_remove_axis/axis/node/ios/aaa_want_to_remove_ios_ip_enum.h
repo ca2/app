@@ -27,7 +27,7 @@ namespace macos
    public:
       
       
-      ip_enum(::layered * pobjectContext);
+      ip_enum(::context_object * pcontextobject);
       virtual ~ip_enum();
       
       

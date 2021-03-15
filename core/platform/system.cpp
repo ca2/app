@@ -43,10 +43,10 @@ namespace core
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::base::system::initialize(pobjectContext);
+      auto estatus = ::base::system::initialize(pcontextobject);
 
       if (!estatus)
       {

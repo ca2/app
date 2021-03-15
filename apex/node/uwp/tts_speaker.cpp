@@ -210,7 +210,7 @@ namespace uwp
          else
          {
 
-            ::fork_then(get_context_application(), GetSpeechStreamTask(strLang, wstr), [=](SpeechSynthesisStream ^speechStream)
+            ::fork_then(get_application(), GetSpeechStreamTask(strLang, wstr), [=](SpeechSynthesisStream ^speechStream)
             {
 
                Audio.play_audio(create_memory_file(speechStream->GetInputStreamAt(0)), true);

@@ -2,6 +2,15 @@
 
 
 #include "collection/common.h"
+
+
+#include "collection/single.h"
+
+
+#include "collection/set.h"
+
+
+
 #include "collection/pair.h"
 
 

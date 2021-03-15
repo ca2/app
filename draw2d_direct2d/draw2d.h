@@ -15,7 +15,7 @@ namespace draw2d_direct2d
       virtual ~draw2d();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual string write_text_get_default_library_name() override;
 

@@ -70,11 +70,11 @@
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_context_session()->set_context_app(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->m_papplicationStartup);
 //
 //      psystem->set_context_app(psystem->m_papplicationStartup);
 //
-//      psystem->get_context_session()->set_context(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context(psystem->m_papplicationStartup);
 //
 //      psystem->set_context(psystem->m_papplicationStartup);
 //
@@ -192,7 +192,7 @@ namespace aura
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -273,7 +273,7 @@ namespace aura
 //   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      auto puser = psession->user();
 //
@@ -307,7 +307,7 @@ namespace aura
 //   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      auto puser = psession->user();
 //

@@ -179,7 +179,7 @@ CLASS_DECL_APEX int_bool release_capture()
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 
@@ -373,10 +373,10 @@ CLASS_DECL_APEX int_bool release_capture()
 //CLASS_DECL_APEX ::e_status apex_os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   if (::apex::get_system()->is_dedicated_thread())
+//   if (psystem->is_dedicated_thread())
 //   {
 //
-//      ::apex::get_system()->fork([=]()
+//      psystem->fork([=]()
 //         {
 //
 //            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);

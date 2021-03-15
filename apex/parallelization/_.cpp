@@ -6,17 +6,17 @@ namespace parallelization
 {
 
 
-   //CLASS_DECL_APEX comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
+   //CLASS_DECL_APEX comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_APEX __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_APEXcritical_section * s_pcs2 = nullptr;
 
 
-   CLASS_DECL_APEX void init_multithreading()
+   CLASS_DECL_APEX void initialize()
    {
 
       //s_pcs2 = new critical_section();
 
-      //s_piaThread2 = new comparable_eq_array<ithread_t>;
+      //s_piaThread2 = new comparable_eq_array<itask_t>;
 
       //s_pthreadptra2 = new __pointer_array(thread);
 
@@ -25,7 +25,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void term_multithreading()
+   CLASS_DECL_APEX void finalize()
    {
 
       __node_term_multithreading();
@@ -38,77 +38,109 @@ namespace parallelization
 
    }
 
-   CLASS_DECL_APEX bool thread_id_registered(ithread_t id)
+   //CLASS_DECL_APEX bool thread_id_registered(itask_t id)
+   //{
+
+   //   //critical_section_lock lock(s_pcs2);
+
+   //   //return s_piaThread2->contains(id);
+
+   //   __pointer(::apex::system) psystem = get_system();
+
+   //   return psystem->get_task(id) != nullptr;
+
+   //}
+
+
+   //bool thread_registered(::task * ptask)
+   //{
+
+   //   return psystem->get_task_id(ptask) != 0;
+
+   //}
+
+
+   //void thread_register(itask_t itask, ::task * ptask)
+   //{
+
+   //   psystem->set_task(itask, ptask);
+
+   //}
+
+
+   //void thread_unregister(itask_t itask, ::task * ptask)
+   //{
+
+   //   __pointer(::apex::system) psystem = get_system();
+
+   //   psystem->unset_task(itask, ptask);
+
+   //}
+
+
+   //bool is_child(::task * ptaskChildCandidate)
+   //{
+
+   //   if (::is_null(ptaskChildCandidate))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   if (ptaskChildCandidate->m_pobjectParent)
+   //   {
+
+   //      return true;
+
+   //   }
+
+   //   __pointer(::apex::system) psystem = get_system();
+
+   //   synchronization_lock synchronizationlock(&psystem->m_mutexTask);
+
+   //   for (auto & pair : psystem->m_taskidmap)
+   //   {
+
+   //      try
+   //      {
+
+   //         auto pcompositea = ___thread(pair.element1())->_composite_array();
+
+   //         if (pcompositea && pcompositea->contains(ptaskChildCandidate))
+   //         {
+
+   //            return true;
+
+   //         }
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //      }
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   void post_quit_to_all_threads(::acme::system * psystem)
    {
 
-      //critical_section_lock lock(s_pcs2);
+      //__pointer(::apex::system) psystem = get_system();
 
-      //return s_piaThread2->contains(id);
+      synchronization_lock synchronizationlock(&psystem->m_mutexTask);
 
-      return ::apex::get_system()->get_task(id) != nullptr;
-
-   }
-
-
-   bool thread_registered(::task * ptask)
-   {
-
-      return ::apex::get_system()->get_task_id(ptask) != 0;
-
-   }
-
-
-   void thread_register(ithread_t ithread, ::task * ptask)
-   {
-
-      ::apex::get_system()->set_task(ithread, ptask);
-
-   }
-
-
-   void thread_unregister(ithread_t ithread, ::task * ptask)
-   {
-
-      auto psystem = ::get_context_system();
-
-      psystem->unset_task(ithread, ptask);
-
-   }
-
-
-   bool is_child(::task * ptaskChildCandidate)
-   {
-
-      if (::is_null(ptaskChildCandidate))
-      {
-
-         return false;
-
-      }
-
-      if (ptaskChildCandidate->m_pobjectParent)
-      {
-
-         return true;
-
-      }
-
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
-
-      for (auto & pair : ::apex::get_system()->m_taskidmap)
+      for (auto& pair : psystem->m_taskidmap)
       {
 
          try
          {
 
-            auto pcompositea = ___thread(pair.element1())->_composite_array();
-
-            if (pcompositea && pcompositea->contains(ptaskChildCandidate))
-            {
-
-               return true;
-
-            }
+            pair.element1()->finish(psystem);
 
          }
          catch (...)
@@ -118,47 +150,21 @@ namespace parallelization
 
       }
 
-      return false;
-
    }
 
 
-   void post_quit_to_all_threads()
+   CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::id & id, wparam wparam, lparam lparam)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
+      synchronization_lock synchronizationlock(&psystem->m_mutexTask);
 
-      for (auto& pair : ::apex::get_system()->m_taskidmap)
+      for (auto& pair : psystem->m_taskidmap)
       {
 
          try
          {
 
-            ___thread(pair.element1())->finish(get_context_system());
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-   }
-
-
-   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
-   {
-
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexTask);
-
-      for (auto& pair : ::apex::get_system()->m_taskidmap)
-      {
-
-         try
-         {
-
-            auto pthread = ___thread(pair.element1());
+            __pointer(::thread) pthread = pair.element1();
 
             pthread->post_message(id, wparam, lparam);
 
@@ -172,83 +178,6 @@ namespace parallelization
 
    }
 
-
-   CLASS_DECL_APEX __pointer(::thread) calc_parent(::thread * pthread)
-   {
-
-      if (::is_null(pthread))
-      {
-
-         return nullptr;
-
-      }
-
-      if (pthread == ::apex::get_system())
-      {
-
-         return nullptr;
-
-      }
-
-      auto pthreadContext = pthread->get_thread();
-
-      if (::is_set(pthreadContext))
-      {
-
-         if (pthreadContext->finish_bit() || !pthreadContext->m_bLastingThread)
-         {
-
-            pthreadContext = calc_parent(pthreadContext);
-
-            if (::is_set(pthreadContext))
-            {
-
-               return pthreadContext;
-
-            }
-
-         }
-         else
-         {
-
-            return pthreadContext;
-
-         }
-
-      }
-
-      auto papplicationContext = pthread->application();
-
-      if (::is_set(papplicationContext) && papplicationContext != pthread)
-      {
-
-         return papplicationContext;
-
-      }
-
-      auto psessionContext = pthread->get_session();
-
-      if (psessionContext != pthread && ::is_set(psessionContext))
-      {
-
-         return psessionContext;
-
-      }
-
-      auto psystemContext = ::apex::get_system();
-
-      if (psystemContext != pthread && ::is_set(psystemContext))
-      {
-
-         return psystemContext;
-
-      }
-
-      return ::get_context_system();
-
-   }
-
-
 } // namespace parallelization
 
 
@@ -260,131 +189,133 @@ namespace parallelization
 //}
 
 
-bool apex_thread_get_run()
-{
-
-   try
-   {
-
-      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread object
-      {
-         ////////// and have short life, so it is safe to keep it running
-         //return true;
-         return ::apex::get_system()->thread_get_run();
-
-      }
-
-      return ::get_task()->thread_get_run();
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return false;
-
-}
-
-
-namespace parallelization
-{
+//bool apex_thread_get_run()
+//{
+//
+//   try
+//   {
+//
+//      
+//
+//      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread object
+//      {
+//         ////////// and have short life, so it is safe to keep it running
+//         //return true;
+//         return psystem->task_get_run();
+//
+//      }
+//
+//      return ::get_task()->task_get_run();
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
-   CLASS_DECL_APEX void finish()
-   {
-
-      finish(::get_task());
-
-   }
-
-
-   CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration)
-   {
-
-      return post_quit_and_wait(::get_thread(), duration);
-
-   }
-
-
-   void finish(::task * ptask)
-   {
-
-      if (::is_null(ptask))
-      {
-
-         return;
-
-      }
-
-      try
-      {
-
-         ptask->clear_finish_bit();
-
-      }
-      catch (...)
-      {
-
-
-      }
-
-   }
-
-
-   bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
-   {
-
-      __pointer(::thread) pthread;
-
-      try
-      {
-
-         pthread = pthreadParam;
-
-      }
-      catch (...)
-      {
-
-         return true;
-
-      }
-
-      if (pthread.is_null())
-      {
-
-         return true;
-
-      }
-
-      try
-      {
-
-         pthread->finalize();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         return pthread->wait(duration).succeeded();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return true;
-
-   }
-
-
-} // namespace parallelization
+//namespace parallelization
+//{
+//
+//
+//   //CLASS_DECL_APEX void finish()
+//   //{
+//
+//   //   finish(::get_task());
+//
+//   //}
+//
+//
+//   //CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration)
+//   //{
+//
+//   //   return post_quit_and_wait(::get_thread(), duration);
+//
+//   //}
+//
+//
+//   //void finish(::task * ptask)
+//   //{
+//
+//   //   if (::is_null(ptask))
+//   //   {
+//
+//   //      return;
+//
+//   //   }
+//
+//   //   try
+//   //   {
+//
+//   //      ptask->clear_finish_bit();
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//
+//   //   }
+//
+//   //}
+//
+//
+//   bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
+//   {
+//
+//      __pointer(::thread) pthread;
+//
+//      try
+//      {
+//
+//         pthread = pthreadParam;
+//
+//      }
+//      catch (...)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      if (pthread.is_null())
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      try
+//      {
+//
+//         pthread->finalize();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      try
+//      {
+//
+//         return pthread->wait(duration).succeeded();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//} // namespace parallelization
 //
 //
 //::mutex * s_pmutexMessageDispatch = nullptr;
@@ -399,64 +330,64 @@ namespace parallelization
 //}
 
 
-::context * get_context()
-{
+//::context * get_context()
+//{
+//
+//   thread * pthread = get_thread();
+//
+//   if (pthread == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   if (pthread->get_context())
+//   {
+//
+//      if (::is_null(pthread->get_context()->file()))
+//      {
+//
+//         pthread->get_context()->initialize_context();
+//
+//      }
+//
+//      return pthread->get_context();
+//
+//   }
+//
+//   if (pthread->application())
+//   {
+//
+//      return pthread->application();
+//
+//   }
+//
+//   return nullptr;
+//
+//}
 
-   thread * pthread = get_thread();
-
-   if (pthread == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   if (pthread->get_context())
-   {
-
-      if (::is_null(pthread->get_context()->file()))
-      {
-
-         pthread->get_context()->initialize_context();
-
-      }
-
-      return pthread->get_context();
-
-   }
-
-   if (pthread->application())
-   {
-
-      return pthread->application();
-
-   }
-
-   return nullptr;
-
-}
+//
+//::apex::application * g_papp;
+//
+//
+//void set_global_application(::apex::application* papp)
+//{
+//
+//    g_papp = papp;
+//
+//}
+//
+//
+//::apex::application * get_global_application()
+//{
+//
+//   return g_papp;
+//
+//}
 
 
-::apex::application * g_papp;
-
-
-void set_global_application(::apex::application* papp)
-{
-
-    g_papp = papp;
-
-}
-
-
-::apex::application * get_global_application()
-{
-
-   return g_papp;
-
-}
-
-
-//::apex::application * get_context_application()
+//::apex::application * get_application()
 //{
 //
 //   task* ptask = get_task();
@@ -484,7 +415,7 @@ void set_global_application(::apex::application* papp)
 //
 //   }
 //
-//   auto pobject = ptask->get_context_object();
+//   auto pobject = ptask->this;
 //
 //   if (!pobject)
 //   {
@@ -507,7 +438,7 @@ void set_global_application(::apex::application* papp)
 //}
 
 
-//::apex::session * get_context_session()
+//::apex::session * get_session()
 //{
 //
 //   thread * pthread = get_thread();
@@ -515,17 +446,17 @@ void set_global_application(::apex::application* papp)
 //   if (pthread == nullptr)
 //   {
 //
-//      return ::apex::get_system()->get_context_session();
+//      return psystem->get_session();
 //
 //   }
 //
-//   return pthread->get_context_session();
+//   return pthread->get_session();
 //
 //}
 
 //::apex::system * g_papexsystem = nullptr;
 //
-//CLASS_DECL_APEX ::apex::system * get_context_system()
+//CLASS_DECL_APEX ::apex::system * psystem
 //{
 //
 //   thread * pthread = get_thread();
@@ -537,7 +468,7 @@ void set_global_application(::apex::application* papp)
 //
 //   }
 //
-//   ::apex::system * psystem = pthread->get_context_system();
+//   ::apex::system * psystem = pthread->psystem;
 //
 //   if (!psystem)
 //   {
@@ -551,107 +482,417 @@ void set_global_application(::apex::application* papp)
 //}
 
 
-bool do_events()
+namespace apex
 {
 
-   bool bProcess = false;
 
-   bool bProcessed = false;
-
-   do
+   bool system::do_events()
    {
 
-      bool bProcess1 = false;
+      bool bProcess = false;
 
-      try
+      bool bProcessed = false;
+
+      do
       {
 
-         ::thread* pthread = ::get_thread();
+         bool bProcess1 = false;
 
-         if (::is_set(pthread))
+         try
          {
 
-            bProcess1 = pthread->do_events();
+            auto ptask = ::get_task();
+
+            if (::is_set(ptask))
+            {
+
+               bProcess1 = ptask->do_events();
+
+            }
+
+         }
+         catch (...)
+         {
 
          }
 
-      }
-      catch (...)
-      {
+         bool bProcess2 = false;
 
-      }
+         bool bProcess3 = false;
 
-      bool bProcess2 = false;
-
-      bool bProcess3 = false;
-
-      try
-      {
-
-         auto psystem = ::apex::get_system();
-
-         if (::is_set(psystem))
+         try
          {
 
-            bProcess2 = psystem->do_events();
+            __pointer(::apex::system) psystem = get_system();
 
-            try
+            if (::is_set(psystem))
             {
 
-               ::apex::session* psession = psystem->get_session();
+               bProcess2 = psystem->do_events();
 
-               if (::is_set(psession))
+               try
                {
 
-                  bProcess3 = psystem->do_events();
+                  ::apex::session* psession = psystem->get_session();
+
+                  if (::is_set(psession))
+                  {
+
+                     bProcess3 = psystem->do_events();
+
+                  }
+
+               }
+               catch (...)
+               {
 
                }
 
             }
-            catch (...)
-            {
 
-            }
+         }
+         catch (...)
+         {
 
          }
 
-      }
-      catch (...)
-      {
+         bool bProcess = bProcess1 || bProcess2 || bProcess3;
 
-      }
+         if (bProcess)
+         {
 
-      bool bProcess = bProcess1 || bProcess2 || bProcess3;
+            bProcessed = bProcess;
 
-      if (bProcess)
-      {
+         }
 
-         bProcessed = bProcess;
+      } while (bProcess);
 
-      }
+      return bProcessed;
 
-   } while (bProcess);
-
-   return bProcessed;
-
-}
+   }
 
 
-//bool do_events(const duration & duration)
-//{
-//
-//   ::thread * pthread = ::get_task();
-//
-//   if(pthread == nullptr)
-//      return;
-//
-//   pthread->do_events(duration);
-//
-//}
+   //bool do_events(const duration & duration)
+   //{
+   //
+   //   ::thread * pthread = ::get_task();
+   //
+   //   if(pthread == nullptr)
+   //      return;
+   //
+   //   pthread->do_events(duration);
+   //
+   //}
 
 
 
-::e_status thread_ptra::finish(::context_object * pcontextobjectFinish)
+
+   //CLASS_DECL_APEX ::e_status call(const ::method & method)
+   //{
+   //
+   //   ::e_status estatus;
+   //
+   //   try
+   //   {
+   //
+   //      estatus = method();
+   //
+   //   }
+   //   catch (...)
+   //   {
+   //
+   //      estatus = ::error_exception;
+   //
+   //   }
+   //
+   //   return estatus;
+   //
+   //}
+   //
+   //
+   //bool isvowel_dup(int i)
+   //{
+   //
+   //   if (i == 'a')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'e')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'i')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'o')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'u')
+   //   {
+   //      return true;
+   //   }
+   //   if (i == 'A')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'E')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'I')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'O')
+   //   {
+   //      return true;
+   //   }
+   //   else if (i == 'U')
+   //   {
+   //      return true;
+   //   }
+   //   else
+   //   {
+   //      return false;
+   //   }
+   //
+   //}
+
+   //
+   //string _001OnlyAlnumString(const char * psz)
+   //{
+   //
+   //   string strOnlyAlnum;
+   //
+   //   while (*psz)
+   //   {
+   //
+   //      if (ansi_char_is_alphanumeric(*psz))
+   //      {
+   //
+   //         strOnlyAlnum += *psz;
+   //
+   //      }
+   //
+   //      psz++;
+   //
+   //   }
+   //
+   //   return strOnlyAlnum;
+   //
+   //}
+
+   //
+   //string _001OnlyAlnumNonVowelString(const char * psz)
+   //{
+   //
+   //   string strOnlyAlnum;
+   //
+   //   while (*psz)
+   //   {
+   //
+   //      if (ansi_char_is_alphanumeric(*psz))
+   //      {
+   //
+   //         if (!isvowel_dup(*psz))
+   //         {
+   //
+   //            strOnlyAlnum += *psz;
+   //
+   //         }
+   //
+   //      }
+   //
+   //      psz++;
+   //
+   //   }
+   //
+   //   return strOnlyAlnum;
+   //
+   //}
+
+   //
+   //string _001CompactString(const string & str, int iSkip, int iSkipBegin = 0)
+   //{
+   //
+   //   string strCompact;
+   //
+   //   strsize i = 0;
+   //
+   //   for (; i < iSkipBegin; i++)
+   //   {
+   //
+   //      strCompact += str[i];
+   //
+   //   }
+   //
+   //   for (; i < str.get_length(); i += (iSkip + 1))
+   //   {
+   //
+   //      strCompact += str[i];
+   //
+   //   }
+   //
+   //   return strCompact;
+   //
+   //}
+
+
+   //void thread_name_abbreviate(string & strName, int len)
+   //{
+   //
+   //   if (strName.get_length() <= len)
+   //   {
+   //
+   //      return;
+   //
+   //   }
+   //
+   //   string_array stra;
+   //
+   //   strsize iFindLast = 0;
+   //
+   //   strsize iFind = 0;
+   //
+   //   string strOnlyAlnum;
+   //
+   //   while (iFind >= 0)
+   //   {
+   //
+   //      iFind = strName.find("::", iFindLast);
+   //
+   //      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
+   //
+   //      iFindLast = iFind + 2;
+   //
+   //   }
+   //
+   //   strName = stra.implode(":");
+   //
+   //   if (strName.get_length() <= len)
+   //   {
+   //
+   //      return;
+   //
+   //   }
+   //
+   //   for (index i = 0; i < stra.get_size(); i++)
+   //   {
+   //
+   //      stra[i] = _001OnlyAlnumString(stra[i]);
+   //
+   //      strName = stra.implode(":");
+   //
+   //      if (strName.get_length() <= len)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //   }
+   //
+   //   for (index i = 0; i < stra.get_size(); i++)
+   //   {
+   //
+   //      stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
+   //
+   //      strName = stra.implode(":");
+   //
+   //      if (strName.get_length() <= len)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //   }
+   //
+   //   for (index i = 0; i < stra.get_size(); i++)
+   //   {
+   //
+   //      stra[i] = _001CompactString(stra[i], 1, 1);
+   //
+   //      strName = stra.implode(":");
+   //
+   //      if (strName.get_length() <= len)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //   }
+   //
+   //   strName.truncate(len);
+   //
+   //}
+   //
+   //
+   //
+   //
+
+   //
+   //
+   //::e_status     run_runnable(::matter* pobjectTask)
+   //{
+   //
+   //   ::e_status     estatus = error_exception;
+   //
+   //   try
+   //   {
+   //
+   //      __pointer(matter) pobject(e_move_transfer, pobjectTask);
+   //
+   //      try
+   //      {
+   //
+   //         estatus = pobject->call();
+   //
+   //      }
+   //      catch (...)
+   //      {
+   //
+   //      }
+   //
+   //   }
+   //   catch (...)
+   //   {
+   //
+   //   }
+   //
+   //   return estatus;
+   //
+   //}
+
+
+   void __post_quit_message(i32 nExitCode)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      ::PostQuitMessage(nExitCode);
+
+#else
+
+      ::parallelization::finish(::get_application());
+
+#endif
+
+   }
+
+
+
+
+} // namespace apex
+
+
+
+
+
+::e_status thread_ptra::finish(::property_object* pcontextobjectFinish)
 {
 
    try
@@ -662,7 +903,7 @@ bool do_events()
       for (index i = 0; i < get_count(); i++)
       {
 
-         ::thread * pthread = element_at(i);
+         ::thread* pthread = element_at(i);
 
          try
          {
@@ -699,16 +940,16 @@ bool do_events()
 ::count thread_ptra::get_count_except_current_thread()
 {
 
-   thread * pthread = ::get_thread();
+   auto ptask = ::get_task();
 
    ::count c = 0;
 
-   for(index i = 0; i < __pointer_array(thread)::get_count(); i++)
+   for (index i = 0; i < __pointer_array(thread)::get_count(); i++)
    {
 
-      ::thread * pthreadItem = element_at(i);
+      ::thread* pthreadItem = element_at(i);
 
-      if(pthreadItem != pthread && pthreadItem != nullptr)
+      if (pthreadItem != ptask && pthreadItem != nullptr)
       {
 
          TRACE("\nthread_ptra::get_count_except_current_thread %s", typeid(*pthreadItem).name());
@@ -724,7 +965,7 @@ bool do_events()
 }
 
 
-void thread_ptra::wait(const duration & duration, synchronization_lock & synchronizationlock)
+void thread_ptra::wait(const duration& duration, synchronization_lock& synchronizationlock)
 {
 
    ::datetime::time timeEnd = ::datetime::time::get_current_time() + maximum(seconds(2), duration);
@@ -732,13 +973,13 @@ void thread_ptra::wait(const duration & duration, synchronization_lock & synchro
    try
    {
 
-//      synchronization_lock synchronizationlock(psyncParent);
-//
+      //      synchronization_lock synchronizationlock(psyncParent);
+      //
       ::count cCount = get_count_except_current_thread();
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      while (cCount > 0 &&  timeNow < timeEnd)
+      while (cCount > 0 && timeNow < timeEnd)
       {
 
          synchronizationlock.unlock();
@@ -762,303 +1003,81 @@ void thread_ptra::wait(const duration & duration, synchronization_lock & synchro
 }
 
 
-//CLASS_DECL_APEX ::e_status call(const ::method & method)
-//{
-//
-//   ::e_status estatus;
-//
-//   try
-//   {
-//
-//      estatus = method();
-//
-//   }
-//   catch (...)
-//   {
-//
-//      estatus = ::error_exception;
-//
-//   }
-//
-//   return estatus;
-//
-//}
-//
-//
-//bool isvowel_dup(int i)
-//{
-//
-//   if (i == 'a')
-//   {
-//      return true;
-//   }
-//   else if (i == 'e')
-//   {
-//      return true;
-//   }
-//   else if (i == 'i')
-//   {
-//      return true;
-//   }
-//   else if (i == 'o')
-//   {
-//      return true;
-//   }
-//   else if (i == 'u')
-//   {
-//      return true;
-//   }
-//   if (i == 'A')
-//   {
-//      return true;
-//   }
-//   else if (i == 'E')
-//   {
-//      return true;
-//   }
-//   else if (i == 'I')
-//   {
-//      return true;
-//   }
-//   else if (i == 'O')
-//   {
-//      return true;
-//   }
-//   else if (i == 'U')
-//   {
-//      return true;
-//   }
-//   else
-//   {
-//      return false;
-//   }
-//
-//}
-
-//
-//string _001OnlyAlnumString(const char * psz)
-//{
-//
-//   string strOnlyAlnum;
-//
-//   while (*psz)
-//   {
-//
-//      if (ansi_char_is_alphanumeric(*psz))
-//      {
-//
-//         strOnlyAlnum += *psz;
-//
-//      }
-//
-//      psz++;
-//
-//   }
-//
-//   return strOnlyAlnum;
-//
-//}
-
-//
-//string _001OnlyAlnumNonVowelString(const char * psz)
-//{
-//
-//   string strOnlyAlnum;
-//
-//   while (*psz)
-//   {
-//
-//      if (ansi_char_is_alphanumeric(*psz))
-//      {
-//
-//         if (!isvowel_dup(*psz))
-//         {
-//
-//            strOnlyAlnum += *psz;
-//
-//         }
-//
-//      }
-//
-//      psz++;
-//
-//   }
-//
-//   return strOnlyAlnum;
-//
-//}
-
-//
-//string _001CompactString(const string & str, int iSkip, int iSkipBegin = 0)
-//{
-//
-//   string strCompact;
-//
-//   strsize i = 0;
-//
-//   for (; i < iSkipBegin; i++)
-//   {
-//
-//      strCompact += str[i];
-//
-//   }
-//
-//   for (; i < str.get_length(); i += (iSkip + 1))
-//   {
-//
-//      strCompact += str[i];
-//
-//   }
-//
-//   return strCompact;
-//
-//}
-
-
-//void thread_name_abbreviate(string & strName, int len)
-//{
-//
-//   if (strName.get_length() <= len)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   string_array stra;
-//
-//   strsize iFindLast = 0;
-//
-//   strsize iFind = 0;
-//
-//   string strOnlyAlnum;
-//
-//   while (iFind >= 0)
-//   {
-//
-//      iFind = strName.find("::", iFindLast);
-//
-//      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
-//
-//      iFindLast = iFind + 2;
-//
-//   }
-//
-//   strName = stra.implode(":");
-//
-//   if (strName.get_length() <= len)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   for (index i = 0; i < stra.get_size(); i++)
-//   {
-//
-//      stra[i] = _001OnlyAlnumString(stra[i]);
-//
-//      strName = stra.implode(":");
-//
-//      if (strName.get_length() <= len)
-//      {
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//   for (index i = 0; i < stra.get_size(); i++)
-//   {
-//
-//      stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
-//
-//      strName = stra.implode(":");
-//
-//      if (strName.get_length() <= len)
-//      {
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//   for (index i = 0; i < stra.get_size(); i++)
-//   {
-//
-//      stra[i] = _001CompactString(stra[i], 1, 1);
-//
-//      strName = stra.implode(":");
-//
-//      if (strName.get_length() <= len)
-//      {
-//
-//         return;
-//
-//      }
-//
-//   }
-//
-//   strName.truncate(len);
-//
-//}
-//
-//
-//
-//
-
-//
-//
-//::e_status     run_runnable(::matter* pobjectTask)
-//{
-//
-//   ::e_status     estatus = error_exception;
-//
-//   try
-//   {
-//
-//      __pointer(matter) pobject(e_move_transfer, pobjectTask);
-//
-//      try
-//      {
-//
-//         estatus = pobject->call();
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
-//
-//   }
-//   catch (...)
-//   {
-//
-//   }
-//
-//   return estatus;
-//
-//}
 
 
 
-
-
-
-
-void __post_quit_message(i32 nExitCode)
+__pointer(::thread) thread::calc_parent()
 {
 
-#ifdef WINDOWS_DESKTOP
+   //if (::is_null(pthread))
+   //{
 
-   ::PostQuitMessage(nExitCode);
+   //   return nullptr;
 
-#else
+   //}
 
-   ::parallelization::finish(::get_context_application());
+   //if (pthread == psystem)
+   //{
 
-#endif
+   //   return nullptr;
+
+   //}
+
+   auto pthreadContext = get_thread();
+
+   if (::is_set(pthreadContext))
+   {
+
+      if (pthreadContext->finish_bit() || !pthreadContext->m_bLastingThread)
+      {
+
+         pthreadContext = pthreadContext->calc_parent();
+
+         if (::is_set(pthreadContext))
+         {
+
+            return pthreadContext;
+
+         }
+
+      }
+      else
+      {
+
+         return pthreadContext;
+
+      }
+
+   }
+
+   auto papplicationContext = get_application();
+
+   if (::is_set(papplicationContext) && papplicationContext != this)
+   {
+
+      return papplicationContext;
+
+   }
+
+   auto psessionContext = get_session();
+
+   if (psessionContext != this && ::is_set(psessionContext))
+   {
+
+      return psessionContext;
+
+   }
+
+   auto psystemContext = get_system();
+
+   if (psystemContext != (::task*) this && ::is_set(psystemContext))
+   {
+
+      return psystemContext;
+
+   }
+
+   return psystemContext;
 
 }
+

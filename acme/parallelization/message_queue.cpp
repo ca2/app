@@ -16,7 +16,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
+bool apex_defer_process_x_message(htask_t hthread,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
 
 
 #endif

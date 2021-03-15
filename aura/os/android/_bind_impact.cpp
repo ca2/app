@@ -183,7 +183,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionBeginBatc
 
    set_context(env);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -221,7 +221,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionEndBatchE
 
    set_context(env);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -270,7 +270,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetCompos
 
    size_t length = (size_t)env->GetStringLength(text);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -315,7 +315,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetCompos
 
    set_context(env);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -351,7 +351,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetSelect
 
    set_context(env);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -401,7 +401,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionCommitTex
 
    size_t length = (size_t)env->GetStringLength(text);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -446,7 +446,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionFinishCom
 
    set_context(env);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
 
@@ -592,12 +592,12 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv *
 
    //}
 
-   //auto puiptraChild = puserinteraction->m_puiptraChild;
+   //auto puserinteractionpointeraChild = puserinteraction->m_puserinteractionpointeraChild;
 
-   //if (puiptraChild)
+   //if (puserinteractionpointeraChild)
    //{
 
-   //   for (auto & puserinteractionChild : puiptraChild->interactiona())
+   //   for (auto & puserinteractionChild : puserinteractionpointeraChild->interactiona())
    //   {
 
    //      try

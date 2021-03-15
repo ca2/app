@@ -96,13 +96,13 @@ namespace user
 
       virtual ::e_status run() override;
 
-      virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
+      virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
 
       virtual void finalize() override;
 
-      virtual bool thread_get_run() const override;
+      virtual bool task_get_run() const override;
 
-      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
 
       void start_window_visual();
 

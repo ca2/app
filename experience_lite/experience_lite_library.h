@@ -19,7 +19,7 @@
          public:
 
 
-            library(::layered * pobjectContext);
+            library(::context_object * pcontextobject);
             virtual ~library();
 
 

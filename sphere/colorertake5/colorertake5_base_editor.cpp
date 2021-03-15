@@ -11,7 +11,7 @@ namespace colorertake5
 
 
 
-   base_editor::base_editor(::layered * pobjectContext) :
+   base_editor::base_editor(::context_object * pcontextobject) :
       object(pobject)
    {
       textParser = nullptr;
@@ -50,7 +50,7 @@ namespace colorertake5
    void base_editor::initialize(line_source *lineSource)
    {
 
-      ParserFactory *parserFactory = &Application.parser_factory();
+      ParserFactory *parserFactory = &papplication->parser_factory();
 
       if (parserFactory == nullptr || lineSource == nullptr)
       {

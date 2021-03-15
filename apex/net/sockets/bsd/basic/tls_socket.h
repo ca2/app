@@ -10,7 +10,7 @@ namespace sockets
    public:
 
 
-      tls_socket(base_socket_handler& );
+      tls_socket();
       ~tls_socket();
 
 

@@ -186,7 +186,7 @@ namespace experience
          /*if(m_bFocus)
          {
          ::point_i32 pointCursor;
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -212,7 +212,7 @@ namespace experience
       else
       {
 
-         //      __pointer(::user::interaction) pwnd = ::user::interaction::get_parent();
+         //      __pointer(::user::interaction) puserinteraction = ::user::interaction::get_parent();
 
 
          ::rectangle_i32 rectangle;

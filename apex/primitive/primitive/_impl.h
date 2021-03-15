@@ -9,7 +9,7 @@
 
 
 template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__create()
+inline __transport(BASE_TYPE) context_object::__create()
 {
 
  auto p = ::__create<BASE_TYPE>();
@@ -34,7 +34,7 @@ inline __transport(BASE_TYPE) object::__create()
 
 
 template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__id_create(const ::id & id)
+inline __transport(BASE_TYPE) context_object::__id_create(const ::id & id)
 {
 
   auto p = ::__id_create<BASE_TYPE>(id);
@@ -59,7 +59,7 @@ inline __transport(BASE_TYPE) object::__id_create(const ::id & id)
 
 
 template < typename TYPE >
-inline __transport(TYPE) object::__create_new()
+inline __transport(TYPE) context_object::__create_new()
 {
 
   ASSERT(::is_set(this));
@@ -188,19 +188,19 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pusermessage)
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pcomposite, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  pusermessage = psource;
+   pcomposite = psource;
 
-  if (!pusermessage)
-  {
+   if (!pcomposite)
+   {
 
-     return error_wrong_type;
+      return error_wrong_type;
 
-  }
+   }
 
-  auto estatus = pusermessage->initialize(this);
+  auto estatus = pcomposite->initialize(this);
 
   if (!estatus)
   {
@@ -209,7 +209,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE) & pusermessage, const
 
   }
 
-  m_estatus = add_composite(pusermessage OBJ_REF_DBG_COMMA_ARGS);
+  m_estatus = add_composite(pcomposite OBJ_REF_DBG_COMMA_ARGS);
 
   return m_estatus;
 
@@ -379,7 +379,7 @@ inline ::e_status object::__compose_new(__composite(TYPE) & p)
 
 
 template < typename TYPE >
-inline ::e_status object::__construct(__pointer(TYPE) & p)
+inline ::e_status context_object::__construct(__pointer(TYPE) & p)
 {
 
   auto estatus = ::__construct(p);
@@ -397,7 +397,7 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
 
 
 template < typename TYPE >
-inline ::e_status object::__id_construct(__pointer(TYPE) & p, const ::id & id)
+inline ::e_status context_object::__id_construct(__pointer(TYPE) & p, const ::id & id)
 {
 
   auto estatus = ::__id_construct(p, id);
@@ -415,7 +415,7 @@ inline ::e_status object::__id_construct(__pointer(TYPE) & p, const ::id & id)
 
 
 template < typename TYPE >
-inline ::e_status object::__construct_new(__pointer(TYPE) & p)
+inline ::e_status context_object::__construct_new(__pointer(TYPE) & p)
 {
 
   auto estatus = ::__construct_new(p);
@@ -610,17 +610,17 @@ inline ::payload object::context_value(const ::payload & payload)
 }
 
 
-inline void object::defer_set_context_object(::layered * pobjectContext)
-{
-
-  if (::is_null(get_context_object()) && ::is_set(pobjectContext))
-  {
-
-     set_context_object(pobjectContext);
-
-  }
-
-}
+//inline void object::defer_set_object(::context_object * pcontextobject)
+//{
+//
+//  if (::is_null(this) && ::is_set(pobject))
+//  {
+//
+//     set_object(pobject);
+//
+//  }
+//
+//}
 
 
 //#include "_property_set_composite_impl.h"
@@ -678,13 +678,13 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 //
 //template < typename T >
 //template < typename TYPE, typename OBJECT  >
-//inline __pointer(T) & pointer<T> ::defer_create(OBJECT * pobjectContext)
+//inline __pointer(T) & pointer<T> ::defer_create(OBJECT * pobject)
 //{
 //
 //  if (is_null())
 //  {
 //
-//     operator=(__create < TYPE >(pobjectContext));
+//     operator=(__create < TYPE >(pobject));
 //
 //  }
 //
@@ -1285,74 +1285,6 @@ inline __pointer(TYPE) context_object::cast(const ::id & id)
 
 
 
-template < typename PRED >
-inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
-{
-
-  if (iCount <= 0)
-  {
-
-     return -1;
-
-  }
-
-  auto psystem = ::apex::get_system();
-
-  auto pgroup = psystem->thread_group(epriority);
-
-  synchronization_lock slGroup(pgroup->mutex());
-
-  ///   auto ptool = ::apex::get_system()->thread_tool(op_fork_count);
-
-  if (pgroup == nullptr || pgroup->get_count() <= 1)
-  {
-
-     for (index i = iStart; i < iCount; i++)
-     {
-
-        pred(i);
-
-     }
-
-     return 1;
-
-  }
-
-  if (!pgroup->prepare(::e_thread_op_fork_count, iCount - iStart))
-  {
-
-     return -1;
-
-  }
-
-  synchronization_array ptra;
-
-  ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
-
-  for (index iOrder = 0; iOrder < iScan; iOrder++)
-  {
-
-     __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
-
-     if (!pgroup->add_predicate(pusermessage))
-     {
-
-        return -1;
-
-     }
-
-  }
-
-  if (!(*pgroup)())
-  {
-
-     return -1;
-
-  }
-
-  return iScan;
-
-}
 
 
 //inline void callback::receive_response(const ::payload & payload) const
@@ -1370,31 +1302,31 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 //}
 
 
-template < typename TYPE >
-inline ::e_status context_object::__construct_new(__pointer(TYPE)& pusermessage)
-{
-
-  ::e_status estatus = ::__construct_new(pusermessage);
-
-  if (!estatus)
-  {
-
-     return estatus;
-
-  }
-
-  estatus = pusermessage->initialize(get_context_object());
-
-  if (!estatus)
-  {
-
-     return estatus;
-
-  }
-
-  return estatus;
-
-}
+//template < typename TYPE >
+//inline ::e_status context_object::__construct_new(__pointer(TYPE)& pobject)
+//{
+//
+//  ::e_status estatus = ::__construct_new(pobject);
+//
+//  if (!estatus)
+//  {
+//
+//     return estatus;
+//
+//  }
+//
+//  estatus = pobject->initialize(this);
+//
+//  if (!estatus)
+//  {
+//
+//     return estatus;
+//
+//  }
+//
+//  return estatus;
+//
+//}
 
 
 //template < typename PRED >
@@ -1467,7 +1399,26 @@ inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::routine 
 
    pthread->m_pmatter = routine;
 
-   return pthread->begin_task();
+   return pthread->begin();
+
+}
+
+
+//inline ::apex::application* object::application()
+//{ 
+//   
+//   return m_papplication->layer(LAYERED_APEX); 
+//
+//}
+
+
+
+
+template < typename PRED >
+inline auto ::object::new_predicate_task(PRED pred)
+{
+
+   return ::new_predicate_task(this, pred);
 
 }
 
@@ -1475,5 +1426,19 @@ inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::routine 
 
 
 
+//template < typename PRED >
+//inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
+//{
+//
+//   return ::predicate_run(this, bSync, pred);
+//
+//}
 
+
+inline ::apex::system* context_object::get_system() const
+{ 
+   
+   return m_psystem ? dynamic_cast <::apex::system*>((::acme::system*)m_psystem) : nullptr; 
+
+}
 

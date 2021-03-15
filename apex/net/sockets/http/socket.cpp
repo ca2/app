@@ -15,12 +15,13 @@ namespace sockets
 {
 
 
-   http_socket::http_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
+   http_socket::http_socket() :
+      //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
       m_bFirst(true),
       m_bHeader(true),
       m_bRequest(false),
@@ -236,10 +237,14 @@ namespace sockets
             {
                m_request.attr(__id(http_protocol)) = "http";
             }
+
             string strRequestUri = pa.getword();
-            string strScript = ::apex::get_system()->url().object_get_script(strRequestUri);
-            string strQuery = ::apex::get_system()->url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = ::apex::get_system()->url().url_decode(strScript) + ::str::has_char(strQuery, "?");
+
+            __pointer(::apex::system) psystem = get_system();
+
+            string strScript = psystem->url().object_get_script(strRequestUri);
+            string strQuery = psystem->url().object_get_query(strRequestUri);
+            m_request.m_strRequestUri = psystem->url().url_decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
             m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");
@@ -480,7 +485,7 @@ namespace sockets
 
          response().m_strFile.Empty();
 
-         file_pointer spfile(e_create, get_context_object());
+         file_pointer spfile(e_create, this);
 
          try
          {

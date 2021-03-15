@@ -5,7 +5,6 @@ namespace user
 {
 
 
-
    class CLASS_DECL_AURA style :
       virtual public style_base
    {
@@ -55,8 +54,12 @@ namespace user
 
 
       style();
-      style(::layered * pobjectContext);
+      //style(::context_object * pcontextobject);
       virtual ~style();
+
+
+      virtual ::e_status initialize(::context_object* pcontextobject);
+
 
       void default_style_construct();
 

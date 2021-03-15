@@ -53,7 +53,7 @@ namespace sockets
 
 
 
-      httpd_socket(base_socket_handler& );
+      httpd_socket();
       virtual ~httpd_socket();
 
 
@@ -62,8 +62,8 @@ namespace sockets
 
 
 
-   protected:
-      httpd_socket(const httpd_socket& s);
+   //protected:
+      //httpd_socket(const httpd_socket& s);
       /** Decode and send a base64-encoded string.
          \lparam str64 Base64-encoded string
          \lparam type Mime type of content (content-type header) */

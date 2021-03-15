@@ -35,7 +35,7 @@ namespace user
       u32                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::rectangle_i32                                    m_rectangle;
+      ::rectangle_i32                           m_rectangle;
 
 
 
@@ -45,6 +45,12 @@ namespace user
       inline critical_section * cs_display() { return m_pcsDisplay; }
       virtual ::user::interaction_impl * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
+
+      
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
+
 
 
       virtual void prio_install_message_routing(::channel * pchannel);
@@ -86,14 +92,33 @@ namespace user
       virtual bool window_move(i32 x, i32 y);
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
-      virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      virtual void Invalidate(bool bErase = true) override;
+      virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
+
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
+      virtual void ValidateRect(const ::rectangle_i32& rectangle);
+
+      virtual void ValidateRgn(::draw2d::region* pRgn);
+      virtual void ShowOwnedPopups(bool bShow = true);
+
+
+      virtual ::graphics::graphics* get_window_graphics();
+      virtual bool is_composite();
+
+
+      virtual void _task_transparent_mouse_event();
+
+
+      virtual void _001Print(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::user::interaction * get_wnd() const override;
@@ -147,8 +172,8 @@ namespace user
       virtual ::user::interaction * get_wnd(::u32 nCmd) const override;
 
 
-      virtual ::user::frame * frame() const override;
-      virtual ::user::frame * top_level_frame() const override;
+      virtual ::user::frame * frame() const;
+      virtual ::user::frame * top_level_frame() const;
 
 
       //virtual ::user::interaction * GetTopWindow() const override;
@@ -161,7 +186,7 @@ namespace user
       virtual ::user::interaction * get_parent_owner() const override;
       virtual ::user::interaction * get_parent_or_owner() const override;
       virtual ::user::interaction * get_top_level_owner() const override;
-      virtual ::user::frame * get_parent_frame() const override;
+      virtual ::user::frame * get_parent_frame() const;
       //virtual ::user::frame * GetParentTopLevelFrame() const override;
       //virtual ::user::frame * EnsureParentFrame() override;
 
@@ -197,7 +222,11 @@ namespace user
       virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
+
+
       virtual void _001OnTimer(::timer * ptimer) override;
+
+      virtual bool IsTopParentActive();
 
       virtual bool destroy_impl_only();
       virtual bool DestroyWindow() override;
@@ -207,8 +236,8 @@ namespace user
       //virtual void _defer_start_prodevian();
 
 
-      void mouse_hover_add(::user::interaction * pinterface) override;
-      bool mouse_hover_remove(::user::interaction * pinterface) override;
+      virtual bool mouse_hover_add(::user::interaction * pinterface);
+      virtual bool mouse_hover_remove(::user::interaction * pinterface);
 
 
       virtual void register_drop_target();

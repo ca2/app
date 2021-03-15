@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   switcher_view::switcher_view(::layered * pobjectContext):
+   switcher_view::switcher_view(::context_object * pcontextobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -62,7 +62,7 @@ namespace turboc
       if(m_ptopview == NULL)
       {
 
-         System->message_box(NULL,"Could not create folder edit view");
+         psystem->message_box(NULL,"Could not create folder edit view");
 
       }
 
@@ -75,7 +75,7 @@ namespace turboc
       if(m_pview == NULL)
       {
 
-         System->message_box(NULL,"Could not create file list ::aura::impact");
+         psystem->message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 
@@ -116,7 +116,7 @@ namespace turboc
             if(m_pview == NULL)
             {
 
-               System->message_box(NULL,"Could not create file list ::aura::impact");
+               psystem->message_box(NULL,"Could not create file list ::aura::impact");
 
             }
 

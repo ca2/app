@@ -8,7 +8,7 @@ namespace datetime
 {
 
    parser::parser(const ::apex::str_context * pcontext) :
-      ::object(pcontext->get_context_object()),
+      ::object(pcontext->this),
       m_scanner(pcontext)
    {
    }

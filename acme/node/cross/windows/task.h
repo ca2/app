@@ -2,8 +2,8 @@
 
 
 typedef __pointer_array(::matter) object_array;
-typedef map < ithread_t, __pointer(task) > task_map;
-typedef map < task *, ithread_t > task_id_map;
+typedef map < itask_t, __pointer(task) > task_map;
+typedef map < task *, itask_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
@@ -19,8 +19,8 @@ public:
    int                                 m_bitCoInitialize : 1;
 
 
-   hthread_t                           m_hthread;
-   ithread_t                           m_ithread;
+   htask_t                           m_htask;
+   itask_t                           m_itask;
    string                              m_strTaskName;
    string                              m_strTaskTag;
    __pointer(::context_object)    m_pobjectParent;
@@ -111,14 +111,14 @@ public:
 
 
    virtual bool is_thread() const override;
-   virtual bool thread_get_run() const;
+   virtual bool task_get_run() const;
 
    virtual bool task_active() const;
    virtual bool is_running() const;
 
    //virtual bool set_thread_name(const char* pszThreadName);
 
-   virtual bool is_predicate() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
+   virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 
    //virtual void set_thread_run(bool bRun = true);
 

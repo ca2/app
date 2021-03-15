@@ -639,7 +639,7 @@ namespace filemanager
 
             /*    if(_001HitTest_(point, iItem))
             {
-            SimpleMenu menu(BaseMenuCentral::GetMenuCentral(get_object()));
+            SimpleMenu menu(BaseMenuCentral::GetMenuCentral(this));
             if (menu.LoadMenu(IDR_POPUP_ALBUM_ITEM))
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
@@ -681,7 +681,7 @@ namespace filemanager
             }
             else
             {
-               System->message_box("error"); // simple parsing error check
+               psystem->message_box("error"); // simple parsing error check
                return;
             }
 

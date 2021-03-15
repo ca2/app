@@ -20,7 +20,7 @@
 
 #elif defined(__APPLE__)
 
-   path = ::file::path(getenv("HOME")) / "Library/Application Support";
+   path = ::file::path(getenv("HOME")) / "Library/papplication Support";
 
 #else
 
@@ -31,9 +31,9 @@
    //if (::get_context_system() != nullptr)
    //{
 
-   //   synchronization_lock synchronizationlock(System->mutex());
+   //   synchronization_lock synchronizationlock(get_system()->mutex());
 
-   //  System->m_pathConfig = path;
+   //  get_system()->m_pathConfig = path;
 
    //}
 

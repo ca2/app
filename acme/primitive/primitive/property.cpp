@@ -1437,7 +1437,7 @@ string & property::get_http_post(string & str) const
 //  if(opt == ((::xml::disp_option *) 1))
 //  {
 //
-//     opt = System->xml().m_poptionDefault;
+//     opt = get_system()->xml().m_poptionDefault;
 //
 //  }
 //

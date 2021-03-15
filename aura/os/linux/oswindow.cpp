@@ -113,7 +113,7 @@ oswindow_data::oswindow_data()
 
    m_hcursorLast           = 0;
 
-   m_hthread               = 0;
+   m_htask               = 0;
 
    m_window                = None;
 
@@ -510,7 +510,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->stretch(d1->rectangle(), pimage->g(), pimage->rectangle());
 
-   memory m(m_pimpl->m_puserinteraction->get_context_application());
+   memory m(m_pimpl->m_puserinteraction->get_application());
 
    int length = 2 + d1->area();
 
@@ -585,7 +585,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
 
-   memory m(w->m_pimpl->m_puserinteraction->get_context_application());
+   memory m(w->m_pimpl->m_puserinteraction->get_application());
 
    int length = 2 + d1->area() + 2 + d2->area();
 
@@ -719,7 +719,7 @@ void oswindow_data::set_user_interaction(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_hthread = pimpl->get_context_application()->get_os_handle();
+   m_htask = pimpl->get_application()->get_os_handle();
 
    m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 

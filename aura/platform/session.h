@@ -71,14 +71,11 @@ namespace aura
 
 #endif
 
+      inline ::aura::system* get_system() const;
 
+      virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
 
-      virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
-
-
-
-
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -99,17 +96,13 @@ namespace aura
       virtual void term() override;
 
       //virtual void term_session() override;
-
+      
 
       inline class ::fs::data * fs() { return m_pfsdata; }
 
-
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
-
-
       //virtual size_i32 get_window_minimum_size() override;
-
 
       //virtual void  get_cursor_position(POINT_I32 * ppoint);
 
@@ -159,7 +152,7 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
 
       //virtual ::user::interaction * get_session_window() override;
@@ -197,7 +190,7 @@ namespace aura
 
       virtual bool open_by_file_extension(::create * pcc) override;
 
-      //__pointer(::aura::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
+      //__pointer(::aura::application) get_new_application(::object * pobject, const char * pszAppId);
 
       inline ::apex::savings &                  savings()      { return *m_psavings; }
 
@@ -284,7 +277,7 @@ namespace aura
 
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
@@ -303,15 +296,15 @@ namespace aura
       virtual void finalize() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
 
@@ -337,7 +330,7 @@ namespace aura
 
       //virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
+      //virtual void on_app_request_bergedge_callback(::context_object * pcontextobject);
 
       virtual ::write_text::font_list* get_single_column_font_list();
 
@@ -392,8 +385,6 @@ namespace aura
 
 
       virtual void set_app_title(const char* pszAppId, const char* pszTitle) override;
-
-      virtual __pointer(::apex::session) get_context_session() override;
 
       //virtual void term() override;
 

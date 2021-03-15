@@ -161,7 +161,7 @@ namespace filemanager
 
    CLASS_DECL_CORE int get_manager_id_len();
 
-   CLASS_DECL_CORE string create_manager_id(::layered * pobjectContext);
+   CLASS_DECL_CORE string create_manager_id(::context_object * pcontextobject);
 
    CLASS_DECL_CORE bool is_valid_manager_id(const char *);
 

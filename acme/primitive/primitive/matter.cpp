@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
-#include "acme/primitive/primitive/layered.h"
+//#include "acme/primitive/primitive/layered.h"
 
 
 #if OBJ_REF_DBG
@@ -50,12 +50,29 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::e_status matter::initialize(::layered * pobjectContext)
+::e_status matter::initialize_matter(::matter* pmatter)
+{
+
+   m_psystem = pmatter->m_psystem;
+
+   return ::success;
+
+}
+
+::e_status matter::initialize(::context_object * pcontextobject)
 {
 
    return ::success;
 
 }
+
+
+//::e_status matter::set_object(::object* pobject)
+//{
+//
+//   return ::success;
+//
+//}
 
 
 void matter::on_finish()
@@ -65,7 +82,7 @@ void matter::on_finish()
 }
 
 
-::e_status matter::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
 {
 
    return ::success;
@@ -76,7 +93,7 @@ void matter::on_finish()
 
 
 
-::e_status matter::set_finish(::context_object * pcontextobjectFinish)
+::e_status matter::set_finish(::property_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -86,7 +103,7 @@ void matter::on_finish()
 }
 
 
-::e_status matter::finish(::context_object * pcontextobjectFinish)
+::e_status matter::finish(::property_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -200,8 +217,6 @@ void matter::set_mutex(synchronization_object* psync)
 void matter::remove_from_any_source()
 {
 
-   ::subject::manager::__remove(this);
-
 }
 
 
@@ -260,7 +275,15 @@ bool matter::thread_is_running() const
 }
 
 
-::context_object * matter::_get_context_object()
+//::property_object * matter::_get_context_object()
+//{
+//
+//   return nullptr;
+//
+//}
+
+
+::task * matter::get_task()
 {
 
    return nullptr;
@@ -268,7 +291,7 @@ bool matter::thread_is_running() const
 }
 
 
-::task * matter::get_task()
+::apex::application* matter::_get_application()
 {
 
    return nullptr;
@@ -298,7 +321,7 @@ void matter::task_remove(::task* ptask)
 }
 
 
-void matter::notify_on_finish(::context_object * pcontextobject)
+void matter::notify_on_finish(::property_object * pcontextobject)
 {
 
 }
@@ -441,7 +464,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::layered* matter::taskpool()
+::task_pool* matter::taskpool()
 {
 
    auto pcontainer = get_taskpool_container();
@@ -468,7 +491,7 @@ void matter::on_future(const ::payload & payload)
 ::task* matter::defer_fork(const ::id& id, const ::routine & routine)
 {
 
-   auto ptasktool = __task_pool(taskpool());
+   auto ptasktool = taskpool();
 
    if (!ptasktool)
    {

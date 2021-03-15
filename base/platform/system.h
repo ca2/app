@@ -46,7 +46,7 @@ namespace base
 //      thread_map                                         m_threadmap;
 //      thread_id_map                                      m_threadidmap;
 //      ::mutex                                            m_mutexThreadOn;
-//      map < ithread_t, ithread_t >                        m_mapThreadOn;
+//      map < itask_t, itask_t >                        m_mapThreadOn;
 //
 //      ::mutex                                            m_mutexUserChildren;
 //      __composite(class imaging)                         m_pimaging;
@@ -171,8 +171,8 @@ namespace base
 //      critical_section                                   m_csEnumText;
 //      string_map < i64_map < string > >                  m_mapEnumToText;
 //      string_map < string_map < i64 > >                  m_mapTextToEnum;
-//      thread_group_map                                   m_threadgroupmap;
-//      thread_tool_map                                    m_threadtoolmap;
+//      task_group_map                                   m_taskgroupmap;
+//      task_tool_map                                    m_tasktoolmap;
 //
 //
 //      //stridsp(type)                                      m_typemap;
@@ -254,7 +254,7 @@ namespace base
 //
       void common_construct();
 //
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 //
 //      virtual ::e_status init();
 //      //virtual ::e_status init_instance() override;
@@ -269,18 +269,18 @@ namespace base
 //
 //      //::url::department                           & url()     { return m_urldepartment; }
 //
-//      ::thread * get_task(ithread_t ithread);
-//      ithread_t get_thread_id(::thread * pthread);
-//      void set_thread(ithread_t ithread, ::thread * pthread);
-//      void unset_thread(ithread_t ithread, ::thread * pthread);
+//      ::thread * get_task(itask_t itask);
+//      itask_t get_thread_id(::thread * pthread);
+//      void set_thread(itask_t itask, ::thread * pthread);
+//      void unset_thread(itask_t itask, ::thread * pthread);
 //
 //      inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
 //      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
 //      virtual ::e_status create_gpu();
 //
-//      ::thread_group * thread_group(::e_priority epriority = ::priority_none);
+//      ::task_group * task_group(::e_priority epriority = ::priority_none);
 //
-//      ::thread_tool * thread_tool(::enum_thread_tool etool);
+//      ::task_tool * task_tool(::enum_task_tool etool);
 //
 //
 //      //virtual string install_get_platform() override;
@@ -365,7 +365,7 @@ namespace base
 //
 //
 //
-//      //virtual string dir_appmatter_locator(::layered * pobjectContext);
+//      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
 //
 //
 //      virtual void hist_hist(const char * psz);
@@ -384,10 +384,10 @@ namespace base
 //      virtual string get_locale_schema_dir() override;
 //
 //
-//      //virtual ::e_status     initialize_system(::layered * pobjectContext, app_core * pappcore);
+//      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
 //
 //
-//      //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
+//      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
 //      //thread_tools * tools(::e_priority epriority);
 //      //thread_toolset * toolset(e_tool etool);
 //
@@ -528,11 +528,11 @@ namespace base
 //
 //      virtual ::e_status initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::layered * pobjectContext, const ::payload & varFile);
-//      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
+//      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+//      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::layered * pobjectContext, const ::payload & varFile, bool bCache = true, bool bSync = false);
-//      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer matter_image(::object * pobject, const string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
 //
@@ -787,7 +787,7 @@ namespace base
 //
 //
 //
-//      //virtual ::e_status  initialize_system(::object* pobjectContext, app_core* pappcore) override;
+//      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //      virtual void discard_to_factory(__pointer(object) pca);
 //
@@ -946,7 +946,7 @@ namespace base
 //      //virtual ~system();
 //
 //
-//      ///virtual ::e_status initialize_system(::object* pobjectContext, app_core* pappcore) override;
+//      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //
 //      //virtual ::e_status process_init() override;
@@ -1088,7 +1088,7 @@ namespace base
 ////inline ::traits & traits(::context_object * p)
 ////{
 ////
-////   auto traits = System->m_traits[p];
+////   auto traits = psystem->m_traits[p];
 ////
 ////   if (traits.m_pobjectTrait != p)
 ////   {

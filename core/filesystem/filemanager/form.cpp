@@ -66,7 +66,7 @@ namespace filemanager
             if(m_strPath == "filemanager_add_location_lfs.xhtml")
             {
                string_array stra;
-               Application.data_get(filemanager_data()->m_dataidStatic,stra);
+               papplication->data_get(filemanager_data()->m_dataidStatic,stra);
 
                auto pinteraction = get_child_by_name("lfs");
 
@@ -75,7 +75,7 @@ namespace filemanager
                pinteraction->_001GetText(str);
 
                stra.add_unique(str);
-               Application.data_set(filemanager_data()->m_dataidStatic,stra);
+               papplication->data_set(filemanager_data()->m_dataidStatic,stra);
 
             }
             else if(m_strPath == "filemanager_add_location_ftp.xhtml")

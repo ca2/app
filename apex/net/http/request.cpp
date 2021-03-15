@@ -74,7 +74,9 @@ namespace http
 
       m_form.clear();
 
-      m_strQueryString = ::apex::get_system()->url().object_get_query(m_strRequestUri);
+      auto psystem = get_system();
+
+      m_strQueryString = psystem->url().object_get_query(m_strRequestUri);
       attr(__id(query_string)) = m_strQueryString;
       m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
       m_form.request()         = m_form.get();

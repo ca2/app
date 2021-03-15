@@ -31,7 +31,7 @@ namespace simple_ui
       ::object(pobject)
    {
 
-      auto estatus = initialize(pobject);
+      auto estatus = initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -106,7 +106,7 @@ namespace simple_ui
 
       maximum_line_length(m_stra, 100);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -535,7 +535,7 @@ namespace simple_ui
 //
 //   {
 //
-//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_context_application(),pText,lpCaption,uFlags));
+//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_application(),pText,lpCaption,uFlags));
 //
 //      try
 //      {

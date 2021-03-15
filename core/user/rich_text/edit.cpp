@@ -18,7 +18,7 @@ namespace user
       }
 
 
-      //edit::edit(::layered * pobjectContext) :
+      //edit::edit(::context_object * pcontextobject) :
       //   ::object(pobject),
       //   ::user::picture(pobject),
       //   ::user::picture_interaction(pobject)
@@ -110,7 +110,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -171,7 +171,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -262,7 +262,7 @@ namespace user
       void edit::_001OnMouseLeave(::message::message * pmessage)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -534,7 +534,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -676,7 +676,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -761,7 +761,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 

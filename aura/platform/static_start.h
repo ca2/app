@@ -60,7 +60,7 @@ namespace aura
 //#endif
 
 
-   //extern ::mutex * ::aura::get_system()->g_mutexLibrary;
+   //extern ::mutex * psystem->g_mutexLibrary;
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -119,7 +119,7 @@ namespace aura
 //
 //#endif
 
-   //extern map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 //#ifdef WINDOWS
 //

@@ -468,7 +468,7 @@ namespace draw2d_cairo
       bool SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions
-      //static ::draw2d::brush* PASCAL GetHalftoneBrush(::layered * pobjectContext);
+      //static ::draw2d::brush* PASCAL GetHalftoneBrush(::context_object * pcontextobject);
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
 //                        const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;

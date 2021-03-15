@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   switcher_view::switcher_view(::layered * pobjectContext):
+   switcher_view::switcher_view(::context_object * pcontextobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -66,7 +66,7 @@ namespace helloworld
       if(m_ptopview == nullptr)
       {
 
-         System->message_box(nullptr,"Could not create folder edit view");
+         psystem->message_box(nullptr,"Could not create folder edit view");
 
       }
 
@@ -79,7 +79,7 @@ namespace helloworld
       if(m_pview == nullptr)
       {
 
-         System->message_box(nullptr,"Could not create file list ::user::impact");
+         psystem->message_box(nullptr,"Could not create file list ::user::impact");
 
       }
 

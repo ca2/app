@@ -30,8 +30,8 @@ public:
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0,
-      ithread_t* pithread = nullptr,
-      hthread_t* phthread = nullptr);
+      itask_t* pithread = nullptr,
+      htask_t* phthread = nullptr);
 
 
 };

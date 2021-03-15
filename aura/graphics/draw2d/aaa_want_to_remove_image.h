@@ -15,7 +15,7 @@ public:
 
    image();
    image(std::nullptr_t);
-   image(::layered * pobjectContext);
+   image(::context_object * pcontextobject);
    image(::image * pimage);
    image(const ::image_pointer & pimpl);
    image(::image_pointer && pimpl);
@@ -37,7 +37,7 @@ public:
 
    virtual bool create_thumbnail(const char * pszPath) override;
 
-   virtual bool create(::layered * pobjectContext, color32_t * pcolorref, int w, int h, int scan);
+   virtual bool create(::object * pobject, color32_t * pcolorref, int w, int h, int scan);
 
    //virtual void defer_save_to_cache() override;
 
@@ -410,8 +410,8 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
    inline bool is_empty() const;
-   //inline void alloc(::layered * pobjectContext);
-   //inline void defer_alloc(::layered * pobjectContext);
+   //inline void alloc(::context_object * pcontextobject);
+   //inline void defer_alloc(::context_object * pcontextobject);
 
 
    inline ::draw2d::graphics * g() const;

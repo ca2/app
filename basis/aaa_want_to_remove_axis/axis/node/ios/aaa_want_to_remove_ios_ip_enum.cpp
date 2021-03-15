@@ -24,7 +24,7 @@ namespace ios
 {
    
    
-   ip_enum::ip_enum(::layered * pobjectContext) :
+   ip_enum::ip_enum(::context_object * pcontextobject) :
    ::object(pobject),
    ::net::ip_enum(pobject)
    {

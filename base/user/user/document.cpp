@@ -113,7 +113,7 @@ namespace user
    }
 
    
-   ::e_status document::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status document::set_finish_composites(::property_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
@@ -297,7 +297,7 @@ namespace user
    //   }
 
    //   // last but not least, pump through cast
-   //   ::aura::application* papp = get_context_application();
+   //   ::aura::application* papp = get_application();
 
    //   if (papp != nullptr)
    //   {
@@ -348,7 +348,7 @@ namespace user
 
       call_routine(CREATE_ROUTINE);
 
-      //::database::client::initialize_data_client(Application.dataserver());
+      //::database::client::initialize_data_client(papplication->dataserver());
 
    }
 
@@ -382,7 +382,7 @@ namespace user
    void document::update_title()
    {
 
-      string str = Application.m_strAppName;
+      string str = papplication->m_strAppName;
 
       str += " : ";
 
@@ -681,7 +681,7 @@ namespace user
       }
       else if (varFile.cast < ::file::file>() != nullptr)
       {
-         strPathName = System->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+         strPathName = psystem->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
       }
       else
       {
@@ -709,9 +709,9 @@ namespace user
 
       // store the path fully qualified
       ::file::path strFullPath;
-      //      System->file_system().FullPath(strFullPath, strPathName);
+      //      psystem->file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
-      m_path = Context.defer_process_path(m_path);
+      m_path = pcontext->defer_process_path(m_path);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
@@ -723,7 +723,7 @@ namespace user
       //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
-      guserbase::get(get_object())->AddToRecentFileList(pszPathName);*/
+      guserbase::get(this)->AddToRecentFileList(pszPathName);*/
 
 
       /*   ASSERT_VALID(this);
@@ -737,7 +737,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = Context.file().title_(m_strPathName);
+      string strTitle = pcontext->file().title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -916,7 +916,7 @@ namespace user
    bool document::on_open_document(const ::payload & varFile)
    {
 
-      auto preader = Context.file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto preader = pcontext->file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
       {
@@ -967,7 +967,7 @@ namespace user
    bool document::on_save_document(const ::payload & varFile)
    {
 
-      auto pwriter = Context.file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pwriter = pcontext->file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
       if(!pwriter)
       {
@@ -1249,7 +1249,7 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //System->message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
+         //psystem->message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
          message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
       }
@@ -1326,7 +1326,7 @@ namespace user
          if (strName.is_empty())
          {
 
-            strName = Application.load_string("Untitled");
+            strName = papplication->load_string("Untitled");
 
          }
 
@@ -1360,7 +1360,7 @@ namespace user
 
       }
 
-      //switch (Application.message_box(nullptr, prompt, MB_YESNOCANCEL))
+      //switch (papplication->message_box(nullptr, prompt, MB_YESNOCANCEL))
       //{
       //case e_dialog_result_cancel:
       //{
@@ -1467,12 +1467,12 @@ namespace user
             }
          }
 
-         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papplication->do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }
 
-      wait_cursor wait(get_context_object());
+      wait_cursor wait(this);
 
       if (!on_save_document(newName))
       {
@@ -1484,7 +1484,7 @@ namespace user
             try
             {
 
-               Context.file().del(newName);
+               pcontext->file().del(newName);
 
             }
             catch(const ::exception::exception &)
@@ -1509,7 +1509,7 @@ namespace user
    bool document::do_file_save()
    {
 
-      if (is_new_document() || Context.file().is_read_only(m_path))
+      if (is_new_document() || pcontext->file().is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist
@@ -1762,7 +1762,7 @@ namespace user
    //   string strUrl(varFile);
    //   if(::str::begins_eat(strUrl,"ext://"))
    //   {
-   //      Application.open_link(strUrl,"", pszTargetFrameName);
+   //      papplication->open_link(strUrl,"", pszTargetFrameName);
 
    //      /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
    //      launcher.execute();*/
@@ -1772,7 +1772,7 @@ namespace user
    //   }
    //   if(::str::begins_eat(strUrl,"hist://"))
    //   {
-   //      System->hist_hist(strUrl);
+   //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;
    //      return;
    //   }

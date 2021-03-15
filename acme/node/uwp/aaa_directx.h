@@ -47,10 +47,10 @@ namespace uwp
       directx_base();
 
 
-      ::acme::application * get_context_application() const
+      ::acme::application * get_application() const
       {
 
-         return get_context_application();
+         return get_application();
 
       }
 

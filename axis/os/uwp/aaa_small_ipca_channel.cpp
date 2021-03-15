@@ -93,7 +93,7 @@ namespace axis
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + System->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + psystem->url_encode(pszMessage);
 
          Uri ^uri = ref new Uri(anotherappURI);
 
@@ -130,7 +130,7 @@ namespace axis
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + System->url_encode(System->base64().encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + psystem->url_encode(psystem->base64().encode((byte *)pdata, len));
 
          Uri ^uri = ref new Uri(anotherappURI);
 

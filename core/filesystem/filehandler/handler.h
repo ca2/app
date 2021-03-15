@@ -34,7 +34,7 @@ namespace filehandler
       virtual ~handler();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       string get_text(__pointer(::data::tree) ptree);

@@ -88,7 +88,7 @@ namespace uwp
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         Context.dir().mk(lpszFileName.folder());
+         pcontext->dir().mk(lpszFileName.folder());
 
       }
 
@@ -173,7 +173,7 @@ namespace uwp
          {
             /*         if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {
@@ -210,7 +210,7 @@ namespace uwp
          {
             /*if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {

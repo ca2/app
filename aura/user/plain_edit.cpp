@@ -15,87 +15,91 @@
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
 
 
-
-
-void _001AddPacks(string_to_string & base64map, string & str)
+namespace aura
 {
 
 
-   auto iPack = base64map.get_count();
-
-   strsize iData = -1;
-
-   while (true)
+   void system::_001AddPacks(string_to_string& base64map, string& str)
    {
 
-      iData = str.find("data:", iData + 1);
+      auto iPack = base64map.get_count();
 
-      if (iData < 0 || !(iData == 0 || !ansi_char_is_alphanumeric(str[iData - 1])))
+      strsize iData = -1;
+
+      while (true)
       {
 
-         break;
+         iData = str.find("data:", iData + 1);
 
-      }
-
-      strsize iMime = str.find(';', iData + 1);
-
-      if (iMime <= iData)
-      {
-
-         continue;
-
-      }
-
-      strsize iEncoding1 = str.find(',', iMime + 1);
-
-      strsize iEncoding2 = str.find(';', iMime + 1);
-
-      strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
-
-      if (iEncoding <= iMime)
-      {
-
-         continue;
-
-      }
-
-      string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
-
-      if (strEncoding.compare_ci("base64") == 0)
-      {
-
-         ::str::base64 & b64 = ::aura::get_system()->base64();
-
-         index iBase64 = iEncoding + 1;
-
-         for (; iBase64 < str.get_length(); iBase64++)
+         if (iData < 0 || !(iData == 0 || !ansi_char_is_alphanumeric(str[iData - 1])))
          {
 
-            if (!b64.is(str[iBase64]))
-            {
-
-               break;
-
-            }
+            break;
 
          }
 
-         string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
+         strsize iMime = str.find(';', iData + 1);
 
-         string strPack = "%pack" + __str(iPack + 1) + "%";
+         if (iMime <= iData)
+         {
 
-         str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
+            continue;
 
-         base64map[strPack] = strBase64;
+         }
 
-         iPack++;
+         strsize iEncoding1 = str.find(',', iMime + 1);
+
+         strsize iEncoding2 = str.find(';', iMime + 1);
+
+         strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
+
+         if (iEncoding <= iMime)
+         {
+
+            continue;
+
+         }
+
+         string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
+
+         if (strEncoding.compare_ci("base64") == 0)
+         {
+
+            ::str::base64& b64 = base64();
+
+            index iBase64 = iEncoding + 1;
+
+            for (; iBase64 < str.get_length(); iBase64++)
+            {
+
+               if (!b64.is(str[iBase64]))
+               {
+
+                  break;
+
+               }
+
+            }
+
+            string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
+
+            string strPack = "%pack" + __str(iPack + 1) + "%";
+
+            str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
+
+            base64map[strPack] = strBase64;
+
+            iPack++;
+
+         }
+
 
       }
 
-
    }
 
-}
+
+} // namespace aura
 
 
 namespace user
@@ -129,7 +133,7 @@ namespace user
    }
 
 
-   //plain_edit::plain_edit(::layered * pobjectContext) :
+   //plain_edit::plain_edit(::context_object * pcontextobject) :
    //   ::object(pobject),
    //   ::user::interaction(pobject),
    //   m_pmemorygraphics(e_create)
@@ -866,8 +870,10 @@ namespace user
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
+      __pointer(::aura::application) papplication = get_application();
+
       //psession->keyboard(); // trigger keyboard creationg
-      Application.defer_create_keyboard();
+      papplication->defer_create_keyboard();
 
 #endif
 
@@ -950,7 +956,7 @@ namespace user
 
       set_keyboard_focus();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_RButtonDown(this);
 
@@ -1024,7 +1030,7 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -1110,7 +1116,7 @@ namespace user
    void plain_edit::_001OnKeyDown(::message::message * pmessage)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       INFO("_001OnKeyDown (1)");
 
@@ -1144,7 +1150,7 @@ namespace user
       if (pkey->m_ekey == ::user::e_key_return)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
          {
@@ -1185,7 +1191,7 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
          {
@@ -1261,7 +1267,7 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_c)
       {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->is_key_pressed(::user::e_key_control))
          {
@@ -1352,7 +1358,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1413,7 +1419,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
@@ -1998,7 +2004,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2420,7 +2426,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          string strTextPrevious;
 
@@ -4328,7 +4334,7 @@ finished_update:
 
          string strChar;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_s)
          {
@@ -4924,7 +4930,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //::aura::get_system()->message_box("VK_RETURN reached plain_edit");
+                     //psystem->message_box("VK_RETURN reached plain_edit");
                   }
 
                   string str;
@@ -5977,7 +5983,9 @@ finished_update:
 
             m_base64map.remove_all();
 
-            _001AddPacks(m_base64map, str);
+            auto psystem = get_system();
+
+            psystem->_001AddPacks(m_base64map, str);
 
          }
 
@@ -6055,7 +6063,7 @@ finished_update:
 
             plain_edit_get_text(strtext());
 
-            get_context_application()->process_subject(m_ppropertyText->m_id, context);
+            get_application()->process_subject(m_ppropertyText->m_id, context);
 
          }
 
@@ -6104,7 +6112,7 @@ finished_update:
 
       str.replace("\r", "\r\n");
       
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->copydesk().set_plain_text(str);
 
@@ -6124,7 +6132,7 @@ finished_update:
 
       string str;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(!psession->copydesk().get_plain_text(str))
       {
@@ -6289,14 +6297,14 @@ finished_update:
    void plain_edit::on_kill_keyboard_focus()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      if (psession->m_puiHost)
+      if (psession->get_user_interaction_host())
       {
 
-         auto puiHost = __user_interaction(psession->m_puiHost);
+         auto puserinteractionHost = psession->get_user_interaction_host();
 
-         puiHost->edit_on_kill_focus(this);
+         puserinteractionHost->edit_on_kill_focus(this);
 
       }
 
@@ -6423,7 +6431,7 @@ finished_update:
 
       __pointer(::message::command) pcommand(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       pcommand->enable(psession->copydesk().has_plain_text());
 
@@ -6649,7 +6657,9 @@ finished_update:
 
       on_before_change_text();
 
-      _001AddPacks(m_base64map, strText);
+      auto psystem = get_system();
+
+      psystem->_001AddPacks(m_base64map, strText);
 
       bool bFullUpdate = false;
 

@@ -81,7 +81,7 @@ namespace linux
 //      if(iNew == INVALID_FILE)
 //         return nullptr;
 //
-//      auto pFile  = __new(file(get_context_application(), iNew));
+//      auto pFile  = __new(file(get_application(), iNew));
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
@@ -194,7 +194,7 @@ namespace linux
 
          ::e_status estatus = ::errno_to_status(iError);
 
-         //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
+         //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
          return estatus;
 

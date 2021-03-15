@@ -26,6 +26,43 @@ namespace acme
    }
 
 
+   ::apex::application* system::get_main_application()
+   {
+
+      return nullptr;
+
+   }
+
+
+   void system::system_construct(int argc, char** argv, char** envp)
+   {
+
+
+   }
+
+   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   {
+
+
+   }
+
+
+   ::e_status system::inline_init()
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::inline_term()
+   {
+
+      return ::success;
+
+   }
+
+
    ::e_status system::on_start()
    {
 

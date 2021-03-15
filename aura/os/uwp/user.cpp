@@ -116,9 +116,9 @@ CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint)
 //
 //}
 
-#undef Application
+#undef papplication
 
-::Windows::UI::Xaml::Application^ get_xaml_app();
+::Windows::UI::Xaml::papplication^ get_xaml_app();
 
 
 
@@ -664,11 +664,11 @@ namespace user
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
-   auto puiHost = __user_interaction(psession->m_puiHost);
+   auto puserinteractionHost = __user_interaction(psession->get_user_interaction_host());
 
-   *lprect = puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return true;
 

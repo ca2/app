@@ -27,12 +27,12 @@ public:
    void initialize_application_consumer()
    {
 
-      m_papplication = get_context_application();
+      m_papplication = get_application();
 
    }
 
 
-   inline APPLICATION* get_app() { return m_papplication.get(); }
+   inline APPLICATION* application() { return m_papplication.get(); }
 
 
 };

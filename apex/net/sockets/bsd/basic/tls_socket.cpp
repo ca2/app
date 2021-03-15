@@ -18,12 +18,12 @@ namespace sockets
 {
 
 
-   tls_socket::tls_socket(::sockets::base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h)
+   tls_socket::tls_socket() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h)
    {
 
    }

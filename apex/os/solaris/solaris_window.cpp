@@ -12,7 +12,7 @@ oswindow_data::oswindow_data()
 
    m_plongmap              = new int_to_int;
 
-   m_hthread               = nullptr;
+   m_htask               = nullptr;
 
    m_window                = None;
 
@@ -367,7 +367,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pinteraction)
 
    m_puserinteraction = pinteraction;
 
-   m_hthread = pinteraction->m_pthread->get_os_handle();
+   m_htask = pinteraction->m_pthread->get_os_handle();
 
 }
 
@@ -825,7 +825,7 @@ public:
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         m_labela.add(__new(::simple_ui::label(get_object())));
+         m_labela.add(__new(::simple_ui::label(this)));
 
          ::simple_ui::label & label = *m_labela.last_element();
 
@@ -883,20 +883,20 @@ i32 WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCa
 
    base_application * papp = nullptr;
 
-   if(hWnd == nullptr || hWnd->get_user_interaction() == nullptr || hWnd->get_user_interaction()->get_context_application() == nullptr)
+   if(hWnd == nullptr || hWnd->get_user_interaction() == nullptr || hWnd->get_user_interaction()->get_application() == nullptr)
    {
 
-      papp = get_context_application();
+      papp = get_application();
 
    }
    else
    {
 
-      papp = hWnd->get_user_interaction()->get_context_application();
+      papp = hWnd->get_user_interaction()->get_application();
 
    }
 
-   return message_box_show_xlib(get_context_application(), lpText, lpCaption);
+   return message_box_show_xlib(get_application(), lpText, lpCaption);
 
 }
 
@@ -917,7 +917,7 @@ static void initialize_x11_message_box()
 i32 WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, ::u32 uType)
 {
 
-   message_box_show_xlib(get_context_application(), lpText, lpCaption);
+   message_box_show_xlib(get_application(), lpText, lpCaption);
 
    return 0;
 

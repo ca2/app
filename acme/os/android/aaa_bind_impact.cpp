@@ -169,12 +169,12 @@
 //
 //   size_t length = (size_t)env->GetStringLength(str);
 //
-//   if (System->get_context_session()->get_focus_ui())
+//   if (::acme::get_system()->get_session()->get_focus_ui())
 //   {
 //
 //      wd16string wstr(utf16, length);
 //
-//      System->get_context_session()->get_focus_ui()->on_text_composition(wstr);
+//      ::acme::get_system()->get_session()->get_focus_ui()->on_text_composition(wstr);
 //
 //   }
 //   else
@@ -262,21 +262,21 @@
 //
 //   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 //
-//   ::user::interaction* puiHost = System->get_context_session()->m_puiHost;
+//   ::user::interaction* puserinteractionHost = ::acme::get_system()->get_session()->m_puserinteractionHost;
 //
-//   puiHost->m_statePrevious2.m_point = p;
-//   puiHost->m_stateRequest2.m_point = p;
-//   puiHost->m_stateProcess2.m_point = p;
-//   puiHost->m_state2.m_point = p;
-//   puiHost->m_stateWindow3.m_point = p;
+//   puserinteractionHost->m_statePrevious2.m_point = p;
+//   puserinteractionHost->m_stateRequest2.m_point = p;
+//   puserinteractionHost->m_stateProcess2.m_point = p;
+//   puserinteractionHost->m_state2.m_point = p;
+//   puserinteractionHost->m_stateWindow3.m_point = p;
 //
-//   puiHost->m_statePrevious2.m_size = s;
-//   puiHost->m_stateRequest2.m_size = s;
-//   puiHost->m_stateProcess2.m_size = s;
-//   puiHost->m_state2.m_size = s;
-//   puiHost->m_stateWindow3.m_size = s;
+//   puserinteractionHost->m_statePrevious2.m_size = s;
+//   puserinteractionHost->m_stateRequest2.m_size = s;
+//   puserinteractionHost->m_stateProcess2.m_size = s;
+//   puserinteractionHost->m_state2.m_size = s;
+//   puserinteractionHost->m_stateWindow3.m_size = s;
 //
-//   for (auto& puserinteraction : puiHost->m_uiptraChild)
+//   for (auto& puserinteraction : puserinteractionHost->m_uiptraChild)
 //   {
 //
 //      try

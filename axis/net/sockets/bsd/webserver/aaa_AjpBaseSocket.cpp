@@ -105,7 +105,7 @@ namespace sockets
    }
 
 
-   AjpBaseSocket::AjpBaseSocket(base_socket_handler& h) : 
+   AjpBaseSocket::AjpBaseSocket() : 
       ::object(&h),
       base_socket(h),
       socket(h),

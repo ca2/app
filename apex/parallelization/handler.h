@@ -22,7 +22,8 @@ public:
    virtual ~handler_manager();
 
 
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+   //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
 
 
    ::e_status async(const ::routine & routine);

@@ -20,10 +20,10 @@ namespace database
    }
 
 
-   ::e_status server::initialize(::layered * pobjectContext)
+   ::e_status server::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {

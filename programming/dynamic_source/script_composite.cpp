@@ -18,10 +18,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_composite::initialize(::layered * pobjectContext)
+   ::e_status script_composite::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = script_interface::initialize(pobjectContext);
+      auto estatus = script_interface::initialize(pcontextobject);
 
       if (!estatus)
       {

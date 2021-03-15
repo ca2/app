@@ -68,14 +68,14 @@ namespace usernet
 
    void network_configuration::on_show()
    {
-      if(!m_pdocument->on_open_document(Context.dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdocument->on_open_document(pcontext->dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
 
       xml::document doc;
 
-      if(doc.load(Context.file().as_string(Context.dir().appdata()/"proxy.xml")))
+      if(doc.load(pcontext->file().as_string(pcontext->dir().appdata()/"proxy.xml")))
       {
          
          string strProxy(doc.root()->attribute("server"));
@@ -112,7 +112,7 @@ namespace usernet
             if(strServer.get_length() == 0)
             {
 
-               Context.file().del(Context.dir().appdata()/ "proxy.xml");
+               pcontext->file().del(pcontext->dir().appdata()/ "proxy.xml");
 
             }
             else
@@ -132,7 +132,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               Context.file().put_contents(Context.dir().appdata()/"proxy.xml", doc.get_xml());
+               pcontext->file().put_contents(pcontext->dir().appdata()/"proxy.xml", doc.get_xml());
 
             }
 

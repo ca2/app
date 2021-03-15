@@ -424,7 +424,7 @@ synchronization_result event::wait ()
       else if (iResult == WAIT_TIMEOUT)
       {
 
-         if (!thread_get_run())
+         if (!task_get_run())
          {
 
             return e_synchronization_result_abandoned_base;

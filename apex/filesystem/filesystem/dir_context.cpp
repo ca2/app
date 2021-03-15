@@ -62,10 +62,10 @@ dir_context::~dir_context()
 }
 
 
-::e_status dir_context::initialize(::layered * pobjectContext)
+::e_status dir_context::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -385,7 +385,7 @@ inline bool myspace(char ch)
 ::file::listing & dir_context::ls(::file::listing & l)
 {
 
-   l.m_pathFinal = Context.defer_process_path(l.m_pathUser);
+   l.m_pathFinal = get_context()->defer_process_path(l.m_pathUser);
 
    if (l.m_pathFinal.begins_ci("matter://"))
    {
@@ -429,7 +429,7 @@ inline bool myspace(char ch)
 
          property_set set;
 
-         string str =Context.http().get(l.m_pathFinal, set);
+         string str =get_context()->http().get(l.m_pathFinal, set);
 
          l.add_tokens(str, "\n", false);
 
@@ -437,7 +437,7 @@ inline bool myspace(char ch)
       else if (thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
-         zip_context zip(get_context_object());
+         zip_context zip(this);
 
          zip.ls(l);
 
@@ -487,7 +487,7 @@ inline bool myspace(char ch)
 
          property_set set;
 
-         string str = Context.http().get(l.m_pathUser, set);
+         string str = get_context()->http().get(l.m_pathUser, set);
 
          l.add_tokens(str, "\n", false);
 
@@ -495,7 +495,7 @@ inline bool myspace(char ch)
       else if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
       {
 
-         zip_context zip(get_context_object());
+         zip_context zip(this);
 
          zip.ls(l);
 
@@ -683,7 +683,7 @@ bool dir_context::has_subdir(const ::file::path & pathFolder)
 
    ::file::listing ls;
 
-   Context.dir().ls_dir(ls, pathFolder);
+   get_context()->dir().ls_dir(ls, pathFolder);
 
    return ls.get_count() > 0;
 
@@ -703,7 +703,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
       ::file::path pathTarget;
 
-      if (Context.file().resolve_link(pathTarget, path))
+      if (get_context()->file().resolve_link(pathTarget, path))
       {
 
          bIs = is(pathTarget);
@@ -757,7 +757,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
                   //}
 
-      zip_context zip(get_context_object());
+      zip_context zip(this);
 
       bHasSubFolder = zip.has_sub_folder(path);
 
@@ -783,7 +783,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
    //
    //            string strParams;
    //
-   //            if (Context.file().resolve_link(strTarget, strFolder, strParams, pcszPath))
+   //            if (get_context()->file().resolve_link(strTarget, strFolder, strParams, pcszPath))
 
    //            {
    //
@@ -818,7 +818,7 @@ bool dir_context::is(const ::file::path & pathParam)
 
    ::file::path path;
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    if (pathParam.begins_ci("appmatter://"))
    {
@@ -869,7 +869,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
       }
 
-      return Context.http().exists(path, set);
+      return get_context()->http().exists(path, set);
 
    }
 
@@ -887,7 +887,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
       bool bHasSubFolder;
 
-      zip_context zip(get_context_object());
+      zip_context zip(this);
 
       bHasSubFolder = zip.has_sub_folder(path);
 
@@ -915,7 +915,7 @@ bool dir_context::name_is(const ::file::path & strPath)
    {
       bool bHasSubFolder;
 
-      zip_context zip(get_context_object());
+      zip_context zip(this);
       //            u32 dwLastError;
                   //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                   //   return bHasSubFolder;
@@ -1353,7 +1353,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronization_lock synchronizationlock(mutex());
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathInstall;
 
@@ -1365,7 +1365,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronization_lock synchronizationlock(mutex());
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathCa2Config;
 
@@ -1377,14 +1377,14 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronization_lock synchronizationlock(mutex());
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathHome;
 
 }
 
 
-//::file::path dir_context::userfolder(::layered * pobjectContext)
+//::file::path dir_context::userfolder(::context_object * pcontextobject)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -1401,7 +1401,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronization_lock synchronizationlock(mutex());
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathModule;
 
@@ -1413,7 +1413,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronization_lock synchronizationlock(mutex());
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathCa2Module;
 
@@ -1459,7 +1459,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 ::file::path dir_context::locale_schema_matter(const string & strLocale, const string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
 {
 
-   string strHint = pathRoot / "_matter" / pathDomain / Application.get_locale_schema_dir(strLocale, strSchema);
+   string strHint = pathRoot / "_matter" / pathDomain / get_application()->get_locale_schema_dir(strLocale, strSchema);
 
    return strHint;
 
@@ -1479,7 +1479,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    synchronization_lock synchronizationlock(psystem->m_pmutexMatter);
 
@@ -1518,7 +1518,7 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
       set["raw_http"] = true;
 
-      ::file::path strFile = Context.dir().cache() / strMatter / "list_dir.list_dir";
+      ::file::path strFile = get_context()->dir().cache() / strMatter / "list_dir.list_dir";
 
       strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1534,10 +1534,10 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
       ::file::path strLs;
 
-      if (Context.file().exists(strFile))
+      if (get_context()->file().exists(strFile))
       {
 
-         strLs = Context.file().as_string(strFile);
+         strLs = get_context()->file().as_string(strFile);
 
       }
       else
@@ -1545,13 +1545,13 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          // todo: keep cache timeout information;
 
-         auto psystem = ::apex::get_system();
+         __pointer(::apex::system) psystem = get_system();
 
          string strUrl = "https://api.ca2.cc/api/matter/list_dir?dir=" + psystem->url().url_encode(strMatter);
 
-         strLs = Context.http().get(strUrl, set);
+         strLs = get_context()->http().get(strUrl, set);
 
-         Context.file().put_contents(strFile, strLs);
+         get_context()->file().put_contents(strFile, strLs);
 
       }
 
@@ -1585,9 +1585,9 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
    else
    {
 
-      strDir = Context.get_matter_cache_path(strDir);
+      strDir = get_context()->get_matter_cache_path(strDir);
 
-      Context.dir().ls(stra, strDir);
+      get_context()->dir().ls(stra, strDir);
 
    }
 
@@ -1599,7 +1599,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    ::file::path strDir = matter(str, true);
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -1608,7 +1608,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       set["raw_http"] = true;
 
-      string strFile = Context.dir().cache() / strDir / "list_dir.list_dir";
+      string strFile = get_context()->dir().cache() / strDir / "list_dir.list_dir";
 
       strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1624,10 +1624,10 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       string strLs;
 
-      if (Context.file().exists(strFile))
+      if (get_context()->file().exists(strFile))
       {
 
-         strLs = Context.file().as_string(strFile);
+         strLs = get_context()->file().as_string(strFile);
 
       }
 
@@ -1657,7 +1657,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
    else
    {
 
-      Context.dir().ls(stra, strDir);
+      get_context()->dir().ls(stra, strDir);
 
    }
 
@@ -1692,20 +1692,20 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    if(psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
    {
 
       ::file::path pathLs0 = straMatterLocator.first();
 
-      pathLs0 /= Context.get_locale_schema_dir();
+      pathLs0 /= get_context()->get_locale_schema_dir();
 
       pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
       TRACE("cache map path: %s", pathCache.c_str());
 
-      path = Context.file().as_string(pathCache);
+      path = get_context()->file().as_string(pathCache);
 
       if (::str::begins_eat_ci(path, "itdoesntexist."))
       {
@@ -1763,9 +1763,9 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    string_array straLs;
 
-   Context.locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
+   get_context()->locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    ::apex::str_context * pcontext = psession->str_context();
 
@@ -1825,7 +1825,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       string strCandidate = stra.implode("|");
 
-      auto psystem = ::apex::get_system();
+      __pointer(::apex::system) psystem = get_system();
 
       string strParam = psystem->url().url_encode(strCandidate);
 
@@ -1846,7 +1846,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       const char * pszUrl = strUrl;
 
-      strMatter = Context.http().get(strUrl, set);
+      strMatter = get_context()->http().get(strUrl, set);
 
       strMatter.replace("https://server.ca2.cc/", string(get_server_ca2_cc()));
 
@@ -1910,9 +1910,9 @@ ret:
    if (pathCache.has_char() && psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
 
-      Context.file().put_contents(pathCache, path);
+      get_context()->file().put_contents(pathCache, path);
 
-      //::file::path pathCache2 = ::apex::get_system()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       //if ((path & ::file::e_flag_get_local_path)
       //   || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
@@ -1926,7 +1926,7 @@ ret:
 
       ::str::begins_eat_ci(strMatter, "appmatter://");
 
-      auto psystem = ::apex::get_system();
+      __pointer(::apex::system) psystem = get_system();
 
       ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
 
@@ -1965,7 +1965,7 @@ ret:
 
       synchronization_lock synchronizationlock(mutex());
 
-      straMatterLocator = Application.m_straMatterLocator;
+      straMatterLocator = get_application()->m_straMatterLocator;
 
    }
 
@@ -1983,7 +1983,7 @@ ret:
 
       synchronization_lock synchronizationlock(mutex());
 
-      straMatterLocator = Context.m_straMatterLocator;
+      straMatterLocator = get_context()->m_straMatterLocator;
 
    }
 
@@ -2047,7 +2047,7 @@ ret:
 
    }
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    ::file::path point = psystem->local_get_matter_cache_path(
       ::file::path(strRepo) / "_matter" / strApp / "_std" / "_std" / pathRel);
@@ -2068,7 +2068,7 @@ ret:
 
    string strPlatform(pszPlatform);
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    if (strPlatform.is_empty())
    {
@@ -2103,7 +2103,7 @@ ret:
    if (strLocale.is_empty())
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       strLocale = psession->m_strLocale;
 
@@ -2114,7 +2114,7 @@ ret:
    if (strSchema.is_empty())
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       strSchema = psession->m_strSchema;
 
@@ -2140,7 +2140,7 @@ ret:
 
    //__throw(error_interface_only, "this is an interface");
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    return psystem->m_pdirsystem->m_pathAppData;
 
@@ -2206,7 +2206,7 @@ ret:
 //}
 
 
-//::file::path dir_context::userappdata(::layered * pobjectContext)
+//::file::path dir_context::userappdata(::context_object * pcontextobject)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -2216,7 +2216,7 @@ ret:
 //}
 
 
-//::file::path dir_context::userdata(::layered * pobjectContext)
+//::file::path dir_context::userdata(::context_object * pcontextobject)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -2226,7 +2226,7 @@ ret:
 //}
 
 
-//::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
+//::file::path dir_context::default_os_user_path_prefix(::context_object * pcontextobject)
 //{
 
 //   UNREFERENCED_PARAMETER(pobject);
@@ -2301,7 +2301,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::watcher & dir_context::watcher()
 {
 
-   return *::apex::get_system()->m_pdirsystem->m_pfilewatcher;
+   __pointer(::apex::system) psystem = get_system();
+
+   return *psystem->m_pdirsystem->m_pfilewatcher;
 
 }
 
@@ -2320,7 +2322,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
       strCandidate = stra[i] / pszTopic;
 
-      if (Context.file().exists(strCandidate))
+      if (get_context()->file().exists(strCandidate))
       {
          return strCandidate;
       }
@@ -2415,14 +2417,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::dropbox()
 {
 
-   ::file::path pathJson = Context.file().dropbox_info_json();
+   ::file::path pathJson = get_context()->file().dropbox_info_json();
 
-   if (!Context.file().exists(pathJson))
+   if (!get_context()->file().exists(pathJson))
    {
 
-      ::file::path pathTxt = Context.dir().home() / "dropbox.txt";
+      ::file::path pathTxt = get_context()->dir().home() / "dropbox.txt";
 
-      string strPath = Context.file().as_string(pathTxt);
+      string strPath = get_context()->file().as_string(pathTxt);
 
       strPath.trim();
 
@@ -2431,7 +2433,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    }
 
 
-   string strJson = Context.file().as_string(pathJson);
+   string strJson = get_context()->file().as_string(pathJson);
 
    ::property_set set;
 
@@ -2444,9 +2446,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
 ::file::path dir_context::onedrive()
 {
-   ::file::path pathIni = Context.file().onedrive_cid_ini();
+   ::file::path pathIni = get_context()->file().onedrive_cid_ini();
 
-   string strIni = Context.file().as_string(pathIni);
+   string strIni = get_context()->file().as_string(pathIni);
 
    ::property_set set;
 
@@ -2471,8 +2473,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::standalone()
 {
 
+   __pointer(::apex::system) psystem = get_system();
 
-   return ::dir::roaming() / ::apex::get_system()->m_strStandalone;
+   return ::dir::roaming() / psystem->m_strStandalone;
 
 }
 
@@ -2480,7 +2483,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle)
 //{
 
-//   return ::apex::get_system()->m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle);
+//   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle);
 
 //}
 
@@ -2488,7 +2491,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
-//   return ::apex::get_system()->m_spdir->locale_schema_matter(get_context_application(), strLocale, strStyle, pathRoot, pathDomain);
+//   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle, pathRoot, pathDomain);
 
 //}
 
@@ -2496,7 +2499,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string dir_context::matter(const ::file::patha & patha, bool bDir)
 //{
 //
-//   return ::apex::get_system()->m_spdir->matter(get_context_application(), patha, bDir);
+//   return psystem->m_spdir->matter(get_application(), patha, bDir);
 //
 //}
 
@@ -2504,19 +2507,19 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string dir_context::matter(const ::file::path & path, bool bDir)
 //{
 //
-//   return ::apex::get_system()->m_spdir->matter(get_context_application(), path, bDir);
+//   return psystem->m_spdir->matter(get_application(), path, bDir);
 //
 //}
 ////
 //
 //void dir_context::matter_ls(const ::file::path & str, ::file::patha & stra)
 //{
-//   ::apex::get_system()->m_spdir->matter_ls(get_context_application(), str, stra);
+//   psystem->m_spdir->matter_ls(get_application(), str, stra);
 //}
 //
 //void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
 //{
-//   ::apex::get_system()->m_spdir->matter_ls_file(get_context_application(), str, stra);
+//   psystem->m_spdir->matter_ls_file(get_application(), str, stra);
 //}
 
 
@@ -2524,7 +2527,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   string strPath = ::apex::get_system()->m_spdir->matter(get_context_application(), pcsz, bDir);
+//   string strPath = psystem->m_spdir->matter(get_application(), pcsz, bDir);
 //
 //
 //   return strPath;
@@ -2535,7 +2538,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::userquicklaunch()
 //{
 //
-//   return ::apex::get_system()->m_spdir->userquicklaunch(get_object());
+//   return psystem->m_spdir->userquicklaunch(this);
 //
 //}
 
@@ -2543,7 +2546,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::userprograms()
 //{
 //
-//   return ::apex::get_system()->m_spdir->userprograms(get_object());
+//   return psystem->m_spdir->userprograms(this);
 //
 //}
 
@@ -2551,14 +2554,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::listing & dir_context::ls(listing & listing)
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->ls(get_context_application(), listing);
+//   return psystem->m_spdir.m_p->ls(get_application(), listing);
 //
 //}
 
 //::file::listing & dir_context::ls_relative_name(listing & listing)
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->ls_relative_name(get_context_application(), listing);
+//   return psystem->m_spdir.m_p->ls_relative_name(get_application(), listing);
 //
 //}
 //
@@ -2567,7 +2570,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->has_subdir(get_context_application(), pcsz);
+//   return psystem->m_spdir.m_p->has_subdir(get_application(), pcsz);
 //
 //
 //}
@@ -2577,7 +2580,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->is(pcsz, get_context_application());
+//   return psystem->m_spdir.m_p->is(pcsz, get_application());
 //
 //
 //}
@@ -2587,7 +2590,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_context_application());
+//   return psystem->m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_application());
 //
 //
 //}
@@ -2596,14 +2599,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::is_inside_time(const ::file::path & pcsz)
 //
 //{
-//   return ::apex::get_system()->m_spdir.m_p->is_inside_time(pcsz, get_context_application());
+//   return psystem->m_spdir.m_p->is_inside_time(pcsz, get_application());
 //
 //}
 
 
 //::file::listing & dir_context::root_ones(::file::listing & listing)
 //{
-//   return ::apex::get_system()->m_spdir.m_p->root_ones(listing, get_context_application());
+//   return psystem->m_spdir.m_p->root_ones(listing, get_application());
 //}
 //
 
@@ -2617,7 +2620,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //   }
 //
-//   return ::apex::get_system()->m_spdir.m_p->mk(path, get_context_application());
+//   return psystem->m_spdir.m_p->mk(path, get_application());
 //
 //}
 
@@ -2625,7 +2628,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::rm(const ::file::path & path, bool bRecursive)
 //{
 //
-//   return ::apex::get_system()->m_spdir.m_p->rm(get_context_application(), path, bRecursive);
+//   return psystem->m_spdir.m_p->rm(get_application(), path, bRecursive);
 //
 //}
 
@@ -2633,7 +2636,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
 //{
 //
-//   return ::apex::get_system()->m_spdir->pathfind(pszEnv, pszTopic, pszMode, get_context_application());
+//   return psystem->m_spdir->pathfind(pszEnv, pszTopic, pszMode, get_application());
 //
 //}
 
@@ -2641,7 +2644,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::dropbox()
 //{
 //
-//   return ::apex::get_system()->m_spdir->dropbox(get_context_application());
+//   return psystem->m_spdir->dropbox(get_application());
 //
 //}
 
@@ -2649,7 +2652,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::onedrive()
 //{
 //
-//   return ::apex::get_system()->m_spdir->onedrive(get_context_application());
+//   return psystem->m_spdir->onedrive(get_application());
 //
 //}
 

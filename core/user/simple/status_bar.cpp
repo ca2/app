@@ -40,7 +40,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   
 //
-//   class imaging & imaging = System->imaging();
+//   class imaging & imaging = psystem->imaging();
 //#ifdef WINDOWS_DESKTOP
 //   imaging.color_blend(
 //      pgraphics,

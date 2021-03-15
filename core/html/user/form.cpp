@@ -26,10 +26,10 @@ html_form::~html_form()
 }
 
 
-::e_status html_form::initialize(::layered * pobjectContext)
+::e_status html_form::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::user::form_view::initialize(pobjectContext);
+   auto estatus = ::user::form_view::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -38,7 +38,7 @@ html_form::~html_form()
 
    }
 
-   estatus = System->defer_create_html();
+   estatus = psystem->defer_create_html();
 
    if (!estatus)
    {
@@ -219,7 +219,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   System->defer_create_html();
+   psystem->defer_create_html();
 
    if(pcreate->previous())
    {
@@ -495,7 +495,7 @@ void html_form::set_need_load_form_data()
       else if (varFile.cast < ::file::file >() != nullptr)
       {
 
-         path = System->datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         path = psystem->datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else
@@ -553,7 +553,7 @@ void html_form::_001GetText(string & str) const
 void html_form::_001SetText(const string & str, const ::action_context & context)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
 
@@ -579,7 +579,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
       if(pfocus != nullptr)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          pfocus->set_keyboard_focus();
 
@@ -811,7 +811,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
             ::file::path matter;
 
-            matter = Context.dir().matter(psubject->payload(id_form));
+            matter = pcontext->dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {

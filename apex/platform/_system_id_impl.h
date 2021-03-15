@@ -96,7 +96,7 @@
 //}
 //
 //
-//inline id& id::operator = (const ::enum_thread_tool & ethreadtool)
+//inline id& id::operator = (const ::enum_task_tool & ethreadtool)
 //{
 //
 //   m_etype = type_thread_tool;

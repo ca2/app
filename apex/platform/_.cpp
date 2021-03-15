@@ -11,7 +11,7 @@
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 
-//extern ::mutex * ::apex::get_system()->m_mutexLibrary;
+//extern ::mutex * psystem->m_mutexLibrary;
 
 
 //extern "C"
@@ -181,7 +181,7 @@ int g_iApexRefCount = 0;
 //
 //#else
 //
-//   ::parallelization::finish(::get_context_application());
+//   ::parallelization::finish(::get_application());
 //
 //#endif
 //
@@ -192,73 +192,73 @@ int g_iApexRefCount = 0;
 //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewApexLibrary = nullptr;
 
 
-//::mutex * ::apex::get_system()->m_mutexLibrary = nullptr;
+//::mutex * psystem->m_mutexLibrary = nullptr;
 
+//
+//CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
+//{
+//
+//   return psystem->m_mapNewApexLibrary;
+//
+//}
+//
+//
+//CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
+//{
+//
+//   return psystem->m_mapLibrary;
+//
+//}
 
-CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
-{
+//
+//
+//CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
+//{
+//
+//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//
+//   auto ppair = psystem->m_mapNewApexLibrary.plookup(psz);
+//
+//   if (::is_null(ppair))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ppair->element2();
+//
+//}
 
-   return ::apex::get_system()->m_mapNewApexLibrary;
+//
+//CLASS_DECL_APEX::apex::library& get_library(const char* psz)
+//{
+//
+//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//
+//   return *psystem->m_mapLibrary[psz];
+//
+//}
 
-}
+//
+//CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewApexLibrary)
+//{
+//
+//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//
+//   __get_new_apex_library()[psz] = pfnNewApexLibrary;
+//
+//}
 
-
-CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
-{
-
-   return ::apex::get_system()->m_mapLibrary;
-
-}
-
-
-
-CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
-{
-
-   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
-
-   auto ppair = ::apex::get_system()->m_mapNewApexLibrary.plookup(psz);
-
-   if (::is_null(ppair))
-   {
-
-      return nullptr;
-
-   }
-
-   return ppair->element2();
-
-}
-
-
-CLASS_DECL_APEX::apex::library& get_library(const char* psz)
-{
-
-   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
-
-   return *::apex::get_system()->m_mapLibrary[psz];
-
-}
-
-
-CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewApexLibrary)
-{
-
-   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
-
-   __get_new_apex_library()[psz] = pfnNewApexLibrary;
-
-}
-
-
-CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary)
-{
-
-   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
-
-   __own(::apex::get_system(), m_mapLibrary[psz], plibrary);
-
-}
+//
+//CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary)
+//{
+//
+//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//
+//   __own(psystem, m_mapLibrary[psz], plibrary);
+//
+//}
 
 
 CLASS_DECL_APEX int get_apex_init()
@@ -268,14 +268,14 @@ CLASS_DECL_APEX int get_apex_init()
 
 }
 
-
-extern "C"
-CLASS_DECL_APEX::apex::system * apex_create_apex_system()
-{
-
-   return new ::apex::system();
-
-}
+//
+//extern "C"
+//CLASS_DECL_APEX::apex::system * apex_create_apex_system()
+//{
+//
+//   return new ::apex::system();
+//
+//}
 
 
 ////extern "C"
@@ -388,270 +388,270 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 //
 //}
 //
-
-//int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+//
+////int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+////{
+////
+////   string strExtra;
+////   va_list argList;
+////   va_start(argList, pszFormat);
+////   strExtra.Format(pszFormat, argList);
+////   va_end(argList);
+////
+////   string strModule;
+////
+////   if (pszModuleName != nullptr && *pszModuleName != '\0')
+////   {
+////
+////      strModule.Format("%s: ", pszModuleName);
+////
+////   }
+////
+////   string strType = get_debug_report_type_text(iType);
+////
+////   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
+////
+////   return 1;
+////
+////}
+//
+////
+////int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
+////{
+////
+////
+////   string strExtra;
+////   va_list argList;
+////   va_start(argList, pszFormat);
+////   string strFormat;
+////   strFormat = pszFormat;
+////   strFormat.replace("%s", "%S");
+////   strExtra.Format(strFormat, argList);
+////   va_end(argList);
+////
+////   string strModule;
+////
+////   string strType = get_debug_report_type_text(iType);
+////
+////   if (pszModuleName != nullptr && *pszModuleName != '\0')
+////   {
+////
+////      strModule.Format("%S: ", pszModuleName);
+////
+////   }
+////
+////
+////   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+////
+////   return 1;
+////
+////
+////}
+////
+////
+////
+////
+////CLASS_DECL_APEX int is_ptr_null(const void* p, size_t s)
+////{
+////
+////   return (((size_t)p) < s);
+////
+////}
+////
+////
+//void c_post_system_event(::u64 u, void* pparam)
 //{
 //
-//   string strExtra;
-//   va_list argList;
-//   va_start(argList, pszFormat);
-//   strExtra.Format(pszFormat, argList);
-//   va_end(argList);
+//   lparam lparam = (iptr)pparam;
 //
-//   string strModule;
 //
-//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   psystem->post_message(e_message_event2, (iptr)u, lparam);
+//
+//
+//}
+
+//
+//extern "C"
+//{
+//
+//   typedef void FN_VOID();
+//
+//   typedef FN_VOID* PFN_VOID;
+//
+//} // extern "C"
+
+
+
+
+//CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary)
+//{
+//
+//
+//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//
+//   auto & plibrary = psystem->m_mapLibrary[strLibrary];
+//
+//   if (!plibrary)
 //   {
 //
-//      strModule.Format("%s: ", pszModuleName);
+//      __own(psystem, m_mapLibrary[strLibrary], __new(::apex::library));
 //
 //   }
 //
-//   string strType = get_debug_report_type_text(iType);
-//
-//   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
-//
-//   return 1;
-//
-//}
-
-//
-//int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
-//{
-//
-//
-//   string strExtra;
-//   va_list argList;
-//   va_start(argList, pszFormat);
-//   string strFormat;
-//   strFormat = pszFormat;
-//   strFormat.replace("%s", "%S");
-//   strExtra.Format(strFormat, argList);
-//   va_end(argList);
-//
-//   string strModule;
-//
-//   string strType = get_debug_report_type_text(iType);
-//
-//   if (pszModuleName != nullptr && *pszModuleName != '\0')
+//   if (!plibrary->is_opened())
 //   {
 //
-//      strModule.Format("%S: ", pszModuleName);
+//      plibrary->open(strLibrary);
 //
 //   }
 //
+//   auto pcreatefactory = plibrary->get < PFN_VOID >(strLibrary + "_create_factory");
 //
-//   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+//   if (!pcreatefactory)
+//   {
 //
-//   return 1;
+//      return ::error_failed;
 //
+//   }
+//
+//   (*pcreatefactory)();
+//
+//   return ::success;
 //
 //}
-//
-//
-//
-//
-//CLASS_DECL_APEX int is_ptr_null(const void* p, size_t s)
+
+
+
+//CLASS_DECL_APEX ::context * get_context(::context_object * pcontextobject)
 //{
 //
-//   return (((size_t)p) < s);
+//  if (pobject == nullptr)
+//  {
+//
+//     return get_context();
+//
+//  }
+//
+//  auto pobject = __object(pobject);
+//
+//  if (::is_null(pobject))
+//  {
+//
+//     return get_context();
+//
+//  }
+//
+//  ::context * pcontext = pobject->get_context();
+//
+//  if (pcontext != nullptr)
+//  {
+//
+//     return pcontext;
+//
+//  }
+//
+//  return get_context();
 //
 //}
+
+
+//CLASS_DECL_APEX ::apex::application * get_application(::context_object * pcontextobject)
+//{
 //
+//  if (pobject == nullptr)
+//  {
 //
-void c_post_system_event(::u64 u, void* pparam)
-{
-
-   lparam lparam = (iptr)pparam;
-
-
-   ::apex::get_system()->post_message(e_message_event2, (iptr)u, lparam);
-
-
-}
-
-
-extern "C"
-{
-
-   typedef void FN_VOID();
-
-   typedef FN_VOID* PFN_VOID;
-
-} // extern "C"
-
-
-
-
-CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary)
-{
-
-
-   synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
-
-   auto & plibrary = ::apex::get_system()->m_mapLibrary[strLibrary];
-
-   if (!plibrary)
-   {
-
-      __own(::apex::get_system(), m_mapLibrary[strLibrary], __new(::apex::library));
-
-   }
-
-   if (!plibrary->is_opened())
-   {
-
-      plibrary->open(strLibrary);
-
-   }
-
-   auto pcreatefactory = plibrary->get < PFN_VOID >(strLibrary + "_create_factory");
-
-   if (!pcreatefactory)
-   {
-
-      return ::error_failed;
-
-   }
-
-   (*pcreatefactory)();
-
-   return ::success;
-
-}
-
-
-
-CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext)
-{
-
-  if (pobjectContext == nullptr)
-  {
-
-     return ::get_context();
-
-  }
-
-  auto pobject = __object(pobjectContext);
-
-  if (::is_null(pobject))
-  {
-
-     return ::get_context();
-
-  }
-
-  ::context * pcontext = pobject->get_context();
-
-  if (pcontext != nullptr)
-  {
-
-     return pcontext;
-
-  }
-
-  return ::get_context();
-
-}
-
-
-CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext)
-{
-
-  if (pobjectContext == nullptr)
-  {
-
-     return ::get_context_application();
-
-  }
-
-  auto pobject = __object(pobjectContext);
-
-  if (::is_null(pobject))
-  {
-
-     return ::get_context_application();
-
-  }
-
-  ::apex::application * papplication = pobject->get_context_application();
-
-  if (papplication != nullptr)
-  {
-
-     return papplication;
-
-  }
-
-  return ::get_context_application();
-
-}
-
-
-CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext)
-{
-
-  if (pobjectContext == nullptr)
-  {
-
-     return ::get_context_session();
-
-  }
-
-  auto pobject = __object(pobjectContext);
-
-  if (::is_null(pobject))
-  {
-
-     return ::get_context_session();
-
-  }
-
-  ::apex::session * psessionContext = pobject->get_context_session();
-
-  if (psessionContext != nullptr)
-  {
-
-     return psessionContext;
-
-  }
-
-  return ::get_context_session();
-
-}
-
-
-CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext)
-{
-
-  if (pobjectContext == nullptr)
-  {
-
-     return ::apex::get_system();
-
-  }
-
-  auto pobject = __object(pobjectContext);
-
-  if (::is_null(pobject))
-  {
-
-     return ::apex::get_system();
-
-  }
-
-  ::apex::system * psystemContext = ::apex::get_system();
-
-  if (psystemContext != nullptr)
-  {
-
-     return psystemContext;
-
-  }
-
-  return ::apex::get_system();
-
-}
+//     return ::get_application();
+//
+//  }
+//
+//  auto pobject = __object(pobject);
+//
+//  if (::is_null(pobject))
+//  {
+//
+//     return ::get_application();
+//
+//  }
+//
+//  ::apex::application * papplication = pobject->get_application();
+//
+//  if (papplication != nullptr)
+//  {
+//
+//     return papplication;
+//
+//  }
+//
+//  return ::get_application();
+//
+//}
+
+
+//CLASS_DECL_APEX ::apex::session * get_session(::context_object * pcontextobject)
+//{
+//
+//  if (pobject == nullptr)
+//  {
+//
+//     return ::get_session();
+//
+//  }
+//
+//  auto pobject = __object(pobject);
+//
+//  if (::is_null(pobject))
+//  {
+//
+//     return ::get_session();
+//
+//  }
+//
+//  ::apex::session * psessionContext = pobject->get_session();
+//
+//  if (psessionContext != nullptr)
+//  {
+//
+//     return psessionContext;
+//
+//  }
+//
+//  return ::get_session();
+//
+//}
+
+
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::context_object * pcontextobject)
+//{
+//
+//  if (pobject == nullptr)
+//  {
+//
+//     return psystem;
+//
+//  }
+//
+//  auto pobject = __object(pobject);
+//
+//  if (::is_null(pobject))
+//  {
+//
+//     return psystem;
+//
+//  }
+//
+//  ::apex::system * psystemContext = psystem;
+//
+//  if (psystemContext != nullptr)
+//  {
+//
+//     return psystemContext;
+//
+//  }
+//
+//  return psystem;
+//
+//}
 
 
 

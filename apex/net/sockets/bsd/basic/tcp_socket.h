@@ -51,7 +51,7 @@ namespace sockets
       array < ssl_ticket_key >   m_ticketkeya;
 
 
-      static bool s_bReuseSession; // Default ::apex::get_system() Wide Setting
+      static bool s_bReuseSession; // Default psystem Wide Setting
 
       /** Output buffer struct.
       \ingroup internal */
@@ -154,12 +154,12 @@ namespace sockets
       string                     m_strInitSSLClientContext;
 
       /** Constructor with standard values on input/output buffers. */
-      tcp_socket(base_socket_handler& );
+      tcp_socket();
       /** Constructor with custom values for i/o buffer.
       \lparam h base_socket_handler context_object
       \lparam isize Input buffer size_i32
       \lparam osize Output buffer size_i32 */
-      tcp_socket(base_socket_handler& h,memsize isize,memsize osize);
+      tcp_socket(memsize isize,memsize osize);
       virtual ~tcp_socket();
 
 

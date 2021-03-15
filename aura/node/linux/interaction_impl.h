@@ -40,7 +40,7 @@ namespace linux
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::context_object * pcontextobject);
       virtual ~interaction_impl();
 
 
@@ -247,15 +247,15 @@ namespace linux
 //      virtual bool _001ScreenToClient(POINT_I64 * ppoint);
 
 
-//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 //
-//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * prectangle);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * prectangle);
 
 
       // Update/Painting Functions

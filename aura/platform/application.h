@@ -40,7 +40,7 @@ namespace aura
       //__pointer(::apex::application_menu)             m_papplicationmenu;
 
       //__composite(::game::game)                       m_pgame;
-
+      __reference(::user::interaction)                m_puserinteractionMain;
 
       __composite(shell_open)                         m_pshellopen;
 
@@ -150,7 +150,7 @@ namespace aura
       virtual ~application();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       virtual void assert_valid() const override;
@@ -196,6 +196,10 @@ namespace aura
 
 
       virtual ::e_status verb() override;
+
+
+      inline ::aura::session* get_session() { return m_psession ? m_psession.cast < ::aura::session>().m_p : nullptr; }
+      inline ::aura::system* get_system();
 
 
       virtual bool Ex2OnAppInstall() override;
@@ -248,8 +252,8 @@ namespace aura
 
 
 
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle) override;
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle) override;
 
 
       //virtual void SetCurrentHandles() override;
@@ -319,9 +323,9 @@ namespace aura
       virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
 
 
-      virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+      virtual ::draw2d::icon * set_icon(::object * pobject, ::draw2d::icon * picon, bool bBigIcon);
 
-      virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+      virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
       //virtual void on_service_request(::create * pcreate) override;
 
@@ -371,7 +375,7 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       //::apex::application_menu & applicationmenu();
@@ -443,7 +447,7 @@ namespace aura
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -591,7 +595,7 @@ namespace aura
       //virtual void SetCurrentHandles();
 
       //virtual void set_env_var(const string & payload,const string & value);
-      //virtual ithread_t get_thread_id();
+      //virtual itask_t get_thread_id();
 
 
       //virtual bool _001OnDDECommand(const char * pcsz) override;
@@ -792,8 +796,8 @@ namespace aura
       virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      virtual void add_frame(::user::interaction * pwnd);
-      virtual void remove_frame(::user::interaction * pwnd);
+      virtual void add_frame(::user::interaction * puserinteraction);
+      virtual void remove_frame(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) override; // with tbs in <3
 
@@ -849,7 +853,7 @@ namespace aura
       virtual void HideApplication() override;
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -868,7 +872,7 @@ namespace aura
 
       //virtual ::e_status     main() override;
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::aura::application * get_application() const override;
 
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
@@ -1173,7 +1177,7 @@ namespace aura
       virtual void set_title(const char* pszTitle) override;
 
 
-      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1298,7 +1302,7 @@ namespace aura
 
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept);
+      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
       virtual i32 GetVisibleFrameCount();
 
       //virtual void on_create_keyboard() override;
@@ -1344,7 +1348,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;

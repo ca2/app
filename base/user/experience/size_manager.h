@@ -22,8 +22,11 @@ namespace experience
       i32                           m_iPaintCount;
 
 
-      size_manager(::experience::frame_window * pframewindow);
+      size_manager();
       virtual ~size_manager();
+
+      
+      virtual ::e_status initialize_size_manager(::experience::frame_window* pframewindow);
 
 
       e_hittest _001HitTest(const ::point_i32 & pointCursor);

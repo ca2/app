@@ -33,10 +33,10 @@ namespace macos
 
 
 
-   ::e_status dir_system::initialize(::layered * pobjectContext)
+   ::e_status dir_system::initialize(::context_object * pcontextobject)
    {
       
-      auto estatus = ::dir_system::initialize(pobjectContext);
+      auto estatus = ::dir_system::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -62,7 +62,7 @@ namespace macos
          
       }
       
-      ::file::path pathCa2Module = System->m_pfilesystem->m_pathCa2Module;
+      ::file::path pathCa2Module = psystem->m_pfilesystem->m_pathCa2Module;
       
       m_pathHome = getenv("HOME");
       

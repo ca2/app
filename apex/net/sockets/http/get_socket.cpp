@@ -7,15 +7,15 @@ namespace sockets
 {
 
 
-   http_get_socket::http_get_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h)
+   http_get_socket::http_get_socket() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h)
    {
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -27,15 +27,16 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(base_socket_handler& h,const string & url_in) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   http_get_socket::http_get_socket(const string & url_in) :
+      //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      http_client_socket(url_in)
    {
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -49,15 +50,16 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(base_socket_handler& h,const string & host,port_t port,const string & url_in) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   http_get_socket::http_get_socket(const string & host,port_t port,const string & url_in) :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h, url_in)
+      http_client_socket(url_in)
    {
 
 #if !defined(BSD_STYLE_SOCKETS)

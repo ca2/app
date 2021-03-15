@@ -6,7 +6,7 @@ task_pool::task_pool()
 
    defer_create_mutex();
 
-   set_layer(LAYERED_TASK_POOL, this);
+   //set_layer(LAYERED_TASK_POOL, this);
 
 }
 

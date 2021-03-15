@@ -14,7 +14,7 @@ namespace browser
 {
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::context_object * pcontextobject):
       object(pobject),
       impact_base(pobject)
    {
@@ -47,7 +47,7 @@ namespace browser
 
       m_b001LayoutIgnoreEmpty = false;
 
-      m_ppcre = System->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->create_pcre("\\:\\-\\)");
 
    }
 
@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(m_id).contains_ci("switcher");
 
-      m_prender = __new(render(get_context_application(), bAlternate));
+      m_prender = __new(render(get_application(), bAlternate));
 
       m_prender->m_pview = this;
 
@@ -140,7 +140,7 @@ namespace browser
 
       //set_browser(strText);
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -317,7 +317,7 @@ namespace browser
 
       pmessage->previous();
 
-      Application.m_ppaneview->m_pviewLastBilbo = this;
+      papplication->m_ppaneview->m_pviewLastBilbo = this;
 
       CefMouseEvent event;
 
@@ -331,7 +331,7 @@ namespace browser
       if (pmouse->m_id == e_message_left_button_down)
       {
 
-         Application.m_ppaneview->m_pviewLastBilbo = this;
+         papplication->m_ppaneview->m_pviewLastBilbo = this;
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
@@ -379,7 +379,7 @@ namespace browser
       if (rectangle.size() != m_pimageBrowser->size())
       {
 
-         if (Application.get_context_application()->m_bCefInitialized)
+         if (papplication->get_application()->m_bCefInitialized)
          {
             if (!m_bBrowser)
             {
@@ -401,7 +401,7 @@ namespace browser
                //                        // main_async([=]()
                //{
 
-               //   cef_main(System->m_hinstance, get_handle(), rectangle);
+               //   cef_main(psystem->m_hinstance, get_handle(), rectangle);
 
                //});
 
@@ -618,13 +618,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + Application.m_strAlternateHelloBrowser;
+               return "Rolling " + papplication->m_strAlternateHelloBrowser;
 
             }
             else
             {
 
-               return Application.m_strAlternateHelloBrowser.c_str();
+               return papplication->m_strAlternateHelloBrowser.c_str();
 
             }
 
@@ -635,13 +635,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + Application.m_strHelloBrowser;
+               return "Rolling " + papplication->m_strHelloBrowser;
 
             }
             else
             {
 
-               return Application.m_strHelloBrowser.c_str();
+               return papplication->m_strHelloBrowser.c_str();
 
             }
 

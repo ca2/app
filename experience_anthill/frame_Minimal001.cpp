@@ -211,7 +211,7 @@ namespace experience
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -233,7 +233,7 @@ namespace experience
                }
                else
                {
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -256,7 +256,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -268,7 +268,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -296,7 +296,7 @@ namespace experience
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
 
                   imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 

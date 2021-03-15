@@ -342,7 +342,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::apex::application* papp = get_context_application();
+      ::apex::application* papp = get_application();
 
       if (papp != nullptr)
       {
@@ -358,7 +358,7 @@ namespace user
 
       }
 
-      auto puser = User;
+      auto puser = user();
 
       if(puser)
       {
@@ -423,7 +423,7 @@ namespace user
    //   // invalidate the entire pane, erase background too
    //   //Invalidate(true);
 
-   //   //Application.on_update_view(this,pSender,lHint,pHint);
+   //   //papplication->on_update_view(this,pSender,lHint,pHint);
 
    //}
 
@@ -739,7 +739,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create);
@@ -772,10 +772,10 @@ namespace user
 
       }
 
-      if (pwndParent == nullptr)
+      if (puserinteractionParent == nullptr)
       {
 
-         pwndParent = this;
+         puserinteractionParent = this;
 
       }
 
@@ -788,12 +788,12 @@ namespace user
 
       }
 
-      return ::user::create_view(pusersystem, pwndParent, idCreate);
+      return ::user::create_view(pusersystem, puserinteractionParent, idCreate);
 
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
@@ -808,19 +808,19 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pusersystem, pwndParent, id);
+      return ::user::create_view(pusersystem, puserinteractionParent, id);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id)
+   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id)
    {
 
       ASSERT(pusersystem != nullptr);
 
       ASSERT(pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr);
 
-      ::apex::application * papp = pwndParent->get_context_application();
+      ::apex::application * papp = puserinteractionParent->get_application();
 
       __pointer(::user::interaction) pinteraction;
 
@@ -844,7 +844,7 @@ namespace user
 
          }
 
-         if (pobject.is_null() || ::is_null(pobject->get_context_application()))
+         if (pobject.is_null() || ::is_null(pobject->get_application()))
          {
             
             ERR("Cannot create view. Document doesn't have context application. (Should it be a blocking thing...)");
@@ -870,8 +870,8 @@ namespace user
 
       pinteraction->m_id = id;
 
-      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, pwndParent, id, pcreate))
-      if (!pinteraction->create_child(pwndParent))
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, id, pcreate))
+      if (!pinteraction->create_child(puserinteractionParent))
       {
 
          return nullptr;
@@ -1307,7 +1307,7 @@ namespace user
    ASSERT(pContext->m_typeNewView != nullptr);
 
    // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-   __pointer(::user::interaction) pview =  (System->alloc(pContext->m_typeNewView));
+   __pointer(::user::interaction) pview =  (psystem->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
@@ -1337,14 +1337,14 @@ namespace user
    }*/
 
 
-   /*__pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * pwndParent)
+   /*__pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * puserinteractionParent)
    {
-   ASSERT(pwndParent->is_window());
+   ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);
    ASSERT(pContext->m_typeNewView != nullptr);
 
    // Note: can be a interaction_impl with PostNcDestroy self cleanup
-   ::user::interaction_impl * pview = (pwndParent->System->alloc(pContext->m_typeNewView));
+   ::user::interaction_impl * pview = (puserinteractionParent->psystem->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
@@ -1355,7 +1355,7 @@ namespace user
 
    // views are always created with a border!
    if (!pview->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   rectangle_i32(0,0,0,0), pwndParent, nID, (__pointer(::create)) pContext))
+   rectangle_i32(0,0,0,0), puserinteractionParent, nID, (__pointer(::create)) pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact

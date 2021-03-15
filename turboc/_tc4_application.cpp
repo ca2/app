@@ -5,7 +5,7 @@ namespace tc4
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::context_object * pcontextobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -150,7 +150,7 @@ namespace tc4
 
       m_iErrorAiFont = -1;
 
-      __begin_thread(get_context_application(),&thread_proc_load_ai_font,this,::priority_normal,0,0,NULL);
+      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::priority_normal,0,0,NULL);
 
    }
 
@@ -162,7 +162,7 @@ namespace tc4
 
       pview->m_iErrorAiFont = -1;
 
-      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_context_application()).ftlibrary(),Sess(pview->get_context_application()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
+      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_application()).ftlibrary(),Sess(pview->get_application()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
 
       return pview->m_iErrorAiFont;
 
@@ -175,7 +175,7 @@ namespace tc4
 
 
 extern "C"
-::apex::library * get_new_library(::layered * pobjectContext)
+::apex::library * get_new_library(::context_object * pcontextobject)
 {
 
    return new ::apex::single_application_library < ::tc4::application > (pobject, "app-core");

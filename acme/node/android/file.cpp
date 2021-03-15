@@ -141,7 +141,7 @@ namespace android
    //   if(iNew == -1)
    //      return nullptr;
 
-   //   file* pFile = new file(get_context_application(), iNew);
+   //   file* pFile = new file(get_application(), iNew);
    //   pFile->m_iFile = (::u32)iNew;
    //   ASSERT(pFile->m_iFile != hFileNull);
    //   return pFile;
@@ -249,7 +249,7 @@ namespace android
 
             /*         if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {
@@ -272,7 +272,7 @@ namespace android
 
          /*try
          {
-            get_context_application()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+            get_application()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
          }
          catch(...)
          {
@@ -287,7 +287,7 @@ namespace android
          {
             /*if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {

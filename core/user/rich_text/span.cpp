@@ -63,7 +63,7 @@ namespace user
 
 
       span::span(const span & span) :
-         ::object(span.get_context_object()),
+         ::object(span.this),
          m_pformat(__new(class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_str(span.m_str)

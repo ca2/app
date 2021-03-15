@@ -106,7 +106,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = Context.file().module();
+//         pathObj = pcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -132,14 +132,14 @@ CLASS_DECL_AURA i32 ca2_main();
 //} // namespace aura
 
 
-
-
-void os_post_quit()
-{
-
-   ::aura::get_system()->exception::translator::detach();
-
-}
+//
+//
+//void os_post_quit()
+//{
+//
+//   psystem->exception::translator::detach();
+//
+//}
 
 
 //CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
@@ -147,7 +147,7 @@ void os_post_quit()
 //
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::aura::get_system()->post_predicate([pobjectTask]()
+//   psystem->post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -162,7 +162,7 @@ void os_post_quit()
 //   
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::aura::get_system()->send_predicate([pobjectTask]()
+//   psystem->send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

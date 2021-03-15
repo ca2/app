@@ -91,7 +91,7 @@ namespace sockets
 #endif
       string                  m_password; ///< ssl password
 
-      base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
+      __pointer(base_socket_handler)   m_phandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
@@ -206,7 +206,7 @@ namespace sockets
       */
 
       /** "Default" constructor */
-      base_socket(base_socket_handler&);
+      base_socket();
 
       virtual ~base_socket();
 
@@ -219,22 +219,22 @@ namespace sockets
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
-      * the "default" constructor with one base_socket_handler& as input parameter.
+      * the "default" constructor with one as input parameter.
       */
       virtual base_socket *new_listen_socket() { return nullptr; }
 
       /** Returns context_object to sockethandler that owns the base_socket.
       If the base_socket is detached, this is a context_object to the slave sockethandler.
       */
-      base_socket_handler& Handler() const;
+      base_socket_handler * socket_handler() const;
 
       /** Returns context_object to sockethandler that owns the base_socket.
       This one always returns the context_object to the original sockethandler,
       even if the base_socket is detached.
       */
-      base_socket_handler& MasterHandler() const;
+      base_socket_handler * master_socket_handler() const;
 
-      virtual void free_ssl_session();
+      virtual void destroy_ssl_session();
 
       virtual void get_ssl_session();
 

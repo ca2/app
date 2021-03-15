@@ -676,7 +676,7 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pdrawitem->m_plist->m_bMorePlain)
          {
@@ -932,7 +932,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = Application.userstyle();
+      //   m_puserstyle = papplication->userstyle();
 
       //}
 
@@ -3523,7 +3523,7 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       m_bLButtonDown = true;
 
@@ -3875,7 +3875,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -3961,7 +3961,7 @@ namespace user
 
                         }
 
-                        Context.file().put_contents(strSort, stra.implode("\r\n"));
+                        pcontext->file().put_contents(strSort, stra.implode("\r\n"));
 
                         synchronizationlock.unlock();
 
@@ -4076,7 +4076,7 @@ namespace user
 
       pmouse->previous();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto point = pmouse->m_point;
 
@@ -4375,18 +4375,18 @@ namespace user
 
       }
 
-      /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+      /* trans window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
       if(wndidNotify == nullptr)
-      wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
+      wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_();*/
 
       lresult lresult = 0;
 
       /* trans if(wndidNotify)
       {
       NMLISTVIEW nm;
-      nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+      nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
       nm.hdr.code =   NM_DBLCLK;
-      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+      nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
       lresult = ::SendMessage(
       wndidNotify,
       WM_NOTIFY,
@@ -6311,7 +6311,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      m_pregexFilter1 = System->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
 
@@ -6580,7 +6580,7 @@ namespace user
 
       CacheHint();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -7530,7 +7530,7 @@ namespace user
 
                __defer_construct(pimage2);
 
-               if (System->draw2d()->embossed_text_out(
+               if (psystem->draw2d()->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,
@@ -7832,7 +7832,7 @@ namespace user
 
          strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
-         string str = Context.file().as_string(strSort);
+         string str = pcontext->file().as_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

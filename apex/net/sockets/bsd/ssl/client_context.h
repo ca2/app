@@ -25,7 +25,7 @@ namespace sockets
       i32                  m_iSslRetry;
 
 
-      ssl_client_context(::object * pobject, const SSL_METHOD * pmethod = nullptr);
+      ssl_client_context(const SSL_METHOD * pmethod = nullptr);
       virtual ~ssl_client_context();
 
 

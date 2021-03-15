@@ -105,7 +105,9 @@ namespace imaging_wic
 
             }
 
-            auto estatus = Application.image().load_svg(pimage, pmemory);
+            __pointer(::aura::application) papplication = get_application();
+
+            auto estatus = papplication->image().load_svg(pimage, pmemory);
 
             if (::succeeded(estatus))
             {
@@ -527,7 +529,7 @@ namespace imaging_wic
 
 
 
-   bool node_save_image(::file::file * pfile, const ::image * pimage, const ::save_image * psaveimage)
+   bool context_image::_save_image(::file::file * pfile, const ::image * pimage, const ::save_image * psaveimage)
    {
 
 #ifdef _UWP

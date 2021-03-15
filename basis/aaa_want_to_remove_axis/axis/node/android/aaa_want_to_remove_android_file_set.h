@@ -17,7 +17,7 @@ namespace android
       ::file::listing	m_listing;
 
 
-      file_set(::layered * pobjectContext);
+      file_set(::context_object * pcontextobject);
       virtual ~file_set();
 
 

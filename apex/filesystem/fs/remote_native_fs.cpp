@@ -41,7 +41,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(pszPath);
 
       //string strSource;
 
@@ -77,7 +77,7 @@ namespace fs
 
       path.m_iDir = 1;
 
-      listing.m_straTitle.add("Remote File ::apex::get_system()");
+      listing.m_straTitle.add("Remote File psystem");
 
       return listing;
 
@@ -114,8 +114,8 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(listing.m_pathUser))
-      //         + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(psystem->url().get_script(listing.m_pathUser))
+      //         + "&server=" + psystem->url().url_encode(psystem->url().get_server(listing.m_pathUser));
 
       //string strSource;
 
@@ -198,8 +198,10 @@ namespace fs
          return 1;
       }
 
-      if(::apex::get_system()->url().get_script(path).is_empty() ||
-         ::apex::get_system()->url().get_script(path) == "/")
+      __pointer(::apex::system) psystem = get_system();
+
+      if(psystem->url().get_script(path).is_empty() ||
+         psystem->url().get_script(path) == "/")
       {
          return 1;
       }
@@ -211,7 +213,7 @@ namespace fs
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             
             ::file::listing l;
@@ -231,7 +233,7 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             
             ::file::listing l;
@@ -246,7 +248,7 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             return 0;
          }
@@ -264,7 +266,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(pszPath);
 
       string strSource;
 

@@ -20,10 +20,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_cache::initialize(::layered * pobjectContext)
+   ::e_status script_cache::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace dynamic_source
 
       }
 
-      m_pmanager = pobjectContext;
+      m_pmanager = pobject;
 
       return estatus;
 

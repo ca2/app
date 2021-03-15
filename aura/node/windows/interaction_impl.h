@@ -250,14 +250,14 @@ namespace windows
       //virtual point_f64 client_screen_top_left() override;
 
 
-      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 
-      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 
-      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount);
 
-      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * prectangle);
+      //virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const;

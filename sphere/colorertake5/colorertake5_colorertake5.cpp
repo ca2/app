@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   colorertake5::colorertake5(::layered * pobjectContext) :
+   colorertake5::colorertake5(::context_object * pcontextobject) :
       object(pobject),
       ::apex::department(pobject)
    {

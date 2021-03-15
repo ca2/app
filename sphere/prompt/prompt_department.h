@@ -15,7 +15,7 @@ namespace prompt
       __pointer(::user::single_document_template)    m_ptemplateCommandMain;
 
 
-      department(::layered * pobjectContext);
+      department(::context_object * pcontextobject);
       virtual ~department();
 
 

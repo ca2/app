@@ -37,9 +37,7 @@ namespace base
    class system;
    class session;
    class application;
-
-
-   inline system * get_system() { return ::base::get_system()->layer(LAYERED_BASE); }
+   class user;
 
 
 } // namespace base

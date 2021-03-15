@@ -14,7 +14,7 @@ namespace console
       __pointer(prompt) m_spprompt;
 
 
-      department(::layered * pobjectContext);
+      department(::context_object * pcontextobject);
       virtual ~department();
 
       virtual ::e_status init_instance() override;

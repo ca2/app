@@ -13,7 +13,7 @@ namespace music
       {
          
 
-         sequence::sequence(::layered * pobjectContext) :
+         sequence::sequence(::context_object * pcontextobject) :
             ::object(pobject),
             ::music::midi::object(pobject),
             ::ikaraoke::karaoke(pobject),
@@ -116,7 +116,7 @@ namespace music
             
             auto iDevice = m_pthread->m_pplayer->get_midi_out_device().i64();
             
-            __pointer(department) pdepartment = Application.midi();
+            __pointer(department) pdepartment = papplication->midi();
             
             __pointer(play_thread) pthread;
             
@@ -677,7 +677,7 @@ namespace music
              {
              plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
              }
-             ::memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+             ::memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
              // x2x                  CArchive ar(&memFile, CArchive::load);
              lyriceventa.Serialize(ar);
              plyriceventa->append(lyriceventa); //
@@ -689,7 +689,7 @@ namespace music
              break;
              case EVENT_ID_NOTE_ON:
              {
-             ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+             ::file::byte_stream_memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
              for(i32 i = 0; i < m_iaLevel.get_size(); i++)
              {
              byte b;

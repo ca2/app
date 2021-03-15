@@ -13,7 +13,8 @@ namespace acme
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::layered
+      virtual public ::property_object
+      //, virtual public layered < node >
    {
    public:
 
@@ -167,27 +168,14 @@ namespace acme
 
       virtual double get_time_zone();
 
-      virtual ::e_status get_system_time(system_time_t * psystemtime);
 
-      virtual ::e_status file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST = -1);
 
-      virtual ::e_status system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST = -1);
 
-      virtual ::e_status system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime);
+      virtual string font_name(enum_font efont);
+      //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
-      virtual ::e_status time_to_system_time(system_time_t * psystem_time, const time_t * ptime);
 
-      virtual ::e_status time_to_file_time(filetime_t * pfiletime, const time_t * ptime);
-
-      virtual ::e_status get_system_time_as_file_time(filetime_t * pfiletime);
-
-      virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime);
-
-      virtual ::e_status file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime);
-
-      virtual ::e_status is_valid_filetime(const filetime_t * pfiletime);
-
-      virtual filetime get_filetime_now();
+      virtual string file_memory_map_path_from_name(const string& strName);
 
 
    };

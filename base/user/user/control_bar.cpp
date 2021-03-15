@@ -241,7 +241,7 @@ namespace user
       UNREFERENCED_PARAMETER(ptimer);
 //      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->is_key_pressed(::user::e_key_lbutton))
          return;
@@ -670,7 +670,7 @@ namespace user
    {
 
       // // update the indicators before becoming visible
-      // ::user::message base(get_object());
+      // ::user::message base(this);
       // LRESULT lresult;
       // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);

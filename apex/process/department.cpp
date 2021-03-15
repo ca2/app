@@ -31,7 +31,7 @@ namespace process
 
       string strRead;
 
-      process_processor proc(get_context_application(), pszCmdLine, dur, pbPotentialTimeout, &strRead);
+      process_processor proc(pszCmdLine, dur, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -42,7 +42,7 @@ namespace process
    exit_status department::retry(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
-      process_processor proc(get_context_application(), pszCmdLine, dur, pbPotentialTimeout);
+      process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
 
       return proc.m_exitstatus;
 
@@ -52,7 +52,7 @@ namespace process
    exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const ::duration & dur, bool * pbPotentialTimeout)
    {
 
-      process_processor proc(get_context_application(), pszCmdLine, dur, pbPotentialTimeout);
+      process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
 
       return proc.m_exitstatus;
 
@@ -84,7 +84,7 @@ namespace process
    exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const ::duration & dur,bool * pbPotentialTimeout)
    {
 
-      process_processor proc(get_context_application(),pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
+      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
 
       return proc.m_exitstatus;
 
@@ -97,10 +97,10 @@ namespace process
    }
 
 
-   void department::process_thread::construct_process_thread(::object * pobjectParent, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
+   void department::process_thread::construct_process_thread(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
    {
 
-      initialize(pobjectParent);
+      //initialize(pobjectParent);
 
       m_strCmdLine = strCmdLine;
       
@@ -210,7 +210,7 @@ namespace process
 
       }
 
-      while(thread_get_run())
+      while(task_get_run())
       {
 
          strRead = m_pprocess->m_pipe.m_sppipeOut->read();
@@ -291,8 +291,7 @@ namespace process
    }
 
 
-   department::process_processor::process_processor(::object * pobject,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
-      ::object(pobject)
+   department::process_processor::process_processor(const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
    {
 
       m_bInitFailure = false;
@@ -305,7 +304,7 @@ namespace process
 
       m_pthread = new process_thread;
 
-      m_pthread->construct_process_thread(pobject, strCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
+      m_pthread->construct_process_thread(strCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
 
       //m_pthread->m_bAutoDelete = true;
 

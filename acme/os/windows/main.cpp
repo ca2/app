@@ -107,7 +107,7 @@ string ca2_command_line(hinstance hinstance)
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = Context.file().module();
+//         pathObj = get_context()->file().module();
 //
 //         string strLinkTitle;
 //
@@ -150,7 +150,7 @@ void os_post_quit()
 //
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System->post_predicate([pobjectTask]()
+//   get_system()->post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -165,7 +165,7 @@ void os_post_quit()
 //   
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System->send_predicate([pobjectTask]()
+//   get_system()->send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

@@ -40,7 +40,7 @@ CLASS_DECL_APEX bool __node_apex_pos_init()
 
 }
 
-//void __clear_mq(const char * pszDebug, ithread_t id, bool bClose);
+//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 CLASS_DECL_APEX bool __node_apex_pre_term()

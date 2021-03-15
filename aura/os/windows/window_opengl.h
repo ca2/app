@@ -10,7 +10,7 @@ namespace opengl
    {
 
 
-      buffer(::layered * pobjectContext);
+      buffer(::context_object * pcontextobject);
       virtual ~buffer();
 
 

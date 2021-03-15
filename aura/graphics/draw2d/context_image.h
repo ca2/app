@@ -14,10 +14,10 @@ public:
    virtual ~context_image();
 
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
 
 
    virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);

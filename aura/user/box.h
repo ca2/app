@@ -22,7 +22,7 @@ namespace user
       virtual ~box();
 
       
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       void install_message_routing(::channel * pchannel) override;

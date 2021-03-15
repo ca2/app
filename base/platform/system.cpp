@@ -14,8 +14,6 @@ namespace base
    system::system()
    {
 
-      m_pbasesystem = this;
-
       common_construct();
 
    }
@@ -106,10 +104,10 @@ namespace base
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::axis::system::initialize(pobjectContext);
+      auto estatus = ::axis::system::initialize(pcontextobject);
 
       if (!estatus)
       {

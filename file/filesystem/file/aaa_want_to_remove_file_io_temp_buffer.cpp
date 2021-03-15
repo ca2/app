@@ -45,8 +45,8 @@ namespace file
          return true;
       if (!_tempFileCreated)
       {
-         _tempFileName = Context.file().time_square(kTempFilePrefixString);
-         _tempFile = Context.file().get(_tempFileName);
+         _tempFileName = pcontext->file().time_square(kTempFilePrefixString);
+         _tempFile = pcontext->file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
       memsize processed = size;
@@ -87,7 +87,7 @@ namespace file
       }
       if (_tempFileCreated)
       {
-         file_pointer inFile(get_object());
+         file_pointer inFile(this);
          if (!inFile->open(_tempFileName, ::file::e_open_read | ::file::e_open_binary))
             return E_FAIL;
          while (size < _size)

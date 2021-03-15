@@ -12,10 +12,10 @@ ftpfs::ftpfs()
 }
 
 
-::e_status ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
+::e_status ftpfs::initialize_ftpfs(::object * pobject, const char * pszRoot)
 {
 
-   auto estatus = ::fs::data::initialize(pobjectContext);
+   auto estatus = ::fs::data::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -42,7 +42,7 @@ ftpfs::~ftpfs()
 }
 
 //
-//::e_status ftpfs::initialize(::layered * pobjectContext)
+//::e_status ftpfs::initialize(::context_object * pcontextobject)
 //{
 //
 //   auto estatus = __compose_new(this, m_pftpnet);
@@ -228,7 +228,7 @@ retry:
 
    string strPath;
 
-   strPath = System->url().get_object(listing.m_pathUser);
+   strPath = psystem->url().get_object(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
    {
@@ -421,7 +421,7 @@ retry:
 
       ::file::path pathTemp = get_context()->file().time(get_context()->dir().time());
 
-      string strRemoteFile = System->url().get_object(path);
+      string strRemoteFile = psystem->url().get_object(path);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {
@@ -492,12 +492,12 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __new(::ftp::logon);
 
-   plogon->Hostname() = System->url().get_server(strPath);
-   //logon.Username() = System->url().get_username(listing.m_path);
+   plogon->Hostname() = psystem->url().get_server(strPath);
+   //logon.Username() = psystem->url().get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";
 
-   plogon->m_strToken = System->url().os_fspath(strUrl);
+   plogon->m_strToken = psystem->url().os_fspath(strUrl);
 
    __pointer(::ftp::client_socket) & pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 
@@ -523,7 +523,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
 retry:
 
-      Application.interactive_credentials(plogon);
+      papplication->interactive_credentials(plogon);
 
 retry_login:
 
@@ -554,7 +554,7 @@ retry_login:
 
       }
 
-      //Application.set_cred(strToken, logon.Username(), logon.Password());
+      //papplication->set_cred(strToken, logon.Username(), logon.Password());
 
       plogon->save_status_to_storage(::success);
 

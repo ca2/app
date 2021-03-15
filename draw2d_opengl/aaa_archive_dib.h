@@ -19,7 +19,7 @@ namespace draw2d_opengl
       BITMAPINFO           m_bitmapinfo;
 
 
-      image(::layered * pobjectContext);
+      image(::context_object * pcontextobject);
       virtual void construct(i32 cx, i32 cy);
       virtual ~image();
 
@@ -143,8 +143,8 @@ namespace draw2d_opengl
       virtual void map(bool bApplyTransform = true) const override;
       virtual void unmap() const override;
 
-      //virtual bool update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer = true) override;
-      //virtual bool print_window(::aura::draw_interface * pwnd, ::message::message * pmessage) override;
+      //virtual bool update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer = true) override;
+      //virtual bool print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage) override;
 
 
    };

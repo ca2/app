@@ -32,7 +32,7 @@ namespace hi5
          "system/auth",
          __type(::user::document),
          __type(simple_frame_window),
-         System->get_pane_tab_view_type_info());
+         psystem->get_pane_tab_view_type_info());
          m_pviewAuth       = nullptr;
          m_pdocAuth        = nullptr;
          m_pdocument            = nullptr;
@@ -70,7 +70,7 @@ namespace hi5
          __pointer(::create) pcreate(e_create);
 
          pcreate->m_bMakeVisible = false;
-         pcreate->m_puserinteractionParent = System->cast < ::user::interaction >("top_parent");
+         pcreate->m_puserinteractionParent = psystem->cast < ::user::interaction >("top_parent");
          pcreate->m_bOuterPopupAlertLike = true;
 
          m_ptemplatePane->do_request(pcreate);
@@ -99,7 +99,7 @@ namespace hi5
 
          string strAppName;
 
-         if(Application.m_strAppName == "winactionarea")
+         if(papplication->m_strAppName == "winactionarea")
          {
 
             strAppName = "_set_windesk";
@@ -108,7 +108,7 @@ namespace hi5
          else
          {
 
-            strAppName = Application.m_strAppName;
+            strAppName = papplication->m_strAppName;
 
          }
 
@@ -120,7 +120,7 @@ namespace hi5
 
          property_set & setDoc = m_pdocAuth->form_document_property_set();
 
-         setDoc["application_name"] = Context.http().get(strUrl,set);
+         setDoc["application_name"] = pcontext->http().get(strUrl,set);
 
          setDoc["authorization_link"] = m_strAuthorizationUrl;
 
@@ -138,7 +138,7 @@ namespace hi5
 
          }
 
-         if(!m_pdocAuth->on_open_document(Context.dir().matter(m_strForm)))
+         if(!m_pdocAuth->on_open_document(pcontext->dir().matter(m_strForm)))
          {
 
             return;
@@ -201,7 +201,7 @@ namespace hi5
          ensure_main_document();
 
          m_pdocAuth->get_form_data()->m_pimpl->get_property_set() = set;
-         m_pdocAuth->on_open_document(Context.dir().matter(pszMatter));
+         m_pdocAuth->on_open_document(pcontext->dir().matter(pszMatter));
          display_main_frame();
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

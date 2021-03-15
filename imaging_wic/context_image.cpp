@@ -21,10 +21,10 @@ namespace imaging_wic
    }
 
 
-   ::e_status context_image::initialize(::layered * pobjectContext)
+   ::e_status context_image::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::context_image::initialize(pobjectContext);
+      auto estatus = ::context_image::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -83,7 +83,7 @@ namespace imaging_wic
 
       bool bOk = true;
 
-      System->main_user_sync(__routine([&]()
+      psystem->main_user_sync(__routine([&]()
          {
 
             auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
@@ -181,7 +181,7 @@ namespace imaging_wic
 
             //m.
 
-            //if (!windows_load_image_from_file(pimage, stream, get_context_application()))
+            //if (!windows_load_image_from_file(pimage, stream, get_application()))
             //{
 
 
@@ -202,7 +202,7 @@ namespace imaging_wic
 
       bool bOk = false;
 
-      System->main_user_sync(__routine([&bOk]()
+      psystem->main_user_sync(__routine([&bOk]()
          {
 
 

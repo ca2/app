@@ -30,13 +30,12 @@ namespace aqua
       void common_construct();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       //virtual ::e_status initialize_rich_text();
 
-      virtual ::e_status defer_xml();
-
+      virtual ::xml::xml* _xml();
 
 
       virtual ::e_status create_audio();
@@ -51,6 +50,7 @@ namespace aqua
       inline ::aqua::audio * audio() { return m_paudio; }
 
       inline ::aqua::multimedia * multimedia() { return m_pmultimedia; }
+
 
 
    };

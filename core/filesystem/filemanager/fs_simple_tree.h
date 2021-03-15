@@ -69,7 +69,7 @@ namespace filemanager
             virtual ~tree();
 
 
-            virtual ::e_status initialize(::layered * pobjectContext) override;
+            virtual ::e_status initialize(::context_object * pcontextobject) override;
 
             void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
 

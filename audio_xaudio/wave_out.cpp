@@ -673,7 +673,7 @@ namespace multimedia
       {
       }
       //out::run_step_thread::run_step_thread(out * pout):
-      //   ::thread(pout->get_context_application())
+      //   ::thread(pout->get_application())
       //{
       //}
 

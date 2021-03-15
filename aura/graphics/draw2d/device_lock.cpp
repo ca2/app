@@ -12,7 +12,9 @@ namespace draw2d
 
 #ifdef _UWP
 
-      m_D2DMultithread = ::aura::get_system()->draw2d()->direct2d()->m_d2dMultithread.Get();
+      __pointer(::aura::system) psystem = m_psystem;
+
+      m_D2DMultithread = psystem->draw2d()->direct2d()->m_d2dMultithread.Get();
 
       m_D2DMultithread->Enter();
 

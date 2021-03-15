@@ -53,11 +53,12 @@ namespace apex
    session::session()
    {
 
+      m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
 
-      set_layer(LAYERED_APEX, this);
+      //set_layer(LAYERED_APEX, this);
 
       //create_factory < ::user::user >();
       create_factory < ::apex::session, ::apex::session >();
@@ -87,10 +88,10 @@ namespace apex
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::thread::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -107,18 +108,18 @@ namespace apex
 
       set_context_session(this);
 
-      set_context_object(this);
-
       set_context(this);
 
-      if (get_context_system() != nullptr)
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = ::apex::get_system()->m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
 
       }
 
-      m_pappCurrent                    = nullptr;
+      //m_papplicationCurrent                    = nullptr;
 
       m_bZipIsDir2                     = true;
 
@@ -126,7 +127,7 @@ namespace apex
 
       m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       return ::success;
 
@@ -301,7 +302,9 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      auto pnode = ::apex::get_system()->node();
+      __pointer(::apex::system) psystem = get_system();
+
+      auto pnode = psystem->node();
 
       if (!pnode)
       {
@@ -550,7 +553,9 @@ namespace apex
    void session::process_term()
    {
 
-      ::apex::get_system()->session_remove(m_iEdge);
+      __pointer(::apex::system) psystem = get_system();
+
+      psystem->session_remove(m_iEdge);
 
    }
 
@@ -586,7 +591,9 @@ namespace apex
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (::apex::get_system()->is_console_app())
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem->is_console_app())
       {
 
          return false;
@@ -611,10 +618,12 @@ namespace apex
       //
       //}
 
+      __pointer(::apex::system) psystem = get_system();
+
       if (pcreate->m_ecommand == command_protocol)
       {
 
-         m_pappCurrent->do_request(pcreate);
+         m_papplicationCurrent->do_request(pcreate);
 
          return;
 
@@ -667,17 +676,25 @@ namespace apex
       //}
 
       bool bCreate = true;
+
       if (pcreate->m_pcommandline->m_strApp.is_empty())
       {
+
          if (!pcreate->m_pcommandline->m_varFile.is_empty())
          {
+            
             if (!open_by_file_extension(pcreate))
             {
-               if (m_pappCurrent != nullptr)
+               
+               if (m_papplicationCurrent != nullptr)
                {
-                  App(m_pappCurrent).request({pcreate});
+                  
+                  m_papplicationCurrent->request({pcreate});
+
                }
+
             }
+
          }
          else if (m_bShowPlatform)
          {
@@ -747,11 +764,11 @@ namespace apex
             if (papp == nullptr)
             {
 
-               if(::apex::get_system()->has_property("install")
-                     || ::apex::get_system()->has_property("uninstall"))
+               if(psystem->has_property("install")
+                     || psystem->has_property("uninstall"))
                {
 
-                  ::parallelization::finish(::apex::get_system());
+                  psystem->finish();
 
                }
                else
@@ -759,12 +776,12 @@ namespace apex
 
                   message_box("Could not create requested application: \"" + strApp + "\"");
 
-                  ::count c = ::apex::get_system()->payload("app").array_get_count();
+                  ::count c = psystem->payload("app").array_get_count();
 
-                  if (c == 1 && ::apex::get_system()->payload("app").at(0) == strApp)
+                  if (c == 1 && psystem->payload("app").at(0) == strApp)
                   {
 
-                     ::parallelization::finish(::apex::get_system());
+                     psystem->finish();
 
                   }
 
@@ -786,13 +803,13 @@ namespace apex
 
                }
 
-               //if (::apex::get_system()->is_true("install"))
+               //if (psystem->is_true("install"))
                if (is_true("install"))
                {
 
                   papp->do_install();
 
-                  ::apex::get_system()->finalize();
+                  psystem->finalize();
 
                }
                else
@@ -801,7 +818,7 @@ namespace apex
                   if (!papp->is_system() && !papp->is_session())
                   {
 
-                     ::apex::get_system()->merge_accumulated_on_open_file(pcreate);
+                     psystem->merge_accumulated_on_open_file(pcreate);
 
                   }
 
@@ -809,7 +826,7 @@ namespace apex
 
                }
 
-               m_pappCurrent = papp;
+               m_papplicationCurrent = papp;
 
             }
 
@@ -841,7 +858,7 @@ namespace apex
 
       return open_by_file_extension(pcreateNew);
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return get_application()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -849,7 +866,7 @@ namespace apex
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pcc);
+      //return get_application()->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -871,14 +888,16 @@ namespace apex
 
       }
 
-      string strProtocol = ::apex::get_system()->url().get_protocol(strPathName);
+      __pointer(::apex::system) psystem = get_system();
+
+      string strProtocol = psystem->url().get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = ::apex::get_system()->url().get_server(strPathName);
+         strId = psystem->url().get_server(strPathName);
 
-         string str = ::apex::get_system()->url().get_object(strPathName);
+         string str = psystem->url().get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -894,7 +913,7 @@ namespace apex
 
          __throw(todo, "filehandler");
 
-         //::apex::get_system()->filehandler().get_extension_app(straApp, strExtension);
+         //psystem->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -964,7 +983,7 @@ namespace apex
 
             handle_exception(e);
 
-            //if (!Sys(this).on_run_exception(esp))
+            //if (!get_system()->on_run_exception(esp))
             //{
 
             //   if (!App(this).on_run_exception(esp))
@@ -1285,7 +1304,7 @@ namespace apex
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction = ::apex::get_system()->ui_from_handle(oswindowCapture);
+   //   __pointer(::user::interaction) pinteraction = psystem->ui_from_handle(oswindowCapture);
 
    //   if (pinteraction.is_null())
    //   {
@@ -1735,7 +1754,7 @@ namespace apex
    //   if (m_bSystemSynchronizedScreen)
    //   {
 
-   //      return ::apex::get_system()->get_ui_workspace(pinteraction);
+   //      return psystem->get_ui_workspace(pinteraction);
 
    //   }
    //   else
@@ -1859,7 +1878,7 @@ ret:
       }
 
       // __throw(todo("interaction"));
-      //if (::apex::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
       //   bool bCreateSessionWindow = defer_create_session_frame_window();
@@ -1988,7 +2007,9 @@ ret:
 
       INFO("apex::session::init2 .1");
 
-      if (::apex::get_system()->m_bUser)
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem->m_bUser)
       {
 
          //if (!m_paccount)
@@ -2129,10 +2150,10 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
+      if (::is_set(m_papplicationCurrent))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         m_papplicationCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -2169,10 +2190,10 @@ namespace apex
 
 
 
-   //::e_status session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::context_object * pcontextobject)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pobjectContext);
+   //   auto estatus = ::apex::session::initialize(pcontextobject);
 
    //   if (!estatus)
    //   {
@@ -2233,7 +2254,7 @@ namespace apex
    void session::request_topic_file(::payload& varQuery)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       request_file(psession->m_varTopicFile, varQuery);
 
@@ -2243,7 +2264,7 @@ namespace apex
    void session::request_topic_file()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       request_file(psession->m_varTopicFile);
 
@@ -2253,9 +2274,9 @@ namespace apex
    __pointer(::apex::application) session::get_current_application()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      return psession->m_pappCurrent;
+      return psession->m_papplicationCurrent;
 
    }
 
@@ -2345,7 +2366,7 @@ namespace apex
    void session::check_topic_file_change()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
       {
@@ -2367,7 +2388,7 @@ namespace apex
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::apex::application & app = App(pmainframe->get_context_application());
+   //   ::apex::application & app = App(pmainframe->get_application());
 
    //   string strAppName = app.m_strAppName;
 
@@ -2437,7 +2458,7 @@ namespace apex
 
 
 
-   __pointer(::apex::session) session::get_context_session()
+   __pointer(::apex::session) session::get_session()
    {
 
       return this;
@@ -2515,7 +2536,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return ::apex::get_system()->draw2d()->get_cursor(m_ecursorDefault);
+   //   return psystem->draw2d()->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -2534,10 +2555,10 @@ namespace apex
 
    //   ::apex::session * psession = nullptr;
 
-   //   if(::apex::get_system()->m_pbergedgemap == nullptr)
+   //   if(psystem->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!::apex::get_system()->m_pbergedgemap->lookup(0,psession))
+   //   if(!psystem->m_pbergedgemap->lookup(0,psession))
    //   {
    //      return nullptr;
    //   }
@@ -2714,7 +2735,7 @@ namespace apex
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = ::apex::get_system()->url().url_decode(str);
+      //      str = psystem->url().url_decode(str);
 
       //   }
 
@@ -2727,10 +2748,18 @@ namespace apex
    }
 
 
-   ::user::interaction * session::get_host_window()
+   ::user::primitive* session::get_user_interaction_host()
    {
-      
-      return __user_interaction(m_puiHost); 
+
+      return m_puserprimitiveHost;
+
+   }
+
+
+   ::user::primitive * session::get_host_primitive()
+   {
+
+      return m_puserprimitiveHost;
    
    }
 

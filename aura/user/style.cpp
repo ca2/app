@@ -18,16 +18,15 @@ namespace user
    }
 
 
-   style::style(::layered * pobjectContext) :
-      ::object(pobjectContext)
-   {
+   //style::style(::context_object * pcontextobject) :
+   //{
 
-      m_puserstyle = this;
-      m_pgraphics = nullptr;
+   //   m_puserstyle = this;
+   //   m_pgraphics = nullptr;
 
-      default_style_construct();
+   //   default_style_construct();
 
-   }
+   //}
 
 
    style::~style()
@@ -41,7 +40,28 @@ namespace user
 
       m_iUpdate = 0;
 
-      m_pfont = ::write_text::point_font(os_font_name(e_font_sans_ui), 12.0);
+   }
+
+
+   ::e_status style::initialize(::context_object* pcontextobject)
+   {
+
+      auto estatus = style_base::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto psystem = get_system();
+
+      auto pnode = psystem->node();
+
+      m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans_ui), 12.0);
+
+      return estatus;
 
    }
 
@@ -248,7 +268,7 @@ namespace user
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
+      if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -994,7 +1014,7 @@ namespace user
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __new(style(get_object()));
+   //         spuserstyle = __new(style(this));
 
    //      }
 

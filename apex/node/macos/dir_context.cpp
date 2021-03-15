@@ -32,10 +32,10 @@ namespace macos
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
       
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -112,7 +112,7 @@ namespace macos
 //
 //      string strPath = ::dir::appdata() / "configuration\\directory.xml";
 //
-//      string strDocument = Context.file().as_string(strPath);
+//      string strDocument = get_context()->file().as_string(strPath);
 //
 //      if(doc.load(strDocument))
 //      {
@@ -218,7 +218,7 @@ namespace macos
 
             ::file::listing dira;
 
-            Application.dir().ls_dir(dira, listing.m_pathFinal);
+            get_application()->dir().ls_dir(dira, listing.m_pathFinal);
 
             for(i32 i = 0; i < dira.get_count(); i++)
             {
@@ -238,7 +238,7 @@ namespace macos
 
                }
 
-               Application.dir().ls(listing);
+               get_application()->dir().ls(listing);
 
             }
 
@@ -328,7 +328,7 @@ namespace macos
 
       ::file::path path;
 
-      path = Context.defer_process_path(pathParam);
+      path = get_context()->defer_process_path(pathParam);
 
       if(::dir_context::is(path))
       {
@@ -500,7 +500,7 @@ namespace macos
                   try
                   {
 
-                     Context.file().del(str);
+                     get_context()->file().del(str);
 
                   }
                   catch(...)
@@ -515,7 +515,7 @@ namespace macos
                   try
                   {
 
-                     Context.file().del(str);
+                     get_context()->file().del(str);
 
                   }
                   catch(...)
@@ -717,7 +717,7 @@ try1:
 //      return path(userfolder(papp, "data"), pcsz, lpcsz2);
 //   }
 
-//   ::file::path dir_context::userfolder(::layered * pobjectContext)
+//   ::file::path dir_context::userfolder(::context_object * pcontextobject)
 //   {
 //
 //      return App(papp).dir_context().userfolder();
@@ -725,7 +725,7 @@ try1:
 //   }
 
 
-//   ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
+//   ::file::path dir_context::default_os_user_path_prefix(::context_object * pcontextobject)
 //   {
 //
 //      return ::getlogin();
@@ -814,7 +814,7 @@ try1:
 
       ::file::listing stra;
 
-      Application.dir().ls_dir(stra, pszDir);
+      get_application()->dir().ls_dir(stra, pszDir);
 
       return stra.has_elements();
 
@@ -1080,7 +1080,7 @@ try1:
 
          ::file::listing patha;
 
-         Application.dir().ls(patha, psz);
+         get_application()->dir().ls(patha, psz);
 
          for(auto & path : patha)
          {
@@ -1262,24 +1262,24 @@ try1:
 //        return appdata() / lpcszPrefix;
 //    }
 //
-//    ::file::path dir_context::appdata(::layered * pobjectContext)
+//    ::file::path dir_context::appdata(::context_object * pcontextobject)
 //    {
 //        return userfolder(pobject) / "appdata";
 //    }
 //
-//    ::file::path dir_context::userdata(::layered * pobjectContext)
+//    ::file::path dir_context::userdata(::context_object * pcontextobject)
 //    {
 //        return userfolder(pobject) / "data";
 //    }
 
-//    ::file::path dir_context::userfolder(::layered * pobjectContext)
+//    ::file::path dir_context::userfolder(::context_object * pcontextobject)
 //    {
 //
 //
 //
 //    }
 //
-//    ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
+//    ::file::path dir_context::default_os_user_path_prefix(::context_object * pcontextobject)
 //    {
 //        UNREFERENCED_PARAMETER(pobject);
 //        unichar buf[MAX_PATH];

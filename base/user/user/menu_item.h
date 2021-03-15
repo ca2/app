@@ -17,7 +17,7 @@ namespace user
       i32                              m_iFullHeightItemCount;
       i32                              m_iSeparatorCount;
       __pointer(::user::interaction)   m_puserinteraction;
-      __pointer(::user::interaction)   m_puiHost;
+      __pointer(::user::interaction)   m_puserinteractionHost;
       bool                             m_bPopup;
       bool                             m_bBreak;
       i32                              m_iLevel;

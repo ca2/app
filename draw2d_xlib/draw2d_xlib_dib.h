@@ -33,7 +33,7 @@ namespace draw2d_xlib
 
 
 
-      image(::layered * pobjectContext);
+      image(::context_object * pcontextobject);
       virtual void construct(i32 cx, i32 cy);
       virtual ~image();
 
@@ -70,8 +70,8 @@ namespace draw2d_xlib
       using image::to;
       bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 size, point_i32 ptSrc);
 
-      virtual bool update_window(::window * pwnd, ::message::message * pmessage);
-      virtual bool print_window(::window * pwnd, ::message::message * pmessage);
+      virtual bool update_window(::window * puserinteraction, ::message::message * pmessage);
+      virtual bool print_window(::window * puserinteraction, ::message::message * pmessage);
 
       void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
 

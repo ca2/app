@@ -22,9 +22,9 @@ namespace data
       item();
       virtual ~item();
 
-      virtual string data_item_get_text(::object * pobject) const;
-      virtual index data_item_get_image(::object* pobject) const;
-      virtual ::image_list * data_item_get_image_list(::object* pobject) const;
+      virtual string data_item_get_text(::context_object * pcontextobject) const;
+      virtual index data_item_get_image(::context_object* pcontextobject) const;
+      virtual ::image_list * data_item_get_image_list(::context_object* pcontextobject) const;
 
 
       virtual void data_item_on_fill_children(::data::tree_item * pitem);

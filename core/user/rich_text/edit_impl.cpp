@@ -23,10 +23,10 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize(::layered * pobjectContext)
+      ::e_status edit_impl::initialize(::context_object * pcontextobject)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pobjectContext);
+         auto estatus = ::user::rich_text::edit::initialize(pcontextobject);
 
          if (!estatus)
          {
@@ -142,7 +142,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
 
 
@@ -238,7 +238,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -308,7 +308,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto item = hit_test(pmouse);
 
@@ -392,7 +392,7 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -523,7 +523,7 @@ namespace user
       void edit_impl::_001OnMouseLeave(::message::message * pmessage)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -1011,7 +1011,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1165,7 +1165,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1231,7 +1231,7 @@ namespace user
 
          ::message::key & key = *pkey;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
                || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
@@ -1339,7 +1339,7 @@ namespace user
 
             string strChar;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             if (pkey->m_ekey == ::user::e_key_s)
             {

@@ -300,7 +300,9 @@ namespace net
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-      ::apex::get_system()->message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
+      auto psystem = get_system();
+
+      psystem->message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 
 	   return S_OK;
    }
@@ -314,7 +316,9 @@ namespace net
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-      ::apex::get_system()->message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
+      auto psystem = get_system();
+
+      psystem->message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
 
 	   return S_OK;
    }

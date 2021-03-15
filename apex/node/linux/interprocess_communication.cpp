@@ -378,7 +378,7 @@ namespace linux
 
          m.set_size(10000000);
 
-         while(thread_get_run())
+         while(task_get_run())
          {
 
             m_bRunning = true;

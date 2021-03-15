@@ -116,9 +116,9 @@ bool context::is_system() const
    if(is_system())
    {
 
-      get_context_session()->set_context_object(get_context_system());
+      get_session()->set_object(get_context_system());
 
-      estatus = get_context_session()->initialize_context();
+      estatus = get_session()->initialize_context();
 
       if (!estatus)
       {
@@ -324,7 +324,7 @@ string context::defer_get_file_title(string strParam)
 
             __keep_thread_flag(id_thread_resolve_alias);
 
-            if (!os_resolve_alias(path, path,::is_set(get_context_application())? Application.m_puiCurrent: nullptr))
+            if (!os_resolve_alias(path, path,::is_set(get_application())? papplication->m_puiCurrent: nullptr))
             {
 
                break;
@@ -413,7 +413,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "appconfig://"))
    {
 
-      path = Application.appconfig_folder() / path;
+      path = papplication->appconfig_folder() / path;
 
    }
    else if (::str::begins_eat_ci(path, "download://"))
@@ -846,16 +846,16 @@ string context::get_schema()
 void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
 {
 
-   if (get_context_application())
+   if (get_application())
    {
 
-      get_context_application()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      get_application()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
-   else if (get_context_session())
+   else if (get_session())
    {
 
-      get_context_session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      get_session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
    else if (get_context_system())
@@ -871,16 +871,16 @@ void context::locale_schema_matter(string_array & stra, const string_array & str
 string context::get_locale_schema_dir()
 {
 
-   if (get_context_application())
+   if (get_application())
    {
 
-      return get_context_application()->get_locale_schema_dir();
+      return get_application()->get_locale_schema_dir();
 
    }
-   else if (get_context_session())
+   else if (get_session())
    {
 
-      return get_context_session()->get_locale_schema_dir();
+      return get_session()->get_locale_schema_dir();
 
    }
    else if (get_context_system())
@@ -1060,7 +1060,7 @@ void context::add_matter_locator(::aura::application * papp)
 ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(Context.file().get_reader(varFile));
+   binary_stream reader(pcontext->file().get_reader(varFile));
 
    read(reader);
 
@@ -1072,7 +1072,7 @@ void context::add_matter_locator(::aura::application * papp)
 ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
-   binary_stream writer(Context.file().get_writer(varFile));
+   binary_stream writer(pcontext->file().get_writer(varFile));
 
    write(writer);
 
@@ -1086,9 +1086,9 @@ void context::finalize()
 
    ::object::finalize();
 
-   m_pappContext.release();
+   m_papplication.release();
 
-   m_psessionContext.release();
+   m_psession.release();
 
    m_psystemContext.release();
 

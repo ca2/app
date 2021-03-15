@@ -641,7 +641,7 @@ namespace windows
    //   return dw;
    //}
 
-   //BOOL shell::_GetClassInfo(HINSTANCE hInstance , const unichar * pClassName, LPWNDCLASSW pwndclass)
+   //BOOL shell::_GetClassInfo(HINSTANCE hInstance , const unichar * pClassName, LPWNDCLASSW puserinteractionclass)
 
    //{
    //   WNDCLASS wndclass;
@@ -666,23 +666,23 @@ namespace windows
 
    //      return false;
 
-   //   pwndclass->style = wndclass.style;
+   //   puserinteractionclass->style = wndclass.style;
 
-   //   pwndclass->lpfnWndProc = wndclass.lpfnWndProc;
+   //   puserinteractionclass->lpfnWndProc = wndclass.lpfnWndProc;
 
-   //   pwndclass->lpfnWndProc = wndclass.lpfnWndProc;
+   //   puserinteractionclass->lpfnWndProc = wndclass.lpfnWndProc;
 
-   //   pwndclass->cbClsExtra = wndclass.cbClsExtra;
+   //   puserinteractionclass->cbClsExtra = wndclass.cbClsExtra;
 
-   //   pwndclass->cbWndExtra = wndclass.cbWndExtra;
+   //   puserinteractionclass->cbWndExtra = wndclass.cbWndExtra;
 
-   //   pwndclass->hInstance = wndclass.hInstance;
+   //   puserinteractionclass->hInstance = wndclass.hInstance;
 
-   //   pwndclass->hIcon = wndclass.hIcon;
+   //   puserinteractionclass->hIcon = wndclass.hIcon;
 
-   //   pwndclass->hCursor = wndclass.hCursor;
+   //   puserinteractionclass->hCursor = wndclass.hCursor;
 
-   //   pwndclass->hbrBackground = wndclass.hbrBackground;
+   //   puserinteractionclass->hbrBackground = wndclass.hbrBackground;
 
 
    //   /*   if(((::u32) wndclass) >> 16 == 0)
@@ -700,48 +700,48 @@ namespace windows
    //   string strMenuName;*/
    //   //strMenuName = wndclass->pszMenuName;
 
-   //   pwndclass->pszMenuName = (const unichar *) wndclass.pszMenuName;
+   //   puserinteractionclass->pszMenuName = (const unichar *) wndclass.pszMenuName;
 
 
-   //   pwndclass->pszClassName = (const unichar *) wndclass.pszClassName;
+   //   puserinteractionclass->pszClassName = (const unichar *) wndclass.pszClassName;
 
 
    //   return true;
 
    //}
    //ATOM shell::_RegisterClass(
-   //   const WNDCLASSW *pwndclass)
+   //   const WNDCLASSW *puserinteractionclass)
 
    //{
    //   WNDCLASS wndclass;
 
-   //   wndclass.style = pwndclass->style;
+   //   wndclass.style = puserinteractionclass->style;
 
-   //   wndclass.pfnWndProc = pwndclass->lpfnWndProc;
+   //   wndclass.pfnWndProc = puserinteractionclass->lpfnWndProc;
 
-   //   wndclass.pfnWndProc = pwndclass->lpfnWndProc;
+   //   wndclass.pfnWndProc = puserinteractionclass->lpfnWndProc;
 
-   //   wndclass.cbClsExtra = pwndclass->cbClsExtra;
+   //   wndclass.cbClsExtra = puserinteractionclass->cbClsExtra;
 
-   //   wndclass.cbWndExtra = pwndclass->cbWndExtra;
+   //   wndclass.cbWndExtra = puserinteractionclass->cbWndExtra;
 
-   //   wndclass.hInstance = pwndclass->hInstance;
+   //   wndclass.hInstance = puserinteractionclass->hInstance;
 
-   //   wndclass.hIcon = pwndclass->hIcon;
+   //   wndclass.hIcon = puserinteractionclass->hIcon;
 
-   //   wndclass.hCursor = pwndclass->hCursor;
+   //   wndclass.hCursor = puserinteractionclass->hCursor;
 
-   //   wndclass.hbrBackground = pwndclass->hbrBackground;
+   //   wndclass.hbrBackground = puserinteractionclass->hbrBackground;
 
 
    //   string strMenuName;
-   //   strMenuName = pwndclass->pszMenuName;
+   //   strMenuName = puserinteractionclass->pszMenuName;
 
    //   wndclass.pszMenuName = strMenuName;
 
 
    //   string strClassName;
-   //   strClassName = pwndclass->pszClassName;
+   //   strClassName = puserinteractionclass->pszClassName;
 
    //   wndclass.pszClassName = strClassName;
 

@@ -12,7 +12,7 @@ namespace sockets
    public:
 
 
-      sip_tcp_client_socket(base_socket_handler& );
+      sip_tcp_client_socket();
 
 
       void OnRawData(char *, size_t);

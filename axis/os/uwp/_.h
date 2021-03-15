@@ -28,11 +28,11 @@ CLASS_DECL_AXIS int_bool main_initialize();
 CLASS_DECL_AXIS int_bool main_finalize();
 
 
-CLASS_DECL_AXIS void set_main_hthread(hthread_t hthread);
-CLASS_DECL_AXIS void set_main_ithread(ithread_t ithread);
+CLASS_DECL_AXIS void set_main_hthread(htask_t hthread);
+CLASS_DECL_AXIS void set_main_ithread(itask_t itask);
 
 
-CLASS_DECL_AXIS hthread_t get_main_hthread();
+CLASS_DECL_AXIS htask_t get_main_hthread();
 CLASS_DECL_AXIS ::u32 get_main_ithread();
 
 CLASS_DECL_AXIS oswindow get_focus();

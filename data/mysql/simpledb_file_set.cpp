@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   file_set::file_set(::layered * pobjectContext) :
+   file_set::file_set(::context_object * pcontextobject) :
       ::object(pobject),
       ::file::set_pointer(e_create)
    {

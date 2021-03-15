@@ -45,10 +45,12 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   if (Application.m_puiMain1.is_null())
+   auto papplication = get_application();
+
+   if (papplication->m_puserinteractionMain.is_null())
    {
 
-      Application.m_puiMain1 = this;
+      papplication->__refer(papplication->m_puserinteractionMain, this);
 
    }
 
@@ -63,11 +65,11 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
    else
    {
 
-      m_bWindowFrame = !Application.is_true("client_only");
+      m_bWindowFrame = !papplication->is_true("client_only");
 
    }
 
-   if (Application.is_true("opaque"))
+   if (papplication->is_true("opaque"))
    {
 
       m_bExplicitTranslucency = true;

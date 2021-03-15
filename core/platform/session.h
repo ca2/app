@@ -17,7 +17,7 @@ namespace core
       void common_construct();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       inline ::core::user* user() { return m_puser ? m_puser->m_pcoreuser : nullptr; }

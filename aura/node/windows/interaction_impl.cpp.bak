@@ -278,7 +278,7 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext) :
+   interaction_impl::interaction_impl(::object * pobject) :
       ::object(pobject)
    {
 

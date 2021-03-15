@@ -589,7 +589,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

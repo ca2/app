@@ -61,8 +61,8 @@ namespace sockets
 
 
 
-      http_client_socket(base_socket_handler&);
-      http_client_socket(base_socket_handler&,const string & url_in);
+      http_client_socket();
+      http_client_socket(const string & url_in);
       virtual ~http_client_socket();
 
 
@@ -151,7 +151,8 @@ namespace http
       __pointer(::sockets::http_client_socket)     m_psocket;
 
 
-      session(::layered * pobjectContext);
+      // session(::object* pobject);
+      session();
       virtual ~session();
 
 

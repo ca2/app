@@ -28,7 +28,7 @@ namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(base_socket_handler& h,int type) : stream_socket(h)
+   SctpSocket::SctpSocket(int type) : stream_socket(h)
       ,m_type(type)
       ,m_buf(new char[SCTP_BUFSIZE_READ])
    {
@@ -308,7 +308,7 @@ namespace sockets
       socket *p = create();
       p -> attach(n);
       p -> SetDeleteByHandler();
-      Handler().add(p);
+      socket_handler()->add(p);
       return n;
    }
 

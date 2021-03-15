@@ -3,7 +3,7 @@
 namespace user
 {
 
-   button::button(::layered * pobjectContext) :
+   button::button(::context_object * pcontextobject) :
       object(pobject),
       ::user::button(pobject),
       ::experience::button(pobject),

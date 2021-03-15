@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),
@@ -80,7 +80,7 @@ namespace filehandler
 
       }
 
-      Application.filehandler()->m_ppaneview = this;
+      papplication->filehandler()->m_ppaneview = this;
 
       add_tab("New", impact_new);
 
@@ -106,7 +106,7 @@ namespace filehandler
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      //         __pointer(application) papp =  (( (get_parent_frame()))->get_context_application());
+      //         __pointer(application) papp =  (( (get_parent_frame()))->get_application());
 
       string strFile = pimpactdata->m_id;
 
@@ -128,7 +128,7 @@ namespace filehandler
       {
       case impact_new:
       {
-         /*               __pointer(::create) pcreate(get_object());
+         /*               __pointer(::create) pcreate(this);
          pcreate->m_bMakeVisible = true;
          pcreate->m_puserinteractionParent = this;
          rtprxsp(::document) pdocument = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->do_request(pcreate));

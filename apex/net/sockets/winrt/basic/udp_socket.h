@@ -61,7 +61,7 @@ namespace sockets
       \param h base_socket_handler context_object
       \param ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
       \param ipv6 'true' if this is an ipv6 socket */
-      udp_socket(base_socket_handler& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
+      udp_socket(int ibufsz = 16384,bool ipv6 = false, int retries = 0);
       ~udp_socket();
 
       /** Called when incoming data has been received.

@@ -14,7 +14,7 @@ namespace sip
       http::form m_form;
 
 
-      request(::layered * pobjectContext);
+      request(::context_object * pcontextobject);
       request(const request& src);
       ~request();
 

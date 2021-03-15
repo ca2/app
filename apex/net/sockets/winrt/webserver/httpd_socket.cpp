@@ -10,8 +10,8 @@ namespace sockets
 
 
 
-   httpd_socket::httpd_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   httpd_socket::httpd_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),

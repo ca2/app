@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      document(::layered * pobjectContext);
+      document(::context_object * pcontextobject);
 	   virtual ~document();
 
       

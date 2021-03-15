@@ -64,7 +64,7 @@ namespace install
    }
 
 
-   plugin::plugin(::layered * pobjectContext) :
+   plugin::plugin(::context_object * pcontextobject) :
       ::object(pobject),
       ::simple_ui::style(pobject),
       ::aura::session(pobject),
@@ -139,7 +139,7 @@ namespace install
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
-      m_strLoginRequestingServer = System->url().get_server(m_phost->get_host_location_url());
+      m_strLoginRequestingServer = psystem->url().get_server(m_phost->get_host_location_url());
 
       return true;
 
@@ -186,7 +186,7 @@ namespace install
             try
             {
 
-               m_phost->m_bInstalling = System->install().is_installing_ca2();
+               m_phost->m_bInstalling = psystem->install().is_installing_ca2();
 
             }
             catch(...)
@@ -205,7 +205,7 @@ namespace install
          try
          {
 
-            m_phost->m_bInstalling = System->install().is_installing_ca2();
+            m_phost->m_bInstalling = psystem->install().is_installing_ca2();
 
          }
          catch(...)
@@ -287,7 +287,7 @@ namespace install
             try
             {
 
-               if (System->install().is_installing_ca2())
+               if (psystem->install().is_installing_ca2())
                {
 
                   m_millisLastOk= ::millis::now();
@@ -375,7 +375,7 @@ namespace install
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(::layered * pobjectContext) :
+   plugin::thread_start_ca2::thread_start_ca2(::context_object * pcontextobject) :
       ::object(pobject),
       thread(pobject)
    {
@@ -390,7 +390,7 @@ namespace install
    {
 
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          m_pplugin->thread_start_ca2_on_idle();
@@ -407,7 +407,7 @@ namespace install
    bool plugin::native_launch()
    {
 
-      m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+      m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
 
       property_set set;
 
@@ -453,18 +453,18 @@ namespace install
 
       bool bTimedOut = false;
 
-      u32 dwExitCode = System->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
+      u32 dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {
 
          //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
 
-         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papplication->..";
 
          //m_bNativeLaunchFail = true;
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
 
          m_bNativeLaunchFail = false;
 
@@ -474,7 +474,7 @@ namespace install
 
          //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
 
          m_bNativeLaunchFail = false;
 
@@ -486,7 +486,7 @@ namespace install
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papplication->..";
 
          m_bNativeLaunchFail = true;
 
@@ -507,7 +507,7 @@ namespace install
 
       //   string strPassword;
 
-      //   string str = ::account::get_cred(get_context_application(),strUsername,strPassword,"ca2");
+      //   string str = ::account::get_cred(get_application(),strUsername,strPassword,"ca2");
 
       //   if(strUsername.has_char() && strPassword.has_char() && str == "ok")
       //   {
@@ -532,7 +532,7 @@ namespace install
       if(m_bCa2Login || m_bCa2Logout)
          return;
 
-      string strScript = System->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
+      string strScript = psystem->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       //if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
       if(!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout"))
@@ -585,7 +585,7 @@ namespace install
 
          property_set set;
 
-         set.parse_url_query(System->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_url_query(psystem->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          string strUrl(set["ruri"]);
 
@@ -596,7 +596,7 @@ namespace install
 
          }
 
-         System->url().set_param(strUrl,strUrl,"sessid",psession->account()->get_user()->get_sessid(System->url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
+         psystem->url().set_param(strUrl,strUrl,"sessid",psession->account()->get_user()->get_sessid(psystem->url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
          m_phost->open_link(strUrl, "");
 
@@ -618,7 +618,7 @@ namespace install
 
          property_set set;
 
-         set.parse_url_query(System->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_url_query(psystem->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          //ca2logout(set);
 
@@ -636,7 +636,7 @@ namespace install
 
       }
 
-      if(System->install().is_installing_ca2())
+      if(psystem->install().is_installing_ca2())
       {
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "";
@@ -663,10 +663,10 @@ namespace install
 
       }
 
-      System->install().update_ca2_installed(true);
+      psystem->install().update_ca2_installed(true);
 
 
-      if(System->install().is_ca2_installed())
+      if(psystem->install().is_ca2_installed())
       {
 
          if(!m_bPluginTypeTested)
@@ -686,7 +686,7 @@ namespace install
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-                  Context.http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+                  pcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
 
                   if(::http::status_succeeded(set["get_status"]))
                      break;
@@ -791,7 +791,7 @@ namespace install
          if(lpnodeVersion == nullptr)
             goto run_install;
 
-         string strBuild = System->install().get_latest_build_number(nullptr);
+         string strBuild = psystem->install().get_latest_build_number(nullptr);
 
          ::xml::node * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
@@ -837,8 +837,8 @@ run_install:
 
 
 
-      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System->install().is_ca2_installed())
-      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System->install().is_ca2_installed())
+      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
          //::u32 dwTime3= ::millis::now();
 
@@ -871,7 +871,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -888,7 +888,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -906,7 +906,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_kill_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_kill_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -923,7 +923,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_set_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_set_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -956,7 +956,7 @@ run_install:
 
       }
 
-      System->install().update_ca2_installed();
+      psystem->install().update_ca2_installed();
 
       if(!m_phost->m_pbasecomposer->m_bSendActivationState)
       {
@@ -1015,7 +1015,7 @@ run_install:
          //::output_debug_string("m_bLogin");
          //get_login().draw(pgraphics);
       }
-      else if (System->install().is_installing_ca2())
+      else if (psystem->install().is_installing_ca2())
       {
 
          bInstallingCa2 = true;
@@ -1025,7 +1025,7 @@ run_install:
          m_bPendingRestartCa2 = true;
 
       }
-      else if (!System->install().is_ca2_installed())
+      else if (!psystem->install().is_ca2_installed())
       {
 
          m_bPendingRestartCa2 = true;
@@ -1108,8 +1108,8 @@ run_install:
    void plugin::message_handler(::user::message * pusermessage)
    {
 
-      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System->install().is_ca2_installed())
-         //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System->install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && psystem->install().is_ca2_installed())
+         //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && psystem->install().is_ca2_installed())
       {
 
          ::hotplugin::plugin::message_handler(pusermessage);
@@ -1369,12 +1369,12 @@ run_install:
       //if(!m_bLogged && !m_bHasCred)
       // return;
 
-      if(System->install().is_installing_ca2())
+      if(psystem->install().is_installing_ca2())
          return;
 
-      string strScript = System->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
+      string strScript = psystem->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
-      if (!m_bInstalling && System->install().is_ca2_installed())
+      if (!m_bInstalling && psystem->install().is_ca2_installed())
       {
 
          xxdebug_box("on_ready", "on_ready", 0);
@@ -1406,7 +1406,7 @@ retry_get_prompt:
 
             set["raw_http"] = true;
 
-            strData = Context.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strData = pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if(strData.is_empty())
             {
@@ -1435,7 +1435,7 @@ retry_get_prompt:
 
             strPrompt.trim();
 
-            strApp = System->url().get_script(strPrompt);
+            strApp = psystem->url().get_script(strPrompt);
 
          }
          else if(::str::begins_eat_ci(strPrompt,"native_desktop_launcher"))
@@ -1550,7 +1550,7 @@ restart:
 
       property_set set;
 
-      while((str = Context.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1586,9 +1586,9 @@ restart:
       //if(m_bNativeLaunch && !m_bNativeLaunchFail)
       //{
 
-      //   System->install().update_ca2_installed();
+      //   psystem->install().update_ca2_installed();
 
-      //   if(!System->install().is_ca2_installed() || System->install().is_installing_ca2())
+      //   if(!psystem->install().is_ca2_installed() || psystem->install().is_installing_ca2())
       //   {
 
       //      m_bNativeLaunchFail = true;
@@ -1611,8 +1611,8 @@ restart:
 
       }
 
-      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System->install().is_ca2_installed())
-      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System->install().is_ca2_installed())
+      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
 
 #ifdef _UWP
@@ -1659,7 +1659,7 @@ restart:
 
 #if !defined(CUBE) && !defined(ANDROID)
 
-::hotplugin::plugin * new_hotplugin(::layered * pobjectContext)
+::hotplugin::plugin * new_hotplugin(::context_object * pcontextobject)
 {
    return new ::install::plugin(pobject);
 }

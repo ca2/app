@@ -10,8 +10,8 @@
 #include "trace.h"
 
 
-CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_ACME void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
 //CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -201,10 +201,10 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void simple_trace::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
-   __simple_tracea(pobjectContext, elevel, pszFunction, pszFile, iLine, psz);
+   __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
    //printf("%d %c %s %d %s", (i32)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
 
 }
@@ -219,7 +219,7 @@ CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
@@ -235,7 +235,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
    string strMessage;
 
-   auto pszTopicText = topic_text(pobjectContext);
+   auto pszTopicText = topic_text(pobject);
 
    if (::is_set(pszTopicText) && *pszTopicText != '\0')
    {
@@ -296,7 +296,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
@@ -312,7 +312,7 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobjectContext, enum_trace_level
 
    strMessage.FormatV(pszFormat, args);
 
-   __simple_tracea(pobjectContext, elevel, pszFunction, pszFileName, iLine, strMessage);
+   __simple_tracea(pobject, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
 

@@ -493,10 +493,6 @@ namespace user
 #include "core/user/userex/user.h"
 
 
-#undef Usr
-#define Usr(pobject) (Sess(pobject)->user()->m_pcoreuser)
-
-
 
 #include "_impl.h"
 

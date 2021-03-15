@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::matter * pobjectContext)
+   ::e_status dir_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::matter::initialize(pobjectContext);
+      auto estatus = ::matter::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -92,9 +92,9 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
 
       return ::success;
 
@@ -119,7 +119,7 @@ namespace linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(Context.file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(get_context()->file().as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -545,7 +545,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch(...)
@@ -560,7 +560,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch(...)
@@ -605,7 +605,7 @@ namespace linux
       if(bRecursive)
       {
 
-         ::file::listing straPath(::get_context());
+         ::file::listing straPath(get_context());
 
          straPath.ls(psz);
 

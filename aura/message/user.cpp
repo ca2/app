@@ -29,7 +29,7 @@ namespace message
 
 
 
-   //base::base(::layered * pobjectContext) :
+   //base::base(::context_object * pcontextobject) :
    //   ::message::message(psignal)
    //{
 
@@ -87,7 +87,9 @@ namespace message
 
 #ifdef __DEBUG
 
-      ::aura::get_system()->log().print(pcszErrorMessage);
+      __pointer(::aura::system) psystem = get_system();
+
+      psystem->log().print(pcszErrorMessage);
 
 #endif //__DEBUG
 
@@ -193,7 +195,7 @@ namespace message
       else
       {
 
-         auto psession = Session;
+         __pointer(::aura::session) psession = get_session();
 
          auto puser = psession->m_puser;
 
@@ -477,7 +479,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      //m_puserinteraction = ::aura::get_system()->ui_from_handle(reinterpret_cast<oswindow>(wparam));
+      //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
       //m_puserinteraction = nullptr;
 

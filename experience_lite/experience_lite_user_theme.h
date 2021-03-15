@@ -14,7 +14,7 @@ namespace lite
 
 
 
-      theme(::layered * pobjectContext);
+      theme(::context_object * pcontextobject);
       virtual ~theme();
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override

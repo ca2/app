@@ -22,7 +22,7 @@ namespace sockets
       bool m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
       i32 m_shutdown; ///< Shutdown status
 
-      stream_socket(base_socket_handler& );
+      stream_socket();
       virtual ~stream_socket();
 
 

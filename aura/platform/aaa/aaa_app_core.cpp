@@ -66,7 +66,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::layered * pobjectContext);
+void debug_context_object(::context_object * pcontextobject);
 
 
 #ifdef __APPLE__
@@ -500,7 +500,7 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    ::aura::get_system()->initialize(get_context_system());
 
-   //set_context_object(get_context_system());
+   //set_object(get_context_system());
 
    auto pcreate = __new(::create(get_context_system()));
 
@@ -751,7 +751,7 @@ void app_core::system_end()
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
@@ -851,7 +851,7 @@ void app_core::system_end()
 
             char szTimeMessage1[2048];
 
-            sprintf(szTimeMessage1, " Just After First Application Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
 
             if (file_length_raw(szEllapsed) > 0)
             {
@@ -1714,11 +1714,11 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      ::aura::get_system()->get_context_session()->set_context_app(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_papplicationStartup);
 //
 //      ::aura::get_system()->set_context_app(::aura::get_system()->m_papplicationStartup);
 //
-//      ::aura::get_system()->get_context_session()->set_context(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_papplicationStartup);
 //
 //      ::aura::get_system()->set_context(::aura::get_system()->m_papplicationStartup);
 //
@@ -1774,7 +1774,7 @@ bool app_core::has_aura_application_factory() const
 #endif
 
 
-__transport(::aura::application) app_core::get_new_application(::object* pobjectContext)
+__transport(::aura::application) app_core::get_new_application(::object* pobject)
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1795,7 +1795,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    }
 
-   auto estatus = papp->initialize(pobjectContext);
+   auto estatus = papp->initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -1809,7 +1809,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 }
 
 
-__transport(::aura::application) app_core::get_new_application(::object* pobjectContext, const char* pszAppId)
+__transport(::aura::application) app_core::get_new_application(::object* pobject, const char* pszAppId)
 {
 
    __pointer(::aura::application) papp;
@@ -1879,7 +1879,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
          if (plibrary)
          {
 
-            plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+            plibrary->initialize_aura_library(pobject, 0, nullptr);
 
          }
          else
@@ -1887,7 +1887,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
             //plibrary = __new(::apex::library);
 
-            //plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+            //plibrary->initialize_aura_library(pobject, 0, nullptr);
 
             string strLibrary = strAppId;
 
@@ -1909,7 +1909,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
 #ifndef _UWP
 
-               message_box("Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 
@@ -1975,7 +1975,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
       ::apex::library& library = *plibrary;
 
-      papp = library.get_new_application(::aura::get_system()->get_context_session(), strAppId);
+      papp = library.get_new_application(::aura::get_system()->get_session(), strAppId);
 
       ::output_debug_string("\n\n\n|(4)----");
       ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
@@ -2058,15 +2058,15 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    papp->m_strAppId = strAppId;
 
-   //papp->set_context_object(::aura::get_system()->get_context_session());
+   //papp->set_object(::aura::get_system()->get_session());
 
    //papp->set_context_system(get_context_system());
 
-   //papp->set_context_session(::aura::get_system()->get_context_session());
+   //papp->set_context_session(::aura::get_system()->get_session());
 
    //papp->set_context_app(papp);
 
-   //papp->set_context_thread(::aura::get_system()->get_context_session());
+   //papp->set_context_thread(::aura::get_system()->get_session());
 
    //papp->set_context(papp);
 

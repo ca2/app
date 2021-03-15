@@ -24,7 +24,7 @@ namespace ios
       dir_system();
       virtual ~dir_system();
       
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       
       //virtual void update_module_path();
       

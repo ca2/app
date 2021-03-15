@@ -61,7 +61,7 @@ namespace userex
 
          auto puser = User;
 
-         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false));
 
          m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
 
@@ -260,7 +260,7 @@ namespace userex
 
          ::rectangle_i32 rectangle;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

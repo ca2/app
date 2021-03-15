@@ -1,7 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_APEX launcher
+class CLASS_DECL_APEX launcher :
+   virtual public ::object
 {
 public:
 

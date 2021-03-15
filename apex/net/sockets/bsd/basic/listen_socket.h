@@ -29,7 +29,7 @@ namespace sockets
       /** Constructor.
       \lparam h base_socket_handler context_object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket_base(base_socket_handler& h);
+      listen_socket_base();
 
 
 
@@ -143,10 +143,7 @@ namespace sockets
       /** Constructor.
       \lparam h base_socket_handler context_object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket(base_socket_handler& h,bool use_creator = true) :
-         base_socket(h),
-         socket(h),
-         listen_socket_base(h),
+      listen_socket(bool use_creator = true) :
          m_bHasCreate(false),
          m_creator(nullptr)
       {
@@ -154,7 +151,8 @@ namespace sockets
          if (use_creator)
          {
 
-            m_creator = new LISTENER(h);
+            //m_creator = new LISTENER(h);
+            m_creator = new LISTENER();
 
             base_socket * plistener = m_creator->new_listen_socket();
 
@@ -210,7 +208,9 @@ namespace sockets
          else
          {
 
-            pbasesocket = __new(LISTENER(Handler()));
+            pbasesocket = __new(LISTENER());
+
+            pbasesocket->m_phandler = socket_handler();
 
             m_psocket = pbasesocket.cast < LISTENER >();
 

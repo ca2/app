@@ -13,7 +13,7 @@ dialog::dialog()
 }
 
 dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent) :
-   object(puiParent->get_context_application())
+   object(puiParent->get_application())
 {
 
    m_strMatter = pszMatter;
@@ -82,9 +82,9 @@ bool dialog::show(const char * pszMatter)
 
    auto puser = User;
 
-   auto psession = Session;
+   auto psession = get_session();
 
-   m_pdocument = puser->create_form(this, this, psession->m_puiHost.get(), payload, varArgs);
+   m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host().get(), payload, varArgs);
 
    if(m_pdocument == nullptr)
    {

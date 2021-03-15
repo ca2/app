@@ -263,7 +263,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!Context.file().exists(strTempFile))
+                        if (!get_context()->file().exists(strTempFile))
                         {
 
                            break;
@@ -272,7 +272,9 @@ namespace http
 
                         string strMessage;
 
-                        strMessage = ::apex::get_system()->datetime().international().get_gmt_date_time() + " " + strTempFile;
+                        auto psystem = get_system();
+
+                        strMessage = psystem->datetime().international().get_gmt_date_time() + " " + strTempFile;
 
                         file_append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
@@ -280,7 +282,7 @@ namespace http
 
                      }
 
-                     file_pointer spfile(Context.file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(get_context()->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
                      //synchronizationlock.unlock();
 

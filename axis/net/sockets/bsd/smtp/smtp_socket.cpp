@@ -6,12 +6,7 @@ namespace sockets
 {
 
 
-   smtp_socket::smtp_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h)
+   smtp_socket::smtp_socket()
    {
 
       SetLineProtocol();
@@ -63,16 +58,17 @@ namespace sockets
          if(code == "334")
          {
             string strWord = pa.getword();
-            string strRequest = System->base64().decode(strWord);
+            auto psystem = get_system();
+            string strRequest = psystem->base64().decode(strWord);
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = System->base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               strResponse = psystem->base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = System->base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               strResponse = psystem->base64().encode(get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
                print(strResponse + "\r\n");
             }
          }
@@ -103,7 +99,8 @@ namespace sockets
          if(code.Mid(0, 1) == "3")
          {
             m_estate = state_body;
-            print("Subject:  =?utf-8?B?" + System->base64().encode(m_pemail->m_strSubject) + "?=\r\n");
+            auto psystem = get_system();
+            print("Subject:  =?utf-8?B?" + psystem->base64().encode(m_pemail->m_strSubject) + "?=\r\n");
             m_pemail->prepare_headers();
             print(m_pemail->m_strHeaders);
             print("Content-Type: text/plain; charset=\"utf-8\"\r\n");

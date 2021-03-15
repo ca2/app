@@ -14,7 +14,7 @@
 //   }
 //
 //
-//   attr_array::attr_array(::layered * pobjectContext) :
+//   attr_array::attr_array(::context_object * pcontextobject) :
 //      m_pnodeParent(nullptr),
 //      property_set(pobject)
 //   {

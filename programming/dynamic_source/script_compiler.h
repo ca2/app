@@ -34,7 +34,7 @@ namespace dynamic_source
       raw_array < __time_t >                    m_ftaLibAccess;
       raw_array < __time_t >                    m_ftaLibModified;
 
-      library(::layered * pobjectContext);
+      library(::context_object * pcontextobject);
       virtual ~library();
 
       void load_library();
@@ -97,7 +97,7 @@ namespace dynamic_source
       virtual ~script_compiler();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       void prepare_compile_and_link_environment();
 
       void run_persistent();

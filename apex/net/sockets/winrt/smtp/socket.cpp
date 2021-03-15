@@ -5,13 +5,13 @@ namespace sockets
 {
 
 
-   smtp_socket::smtp_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   smtp_socket::smtp_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
-      m_email(h.get_context_application())
+      m_email(h.get_application())
    {
       SetLineProtocol();
 

@@ -20,10 +20,10 @@ namespace ios
    }
 
 
-   ::e_status dir_system::initialize(::layered * pobjectContext)
+   ::e_status dir_system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::dir_system::initialize(pobjectContext);
+      auto estatus = ::dir_system::initialize(pcontextobject);
 
       if (!estatus)
       {

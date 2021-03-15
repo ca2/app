@@ -63,7 +63,7 @@ bool service_base::get_run_service()
 
    }
 
-   Application.finalize();
+   get_application()->finalize();
 
    estatus = __thread_term();
 

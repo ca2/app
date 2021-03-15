@@ -592,7 +592,7 @@ void os_term_windowing()
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

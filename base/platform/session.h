@@ -16,10 +16,13 @@ namespace base
       virtual ~session();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
-      inline ::base::user* user() { return m_puser ? m_puser->m_pbaseuser : nullptr; }
+      inline ::base::user* user() const;
+
+
+      inline ::base::system* get_system() const;
 
 
    };

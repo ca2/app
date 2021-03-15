@@ -9,7 +9,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(htask_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -17,13 +17,13 @@ bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswi
 mutex * g_pmutexMq;
 
 
-map < ithread_t, __pointer(message_queue) > * g_pmapMq;
+map < itask_t, __pointer(message_queue) > * g_pmapMq;
 
 
-message_queue * get_message_queue(ithread_t ithread, bool bCreate)
+message_queue * get_message_queue(itask_t itask, bool bCreate)
 {
 
-   if(ithread == 0)
+   if(itask == 0)
    {
 
       ASSERT(false);
@@ -34,7 +34,7 @@ message_queue * get_message_queue(ithread_t ithread, bool bCreate)
 
    synchronization_lock synchronizationlock(g_pmutexMq);
 
-   auto & pmessagequeue = (*g_pmapMq)[ithread];
+   auto & pmessagequeue = (*g_pmapMq)[itask];
 
    if(!pmessagequeue)
    {
@@ -44,7 +44,7 @@ message_queue * get_message_queue(ithread_t ithread, bool bCreate)
 
          pmessagequeue = __new(message_queue);
 
-         pmessagequeue->m_ithread = ithread;
+         pmessagequeue->m_itask = itask;
 
       }
 
@@ -55,7 +55,7 @@ message_queue * get_message_queue(ithread_t ithread, bool bCreate)
 }
 
 
-void clear_message_queue(ithread_t idthread)
+void clear_message_queue(itask_t idthread)
 {
 
    synchronization_lock synchronizationlock(g_pmutexMq);
@@ -87,7 +87,7 @@ void clear_message_queue(ithread_t idthread)
 ////
 ////   }
 ////
-////   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+////   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
 ////   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 ////
@@ -115,14 +115,14 @@ void clear_message_queue(ithread_t idthread)
 ////
 ////   }
 ////
-////   if(pinteraction->get_context_application() == nullptr)
+////   if(pinteraction->get_application() == nullptr)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
+////   itask_t idthread = pinteraction->get_application()->get_os_int();
 ////
 ////   message_queue * pmq = __get_mq(idthread, false);
 ////
@@ -147,7 +147,7 @@ void clear_message_queue(ithread_t idthread)
 //}
 //
 
-CLASS_DECL_ACME void mq_clear(ithread_t idthread)
+CLASS_DECL_ACME void mq_clear(itask_t idthread)
 {
 
    auto pmq = ::get_message_queue(idthread, false);
@@ -166,7 +166,7 @@ CLASS_DECL_ACME void mq_clear(ithread_t idthread)
 }
 
 
-int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wparam, lparam lparam)
+int_bool mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (id.m_etype != ::id::e_type_message)
@@ -246,7 +246,7 @@ void initialize_global_message_queue()
 
    g_pmutexMq = new mutex();
 
-   g_pmapMq = new map < ithread_t, __pointer(message_queue) >();
+   g_pmapMq = new map < itask_t, __pointer(message_queue) >();
 
 }
 

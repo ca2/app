@@ -7,7 +7,7 @@ class CLASS_DECL_APEX compress_context :
 public:
 
 
-   compress_context(::layered * pobjectContext);
+   compress_context(::context_object * pcontextobject);
    virtual ~compress_context();
 
 

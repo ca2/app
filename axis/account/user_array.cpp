@@ -5,9 +5,7 @@ namespace account
 {
 
 
-   user_array::user_array(department * pdepartment) :
-      ::object(pdepartment),
-      m_pdepartment(pdepartment)
+   user_array::user_array()
    {
 
       defer_create_mutex();
@@ -22,6 +20,24 @@ namespace account
 
    }
 
+
+   ::e_status user_array::initialize_user_array(department* pdepartment)
+   {
+
+      auto estatus = ::object::initialize(pdepartment);
+
+      if(!estatus)
+      {
+
+         return estatus;
+      
+      }
+
+      m_paccount = pdepartment;
+
+      return estatus;
+
+   }
 
    void user_array::cleanup_networking()
    {
@@ -42,9 +58,11 @@ namespace account
 
       __pointer(user) puser;
 
+      auto psystem = get_system();
+
       {
 
-         string strHost = System->url().get_server(pathUrl);
+         string strHost = psystem->url().get_server(pathUrl);
 
          auto estatus = __construct(puser);
 
@@ -83,10 +101,12 @@ namespace account
 
       }
 
+      auto pcontext = get_context();
+
       try
       {
 
-         Context.file().del(::dir::appdata()/"license_auth/00001.data");
+         pcontext->file().del(::dir::appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -97,7 +117,7 @@ namespace account
       try
       {
 
-         Context.file().del(::dir::appdata()/"license_auth/00002.data");
+         pcontext->file().del(::dir::appdata()/"license_auth/00002.data");
 
       }
       catch(...)
@@ -163,13 +183,13 @@ namespace account
 
       synchronizationlock.unlock();
 
+      __pointer(::axis::session) psession = get_session();
+
       for(auto & pair : map)
       {
 
          if(!pair.element2()->is_authenticated())
          {
-
-            auto psession = Session;
 
             psession->on_remove_user(pair.element2());
 
@@ -190,16 +210,18 @@ namespace account
    user * user_array::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
    {
 
+      __pointer(axis::session) psession = get_session();
+
       if(pathUrl.is_empty())
       {
-
-         auto psession = Session;
 
          pathUrl = psession->account()->get_default_url();
 
       }
 
-      string strHost = System->url().get_server(pathUrl);
+      auto psystem = get_system();
+
+      string strHost = psystem->url().get_server(pathUrl);
 
       {
 
@@ -226,7 +248,9 @@ namespace account
    bool user_array::is_authenticated(::file::path pathUrl, bool bInteractive)
    {
 
-      auto puser = Application.get_user(pathUrl, true, bInteractive);
+      __pointer(::axis::application) papplication = get_application();
+
+      auto puser = papplication->get_user(pathUrl, true, bInteractive);
 
       if(::is_null(puser))
       {

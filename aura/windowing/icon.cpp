@@ -58,7 +58,9 @@ namespace windowing
    ::e_status icon::load_matter(string strMatter)
    {
 
-      string strPath = Context.dir().matter(strMatter);
+      auto pcontext = get_context();
+
+      string strPath = pcontext->dir().matter(strMatter);
 
       if (!load_file(strPath))
       {

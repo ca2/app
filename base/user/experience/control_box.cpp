@@ -88,7 +88,7 @@ namespace experience
 
          m_bDrag = false;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -232,7 +232,7 @@ namespace experience
 
          ::point_i32 pointCursor;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

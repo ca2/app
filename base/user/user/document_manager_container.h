@@ -25,7 +25,7 @@ namespace user
 
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void add_document_template(::user::impact_system* ptemplate);
 

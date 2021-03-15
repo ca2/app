@@ -33,7 +33,7 @@ namespace ftp
    }
 
    file_status::file_status(const file_status& src) :
-      ::object(src.get_context_object()),
+      ::object(src.this),
       m_strName(src.m_strName),
       m_strPath(src.m_strPath),
       m_bCwdEnabled(src.m_bCwdEnabled),
@@ -57,10 +57,10 @@ namespace ftp
    }
 
    
-   ::e_status file_status::initialize(::layered * pobjectContext)
+   ::e_status file_status::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {

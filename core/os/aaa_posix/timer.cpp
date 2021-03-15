@@ -146,7 +146,7 @@
 //
 //   }
 ////
-////   if (!thread_get_run())
+////   if (!task_get_run())
 ////   {
 ////
 ////      return false;

@@ -19,9 +19,9 @@ namespace xml
       __pointer(::xml::node)         m_pnode;
 
 
-      input_tree(::layered * pobjectContext, const string & strXml);
-      input_tree(::layered * pobjectContext);
-      input_tree(::layered * pobjectContext, tree_schema * pschema);
+      input_tree();
+      input_tree(const string & strXml);
+      input_tree(tree_schema * pschema);
       virtual ~input_tree();
 
 

@@ -24,7 +24,7 @@ namespace fs
    bool native::has_subdir(const ::file::path & path)
    {
 
-      return Context.dir().has_subdir(path);
+      return get_context()->dir().has_subdir(path);
 
    }
 
@@ -32,7 +32,7 @@ namespace fs
    ::file::listing & native::ls(::file::listing & listing)
    {
 
-      Context.dir().ls(listing);
+      get_context()->dir().ls(listing);
 
       return listing;
 
@@ -49,7 +49,7 @@ namespace fs
 
       }
 
-      if(Context.os_is_alias(path))
+      if(get_context()->os_is_alias(path))
       {
 
          return true;
@@ -65,7 +65,7 @@ namespace fs
    ::file::listing & native::ls_relative_name(::file::listing & listing)
    {
 
-      Context.dir().ls_relative_name(listing);
+      get_context()->dir().ls_relative_name(listing);
 
       return listing;
 
@@ -76,7 +76,7 @@ namespace fs
    int native::is_dir(const ::file::path & path)
    {
 
-      return Context.dir().is(path) ? 1 : 0;
+      return get_context()->dir().is(path) ? 1 : 0;
 
    }
 
@@ -84,11 +84,11 @@ namespace fs
    ::file::listing & native::root_ones(::file::listing & listing)
    {
 
-      Context.dir().root_ones(listing);
+      get_context()->dir().root_ones(listing);
 
-      ::file::path pathDropbox = Context.defer_process_path("dropbox://");
+      ::file::path pathDropbox = get_context()->defer_process_path("dropbox://");
 
-      if(pathDropbox.has_char() && Context.dir().is(pathDropbox))
+      if(pathDropbox.has_char() && get_context()->dir().is(pathDropbox))
       {
 
          ::file::path & path = listing.insert_at(0, "dropbox://");
@@ -97,9 +97,9 @@ namespace fs
 
       }
 
-      ::file::path pathOneDrive = Context.defer_process_path("onedrive://");
+      ::file::path pathOneDrive = get_context()->defer_process_path("onedrive://");
       
-      if(pathOneDrive.has_char() && Context.dir().is(pathOneDrive))
+      if(pathOneDrive.has_char() && get_context()->dir().is(pathOneDrive))
       {
          
          ::file::path & path = listing.insert_at(0, "onedrive://");
@@ -180,7 +180,7 @@ namespace fs
    //void native::get_ascendants_path(const ::file::path & pszPath,::file::patha & stra)
    //{
 
-   //   return Context.file().get_ascendants_path(pszPath, stra);
+   //   return get_context()->file().get_ascendants_path(pszPath, stra);
 
    //}
 
@@ -189,7 +189,7 @@ namespace fs
 
    //{
 
-   //   return Context.file().get_ascendants_name(pcsz, straParam);
+   //   return get_context()->file().get_ascendants_name(pcsz, straParam);
 
 
    //}
@@ -203,7 +203,7 @@ namespace fs
    //   while(iCount > 0)
    //   {
 
-   //      strPath = Context.dir().name(strPath);
+   //      strPath = get_context()->dir().name(strPath);
 
    //      iCount--;
 
@@ -217,7 +217,7 @@ namespace fs
    //string native::file_name(const char * pszPath)
    //{
 
-   //   return Context.file().name_(pszPath);
+   //   return get_context()->file().name_(pszPath);
 
    //}
 
@@ -233,7 +233,7 @@ namespace fs
    bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
 
-      Context.file().move(pszDst, pszSrc);
+      get_context()->file().move(pszDst, pszSrc);
 
       return true;
 
@@ -275,7 +275,7 @@ namespace fs
    bool native::file_exists(const ::file::path & path)
    {
 
-      return Context.file().exists(path);
+      return get_context()->file().exists(path);
 
    }
 

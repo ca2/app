@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      lite_view(::layered * pobjectContext);
+      lite_view(::context_object * pcontextobject);
       virtual ~lite_view();
 
       virtual void assert_valid() const;

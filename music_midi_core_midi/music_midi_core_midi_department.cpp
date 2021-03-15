@@ -19,7 +19,7 @@ namespace music
       {
 
 
-         department::department(::layered * pobjectContext) :
+         department::department(::context_object * pcontextobject) :
             ::object(pobject),
             ::apex::department(pobject),
             ::music::midi::midi(pobject),

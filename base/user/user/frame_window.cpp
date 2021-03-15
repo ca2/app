@@ -474,7 +474,7 @@ namespace user
       if (pkey.is_set())
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_alt) && psession->is_key_pressed(::user::e_key_control))
          {
@@ -509,7 +509,7 @@ namespace user
 
                   psession->copydesk().image_to_desk(pimage1);
 
-                  Application.image().save_image(::dir::system() / "control_alt_p.png", pimage1);
+                  papplication->image().save_image(::dir::system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -535,7 +535,7 @@ namespace user
 
                   pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
-                  Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
+                  papplication->image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -609,7 +609,7 @@ namespace user
 
       // release capture if this interaction_impl has it
       if (psession->GetCapture() == get_handle())
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -715,7 +715,7 @@ namespace user
 
       /*
       // disable all windows connected to this frame (and add them to the list)
-      __pointer(::user::interaction) oswindow = System->get_desktop_window()->GetWindow(GW_CHILD);
+      __pointer(::user::interaction) oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
       {
@@ -825,7 +825,7 @@ namespace user
       //   EndModalState();
 
       //   // cause normal focus logic to kick in
-      //   if (System->get_active_ui() == this)
+      //   if (psystem->get_active_ui() == this)
       //      send_message(e_message_activate, WA_ACTIVE);
       //}
 
@@ -1451,7 +1451,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::apex::application* papp = get_context_application();
+      ::apex::application* papp = get_application();
 
       if (papp != nullptr)
       {
@@ -1557,7 +1557,7 @@ namespace user
       //}
 
       //// last but not least, pump through cast
-      //::aura::application* papp = get_context_application();
+      //::aura::application* papp = get_application();
 
       //if (papp != nullptr)
       //{
@@ -1700,7 +1700,7 @@ namespace user
       ////}
 
       ////// last but not least, pump through cast
-      ////::aura::application* papp = get_context_application();
+      ////::aura::application* papp = get_application();
 
       ////if (papp != nullptr)
       ////{
@@ -2535,7 +2535,7 @@ namespace user
 //
 //      ::u16 keyState = 0;
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
 //      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
@@ -2928,7 +2928,7 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -3051,7 +3051,7 @@ namespace user
 
       bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (bBlurBackground)
       {

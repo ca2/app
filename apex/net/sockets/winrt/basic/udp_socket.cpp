@@ -6,8 +6,8 @@ namespace sockets
 {
 
 
-   udp_socket::udp_socket(base_socket_handler& h, int ibufsz, bool ipv6, int retries) :
-      ::object(h.get_context_application()),
+   udp_socket::udp_socket(int ibufsz, bool ipv6, int retries) :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h)
       , m_ibuf(new char[ibufsz])
@@ -117,7 +117,7 @@ namespace sockets
    /** if you wish to use Send, first open a connection */
    /*   bool udp_socket::open(ipaddr_t l, port_t port)
    {
-   ipv4_address ad(get_context_application(), l, port);
+   ipv4_address ad(get_application(), l, port);
    return open(ad);
    }
    */
@@ -132,7 +132,7 @@ namespace sockets
 
    /*bool udp_socket::open(struct in6_addr& a, port_t port)
    {
-   ipv6_address ad(get_context_application(), a, port);
+   ipv6_address ad(get_application(), a, port);
    return open(ad);
    }
    */
@@ -202,7 +202,7 @@ namespace sockets
    /*   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
    {
 
-   ::net::address ad(get_context_application(), h, p);
+   ::net::address ad(get_application(), h, p);
 
    SendToBuf(ad, data, len, flags);
 
@@ -212,14 +212,14 @@ namespace sockets
    /** send to specified address */
    /*   void udp_socket::SendToBuf(ipaddr_t a, port_t p, const char *data, int len, int flags)
    {
-   ipv4_address ad(get_context_application(), a, p);
+   ipv4_address ad(get_application(), a, p);
    SendToBuf(ad, data, len, flags);
    }
 
 
    void udp_socket::SendToBuf(in6_addr a, port_t p, const char *data, int len, int flags)
    {
-   ipv6_address ad(get_context_application(), a, p);
+   ipv6_address ad(get_application(), a, p);
    SendToBuf(ad, data, len, flags);
    }
    */
@@ -797,7 +797,7 @@ namespace sockets
    ::net::address udp_socket::GetRemoteAddress()
    {
 
-      return ::net::address(get_context_application(), m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
+      return ::net::address(get_application(), m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -813,7 +813,7 @@ namespace sockets
    ::net::address udp_socket::GetLocalAddress()
    {
 
-      return ::net::address(get_context_application(), m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
+      return ::net::address(get_application(), m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
 
    }
 

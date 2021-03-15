@@ -16,14 +16,14 @@ namespace win32
    }
 
 
-   dialog::dialog(::layered* pobjectContext, const widechar * pszResource)
+   dialog::dialog(::object * pobject, const widechar * pszResource)
    {
 
       m_bCreated = false;
       m_bNew = true;
       m_pszResource = nullptr;
 
-      auto estatus = initialize_dialog(pobjectContext, pszResource);
+      auto estatus = initialize_dialog(pobject, pszResource);
 
       if (!estatus)
       {
@@ -34,10 +34,10 @@ namespace win32
 
    }
 
-   ::e_status dialog::initialize_dialog(::layered * pobjectContext, const widechar * pszResource)
+   ::e_status dialog::initialize_dialog(::object * pobject, const widechar * pszResource)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -59,16 +59,17 @@ namespace win32
 
    }
 
-   bool dialog::create_dialog(window * pwnd)
+   bool dialog::create_dialog(window * puserinteraction)
    {
 
       int i = GetThreadLocale();
       SetThreadLocale(65001);
       int i2 = GetThreadLocale();
 
+      __pointer(::apex::system) psystem = get_system();
 
-      CreateDialogParamW((HINSTANCE) ::apex::get_system()->m_hinstance, m_pszResource,
-                         pwnd == nullptr ? nullptr : pwnd->m_hwnd, &DialogProc, (LPARAM)this);
+      CreateDialogParamW((HINSTANCE) psystem->m_hinstance, m_pszResource,
+                         puserinteraction == nullptr ? nullptr : puserinteraction->m_hwnd, &DialogProc, (LPARAM)this);
 
       m_bCreated = true;
       return true;

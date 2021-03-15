@@ -6,7 +6,7 @@
 //{
 //
 //
-//   folder_watch::folder_watch(::layered * pobjectContext) :
+//   folder_watch::folder_watch(::context_object * pcontextobject) :
 //      ::object(pobject),
 //      ::thread(pobject)
 //   {

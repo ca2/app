@@ -165,7 +165,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
 #ifdef ANDROID
 
-         strName = ::file::path(System->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
+         strName = ::file::path(get_system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 
 #else
 
@@ -478,7 +478,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 }
 
 mutexmutex(const mutex & m):
-   matter(m.get_context_application()),
+   matter(m.get_application()),
    synchronization_object(m.m_pszName)
 {
 
@@ -507,7 +507,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 }
 
 //mutexmutex(const mutex & m) :
-//   matter(m.get_context_application()),
+//   matter(m.get_application()),
 //   synchronization_object(m.m_pszName)
 //{
 //
@@ -534,7 +534,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 
 //mutexmutex(const mutex & m):
-//   matter(m.get_context_application()),
+//   matter(m.get_application()),
 //   synchronization_object(m.m_pszName)
 //{
 //
@@ -1641,7 +1641,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
    if(::get_last_status() == ::error_already_exists)
    {
 
-      while(::get_last_status() == ::error_already_exists && ::thread_get_run())
+      while(::get_last_status() == ::error_already_exists && ::task_get_run())
       {
 
          pmutex.release();

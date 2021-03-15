@@ -1,6 +1,12 @@
 ﻿#pragma once
 
 
+#ifdef WINDOWS
+
+using port_t = u16;
+
+#endif
+
 namespace net
 {
 
@@ -73,6 +79,7 @@ namespace net
 #include "url.h"
 #include "url_department.h"
 //#include "email_department.h"
+
 
 
 

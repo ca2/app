@@ -374,11 +374,11 @@ namespace acme
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = ::acme::get_system()->load_string("::acme::get_system()->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = System->get_module_title();
+//      //strExeName = ::acme::get_system()->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -424,7 +424,7 @@ namespace acme
    }
 
 
-   ithread_t application::get_thread_id()
+   itask_t application::get_thread_id()
    {
 
       return ::pthread_self();
@@ -446,7 +446,7 @@ namespace acme
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -503,7 +503,7 @@ namespace acme
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 
       }
 

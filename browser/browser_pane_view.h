@@ -24,7 +24,7 @@ namespace browser
       address_array < ::user::check_box * >           m_checkptraBilbo;
 
 
-      pane_view(::layered * pobjectContext);
+      pane_view(::context_object * pcontextobject);
       virtual ~pane_view();
 
 

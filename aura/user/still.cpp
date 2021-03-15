@@ -70,7 +70,7 @@ namespace user
       else
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          string strText;
 
@@ -605,10 +605,12 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
+      auto psystem = get_system();
+
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = ::aura::get_system()->imaging();
+         class imaging & imaging = psystem->imaging();
 
          imaging.color_blend(
          pgraphics,
@@ -879,7 +881,9 @@ namespace user
       if (!payload.is_empty())
       {
 
-         m_pimage = Application.image().get_image(payload);
+         __pointer(::aura::application) papplication = get_application();
+
+         m_pimage = papplication->image().get_image(payload);
 
       }
 

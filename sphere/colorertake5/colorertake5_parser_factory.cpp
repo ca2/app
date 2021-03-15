@@ -17,7 +17,7 @@ namespace colorertake5
 #endif
       hrcParser = nullptr;
       fileErrorHandler = nullptr;
-      xml::document document(get_object());
+      xml::document document(this);
       try
       {
          document.load_location(catalogPath);
@@ -50,7 +50,7 @@ namespace colorertake5
 
             if (logLocation.has_char())
             {
-               string str = Context.file().as_string(logLocation);
+               string str = pcontext->file().as_string(logLocation);
                colorer_logger_set_target(str);
             }
             if (fileErrorHandler == nullptr)
@@ -110,11 +110,11 @@ namespace colorertake5
    string ParserFactory::searchPath()
    {
 
-      return Context.dir().matter("colorer.zip:catalog.xml");
+      return pcontext->dir().matter("colorer.zip:catalog.xml");
 
    }
 
-   ParserFactory::ParserFactory(::layered * pobjectContext) :
+   ParserFactory::ParserFactory(::context_object * pcontextobject) :
       object(pobject)
    {
 
@@ -173,7 +173,7 @@ namespace colorertake5
    {
       if(hrcParser != nullptr)
          return hrcParser;
-      hrcParser = new HRCParserImpl(get_object());
+      hrcParser = new HRCParserImpl(this);
       hrcParser->setErrorHandler(fileErrorHandler);
       for(i32 idx = 0; idx < hrcLocations.get_size(); idx++)
       {
@@ -191,20 +191,20 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(Context.dir().is(path))
+         if(pcontext->dir().is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
                // debug_break();
             }
-            ::file::listing patha(get_context_application());
+            ::file::listing patha(get_application());
             patha.rls(path);
             file_pointer spfile(e_create);
             for(i32 i = 0; i < patha.get_count(); i++)
             {
-               if(!Context.dir().is(patha[i]))
+               if(!pcontext->dir().is(patha[i]))
                {
-                  string str = Context.file().as_string(patha[i]);
+                  string str = pcontext->file().as_string(patha[i]);
                   try
                   {
                      hrcParser->loadSource(patha[i], str);
@@ -221,7 +221,7 @@ namespace colorertake5
          }
          else
          {
-            string strSource = Context.file().as_string(path);
+            string strSource = pcontext->file().as_string(path);
             if(strSource.has_char())
             {
                try
@@ -290,7 +290,7 @@ namespace colorertake5
       if (hrdLocV == nullptr)
          __throw(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
-      StyledHRDMapper *mapper = new StyledHRDMapper(get_object());
+      StyledHRDMapper *mapper = new StyledHRDMapper(this);
 
       ::file::path strDir = this->catalogPath.folder();
 
@@ -306,7 +306,7 @@ namespace colorertake5
 
                strPath = strDir / hrdLocV->element_at(idx);
 
-               stream spfile(Context.file().get_file(strPath, ::file::e_open_read | ::file::e_open_binary), FIRST_VERSION);
+               stream spfile(pcontext->file().get_file(strPath, ::file::e_open_read | ::file::e_open_binary), FIRST_VERSION);
 
                if(spfile.is_reader_set())
                {
@@ -343,14 +343,14 @@ namespace colorertake5
       if (hrdLocV == nullptr)
          __throw(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
-      TextHRDMapper *mapper = new TextHRDMapper(get_object());
+      TextHRDMapper *mapper = new TextHRDMapper(this);
       for(i32 idx = 0; idx < hrdLocV->get_size(); idx++)
       {
          if (hrdLocV->element_at(idx).has_char())
          {
             try
             {
-               stream stream(Context.file().get_file(hrdLocV->element_at(idx), ::file::e_open_read |::file::e_open_binary), FIRST_VERSION);
+               stream stream(pcontext->file().get_file(hrdLocV->element_at(idx), ::file::e_open_read |::file::e_open_binary), FIRST_VERSION);
                if(stream.is_reader_set())
                {
                   mapper->loadRegionMappings(stream);

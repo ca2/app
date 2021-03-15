@@ -49,10 +49,10 @@ namespace sockets
       file_pointer     m_file;
 
 
-      http_put_socket(base_socket_handler&);
+      http_put_socket();
       /** client constructor,
       \lparam url_in = 'http://host:port/resource' */
-      http_put_socket(base_socket_handler&,const string & url_in);
+      http_put_socket(const string & url_in);
       ~http_put_socket();
 
       // these must be specified before connecting / adding to handler

@@ -10,15 +10,13 @@ namespace base
       ::axis::application(pszAppId)
    {
 
-      m_pbaseapplication = this;
-
    }
 
 
-   ::e_status     application::initialize(::layered * pobjectContext)
+   ::e_status     application::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::axis::application::initialize(pobjectContext);
+      auto estatus = ::axis::application::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -27,7 +25,7 @@ namespace base
 
       }
 
-      estatus = ::user::document_manager_container::initialize(pobjectContext);
+      estatus = ::user::document_manager_container::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -105,10 +103,12 @@ namespace base
    void application::close(::apex::enum_end eend)
    {
 
-      if (Session->m_puser)
+      auto psession = get_session();
+
+      if (psession->m_puser)
       {
 
-         auto puser = User;
+         auto puser = psession->user();
 
          auto pdocumentmanager = puser->document_manager();
 

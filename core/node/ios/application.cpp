@@ -7,7 +7,7 @@ namespace aura
 {
 
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::context_object * pcontextobject) :
 //      ::object(pobject)
 //   {
 //
@@ -205,10 +205,10 @@ namespace aura
 //
 //   __pointer(::user::interaction) application::window_from_os_data_permanent(void * pdata)
 //   {
-//      ::window * pwnd = ::ios::window::FromHandlePermanent((oswindow) pdata);
-//      if(pwnd != nullptr)
-//         return pwnd;
-//      user::interaction_ptr_array wndptra = System->frames();
+//      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
+//      if(puserinteraction != nullptr)
+//         return puserinteraction;
+//      user::interaction_ptr_array wndptra = psystem->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
@@ -266,9 +266,9 @@ namespace aura
 //       */
 //
 //      //      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = psystem->load_string("psystem->title");
 //      // get the exe title from the full path name [no extension]
-//      //    strExeName = System->get_module_title();
+//      //    strExeName = psystem->get_module_title();
 //
 //
 //
@@ -307,7 +307,7 @@ namespace aura
 ////#endif
 //   }
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //      return ::GetCurrentThreadId();
 //   }
@@ -332,7 +332,7 @@ namespace aura
 //
 //         string strCmdLine          = pdata->m_strCommandLine;
 //
-////         System->m_strCmdLine = strCmdLine;
+////         psystem->m_strCmdLine = strCmdLine;
 //
 //         SetCurrentHandles();
 //
@@ -352,7 +352,7 @@ namespace aura
 //      // handle critical errors and avoid Windows message boxes
 //      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 //
-//      System->m_strCmdLine = strCmdLine;
+//      psystem->m_strCmdLine = strCmdLine;
 //      //pApp->SetCurrentHandles();
 //      SetCurrentHandles();
 //

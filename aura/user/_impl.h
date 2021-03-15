@@ -42,16 +42,16 @@ namespace user
    inline bool interaction::get_typed_child(CHILD*& pchild)
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puiptraChild)
+      if (!puserinteractionpointeraChild)
       {
 
          return false;
 
       }
 
-      return puiptraChild->get_typed_child(pchild);
+      return puserinteractionpointeraChild->get_typed_child(pchild);
 
    }
 
@@ -59,16 +59,16 @@ namespace user
    inline __pointer(CHILD) interaction::get_typed_child()
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puiptraChild)
+      if (!puserinteractionpointeraChild)
       {
 
          return nullptr;
 
       }
 
-      return puiptraChild->get_typed_child < CHILD >();
+      return puserinteractionpointeraChild->get_typed_child < CHILD >();
 
    }
 
@@ -181,19 +181,19 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* pwndParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view(__type(VIEW), pdocument, pwndParent, id, pviewLast, pimpactdata);
+//      return create_view(__type(VIEW), pdocument, puserinteractionParent, id, pviewLast, pimpactdata);
 //
 //   }
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::interaction* pwndParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view < VIEW >(get_document(), pwndParent, id, pviewLast, pimpactdata);
+//      return create_view < VIEW >(get_document(), puserinteractionParent, id, pviewLast, pimpactdata);
 //
 //   }
 //
@@ -290,6 +290,78 @@ namespace user
       auto pimpl = userinteractionimpl();
 
       return pimpl ? pimpl->m_puserinteraction : nullptr;
+
+   }
+
+
+   inline ::aura::application* interaction::get_application() const
+   {
+
+      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+
+   }
+
+
+   inline ::aura::session* interaction::get_session() const
+   {
+
+      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+
+   }
+
+
+   inline ::aura::system* interaction::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+
+   }
+
+   
+   inline ::aura::application* user::get_application()
+   {
+
+      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+
+   }
+
+
+   inline ::aura::session* user::get_session()
+   {
+
+      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+
+   }
+
+
+   inline ::aura::system* user::get_system()
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+
+   }
+
+
+   inline ::aura::application* primitive_impl::get_application() const
+   {
+
+      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+
+   }
+
+
+   inline ::aura::session* primitive_impl::get_session() const
+   {
+
+      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+
+   }
+
+
+   inline ::aura::system* primitive_impl::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
 
    }
 

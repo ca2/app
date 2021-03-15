@@ -34,7 +34,7 @@ namespace mail
       critical_section                 m_csDataset;
 
 
-      pop3(::layered * pobjectContext);
+      pop3(::context_object * pcontextobject);
       virtual ~pop3();
 
 

@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::aura::session::initialize(pobjectContext);
+      auto estatus = ::aura::session::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -286,8 +286,8 @@ namespace axis
 
       }
 
-//      if(Application.has_property("uninstall")
-//            || Application.has_property("install"))
+//      if(papplication->has_property("uninstall")
+//            || papplication->has_property("install"))
 //      {
 //
 ////         if(!m_paccount->open_local("system"))

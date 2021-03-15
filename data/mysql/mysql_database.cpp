@@ -47,10 +47,10 @@ namespace mysql
    }
 
 
-   ::e_status database::initialize(::layered * pobjectContext)
+   ::e_status database::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::database::database::initialize(pobjectContext);
+      auto estatus = ::database::database::initialize(pcontextobject);
 
       if (!estatus)
       {

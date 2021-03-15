@@ -122,7 +122,7 @@ namespace filemanager
 
       __pointer(::message::command) pcommand(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
          
       pcommand->enable(psession->copydesk().has_filea());
 
@@ -140,7 +140,7 @@ namespace filemanager
 
       ::user::copydesk::e_op eop;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(!psession->copydesk().get_filea(listing, eop) || listing.is_empty())
       {
@@ -235,7 +235,7 @@ namespace filemanager
 
          if (psubject->m_pfileitem &&
             (::is_set(filemanager_item())
-               && Application.is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal)))
+               && papplication->is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal)))
          {
 
 #define DBG_LOOP  1

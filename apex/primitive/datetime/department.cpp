@@ -16,7 +16,7 @@ namespace datetime
 
       int iPathCount;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       return ::datetime::time(strtotime(psession->str_context(), str, 0, iPathCount));
 
@@ -28,7 +28,7 @@ namespace datetime
 
       int iPathCount;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       return ::datetime::time(gmt_strtotime(psession->str_context(), str, 0, iPathCount));
 
@@ -43,10 +43,10 @@ namespace datetime
    }
 
 
-   ::e_status department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::context_object * pcontextobject)
    {
     
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -80,10 +80,10 @@ namespace datetime
    }
 
 
-   ::e_status department::international::initialize(::layered* pobjectContext)
+   ::e_status department::international::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -97,10 +97,10 @@ namespace datetime
    }
 
 
-   ::e_status department::str::initialize(::layered* pobjectContext)
+   ::e_status department::str::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -201,7 +201,7 @@ namespace datetime
       }
 
       ::datetime::time time;
-      ::datetime::result val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, false);
+      ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, false);
       if (val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
       else
@@ -223,7 +223,7 @@ namespace datetime
       ::datetime::time time(timeParam);
       iPathCount = 1;
       ::datetime::result val = ::datetime::result(time) +
-                              ::datetime::span_strtotime(get_context_application(), pcontext, psz);
+                              span_strtotime( pcontext, psz);
       return val.get_time().get_time();
    }
 
@@ -238,7 +238,7 @@ namespace datetime
       }
 
       ::datetime::time time;
-      ::datetime::result val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, true);
+      ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, true);
       if (val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
       else
@@ -455,22 +455,26 @@ namespace datetime
 
    string department::get_week_day_str(const apex::str_context * pcontext, i32 iWeekDay) // 1 - domingo
    {
-      return ::apex::get_system()->str().get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
+      __pointer(::apex::system) psystem = get_system();
+      return psystem->str().get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
    }
 
    string department::get_tiny_week_day_str(const apex::str_context * pcontext, i32 iWeekDay) // 1 - domingo
    {
-      return ::apex::get_system()->str().get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
+      __pointer(::apex::system) psystem = get_system();
+      return psystem->str().get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
    }
 
    string department::get_month_str(const apex::str_context * pcontext, i32 iMonth)
    {
-      return ::apex::get_system()->str().get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
+      __pointer(::apex::system) psystem = get_system();
+      return psystem->str().get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
    }
 
    string department::get_short_month_str(const apex::str_context * pcontext, i32 iMonth)
    {
-      return ::apex::get_system()->str().get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
+      __pointer(::apex::system) psystem = get_system();
+      return psystem->str().get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
    }
 
    ::datetime::time department::from_gmt_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)
@@ -931,7 +935,7 @@ namespace datetime
                straWeekDay.add("Fri");
                straWeekDay.add("Sat");
 
-               //str = Sys(pscript->get_context_application()).datetime().get_tiny_week_day_str(pscript->str_context(), time.GetGmtDayOfWeek());
+               //str = Sys(pscript->get_application()).datetime().get_tiny_week_day_str(pscript->str_context(), time.GetGmtDayOfWeek());
                str = straWeekDay[time.GetGmtDayOfWeek() % 7];
 
             }

@@ -19,7 +19,7 @@ namespace music
       public:
 
          
-         sequence_thread(::layered * pobjectContext);
+         sequence_thread(::context_object * pcontextobject);
          virtual ~sequence_thread();
 
 

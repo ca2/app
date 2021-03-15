@@ -5,7 +5,7 @@
 namespace sockets
 {
 
-   sip_server::sip_server(::layered * pobjectContext) :
+   sip_server::sip_server(::context_object * pcontextobject) :
       ::object(pobject),
       thread(pobject)
    {

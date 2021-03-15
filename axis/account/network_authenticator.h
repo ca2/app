@@ -22,7 +22,7 @@ namespace account
 
 
 
-      network_authenticator(::layered * pobjectContext);
+      network_authenticator();
       virtual ~network_authenticator();
 
 

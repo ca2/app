@@ -29,7 +29,7 @@ namespace colorertake5
       *        text data in line-separated form. Can't be nullptr.
       */
 
-      base_editor(::layered * pobjectContext);
+      base_editor(::context_object * pcontextobject);
       ~base_editor();
 
       void initialize(line_source * plinesource);

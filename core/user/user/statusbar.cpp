@@ -795,7 +795,7 @@ namespace user
    public:
 
 
-      status_command(::layered * pobjectContext);
+      status_command(::context_object * pcontextobject);
 
       virtual void enable(bool bOn);
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
@@ -807,8 +807,8 @@ namespace user
    };
 
 
-   status_command::status_command(::layered * pobjectContext) :
-      ::message::command(pobjectContext)
+   status_command::status_command(::context_object * pcontextobject) :
+      ::message::command(pobject)
    {
 
    }
@@ -887,7 +887,7 @@ namespace user
    void status_bar::on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler)
    {
       
-      status_command state(get_context_object());
+      status_command state(this);
 
       state.m_puiOther = this;
       state.m_iCount = (::u32)m_panea.get_count();

@@ -305,7 +305,7 @@
     <ClInclude Include="graphics\draw2d\region.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\thread_tool.h">
+    <ClInclude Include="graphics\draw2d\task_tool.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\image.h">
@@ -974,7 +974,7 @@
     <ClInclude Include="user\text_composition.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="windowing\cursor_set.h">
+    <ClInclude Include="windowing\cursor_manager.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
     <ClInclude Include="user\notify_icon.h">
@@ -1066,6 +1066,9 @@
     </ClInclude>
     <ClInclude Include="user\message_window_listener.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_impl.h">
+      <Filter>Header Files\windowing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1354,9 +1357,6 @@
     <ClCompile Include="user\plain_text_data.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\primitive.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\primitive_impl.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1573,7 +1573,7 @@
     <ClCompile Include="user\text_composition.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\cursor_set.cpp">
+    <ClCompile Include="windowing\cursor_manager.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="user\notify_icon_listener.cpp">

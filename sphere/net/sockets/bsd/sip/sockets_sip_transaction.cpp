@@ -6,7 +6,7 @@ namespace sip
 {
 
 
-   transaction::transaction(::layered * pobjectContext) :
+   transaction::transaction(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -14,7 +14,7 @@ namespace sip
 
 
    transaction::transaction(const transaction & src) :
-      ::object(src.get_context_application()),
+      ::object(src.get_application()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {

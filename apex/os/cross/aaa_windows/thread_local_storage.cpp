@@ -12,7 +12,7 @@ u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 
 //::mutex* g_pmutexThreadLocalData = nullptr;
 
-//map < ithread_t, ithread_t, thread_local_data >* g_pmapThreadLocalData = nullptr;
+//map < itask_t, itask_t, thread_local_data >* g_pmapThreadLocalData = nullptr;
 
 //thread_local thread_local_data t_threadlocaldata;
 
@@ -22,7 +22,7 @@ void __node_init_cross_windows_threading()
 
    //g_pmutexThreadLocalData = new mutex();
 
-   //g_pmapThreadLocalData = new map < ithread_t, ithread_t, thread_local_data >();
+   //g_pmapThreadLocalData = new map < itask_t, itask_t, thread_local_data >();
 
    //g_puaThreadLocalDataFreeIndexes = new u32_array();
 
@@ -42,7 +42,7 @@ void __node_term_cross_windows_threading()
 
 //thread_local thread_local_data t_threadlocaldata;
 //// *___ :  lock g_pmutexThreadLocalData to use it
-//inline thread_local_data* ___get_thread_local_data(ithread_t idthread)
+//inline thread_local_data* ___get_thread_local_data(itask_t idthread)
 //{
 //
 //   return &t_threadlocaldata;
@@ -171,7 +171,7 @@ void __node_term_cross_windows_threading()
 //}
 //
 //
-//void* __thread_get_data(ithread_t idthread, thread_data_index dwIndex)
+//void* __thread_get_data(itask_t idthread, thread_data_index dwIndex)
 //{
 //
 //   if (dwIndex >= nextTlsIndex)
@@ -229,7 +229,7 @@ void __node_term_cross_windows_threading()
 //
 //
 //
-//int_bool __thread_set_data(ithread_t idthread, thread_data_index dwIndex, void* pvalue)
+//int_bool __thread_set_data(itask_t idthread, thread_data_index dwIndex, void* pvalue)
 //{
 //
 //   if (dwIndex >= nextTlsIndex)

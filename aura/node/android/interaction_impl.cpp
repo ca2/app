@@ -71,7 +71,7 @@ namespace android
    //}
 
 
-   //interaction_impl::interaction_impl(::layered * pobjectContext):
+   //interaction_impl::interaction_impl(::context_object * pcontextobject):
    //   ::object(pobject)
    //{
    //   m_bScreenRelativeMouseMessagePosition = true;
@@ -92,7 +92,7 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(get_context_session() != nullptr)
+      if(get_session() != nullptr)
       {
 
          if(::aura::get_system()->m_pwindowmap != nullptr)
@@ -313,7 +313,7 @@ namespace android
       if(m_oswindow == nullptr)
       {
 
-         if (get_context_application() == nullptr)
+         if (get_application() == nullptr)
          {
 
             PostNcDestroy();
@@ -624,7 +624,7 @@ namespace android
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock synchronizationlock(m_puserinteraction->get_context_application()->mutex(), true);
+      single_lock synchronizationlock(m_puserinteraction->get_application()->mutex(), true);
 
       ::user::interaction_impl * pwindow;
 
@@ -758,30 +758,30 @@ namespace android
    //}
 
 
-   //bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   //bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl)
    //{
 
    //   //ASSERT(::is_window(get_handle()));
 
-   //   //lpwndpl->length = sizeof(WINDOWPLACEMENT);
+   //   //lpuserinteractionpl->length = sizeof(WINDOWPLACEMENT);
 
-   //   //return ::GetWindowPlacement(get_handle(),lpwndpl) != false;
+   //   //return ::GetWindowPlacement(get_handle(),lpuserinteractionpl) != false;
 
    //   return false;
 
    //}
 
 
-   //bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   //bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    //{
 
    //   //synchronization_lock synchronizationlock(&user_mutex());
 
    //   //ASSERT(::is_window(get_handle()));
 
-   //   //((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
+   //   //((WINDOWPLACEMENT*)lpuserinteractionpl)->length = sizeof(WINDOWPLACEMENT);
 
-   //   //return ::SetWindowPlacement(get_handle(),lpwndpl) != false;
+   //   //return ::SetWindowPlacement(get_handle(),lpuserinteractionpl) != false;
 
    //   return false;
 
@@ -922,7 +922,7 @@ namespace android
       ASSERT(pApp->m_pszHelpFilePath != nullptr);
       ASSERT(pApp->m_eHelpType == afxWinHelp);
 
-      wait_cursor wait(get_object());
+      wait_cursor wait(this);
 
       PrepareForHelp();
 
@@ -950,7 +950,7 @@ namespace android
    // the application's constructor
    ASSERT(pApp->m_eHelpType == afxHTMLHelp);
 
-   wait_cursor wait(get_object());
+   wait_cursor wait(this);
 
    PrepareForHelp();
 
@@ -1083,7 +1083,7 @@ namespace android
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if(pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
          {
@@ -1128,11 +1128,11 @@ namespace android
          }
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(pmessage->m_id == e_message_timer)
       {
-//         m_puserinteraction->get_context_application()->step_timer();
+//         m_puserinteraction->get_application()->step_timer();
       }
       else if(pmessage->m_id == e_message_left_button_down)
       {
@@ -1161,7 +1161,7 @@ namespace android
       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
       __pointer(::aura::application)* ppapp= (__pointer(::aura::application)*) pusermessage->m_lparam;
-      *ppapp = get_context_application();
+      *ppapp = get_application();
       pusermessage->m_bRet = true;
       return;
       }
@@ -1416,7 +1416,7 @@ namespace android
    //i32 interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
-   //      lpszCaption = Application.m_strAppName;
+   //      lpszCaption = papplication->m_strAppName;
    //   i32 nResult = ::message_box(get_handle(),lpszText,lpszCaption,nType);
    //   return nResult;
    //}
@@ -1839,12 +1839,12 @@ namespace android
       else
       {
 
-         //m_pthreadDraw = ::fork(get_context_application(), [&]()
+         //m_pthreadDraw = ::fork(get_application(), [&]()
          //{
 
          //   ::u32 tickStart;
 
-         //   while (::thread_get_run())
+         //   while (::task_get_run())
          //   {
 
          // auto tickStart = ::millis::now();
@@ -1942,7 +1942,7 @@ namespace android
    //      try
    //      {
    //         HANDLE hevent = (HANDLE)pprintwindow->m_event.get_os_data();
-   //         __throw(not_implemented(pprintwindow->get_context_application()));
+   //         __throw(not_implemented(pprintwindow->get_application()));
    //         /*            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
    //         ::SetEvent(hevent);*/
    //      }
@@ -2002,7 +2002,7 @@ namespace android
       //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
-      //      ::draw2d::graphics_pointer graphics(get_object());
+      //      ::draw2d::graphics_pointer graphics(this);
       //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2018,7 +2018,7 @@ namespace android
       //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
-      //         ::image_pointer pimage(get_object());
+      //         ::image_pointer pimage(this);
       //         if(!pimage = create_image(rectWindow.bottom_right()))
       //            return;
       //
@@ -2297,7 +2297,7 @@ namespace android
 
       //UNREFERENCED_PARAMETER(bDisableIfNoHndler);
 
-      //::message::command state(get_object());
+      //::message::command state(this);
 
    }
 
@@ -2866,7 +2866,7 @@ namespace android
       //if (::get_task() == nullptr)
       //{
 
-      //   ::set_thread(m_puserinteraction->get_context_application());
+      //   ::set_thread(m_puserinteraction->get_application());
 
       //}
 
@@ -3058,24 +3058,24 @@ namespace android
    //}
 
 
-   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
+   //void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount)
    //{
 
    //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
+   //   //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), lpPoint, nCount);
 
    //}
 
 
-   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
+   //void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect)
    //{
 
    //   __throw(error_not_implemented);
 
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT_I32 *)lpRect, 2);
+   //   //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)lpRect, 2);
 
    //}
 
@@ -3306,7 +3306,7 @@ namespace android
 
    //   __throw(error_not_implemented);
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //::draw2d::graphics_pointer g(get_object());
+   //   //::draw2d::graphics_pointer g(this);
    //   //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
    //   //return g.detach();
 
@@ -3397,7 +3397,7 @@ namespace android
 
    //   //UNREFERENCED_PARAMETER(lpfnTimer);
 
-   //   //m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+   //   //m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
    //   //return uEvent;
 
@@ -3413,7 +3413,7 @@ namespace android
 
    //   return ::user::interaction_impl::KillTimer(uEvent);
 
-   //   //m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
+   //   //m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
 
    //   //return true;
 
@@ -4030,7 +4030,7 @@ namespace android
 
       __pointer(::user::message) pusermessage(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != ::cursor_system)
@@ -4673,12 +4673,12 @@ namespace android
 
       //synchronization_lock synchronizationlock(m_puserinteraction->mutex());
 
-      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
-      if (puiptraChild)
+      if (puserinteractionpointeraChild)
       {
 
-         for (auto & p : puiptraChild->interactiona())
+         for (auto & p : puserinteractionpointeraChild->interactiona())
          {
 
             if (p->has_pending_graphical_update())

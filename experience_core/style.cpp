@@ -838,7 +838,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                   if (pnode->is_app_dark_mode())
                   {
@@ -865,7 +865,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto pnode = System->node();
+                     auto pnode = psystem->node();
 
                      if (pnode->is_app_dark_mode())
                      {
@@ -884,7 +884,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto pnode = System->node();
+                     auto pnode = psystem->node();
 
                      if (pnode->is_app_dark_mode())
                      {
@@ -908,7 +908,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto pnode = System->node();
+                     auto pnode = psystem->node();
 
                      if (pnode->is_app_dark_mode())
                      {
@@ -927,7 +927,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto pnode = System->node();
+                     auto pnode = psystem->node();
 
                      if (pnode->is_app_dark_mode())
                      {
@@ -954,7 +954,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                   if (pnode->is_app_dark_mode())
                   {
@@ -989,7 +989,7 @@ namespace experience
                else if (eelement == ::user::e_element_item_text)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                   if (pnode->is_app_dark_mode())
                   {
@@ -1022,7 +1022,7 @@ namespace experience
                   else
                   {
 
-                     auto pnode = System->node();
+                     auto pnode = psystem->node();
 
                      if (pnode->is_app_dark_mode())
                      {
@@ -1057,7 +1057,7 @@ namespace experience
             //if (estate & ::user::e_state_hover)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1081,7 +1081,7 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1100,7 +1100,7 @@ namespace experience
             else if (estate & ::user::e_state_selected)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1119,7 +1119,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1155,7 +1155,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1174,7 +1174,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1198,7 +1198,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1217,7 +1217,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1238,7 +1238,7 @@ namespace experience
         else if (eelement == ::user::e_element_background)
         {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1257,7 +1257,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -1291,7 +1291,7 @@ namespace experience
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            auto psession = Session;
+            auto psession = get_session();
 
             if (psession->savings().is_trying_to_save(::e_resource_processing))
             {
@@ -1374,7 +1374,7 @@ namespace experience
 
             pbar->_001ClientToScreen(point1);
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 

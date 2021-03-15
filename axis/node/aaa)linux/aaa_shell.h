@@ -92,10 +92,10 @@
 //// xxx        HINSTANCE hInstance ,
 //// xxx        const unichar * pClassName,
 //
-//// xxx        LPWNDCLASSW pwndclass);
+//// xxx        LPWNDCLASSW puserinteractionclass);
 //
 //// xxx    static ATOM WINAPI _RegisterClass(
-//         // xxx const WNDCLASSW *pwndclass);
+//         // xxx const WNDCLASSW *puserinteractionclass);
 //
 //
 //   static oswindow WINAPI _CreateWindowEx(
@@ -194,11 +194,11 @@
 //       // xxx HINSTANCE hInstance ,
 //// xxx        const unichar * pClassName,
 //
-//// xxx        LPWNDCLASSW pwndclass);
+//// xxx        LPWNDCLASSW puserinteractionclass);
 //
 //
 //   // xxx ATOM (WINAPI * m_pfnRegisterClass)(
-//         // xxx const WNDCLASSW *pwndclass);
+//         // xxx const WNDCLASSW *puserinteractionclass);
 //
 //
 //   oswindow (WINAPI * m_pfnCreateWindowEx)(
@@ -304,11 +304,11 @@
 //// xxx        HINSTANCE hInstance ,
 //// xxx        const unichar * pClassName,
 //
-//// xxx        LPWNDCLASSW pwndclass);
+//// xxx        LPWNDCLASSW puserinteractionclass);
 //
 //
 //// xxx    static ATOM WINAPI RegisterClass(
-//// xxx          const WNDCLASSW *pwndclass);
+//// xxx          const WNDCLASSW *puserinteractionclass);
 //
 //
 //   static oswindow WINAPI CreateWindowEx(
@@ -538,23 +538,23 @@
 //   HINSTANCE hInstance ,
 //   const unichar * pClassName,
 //
-//   LPWNDCLASSW pwndclass)
+//   LPWNDCLASSW puserinteractionclass)
 //
 //{
 //   return (*theLinuxShell.m_pfnGetClassInfo)(
 //      hInstance ,
 //      pClassName,
 //
-//      pwndclass);
+//      puserinteractionclass);
 //
 //}
 //
 //inline ATOM shell::RegisterClass(
-//   const WNDCLASSW *pwndclass)
+//   const WNDCLASSW *puserinteractionclass)
 //
 //{
 //   return (*theLinuxShell.m_pfnRegisterClass)(
-//      pwndclass);
+//      puserinteractionclass);
 //
 //}*/
 ///*

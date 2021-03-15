@@ -81,7 +81,7 @@ public:
    virtual ::file::path side_get_matter_path(string strMatter);
 
 
-   //sclass ::hyperlink hyperlink() { return get_context_object(); }
+   //sclass ::hyperlink hyperlink() { return this; }
 
 
    // get a file and if there are exceptions, should show end user friendly messages

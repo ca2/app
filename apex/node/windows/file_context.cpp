@@ -18,10 +18,10 @@ namespace windows
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -30,9 +30,11 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
+      __pointer(::apex::system) psystem = get_system();
 
-      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
+      __refer(m_pfilesystem, psystem->m_pfilesystem);
+
+      __refer(m_pdirsystem, psystem->m_pdirsystem);
 
       return ::success;
 
@@ -419,7 +421,9 @@ namespace windows
 
       }
 
-      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) ::apex::get_system()->m_hinstance, iId, psz))
+      __pointer(::apex::system) psystem = get_system();
+
+      if (read_resource_as_memory(*pfile->get_primitive_memory(), (HINSTANCE) psystem->m_hinstance, iId, psz))
       {
 
          return pfile;
@@ -487,12 +491,14 @@ namespace windows
       ASSERT(findFileData.nFileSizeHigh == 0);
       rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
-      auto pnode = ::apex::get_system()->node();
+
+
+      //auto pnode = psystem->node();
 
       // convert times as appropriate
-      pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *)&findFileData.ftCreationTime);
-      pnode->file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *)&findFileData.ftLastAccessTime);
-      pnode->file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *)&findFileData.ftLastWriteTime);
+      file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *)&findFileData.ftCreationTime);
+      file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *)&findFileData.ftLastAccessTime);
+      file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *)&findFileData.ftLastWriteTime);
 
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;

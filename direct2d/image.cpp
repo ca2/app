@@ -370,7 +370,7 @@ namespace draw2d_direct2d
 
    //void image::rotate(image image, double dAngle, double dScale)
    //{
-   //   // image image(get_object());
+   //   // image image(this);
    //   //   pimage->Paste(this);
 
    //   /*      int cx = cx;
@@ -527,7 +527,7 @@ namespace draw2d_direct2d
 
    //void image::rotate(image image, const ::rectangle_i32 & rectangle, double dAngle, double dScale)
    //{
-   //   // image image(get_object());
+   //   // image image(this);
    //   //   pimage->Paste(this);
 
 
@@ -1477,12 +1477,12 @@ namespace draw2d_direct2d
    //#if defined(WINDOWS_DESKTOP)
 
 
-   //bool image::update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer)
+   //bool image::update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer)
    //{
 
    //   rectangle_i64 rectWindow;
 
-   //   pwnd->get_window_rect(rectWindow);
+   //   puserinteraction->get_window_rect(rectWindow);
 
    //   m_pgraphics->SetViewportOrg(0, 0);
 
@@ -1490,7 +1490,7 @@ namespace draw2d_direct2d
 
    //   ::rectangle_i32 rectangle(rectWindow);
 
-   //   //      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rectangle,this->width(), this->height(), m_iScan, bTransferBuffer);
+   //   //      papplication->window_graphics_update_window(puserinteraction->get_window_graphics(),puserinteraction->get_handle(),m_pcolorref,rectangle,this->width(), this->height(), m_iScan, bTransferBuffer);
 
    //   return true;
 

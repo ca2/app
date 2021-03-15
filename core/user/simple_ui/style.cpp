@@ -167,7 +167,7 @@ namespace simple_ui
 
       }
 
-      return Application.http_get_locale_schema(pszUrl,m_strLocale,m_strSchema);
+      return papplication->http_get_locale_schema(pszUrl,m_strLocale,m_strSchema);
 
    }
 

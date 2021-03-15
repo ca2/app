@@ -5,7 +5,7 @@ namespace sphere
 {
 
 
-   main_frame::main_frame(::layered * pobjectContext) :
+   main_frame::main_frame(::context_object * pcontextobject) :
       ::object(pobject),
       simple_frame_window(pobject),
       simple_main_frame(pobject)
@@ -42,7 +42,7 @@ namespace sphere
    //   if (ecolor == ::user::color_text || ecolor == ::user::color_edit_text)
    //   {
 
-   //      cr = Application.get_theme_fg_color();
+   //      cr = papplication->get_theme_fg_color();
 
    //   }
    //   else if (ecolor == ::user::color_text_selected)
@@ -69,7 +69,7 @@ namespace sphere
    //   {
 
 
-   //      cr = Application.get_theme_bg_color();
+   //      cr = papplication->get_theme_bg_color();
 
    //   }
    //   else if (ecolor == ::user::color_background_selected)

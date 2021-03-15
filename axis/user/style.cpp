@@ -222,7 +222,7 @@ namespace axis
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
+      if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -278,7 +278,7 @@ namespace axis
 
             }
 
-            auto psession = Session;
+            __pointer(::axis::session) psession = get_session();
 
             auto puser = psession->user();
 
@@ -941,7 +941,7 @@ namespace axis
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __new(style(get_object()));
+   //         spuserstyle = __new(style(this));
 
    //      }
 
@@ -1508,7 +1508,7 @@ namespace axis
       //      if (spuserstyle.is_null())
       //      {
 
-      //         spuserstyle = __new(style(get_object()));
+      //         spuserstyle = __new(style(this));
 
       //      }
 

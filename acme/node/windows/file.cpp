@@ -192,7 +192,7 @@ namespace windows
          if (!(eopen & ::file::e_open_no_share_violation_wait))
          {
 
-            if (dwLastError == ERROR_SHARING_VIOLATION && ::thread_get_run() && millisStart.elapsed() < m_millisErrorBlockTimeout)
+            if (dwLastError == ERROR_SHARING_VIOLATION && ::task_get_run() && millisStart.elapsed() < m_millisErrorBlockTimeout)
             {
 
                sleep(maximum(m_millisErrorBlockTimeout / 10, 50_ms));
@@ -594,12 +594,10 @@ namespace windows
 
          }
 
-         auto pnode = System->node();
-
          // convert times as appropriate
-         pnode->file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *) &information.ftCreationTime);
-         pnode->file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *) &information.ftLastAccessTime);
-         pnode->file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *) &information.ftLastWriteTime);
+         file_time_to_time(&rStatus.m_ctime.m_time, (filetime_t *) &information.ftCreationTime);
+         file_time_to_time(&rStatus.m_atime.m_time, (filetime_t *) &information.ftLastAccessTime);
+         file_time_to_time(&rStatus.m_mtime.m_time, (filetime_t *) &information.ftLastWriteTime);
 
          if (rStatus.m_ctime.get_time() == 0)
          {

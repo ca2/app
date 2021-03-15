@@ -92,7 +92,7 @@ namespace user
       if(m_bSlide)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -142,7 +142,7 @@ namespace user
 
       double dScalar = m_pscalar->get_rate();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -215,7 +215,9 @@ namespace user
 
       get_client_rect(rectClient);
 
-      class imaging & imaging = System->imaging();
+      __pointer(::axis::system) psystem = get_system();
+
+      class imaging & imaging = psystem->imaging();
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 

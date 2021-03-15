@@ -20,10 +20,10 @@ namespace gpu
    }
 
 
-   ::e_status context::initialize(::layered * pobjectContext)
+   ::e_status context::initialize(::context_object * pcontextobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -135,7 +135,9 @@ namespace gpu
    ::e_status context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      auto pgpu = ::aura::get_system()->get_gpu();
+      __pointer(::aura::system) psystem = m_psystem;
+
+      auto pgpu = psystem->get_gpu();
 
       if (::is_null(pgpu))
       {

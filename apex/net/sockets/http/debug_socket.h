@@ -49,7 +49,7 @@ namespace sockets
       memsize     m_read_ptr;
 
 
-      http_debug_socket(base_socket_handler&);
+      http_debug_socket();
       ~http_debug_socket();
 
       void Init();

@@ -28,6 +28,8 @@ namespace user
    keyboard::keyboard()
    {
 
+      auto psystem = get_system();
+
       SET_ENUM_TEXT(e_key_0);
       SET_ENUM_TEXT(e_key_1);
       SET_ENUM_TEXT(e_key_2);
@@ -142,10 +144,10 @@ namespace user
    }
 
 
-   ::e_status keyboard::initialize(::layered * pobjectContext)
+   ::e_status keyboard::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -160,23 +162,23 @@ namespace user
 //
 //#ifdef MACOS
 //
-//      strFile = Context.dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->dir().matter("keyboard/windows/default.xml");
 //
 //#elif defined( LINUX)
 //
 //    return true;
 //
-//      strFile = Context.dir().matter("keyboard/linux/default.xml");
+//      strFile = pcontext->dir().matter("keyboard/linux/default.xml");
 //
 //#elif defined(__APPLE__)
 //
-//      strFile = Context.dir().matter("keyboard/macos/default.xml");
+//      strFile = pcontext->dir().matter("keyboard/macos/default.xml");
 //
 //#elif defined(ANDROID)
 //
-//      //strPath = Context.dir().matter("keyboard/android/default.xml");
+//      //strPath = pcontext->dir().matter("keyboard/android/default.xml");
 //
-//      strFile = Context.dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->dir().matter("keyboard/windows/default.xml");
 //
 //#else
 //
@@ -224,9 +226,9 @@ namespace user
 //
 //      string str = __str(w);
 //
-//      //strFile = Context.dir().matter("keyboard/windows/" + str + ".xml");
+//      //strFile = pcontext->dir().matter("keyboard/windows/" + str + ".xml");
 //
-//      //if(Context.file().exists(strFile))
+//      //if(pcontext->file().exists(strFile))
 //      //{
 //
 //      //   if (load_os_layout(strFile))
@@ -240,7 +242,7 @@ namespace user
 //
 //#endif
 //
-//      strFile = Context.dir().matter("keyboard/windows/default.xml");
+//      strFile = pcontext->dir().matter("keyboard/windows/default.xml");
 //
 //#endif
 //
@@ -267,7 +269,9 @@ namespace user
 
       //::type typeinfoKey = __type(::user::enum_key);
 
-      string str = Context.file().as_string(pszPath);
+      auto pcontext = get_context();
+
+      string str = pcontext->file().as_string(pszPath);
 
 
       output_debug_string(pszPath);
@@ -280,7 +284,7 @@ namespace user
          //if(is_debugger_attached())
          //{
 
-         //   Application.message_box(nullptr,"keyboard default.xml is empty?!?!?!?!");
+         //   papplication->message_box(nullptr,"keyboard default.xml is empty?!?!?!?!");
 
          //}
          return false;
@@ -296,7 +300,7 @@ namespace user
       //   //if(is_debugger_attached())
       //   //{
 
-      //   //   Application.message_box(nullptr,"keyboard default.xml syntax is incorrect?!?!?!?!");
+      //   //   papplication->message_box(nullptr,"keyboard default.xml syntax is incorrect?!?!?!?!");
 
       //   //}
       //   return false;
@@ -361,7 +365,7 @@ namespace user
       //   if(is_debugger_attached())
       //   {
 
-      //      Application.message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
+      //      papplication->message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
 
       //   }
 
@@ -405,7 +409,7 @@ namespace user
 //         if(playout->load(playout->m_strPath))
 //         {
 //            m_playout = playout;
-//// xxx            Application.simpledb().on_set_keyboard_layout(playout->m_strPath, context);
+//// xxx            papplication->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
 //            TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //            return true;
 //         }
@@ -500,7 +504,7 @@ namespace user
 //
 //      ::file::patha patha;
 //
-//      Context.dir().matter_ls_file("keyboard layout", patha);
+//      pcontext->dir().matter_ls_file("keyboard layout", patha);
 //
 //      for(i32 i = 0; i < patha.get_count(); i++)
 //      {
@@ -530,9 +534,9 @@ namespace user
 //
 //         string strTest;
 //
-//         string strPath = Context.dir().matter("keyboard layout/" + strOverride + ".xml");
+//         string strPath = pcontext->dir().matter("keyboard layout/" + strOverride + ".xml");
 //
-//         strTest = Context.file().as_string(strPath);
+//         strTest = pcontext->file().as_string(strPath);
 //
 //         if(strTest.has_char())
 //         {
@@ -593,9 +597,9 @@ namespace user
 //
 //      {
 //
-//         string strPath = Context.dir().matter("keyboard layout/br_abnt2.xml");
+//         string strPath = pcontext->dir().matter("keyboard layout/br_abnt2.xml");
 //
-//         if(Context.file().exists(strPath))
+//         if(pcontext->file().exists(strPath))
 //         {
 //
 //            return strPath;
@@ -608,9 +612,9 @@ namespace user
 //
 //#endif
 //
-//      string strPath = Context.dir().matter("keyboard layout/en_us_international.xml");
+//      string strPath = pcontext->dir().matter("keyboard layout/en_us_international.xml");
 //
-//      if(Context.file().exists(strPath))
+//      if(pcontext->file().exists(strPath))
 //      {
 //
 //         return strPath;
@@ -625,10 +629,10 @@ namespace user
 //   bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
 //   {
 //
-//      if(!Context.file().exists(pszPath))
+//      if(!pcontext->file().exists(pszPath))
 //         return false;
 //
-//      string str = Context.file().as_string(pszPath);
+//      string str = pcontext->file().as_string(pszPath);
 //
 //      if(str.is_empty())
 //         return false;

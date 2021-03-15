@@ -9,7 +9,7 @@
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;
@@ -56,7 +56,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   ::aura::application * papp = (::aura::application *) pvoidApp;
 //
-//   if(::is_set(papp) && ::is_set(papp->get_context_session()))
+//   if(::is_set(papp) && ::is_set(papp->get_session()))
 //   {
 //
 //      Sess(papp).m_pointCursor = pointCursor;
@@ -239,14 +239,14 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   }
 //
-//   if(pinteraction->get_context_application() == nullptr)
+//   if(pinteraction->get_application() == nullptr)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
+//   itask_t idthread = pinteraction->get_application()->get_ithread();
 //
 //   message_queue * pmq = get_message_queue(idthread, false);
 //

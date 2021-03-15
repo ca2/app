@@ -125,7 +125,7 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 //void apple_on_app_activate()
 //{
 //
-//   System->call_subject(id_app_activated);
+//   psystem->call_subject(id_app_activated);
 //
 //}
 
@@ -133,7 +133,7 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 void apple_on_new_file()
 {
 
-   System->on_open_file(::e_type_empty, "");
+   psystem->on_open_file(::e_type_empty, "");
 
 }
 
@@ -158,13 +158,13 @@ void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * 
 
          }
 
-         stra[i] = System->url().url_decode(stra[i]);
+         stra[i] = psystem->url().url_decode(stra[i]);
 
       }
 
    }
 
-   System->defer_accumulate_on_open_file(stra, pszExtra);
+   psystem->defer_accumulate_on_open_file(stra, pszExtra);
 
 }
 
@@ -182,7 +182,7 @@ void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
    else if(iCount == 1)
    {
 
-      System->on_open_file(psza[0], pszExtra);
+      psystem->on_open_file(psza[0], pszExtra);
 
       ::free((void *) psza[0]);
 
@@ -196,7 +196,7 @@ void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
 
       stra.c_add((char **) psza, iCount, false);
 
-      System->on_open_file(stra, pszExtra);
+      psystem->on_open_file(stra, pszExtra);
 
    }
 

@@ -390,7 +390,7 @@ void handle_map < HT, CT >::delete_temp()
       }
 
       ASSERT(m_pfnDestructObject != nullptr);
-      //pTemp->get_context_application() = nullptr;
+      //pTemp->get_application() = nullptr;
       (*m_pfnDestructObject)(pTemp);   // destruct the matter
    }
 

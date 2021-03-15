@@ -24,7 +24,13 @@ namespace user
       virtual ~form();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const;
+      inline ::base::user* user() const;
+
+
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

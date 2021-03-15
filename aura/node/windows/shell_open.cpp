@@ -21,10 +21,10 @@ namespace windows
 
 
 
-   ::e_status shell_open::initialize(::layered * pobjectContext)
+   ::e_status shell_open::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::shell_open::initialize(pobjectContext);
+      auto estatus = ::shell_open::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -68,7 +68,7 @@ namespace windows
       case XTYP_CONNECT:
       {
          
-         __pointer(::windows::shell_open) pshellopen = ::get_thread()->get_context_application();
+         __pointer(::windows::shell_open) pshellopen = ::get_task()->get_application();
 
          if (!DdeCmpStringHandles((HSZ)hsz1, pshellopen->m_hszSystemTopic))
          {
@@ -105,7 +105,7 @@ namespace windows
          //__throw(error_not_implemented);
          /*
          // execute the command
-         if (!::aura::get_system()->OnDDECommand( (char *)(const wchar_t *)str))
+         if (!psystem->OnDDECommand( (char *)(const wchar_t *)str))
             TRACE1("Error: failed to execute DDE command '%S'.\n", str);
          */
          //

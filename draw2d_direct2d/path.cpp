@@ -166,7 +166,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr < IDWriteTextRenderer > textRenderer;
 
-      CreatePathTextRenderer(System->m_dpi, &textRenderer);
+      CreatePathTextRenderer(psystem->m_dpi, &textRenderer);
 
       textLayout->Draw(this, textRenderer.Get(), 0, 0);
 

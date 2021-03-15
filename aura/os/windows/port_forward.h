@@ -79,7 +79,7 @@ namespace windows
 	
 	   // public functions -- there are only a few
 	
-	   port_forward(::layered * pobjectContext);
+	   port_forward(::context_object * pcontextobject);
 	   virtual ~port_forward();
 	
 	   virtual HRESULT ListenForUpnpChanges(::net::port_forward_change_callbacks *pCallbacks = nullptr);  // nullptr==default object; if you provide your own pointer to a port_forward_change_callbacks-derived object it is deleted for you automatically

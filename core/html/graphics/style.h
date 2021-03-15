@@ -31,7 +31,7 @@ namespace html
       edisplay             m_edisplay;
 
 
-      style(::layered * pobjectContext);
+      style(::context_object * pcontextobject);
       style(const style & style);
 
       void initialize(e_tag etag);

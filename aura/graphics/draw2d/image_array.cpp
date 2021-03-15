@@ -14,20 +14,22 @@ image_array::~image_array()
 }
 
 
-bool image_array::explode(::object * pobject, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::context_object * pcontextobject, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
-   return explode(pobject, ::size_i32(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
+   return explode(pcontextobject, ::size_i32(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
 
 }
 
 
-bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::context_object * pcontextobject, const ::size_i32 & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
    ::size_i32 size(sizeParam);
 
-   auto pimageSource = App(pobject).image().get_image(varFile);
+   __pointer(::aura::application) papplication = pcontextobject->get_application();
+
+   auto pimageSource = papplication->image().get_image(varFile);
 
    //if (!imageSource.load_image(varFile, bCreateHelperMaps))
    //{

@@ -17,21 +17,21 @@ namespace geometry
    }
 
 
-   ::e_status geometry::initialize(::layered * pobjectContext)
-   {
+   //::e_status geometry::initialize(::context_object * pcontextobject)
+   //{
 
-      auto estatus = ::matter::initialize(pobjectContext);
+   //   auto estatus = ::matter::initialize(pcontextobject);
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
    void geometry::finalize()

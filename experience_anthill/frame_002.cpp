@@ -210,7 +210,7 @@ SizingNone:;
             void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectClient(rectClientParam);
 
@@ -231,7 +231,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -254,7 +254,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,
@@ -276,7 +276,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,
@@ -287,7 +287,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   rectClient.deflate(1, 1);
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       colorMoveableBorder,
@@ -968,7 +968,7 @@ SizingNone:;
             void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

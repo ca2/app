@@ -23,7 +23,7 @@ namespace console
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-      prompt_frame(::layered * pobjectContext);
+      prompt_frame(::context_object * pcontextobject);
       virtual ~prompt_frame();
 
       virtual void install_message_routing(::channel * pchannel) override;

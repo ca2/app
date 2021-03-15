@@ -39,7 +39,7 @@ namespace ios
 //      for (index i = 0; i < iThreadCount; i++)
 //      {
 //
-//         m_threadaGetImage.add(::fork(get_context_application(),
+//         m_threadaGetImage.add(::fork(get_application(),
 //                                      [&]()
 //         {
 //
@@ -87,7 +87,7 @@ namespace ios
       if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
-         ::file::path path = Context.dir().matter("cloud.ico");
+         ::file::path path = get_context()->dir().matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -109,7 +109,7 @@ namespace ios
       else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
       {
 
-         ::file::path path = Context.dir().matter("remote.ico");
+         ::file::path path = get_context()->dir().matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -131,7 +131,7 @@ namespace ios
       else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
-         ::file::path path = Context.dir().matter("ftp.ico");
+         ::file::path path = get_context()->dir().matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -153,12 +153,12 @@ namespace ios
 
       if (::str::ends_ci(imagekey.m_strPath, ".apex"))
       {
-         string str = Context.file().as_string(imagekey.m_strPath);
+         string str = get_context()->file().as_string(imagekey.m_strPath);
          if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronization_lock sl1(m_pil48Hover->mutex());
             synchronization_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
@@ -453,8 +453,8 @@ namespace ios
 ////
 ////                     string strParams;
 ////
-////                     //if(Context.file().resolve_link(strTarget, strFilePath, ::apex::get_system()->ui_from_handle))
-////                     if (Context.file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////                     //if(get_context()->file().resolve_link(strTarget, strFilePath, ::apex::get_system()->ui_from_handle))
+////                     if (get_context()->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////                     {
 ////
 ////                        if (m_straThemeableIconName.get_count() > 0)
@@ -587,7 +587,7 @@ namespace ios
 ////
 ////            string strParams;
 ////
-////            if (Context.file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////            if (get_context()->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////            {
 ////
 ////               wstring wstr = ::str::international::utf8_to_unicode(strTarget);
@@ -1087,7 +1087,7 @@ namespace ios
    //         }
    //      }
    //   }
-   //   if (Context.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+   //   if (get_context()->dir().is(::str::international::unicode_to_utf8(szFilePath)))
    //   {
    //      if (imagekey.m_iIcon == 0x80000000)
    //      {
@@ -1339,7 +1339,7 @@ namespace ios
 
    //   return 0;
 
-   //   while (this->thread_get_run())
+   //   while (this->task_get_run())
    //   {
 
    //      if (!do_call())
@@ -1380,7 +1380,7 @@ namespace ios
 
    //         //int i = 20;
 
-   //         //while (thread_get_run() && i >= 0)
+   //         //while (task_get_run() && i >= 0)
    //         //{
 
    //         //   sleep(500_ms);
@@ -1435,7 +1435,7 @@ namespace ios
 //      if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("cloud.ico");
+//         ::file::path path = get_context()->dir().matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1457,7 +1457,7 @@ namespace ios
 //      else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("remote.ico");
+//         ::file::path path = get_context()->dir().matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1479,7 +1479,7 @@ namespace ios
 //      else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("ftp.ico");
+//         ::file::path path = get_context()->dir().matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1505,12 +1505,12 @@ namespace ios
 //
 //      if (::str::ends_ci(imagekey.m_strPath, ".apex"))
 //      {
-//         string str = Context.file().as_string(imagekey.m_strPath);
+//         string str = get_context()->file().as_string(imagekey.m_strPath);
 //         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
 //         {
 //            str.trim();
-//            HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            HICON hicon16 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 //            synchronization_lock sl1(m_pil48Hover->mutex());
 //            synchronization_lock sl2(m_pil48->mutex());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
@@ -1692,7 +1692,7 @@ namespace ios
 //
 //      synchronization_lock synchronizationlock(&m_mutexQueue);
 //
-//      while (thread_get_run())
+//      while (task_get_run())
 //      {
 //
 //         if(m_keyptra.is_empty())
@@ -1949,7 +1949,7 @@ namespace ios
 
          synchronization_lock synchronizationlock(&m_mutexQueue);
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             if(m_keyptra.is_empty())

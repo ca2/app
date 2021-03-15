@@ -2942,7 +2942,7 @@ void graphics::HIMETRICtoDP(::size_f64 * psize)
 // special graphics drawing primitives/helpers
 
 
-//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
+//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::context_object * pcontextobject)
 //{
 //
 //    return nullptr;
@@ -5911,7 +5911,7 @@ bool graphics::flush()
 ////
 ////#elif defined(ANDROID)
 ////
-////   auto psession = Session;
+////   auto psession = get_session();
 ////
 ////   itema.add(psession->m_fontenumitema);
 ////

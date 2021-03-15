@@ -118,7 +118,7 @@ namespace user
          ////      if (m_puserthread->m_peditwnd == nullptr)
          ////      {
 
-         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(::aura::get_system()->m_hinstance, m_puserinteraction->get_handle());
+         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(psystem->m_hinstance, m_puserinteraction->get_handle());
 
          ////         m_puserthread->m_peditwnd->_Initialize(m_puserthread->m_pthreadmgr, m_puserthread->m_tfClientID);
 
@@ -163,7 +163,7 @@ namespace user
       if (m_bCursorRedraw)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -217,7 +217,7 @@ namespace user
    bool interaction_impl::has_pending_focus()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (::is_null(psession))
       {
@@ -248,7 +248,7 @@ namespace user
    bool interaction_impl::clear_pending_focus()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (::is_null(psession))
       {
@@ -289,7 +289,7 @@ namespace user
    bool interaction_impl::set_pending_focus()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (::is_null(psession))
       {
@@ -625,7 +625,7 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
-         __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
+         m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
 
          peventStartedUser = __new(manual_reset_event());
 
@@ -944,7 +944,7 @@ namespace user
 
          //::rectangle_i32 rectUi;
 
-         //auto psession = Session;
+         //auto psession = get_session();
 
          //auto puser = psession->user();
 
@@ -1075,7 +1075,7 @@ namespace user
 
    //   }
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   if (!m_puserinteraction->m_bMouseHover && bPointInside)
    //   {
@@ -1201,23 +1201,20 @@ namespace user
    }
 
 
-
-
-
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
+   bool interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       if (pinterface == nullptr)
       {
 
-         return;
+         return false;
 
       }
 
       if (pinterface->m_pimpl->m_bDestroyImplOnly)
       {
 
-         return;
+         return false;
 
       }
 
@@ -1239,8 +1236,6 @@ namespace user
          track_mouse_hover();
 
       }
-
-
 
    }
 
@@ -1527,7 +1522,7 @@ namespace user
 
          m_bDestroyImplOnly = true;
 
-         ::parallelization::finish(m_pprodevian);
+         m_pprodevian->set_finish(m_pprodevian);
 
          if (::is_set(m_puserinteraction))
          {
@@ -1669,11 +1664,11 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* pwndpl)
+//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //
-//      UNREFERENCED_PARAMETER(pwndpl);
+//      UNREFERENCED_PARAMETER(puserinteractionpl);
 //
 //
 //      ::exception::throw_interface_only();
@@ -1683,10 +1678,10 @@ namespace user
 //   }
 //
 //
-//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* pwndpl)
+//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pwndpl);
+//      UNREFERENCED_PARAMETER(puserinteractionpl);
 //
 //      ::exception::throw_interface_only();
 //
@@ -2306,7 +2301,7 @@ namespace user
    //bool interaction_impl::ReleaseCapture()
    //{
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   auto pwindowing = psession->windowing();
 
@@ -2355,7 +2350,7 @@ namespace user
 
    //   output_debug_string("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   psession->m_puiCapture = pinteraction;
 
@@ -2660,10 +2655,10 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT_I32 * pPoint,::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,POINT_I32 * pPoint,::u32 nCount)
    {
 
-      UNREFERENCED_PARAMETER(pwndTo);
+      UNREFERENCED_PARAMETER(puserinteractionTo);
       UNREFERENCED_PARAMETER(pPoint);
       UNREFERENCED_PARAMETER(nCount);
 
@@ -2672,9 +2667,9 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECTANGLE_I32 * prectangle)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,RECTANGLE_I32 * prectangle)
    {
-      UNREFERENCED_PARAMETER(pwndTo);
+      UNREFERENCED_PARAMETER(puserinteractionTo);
       UNREFERENCED_PARAMETER(prectangle);
 
       ::exception::throw_interface_only();
@@ -2854,7 +2849,7 @@ namespace user
    //::point_i32 interaction_impl::get_cursor_position() const
    //{
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   if (!psession)
    //   {
@@ -2901,7 +2896,7 @@ namespace user
    ::e_status interaction_impl::set_cursor(enum_cursor ecursor)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -3499,9 +3494,9 @@ namespace user
 
          {
 
-            auto puiptraChild = m_puserinteraction->m_puiptraChild;
+            auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
-            if(puiptraChild)
+            if(puserinteractionpointeraChild)
             {
 
             //{
@@ -3515,11 +3510,11 @@ namespace user
 
             //   }
 
-            //   uia = m_puserinteraction->m_puiptraChild;
+            //   uia = m_puserinteraction->m_puserinteractionpointeraChild;
 
             //}
 
-               for (auto & pinteraction : puiptraChild->interactiona())
+               for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
                {
 
                   try
@@ -3637,7 +3632,7 @@ namespace user
    //void interaction_impl::_001BaseWndInterfaceMap()
    //{
 
-   //   ::aura::get_system()->window_map().set(get_handle(), this);
+   //   psystem->window_map().set(get_handle(), this);
 
    //}
 
@@ -3949,8 +3944,7 @@ namespace user
 
 
 
-   guie_message_wnd::guie_message_wnd(::layered * pobjectContext):
-      ::object(pobjectContext)
+   guie_message_wnd::guie_message_wnd(::property_object * pcontextobject)
    {
 
       m_puiForward = nullptr;
@@ -4142,7 +4136,7 @@ namespace user
 
    //   //set_handle(oswindowNew);
 
-   //   ASSERT(::aura::get_system()->ui_from_handle(get_handle()) == m_puserinteraction);
+   //   ASSERT(psystem->ui_from_handle(get_handle()) == m_puserinteraction);
 
    //   return true;
 
@@ -5025,7 +5019,7 @@ namespace user
       if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto pimplFocus = psession->m_pimplPendingFocus2;
 
@@ -5798,6 +5792,23 @@ namespace user
       return -1;
 
    }
+
+   
+   ::e_status interaction_impl::set_icon(::windowing::icon*)
+   {
+
+      return ::success;
+
+   }
+
+
+   __pointer(::windowing::icon) interaction_impl::get_icon() const
+   {
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace user

@@ -32,7 +32,7 @@ namespace opengl
    ::e_status context_glx::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = System->get_gpu();
+      auto pgpu = psystem->get_gpu();
 
       __pointer(opengl) popengl = pgpu;
 
@@ -66,7 +66,7 @@ namespace opengl
 
       synchronization_lock synchronizationlock(x11_mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -168,7 +168,7 @@ namespace opengl
 
       synchronization_lock synchronizationlock(x11_mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -225,7 +225,7 @@ namespace opengl
 
       synchronization_lock synchronizationlock(x11_mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

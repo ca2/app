@@ -34,7 +34,7 @@ namespace linux
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::context_object * pcontextobject);
       virtual ~interaction_impl();
 
 
@@ -250,16 +250,16 @@ namespace linux
 
 #ifdef WINDOWS_DESKTOP
 
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 #endif
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT32 * prect);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECT32 * prect);
 
 
       // Update/Painting Functions

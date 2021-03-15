@@ -17,10 +17,10 @@ namespace aura
    const char * psz_empty_app_id = "";
 
 
-   ::e_status     library::initialize(::layered * pobjectContext)
+   ::e_status     library::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       m_plibrary = nullptr;
 
@@ -31,10 +31,10 @@ namespace aura
    }
 
 
-   ::e_status library::initialize_aura_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::e_status library::initialize_aura_library(::object * pobject,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -314,11 +314,11 @@ namespace aura
 
       }
 
-      m_pca2library->initialize_aura_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
+      m_pca2library->initialize_aura_library(this, 0, m_strRoot, m_strName, m_strFolder);
 
       m_pca2library->initialize_factory();
 
-      m_pca2library->set_context_object(get_context_object());
+      m_pca2library->set_object(this);
 
       if (m_pca2library->m_strCa2Name.is_empty())
       {
@@ -582,7 +582,7 @@ namespace aura
             if (papp)
             {
 
-               auto estatus = papp->initialize(pobject);
+               auto estatus = papp->initialize(pcontextobject);
 
                if (!estatus)
                {
@@ -643,7 +643,7 @@ namespace aura
                if (papp)
                {
 
-                  papp->initialize(pobject);
+                  papp->initialize(pcontextobject);
 
                }
 
@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::matter* library::new_object(::object* pobjectContext, const char* pszClassId)
+   ::matter* library::new_object(::object* pobject, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::create_object(::layered * pobjectContext, const char * pszClass)
+   __pointer(::matter) library::create_object(::object * pobject, const char * pszClass)
    {
 
       synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
@@ -744,7 +744,7 @@ namespace aura
       if (factory_has_object_class(pszClass))
       {
 
-         return factory_create(pobjectContext, pszClass);
+         return factory_create(pobject, pszClass);
 
       }
       
@@ -753,13 +753,13 @@ namespace aura
       if(get_ca2_library() != nullptr)
       {
 
-         p = get_ca2_library()->new_object(pobjectContext, pszClass);
+         p = get_ca2_library()->new_object(pobject, pszClass);
 
       }
       else
       {
          
-         p = new_object(pobjectContext, pszClass);
+         p = new_object(pobject, pszClass);
 
       }
 
@@ -772,7 +772,7 @@ namespace aura
 
       }
 
-      pobject->initialize(pobjectContext);
+      pobject->initialize(pcontextobject);
 
       return pobject;
 
@@ -872,7 +872,7 @@ namespace aura
    }
 
    
-   ::matter* library::factory_new(::object* pobjectContext, const char* lpszClass)
+   ::matter* library::factory_new(::object* pobject, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::factory_create(::layered * pobjectContext, const char * lpszClass)
+   __pointer(::matter) library::factory_create(::object * pobject, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -892,7 +892,7 @@ namespace aura
 
       }
 
-      auto p = pallocator->new_object(pobjectContext);
+      auto p = pallocator->new_object(pobject);
 
       auto pobject = ::move(p);
 

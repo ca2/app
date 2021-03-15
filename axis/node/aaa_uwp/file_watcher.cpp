@@ -234,7 +234,7 @@ namespace file
    bool os_watch::open(const ::file::path& pathFolderParam, bool bRecursive)
    {
 
-      ::file::path pathFolder = Context.defer_process_path(pathFolderParam);
+      ::file::path pathFolder = pcontext->defer_process_path(pathFolderParam);
 
       if (!watch::open(pathFolderParam, bRecursive))
       {
@@ -267,7 +267,7 @@ namespace file
 
    //   id watchid = ++m_idLast;
 
-   //   ::file::path pathFolder = Context.defer_process_path(pathFolderParam);
+   //   ::file::path pathFolder = pcontext->defer_process_path(pathFolderParam);
 
    //   //watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
    //   watch_ref ^ watchref = watch_ref::create_watch(pathFolder, bRecursive);

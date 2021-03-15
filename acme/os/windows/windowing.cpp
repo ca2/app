@@ -199,7 +199,7 @@ CLASS_DECL_ACME int_bool is_window(HWND hwnd)
 //
 ////    }
 //
-////    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+////    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 //
 //// }
 //
@@ -390,10 +390,10 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   //if (System->is_dedicated_thread())
+//   //if (get_system()->is_dedicated_thread())
 //   //{
 //
-//   //   System->fork([=]()
+//   //   get_system()->fork([=]()
 //   //      {
 //
 //   //         _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, callback);
@@ -421,12 +421,12 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 
 
-//CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
+//CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* puserinteractionclass)
 //{
 //
 //   WNDCLASSEXW wndcls;
 //
-//   if (GetClassInfoExW(pwndclass->hInstance, pwndclass->lpszClassName, &wndcls))
+//   if (GetClassInfoExW(puserinteractionclass->hInstance, puserinteractionclass->lpszClassName, &wndcls))
 //
 //   {
 //
@@ -434,9 +434,9 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 //   }
 //
-//   pwndclass->cbSize = sizeof(WNDCLASSEXW);
+//   puserinteractionclass->cbSize = sizeof(WNDCLASSEXW);
 //
-//   if (!::RegisterClassExW(pwndclass))
+//   if (!::RegisterClassExW(puserinteractionclass))
 //   {
 //
 //      ::u32 dw = GetLastError();
@@ -459,10 +459,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam)
 //
 //WNDPROC g_pwindowprocedure = &WndProc;
 //
-//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc)
+//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC puserinteractionproc)
 //{
 //
-//   g_pwindowprocedure = pwndproc;
+//   g_pwindowprocedure = puserinteractionproc;
 //
 //}
 //

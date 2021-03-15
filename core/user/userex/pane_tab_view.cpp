@@ -160,17 +160,17 @@ namespace userex
 
       //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
-      //if (Application.m_pmainpane == nullptr)
+      //if (papplication->m_pmainpane == nullptr)
       //{
 
-      //   Application.m_pmainpane = this;
+      //   papplication->m_pmainpane = this;
 
       //}
 
-      if (Application.m_puiMainContainer == nullptr)
+      if (papplication->m_puiMainContainer == nullptr)
       {
 
-         Application.m_puiMainContainer = this;
+         papplication->m_puiMainContainer = this;
 
       }
 
@@ -409,7 +409,7 @@ namespace userex
 
       ::apex::library * plibrary = nullptr;
 
-      if(pimpactdata->m_id.is_text() && System->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {
 
 
@@ -450,8 +450,8 @@ namespace userex
 
          //pcreate->m_pusersystem
 
-//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 
@@ -473,7 +473,7 @@ namespace userex
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_context_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
+         auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
 
          m_pcolorview = pdocument->get_typed_view < color_view >();
 
@@ -593,7 +593,7 @@ namespace userex
       //   cc->m_bMakeVisible               = true;
       //   cc->m_puserinteractionParent                  = pimpactdata->m_pplaceholder;
 
-      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_context_application(), -1, cc);
+      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_application(), -1, cc);
 
       //   if(pmanager != nullptr)
       //   {
@@ -801,7 +801,7 @@ namespace userex
    void pane_tab_view::prepare_form(id id, ::form_document * pdocument)
    {
 
-      Application.prepare_form(id, pdocument);
+      papplication->prepare_form(id, pdocument);
 
    }
 

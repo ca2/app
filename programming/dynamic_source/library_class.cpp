@@ -16,8 +16,8 @@ namespace dynamic_source
    } LOADPARMS32;
 
 
-   library_class::library_class(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   library_class::library_class(::context_object * pcontextobject) :
+      ::object(pobject)
    {
 
    }
@@ -77,10 +77,10 @@ namespace dynamic_source
    }
 
 
-   //::aura::application * library_class::get_context_application() const
+   //::aura::application * library_class::get_application() const
    //{
 
-   //   return m_pmanager->get_context_application();
+   //   return m_pmanager->get_application();
 
    //}
 

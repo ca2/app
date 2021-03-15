@@ -93,7 +93,7 @@ namespace helloaxis
                bool                             m_bFastOnEmpty;
       */
 
-      render(::layered * pobjectContext);
+      render(::context_object * pcontextobject);
       virtual ~render();
 
 

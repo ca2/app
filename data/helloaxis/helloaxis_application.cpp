@@ -1,11 +1,11 @@
 ﻿#include "framework.h"
-int my_main(::layered * pobjectContext);
+int my_main(::context_object * pcontextobject);
 
 namespace helloaxis
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::context_object * pcontextobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -50,7 +50,7 @@ namespace helloaxis
    ::e_status application::init_instance()
    {
 
-      ::aura::session * pcoression = get_context_application()->m_psession;
+      ::aura::session * pcoression = get_application()->m_psession;
 
       if (!::axis::application::init_instance())
       {
@@ -163,7 +163,7 @@ namespace helloaxis
 
 
 extern "C"
-::apex::library * app_helloaxis_get_new_library(::layered * pobjectContext)
+::apex::library * app_helloaxis_get_new_library(::context_object * pcontextobject)
 {
 
    return new ::apex::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");

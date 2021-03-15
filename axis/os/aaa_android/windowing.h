@@ -71,7 +71,7 @@ struct CLASS_DECL_AXIS oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_impl *    m_pimpl;
-   hthread_t                       m_hthread;
+   htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    //RECT32                          m_rect;
    bool                          m_bDestroying;

@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   main_view::main_view(::layered * pobjectContext):
+   main_view::main_view(::context_object * pcontextobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -59,7 +59,7 @@ namespace browser
 
       int iPane;
 
-      if (Application.m_bBrowserChat)
+      if (papplication->m_bBrowserChat)
       {
 
          SetPaneCount(2);
@@ -75,7 +75,7 @@ namespace browser
          if (m_ptopview == nullptr)
          {
 
-            System->message_box(nullptr, "Could not create folder edit view");
+            psystem->message_box(nullptr, "Could not create folder edit view");
 
          }
 
@@ -102,7 +102,7 @@ namespace browser
       if(m_pview == nullptr)
       {
 
-         System->message_box(nullptr,"Could not create file list ::user::impact");
+         psystem->message_box(nullptr,"Could not create file list ::user::impact");
 
       }
 

@@ -28,19 +28,19 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view(__type(VIEW), pdocument, pwndParent, id, pviewLast, pimpactdata);
+      return create_view(__type(VIEW), pdocument, puserinteractionParent, id, pviewLast, pimpactdata);
 
    }
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view < VIEW >(get_document(), pwndParent, id, pviewLast, pimpactdata);
+      return create_view < VIEW >(get_document(), puserinteractionParent, id, pviewLast, pimpactdata);
 
    }
 
@@ -87,7 +87,48 @@ namespace user
    }
 
 
-} //   namespace aura
+} //   namespace user
+
+
+namespace user
+{
+
+
+   inline ::base::session* menu_interaction::get_session() const
+   {
+
+      return m_psession ? m_psession.cast < ::base::session >() : nullptr;
+
+   }
+
+
+   inline ::base::application* get_application() const
+   {
+      
+      return m_papplication ? m_papplication.cast < ::base::application >() : nullptr;
+   
+   }
+   inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+
+
+   inline ::base::system* form::get_system() const
+   {
+      
+      return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr;
+   
+   }
+
+
+   inline ::base::user* form::user() const
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
+   }
+
+
+} // namespace user
+
 
 
 

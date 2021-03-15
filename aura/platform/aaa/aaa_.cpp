@@ -204,7 +204,7 @@ void __post_quit_message(i32 nExitCode)
 
 #else
 
-   ::parallelization::set_finish(::get_context_application());
+   ::parallelization::set_finish(::get_application());
 
 #endif
 

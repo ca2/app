@@ -33,7 +33,7 @@ namespace multimedia
    
          
          
-         toolbox(::layered * pobjectContext);
+         toolbox(::context_object * pcontextobject);
          virtual ~toolbox();
          
 

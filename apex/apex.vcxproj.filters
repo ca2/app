@@ -11,9 +11,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\math">
-      <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
     </Filter>
@@ -56,9 +53,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\math">
-      <UniqueIdentifier>{8af08836-1f48-488b-bc62-eed638f784e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
@@ -261,6 +255,12 @@
     <Filter Include="Header Files\node\ansios">
       <UniqueIdentifier>{45cc027c-f817-429c-88fd-79641200900b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\subject">
+      <UniqueIdentifier>{1a2d4232-9fa8-4440-ab96-12e082c99368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\subject">
+      <UniqueIdentifier>{1afcffb1-fdf1-4bfd-944d-9e578472682c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -277,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\create.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\department.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\listing.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -1043,7 +1040,7 @@
     <ClInclude Include="platform\obj_typ_ctr.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\object.h">
+    <ClInclude Include="primitive\primitive\context_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
@@ -1117,9 +1114,6 @@
     </ClInclude>
     <ClInclude Include="database\stringhelper.h">
       <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\_.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="os\thread.h">
       <Filter>Header Files\os</Filter>
@@ -1487,6 +1481,39 @@
     <ClInclude Include="message\handler_item.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\object.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\subject.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise1.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\manager.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\context.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\aaa_handler.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_impl.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="net\address_department.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="user\primitive.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -1494,9 +1521,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\create.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\department.cpp">
-      <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -2155,13 +2179,7 @@
     <ClCompile Include="parallelization\thread_os.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\thread_pool.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\tools.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
@@ -2191,6 +2209,33 @@
     <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\subject\context.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\manager.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\process.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\promise.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\routine.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\subject.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="user\primitive.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="net\address_department.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\context_object.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\_impl.h">
@@ -2204,9 +2249,6 @@
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\math\_impl.h">
-      <Filter>Header Files\primitive\math</Filter>
     </None>
     <None Include="apex.def">
       <Filter>Source Files</Filter>

@@ -23,7 +23,7 @@ namespace apex
    //
    //      //m_pthreadimpl->m_pthread = this;
    //
-   //      get_context_system()                    =  papp->get_context_application()->get_context_system();
+   //      psystem                    =  papp->get_application()->psystem;
    //
    //      m_atomApp = m_atomSystemTopic    = nullptr;
    //

@@ -69,6 +69,8 @@ void application_common(::apex::system * psystem)
 
 #ifdef MAIN_STRING
 
+   __pointer(::aura::system) psystem = m_psystem;
+
    psystem->m_pszMain = MAIN_STRING;
 
 #endif

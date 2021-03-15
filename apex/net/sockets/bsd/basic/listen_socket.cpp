@@ -6,10 +6,11 @@ namespace sockets
 {
 
 
-   listen_socket_base::listen_socket_base(base_socket_handler & h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
+   //listen_socket_base::listen_socket_base() :
+   listen_socket_base::listen_socket_base() :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
       m_depth(0),
       m_bDetach(false)
    {
@@ -284,7 +285,7 @@ namespace sockets
 
       }
 
-      if (!Handler().OkToAccept(this))
+      if (!socket_handler()->OkToAccept(this))
       {
 
          WARN(log_this, "accept", -1, "Not OK to accept");
@@ -295,10 +296,10 @@ namespace sockets
 
       }
 
-      if (Handler().get_count() >= FD_SETSIZE)
+      if (socket_handler()->get_count() >= FD_SETSIZE)
       {
 
-         FATAL(log_this, "accept", (i32)Handler().get_count(), "base_socket_handler fd_set limit reached");
+         FATAL(log_this, "accept", (i32)socket_handler()->get_count(), "base_socket_handler fd_set limit reached");
 
          close_socket(a_s);
 
@@ -308,7 +309,9 @@ namespace sockets
 
       __pointer(socket) tmp = create_listen_socket();
 
-      auto lId = ::apex::get_system()->sockets().m_lListenSocket++;
+      __pointer(::apex::system) psystem = get_system();
+
+      auto lId = psystem->sockets().m_lListenSocket++;
 
       string strTopicText;
 
@@ -340,7 +343,7 @@ namespace sockets
       tmp -> SetConnected(true);
       tmp -> Init();
       tmp -> SetDeleteByHandler(true);
-      Handler().add(tmp);
+      socket_handler()->add(tmp);
       if(m_bDetach)
       {
          tmp->detach();

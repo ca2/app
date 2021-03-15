@@ -73,7 +73,7 @@ namespace file
 
 
 
-   stream_binder::stream_binder(::layered * pobjectContext) :
+   stream_binder::stream_binder(::context_object * pcontextobject) :
       ::object(pobject)
    {
    }
@@ -137,7 +137,7 @@ namespace file
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();
 
-         synchronization_array eva(get_object());
+         synchronization_array eva(this);
          eva.add(&_allBytesAreWritenEvent);
          eva.add(&_readStreamIsClosedEvent);
          if(!eva.wait(false, duration::infinite()).signaled())

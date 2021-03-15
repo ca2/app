@@ -5,7 +5,7 @@ namespace prompt
 {
 
 
-   document::document(::layered * pobjectContext) :
+   document::document(::context_object * pcontextobject) :
       ::object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),
@@ -73,7 +73,7 @@ namespace prompt
 
    bool document::on_open_document(const ::payload & varFile)
    {
-      string str = Context.file().as_string(varFile);
+      string str = pcontext->file().as_string(varFile);
       //  m_document.load(str);
 
       update_all_views(nullptr, OPEN_DOCUMENT_UPDATE);

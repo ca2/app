@@ -200,9 +200,9 @@ namespace acme
 //      */
 //
 ////      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = ::acme::get_system()->load_string("::acme::get_system()->title");
 //      // get the exe title from the full path name [no extension]
-//  //    strExeName = System->get_module_title();
+//  //    strExeName = ::acme::get_system()->get_module_title();
 //
 //
 //
@@ -244,7 +244,7 @@ namespace acme
 //   }
 //
 //
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::GetCurrentThreadId();
@@ -311,7 +311,7 @@ namespace acme
 //   bool application::os_on_start_application()
 //   {
 //
-//      ::file::path path = Context.file().module();
+//      ::file::path path = get_context()->file().module();
 //
 //      path -= 3;
 //
@@ -365,5 +365,5 @@ namespace acme
 //
 //bool on_application_menu_action(const char * pszCommand)
 //{
-//   System->on_application_menu_action(pszCommand);
+//   ::acme::get_system()->on_application_menu_action(pszCommand);
 //}

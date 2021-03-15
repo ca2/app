@@ -42,10 +42,12 @@ namespace windowing
 
       }
 
-      if (get_context_system() != nullptr)
+      auto psystem = get_system();
+
+      if (psystem != nullptr)
       {
 
-         m_bSystemSynchronizedScreen = ::aura::get_system()->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen = psystem->m_bSystemSynchronizedScreen;
 
       }
 
@@ -503,7 +505,9 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      double dMargin = ::aura::get_system()->m_dpi;
+      auto psystem = get_system();
+
+      double dMargin = psystem->m_dpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
@@ -1385,7 +1389,7 @@ namespace windowing
    string_array display::get_wallpaper()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1434,7 +1438,7 @@ namespace windowing
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::count iMonitorCount = get_monitor_count();
 

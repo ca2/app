@@ -29,14 +29,14 @@ namespace simpledb
       try
       {
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             try
             {
 
 
-               if (get_context_application() == nullptr)
+               if (get_application() == nullptr)
                {
 
                   break;

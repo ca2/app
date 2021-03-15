@@ -47,7 +47,7 @@ namespace multimedia
       else if (m_eexception == exception_multimedia)
       {
 
-         str = "Multimedia ::aqua::get_system() Error";
+         str = "Multimedia get_system() Error";
 
       }
       else if (m_eexception == exception_midi)

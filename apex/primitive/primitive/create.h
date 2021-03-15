@@ -7,6 +7,10 @@
 #define CREATE_STRUCT_P_CREATE_PARAMS lpCreateParams
 #endif
 
+
+
+
+
 class CLASS_DECL_APEX create :
    virtual public ::context_object
 {
@@ -31,7 +35,7 @@ public:
    ::user::primitive *                                         m_puserinteractionParent;
    ::user::primitive *                                         m_puiAlloc;
    __pointer(command_line)                                     m_pcommandline;
-   __pointer(::layered)                                        m_pusersystem;
+   __pointer(::matter)                                         m_pmatterUserPayload;
    ewindowflag                                                 m_ewindowflag;
    ::id                                                        m_id;
 
@@ -62,7 +66,7 @@ public:
    //create & operator = (const create & create);
 
 
-   inline ::user::system * get_user_create() { return __user_system(m_pusersystem); }
+   //inline ::user::system * get_user_create() { return __user_system2(m_pusersystem); }
 
 
 };

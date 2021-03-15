@@ -89,7 +89,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 
 
    /*#ifdef WINDOWS
-      ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_context_application()->create_new, this);
+      ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_application()->create_new, this);
       g->CreateCompatibleDC(nullptr);
       g->Attach(gdi->primary->hdc->alpha);
       ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
@@ -203,10 +203,10 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    ::draw2d::image_create(context->m_pappRdp, ca2rdpi->surface);
    ::draw2d::image_create(ca2rdpi->surface, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-//   App(context->get_context_application()).alloc(ca2rdpi->primary);
+//   App(context->get_application()).alloc(ca2rdpi->primary);
    // ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-   //App(context->get_context_application()).alloc(ca2rdpi->surface);
+   //App(context->get_application()).alloc(ca2rdpi->surface);
    //ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
 

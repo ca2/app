@@ -57,6 +57,57 @@ namespace windowing
    }
 
 
+   //__pointer(cursor) cursor::set_cursor_file(const ::file::path& pathParam, bool bFromCache)
+   //{
+
+   //   auto path = pathParam;
+
+   //   auto psystem = get_system();
+
+   //   if (psystem->m_bImaging)
+   //   {
+
+   //      //fork([this, pcursor, path, bFromCache]()
+   //      {
+
+   //         pcursor->initialize_system_default();
+
+   //         auto psession = get_session();
+
+   //         auto puser = psession->user();
+
+   //         auto pwindowing = puser->windowing();
+
+   //         if (pwindowing->load_cursor(pcursor, path, true, bFromCache))
+   //         {
+
+   //            //return pcursor;
+
+   //         }
+   //         else
+   //         {
+
+
+   //            {
+
+   //               //return pcursor;
+
+   //            }
+
+   //            //return nullptr;
+
+   //         }
+
+   //      }//);
+
+   //   }
+
+   //   return pcursor;
+
+   //}
+
+
+
 } // namespace windowing
 
 

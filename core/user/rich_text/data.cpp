@@ -1135,7 +1135,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformata.get_count())
    //{
 
-   //   m_pformata.add(__new(format(get_object())));
+   //   m_pformata.add(__new(format(this)));
 
    //}
 
@@ -1149,7 +1149,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformata.get_count())
          //   {
 
-         //      m_pformata.add(__new(format(get_object())));
+         //      m_pformata.add(__new(format(this)));
 
          //   }
 
@@ -1890,7 +1890,7 @@ namespace user
          for (index i = 0; i < m_spana.get_count(); i++)
          {
 
-            //m_spana[i]->m_pformat->get_object() = get_object();
+            //m_spana[i]->m_pformat->this = this;
 
             m_spana[i]->m_pformat->m_pcontainer = m_pformata;
 
@@ -2077,7 +2077,7 @@ namespace user
 
          {
 
-            stream.set_context_object(get_context_object());
+            stream.set_object(this);
 
             stream << m_spana;
 
@@ -2107,7 +2107,7 @@ namespace user
 
          {
 
-            stream.set_context_object(get_context_object());
+            stream.set_object(this);
 
             stream >> m_spana;
 
@@ -2151,7 +2151,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = __new(format(get_object()));
+               //   pformat = __new(format(this));
 
                //}
 

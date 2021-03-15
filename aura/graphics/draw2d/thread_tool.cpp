@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   ::e_status thread_tool_item::run()
+   ::e_status task_tool_item::run()
    {
 
       if (m_eop == op_blend)

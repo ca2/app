@@ -9,7 +9,7 @@ namespace multimedia
    {
 
 
-      in::in(::layered * pobjectContext) :
+      in::in(::context_object * pcontextobject) :
          object(pobject),
          ::thread(pobject),
          wave_base(pobject),
@@ -93,7 +93,7 @@ namespace multimedia
 //         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
 //         m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
 //         m_pwaveformat->cbSize = 0;
-//         __pointer(::audio::wave) audiowave = Application.audiowave();
+//         __pointer(::audio::wave) audiowave = papplication->audiowave();
 //         m_iBuffer = 0;
 //
 //         if(::success == (m_estatusWave  = translate(AudioQueueNewInput(                              // 1

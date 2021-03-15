@@ -7,7 +7,7 @@ namespace dynamic_source
 
 
    session::session(const string & strSessid, ::dynamic_source::script_manager * pmanager) :
-      ::object(pmanager->get_context_application()),
+      ::object(pmanager->get_application()),
       m_strSessid(strSessid)
    {
 

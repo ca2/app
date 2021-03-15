@@ -13,7 +13,7 @@ public:
    bool                          m_bFinalizeIfNoApplicationSetting;
    bool                          m_bFinalizeIfNoApplication;
 
-   ::aura::application *         m_pappCurrent;
+   ::aura::application *         m_papplicationCurrent;
 
 
 

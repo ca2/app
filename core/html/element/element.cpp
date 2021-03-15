@@ -904,7 +904,7 @@ namespace html
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_context_application())));
+            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
 
             string strUrl(get_tag()->get_attr_value("href"));
 
@@ -919,7 +919,7 @@ namespace html
             else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
                     ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
-               strUrl = System->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+               strUrl = psystem->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
             }
             else
             {
@@ -949,14 +949,14 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_idTagName == __id(html_style))
          {
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_context_application())));
+            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
             pstylesheet->parse(pdata, pvalue->get_value());
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_idTagName == __id(html_link)
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_context_application())));
+            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
             pstylesheet->parse(pdata, Ctx(pdata).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
@@ -1369,7 +1369,7 @@ namespace html
 
       }
 
-      set_context_app(pdata->get_context_application());
+      set_context_app(pdata->get_application());
       m_pparent = pparent;
       m_pimpl = nullptr;
       m_pbase = nullptr;
@@ -1575,7 +1575,7 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         auto puser = Usr(pdata->m_pcoredata->get_context_session());
+         auto puser = Usr(pdata->m_pcoredata->get_session());
 
          str += puser->m_phtml->entities(m_strBody);
 
@@ -1609,7 +1609,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            auto puser = Usr(pdata->m_pcoredata->get_context_session());
+            auto puser = Usr(pdata->m_pcoredata->get_session());
 
             str += puser->m_phtml->entities(m_strBody);
 

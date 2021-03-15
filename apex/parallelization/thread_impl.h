@@ -71,7 +71,7 @@
 
 
 //template <  >
-//inline bool EqualElements<ithread_t>(ithread_t r1, ithread_t r2)
+//inline bool EqualElements<itask_t>(itask_t r1, itask_t r2)
 //{
 //
 //   return ithread_equals(r1, r2) != 0;
@@ -80,7 +80,7 @@
 
 
 //template <  >
-//inline uptr uptr_hash(ithread_t key)
+//inline uptr uptr_hash(itask_t key)
 //{
 //
 //   return 0;
@@ -90,7 +90,7 @@
 
 #endif
 
-//CLASS_DECL_APEX __pointer(message_queue) __get_mq(ithread_t id, bool bCreate);
+//CLASS_DECL_APEX __pointer(message_queue) __get_mq(itask_t id, bool bCreate);
 
 
 

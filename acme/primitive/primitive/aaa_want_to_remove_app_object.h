@@ -15,8 +15,8 @@ public:
    //matter(::matter * pobject);
    virtual ~matter();
 
-   virtual ::acme::application * get_context_application() const;
-   virtual ::matter * get_object() const;
+   virtual ::acme::application * get_application() const;
+   virtual ::matter * this const;
 
 
    void call_update(::u64 uId);

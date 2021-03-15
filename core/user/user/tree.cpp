@@ -72,7 +72,7 @@ namespace user
 
             auto pthread = ::get_task();
 
-            while (pthread->thread_get_run())
+            while (pthread->task_get_run())
             {
 
                m_evExpand.wait();
@@ -101,7 +101,7 @@ namespace user
 
             auto pthread = ::get_task();
 
-            while (pthread->thread_get_run())
+            while (pthread->task_get_run())
             {
 
                m_evOpen.wait();
@@ -210,7 +210,7 @@ namespace user
          //pgraphics->fill_rectangle(rectClient, m_colorTreeBackground);
 
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -461,7 +461,7 @@ namespace user
 
          //   }
 
-         //   class imaging & imaging = System->imaging();
+         //   class imaging & imaging = psystem->imaging();
 
          //   color32_t crTranslucid = rgb(0, 0, 0);
 
@@ -1165,7 +1165,7 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1208,7 +1208,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = Application.userstyle();
+      //   m_puserstyle = papplication->userstyle();
 
       //}
 
@@ -1270,7 +1270,7 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1503,7 +1503,7 @@ namespace user
       //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*System->draw2d()->fonts().GetListCtrlFont());
+      //font->operator=(*psystem->draw2d()->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 

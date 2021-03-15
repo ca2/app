@@ -340,10 +340,12 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
+      auto psystem = get_system();
+
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = ::aura::get_system()->imaging();
+         class imaging & imaging = psystem->imaging();
 
          imaging.color_blend(
          pgraphics,
@@ -732,7 +734,7 @@ namespace user
       // use the main bitmap for up, the selected bitmap for down
       ::image_pointer pimage = m_pbitmap->m_pimage;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
@@ -816,7 +818,7 @@ namespace user
          // use the main bitmap for up, the selected bitmap for down
          ::image_pointer pimage = m_pbitmap->m_pimage;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
             pimage = m_pbitmap->m_pimageSel;
@@ -924,7 +926,9 @@ namespace user
 
       }
 
-      class imaging & imaging = ::aura::get_system()->imaging();
+      auto psystem = get_system();
+
+      class imaging & imaging = psystem->imaging();
 
       ::rectangle_i32 rectangle = rectClient;
       imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,215,colorExt1BR,215);
@@ -1038,17 +1042,19 @@ namespace user
 
       }
 
+      __pointer(::aura::application) papplication = get_application();
+
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = Application.image().get_image(payload);
+         m_pbitmap->m_pimage = papplication->image().get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = Application.image().get_image(varSel);
+         m_pbitmap->m_pimageSel = papplication->image().get_image(varSel);
 
       }
 
@@ -1056,7 +1062,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = Application.image().get_image(varFocus);
+         m_pbitmap->m_pimageFocus = papplication->image().get_image(varFocus);
 
       }
 
@@ -1064,7 +1070,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = Application.image().get_image(varDisabled);
+         m_pbitmap->m_pimageDisabled = papplication->image().get_image(varDisabled);
 
       }
 
@@ -1072,7 +1078,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = Application.image().get_image(varHover);
+         m_pbitmap->m_pimageHover = papplication->image().get_image(varHover);
 
       }
 

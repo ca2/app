@@ -50,7 +50,7 @@ namespace filemanager
 
          pdata->set_data_key_modifier(strDataKeyModifier);
 
-         pdata->initialize_data_client(Application.dataserver());
+         pdata->initialize_data_client(papplication->dataserver());
 
       }
       else
@@ -62,7 +62,7 @@ namespace filemanager
 
          pdata->set_data_key_modifier(strDataKeyModifier);
 
-         pdata->initialize_data_client(Application.dataserver());
+         pdata->initialize_data_client(papplication->dataserver());
 
       }
 

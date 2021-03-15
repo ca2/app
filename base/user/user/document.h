@@ -41,12 +41,19 @@ namespace user
       virtual void assert_valid() const override;
 
 
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
+
       virtual ::user::interaction* impact_at(::index iImpact) const override;
       virtual ::count impact_count() const override;
 
       ::user::interaction_array get_top_level_windows();
 
-      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 

@@ -1,7 +1,7 @@
 #include "framework.h" // previously aura/user/user.h
 
 
-ErrorHandlerWriter::ErrorHandlerWriter(::layered * pobjectContext) :
+ErrorHandlerWriter::ErrorHandlerWriter(::context_object * pcontextobject) :
    object(pobject)
 {
 }

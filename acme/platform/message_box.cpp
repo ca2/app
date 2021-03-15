@@ -72,8 +72,8 @@
 //{
 //
 //   __throw(todo("message_box"));
-//   //::user::primitive* primitive = System->ui_from_handle(oswindow);
+//   //::user::primitive* primitive = get_system()->ui_from_handle(oswindow);
 //
-//   //return System->message_box(primitive, pszText, pszTitle, emessagebox, callback);
+//   //return get_system()->message_box(primitive, pszText, pszTitle, emessagebox, callback);
 //
 //}

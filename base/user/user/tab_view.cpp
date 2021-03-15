@@ -93,8 +93,8 @@ namespace user
          if (pinteraction->is_place_holder())
          {
 
-            auto puiptraChild = m_puiptraChild;
-            pview = puiptraChild->first_interaction();
+            auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+            pview = puserinteractionpointeraChild->first_interaction();
 
          }
          else
@@ -293,28 +293,28 @@ namespace user
 
          psplitview->initialize_split_layout();
 
-         __pointer(::user::interaction) pwnd1;
+         __pointer(::user::interaction) puserinteraction1;
 
-         __pointer(::user::interaction) pwnd2;
+         __pointer(::user::interaction) puserinteraction2;
 
-         ppane1->m_pplaceholder->get_child(pwnd1);
+         ppane1->m_pplaceholder->get_child(puserinteraction1);
 
-         ppane2->m_pplaceholder->get_child(pwnd2);
+         ppane2->m_pplaceholder->get_child(puserinteraction2);
 
          if (eposition == e_position_top || eposition == e_position_left)
          {
 
-            psplitview->SetPane(0, pwnd2, false);
+            psplitview->SetPane(0, puserinteraction2, false);
 
-            psplitview->SetPane(1, pwnd1, false);
+            psplitview->SetPane(1, puserinteraction1, false);
 
          }
          else
          {
 
-            psplitview->SetPane(0, pwnd1, false);
+            psplitview->SetPane(0, puserinteraction1, false);
 
-            psplitview->SetPane(1, pwnd2, false);
+            psplitview->SetPane(1, puserinteraction2, false);
 
          }
 
@@ -412,7 +412,7 @@ namespace user
       UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
-         //System->remove_frame(m_pdroptargetwindow);
+         //psystem->remove_frame(m_pdroptargetwindow);
          //m_pdroptargetwindow->DestroyWindow();
          //m_pdroptargetwindow = nullptr;
       }
@@ -479,7 +479,7 @@ namespace user
 
                //synchronization_lock synchronizationlock(mutex_children());
 
-               get_data()->m_panea[iPane]->m_pplaceholder->m_puiptraChild.release();
+               get_data()->m_panea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
                get_data()->m_panea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
@@ -540,12 +540,12 @@ namespace user
 
 
 
-         auto puiptraChild = m_pimpactdata->m_pplaceholder->m_puiptraChild;
+         auto puserinteractionpointeraChild = m_pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
 
-         if (puiptraChild && puiptraChild->has_interaction())
+         if (puserinteractionpointeraChild && puserinteractionpointeraChild->has_interaction())
          {
 
-            m_pimpactdata->m_puserinteraction = puiptraChild->first_interaction();
+            m_pimpactdata->m_puserinteraction = puserinteractionpointeraChild->first_interaction();
 
          }
 
@@ -655,7 +655,7 @@ namespace user
 
       }
 
-      Application.on_change_cur_sel(this);
+      papplication->on_change_cur_sel(this);
 
    }
 
@@ -842,15 +842,15 @@ namespace user
 
       }
 
-      auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
+      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
 
-      if (puiptraChild)
+      if (puserinteractionpointeraChild)
       {
 
-         if (pimpactdata->m_pplaceholder != nullptr && puiptraChild->interaction_count() == 1)
+         if (pimpactdata->m_pplaceholder != nullptr && puserinteractionpointeraChild->interaction_count() == 1)
          {
 
-            return puiptraChild->first_interaction();
+            return puserinteractionpointeraChild->first_interaction();
 
          }
 
@@ -1019,7 +1019,7 @@ namespace user
 
 
    tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, index iTab) :
-      ::object(ptab->get_context_application())
+      ::object(ptab->get_application())
    {
 
       m_positiona.add(e_position_top);
@@ -1068,7 +1068,7 @@ namespace user
 
       color32_t crBk;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1127,7 +1127,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

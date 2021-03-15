@@ -54,7 +54,7 @@ oswindow_data::oswindow_data()
 
    m_pmq = nullptr;
 
-   m_hthread = (hthread_t) nullptr;
+   m_htask = (htask_t) nullptr;
 
    m_pimpl = nullptr;
 
@@ -408,7 +408,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_hthread = m_pimpl->m_puserinteraction->get_context_application()->get_os_handle();
+   m_htask = m_pimpl->m_puserinteraction->get_application()->get_os_handle();
 
 }
 
@@ -1056,18 +1056,18 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni);
 void android_mouse(unsigned int message, float x, float y)
 {
 
-   if (::get_context_system() == nullptr)
+   if (::::apex::get_system() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session() == nullptr)
+   if (::apex::get_system()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   msg.hwnd = ::apex::get_system()->get_context_session()->m_puiHost->get_handle();
+   msg.hwnd = ::apex::get_system()->get_session()->m_puserinteractionHost->get_handle();
 
    msg.message = message;
 
@@ -1079,8 +1079,8 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //::apex::get_system()->get_context_session()->m_puiHost->message_handler(&msg);
-   ::apex::get_system()->get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //::apex::get_system()->get_session()->m_puserinteractionHost->message_handler(&msg);
+   ::apex::get_system()->get_session()->m_puserinteractionHost->post_message(msg.message, msg.wParam, msg.lParam);
 
 }
 
@@ -1124,7 +1124,7 @@ void _android_key(unsigned int message, int keyCode, int iUni);
 void android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   //::fork(::get_context_system(), [=]()
+   //::fork(::::apex::get_system(), [=]()
    //{
 
       _android_key(message, keyCode, iUni);
@@ -1136,13 +1136,13 @@ void android_key(unsigned int message, int keyCode, int iUni)
 void _android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   if (::get_context_system() == nullptr)
+   if (::::apex::get_system() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session() == nullptr)
+   if (::apex::get_system()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1156,8 +1156,8 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //::apex::get_system()->get_context_session()->m_puiHost->message_handler(pkey);
-   ::apex::get_system()->get_context_session()->m_puiHost->post(pkey);
+   //::apex::get_system()->get_session()->m_puserinteractionHost->message_handler(pkey);
+   ::apex::get_system()->get_session()->m_puserinteractionHost->post(pkey);
 
 }
 
@@ -1169,16 +1169,16 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    UNREFERENCED_PARAMETER(yDummy);
 
-   if (::get_context_system() == nullptr)
+   if (::::apex::get_system() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session() == nullptr)
+   if (::apex::get_system()->get_session() == nullptr)
       return;
 
-   if (::apex::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::apex::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   ::apex::get_system()->get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   ::apex::get_system()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1221,17 +1221,17 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 
    output_debug_string("android_on_size\n");
 
-   if (::get_context_system() == nullptr)
+   if (::::apex::get_system() == nullptr)
    {
 
       return;
 
    }
 
-   //::fork(::get_context_system(), [=]()
+   //::fork(::::apex::get_system(), [=]()
    //{
 
-   ::apex::get_system()->get_context_session()->m_puiHost->post_predicate([=]()
+   ::apex::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
          _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1337,7 +1337,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    //::apex::get_system()->fork([=]()
    //{
 
-   ::apex::get_system()->get_context_session()->m_puiHost->post_predicate([=]()
+   ::apex::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()
       {
 
          ::apex::get_system()->on_os_text(etext, strText);
@@ -1355,7 +1355,7 @@ namespace apex
    void system::on_os_text(e_os_text etext, string strText)
    {
 
-      if (get_context_session() == nullptr || ::is_null(get_context_session()->m_puiHost))
+      if (get_session() == nullptr || ::is_null(get_session()->m_puserinteractionHost))
          return;
 
       __pointer(::message::key) pkey = __new(::message::key());
@@ -1373,17 +1373,17 @@ namespace apex
 
          pkey->m_ekey = ::user::e_key_return;
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
       else
       {
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
 
-      ::apex::get_system()->get_context_session()->m_puiHost->post(pkey);
+      ::apex::get_system()->get_session()->m_puserinteractionHost->post(pkey);
 
 
    }
@@ -1606,7 +1606,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = ::apex::get_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = ::apex::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return true;
 
@@ -1620,7 +1620,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   ::apex::get_system()->get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   ::apex::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
 
    return true;
 

@@ -20,10 +20,10 @@ namespace userfs
    }
 
 
-   ::e_status document::initialize(::layered * pobjectContext)
+   ::e_status document::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::user::document::initialize(pobjectContext);
+      auto estatus = ::user::document::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -46,10 +46,10 @@ namespace userfs
    }
 
 
-   //::aura::application * document::get_context_application() const
+   //::aura::application * document::get_application() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_context_application()->m_psession)->m_pappCurrent;
+   //   return dynamic_cast < ::base::session * >(get_application()->m_psession)->m_papplicationCurrent;
 
    //}
 
@@ -117,7 +117,7 @@ namespace userfs
       else
       {
 
-         Application.dir().ls(listingUser, pitem->m_filepathFinal);
+         papplication->dir().ls(listingUser, pitem->m_filepathFinal);
 
          listingUser.m_pathUser = pitem->m_filepathUser;
 
@@ -185,7 +185,7 @@ namespace userfs
 
          }
 
-         ::file::path pathFinal  = Context.defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
+         ::file::path pathFinal  = pcontext->defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
@@ -218,7 +218,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = Context.dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = pcontext->dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 

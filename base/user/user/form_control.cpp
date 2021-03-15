@@ -821,7 +821,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_id);
+            str = papplication->load_string(pinteraction->m_id);
 
             pinteraction->set_window_text(str);
 
@@ -831,7 +831,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_uiText);
+            str = papplication->load_string(pinteraction->m_uiText);
 
             pinteraction->set_window_text(str);
 
@@ -1449,7 +1449,7 @@ namespace user
 
          ev.m_etimer = ptimer->m_etimer;
 
-         Application.on_control_event(&ev);
+         papplication->on_control_event(&ev);
 
          if(ev.m_bRet)
          {
@@ -1500,7 +1500,7 @@ namespace user
    //::type form_control::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return Application.user_default_controltype_to_typeinfo(econtroltype);
+   //   return papplication->user_default_controltype_to_typeinfo(econtroltype);
 
    //}
 

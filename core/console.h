@@ -21,11 +21,11 @@
 //   
 //   console console(argc, argv);
 //
-//   Application.m_estatus = ::undefined;
+//   papplication->m_estatus = ::undefined;
 //
 //   main();
 //
-//   int iStatus = (int)Application.m_estatus;
+//   int iStatus = (int)papplication->m_estatus;
 //
 //   int iError = 0;
 //
@@ -40,7 +40,7 @@
 //
 //      iError = 0;
 //
-//      if (System->command_value_is_true("show_application_information"))
+//      if (psystem->command_value_is_true("show_application_information"))
 //      {
 //
 //         printf("return code is %d", iStatus);

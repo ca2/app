@@ -206,7 +206,7 @@ namespace draw2d_opengl
    bool image::from(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap_pointer bitmap(get_object());
+      ::draw2d::bitmap_pointer bitmap(this);
 
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
@@ -1680,7 +1680,7 @@ namespace draw2d_opengl
 
 
       // White blend image
-      ::image pimage1(get_object());
+      ::image pimage1(this);
       pimage1 = create_image({cx,  cy});
       pimage1->set(255, 255, 255);
 
@@ -1706,7 +1706,7 @@ namespace draw2d_opengl
       DI_IMAGE | DI_MASK);
 
       // Mask image
-      ::image pimageM(get_object());
+      ::image pimageM(this);
       imageM = create_image({cx,  cy});
 
       imageM.m_spgraphics->DrawIcon(
@@ -2461,16 +2461,16 @@ namespace draw2d_opengl
 
 //#define NO_SCREEN_PRE_MULTIPLY_ALPHA 0
 //
-//   bool image::update_window(::aura::draw_interface * pwnd,::message::message * pmessage,bool bTransferBuffer)
+//   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
 //
 //      rect64 rectWindow;
 //
-//      pwnd->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectWindow);
 //
 ////#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
-////      if(bTransferBuffer && pwnd->is_composite() && !m_bReduced)
+////      if(bTransferBuffer && puserinteraction->is_composite() && !m_bReduced)
 ////      {
 ////
 ////         m_bReduced = true;
@@ -2575,7 +2575,7 @@ namespace draw2d_opengl
 //      }
 //
 //
-//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      puserinteraction->get_window_graphics()->update_window(puserinteraction->get_handle(),(color32_t*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;
@@ -2583,7 +2583,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool image::print_window(::aura::draw_interface * pwnd,::message::message * pmessage)
+//   bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //   {
 //
 //      __pointer(::user::message) pusermessage(pmessage);
@@ -2612,7 +2612,7 @@ namespace draw2d_opengl
 //
 //         ::rect rectWindow;
 //
-//         pwnd->get_window_rect(rectWindow);
+//         puserinteraction->get_window_rect(rectWindow);
 //
 //         ::image pimage;
 //
@@ -2630,10 +2630,10 @@ namespace draw2d_opengl
 //         rectPaint = rectWindow;
 //         rectPaint.offset(-rectPaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         pwnd->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
+//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> SetViewportOrg(::point());
-//         pwnd->_000OnDraw(pimage->get_graphics());
+//         puserinteraction->_000OnDraw(pimage->get_graphics());
 //         m_spgraphics->SetViewportOrg(::point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);

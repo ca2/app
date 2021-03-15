@@ -45,7 +45,7 @@ namespace filemanager
       if (get_pane_count() > 0)
          return;
 
-      bool bPathView = Application.is_false("no_path_view");
+      bool bPathView = papplication->is_false("no_path_view");
 
       SetPaneCount(bPathView ? 2 : 1);
 
@@ -65,7 +65,7 @@ namespace filemanager
          if (ppathview == nullptr)
          {
 
-            System->message_box("Could not create filemanager path view");
+            psystem->message_box("Could not create filemanager path view");
 
          }
 
@@ -83,11 +83,11 @@ namespace filemanager
       if (pmainview == nullptr)
       {
 
-         System->message_box("Could not create file list ::user::impact");
+         psystem->message_box("Could not create file list ::user::impact");
 
       }
 
-      //SetPane(, pmainview, false);
+      //SetPane(pmainview, false);
 
       //pmainview->create_views();
 
@@ -174,7 +174,7 @@ namespace filemanager
                if (ptopview == nullptr)
                {
 
-                  System->message_box("Could not create folder tree ::user::impact");
+                  psystem->message_box("Could not create folder tree ::user::impact");
 
                }
 
@@ -208,7 +208,7 @@ namespace filemanager
 
                }
 
-               strName = strPrefix + System->datetime().international().get_gmt_date_time() + strSuffix;
+               strName = strPrefix + psystem->datetime().international().get_gmt_date_time() + strSuffix;
 
                strName.replace(":", "-");
 

@@ -67,7 +67,7 @@ CLASS_DECL_APEX HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc
 
 
 
-#include "framework.h"
+//#include "framework.h"
 
 
 

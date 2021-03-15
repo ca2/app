@@ -26,7 +26,7 @@ namespace userfs
       if(pmessage->m_bRet)
          return;
 
-//      __pointer(application) papp =  (get_object());
+//      __pointer(application) papp =  (this);
       //papp->m_pmainview = this;
       
       SetPaneCount(2);
@@ -41,16 +41,16 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewView = __type(tree);
-      __pointer(::user::interaction) pwnd = create_view(__type(tree),get_document(),get_pane_holder(0),100);
-      SetPane(0, pwnd, false);
-//      __pointer(tree) ptree =  (pwnd);
+      __pointer(::user::interaction) puserinteraction = create_view(__type(tree),get_document(),get_pane_holder(0),100);
+      SetPane(0, puserinteraction, false);
+//      __pointer(tree) ptree =  (puserinteraction);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewView = __type(list);
-      pwnd = create_view(__type(list),get_document(), get_pane_holder(1),101);
-//      list * plist = dynamic_cast < list * > (pwnd);
-      SetPane(1, pwnd, false);
+      puserinteraction = create_view(__type(list),get_document(), get_pane_holder(1),101);
+//      list * plist = dynamic_cast < list * > (puserinteraction);
+      SetPane(1, puserinteraction, false);
       set_need_layout();
 
 

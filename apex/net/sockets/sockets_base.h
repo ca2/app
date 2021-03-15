@@ -18,7 +18,7 @@ namespace sockets
       sockets_base();
       virtual ~sockets_base();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual void finalize() override;
 

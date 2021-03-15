@@ -419,7 +419,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
          }
 
       }
-      else if(!pthread->thread_get_run())
+      else if(!pthread->task_get_run())
       {
 
          __throw(::exit_exception(pthread));

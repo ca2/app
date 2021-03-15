@@ -13,7 +13,7 @@
       {
 
 
-         experience::experience(::layered * pobjectContext) :
+         experience::experience(::context_object * pcontextobject) :
             object(pobject),
             ::experience::experience(pobject)
          {
@@ -21,7 +21,7 @@
             fork([&]()
             {
 
-               System->draw2d()->set_cursor_set_from_matter("cursor/polar");
+               psystem->draw2d()->set_cursor_set_from_matter("cursor/polar");
 
             });
 
@@ -58,31 +58,31 @@
 
             if(strSchema == "001")
             {
-               return  __new(::experience::experience_lite::frame_001(get_object()));
+               return  __new(::experience::experience_lite::frame_001(this));
             }
             else if(strSchema == "002")
             {
-               return  __new(::experience::experience_lite::frame_002(get_object()));
+               return  __new(::experience::experience_lite::frame_002(this));
             }
             else if(strSchema == "005")
             {
-               return  __new(::experience::experience_lite::frame_005(get_object()));
+               return  __new(::experience::experience_lite::frame_005(this));
             }
             else if(strSchema == "008")
             {
-               return  __new(::experience::experience_lite::frame_008(get_object()));
+               return  __new(::experience::experience_lite::frame_008(this));
             }
             else if(strSchema == "011")
             {
-               return  __new(::experience::experience_lite::frame_011(get_object()));
+               return  __new(::experience::experience_lite::frame_011(this));
             }
             else if(strSchema == "013")
             {
-               return  __new(::experience::experience_lite::frame_013(get_object()));
+               return  __new(::experience::experience_lite::frame_013(this));
             }
             else if(strSchema == "Minimal001")
             {
-               return  __new( ::experience::experience_lite::frame_Minimal001(get_object()));
+               return  __new( ::experience::experience_lite::frame_Minimal001(this));
             }
 
             return nullptr;

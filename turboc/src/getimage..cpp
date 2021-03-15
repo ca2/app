@@ -85,7 +85,7 @@ extern void
    //	  Buffer->Width, Buffer->Height,
    //	  DefaultDepth (TcDisplay, TcScreen));
 
-/*   Handle = dynamic_cast < image*>(App(tc().get_context_application()).alloc(Sys(tc().get_context_application()).type_info< ::image_pointer >()));
+/*   Handle = dynamic_cast < image*>(App(tc().get_application()).alloc(Sys(tc().get_application()).type_info< ::image_pointer >()));
 
    Handle->create(Buffer->Width,Buffer->Height);
    AssociatePixmap (bitmap, Handle);

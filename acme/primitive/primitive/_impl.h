@@ -148,7 +148,7 @@ inline bool get_memory::get_base64(const string & str)
 //inline ::image_result matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
 //{
 //
-//   return System->get_image(this, varFile, uTrait, pred);
+//   return get_system()->get_image(this, varFile, uTrait, pred);
 //
 //}
 
@@ -960,7 +960,7 @@ inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
 
 template < class T >
 template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pcontextobject)
 {
 
   auto p = __create < TYPE >();
@@ -968,7 +968,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext)
   if (p)
   {
 
-     p->initialize(pobjectContext);
+     p->initialize(pcontextobject);
 
   }
 
@@ -979,13 +979,13 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext)
 
 template < class T >
 template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobjectContext, bool bCreate)
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 {
 
   if (bCreate)
   {
 
-     defer_create(pobjectContext);
+     defer_create(pobject);
 
   }
   else
@@ -1571,13 +1571,13 @@ inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
 
 template < typename T >
 template < typename TYPE, typename OBJECT  >
-inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobjectContext)
+inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 {
 
    if (is_null())
    {
 
-      operator=(__create < TYPE >(pobjectContext));
+      operator=(__create < TYPE >(pobject));
 
    }
 
@@ -2242,11 +2242,11 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   }
 //
-//   auto pgroup = System->thread_group(epriority);
+//   auto pgroup = get_system()->task_group(epriority);
 //
 //   synchronization_lock slGroup(pgroup->mutex());
 //
-//   ///   auto ptool = System->thread_tool(op_fork_count);
+//   ///   auto ptool = get_system()->task_tool(op_fork_count);
 //
 //   if (pgroup == nullptr || pgroup->get_count() <= 1)
 //   {

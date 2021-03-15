@@ -588,7 +588,7 @@ namespace user
       if(pdrawitem->m_bListItemSelected)
          pdrawitem->m_iState |= ItemStateSelected;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(pdrawitem->m_bListItemSelected)
       {
@@ -601,7 +601,7 @@ namespace user
             color32_t crTranslucid = rgb(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
-            System->imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
+            psystem->imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
          }
       }
 
@@ -2521,7 +2521,7 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (m_bDrag)
       {
@@ -2574,7 +2574,7 @@ namespace user
 
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -2682,7 +2682,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       set_keyboard_focus();
 
@@ -2848,7 +2848,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2958,7 +2958,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(psession->is_key_pressed(::user::e_key_shift))
       {
@@ -3155,9 +3155,9 @@ namespace user
       //   on_click(item);
       set_need_redraw();
 
-      /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+      /* trans window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
       if(wndidNotify == nullptr)
-      wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
+      wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_();*/
 
       lresult lresult = 0;
 
@@ -3165,9 +3165,9 @@ namespace user
       {
 
       NMLISTVIEW nm;
-      nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+      nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
       nm.hdr.code =   NM_DBLCLK;
-      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+      nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
       lresult = ::SendMessage(
       wndidNotify,
       WM_NOTIFY,
@@ -3260,9 +3260,9 @@ namespace user
       }
 
 
-      //m_font->operator=(*System->draw2d()->fonts().GetMeshCtrlFont());
+      //m_font->operator=(*psystem->draw2d()->fonts().GetMeshCtrlFont());
 
-      //m_fontHover->operator=(*System->draw2d()->fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*psystem->draw2d()->fonts().GetMeshCtrlFont());
 
       //m_fontHover->set_underline();
       ////m_fontHover->set_bold();
@@ -3341,7 +3341,7 @@ namespace user
    //   }
    //   if(pcolumn->m_pil == nullptr)
    //   {
-   //      pcolumn->m_pil = new ::image_list(get_object());
+   //      pcolumn->m_pil = new ::image_list(this);
    //   }
    //   //      __pointer(::image_list) pil = pcolumn->m_pil;
    //   //   if(pil != nullptr)
@@ -3364,7 +3364,7 @@ namespace user
 
       index iSubItemSel;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -3563,18 +3563,18 @@ namespace user
 
 
             /* trans
-            window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+            window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
             if(wndidNotify == nullptr)
-            wndidNotify = pwnd->get_parent()->GetSafeoswindow_(); */
+            wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_(); */
 
             //            LRESULT lresult = 0;
 
             /* trans            if(wndidNotify)
             {
             NMLISTVIEW nm;
-            nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+            nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
             nm.hdr.code =   NM_CLICK;
-            nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+            nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
             lresult = ::SendMessage(
             wndidNotify,
             WM_NOTIFY,
@@ -4478,7 +4478,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      m_pregexFilter1 = System->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;
 
@@ -4761,7 +4761,7 @@ namespace user
 
       CacheHint();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -5586,17 +5586,17 @@ namespace user
             pimage1->get_graphics()->set(m_pfont);
             pimage1->get_graphics()->_DrawText(m_strText,rectCache,m_ealign, m_edrawtext);
 
-            //::aura::application * get_context_application() = m_pmesh->get_context_application();
+            //::aura::application * get_application() = m_pmesh->get_application();
 
-            System->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
+            psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
-            System->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
+            psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
             pimage2->fill(0,0,0,0);
-            System->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
+            psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
             pimage2->set_rgb(0,0,0);
 
 
-            System->imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
+            psystem->imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
 
 
             brushText->create_solid(argb(255,255,255,255));

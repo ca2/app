@@ -163,88 +163,88 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 }
 
 
-namespace acme
-{
-
-
-   filetime node::get_filetime_now()
-   {
-
-      filetime filetime;
-
-      auto pnode = ::acme::get_system()->node();
-
-      pnode->get_system_time_as_file_time(&filetime.m_filetime);
-
-      return filetime;
-
-      //return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
-
-   }
-
-
-
-   ::e_status node::is_valid_filetime(const filetime_t * pfiletime)
-   {
-
-      ::filetime localtime;
-
-      auto estatus = file_time_to_local_file_time(&localtime.m_filetime, pfiletime);
-
-      if(!estatus)
-      {
-
-         return error_failed;
-
-      }
-
-      // then convert that time to system time
-      system_time systemtime;
-
-      estatus = file_time_to_system_time(&systemtime, &localtime.m_filetime);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
-   ::e_status node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
-   {
-
-      system_time_t systemtime;
-
-      auto estatus = file_time_to_system_time(&systemtime, pfiletime);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = system_time_to_time(ptime, &systemtime);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
-} // namespace acme
-
+//namespace acme
+//{
+//
+//
+//   filetime node::get_filetime_now()
+//   {
+//
+//      filetime filetime;
+//
+//      auto pnode = get_system()->node();
+//
+//      pnode->get_system_time_as_file_time(&filetime.m_filetime);
+//
+//      return filetime;
+//
+//      //return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+//
+//   }
+//
+//
+//
+//   ::e_status node::is_valid_filetime(const filetime_t * pfiletime)
+//   {
+//
+//      ::filetime localtime;
+//
+//      auto estatus = file_time_to_local_file_time(&localtime.m_filetime, pfiletime);
+//
+//      if(!estatus)
+//      {
+//
+//         return error_failed;
+//
+//      }
+//
+//      // then convert that time to system time
+//      system_time systemtime;
+//
+//      estatus = file_time_to_system_time(&systemtime, &localtime.m_filetime);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+//
+//   }
+//
+//
+//   ::e_status node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
+//   {
+//
+//      system_time_t systemtime;
+//
+//      auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      estatus = system_time_to_time(ptime, &systemtime);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+//
+//   }
+//
+//
+//} // namespace acme
+//
 
 bool get_filetime_set(const char * psz, filetime_set & filetimeset)
 {
@@ -293,11 +293,9 @@ bool get_filetime_set(const char * psz, filetime & filetimeCreation, filetime & 
 CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const ::datetime::time& time)
 {
 
-   auto pnode = System->node();
-
    ::filetime filetime;
 
-   pnode->time_to_file_time(&filetime.m_filetime, &time.m_time);
+   time_to_file_time(&filetime.m_filetime, &time.m_time);
 
    return set_modified_filetime(psz, filetime);
 
@@ -403,9 +401,7 @@ void copy(payload * ppayload, const filetime * pfiletime)
 bool filetime_set::modified_timeout(int iSeconds) const
 {
 
-   auto pnode = ::acme::get_system()->node();
-
-   auto filetimeNow = pnode->get_filetime_now();
+   auto filetimeNow = get_filetime_now();
 
    return modified_timeout(filetimeNow, iSeconds);
 

@@ -14,7 +14,7 @@
 //
 //stream::stream(::file::file * pfile, index iVersion) :
 //   m_pfile(pfile)
-//   //::matter(pfile->get_object()),
+//   //::matter(pfile->this),
 //   //stream(pfile, iVersion)
 //{
 //   m_iVersion = iVersion;
@@ -23,7 +23,7 @@
 //}
 //
 //stream::stream(e_set_version, index iVersion)// :
-//   //stream(e_create_new, get_object(), iVersion)
+//   //stream(e_create_new, this, iVersion)
 //{
 //   m_iVersion = iVersion;
 //   //m_b64bit = false;

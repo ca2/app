@@ -62,7 +62,7 @@ namespace sockets
       public:
 
          
-         pool_socket(base_socket_handler& h, base_socket * src);
+         pool_socket(base_socket * src);
          virtual ~pool_socket();
 
          
@@ -77,7 +77,7 @@ namespace sockets
       __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
 
 
-      base_socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
+      base_socket_handler(::apex::log * plogger = nullptr);
       virtual ~base_socket_handler();
 
       ///** get ::mutex context_object for threadsafe operations. */

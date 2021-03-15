@@ -736,7 +736,7 @@ namespace ios
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
+      single_lock synchronizationlock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
 
       //pmessage->m_bRet = true;
 
@@ -895,7 +895,7 @@ namespace ios
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
+      single_lock synchronizationlock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
 
       if(get_handle() == nullptr)
          return false;
@@ -947,7 +947,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl)
    {
 
       return false;
@@ -955,7 +955,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    {
 
       return false;
@@ -1150,11 +1150,11 @@ namespace ios
 
       if(pusermessage->m_id == e_message_timer)
       {
-         //         get_context_application()->get_context_application()->step_timer();
+         //         get_application()->get_application()->step_timer();
       }
       else if(pusermessage->m_id == e_message_left_button_down)
       {
-         //  g_pwndLastLButtonDown = this;
+         //  g_puserinteractionLastLButtonDown = this;
       }
       else if(pusermessage->m_id == e_message_size)
       {
@@ -1165,7 +1165,7 @@ namespace ios
        if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
        ::application ** ppapp= (::application **) pusermessage->m_lparam;
-       *ppapp = get_context_application();
+       *ppapp = get_application();
        pusermessage->m_bRet = true;
        return;
        }
@@ -1206,17 +1206,17 @@ namespace ios
          psession->on_ui_mouse_message(pmouse);
 
 
-         if(get_context_session() != nullptr)
+         if(get_session() != nullptr)
          {
 
             psession->m_pointCursor = pmouse->m_point;
 
          }
 
-         /*         if(m_puserinteraction != nullptr && m_puserinteraction != this && m_puserinteraction->get_context_application()->m_psession != nullptr && m_puserinteraction->get_context_application()->m_psession != get_context_application()->m_psession)
+         /*         if(m_puserinteraction != nullptr && m_puserinteraction != this && m_puserinteraction->get_application()->m_psession != nullptr && m_puserinteraction->get_application()->m_psession != get_application()->m_psession)
           {
 
-          BaseSess(m_puserinteraction->get_context_application()->m_psession).m_pointCursor = pmouse->m_point;
+          BaseSess(m_puserinteraction->get_application()->m_psession).m_pointCursor = pmouse->m_point;
 
           }
           */
@@ -1271,13 +1271,13 @@ namespace ios
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
-         //         Application.keyboard().translate_os_key_message(pkey);
+         //         papplication->keyboard().translate_os_key_message(pkey);
          /*
           if(pusermessage->m_id == e_message_key_down)
           {
           try
           {
-          Application.set_key_pressed(pkey->m_ekey, true);
+          papplication->set_key_pressed(pkey->m_ekey, true);
           }
           catch(...)
           {
@@ -1287,7 +1287,7 @@ namespace ios
           {
           try
           {
-          Application.set_key_pressed(pkey->m_ekey, false);
+          papplication->set_key_pressed(pkey->m_ekey, false);
           }
           catch(...)
           {
@@ -1543,7 +1543,7 @@ namespace ios
 //      string strCaption;
 //
 //      if (lpszCaption == nullptr)
-//         lpszCaption = Application.m_strAppName;
+//         lpszCaption = papplication->m_strAppName;
 //      else
 //         lpszCaption = strCaption;
 //      
@@ -1994,7 +1994,7 @@ namespace ios
 ////
 ////                                      bool bUpdateScreen = false;
 ////
-////                                      while (::thread_get_run())
+////                                      while (::task_get_run())
 ////                                      {
 ////
 ////                                         try
@@ -2120,7 +2120,7 @@ namespace ios
 ////
 ////                                          bool bUpdateScreen = false;
 ////
-////                                          while (::thread_get_run())
+////                                          while (::task_get_run())
 ////                                          {
 ////
 ////                                             try
@@ -2366,7 +2366,7 @@ namespace ios
       //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
-      //      ::draw2d::graphics_pointer graphics(get_object());
+      //      ::draw2d::graphics_pointer graphics(this);
       //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2382,7 +2382,7 @@ namespace ios
       //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
-      //         ::image_pointer pimage(get_object());
+      //         ::image_pointer pimage(this);
       //         if(!pimage = create_image(rectWindow.bottom_right()))
       //            return;
       //
@@ -2564,7 +2564,7 @@ namespace ios
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      //::message::command state(get_object());
+      //::message::command state(this);
       //user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
    }
@@ -2827,7 +2827,7 @@ namespace ios
 //
 ////      ::rectangle_i32 rect32;
 ////
-////      if(m_puserinteraction == get_context_application()->m_psystem->m_possystemwindow->m_puserinteraction)
+////      if(m_puserinteraction == get_application()->m_psystem->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
 ////         if(!GetMainScreenRect(rect32))
@@ -2866,7 +2866,7 @@ namespace ios
 //
 //      ::rectangle_i32 rect32;
 //
-//      if(m_puserinteraction == get_context_application()->m_psystem->m_possystemwindow->m_puserinteraction)
+//      if(m_puserinteraction == get_application()->m_psystem->m_possystemwindow->m_puserinteraction)
 //      {
 //
 //         if(!GetMainScreenRect(rect32))
@@ -3068,9 +3068,9 @@ namespace ios
 
 //   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
 //   {
-//      if(get_context_application() != nullptr)
+//      if(get_application() != nullptr)
 //      {
-//         return get_context_application()->post_message(m_puserinteraction, message, wparam, lparam);
+//         return get_application()->post_message(m_puserinteraction, message, wparam, lparam);
 //      }
 //      else
 //      {
@@ -3216,18 +3216,18 @@ namespace ios
 //   }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount)
    {
       __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
+      //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect)
    {
       __throw(error_not_implemented);
       //      ASSERT(::is_window(get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT_I32 *)lpRect, 2);
+      //      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3435,7 +3435,7 @@ namespace ios
 //
 //      __throw(error_not_implemented);
 //      //ASSERT(::is_window(get_handle()));
-//      //::draw2d::graphics_pointer g(get_object());
+//      //::draw2d::graphics_pointer g(this);
 //      //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
 //      //return g.detach();
 //
@@ -3569,7 +3569,7 @@ namespace ios
       /*
        UNREFERENCED_PARAMETER(lpfnTimer);
 
-       m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+       m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
        return uEvent;
 
@@ -3589,7 +3589,7 @@ namespace ios
        //ASSERT(::is_window(get_handle()));
        //return ::KillTimer(get_handle(), uEvent)  != false;
 
-       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
+       m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
 
 
        return true;*/

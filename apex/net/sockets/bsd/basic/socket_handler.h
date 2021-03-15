@@ -55,7 +55,7 @@ namespace sockets
       bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
-      socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
+      socket_handler(::apex::log * plogger = nullptr);
       virtual ~socket_handler();
 
 

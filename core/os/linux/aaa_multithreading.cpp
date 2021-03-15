@@ -82,7 +82,7 @@ void __node_term_thread()
 bool __os_init_thread()
 {
 
-   //__thread_set_data((ithread_t) idthread, ::parallelization::slot_message_queue, 0);
+   //__thread_set_data((itask_t) idthread, ::parallelization::slot_message_queue, 0);
 
    return true;
 

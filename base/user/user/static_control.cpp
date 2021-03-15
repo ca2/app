@@ -151,7 +151,7 @@ namespace user
       if(m_bHover)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

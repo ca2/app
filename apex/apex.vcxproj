@@ -1150,6 +1150,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClInclude Include="net\address_department.h" />
+    <ClCompile Include="net\address_department.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp" />
     <ClCompile Include="net\sockets\http\http_base_socket.cpp" />
     <ClCompile Include="net\sockets\_system_sockets.cpp" />
@@ -1203,8 +1205,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\thread.cpp" />
     <ClCompile Include="parallelization\threading.cpp" />
     <ClCompile Include="parallelization\thread_os.cpp" />
-    <ClCompile Include="parallelization\thread_pool.cpp" />
-    <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
@@ -1257,7 +1257,14 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\department.cpp" />
+    <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\subject\context.cpp" />
+    <ClCompile Include="primitive\subject\manager.cpp" />
+    <ClCompile Include="primitive\subject\process.cpp" />
+    <ClCompile Include="primitive\subject\promise.cpp" />
+    <ClCompile Include="primitive\subject\routine.cpp" />
+    <ClCompile Include="primitive\subject\subject.cpp" />
     <ClCompile Include="process\department.cpp" />
     <ClCompile Include="process\process.cpp" />
     <ClCompile Include="user\check.cpp" />
@@ -1266,6 +1273,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\language_map.cpp" />
     <ClCompile Include="user\menu_shared.cpp" />
     <ClCompile Include="user\menu_shared_commnand.cpp" />
+    <ClCompile Include="user\primitive.cpp" />
     <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="astr.h" />
@@ -1517,7 +1525,15 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\data\_data.h" />
     <ClInclude Include="primitive\data\_impl.h" />
     <ClInclude Include="primitive\data\_tree.h" />
-    <ClInclude Include="primitive\math\_.h" />
+    <ClInclude Include="primitive\primitive\object.h" />
+    <ClInclude Include="primitive\subject\aaa_handler.h" />
+    <ClInclude Include="primitive\subject\context.h" />
+    <ClInclude Include="primitive\subject\manager.h" />
+    <ClInclude Include="primitive\subject\promise.h" />
+    <ClInclude Include="primitive\subject\promise1.h" />
+    <ClInclude Include="primitive\subject\subject.h" />
+    <ClInclude Include="primitive\subject\_.h" />
+    <ClInclude Include="primitive\subject\_impl.h" />
     <ClInclude Include="process\_.h" />
     <ClInclude Include="process\department.h" />
     <ClInclude Include="process\process.h" />
@@ -1529,6 +1545,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
     <ClInclude Include="user\aaa_range.h" />
+    <ClInclude Include="user\primitive.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\ewindowflag.h" />
@@ -1609,7 +1626,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="net\url_department.cpp" />
     <ClCompile Include="net\url_domain.cpp" />
     <ClCompile Include="net\_.cpp" />
-    <ClCompile Include="primitive\math\department.cpp" />
     <ClCompile Include="primitive\primitive\command_line.cpp" />
     <ClCompile Include="primitive\primitive\create.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
@@ -1739,12 +1755,11 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\datetime\_.h" />
     <ClInclude Include="primitive\datetime\department.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
-    <ClInclude Include="primitive\math\department.h" />
     <ClInclude Include="primitive\primitive\command_line.h" />
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\create.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
-    <ClInclude Include="primitive\primitive\object.h" />
+    <ClInclude Include="primitive\primitive\context_object.h" />
     <ClInclude Include="primitive\primitive\_.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />
     <ClInclude Include="_.h" />
@@ -1752,7 +1767,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <None Include="apex.def" />
     <None Include="filesystem\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
-    <None Include="primitive\math\_impl.h" />
     <None Include="primitive\primitive\_impl.h" />
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ namespace user
 
          }
 
-         pcreate->initialize_create(Application.m_strAppId, ::e_type_empty, true);
+         pcreate->initialize_create(papplication->m_strAppId, ::e_type_empty, true);
 
          if (!estatus)
          {
@@ -79,7 +79,7 @@ namespace user
    {
 
       auto pdocument = open_document_file(
-         pimpactdata->m_pplaceholder->get_context_application(),
+         pimpactdata->m_pplaceholder->get_application(),
          ::e_type_null,
          true,
          pimpactdata->m_pplaceholder);

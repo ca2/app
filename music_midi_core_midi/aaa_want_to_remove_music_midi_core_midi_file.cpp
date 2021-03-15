@@ -13,7 +13,7 @@ namespace music
       {
          
 
-      file::file(::layered * pobjectContext) :
+      file::file(::context_object * pcontextobject) :
          object(pobject),
          ::music::midi::file(pobject)
       {
@@ -555,7 +555,7 @@ namespace music
 //      void file::TicksToMillisecs(imedia_time_2darray * p2DMillis, imedia_position_2darray *p2DTicks, iptr tkOffset)
 //      {
 //         ASSERT(p2DMillis->get_size() == 0);
-//         p2DMillis->set_app(get_object());
+//         p2DMillis->set_app(this);
 //         p2DMillis->set_size_create(p2DTicks->get_size());
 //         i32 i;
 //         for(i = 0; i < p2DTicks->get_size(); i++)
@@ -571,7 +571,7 @@ namespace music
 //      void file::PositionToTime(imedia_time_2darray  & timea, imedia_position_2darray  & positiona, iptr tkOffset)
 //      {
 //         ASSERT(timea.get_size() == 0);
-//         timea.set_app(get_object());
+//         timea.set_app(this);
 //         timea.set_size_create(positiona.get_size());
 //         i32 i;
 //         for(i = 0; i < positiona.get_size(); i++)
@@ -2596,7 +2596,7 @@ namespace music
 //         fileHdr.wDivision = m_pFileHeader->wDivision ;
 //         fileHdr.wTracks = WORDSWAP(1) ;
 //
-//         ::music::midi::track * pTrackUnion = new ::music::midi::track(get_object());
+//         ::music::midi::track * pTrackUnion = new ::music::midi::track(this);
 //         pTrackUnion->Initialize(m_ptracks);
 //         m_ptracks->CompactTracks(*pTrackUnion, true, true);
 //

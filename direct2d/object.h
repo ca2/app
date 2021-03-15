@@ -29,7 +29,7 @@ namespace draw2d_direct2d
       ::draw2d_direct2d::draw2d * draw2d()
       {
 
-         return (::draw2d_direct2d::draw2d * ) System->draw2d()->layer(LAYERED_IMPL);
+         return (::draw2d_direct2d::draw2d * ) psystem->draw2d()->layer(LAYERED_IMPL);
 
       }
 

@@ -6,7 +6,7 @@ namespace android
 {
 
 
-   copydesk::copydesk(::layered * pobjectContext) :
+   copydesk::copydesk(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::copydesk(pobject)
    {

@@ -276,7 +276,9 @@ namespace simpledb
 
          synchronizationlock.unlock();
 
-         Application.assert_user_logged_in();
+         __pointer(::axis::application) papplication = get_application();
+
+         papplication->assert_user_logged_in();
 
          synchronizationlock.lock();
 
@@ -303,7 +305,9 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            strUrl += System->url().url_encode(strKey);
+            auto psystem = get_system();
+
+            strUrl += psystem->url().url_encode(strKey);
 
             strValue = get_context()->http().get(strUrl, set);
 
@@ -325,7 +329,7 @@ namespace simpledb
 
             string strListingTime = strFirstLine;
 
-            ::datetime::time timeListing(System->datetime().from_gmt(strListingTime));
+            ::datetime::time timeListing(psystem->datetime().from_gmt(strListingTime));
 
             if (timeListing.abs_diff(::datetime::now) > 5_s)
             {

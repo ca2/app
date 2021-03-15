@@ -53,7 +53,7 @@ namespace sockets
          bio_err
          create random file
       */
-      SSLInitializer(::layered * pobjectContext);
+      SSLInitializer();
 
       /**
          remove random file

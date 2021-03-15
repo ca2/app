@@ -2,13 +2,15 @@
 
 
 interprocess_call::interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
-   ::object(pipi),
+   //::object(pipi),
    m_pinterprocessintercommunication(pipi),
    m_strApp(strApp),
    m_strObject(strObject),
    m_strMember(strMember),
    m_bAutoLaunch(false)
 {
+
+   initialize(pipi);
 
    m_duration = one_minute();
 
@@ -64,7 +66,7 @@ bool interprocess_call::is_auto_launch() const
 void interprocess_call::exclude_this_app()
 {
 
-   m_iaExclude.add(Context.os().get_pid());
+   m_iaExclude.add(get_context()->os().get_pid());
 
 }
 

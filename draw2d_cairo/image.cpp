@@ -403,7 +403,7 @@ namespace draw2d_cairo
 
    //   if(imageWork == nullptr)
    //   {
-   //      imageWork = create_image(get_object());
+   //      imageWork = create_image(this);
    //      imageWork = imageWork;
    //   }
 
@@ -714,12 +714,12 @@ namespace draw2d_cairo
 //#if defined(WINDOWS)
 //
 //
-//   bool image::update_window(::aura::draw_interface * pwnd,::message::message * pmessage,bool bTransferBuffer)
+//   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
 //      rectangle_i64 rectWindow;
 //
-//      pwnd->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
@@ -727,14 +727,14 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
+//      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
 //      return true;
 //
 //   }
 //
 //
-//   bool image::print_window(::aura::draw_interface * pwnd, ::message::message * pmessage)
+//   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 //   {
 //
 //      __pointer(::user::message) pusermessage(pmessage);
@@ -763,9 +763,9 @@ namespace draw2d_cairo
 //
 //         ::rectangle_i32 rectWindow;
 //
-//         pwnd->get_window_rect(rectWindow);
+//         puserinteraction->get_window_rect(rectWindow);
 //
-//         ::image_pointer pimage1(get_object());
+//         ::image_pointer pimage1(this);
 //
 //         if (!pimage1->create(rectWindow.bottom_right()))
 //         {
@@ -789,10 +789,10 @@ namespace draw2d_cairo
 //         rectPaint = rectWindow;
 //         rectPaint.offset(-rectPaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         pwnd->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
+//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> SetViewportOrg(::point_i32());
-//         pwnd->_000OnDraw(pimage1->g());
+//         puserinteraction->_000OnDraw(pimage1->g());
 //         m_spgraphics->SetViewportOrg(::point_i32());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
@@ -821,7 +821,7 @@ namespace draw2d_cairo
 //
 //
 //
-////   bool image::print_window(::aura::draw_interface * pwnd, ::message::message * pmessage)
+////   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 ////   {
 ////
 ////      return true;
@@ -842,13 +842,13 @@ namespace draw2d_cairo
 //
 //
 //
-////   bool image::update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer)
+////   bool image::update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer)
 ////   {
 ////
 ////
 ////      rectangle_i64 rectWindow;
 ////
-////      pwnd->get_window_rect(rectWindow);
+////      puserinteraction->get_window_rect(rectWindow);
 ////
 ////      m_spgraphics->SetViewportOrg(0, 0);
 ////
@@ -856,7 +856,7 @@ namespace draw2d_cairo
 ////
 ////      ::rectangle_i32 rectangle(rectWindow);
 ////
-//////      Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//////      papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
 ////      return true;
 ////
@@ -871,7 +871,7 @@ namespace draw2d_cairo
 //
 //
 //
-//   bool image::print_window(::aura::draw_interface * pwnd, ::message::message * pmessage)
+//   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 //   {
 //
 //      return true;
@@ -887,13 +887,13 @@ namespace draw2d_cairo
 //
 //
 //
-//   bool image::update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer)
+//   bool image::update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer)
 //   {
 //
 //
 //      rectangle_i64 rectWindow;
 //
-//      pwnd->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
@@ -901,7 +901,7 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //
 //      return true;
 //

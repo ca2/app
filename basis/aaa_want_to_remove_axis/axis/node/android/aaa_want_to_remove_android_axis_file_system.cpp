@@ -19,7 +19,7 @@ namespace android
    {
 
 
-      file_system::file_system(::layered * pobjectContext) :
+      file_system::file_system(::context_object * pcontextobject) :
          ::object(pobject),
          ::file::system(pobject),
          ::file::axis::system(pobject),

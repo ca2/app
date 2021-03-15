@@ -39,10 +39,10 @@ namespace bred
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobjectContext);
+      auto estatus = ::apex::system::initialize(pcontextobject);
 
       if (!estatus)
       {

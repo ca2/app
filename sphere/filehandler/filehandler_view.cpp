@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   view::view(::layered * pobjectContext) :
+   view::view(::context_object * pcontextobject) :
       ::object(pobject),
       m_pfont(e_create)
    {
@@ -38,9 +38,9 @@ namespace filehandler
    void view::refresh()
    {
 
-      m_plistWorking = __new(list(get_object()));
+      m_plistWorking = __new(list(this));
 
-      m_plistWorking->parse(System->filehandler(), ::file::path(m_strName).extension());
+      m_plistWorking->parse(psystem->filehandler(), ::file::path(m_strName).extension());
 
       m_plist = m_plistWorking;
 
@@ -94,7 +94,7 @@ namespace filehandler
 
       phandler->get_extension_app(straApp, pszTopic);
 
-      item item(get_object());
+      item item(this);
 
       for(i32 i = 0; i < straApp.get_count(); i++)
       {
@@ -105,7 +105,7 @@ namespace filehandler
 
    }
 
-   view::item::item(::layered * pobjectContext) :
+   view::item::item(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -119,7 +119,7 @@ namespace filehandler
 
 
       color32_t cr;
-      __pointer(::aura::application) papp = pview->get_context_application();
+      __pointer(::aura::application) papp = pview->get_application();
       
       bool bHover = pview->m_itemHover == m_iIndex;
 
@@ -160,7 +160,7 @@ namespace filehandler
    }
 
 
-   view::list::list(::layered * pobjectContext) :
+   view::list::list(::context_object * pcontextobject) :
       ::object(pobject)
    {
       m_iItemHeight = 30;

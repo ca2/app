@@ -18,6 +18,6 @@ namespace aura
 #include "estamira.h"
 
 
-#define __namespace_game(NAMESPACE) (*(::NAMESPACE::game*)App(get_context_object()).m_pgame->m_thisa[1])
+#define __namespace_game(NAMESPACE) (*(::NAMESPACE::game*)App(this).m_pgame->m_thisa[1])
 
 

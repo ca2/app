@@ -15,7 +15,7 @@ namespace user
 
 
    //   ::aura::draw_context *              m_pdrawcontext;
-   //   __pointer(::user::interaction)      m_pwndCustomWindowProc;
+   //   __pointer(::user::interaction)      m_puserinteractionCustomWindowProc;
    //   bool                                m_bCustomWindowProc;
    //   index                               m_iEditItem;
    //   bool                                m_bControlExCommandEnabled;
@@ -51,7 +51,7 @@ namespace user
    //   virtual enum_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
-   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, wparam wparam, lparam lparam, LRESULT & lresult);
+   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, LRESULT & lresult);
 
    //   virtual void _003OnCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
    //   virtual void _003CustomWindowProc(::message::message * pmessage);
@@ -61,7 +61,7 @@ namespace user
 
    //   control null() { return control(); }
    //   bool Validate(string & str);
-   //   bool get_data(__pointer(::user::interaction) pwnd, ::payload & payload);
+   //   bool get_data(__pointer(::user::interaction) puserinteraction, ::payload & payload);
    //   void SetEditItem(index iItem);
    //   void SetEditSubItem(index iItem);
    //   index GetEditSubItem();

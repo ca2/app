@@ -5,7 +5,7 @@
 
 
 
-bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
+bool defer_process_x_message(htask_t hthread, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
 {
 #ifndef ANDROID
 
@@ -32,7 +32,7 @@ bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow intera
          if(pdata == nullptr || pdata->m_bMessageOnlyWindow)
             continue;
 
-         if(pdata->m_hthread != hthread && g_oswindowDesktop != pdata)
+         if(pdata->m_htask != hthread && g_oswindowDesktop != pdata)
             continue;
 
          Display * display = pdata->display();
@@ -204,7 +204,7 @@ bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow intera
          if(bRet && lpMsg->hwnd->interaction_impl() != None)
          {
 
-            if(lpMsg->hwnd->m_hthread != hthread)
+            if(lpMsg->hwnd->m_htask != hthread)
             {
 
                bRet = false;

@@ -61,7 +61,7 @@ namespace filemanager
       if(m_ptree == nullptr)
       {
 
-         System->message_box("Could not create folder tree");
+         psystem->message_box("Could not create folder tree");
       }
 
       m_pusertree->merge(m_ptree, true);
@@ -71,7 +71,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         System->message_box("Could not create file list");
+         psystem->message_box("Could not create file list");
 
       }
 

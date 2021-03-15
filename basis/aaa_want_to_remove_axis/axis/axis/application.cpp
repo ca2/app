@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = aura::application::initialize(pobjectContext);
+      auto estatus = aura::application::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ namespace axis
       //if (m_psystem != nullptr)
       //{
 
-      //   m_bInitializeDataCentral = System->m_bInitializeDataCentral;
+      //   m_bInitializeDataCentral = psystem->m_bInitializeDataCentral;
 
       //}
 
@@ -647,19 +647,19 @@ resume_on_exception:
          if (is_system())
          {
 
-            pathDatabase = Context.dir().appdata() / "system.sqlite";
+            pathDatabase = pcontext->dir().appdata() / "system.sqlite";
 
          }
          else if (is_session())
          {
 
-            pathDatabase = Context.dir().appdata() / "session.sqlite";
+            pathDatabase = pcontext->dir().appdata() / "session.sqlite";
 
          }
          else
          {
 
-            pathDatabase = Context.dir().appdata() / "app.sqlite";
+            pathDatabase = pcontext->dir().appdata() / "app.sqlite";
 
          }
 
@@ -854,7 +854,7 @@ m_millisHeartBeat.Now();
       //      && m_varTopicQuery["app"] != "app-gtech/alarm"
       //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
       //{
-      //   Context.http().defer_auto_initialize_proxy_configuration();
+      //   pcontext->http().defer_auto_initialize_proxy_configuration();
       //}
 m_millisHeartBeat.Now();
 
@@ -1013,7 +1013,7 @@ m_millisHeartBeat.Now();
 
          update_appmatter(handler, psession,pszRoot,pszRelative,strLocale,strSchema);
 
-         System->install_progress_add_up();
+         psystem->install_progress_add_up();
 
       }
 
@@ -1029,7 +1029,7 @@ m_millisHeartBeat.Now();
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
-      ::file::path strFile = Context.dir().install() / strRelative;
+      ::file::path strFile = pcontext->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if(framework_is_basis())
@@ -1041,7 +1041,7 @@ m_millisHeartBeat.Now();
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System->url().url_encode(strRelative);
+      strUrl += psystem->url().url_encode(strRelative);
 
       if(psession == nullptr)
       {
@@ -1051,7 +1051,7 @@ m_millisHeartBeat.Now();
 
             property_set setEmpty;
 
-            if (Context.http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (pcontext->http().open(handler, psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -1068,7 +1068,7 @@ m_millisHeartBeat.Now();
 
       set["get_memory"] = "";
 
-      if (!Context.http().request(handler, psession, strUrl, set))
+      if (!pcontext->http().request(handler, psession, strUrl, set))
       {
 
          return false;
@@ -1080,7 +1080,7 @@ m_millisHeartBeat.Now();
       if(set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
       {
 
-         zip_context zip(get_context_object());
+         zip_context zip(this);
 
          string strDir = strFile;
 
@@ -1101,7 +1101,7 @@ m_millisHeartBeat.Now();
 
          }
 
-         //System->compress().extract_all(strFile, this);
+         //psystem->compress().extract_all(strFile, this);
 
       }
 
@@ -1129,14 +1129,14 @@ m_millisHeartBeat.Now();
 
       }
 
-      if (get_context_session() == nullptr)
+      if (get_session() == nullptr)
       {
 
          return false;
 
       }
 
-      if (get_context_session()->account() == nullptr)
+      if (get_session()->account() == nullptr)
       {
 
          return false;
@@ -1164,11 +1164,11 @@ m_millisHeartBeat.Now();
 
       varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = Context.dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = pcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
       varFile["url"] = strMatter;
 
-      return Context.file().as_string(varFile);
+      return pcontext->file().as_string(varFile);
 
    }
 
@@ -1496,7 +1496,7 @@ m_millisHeartBeat.Now();
       else
       {
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_context_application(),nullptr);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_application(),nullptr);
 
       }
 
@@ -1576,7 +1576,7 @@ m_millisHeartBeat.Now();
    //::html::html * application::create_html()
    //{
 
-   //   return new ::html::html(get_context_application());
+   //   return new ::html::html(get_application());
 
    //}
 
@@ -1623,7 +1623,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(const ::stream & os, const ::stream & is)
    //{
 
-   //   return System->compress().ungz(this, os, is);
+   //   return psystem->compress().ungz(this, os, is);
 
 
    //}
@@ -1632,7 +1632,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(memory_base & mem)
    //{
 
-   //   return System->compress().ungz(this, mem);
+   //   return psystem->compress().ungz(this, mem);
 
    //}
 
@@ -1641,7 +1641,7 @@ m_millisHeartBeat.Now();
 
    //{
 
-   //   return System->compress().gz(this, os, is, iLevel);
+   //   return psystem->compress().gz(this, os, is, iLevel);
 
 
    //}
@@ -1650,7 +1650,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
    //{
 
-   //   return System->compress().gz(this, os, is, iLevel);
+   //   return psystem->compress().gz(this, os, is, iLevel);
 
    //}
 

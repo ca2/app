@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   department::department(::layered * pobjectContext) :
+   department::department(::context_object * pcontextobject) :
       ::apex::department(pobject)
    {
 
@@ -91,7 +91,7 @@ namespace console
 
          bCreate = true;
 
-         m_spprompt->m_pdocumenttemplate->open_document_file(get_context_application(), nullptr,false);
+         m_spprompt->m_pdocumenttemplate->open_document_file(get_application(), nullptr,false);
 
       }
 

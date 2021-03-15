@@ -72,7 +72,7 @@ class CLASS_DECL_AXIS uncompress_bz :
 public:
 
 
-   uncompress_bz(::layered * pobjectContext);
+   uncompress_bz(::context_object * pcontextobject);
    virtual ~uncompress_bz();
 
 

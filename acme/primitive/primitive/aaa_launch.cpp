@@ -21,8 +21,8 @@ CLASS_DECL_ACME ::e_status __launch(
    ::e_priority epriority,
    u32 nStackSize,
    u32 dwCreateFlags,
-   ithread_t* pithread,
-   hthread_t* phthread)
+   itask_t* pithread,
+   htask_t* phthread)
 {
 
    auto plaunch = new ___launch(pmatter);
@@ -90,12 +90,12 @@ void* ___launch::s_os_thread_proc(void* p)
 #endif
 
 
-::e_status ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, ithread_t* pithread, hthread_t* phthread)
+::e_status ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
 {
 
-   hthread_t hthread = null_hthread;
+   htask_t hthread = null_hthread;
 
-   ithread_t ithread = NULL_ITHREAD;
+   itask_t itask = NULL_ITHREAD;
 
 #ifdef WINDOWS
 
@@ -103,7 +103,7 @@ void* ___launch::s_os_thread_proc(void* p)
 
    hthread = ::CreateThread(nullptr, nStackSize, &::___launch::s_os_thread_proc, (LPVOID)(___launch*)this, uiCreateFlags, &dwThread);
 
-   ithread = dwThread;
+   itask = dwThread;
 
 #else
 
@@ -138,7 +138,7 @@ void* ___launch::s_os_thread_proc(void* p)
    if (pithread)
    {
 
-      *pithread = ithread;
+      *pithread = itask;
 
    }
 

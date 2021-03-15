@@ -262,7 +262,7 @@ namespace file
 
       MsgWaitForMultipleObjectsEx(0,nullptr,500,QS_ALLINPUT,MWMO_ALERTABLE);
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return false;

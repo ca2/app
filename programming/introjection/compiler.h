@@ -18,7 +18,7 @@ namespace introjection
       filetime_set                              m_filetimeset;
 
 
-      library(::layered * pobjectContext);
+      library(::context_object * pcontextobject);
       virtual ~library();
 
 
@@ -75,7 +75,7 @@ namespace introjection
       compiler();
       virtual ~compiler();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       void initialize_compiler(const char * pszRepos, const char * pszApp, const char * pszProjectName);
       void prepare1(const char * lpcszSource,const char * lpcszDest);

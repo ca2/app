@@ -74,7 +74,7 @@ namespace uwp
 
       dpi_os_initialize();
 
-      //m_pimage->alloc(get_context_application()->create_new, this);
+      //m_pimage->alloc(get_application()->create_new, this);
       //m_pimage = create_image({1000,  1000});
 
 
@@ -768,11 +768,11 @@ namespace uwp
 
    //   m_pd2d1devicecontext->SetTransform(D2D1::Matrix3x2F::Identity());
 
-   //   ::draw2d::graphics_pointer dc(e_create_new, ::get_context_system());
+   //   ::draw2d::graphics_pointer dc(e_create_new, ::::apex::get_system());
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
+   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 
@@ -800,7 +800,7 @@ namespace uwp
 
    //   ////_001UpdateBuffer();
 
-   //   ////Sys(::get_context_system()).m_possystemwindow->m_puserinteraction->_000OnDraw(m_pimage->g());
+   //   ////Sys(::::apex::get_system()).m_possystemwindow->m_puserinteraction->_000OnDraw(m_pimage->g());
 
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());

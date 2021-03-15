@@ -30,10 +30,10 @@ namespace sockets
    }
 
 
-   ::e_status net::initialize(::layered* pobjectContext)
+   ::e_status net::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (estatus)
       {
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   //::e_status net::initialize(::layered* pobjectContext)
+   //::e_status net::initialize(::context_object * pcontextobject)
    //{
 
    //   return ::success;
@@ -364,7 +364,7 @@ namespace sockets
          {
             struct sockaddr_in *p = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(new ::sockets::ipv4_address(get_context_application(), *p));
+            addr(new ::sockets::ipv4_address(get_application(), *p));
             return addr;
          }
          break;
@@ -373,7 +373,7 @@ namespace sockets
          {
             struct sockaddr_in6 *p = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(new ::sockets::ipv6_address(get_context_application(), *p));
+            addr(new ::sockets::ipv6_address(get_application(), *p));
             return addr;
          }
          break;

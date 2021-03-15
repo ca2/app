@@ -163,7 +163,7 @@ namespace windows
       //if (strFileParam.compare_ci(::dir::bookmark()) == 0)
       //{
 
-      //   strIconLocation = Context.dir().matter("aura.ico");
+      //   strIconLocation = pcontext->dir().matter("aura.ico");
 
       //   output_debug_string("aura.ico");
 
@@ -176,7 +176,7 @@ namespace windows
       //   //imagekey.m_strExtension = "";
 
       //}
-      auto psession = Session;
+      auto psession = get_session();
 
       if (SUCCEEDED(hrExtractIconUI = psf->GetUIObjectOf(
                                        psession->system_window()->get_handle(),
@@ -349,13 +349,13 @@ namespace windows
 
       if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
             || imagekey.m_iIcon == 0x80000000
-            || !Context.file().exists(strIconLocation))
+            || !pcontext->file().exists(strIconLocation))
             && ::str::ends_ci(strFileParam, ".lnk"))
       {
 
-         Context.file().resolve_link(pathTarget, strFileParam);
+         pcontext->file().resolve_link(pathTarget, strFileParam);
 
-         if (!Context.file().exists(pathTarget) && !Context.dir().is(pathTarget))
+         if (!pcontext->file().exists(pathTarget) && !pcontext->dir().is(pathTarget))
          {
 
             if (pathTarget.ends_ci(".exe"))
@@ -424,7 +424,7 @@ namespace windows
 
             strIcon = ::dir::config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
-            if (Context.file().exists(strIcon))
+            if (pcontext->file().exists(strIcon))
             {
 
                if (reserve_image(imagekeyTheme, iImage))
@@ -860,7 +860,7 @@ namespace windows
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = Context.dir().matter("cloud.ico");
+            ::file::path path = pcontext->dir().matter("cloud.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -875,7 +875,7 @@ namespace windows
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = Context.dir().matter("remote.ico");
+            ::file::path path = pcontext->dir().matter("remote.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -890,7 +890,7 @@ namespace windows
          if (reserve_image(imagekey, iImage))
          {
 
-            ::file::path path = Context.dir().matter("ftp.ico");
+            ::file::path path = pcontext->dir().matter("ftp.ico");
 
             add_icon_path(path, crBk, iImage);
 
@@ -903,7 +903,7 @@ namespace windows
       if (::str::ends_ci(imagekey.m_strPath, ".aura"))
       {
 
-         string str = Context.file().as_string(imagekey.m_strPath);
+         string str = pcontext->file().as_string(imagekey.m_strPath);
 
          if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
@@ -1058,7 +1058,7 @@ namespace windows
    //}
 
 
-   ::e_status shell::initialize(::layered * pobjectContext)
+   ::e_status shell::initialize(::context_object * pcontextobject)
    {
 
       if (m_bInitialized)
@@ -1068,7 +1068,7 @@ namespace windows
 
       }
 
-      auto estatus = ::user::shell::initialize(pobjectContext);
+      auto estatus = ::user::shell::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -1127,7 +1127,7 @@ namespace windows
 
       synchronizationlock.unlock();
 
-      path = Context.defer_process_path(path);
+      path = pcontext->defer_process_path(path);
 
       for (auto iSize : m_iaSize)
       {
@@ -1353,7 +1353,7 @@ namespace windows
    }
 
 
-   ::e_status shell::finish(::context_object * pcontextobject)
+   ::e_status shell::finish(::property_object * pcontextobject)
    {
 
       return ::user::shell::finish(pcontextobject);

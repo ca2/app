@@ -3,10 +3,10 @@
 #include "wait_cursor.h"
 
 
-wait_cursor::wait_cursor(::layered * pobjectContext)
+wait_cursor::wait_cursor(::context_object * pcontextobject)
 {
 
-   auto estatus = initialize(pobjectContext);
+   auto estatus = initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -15,7 +15,9 @@ wait_cursor::wait_cursor(::layered * pobjectContext)
 
    }
 
-	Application.BeginWaitCursor();
+   __pointer(::aura::application) papplication = get_application();
+
+	papplication->BeginWaitCursor();
 
 }
 
@@ -23,7 +25,9 @@ wait_cursor::wait_cursor(::layered * pobjectContext)
  wait_cursor::~wait_cursor()
 {
 
-    Application.EndWaitCursor();
+    __pointer(::aura::application) papplication = get_application();
+
+    papplication->EndWaitCursor();
 
 }
 
@@ -31,7 +35,9 @@ wait_cursor::wait_cursor(::layered * pobjectContext)
 void wait_cursor::Restore()
 {
 
-	Application.RestoreWaitCursor();
+   __pointer(::aura::application) papplication = get_application();
+
+	papplication->RestoreWaitCursor();
 
 }
 

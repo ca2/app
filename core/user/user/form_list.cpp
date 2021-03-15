@@ -1914,7 +1914,7 @@ break_click:;
 
          bool bOk;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_shift))
          {
@@ -2103,7 +2103,7 @@ break_click:;
 
          _001ClientToScreen(rScreen);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (rScreen.contains(psession->m_pointCursor))
          {

@@ -315,13 +315,13 @@
 #define VK_MEDIA_STOP      0xB2 /* Windows 2000/XP: Stop Media key */
 #define VK_MEDIA_PLAY_PAUSE   0xB3 /* Windows 2000/XP: Play/Pause Media key */
 
-/* Application launcher keys */
+/* papplication launcher keys */
 
 #define VK_LAUNCH_MAIL      0xB4 /* Windows 2000/XP: Start Mail key */
 #define VK_MEDIA_SELECT      0xB5 /* Windows 2000/XP: Select Media key */
 #define VK_LAUNCH_MEDIA_SELECT   0xB5 /* Windows 2000/XP: Select Media key */
-#define VK_LAUNCH_APP1      0xB6 /* Windows 2000/XP: Start Application 1 key */
-#define VK_LAUNCH_APP2      0xB7 /* Windows 2000/XP: Start Application 2 key */
+#define VK_LAUNCH_APP1      0xB6 /* Windows 2000/XP: Start papplication 1 key */
+#define VK_LAUNCH_APP2      0xB7 /* Windows 2000/XP: Start papplication 2 key */
 
 /* 0xB8 and 0xB9 are reserved */
 

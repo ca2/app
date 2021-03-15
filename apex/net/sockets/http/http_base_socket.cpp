@@ -8,26 +8,27 @@ namespace sockets
 {
 
 
-   http_base_socket::http_base_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h)
+   http_base_socket::http_base_socket() 
+      //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h)
    {
 
 
    }
 
 
-   http_base_socket::http_base_socket(const http_base_socket& s) :
-      ::object(s.get_context_object()),
-      base_socket(s),
-      socket(s),
-      stream_socket(s),
-      tcp_socket(s),
-      http_socket(s)
+   http_base_socket::http_base_socket(const http_base_socket& s) //:
+      //::object(&s),
+      //base_socket(s),
+      //socket(s),
+      //stream_socket(s),
+      //tcp_socket(s),
+      //http_socket(s)
    {
 
 
@@ -620,8 +621,10 @@ namespace sockets
                   if (iPos >= preader->get_size())
                      break;
                }
+
+               __pointer(::apex::system) psystem = get_system();
                
-               response().println(::apex::get_system()->base64().encode(*pfile->get_memory()));
+               response().println(psystem->base64().encode(*pfile->get_memory()));
 
             }
             

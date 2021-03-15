@@ -210,7 +210,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -244,7 +244,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       crMoveableBorder,
@@ -266,7 +266,7 @@ SizingNone:;
 
                   //::rectangle_i32 rectangle;
                   //GetBorderRect(rectClient,rectangle,eside);
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
                   //   rectangle,
                   //   crMoveableBorder,
@@ -276,7 +276,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       crMoveableBorder,
@@ -595,7 +595,7 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

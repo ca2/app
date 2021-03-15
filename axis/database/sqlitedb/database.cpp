@@ -323,7 +323,9 @@ namespace sqlite
       try
       {
 
-         Context.file().del(m_strName);
+         auto pcontext = get_context();
+
+         pcontext->file().del(m_strName);
 
       }
       catch(...)

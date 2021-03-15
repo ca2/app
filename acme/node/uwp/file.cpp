@@ -177,7 +177,7 @@ namespace uwp
          {
             /*         if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {
@@ -214,7 +214,7 @@ namespace uwp
          {
             /*if (pException != nullptr)
             {
-            pException->create(get_object());
+            pException->create(this);
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {

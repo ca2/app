@@ -8,7 +8,7 @@ namespace simpledb
       public ::database::client
    {
    public:
-      file_set(::layered * pobjectContext);
+      file_set(::context_object * pcontextobject);
       virtual ~file_set();
 
       virtual bool refresh();

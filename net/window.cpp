@@ -144,7 +144,7 @@ namespace app_net
 
             set["raw_http"] = true;
 
-            string strGet = Application.http().get(m_strUrl, set);
+            string strGet = papplication->http().get(m_strUrl, set);
 
             {
 

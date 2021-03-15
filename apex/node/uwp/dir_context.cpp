@@ -19,10 +19,10 @@ namespace uwp
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -67,7 +67,7 @@ namespace uwp
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(get_context()->file().as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       //{
@@ -185,7 +185,7 @@ namespace uwp
 
                }
 
-               Application.dir().ls(listing);
+               get_application()->dir().ls(listing);
 
             }
 
@@ -378,7 +378,7 @@ namespace uwp
 
    ::file::path dir_context::warehouse()
    {
-      return Context.dir().ca2module();
+      return get_context()->dir().ca2module();
    }
 
    ::file::path dir_context::time()
@@ -486,7 +486,7 @@ namespace uwp
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch (...)
@@ -501,7 +501,7 @@ namespace uwp
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch (...)

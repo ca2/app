@@ -62,25 +62,25 @@ namespace user
 
       //split_layout::Pane * pcomponent;
 
-      //__pointer(::user::interaction) pwnd;
+      //__pointer(::user::interaction) puserinteraction;
 
       //i32 i;
 
       //for (i = 0; i < iSplitBarCount; i++)
       //{
 
-      //   pwnd = m_splitbara.element_at(i);
+      //   puserinteraction = m_splitbara.element_at(i);
 
       //   if (!bIsWindowVisible)
       //   {
 
-      //      pwnd->display(e_display_none);
+      //      puserinteraction->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(e_display_normal);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -102,9 +102,9 @@ namespace user
 
       //   }
 
-      //   pwnd = pcomponent->m_pplaceholder;
+      //   puserinteraction = pcomponent->m_pplaceholder;
 
-      //   if ( pwnd == nullptr)
+      //   if ( puserinteraction == nullptr)
       //   {
 
       //      continue;
@@ -118,13 +118,13 @@ namespace user
       //   if (rectPane.area() <= 0 || !bIsWindowVisible)
       //   {
 
-      //      pwnd->display(e_display_none);
+      //      puserinteraction->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(e_display_normal);
+      //      puserinteraction->display(e_display_normal);
 
       //   }
 
@@ -245,7 +245,7 @@ namespace user
       if(pMsg->m_id == e_message_left_button_down)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if(psession->is_mouse_button_pressed(::user::e_mouse_left_button))
          {
@@ -261,7 +261,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -486,7 +486,7 @@ namespace user
 
       split_layout::Pane * pcomponent;
 
-      __pointer(::user::interaction) pwnd;
+      __pointer(::user::interaction) puserinteraction;
 
       //::u32 uBaseFlags = SWP_NOZORDER;
       ::u32 uBaseFlags = 0;
@@ -496,12 +496,12 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         pwnd = m_splitbara.element_at(i);
+         puserinteraction = m_splitbara.element_at(i);
 
          if (!m_bSplitBar || !is_pane_visible(i) || !bIsWindowVisible || m_panea[i]->m_bFixedSize)
          {
 
-            pwnd->hide();
+            puserinteraction->hide();
 
             continue;
 
@@ -514,11 +514,11 @@ namespace user
          if (bIsWindowVisible)
          {
 
-            pwnd->order(e_zorder_top);
+            puserinteraction->order(e_zorder_top);
 
-            pwnd->place(rectBar);
+            puserinteraction->place(rectBar);
 
-            pwnd->display();
+            puserinteraction->display();
 
          }
 
@@ -535,9 +535,9 @@ namespace user
 
          pcomponent = m_panea.element_at(i);
 
-         pwnd = pcomponent->m_pplaceholder;
+         puserinteraction = pcomponent->m_pplaceholder;
 
-         if (pwnd == nullptr)
+         if (puserinteraction == nullptr)
          {
 
             continue;
@@ -548,20 +548,20 @@ namespace user
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
 
-         pwnd->order(e_zorder_top);
+         puserinteraction->order(e_zorder_top);
 
-         pwnd->place(rectClient);
+         puserinteraction->place(rectClient);
 
-         if (pwnd->layout().sketch().is_visible())
+         if (puserinteraction->layout().sketch().is_visible())
          {
 
-            pwnd->display();
+            puserinteraction->display();
 
          }
          else
          {
 
-            pwnd->hide();
+            puserinteraction->hide();
 
          }
 
@@ -704,23 +704,23 @@ namespace user
 
       }
 
-      auto puiptraChild = pholder->m_puiptraChild;
+      auto puserinteractionpointeraChild = pholder->m_puserinteractionpointeraChild;
 
-      if (!puiptraChild)
+      if (!puserinteractionpointeraChild)
       {
 
          return true;
 
       }
 
-      if (puiptraChild->has_no_interaction())
+      if (puserinteractionpointeraChild->has_no_interaction())
       {
 
          return true; // assume future child by default is visible
 
       }
 
-      if (!puiptraChild->first_interaction()->layout().sketch().is_visible())
+      if (!puserinteractionpointeraChild->first_interaction()->layout().sketch().is_visible())
       {
 
          return false;
@@ -1176,7 +1176,7 @@ namespace user
 //         if(m_iState != stateInitial)
 //         {
 //
-//            auto psession = Session;
+//            auto psession = get_session();
 //
 //            auto puser = psession->user();
 //

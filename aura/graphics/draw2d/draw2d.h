@@ -33,7 +33,7 @@ namespace draw2d
       virtual ~draw2d();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual ::e_status process_init() override;
 

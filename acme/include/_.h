@@ -72,10 +72,10 @@
 //#undef Sys
 
 
-//#define System (::get_context_system())
+//#define get_system() (::get_context_system())
 
 
-#define Node (::get_context_system()->node())
+//#define Node (::get_context_system()->node())
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -84,7 +84,9 @@
 #include <tuple>
 
 
+class object;
 class thread;
+class context_object;
 
 
 CLASS_DECL_ACME void acme_ref();
@@ -124,16 +126,16 @@ namespace acme
    class system;
 
 
-   CLASS_DECL_ACME system * get_system();
+//   CLASS_DECL_ACME system * get_system();
 
 
 } // namespace acme
 
 
-class layered;
+//class layered;
 
 
-CLASS_DECL_ACME ::acme::system *get_context_system();
+//CLASS_DECL_ACME ::acme::system *get_context_system();
 
 
 #define ___STR(s) #s
@@ -279,7 +281,8 @@ concept primitive_floating = std::is_floating_point < T >::value;
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
-::std::is_convertible < FROM, const TO_POINTER * >::value;
+::std::is_convertible < FROM, const TO_POINTER * >::value ||
+::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
 
 template < typename DERIVED, typename BASE >
 concept is_derived_from =
@@ -1850,6 +1853,13 @@ public:
 };
 
 
+template < typename T, typename ARG_T = typename argument_of < T >::type >
+class single;
+
+
+template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
+class set;
+
 
 template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
 class pair;
@@ -2419,7 +2429,7 @@ namespace html
 
 // __throw( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 #endif
 
 
@@ -2524,8 +2534,6 @@ class type;
 
 #define __m_own(owner, member_reference, ...) (owner)->__compose(member_reference, __VA_ARGS__ )
 #define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
-#define __m_bind(referer, member_reference, ...) (referer)->__refer(member_reference, __VA_ARGS__ )
-#define __bind(referer, referee, ...) __m_bind(referer, (referer)->referee, __VA_ARGS__)
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
@@ -2652,6 +2660,9 @@ inline bool is_set(const TYPE & t)
    return is_set(&t);
 
 }
+
+
+//#include "acme/user/primitive.h"
 
 
 #include "acme/primitive/primitive/pointer.h"
@@ -2981,7 +2992,7 @@ using element_address_array = ::address_array<matter *>;
 
 class sticker;
 
-inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
+inline ::matter *trace_object(::matter *pobject) { return pobject; }
 
 template<typename POINTER_TYPE>
 class ptr_array;
@@ -3086,7 +3097,9 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 #include "acme/primitive/primitive/linked_property.h"
 
 
-#include "acme/primitive/primitive/context_object.h"
+#include "acme/primitive/primitive/property_object.h"
+
+
 #include "acme/primitive/primitive/layered.h"
 
 
@@ -3723,7 +3736,7 @@ namespace xml
 {
 
 
-   class department;
+   class xml;
 
 
 } // namespace xml
@@ -3793,6 +3806,9 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
+#include "acme/primitive/primitive/osdata_array.h"
+
+
 //typedef void CALL_UPDATE(const ::id & id, const ::payload & payload);
 //using PFN_CALL_UPDATE = CALL_UPDATE *;
 
@@ -3815,14 +3831,14 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 //#include "app/acme/node/node.h"
 
 
-namespace math
+namespace mathematics
 {
 
    template<typename T>
    class complex;
 
 
-} // namespace math
+} // namespace mathematics
 
 namespace _std
 {
@@ -4042,6 +4058,8 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/primitive/primitive/_.h"
 
 
+#include "acme/primitive/mathematics/mathematics.h"
+
 
 //#include "acme/scripting/javascript/javascript.h"
 
@@ -4077,6 +4095,18 @@ namespace draw2d
 
 
 #include "acme/platform/node.h"
+
+
+#include "acme/platform/predicate_holder.h"
+
+
+#include "acme/parallelization/fork.h"
+
+
+#include "acme/parallelization/tools.h"
+
+
+#include "acme/platform/acme_main_data.h"
 
 
 #include "acme/platform/system.h"
@@ -4116,9 +4146,11 @@ namespace draw2d
 #include "acme/primitive/collection/_raw_array_impl.h"
 #include "acme/primitive/collection/_sort_array_impl.h"
 #include "acme/primitive/collection/_papaya_array_impl.h"
+#include "acme/primitive/collection/_tiny_array_impl.h"
 
 #include "acme/primitive/collection/_list_impl.h"
 #include "acme/primitive/collection/_map_impl.h"
+#include "acme/primitive/collection/_set_impl.h"
 
 #include "acme/primitive/collection/_sort_map_impl.h"
 
@@ -4222,7 +4254,7 @@ namespace draw2d
 //#include "acme/os/_impl.h"
 
 
-#include "acme/primitive/subject/_impl.h"
+//#include "acme/primitive/subject/_impl.h"
 
 
 #include "acme/primitive/primitive/_id_impl.h"
@@ -4231,8 +4263,9 @@ namespace draw2d
 #include "acme/primitive/primitive/_payload_impl.h"
 
 
-#include "acme/primitive/primitive/_context_object_impl.h"
+#include "acme/primitive/primitive/_property_object_impl.h"
 
 
 #include "acme/memory/_impl.h"
+
 

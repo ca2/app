@@ -11,7 +11,7 @@ public:
    virtual ~file_context();
 
    
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
    virtual ::e_status init_system();

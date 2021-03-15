@@ -21,10 +21,10 @@ namespace windows
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -33,9 +33,11 @@ namespace windows
 
       }
 
-      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
+      __pointer(::apex::system) psystem = get_system();
 
-      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
+      __refer(m_pfilesystem, psystem->m_pfilesystem);
+
+      __refer(m_pdirsystem, psystem->m_pdirsystem);
 
       return ::success;
 
@@ -848,7 +850,9 @@ namespace windows
    ::file::path dir_context::module()
    {
 
-      return ::apex::get_system()->m_pdirsystem->m_pathModule;
+      __pointer(::apex::system) psystem = get_system();
+
+      return psystem->m_pdirsystem->m_pathModule;
 
    }
 
@@ -856,7 +860,9 @@ namespace windows
    ::file::path dir_context::ca2module()
    {
 
-      return ::apex::get_system()->m_pdirsystem->m_pathCa2Module;
+      __pointer(::apex::system) psystem = get_system();
+
+      return psystem->m_pdirsystem->m_pathCa2Module;
 
    }
 

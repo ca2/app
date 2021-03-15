@@ -6,7 +6,7 @@ namespace prompt
 {
 
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::context_object * pcontextobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),
@@ -81,7 +81,7 @@ namespace prompt
       else if(get_view_id() == CONTEXT_MENU_IMPACT)
       {
          __pointer(::filemanager::document) pdocument =  (get_view_uie());
-         pdocument->browse(Context.dir().appdata()/ "command/menu", ::e_source_system);
+         pdocument->browse(pcontext->dir().appdata()/ "command/menu", ::e_source_system);
       }
       else
       {
@@ -123,7 +123,7 @@ namespace prompt
          pdata->m_pcallback = this;
          pdata->m_strXmlPopup = "matter://filemanager\\file_popup.xml";
 
-         bool bOk = pdata->open(get_context_application(), Context.dir().appdata() / "command/menu", ::e_source_system);
+         bool bOk = pdata->open(get_application(), pcontext->dir().appdata() / "command/menu", ::e_source_system);
 
          if(bOk && ::is_set(pdata->m_pdocument))
          {
@@ -203,8 +203,8 @@ namespace prompt
          pdata->m_pcallback = this;
          //pdata->m_strFilePopup = "filemanager\\file_popup.xml";
 
-         //auto pdocument = pdata->browse(Context.dir().appdata() / "co
-         pdata->open(get_context_application(), Context.dir().appdata() / "command\\3-action-launch", ::e_source_system);
+         //auto pdocument = pdata->browse(pcontext->dir().appdata() / "co
+         pdata->open(get_application(), pcontext->dir().appdata() / "command\\3-action-launch", ::e_source_system);
 
          if(::is_set(pdata->m_pdocument))
          {
@@ -240,7 +240,7 @@ namespace prompt
       break;
       case impact_configuration:
       {
-         __pointer(::user::document) pdocument = Application.create_form(this, this);
+         __pointer(::user::document) pdocument = papplication->create_form(this, this);
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
@@ -356,13 +356,13 @@ namespace prompt
 
          //iptr i = 0;
 
-         Context.os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
+         pcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
 
          //string str;
 
          //str.Format("%d", i);
 
-         ////Application.message_box(str);
+         ////papplication->message_box(str);
 
          //if(i == ERROR_FILE_NOT_FOUND)
          //{

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   top_view::top_view(::layered * pobjectContext):
+   top_view::top_view(::context_object * pcontextobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -62,7 +62,7 @@ namespace turboc
       if(m_peditview == NULL)
       {
 
-         System->message_box(NULL,"Could not create folder edit view");
+         psystem->message_box(NULL,"Could not create folder edit view");
 
       }
 
@@ -86,7 +86,7 @@ namespace turboc
       if(m_ptoggleview == NULL)
       {
 
-         System->message_box(NULL,"Could not create file list ::aura::impact");
+         psystem->message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 

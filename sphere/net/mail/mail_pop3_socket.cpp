@@ -10,7 +10,7 @@ namespace mail
 
 
    pop3_socket::pop3_socket(::sockets::socket_handler & h) :
-      object(h.get_context_application()),
+      object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -62,14 +62,14 @@ namespace mail
             m_estate = state_auth_2;
             EnableSSL();
             OnSSLConnect();
-            //Handler().Select(240, 0);
+            //socket_handler()->Select(240, 0);
             /*         if(GetOutputLength())
                         OnWrite();
                      if(IsReconnect())
                         OnReconnect();
                      else
                         OnConnect();
-                     Handler().AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
+                     socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
             string str = "USER " + m_ppop3->get_user() + "\r\n";
             write((const char *) str);
          }

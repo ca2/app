@@ -5,7 +5,7 @@ namespace sphere
 {
 
 
-   library::library(::layered * pobjectContext) :
+   library::library(::context_object * pcontextobject) :
       ::object(pobject),
       ::apex::library(pobject, 0, "app"),
       ::apex::single_application_library < application > (pobject, "app"),
@@ -85,7 +85,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::apex::library * get_new_library(::layered * pobjectContext)
+::apex::library * get_new_library(::context_object * pcontextobject)
 {
 
    return new ::sphere::library(pobject);

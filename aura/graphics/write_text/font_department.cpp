@@ -43,7 +43,7 @@ bool font_department::is_initialized()
 }
 
 
-::e_status font_department::initialize(::layered * pobjectContext)
+::e_status font_department::initialize(::context_object * pcontextobject)
 {
 
    if (is_initialized())

@@ -2,7 +2,8 @@
 
 
 class CLASS_DECL_APEX apex_main_data :
-   public apex_main_struct,
+   virtual public acme_main_data,
+   virtual public apex_main_struct,
    virtual public ::object
 {
 public:
@@ -10,13 +11,6 @@ public:
 
    int                              m_iPathInstallFolderExeArg;
    bool                             m_bFork;
-   int                              m_argc;
-   char **                          m_argv;
-   char **                          m_envp;
-   wchar_t **                       m_wargv;
-   wchar_t **                       m_wenvp;
-   int                              m_iExitCode;
-   string                           m_strCommandLine;
    string                           m_strStandalone;
    //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
    ::e_display                      m_edisplay;

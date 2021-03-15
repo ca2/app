@@ -18,7 +18,7 @@ public:
    void read(machine_event_data * pdata);
    void write(machine_event_data * pdata);
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::context_object * pcontextobject) override;
    virtual ::e_status     run() override;
 
    bool is_close_application();

@@ -9,11 +9,9 @@ namespace xml
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
    {
 
-      ::aqua::get_system()->defer_xml();
-
       m_pdocument            = this;
-      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : ::aqua::get_system()->m_pxml->m_pparseinfoDefault.m_p;
-      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : ::aqua::get_system()->m_pxml->m_pentitiesHashDefault.m_p;
+//      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : get_system()->m_pxml->m_pparseinfoDefault.m_p;
+//      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : get_system()->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
 
    }
@@ -46,8 +44,13 @@ namespace xml
    {
 
       m_pathLocation = psz;
+      
       string str;
-      str = Context.file().as_string(psz);
+
+      auto psystem = get_system();
+
+      str = get_context()->file().as_string(psz);
+
       return load(str);
 
    }
@@ -78,6 +81,30 @@ namespace xml
 
    }
 
+
+   ::e_status document::initialize_matter(::matter* pmatter)
+   {
+
+      auto estatus = node::initialize_matter(pmatter);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      if (m_pnodeRoot)
+      {
+
+         m_pnodeRoot->initialize_matter(this);
+
+      }
+
+      return estatus;
+
+   }
+
    void document::create_root()
    {
 
@@ -89,6 +116,8 @@ namespace xml
       }
 
       m_pnodeRoot = __new(class node((node *) this));
+
+      m_pnodeRoot->initialize_matter(this);
 
       m_nodea.add(m_pnodeRoot);
 
@@ -283,7 +312,7 @@ namespace xml
 
          pszXmlParam = pszXml;
 
-         return Context.file().as_string(m_pathLocation.sibling(extEnt));
+         return get_context()->file().as_string(m_pathLocation.sibling(extEnt));
 
       }
 

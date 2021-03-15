@@ -11,54 +11,17 @@ namespace windows
    {
    public:
 
-#ifdef _UWP
 
-      //i32              m_iSerial;
-
-#elif defined(WINDOWS_DESKTOP)
-
-
-      //HWND             m_hwnd;
-
-      //m_osdataa[0] == = HWND;
-
-
-#elif defined(APPLEOS)
-
-
-      CFMessagePortRef     m_port;
-
-
-#elif !defined(_UWP)
-
-      key_t                m_key;
-      int                  m_iQueue;
-
-      struct data_struct
-      {
-
-
-         long     mtype;
-         long     request;
-         int      size;
-         char     data[0];
-
-
-      };
-
-
-#endif
-
-
-      string   m_strBaseChannel;
+      HWND              m_hwnd;
+      string            m_strBaseChannel;
 
 
       interprocess_communication_base();
       virtual ~interprocess_communication_base();
 
 
-      HWND get_hwnd() const { return (HWND) get_os_data(); }
-      void set_hwnd(HWND hwnd) { set_os_data((void *) hwnd); }
+      HWND get_hwnd() const { return (HWND) m_hwnd; }
+      void set_hwnd(HWND hwnd) { m_hwnd = hwnd; }
 
    };
 

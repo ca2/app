@@ -45,7 +45,7 @@ namespace sockets
       string m_header_line;
 
 
-      smtpd_socket(base_socket_handler&);
+      smtpd_socket();
 
       void OnAccept();
       void OnLine(const string &);

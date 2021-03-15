@@ -42,7 +42,7 @@ namespace filemanager
            }*/
 
 
-      virtual ::e_status initialize_filemanager_component(::layered * pobjectContext);
+      virtual ::e_status initialize_filemanager_component(::context_object * pcontextobject);
 
       virtual void filemanager_finalize();
 

@@ -172,17 +172,23 @@ namespace user
 
       string strText;
 
-      Application.data_get(m_id + ".cur_text", strText);
+      auto papplication = get_application();
 
-      m_pimageLogo = Application.image().load_image("matter://main/logo.png", false);
+      papplication->data_get(m_id + ".cur_text", strText);
+
+      m_pimageLogo = papplication->image().load_image("matter://main/logo.png", false);
 
       m_fontTitle.create(this);
 
-      m_fontTitle->create_point_font(os_font_name(e_font_sans_ui), 14, 800);
+      auto psystem = get_system();
+
+      auto pnode = psystem->node();
+
+      m_fontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
 
       m_font.create(this);
 
-      m_font->create_point_font(os_font_name(e_font_sans_ui), 14, 400);
+      m_font->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
 
       if (GetTypedParent<::user::split_view>() != nullptr)
       {
@@ -632,7 +638,9 @@ namespace user
    bool menu_view::load_xml(::payload varFile)
    {
 
-      string str = Context.file().as_string(varFile);
+      auto pcontext = get_context();
+
+      string str = pcontext->file().as_string(varFile);
 
       if (!m_pxmldoc->load(str))
       {
@@ -641,7 +649,6 @@ namespace user
 
       }
 
-
       int iPos = 0;
 
       ::rectangle_i32 rectangle;
@@ -649,6 +656,8 @@ namespace user
       int iMenu;
 
       int iCommand;
+
+      auto papplication = get_application();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
@@ -675,7 +684,7 @@ namespace user
 
             get_item_rect(iPos, rectangle);
 
-            ::image_pointer pimage1 = Application.image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            ::image_pointer pimage1 = papplication->image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
             if (pimage1)
             {

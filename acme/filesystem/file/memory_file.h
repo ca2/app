@@ -194,6 +194,7 @@ class CLASS_DECL_ACME memory_stream :
 {
 public:
 
+
    memory_stream() : binary_stream(__new(::memory_file)) {}
    memory_stream(::memory_base & memory) : binary_stream(__new(::memory_file(memory))) {}
 

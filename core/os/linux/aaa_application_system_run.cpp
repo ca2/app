@@ -96,11 +96,11 @@ void sn_start_context()
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_context_session()->set_context_app(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->m_papplicationStartup);
 //
 //      psystem->set_context_app(psystem->m_papplicationStartup);
 //
-//      psystem->get_context_session()->set_context(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context(psystem->m_papplicationStartup);
 //
 //      psystem->set_context(psystem->m_papplicationStartup);
 //

@@ -9,7 +9,7 @@ namespace aura
 //   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 //   {
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      auto puser = psession->m_puser;
 //
@@ -35,7 +35,7 @@ namespace aura
    //::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
    //{
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   auto puser = psession->m_puser;
 

@@ -42,6 +42,9 @@ namespace apex
 
 #endif
 
+      virtual void on_os_dark_mode_change() override;
+
+
    };
 
 

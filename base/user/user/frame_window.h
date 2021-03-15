@@ -78,6 +78,12 @@ namespace user
       virtual ~frame_window();
 
 
+      inline ::base::application * get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system * get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system * > (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       void common_construct();
 
 

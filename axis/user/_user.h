@@ -32,3 +32,19 @@ namespace user
 
 
 
+
+namespace axis
+{
+
+
+   inline ::axis::user* session::user() 
+   {
+      
+      return m_puser ? m_puser.cast < ::axis::user >() : nullptr; 
+   
+   }
+
+
+} // namespace axis
+
+

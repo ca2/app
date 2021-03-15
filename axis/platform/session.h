@@ -18,7 +18,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
 
       virtual ::e_status process_init() override;
@@ -44,7 +44,7 @@ namespace axis
 
       virtual void on_user_logon(::account::user* puser);
 
-      inline ::axis::user* user() { return m_puser ? (::axis::user *) m_puser->get_os_data(LAYERED_AXIS) : nullptr; }
+      inline ::axis::user* user();
 
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 

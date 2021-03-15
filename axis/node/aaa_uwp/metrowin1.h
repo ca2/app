@@ -58,7 +58,7 @@ CLASS_DECL_AXIS void __end_thread(::object * pobject, ::u32 nExitCode, bool bDel
 
 CLASS_DECL_AXIS void __init_thread();
 //CLASS_DECL_AXIS void __term_thread(::object * pobject, HINSTANCE hInstTerm = nullptr);
-//CLASS_DECL_AXIS void __term_thread(::layered * pobjectContext);
+//CLASS_DECL_AXIS void __term_thread(::context_object * pcontextobject);
 
 
 //CLASS_DECL_AXIS __pointer(::user::interaction) __get_main_window();

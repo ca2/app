@@ -167,7 +167,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
 
          sleep(100_ms);
 
-         if(!::thread_get_run() || !pred())
+         if(!::task_get_run() || !pred())
          {
 
             break;
@@ -178,7 +178,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
 
    }
 
-   return ::thread_get_run();
+   return ::task_get_run();
 
 }
 
@@ -237,10 +237,10 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PR
 }
 
 //
-//inline ::thread* get_task(ithread_t idthread)
+//inline ::thread* get_task(itask_t idthread)
 //{
 //
-//   return (::thread*) System->get_task(idthread);
+//   return (::thread*) ::acme::get_system()->get_task(idthread);
 //
 //}
 //

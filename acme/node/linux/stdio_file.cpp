@@ -33,7 +33,7 @@ namespace linux
 //      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
 //      {
 //
-//         Context.dir().mk(pszFileName.folder());
+//         get_context()->dir().mk(pszFileName.folder());
 //
 //
 //      }
@@ -101,7 +101,7 @@ namespace linux
          }
 
          ::linux::file::Abort(); // close m_hFile
-         //return ::fesp(get_context_application(), ::file::exception::none);
+         //return ::fesp(get_application(), ::file::exception::none);
          return ::error_io;
       }
 

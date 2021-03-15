@@ -564,7 +564,7 @@ namespace hi5
 
       property_set post;
 
-      ::sockets::multipart multipart(get_object());
+      ::sockets::multipart multipart(this);
 
       multipart.m_map["media"].m_spfile = pfile;
 
@@ -1820,7 +1820,7 @@ namespace hi5
       set.merge(m_setHttp);
 
       /* Send http request */
-      bool bOk = Context.http().get(getUrl, m_strResponse, set);
+      bool bOk = pcontext->http().get(getUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1854,7 +1854,7 @@ namespace hi5
       set["headers"] = headers;
 
       /* Send http request */
-      bool bOk = Context.http().get(getUrl, m_strResponse, set);
+      bool bOk = pcontext->http().get(getUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1884,7 +1884,7 @@ namespace hi5
 //         set["http_method"] = "POST";
 //
 //         // Send http request
-////      bool bOk = Context.http().get(getUrl, m_strResponse, set);
+////      bool bOk = pcontext->http().get(getUrl, m_strResponse, set);
 ////
 ////      headers = set["get_headers"].propset();
 ////
@@ -1918,7 +1918,7 @@ namespace hi5
       set["http_method"] = "DELETE";
 
       /* Send http request */
-      bool bOk = Context.http().get(deleteUrl, m_strResponse, set);
+      bool bOk = pcontext->http().get(deleteUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1959,7 +1959,7 @@ namespace hi5
 
          }
 
-         bOk = Context.http().get(postUrl, m_strResponse, set);
+         bOk = pcontext->http().get(postUrl, m_strResponse, set);
 
          string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1981,7 +1981,7 @@ namespace hi5
 
          setHttp["http_method"] = "POST";
 
-         bOk = Context.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
+         bOk = pcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
 
          string m_strConnectionStatus = ::http::conn_status(setHttp);
 
@@ -2012,7 +2012,7 @@ namespace hi5
 
          }
 
-         bOk = Context.http().get(postUrl, m_strResponse, set);
+         bOk = pcontext->http().get(postUrl, m_strResponse, set);
 
          string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -2046,7 +2046,7 @@ namespace hi5
 
          }
 
-         bOk = Context.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
+         bOk = pcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
 
          string m_strConnectionStatus = ::http::conn_status(setHttp);
 
@@ -2164,7 +2164,7 @@ namespace hi5
                string strAuth = set["get_headers"]["Authorization"];
                string strDate = set["get_headers"]["date"];
                ::datetime::time time(iTime);
-               string strDateHere = System->datetime().international().get_gmt_date_time(time);
+               string strDateHere = psystem->datetime().international().get_gmt_date_time(time);
                /* Tell OAuth object to save access token and secret from web response */
                m_oauth.extractOAuthTokenKeySecret(get_response());
 

@@ -71,7 +71,7 @@ namespace user
    void font_list::set_font_list_type(::write_text::font_list::enum_type etype)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (etype == ::write_text::font_list::type_single_column)
       {
@@ -143,7 +143,7 @@ namespace user
 
       auto item = hit_test(pmouse);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -565,7 +565,7 @@ namespace user
 
             m_bFirstShown = true;
 
-            System->set_modified(id_font_enumeration);
+            psystem->set_modified(id_font_enumeration);
 
             //fork([this]()
   //             {

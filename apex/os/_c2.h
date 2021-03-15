@@ -41,7 +41,7 @@
 #include "apex/os/ansios/_c.h"
 #include "apex/os/ios/_c.h"
 #else
-#error Not Supported Operational ::apex::get_system()
+#error Not Supported Operational psystem
 #endif
 
 

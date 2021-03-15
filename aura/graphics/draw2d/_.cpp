@@ -62,7 +62,7 @@ namespace draw2d
 //}
 //
 //
-//image::image(::layered * pobjectContext)
+//image::image(::context_object * pcontextobject)
 //{
 //
 //   m_pimpl = pobject->create_image();

@@ -40,10 +40,10 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -86,7 +86,9 @@ namespace draw2d
 
       }
 
-      if (::aura::get_system()->m_bWriteText)
+      auto psystem = get_system();
+
+      if (psystem->m_bWriteText)
       {
 
          if (!initialize_write_text())
@@ -932,7 +934,7 @@ breakFilter2:
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = Context.file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
 //
 //      auto pdoc = create_xml_document();
 //
@@ -1211,8 +1213,9 @@ breakFilter2:
 
       }
 
+      __pointer(::aura::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&::aura::get_system()->m_mutexLibrary);
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 
@@ -1239,7 +1242,7 @@ breakFilter2:
       if (::succeeded(estatus))
       {
 
-         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       }
 
@@ -1278,7 +1281,9 @@ breakFilter2:
       if (strLibrary.has_char())
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", strLibrary);
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
          if (estatus)
          {
@@ -1306,7 +1311,9 @@ breakFilter2:
 
       }
 
-      estatus = ::aura::get_system()->do_factory_exchange("write_text", strLibrary);
+      __pointer(::aura::system) psystem = m_psystem;
+
+      estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
       if (estatus.succeeded())
       {
@@ -1318,11 +1325,12 @@ breakFilter2:
 
 #ifdef WINDOWS_DESKTOP
 
-
       if (strLibrary != "write_text_gdiplus")
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "gdiplus");
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
 
          if (estatus)
          {
@@ -1337,7 +1345,9 @@ breakFilter2:
       if (strLibrary != "write_text_direct2d")
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "direct2d");
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", "direct2d");
 
          if (estatus)
          {
@@ -1354,8 +1364,9 @@ breakFilter2:
       if (strLibrary != "write_text_pango")
       {
 
+         __pointer(::aura::system) psystem = m_psystem;
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "pango");
+         estatus = psystem->do_factory_exchange("write_text", "pango");
 
          if (estatus)
          {

@@ -17,7 +17,7 @@ void menu_view::on_subject(::subject::subject * psubject, ::subject::context * p
 void menu_view::on_control_event(::user::control_event * pevent)
 {
 
-   Application.on_control_event(pevent);
+   papplication->on_control_event(pevent);
 
    if(pevent->m_bRet)
    {
@@ -84,7 +84,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
       ev.m_puie = this;
 
-      Application.on_control_event(&ev);
+      papplication->on_control_event(&ev);
 
       if(ev.m_bRet)
       {

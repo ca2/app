@@ -7,15 +7,15 @@ namespace sockets
 {
 
 
-   http_post_socket::http_post_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h)
+   http_post_socket::http_post_socket() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h)
    {
 
       m_emethod = http_method_post;
@@ -23,32 +23,35 @@ namespace sockets
    }
 
 
-   http_post_socket::http_post_socket(base_socket_handler& h,const string & url_in) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   http_post_socket::http_post_socket(const string & url_in) :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h, url_in)
+      http_client_socket(url_in)
    {
 
       m_emethod = http_method_post;
 
-      single_lock lock(&::apex::get_system()->sockets().m_mutexHttpPostBoundary, true);
+      __pointer(::apex::system) psystem = get_system();
+
+      single_lock lock(&psystem->sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
 
       for (int i = 0; i < 12; i++)
       {
 
-         char c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
+         char c = psystem->sockets().m_countHttpPostBoundary++ % 128;
 
          while (!ansi_char_is_alphanumeric((unsigned char)c))
          {
 
-            c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
+            c = psystem->sockets().m_countHttpPostBoundary++ % 128;
 
          }
 
@@ -56,7 +59,7 @@ namespace sockets
 
       }
 
-      m_boundary += "__" + __str(::apex::get_system()->sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + __str(psystem->sockets().m_countHttpPostBoundary++);
 
    }
 
@@ -85,7 +88,7 @@ namespace sockets
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = __new(multipart(get_context_object()));
+            m_pmultipart = __new(multipart(this));
 
          }
          m_pmultipart->m_map[name].m_spfile = get_context()->file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);

@@ -6,7 +6,7 @@ namespace userstack
 {
 
 
-   view::view(::layered * pobjectContext) :
+   view::view(::context_object * pcontextobject) :
       ::object(pobject),
       m_font(e_create)
    {
@@ -135,13 +135,13 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = Context.dir().appdata() / "image";
-      m_straImagePath.m_pprovider = get_context_application();
+      string strImageDir = pcontext->dir().appdata() / "image";
+      m_straImagePath.m_pprovider = get_application();
       m_straImagePath.rls(strImageDir);
 
       for(i32 i = 0; i < m_straImagePath.get_size();)
       {
-         if(Context.dir().is(m_straImagePath[i]))
+         if(pcontext->dir().is(m_straImagePath[i]))
          {
             m_straImagePath.remove_at(i);
          }
@@ -186,7 +186,7 @@ namespace userstack
    {
       if(iTab == 1)
       {
-         System->message_box(nullptr, "Playlist");
+         psystem->message_box(nullptr, "Playlist");
       }
    }
 

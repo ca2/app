@@ -42,7 +42,7 @@ namespace ftp
       //tm m = { 0 };
       if (ftpFileStatus.m_timeModification > 0)
       {
-         ftpFileStatus.m_strModificationTime = System->datetime().international().get_gmt_date_time(ftpFileStatus.m_timeModification);
+         ftpFileStatus.m_strModificationTime = psystem->datetime().international().get_gmt_date_time(ftpFileStatus.m_timeModification);
       }
    }
 

@@ -50,11 +50,11 @@ namespace geo
          *get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
 
 
-         //Context.file().to_array(m_straCity, dir::system() / "weather-cit.bin");
-         //Context.file().to_array(m_straCityLo, dir::system() / "weather-cil.bin");
-         //Context.file().to_array(m_iaIds, dir::system() / "weather-ids.bin");
-         //Context.file().to_array(m_daLon, dir::system() / "weather-lon.bin");
-         //Context.file().to_array(m_daLat, dir::system() / "weather-lat.bin");
+         //pcontext->file().to_array(m_straCity, dir::system() / "weather-cit.bin");
+         //pcontext->file().to_array(m_straCityLo, dir::system() / "weather-cil.bin");
+         //pcontext->file().to_array(m_iaIds, dir::system() / "weather-ids.bin");
+         //pcontext->file().to_array(m_daLon, dir::system() / "weather-lon.bin");
+         //pcontext->file().to_array(m_daLat, dir::system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()
@@ -70,17 +70,19 @@ namespace geo
 
       }
 
+      auto pcontext = get_context();
+
       if (!bOk)
       {
 
          try
          {
 
-            Context.file().del(pathFolder / "weather-cit.bin");
-            Context.file().del(pathFolder / "weather-cil.bin");
-            Context.file().del(pathFolder / "weather-ids.bin");
-            Context.file().del(pathFolder / "weather-lon.bin");
-            Context.file().del(pathFolder / "weather-lat.bin");
+            pcontext->file().del(pathFolder / "weather-cit.bin");
+            pcontext->file().del(pathFolder / "weather-cil.bin");
+            pcontext->file().del(pathFolder / "weather-ids.bin");
+            pcontext->file().del(pathFolder / "weather-lon.bin");
+            pcontext->file().del(pathFolder / "weather-lat.bin");
 
             m_straCityLo.remove_all();
             m_straCity.remove_all();
@@ -108,7 +110,7 @@ namespace geo
 
          string str;
 
-         str = Context.file().as_string("https://server.ca2.cc/city-list.json");
+         str = pcontext->file().as_string("https://server.ca2.cc/city-list.json");
 
          if (str.has_char())
          {
@@ -465,9 +467,13 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __str(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      string strGetUrl = "https://ca2.cc/api/account/openweather?request=" + System->url_encode(strUrl);
+      __pointer(::axis::system) psystem = get_system();
 
-      string str = Context.http().get(strGetUrl, set);
+      string strGetUrl = "https://ca2.cc/api/account/openweather?request=" + psystem->url_encode(strUrl);
+
+      auto pcontext = get_context();
+
+      string str = pcontext->http().get(strGetUrl, set);
 
       synchronization_lock synchronizationlock(mutex());
 
@@ -501,7 +507,9 @@ namespace geo
    bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      auto pcity = System->geo().openweather_find_city(strLocality + ", " + strCountry);
+      __pointer(::axis::system) psystem = get_system();
+
+      auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
 
       if (pcity == nullptr)
       {
@@ -549,7 +557,9 @@ namespace geo
 
                ::file::path path = ::dir::system() / "datetime_departament_cityTimeZone.bin";
 
-               auto file = Context.file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
+               auto pcontext = get_context();
+
+               auto file = pcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
 
                if (file.is_set())
                {
@@ -595,7 +605,9 @@ namespace geo
 
 #endif
 
-      string str = Context.http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      auto pcontext = get_context();
+
+      string str = pcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
 
       if (str.has_char())
       {
@@ -647,7 +659,7 @@ namespace geo
 
          ::file::path path = ::dir::system() / "datetime_departament_cityTimeZone.bin";
 
-         auto file = Context.file().get_writer(path);
+         auto file = pcontext->file().get_writer(path);
 
          ::binary_stream writer(file);
 
@@ -696,7 +708,9 @@ namespace geo
 
       //    double dLon;
 
-      auto pcity = System->geo().openweather_find_city(strQ);
+      __pointer(::axis::system) psystem = get_system();
+
+      auto pcity = psystem->geo().openweather_find_city(strQ);
 
       return initial_locality_time_zone(pcity, dZone);
 
@@ -723,7 +737,7 @@ namespace geo
       //
       //#endif
       //
-      //         str = Application.http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
       //
       //         if (str.has_char())
       //         {
@@ -786,7 +800,7 @@ namespace geo
       //
       //         ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = Context.file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+      //         auto & file = pcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //
@@ -1301,7 +1315,7 @@ namespace geo
          dTimeZoneOffset = -2.0;
 
       }
-      else if (::math::convert_to_double(dTimeZoneOffset, str))
+      else if (::mathematics::convert_to_double(dTimeZoneOffset, str))
       {
 
       }
@@ -1311,7 +1325,7 @@ namespace geo
          dTimeZoneOffset = -3.0;
 
       }
-      else if (!::math::convert_to_double(dTimeZoneOffset, strCountryCode))
+      else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
          TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());

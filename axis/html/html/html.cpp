@@ -25,10 +25,10 @@ namespace html
    }
 
 
-   ::e_status html::initialize(::layered * pobjectContext)
+   ::e_status html::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -363,7 +363,7 @@ namespace html
    }
 
 
-   //::e_status html::initialize(::layered * pobjectContext)
+   //::e_status html::initialize(::context_object * pcontextobject)
    //{
 
 
@@ -672,7 +672,7 @@ namespace html
    }
 
 
-   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload & payload)
+   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload)
    {
 
       bool bHtml = false;

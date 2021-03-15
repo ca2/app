@@ -16,11 +16,11 @@ namespace win32
 
 
       dialog();
-      dialog(::layered* pobjectContext, const widechar * pszResource);
+      dialog(::object* pobject, const widechar * pszResource);
       virtual ~dialog();
 
 
-      virtual ::e_status initialize_dialog(::layered * pobjectContext, const widechar * pszResource);
+      virtual ::e_status initialize_dialog(::object * pobject, const widechar * pszResource);
 
       bool create_dialog(window * pwindow = nullptr);
 

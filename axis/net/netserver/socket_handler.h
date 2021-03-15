@@ -11,7 +11,7 @@ namespace netserver
    public:
 
 
-      socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
+      socket_handler(::apex::log * plogger = nullptr);
       virtual ~socket_handler();
 
 

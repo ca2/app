@@ -2,7 +2,7 @@
 #include "number_double.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -75,7 +75,7 @@ namespace math
    }
 
 
-} // namespace math
+} // namespace mathematics
 
 
 

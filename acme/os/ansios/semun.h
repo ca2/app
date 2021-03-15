@@ -4,7 +4,7 @@
 //
 /* semun.h
 
-   Definition of the semun union used by the System V semaphore semop()
+   Definition of the semun union used by the ::acme::get_system() V semaphore semop()
    system call.
 */
 #ifndef SEMUN_H

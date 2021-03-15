@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-
-
+#include <time.h>
 
 
 //CLASS_DECL_ACME void sleep(const ::duration& duration)
@@ -63,6 +62,210 @@ int gettimeofday(struct timeval * tp, void * tz)
    tp->tv_sec = (long)timebuffer.time;
    tp->tv_usec = timebuffer.millitm * 1000;
    return 0;
+}
+
+
+::e_status get_system_time(system_time_t* psystemtime)
+{
+
+   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
+
+   return ::success;
+
+}
+
+
+::e_status file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
+{
+
+   system_time_t systemtime{};
+
+   auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_time(ptime, &systemtime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+{
+
+   struct tm tm;
+
+   __copy(tm, psystemtime);
+
+   *ptime = _mkgmtime(&tm);
+
+   return ::success;
+
+}
+
+
+::e_status system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
+{
+
+   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
+   {
+
+      return error_failed;
+
+   }
+
+   return success;
+
+}
+
+
+::e_status time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
+{
+   
+   struct tm tm;
+
+   gmtime_r(ptime, &tm);
+
+   __copy(psystemtime, tm);
+
+   return ::success;
+
+}
+
+
+::e_status time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
+{
+
+   system_time_t systemtime;
+
+   auto estatus = time_to_system_time(&systemtime, ptime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status get_system_time_as_file_time(filetime_t* pfiletime)
+{
+
+   system_time_t systemtime;
+
+   auto estatus = get_system_time(&systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
+{
+
+   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime))
+   {
+
+      return error_failed;
+
+   }
+
+   return ::success;
+
+}
+
+
+::e_status file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime)
+{
+
+   if (!FileTimeToLocalFileTime((const FILETIME*)pfiletime, (FILETIME*)pfiletimeLocal))
+   {
+
+      return error_failed;
+
+   }
+
+   return success;
+
+}
+
+
+::e_status is_valid_filetime(const filetime_t* pfiletime)
+{
+
+   SYSTEMTIME systemtime{};
+
+   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)&systemtime))
+   {
+
+      return error_failed;
+
+   }
+
+   return ::success;
+
+
+}
+
+
+filetime get_filetime_now()
+{
+
+   filetime_t filetime=0;
+
+   auto estatus = get_system_time_as_file_time(&filetime);
+
+   if(!estatus)
+   {
+
+      return 0;
+
+   }
+
+   return filetime;
+
 }
 
 

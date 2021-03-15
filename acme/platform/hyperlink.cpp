@@ -4,7 +4,9 @@
 
 hyperlink::hyperlink()
 {
+   
    m_bProfile = false;
+
 }
 
 
@@ -14,20 +16,29 @@ hyperlink::~hyperlink()
 }
 
 
-bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
+//bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
+//{
+//
+//   m_psystem->open_profile_link(strLink, strProfile, strTarget);
+//
+//   return true;
+//
+//}
+//
+
+::e_status hyperlink::open_link()
 {
 
-   ::acme::get_system()->open_profile_link(strLink, strProfile, strTarget);
+   if (m_bProfile)
+   {
 
-   return true;
+      return get_system()->open_profile_link(m_strLink, m_strProfile, m_strTarget);
 
-}
+   }
 
+   return get_system()->open_link(m_strLink, m_strProfile, m_strTarget);
 
-void hyperlink::open_profile_link(string strUrl, string strProfile, string strTarget)
-{
-
-   ::acme::get_system()->open_profile_link(strUrl, strProfile, strTarget);
+   
 
 }
 

@@ -333,7 +333,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
    //for (const double & dRate : daRate)
    //{
 
-   //   pimageLast->m_pnext.alloc(get_object());
+   //   pimageLast->m_pnext.alloc(this);
 
    //   pimageLast = pimageLast->m_pnext;
 
@@ -343,7 +343,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
 
    //}
 
-   //fork_count_end(get_context_application(), imagea.get_count(),
+   //fork_count_end(get_application(), imagea.get_count(),
    //               [&](index i)
    //{
 
@@ -368,7 +368,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
 //
 //      ::image * pimage = this;
 //
-//      get_object()->fork([this, pimage, pathDib]()
+//      this->fork([this, pimage, pathDib]()
 //      {
 //
 //         pimage->save_dib(pathDib);
@@ -1555,11 +1555,13 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    }
 
-   auto pgroup = ::aura::get_system()->thread_group();
+   __pointer(::aura::system) psystem = m_psystem;
+
+   auto pgroup = psystem->task_group();
 
    synchronization_lock slGroup(pgroup->mutex());
 
-   auto ptool = ::aura::get_system()->thread_tool(::e_thread_tool_draw2d);
+   auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
    synchronization_lock slTool(ptool->mutex());
 
@@ -1574,20 +1576,20 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    pgroup->select_tool(ptool);
 
-   pgroup->prepare(::e_thread_op_tool, yEnd);
+   pgroup->prepare(::e_task_op_tool, yEnd);
 
    for(auto & ptoolitem : ptool->m_itema)
    {
 
-      __pointer(::draw2d::thread_tool_item) pitem = ptoolitem;
+      __pointer(::draw2d::task_tool_item) pitem = ptoolitem;
 
-      pitem->m_eop = ::draw2d::thread_tool_item::op_blend;
+      pitem->m_eop = ::draw2d::task_tool_item::op_blend;
 
       pitem->m_w = pimageSrc->width();
 
       pitem->m_h = pimageSrc->height();
 
-      pitem->m_ySkip = (int) (pgroup->thread_count());
+      pitem->m_ySkip = (int) (pgroup->task_count());
 
       pitem->m_y = y;
 
@@ -8040,10 +8042,10 @@ bool image::set_mapped()
 }
 
 //
-//   bool image::update_window(::aura::draw_interface * pwnd,::message::message * pmessage,bool bTransferBuffer)
+//   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pwnd);
+//      UNREFERENCED_PARAMETER(puserinteraction);
 //      UNREFERENCED_PARAMETER(pmessage);
 //
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
@@ -8057,10 +8059,10 @@ bool image::set_mapped()
 //   }
 
 
-//bool image::print_window(::aura::draw_interface * pwnd,::message::message * pmessage)
+//bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(pwnd);
+//   UNREFERENCED_PARAMETER(puserinteraction);
 //   UNREFERENCED_PARAMETER(pmessage);
 
 //   ::exception::throw_interface_only();
@@ -8123,6 +8125,8 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
 
       ::image_pointer pimage;
 
+      auto pmathematics = ::mathematics::mathematics();
+
       if (fabs(dx) > fabs(dy))
       {
 
@@ -8176,7 +8180,7 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
 
          pimage->gradient_vertical_fill(clr1, clr2, point1.x, point2.x);
 
-         pimage->rotate(this, ::aura::get_system()->math().GetPi() - angle, 1.0);
+         pimage->rotate(this, pmathematics->get_pi() - angle, 1.0);
 
       }
 
@@ -8643,47 +8647,7 @@ bool image::on_exif_orientation()
 
 
 
-
-
-
-//bool image::load_image(const char * pszMatter, bool bCache, bool bCreateHelperMaps)
-//{
-//
-//   ::file::path path = Context.dir().matter(pszMatter);
-//
-//   return load_image(path, bCache, bCreateHelperMaps);
-//
-//}
-
-
-//bool image::read_from_pdata->m_file(file_pointer spfile)
-//{
-//
-//   if (!::aura::get_system()->imaging().LoadImageFromFile(this, spfile))
-//   {
-//
-//      m_eload = load_fail;
-//
-//      return false;
-//
-//   }
-//
-//   m_eload = load_ok;
-//
-//   return true;
-//
-//}
-
-
-//bool image::save_to_file(::payload varFile, save_image * psaveimage)
-//{
-//
-//   return write_to_file(varFile, psaveimage);
-//
-//}
-
-
-save_image::save_image()
+save_image::save_image(::matter * pmatter)
 {
 
    m_eformat = ::draw2d::format_png;
@@ -8695,15 +8659,19 @@ save_image::save_image()
 }
 
 
-save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
+save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
 {
 
-   auto eformat = ::aura::get_system()->draw2d()->text_to_format(varOptions["format"]);
+   __pointer(::aura::system) psystem = m_psystem;
+
+   auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
 
    if (eformat != ::draw2d::format_none)
    {
 
-      eformat = ::aura::get_system()->draw2d()->file_extension_to_format(varFile.get_file_path());
+      __pointer(::aura::system) psystem = m_psystem;
+
+      eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
 
    }
 
@@ -8758,7 +8726,7 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 //
 //      path = strMatter;
 //
-//      path = Context.dir().matter(path / strIcon);
+//      path = pcontext->dir().matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {
@@ -8779,7 +8747,7 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 //   bool image::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
 //   {
 //
-//      return ::aura::get_system()->imaging().from(m_p, pgraphics, pfi, bUnload);
+//      return psystem->imaging().from(m_p, pgraphics, pfi, bUnload);
 //
 //   }
 //
@@ -9232,7 +9200,7 @@ stream & image::read(::stream & stream)
 ::matter * image::clone() const
 {
 
-   auto pimage = __create<::image>();
+   auto pimage = ((::image *)this)->__create<::image>();
 
    pimage->copy(this);
 

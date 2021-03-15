@@ -73,7 +73,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -105,13 +105,13 @@ namespace user
 
                puser->will_use_view_hint(COLORSEL_IMPACT);
 
-               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false));
 
                m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
 
                m_pview->m_bCompact = true;
 
-               auto psession = Session;
+               auto psession = get_session();
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 

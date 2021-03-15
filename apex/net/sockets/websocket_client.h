@@ -48,9 +48,9 @@ namespace sockets
       string            m_strOrigin;
 
 
-      websocket_client(base_socket_handler&);
-      websocket_client(base_socket_handler&, const string & url, const string & strProtocol);
-      //websocket_client(base_socket_handler&, const string & host, port_t port, const string & url);
+      websocket_client();
+      websocket_client(const string & url, const string & strProtocol);
+      //websocket_client(const string & host, port_t port, const string & url);
       virtual ~websocket_client();
 
       virtual void InitSSLClient() override;

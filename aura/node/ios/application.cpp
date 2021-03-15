@@ -7,7 +7,7 @@ namespace aura
 {
 
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::context_object * pcontextobject) :
 //      ::object(pobject)
 //   {
 //
@@ -205,9 +205,9 @@ namespace aura
 //
 //   __pointer(::user::interaction) application::window_from_os_data_permanent(void * pdata)
 //   {
-//      ::window * pwnd = ::ios::window::FromHandlePermanent((oswindow) pdata);
-//      if(pwnd != nullptr)
-//         return pwnd;
+//      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
+//      if(puserinteraction != nullptr)
+//         return puserinteraction;
 //      user::interaction_ptr_array wndptra = ::aura::get_system()->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
@@ -307,7 +307,7 @@ namespace aura
 ////#endif
 //   }
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //      return ::GetCurrentThreadId();
 //   }

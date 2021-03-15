@@ -17,7 +17,7 @@
 //
 //
 //
-//            out(::layered * pobjectContext);
+//            out(::context_object * pcontextobject);
 //            virtual ~out();
 //
 //

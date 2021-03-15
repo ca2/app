@@ -14,7 +14,7 @@ namespace sockets
       http::response    m_response;
 
 
-      Ajp13Socket(base_socket_handler& h);
+      Ajp13Socket();
 
       void OnHeader( i16 id, i16 len );
       void OnPacket( const char *buf, memsize sz );

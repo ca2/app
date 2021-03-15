@@ -5,10 +5,10 @@
 //#include "compress_bz.h"
 
 
-compress_context::compress_context(::layered * pobjectContext) :
-   ::object(pobjectContext)
+compress_context::compress_context(::context_object * pcontextobject)
 {
 
+   initialize(pcontextobject);
 
 }
 
@@ -71,10 +71,10 @@ bool compress_context::get_patha(::file::path & path, string_array & straPath, c
 bool compress_context::ungz(::file::file * pfileOut, ::file::file * pfileIn)
 {
 
-   //uncompress_gz ungz(get_context_object());
+   //uncompress_gz ungz(this);
    uncompress_gz ungz;
 
-   return Context.file().output(pfileOut, &ungz, &::uncompress_gz::transfer, pfileIn);
+   return get_context()->file().output(pfileOut, &ungz, &::uncompress_gz::transfer, pfileIn);
 
 }
 
@@ -85,10 +85,10 @@ bool compress_context::ungz(::file::file * pfileOut, ::file::file * pfileIn)
 bool compress_context::gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel)
 {
 
-   //compress_gz gz(get_context_object(), iLevel);
+   //compress_gz gz(this, iLevel);
    compress_gz gz( iLevel);
 
-   return Context.file().output(pfileOut, &gz, &compress_gz::transfer, pfileIn);
+   return get_context()->file().output(pfileOut, &gz, &compress_gz::transfer, pfileIn);
 
 }
 
@@ -104,9 +104,9 @@ bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 
 
 //
-//   uncompress_bz unbz(get_context_object());
+//   uncompress_bz unbz(this);
 //
-//   return Context.file().output(pfileOut, &unbz, &::uncompress_bz::transfer, pfileIn);
+//   return get_context()->file().output(pfileOut, &unbz, &::uncompress_bz::transfer, pfileIn);
 //
 //}
 //
@@ -125,9 +125,9 @@ bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBl
 
 
 //
-//   compress_bz bz(get_context_object(), iBlockSize, iVerbosity, iWorkFactor);
+//   compress_bz bz(this, iBlockSize, iVerbosity, iWorkFactor);
 //
-//   return Context.file().output(pfileOut, &bz, &::compress_bz::transfer, pfileIn);
+//   return get_context()->file().output(pfileOut, &bz, &::compress_bz::transfer, pfileIn);
 //
 //
 //}
@@ -233,7 +233,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
    
    ::file::patha patha;
 
-   //zip_context zip(get_context_object());
+   //zip_context zip(this);
    zip_context zip(this);
    
    zip.extract_all(pszDir, pszFile, &patha);
@@ -259,7 +259,7 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 
    }
 
-   if (Context.dir().is(psz))
+   if (get_context()->dir().is(psz))
    {
 
       ::file::listing patha;
@@ -268,12 +268,12 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 
       file_pointer file;
 
-      Context.dir().rls_file(patha, psz);
+      get_context()->dir().rls_file(patha, psz);
 
       for (auto & path : patha)
       {
 
-         auto pfile = Context.file().get_reader(path);
+         auto pfile = get_context()->file().get_reader(path);
 
          infile.add_file(path.relative(), pfile);
 
@@ -299,7 +299,7 @@ bool compress_context::zip(const ::file::path & psz, ::apex::application * pobje
 bool compress_context::unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed)
 {
 
-   auto pfileTarget = Context.file().get_writer(varFile);
+   auto pfileTarget = get_context()->file().get_writer(varFile);
 
    if (!pfileTarget)
    {
@@ -327,7 +327,7 @@ bool compress_context::unzip(const ::payload & varFile, const ::file::path & pat
 bool compress_context::unzip(memory & m, const ::file::path & pathZipFileCompressed)
 {
 
-   zip_context zip(get_context_object());
+   zip_context zip(this);
 
    ::file::path pathZip;
 
@@ -340,7 +340,7 @@ bool compress_context::unzip(memory & m, const ::file::path & pathZipFileCompres
 
    }
 
-   auto pfile = Context.file().get_reader(pathZip);
+   auto pfile = get_context()->file().get_reader(pathZip);
 
    if (!pfile)
    {

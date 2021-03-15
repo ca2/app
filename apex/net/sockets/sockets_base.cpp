@@ -22,10 +22,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets_base::initialize(::layered * pobjectContext)
+   ::e_status sockets_base::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = object::initialize(pobjectContext);
+      auto estatus = object::initialize(pcontextobject);
 
       if (!estatus)
       {

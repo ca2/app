@@ -198,7 +198,7 @@ namespace userex
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_context_application(), ::e_type_null, __visible(false), this);
+         pdocTab = m_ptemplateTab->open_document_file(get_application(), ::e_type_null, __visible(false), this);
 
       }
 
@@ -639,7 +639,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_context_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
          }
 
@@ -654,7 +654,7 @@ namespace userex
       else
       {
 
-         pdocument = Application.defer_create_view(idView, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+         pdocument = papplication->defer_create_view(idView, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
       }
 
@@ -698,7 +698,7 @@ namespace userex
 
       bool bShow = true;
 
-      Application.data_set("frame::" + idView.to_string() + ".visible", bShow);
+      papplication->data_set("frame::" + idView.to_string() + ".visible", bShow);
 
       auto puser = User;
 
@@ -730,7 +730,7 @@ namespace userex
 
       bool bShow = false;
 
-      Application.data_set("frame::" + idView + ".visible", bShow);
+      papplication->data_set("frame::" + idView + ".visible", bShow);
 
       __pointer(::simple_frame_window) pframewindow = _001GetFrame(idView);
 
@@ -758,7 +758,7 @@ namespace userex
 
             bool bShow = false;
 
-            Application.data_get("frame::" + idView + ".visible", bShow);
+            papplication->data_get("frame::" + idView + ".visible", bShow);
 
             bShow = !bShow;
 
@@ -785,7 +785,7 @@ namespace userex
 
       bool bShow = false;
 
-      auto& app = Application;
+      auto& app = papplication;
 
       app.data_get("frame::" + idView + ".visible", bShow);
 

@@ -56,7 +56,7 @@
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // System V Semaphore
+//#define MUTEX_NAMED_VSEM // ::acme::get_system() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #endif
@@ -96,7 +96,7 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 //            if (pobject && pobject->is_thread())
 //            {
 //
-//               if (pobject->thread_get_run())
+//               if (pobject->task_get_run())
 //               {
 //
 //                  if (pobject->get_tag().compare(pszTag) == 0)
@@ -125,7 +125,7 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName);
+CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char* pszName);
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
@@ -133,7 +133,7 @@ typedef ::e_status     (*__THREADPROC)(void *);
 
 
 class tool_thread;
-class thread_tool;
+class task_tool;
 class thread_tools;
 //class thread_toolset;
 //class predicate_set;
@@ -297,11 +297,11 @@ namespace parallelization
 
 
    CLASS_DECL_ACME bool task_registered(::task * ptask);
-   CLASS_DECL_ACME bool task_id_registered(ithread_t id);
+   CLASS_DECL_ACME bool task_id_registered(itask_t id);
 
-   CLASS_DECL_ACME void task_register(ithread_t itask, ::task * ptask);
+   CLASS_DECL_ACME void task_register(itask_t itask, ::task * ptask);
 
-   CLASS_DECL_ACME void task_unregister(ithread_t itask, ::task * ptask);
+   CLASS_DECL_ACME void task_unregister(itask_t itask, ::task * ptask);
 
 
 } // namespace parallelization
@@ -319,8 +319,8 @@ namespace parallelization
 //#define Thread
 
 CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME ::thread* get_thread();
-//CLASS_DECL_ACME ::thread* get_task(ithread_t idthread);
+//CLASS_DECL_ACME ::thread* get_thread();
+//CLASS_DECL_ACME ::thread* get_task(itask_t idthread);
 CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
@@ -343,7 +343,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(hthread_t hthread);
+string get_thread_name(htask_t hthread);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -358,7 +358,7 @@ string get_thread_name(const ::task* ptask);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char * psz);
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 //#include "update_task_item_array.h"

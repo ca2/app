@@ -70,8 +70,6 @@ namespace user
    void system::create_common_construct()
    {
 
-      set_layer(LAYERED_USER_CREATE, this);
-
       m_bAutoWindowFrame = true;
       m_bWindowFrame = false;
       m_pdocumentCurrent = nullptr;

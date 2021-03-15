@@ -25,26 +25,26 @@
 //#define ::aura::get_system() (::get_context_system()->m_paurasystem)
 //#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
-//#define App(playered) (*::get_context_application(playered)->m_pauraapplication)
+//#define App(playered) (*::get_application(playered)->m_pauraapplication)
 
 
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
-
-namespace aura
-{
-
-
-   class system;
-   class session;
-   class application;
-   class node;
-
-
-   inline system * get_system() { return ::acme::get_system()->layer(LAYERED_AURA); }
-
-
-} // namespace aura
+//
+//namespace aura
+//{
+//
+//
+//   class system;
+//   class session;
+//   class application;
+//   class node;
+//
+//
+//   inline system * get_system() { return get_system()->layer(LAYERED_AURA); }
+//
+//
+//} // namespace aura
 
 
 #if defined _UWP
@@ -63,6 +63,7 @@ namespace uwp
 
 
 #endif
+
 
 #include "aura/graphics/draw2d/_.h"
 
@@ -2146,15 +2147,15 @@ namespace draw2d
 //#define Sys(pobject) (*::get_context_system(pobject))
 //
 //#undef Sess
-//#define Sess(pobject) (*::get_context_session(pobject))
+//#define Sess(pobject) (*::get_session(pobject))
 //
 //#undef App
-//#define App(pobject) (*::get_context_application(pobject))
+//#define App(pobject) (*::get_application(pobject))
 //
 //
 //#define ::aura::get_system() Sys(get_context())
 //#define Session Sess(get_context())
-//#define Application App(get_context())
+//#define papplication App(get_context())
 //#define ThisApp (*::application_consumer < application >::get_app())
 //#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
 //
@@ -2171,7 +2172,7 @@ namespace draw2d
 //
 //// __throw( - exception - result exception - if not ok
 //#ifndef TINOK
-//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 //#endif
 //
 //
@@ -2231,7 +2232,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 ////CLASS_DECL_AURA void register_aura_library(const char* psz, ::apex::library* plibrary);
 ////
 ////CLASS_DECL_AURA ::context * get_context();
-////CLASS_DECL_AURA inline ::context * get_context(::layered * pobjectContext);
+////CLASS_DECL_AURA inline ::context * get_context(::context_object * pcontextobject);
 ////CLASS_DECL_AURA inline ::context * get_context(::context * pcontext);
 //
 //
@@ -2239,18 +2240,18 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //CLASS_DECL_AURA ::aura::application * get_global_application();
 //
 //
-//CLASS_DECL_AURA ::aura::application * get_context_application();
-//CLASS_DECL_AURA inline ::aura::application * get_context_application(::layered * pobjectContext);
-//CLASS_DECL_AURA inline ::aura::application * get_context_application(::aura::application * papp);
-//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_context_application(); }
+//CLASS_DECL_AURA ::aura::application * get_application();
+//CLASS_DECL_AURA inline ::aura::application * get_application(::context_object * pcontextobject);
+//CLASS_DECL_AURA inline ::aura::application * get_application(::aura::application * papp);
+//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_application(); }
 //
 //
-//CLASS_DECL_AURA::aura::session * get_context_session();
-//CLASS_DECL_AURA inline ::aura::session * get_context_session(::layered * pobjectContext);
-//CLASS_DECL_AURA inline ::aura::session * get_context_session(::aura::session * psession);
+//CLASS_DECL_AURA::aura::session * get_session();
+//CLASS_DECL_AURA inline ::aura::session * get_session(::context_object * pcontextobject);
+//CLASS_DECL_AURA inline ::aura::session * get_session(::aura::session * psession);
 //
 //CLASS_DECL_AURA::aura::system * get_context_system();
-//CLASS_DECL_AURA inline ::aura::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_AURA inline ::aura::system * get_context_system(::context_object * pcontextobject);
 //CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psystem);
 //
 //
@@ -2680,7 +2681,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //class sticker;
 //
 //
-//inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
+//inline ::matter * trace_object(::matter * pobject) { return pobject; }
 //
 //template < typename POINTER_TYPE >
 //class ptr_array;
@@ -2769,5 +2770,7 @@ namespace draw2d
 
 #include "aura/os/_impl.h"
 
+#include "aura/platform/_impl.h"
 
+#include "aura/windowing/_impl.h"
 

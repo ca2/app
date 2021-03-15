@@ -35,9 +35,9 @@ namespace sockets
 {
 
 
-   socket_handler::socket_handler(::layered * pobjectContext, ::apex::log * plog) :
-      ::object(pobjectContext),
-      base_socket_handler(pobjectContext, plog),
+   socket_handler::socket_handler(::object * pobject, ::apex::log * plog) :
+      ::object(pobject),
+      base_socket_handler(pobject, plog),
       m_b_use_mutex(false)
       ,m_maxsock(0)
       ,m_preverror(-1)
@@ -60,9 +60,9 @@ namespace sockets
    }
 
 
-   //socket_handler::socket_handler(::layered * pobjectContext, ::apex::log *plog) :
-   //   ::object(pobjectContext),
-   //   base_socket_handler(pobjectContext, plog)
+   //socket_handler::socket_handler(::object * pobject, ::apex::log *plog) :
+   //   ::object(pobject),
+   //   base_socket_handler(pobject, plog)
    //   ,m_b_use_mutex(true)
    //   ,m_maxsock(0)
    //   ,m_preverror(-1)
@@ -519,7 +519,7 @@ namespace sockets
       if (!m_resolver)
       {
          m_resolver_port = port;
-         m_resolver = new resolv_server(get_context_application(), port);
+         m_resolver = new resolv_server(get_application(), port);
       }
    }
 

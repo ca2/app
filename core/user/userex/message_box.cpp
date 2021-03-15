@@ -24,7 +24,7 @@ namespace userex
       //if(!set.has_property("application_name"))
       //{
       // 
-      //   set["application_name"] = Application.get_title();
+      //   set["application_name"] = papplication->get_title();
       //   
       //}
          

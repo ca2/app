@@ -91,7 +91,7 @@
                int k = 40;
                while (k > 0)
                {
-                  if (!thread_get_run())
+                  if (!task_get_run())
                   {
                      return false;
                   }
@@ -340,7 +340,7 @@
          else
          {
 
-            get_context_application()->fork([=]()
+            get_application()->fork([=]()
             {
 
                if (m_preceiver != nullptr)

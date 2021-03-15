@@ -25,7 +25,7 @@ namespace sockets
 
 
 
-      http_session(::sockets::base_socket_handler & phandler, const string & protocol, const string & host);
+      http_session(const string & protocol, const string & host);
       ~http_session();
 
 

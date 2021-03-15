@@ -32,10 +32,10 @@ namespace macos
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
       
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -44,7 +44,7 @@ namespace macos
          
       }
       
-      estatus = __refer(m_pdirsystem, System->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, psystem->m_pdirsystem);
       
       if(!estatus)
       {
@@ -53,7 +53,7 @@ namespace macos
          
       }
       
-      estatus = __refer(m_pfilesystem, System->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, psystem->m_pfilesystem);
       
       if(!estatus)
       {
@@ -112,7 +112,7 @@ namespace macos
 
       string strPath = ::dir::appdata() / "configuration\\directory.xml";
 
-      string strDocument = Context.file().as_string(strPath);
+      string strDocument = pcontext->file().as_string(strPath);
 
       if(doc.load(strDocument))
       {
@@ -216,7 +216,7 @@ namespace macos
 
             }
 
-            ::file::listing dira(get_context_application());
+            ::file::listing dira(get_application());
 
             dira.ls_dir(listing.m_pathFinal);
 
@@ -328,7 +328,7 @@ namespace macos
 
       ::file::path path;
 
-      path = Context.defer_process_path(pathParam);
+      path = pcontext->defer_process_path(pathParam);
 
       if(::dir_context::is(path))
       {
@@ -500,7 +500,7 @@ namespace macos
                   try
                   {
 
-                     Context.file().del(str);
+                     pcontext->file().del(str);
 
                   }
                   catch(...)
@@ -515,7 +515,7 @@ namespace macos
                   try
                   {
 
-                     Context.file().del(str);
+                     pcontext->file().del(str);
 
                   }
                   catch(...)
@@ -717,7 +717,7 @@ try1:
 //      return path(userfolder(papp, "data"), pcsz, lpcsz2);
 //   }
 
-//   ::file::path dir_context::userfolder(::layered * pobjectContext)
+//   ::file::path dir_context::userfolder(::context_object * pcontextobject)
 //   {
 //
 //      return App(papp).dir_context().userfolder();
@@ -725,7 +725,7 @@ try1:
 //   }
 
 
-//   ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
+//   ::file::path dir_context::default_os_user_path_prefix(::context_object * pcontextobject)
 //   {
 //
 //      return ::getlogin();
@@ -812,7 +812,7 @@ try1:
    bool dir_context::has_subdir(const ::file::path & pszDir)
    {
 
-      ::file::listing stra(::get_context_application());
+      ::file::listing stra(::get_application());
 
       stra.ls_dir(pszDir);
 
@@ -1262,24 +1262,24 @@ try1:
 //        return appdata() / lpcszPrefix;
 //    }
 //
-//    ::file::path dir_context::appdata(::layered * pobjectContext)
+//    ::file::path dir_context::appdata(::context_object * pcontextobject)
 //    {
 //        return userfolder(pobject) / "appdata";
 //    }
 //
-//    ::file::path dir_context::userdata(::layered * pobjectContext)
+//    ::file::path dir_context::userdata(::context_object * pcontextobject)
 //    {
 //        return userfolder(pobject) / "data";
 //    }
 
-//    ::file::path dir_context::userfolder(::layered * pobjectContext)
+//    ::file::path dir_context::userfolder(::context_object * pcontextobject)
 //    {
 //
 //
 //
 //    }
 //
-//    ::file::path dir_context::default_os_user_path_prefix(::layered * pobjectContext)
+//    ::file::path dir_context::default_os_user_path_prefix(::context_object * pcontextobject)
 //    {
 //        UNREFERENCED_PARAMETER(pobject);
 //        unichar buf[MAX_PATH];

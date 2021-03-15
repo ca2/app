@@ -17,7 +17,7 @@ namespace sockets
       socket * m_out;
       
 
-      link_out_socket(base_socket_handler & h);
+      link_out_socket();
       virtual ~link_out_socket();
 
       using ::sockets::tcp_socket::OnRead;

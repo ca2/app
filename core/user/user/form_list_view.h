@@ -17,7 +17,7 @@ namespace user
       virtual ~form_list_view();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
       virtual void assert_valid() const override;

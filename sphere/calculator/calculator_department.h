@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      department(::layered * pobjectContext);
+      department(::context_object * pcontextobject);
       virtual ~department();
 
 

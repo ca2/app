@@ -120,7 +120,7 @@ namespace user
 
       index_array iaSel = m_iaSel;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (!psession->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
       {

@@ -29,16 +29,16 @@ CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
 #endif
 
 
-object::object(::layered * pobjectContext) :
-   m_pmeta(nullptr)
-{
-
-   set_layer(0, this);
-
-   initialize(pobjectContext);
-
-}
-
+//object::object(::context_object * pcontextobject) :
+//   m_pmeta(nullptr)
+//{
+//
+//   set_layer(0, this);
+//
+//   initialize(pcontextobject);
+//
+//}
+//
 
 object::~object()
 {
@@ -279,34 +279,34 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::user::primitive* object::get_user_interaction_host()
-{
+//::user::primitive* object::get_user_interaction_host()
+//{
+//
+//   if (m_psession.is_null())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return __user_primitive(m_psession->m_puserinteractionHost);
+//
+//}
 
-   if (m_psessionContext.is_null())
-   {
 
-      return nullptr;
-
-   }
-
-   return __user_primitive(m_psessionContext->m_puiHost);
-
-}
-
-
-::user::interaction * object::get_host_window()
-{
-
-   if (m_psessionContext.is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return __user_interaction(m_psessionContext->m_puiHost);
-
-}
+//::user::interaction * object::get_host_window()
+//{
+//
+//   if (m_psession.is_null())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return __user_interaction(m_psession->m_puserinteractionHost);
+//
+//}
 
 
 void object::dev_log(string strMessage) const
@@ -316,10 +316,10 @@ void object::dev_log(string strMessage) const
 
 #ifdef __DEBUG
 
-   if (get_context_application())
+   if (get_application())
    {
 
-      get_context_application()->post_critical_error_message(strMessage);
+      get_application()->post_critical_error_message(strMessage);
 
    }
 
@@ -405,7 +405,7 @@ void object::call_routine(const ::id & id)
 void object::add_routine(const ::id & id, const ::routine & routine)
 {
 
-   meta()->m_mapRoutine[id].add(routine);
+   get_meta()->m_mapRoutine[id].add(routine);
 
 }
 
@@ -413,7 +413,7 @@ void object::add_routine(const ::id & id, const ::routine & routine)
 //void object::add_process(const ::id & id, const ::future & process)
 //{
 //
-//   meta()->m_mapProcess[id].add(process);
+//   get_meta()->m_mapProcess[id].add(process);
 //
 //}
 
@@ -429,7 +429,7 @@ void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
       if (proutinea)
       {
 
-         meta()->m_mapRoutine[id].add(*proutinea);
+         get_meta()->m_mapRoutine[id].add(*proutinea);
 
       }
 
@@ -449,7 +449,7 @@ void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
 //      if (pprocessa)
 //      {
 //
-//         meta()->m_mapProcess[id].add(*pprocessa);
+//         get_meta()->m_mapProcess[id].add(*pprocessa);
 //
 //      }
 //
@@ -501,12 +501,12 @@ context& object::__context(const ::payload & payload)
 void object::set_topic_text(const ::string & strTopicText)
 {
 
-   meta()->m_strTopicText = strTopicText;
+   get_meta()->m_strTopicText = strTopicText;
 
 }
 
 
-::e_status object::initialize(::layered * pobjectContext)
+::e_status object::initialize(::context_object * pcontextobject)
 {
 
    auto estatus = ::success;
@@ -542,53 +542,53 @@ void object::set_topic_text(const ::string & strTopicText)
 //
 //#endif
 
-   if (!get_context_object())
+   if (!get_system())
    {
     
-      set_context_object(pobjectContext OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      m_psystem = pcontextobject->get_system();
 
    }
 
-   if (!get_context_application())
+   if (!get_application())
    {
 
-      set_context_app(::get_context_application(pobjectContext));
+      set_context_app(pcontextobject->m_papplication);
 
    }
 
-   if (!get_context_session())
+   if (!get_session())
    {
 
-      set_context_session(::get_context_session(pobjectContext));
+      set_context_session(pcontextobject->m_psession);
 
    }
 
-   //if (!get_context_system())
+   //if (!psystem)
    //{
 
-   //   set_context_system(::get_context_system(pobjectContext) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::::apex::get_system(pobject) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
    if (!get_context())
    {
 
-      if (m_pappContext)
+      if (m_papplication)
       {
 
-         set_context(m_pappContext.get());
+         m_pcontext = m_papplication;
 
       }
-      else if (m_psessionContext)
+      else if (m_psession)
       {
 
-         set_context(m_psessionContext.get());
+         m_pcontext = m_psession;
 
       }
-      else if (::apex::get_system())
+      else if (m_psystem)
       {
 
-         set_context(::apex::get_system());
+         m_pcontext = m_psystem;
 
       }
 
@@ -615,10 +615,10 @@ bool object::is_thread() const
 }
 
 
-bool object::thread_get_run() const
+bool object::task_get_run() const
 {
 
-   return ::thread_get_run();
+   return ::task_get_run();
 
 }
 
@@ -724,14 +724,14 @@ void object::defer_update_object_id()
 ::e_status object::enable_application_events(bool bEnable)
 {
 
-   if(::is_null(get_context_application()))
+   if(::is_null(get_application()))
    {
 
       return false;
 
    }
 
-   if(!get_context_application()->enable_application_events(this, bEnable))
+   if(!get_application()->enable_application_events(this, bEnable))
    {
 
       return false;
@@ -806,7 +806,7 @@ void object::defer_update_object_id()
 //::e_status object::message_box(const ::payload & payload)
 //{
 //
-//   __pointer(::user::primitive) pinteraction = get_context_object();
+//   __pointer(::user::primitive) pinteraction = this;
 //
 //   if (pinteraction)
 //   {
@@ -815,10 +815,10 @@ void object::defer_update_object_id()
 //
 //   }
 //
-//   if (get_context_application())
+//   if (get_application())
 //   {
 //
-//      return get_context_application()->message_box(payload);
+//      return get_application()->message_box(payload);
 //
 //   }
 //
@@ -862,7 +862,7 @@ void object::on_request(::create* pcreateParam)
 
       }
 
-      estatus = pcreate->initialize_create(Application.m_strAppId, ::e_type_empty, true);
+      estatus = pcreate->initialize_create(get_application()->m_strAppId, ::e_type_empty, true);
 
       if (!estatus)
       {
@@ -941,13 +941,13 @@ void object::finalize()
 
 #endif
 
-   m_pcontextContext.release(OBJ_REF_DBG_THIS);
+   m_pcontext.release(OBJ_REF_DBG_THIS);
 
-   m_pthreadContext.release(OBJ_REF_DBG_THIS);
+   m_pthread.release(OBJ_REF_DBG_THIS);
 
-   m_pappContext.release(OBJ_REF_DBG_THIS);
+   m_papplication.release(OBJ_REF_DBG_THIS);
 
-   m_psessionContext.release(OBJ_REF_DBG_THIS);
+   m_psession.release(OBJ_REF_DBG_THIS);
 
    //m_psystemContext.release(OBJ_REF_DBG_THIS);
 
@@ -1028,7 +1028,7 @@ void object::delete_this()
 string object::lstr(const ::id & id, string strDefault)
 {
 
-   return get_context_application()->lstr(id,strDefault);
+   return get_application()->lstr(id,strDefault);
 
 }
 
@@ -1036,15 +1036,13 @@ string object::lstr(const ::id & id, string strDefault)
 void object::copy_from(const object & o)
 {
 
-   m_pobjectContext = o.m_pobjectContext;
+   m_pthread = o.m_pthread;
 
-   m_pthreadContext = o.m_pthreadContext;
+   m_papplication = o.m_papplication;
 
-   m_pappContext = o.m_pappContext;
+   m_psession = o.m_psession;
 
-   set_context_session(o.m_psessionContext);
-
-   //m_psystemContext = o.m_psystemContext;
+   m_psystem = o.m_psystem;
 
    if (!o.m_pset)
    {
@@ -1062,7 +1060,7 @@ void object::copy_from(const object & o)
 }
 
 
-::e_status object::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status object::set_finish_composites(::property_object * pcontextobjectFinish)
 {
 
    ::e_status estatus = ::success;
@@ -1179,7 +1177,7 @@ void object::copy_from(const object & o)
 }
 
 
-::e_status object::set_finish(::context_object * pcontextobjectFinish)
+::e_status object::set_finish(::property_object * pcontextobjectFinish)
 {
 
    __pointer(::object) pobjectHold = this;
@@ -1335,7 +1333,7 @@ void object::copy_from(const object & o)
    //      if (strType.contains_ci("session"))
    //      {
 
-   //         auto bShouldRun = thread_get_run();
+   //         auto bShouldRun = task_get_run();
 
    //         if (!bShouldRun)
    //         {
@@ -1348,7 +1346,7 @@ void object::copy_from(const object & o)
    //      else if (strType.contains_ci("application"))
    //      {
 
-   //         auto bShouldRun = thread_get_run();
+   //         auto bShouldRun = task_get_run();
 
    //         if (!bShouldRun)
    //         {
@@ -1540,7 +1538,7 @@ bool object::__is_child_task(::task * ptask) const
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" finalize).
-::e_status object::finish(::context_object * pcontextobjectFinish)
+::e_status object::finish(::property_object * pcontextobjectFinish)
 {
 
    if (!pcontextobjectFinish)
@@ -1567,14 +1565,14 @@ bool object::__is_child_task(::task * ptask) const
 string object::__get_text(string str)
 {
 
-   if(get_context_application() == nullptr)
+   if(get_application() == nullptr)
    {
 
       return ::__get_text(str);
 
    }
 
-   return Application.__get_text(str);
+   return get_application()->__get_text(str);
 
 }
 
@@ -1705,25 +1703,25 @@ void object::process_exit_status(const ::e_status& estatus)
    if (estatus == error_exit_system)
    {
 
-      ::apex::get_system()->finish();
+      m_psystem->finish();
 
    }
    else if (estatus == error_exit_session)
    {
 
-      Session->finish();
+      get_session()->finish();
 
    }
    else if (estatus == error_exit_application)
    {
 
-      Session->finish();
+      get_session()->finish();
 
    }
    else if (estatus == error_exit_application)
    {
 
-      ::get_thread()->finish();
+      ::get_task()->finish();
 
    }
 
@@ -1755,7 +1753,7 @@ void object::process_exit_status(const ::e_status& estatus)
 //
 //   synchronization_lock synchronizationlock(mutex());
 //
-//   return meta()->task_add(this, ptask);
+//   return get_meta()->task_add(this, ptask);
 //
 //}
 
@@ -1843,6 +1841,119 @@ void object::task_remove(::task* ptask)
    //}
 
 }
+
+// returns false if something like "should exit thread/application/session/system"
+// returns true normally.
+::e_status object::sleep(const ::duration& duration)
+{
+
+   auto ptask = ::get_task();
+
+   try
+   {
+
+      if (::is_set(ptask))
+      {
+
+
+         __pointer(manual_reset_event) spev;
+
+         {
+
+            synchronization_lock synchronizationlock(ptask->mutex());
+
+            if (ptask->m_pevSleep.is_null())
+            {
+
+               ptask->m_pevSleep = __new(manual_reset_event());
+
+               ptask->m_pevSleep->ResetEvent();
+
+            }
+
+            spev = ptask->m_pevSleep;
+
+         }
+
+         if (m_psystem && m_psystem->finish_bit())
+         {
+
+            return error_exit_system;
+
+         }
+
+         if (m_psession && m_psession->finish_bit())
+         {
+
+            return error_exit_session;
+
+         }
+
+         if (m_papplication && m_papplication->finish_bit())
+         {
+
+            return error_exit_application;
+
+         }
+
+         if (spev.is_set())
+         {
+
+            ptask->m_pevSleep->wait(duration);
+
+            return ::task_get_run();
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+   auto iTenths = duration / ::duration(100_ms);
+
+   auto millisRemaining = duration % ::duration(100_ms);
+
+   while (iTenths > 0)
+   {
+
+      if (m_psystem && m_psystem->finish_bit())
+      {
+
+         return error_exit_system;
+
+      }
+
+      if (m_psession && m_psession->finish_bit())
+      {
+
+         return error_exit_session;
+
+      }
+
+      if (m_papplication && m_papplication->finish_bit())
+      {
+
+         return error_exit_application;
+
+      }
+
+
+      iTenths--;
+
+      sleep(100_ms);
+
+   }
+
+   sleep(millisRemaining);
+
+   return ::success;
+
+}
+
 
 
 //void object::task_remove_all()
@@ -2060,7 +2171,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 ::object * object::parent_property_set_holder() const
 {
 
-   return get_context_application();
+   return get_application();
 
 }
 
@@ -2075,7 +2186,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 ::file_result object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
 {
 
-   return Context.file().get_file(varFile, eopen);
+   return get_context()->file().get_file(varFile, eopen);
 
 }
 
@@ -2092,8 +2203,7 @@ struct context_object_test_struct :
    virtual public object
 {
 
-   context_object_test_struct(::layered * p) :
-      ::object(p)
+   context_object_test_struct(::matter * p) 
    {
 
 
@@ -2108,12 +2218,12 @@ struct context_object_test_struct :
 
 };
 
-void debug_context_object(::layered * pobjectContext)
+void debug_context_object(::context_object * pcontextobject)
 {
 
-   auto p1 = __new(struct context_object_test_struct(pobjectContext));
+   auto p1 = __new(struct context_object_test_struct(pcontextobject));
 
-   auto p2 = __new(struct context_object_test_struct(pobjectContext));
+   auto p2 = __new(struct context_object_test_struct(pcontextobject));
 
    p2 = p1;
 
@@ -2211,7 +2321,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 
    }
 
-   string str = Context.file().as_string(payload);
+   string str = get_context()->file().as_string(payload);
 
    if (str.has_char())
    {
@@ -2238,10 +2348,12 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 {
 
    //auto edialogresult =
- 
-   auto presult = ::apex::get_system()->message_box(pszMessage, pszTitle, emessagebox);
 
-   //auto psession = get_context_session();
+   __pointer(::apex::system) psystem = get_system();
+ 
+   auto presult = psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
+
+   //auto psession = get_session();
 
    ////future.m_id = DIALOG_RESULT_PROCESS;
 
@@ -2269,7 +2381,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
    //   if(strTitle.is_empty())
    //   {
 
-   //      auto papp = get_context_application();
+   //      auto papp = get_application();
 
    //      if(papp)
    //      {
@@ -2298,10 +2410,10 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 //
 //   ::e_status estatus = error_failed;
 //
-//   //if (::is_null(get_context_session()) || ::is_null(get_context_session()->userex()))
+//   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{
 //
-//   //   estatus = get_context_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+//   //   estatus = get_session()->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
 //
 //   //}
 //
@@ -2323,7 +2435,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 void object::set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pcontextContext.reset(pcontext OBJ_REF_DBG_COMMA_ARGS);
+   m_pcontext.reset(pcontext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
@@ -2331,7 +2443,7 @@ void object::set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 void object::set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pthreadContext.reset(pthread OBJ_REF_DBG_COMMA_ARGS);
+   m_pthread.reset(pthread OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
@@ -2339,7 +2451,7 @@ void object::set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS_DEF)
 void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_pappContext.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);
+   m_papplication.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
@@ -2347,7 +2459,7 @@ void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_
 void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   m_psessionContext.reset(psessionContext OBJ_REF_DBG_COMMA_ARGS);
+   m_psession.reset(psessionContext OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
@@ -2366,7 +2478,7 @@ void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_CO
 matter* object::get_taskpool_container()
 {
 
-   return get_context_thread();
+   return m_pthread;
 
 }
 

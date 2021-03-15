@@ -74,7 +74,7 @@ namespace uwp
 
       dpi_os_initialize();
 
-      //m_pimage->alloc(get_context_application()->create_new, this);
+      //m_pimage->alloc(get_application()->create_new, this);
       //m_pimage = create_image({1000,  1000});
 
 
@@ -244,7 +244,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         System->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         psystem->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -261,7 +261,7 @@ namespace uwp
 
          m_dpi = dpi;
 
-         System->m_dpi = dpi;
+         psystem->m_dpi = dpi;
 
          m_size.cx = (::i32)m_window->Bounds.Width;
 
@@ -341,7 +341,7 @@ namespace uwp
 
       m_pimpl->m_puserinteraction->set_window_position(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
-      if (System->has_property("client_only"))
+      if (psystem->has_property("client_only"))
       {
 
          ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;
@@ -772,7 +772,7 @@ namespace uwp
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
+   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 

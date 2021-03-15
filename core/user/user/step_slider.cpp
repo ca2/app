@@ -19,10 +19,10 @@ namespace user
    }
 
 
-   //bool step_slider::create_window(::user::interaction * pwndParent, id id)
+   //bool step_slider::create_window(::user::interaction * puserinteractionParent, id id)
    //{
 
-   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != false;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, puserinteractionParent, id) != false;
 
    //}
 
@@ -105,7 +105,7 @@ namespace user
 
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      class imaging & imaging = System->imaging();
+      class imaging & imaging = psystem->imaging();
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
@@ -234,7 +234,7 @@ namespace user
    void step_slider::update_hover()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

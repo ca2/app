@@ -61,7 +61,7 @@ namespace filemanager
       {
 
          filemanager_document()->on_file_manager_open_folder(__new(::file::item(
-               Context.defer_process_path(m_foldera.GetFolder((::index)iItem).m_strFolderPath),
+               pcontext->defer_process_path(m_foldera.GetFolder((::index)iItem).m_strFolderPath),
                m_foldera.GetFolder((::index) iItem).m_strFolderPath)), ::e_source_user);
 
       }
@@ -125,7 +125,7 @@ namespace filemanager
 
       ::file::listing patha;
 
-      Application.dir().ls(patha, strParent);
+      papplication->dir().ls(patha, strParent);
 
       for (i32 i = 0; i < patha.get_count(); i++)
       {
@@ -226,7 +226,7 @@ namespace filemanager
                else if(hr == S_FALSE)
                {
                HICON hicon = ExtractIcon(
-               System->m_hInstance,
+               psystem->m_hInstance,
                szPath,
                iIcon);*/
                /*HINSTANCE hinstance = (HINSTANCE) ::LoadLibrary(

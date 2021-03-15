@@ -33,10 +33,10 @@ namespace user
    }
 
 
-   ::e_status language::initialize(::layered * pobjectContext)
+   ::e_status language::initialize(::context_object * pcontextobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -117,7 +117,7 @@ namespace user
 
       string strLang = m_strLanguageCode;
 
-      ::file::path pathCa2 = ::apex::get_system()->m_pdirsystem->m_pathCa2;
+      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
 
       ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
 
@@ -127,7 +127,7 @@ namespace user
 
       string strLang = m_strLanguageCode;
 
-      ::file::path path = ::apex::get_system()->dir().module() / "po" / (strLang + ".po");
+      ::file::path path = psystem->dir().module() / "po" / (strLang + ".po");
 
       return file_as_string(path, bOnlyHeader ? 4096 : -1);
 

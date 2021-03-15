@@ -5,7 +5,7 @@
 #include "acme/node/_node.h"
 
 
-#undef Application
+#undef papplication
 #undef new
 
 

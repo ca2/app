@@ -146,12 +146,12 @@ namespace user
       catch (const ::exception::exception & exception)
       {
 
-         auto pthread = ::get_thread();
+         auto ptask = ::get_task();
 
-         if (pthread)
+         if (ptask)
          {
 
-            pthread->handle_exception(exception);
+            ptask->handle_exception(exception);
 
          }
 
@@ -248,8 +248,8 @@ namespace user
    void impact_host::create_impact(impact_data * pimpactdata, impact_creator * pcreator)
    {
 
-      auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
-      if (puiptraChild && puiptraChild->interaction_count() > 0)
+      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
+      if (puserinteractionpointeraChild && puserinteractionpointeraChild->interaction_count() > 0)
       {
 
          return;
@@ -259,7 +259,7 @@ namespace user
       if(!_create_impact(pcreator, pimpactdata))
       {
 
-         if (!_create_impact(Application.cast< ::user::impact_creator>(), pimpactdata))
+         if (!_create_impact(papplication->cast< ::user::impact_creator>(), pimpactdata))
          {
 
             if (!_create_impact(this, pimpactdata))
@@ -401,7 +401,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto& app = Application;
+      //   auto& app = papplication;
 
       //   auto pdataclient = app.cast < ::database::client >();
 
@@ -433,7 +433,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto pdataclient = Application.cast < ::database::client > ();
+      //   auto pdataclient = papplication->cast < ::database::client > ();
 
       //   if (pdataclient)
       //   {
@@ -463,7 +463,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto pdataclient = Application.cast < ::database::client >();
+      //   auto pdataclient = papplication->cast < ::database::client >();
 
       //   if (pdataclient)
       //   {
@@ -493,7 +493,7 @@ namespace user
 
          string strView = pupdown->m_id;
 
-         auto pdataclient = Application.cast < ::database::client >();
+         auto pdataclient = papplication->cast < ::database::client >();
 
          if (pdataclient)
          {

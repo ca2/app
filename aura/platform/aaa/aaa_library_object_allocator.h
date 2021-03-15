@@ -17,7 +17,7 @@ public:
 
    }
 
-   virtual ::matter * new_object(::layered * pobjectContext) = 0;
+   virtual ::matter * new_object(::context_object * pcontextobject) = 0;
 
 
 };
@@ -37,10 +37,10 @@ public:
    }
 
 
-   virtual ::matter * new_object(::layered * pobjectContext) override
+   virtual ::matter * new_object(::context_object * pcontextobject) override
    {
 
-      return new TYPE(pobjectContext);
+      return new TYPE(pobject);
 
    }
 

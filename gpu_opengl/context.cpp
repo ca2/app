@@ -20,10 +20,10 @@ namespace opengl
    }
 
 
-   //::e_status context::initialize(::layered * pobjectContext)
+   //::e_status context::initialize(::context_object * pcontextobject)
    //{
 
-   //   ::e_status estatus = ::object::initialize(pobjectContext);
+   //   ::e_status estatus = ::object::initialize(pcontextobject);
 
    //   if (!estatus)
    //   {
@@ -145,7 +145,7 @@ namespace opengl
    //::e_status context::create_offscreen_buffer(const ::size_i32& size)
    //{
 
-   //   auto pgpu = System->get_gpu();
+   //   auto pgpu = psystem->get_gpu();
 
    //   if (::is_null(pgpu))
    //   {
@@ -269,7 +269,7 @@ namespace opengl
 //
 //      ::file::path path(pszPath);
 //
-//      auto & app = Application;
+//      auto & app = papplication;
 //
 //      auto & file = app.file();
 //

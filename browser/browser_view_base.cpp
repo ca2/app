@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   impact_base::impact_base(::layered * pobjectContext):
+   impact_base::impact_base(::context_object * pcontextobject):
       object(pobject),
 
       m_fontDrawStatus(e_create)
@@ -23,7 +23,7 @@ namespace browser
 
       m_dFps                     = 0.0;
 
-      m_ppcre = System->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->create_pcre("\\:\\-\\)");
 
    }
 
@@ -77,10 +77,10 @@ auto m_millisRoll = ::millis::now();
    void impact_base::on_message_left_button_down(::message::message * pmessage)
    {
 
-      if(Application.m_ppaneview != nullptr)
+      if(papplication->m_ppaneview != nullptr)
       {
 
-         Application.m_ppaneview->m_pviewLast = this;
+         papplication->m_ppaneview->m_pviewLast = this;
 
       }
 

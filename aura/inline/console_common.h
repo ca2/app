@@ -22,7 +22,7 @@ int console_end(::e_status estatus)
 
       iError = 0;
 
-      if (::aura::get_system()->is_true("show_application_information"))
+      if (psystem->is_true("show_application_information"))
       {
 
          printf("return code is %d", iStatus);
@@ -31,7 +31,7 @@ int console_end(::e_status estatus)
 
    }
 
-   ::aura::get_system()->system_end();
+   psystem->system_end();
 
    return iError;
 

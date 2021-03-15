@@ -142,7 +142,7 @@ namespace user
    void split_view::on_create_split_impact()
    {
 
-      Application.on_create_split_view(this);
+      papplication->on_create_split_view(this);
 
    }
 

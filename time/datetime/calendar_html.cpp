@@ -32,7 +32,7 @@ namespace datetime
 
 
 
-   ::e_status visual::initialize(::layered * pobjectContext)
+   ::e_status visual::initialize(::context_object * pcontextobject)
    {
 
       return ::success;
@@ -113,7 +113,7 @@ namespace datetime
             {
                time_t w;       if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
-                  w = atoi(System->datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(psystem->datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
                }
                else
                {

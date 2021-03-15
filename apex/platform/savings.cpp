@@ -16,10 +16,10 @@ namespace apex
    }
 
 
-   ::e_status savings::initialize(::layered * pobjectContext)
+   ::e_status savings::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {

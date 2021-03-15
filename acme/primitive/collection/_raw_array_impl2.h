@@ -275,14 +275,14 @@ inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
-   // matter(a.get_context_application())
+   // matter(a.get_application())
 {
    ::array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (a);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) //:
-//   matter(a.get_context_application())
+//   matter(a.get_application())
 {
 
    this->m_nGrowBy = a.m_nGrowBy;

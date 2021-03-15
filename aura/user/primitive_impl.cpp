@@ -317,16 +317,16 @@ namespace user
 
    //   }
 
-   //   auto pwnd = m_puserinteraction->get_wnd();
+   //   auto puserinteraction = m_puserinteraction->get_wnd();
 
-   //   if (!pwnd)
+   //   if (!puserinteraction)
    //   {
 
    //       return ::error_failed;
 
    //   }
 
-   //   return pwnd->post_routine(routine, epriority);
+   //   return puserinteraction->post_routine(routine, epriority);
 
    //}
 
@@ -1228,12 +1228,12 @@ namespace user
 
 //         m_puserinteraction->transfer_receiver(m_idroute, this);
 //
-         auto pwnd = m_puserinteraction->get_wnd();
+         auto puserinteraction = m_puserinteraction->get_wnd();
 
-         if (::is_set(pwnd))
+         if (::is_set(puserinteraction))
          {
 
-            auto pimpl2 = pwnd->m_pimpl2;
+            auto pimpl2 = puserinteraction->m_pimpl2;
 
             if (pimpl2)
             {
@@ -1311,19 +1311,31 @@ namespace user
    }
 
 
-   void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
+   bool primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       ::user::interaction * pinteraction = get_host_window();
 
-      if (pinteraction != nullptr)
+      if (!pinteraction)
       {
 
-         pinteraction->mouse_hover_add(pinterface);
+         return false;
 
       }
 
+      auto bOk = pinteraction->mouse_hover_add(pinterface);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
    }
+
 
    bool primitive_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
@@ -1774,6 +1786,85 @@ namespace user
 
    }
 
+
+   i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
+   {
+
+      return NULL;
+
+   }
+
+
+   void primitive_impl::Invalidate(bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::InvalidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &,bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::InvalidateRgn(class draw2d::region *,bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::ValidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &)
+   {
+
+
+   }
+
+
+   void primitive_impl::ValidateRgn(class draw2d::region *)
+   {
+
+
+   }
+
+
+   void primitive_impl::ShowOwnedPopups(bool)
+   {
+
+
+   }
+
+
+   ::graphics::graphics * primitive_impl::get_window_graphics(void)
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool primitive_impl::is_composite()
+   {
+
+      return false;
+
+   }
+
+   
+   void primitive_impl::_task_transparent_mouse_event()
+   {
+
+   }
+
+
+   bool primitive_impl::IsTopParentActive()
+   {
+
+      return false;
+
+   }
 
 } // namespace user
 

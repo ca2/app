@@ -13,7 +13,7 @@ namespace music
       {
 
 
-         player::player(::object * pobject) :
+         player::player(::context_object * pcontextobject) :
             object(pobject),
             thread(pobject),
             ::music::midi::player(pobject)
@@ -251,7 +251,7 @@ namespace music
             //      OnMidiOutMessage(pMsg->message, pMsg->wParam, pMsg->lParam);
             //      return TRUE;
             //   }
-            if(pbase->m_pwnd == NULL)
+            if(pbase->m_puserinteraction == NULL)
             {
                switch(pbase->m_id)
                {
@@ -418,7 +418,7 @@ namespace music
 //         ::u32 player::GetMidiOutDevice()
 //         {
 //
-//            return Application.midi()->GetMidiOutDevice();
+//            return papplication->midi()->GetMidiOutDevice();
 //         }
 
 //         void player::SetCallbackWindow(sp(::user::interaction) puie)
@@ -445,7 +445,7 @@ namespace music
          void player::OnMidiOutDeviceChange()
          {
 
-            get_sequence()->set_midi_out_device(Application.midi()->get_midi_out_device());
+            get_sequence()->set_midi_out_device(papplication->midi()->get_midi_out_device());
 
             if(get_sequence()->IsPlaying())
             {
@@ -606,7 +606,7 @@ End:
          bool player::OpenMidiPlayer()
          {
 
-            SetMidiCentral(Application.midi());
+            SetMidiCentral(papplication->midi());
 
 //            m_pmidiplayer->SetCallbackWindow(&m_wnd);
             if(::failed(Initialize(this)))

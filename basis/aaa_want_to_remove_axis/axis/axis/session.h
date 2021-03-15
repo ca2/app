@@ -31,7 +31,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::context_object * pcontextobject) override;
 
       inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 

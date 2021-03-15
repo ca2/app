@@ -112,7 +112,7 @@ namespace ftp
 
 
 
-      client_socket(::sockets::base_socket_handler & handler,
+      client_socket(
                     unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
                     unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = "/");
       virtual ~client_socket();

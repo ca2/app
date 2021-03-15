@@ -69,10 +69,10 @@ namespace filemanager
    }
 
 
-   ::e_status data::initialize_filemanager_data(::layered * pobjectContext)
+   ::e_status data::initialize_filemanager_data(::context_object * pcontextobject)
    {
 
-      auto estatus = ::data::data::initialize(pobjectContext);
+      auto estatus = ::data::data::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -164,19 +164,19 @@ namespace filemanager
             if (::is_set(puiParent))
             {
 
-               pappOnBehalfOf = puiParent->get_context_application();
+               pappOnBehalfOf = puiParent->get_application();
 
             }
-            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_context_application())))
+            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_application())))
             {
 
-               pappOnBehalfOf = m_pcreate->create_get_application(get_context_application());
+               pappOnBehalfOf = m_pcreate->create_get_application(get_application());
 
             }
-            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_context_application()))
+            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_application()))
             {
 
-               pappOnBehalfOf = m_pdocumentTopic->get_context_application();
+               pappOnBehalfOf = m_pdocumentTopic->get_application();
 
             }
 
@@ -260,12 +260,12 @@ namespace filemanager
 //   }
 
 
-   string data::get_last_browse_path(::object * pobjectContext, const char * pszDefault)
+   string data::get_last_browse_path(::object * pobject, const char * pszDefault)
    {
 
       string strPath;
 
-      if (App(pobjectContext).data_get({true, "last_browse_folder"}, strPath))
+      if (App(pobject).data_get({true, "last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -277,7 +277,7 @@ namespace filemanager
 
             strId = "last_browse_folder." + __str(idMachine);
 
-            if (!App(pobjectContext).data_get({ true, strId }, strPath))
+            if (!App(pobject).data_get({ true, strId }, strPath))
             {
 
                strPath.empty();
@@ -286,9 +286,9 @@ namespace filemanager
 
          }
 
-         //Context.dir().mk(strPath);
+         //pcontext->dir().mk(strPath);
 
-         if (App(pobjectContext).dir().is(strPath))
+         if (App(pobject).dir().is(strPath))
          {
 
             return strPath;
@@ -306,7 +306,7 @@ namespace filemanager
       else
       {
 
-         strPath = App(pobjectContext).dir().desktop();
+         strPath = App(pobject).dir().desktop();
 
       }
 
@@ -337,7 +337,7 @@ namespace filemanager
    }
 
 
-   ::e_status data::set_last_browse_path(::object * pobjectContext, const ::file::path& path)
+   ::e_status data::set_last_browse_path(::object * pobject, const ::file::path& path)
    {
 
       string strPath(path);
@@ -346,13 +346,13 @@ namespace filemanager
          || ::str::begins(path, astr.FsProtocol))
       {
 
-         App(pobjectContext).data_set({ true, "last_browse_folder" }, strPath);
+         App(pobject).data_set({ true, "last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         App(pobjectContext).data_set({ true, "last_browse_folder" }, "machinefs://");
+         App(pobject).data_set({ true, "last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
@@ -360,7 +360,7 @@ namespace filemanager
 
          strId = "last_browse_folder." + __str(idMachine);
 
-         App(pobjectContext).data_set({ true, strId }, strPath);
+         App(pobject).data_set({ true, strId }, strPath);
 
       }
 

@@ -7,7 +7,7 @@ class CLASS_DECL_AURA application_array:
 public:
 
 
-   //application_array(::layered * pobjectContext);
+   //application_array(::context_object * pcontextobject);
    application_array();
    application_array(const application_array & a);
    application_array(application_array && a);

@@ -44,7 +44,7 @@ namespace turboc
       PFN_MAIN                               m_pfnmainMain;
 
 
-      application(::layered * pobjectContext);
+      application(::context_object * pcontextobject);
       virtual ~application();
 
 

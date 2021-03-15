@@ -186,7 +186,7 @@ namespace win32
    void window::get_dlg_item(window & w, int iItem, string strText)
    {
 
-      w.set_context_object(get_context_object());
+      w.initialize(this);
 
       w.attach(::GetDlgItem(m_hwnd, iItem));
 

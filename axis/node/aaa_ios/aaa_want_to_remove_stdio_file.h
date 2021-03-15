@@ -21,7 +21,7 @@ namespace ios
 
 
 
-      stdio_file(::layered * pobjectContext);
+      stdio_file(::context_object * pcontextobject);
       virtual ~stdio_file();
 
       virtual void write_string(const char * lpsz);

@@ -21,8 +21,7 @@ namespace sockets
 {
 
 
-   ssl_client_context::ssl_client_context(::object * pobject, const SSL_METHOD * pmethod) :
-      ::object(pobject)
+   ssl_client_context::ssl_client_context(const SSL_METHOD * pmethod)
    {
 
       defer_create_mutex();

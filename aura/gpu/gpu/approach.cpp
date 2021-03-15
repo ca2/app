@@ -18,10 +18,10 @@ namespace gpu
    }
 
 
-   ::e_status approach::initialize(::layered * pobjectContext)
+   ::e_status approach::initialize(::context_object * pcontextobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {

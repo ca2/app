@@ -90,7 +90,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    //this->children_add(this);
 
-   //Application.thread_add(this);
+   //papplication->thread_add(this);
 
    return true;
 
@@ -127,7 +127,7 @@ void timer::call_on_timer()
    try
    {
 
-      if(!thread_get_run())
+      if(!task_get_run())
       {
 
          bRepeat = false;
@@ -322,7 +322,7 @@ void timer::term_thread()
 //{
 //
 //
-////   Application.thread_remove(this);
+////   papplication->thread_remove(this);
 //
 //
 //   {
@@ -540,7 +540,7 @@ bool timer::impl_restart()
 
    }
    //
-   //   if (!thread_get_run())
+   //   if (!task_get_run())
    //   {
    //
    //      return false;

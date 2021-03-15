@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   lite_view::lite_view(::layered * pobjectContext):
+   lite_view::lite_view(::context_object * pcontextobject):
       ::object(pobject),
       view(pobject)
    {
@@ -59,12 +59,12 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-//      if(Application.m_etype == application::type_normal)
+//      if(papplication->m_etype == application::type_normal)
 //      {
 //
 ////         load_ai_font();
 //
-//         __begin_thread(get_context_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+//         __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
 //
 //      }
 
@@ -261,7 +261,7 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      psystem->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
       //pgraphics->BitBlt(rectClient,m_pimageTemplate->get_graphics());
 

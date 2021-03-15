@@ -232,7 +232,9 @@ namespace windows
             s_pservice->Stop(control);
             s_pservice->UpdateState(SERVICE_STOPPED);
 
-            Sys(s_pservice).finalize();
+            __pointer(::apex::system) psystem = s_pservice->get_system();
+
+            psystem->finalize();
 
             break;
 

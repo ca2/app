@@ -22,7 +22,7 @@ namespace sockets
 
       };
 
-      AjpBaseSocket(base_socket_handler& h);
+      AjpBaseSocket();
 
       void OnRawData(char *buf, memsize sz);
 

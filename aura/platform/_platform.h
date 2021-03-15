@@ -142,15 +142,15 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
-namespace aura
-{
-
-   CLASS_DECL_AURA bool init_core();
-
-   CLASS_DECL_AURA bool term_core();
-
-} // namespace aura
-
+//namespace aura
+//{
+//
+//   CLASS_DECL_AURA bool init_aura();
+//
+//   CLASS_DECL_AURA bool term_core();
+//
+//} // namespace aura
+//
 
 #pragma warning(disable: 4250)
 

@@ -97,59 +97,5 @@ string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efo
 }
 
 
-string os_font_name(enum_font efont)
-{
-
-   auto psystem = ::acme::get_system();
-
-#ifdef WINDOWS
-
-   return windows_font_name(efont);
-
-#elif defined(LINUX)
-
-   auto elinuxdistribution = psystem->get_linux_distribution();
-
-   return linux_font_name(elinuxdistribution, efont);
-
-#else
-
-   return "sans-serif";
-
-#endif
-
-}
-
-
-string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
-{
-
-   switch (eoperatingsystem)
-   {
-      case e_operating_system_windows:
-      {
-
-         return windows_font_name(efont);
-
-      }
-      case e_operating_system_linux:
-      {
-
-         auto elinuxdistribution = (::enum_linux_distribution) iVariant;
-
-         return linux_font_name(elinuxdistribution, efont);
-
-      }
-      default:
-      {
-
-         return "sans-serif";
-
-      }
-
-   }
-
-}
-
 
 

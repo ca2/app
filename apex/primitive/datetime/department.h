@@ -37,7 +37,7 @@ namespace datetime
          international();
 
 
-         virtual ::e_status initialize(::layered* pobjectContext) override;
+         virtual ::e_status initialize(::context_object * pcontextobject) override;
 
 
          void parse_str(const char * psz,property_set & set);
@@ -66,6 +66,8 @@ namespace datetime
          inline string local(const ::datetime::time & time) { return get_local(time); }
 
 
+
+
       };
 
       class CLASS_DECL_APEX str:
@@ -79,7 +81,7 @@ namespace datetime
          
          str();
 
-         virtual ::e_status initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::context_object * pcontextobject) override;
          
          string get_gmt_date_time();
 
@@ -108,7 +110,7 @@ namespace datetime
       department();
 
 
-      virtual ::e_status initialize(::layered* pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       virtual void finalize() override;
 
       i32 get_month_day_count(i32 year,i32 month);
@@ -150,12 +152,22 @@ namespace datetime
       i32 getDayOfWeek(i32 month,i32 day,i32 year,i32 CalendarSystem);
       i32 ISO_WN(i32  y,i32 m,i32 d);
 
+      virtual string to_string(const ::apex::str_context* pcontext, const ::datetime::result& payload);
+
+      virtual result span_strtotime(const ::apex::str_context* pcontext, const char* psz);
+      //CLASS_DECL_APEX result strtotime(::object* pobject, const ::apex::str_context* pcontext, const char* psz, i32& iPath, i32& iPathCount, bool bForceUTC = false);
+
+      virtual result strtotime(const ::apex::str_context* pcontext, const char* psz, i32& iPath, i32& iPathCount, bool bUTC);
 
       string friend_time(const ::apex::str_context * pcontext,::datetime::time timeNow,::datetime::time time);
 
 
 
       virtual string _001FriendTime(const ::apex::str_context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time);
+
+
+      //virtual string to_string(const ::apex::str_context* pcontext, const ::datetime::result& result);
+
 
    };
 

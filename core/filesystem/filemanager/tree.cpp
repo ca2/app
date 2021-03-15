@@ -112,14 +112,14 @@ namespace filemanager
 
          strDir = pathUser;
 
-         Application.dir().ls(listing, pathUser);
+         papplication->dir().ls(listing, pathUser);
 
       }
 
       for (auto & item : listing)
       {
 
-         ::file::path pathFinal = Context.defer_process_path(item);
+         ::file::path pathFinal = pcontext->defer_process_path(item);
 
          listingFinal.add(pathFinal);
 
@@ -194,7 +194,7 @@ namespace filemanager
 
             string strName;
 
-            strName = Context.defer_get_file_title(pathAscendant);
+            strName = pcontext->defer_get_file_title(pathAscendant);
 
             if (pathAscendant.has_char() && strName.has_char())
             {
@@ -206,7 +206,7 @@ namespace filemanager
 
                   pitemChild->m_filepathUser = pathAscendant;
 
-                  pitemChild->m_filepathFinal = Context.defer_process_path(pathAscendant);
+                  pitemChild->m_filepathFinal = pcontext->defer_process_path(pathAscendant);
 
                   pitemChild->m_strName = strName;
 
@@ -287,7 +287,7 @@ namespace filemanager
 
             string strName;
 
-            strName = Context.defer_get_file_title(pathUser);
+            strName = pcontext->defer_get_file_title(pathUser);
 
             auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 
@@ -302,7 +302,7 @@ namespace filemanager
 
             pitemChild->m_filepathUser = pathUser;
 
-            pitemChild->m_filepathFinal = Context.defer_process_path(pathFinal);
+            pitemChild->m_filepathFinal = pcontext->defer_process_path(pathFinal);
 
             pitemChild->m_strName = strName;
 

@@ -90,7 +90,7 @@ namespace filemanager
 
          m_pfsset->m_spafsdata.remove_all();
 
-         auto psession = Session;
+         auto psession = get_session();
 
          m_pfsset->m_spafsdata.add(psession->fs());
 
@@ -127,7 +127,7 @@ namespace filemanager
 
             // assume can resume at least from this exception one time
 
-            m_pitem = __new(::file::item(Context.defer_process_path(strOldPath), strOldPath));
+            m_pitem = __new(::file::item(pcontext->defer_process_path(strOldPath), strOldPath));
 
             OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -140,7 +140,7 @@ namespace filemanager
       if (m_filewatchid >= 0)
       {
 
-         Context.dir().watcher().remove_watch(m_filewatchid);
+         pcontext->dir().watcher().remove_watch(m_filewatchid);
 
       }
 
@@ -390,7 +390,7 @@ namespace filemanager
 
       ::file::path pathUser = pszPath;
 
-      ::file::path pathFinal = Context.defer_process_path(pathUser);
+      ::file::path pathFinal = pcontext->defer_process_path(pathUser);
 
       __pointer(::file::item) pitem = __new(::file::item(pathUser, pathFinal));
 
@@ -509,7 +509,7 @@ namespace filemanager
             else
             {
 
-               m_strManagerId = create_manager_id(get_context_object());
+               m_strManagerId = create_manager_id(this);
 
             }
 
@@ -922,14 +922,14 @@ namespace filemanager
    {
       //      __pointer(::message::command) pcommand(pmessage);
 
-      //         pcommand->enable(System->m_strCopy.is_empty());
+      //         pcommand->enable(psystem->m_strCopy.is_empty());
       pmessage->m_bRet = true;
    }
 
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //Context.file().paste(filemanager_data()->filemanager_item().m_strPath, System->m_strCopy);
+      //pcontext->file().paste(filemanager_data()->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_views(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }
@@ -1077,7 +1077,7 @@ namespace filemanager
 //               idMachine = "iOS";
 //#endif
 //
-//               if (Application.data_get({true, "last_browse_folder." + __str(idMachine)}, str))
+//               if (papplication->data_get({true, "last_browse_folder." + __str(idMachine)}, str))
 //               {
 //
 //                  browse(str, ::e_source_database);
@@ -1406,7 +1406,7 @@ namespace filemanager
       //   if (ptemplate.is_null())
       //   {
 
-      //      m_pfilemanagerdata = __new(data(get_object()));
+      //      m_pfilemanagerdata = __new(data(this));
 
       //   }
       //   else
@@ -1428,7 +1428,7 @@ namespace filemanager
 
       //::filemanager::callback::on_request(pcreate);
 
-      Application.call_request(pcreate);
+      papplication->call_request(pcreate);
 
    }
 

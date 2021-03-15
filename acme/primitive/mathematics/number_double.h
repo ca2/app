@@ -4,7 +4,7 @@
 //#include "math_value.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -23,7 +23,7 @@ namespace math
    CLASS_DECL_ACME bool convert_to_double(double & d, string str);
 
 
-} // namespace math
+} // namespace mathematics
 
 
 

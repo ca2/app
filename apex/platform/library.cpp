@@ -12,10 +12,10 @@ namespace apex
    const char * psz_empty_app_id = "";
 
 
-   ::e_status library::initialize(::layered * pobjectContext)
+   ::e_status library::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       m_plibrary = nullptr;
 
@@ -26,10 +26,10 @@ namespace apex
    }
 
 
-   ::e_status library::initialize_apex_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::e_status library::initialize_apex_library(::context_object * pcontextobject,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -119,27 +119,29 @@ namespace apex
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       m_strMessage.Empty();
 
-      auto pfnNewAuraLibrary = get_get_new_apex_library(pszPath);
+      //auto pfnNewAuraLibrary = psystem->load_(pszPath);
 
-      if (pfnNewAuraLibrary != nullptr)
-      {
+      //if (pfnNewAuraLibrary != nullptr)
+      //{
 
-         m_strPath = pszPath;
+      //   m_strPath = pszPath;
 
-         if (m_strCa2Name.has_char())
-         {
+      //   if (m_strCa2Name.has_char())
+      //   {
 
-            __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
+      //      __own(psystem, m_mapLibrary[m_strCa2Name], this);
 
-         }
+      //   }
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
       try
       {
@@ -183,7 +185,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
+         __own(psystem, m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -195,7 +197,9 @@ namespace apex
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -213,7 +217,7 @@ namespace apex
       try
       {
       
-         m_pca2library = ::apex::get_system()->on_get_library(m_strName);
+         m_pca2library = psystem->on_get_library(m_strName);
 
       }
       catch (...)
@@ -223,95 +227,95 @@ namespace apex
 
       }
 
-      if (!m_pca2library)
-      {
+      //if (!m_pca2library)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            pfnNewAuraLibrary = get_get_new_apex_library(m_strPath);
+      //      pfnNewAuraLibrary = get_get_new_apex_library(m_strPath);
 
-            if (pfnNewAuraLibrary == nullptr)
-            {
+      //      if (pfnNewAuraLibrary == nullptr)
+      //      {
 
-               iPhase++;
+      //         iPhase++;
 
-               if (strTitle.has_char())
-               {
+      //         if (strTitle.has_char())
+      //         {
 
-                  get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+      //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-               }
+      //         }
 
-            }
+      //      }
 
-            if (pfnNewAuraLibrary == nullptr)
-            {
+      //      if (pfnNewAuraLibrary == nullptr)
+      //      {
 
-               iPhase++;
+      //         iPhase++;
 
-               strTitle = m_strPath.title();
+      //         strTitle = m_strPath.title();
 
-               get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+      //         get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-            }
+      //      }
 
-            if (pfnNewAuraLibrary == nullptr)
-            {
+      //      if (pfnNewAuraLibrary == nullptr)
+      //      {
 
-               iPhase++;
+      //         iPhase++;
 
-               if (::str::begins_eat(strTitle, "lib"))
-               {
+      //         if (::str::begins_eat(strTitle, "lib"))
+      //         {
 
-                  get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+      //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-               }
+      //         }
 
-            }
+      //      }
 
-            if (pfnNewAuraLibrary == nullptr)
-            {
+      //      if (pfnNewAuraLibrary == nullptr)
+      //      {
 
-               iPhase++;
+      //         iPhase++;
 
-               get(pfnNewAuraLibrary, "get_new_library");
+      //         get(pfnNewAuraLibrary, "get_new_library");
 
-            }
+      //      }
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-            close();
+      //      close();
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         if (pfnNewAuraLibrary == nullptr)
-         {
+      //   if (pfnNewAuraLibrary == nullptr)
+      //   {
 
-            close();
+      //      close();
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         try
-         {
+      //   try
+      //   {
 
-            m_pca2library = ::move(pfnNewAuraLibrary());
+      //      m_pca2library = ::move(pfnNewAuraLibrary());
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-            m_pca2library.release();
+      //      m_pca2library.release();
 
-         }
+      //   }
 
-      }
+      //}
 
       if(m_pca2library.is_null())
       {
@@ -322,11 +326,11 @@ namespace apex
 
       }
 
-      m_pca2library->initialize_apex_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
+      m_pca2library->initialize_apex_library(this, 0, m_strRoot, m_strName, m_strFolder);
 
       m_pca2library->factory_exchange(::factory::get_factory_map());
 
-      m_pca2library->set_context_object(get_context_object());
+      m_pca2library->initialize(this);
 
       if (m_pca2library->m_strCa2Name.is_empty())
       {
@@ -346,7 +350,7 @@ namespace apex
       if (m_strCa2Name.has_char())
       {
 
-         __own(::apex::get_system(), m_mapLibrary[m_strCa2Name], this);
+         __own(psystem, m_mapLibrary[m_strCa2Name], this);
 
       }
 
@@ -366,7 +370,9 @@ namespace apex
    string library::get_library_name()
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -411,7 +417,9 @@ namespace apex
    bool library::close()
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       try
       {
@@ -461,10 +469,16 @@ namespace apex
    string library::get_app_id(const char * pszAppName)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
 
-      if(!contains_app(pszAppName))
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+
+      if (!contains_app(pszAppName))
+      {
+
          return "";
+
+      }
 
       string strPrefix(get_root());
 
@@ -515,7 +529,9 @@ namespace apex
    string library::get_app_name(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -575,7 +591,9 @@ namespace apex
    __transport(::apex::application) library::new_application(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       try
       {
@@ -590,7 +608,7 @@ namespace apex
 //            if (papp)
 //            {
 //
-//               auto estatus = papp->initialize(pobject);
+//               auto estatus = papp->initialize(pcontextobject);
 //
 //               if (!estatus)
 //               {
@@ -651,7 +669,7 @@ namespace apex
 //               if (papp)
 //               {
 //
-//                  papp->initialize(pobject);
+//                  papp->initialize(pcontextobject);
 //
 //               }
 
@@ -682,7 +700,9 @@ namespace apex
    void library::get_app_list(string_array & stra)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -751,7 +771,9 @@ namespace apex
    __pointer(::matter) library::create_object(const char * pszClass)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       ::matter * p = nullptr;
 
@@ -785,7 +807,9 @@ namespace apex
    bool library::has_object_class(const char * pszClassId)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       if (get_ca2_library() == nullptr)
       {
@@ -802,7 +826,9 @@ namespace apex
    bool library::contains_app(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       string_array stra;
 
@@ -816,7 +842,9 @@ namespace apex
    string library::get_root()
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -833,7 +861,9 @@ namespace apex
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -843,7 +873,9 @@ namespace apex
    bool library::is_opened()
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -861,14 +893,16 @@ namespace apex
    void * library::raw_get(const char * pszEntryName)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->m_mutexLibrary);
+      __pointer(::apex::system) psystem = get_system();
+
+      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
    }
 
    
-   //::matter* library::factory_new(::layered * pobjectContext, const char* lpszClass)
+   //::matter* library::factory_new(::object * pobject, const char* lpszClass)
    //{
 
    //   return nullptr;
@@ -1005,32 +1039,32 @@ namespace apex
 //string_map < __pointer(::apex::library) > * g_pmapLibCall = nullptr;
 
 
-::apex::library * lib(const char * psz)
-{
-
-   //if (::apex::get_system()->m_mapLibCall == nullptr)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-   auto & plibrary = ::apex::get_system()->m_mapLibCall[psz];
-
-   if(!plibrary)
-   {
-      
-      __own(::apex::get_system(), m_mapLibCall[psz], __new(::apex::library));
-
-      plibrary->initialize(::get_task());
-
-      plibrary->open(psz);
-
-   }
-
-   return plibrary;
-
-}
+//::apex::library * lib(const char * psz)
+//{
+//
+//   //if (psystem->m_mapLibCall == nullptr)
+//   //{
+//
+//   //   return nullptr;
+//
+//   //}
+//
+//   auto & plibrary = psystem->m_mapLibCall[psz];
+//
+//   if(!plibrary)
+//   {
+//      
+//      __own(psystem, m_mapLibCall[psz], __new(::apex::library));
+//
+//      plibrary->initialize(::get_task());
+//
+//      plibrary->open(psz);
+//
+//   }
+//
+//   return plibrary;
+//
+//}
 
 
 

@@ -6,7 +6,7 @@ namespace draw2d
 {
 
 
-   font::font(::layered * pobjectContext) :
+   font::font(::context_object * pcontextobject) :
       ::write_text::font(pobject),
       m_pfont(e_create)
    {

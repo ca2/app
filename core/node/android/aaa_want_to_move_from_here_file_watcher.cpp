@@ -219,7 +219,7 @@
 //   void os_file_watcher::run()
 //   {
 //
-//      while (thread_get_run())
+//      while (task_get_run())
 //      {
 //
 //         select();

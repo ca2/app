@@ -18,7 +18,7 @@ namespace html
    bool core_data::image::load_image()
    {
 
-      m_pimage = Application.image().load_image(m_strPath);
+      m_pimage = papplication->image().load_image(m_strPath);
 
       return m_pimage;
 
@@ -176,7 +176,7 @@ namespace html
             return i;
       }
       auto pfont = __new(class font(font));
-      pfont->create(get_context_object());
+      pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
       return (i32)pfont->m_iIndex;
@@ -284,10 +284,10 @@ namespace html
 
       m_element.implement(this);
 
-      if (m_pform->m_puiptraChild)
+      if (m_pform->m_puserinteractionpointeraChild)
       {
 
-         for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+         for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
 
             ::user::control_event event;
@@ -506,7 +506,7 @@ namespace html
          ::str::begins(m_strPathName, "https://"))
       {
 
-         strUrl = System->url().path(m_strPathName, strUrl);
+         strUrl = psystem->url().path(m_strPathName, strUrl);
 
       }
       else
@@ -528,7 +528,7 @@ namespace html
 
       string strUrl = process_url(pszUrl);
 
-      auto pimage = System->get_image(this, strUrl);
+      auto pimage = psystem->get_image(this, strUrl);
 
       return pimage;
 
@@ -708,7 +708,7 @@ namespace html
 
       //}
 
-      varFile["http_set"]["app"] = get_context_application();
+      varFile["http_set"]["app"] = get_application();
 
       //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       varFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -725,7 +725,7 @@ namespace html
 
       string strDebugUrl2 = varFile.get_file_path();
 
-      str = Context.file().as_string(varFile);
+      str = pcontext->file().as_string(varFile);
 
       //if (!varFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
@@ -744,7 +744,7 @@ namespace html
       //   else
       //   {
       //      
-      //      varFile = System->url().override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
+      //      varFile = psystem->url().override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
 
       //      goto restart;
 
@@ -754,7 +754,7 @@ namespace html
       if (str.is_empty())
       {
          string strCandidate = m_strPathName / varFile.get_file_path();
-         str = Context.file().as_string(strCandidate);
+         str = pcontext->file().as_string(strCandidate);
          if (str.is_empty())
          {
 

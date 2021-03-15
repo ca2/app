@@ -41,7 +41,7 @@ namespace sockets
       /** SctpSocket constructor.
          \param h Owner
          \param type SCTP_STREAM or SCTP_SEQPACKET */
-      SctpSocket(base_socket_handler& h,int type);
+      SctpSocket(int type);
       ~SctpSocket();
 
       /** bind() */

@@ -13,7 +13,7 @@ namespace axis
 
       __composite(class ::account::user_set)            m_puserset;
 
-      __composite(class ::xml::department)              m_pxml;
+      //__composite(class ::xml::department)              m_pxml;
 
 
       __composite(class ::geo::department)              m_pgeo;
@@ -31,7 +31,7 @@ namespace axis
 
       void common_construct();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
 
       virtual ::e_status init() override;
       virtual ::e_status inline_init() override;
@@ -64,7 +64,7 @@ namespace axis
 
       ::net::email_department &                    email();
 
-      ::xml::department &                          xml();
+      //::xml::department &                          xml();
 
       ::geo::department &                          geo();
 

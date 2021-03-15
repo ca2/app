@@ -19,7 +19,7 @@ namespace aqua
    system::system()
    {
 
-      set_layer(LAYERED_AQUA, this);
+      //set_layer(LAYERED_AQUA, this);
 
       common_construct();
 
@@ -44,10 +44,10 @@ namespace aqua
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobjectContext);
+      auto estatus = ::apex::system::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -75,13 +75,13 @@ namespace aqua
 
    //}
 
-   ::e_status system::defer_xml()
+   ::xml::xml * system::_xml()
    {
 
       if (m_pxml)
       {
 
-         return ::success;
+         return m_pxml;
 
       }
 
@@ -90,7 +90,7 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
@@ -99,7 +99,7 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
@@ -108,11 +108,11 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
-      return estatus;
+      return m_pxml;
 
    }
 
@@ -231,6 +231,9 @@ namespace aqua
       return m_paudio;
 
    }
+
+
+
 
 
    __namespace_system_factory(system);

@@ -295,7 +295,7 @@ namespace dynamic_source
 
       synchronization_lock synchronizationlock(mutex());
 
-      if(!Context.file().exists(m_strScriptPath))
+      if(!pcontext->file().exists(m_strScriptPath))
       {
 
          if(HasTempError())
@@ -417,7 +417,7 @@ namespace dynamic_source
    __pointer(script_instance) ds_script::create_instance()
    {
 
-      synchronization_lock slCompiler(&Application.m_semCompiler);
+      synchronization_lock slCompiler(&papplication->m_semCompiler);
 
       synchronization_lock synchronizationlock(mutex());
 
@@ -536,9 +536,9 @@ namespace dynamic_source
          iRetry++;
 
       }
-      while ((bHasTempError = HasTempError()) && iRetry < 8 && ::thread_get_run());
+      while ((bHasTempError = HasTempError()) && iRetry < 8 && ::task_get_run());
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return;
@@ -551,7 +551,7 @@ namespace dynamic_source
 
       Load();
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return;
@@ -571,10 +571,10 @@ namespace dynamic_source
    }
 
 
-   //::aura::application * ds_script::get_context_application() const
+   //::aura::application * ds_script::get_application() const
    //{
 
-   //   return m_pmanager->get_context_application();
+   //   return m_pmanager->get_application();
 
    //}
 

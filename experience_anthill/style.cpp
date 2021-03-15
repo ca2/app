@@ -44,7 +44,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -68,7 +68,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -95,7 +95,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -155,7 +155,7 @@ namespace experience
             if (estate & ::user::e_state_selected)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -175,7 +175,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -199,7 +199,7 @@ namespace experience
             || eelement == ::user::e_element_tab_layout_background)
          {
 
-            auto pnode = System->node();
+            auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
             {
@@ -218,7 +218,7 @@ namespace experience
          else if (eelement == ::user::e_element_text)
          {
             
-            auto pnode = System->node();
+            auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
             {
@@ -269,7 +269,7 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -288,7 +288,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
+               auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                {
@@ -315,7 +315,7 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -334,7 +334,7 @@ namespace experience
                else
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -358,7 +358,7 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -377,7 +377,7 @@ namespace experience
                else
                {
 
-                  auto pnode = System->node();
+                  auto pnode = psystem->node();
 
                if (pnode->is_app_dark_mode())
                   {
@@ -1353,7 +1353,7 @@ namespace experience
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
-                  System->imaging().color_blend(
+                  psystem->imaging().color_blend(
                   pgraphics,
                   rectItem.left,
                   rectItem.top,
@@ -1415,7 +1415,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.9);
+                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.9);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1458,7 +1458,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1495,7 +1495,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_none);
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.2);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.2);
 
             }
             else if (uImage != 0xffffffff)
@@ -1610,7 +1610,7 @@ namespace experience
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
-                  System->imaging().color_blend(
+                  psystem->imaging().color_blend(
                   pgraphics,
                   rectItem.left,
                   rectItem.top,
@@ -1671,7 +1671,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.8);
+                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.8);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1714,7 +1714,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1766,7 +1766,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.20);
+               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.20);
 
             }
             else if (uImage != 0xffffffff)

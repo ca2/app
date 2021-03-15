@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -119,7 +119,7 @@ namespace linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(Context.file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(get_context()->file().as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -268,7 +268,7 @@ namespace linux
 
                }
 
-               Application.dir().ls(listing, strDir);
+               get_application()->dir().ls(listing, strDir);
 
             }
 
@@ -281,7 +281,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            Application.dir().ls_file(listing, listing.m_pathFinal);
+            get_application()->dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -540,7 +540,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch(...)
@@ -555,7 +555,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch(...)
@@ -684,7 +684,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::layered * pobjectContext)
+   ::file::path dir_context::userquicklaunch(::context_object * pcontextobject)
    {
 
       ::file::path path;
@@ -696,7 +696,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::layered * pobjectContext)
+   ::file::path dir_context::userprograms(::context_object * pcontextobject)
    {
 
       ::file::path path;

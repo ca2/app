@@ -27,7 +27,7 @@
          int m_shutdown; ///< Shutdown status
 
 
-         stream_socket(base_socket_handler& );
+         stream_socket();
          ~stream_socket();
 
 

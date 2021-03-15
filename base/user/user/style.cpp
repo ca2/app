@@ -320,7 +320,7 @@ namespace base
 //      if (pstyle.is_null())
 //      {
 //
-//         pstyle = __new(style(get_object()));
+//         pstyle = __new(style(this));
 //
 //      }
 //

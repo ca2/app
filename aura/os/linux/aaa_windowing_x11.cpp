@@ -34,7 +34,7 @@ bool __x11_hook_list_is_empty();
 ::point_i32 g_pointX11Cursor;
 
 
-message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -2858,7 +2858,7 @@ bool x11_step()
 
       synchronization_lock synchronizationlock(g_pmutexX11Runnable);
 
-      while(g_prunnableptrlX11->has_elements() && ::thread_get_run())
+      while(g_prunnableptrlX11->has_elements() && ::task_get_run())
       {
 
          __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
@@ -3953,7 +3953,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(g_oswindowDesktop != nullptr && e.xconfigure.window == g_oswindowDesktop->window())
       {
 
-         auto applicationa = Session->m_applicationa;
+         auto applicationa = psession->m_applicationa;
 
          try
          {
@@ -4243,7 +4243,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                else
                {
 
-                  TRACE("cannot create Input Context.\n");
+                  TRACE("cannot create Input pcontext->\n");
 
                }
 
@@ -4518,7 +4518,7 @@ namespace user
 
       ___pointer < ::user::message > spbase;
 
-      spbase = Session->get_message_base(pvoidEvent, m_puserinteraction);
+      spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
 
       try
       {
@@ -4583,7 +4583,7 @@ namespace user
 //{
 //
 //
-   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
       __throw(todo);
@@ -5220,10 +5220,10 @@ void x11_thread(osdisplay_data * pdisplaydata);
 __pointer(::thread) g_pthreadXlib;
 
 
-ithread_t g_ithreadXlib;
+itask_t g_ithreadXlib;
 
 
-ithread_t x11_get_ithread()
+itask_t x11_get_ithread()
 {
 
    return g_ithreadXlib;
@@ -5393,7 +5393,7 @@ void x11_main()
 
 
 
-message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 void oswindow_set_active_window(oswindow oswindow);

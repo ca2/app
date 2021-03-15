@@ -6,9 +6,7 @@ namespace xml
 {
 
 
-   output_tree::output_tree(::layered * pobjectContext) :
-      ::object(pobjectContext),
-      tree_base(pobjectContext)
+   output_tree::output_tree()
    {
 
       m_pdocument = nullptr;
@@ -17,9 +15,8 @@ namespace xml
    }
 
 
-   output_tree::output_tree(::layered * pobjectContext, tree_schema * pschema) :
-      ::object(pobjectContext),
-      tree_base(pobjectContext, pschema)
+   output_tree::output_tree(tree_schema * pschema) :
+      tree_base(pschema)
    {
       
       m_pdocument = nullptr;

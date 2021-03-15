@@ -424,7 +424,7 @@ namespace tts_sapi
          //   //
          //   // Get token corresponding to default voice
          //   //
-         //   hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &m_token[strLang], strLang, false);
+         //   hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &m_token[strLang], strLang, false);
 
          //   if (FAILED(hr))
          //   {
@@ -610,7 +610,7 @@ namespace tts_sapi
             else
             {
 
-               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, "", false);
+               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, "", false);
 
                if (FAILED(hr))
                {
@@ -813,7 +813,7 @@ namespace tts_sapi
             else
             {
 
-               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, strAttributes, false);
+               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, strAttributes, false);
 
                if (FAILED(hr))
                {

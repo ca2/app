@@ -21,10 +21,10 @@ namespace ios
    }
 
 
-   ::e_status file_context::initialize(::matter * pobjectContext)
+   ::e_status file_context::initialize(::matter * pobject)
    {
       
-      auto estatus = ::file_context::initialize(pobjectContext);
+      auto estatus = ::file_context::initialize(pcontextobject);
       
       if(!estatus)
       {
@@ -33,9 +33,9 @@ namespace ios
          
       }
       
-      m_pdirsystem = System->m_pdirsystem;
+      m_pdirsystem = ::acme::get_system()->m_pdirsystem;
       
-      m_pfilesystem = System->m_pfilesystem;
+      m_pfilesystem = ::acme::get_system()->m_pfilesystem;
 
       string str = getenv("HOME");
 
@@ -43,10 +43,10 @@ namespace ios
 
       string strUserFolderShift;
 
-      if(System->has_property("user_folder_relative_path"))
+      if(::acme::get_system()->has_property("user_folder_relative_path"))
       {
 
-         strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();
+         strUserFolderShift = strRelative / papplication->payload("user_folder_relative_path").get_string();
 
       }
       else

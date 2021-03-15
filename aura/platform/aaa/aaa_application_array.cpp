@@ -52,10 +52,10 @@ application_array & application_array::operator = (application_array && array)
 application_array::~application_array()
 {
 
-   //if(::is_set(get_context_application()))
+   //if(::is_set(get_application()))
    //{
 
-   //   if(get_context_application()->mutex() == mutex())
+   //   if(get_application()->mutex() == mutex())
    //   {
 
    //      mutex() = nullptr;

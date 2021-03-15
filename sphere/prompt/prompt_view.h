@@ -22,7 +22,7 @@ namespace prompt
          OpUpdateCurrentArea,
       };
 
-      view(::layered * pobjectContext);
+      view(::context_object * pcontextobject);
       virtual ~view();
 
 

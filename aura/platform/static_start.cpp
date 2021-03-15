@@ -121,7 +121,7 @@ namespace aura
 #endif
 
 
-   //::mutex * ::aura::get_system()->g_mutexLibrary;
+   //::mutex * psystem->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -180,7 +180,7 @@ namespace aura
 
 #endif
 
-   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
    // aura commented
 //#ifdef WINDOWS
@@ -348,7 +348,7 @@ namespace aura
 //
 //#endif
 
-      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 //#ifdef WINDOWS
 //
@@ -539,7 +539,7 @@ namespace aura
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
+      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
 
       //g_pmutexSystemHeap = new critical_section();
 
@@ -569,7 +569,7 @@ namespace aura
 
       //g_pmapRTL = nullptr;
 
-      //::aura::get_system()->g_mutexLibrary = new ::mutex;
+      //psystem->g_mutexLibrary = new ::mutex;
 
       //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
 
@@ -692,7 +692,7 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::aura::get_system()->g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -706,9 +706,9 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::aura::get_system()->g_mutexLibrary);
+      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
 
-      //   ::aura::get_system()->g_mapLibrary.remove_all();
+      //   psystem->g_mapLibrary.remove_all();
 
       //}
       //catch (...)
@@ -809,7 +809,7 @@ namespace aura
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(::aura::get_system()->g_mutexLibrary);
+      //del(psystem->g_mutexLibrary);
 
       trace_category_static_term();
 
@@ -948,7 +948,7 @@ namespace aura
 
       }
 
-      ::parallelization::init_multithreading();
+      ::parallelization::initialize();
 
       if (!__node_aura_pos_init())
       {
@@ -986,7 +986,7 @@ namespace aura
 
       on_term_thread();
 
-      ::parallelization::term_multithreading();
+      ::parallelization::finalize();
 
       __node_aura_pre_term();
 

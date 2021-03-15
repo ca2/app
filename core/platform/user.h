@@ -160,7 +160,7 @@
 //      virtual ~application();
 //
 //
-//      virtual ::e_status initialize(::layered * pobjectContext) override;
+//      virtual ::e_status initialize(::context_object * pcontextobject) override;
 //
 //
 //      virtual void assert_valid() const override;
@@ -375,7 +375,7 @@
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::e_status initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -447,7 +447,7 @@
 //      //virtual void record(::create * pcommand);
 //
 //      //virtual void on_event(::u64 u, ::object * pobject) override;
-//      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+//      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 //
 //
 //      //// ca2verses
@@ -595,7 +595,7 @@
 //      //virtual void SetCurrentHandles();
 //
 //      //virtual void set_env_var(const string & payload,const string & value);
-//      //virtual ithread_t get_thread_id();
+//      //virtual itask_t get_thread_id();
 //
 //
 //      virtual bool _001OnDDECommand(const char * pcsz);
@@ -797,8 +797,8 @@
 //
 //
 //      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-//      virtual void add_frame(::user::interaction * pwnd);
-//      virtual void remove_frame(::user::interaction * pwnd);
+//      virtual void add_frame(::user::interaction * puserinteraction);
+//      virtual void remove_frame(::user::interaction * puserinteraction);
 //
 //      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 //
@@ -856,7 +856,7 @@
 //      virtual void HideApplication();
 //
 //      
-//      //virtual ::e_status initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status initialize(::context_object * pcontextobject) override;
 //
 //      //virtual ::e_status process_init() override;
 //
@@ -875,7 +875,7 @@
 //
 //      //virtual ::e_status     main() override;
 //
-//      //virtual ::aura::application * get_context_application() const override;
+//      //virtual ::aura::application * get_application() const override;
 //
 //      //virtual bool is_system() const override;
 //      //virtual bool is_session() const override;
@@ -1178,7 +1178,7 @@
 //      virtual void set_title(const char* pszTitle);
 //
 //
-//      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+//      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 //
 //
 //#ifdef WINDOWS_DESKTOP
@@ -1303,7 +1303,7 @@
 //
 //
 //
-//      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept);
+//      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
 //      virtual i32 GetVisibleFrameCount();
 //
 //      //virtual void on_create_keyboard() override;
@@ -1347,7 +1347,7 @@
 //      //virtual ~application();
 //
 //
-//      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
 //
 //
 //      //virtual void install_message_routing(::channel * pchannel) override;

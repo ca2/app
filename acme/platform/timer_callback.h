@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME timer_callback :
-   virtual public ::context_object
+   virtual public ::matter
 {
 public:
 

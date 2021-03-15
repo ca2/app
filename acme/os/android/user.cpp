@@ -69,7 +69,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         System->set_modified(id_os_dark_mode);
+         ::acme::get_system()->set_modified(id_os_dark_mode);
 
       }
 

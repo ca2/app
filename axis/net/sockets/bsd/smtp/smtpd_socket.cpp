@@ -6,12 +6,7 @@ namespace sockets
 {
 
 
-   smtpd_socket::smtpd_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
+   smtpd_socket::smtpd_socket() :
       m_hello(false),
       m_data(false),
       m_header(false)

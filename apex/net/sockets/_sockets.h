@@ -5,6 +5,16 @@
 #include "apex/net/_net.h"
 
 
+namespace net
+{
+
+   
+   class address_department;
+
+
+} // namespace net
+
+
 #include "logger.h"
 #include "trace_interface.h"
 
@@ -73,6 +83,12 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 
 
 CLASS_DECL_APEX string ip_reverse(string str);
+
+
+#include "apex/net/address_department.h"
+
+
+#include "apex/net/_net_impl.h"
 
 
 

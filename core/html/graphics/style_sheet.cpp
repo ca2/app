@@ -6,8 +6,8 @@ namespace html
 {
 
 
-   style_sheet::style_sheet(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   style_sheet::style_sheet(::context_object * pcontextobject) :
+      ::object(pobject)
    {
 
    }
@@ -37,7 +37,7 @@ namespace html
             psz++;
          }
 
-         auto pstyle = __new(class style(get_context_object()));
+         auto pstyle = __new(class style(this));
 
          string strStyle = str.Left(psz - pszStart);
 

@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-            enum e_op
+      enum e_op
       {
 
          op_copy,
@@ -36,7 +36,7 @@ namespace user
       virtual ~copydesk();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::context_object * pcontextobject) override;
       virtual void finalize() override;
 
       /// pass nullptr to ppatha to probe if there is at least one existing

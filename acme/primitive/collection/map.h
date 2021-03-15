@@ -4,142 +4,142 @@
 #define new ACME_NEW
 
 
-template < typename PAIR, const int DEFAULT_HASH_TABLE_SIZE = 17 >
-class map_dynamic_hash_table
-{
-public:
-
-   typedef map_association < PAIR >  assoc;
-
-   assoc *           m_assocHashDefault[DEFAULT_HASH_TABLE_SIZE];
-   assoc **          m_ppassocHash;
-   ::u32              m_nHashTableSize;
-
-   map_dynamic_hash_table()
-   {
-
-      m_ppassocHash = nullptr;
-
-      m_nHashTableSize = DEFAULT_HASH_TABLE_SIZE;
-
-   }
-
-
-   ::u32 GetHashTableSize() const
-   {
-
-      return m_nHashTableSize;
-
-   }
-
-
-   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
-   {
-
-      if(m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
-      {
-
-         delete[] m_ppassocHash;
-
-      }
-
-      m_ppassocHash = nullptr;
-
-      if(bAllocNow)
-      {
-
-         if (nHashSize <= DEFAULT_HASH_TABLE_SIZE)
-         {
-
-            m_ppassocHash = m_assocHashDefault;
-
-         }
-         else
-         {
-
-            m_ppassocHash = new assoc *[nHashSize];
-
-            ENSURE(m_ppassocHash != nullptr);
-
-         }
-
-         ::zero(m_ppassocHash, sizeof(assoc*) * nHashSize);
-
-      }
-
-      m_nHashTableSize = nHashSize;
-
-   }
-
-   void remove_all()
-   {
-
-      if(m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
-      {
-
-         delete[] m_ppassocHash;
-
-      }
-
-      m_ppassocHash = nullptr;
-
-   }
-
-
-};
-
-
-template < int m_nHashTableSize, typename PAIR >
-class map_fixed_hash_table
-{
-public:
+//template < typename PAIR, const int DEFAULT_HASH_TABLE_SIZE = 17 >
+//class map_dynamic_hash_table
+//{
+//public:
+//
+//   typedef map_association < PAIR >  association;
+//
+//   association *           m_associationHashDefault[DEFAULT_HASH_TABLE_SIZE];
+//   association **          m_ppassociationHash;
+//   ::u32              m_nHashTableSize;
+//
+//   map_dynamic_hash_table()
+//   {
+//
+//      m_ppassociationHash = nullptr;
+//
+//      m_nHashTableSize = DEFAULT_HASH_TABLE_SIZE;
+//
+//   }
+//
+//
+//   ::u32 GetHashTableSize() const
+//   {
+//
+//      return m_nHashTableSize;
+//
+//   }
+//
+//
+//   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
+//   {
+//
+//      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+//      {
+//
+//         delete[] m_ppassociationHash;
+//
+//      }
+//
+//      m_ppassociationHash = nullptr;
+//
+//      if(bAllocNow)
+//      {
+//
+//         if (nHashSize <= DEFAULT_HASH_TABLE_SIZE)
+//         {
+//
+//            m_ppassociationHash = m_associationHashDefault;
+//
+//         }
+//         else
+//         {
+//
+//            m_ppassociationHash = new association *[nHashSize];
+//
+//            ENSURE(m_ppassociationHash != nullptr);
+//
+//         }
+//
+//         ::zero(m_ppassociationHash, sizeof(association*) * nHashSize);
+//
+//      }
+//
+//      m_nHashTableSize = nHashSize;
+//
+//   }
+//
+//   void remove_all()
+//   {
+//
+//      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+//      {
+//
+//         delete[] m_ppassociationHash;
+//
+//      }
+//
+//      m_ppassociationHash = nullptr;
+//
+//   }
+//
+//
+//};
 
 
-   typedef map_association < PAIR > assoc;
-
-
-   assoc *           m_ppassocHash[m_nHashTableSize];
-
-   map_fixed_hash_table()
-   {
-      zero(m_ppassocHash,sizeof(m_ppassocHash));
-   }
-
-
-   ::u32 GetHashTableSize() const
-   {
-      return m_nHashTableSize;
-   }
-   void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
-
-   void remove_all()
-   {
-      zero(m_ppassocHash,sizeof(m_ppassocHash));
-   }
-
-};
-
+//template < int m_nHashTableSize, typename PAIR >
+//class map_fixed_hash_table
+//{
+//public:
+//
+//
+//   typedef map_association < PAIR > association;
+//
+//
+//   association *           m_ppassociationHash[m_nHashTableSize];
+//
+//   map_fixed_hash_table()
+//   {
+//      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
+//   }
+//
+//
+//   ::u32 GetHashTableSize() const
+//   {
+//      return m_nHashTableSize;
+//   }
+//   void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
+//
+//   void remove_all()
+//   {
+//      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
+//   }
+//
+//};
+//
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :
-   virtual public ::matter
+   virtual public ::set < KEY, ARG_KEY, PAIR >
 {
 public:
 
 
-   typedef map_dynamic_hash_table < PAIR >         HASH_TABLE;
-   typedef KEY                                     BASE_KEY;
-   typedef ARG_KEY                                 BASE_ARG_KEY;
-   typedef VALUE                                   BASE_VALUE;
-   typedef ARG_VALUE                               BASE_ARG_VALUE;
+   typedef typename ::set < KEY, ARG_KEY, PAIR >      BASE_SET;
+   typedef BASE_SET::HASH_TABLE                       HASH_TABLE;
+   typedef BASE_SET::BASE_KEY                         BASE_KEY;
+   typedef BASE_SET::BASE_ARG_KEY                     BASE_ARG_KEY;
+   typedef VALUE                                      BASE_VALUE;
+   typedef ARG_VALUE                                  BASE_ARG_VALUE;
+
+   typedef typename BASE_SET::association             association;
+   typedef typename association::payload              pair;
 
 
-   typedef ::map_association < PAIR >              assoc;
-   typedef typename assoc::pair                    pair;
-
-
-   __declare_iterator_struct_ok(map, assoc *, m_passoc, ::is_set(this->m_passoc));
+   __declare_iterator_struct_ok(map, association *, m_passociation, ::is_set(this->m_passociation));
 
 
    template < typename ITERATOR > struct make_iterator : ITERATOR
@@ -151,27 +151,27 @@ public:
 
       make_iterator()
       {
-         this->m_passoc = (assoc*)nullptr;
+         this->m_passociation = (association*)nullptr;
          this->m_pcontainer = (CONTAINER*)nullptr;
-         this->m_passocBeg = (assoc*)nullptr;
-         this->m_passocEnd = (assoc*) nullptr;
+         this->m_passociationBeg = (association*)nullptr;
+         this->m_passociationEnd = (association*) nullptr;
       }
 
-      make_iterator(const assoc * passoc, const CONTAINER * pmap = nullptr)
+      make_iterator(const association* passociation, const CONTAINER* pset = nullptr)
       {
-         this->m_passoc = (assoc *) passoc;
-         this->m_pcontainer = (CONTAINER *) pmap;
-         this->m_passocBeg = (assoc *) passoc;
-         this->m_passocEnd = (assoc *) nullptr;
+         this->m_passociation = (association*)passociation;
+         this->m_pcontainer = (CONTAINER*)pset;
+         this->m_passociationBeg = (association*)passociation;
+         this->m_passociationEnd = (association*) nullptr;
       }
 
 
-      make_iterator(const make_iterator & iterator)
+      make_iterator(const make_iterator& iterator)
       {
-         this->m_passoc = iterator.m_passoc;
+         this->m_passociation = iterator.m_passociation;
          this->m_pcontainer = iterator.m_pcontainer;
-         this->m_passocBeg = (assoc *) iterator.m_passocBeg;
-         this->m_passocEnd = (assoc *) iterator.m_passocEnd;
+         this->m_passociationBeg = (association*)iterator.m_passociationBeg;
+         this->m_passociationEnd = (association*)iterator.m_passociationEnd;
       }
 
 
@@ -191,10 +191,10 @@ public:
       }
 
 
-      make_iterator & operator ++ ()
+      make_iterator& operator ++ ()
       {
 
-         this->m_passoc = this->m_passoc->m_pnext;
+         this->m_passociation = this->m_passociation->m_pnext;
 
          return *this;
 
@@ -240,16 +240,16 @@ public:
       make_iterator operator ++ (i32)
       {
 
-         make_iterator iterator = this->m_passoc;
+         make_iterator iterator = this->m_passociation;
 
-         this->m_passoc = this->m_passoc->m_pnext;
+         this->m_passociation = this->m_passociation->m_pnext;
 
          return iterator;
 
       }
 
 
-      bool operator == (const make_iterator & it) const
+      bool operator == (const make_iterator& it) const
       {
 
          if (this == &it)
@@ -259,7 +259,7 @@ public:
 
          }
 
-         if (this->m_passoc == nullptr && it.m_passoc == nullptr && it.m_pcontainer == nullptr)
+         if (this->m_passociation == nullptr && it.m_passociation == nullptr && it.m_pcontainer == nullptr)
          {
 
             return true;
@@ -273,13 +273,13 @@ public:
 
          }
 
-         return this->m_passoc == it.m_passoc;
+         return this->m_passociation == it.m_passociation;
 
       }
 
 
 
-      bool operator != (const make_iterator & it) const
+      bool operator != (const make_iterator& it) const
       {
 
          return !operator == (it);
@@ -287,7 +287,7 @@ public:
       }
 
 
-      make_iterator & operator = (const make_iterator & it)
+      make_iterator& operator = (const make_iterator& it)
       {
 
          if (this != &it)
@@ -295,7 +295,7 @@ public:
 
             this->m_pcontainer = it.m_pcontainer;
 
-            this->m_passoc = it.m_passoc;
+            this->m_passociation = it.m_passociation;
 
          }
 
@@ -306,22 +306,22 @@ public:
    };
 
 
-   __declare_iterator(dereferenced_value_iterator, this->m_passoc->element2());
-   __declare_iterator(value_iterator, &this->m_passoc->element2());
-   __declare_iterator(key_iterator, &this->m_passoc->element1());
-   __declare_iterator(iterator, this->m_passoc);
+   __declare_iterator(dereferenced_value_iterator, this->m_passociation->element2());
+   __declare_iterator(value_iterator, &this->m_passociation->element2());
+   __declare_iterator(key_iterator, &this->m_passociation->element1());
+   __declare_iterator(iterator, this->m_passociation);
 
 
    using deferenced_iterator = dereferenced_value_iterator;
 
 
-   HASH_TABLE           m_hashtable;
-   ::count              m_nCount;
-   assoc *              m_passocHead;
+   //HASH_TABLE           this->m_hashtable;
+   //::count              this->m_nCount;
+   //association *              m_passociationHead;
 
 
    map();
-   map(assoc pairs[], i32 iCount);
+   map(association pairs[], i32 iCount);
    map(const ::std::initializer_list < PAIR > & list);
    map(const map & m);
    virtual ~map();
@@ -346,8 +346,8 @@ public:
 
    //lookup
    bool lookup(ARG_KEY key, VALUE& rValue) const;
-   const assoc * plookup(ARG_KEY key) const;
-   assoc * plookup(ARG_KEY key);
+   const association * plookup(ARG_KEY key) const;
+   association * plookup(ARG_KEY key);
 
    
    VALUE * pget(ARG_KEY key);
@@ -370,19 +370,26 @@ public:
    VALUE & operator[](ARG_KEY key);
    const VALUE & operator[](ARG_KEY key) const;
 
-   assoc * get_assoc(ARG_KEY key);
-   assoc * get_assoc(ARG_KEY key) const
+   association * get_association(ARG_KEY key);
+   association * get_association(ARG_KEY key) const
    {
-      return ((map *) this)->get_assoc(key);
+      return ((map *) this)->get_association(key);
    }
-   assoc * find_assoc(ARG_KEY key) const;
+   association * find_association(ARG_KEY key) const;
 
-   //add a new (key, value) assoc
-   assoc * set_at(ARG_KEY key, ARG_VALUE newValue);
+   //add a new (key, value) association
+   association * set_at(ARG_KEY key, ARG_VALUE newValue);
 
-   bool remove_item(assoc * passoc);
+   //add a new (key, value) association
+   virtual void set_payload(const PAIR & pair) override
+   {
+      set_at(pair.key(), pair.value());
+   }
 
-   //removing existing (key, ?) assoc
+
+   bool remove_item(association * passociation);
+
+   //removing existing (key, ?) association
    inline bool remove_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove_item(pitem) : false; }
 
    template < typename ITERATOR >
@@ -409,18 +416,18 @@ public:
    //iterating all (key, value) pairs
 //   POSITION get_start_position() const;
 
-   const assoc * get_start() const;
-   assoc * get_start();
+   const association * get_start() const;
+   association * get_start();
 
-   void get_next(assoc * & rNextPosition, KEY& rKey, VALUE& rValue) const;
+   void get_next(association * & rNextPosition, KEY& rKey, VALUE& rValue) const;
 
-   const assoc * get_next(const assoc *passocRet) const;
-   assoc * get_next(const assoc *passocRet);
+   const association * get_next(const association *passociationRet) const;
+   association * get_next(const association *passociationRet);
 
    //advanced features for derived classes
    ::u32 GetHashTableSize() const
    {
-      return m_hashtable.GetHashTableSize();
+      return this->m_hashtable.GetHashTableSize();
    }
    void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
@@ -428,51 +435,51 @@ public:
    VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
 
 
-   assoc * next(assoc * & passoc)
+   association * next(association * & passociation)
    {
-      if(passoc == nullptr)
+      if(passociation == nullptr)
       {
-         passoc = get_start();
+         passociation = get_start();
       }
       else
       {
-         passoc = get_next(passoc);
+         passociation = get_next(passociation);
       }
-      return passoc;
+      return passociation;
    }
 
-   const assoc * next(const assoc * & passoc) const
+   const association * next(const association * & passociation) const
    {
-      if(passoc == nullptr)
+      if(passociation == nullptr)
       {
-         passoc = get_start();
+         passociation = get_start();
       }
       else
       {
-         passoc = get_next(passoc);
+         passociation = get_next(passociation);
       }
-      return passoc;
+      return passociation;
    }
 
 
    void set(map & map)
    {
-      assoc * passoc = nullptr;
-      while(map.next(passoc) != nullptr)
+      association * passociation = nullptr;
+      while(map.next(passociation) != nullptr)
       {
-         set_at(passoc->element1(), passoc->element2());
+         set_at(passociation->element1(), passociation->element2());
       }
    }
 
-   inline assoc * find_item(ARG_KEY key) const { return find_assoc(key); }
+   inline association * find_item(ARG_KEY key) const { return find_association(key); }
 
    inline iterator find(ARG_KEY key) { return { find_item(key), this }; }
    const_iterator find (ARG_KEY key) const { return { find_item(key), this }; }
 
 
-   assoc * new_assoc(ARG_KEY key);
-   void free_assoc(assoc * passoc);
-   assoc * get_assoc_at(ARG_KEY, ::u32&, ::u32&) const;
+   association * new_association(ARG_KEY key);
+   void free_association(association * passociation);
+   association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
    virtual void assert_valid() const override;
@@ -498,7 +505,7 @@ public:
    }
 
    template < class ARRAY >
-   ::count remove_assoc_array(ARRAY a)
+   ::count remove_association_array(ARRAY a)
    {
 
       ::count countRemoved = 0;
@@ -506,7 +513,7 @@ public:
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         if(remove_assoc(a[i]))
+         if(remove_association(a[i]))
          {
 
             countRemoved++;
@@ -536,7 +543,7 @@ public:
    }
 
    template < typename PRED >
-   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * predicate_find(PRED pred)
+   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * predicate_find(PRED pred)
    {
 
       auto point = this->get_start();
@@ -600,25 +607,25 @@ public:
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline ::count map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_count() const
 {
-   return m_nCount;
+   return this->m_nCount;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline ::count map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_size() const
 {
-   return m_nCount;
+   return this->m_nCount;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline ::count map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::count() const
 {
-   return m_nCount;
+   return this->m_nCount;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline ::count map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::size() const
 {
-   return m_nCount;
+   return this->m_nCount;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
@@ -629,10 +636,10 @@ map< KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > & map < KEY, VALUE, ARG_KEY, ARG_VAL
 
       remove_all();
 
-      for(auto & assoc : m)
+      for(auto & association : m)
       {
 
-         set_at(assoc.element1(),assoc.element2());
+         set_at(association.element1(),association.element2());
 
       }
 
@@ -643,48 +650,48 @@ map< KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > & map < KEY, VALUE, ARG_KEY, ARG_VAL
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::is_empty() const
 {
-   return m_nCount == 0;
+   return this->m_nCount == 0;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::empty() const
 {
-   return m_nCount == 0;
+   return this->m_nCount == 0;
 }
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::set_at(ARG_KEY key,ARG_VALUE newValue)
+inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::set_at(ARG_KEY key,ARG_VALUE newValue)
 {
 
-   assoc * passoc = get_assoc(key);
+   association * passociation = get_association(key);
 
-   passoc->element2() = newValue;
+   passociation->element2() = newValue;
 
-   return passoc;
+   return passociation;
 
 }
 
 
 //template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-//inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
+//inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
 //{
-//   return (m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
+//   return (this->m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
 //}
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
+const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
 {
 
-   return this->m_passocHead;
+   return this->m_passociationHead;
 
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start()
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start()
 {
 
-   return this->m_passocHead;
+   return this->m_passociationHead;
 
 }
 
@@ -702,13 +709,13 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::construct()
 {
 
-   //m_ppassocHash     = nullptr;
+   //m_ppassociationHash     = nullptr;
    //m_nHashTableSize  = 17;  // default size_i32
-   m_nCount          = 0;
-//   this->m_passocFree      = nullptr;
+   this->m_nCount          = 0;
+//   this->m_passociationFree      = nullptr;
 //   m_pplex           = nullptr;
    // m_nBlockSize      = nBlockSize;
-   this->m_passocHead      = nullptr;
+   this->m_passociationHead      = nullptr;
 }
 
 
@@ -737,7 +744,7 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::map(const ::std::initializer_list 
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::map(assoc pairs[], i32 iCount)
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::map(association pairs[], i32 iCount)
 {
    construct();
    for(i32 i = 0; i < iCount; i++)
@@ -769,29 +776,29 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::remove_all()
 
    ASSERT_VALID(this);
 
-   if(this->m_passocHead != nullptr)
+   if(this->m_passociationHead != nullptr)
    {
       // destroy elements (values and keys)
 
-      assoc * passoc;
+      association * passociation;
 
-      assoc * passocNext = nullptr;
+      association * passociationNext = nullptr;
 
-      for (passoc = this->m_passocHead; passoc != nullptr; passoc = passocNext)
+      for (passociation = this->m_passociationHead; passociation != nullptr; passociation = passociationNext)
       {
 
-         passocNext = passoc->m_pnext;
+         passociationNext = passociation->m_pnext;
 
-         delete passoc;
+         delete passociation;
 
       }
 
    }
 
-   m_hashtable.remove_all();
+   this->m_hashtable.remove_all();
 
-   m_nCount = 0;
-   //this->m_passocFree = nullptr;
+   this->m_nCount = 0;
+   //this->m_passociationFree = nullptr;
 
    //if(m_pplex != nullptr)
    //{
@@ -801,7 +808,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::remove_all()
 
    //}
 
-   this->m_passocHead = nullptr;
+   this->m_passociationHead = nullptr;
 
 }
 
@@ -822,133 +829,133 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::~map()
 {
    remove_all();
-   ASSERT(m_nCount == 0);
+   ASSERT(this->m_nCount == 0);
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc *
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_assoc(ARG_KEY key)
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_association(ARG_KEY key)
 {
 
-   //if(this->m_passocFree == nullptr)
+   //if(this->m_passociationFree == nullptr)
    //{
    //   // add another block
-   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(map::assoc));
+   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(map::association));
    //   //// chain them into free list
-   //   //map::assoc* passoc = (map::assoc*) newBlock->data();
+   //   //map::association* passociation = (map::association*) newBlock->data();
    //   //// free in reverse order to make it easier to debug
    //   //index i = m_nBlockSize - 1;
-   //   //for (passoc = &passoc[i]; i >= 0; i--, passoc--)
+   //   //for (passociation = &passociation[i]; i >= 0; i--, passociation--)
    //   //{
-   //   //   passoc->m_pnext = this->m_passocFree;
-   //   //   this->m_passocFree = passoc;
+   //   //   passociation->m_pnext = this->m_passociationFree;
+   //   //   this->m_passociationFree = passociation;
 
    //   //}
-   //   this->m_passocFree = new assoc();
+   //   this->m_passociationFree = new association();
 
    //}
 
-   //ENSURE(this->m_passocFree != nullptr);  // we must have something
+   //ENSURE(this->m_passociationFree != nullptr);  // we must have something
 
-   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * passoc =
-   new assoc(key);
+   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * passociation =
+   new association(key);
 
-   //this->m_passocFree  = this->m_passocFree->m_pnext;
+   //this->m_passociationFree  = this->m_passociationFree->m_pnext;
 
-   //zero_pointer(passoc);
+   //zero_pointer(passociation);
 
-   if(this->m_passocHead != nullptr)
+   if(this->m_passociationHead != nullptr)
    {
 
-      this->m_passocHead->m_pprev   = passoc;
+      this->m_passociationHead->m_pprev   = passociation;
 
    }
 
-   passoc->m_pnext            = this->m_passocHead;
+   passociation->m_pnext            = this->m_passociationHead;
 
-   this->m_passocHead               = passoc;
+   this->m_passociationHead               = passociation;
 
-   this->m_passocHead->m_pprev      = nullptr;
+   this->m_passociationHead->m_pprev      = nullptr;
 
-   m_nCount++;
+   this->m_nCount++;
 
-   ASSERT(m_nCount > 0);  // make sure we don't overflow
+   ASSERT(this->m_nCount > 0);  // make sure we don't overflow
 
-   return passoc;
+   return passociation;
 
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::free_assoc(assoc * passoc)
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::free_association(association * passociation)
 {
 
-   assoc * pnext = passoc->m_pnext;
+   association * pnext = passociation->m_pnext;
 
-   if(passoc->m_pnext != nullptr)
+   if(passociation->m_pnext != nullptr)
    {
 
-      passoc->m_pnext->m_pprev = passoc->m_pprev;
+      passociation->m_pnext->m_pprev = passociation->m_pprev;
 
    }
 
-   if(passoc->m_pprev != nullptr)
+   if(passociation->m_pprev != nullptr)
    {
 
-      passoc->m_pprev->m_pnext = passoc->m_pnext;
+      passociation->m_pprev->m_pnext = passociation->m_pnext;
 
    }
 
-   if(this->m_passocHead == passoc)
+   if(this->m_passociationHead == passociation)
    {
 
-      this->m_passocHead = pnext;
+      this->m_passociationHead = pnext;
 
-      if(this->m_passocHead != nullptr)
+      if(this->m_passociationHead != nullptr)
       {
 
-         this->m_passocHead->m_pprev = nullptr;
+         this->m_passociationHead->m_pprev = nullptr;
 
       }
 
    }
 
-   delete passoc;
+   delete passociation;
 
-   //passoc->m_pnext = this->m_passocFree;
+   //passociation->m_pnext = this->m_passociationFree;
 
-   //this->m_passocFree = passoc;
+   //this->m_passociationFree = passociation;
 
-   m_nCount--;
+   this->m_nCount--;
 
-   ASSERT(m_nCount >= 0);  // make sure we don't underflow
+   ASSERT(this->m_nCount >= 0);  // make sure we don't underflow
 
    // if no more elements, cleanup completely
-   if (m_nCount == 0)
+   if (this->m_nCount == 0)
       remove_all();
 
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc *
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_assoc_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
 // find association (or return nullptr)
 {
 
    nHashValue = u32_hash<ARG_KEY>(key);
 
-   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
+   nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
 
    if(get_count() <= 0)
       return nullptr;
 
    // see if it exists
-   assoc * passoc;
+   association * passociation;
 
-   for(passoc = m_hashtable.m_ppassocHash[nHashBucket]; passoc != nullptr; passoc = passoc->m_pnextHash)
+   for(passociation = this->m_hashtable.m_ppassociationHash[nHashBucket]; passociation != nullptr; passociation = passociation->m_pnextHash)
    {
 
-      if(EqualElements<ARG_KEY>(passoc->element1(), key))
-         return passoc;
+      if(EqualElements<ARG_KEY>(passociation->element1(), key))
+         return passociation;
 
    }
 
@@ -963,12 +970,12 @@ bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::lookup(ARG_KEY key, VALUE& rV
 
    ::u32 nHashBucket, nHashValue;
 
-   assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
 
-   if (passoc == nullptr)
+   if (passociation == nullptr)
       return false;  // not in map
 
-   rValue = passoc->element2();
+   rValue = passociation->element2();
 
    return true;
 
@@ -983,34 +990,34 @@ bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::lookup(ARG_KEY key, VALUE& rV
 //template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 //typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::const_iterator map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::find (ARG_KEY key) const
 //{
-//   return const_iterator((assoc *) plookup(key), (map *) this);
+//   return const_iterator((association *) plookup(key), (map *) this);
 //}
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::plookup(ARG_KEY key) const
+const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::plookup(ARG_KEY key) const
 {
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
-   return passoc;
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
+   return passociation;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::plookup(ARG_KEY key)
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::plookup(ARG_KEY key)
 {
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
-   return passoc;
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
+   return passociation;
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 VALUE * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::pget(ARG_KEY key)
 {
-   assoc * point = plookup(key);
+   association * point = plookup(key);
    if(point)
       return &point->element2();
    else
@@ -1019,53 +1026,53 @@ VALUE * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::pget(ARG_KEY key)
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::find_assoc(ARG_KEY key) const
+inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::find_association(ARG_KEY key) const
 {
 
    ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
-   return get_assoc_at(key, nHashBucket, nHashValue);
+   return get_association_at(key, nHashBucket, nHashValue);
 
 }
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_assoc(ARG_KEY key)
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association(ARG_KEY key)
 {
 
    ASSERT_VALID(this);
 
    ::u32 nHashBucket,nHashValue;
 
-   assoc * passoc;
+   association * passociation;
 
-   if((passoc = get_assoc_at(key,nHashBucket,nHashValue)) == nullptr)
+   if((passociation = get_association_at(key,nHashBucket,nHashValue)) == nullptr)
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if(void_ptr_is_null(m_hashtable.m_ppassocHash))
-         InitHashTable(m_hashtable.GetHashTableSize());
+      if(void_ptr_is_null(this->m_hashtable.m_ppassociationHash))
+         InitHashTable(this->m_hashtable.GetHashTableSize());
 
-      ENSURE(m_hashtable.m_ppassocHash);
+      ENSURE(this->m_hashtable.m_ppassociationHash);
 
-      passoc = new_assoc(key);
+      passociation = new_association(key);
 
-      if(m_hashtable.m_ppassocHash[nHashBucket] != nullptr)
+      if(this->m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
       {
-         m_hashtable.m_ppassocHash[nHashBucket]->m_ppprevHash = &passoc->m_pnextHash;
+         this->m_hashtable.m_ppassociationHash[nHashBucket]->m_ppprevHash = &passociation->m_pnextHash;
       }
 
-      passoc->m_pnextHash        = m_hashtable.m_ppassocHash[nHashBucket];
+      passociation->m_pnextHash        = this->m_hashtable.m_ppassociationHash[nHashBucket];
 
-      m_hashtable.m_ppassocHash[nHashBucket] = passoc;
+      this->m_hashtable.m_ppassociationHash[nHashBucket] = passociation;
 
-      passoc->m_ppprevHash       = &m_hashtable.m_ppassocHash[nHashBucket];
+      passociation->m_ppprevHash       = &this->m_hashtable.m_ppassociationHash[nHashBucket];
 
    }
 
-   return passoc;
+   return passociation;
 
 }
 
@@ -1074,7 +1081,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 VALUE& map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
 {
 
-   return get_assoc(key)->element2();  // return new matter
+   return get_association(key)->element2();  // return new matter
 
 }
 
@@ -1082,26 +1089,26 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
 {
 
-   return get_assoc(key)->element2();  // return new matter
+   return get_association(key)->element2();  // return new matter
 
 }
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::remove_item(assoc * passoc)
+inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::remove_item(association * passociation)
 // erase - return true if removed
 {
 
-   if(passoc->m_pnextHash != nullptr)
+   if(passociation->m_pnextHash != nullptr)
    {
 
-      passoc->m_pnextHash->m_ppprevHash = passoc->m_ppprevHash;
+      passociation->m_pnextHash->m_ppprevHash = passociation->m_ppprevHash;
 
    }
 
-   *passoc->m_ppprevHash = passoc->m_pnextHash;
+   *passociation->m_ppprevHash = passociation->m_pnextHash;
 
-   free_assoc(passoc);
+   free_association(passociation);
 
    return true;
 
@@ -1136,35 +1143,35 @@ bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::contains(const KEY & key) con
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(assoc * & passoc,
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(association * & passociation,
       KEY& rKey, VALUE& rValue) const
 {
 
-   rKey = passoc->element1();
+   rKey = passociation->element1();
 
-   rValue = passoc->element2();
+   rValue = passociation->element2();
 
-   passoc = passoc->m_pnext;
-
-}
-
-
-template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc*
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(const assoc * passoc) const
-{
-
-   return passoc->m_pnext;
+   passociation = passociation->m_pnext;
 
 }
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assoc*
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(const assoc * passoc)
+inline const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association*
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(const association * passociation) const
 {
 
-   return passoc->m_pnext;
+   return passociation->m_pnext;
+
+}
+
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association*
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_next(const association * passociation)
+{
+
+   return passociation->m_pnext;
 
 }
 
@@ -1173,11 +1180,11 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 VALUE map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > ::
 get(ARG_KEY argkey, ARG_VALUE valueDefault)
 {
-   assoc * passoc = plookup(argkey);
-   if(passoc == nullptr)
+   association * passociation = plookup(argkey);
+   if(passociation == nullptr)
       return valueDefault;
    else
-      return passoc->element2();
+      return passociation->element2();
 }
 
 
@@ -1189,7 +1196,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_valid() const
 
    ASSERT(GetHashTableSize() > 0);
 
-   ASSERT(m_nCount == 0 || m_hashtable.m_ppassocHash != nullptr);
+   ASSERT(this->m_nCount == 0 || this->m_hashtable.m_ppassociationHash != nullptr);
    // non-empty map should have hash table
 
 }
@@ -1238,10 +1245,6 @@ struct xkeyvaluetype : public ::key_value < xkeytype, xvaluetype > \
 { \
 \
    PAIR_DEFAULT_IMPL(xkeyvaluetype, KEY, VALUE, const KEY &, const VALUE &, xkey, xvalue); \
-   KEY & key() { return xkey; } \
-   VALUE & value() { return xvalue; } \
-   const KEY & key() const { return xkey; } \
-   const VALUE & value() const { return xvalue; } \
 }
 
 

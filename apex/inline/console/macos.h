@@ -38,7 +38,7 @@
 //    
 //      main();
 //
-//      estatus = Application.m_estatus;
+//      estatus = get_application()->m_estatus;
 //
 //   }
 //
@@ -124,7 +124,7 @@ public:
    int result()
    {
 
-      m_estatus = Application.m_estatus;
+      m_estatus = get_application()->m_estatus;
 
       ::i32 iErrorStatus = m_estatus.error_status();
 

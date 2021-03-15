@@ -142,7 +142,7 @@ namespace filemanager
       poperation->m_id = id;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
-      poperation->set_context_object(this);
+      poperation->set_object(this);
 
       if(bDeleteOriginOnSuccessfulCopy)
       {
@@ -171,7 +171,7 @@ namespace filemanager
 
       ::millis millisStepSetSleep = 20;
 
-      while(thread_get_run())
+      while(task_get_run())
       {
 
          i32 i = iStepSetCount;

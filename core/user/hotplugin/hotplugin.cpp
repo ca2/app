@@ -69,7 +69,7 @@ namespace hotplugin
 
 // #ifdef WINDOWS
 
-//         set_main_hthread((hthread_t) GetCurrentThread());
+//         set_main_hthread((htask_t) GetCurrentThread());
 
 //         set_main_ithread(GetCurrentThreadId());
 

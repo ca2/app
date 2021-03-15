@@ -24,9 +24,10 @@ namespace sockets
 
 
 
-   socket_handler::socket_handler(::layered * pobject, ::apex::log *plogger) :
-      ::object(pobject),
-      base_socket_handler(pobject, plogger),
+   //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
+   socket_handler::socket_handler(::apex::log* plogger) :
+      //::object(pobject),
+      base_socket_handler(plogger),
       m_b_use_mutex(false)
       , m_maxsock(0)
       , m_iPreviousError(-1)
@@ -159,6 +160,15 @@ namespace sockets
 
       socket * psocket = dynamic_cast < socket * > (pbasesocket);
 
+      if (psocket->m_phandler.is_set())
+      {
+
+         WARN(psocket, "add", -1, "socket is already being handled by another handler");
+
+         return;
+
+      }
+
       if (psocket->GetSocket() == INVALID_SOCKET)
       {
 
@@ -176,6 +186,7 @@ namespace sockets
       }
 
       socket_pointer plookup;
+
       if (m_add.lookup(psocket->GetSocket(), plookup))
       {
 
@@ -183,9 +194,12 @@ namespace sockets
 
          //m_delete.add_tail(psocket);
          return;
+
       }
 
       m_add[psocket->GetSocket()] = psocket;
+
+      psocket->m_phandler = this;
 
       psocket->m_estatus = ::success;
 
@@ -902,7 +916,7 @@ end_processing_adding:
 
                      set(socket, false, false, false);
 
-                     // After DetachSocket(), all calls to Handler() will return a context_object
+                     // After DetachSocket(), all calls to socket_handler() will return a context_object
                      // to the new slave socket_handler running in the new thread.
                      try
                      {
@@ -1166,13 +1180,17 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
+                        __pointer(::apex::system) psystem = get_system();
 
-                        __pointer(pool_socket) ppoolsocket = __new(pool_socket(*this, psocket));
+                        synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+
+                        __pointer(pool_socket) ppoolsocket = __new(pool_socket(psocket));
+
+                        ppoolsocket->m_phandler = this;
 
                         ppoolsocket->SetDeleteByHandler();
 
-                        ::apex::get_system()->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+                        psystem->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
                         ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
 
@@ -1405,7 +1423,11 @@ end_processing_adding:
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      ::apex::get_system()->sockets().net().convert(m_socks4_host, host);
+
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(m_socks4_host, host);
+
    }
 
 
@@ -1426,7 +1448,9 @@ end_processing_adding:
       
       // check cache
       
-      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(*this, pbasesocket, host, port));
+      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
+
+      presolvsocket->m_phandler = this;
 
       presolvsocket->SetId(++m_resolv_id);
 
@@ -1434,7 +1458,9 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(addrLocal, "127.0.0.1");
 
       if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1459,7 +1485,9 @@ end_processing_adding:
       
       // check cache
 
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, host, port, true));
+      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
+
+      resolv->m_phandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1467,7 +1495,9 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1490,7 +1520,9 @@ end_processing_adding:
 
       // check cache
 
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, a));
+      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+
+      resolv->m_phandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1498,7 +1530,9 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1521,7 +1555,9 @@ end_processing_adding:
       
       // check cache
 
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, a));
+      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+
+      resolv->m_phandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1529,7 +1565,9 @@ end_processing_adding:
 
       in_addr addrLocal;
 
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(addrLocal, "127.0.0.1");
 
       if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
       {
@@ -1633,9 +1671,11 @@ end_processing_adding:
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
+      __pointer(::apex::system) psystem = get_system();
 
-      auto p = ::apex::get_system()->sockets().m_pool.begin();
+      synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+
+      auto p = psystem->sockets().m_pool.begin();
 
       for(; p; p++)
       {
@@ -1651,7 +1691,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               ::apex::get_system()->sockets().m_pool.remove_key(p->m_socket);
+               psystem->sockets().m_pool.remove_key(p->m_socket);
 
                psocket->SetRetain(); // avoid close in socket destructor
 

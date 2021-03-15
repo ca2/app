@@ -60,7 +60,7 @@ namespace uwp
 
       
 
-      ::apex::system * get_context_system() const;
+      ::apex::system * ::apex::get_system() const;
 
    public:
 

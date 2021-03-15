@@ -31,7 +31,7 @@ namespace user
 
 
       format::format(const format & format) :
-         ::object(format.get_context_object()),
+         ::object(format.this),
          m_pcontainer(format.m_pcontainer)
       {
 

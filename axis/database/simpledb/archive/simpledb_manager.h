@@ -35,13 +35,13 @@ namespace simpledb
       string_map < ::simpledb::session * >      m_mapSession;
 
 
-      manager(::layered * pobjectContext);
+      manager(::context_object * pcontextobject);
       ~manager();
 
       
       virtual bool init_thread() override;
 
-      ::simpledb::session * & get_context_session(const char * pszId);
+      ::simpledb::session * & get_session(const char * pszId);
 
       using thread::handle;
       bool handle(socket * psocket);

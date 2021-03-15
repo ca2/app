@@ -2515,7 +2515,7 @@ LPTRACKMOUSEEVENT lpEventTrack);
 
 
 /*
- * System Menu Command Values
+ * ::acme::get_system() Menu Command Values
  */
 #define SC_SIZE         0xF000
 #define SC_MOVE         0xF010

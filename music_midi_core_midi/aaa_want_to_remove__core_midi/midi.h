@@ -30,7 +30,7 @@
 //            index_map < __pointer(message_out) >          m_mapMessageOut;
 //            
 //            
-//            midi(::layered * pobjectContext);
+//            midi(::context_object * pcontextobject);
 //            virtual ~midi();
 //            
 //            

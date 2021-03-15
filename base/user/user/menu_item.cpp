@@ -10,7 +10,7 @@ namespace user
    menu_item::menu_item()
    {
 
-      m_puiHost = nullptr;
+      m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
       m_pmenuitema = __new(menu_item_ptra(this));
@@ -76,7 +76,7 @@ namespace user
 
       m_puserinteraction.release();
 
-      m_puiHost.release();
+      m_puserinteractionHost.release();
 
       m_pmenu.release();
 
@@ -160,7 +160,7 @@ namespace user
          if (strImage.has_char())
          {
 
-            __compose(m_pimage, Application.image().matter_image(strImage));
+            __compose(m_pimage, papplication->image().matter_image(strImage));
 
          }
 

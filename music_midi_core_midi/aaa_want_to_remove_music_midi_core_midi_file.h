@@ -20,7 +20,7 @@ namespace music
 
 
 
-            file(::layered * pobjectContext);
+            file(::context_object * pcontextobject);
             virtual ~file();
 
 

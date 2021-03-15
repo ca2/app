@@ -86,7 +86,7 @@ namespace filemanager
       bool is_topic();
 
 
-      virtual ::e_status initialize_filemanager_data(::layered * pobjectContext);
+      virtual ::e_status initialize_filemanager_data(::context_object * pcontextobject);
 
       
       bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
@@ -103,8 +103,8 @@ namespace filemanager
 
 
       virtual ::id get_local_machine_id();
-      virtual string get_last_browse_path(::object * pobjectContext, const char * pszDefault = nullptr);
-      virtual ::e_status set_last_browse_path(::object * pobjectContext, const ::file::path & path);
+      virtual string get_last_browse_path(::object * pobject, const char * pszDefault = nullptr);
+      virtual ::e_status set_last_browse_path(::object * pobject, const ::file::path & path);
 
 
    };

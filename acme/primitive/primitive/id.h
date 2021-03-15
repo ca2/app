@@ -46,7 +46,7 @@ public:
       e_type_integer = 1,
       e_type_id,
       e_type_factory,
-      e_type_thread_tool,
+      e_type_task_tool,
       e_type_clock,
       e_type_message,
       e_type_property,
@@ -91,7 +91,7 @@ public:
             e_id                 m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
-            enum_thread_tool     m_ethreadtool;
+            enum_task_tool     m_etasktool;
             enum_clock           m_eclock;
             enum_message         m_emessage;
          };
@@ -128,7 +128,7 @@ public:
    inline id(e_id eid);
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
-   inline id(enum_thread_tool ethreadtool);
+   inline id(enum_task_tool etasktool);
    inline id(enum_clock eclock);
    inline id(enum_message emessage);
    inline id(enum_type etype, ::i64 i);
@@ -285,7 +285,7 @@ public:
    id & operator = (::u64 u);
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
-   id & operator = (const enum_thread_tool & ethreadtool);
+   id & operator = (const enum_task_tool & etasktool);
    id & operator = (const enum_clock & eclock);
    id & operator = (const enum_message & emessage);
 
@@ -398,9 +398,9 @@ inline id::id(enum_factory efactory) :
 }
 
 
-inline id::id(enum_thread_tool ethreadtool) :
-   m_etype(e_type_thread_tool),
-   m_ethreadtool(ethreadtool) // used m_i to reset 64-bit field
+inline id::id(enum_task_tool etasktool) :
+   m_etype(e_type_task_tool),
+   m_etasktool(etasktool) // used m_i to reset 64-bit field
 {
 
 }

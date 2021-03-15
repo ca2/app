@@ -75,17 +75,6 @@
 #pragma once
 
 
-//#undef Node
-//#undef ::apex::get_system()
-//#undef Sess
-//#undef App
-
-
-//#define ::apex::get_system() (::get_context_system()->m_papexsystem)
-//#define Node (::get_context_system()->node()->m_papexnode)
-//#define Sess(pcontextsession) (pcontextsession)
-#define App(playered) (::get_context_application(playered))
-
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
@@ -101,7 +90,7 @@ namespace apex
    class application;
 
 
-   inline system * get_system() { return (system *) ::acme::get_system()->layer(LAYERED_APEX); }
+   //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
 
 
 } // namespace apex
@@ -369,7 +358,7 @@ class machine_event_central;
 #define __exception(TYPE) __base(TYPE, pe, e)
 
 
-#include "apex/primitive/math/_.h"
+//#include "apex/primitive/math/_.h"
 
 
 #include "apex/crypto/_.h"
@@ -642,19 +631,19 @@ namespace html
 
 
 //#define SCAST_PTR(TYPE, ptarget, psource) __pointer(TYPE) ptarget(psource);
-#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
+//#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
 
-#define Session (Sess(get_context_session()))
+//#define get_session() (Sess(get_session()))
 
-#define Application (App(get_context_object()))
-#define ThisApp (*::application_consumer < application >::get_app())
-#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//#define papplication (App(this))
+//#define ThisApp (*::application_consumer < application >::get_app())
+//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
 
 
-#undef Ctx
-#define Ctx(pobject) (*(::get_context(pobject)))
-#define Context (Ctx(get_context_object()))
+//#undef Ctx
+//#define Ctx(pobject) (*(::get_context(pobject)))
+//#define Context (Ctx(this))
 
 
 
@@ -666,7 +655,7 @@ namespace html
 
 // __throw( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 #endif
 
 
@@ -715,29 +704,29 @@ CLASS_DECL_APEX bool __node_apex_pos_term();
 //CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext);
+//CLASS_DECL_APEX ::context * get_context(::context_object * pcontextobject);
 //CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
-//inline ::object * get_context_object();
+//inline ::object * this;
 
 
 //CLASS_DECL_APEX void set_global_application(::apex::application * papp);
 //CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
-//CLASS_DECL_APEX ::apex::application * get_context_application();
-//CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext);
-//CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
-//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
+//CLASS_DECL_APEX ::apex::application * get_application();
+//CLASS_DECL_APEX ::apex::application * get_application(::context_object * pcontextobject);
+//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp);
+//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_application(); }
 
 
-//CLASS_DECL_APEX ::apex::session * get_context_session();
-//CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext);
-//CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
+//CLASS_DECL_APEX ::apex::session * get_session();
+//CLASS_DECL_APEX ::apex::session * get_session(::context_object * pcontextobject);
+//CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession);
 
 
-//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::context_object * pcontextobject);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -852,6 +841,10 @@ namespace core
 } // namespace core
 
 
+#include "apex/primitive/primitive/context_object.h"
+
+#include "apex/primitive/subject/_.h"
+
 #include "apex/primitive/primitive/object.h"
 
 #include "apex/primitive/primitive/object_meta.h"
@@ -916,6 +909,7 @@ namespace core
 
 
 
+
 #include "apex/message/_message.h"
 
 
@@ -937,15 +931,20 @@ namespace core
 class message_queue;
 
 
+#include "apex/user/check.h"
+#include "apex/user/text.h"
+#include "apex/user/primitive.h"
+
+
 #include "apex/parallelization/thread.h"
 #include "apex/parallelization/handler.h"
 //#include "apex/parallelization/service_status.h"
 #include "apex/parallelization/service_base.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
-#include "apex/parallelization/fork.h"
+//#include "apex/parallelization/fork.h"
 #include "apex/parallelization/delay_thread.h"
-#include "apex/parallelization/tools.h"
+//#include "apex/parallelization/tools.h"
 
 
 #include "apex/parallelization/thread_impl.h"
@@ -1142,7 +1141,7 @@ namespace xml
 {
 
 
-   class department;
+   class xml;
 
 
 } // namespace xml
@@ -1154,7 +1153,7 @@ namespace xml
 #include "apex/process/_.h"
 
 
-#include "apex/primitive/math/department.h"
+//#include "apex/primitive/math/department.h"
 
 
 #include "apex/platform/node.h"
@@ -1210,14 +1209,14 @@ extern "C"
 #include "apex/platform/simple_app.h"
 
 
-namespace math
+namespace mathematics
 {
 
    template < typename T >
    class complex;
 
 
-} // namespace math
+} // namespace mathematics
 
 
 #include "apex/platform/error.h"

@@ -72,7 +72,7 @@ void imm_client::_011OnChar(::message::message * pmessage)
    if (pusermessage->m_id == e_message_char)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->is_key_pressed(::user::e_key_control)
          || psession->is_key_pressed(::user::e_key_alt))

@@ -74,10 +74,10 @@ namespace linux
       }
 
 
-      ::e_status shell::initialize(::layered * pobjectContext)
+      ::e_status shell::initialize(::context_object * pcontextobject)
       {
 
-         auto estatus = ::user::shell::initialize(pobjectContext);
+         auto estatus = ::user::shell::initialize(pcontextobject);
 
          if(!estatus)
          {
@@ -86,7 +86,7 @@ namespace linux
 
          }
 
-         estatus = m_contextimage.initialize(pobjectContext);
+         estatus = m_contextimage.initialize(pcontextobject);
 
          if(!estatus)
          {
@@ -327,7 +327,7 @@ namespace linux
       //         }
       //      }
       //   }
-      //   if (Context.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+      //   if (pcontext->dir().is(::str::international::unicode_to_utf8(szFilePath)))
       //   {
       //      if (imagekey.m_iIcon == 0x80000000)
       //      {
@@ -593,7 +593,7 @@ namespace linux
          if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
          {
 
-            ::file::path path = Context.dir().matter("cloud.ico");
+            ::file::path path = pcontext->dir().matter("cloud.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -615,7 +615,7 @@ namespace linux
          else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
          {
 
-            ::file::path path = Context.dir().matter("remote.ico");
+            ::file::path path = pcontext->dir().matter("remote.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -637,7 +637,7 @@ namespace linux
          else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
          {
 
-            ::file::path path = Context.dir().matter("ftp.ico");
+            ::file::path path = pcontext->dir().matter("ftp.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -663,12 +663,12 @@ namespace linux
 
          if (::str::ends_ci(imagekey.m_strPath, ".aura"))
          {
-            string str = Context.file().as_string(imagekey.m_strPath);
+            string str = pcontext->file().as_string(imagekey.m_strPath);
             if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
             {
                str.trim();
-               /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-               HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+               /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+               HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
                synchronization_lock sl1(m_pil48Hover->mutex());
                synchronization_lock sl2(m_pil48->mutex());
                iImage = m_pil16->add_icon_os_data(hicon16);
@@ -676,7 +676,7 @@ namespace linux
 
                if (crBk == 0)
                {
-                  System->imaging().Createcolor_blend_ImageList(
+                  psystem->imaging().Createcolor_blend_ImageList(
                      m_pil48,
                      m_pil48Hover,
                      rgb(255, 255, 240),
@@ -740,7 +740,7 @@ namespace linux
          if (::str::ends_ci(imagekey.m_strPath, ".desktop"))
          {
 
-            string str = Context.file().as_string(imagekey.m_strPath);
+            string str = pcontext->file().as_string(imagekey.m_strPath);
 
             string_array stra;
 
@@ -788,7 +788,7 @@ namespace linux
 
             }
 
-            ::image_pointer pimage = Application.image().load_image(strIcon48);
+            ::image_pointer pimage = papplication->image().load_image(strIcon48);
 
             if (!::is_ok(pimage))
             {
@@ -834,7 +834,7 @@ namespace linux
             if (imagekey.m_cr == 0)
             {
 
-               System->imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
+               psystem->imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
 
             }
             else
@@ -895,7 +895,7 @@ namespace linux
 //
 //         synchronization_lock synchronizationlock(&m_mutexQueue);
 //
-//         while (thread_get_run())
+//         while (task_get_run())
 //         {
 //
 //            if(m_keyptra.is_empty())
@@ -1076,7 +1076,7 @@ namespace linux
 //            return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
 //            {
 //
-//               System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+//               psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 //
 //            }
 //            , m_pil[iSize], iImage);

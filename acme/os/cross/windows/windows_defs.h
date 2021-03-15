@@ -254,7 +254,7 @@ typedef struct tagPOINTS
 } POINTS, *PPOINTS, *POINT32S;
 
 //
-//  File System time stamps are represented with the following structure:
+//  File ::acme::get_system() time stamps are represented with the following structure:
 //
 
 typedef struct _FILETIME

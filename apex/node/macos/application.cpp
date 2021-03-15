@@ -10,7 +10,7 @@ namespace apex
 {
 
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::context_object * pcontextobject) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
@@ -244,7 +244,7 @@ namespace apex
 //   }
 //
 //
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::GetCurrentThreadId();
@@ -311,7 +311,7 @@ namespace apex
    bool application::os_on_start_application()
    {
 
-      ::file::path path = Context.file().module();
+      ::file::path path = get_context()->file().module();
 
       path -= 3;
       

@@ -353,13 +353,15 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
 
    string strChar;
 
+   __pointer(::axis::system) psystem = preader->get_system();
+
    do
    {
 
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = System->m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = preader->m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
 
       if (iParseLen)
       {
@@ -380,7 +382,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      if (System->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
+      if (preader->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
       {
 
           return true;
@@ -405,7 +407,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if (System->m_phtml->m_namedcolor.lookup(strKey, color))
+      if (preader->m_phtml->m_namedcolor.lookup(strKey, color))
       {
 
          return color.m_estatus == ::success_color_index;
@@ -463,14 +465,14 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(System->m_phtml->m_namedcolor.lookup(strKey, color))
+      if(preader->m_phtml->m_namedcolor.lookup(strKey, color))
       {
 
          // is this a system named color value?
          if (color.m_estatus == ::success_color_index)
          {
 
-            color = Sess(preader->get_context_session())->get_default_color(::color::red);
+            color = preader->m_psession->get_default_color(::color::red);
 
          }
       }

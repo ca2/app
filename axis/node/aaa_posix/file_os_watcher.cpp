@@ -165,7 +165,7 @@ namespace file
    //::e_status     os_watcher::run()
    //{
 
-   //   while (::thread_get_run())
+   //   while (::task_get_run())
    //   {
 
    //      if (!step())

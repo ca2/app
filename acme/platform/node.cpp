@@ -221,8 +221,6 @@ namespace acme
 
          m_bLastDarkModeSystem = bDarkModeSystem;
 
-         ::acme::get_system()->deliver(id_os_dark_mode);
-
          on_os_dark_mode_change();
 
       }
@@ -264,7 +262,7 @@ namespace acme
    bool node::set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      auto pnode = Node;
+      auto pnode = get_system()->node();
 
       if(::is_null(pnode))
       {
@@ -493,24 +491,24 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time(system_time_t * psystemtime)
-   {
+   //::e_status node::get_system_time(system_time_t * psystemtime)
+   //{
 
-      __throw(error_interface_only);
+   //   __throw(error_interface_only);
 
-      return error_interface_only;
+   //   return error_interface_only;
 
-   }
+   //}
 
 
-   ::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
-   {
+   //::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
+   //{
 
-      __throw(error_interface_only);
+   //   __throw(error_interface_only);
 
-      return error_interface_only;
+   //   return error_interface_only;
 
-   }
+   //}
 
 
    ::e_status node::open_folder(::file::path & pathFolder)
@@ -523,50 +521,117 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   //::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   //{
+
+   //   return ::error_interface_only;
+
+   //}
+
+
+   //::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   //{
+
+   //   return ::error_interface_only;
+
+   //}
+
+
+   //::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   string node::font_name(enum_font efont)
    {
 
-      return ::error_interface_only;
+//      auto psystem = get_system();
+//
+//#ifdef WINDOWS
+//
+//      return windows_font_name(efont);
+//
+//#elif defined(LINUX)
+//
+//      auto elinuxdistribution = psystem->get_linux_distribution();
+//
+//      return linux_font_name(elinuxdistribution, efont);
+//
+//#else
+
+      return "sans-serif";
+
+//#endif
 
    }
 
 
-   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   //string node::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
+   //{
+
+   //   switch (eoperatingsystem)
+   //   {
+   //   case e_operating_system_windows:
+   //   {
+
+   //      return windows_font_name(efont);
+
+   //   }
+   //   case e_operating_system_linux:
+   //   {
+
+   //      auto elinuxdistribution = (::enum_linux_distribution)iVariant;
+
+   //      return linux_font_name(elinuxdistribution, efont);
+
+   //   }
+   //   default:
+   //   {
+
+   //      return "sans-serif";
+
+   //   }
+
+   //   }
+
+   //}
+
+   
+   string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      return ::error_interface_only;
+      auto pathFolder = get_system()->get_memory_map_base_folder_path();
 
-   }
+      auto path = pathFolder / (strName + ".filememorymap");
 
-
-   ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
-   {
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
-   {
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
-   {
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
-   {
-
-      return error_interface_only;
+      return path;
 
    }
 

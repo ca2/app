@@ -27,7 +27,7 @@ public:
    void initialize_application_consumer()
    {
 
-      m_papplication = get_context_application();
+      m_papplication = get_application();
 
    }
 

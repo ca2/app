@@ -164,7 +164,7 @@
 //
 //
 //
-//CLASS_DECL_CORE hthread_t get_current_hthread()
+//CLASS_DECL_CORE htask_t get_current_hthread()
 //{
 //
 //   return ::GetCurrentThread();
@@ -195,10 +195,10 @@
 ////mutex * g_pmutexTlsData = NULL;
 //
 //
-////map < hthread_t,hthread_t,hthread_t,hthread_t > * s_pmapHthreadHthread = NULL;
-////map < ::u32,::u32,hthread_t,hthread_t > * s_pmapDwordHthread = NULL;
-////map < hthread_t,hthread_t,::u32,::u32 > * s_pmapHthreadDword = NULL;
-////map < hthread_t,hthread_t,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
+////map < htask_t,htask_t,htask_t,htask_t > * s_pmapHthreadHthread = NULL;
+////map < ::u32,::u32,htask_t,htask_t > * s_pmapDwordHthread = NULL;
+////map < htask_t,htask_t,::u32,::u32 > * s_pmapHthreadDword = NULL;
+////map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
 //
@@ -208,13 +208,13 @@
 //void __node_init_multithreading()
 //{
 //
-//   //s_pmapHthreadHthread = new map < hthread_t,hthread_t,hthread_t,hthread_t >();
+//   //s_pmapHthreadHthread = new map < htask_t,htask_t,htask_t,htask_t >();
 //
-//   //s_pmapDwordHthread = new map < ::u32,::u32,hthread_t,hthread_t >();
+//   //s_pmapDwordHthread = new map < ::u32,::u32,htask_t,htask_t >();
 //
-//   //s_pmapHthreadDword = new map < hthread_t,hthread_t,::u32,::u32 >();
+//   //s_pmapHthreadDword = new map < htask_t,htask_t,::u32,::u32 >();
 //
-//   //allthreaddata = new map < hthread_t,hthread_t,ThreadLocalData *,ThreadLocalData * >();
+//   //allthreaddata = new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
 //
 //   //freeTlsIndices = new raw_array<::u32>();
 //
@@ -259,7 +259,7 @@
 //
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//bool axis_defer_process_x_message(hthread_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+//bool axis_defer_process_x_message(htask_t hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
 //
 //#endif
 //
@@ -279,7 +279,7 @@
 //
 //
 //
-////map < hthread_t,hthread_t,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
+////map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
 ////
 ////mutex * g_pmutexPendingThreadsLock = NULL;
 ////
@@ -289,7 +289,7 @@
 ////
 ////mutex * g_pmutexThreadIdLock = NULL;
 ////
-////map < hthread_t,hthread_t,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
+////map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
 ////{
 ////
 ////   return * g_ppendingThreads;
@@ -298,14 +298,14 @@
 //
 //
 //
-////map < hthread_t,hthread_t,hthread_t,hthread_t > & thread_handle_map()
+////map < htask_t,htask_t,htask_t,htask_t > & thread_handle_map()
 ////{
 ////
 ////   return *s_pmapHthreadHthread;
 ////
 ////}
 ////
-////map < ::u32,::u32,hthread_t,hthread_t > & thread_id_handle_map()
+////map < ::u32,::u32,htask_t,htask_t > & thread_id_handle_map()
 ////{
 ////
 ////   return *s_pmapDwordHthread;
@@ -313,7 +313,7 @@
 ////}
 ////
 ////
-////map < hthread_t,hthread_t,::u32,::u32 > & thread_id_map()
+////map < htask_t,htask_t,::u32,::u32 > & thread_id_map()
 ////{
 ////
 ////   return *s_pmapHthreadDword;
@@ -351,12 +351,12 @@
 //
 //
 //// Helper shared between CreateThread and ResumeThread.
-////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,hthread_t hthread,i32 nPriority,SIZE_T cbStack)
+////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask_t hthread,i32 nPriority,SIZE_T cbStack)
 ////{
 ////
 ////   os_thread * pthread = new os_thread(pfn,pv);
 ////
-////   pthread->m_hthread = hthread;
+////   pthread->m_htask = hthread;
 ////
 ////   hthread->m_posthread = pthread;
 ////
@@ -393,7 +393,7 @@
 ////
 //
 //
-////hthread_t WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,u32 dwCreationFlags,u32 * lpdwThreadId)
+////htask_t WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,u32 dwCreationFlags,u32 * lpdwThreadId)
 ////{
 ////   // Validate parameters.
 ////   //   assert(unusedThreadAttributes == nullptr);
@@ -402,7 +402,7 @@
 ////   //assert(unusedThreadId == nullptr);
 ////
 ////   // Create a handle that will be signalled when the thread has completed
-////   hthread_t threadHandle = new hthread();
+////   htask_t threadHandle = new hthread();
 ////
 ////   if(threadHandle == NULL)
 ////      return NULL;
@@ -456,7 +456,7 @@
 ////
 ////         info.lpStartAddress     = lpStartAddress;
 ////         info.lpParameter        = lpParameter;
-////         info.m_hthread    = threadHandle;
+////         info.m_htask    = threadHandle;
 ////         info.suspensionEvent    = new event(get_thread_app(),false,true);
 ////         info.nPriority = 0;
 ////
@@ -492,12 +492,12 @@
 ////}
 ////
 ////
-////::u32 WINAPI ResumeThread(hthread_t hthread)
+////::u32 WINAPI ResumeThread(htask_t hthread)
 ////{
 ////   synchronization_lock lock(g_pmutexPendingThreadsLock);
 ////
 ////   // Look up the requested thread.
-////   map < hthread_t,hthread_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
+////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
 ////
 ////   if(threadInfo == NULL)
 ////   {
@@ -511,7 +511,7 @@
 ////   {
 ////      PendingThreadInfo& info = threadInfo->m_element2;
 ////
-////      StartThread(info.lpStartAddress,info.lpParameter,info.m_hthread,info.nPriority,info.cbStack);
+////      StartThread(info.lpStartAddress,info.lpParameter,info.m_htask,info.nPriority,info.cbStack);
 ////   }
 ////   catch(...)
 ////   {
@@ -525,13 +525,13 @@
 ////}
 ////
 ////
-////int_bool WINAPI SetThreadPriority(hthread_t hthread,i32 nCa2Priority)
+////int_bool WINAPI SetThreadPriority(htask_t hthread,i32 nCa2Priority)
 ////{
 ////
 ////   synchronization_lock lock(g_pmutexPendingThreadsLock);
 ////
 ////   // Look up the requested thread.
-////   map < hthread_t,hthread_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
+////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
 ////
 ////   if(threadInfo == NULL)
 ////   {
@@ -602,7 +602,7 @@
 ////   while(pos != NULL)
 ////   {
 ////
-////      hthread_t hthread;
+////      htask_t hthread;
 ////
 ////      ThreadLocalData * pdata;
 ////
@@ -644,7 +644,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(hthread_t hthread,::u32 dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(htask_t hthread,::u32 dwTlsIndex)
 ////{
 ////
 ////   try
@@ -717,7 +717,7 @@
 ////   return true;
 ////}
 ////
-////int_bool WINAPI TlsSetValue(hthread_t hthread,::u32 dwTlsIndex,LPVOID lpTlsValue)
+////int_bool WINAPI TlsSetValue(htask_t hthread,::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   synchronization_lock lock(g_pmutexTlsData);
@@ -807,13 +807,13 @@
 ////
 ////
 ////
-////i32 WINAPI GetThreadPriority(hthread_t  hthread)
+////i32 WINAPI GetThreadPriority(htask_t  hthread)
 ////{
 ////
 ////   synchronization_lock lock(g_pmutexPendingThreadsLock);
 ////
 ////   // Look up the requested thread.
-////   map < hthread_t,hthread_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
+////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(hthread);
 ////
 ////   if(threadInfo == NULL)
 ////   {
@@ -965,7 +965,7 @@
 ////
 ////   synchronization_lock mlThreadHandle(g_pmutexThreadHandleLock);
 ////
-////   currentThread =  m_hthread;
+////   currentThread =  m_htask;
 ////
 ////   mlThreadHandle.unlock();
 ////
@@ -1006,7 +1006,7 @@
 ////}
 ////
 ////
-////hthread_t start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
+////htask_t start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
 ////{
 ////
 ////   UNREFERENCED_PARAMETER(iPriority);
@@ -1015,7 +1015,7 @@
 ////
 ////}
 ////
-////hthread_t create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,u32 f,u32 * lpdwId)
+////htask_t create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,u32 f,u32 * lpdwId)
 ////{
 ////
 ////   return ::CreateThread(lpsa,cbStack,pfn,pv,f,lpdwId);
@@ -1031,7 +1031,7 @@
 ////static HANDLE g_hMainThread = NULL;
 ////static ::u32 g_iMainThread = -1;
 ////
-////CLASS_DECL_CORE void set_main_hthread(hthread_t hthread)
+////CLASS_DECL_CORE void set_main_hthread(htask_t hthread)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1044,7 +1044,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_CORE void set_main_ithread(ithread_t ithread)
+////CLASS_DECL_CORE void set_main_ithread(itask_t itask)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1053,7 +1053,7 @@
 ////
 ////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
-////   g_iMainThread = ithread;
+////   g_iMainThread = itask;
 ////
 ////}
 ////
@@ -1095,7 +1095,7 @@
 ////
 ////}
 ////
-////message_queue * get_message_queue(hthread_t  h);
+////message_queue * get_message_queue(htask_t  h);
 ////
 ////
 ////message_queue * get_message_queue()
@@ -1105,12 +1105,12 @@
 ////
 ////}
 ////
-////bool is_thread(hthread_t h)
+////bool is_thread(htask_t h)
 ////{
 ////   return GetThreadId(h) != 0;
 ////}
 ////
-////message_queue * get_message_queue(hthread_t  h)
+////message_queue * get_message_queue(htask_t  h)
 ////{
 ////
 ////
@@ -1121,7 +1121,7 @@
 ////
 ////   pmq               = new message_queue();
 ////
-////   pmq->m_hthread    = h;
+////   pmq->m_htask    = h;
 ////
 ////   pmq->m_uiId       = ::GetThreadId(h);
 ////
@@ -1135,12 +1135,12 @@
 ////
 /////*
 ////
-////CLASS_DECL_CORE ::u32 WINAPI GetThreadId(hthread_t Thread)
+////CLASS_DECL_CORE ::u32 WINAPI GetThreadId(htask_t Thread)
 ////{
 ////
 ////   synchronization_lock mlThreadId(g_pmutexThreadIdLock);
 ////
-////   map < hthread_t,hthread_t,::u32,::u32 >::pair * p = thread_id_map().plookup(Thread);
+////   map < htask_t,htask_t,::u32,::u32 >::pair * p = thread_id_map().plookup(Thread);
 ////
 ////   if(p == NULL)
 ////      return -1;
@@ -1150,12 +1150,12 @@
 ////
 ////}
 ////
-////CLASS_DECL_CORE hthread_t  WINAPI get_thread_handle(::u32 dw)
+////CLASS_DECL_CORE htask_t  WINAPI get_thread_handle(::u32 dw)
 ////{
 ////
 ////   synchronization_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 ////
-////   map < ::u32,::u32,hthread_t,hthread_t >::pair * p = thread_id_handle_map().plookup(dw);
+////   map < ::u32,::u32,htask_t,htask_t >::pair * p = thread_id_handle_map().plookup(dw);
 ////
 ////   if(p == NULL)
 ////      return NULL;
@@ -1171,7 +1171,7 @@
 ////CLASS_DECL_CORE int_bool WINAPI PostThreadMessageW(::u32 idThread,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
-////   hthread_t h = ::get_thread_handle(idThread);
+////   htask_t h = ::get_thread_handle(idThread);
 ////
 ////   if(h == NULL)
 ////      return false;
@@ -1209,7 +1209,7 @@
 ////CLASS_DECL_CORE int_bool WINAPI PostMessageW(oswindow oswindow,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
-////   hthread_t  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
+////   htask_t  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
 ////
 ////   if(h == NULL)
 ////      return false;
@@ -1254,7 +1254,7 @@
 ////   try
 ////   {
 ////
-////      m_hthread->m_pevent->wait(millis(dwMillis));
+////      m_htask->m_pevent->wait(millis(dwMillis));
 ////
 ////   }
 ////   catch(...)
@@ -1271,7 +1271,7 @@
 ////thread_layer::~thread_layer()
 ////{
 ////
-////   delete m_hthread;
+////   delete m_htask;
 ////
 ////}
 ////
@@ -1323,7 +1323,7 @@
 ////
 ////
 ////
-////CLASS_DECL_CORE hthread_t GetCurrentThread()
+////CLASS_DECL_CORE htask_t GetCurrentThread()
 ////{
 ////
 ////   return currentThread;

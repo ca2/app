@@ -70,8 +70,8 @@ namespace macos
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   interaction_impl::interaction_impl(::context_object * pcontextobject) :
+      ::object(pobject)
    {
 
       m_bEnabled = true;
@@ -891,19 +891,19 @@ namespace macos
     }
     */
 
-//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl)
 //   {
 //      /*    ASSERT(::is_window(get_handle()));
-//       lpwndpl->length = sizeof(WINDOWPLACEMENT);
-//       return ::GetWindowPlacement(get_handle(), lpwndpl) != false;*/
+//       lpuserinteractionpl->length = sizeof(WINDOWPLACEMENT);
+//       return ::GetWindowPlacement(get_handle(), lpuserinteractionpl) != false;*/
 //      return false;
 //   }
 //
-//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
 //   {
 //      /*      ASSERT(::is_window(get_handle()));
-//       ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
-//       return ::SetWindowPlacement(get_handle(), lpwndpl) != false;*/
+//       ((WINDOWPLACEMENT*)lpuserinteractionpl)->length = sizeof(WINDOWPLACEMENT);
+//       return ::SetWindowPlacement(get_handle(), lpuserinteractionpl) != false;*/
 //      return false;
 //   }
 
@@ -1167,11 +1167,11 @@ namespace macos
 
       if (pusermessage->m_id == e_message_timer)
       {
-         //         get_context_application()->get_context_application()->step_timer();
+         //         get_application()->get_application()->step_timer();
       }
       else if (pusermessage->m_id == e_message_left_button_down)
       {
-         //  g_pwndLastLButtonDown = this;
+         //  g_puserinteractionLastLButtonDown = this;
       }
       else if (pusermessage->m_id == e_message_size)
       {
@@ -1182,7 +1182,7 @@ namespace macos
        if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
        ::application ** ppapp= (::application **) pusermessage->m_lparam;
-       *ppapp = get_context_application();
+       *ppapp = get_application();
        pusermessage->m_bRet = true;
        return;
        }
@@ -1224,7 +1224,7 @@ namespace macos
          psession->on_ui_mouse_message(pmouse);
 
 
-         if (get_context_session() != nullptr)
+         if (get_session() != nullptr)
          {
 
             psession->m_pointCursor = pmouse->m_point;
@@ -1452,7 +1452,7 @@ namespace macos
 //      string strCaption;
 //
 //      if (lpszCaption == nullptr)
-//         lpszCaption = Application.m_strAppName;
+//         lpszCaption = papplication->m_strAppName;
 //      else
 //         lpszCaption = strCaption;
 //
@@ -1859,7 +1859,7 @@ namespace macos
 //
 //      bool bUpdateScreen = false;
 //
-//      while (::thread_get_run())
+//      while (::task_get_run())
 //      {
 //
 //         try
@@ -2116,7 +2116,7 @@ namespace macos
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      ::aura::get_system()->get_event(get_context_application()->get_context_application())->SetEvent();
+      //      ::aura::get_system()->get_event(get_application()->get_application())->SetEvent();
       //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
    }
 
@@ -2138,7 +2138,7 @@ namespace macos
       //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
-      //      ::draw2d::graphics_pointer graphics(get_object());
+      //      ::draw2d::graphics_pointer graphics(this);
       //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2154,7 +2154,7 @@ namespace macos
       //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
-      //         ::image_pointer pimage(get_object());
+      //         ::image_pointer pimage(this);
       //         if(!pimage = create_image(rectWindow.bottom_right()))
       //            return;
       //
@@ -2335,7 +2335,7 @@ namespace macos
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      ::message::command state(get_context_object());
+      ::message::command state(this);
       user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
@@ -2811,7 +2811,7 @@ namespace macos
 //   }
 
 
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -2819,7 +2819,7 @@ namespace macos
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect)
 //   {
 //
 //      __throw(error_not_implemented);

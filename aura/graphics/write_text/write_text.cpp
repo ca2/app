@@ -44,8 +44,10 @@ namespace write_text
          //   return nullptr;
 
          //}
+
+         __pointer(::aura::system) psystem = m_psystem;
          
-         ::aura::get_system()->process_subject(id_font_enumeration);
+         psystem->process_subject(id_font_enumeration);
 
       }
 

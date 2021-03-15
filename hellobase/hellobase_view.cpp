@@ -10,7 +10,7 @@ namespace hellobase
 
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::context_object * pcontextobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -41,7 +41,7 @@ namespace hellobase
       m_prender                  = nullptr;
 
 
-      m_prender = new render(get_object());
+      m_prender = new render(this);
 
       m_prender->m_pview = this;
 
@@ -103,7 +103,7 @@ namespace hellobase
 
 
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -263,7 +263,7 @@ namespace hellobase
             m_strImage = strImage;
 
 
-            ::fork(get_context_application(),[=]()
+            ::fork(get_application(),[=]()
             {
 
 
@@ -287,7 +287,7 @@ namespace hellobase
                //
                //   varFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = System->url().get_server(m_strImage).find_wci("ca2") < 0;
+               //   varFile["http_set"]["raw_http"] = psystem->url().get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //
@@ -357,11 +357,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strAlternateHelloBase;
+               return "Rolling " + papplication->m_strAlternateHelloBase;
             }
             else
             {
-               return Application.m_strAlternateHelloBase;
+               return papplication->m_strAlternateHelloBase;
             }
 
 
@@ -371,11 +371,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strHelloBase;
+               return "Rolling " + papplication->m_strHelloBase;
             }
             else
             {
-               return Application.m_strHelloBase;
+               return papplication->m_strHelloBase;
             }
 
 

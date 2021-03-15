@@ -7,13 +7,13 @@ class CLASS_DECL_ACME predicate_holder_base :
 public:
 
    
-   ::tool_thread *         m_ptoolthread;
+   ::tool_task *         m_ptooltask;
 
 
    predicate_holder_base()
    {
 
-      m_ptoolthread = nullptr;
+      m_ptooltask = nullptr;
 
    }
 

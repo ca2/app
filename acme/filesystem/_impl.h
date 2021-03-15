@@ -490,7 +490,7 @@ namespace file
 //bool file_context::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 //
-//   return Context.file().output(get_context_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return get_context()->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
 //
 //}
 
@@ -499,7 +499,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pathOut, p, pfnOuput, pfileIn);
+//   return get_context()->file().output(get_application(), pathOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -508,7 +508,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pathOut, point, pfnOuput, istream);
+//   return get_context()->file().output(get_application(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -517,7 +517,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, point, pfnOuput, pathIn);
+//   return get_context()->file().output(get_application(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -527,7 +527,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return get_context()->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -536,7 +536,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return get_context()->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -545,7 +545,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::* pfnOuput)(::file::file*, ::file::file*), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), os, p, pfnOuput, pathIn);
+//   return get_context()->file().output(get_application(), os, p, pfnOuput, pathIn);
 
 //}
 
@@ -554,7 +554,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), os, p, pfnOuput, pfileIn);
+//   return get_context()->file().output(get_application(), os, p, pfnOuput, pfileIn);
 
 //}
 
@@ -564,7 +564,7 @@ namespace file
 
 //{
 
-//   return Context.file().output(get_context_application(), os, point, pfnOuput, istream);
+//   return get_context()->file().output(get_application(), os, point, pfnOuput, istream);
 
 
 //}
@@ -593,7 +593,7 @@ namespace file
 //      if (papp == nullptr)
 //      {
 
-//         papp = get_context_application();
+//         papp = get_application();
 
 //      }
 
@@ -649,7 +649,7 @@ namespace file
 //      if (papp == nullptr)
 //      {
 
-//         papp = get_context_application();
+//         papp = get_application();
 
 //      }
 

@@ -450,7 +450,7 @@ namespace windows
          bool r = StackWalk64(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      hthread_t hthread,
+            get_current_hthread(),         // __in      htask_t hthread,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -463,7 +463,7 @@ namespace windows
          bool r = StackWalk(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      hthread_t hthread,
+            get_current_hthread(),         // __in      htask_t hthread,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,

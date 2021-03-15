@@ -18,10 +18,10 @@ namespace fs
    }
 
 
-   ::e_status fs::initialize(::layered * pobjectContext)
+   ::e_status fs::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::apex::department::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -30,7 +30,7 @@ namespace fs
 
       }
 //
-//      if(get_context_application()->is_system())
+//      if(get_application()->is_system())
 //      {
 //
 ///*       

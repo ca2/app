@@ -15,8 +15,7 @@ image_list::image_list()
 }
 
 
-image_list::image_list(const image_list & imagelist):
-   ::object(imagelist.get_context_object())
+image_list::image_list(const image_list & imagelist)
 {
 
    defer_create_mutex();
@@ -156,7 +155,9 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   return ::aura::get_system()->imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
+   __pointer(::aura::system) psystem = get_system();
+
+   return psystem->imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
 
 }
 
@@ -340,7 +341,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 //
 //   ::file::path path = varFile.get_file_path();
 //
-//   path = Context.defer_process_matter_path(path);
+//   path = pcontext->defer_process_matter_path(path);
 //
 //   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
 //      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
@@ -365,7 +366,9 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 {
 
-   return add_icon(Context.dir().matter(pszMatter));
+   auto pcontext = get_context();
+
+   return add_icon(pcontext->dir().matter(pszMatter));
 
 }
 
@@ -380,7 +383,9 @@ i32 image_list::add_file(::payload varFile, int iItem)
    fork([this, varFile, iItem]()
       {
 
-         auto pimage = Application.image().load_image(varFile, true);
+         __pointer(::aura::application) papplication = get_application();
+
+         auto pimage = papplication->image().load_image(varFile, true);
 
          if (!pimage)
          {
@@ -432,15 +437,15 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 }
 
 
-//i32 image_list::add_matter(const char * pcsz, ::layered * pobjectContext, int iItem)
+//i32 image_list::add_matter(const char * pcsz, ::object * pobject, int iItem)
 //{
 //
 //   ::file::path path;
 //
-//   if(pobjectContext == nullptr)
+//   if(pobject == nullptr)
 //   {
 //
-//      auto & dir = Context.dir();
+//      auto & dir = pcontext->dir();
 //
 //      path = dir.matter(pcsz);
 //
@@ -448,7 +453,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 //   else
 //   {
 //
-//      auto & dir = Ctx(pobjectContext).dir();
+//      auto & dir = Ctx(pobject).dir();
 //
 //      path = dir.matter(pcsz);
 //
@@ -488,11 +493,11 @@ i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 
 
 i32 image_list::add_std_matter(const char * pcsz, int iItem)
-
 {
 
-   return add_file(Context.dir().matter(pcsz), iItem);
+   auto pcontext = get_context();
 
+   return add_file(pcontext->dir().matter(pcsz), iItem);
 
 }
 

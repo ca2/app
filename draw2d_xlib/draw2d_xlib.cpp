@@ -12,7 +12,7 @@ static ::mutex * s_pmutexDraw2dXlib = nullptr;
 }
 
 
-void init_xlib_mutex(::layered * pobjectContext)
+void init_xlib_mutex(::context_object * pcontextobject)
 {
 
     s_pmutexDraw2dXlib = new ::mutex(pobject);

@@ -10,6 +10,12 @@
 
 #endif
 
+namespace net
+{
+
+   extern class address_department * g_paddressdepartment;
+
+}
 
 namespace sockets
 {
@@ -17,6 +23,8 @@ namespace sockets
 
    sockets::sockets()
    {
+
+      ::net::g_paddressdepartment = new class ::net::address_department;
 
       m_psslinit = nullptr;
 
@@ -28,6 +36,7 @@ namespace sockets
    sockets::~sockets()
    {
 
+      ::acme::del(::net::g_paddressdepartment);
       ::acme::del(m_psslinit);
 
       //::acme::del(m_pajpaxissocketinit);
@@ -35,10 +44,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::layered * pobjectContext)
+   ::e_status sockets::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = sockets_base::initialize(pobjectContext);
+      auto estatus = sockets_base::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -47,10 +56,9 @@ namespace sockets
 
       }
 
-      ::apex::get_system()->math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
+      generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
-
-      m_psslinit = new ::sockets::SSLInitializer(get_context_object());
+      m_psslinit = __create_new < ::sockets::SSLInitializer >();
 
       estatus = __construct_new(m_pnet);
 

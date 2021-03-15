@@ -16,10 +16,10 @@ dir_system::~dir_system()
 }
 
 
-::e_status dir_system::initialize(::layered * pobjectContext)
+::e_status dir_system::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -44,9 +44,10 @@ dir_system::~dir_system()
 
    }
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
+
    if (::dir::is(psystem->side_get_matter_path("app/_matter/main")))
    {
 
@@ -89,18 +90,18 @@ dir_system::~dir_system()
 
    string strAppFolder;
 
-   //if (::apex::get_system()->m_plibrary)
+   //if (psystem->m_plibrary)
    //{
 
-   //   if (::apex::get_system()->m_plibrary->get_ca2_library())
+   //   if (psystem->m_plibrary->get_ca2_library())
    //   {
 
-   //      strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strFolder;
+   //      strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strFolder;
 
    //      if (strAppFolder.is_empty())
    //      {
 
-   //         strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strName;
+   //         strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strName;
 
    //      }
 
@@ -117,16 +118,20 @@ dir_system::~dir_system()
 
    m_pathDefaultAppData /= strAppFolder;
 
-   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_platform();
+   //m_strCa2DefaultAppData /= psystem->get_system_platform();
 
-   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_configuration();
+   //m_strCa2DefaultAppData /= psystem->get_system_configuration();
 
    ::file::path pathAppData;
 
-   if (::apex::get_system()->has_property("app_folder"))
+   //__pointer(::apex::system) psystem = get_system();
+
+   if (psystem->has_property("app_folder"))
    {
 
-      pathAppData = ::apex::get_system()->payload("app_folder");
+      //pathAppData = psystem->payload("app_folder");
+
+      pathAppData = psystem->payload("app_folder");
 
    }
 
@@ -152,9 +157,9 @@ dir_system::~dir_system()
 bool dir_system::update_module_path()
 {
 
-   auto & context = Context;
+   //auto & context = Context;
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    auto pfile = psystem->m_pfilesystem;
 

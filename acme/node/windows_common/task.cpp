@@ -11,8 +11,8 @@ task::task()
    m_bitCoInitialize = false;
    m_bitIsRunning = false;
    m_bitIsPred = true;
-   m_hthread = null_hthread;
-   m_ithread = 0;
+   m_htask = null_hthread;
+   m_itask = 0;
 
 }
 
@@ -77,7 +77,7 @@ bool task::set_thread_name(const char* pszThreadName)
 
    }
 
-   if (!::set_thread_name(m_hthread, pszThreadName))
+   if (!::set_thread_name(m_htask, pszThreadName))
    {
 
       return false;
@@ -89,7 +89,7 @@ bool task::set_thread_name(const char* pszThreadName)
 }
 
 
-bool task::thread_get_run() const
+bool task::task_get_run() const
 {
 
    return !m_bSetFinish;
@@ -100,7 +100,7 @@ bool task::thread_get_run() const
 bool task::task_active() const
 {
 
-   return m_hthread != (hthread_t) 0;
+   return m_htask != (htask_t) 0;
 
 }
 
@@ -445,9 +445,9 @@ void task::term_task()
 
    DWORD dwThread = 0;
 
-   m_hthread = ::CreateThread(nullptr, nStackSize, &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
+   m_htask = ::CreateThread(nullptr, nStackSize, &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 
-   m_ithread = dwThread;
+   m_itask = dwThread;
 
 #else
 
@@ -465,14 +465,14 @@ void task::term_task()
    pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
    pthread_create(
-      &m_hthread,
+      &m_htask,
       &taskAttr,
       &task::s_os_task,
       this);
 
 #endif
 
-   if (!m_hthread)
+   if (!m_htask)
    {
 
       return ::error_failed;
@@ -503,7 +503,7 @@ void task::term_task()
 //bool task::set_task_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_task_name(m_hthread, pszThreadName))
+//   if (!::set_task_name(m_htask, pszThreadName))
 //   {
 //
 //      return false;
@@ -538,7 +538,7 @@ void task::kick_idle()
 CLASS_DECL_ACME bool __task_sleep(task* task)
 {
 
-   while (task->thread_get_run())
+   while (task->task_get_run())
    {
 
       sleep(100_ms);
@@ -556,7 +556,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -565,7 +565,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       sleep(millis);
 
-      return pthread->thread_get_run();
+      return pthread->task_get_run();
 
    }
 
@@ -595,7 +595,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       }
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -607,7 +607,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       pthread->m_pevSleep->wait(millis);
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -624,7 +624,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 
@@ -635,7 +635,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync
    try
    {
 
-      while (pthread->thread_get_run())
+      while (pthread->task_get_run())
       {
 
          if (psync->wait(100).succeeded())
@@ -653,7 +653,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 
@@ -664,7 +664,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -673,7 +673,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
       psync->wait(millis);
 
-      return pthread->thread_get_run();
+      return pthread->task_get_run();
 
    }
 
@@ -688,7 +688,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
          pthread->m_pevSleep->wait(100);
 
-         if (!pthread->thread_get_run())
+         if (!pthread->task_get_run())
          {
 
             return false;
@@ -705,7 +705,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 

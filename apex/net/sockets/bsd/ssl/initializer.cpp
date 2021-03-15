@@ -118,8 +118,7 @@ namespace sockets
 
 #endif
 
-   SSLInitializer::SSLInitializer(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   SSLInitializer::SSLInitializer()
    {
 
 //#if defined(_UWP)
@@ -363,15 +362,22 @@ SSLInitializer_rand_seed(const void * buf, i32 num)
 #endif
 }
 
+
 extern "C" i32 SSLInitializer_rand_bytes(uchar * buf, i32 num)
 {
-   ::apex::get_system()->math().gen_rand(buf, num);
+
+   generate_random_bytes(buf, num);
+   
    return 1;
+
 }
+
 
 extern "C" void SSLInitializer_rand_cleanup()
 {
+
 }
+
 
 extern "C"
 #if defined(_UWP)
@@ -390,16 +396,24 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy)
 #endif
 }
 
+
 extern "C" i32 SSLInitializer_rand_pseudorand(uchar * buf, i32 num)
 {
-   ::apex::get_system()->math().gen_rand(buf, num);
+   
+   generate_random_bytes(buf, num);
+
    return num;
+
 }
+
 
 extern "C" i32 SSLInitializer_rand_status()
 {
+
    return 1024;
+
 }
+
 
 #endif
 

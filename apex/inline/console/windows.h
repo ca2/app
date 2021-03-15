@@ -4,13 +4,13 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);
 
 
-class console
+class console : 
+   virtual public property_object
 {
 public:
 
 
    ::e_status                       m_estatus;
-   __pointer(::apex::system)        m_psystem;
 
 
    void create_system()
@@ -56,9 +56,9 @@ public:
 
       application_common(psystem);
 
-      m_psystem = psystem;
+      psystem->m_bConsole = true;
 
-      m_psystem->m_bConsole = true;
+      m_psystem = psystem;
 
    }
 
@@ -106,15 +106,11 @@ public:
    int result()
    {
 
-      m_estatus = Application.m_estatus;
+      auto estatus = m_psystem->inline_term();
 
-      ::i32 iErrorStatus = m_estatus.error_status();
+      ::acme::del(m_psystem);
 
-      m_psystem->inline_term();
-
-      m_psystem.release();
-
-      return iErrorStatus;
+      return estatus;
 
    }
 
@@ -127,6 +123,7 @@ public:
 
          result();
 
+         
       }
 
 

@@ -906,7 +906,7 @@ namespace file
 
          bUrl = false;
 
-         //strPath = ::file::path(System->url().url_decode(strPath.Mid(7)));
+         //strPath = ::file::path(get_system()->url().url_decode(strPath.Mid(7)));
          strPath = ::file::path(url_decode(strPath.Mid(7)));
 
          return bCertainlySyntathicallyDir;

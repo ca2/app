@@ -45,7 +45,7 @@ namespace user
             if(!psubject->payload(id_form).is_empty())
             {
 
-               string strMatter = Context.dir().matter(psubject->payload(id_form));
+               string strMatter = pcontext->dir().matter(psubject->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
@@ -78,10 +78,10 @@ namespace user
    }
 
 
-   ::e_status form_list_view::initialize(::layered * pobjectContext)
+   ::e_status form_list_view::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::user::form_list::initialize(pobjectContext);
+      auto estatus = ::user::form_list::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -90,7 +90,7 @@ namespace user
 
       }
 
-      estatus = ::user::form_view::initialize(pobjectContext);
+      estatus = ::user::form_view::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -99,7 +99,7 @@ namespace user
 
       }
 
-      estatus = ::user::list_view::initialize(pobjectContext);
+      estatus = ::user::list_view::initialize(pcontextobject);
 
       if (!estatus)
       {

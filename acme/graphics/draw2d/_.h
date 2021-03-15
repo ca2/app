@@ -42,9 +42,9 @@ inline byte clampAndConvert(double v)
 
 
 
-CLASS_DECL_ACME string os_font_name(enum_font efont);
-CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
-CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);
+//CLASS_DECL_ACME string os_font_name(enum_font efont);
+//CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
+//CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);
 
 
 
@@ -53,7 +53,7 @@ template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::typ
 using colorrefmap = map < color32_t, VALUE, typename argument_of < color32_t >::type, ARG_VALUE >;
 
 
-using colorref_set = isoset < color32_t >;
+using colorref_set = ::set < color32_t >;
 
 
 

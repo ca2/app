@@ -572,7 +572,7 @@ namespace serial
             // time_out occured on reading 1 byte
             sleep(maximum(100_ms, m_timeout.m_millisReadTimeoutConstant / 10));
 
-            if (!::thread_get_run())
+            if (!::task_get_run())
             {
 
                break;

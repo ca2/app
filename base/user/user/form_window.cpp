@@ -824,7 +824,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_id);
+            str = papplication->load_string(pinteraction->m_id);
 
             pinteraction->set_window_text(str);
 
@@ -834,7 +834,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_uiText);
+            str = papplication->load_string(pinteraction->m_uiText);
 
             pinteraction->set_window_text(str);
 
@@ -1030,7 +1030,7 @@ namespace user
 
    //   //}
 
-   //   //auto pinteraction = Application.__id_create <::user::interaction>(pdescriptor->m_type);
+   //   //auto pinteraction = papplication->__id_create <::user::interaction>(pdescriptor->m_type);
 
    //   //if(!pinteraction)
    //   //{
@@ -1242,7 +1242,7 @@ namespace user
 
    //   }
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   pdescriptor->m_type = psession->user()->controltype_to_typeinfo(pdescriptor->get_control_type());
 

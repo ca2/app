@@ -391,7 +391,7 @@
       if(::str::ends_ci(strSource, ".desktop"))
       {
 
-         string str = Context.file().as_string(strSource);
+         string str = get_context()->file().as_string(strSource);
 
          string_array stra;
 

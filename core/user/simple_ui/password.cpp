@@ -73,7 +73,7 @@ namespace simple_ui
       {
 
       pgraphics->blur(true, 4, rectClient);
-      //class imaging & imaging = System->imaging();
+      //class imaging & imaging = psystem->imaging();
       //::rectangle_i32 rectClient;
       //         get_window_rect(rectClient);
       //       rectClient.offset(rectClient.top_left());
@@ -105,7 +105,7 @@ namespace simple_ui
       /*}
       else
       {
-      class imaging & imaging = System->imaging();
+      class imaging & imaging = psystem->imaging();
       //_001DrawBackground(pgraphics, rectClipBox);
       imaging.color_blend(
       pgraphics,

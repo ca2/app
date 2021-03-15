@@ -1719,7 +1719,7 @@ namespace draw2d_quartz2d
 //               pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
 //                          m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
 //               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
-//               /* p::image_pointer pimage3(get_object());
+//               /* p::image_pointer pimage3(this);
 //                pimage1->mult_alpha(image3);*/
 //
 //               keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2817,7 +2817,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage;
     if(imageWork == nullptr)
     {
-    pimage = create_image(get_object());
+    pimage = create_image(this);
     imageWork = pimage;
     }
     if(imageWork == nullptr)
@@ -2833,7 +2833,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage2;
     if(imageWork2 == nullptr)
     {
-    pimage2 = create_image(get_object());
+    pimage2 = create_image(this);
     imageWork2 = pimage2;
     }
 
@@ -2841,7 +2841,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage4;
     if(imageWork4 == nullptr)
     {
-    image4 = create_image(get_object());
+    image4 = create_image(this);
     imageWork4 = image4;
     }
     if(imageWork4 == nullptr)
@@ -2861,7 +2861,7 @@ namespace draw2d_quartz2d
     keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-    return System->imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
+    return psystem->imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
 
 
     }
@@ -3042,7 +3042,7 @@ namespace draw2d_quartz2d
 //       ::draw2d::brush* pBrushOld = nullptr;
 //       if (pBrush == nullptr)
 //       {
-//       pBrush = graphics::GetHalftoneBrush(get_object());
+//       pBrush = graphics::GetHalftoneBrush(this);
 //       }
 //
 //       ENSURE(pBrush);
@@ -3361,7 +3361,7 @@ namespace draw2d_quartz2d
 //   ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
 //   {
 //      return nullptr;
-//      //      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_context_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      //      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
 //   }
 //
 //   color32_t graphics::SetBkColor(color32_t crColor)

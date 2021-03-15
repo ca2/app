@@ -2384,7 +2384,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
    i32 win_y_return;
    u32 mask_return;
 
-   while(::get_context_system() != nullptr && ::thread_get_run())
+   while(::get_context_system() != nullptr && ::task_get_run())
    {
 
       while(XPending(pdisplay) > 0)
@@ -3015,7 +3015,7 @@ bool x11_process_message(Display * pdisplay)
 //      if(msg.hwnd == nullptr)
 //      {
 //
-//         System->post_message(msg.message, msg.wParam, msg.lParam);
+//         psystem->post_message(msg.message, msg.wParam, msg.lParam);
 //
 //      }
 //      else
@@ -3047,13 +3047,13 @@ bool x11_process_message(Display * pdisplay)
 //{
 //
 //
-//   while(::get_context_system() != nullptr && ::thread_get_run())
+//   while(::get_context_system() != nullptr && ::task_get_run())
 //   {
 //
 //      try
 //      {
 //
-//         if(System->m_bProdevianMouse)
+//         if(psystem->m_bProdevianMouse)
 //         {
 //
 //            __axis_x11_prodevian_input_thread(pdata);
@@ -3098,8 +3098,8 @@ bool x11_process_message(Display * pdisplay)
 ////   ::thread * pthread = ::get_task();
 ////
 ////   while(::get_context_system() != nullptr
-////   && pthread->thread_get_run())
-////   //&& !System->m_bProdevianMouse)
+////   && pthread->task_get_run())
+////   //&& !psystem->m_bProdevianMouse)
 ////   {
 ////
 ////      pmsg = nullptr;
@@ -3257,7 +3257,7 @@ namespace aura
 {
 
 
-   sp(::user::message) application::get_message_base(void * pevent,::user::interaction * pwnd)
+   sp(::user::message) application::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
       __throw(todo);

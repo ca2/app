@@ -5,7 +5,7 @@ namespace simple_drawing
 {
 
 
-   main_view::main_view(::layered * pobjectContext):
+   main_view::main_view(::context_object * pcontextobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -60,7 +60,7 @@ namespace simple_drawing
 
       int iPane;
 
-      if (Application.m_bMultiverseChat)
+      if (papplication->m_bMultiverseChat)
       {
 
          SetPaneCount(2);
@@ -76,7 +76,7 @@ namespace simple_drawing
          if (m_ptopview == NULL)
          {
 
-            System->message_box(NULL, "Could not create folder edit view");
+            psystem->message_box(NULL, "Could not create folder edit view");
 
          }
 
@@ -103,7 +103,7 @@ namespace simple_drawing
       if(m_pview == NULL)
       {
 
-         System->message_box(NULL,"Could not create file list ::user::impact");
+         psystem->message_box(NULL,"Could not create file list ::user::impact");
 
       }
 

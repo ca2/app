@@ -24,7 +24,7 @@ namespace prompt
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-      frame(::layered * pobjectContext);
+      frame(::context_object * pcontextobject);
       virtual ~frame();
 
       virtual void install_message_routing(::channel * pchannel);

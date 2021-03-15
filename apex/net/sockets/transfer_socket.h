@@ -65,7 +65,7 @@ namespace sockets
       memory_file                   m_file;
 
 
-      transfer_socket(::sockets::base_socket_handler & handler);
+      transfer_socket();
       virtual ~transfer_socket();
 
       int  send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs);
@@ -82,7 +82,7 @@ namespace sockets
    public:
 
 
-      read_socket(::sockets::base_socket_handler & handler);
+      read_socket();
       virtual ~read_socket();
 
 
@@ -100,7 +100,7 @@ namespace sockets
    public:
 
 
-      write_socket(::sockets::base_socket_handler & handler);
+      write_socket();
       virtual ~write_socket();
 
       virtual void OnWrite();
@@ -120,7 +120,7 @@ namespace sockets
    //   int    m_nReadBuf; // number of bytes in the read buffer
 
 
-   //   http_transfer_socket(base_socket_handler & handler);
+   //   http_transfer_socket();
    //   ~http_transfer_socket();
 
    //   int read_http_header_line(char* pch, int nSize, int nSecs);

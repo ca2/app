@@ -13,7 +13,7 @@ namespace music
       {
 
 
-         sequence::sequence(::layered * pobjectContext) :
+         sequence::sequence(::context_object * pcontextobject) :
             ::object(pobject),
             ::ikaraoke::karaoke(pobject),
             ::music::midi::sequence(pobject)
@@ -220,7 +220,7 @@ Seq_Open_File_Cleanup:
             try
             {
 
-               file = Context.file().get_file(lpFileName, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+               file = pcontext->file().get_file(lpFileName, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
             }
             catch(...)
@@ -1233,7 +1233,7 @@ seq_Preroll_Cleanup:
                      {
                         plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
                      }
-                     ::memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+                     ::memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
                      /* x2x                  CArchive ar(&memFile, CArchive::load);
                      lyriceventa.Serialize(ar);
                      plyriceventa->append(lyriceventa); */
@@ -1245,7 +1245,7 @@ seq_Preroll_Cleanup:
                   break;
                   case EVENT_ID_NOTE_ON:
                   {
-                     ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+                     ::file::byte_stream_memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
                      for(i32 i = 0; i < m_iaLevel.get_size(); i++)
                      {
                         byte b;
@@ -1779,15 +1779,15 @@ seq_Preroll_Cleanup:
             }
             staticdata.m_LyricsDisplay = 30;
 
-            imedia_position_2darray tk2DNoteOnPositions(get_object());
-            imedia_position_2darray tk2DNoteOffPositions(get_object());
-            imedia_position_2darray tk2DBegPositions(get_object());
-            imedia_position_2darray tk2DEndPositions(get_object());
-            imedia_time_2darray ms2DTokensMillis(get_object());
-            imedia_time_2darray ms2DNoteOnMillis(get_object());
-            imedia_time_2darray ms2DNoteOffMillis(get_object());
-            imedia_time_2darray ms2DBegMillis(get_object());
-            imedia_time_2darray ms2DEndMillis(get_object());
+            imedia_position_2darray tk2DNoteOnPositions(this);
+            imedia_position_2darray tk2DNoteOffPositions(this);
+            imedia_position_2darray tk2DBegPositions(this);
+            imedia_position_2darray tk2DEndPositions(this);
+            imedia_time_2darray ms2DTokensMillis(this);
+            imedia_time_2darray ms2DNoteOnMillis(this);
+            imedia_time_2darray ms2DNoteOffMillis(this);
+            imedia_time_2darray ms2DBegMillis(this);
+            imedia_time_2darray ms2DEndMillis(this);
             ::music::midi::events midiEvents;
 
 
@@ -1906,7 +1906,7 @@ seq_Preroll_Cleanup:
                   }
                }
 
-               ::music::midi::util miditutil(get_object());
+               ::music::midi::util miditutil(this);
 
                miditutil.PrepareNoteOnOffEvents(
                &noteOnEvents,
@@ -2235,7 +2235,7 @@ seq_Preroll_Cleanup:
 
             // add Title
             staticdata.m_straTitleFormat.add("%0");
-            staticdata.m_str2aTitle.set_app(get_object());
+            staticdata.m_str2aTitle.set_app(this);
             staticdata.m_str2aTitle.add_new();
             staticdata.m_str2aTitle[0].add(xfihs.m_strSongName);
 

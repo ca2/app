@@ -28,7 +28,7 @@
          {
 
 
-            frame_008::frame_008(::layered * pobjectContext) :
+            frame_008::frame_008(::context_object * pcontextobject) :
                object(pobject),
                frame(pobject)
             {
@@ -229,7 +229,7 @@ SizingNone:
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -268,7 +268,7 @@ SizingNone:
 
                   //   ::rectangle_i32 rectangle;
                   //   GetBorderRect(lpcrectClient,rectangle,eside);
-                  //   class imaging & imaging = System->imaging();
+                  //   class imaging & imaging = psystem->imaging();
                   //   imaging.color_blend(pgraphics,
                   //      rectangle,
                   //      crMoveableBorder,
@@ -283,7 +283,7 @@ SizingNone:
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(lpcrectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       crMoveableBorder,
@@ -293,7 +293,7 @@ SizingNone:
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(lpcrectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
+                  class imaging & imaging = psystem->imaging();
                   imaging.color_blend(pgraphics,
                                       rectangle,
                                       crMoveableBorder,

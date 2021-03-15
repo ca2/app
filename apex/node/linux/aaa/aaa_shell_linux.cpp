@@ -301,7 +301,7 @@ namespace linux
       //         }
       //      }
       //   }
-      //   if (Context.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+      //   if (get_context()->dir().is(::str::international::unicode_to_utf8(szFilePath)))
       //   {
       //      if (imagekey.m_iIcon == 0x80000000)
       //      {
@@ -567,7 +567,7 @@ namespace linux
          if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
          {
 
-            ::file::path path = Context.dir().matter("cloud.ico");
+            ::file::path path = get_context()->dir().matter("cloud.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -589,7 +589,7 @@ namespace linux
          else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
          {
 
-            ::file::path path = Context.dir().matter("remote.ico");
+            ::file::path path = get_context()->dir().matter("remote.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -611,7 +611,7 @@ namespace linux
          else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
          {
 
-            ::file::path path = Context.dir().matter("ftp.ico");
+            ::file::path path = get_context()->dir().matter("ftp.ico");
 
             for (auto iSize : m_iaSize)
             {
@@ -637,12 +637,12 @@ namespace linux
 
          if (::str::ends_ci(imagekey.m_strPath, ".apex"))
          {
-            string str = Context.file().as_string(imagekey.m_strPath);
+            string str = get_context()->file().as_string(imagekey.m_strPath);
             if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
             {
                str.trim();
-               /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-               HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+               /*HICON hicon16 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+               HICON hicon48 = (HICON) ::LoadImage(nullptr, get_context()->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
                synchronization_lock sl1(m_pil48Hover->mutex());
                synchronization_lock sl2(m_pil48->mutex());
                iImage = m_pil16->add_icon_os_data(hicon16);
@@ -714,7 +714,7 @@ namespace linux
          if (::str::ends_ci(imagekey.m_strPath, ".desktop"))
          {
 
-            string str = Context.file().as_string(imagekey.m_strPath);
+            string str = get_context()->file().as_string(imagekey.m_strPath);
 
             string_array stra;
 
@@ -866,7 +866,7 @@ namespace linux
 //
 //         synchronization_lock synchronizationlock(&m_mutexQueue);
 //
-//         while (thread_get_run())
+//         while (task_get_run())
 //         {
 //
 //            if(m_keyptra.is_empty())

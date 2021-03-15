@@ -54,7 +54,7 @@ namespace sockets
 
 
 
-         EventHandler(::layered * pobject, ::apex::log * plogger = nullptr);
+         EventHandler(::object * pobject, ::apex::log * plogger = nullptr);
          ~EventHandler();
 
          bool GetTimeUntilNextEvent(struct timeval *tv);

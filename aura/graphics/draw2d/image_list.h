@@ -50,7 +50,7 @@ public:
    i32 add_matter_icon(const char * pcszMatter, int iItem = -1);
 
    i32 add_file(::payload varFile, int iItem = -1);
-   ///i32 add_matter(const char * pcsz, ::layered * pobjectContext = nullptr, int iItem = -1);
+   ///i32 add_matter(const char * pcsz, ::object * pobject = nullptr, int iItem = -1);
 
    i32 add_std_matter(const char * pcsz, int iItem = -1);
 

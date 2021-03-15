@@ -248,14 +248,14 @@ namespace user
 
       //      set_thread_name("test");
 
-            //windows_desktop1_main(::aura::get_system()->m_hinstance, SW_SHOWNORMAL);
+            //windows_desktop1_main(psystem->m_hinstance, SW_SHOWNORMAL);
 
       //  });
 
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      auto psession = Session;
+      __pointer(::aura::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -298,7 +298,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+      __refer(m_pprodevian, m_pimpl->m_pprodevian);
 
       m_oswindow = m_pimpl->m_pwindow->get_oswindow();
 
@@ -459,8 +459,8 @@ namespace user
 
          }
 
-         //// get_context_application() may be it self, it is ok...
-         //if (Application.final_handle_exception(e))
+         //// get_application() may be it self, it is ok...
+         //if (papplication->final_handle_exception(e))
          //{
 
          //   return true;
@@ -734,7 +734,7 @@ namespace user
    }
 
 
-   ::e_status thread::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
    {
 
       auto estatus = channel::set_finish_composites(pcontextobjectFinish);
@@ -854,7 +854,7 @@ namespace user
             //   nReturn = (int)msg.wParam;
             //}
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          if (!pump_message())
@@ -980,7 +980,7 @@ namespace user
 //#endif
 
 
-   bool thread::thread_get_run() const
+   bool thread::task_get_run() const
    {
 
       if (m_pimpl)
@@ -990,7 +990,7 @@ namespace user
 
       }
 
-      return ::thread::thread_get_run();
+      return ::thread::task_get_run();
 
    }
 
@@ -1005,7 +1005,7 @@ namespace user
    }
 
 
-   ::e_status thread::finish(::context_object * pcontextobjectFinish)
+   ::e_status thread::finish(::property_object * pcontextobjectFinish)
    {
 
       return ::thread::finish(pcontextobjectFinish);

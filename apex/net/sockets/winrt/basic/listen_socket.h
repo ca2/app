@@ -36,7 +36,7 @@ namespace sockets
       /** Constructor.
       \lparam h base_socket_handler context_object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket_base(base_socket_handler& h);
+      listen_socket_base();
       virtual ~listen_socket_base();
 
 
@@ -193,8 +193,8 @@ namespace sockets
       /** Constructor.
       \param h base_socket_handler context_object
       \param use_creator Optional use of creator (default true) */
-      listen_socket(base_socket_handler& h,bool use_creator = true) :
-         ::object(h.get_context_application()), 
+      listen_socket(bool use_creator = true) :
+         ::object(h.get_application()), 
          listen_socket_base(h),
          base_socket(h),
          socket(h), 
@@ -389,7 +389,7 @@ namespace sockets
 
          //}
             
-         //if (!Handler().OkToAccept(this))
+         //if (!socket_handler()->OkToAccept(this))
          //{
          //   
          //   //log("accept", -1, "Not OK to accept", ::ca::log::level_warning);
@@ -400,10 +400,10 @@ namespace sockets
 
          //}
             
-         //if (Handler().get_count() >= FD_SETSIZE)
+         //if (socket_handler()->get_count() >= FD_SETSIZE)
          //{
          //   
-         //   //log("accept", (int)Handler().get_count(), "base_socket_handler fd_set limit reached", ::ca::log::level_fatal);
+         //   //log("accept", (int)socket_handler()->get_count(), "base_socket_handler fd_set limit reached", ::ca::log::level_fatal);
          //   ::closesocket(a_s);
 
          //   return;
@@ -421,7 +421,7 @@ namespace sockets
          else
          {
 
-            pstreamsocket = new SOCKET_IMPL(Handler());
+            pstreamsocket = new SOCKET_IMPL(socket_handler());
 
          }
 
@@ -443,7 +443,7 @@ namespace sockets
 //                  if (p -> sin6_family == AF_INET6)
 //                  {
 //                     
-//                     ipv6_address ad(get_context_application(), p -> sin6_addr,ntohs(p -> sin6_port));
+//                     ipv6_address ad(get_application(), p -> sin6_addr,ntohs(p -> sin6_port));
 //                     
 //                     ad.SetFlowinfo(p -> sin6_flowinfo);
 //
@@ -467,7 +467,7 @@ namespace sockets
 //                  if (p -> sin_family == AF_INET)
 //                  {
 //                     
-//                     ipv4_address ad(get_context_application(), p->sin_addr, ntohs(p->sin_port));
+//                     ipv4_address ad(get_application(), p->sin_addr, ntohs(p->sin_port));
 //
 //                     tmp -> SetRemoteAddress(ad);
 //
@@ -482,7 +482,7 @@ namespace sockets
          pstreamsocket->Init();
          pstreamsocket->SetDeleteByHandler(true);
             
-         //Handler().add(tmp);
+         //socket_handler()->add(tmp);
 
          if(m_bDetach)
          {

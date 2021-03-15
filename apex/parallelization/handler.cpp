@@ -66,7 +66,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status handler_manager::set_finish_composites(::property_object * pcontextobjectFinish)
 {
 
    return ::object::set_finish_composites(pcontextobjectFinish);
@@ -164,7 +164,7 @@ void handler_manager::loop()
 
    int iAlive = 0;
 
-   while (::thread_get_run())
+   while (::task_get_run())
    {
 
       auto method = pick_new_task();

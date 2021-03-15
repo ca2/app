@@ -8,7 +8,7 @@ namespace linux
 {
 
 
-//   thread::thread(::layered * pobjectContext) :
+//   thread::thread(::context_object * pcontextobject) :
 //      ::object(pobject),
 //      ::ansios::thread_impl(pobject),
 //      ::thread_impl(pobject)

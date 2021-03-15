@@ -263,7 +263,7 @@ namespace user
 
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
-      ppane->m_pimage       = Application.image().load_image(pszImage, false);
+      ppane->m_pimage       = papplication->image().load_image(pszImage, false);
 
       get_data()->m_panea.add(ppane);
 
@@ -436,7 +436,7 @@ namespace user
 
             _001ClientToScreen(rectTab);
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -485,7 +485,7 @@ namespace user
             bNeedLayout = true;
 
          }
-         else if(::is_set(get_context_application()) && ::is_set(get_context_application()->get_context_session()))
+         else if(::is_set(get_application()) && ::is_set(get_application()->get_session()))
          {
 
             ::rectangle_i32 rectWindow;
@@ -494,7 +494,7 @@ namespace user
 
             bool bShowTabs;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -1693,7 +1693,7 @@ namespace user
 
          m_bMouseDown = false;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -1712,7 +1712,7 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -2393,12 +2393,12 @@ namespace user
 
 #else
 
-      ::user::interaction * pwnd;
+      ::user::interaction * puserinteraction;
 
-      if ((pwnd = get_parent()->get_wnd()) != nullptr)
+      if ((puserinteraction = get_parent()->get_wnd()) != nullptr)
       {
 
-         return pwnd;
+         return puserinteraction;
 
       }
 
@@ -2424,7 +2424,7 @@ namespace user
    void tab::on_message_create(::message::message * pmessage)
    {
 
-      m_bNoTabs = System->has_property("no_tabs");
+      m_bNoTabs = psystem->has_property("no_tabs");
 
       __pointer(::user::message) pusermessage(pmessage);
 
@@ -2552,7 +2552,7 @@ namespace user
       m_brushFill(e_create),
       m_brushFillSel(e_create),
       m_brushFillHover(e_create)
-      //m_istrTitleEx3(ptab->get_context_application())
+      //m_istrTitleEx3(ptab->get_application())
    {
 
       m_bTabPaneVisible = true;
@@ -2871,7 +2871,7 @@ namespace user
 
       }
 
-      Application.on_change_cur_sel(this);
+      papplication->on_change_cur_sel(this);
 
    }
 
@@ -3326,9 +3326,9 @@ namespace user
             if (ppane->m_pplaceholder == psubject->m_puserinteraction)
             {
 
-               auto puiptraChild = ppane->m_pplaceholder->m_puiptraChild;
+               auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;
 
-               auto pchild = puiptraChild->first_interaction();
+               auto pchild = puserinteractionpointeraChild->first_interaction();
 
                if (pchild)
                {
@@ -3380,7 +3380,7 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

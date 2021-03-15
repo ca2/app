@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   server::server(::layered * pobjectContext) :
+   server::server(::context_object * pcontextobject) :
       ::object(pobject)
    {
       m_pbase = nullptr;
@@ -18,7 +18,7 @@ namespace simpledb
    {
       if(m_pbase != nullptr)
          close();
-      class base * pusermessage = new class base(get_object());
+      class base * pusermessage = new class base(this);
       if(pusermessage == nullptr)
          return false;
       pusermessage->setDatabase(pszDatabase);

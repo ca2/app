@@ -197,7 +197,7 @@ namespace music
          message_out::message_out(::object * pobject, string driver)
          {
             
-            auto estatus = initialize(pobject);
+            auto estatus = initialize(pcontextobject);
             
             if(!estatus)
             {
@@ -285,7 +285,7 @@ namespace music
       
       message_out::message_out(::object * pobject, int iPort)
       {
-         auto estatus = initialize(pobject);
+         auto estatus = initialize(pcontextobject);
          
          if(!estatus)
          {

@@ -44,17 +44,8 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 #endif
 
 
-::e_status timer_task::initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
+::e_status timer_task::initialize_timer(::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
-
-   auto estatus = initialize(pobjectContext);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
 
    m_bRunning = false;
 
@@ -75,7 +66,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 
    m_pvoidData = pvoidData;
 
-   return estatus;
+   return ::success;
 
 }
 
@@ -105,48 +96,48 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       m_strDebugNote.Format("uEvent=%d", m_uEvent);
 
-      auto pparent = m_ptimera->m_pobjectContext;
+      //auto pparent = m_ptimera->m_pobject;
 
-      if (pparent)
-      {
+      //if (pparent)
+      //{
 
-         auto pcontextobjectParent = pparent.cast < ::context_object>();
+      //   auto pcontextobjectParent = pparent.cast < ::context_object>();
 
-         if (pcontextobjectParent)
-         {
+      //   if (pcontextobjectParent)
+      //   {
 
-            auto playeredContainer = pcontextobjectParent->m_pobjectContext;
+      //      auto playeredContainer = pcontextobjectParent->m_pobject;
 
-            string strFormat;
+      //      string strFormat;
 
-            strFormat.Format(",container: [% s", typeid(*playeredContainer).name());
+      //      strFormat.Format(",container: [% s", typeid(*playeredContainer).name());
 
-            m_strDebugNote += strFormat;
+      //      m_strDebugNote += strFormat;
 
-            auto pcontextobjectContainer = playeredContainer.cast < ::context_object> ();
+      //      auto pcontextobjectContainer = playeredContainer.cast < ::context_object> ();
 
-            if (pcontextobjectContainer)
-            {
+      //      if (pcontextobjectContainer)
+      //      {
 
-               strFormat.Format(", id = % s]", __str(pcontextobjectContainer->m_id).c_str());
-               
-               m_strDebugNote += strFormat;
+      //         strFormat.Format(", id = % s]", __str(pcontextobjectContainer->m_id).c_str());
+      //         
+      //         m_strDebugNote += strFormat;
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               m_strDebugNote += "]";
+      //         m_strDebugNote += "]";
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       m_id = m_strDebugNote;
 
-      if (!begin_task())
+      if (!begin())
       {
 
          return false;
@@ -229,7 +220,7 @@ bool timer_task::task_active() const
 
          sleep(100_ms);
 
-         if (!thread_get_run())
+         if (!task_get_run())
          {
 
             break;
@@ -240,7 +231,7 @@ bool timer_task::task_active() const
 
       sleep(r100Ms);
 
-      if (!thread_get_run())
+      if (!task_get_run())
       {
 
          break;

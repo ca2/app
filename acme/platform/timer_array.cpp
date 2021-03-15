@@ -41,7 +41,7 @@ namespace apex
 
       auto ptimer = __new(timer_task);
 
-      ptimer->initialize_timer(m_pobjectContext, this, uEvent, pfnTimer, pvoidData, mutex());
+      ptimer->initialize_timer(this, uEvent, pfnTimer, pvoidData, mutex());
 
       ptimer->m_ptimercallback = this;
 

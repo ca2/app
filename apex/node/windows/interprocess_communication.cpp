@@ -81,7 +81,7 @@ namespace windows
             int k = 40;
             while (k > 0)
             {
-               if (!thread_get_run())
+               if (!task_get_run())
                {
                   return false;
                }
@@ -260,11 +260,13 @@ namespace windows
 
           //}
 
-          //auto pappcore = ::apex::get_system()->m_pappcore;
+          //auto pappcore = psystem->m_pappcore;
 
           //auto pmaindata = pappcore->m_pmaindata;
 
-      HINSTANCE hinstance = (HINSTANCE)::apex::get_system()->m_hinstance;
+      __pointer(::apex::system) psystem = get_system();
+
+      HINSTANCE hinstance = (HINSTANCE)psystem->m_hinstance;
 
       ATOM atom = rx_register_class(hinstance);
 
@@ -333,7 +335,7 @@ namespace windows
       else
       {
 
-         get_context_application()->fork([=]()
+         get_application()->fork([=]()
             {
 
                if (m_preceiver != nullptr)

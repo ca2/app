@@ -15,7 +15,7 @@ namespace turboc
       top_view * m_ptopview;
 
 
-      toggle_view(::layered * pobjectContext);
+      toggle_view(::context_object * pcontextobject);
       virtual ~toggle_view();
 
 

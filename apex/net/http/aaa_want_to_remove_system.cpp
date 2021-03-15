@@ -13,7 +13,7 @@ namespace http
 {
 
 
-   system::system(::layered * pobjectContext) :
+   system::system(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -58,16 +58,16 @@ namespace http
 //      else if(i == 1)
 //      {
 //         // telmico: no proxy
-//         string str = Context.file().as_string(Context.dir().appdata() / "machine/proxy.xml");
+//         string str = get_context()->file().as_string(get_context()->dir().appdata() / "machine/proxy.xml");
 //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
 //         {
-//            Context.file().copy(Context.dir().appdata()/ "proxy_original.xml", Context.dir().install()/ "proxy.xml", false);
+//            get_context()->file().copy(get_context()->dir().appdata()/ "proxy_original.xml", get_context()->dir().install()/ "proxy.xml", false);
 //         }
-//         if(Context.file().exists(Context.dir().appdata()/ "proxy.xml"))
+//         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy.xml"))
 //         {
 //            try
 //            {
-//               Context.file().del(Context.dir().appdata()/ "proxy.xml");
+//               get_context()->file().del(get_context()->dir().appdata()/ "proxy.xml");
 //            }
 //            catch(...)
 //            {
@@ -77,20 +77,20 @@ namespace http
 //      else if(i == 2)
 //      {
 //         // telmico: original proxy configuration
-//         if(Context.file().exists(Context.dir().appdata()/ "proxy_original.xml"))
+//         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy_original.xml"))
 //         {
-//            Context.file().copy(Context.dir().appdata()/ "proxy.xml", Context.dir().appdata()/"proxy_original.xml", false);
+//            get_context()->file().copy(get_context()->dir().appdata()/ "proxy.xml", get_context()->dir().appdata()/"proxy_original.xml", false);
 //         }
 //      }
 //      else
 //      {
 //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-//         string str = Context.file().as_string(Context.dir().appdata()/"proxy.xml");
+//         string str = get_context()->file().as_string(get_context()->dir().appdata()/"proxy.xml");
 //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
 //         {
-//            Context.file().copy(Context.dir().appdata()/"proxy_original.xml", Context.dir().appdata()/"proxy.xml", false);
+//            get_context()->file().copy(get_context()->dir().appdata()/"proxy_original.xml", get_context()->dir().appdata()/"proxy.xml", false);
 //         }
-//         Context.file().put_contents(Context.dir().appdata()/"proxy.xml", "proxy");
+//         get_context()->file().put_contents(get_context()->dir().appdata()/"proxy.xml", "proxy");
 //      }
    }
 
@@ -98,7 +98,7 @@ namespace http
    void system::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = Context.file().as_string(Context.dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = get_context()->file().as_string(get_context()->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -128,7 +128,7 @@ namespace http
 
    }
 
-   system::pac::pac(::layered * pobjectContext) :
+   system::pac::pac(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -164,7 +164,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         auto ppac  = __new(class pac(get_object()));
+         auto ppac  = __new(class pac(this));
 
          ppac->m_millisLastChecked= ::millis::now();
 
@@ -176,7 +176,7 @@ namespace http
          varFile["disable_ca2_sessid"] = true;
          varFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = Context.file().as_string(varFile);
+         ppac->m_strAutoConfigScript = get_context()->file().as_string(varFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -204,7 +204,7 @@ namespace http
    }
 
 
-   system::proxy::proxy(::layered * pobjectContext) :
+   system::proxy::proxy(::context_object * pcontextobject) :
       ::object(pobject)
    {
 
@@ -227,7 +227,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         auto pproxy  = __new(class ::http::system::proxy(get_object()));
+         auto pproxy  = __new(class ::http::system::proxy(this));
 
          pproxy->m_millisLastChecked= ::millis::now();
 
@@ -346,9 +346,9 @@ namespace http
 
       xml::document doc;
 
-      ::file::path pathProxyXml = Context.dir().appdata() / "proxy.xml";
+      ::file::path pathProxyXml = get_context()->dir().appdata() / "proxy.xml";
 
-      if(!Context.file().exists(pathProxyXml))
+      if(!get_context()->file().exists(pathProxyXml))
       {
 
          pproxy->m_bDirect = true;
@@ -357,7 +357,7 @@ namespace http
 
       }
 
-      string str = Context.file().as_string(pathProxyXml);
+      string str = get_context()->file().as_string(pathProxyXml);
 
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
@@ -473,14 +473,14 @@ namespace http
 //      if(!bOk)
 //      {
 //
-//         //bool bAutoDetect = Context.os().connection_settings_get_auto_detect();
+//         //bool bAutoDetect = get_context()->os().connection_settings_get_auto_detect();
 //
 //         //if(bAutoDetect)
 //         //{
 //
 //         //   TRACE("proxy auto_detect true");
 //
-//         //   string strUrl = Context.os().connection_settings_get_auto_config_url();
+//         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
 //
 //         //   if(strUrl.has_char())
 //         //   {
@@ -498,7 +498,7 @@ namespace http
 //
 //         //   TRACE("proxy auto_detect false");
 //
-//         //   string strUrl = Context.os().connection_settings_get_auto_config_url();
+//         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
 //
 //         //   if(strUrl.has_char())
 //         //   {
@@ -777,7 +777,7 @@ retry:
 
          auto tickTimeProfile1 = ::millis::now();
 
-         ::apex::application * papp = handler.get_context_application();
+         ::apex::application * papp = handler.get_application();
 
          string strRequest = ::apex::get_system()->url().get_object(pszRequest);
 
@@ -953,7 +953,7 @@ retry:
 
          TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
-         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::thread_get_run()))
+         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
@@ -1383,7 +1383,7 @@ retry_session:
       if (pappAgent.is_set())
       {
 
-         psocket->set_context_object(pappAgent);
+         psocket->set_object(pappAgent);
 
       }
 
@@ -1605,7 +1605,7 @@ retry_session:
 
       tick1 = ::millis::now();
 
-      while(handler.get_count() > 0 && (::get_task() == nullptr || ::thread_get_run()))
+      while(handler.get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
 
          if (tickStart.elapsed() > tickTotalTimeout)
@@ -1773,7 +1773,7 @@ retry_session:
 
             task_sleep(300_ms);
 
-            if (::thread_get_run())
+            if (::task_get_run())
             {
 
                goto retry;
@@ -1933,7 +1933,7 @@ retry_session:
          return;
       }
 
-      ::sockets::socket_handler handler(get_object());
+      ::sockets::socket_handler handler(this);
 
       property_set set;
 
@@ -2017,7 +2017,7 @@ retry_session:
    bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,::payload varFile,property_set & set)
    {
 
-      file_pointer spfile = set.cast < ::apex::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
+      file_pointer spfile = set.cast < ::apex::application >("app",get_application())->get_session()->file().get_file(varFile,
                        ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2034,7 +2034,7 @@ retry_session:
    bool system::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
 
-      ::sockets::socket_handler handler(get_object());
+      ::sockets::socket_handler handler(this);
 
       __pointer(::sockets::http_client_socket) psocket;
 
@@ -2042,7 +2042,7 @@ retry_session:
 
       {
 
-         auto rfile = set.cast < ::apex::application >("app", get_context_application())->get_context_session()->file().get_file(varFile,
+         auto rfile = set.cast < ::apex::application >("app", get_application())->get_session()->file().get_file(varFile,
                           ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if(!rfile)
@@ -2109,7 +2109,7 @@ retry_session:
 
          synchronizationlock.unlock();
 
-         ::sockets::socket_handler handler(get_object());
+         ::sockets::socket_handler handler(this);
 
          set["only_headers"] = true;
 
@@ -2184,7 +2184,7 @@ retry_session:
    ::payload system::length(const char * pszUrl, ::property_set & set)
    {
 
-      ::sockets::socket_handler handler(get_object());
+      ::sockets::socket_handler handler(this);
 
       set["only_headers"] = true;
 
@@ -2285,20 +2285,20 @@ retry_session:
       
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
-      strUserNameFile = Context.dir().appdata() / strSection + "_1";
+      strUserNameFile = get_context()->dir().appdata() / strSection + "_1";
       
-      strPasswordFile = Context.dir().appdata() / strSection + "_2";
+      strPasswordFile = get_context()->dir().appdata() / strSection + "_2";
       
       bool bOk = true;
 
-      if(!::apex::get_system()->crypto().file_get(strUserNameFile, strUserName, nullptr, get_context_application()) || strUserName.is_empty())
+      if(!::apex::get_system()->crypto().file_get(strUserNameFile, strUserName, nullptr, get_application()) || strUserName.is_empty())
       {
          
          bOk = false;
 
       }
 
-      if(!::apex::get_system()->crypto().file_get(strPasswordFile, strPassword, nullptr, get_context_application()) || strPassword.is_empty())
+      if(!::apex::get_system()->crypto().file_get(strPasswordFile, strPassword, nullptr, get_application()) || strPassword.is_empty())
       {
 
          bOk = false;
@@ -2319,9 +2319,9 @@ retry_session:
          if(psession->get_auth("system/account/proxy_authenticate.xhtml", strUserName, strPassword))
          {
             
-            ::apex::get_system()->crypto().file_set(strUserNameFile, strUserName, nullptr, get_context_application());
+            ::apex::get_system()->crypto().file_set(strUserNameFile, strUserName, nullptr, get_application());
             
-            ::apex::get_system()->crypto().file_set(strPasswordFile, strPassword, nullptr, get_context_application());
+            ::apex::get_system()->crypto().file_set(strPasswordFile, strPassword, nullptr, get_application());
             
             psocket->m_strUserNameFile = strUserNameFile;
             
@@ -2341,9 +2341,9 @@ retry_session:
       
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
-      Context.file().del(Context.dir().appdata() / strSection + "_1");
+      get_context()->file().del(get_context()->dir().appdata() / strSection + "_1");
       
-      Context.file().del(Context.dir().appdata() / strSection + "_2");
+      get_context()->file().del(get_context()->dir().appdata() / strSection + "_2");
 
    }
 
@@ -2365,7 +2365,7 @@ retry_session:
 
       set["noclose"] = false;
 
-      return Context.http().get(pszUrl, set);
+      return get_context()->http().get(pszUrl, set);
 
    }
 
@@ -2373,11 +2373,11 @@ retry_session:
    bool system::get(const char * pszUrl, property_set & set)
    {
 
-      sockets::socket_handler sockethandler(get_object());
+      sockets::socket_handler sockethandler(this);
 
       __pointer(::sockets::http_client_socket) psocket;
 
-      if (!Context.http().http_get(sockethandler, psocket, pszUrl, set))
+      if (!get_context()->http().http_get(sockethandler, psocket, pszUrl, set))
       {
 
          return false;
@@ -2394,7 +2394,7 @@ retry_session:
 
       set[__id(http_method)] = pszMethod;
 
-      return Context.http().get(pszUrl, set);
+      return get_context()->http().get(pszUrl, set);
 
    }
 

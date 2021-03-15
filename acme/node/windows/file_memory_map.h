@@ -24,7 +24,6 @@ namespace windows
 
       bool is_mapped();
 
-      virtual string calculate_path_from_name(const string & strName) override;
 
    };
 

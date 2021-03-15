@@ -72,7 +72,7 @@
 //       int result()
 //       {
 
-//          m_estatus = Application.m_estatus;
+//          m_estatus = papplication->m_estatus;
 
 //          ::i32 iErrorStatus = m_estatus.error_status();
 

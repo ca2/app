@@ -20,7 +20,7 @@ namespace sockets
 
 
       /** "Default" constructor */
-      socket(base_socket_handler & h);
+      socket();
 
       virtual ~socket();
 

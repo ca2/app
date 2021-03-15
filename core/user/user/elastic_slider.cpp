@@ -137,7 +137,7 @@ namespace user
    void elastic_slider::CalcTension()
    {
       
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -220,7 +220,7 @@ namespace user
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
 
-      class imaging & imaging = System->imaging();
+      class imaging & imaging = psystem->imaging();
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
@@ -244,7 +244,7 @@ namespace user
          
          pgraphics->move_to(rectangle.center());
          
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

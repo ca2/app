@@ -138,14 +138,6 @@ namespace dynamic_source
 //#define SESSION_TYPE ::base::session
 //#define APP_TYPE ::base::application
 
-#undef Sys
-#define Sys(pobject) (*(::get_context_system(pobject))->m_pbasesystem)
-
-#undef Sess
-#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
-
-#undef App
-#define App(pobject) (*(::get_context_application(pobject))->m_pbaseapplication)
 
 
 

@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     
       main();
 
-      estatus = Application.m_estatus;
+      estatus = papplication->m_estatus;
 
    }
 

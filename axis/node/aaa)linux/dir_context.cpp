@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::context_object * pcontextobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pcontextobject);
 
       if (!estatus)
       {
@@ -92,9 +92,9 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, psystem->m_pfilesystem);
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, psystem->m_pdirsystem);
 
       return ::success;
 
@@ -119,7 +119,7 @@ namespace linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(Context.file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -545,7 +545,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  pcontext->file().del(str);
 
                }
                catch(...)
@@ -560,7 +560,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  pcontext->file().del(str);
 
                }
                catch(...)
@@ -605,7 +605,7 @@ namespace linux
       if(bRecursive)
       {
 
-         ::file::listing straPath(::get_context());
+         ::file::listing straPath(get_context());
 
          straPath.ls(psz);
 
@@ -689,7 +689,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::layered * pobjectContext)
+   ::file::path dir_context::userquicklaunch(::context_object * pcontextobject)
    {
 
       ::file::path path;
@@ -701,7 +701,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::layered * pobjectContext)
+   ::file::path dir_context::userprograms(::context_object * pcontextobject)
    {
 
       ::file::path path;

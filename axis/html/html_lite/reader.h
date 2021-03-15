@@ -150,7 +150,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   ILiteHTMLReaderEvents*   m_pEventHandler;
+   ILiteHTMLReaderEvents *    m_pEventHandler;
+
+   ::html::html *             m_phtml;
+
+   ::axis::session *          m_psession;
 
    /**
     * Pointer to an array of characters being parsed

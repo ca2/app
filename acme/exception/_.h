@@ -260,7 +260,7 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
          strMsg.Format("%s (%s:%d)\n%s", szMsg, __FILE__, __LINE__, szErrorMessage); \
       else \
          strMsg.Format("%s (%s:%d)", szMsg, __FILE__, __LINE__); \
-      System->message_box(strMsg); \
+      get_system()->message_box(strMsg); \
    } while (0)
 #endif //!NNDEBUG
 

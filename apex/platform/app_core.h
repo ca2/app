@@ -95,10 +95,10 @@ public:
    __transport(::apex::application) new_application(const char* pszAppId);
 
 
-//   __transport(::apex::application) get_new_application(::object* pobjectContext);
-//   __transport(::apex::application) get_new_application(::object* pobjectContext, const char* pszAppId);
+//   __transport(::apex::application) get_new_application(::object* pobject);
+//   __transport(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
 
-   virtual ::e_status initialize_application(::apex::application * papplication, ::object* pobjectContext);
+   virtual ::e_status initialize_application(::apex::application * papplication, ::context_object* pobject);
 
 };
 

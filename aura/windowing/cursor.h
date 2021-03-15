@@ -8,7 +8,8 @@ namespace windowing
 
 
    class CLASS_DECL_AURA cursor :
-      virtual public ::layered
+      virtual public ::matter,
+      virtual public ::osdata_array
    {
    public:
 
@@ -28,6 +29,8 @@ namespace windowing
       virtual ::e_status load_default_cursor(enum_cursor ecursor);
 
       virtual ::file::path get_file_path() const;
+
+      //virtual ::e_status set_cursor_file(const ::file::path& pathParam, bool bFromCache);
 
 
    };

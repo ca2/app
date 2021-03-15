@@ -32,10 +32,10 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::initialize(::layered * pobjectContext)
+::e_status interprocess_intercommunication::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -57,9 +57,9 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    }
 
-   int iPid = Context.os().get_pid();
+   int iPid = get_context()->os().get_pid();
 
-   //defer_add_module(Context.file().module(), iPid);
+   //defer_add_module(get_context()->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -154,10 +154,10 @@ bool interprocess_intercommunication::start(const string & strApp)
 
          int iSubStep;
 
-         while(iStep < 8 && ::thread_get_run())
+         while(iStep < 8 && ::task_get_run())
          {
 
-            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
+            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::task_get_run(); iSubStep++)
             {
 
                sleep(100_ms);
@@ -531,7 +531,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          strCommandLine = vara[2];
 
-         payload["continue"] = Application.on_additional_local_instance(payload["handled"], strModule, vara[1], strCommandLine);
+         payload["continue"] = get_application()->on_additional_local_instance(payload["handled"], strModule, vara[1], strCommandLine);
 
       }
       else if (strMember == "on_new_instance")
@@ -551,7 +551,7 @@ void interprocess_intercommunication::on_new_instance(const string & strModule, 
 
    defer_add_module(strModule, idPid);
 
-   Application.on_new_instance(strModule, idPid);
+   get_application()->on_new_instance(strModule, idPid);
 
 }
 
@@ -748,7 +748,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    m_straModule = straUnique;
 
-   ::file::path pathThisModule = Context.file().module();
+   ::file::path pathThisModule = get_context()->file().module();
 
    string strItem;
 
@@ -769,7 +769,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    strModuleList = m_straModule.implode("\n");
 
-   Context.file().put_contents(pathModule,strModuleList);
+   get_context()->file().put_contents(pathModule,strModuleList);
 
 #endif
 

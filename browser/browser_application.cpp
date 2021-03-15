@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::context_object * pcontextobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -50,11 +50,11 @@ namespace browser
          // SimpleApp implements application-level callbacks for the browser process.
 // It will create the first browser instance in OnContextInitialized() after
 // CEF has initialized.
-         CefMainArgs mainargs(System->m_hinstance);
+         CefMainArgs mainargs(psystem->m_hinstance);
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;
-         get_context_application() = new SimpleApp();
+         get_application() = new SimpleApp();
 
          WCHAR szTempPath[MAX_PATH] = L"";
          GetTempPathW(_countof(szTempPath), szTempPath);
@@ -69,7 +69,7 @@ namespace browser
 
          CefString(&settings.cache_path) = szRelative;
 
-         CefInitialize(mainargs, settings, get_context_application(), nullptr);
+         CefInitialize(mainargs, settings, get_application(), nullptr);
 
       }
 
@@ -227,7 +227,7 @@ namespace browser
 
 
 extern "C"
-::apex::library * app_browser_get_new_library(::layered * pobjectContext)
+::apex::library * app_browser_get_new_library(::context_object * pcontextobject)
 {
 
    return new ::apex::single_application_library < ::browser::application > (pobject, "app/browser");
@@ -235,7 +235,7 @@ extern "C"
 }
 
 
-::aura::application * get_acid_app(::layered * pobjectContext)
+::aura::application * get_acid_app(::context_object * pcontextobject)
 {
 
    return new ::browser::application(pobject);

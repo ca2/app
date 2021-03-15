@@ -37,10 +37,10 @@ imaging::~imaging()
 }
 
 
-::e_status imaging::initialize(::layered * pobjectContext)
+::e_status imaging::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pcontextobject);
 
    if (!estatus)
    {
@@ -84,7 +84,7 @@ i32                 cy)
    SIZE_F64                   sizeText;
    ::rectangle_i32                  rectText;
 
-   auto psession = Session;
+   auto psession = get_session();
 
 //   if(crShadow == (color32_t)-1)
 //      crShadow = crButtonShadow;
@@ -977,7 +977,7 @@ return pil;
 //   //   i32 cx = rectangle.width();
 //   i32 cy = rectangle.height();
 //
-//   ::draw2d::bitmap_pointer spbmpTemp(get_object());
+//   ::draw2d::bitmap_pointer spbmpTemp(this);
 //   if(!spbmpTemp->CreateCompatibleBitmap(pgraphics,1,1))
 //   {
 //      return false;
@@ -1650,9 +1650,9 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    /*i32 iOriginalMapMode ;
 
-   ::draw2d::bitmap_pointer spbmpTemp(get_object());
+   ::draw2d::bitmap_pointer spbmpTemp(this);
 
-   ::draw2d::bitmap_pointer bitmapA(get_object());
+   ::draw2d::bitmap_pointer bitmapA(this);
 
    iOriginalMapMode = pgraphics->GetMapMode();
    pgraphics->SetMapMode(MM_TEXT);
@@ -4299,7 +4299,7 @@ i32 w3)
 //   BITMAP   bmDst;
 //   i32 iLimitYDst;
 //
-//   ::draw2d::bitmap_pointer bitmapDst(get_object());
+//   ::draw2d::bitmap_pointer bitmapDst(this);
 //
 //   memory memstorageA;
 //   memory memstorageB;
@@ -4330,7 +4330,7 @@ i32 w3)
 //   BITMAP   bmSrc;
 //   i32 iLimitYSrc;
 //
-//   ::draw2d::bitmap_pointer bitmapSrc(get_object());
+//   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcSrc,bmSrc,bmiSrc,
@@ -4425,7 +4425,7 @@ i32 w3)
 //   }
 //   else
 //   {
-//      ::draw2d::bitmap_pointer bitmap(get_object());
+//      ::draw2d::bitmap_pointer bitmap(this);
 //      bitmap->CreateCompatibleBitmap(pdcDst,1,1);
 //      //      ::draw2d::bitmap * pitmap = pdcDst->set(bitmap);
 
@@ -4479,7 +4479,7 @@ i32 w3)
 //
 //
 //
-//   ::draw2d::bitmap_pointer bitmapDest(get_object());
+//   ::draw2d::bitmap_pointer bitmapDest(this);
 //   memory memstorageA;
 //   memory memstorageB;
 //
@@ -4509,7 +4509,7 @@ i32 w3)
 //   BITMAP   bmSrc;
 //   i32 iLimitYSrc;
 //
-//   ::draw2d::bitmap_pointer bitmapSrc(get_object());
+//   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcSrc,bmSrc,bmiSrc,
@@ -4604,7 +4604,7 @@ i32 w3)
 //   }
 //   else
 //   {
-//      ::draw2d::bitmap_pointer bitmap(get_object());
+//      ::draw2d::bitmap_pointer bitmap(this);
 //      bitmap->CreateCompatibleBitmap(pdcDst,1,1);
 //      //      ::draw2d::bitmap * pitmap = pdcDst->set(bitmap);
 
@@ -4880,7 +4880,9 @@ color32_t cr)
 
    }
 
-   if (!::aura::get_system()->draw2d()->channel_spread__32CC(
+   __pointer(::aura::system) psystem = m_psystem;
+
+   if (!psystem->draw2d()->channel_spread__32CC(
          pimageDst,
          pimageSrc,
          iChannel,
@@ -5055,11 +5057,11 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
+   __pointer(::aura::system) psystem = m_psystem;
 
+   synchronization_lock synchronizationlock(psystem->draw2d()->mutex());
 
-   synchronization_lock synchronizationlock(::aura::get_system()->draw2d()->mutex());
-
-   auto & pmemory = ::aura::get_system()->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
+   auto & pmemory = psystem->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
 
    pmemory.defer_create_new();
 
@@ -5560,7 +5562,7 @@ breakFilter2:
 //   BITMAP   bmDest;
 //   i32 iLimitYDest;
 //
-//   ::draw2d::bitmap_pointer bitmapDest(get_object());
+//   ::draw2d::bitmap_pointer bitmapDest(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcDst,
@@ -5588,7 +5590,7 @@ breakFilter2:
 //   BITMAP   bmSrc;
 //   i32 iLimitYSrc;
 //
-//   ::draw2d::bitmap_pointer bitmapSrc(get_object());
+//   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcSrc,bmSrc,bmiSrc,
@@ -5687,7 +5689,7 @@ breakFilter2:
 //   }
 //   else
 //   {
-//      ::draw2d::bitmap_pointer bitmap(get_object());
+//      ::draw2d::bitmap_pointer bitmap(this);
 //      bitmap->CreateCompatibleBitmap(pdcDst,1,1);
 //      //      ::draw2d::bitmap * pitmap = pdcDst->set(bitmap);
 
@@ -6107,7 +6109,7 @@ i32      iSize)
 //   BITMAP   bmDest;
 //   i32 iLimitYDest;
 //
-//   ::draw2d::bitmap_pointer bitmapDest(get_object());
+//   ::draw2d::bitmap_pointer bitmapDest(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcDst,
@@ -6136,7 +6138,7 @@ i32      iSize)
 //   BITMAP   bmSrc1;
 //   i32 iLimitYSrc1;
 //
-//   ::draw2d::bitmap_pointer bitmapSrc1(get_object());
+//   ::draw2d::bitmap_pointer bitmapSrc1(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcSrc1,bmSrc1,bmiSrc1,
@@ -6159,7 +6161,7 @@ i32      iSize)
 //   BITMAP   bmSrc2;
 //   i32 iLimitYSrc2;
 //
-//   ::draw2d::bitmap_pointer bitmapSrc2(get_object());
+//   ::draw2d::bitmap_pointer bitmapSrc2(this);
 //
 //   if(!GetDeviceContext24BitsCC(
 //            pdcSrc2,bmSrc2,bmiSrc2,
@@ -6267,7 +6269,7 @@ i32      iSize)
 //   }
 //   else
 //   {
-//      ::draw2d::bitmap_pointer bitmap(get_object());
+//      ::draw2d::bitmap_pointer bitmap(this);
 //      bitmap->CreateCompatibleBitmap(pdcDst,1,1);
 //      //      ::draw2d::bitmap * pitmap = pdcDst->set(bitmap);
 
@@ -6854,7 +6856,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
 //#ifndef __APPLE__
 //
-// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
+// ::e_status imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;

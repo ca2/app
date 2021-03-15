@@ -17,7 +17,7 @@ namespace simpledb
       i32                           m_iErrorCode;
 
 
-      database(::layered * pobjectContext);
+      database(::context_object * pcontextobject);
 
 
       virtual i32 connect();

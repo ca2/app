@@ -116,7 +116,7 @@ public:
          pb = (byte *) memory_alloc(c);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
-         //::acme::application * papp = get_context_application();
+         //::acme::application * papp = get_application();
          //TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return pb;

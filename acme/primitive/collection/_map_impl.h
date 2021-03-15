@@ -10,10 +10,10 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
 {
 
    ASSERT_VALID(this);
-   ASSERT(m_nCount == 0);
+   ASSERT(this->m_nCount == 0);
    ASSERT(nHashSize > 0);
 
-   m_hashtable.InitHashTable(nHashSize,bAllocNow);
+   this->m_hashtable.InitHashTable(nHashSize,bAllocNow);
 
 }
 
@@ -24,19 +24,19 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::dump(dump_context& dumpcontex
 
    ::matter::dump(dumpcontext);
 
-   dumpcontext << "with " << m_nCount << " elements";
+   dumpcontext << "with " << this->m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
       // Dump in format "[key] -> value"
 
-      const assoc* passoc = get_start();
-      while (passoc != nullptr)
+      const association* passociation = get_start();
+      while (passociation != nullptr)
       {
-         passoc = get_next(passoc);
+         passociation = get_next(passociation);
          dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &passoc->element1(), 1);
+         dump_elements<KEY>(dumpcontext, &passociation->element1(), 1);
          dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &passoc->element2(), 1);
+         dump_elements<VALUE>(dumpcontext, &passociation->element2(), 1);
       }
    }
 

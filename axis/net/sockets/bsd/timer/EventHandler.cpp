@@ -35,7 +35,7 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::layered * pobject, ::apex::log *point_i32) :
+   EventHandler::EventHandler(::object * pobject, ::apex::log *point_i32) :
       ::object(pobject),
       socket_handler(pobject, point_i32),
       m_bQuit(false), m_ptcpsocket(nullptr)

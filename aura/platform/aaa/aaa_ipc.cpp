@@ -28,7 +28,7 @@ namespace aura
       }
 
 
-      //ipc::ipc(::layered * pobjectContext) :
+      //ipc::ipc(::context_object * pcontextobject) :
       //   ::object(pobject),
       //   base(pobject),
       //   tx(pobject),

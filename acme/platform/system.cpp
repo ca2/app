@@ -15,6 +15,8 @@ namespace acme
    system::system()
    {
 
+      m_psystem = this;
+
 #ifdef LINUX
 
       m_elinuxdistribution = e_linux_distribution_unknown;
@@ -25,6 +27,8 @@ namespace acme
 
       os_construct();
 
+      m_psystem = this;
+
       if (g_psystem == nullptr)
       {
 
@@ -32,7 +36,7 @@ namespace acme
 
       }
 
-      set_os_data(LAYERED_ACME, this);
+      //set_os_data(LAYERED_ACME, this);
 
    }
 
@@ -58,6 +62,13 @@ namespace acme
 //   }
 
 
+   ::xml::xml* system::_xml()
+   {
+
+      return nullptr;
+
+   }
+
    ::e_status system::create_os_node()
    {
 
@@ -69,6 +80,15 @@ namespace acme
       }
 
       auto estatus = __construct(m_pnode);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnode->initialize_matter(this);
 
       if(!estatus)
       {
@@ -133,85 +153,27 @@ namespace acme
    }
 
 
-   void system::on_subject(::subject::subject *psubject)
+
+   ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      if (psubject->m_esubject == e_subject_prepare)
-      {
-
-         if (psubject->id() == id_os_dark_mode)
-         {
-
-            auto pnode = node();
-
-            if (pnode)
-            {
-
-               pnode->os_calc_user_dark_mode();
-
-            }
-
-         }
-         else if (psubject->id() == id_os_user_theme)
-         {
-
-            string strTheme = ::user::_os_get_user_theme();
-
-            if (strTheme != m_strOsUserTheme)
-            {
-
-               m_strOsUserTheme = strTheme;
-
-               psubject->m_esubject = e_subject_process;
-
-            }
-            else
-            {
-
-               psubject->m_esubject = e_subject_not_modified;
-
-            }
-
-         }
-
-      }
-
-      if (psubject->m_esubject == e_subject_process)
-      {
-
-         if (psubject->id() == id_os_user_theme)
-         {
-
-            ::user::_os_process_user_theme(m_strOsUserTheme);
-
-         }
-
-         psubject->m_esubject = e_subject_deliver;
-
-      }
-
-      ::subject::manager::on_subject(psubject);
+      return error_interface_only;
 
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   ::e_status system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
+      return error_interface_only;
 
    }
 
 
-   void system::open_link(string strUrl, string strProfile, string strTarget)
+   ::e_status system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
-
-   }
-
-
-   void system::open_url(string strUrl, string strProfile, string strTarget)
-   {
-
+      return ::error_interface_only;
 
    }
 
@@ -245,59 +207,59 @@ namespace acme
    }
 
 
-   ::task * system::get_task(ithread_t ithread)
+   ::task * system::get_task(itask_t itask)
    {
 
       synchronization_lock synchronizationlock(&m_mutexTask);
 
-      return m_taskmap[ithread];
+      return m_taskmap[itask];
 
    }
 
 
-   ithread_t system::get_task_id(::task * ptask)
+   itask_t system::get_task_id(const ::task * ptask)
    {
 
       synchronization_lock synchronizationlock(&m_mutexTask);
 
-      ithread_t ithread = null_ithread;
+      itask_t itask = null_ithread;
 
-      if (!m_taskidmap.lookup(ptask, ithread))
+      if (!m_taskidmap.lookup((::task *const ) ptask, itask))
       {
 
          return 0;
 
       }
 
-      return ithread;
+      return itask;
 
    }
 
 
-   void system::set_task(ithread_t ithread, ::task * ptask)
+   void system::set_task(itask_t itask, ::task * ptask)
    {
 
       synchronization_lock synchronizationlock(&m_mutexTask);
 
-      m_taskmap[ithread].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      m_taskmap[itask].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
-      m_taskidmap[ptask] = ithread;
+      m_taskidmap[ptask] = itask;
 
    }
 
 
-   void system::unset_task(ithread_t ithread, ::task * ptask)
+   void system::unset_task(itask_t itask, ::task * ptask)
    {
 
       synchronization_lock synchronizationlock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 
-      m_taskmap[ithread].release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+      m_taskmap[itask].release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
 #endif
 
-      m_taskmap.remove_key(ithread);
+      m_taskmap.remove_key(itask);
 
       m_taskidmap.remove_key(ptask);
 
@@ -312,7 +274,7 @@ namespace acme
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::context_object* pcontextobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto presult = __new(::future < ::conversation >);
@@ -373,6 +335,68 @@ namespace acme
    {
 
       return ::g_psystem;
+
+   }
+
+
+
+   bool system::is_task_on(itask_t id)
+   {
+
+      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+
+      return m_mapTaskOn.plookup(id) != nullptr;
+
+   }
+
+
+   bool system::is_active(::task * ptask)
+   {
+
+      if (::is_null(ptask))
+      {
+
+         return false;
+
+      }
+
+      return is_task_on(m_itask);
+
+   }
+
+
+   void system::set_task_on(itask_t id)
+   {
+
+      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+
+      m_mapTaskOn.set_at(id, id);
+
+   }
+
+
+   void system::set_task_off(itask_t id)
+   {
+
+      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+
+      m_mapTaskOn.remove_key(id);
+
+   }
+
+
+   task_group * system::task_group(enum e_priority)
+   {
+
+      return nullptr;
+
+   }
+
+
+   task_tool * system::task_tool(::enum_task_tool etool)
+   {
+
+      return nullptr;
 
    }
 

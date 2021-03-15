@@ -6,8 +6,8 @@ namespace user
 {
 
 
-   tooltip::tooltip(::layered * pobjectContext):
-      ::object(pobjectContext),
+   tooltip::tooltip(::context_object * pcontextobject):
+      ::object(pobject),
       m_font(e_create)
    {
 

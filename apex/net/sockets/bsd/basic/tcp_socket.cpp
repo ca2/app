@@ -48,7 +48,7 @@ void SSL_init_app_data2_3_idx(void)
    {
       SSL_app_data2_idx =
       SSL_get_ex_new_index(0,
-                           (void *) "Second Application Data for SSL",
+                           (void *) "Second papplication Data for SSL",
                            nullptr, nullptr, nullptr);
    }
 
@@ -59,7 +59,7 @@ void SSL_init_app_data2_3_idx(void)
 
    SSL_app_data3_idx =
    SSL_get_ex_new_index(0,
-                        (void *) "Third Application Data for SSL",
+                        (void *) "Third papplication Data for SSL",
                         nullptr, nullptr, nullptr);
 
 }
@@ -188,12 +188,13 @@ namespace sockets
 #ifdef _MSC_VER
 #pragma warning(disable:4355)
 #endif
-   tcp_socket::tcp_socket(base_socket_handler& h):
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h)
-      ,ibuf(TCP_BUFSIZE_READ)
+   tcp_socket::tcp_socket():
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h)
+      //,
+      ibuf(TCP_BUFSIZE_READ)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -219,12 +220,12 @@ namespace sockets
 #ifdef _MSC_VER
 #pragma warning(disable:4355)
 #endif
-   tcp_socket::tcp_socket(base_socket_handler& h,memsize isize,memsize osize):
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h)
-      ,ibuf(isize)
+   tcp_socket::tcp_socket(memsize isize,memsize osize):
+      //::object(&h),
+  //    base_socket(h),
+//      socket(h),
+//      stream_socket(h),
+      ibuf(isize)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -265,15 +266,15 @@ namespace sockets
    /*
    bool tcp_socket::open(in_addr ip,port_t port,bool skip_socks)
    {
-      address ad(get_context_application(), ip, port);
-      address local(get_object());
+      address ad(get_application(), ip, port);
+      address local(this);
       return open(ad, local, skip_socks);
    }
 
 
    bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
    {
-      address ad(get_context_application(), ip, port);
+      address ad(get_application(), ip, port);
       return open(ad, skip_socks);
    }
    */
@@ -306,7 +307,7 @@ namespace sockets
 
       }
 
-      if(Handler().get_count() >= FD_SETSIZE)
+      if(socket_handler()->get_count() >= FD_SETSIZE)
       {
 
 
@@ -320,10 +321,10 @@ namespace sockets
       SetConnecting(false);
       SetSocks4(false);
 
-      if(Handler().PoolEnabled())
+      if(socket_handler()->PoolEnabled())
       {
 
-         __pointer(base_socket_handler::pool_socket) ppoolsocket = Handler().FindConnection(SOCK_STREAM,"tcp",ad);
+         __pointer(base_socket_handler::pool_socket) ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
 
          if(ppoolsocket)
          {
@@ -367,17 +368,27 @@ namespace sockets
       in_addr addrSocks4 = GetSocks4Host();
       if(!skip_socks && !__is_zero(addrSocks4) && GetSocks4Port())
       {
+         
          ::net::address sa(GetSocks4Host(),GetSocks4Port());
+
          {
+            
             string sockshost;
-            ::apex::get_system()->sockets().net().convert(sockshost,GetSocks4Host());
+
+            auto paddressdepartment = ::net::address_department();
+
+            paddressdepartment->convert(sockshost,GetSocks4Host());
 
             INFO(log_this, "open",0,"Connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
 
          }
+
          SetSocks4();
+
          n = connect(s,sa.sa(),sa.sa_len());
+
          SetRemoteHostname(sa);
+
       }
       else
       {
@@ -398,7 +409,7 @@ namespace sockets
             attach(s);
             SetConnecting(true); // this flag will control fd_set's
          }
-         else if(Socks4() && Handler().Socks4TryDirect()) // retry
+         else if(Socks4() && socket_handler()->Socks4TryDirect()) // retry
          {
             ::closesocket(s);
             return open(ad,true);
@@ -443,12 +454,14 @@ namespace sockets
       if(IsIpv6())
       {
 
-         if(!Handler().ResolverEnabled() || ::apex::get_system()->sockets().net().isipv6(host))
+         auto paddressdepartment = ::net::address_department();
+
+         if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
          {
 
             in6_addr a;
 
-            if(!::apex::get_system()->sockets().net().convert(a,host))
+            if(!paddressdepartment->convert(a,host))
             {
 
                SetCloseAndDelete();
@@ -478,15 +491,17 @@ namespace sockets
 
       }
 
-      if(!Handler().ResolverEnabled() || ::apex::get_system()->sockets().net().isipv4(host))
+      auto paddressdepartment = ::net::address_department();
+
+      if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
       {
 
          in_addr l;
 
-         if (!::apex::get_system()->sockets().net().convert(l, host))
+         if (!paddressdepartment->convert(l, host))
          {
             
-            WARN("::apex::get_system()->sockets().net().convert failed");
+            WARN("paddressdepartment->convert failed");
             
             SetCloseAndDelete();
             
@@ -521,7 +536,9 @@ namespace sockets
    void tcp_socket::OnResolved(i32 id,const ::net::address & a)
    {
 
-      INFO("OnResolved id %d addr %s port %d\n",id,::apex::get_system()->sockets().net().canonical_name(a).c_str(),a.u.s.m_port);
+      auto paddressdepartment = ::net::address_department();
+
+      INFO("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 
       if(id == m_resolver_id)
       {
@@ -530,9 +547,9 @@ namespace sockets
             ::net::address addrLocal;
             if(open(a,addrLocal))
             {
-               if(!Handler().Valid(this))
+               if(!socket_handler()->Valid(this))
                {
-                  Handler().add(this);
+                  socket_handler()->add(this);
                }
             }
          }
@@ -981,7 +998,7 @@ namespace sockets
          bool br;
          bool bw;
          bool bx;
-         Handler().get(GetSocket(),br,bw,bx);
+         socket_handler()->get(GetSocket(),br,bw,bx);
          if(m_obuf.get_size())
             set(br,true);
          else
@@ -1226,7 +1243,7 @@ namespace sockets
          bool br;
          bool bw;
          bool bx;
-         Handler().get(GetSocket(),br,bw,bx);
+         socket_handler()->get(GetSocket(),br,bw,bx);
          if(m_obuf.get_size())
             set(br,true);
          else
@@ -1282,7 +1299,7 @@ namespace sockets
       WARN(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
 
 
-      if(!Handler().Socks4TryDirect())
+      if(!socket_handler()->Socks4TryDirect())
       {
          SetConnecting(false);
          SetCloseAndDelete();
@@ -1370,7 +1387,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(::apex::get_system()->sockets().m_clientcontextmap.m_mutex);
+      //synchronization_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
 
       if (is_true("from_pool"))
          return;
@@ -1477,7 +1494,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(::apex::get_system()->sockets().m_servercontextmap.m_mutex);
+      //synchronization_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
 
       {
          if(m_psslcontext.is_set()
@@ -1585,7 +1602,7 @@ namespace sockets
                if (m_psslcontext && m_psslcontext->m_pclientcontext && m_psslcontext->m_pclientcontext->m_psslsession)
                {
 
-                  free_ssl_session();
+                  destroy_ssl_session();
 
                }
 
@@ -1655,7 +1672,7 @@ namespace sockets
 
                         m_psslcontext->m_iSslCtxRetry = 1;
 
-                        free_ssl_session();
+                        destroy_ssl_session();
 
                         SSL_clear(m_psslcontext->m_ssl);
 
@@ -1800,7 +1817,9 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      ssl_client_context_map & clientcontextmap = ::apex::get_system()->sockets().m_clientcontextmap;
+      __pointer(::apex::system) psystem = get_system();
+
+      ssl_client_context_map & clientcontextmap = psystem->sockets().m_clientcontextmap;
 
       __pointer(ssl_client_context) psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
@@ -1824,8 +1843,9 @@ namespace sockets
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __new(ssl_client_context(get_context_application(),
-                                                meth_in != nullptr ? meth_in : TLS_server_method()));
+         m_psslcontext->m_pclientcontext = __new (ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
+
+         m_psslcontext->m_pclientcontext->initialize(get_application());
 
       }
 
@@ -2006,15 +2026,18 @@ namespace sockets
       {
          synchronization_lock synchronizationlock(mutex());
          int i;
-         int cnt = sizeof(::apex::get_system()->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+
+         __pointer(::apex::system) psystem = get_system();
+
+         int cnt = sizeof(psystem->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);
          int j;
          for (i = 0; i < cnt; ++i)
          {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);
-            ::memcpy_dup(m_ticketkeya[i].key_name, ::apex::get_system()->sockets().m_baTicketKey + j, 16);
-            ::memcpy_dup(m_ticketkeya[i].hmac_key, ::apex::get_system()->sockets().m_baTicketKey + j + 16, 16);
-            ::memcpy_dup(m_ticketkeya[i].aes_key, ::apex::get_system()->sockets().m_baTicketKey + j + 32, 16);
+            ::memcpy_dup(m_ticketkeya[i].key_name, psystem->sockets().m_baTicketKey + j, 16);
+            ::memcpy_dup(m_ticketkeya[i].hmac_key, psystem->sockets().m_baTicketKey + j + 16, 16);
+            ::memcpy_dup(m_ticketkeya[i].aes_key, psystem->sockets().m_baTicketKey + j + 32, 16);
          }
       }
 
@@ -2343,7 +2366,7 @@ namespace sockets
       if(Connecting())
       {
 
-         i32 iError = this->Handler().m_iSelectErrno;
+         i32 iError = this->socket_handler()->m_iSelectErrno;
 
          if(iError == ETIMEDOUT)
          {

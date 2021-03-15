@@ -19,7 +19,7 @@ namespace install
       string                           m_strCommandLine;
       bool                             m_bStarting;
 
-      starter_start(::layered * pobjectContext);
+      starter_start(::context_object * pcontextobject);
 
       ::u32 start();
 

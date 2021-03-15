@@ -1738,7 +1738,7 @@ namespace user
    }
 
 
-   ::e_status interaction::finish(::context_object * pcontextobjectFinish)
+   ::e_status interaction::finish(::property_object* pcontextobjectFinish)
    {
 
       //if (!m_bUserInteractionSetFinish)
@@ -1763,7 +1763,7 @@ namespace user
    }
 
 
-   void interaction::notify_on_finish(::context_object * pcontextobject)
+   void interaction::notify_on_finish(::property_object* pcontextobject)
    {
 
       ::user::primitive::notify_on_finish(pcontextobject);
@@ -6582,7 +6582,7 @@ namespace user
    }
 
 
-   ::e_status interaction::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status interaction::set_finish_composites(::property_object* pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;

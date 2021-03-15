@@ -1316,7 +1316,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\user\_const.h" />
     <ClInclude Include="user\user\_user.h" />
     <ClInclude Include="user\user\control_descriptor_set.h" />
-    <ClInclude Include="user\user\form.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
     <None Include="base.def" />

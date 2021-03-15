@@ -259,6 +259,8 @@ namespace user
       if(!_create_impact(pcreator, pimpactdata))
       {
 
+         auto papplication = get_application();
+
          if (!_create_impact(papplication->cast< ::user::impact_creator>(), pimpactdata))
          {
 

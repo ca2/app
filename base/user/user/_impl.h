@@ -87,13 +87,6 @@ namespace user
    }
 
 
-} //   namespace user
-
-
-namespace user
-{
-
-
    inline ::base::session* menu_interaction::get_session() const
    {
 
@@ -102,27 +95,18 @@ namespace user
    }
 
 
-   inline ::base::application* get_application() const
+   inline ::base::application* form_control::get_application() const
    {
       
       return m_papplication ? m_papplication.cast < ::base::application >() : nullptr;
    
    }
-   inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
 
 
-   inline ::base::system* form::get_system() const
-   {
+   inline ::base::session* form_control::get_session() const
+   { 
       
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr;
-   
-   }
-
-
-   inline ::base::user* form::user() const
-   {
-      
-      return get_session() ? get_session()->user() : nullptr; 
+      return m_psession ? m_psession.cast < ::base::session >() : nullptr; 
    
    }
 

@@ -509,6 +509,8 @@ namespace user
 
                   psession->copydesk().image_to_desk(pimage1);
 
+                  auto papplication = get_application();
+
                   papplication->image().save_image(::dir::system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;

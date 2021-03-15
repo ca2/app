@@ -80,9 +80,6 @@
     <ClInclude Include="user\user\control_descriptor_set.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\form.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\form_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>

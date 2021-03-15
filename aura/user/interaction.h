@@ -1018,11 +1018,11 @@ namespace user
 
       virtual void on_finish() override;
 
-      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish);
+      virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
 
-      virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr);
+      virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
 
-      virtual void notify_on_finish(::context_object * pcontextobjectFinish);
+      virtual void notify_on_finish(::property_object* pcontextobjectFinish) override;
 
       virtual void finalize() override;
 

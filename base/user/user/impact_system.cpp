@@ -227,7 +227,7 @@ namespace user
 
          strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.name().c_str());
 
-         papplication->message_box(strMessage);
+         message_box(strMessage);
 
          return nullptr;
 
@@ -274,7 +274,7 @@ namespace user
       if (!pframe->LoadFrame(m_strMatter,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
-                             __user_interaction(pcreate->m_puserinteractionParent), 
+                             pcreate->m_puserinteractionParent, 
                               pusersystem))
       {
 

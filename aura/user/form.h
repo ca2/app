@@ -24,10 +24,10 @@ namespace user
       virtual ~form();
 
 
-      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
-      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
-      inline ::base::system* get_system() const;
-      inline ::base::user* user() const;
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; }
+      inline ::user::user * user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
       virtual ::e_status initialize(::context_object * pcontextobject) override;

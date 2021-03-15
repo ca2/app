@@ -366,6 +366,22 @@ namespace user
    }
 
 
+   inline ::aura::application* form::get_application() const 
+   {
+      
+      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+   
+   }
+
+
+   inline ::aura::session* form::get_session() const 
+   {
+      
+      return m_psession ? m_psession.cast < ::aura::session >() : nullptr; 
+   
+   }
+
+
 } // namespace user
 
 

@@ -54,26 +54,29 @@ public:
 
    i32 add_std_matter(const char * pcsz, int iItem = -1);
 
-   i32 add_image(image_list * pil, int iImage, int iItem = - 1);
+   //i32 add_image(image_list * pil, int iImage, int iItem = - 1);
 
-   template < typename PRED >
-   i32 predicate_add_image(PRED pred, image_list * pil, int iImage, int iItem = -1)
-   {
+   //template < typename PRED >
+   //i32 predicate_add_image(PRED pred, image_list * pil, int iImage, int iItem = -1)
+   //{
 
-      auto pimage = pil->get_image(iImage);
+   //   auto pimage = pil->get_image(iImage);
 
-      pred(pimage);
+   //   pred(pimage);
 
-      return add_image(pimage, 0, 0, iItem);
+   //   return add_image(pimage, 0, 0, iItem);
 
-   }
+   //}
 
 
    ::image_pointer get_image(int iImage);
 
 
+   virtual bool color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity& opacity);
+
+
    bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, byte alpha);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity& opacity);
    bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
    i32 get_image_count() const;
 

@@ -236,16 +236,23 @@ SizingNone:;
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+
                ::rectangle_i32 rectA(rectClient);
 
                if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
                      || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
                      || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
+
                   ::rectangle_i32 rectangle;
+
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = psystem->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  auto psystem = get_system();
+
+
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -276,8 +283,8 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = psystem->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);

@@ -275,8 +275,7 @@ SizingNone:;
 
                      ::rectangle_i32 rectangle;
                      GetBorderRect(rectClient,rectangle,eside);
-                     class imaging & imaging = psystem->imaging();
-                     imaging.color_blend(pgraphics,
+                     pgraphics->color_blend(
                                          rectangle,
                                          crMoveableBorder,
                                          127);
@@ -290,8 +289,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = psystem->imaging();
-                  imaging.color_blend(pgraphics,
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -300,8 +298,7 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = psystem->imaging();
-                  imaging.color_blend(pgraphics,
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);

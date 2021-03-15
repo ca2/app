@@ -9,19 +9,14 @@ namespace bred
    session::session()
    {
 
-      m_pbredsession = this;
-
    }
 
 
    session::~session()
    {
 
-
-
-      m_pbredsession = nullptr;
-
    }
+
 
    void session::common_construct()
    {

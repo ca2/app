@@ -1234,7 +1234,7 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-   //               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
@@ -1279,7 +1279,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-   //            psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1316,7 +1316,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-   //            psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1538,7 +1538,7 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-   //               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
@@ -1583,7 +1583,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-   //            psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1643,7 +1643,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-   //            psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)

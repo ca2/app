@@ -250,9 +250,9 @@ SizingNone:;
                   GetBorderRect(rectClient, rectangle, eside);
 
 
-                  class imaging & imaging = psystem->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 

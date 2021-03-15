@@ -70,8 +70,7 @@ namespace user
       rgb(192, 192, 180),
       0.50);
 
-      imaging.color_blend(
-      m_pilBlend,
+      m_pilBlend->color_blend(
       MenuV033GetImageList(),
       rgb(255, 255, 240),
       64);

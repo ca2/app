@@ -589,7 +589,35 @@ namespace draw2d
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush);
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
-      virtual bool color_blend(const ::rectangle_f64& rectangle, const ::color::color& color, const ::opacity & opacity);
+      virtual bool color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);
+
+      virtual bool color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
+
+//      virtual bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color& cr, const ::opacity& opacity);
+
+      template < image_source_pointer IMAGE_SOURCE_POINTER >
+      bool color_blend(IMAGE_SOURCE_POINTER pimagesource, const ::color::color& color, const ::opacity& opacity)
+      {
+
+         if (!draw(pimagesource))
+         {
+
+            return false;
+
+         }
+
+         if (!color_blend(::rectangle_i32(pimagesource->size()), opacity))
+         {
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+
 
       //virtual bool rectangle_i32(const rectangle_f64 & rectangle_f64);
       //virtual bool draw_rectangle(const rectangle_f64 & rectangle_f64);

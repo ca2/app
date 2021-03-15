@@ -10,8 +10,6 @@ namespace bred
    system::system()
    {
 
-      m_pbredsystem = this;
-
       common_construct();
 
    }
@@ -20,9 +18,6 @@ namespace bred
    system::~system()
    {
 
-
-
-      m_pbredsystem = nullptr;
 
    }
 

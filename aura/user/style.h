@@ -38,6 +38,8 @@ namespace user
 
       __pointer(::user::style)               m_puserstyle;
 
+      __pointer(::aura::node)                m_pauranode;
+
       ::draw2d::graphics *                   m_pgraphics;
 
       ::draw2d::pen_pointer                  m_penFocusRect0;

@@ -13,11 +13,6 @@ namespace base
    user::user()
    {
 
-      m_pbaseuser = this;
-      m_pcoreuser = nullptr;
-      //m_pufeschema = nullptr;
-      //m_pufe = nullptr;
-
 
    }
 

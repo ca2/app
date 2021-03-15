@@ -345,11 +345,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = psystem->imaging();
-
-         imaging.color_blend(
-         pgraphics,
-         rectClient,
+         pgraphics->color_blend(rectClient,
          crBk,
          127);
 
@@ -928,18 +924,16 @@ namespace user
 
       auto psystem = get_system();
 
-      class imaging & imaging = psystem->imaging();
-
       ::rectangle_i32 rectangle = rectClient;
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,215,colorExt1BR,215);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,210,colorExt1BR,210);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,205,colorExt2BR,205);
+      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,205,colorExt2BR,205);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,200,colorExt2BR,200);
+      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),cr,200);
+      pgraphics->color_blend(rectangle,cr,200);
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;
@@ -955,7 +949,7 @@ namespace user
 
       pgraphics->set(pen);
 
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,220,colorExt1BR,220);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,220,colorExt1BR,220);
 
 
    }

@@ -610,11 +610,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = psystem->imaging();
-
-         imaging.color_blend(
-         pgraphics,
-         rectClient,
+         pgraphics->color_blend(rectClient,
          crBk,
          127);
 

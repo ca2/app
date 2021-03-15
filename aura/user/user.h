@@ -25,25 +25,24 @@ namespace user
    public:
 
 
-      ::base::user *                         m_pbaseuser;
-      ::core::user *                         m_pcoreuser;
-      ::user::primitive *                    m_pmousefocusLButtonDown;
-      ::user::primitive *                    m_pmousefocusRButtonDown;
-      string_array                           m_straEscape;
-      ::user::style_pointer                  m_puserstyle;
-      string_map < ::user::style_pointer >   m_mapUserStyle;
+      __pointer(::user::primitive)              m_pmousefocusLButtonDown;
+      __pointer(::user::primitive)              m_pmousefocusRButtonDown;
+      string_array                              m_straEscape;
+      ::user::style_pointer                     m_puserstyle;
+      string_map < ::user::style_pointer >      m_mapUserStyle;
 
-      __composite(::html::html)              m_phtml; // defined in upper level
+      __composite(::html::html)                 m_phtml; // defined in upper level
 
-      ::type                                 m_typeHtmlDocument;
-      ::type                                 m_typeHtmlView;
+      ::type                                    m_typeHtmlDocument;
+      ::type                                    m_typeHtmlView;
       
-      __pointer_array(::user::interaction)   m_uiptraToolWindow;
+      __pointer_array(::user::interaction)      m_uiptraToolWindow;
 
-      __pointer(::windowing::windowing)      m_pwindowing;
+      __pointer(::windowing::windowing)         m_pwindowing;
 
-      ::mutex                                  m_mutexRunnable;
-      list < __pointer(::matter) >        m_listRunnable;
+      ::mutex                                   m_mutexRunnable;
+
+      ::list < __pointer(::matter) >            m_listRunnable;
 
 
       user();

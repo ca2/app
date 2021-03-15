@@ -25,10 +25,6 @@ namespace user
    user::user()
    {
 
-      m_pcoreuser = nullptr;
-      //m_pufeschema = nullptr;
-      //m_pufe = nullptr;
-
       ::initialize_user_mutex();
       initialize_children_mutex();
 

@@ -1006,7 +1006,7 @@ namespace lite
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1051,7 +1051,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1088,7 +1088,7 @@ namespace lite
 
 /*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1313,7 +1313,7 @@ namespace lite
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1358,7 +1358,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1418,7 +1418,7 @@ namespace lite
 
 /*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
             }
             else if (uImage != 0xffffffff)

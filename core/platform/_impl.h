@@ -6,19 +6,27 @@ namespace core
 {
 
 
-   inline ::base::system* application::get_system()
+   inline ::core::system* application::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr;
+      return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr;
 
    }
 
 
-   inline ::base::system* session::get_system() const
+   inline ::core::system* session::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr;
+      return ::is_set(m_psystem) ? dynamic_cast <::core::system*> ((::acme::system *)m_psystem) : nullptr;
 
+   }
+
+
+   inline ::core::user* application::user() const
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 

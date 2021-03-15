@@ -1,8 +1,6 @@
 ﻿#include "framework.h"
 
 
-
-
 image_list::image_list()
 {
 
@@ -141,23 +139,39 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, byte alpha)
+bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity & opacity)
 {
 
    synchronization_lock synchronizationlock(mutex());
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   if (alpha == 255)
+   if (opacity.is_opaque())
    {
 
       return draw(pgraphics, iImage, point, iFlag);
 
    }
 
-   __pointer(::aura::system) psystem = get_system();
+   class ::image_drawing imagedrawing;
 
-   return psystem->imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
+   imagedrawing.set(::rectangle_i32(point, m_size), m_pimage, ::point_i32(iImage * m_size.cx, 0));
+
+   imagedrawing = ::color_filter(opacity);
+
+   return pgraphics->draw(imagedrawing);
+
+}
+
+
+bool image_list::color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity & opacity)
+{
+
+   copy_from(pimagelistSource);
+
+   m_pimage->g()->color_blend(m_pimage->rectangle(),  color, opacity);
+
+   return true;
 
 }
 
@@ -463,14 +477,14 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 //
 //}
 
-i32 image_list::add_image(image_list * pil, int iImage, int iItem)
-{
-
-   synchronization_lock synchronizationlock(pil->mutex());
-
-   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
-
-}
+//i32 image_list::add_image(image_list * pil, int iImage, int iItem)
+//{
+//
+//   synchronization_lock synchronizationlock(pil->mutex());
+//
+//   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
+//
+//}
 
 
 ::image_pointer image_list::get_image(int iImage)

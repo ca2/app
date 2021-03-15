@@ -844,21 +844,21 @@ namespace user
       if (crBk == 0)
       {
 
-         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
-            {
+         auto pimage = m_pil[iSize]->get_image(iImage);
+         
+         pimage->g()->color_blend(pimage->rectangle(), rgb(255, 255, 240), 64);
 
-               auto psystem = get_system();
+         m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
 
-               psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
-
-            }
-         , m_pil[iSize], iImage, iImage);
+         return iImage;
 
       }
       else
       {
 
-         iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+         auto pimage = m_pil[iSize]->get_image(iImage);
+
+         iImage = m_pilHover[iSize]->add_image(pimage, 0, 0,  iImage);
 
          {
 
@@ -897,7 +897,6 @@ namespace user
          return iImage;
 
       }
-
 
    }
 

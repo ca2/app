@@ -216,24 +216,17 @@ namespace user
 
          auto psession = get_session();
 
-         auto paurauser = psession->user();
+         auto puser = psession->user();
 
-         if (paurauser)
+         if (puser)
          {
 
-            auto puser = paurauser->m_pbaseuser;
+            auto pmenu = puser->menu();
 
-            if (puser)
+            if (pmenu)
             {
 
-               auto pmenu = puser->menu();
-
-               if (pmenu)
-               {
-
-                  uImage = pmenu->command_image(m_pmenuitem->m_id);
-
-               }
+               uImage = pmenu->command_image(m_pmenuitem->m_id);
 
             }
 

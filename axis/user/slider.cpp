@@ -215,13 +215,9 @@ namespace user
 
       get_client_rect(rectClient);
 
-      __pointer(::axis::system) psystem = get_system();
-
-      class imaging & imaging = psystem->imaging();
-
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      imaging.color_blend(pgraphics, rectClient, rgb(250,255,255), bAlpha1);
+      pgraphics->color_blend(rectClient, rgb(250,255,255), bAlpha1);
 
       ::rectangle_i32 rectangle;
 

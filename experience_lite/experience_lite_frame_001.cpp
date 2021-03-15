@@ -237,9 +237,9 @@ SizingNone:;
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = psystem->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -249,9 +249,9 @@ SizingNone:;
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = psystem->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
@@ -277,9 +277,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = psystem->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 

@@ -30,21 +30,21 @@
 
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
-//
-//namespace aura
-//{
-//
-//
-//   class system;
-//   class session;
-//   class application;
-//   class node;
-//
-//
+
+namespace aura
+{
+
+
+   class system;
+   class session;
+   class application;
+   class node;
+
+
 //   inline system * get_system() { return get_system()->layer(LAYERED_AURA); }
-//
-//
-//} // namespace aura
+
+
+} // namespace aura
 
 
 #if defined _UWP
@@ -1984,7 +1984,6 @@ namespace aura
    }
 
    class session;
-   class user;
 
 } // namespace aura
 

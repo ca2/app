@@ -125,7 +125,7 @@ namespace experience
             void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
             {
 
-               psystem->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+               pgraphics->color_blend(rectangle, cr, bAlpha);
 
             }
 

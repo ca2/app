@@ -1415,7 +1415,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.9);
+                  pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.9);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1458,7 +1458,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1495,7 +1495,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_none);
 
-               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.2);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.2);
 
             }
             else if (uImage != 0xffffffff)
@@ -1671,7 +1671,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.8);
+                  pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.8);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1714,7 +1714,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1766,7 +1766,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               psystem->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.20);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.20);
 
             }
             else if (uImage != 0xffffffff)

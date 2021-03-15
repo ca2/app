@@ -1377,7 +1377,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       point.y = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      psystem->imaging().color_blend(pgraphics, point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
+      pgraphics->color_blend(point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
 
       if (m_bColonPrefix)
       {

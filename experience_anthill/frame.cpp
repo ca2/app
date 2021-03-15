@@ -156,7 +156,7 @@ namespace experience
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               psystem->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+               pgraphics->color_blend(rectangle, cr, bAlpha);
 
             }
 

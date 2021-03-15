@@ -151,7 +151,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         psystem->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+         pgraphics->color_blend(rectangle, cr, bAlpha);
 
 
       }

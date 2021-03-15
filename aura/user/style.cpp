@@ -55,9 +55,9 @@ namespace user
 
       }
 
-      auto psystem = get_system();
+      __pointer(::aura::system) psystem = get_system();
 
-      auto pnode = psystem->node();
+      m_pnode = psystem->node();
 
       m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans_ui), 12.0);
 

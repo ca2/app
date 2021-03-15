@@ -17,14 +17,6 @@
 #pragma once
 
 
-//#undef System
-//#undef Sess
-//#undef App
-//
-//
-//#define System (::get_context_system()->m_pcoresystem)
-//#define Sess(pcontextsession) (pcontextsession->m_pcoresession)
-//#define App(pobject) (*pobject->get_app()->m_pcoreapplication)
 
 
 namespace base
@@ -35,9 +27,6 @@ namespace base
    class session;
    class application;
    class user;
-
-
-   inline system * get_system() { return ::core::get_system()->layer(LAYERED_CORE); }
 
 
 } // namespace base

@@ -2197,7 +2197,30 @@ namespace draw2d
    }
 
    
-   bool graphics::color_blend(const ::rectangle_f64& rectangle, const ::color::color& color, const ::opacity& opacity)
+   bool graphics::color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
+   {
+
+      ::rectangle_i32 rectangle(rectParam);
+
+      i32 x = rectangle.left;
+      i32 y = rectangle.top;
+      i32 cx = rectangle.width();
+      i32 cy = rectangle.height();
+
+      auto estatus1 = color_blend({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft, opacityTopLeft);
+
+      auto estatus2 = color_blend({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft, opacityTopLeft);
+
+      auto estatus3 = color_blend({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight, opacityBottomRight);
+
+      auto estatus4 = color_blend({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight, opacityBottomRight);
+
+      return estatus1 && estatus2 && estatus3 && estatus4 ;
+
+   }
+
+
+   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
    {
 
       set_alpha_mode(alpha_mode_blend);

@@ -24,9 +24,6 @@ namespace base
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      inline auto node() const { return get_system()->node(); }
-
-
       virtual void construct_fallback_theme();
 
       virtual void initialize_theme();

@@ -38,7 +38,7 @@ namespace user
 
       __pointer(::user::style)               m_puserstyle;
 
-      __pointer(::aura::node)                m_pauranode;
+      __pointer(::aura::node)                m_pnode;
 
       ::draw2d::graphics *                   m_pgraphics;
 
@@ -58,6 +58,9 @@ namespace user
       style();
       //style(::context_object * pcontextobject);
       virtual ~style();
+
+
+      inline auto node() const { return m_pnode; }
 
 
       virtual ::e_status initialize(::context_object* pcontextobject);

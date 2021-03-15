@@ -48,8 +48,6 @@ namespace axis
       //::draw2d::pen_pointer                  m_penFocusRect8;
       //::draw2d::pen_pointer                  m_penFocusRect9;
 
-
-
       style();
       style(::context_object * pcontextobject);
       virtual ~style();

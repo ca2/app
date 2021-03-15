@@ -59,7 +59,7 @@ namespace user
 
       m_pnode = psystem->node();
 
-      m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans_ui), 12.0);
+      m_pfont = ::write_text::point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
 
       return estatus;
 

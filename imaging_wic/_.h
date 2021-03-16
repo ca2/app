@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "acme/_start.h"
-
-
 #include "aura/_.h"
 #include "aura/operating_system.h"
 #include <wincodec.h>

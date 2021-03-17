@@ -59,7 +59,9 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         auto puser = User;
+         __pointer(::core::session) psession = get_session();
+
+         auto puser = psession->user();
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false));
 

@@ -179,7 +179,7 @@ namespace experience
 
       }
 
-      auto papplication = get_application();
+      auto papplication = pobject->get_application();
 
       {
 

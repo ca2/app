@@ -246,9 +246,9 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &plain_edit::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::_001OnRButtonUp);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::on_message_mouse_leave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
       MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
@@ -967,7 +967,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnRButtonUp(::message::message * pmessage)
+   void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1869,7 +1869,7 @@ namespace user
 
    }
 
-   void plain_edit::_001OnMouseMove(::message::message * pmessage)
+   void plain_edit::on_message_mouse_move(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1925,7 +1925,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnMouseLeave(::message::message * pmessage)
+   void plain_edit::on_message_mouse_leave(::message::message * pmessage)
    {
 
       m_itemHover = e_element_none;

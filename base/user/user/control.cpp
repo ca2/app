@@ -36,11 +36,11 @@
 //      ::user::box::install_message_routing(pchannel);
 //
 //      MESSAGE_LINK(e_message_create, pchannel, this, &::user::interaction::on_message_create);
-//      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::_001OnMouseMove);
+//      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::on_message_mouse_move);
 //      //
 //      //#ifdef WINDOWS
 //      //
-//      //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &::user::interaction::_001OnMouseLeave);
+//      //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &::user::interaction::on_message_mouse_leave);
 //      //
 //      //#else
 //      //
@@ -801,7 +801,7 @@
 //   //}
 //
 //
-//   //void control::_001OnMouseMove(::message::message * pmessage)
+//   //void control::on_message_mouse_move(::message::message * pmessage)
 //   //{
 //   //
 //   //   if (is_window_enabled())
@@ -834,7 +834,7 @@
 //   //}
 //
 //
-//   //void control::_001OnMouseLeave(::message::message * pmessage)
+//   //void control::on_message_mouse_leave(::message::message * pmessage)
 //   //{
 //
 //   //   if (m_eelementHover)

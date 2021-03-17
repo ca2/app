@@ -240,7 +240,11 @@ namespace user
 
       }
 
-      auto pdocument = create_xml_document();
+      __pointer(::aqua::system) psystem = get_system();
+
+      auto pxml = psystem->xml();
+
+      auto pdocument = pxml->create_document();
 
       if (!pdocument->load(strXml))
       {

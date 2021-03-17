@@ -44,7 +44,7 @@ namespace prompt
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(on_message_right_button_up);
 
       ::user::document * get_document();
 

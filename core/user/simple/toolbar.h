@@ -125,13 +125,13 @@ public:
 
    void _001OnImageListAttrib();
    DECL_GEN_SIGNAL(on_message_create);
-   //DECL_GEN_SIGNAL(_001OnMouseMove);
+   //DECL_GEN_SIGNAL(on_message_mouse_move);
    //DECL_GEN_SIGNAL(on_message_left_button_down);
    void _001OnTimer(::timer * ptimer) override;
    //DECL_GEN_SIGNAL(on_message_left_button_up);
    DECL_GEN_SIGNAL(_001OnNcCalcSize);
    //DECL_GEN_SIGNAL(_001OnNcHitTest);
-   //DECL_GEN_SIGNAL(_001OnMouseLeave);
+   //DECL_GEN_SIGNAL(on_message_mouse_leave);
 
    virtual void install_message_routing(::channel * pchannel) override;
 

@@ -20,19 +20,10 @@ namespace hi5
    {
 
 
-      authorization::authorization(::object * pobject, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
-         ::object(pobject)
+      authorization::authorization()
       {
 
-         m_strAuthorizationUrl=pszAuthorizationUrl;
-         m_bInteractive    = bInteractive;
-         m_bAuth    = bAuth;
-         m_strForm         = pszForm;
-         m_ptemplatePane   = new ::user::single_document_template(
-         "system/auth",
-         __type(::user::document),
-         __type(simple_frame_window),
-         psystem->get_pane_tab_view_type_info());
+
          m_pviewAuth       = nullptr;
          m_pdocAuth        = nullptr;
          m_pdocument            = nullptr;
@@ -42,6 +33,37 @@ namespace hi5
       authorization::~authorization()
       {
       }
+
+
+      ::e_status authorization::initialize_twitter_authorization(::object* pobject, const char* pszAuthorizationUrl, const char* pszForm, bool bAuth, bool bInteractive)
+      {
+
+         auto estatus = ::object::initialize(pobject);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         m_strAuthorizationUrl = pszAuthorizationUrl;
+         m_bInteractive = bInteractive;
+         m_bAuth = bAuth;
+         m_strForm = pszForm;
+
+         __pointer(::core::system) psystem = get_system();
+
+         m_ptemplatePane = new ::user::single_document_template(
+            "system/auth",
+            __type(::user::document),
+            __type(simple_frame_window),
+            psystem->get_pane_tab_view_type_info());
+
+         return estatus;
+
+      }
+
 
       string authorization::get_pin()
       {
@@ -64,13 +86,19 @@ namespace hi5
       void authorization::ensure_main_document()
       {
 
-         if(m_pdocument != nullptr)
+         if (m_pdocument != nullptr)
+         {
+
             return;
+
+         }
 
          __pointer(::create) pcreate(e_create);
 
+         auto psystem = get_system();
+
          pcreate->m_bMakeVisible = false;
-         pcreate->m_puserinteractionParent = psystem->cast < ::user::interaction >("top_parent");
+         pcreate->m_puserprimitiveParent = psystem->cast < ::user::interaction >("top_parent");
          pcreate->m_bOuterPopupAlertLike = true;
 
          m_ptemplatePane->do_request(pcreate);
@@ -99,6 +127,8 @@ namespace hi5
 
          string strAppName;
 
+         auto papplication = get_application();
+
          if(papplication->m_strAppName == "winactionarea")
          {
 
@@ -119,6 +149,8 @@ namespace hi5
          property_set set;
 
          property_set & setDoc = m_pdocAuth->form_document_property_set();
+
+         auto pcontext = get_context();
 
          setDoc["application_name"] = pcontext->http().get(strUrl,set);
 
@@ -201,6 +233,9 @@ namespace hi5
          ensure_main_document();
 
          m_pdocAuth->get_form_data()->m_pimpl->get_property_set() = set;
+
+         auto pcontext = get_context();
+
          m_pdocAuth->on_open_document(pcontext->dir().matter(pszMatter));
          display_main_frame();
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
@@ -218,7 +253,9 @@ namespace hi5
          if (pimpactdata->m_id == "twitter_authorization")
          {
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             m_pdocAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 

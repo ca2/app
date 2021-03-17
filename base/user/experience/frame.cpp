@@ -282,7 +282,7 @@ namespace experience
    }
 
 
-   bool frame::_001OnMouseMove(::message::mouse * pmouse)
+   bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       auto psession = get_session();
@@ -304,7 +304,7 @@ namespace experience
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
-//                  m_pframewindow->dock_manager()->_001OnMouseMove(pmouseHold);
+//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
 
                //});
 
@@ -314,7 +314,7 @@ namespace experience
             else
             {
 
-//               if (m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+//               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
 //               {
 //
 //                  return true;
@@ -336,7 +336,7 @@ namespace experience
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
-                  m_pframewindow->move_manager()->_001OnMouseMove(pmouseHold);
+                  m_pframewindow->move_manager()->on_message_mouse_move(pmouseHold);
 
                //});
 
@@ -346,7 +346,7 @@ namespace experience
             else
             {
 
-               if (m_pframewindow->move_manager()->_001OnMouseMove(pmouse))
+               if (m_pframewindow->move_manager()->on_message_mouse_move(pmouse))
                {
 
                   return true;
@@ -365,7 +365,7 @@ namespace experience
             //m_pframewindow->prodevian_predicate([this, pmouseHold->()
             //{
 
-               m_pframewindow->size_manager()->_001OnMouseMove(pmouseHold);
+               m_pframewindow->size_manager()->on_message_mouse_move(pmouseHold);
 
             //});
 
@@ -375,7 +375,7 @@ namespace experience
          else
          {
 
-            if (m_pframewindow->size_manager()->_001OnMouseMove(pmouse))
+            if (m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
             {
 
                return true;
@@ -454,14 +454,14 @@ namespace experience
          if(!m_pframewindow->move_manager()->window_is_moving()
                && !m_pframewindow->size_manager()->window_is_sizing()
             )
-             //  && m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+             //  && m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
             return true;
 
          if(!m_pframewindow->move_manager()->window_is_moving()
-               && m_pframewindow->size_manager()->_001OnMouseMove(pmouse))
+               && m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
             return true;
 
-         if(m_pframewindow->move_manager()->_001OnMouseMove(pmouse))
+         if(m_pframewindow->move_manager()->on_message_mouse_move(pmouse))
             return true;
 
       }

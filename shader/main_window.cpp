@@ -8,8 +8,10 @@ namespace app_shader
 {
 
 
-   window::window()
+   main_window::main_window()
    {
+
+      m_pdragmove.release();
 
       m_bTransparent = true;
 
@@ -28,13 +30,13 @@ namespace app_shader
    }
 
 
-   window::~window()
+   main_window::~main_window()
    {
 
    }
 
 
-   ::user::enum_translucency window::get_translucency(::user::style* pstyle) const
+   ::user::enum_translucency main_window::get_translucency(::user::style* pstyle) const
    {
 
       return ::user::e_translucency_present;
@@ -42,20 +44,20 @@ namespace app_shader
    }
 
 
-   void window::install_message_routing(::channel * psender)
+   void main_window::install_message_routing(::channel * psender)
    {
 
       ::user::main_window::install_message_routing(psender);
-      MESSAGE_LINK(e_message_create,psender,this,&window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &window::_001OnDestroy);
-      MESSAGE_LINK(e_message_key_down, psender, this, &window::_001OnKeyDown);
+      MESSAGE_LINK(e_message_create,psender,this,&main_window::on_message_create);
+      MESSAGE_LINK(e_message_destroy, psender, this, &main_window::_001OnDestroy);
+      MESSAGE_LINK(e_message_key_down, psender, this, &main_window::_001OnKeyDown);
 
    }
 
 
 
 
-   void window::on_message_create(::message::message * pmessage)
+   void main_window::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -80,13 +82,13 @@ namespace app_shader
    }
 
 
-   void window::_001OnDestroy(::message::message * pmessage)
+   void main_window::_001OnDestroy(::message::message * pmessage)
    {
 
    }
 
 
-   void window::_001OnKeyDown(::message::message* pmessage)
+   void main_window::_001OnKeyDown(::message::message* pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -102,7 +104,7 @@ namespace app_shader
    }
 
 
-   void window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)
@@ -117,7 +119,7 @@ namespace app_shader
    }
 
 
-   bool window::keyboard_focus_is_focusable() const
+   bool main_window::keyboard_focus_is_focusable() const
    {
 
       return true;
@@ -125,7 +127,7 @@ namespace app_shader
    }
 
 
-   void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectClient = layout().get_client_rect();
@@ -168,7 +170,7 @@ namespace app_shader
    }
 
 
-   void window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectClient = get_client_rect();
@@ -189,7 +191,7 @@ namespace app_shader
    }
 
 
-   bool window::on_click(const ::user::item& item)
+   bool main_window::on_click(const ::user::item& item)
    {
 
       if (::user::interaction::on_click(item))
@@ -215,7 +217,7 @@ namespace app_shader
    }
 
 
-   void window::update_shader()
+   void main_window::update_shader()
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -260,7 +262,7 @@ namespace app_shader
 
    }
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
    {
 
       if (::is_null(pitem))

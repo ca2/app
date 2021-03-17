@@ -11,6 +11,8 @@ namespace user
 
       m_bExtendOnParentIfClientOnly = true;
 
+      enable_drag_move();
+
    }
 
 

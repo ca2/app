@@ -33,8 +33,8 @@ namespace simple_ui
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
+      DECL_GEN_SIGNAL(on_message_mouse_leave);
 
 
       virtual bool keyboard_focus_is_focusable() const override;

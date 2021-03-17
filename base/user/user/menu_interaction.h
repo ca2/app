@@ -37,7 +37,7 @@ namespace user
       virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pgraphics);
 
       DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
 
 
       virtual void on_calc_size(calc_size * psize) override;

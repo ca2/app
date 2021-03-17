@@ -60,9 +60,15 @@ namespace filemanager
       if(_001HitTest_(pmouse->m_point, iItem))
       {
 
-         filemanager_document()->on_file_manager_open_folder(__new(::file::item(
-               pcontext->defer_process_path(m_foldera.GetFolder((::index)iItem).m_strFolderPath),
-               m_foldera.GetFolder((::index) iItem).m_strFolderPath)), ::e_source_user);
+         ::file::path filepathFinal = m_foldera.GetFolder((::index)iItem).m_strFolderPath;
+
+         auto pcontext = get_context();
+
+         ::file::path filepathUser = pcontext->defer_process_path(filepathFinal);
+
+         auto pfileitem = __new(::file::item(filepathUser, filepathFinal));
+
+         filemanager_document()->on_file_manager_open_folder(pfileitem, ::e_source_user);
 
       }
 
@@ -124,6 +130,8 @@ namespace filemanager
       Folder folder;
 
       ::file::listing patha;
+
+      auto papplication = get_application();
 
       papplication->dir().ls(patha, strParent);
 
@@ -385,7 +393,7 @@ namespace filemanager
    void folder_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

@@ -936,7 +936,11 @@ breakFilter2:
 //
 //      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-//      auto pdoc = create_xml_document();
+      //auto psystem = get_system();
+
+      //auto pxml = psystem->xml();
+
+      //auto pdoc = pxml->create_document();
 //
 //      __pointer(ttf_util) putil;
 //

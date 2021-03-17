@@ -96,7 +96,7 @@ protected:
    bool LoadMenuBar(::u32 nIDResource);
    void SetMenuID(::u32 nIDResource);
 
-   //DECL_GEN_SIGNAL(_001OnMouseMove);
+   //DECL_GEN_SIGNAL(on_message_mouse_move);
    //DECL_GEN_SIGNAL(_001OnNcMouseMove);
    DECL_GEN_SIGNAL(on_message_create);
    DECL_GEN_SIGNAL(_001OnKeyDown);

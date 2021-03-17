@@ -78,8 +78,6 @@ namespace core
    user::user()
    {
 
-      m_pcoreuser = this;
-
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
       m_ptemplatePlaceHolder = nullptr;
@@ -188,8 +186,6 @@ namespace core
    }
 
 
-
-
    ::e_status user::init()
    {
 
@@ -234,7 +230,6 @@ namespace core
       create_factory < ::account::view >();
 
       create_factory < form_document >();
-      create_factory < ::userex::split_view::Pane  >();
       create_factory < simple_child_frame  >();
       create_factory < ::userex::split_view  >();
 
@@ -259,9 +254,7 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
-
-
-      auto psystem = System;
+      auto psystem = get_system();
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -278,12 +271,10 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto puser = User;
-
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(form_document),
-         puser->get_simple_child_frame_type_info(),
+         get_simple_child_frame_type_info(),
          __type(::user::form_view)));
 
       ptemplate->initialize(this);
@@ -328,7 +319,11 @@ namespace core
 
       TRACE("::user::application::initialize");
 
-      auto pdocumentUser = create_xml_document();
+      auto pxml = psystem->xml();
+
+      auto pdocumentUser = pxml->create_document();
+
+      auto pcontext = get_context();
 
       string strUser = pcontext->file().as_string(pcontext->dir().appdata() / "langstyle_settings.xml");
 
@@ -355,19 +350,21 @@ namespace core
 
       }
 
-      if (strLangUser.has_char())
-      {
+      //auto papplication = get_se();
 
-         papplication->set_locale(strLangUser, ::e_source_database);
+      //if (strLangUser.has_char())
+      //{
 
-      }
+      //   psession->set_locale(strLangUser, ::e_source_database);
 
-      if (strStyleUser.has_char())
-      {
+      //}
 
-         papplication->set_schema(strStyleUser, ::e_source_database);
+      //if (strStyleUser.has_char())
+      //{
 
-      }
+      //   psession->set_schema(strStyleUser, ::e_source_database);
+
+      //}
 
       //string strLicense = papplication->get_license_id();
 
@@ -551,9 +548,7 @@ namespace core
 
          m_mapTemplate[type] = psystem;
 
-         auto puser = User;
-
-         puser->document_manager()->add_document_template(psystem);
+         document_manager()->add_document_template(psystem);
 
       }
 
@@ -579,7 +574,7 @@ namespace core
 
       pcreate->m_bMakeVisible = true;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -613,7 +608,7 @@ namespace core
    __pointer(::extended::future < ::conversation >) user::dialog_box(::object * pobject, const char * pszMatter, property_set & propertyset)
    {
 
-      auto pbox = __object(pobject)->__create_new < class ::userex::message_box >();
+      auto pbox = pobject->__create_new < class ::userex::message_box >();
 
       //auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
@@ -643,7 +638,7 @@ namespace core
    __pointer(::extended::future < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto pbox = __object(pobject)->__create_new < ::userex::message_box >();
+      auto pbox = pobject->__create_new < ::userex::message_box >();
 
       auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
@@ -655,10 +650,12 @@ namespace core
 
       auto psession = get_session();
 
+      auto papplication = pobject->get_application();
+
       if (::is_set(puiOwner))
       {
 
-         propertyset["application_name"] = App(__object(pobject)).m_strAppName;
+         propertyset["application_name"] = papplication->m_strAppName;
 
       }
       else if (::is_set(psession->m_papplicationCurrent))
@@ -776,7 +773,7 @@ namespace core
 
       UNREFERENCED_PARAMETER(puiOwner);
 
-      auto pbox = __object(pobject)->__create_new < ::userex::message_box >();
+      auto pbox = pobject->__create_new < ::userex::message_box >();
 
       auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
@@ -784,7 +781,9 @@ namespace core
 
       //pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      string strTitle = App(__object(pobject)).get_title();
+      auto papplication = pobject->get_application();
+
+      string strTitle = papplication->get_title();
 
       pbox->payload("application_name") = strTitle;
 
@@ -971,7 +970,7 @@ namespace core
 
 #else
 
-      auto puser = User;
+      auto puser = user();
 
       puser->will_use_view_hint(COLORSEL_IMPACT);
 
@@ -1007,7 +1006,9 @@ namespace core
 
    void user::_001OnFileNew()
    {
-
+      
+      auto papplication = get_application();
+      
       ASSERT(papplication->document_manager() != nullptr);
 
       if (papplication->document_manager() == nullptr)
@@ -1042,9 +1043,9 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puiAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pview;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1126,7 +1127,7 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1185,27 +1186,27 @@ namespace core
 
       }
 
-      ::apex::application * papp = ::get_application(pobject);
+      auto papplication = pobject->get_application();
 
-      if (papp == nullptr)
+      if (papplication == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            papp = puserinteractionParent->get_application();
+            papplication = puserinteractionParent->get_application();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_application();
+            papplication = pcallback->get_application();
 
          }
          else
          {
 
-            papp = get_application();
+            papplication = get_application();
 
          }
 
@@ -1215,9 +1216,9 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puiAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pview;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1269,27 +1270,27 @@ namespace core
    __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      ::apex::application * papp = ::get_application(pobject);
+      auto papplication = pobject->get_application();
 
-      if (papp == nullptr)
+      if (papplication == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            papp = puserinteractionParent->get_application();
+            papplication = puserinteractionParent->get_application();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_application();
+            papplication = pcallback->get_application();
 
          }
          else
          {
 
-            papp = get_application();
+            papplication = get_application();
 
          }
 
@@ -1299,7 +1300,7 @@ namespace core
 
       pcreate->m_bMakeVisible = true;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1378,7 +1379,7 @@ namespace core
                                 m_ptemplateChildForm->m_typeFrame,
                                 type));
 
-         psystemNew->initialize(pcontextobject);
+         psystemNew->initialize(pobject);
 
          psystem = psystemNew;
 
@@ -1410,7 +1411,7 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = puserinteractionParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1474,7 +1475,7 @@ namespace core
    __pointer(::user::list_header) user::default_create_list_header(::context_object * pcontextobject)
    {
 
-      return __object(pobject)->__id_create < ::user::list_header > (default_type_list_header());
+      return pcontextobject->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
@@ -1482,7 +1483,7 @@ namespace core
    __pointer(::user::mesh_data) user::default_create_mesh_data(::context_object * pcontextobject)
    {
 
-      return __object(pobject)->__id_create < ::user::mesh_data > (default_type_list_data());
+      return pcontextobject->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
@@ -1490,7 +1491,7 @@ namespace core
    __pointer(::user::list_data) user::default_create_list_data(::context_object * pcontextobject)
    {
 
-      return __object(pobject)->__id_create <::user::list_data >(default_type_list_data());
+      return pcontextobject->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -2019,9 +2020,7 @@ namespace core
 
          }
 
-         auto puser = User;
-
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = puser->filemanager(idView)->m_pdocumenttemplate;
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idView)->m_pdocumenttemplate;
 
          //create_factory <::user::color_view >();
 
@@ -2088,6 +2087,8 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
+         auto psystem = get_system();
+
          psystem->draw2d()->write_text()->fonts();
 
 
@@ -2134,7 +2135,7 @@ namespace user
    __pointer(::user::mesh_data) mesh::create_mesh_data()
    {
 
-      auto puser = User;
+      auto puser = user();
 
       return puser->default_create_mesh_data(this);
 
@@ -2143,7 +2144,7 @@ namespace user
    __pointer(::user::list_header) list::create_list_header()
    {
 
-      auto puser = User;
+      auto puser = user();
 
       return puser->default_create_list_header(this);
 
@@ -2153,7 +2154,7 @@ namespace user
    __pointer(::user::mesh_data) list::create_mesh_data()
    {
 
-      auto puser = User;
+      auto puser = user();
 
       return puser->default_create_list_data(this);
 

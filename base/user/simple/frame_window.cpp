@@ -143,7 +143,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 #endif
 
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::_001OnDisplayChange);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::_001OnShowWindow);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
@@ -1349,7 +1349,7 @@ void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnMouseMove(::message::message * pmessage)
+void simple_frame_window::on_message_mouse_move(::message::message * pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -2943,7 +2943,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //   ::DragFinish(hDropInfo);
 //
-//   auto puser = User;
+//   auto puser = user();
 //
 //   puser->on_frame_window_drop_files(this, patha);
 //

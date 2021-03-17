@@ -6,6 +6,7 @@ namespace user
 
 
    class split_bar;
+   class split_pane;
 
 
    class CLASS_DECL_BASE split_layout :
@@ -23,31 +24,10 @@ namespace user
       };
 
 
-      class CLASS_DECL_BASE Pane :
-         virtual public object
-      {
-      public:
-
-
-         id                                  m_id;
-         ::rectangle_i32                              m_rectangle;
-         ::rectangle_i32                              m_rectClient;
-         ::size_i32                              m_sizeFixed;
-         bool                                m_bFixedSize;
-         __pointer(::user::place_holder)     m_pplaceholder;
-         __pointer(::user::impact_data)      m_pimpactdata;
-
-
-         Pane();
-
-
-      };
-
-
       bool                                   m_bSplitBar;
       __pointer_array(split_bar)             m_splitbara;
-      __pointer_array(Pane)                  m_panea;
-      enum_orientation                          m_eorientationSplit;
+      __composite_array(split_pane)          m_splitpanecompositea;
+      enum_orientation                       m_eorientationSplit;
       index                                  m_iIndex;
       i32                                    m_iState;
       bool                                   m_bInitialized;
@@ -87,7 +67,7 @@ namespace user
       virtual __pointer(::user::place_holder) get_pane_holder(index iPane);
       virtual ::rectangle_i32 & get_pane_rect(index iPane);
       virtual id get_pane_id(index iPane);
-      virtual Pane * get_pane_by_id(::id id);
+      virtual split_pane * get_pane_by_id(::id id);
 
 
       virtual ::count get_pane_count();

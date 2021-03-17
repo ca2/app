@@ -1069,7 +1069,7 @@ namespace user
    //      for(auto & pinteraction : uia.interactiona())
    //      {
 
-   //         pinteraction->send_message((enum_message) e_message_mouse_leave);
+   //         pinteraction->send_message(e_message_mouse_leave);
 
    //      }
 

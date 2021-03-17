@@ -250,11 +250,6 @@ namespace subject
 
       m_esubject = e_subject_prepare;
       m_bRet = false;
-      m_psender = nullptr;
-      m_puserinteraction = nullptr;
-      m_pcontrolevent = nullptr;
-      //m_iUpdateSerial = 0;
-      //m_bFork = false;
 
    }
 

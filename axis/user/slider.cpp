@@ -27,7 +27,7 @@ namespace user
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::on_message_mouse_move);
    }
 
    void slider::on_message_create(::message::message * pmessage)
@@ -115,7 +115,7 @@ namespace user
    }
 
 
-   void slider::_001OnMouseMove(::message::message * pmessage)
+   void slider::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

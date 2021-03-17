@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class  CLASS_DECL_CORE folder_list_view:
-      virtual public simple_list_view,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < simple_list_view >
    {
    public:
 

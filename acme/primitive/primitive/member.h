@@ -42,6 +42,10 @@ namespace primitive
       friend class ::object;
 
       TYPE* m_p;
+      void clear_member() { m_p = nullptr; }
+
+
+   public:
 
       member& operator = (const ::primitive::member < TYPE >& member) { m_p = member.m_p; return *this; }
 
@@ -52,9 +56,11 @@ namespace primitive
       member& operator = (const OBJECT* p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p); return *this; }
 
       //virtual void clear_member() override { m_p = nullptr; }
-      void clear_member() { m_p = nullptr; }
 
-      bool is_composite()const { return false; }
+      //bool is_composite()const 
+      //{
+      //   return is_set() && m_p->m_eobject & e_object_composite;
+      //}
 
    };
 
@@ -69,13 +75,13 @@ namespace primitive
 
       //composite() : matter(e_object_acquire) { }
 
-      bool is_composite()const { return true; }
 
 
    protected:
-      friend class ::object;
+     friend class ::object;
       using member < TYPE > ::operator =;
 
+      bool is_composite()const { return true; }
 
    };
 

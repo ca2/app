@@ -122,6 +122,8 @@ namespace aura
 
       }
 
+      m_pnode = m_psystem->node();
+
       m_pimplPendingFocus2             = nullptr;
 
       m_papplicationCurrent                    = nullptr;
@@ -2427,9 +2429,7 @@ namespace aura
 
          __pointer(::aura::system) psystem = get_system();
 
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -2452,9 +2452,7 @@ namespace aura
 
          __pointer(::aura::system) psystem = get_system();
 
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -2477,9 +2475,7 @@ namespace aura
 
          __pointer(::aura::system) psystem = get_system();
 
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);

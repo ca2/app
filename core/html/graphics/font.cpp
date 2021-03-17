@@ -22,7 +22,7 @@ namespace html
    bool font::create(::context_object * pcontextobject)
    {
 
-      set_object(pobject);
+      initialize(pcontextobject);
 
       m_font.create(this);
 
@@ -74,6 +74,10 @@ namespace html
          }
       }
 //      strsize iLen;
+
+      __pointer(::core::system) psystem = get_system();
+
+      auto pnode = psystem->node();
       string strName;
       if(stra.get_count() > 0)
       {
@@ -85,7 +89,7 @@ namespace html
       }
       else
       {
-         strName = os_font_name(e_font_sans);
+         strName = pnode->font_name(e_font_sans);
       }
 
 

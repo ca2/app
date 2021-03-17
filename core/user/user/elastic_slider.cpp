@@ -29,7 +29,7 @@ namespace user
       ////MESSAGE_LINK(e_message_timer, pchannel, this, &elastic_slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &elastic_slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &elastic_slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::on_message_mouse_move);
    }
 
    void elastic_slider::on_message_create(::message::message * pmessage)
@@ -102,7 +102,7 @@ namespace user
       }
    }
 
-   void elastic_slider::_001OnMouseMove(::message::message * pmessage)
+   void elastic_slider::on_message_mouse_move(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::message::mouse) pmouse(pmessage);
@@ -220,15 +220,9 @@ namespace user
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
 
-      class imaging & imaging = psystem->imaging();
-
       byte bAlpha = (byte) (128.0 * get_alpha());
 
-      imaging.color_blend(
-      pgraphics,
-      rectClient,
-      rgb(250, 255, 255),
-      bAlpha);
+      pgraphics->color_blend(rectClient, rgb(250, 255, 255), bAlpha);
 
       ::rectangle_i32 rectangle;
       GetSliderRect(rectangle);

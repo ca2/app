@@ -555,7 +555,7 @@ namespace user
 
 
 
-   void tree::_001OnMouseMove(::message::message * pmessage)
+   void tree::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -574,7 +574,7 @@ namespace user
    }
 
 
-   void tree::_001OnMouseLeave(::message::message * pmessage)
+   void tree::on_message_mouse_leave(::message::message * pmessage)
    {
       m_itemHover = nullptr;
       set_need_redraw();
@@ -739,7 +739,7 @@ namespace user
    }
 
 
-   void tree::_001OnRButtonUp(::message::message * pmessage)
+   void tree::on_message_right_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -846,10 +846,10 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);

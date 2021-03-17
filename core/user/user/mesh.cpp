@@ -123,7 +123,7 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::_001OnSize);
       MESSAGE_LINK(e_message_vscroll, pchannel, this,&mesh::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this,&mesh::_001OnHScroll);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
 
       if (!bList)
       {
@@ -132,9 +132,9 @@ namespace user
          MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::_001OnLButtonDblClk);
       }
       MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::_001OnKeyDown);
 
@@ -2506,7 +2506,7 @@ namespace user
    }
 
 
-   void mesh::_001OnMouseMove(::message::message * pmessage)
+   void mesh::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -2991,7 +2991,7 @@ namespace user
    }
 
 
-   void mesh::_001OnRButtonUp(::message::message * pmessage)
+   void mesh::on_message_right_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -4797,7 +4797,7 @@ namespace user
    //}
 
 
-   void mesh::_001OnMouseLeave(::message::message * pmessage)
+   void mesh::on_message_mouse_leave(::message::message * pmessage)
    {
       
       m_iDisplayItemHover = -1;

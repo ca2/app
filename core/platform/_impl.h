@@ -30,6 +30,43 @@ namespace core
    }
 
 
+   template < typename CORE_OBJECT >
+   inline ::core::application* core < CORE_OBJECT >::get_application() const 
+   {
+      
+      return this->m_papplication ? this->m_papplication.cast < ::core::application >() : nullptr;
+   
+   }
+
+   
+   template < typename CORE_OBJECT >
+   inline ::core::session* core < CORE_OBJECT >::get_session() const
+   { 
+      
+      return this->m_psession ? this->m_psession.cast < ::core::session >() : nullptr;
+   
+   }
+
+
+   template < typename CORE_OBJECT >
+   inline ::core::system* core < CORE_OBJECT >::get_system() const 
+   { 
+      
+      return ::is_set(this->m_psystem) ? dynamic_cast <::core::system*> (this->m_psystem) : nullptr;
+   
+   }
+
+   
+   template < typename CORE_OBJECT >
+   inline ::core::user* core < CORE_OBJECT >::user() const 
+   {
+      
+      return this->get_session() ? this->get_session()->user() : nullptr;
+   
+   }
+
+
+
 } // namespace core
 
 

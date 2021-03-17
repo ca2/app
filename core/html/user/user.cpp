@@ -19,12 +19,10 @@ namespace core
       create_factory < html_view >();
       create_factory < ::html::core_data::image >();
 
-      auto puser = User;
-
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(html_document),
-         puser->get_simple_child_frame_type_info(),
+         get_simple_child_frame_type_info(),
          __type(html_view)));
 
       m_ptemplateHtmlChildForm1 = ptemplate;

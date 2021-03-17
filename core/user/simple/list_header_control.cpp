@@ -28,7 +28,7 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_list_header_control::on_message_create);
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_list_header_control::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_list_header_control::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_list_header_control::_001OnMouseMove);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_list_header_control::on_message_mouse_move);
 }
 
 /*i32 simple_list_header_control::GetItemWidth(i32 iItem)

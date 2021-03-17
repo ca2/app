@@ -5,7 +5,7 @@ namespace app_shader
 {
 
 
-   class CLASS_DECL_APP_SHADER window :
+   class CLASS_DECL_APP_SHADER main_window :
       virtual public ::user::main_window
    {
    public:
@@ -16,8 +16,8 @@ namespace app_shader
       bool                          m_bSaveFrame;
 
 
-      window();
-      virtual ~window();
+      main_window();
+      virtual ~main_window();
 
 
 

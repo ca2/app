@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
+#include "tab_pane.h"
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -9,6 +10,17 @@
 
 namespace user
 {
+
+   tab_pane::tab_pane() :
+      m_brushFill(e_create),
+      m_brushFillSel(e_create),
+      m_brushFillHover(e_create)
+   {
+
+      m_bTabPaneVisible = true;
+      m_bPermanent = false;
+
+   }
 
 
    tab_pane::tab_pane(const ::user::tab_pane & tab_pane)
@@ -21,6 +33,26 @@ namespace user
 
    tab_pane::~tab_pane()
    {
+
+   }
+
+
+
+   ::e_status tab_pane::initialize_tab_pane(class tab* ptab)
+   {
+
+      auto estatus = ::matter::initialize_matter(ptab);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_ptab = ptab;
+
+      return estatus;
 
    }
 
@@ -58,7 +90,11 @@ namespace user
 
       string strTitle(pszTitle);
 
-      auto pdocument = create_xml_document();
+      auto psystem = get_system();
+
+      auto pxml = psystem->xml();
+
+      auto pdocument = pxml->create_document();
 
       if (pdocument->load(strTitle))
       {

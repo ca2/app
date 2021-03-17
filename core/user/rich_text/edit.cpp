@@ -80,8 +80,8 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit::_001OnShowWindow);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::_001OnMouseMove);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::_001OnMouseLeave);
+         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
+         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::_001OnKeyUp);
 //         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
@@ -229,7 +229,7 @@ namespace user
       }
 
 
-      void edit::_001OnMouseMove(::message::message * pmessage)
+      void edit::on_message_mouse_move(::message::message * pmessage)
       {
 
          UNREFERENCED_PARAMETER(pmessage);
@@ -259,7 +259,7 @@ namespace user
 
 
 
-      void edit::_001OnMouseLeave(::message::message * pmessage)
+      void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
          auto psession = get_session();

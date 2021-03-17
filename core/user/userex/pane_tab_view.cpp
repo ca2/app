@@ -3,6 +3,7 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "core/user/account/_account.h"
 #include "aura/update.h"
+#include "base/user/user/tab_pane.h"
 
 
 namespace core
@@ -167,6 +168,8 @@ namespace userex
 
       //}
 
+      auto papplication = get_application();
+
       if (papplication->m_puiMainContainer == nullptr)
       {
 
@@ -303,7 +306,7 @@ namespace userex
 
       }
 
-      ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iPane);
+      auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
       if (ppane == nullptr)
       {
@@ -345,7 +348,7 @@ namespace userex
 
       }
 
-      ::user::tab_pane_array & panea = get_data()->m_panea;
+      auto & panea = get_data()->m_tabpanecompositea;
 
       for(i32 iTab = 0; iTab < panea.get_count(); iTab++)
       {
@@ -409,6 +412,8 @@ namespace userex
 
       ::apex::library * plibrary = nullptr;
 
+      auto psystem = get_system();
+
       if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {
 
@@ -436,7 +441,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = User;
+         auto puser = user();
 
          puser->will_use_view_hint(FONTSEL_IMPACT);
 
@@ -467,7 +472,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = User;
+         auto puser = user();
 
          puser->will_use_view_hint(COLORSEL_IMPACT);
 
@@ -492,7 +497,7 @@ namespace userex
          if (pfilemanagerdata.is_null())
          {
 
-            auto puser = User;
+            auto puser = user();
 
             pfilemanagerdata = puser->filemanager(pimpactdata->m_id);
 
@@ -555,7 +560,7 @@ namespace userex
 
          }
 
-         auto puser = User;
+         auto puser = user();
 
          puser->filemanager(pimpactdata->m_id)->open();
 
@@ -633,7 +638,7 @@ namespace userex
          if (::str::begins_ci(pimpactdata->m_id.m_psz, "form_"))
          {
 
-            auto puser = User;
+            auto puser = user();
 
             __pointer(form_document) pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
@@ -789,7 +794,7 @@ namespace userex
 
       payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
-      auto puser = User;
+      auto puser = user();
 
       m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
@@ -800,6 +805,8 @@ namespace userex
 
    void pane_tab_view::prepare_form(id id, ::form_document * pdocument)
    {
+
+      auto papplication = get_application();
 
       papplication->prepare_form(id, pdocument);
 

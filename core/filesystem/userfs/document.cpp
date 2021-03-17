@@ -100,6 +100,8 @@ namespace userfs
 
       ::file::listing listingUser;
 
+      auto papplication = get_application();
+
       if(strlen(pitem->m_filepathUser) == 0)
       {
 
@@ -172,6 +174,8 @@ namespace userfs
       listingFinal.m_pathUser = pitem->m_filepathUser;
 
       listingFinal.m_pathFinal = pitem->m_filepathFinal;
+
+      auto pcontext = get_context();
 
       for (auto & pathItem : listingUser)
       {

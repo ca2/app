@@ -10,7 +10,7 @@ namespace account
    dialog::dialog()
    {
 
-      m_etheme = ::user::e_theme_lite;
+      //m_etheme = ::user::e_theme_lite;
 
       m_bLButtonDown = false;
 
@@ -71,7 +71,7 @@ namespace account
       MESSAGE_LINK(e_message_char,pchannel,this,&dialog::_001OnChar);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::_001OnShowWindow);
 
    }
@@ -227,7 +227,7 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      auto psession = get_session();
+      __pointer(::core::session) psession = get_session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -307,9 +307,11 @@ namespace account
          if(papp != nullptr)
          {
 
-            ::hyperlink hyperlink;
+            auto phyperlink = __create_new < ::hyperlink >();
 
-            hyperlink.open_link("ca2account:this", "", "");
+            phyperlink->m_strLink = "ca2account:this";
+
+            phyperlink->open_link();
 
             sleep(5000_ms);
 
@@ -317,9 +319,11 @@ namespace account
          else
          {
 
-            ::hyperlink hyperlink;
+            auto phyperlink = __create_new < ::hyperlink >();
 
-            hyperlink.open_link("ca2account:this", "", "");
+            phyperlink->m_strLink = "ca2account:this";
+
+            phyperlink->open_link();
 
          }
 
@@ -387,7 +391,7 @@ namespace account
 
          string strPass;
 
-         m_plogin->m_ppassword->_001GetText(strPass);
+         m_plogin->m_peditPassword->_001GetText(strPass);
 
          m_pcredentials->m_puser->m_strLogin = strUser;
 
@@ -432,6 +436,9 @@ namespace account
 
       auto pcredentials = m_pcredentials;
 
+      __pointer(::core::session) psession = get_session();
+
+      __pointer(::core::application) papplication = get_application();
 
       if(pcredentials->m_strTitle == "ca2")
       {
@@ -555,7 +562,7 @@ namespace account
    }
 
 
-   void dialog::_001OnMouseMove(::message::message * pmessage)
+   void dialog::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

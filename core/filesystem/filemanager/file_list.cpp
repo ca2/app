@@ -128,6 +128,8 @@ namespace filemanager
 
       ::file::path filepathNew = filepath.folder() / wstrNameNew;
 
+      auto pcontext = get_context();
+
       pcontext->file().rename(filepathNew, filepath);
 
       browse_sync(context);
@@ -160,7 +162,7 @@ namespace filemanager
          else
          {
 
-            auto puser = User;
+            auto puser = user();
 
             puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
 
@@ -170,7 +172,7 @@ namespace filemanager
       else
       {
 
-         auto puser = User;
+         auto puser = user();
 
          puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
 
@@ -567,6 +569,8 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
+      auto pcontext = get_context();
+
       pcontext->file().trash_that_is_not_trash(patha);
 
       _001Refresh();
@@ -603,6 +607,8 @@ namespace filemanager
          string strExt = strPath.extension();
 
          string_array stra;
+
+         auto pcontext = get_context();
 
          pcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
 
@@ -728,6 +734,8 @@ namespace filemanager
          auto patha = get_selected_final_path();
 
          ::file::path pathUser = patha.first();
+
+         auto pcontext = get_context();
 
          pcontext->os().file_open(pathUser);
 
@@ -971,6 +979,10 @@ namespace filemanager
 
          string_array stra;
 
+         auto papplication = get_application();
+
+         auto pcontext = get_context();
+
          papplication->data_get(filemanager_data()->m_dataidStatic, stra);
 
          synchronization_lock lock(fs_list()->mutex());
@@ -1053,6 +1065,8 @@ namespace filemanager
       m_pathaStrictOrder.remove_all();
 
       _001OnUpdateItemCount();
+
+      auto pcontext = get_context();
 
       {
 
@@ -1279,7 +1293,7 @@ namespace filemanager
          pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
-         auto puser = User;
+         auto puser = user();
 
          pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
          pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
@@ -1338,7 +1352,7 @@ namespace filemanager
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = filemanager_data()->m_iIconSize;
 
-         auto puser = User; 
+         auto puser = user(); 
 
          pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
          pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
@@ -1723,6 +1737,8 @@ namespace filemanager
 
       item.m_strName = strName;
 
+      auto pcontext = get_context();
+
       if (pcontext->dir().is(pathFinal))
       {
 
@@ -1745,7 +1761,7 @@ namespace filemanager
       if (i == 0)
       {
 
-         auto puser = User;
+         auto puser = user();
 
          return puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
 
@@ -1844,6 +1860,8 @@ namespace filemanager
 
       index strictDrag = _001DisplayToStrict(iDisplayDrag);
 
+      auto pcontext = get_context();
+
       if (strict >= 0 && fs_list_item(strict)->IsFolder())
       {
 
@@ -1928,9 +1946,11 @@ namespace filemanager
    void file_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       ::userfs::list::on_subject(psubject, pcontext);
+
+      auto papplication = get_application();
 
       if (m_bStatic && psubject->id() == id_add_location)
       {
@@ -2076,7 +2096,7 @@ namespace filemanager
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            auto puserinteractionParent = __user_interaction(psubject->m_puserinteraction);
+            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserprimitive;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2097,6 +2117,8 @@ namespace filemanager
             if (psubject->payload(id_find).has_char())
             {
 
+               auto pcontext = get_context();
+
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
                pcontext->file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
@@ -2111,6 +2133,8 @@ namespace filemanager
             {
 
                ::file::path pathFolder = filemanager_item()->get_user_path() / psubject->payload(id_folder);
+
+               auto pcontext = get_context();
 
                pcontext->dir().mk(pathFolder);
 

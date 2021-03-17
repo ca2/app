@@ -12,7 +12,6 @@ namespace userex
       m_size.cx = 7;
       m_size.cy = 5;
 
-      m_pimage = papplication->image().load_image("project->jpg", false);
 
    }
 
@@ -21,6 +20,9 @@ namespace userex
    {
 
    }
+
+
+
 
 
    void group_image_list_view::assert_valid() const
@@ -96,6 +98,10 @@ namespace userex
    {
 
       __pointer(::message::create) pcreate(pmessage);
+
+      auto papplication = get_application();
+
+      m_pimage = papplication->image().load_image("project->jpg", false);
 
       pcreate->previous();
 
@@ -265,6 +271,8 @@ namespace userex
 
       m_itemCurrent = plist->m_iIndex;
 
+      auto papplication = get_application();
+
       ::image_pointer pimage = papplication->image().matter_image(pgroup->m_strIcon);
 
       m_buttonMenu.set_window_text(get_group_title(pgroup));
@@ -370,7 +378,7 @@ namespace userex
 
       pinteraction->get_window_rect(rectWindow);
 
-      auto puser = User;
+      auto puser = user();
 
       m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));

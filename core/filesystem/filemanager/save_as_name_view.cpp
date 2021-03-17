@@ -19,7 +19,7 @@ namespace filemanager
    void save_as_edit_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::plain_edit::install_message_routing(pchannel);
 
    }
@@ -57,6 +57,8 @@ namespace filemanager
       string str;
 
       _001GetText(str);
+
+      auto pcontext = get_context();
 
       if (pcontext->dir().is(str))
       {
@@ -114,7 +116,7 @@ namespace filemanager
 
       ::user::impact::on_subject(psubject, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID && psubject->m_puserinteraction == this)
+      if (psubject->id() == INITIALIZE_ID && psubject->m_puserprimitive == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -155,7 +157,7 @@ namespace filemanager
    void save_as_button::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::button::install_message_routing(pchannel);
 
    }
@@ -164,7 +166,7 @@ namespace filemanager
    void save_as_button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
    }
 
@@ -180,6 +182,8 @@ namespace filemanager
       ::file::path strPath;
 
       GetTypedParent<save_as_view>()->m_pedit->_001GetText(strTitle);
+
+      auto pcontext = get_context();
 
       if (strTitle.folder().has_char() && filemanager_document()->fs_data()->is_dir(strTitle.folder()))
       {
@@ -326,7 +330,7 @@ namespace filemanager
    void save_as_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
@@ -370,7 +374,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->m_puserinteraction == this && psubject->id() == id_initialize)
+         else if (psubject->m_puserprimitive == this && psubject->id() == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();

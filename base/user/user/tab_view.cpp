@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "tab_pane.h"
 
 
 namespace user
@@ -189,19 +190,19 @@ namespace user
    }
 
 
-   void tab_view::_001OnRemoveTab(class tab_pane * ptab)
+   void tab_view::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
       synchronization_lock synchronizationlock(mutex());
 
-      ::user::tab::_001OnRemoveTab(ptab);
+      ::user::tab::_001OnRemoveTab(ptabpane);
 
-      if (ptab->m_pplaceholder.is_set())
+      if (ptabpane->m_pplaceholder.is_set())
       {
 
          __pointer(::user::interaction) puiChild;
 
-         ptab->m_pplaceholder->get_child(puiChild);
+         ptabpane->m_pplaceholder->get_child(puiChild);
 
          if (puiChild.is_set())
          {
@@ -219,9 +220,9 @@ namespace user
 
       }
 
-      m_placeholdera.remove(ptab->m_pplaceholder);
+      m_placeholdera.remove(ptabpane->m_pplaceholder);
 
-      id idTab = ptab->m_id;
+      id idTab = ptabpane->m_id;
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -240,8 +241,6 @@ namespace user
       }
 
       m_impactdatamap.remove_key(idTab);
-
-
 
    }
 
@@ -459,12 +458,12 @@ namespace user
       if(iPane >= 0)
       {
 
-         get_data()->m_panea[iPane]->m_pimpactdata = pimpactdata;
+         get_data()->m_tabpanecompositea[iPane]->m_pimpactdata = pimpactdata;
 
          if(pimpactdata->m_pplaceholder != nullptr)
          {
 
-            get_data()->m_panea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
          }
          else if(pimpactdata->m_puserinteraction != nullptr)
@@ -473,7 +472,7 @@ namespace user
             if(pane_holder(iPane) == nullptr)
             {
 
-               get_data()->m_panea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
 
             }
             else
@@ -481,9 +480,9 @@ namespace user
 
                //synchronization_lock synchronizationlock(mutex_children());
 
-               get_data()->m_panea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
-               get_data()->m_panea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
             }
 
@@ -491,7 +490,7 @@ namespace user
          else
          {
 
-            get_data()->m_panea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
 
          }
 
@@ -506,10 +505,10 @@ namespace user
 
             index iPane = tab_pane(_001GetSel());
 
-            if (iPane >= 0 && get_data()->m_panea[iPane]->m_id == pimpactdata->m_id)
+            if (iPane >= 0 && get_data()->m_tabpanecompositea[iPane]->m_id == pimpactdata->m_id)
             {
 
-               get_data()->m_panea[iPane]->set_title(pimpactdata->m_idTitle);
+               get_data()->m_tabpanecompositea[iPane]->set_title(pimpactdata->m_idTitle);
 
             }
 
@@ -569,12 +568,12 @@ namespace user
             || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
          {
 
-            ::user::tab_pane_array & panea = get_data()->m_panea;
+            ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
 
-            for (i32 iTab = 0; iTab < panea.get_count(); iTab++)
+            for (i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
 
-               auto pimpactdataPane = panea[iTab]->m_pimpactdata;
+               auto pimpactdataPane = panecompositea[iTab]->m_pimpactdata;
 
                if (pimpactdataPane.is_null() || pimpactdataPane == m_pimpactdata)
                {

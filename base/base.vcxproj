@@ -1147,6 +1147,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\single_document_template.cpp" />
     <ClCompile Include="user\user\split_bar.cpp" />
     <ClCompile Include="user\user\split_layout.cpp" />
+    <ClCompile Include="user\user\split_pane.cpp" />
     <ClCompile Include="user\user\split_view.cpp" />
     <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
@@ -1238,6 +1239,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\server.h" />
+    <ClInclude Include="user\user\split_pane.h" />
     <ClInclude Include="user\user\tab_drop_target_window.h" />
     <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\tool_window.h" />

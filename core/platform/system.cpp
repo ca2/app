@@ -14,8 +14,6 @@ namespace core
    system::system()
    {
 
-      m_pcoresystem = this;
-
       common_construct();
 
    }
@@ -23,10 +21,6 @@ namespace core
 
    system::~system()
    {
-
-
-
-      m_pcoresystem = nullptr;
 
    }
 

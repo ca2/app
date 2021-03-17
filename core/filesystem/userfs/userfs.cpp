@@ -31,15 +31,11 @@ namespace userfs
 
       }
 
-      if(papplication->is_system())
-      {
 
-         create_factory <::userfs::main_view > ();
-         create_factory <::userfs::tree > ();
-         create_factory <::userfs::list > ();
-         create_factory <::userfs::list_item > ();
-
-      }
+      create_factory <::userfs::main_view > ();
+      create_factory <::userfs::tree > ();
+      create_factory <::userfs::list > ();
+      create_factory <::userfs::list_item > ();
 
       if (!::apex::department::init())
       {

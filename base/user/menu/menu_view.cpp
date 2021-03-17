@@ -223,7 +223,7 @@ namespace user
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
          {
 
             string strText;

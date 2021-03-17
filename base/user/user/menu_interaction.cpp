@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   void menu_interaction::_001OnMouseMove(::message::message * pmessage)
+   void menu_interaction::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

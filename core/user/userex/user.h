@@ -138,6 +138,12 @@ namespace core
       virtual ~user();
 
 
+      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
+      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
+      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
+
+
+
       virtual void finalize() override;
 
 

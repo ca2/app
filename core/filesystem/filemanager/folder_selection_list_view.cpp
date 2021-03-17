@@ -119,7 +119,7 @@ namespace filemanager
    void folder_selection_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
    }
 

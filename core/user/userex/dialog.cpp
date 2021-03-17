@@ -12,9 +12,10 @@ dialog::dialog()
 
 }
 
-dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent) :
-   object(puiParent->get_application())
+dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent)
 {
+
+   initialize(puiParent);
 
    m_strMatter = pszMatter;
    m_pdocument    = nullptr;
@@ -80,11 +81,11 @@ bool dialog::show(const char * pszMatter)
 
    varArgs["window_frame"] = true;
 
-   auto puser = User;
+   __pointer(::core::session) psession = get_session();
 
-   auto psession = get_session();
+   auto puser = psession->user();
 
-   m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host().get(), payload, varArgs);
+   m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
 
    if(m_pdocument == nullptr)
    {

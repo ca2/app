@@ -11,18 +11,14 @@ namespace core
    application::application()
    {
 
-      m_pcoreapplication = this;
-
    }
+
 
    application::~application()
    {
 
-
-
-      m_pcoreapplication = nullptr;
-
    }
+
 
    void application::common_construct()
    {

@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE main_view:
-      virtual public ::user::split_view,
-      virtual public impact
+      virtual public ::filemanager_show < ::user::split_view >
    {
    public:
 

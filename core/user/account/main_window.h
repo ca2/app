@@ -6,25 +6,25 @@ namespace account
 {
 
 
-   class simple_ui :
-      virtual public ::simple_ui::top
+   class main_window :
+      virtual public ::user::main_window
    {
    public:
 
 
       __reference(::account::credentials)    m_pcredentials;
 
-
+      __pointer(::account::style)            m_pstyle;
       __composite(login)                     m_plogin;
       bool                                   m_bFontopusSimpleUiLayout;
-      ::rectangle_i32                                 m_rectParent;
+      ::rectangle_i32                        m_rectParent;
 
-      simple_ui **                           m_psimpleuiDeferTranslate;
+      main_window **                         m_psimpleuiDeferTranslate;
 
 
 
-      simple_ui();
-      virtual ~simple_ui();
+      main_window();
+      virtual ~main_window();
 
 
       virtual ::e_status initialize_simple_ui(::account::credentials * pcredentials);
@@ -41,7 +41,7 @@ namespace account
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
       void _001OnTimer(::timer * ptimer) override;
 
 

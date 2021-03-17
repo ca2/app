@@ -78,7 +78,6 @@ virtual ::stream & read(::stream & stream) override;*/
 
 
 
-inline __pointer(::xml::document) create_xml_document() { return ::__create_new < xml::document >(); }
 
 
 

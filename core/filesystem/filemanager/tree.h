@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE tree :
       virtual public ::userfs::tree,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_impact
    {
    public:
 
@@ -48,6 +48,13 @@ namespace filemanager
 
       tree();
       virtual ~tree();
+
+
+      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
+      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
+      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
 
 
       virtual ::e_status initialize_filemanager_tree(document * pdocument);

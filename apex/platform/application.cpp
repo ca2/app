@@ -10949,7 +10949,7 @@ retry_license:
       
       __pointer(::apex::system) psystem = get_system();
 
-      return message_box(pszMessage, pszTitle, emessagebox);
+      return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
 
    }
 

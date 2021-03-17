@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "split_pane.h"
 
 
 namespace user
@@ -94,7 +95,7 @@ namespace user
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::_001OnSize);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::on_message_mouse_move);
 
    }
 
@@ -109,7 +110,7 @@ namespace user
       m_pparent->m_iIndex = m_iIndex;
 
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
-            && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
+            && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
          m_pparent->m_iState = split_layout::stateDragging;
@@ -154,7 +155,7 @@ namespace user
    }
 
 
-   void split_bar::_001OnMouseMove(::message::message * pmessage)
+   void split_bar::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -165,7 +166,7 @@ namespace user
 
       m_pparent->_001ScreenToClient(&point);
 
-      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
+      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)

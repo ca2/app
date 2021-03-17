@@ -9,19 +9,14 @@ namespace core
    session::session()
    {
 
-      m_pcoresession = this;
-
    }
 
 
    session::~session()
    {
 
-
-
-      m_pcoresession = nullptr;
-
    }
+
 
    void session::common_construct()
    {

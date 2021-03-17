@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE preview :
-      virtual public ::user::impact,
-      virtual public impact
+      virtual public ::filemanager_show < ::user::impact >
    {
    public:
 

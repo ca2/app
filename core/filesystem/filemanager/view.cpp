@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "aura/update.h"
+#include "base/user/user/split_pane.h"
 
 
 namespace filemanager
@@ -22,7 +23,7 @@ namespace filemanager
    void view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
@@ -43,7 +44,13 @@ namespace filemanager
    {
 
       if (get_pane_count() > 0)
+      {
+
          return;
+
+      }
+
+      auto papplication = get_application();
 
       bool bPathView = papplication->is_false("no_path_view");
 
@@ -56,7 +63,7 @@ namespace filemanager
 
          set_position(0, 24);
 
-         m_panea[0]->m_bFixedSize = true;
+         m_splitpanecompositea[0]->m_bFixedSize = true;
 
          initialize_split_layout();
 
@@ -97,9 +104,11 @@ namespace filemanager
    void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       ::user::split_view::on_subject(psubject, pcontext);
+
+      auto psystem = get_system();
 
       if (filemanager_document() == psubject->cast < ::user::document >(id_document))
       {

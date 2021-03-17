@@ -101,7 +101,7 @@ namespace experience
    }
 
 
-   bool move_manager::_001OnMouseMove(::message::mouse * pmouse)
+   bool move_manager::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_moving_enabled())

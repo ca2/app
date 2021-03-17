@@ -81,14 +81,14 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
 
@@ -3317,7 +3317,7 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(::message::message * pmessage)
+   void list::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -6619,7 +6619,7 @@ namespace user
    //   return m_fontHover;
    //}
 
-   void list::_001OnMouseLeave(::message::message * pmessage)
+   void list::on_message_mouse_leave(::message::message * pmessage)
    {
       m_iDisplayItemHover = -1;
       m_iSubItemHover = -1;

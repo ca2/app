@@ -149,8 +149,92 @@ void context_object::process_exit_status(const ::e_status& estatus)
    
    ::e_status context_object::initialize(::context_object* pcontextobject)
    {
+      auto estatus = ::success;
 
-      return ::success;
+#if OBJ_TYP_CTR
+
+      if (!m_eobject.is(e_object_obj_typ_ctr))
+      {
+
+         m_eobject += e_object_obj_typ_ctr;
+
+         OBJ_TYP_CTR_INC;
+
+      }
+
+#endif
+
+      //#if OBJ_REF_DBG
+      //
+      //   string strType = type_name();
+      //
+      //   if (strType.contains_ci("session"))
+      //   {
+      //
+      //      if (m_pobjrefdbg->m_iStep == 39)
+      //      {
+      //
+      //         output_debug_string("session");
+      //
+      //      }
+      //
+      //   }
+      //
+      //#endif
+
+      if (!get_system())
+      {
+
+         m_psystem = pcontextobject->get_system();
+
+      }
+
+      if (!m_papplication)
+      {
+
+         m_papplication = pcontextobject->m_papplication;
+
+      }
+
+      if (!m_psession)
+      {
+
+         m_psession = pcontextobject->m_psession;
+
+      }
+
+      //if (!psystem)
+      //{
+
+      //   set_context_system(::::apex::get_system(pobject) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+
+      //}
+
+      if (!get_context())
+      {
+
+         if (m_papplication)
+         {
+
+            m_pcontext = m_papplication;
+
+         }
+         else if (m_psession)
+         {
+
+            m_pcontext = m_psession;
+
+         }
+         else if (m_psystem)
+         {
+
+            m_pcontext = m_psystem;
+
+         }
+
+      }
+
+      return estatus;
 
    }
 

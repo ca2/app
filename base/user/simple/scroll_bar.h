@@ -59,7 +59,7 @@ public:
 
    bool GetTrackRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
-   DECL_GEN_SIGNAL(_001OnMouseMove);
+   DECL_GEN_SIGNAL(on_message_mouse_move);
    DECL_GEN_SIGNAL(on_message_left_button_down);
    DECL_GEN_SIGNAL(on_message_left_button_up);
    DECL_GEN_SIGNAL(_001OnHScroll);

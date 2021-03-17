@@ -699,7 +699,6 @@ inline i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_COMMA_PARAMS_DEF)
 }
 
 
-
 template < class REFERENCE >
 inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {

@@ -18,6 +18,8 @@ namespace html
    bool core_data::image::load_image()
    {
 
+      __pointer(::core::application) papplication = get_application();
+
       m_pimage = papplication->image().load_image(m_strPath);
 
       return m_pimage;
@@ -494,6 +496,8 @@ namespace html
    
       string strUrl(pszUrl);
 
+      auto psystem = get_system();
+
       if (strUrl.find(":") >= 0)
       {
 
@@ -527,6 +531,8 @@ namespace html
    {
 
       string strUrl = process_url(pszUrl);
+
+      __pointer(::core::system) psystem = get_system();
 
       auto pimage = psystem->get_image(this, strUrl);
 
@@ -616,9 +622,11 @@ namespace html
       if (::str::begins_eat(strPath, "ext://"))
       {
 
-         ::hyperlink hyperlink;
+         auto phyperlink =__create_new < hyperlink>();
 
-         hyperlink.open_link(strPath);
+         phyperlink->m_strLink = strPath;
+
+         phyperlink->open_link();
 
          /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
@@ -724,6 +732,8 @@ namespace html
       varFile["nocache"] = bNoCache;
 
       string strDebugUrl2 = varFile.get_file_path();
+
+      auto pcontext = get_context();
 
       str = pcontext->file().as_string(varFile);
 

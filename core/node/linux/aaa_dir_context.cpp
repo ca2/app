@@ -118,7 +118,11 @@ namespace linux
 
       m_pdirsystem->m_pathCa2 = pathCa2;
 
-      auto pdocument = create_xml_document();
+            auto psystem = get_system();
+
+      auto pxml = psystem->xml();
+
+      auto pdocument= pxml->create_document();
 
       pdocument->load(pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 

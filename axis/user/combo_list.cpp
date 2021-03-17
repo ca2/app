@@ -69,9 +69,9 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::_001OnMButtonDown);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
 
    }
@@ -868,7 +868,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMButtonDown(::message::message * pmessage)
+   void combo_list::on_message_middle_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -922,7 +922,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseMove(::message::message * pmessage)
+   void combo_list::on_message_mouse_move(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

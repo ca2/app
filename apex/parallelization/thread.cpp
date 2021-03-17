@@ -1323,7 +1323,7 @@ void thread::post_quit()
    if (m_pmq)
    {
 
-      m_pmq->post_message(nullptr, (enum_message) e_message_quit, 0, 0);
+      m_pmq->post_message(nullptr, e_message_quit, 0, 0);
 
    }
 
@@ -1338,7 +1338,7 @@ void thread::post_quit()
          if (m_bMessageThread)
          {
 
-            post_message((enum_message) e_message_quit, 0, 0);
+            post_message(e_message_quit, 0, 0);
 
          }
 

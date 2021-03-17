@@ -98,6 +98,8 @@ namespace userex
 
             m_plisting->remove_all();
 
+            auto papplication = get_application();
+
             papplication->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
 
          }
@@ -131,6 +133,8 @@ namespace userex
             ::image_pointer pimage1;
 
             ::file::path path = m_plisting->element_at(i);
+
+            auto papplication = get_application();
 
             pimage1 = papplication->image().load_image(path, false);
 
@@ -212,8 +216,8 @@ namespace userex
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
 //      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::on_message_left_button_down);
-      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::_001OnMouseMove);
-      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::_001OnMouseLeave);
+      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::on_message_mouse_move);
+      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::on_message_mouse_leave);
 
    }
 
@@ -245,7 +249,7 @@ namespace userex
    //}
 
 
-   //void image_list_view::_001OnMouseMove(::message::message * pmessage)
+   //void image_list_view::on_message_mouse_move(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -276,7 +280,7 @@ namespace userex
    //}
 
 
-   //void image_list_view::_001OnMouseLeave(::message::message * pmessage)
+   //void image_list_view::on_message_mouse_leave(::message::message * pmessage)
    //{
 
    //auto psession = get_session();
@@ -308,6 +312,8 @@ namespace userex
 
       string strText;
 
+      auto papplication = get_application();
+
       papplication->data_get(m_id + ".cur_text", strText);
 
    }
@@ -329,7 +335,7 @@ namespace userex
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
          {
 
             string strText;

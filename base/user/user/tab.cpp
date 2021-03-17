@@ -3,6 +3,7 @@
 #include "aura/update.h"
 #include "acme/const/timer.h"
 #include "aqua/xml.h"
+#include "tab_pane.h"
 
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -65,18 +66,18 @@ namespace user
    /*bool tab::add_tab(::u32 uIdTitle, i32 iId)
    {
       tab_pane tab_pane;
-      tab_pane.m_uiId = uiIdTitle;
-      tab_pane.m_istrTitleEx = L"";
-      tab_pane.m_iId = iId == -1 ? get_data()->m_panea.get_size() : iId;
-      if(!tab_pane.m_wstrTitle.load_string(uiIdTitle))
+      ppane->m_uiId = uiIdTitle;
+      ppane->m_istrTitleEx = L"";
+      ppane->m_iId = iId == -1 ? get_data()->m_tabpanecompositea.get_size() : iId;
+      if(!ppane->m_wstrTitle.load_string(uiIdTitle))
       {
          return false;
       }*/
-   //   tab_pane.m_pcontainer = pcontainer;
-   // tab_pane.m_type = nullptr;
-   /* tab_pane.m_iImage = -1;
+   //   ppane->m_pcontainer = pcontainer;
+   // ppane->m_type = nullptr;
+   /* ppane->m_iImage = -1;
 
-    get_data()->m_panea.add(tab_pane);
+    get_data()->m_tabpanecompositea.add(tab_pane);
     return true;
    }*/
 
@@ -102,14 +103,14 @@ namespace user
 
       }
 
-      if (iPane >= get_data()->m_panea.get_size())
+      if (iPane >= get_data()->m_tabpanecompositea.get_size())
       {
 
          return false;
 
       }
 
-      get_data()->m_panea[iPane]->set_title(pcsz);
+      get_data()->m_tabpanecompositea[iPane]->set_title(pcsz);
 
 
       return true;
@@ -130,8 +131,7 @@ namespace user
 
       }
 
-      get_data()->m_panea[iPane]->set_title(pcsz);
-
+      get_data()->m_tabpanecompositea[iPane]->set_title(pcsz);
 
       return true;
 
@@ -151,7 +151,16 @@ namespace user
    bool tab::add_tab(const char * pcsz, id id, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
    {
 
-      __pointer(::user::tab_pane) ppane = __new(::user::tab_pane(this));
+      auto & ppane = get_data()->m_tabpanecompositea.add_new();
+
+      auto estatus = __compose_new(ppane);
+
+      if (!estatus)
+      {
+
+         return false;
+
+      }
 
       ppane->set_title(pcsz);
 
@@ -164,7 +173,7 @@ namespace user
       if (id.is_empty())
       {
 
-         id = get_data()->m_panea.get_size();
+         id = get_data()->m_tabpanecompositea.get_size();
 
       }
 
@@ -172,7 +181,7 @@ namespace user
 
       //ppane->m_pimage->release();
 
-      get_data()->m_panea.add(ppane);
+      
 
       on_change_pane_count({ ppane });
 
@@ -193,13 +202,13 @@ namespace user
 
       bool bRestorableMatch = false;
 
-      for(i32 i = 0; i < get_data()->m_panea.get_count(); i++)
+      for(i32 i = 0; i < get_data()->m_tabpanecompositea.get_count(); i++)
       {
 
-         if(get_data()->m_panea[i]->m_id == id)
+         if(get_data()->m_tabpanecompositea[i]->m_id == id)
          {
 
-            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_panea[i]->m_id, get_data()->m_panea[i]->m_pplaceholder))
+            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanecompositea[i]->m_id, get_data()->m_tabpanecompositea[i]->m_pplaceholder))
             {
 
                bRestorableMatch = true;
@@ -239,12 +248,13 @@ namespace user
 
 
    bool tab::add_image_tab(const char * pcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
-
    {
 
-      __pointer(::user::tab_pane) ppane = __new(::user::tab_pane(this));
+      auto ppane = get_data()->m_tabpanecompositea.add_new();
 
-      if (ppane == nullptr)
+      auto estatus = __compose_new(ppane);
+
+      if (!estatus)
       {
 
          return false;
@@ -263,7 +273,7 @@ namespace user
       if (id.is_empty())
       {
 
-         id = get_data()->m_panea.get_size();
+         id = get_data()->m_tabpanecompositea.get_size();
 
       }
 
@@ -271,7 +281,7 @@ namespace user
       ppane->m_pplaceholder = nullptr;
       ppane->m_pimage       = papplication->image().load_image(pszImage, false);
 
-      get_data()->m_panea.add(ppane);
+      
 
       on_change_pane_count({ ppane });
 
@@ -285,7 +295,7 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (iPane < 0 || iPane >= get_data()->m_panea.get_size())
+      if (iPane < 0 || iPane >= get_data()->m_tabpanecompositea.get_size())
       {
 
          return;
@@ -295,18 +305,18 @@ namespace user
       if(bVisible)
       {
 
-         for(i32 i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
+         for(i32 i = 0; iPane >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
          {
 
-            if(get_data()->m_panea[i]->m_bTabPaneVisible)
+            if(get_data()->m_tabpanecompositea[i]->m_bTabPaneVisible)
             {
 
                if(iPane <= 0)
                {
 
-                  __pointer(::user::tab_pane) ppane = get_data()->m_panea[iPane];
+                  __pointer(::user::tab_pane) ppane = get_data()->m_tabpanecompositea[iPane];
 
-                  get_data()->m_panea.remove_at(iPane);
+                  get_data()->m_tabpanecompositea.remove_at(iPane);
 
                   _001OnRemoveTab(ppane);
 
@@ -330,9 +340,9 @@ namespace user
       else
       {
 
-         __pointer(::user::tab_pane) ppane = get_data()->m_panea[iPane];
+         __pointer(::user::tab_pane) ppane = get_data()->m_tabpanecompositea[iPane];
 
-         get_data()->m_panea.remove_at(iPane);
+         get_data()->m_tabpanecompositea.remove_at(iPane);
 
          _001OnRemoveTab(ppane);
 
@@ -348,7 +358,7 @@ namespace user
 
       synchronization_lock synchronizationlock(mutex());
 
-      get_data()->m_panea.remove_all();
+      get_data()->m_tabpanecompositea.remove_all();
 
       on_change_pane_count();
 
@@ -635,12 +645,12 @@ namespace user
 
       ::draw2d::pen_pointer penBorder(e_create);
 
-      for (i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         ::user::tab_pane & pane = get_data()->m_panea(iPane);
+         auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-         if (!pane.m_bTabPaneVisible)
+         if (!ppane->m_bTabPaneVisible)
             continue;
 
          iTab++;
@@ -662,7 +672,7 @@ namespace user
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
             }
 
@@ -671,7 +681,7 @@ namespace user
             if (true)
             {
 
-               if (get_data()->m_idaSel.contains(pane.m_id))
+               if (get_data()->m_idaSel.contains(ppane->m_id))
                {
 
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
@@ -682,9 +692,9 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
+                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
-                  pgraphics->set(pane.m_brushFillSel);
+                  pgraphics->set(ppane->m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
@@ -711,9 +721,9 @@ namespace user
                   if (m_itemHover == iTab && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
+                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                     pgraphics->set(pane.m_brushFillHover);
+                     pgraphics->set(ppane->m_brushFillHover);
 
                      pgraphics->fill_path(path);
 
@@ -731,9 +741,9 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
+                     ppane->m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                     pgraphics->set(pane.m_brushFill);
+                     pgraphics->set(ppane->m_brushFill);
 
                      pgraphics->fill_path(path);
 
@@ -762,7 +772,7 @@ namespace user
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
             }
 
@@ -771,7 +781,7 @@ namespace user
 
                ::draw2d::path_pointer path(e_create);
 
-               if (get_data()->m_idaSel.contains(pane.m_id))
+               if (get_data()->m_idaSel.contains(ppane->m_id))
                {
 
                   path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
@@ -784,9 +794,9 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
+                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
-                  pgraphics->set(pane.m_brushFillSel);
+                  pgraphics->set(ppane->m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
@@ -817,9 +827,9 @@ namespace user
                   if (m_itemHover == iTab  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
+                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
-                     pgraphics->set(pane.m_brushFillHover);
+                     pgraphics->set(ppane->m_brushFillHover);
 
                      pgraphics->fill_path(path);
 
@@ -835,9 +845,9 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
+                     ppane->m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
-                     pgraphics->set(pane.m_brushFill);
+                     pgraphics->set(ppane->m_brushFill);
 
                      pgraphics->fill_path(path);
 
@@ -867,7 +877,7 @@ namespace user
             if (pbasestyle && get_element_rect(iTab, rectText, ::user::e_element_text))
             {
 
-               pbasestyle->_001OnTabPaneDrawTitle(pane, this, pgraphics, rectText, brushText);
+               pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectText, brushText);
 
             }
 
@@ -933,13 +943,17 @@ namespace user
 
       ::draw2d::brush_pointer brushText(e_create);
 
-      for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
+         auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-         if(!tab_pane.m_bTabPaneVisible)
+         if (!ppane->m_bTabPaneVisible)
+         {
+
             continue;
+
+         }
 
 
 
@@ -968,7 +982,7 @@ namespace user
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               tab_pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
             }
 
@@ -1043,11 +1057,11 @@ namespace user
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               tab_pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
             }
 
-            if(get_data()->m_idaSel.contains(tab_pane.m_id))
+            if(get_data()->m_idaSel.contains(ppane->m_id))
             {
 
                ::draw2d::pen_pointer pen(e_create);
@@ -1111,7 +1125,7 @@ namespace user
 
             pgraphics->set(brushText);
 
-            pgraphics->_DrawText(tab_pane.get_title(), rectText, e_align_bottom_left);
+            pgraphics->_DrawText(ppane->get_title(), rectText, e_align_bottom_left);
 
          }
 
@@ -1151,9 +1165,9 @@ namespace user
    void tab::get_title(int iPane, string_array & stra)
    {
 
-      ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
+      auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-      stra = tab_pane.m_straTitle;
+      stra = ppane->m_straTitle;
 
    }
 
@@ -1264,38 +1278,38 @@ namespace user
 
          i32 cy;
 
-         for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
+            auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-            if (!tab_pane.m_bTabPaneVisible)
+            if (!ppane->m_bTabPaneVisible)
             {
 
                continue;
 
             }
 
-            string str = tab_pane.get_title();
+            string str = ppane->get_title();
 
-            tab_pane.do_split_layout(m_dcextension, pgraphics);
+            ppane->do_split_layout(m_dcextension, pgraphics);
 
             ::size_i32 size;
 
             m_dcextension.GetTextExtent(pgraphics, str, size);
 
-            if(tab_pane.m_pimage->is_set())
+            if(ppane->m_pimage->is_set())
             {
 
-               size.cx += tab_pane.m_pimage->width()+ 2;
+               size.cx += ppane->m_pimage->width()+ 2;
 
-               size.cy = maximum(size.cy, tab_pane.m_pimage->height());
+               size.cy = maximum(size.cy, ppane->m_pimage->height());
 
             }
 
             cx = size.cx + 2;
 
-            if(!tab_pane.m_bPermanent)
+            if(!ppane->m_bPermanent)
             {
 
                cx += 2 + 16 + 2;
@@ -1373,30 +1387,30 @@ namespace user
 
          i32 ixAdd;
 
-         for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
+            auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-            if (!tab_pane.m_bTabPaneVisible)
+            if (!ppane->m_bTabPaneVisible)
             {
 
                return;
 
             }
 
-            string str = tab_pane.get_title();
+            string str = ppane->get_title();
 
-            tab_pane.do_split_layout(m_dcextension,pgraphics);
+            ppane->do_split_layout(m_dcextension,pgraphics);
 
             ::size_i32 size;
 
             m_dcextension.GetTextExtent(pgraphics, str, size);
 
-            if(tab_pane.m_pimage->is_ok())
+            if(ppane->m_pimage->is_ok())
             {
 
-               size.cy = maximum(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
 
             }
 
@@ -1409,32 +1423,32 @@ namespace user
 
             }
 
-            tab_pane.m_point.x = x;
+            ppane->m_point.x = x;
 
-            tab_pane.m_point.y = rectClient.top;
+            ppane->m_point.y = rectClient.top;
 
             ixAdd = 5;
 
-            if (tab_pane.m_pimage->is_set())
+            if (ppane->m_pimage->is_set())
             {
 
-               ixAdd += tab_pane.m_pimage->width() + 2;
+               ixAdd += ppane->m_pimage->width() + 2;
 
             }
 
-            if (!tab_pane.m_bPermanent)
+            if (!ppane->m_bPermanent)
             {
 
                ixAdd += 2 + 16 + 2;
 
             }
 
-            tab_pane.m_size.cx = size.cx + ixAdd
+            ppane->m_size.cx = size.cx + ixAdd
                                  + get_data()->m_rectBorder.left + get_data()->m_rectBorder.right
                                  + get_data()->m_rectMargin.left + get_data()->m_rectMargin.right
                                  + get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
 
-            x += tab_pane.m_size.cx;
+            x += ppane->m_size.cx;
          }
 
          // close tab button
@@ -1449,12 +1463,12 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         for (i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
+            auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-            tab_pane.m_size.cy = iTabHeight;
+            ppane->m_size.cy = iTabHeight;
 
          }
 
@@ -1487,7 +1501,7 @@ namespace user
       }
 
 
-      for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
          if(iPane != _001GetSel())
@@ -1504,7 +1518,7 @@ namespace user
       if(m_pdata->m_bVertical)
       {
 
-         m_iTabSize = (int) m_pdata->m_panea.get_count() * m_pdata->m_iTabHeight;
+         m_iTabSize = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
 
          m_iTabScrollMax = m_iTabSize - rectClient.height();
 
@@ -1512,8 +1526,8 @@ namespace user
       else
       {
 
-         m_iTabSize = m_pdata->m_panea.last()->m_point.x +
-         m_pdata->m_panea.last()->m_size.cx;
+         m_iTabSize = m_pdata->m_tabpanecompositea.last()->m_point.x +
+         m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
          m_iTabScrollMax = m_iTabSize - rectClient.width();
 
@@ -1768,7 +1782,7 @@ namespace user
    }
 
 
-   void tab::_001OnMouseMove(::message::message * pmessage)
+   void tab::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1832,7 +1846,7 @@ namespace user
    }
 
 
-   void tab::_001OnMouseLeave(::message::message * pmessage)
+   void tab::on_message_mouse_leave(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -2023,7 +2037,7 @@ namespace user
       if(eelement == e_element_icon)
       {
 
-         if (::not_ok(get_data()->m_panea[iPane]->m_pimage))
+         if (::not_ok(get_data()->m_tabpanecompositea[iPane]->m_pimage))
          {
 
             return false;
@@ -2037,9 +2051,9 @@ namespace user
 
          }
 
-         prectangle->right = prectangle->left + get_data()->m_panea[iPane]->m_pimage->width();
+         prectangle->right = prectangle->left + get_data()->m_tabpanecompositea[iPane]->m_pimage->width();
 
-         prectangle->bottom = prectangle->top + get_data()->m_panea[iPane]->m_pimage->height();
+         prectangle->bottom = prectangle->top + get_data()->m_tabpanecompositea[iPane]->m_pimage->height();
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2056,15 +2070,15 @@ namespace user
 
          }
 
-         if(::is_ok(get_data()->m_panea[iPane]->m_pimage))
+         if(::is_ok(get_data()->m_tabpanecompositea[iPane]->m_pimage))
          {
 
-            prectangle->left += get_data()->m_panea[iPane]->m_pimage->width() + 2;
+            prectangle->left += get_data()->m_tabpanecompositea[iPane]->m_pimage->width() + 2;
 
 
          }
 
-         if(!get_data()->m_panea[iPane]->m_bPermanent)
+         if(!get_data()->m_tabpanecompositea[iPane]->m_bPermanent)
          {
 
             prectangle->right -= 2 + 16 + 2;
@@ -2088,7 +2102,7 @@ namespace user
 
          }
 
-         if (get_data()->m_panea[iPane]->m_bPermanent)
+         if (get_data()->m_tabpanecompositea[iPane]->m_bPermanent)
          {
 
             return false;
@@ -2151,15 +2165,15 @@ namespace user
       else
       {
 
-         ::user::tab_pane & tab_pane = get_data()->m_panea(iTab);
+         auto ppane = get_data()->m_tabpanecompositea[iTab].get();
 
-         prectangle->left = tab_pane.m_point.x;
+         prectangle->left = ppane->m_point.x;
 
-         prectangle->top = tab_pane.m_point.y;
+         prectangle->top = ppane->m_point.y;
 
-         prectangle->right = tab_pane.m_point.x + tab_pane.m_size.cx;
+         prectangle->right = ppane->m_point.x + ppane->m_size.cx;
 
-         prectangle->bottom = tab_pane.m_point.y + tab_pane.m_size.cy;
+         prectangle->bottom = ppane->m_point.y + ppane->m_size.cy;
 
       }
 
@@ -2173,7 +2187,7 @@ namespace user
    ::count tab::get_pane_count()
    {
 
-      return get_data()->m_panea.get_size();
+      return get_data()->m_tabpanecompositea.get_size();
 
    }
 
@@ -2181,7 +2195,7 @@ namespace user
    ::count tab::get_tab_count()
    {
 
-      return get_data()->m_panea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
+      return get_data()->m_tabpanecompositea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
 
    }
 
@@ -2189,7 +2203,7 @@ namespace user
    index tab::find_child_pane(::user::interaction * pinteraction)
    {
 
-      index iPane = get_data()->m_panea.predicate_find_first([=](auto & pane)
+      index iPane = get_data()->m_tabpanecompositea.predicate_find_first([=](auto & pane)
       {
 
          return pane->m_pplaceholder && pane->m_pplaceholder->is_ascendant_of(pinteraction, true);
@@ -2313,12 +2327,12 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         ::user::tab_pane & pane = *get_data()->m_panea[iPane];
+         auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
-         if(pane.m_straTitle.get_size() > 1)
+         if(ppane->m_straTitle.get_size() > 1)
          {
 
             ::rectangle_i32 rectText;
@@ -2329,10 +2343,10 @@ namespace user
                if(rectText.contains(item.m_pointHitTest))
                {
 
-                  for(int iTitle = 0; iTitle < pane.m_straTitle.get_size(); iTitle++)
+                  for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                   {
 
-                     rectText.left += pane.m_sizeaText[iTitle].cx;
+                     rectText.left += ppane->m_sizeaText[iTitle].cx;
 
                      rectText.right = rectText.left + get_data()->m_sizeSep.cx;
 
@@ -2513,8 +2527,8 @@ namespace user
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
       MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::_001OnShowWindow);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
@@ -2555,18 +2569,6 @@ namespace user
    }
 
 
-   tab_pane::tab_pane(class tab * ptab) :
-      m_ptab(ptab),
-      m_brushFill(e_create),
-      m_brushFillSel(e_create),
-      m_brushFillHover(e_create)
-      //m_istrTitleEx3(ptab->get_application())
-   {
-
-      m_bTabPaneVisible = true;
-      m_bPermanent   = false;
-
-   }
 
 
 
@@ -2617,7 +2619,7 @@ namespace user
    ::count tab::_001GetPaneCount()
    {
 
-      return get_data()->m_panea.get_count();
+      return get_data()->m_tabpanecompositea.get_count();
 
    }
 
@@ -2823,14 +2825,14 @@ namespace user
 
       }
 
-      if (iPane >= get_data()->m_panea.get_count())
+      if (iPane >= get_data()->m_tabpanecompositea.get_count())
       {
 
          return nullptr;
 
       }
 
-      return get_data()->m_panea.element_at(iPane);
+      return get_data()->m_tabpanecompositea.element_at(iPane);
 
    }
 
@@ -2847,7 +2849,7 @@ namespace user
 
       }
 
-      return get_data()->m_panea.element_at(iPane);
+      return get_data()->m_tabpanecompositea.element_at(iPane);
 
    }
 
@@ -2915,17 +2917,17 @@ namespace user
 
       index iTab = -1;
 
-      for(::index iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(::index iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         if (get_data()->m_panea[iPane]->m_bTabPaneVisible)
+         if (get_data()->m_tabpanecompositea[iPane]->m_bTabPaneVisible)
          {
 
             iTab++;
 
          }
 
-         if (get_data()->m_panea[iPane]->m_id == id)
+         if (get_data()->m_tabpanecompositea[iPane]->m_id == id)
          {
 
             return iTab;
@@ -2942,10 +2944,10 @@ namespace user
    ::index tab::id_pane(id id)
    {
 
-      for (::index iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for (::index iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         if (get_data()->m_panea[iPane]->m_id == id)
+         if (get_data()->m_tabpanecompositea[iPane]->m_id == id)
          {
 
             return iPane;
@@ -2962,16 +2964,16 @@ namespace user
    id tab::tab_id(::index iTab)
    {
 
-      for(i32 iPane = 0; iPane < get_data()->m_panea.get_count(); iPane++)
+      for(i32 iPane = 0; iPane < get_data()->m_tabpanecompositea.get_count(); iPane++)
       {
 
-         if(get_data()->m_panea[iPane]->m_bTabPaneVisible)
+         if(get_data()->m_tabpanecompositea[iPane]->m_bTabPaneVisible)
          {
 
             if(iTab <= 0)
             {
 
-               return get_data()->m_panea[iPane]->m_id;
+               return get_data()->m_tabpanecompositea[iPane]->m_id;
 
             }
             else
@@ -3000,14 +3002,14 @@ namespace user
 
       }
 
-      if (iPane >= get_data()->m_panea.get_size())
+      if (iPane >= get_data()->m_tabpanecompositea.get_size())
       {
 
          return id();
 
       }
 
-      return get_data()->m_panea[iPane]->m_id;
+      return get_data()->m_tabpanecompositea[iPane]->m_id;
 
    }
 
@@ -3022,10 +3024,10 @@ namespace user
 
       }
 
-      for (::index iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for (::index iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         if (!get_data()->m_panea[iPane]->m_bTabPaneVisible)
+         if (!get_data()->m_tabpanecompositea[iPane]->m_bTabPaneVisible)
          {
 
             continue;
@@ -3060,13 +3062,13 @@ namespace user
 
       index iTab = 0;
 
-      for (::index iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for (::index iPane = 0; iPane < get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
          if (iPaneParam == iPane)
          {
 
-            if (get_data()->m_panea[iPane]->m_bTabPaneVisible)
+            if (get_data()->m_tabpanecompositea[iPane]->m_bTabPaneVisible)
             {
 
                return iTab;
@@ -3081,7 +3083,7 @@ namespace user
 
          }
 
-         if (get_data()->m_panea[iPane]->m_bTabPaneVisible)
+         if (get_data()->m_tabpanecompositea[iPane]->m_bTabPaneVisible)
          {
 
             iTab++;
@@ -3330,10 +3332,10 @@ namespace user
       else if(psubject->id() == id_place_child_title_change)
       {
 
-         for (auto& ppane : get_data()->m_panea)
+         for (auto& ppane : get_data()->m_tabpanecompositea)
          {
 
-            if (ppane->m_pplaceholder == psubject->m_puserinteraction)
+            if (ppane->m_pplaceholder == psubject->m_puserprimitive)
             {
 
                auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;
@@ -3702,14 +3704,14 @@ namespace user
 
       string strPath;
 
-      tab_pane_array & panea = get_data()->m_panea;
+      auto & panea = get_data()->m_tabpanecompositea;
 
       for(i32 i = 0; i < panea.get_count(); i++)
       {
 
-         ::user::tab_pane & tab_pane = panea(i);
+         auto ppane = panea[i].get();
 
-         strPath = tab_pane.m_id;
+         strPath = ppane->m_id;
 
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
@@ -3753,14 +3755,14 @@ namespace user
 
       string strPath;
 
-      tab_pane_array & panea = get_data()->m_panea;
+      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
 
       for(i32 i = 0; i < panea.get_count(); i++)
       {
 
-         ::user::tab_pane & tab_pane = panea(i);
+         auto ppane = panea[i].get();
 
-         strPath = tab_pane.m_id;
+         strPath = ppane->m_id;
 
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
@@ -3814,7 +3816,7 @@ namespace user
 
       ::payload varId;
 
-      tab_pane_array & panea = get_data()->m_panea;
+      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
 
       for(i32 i = 0; i < panea.get_count(); i++)
       {
@@ -3841,7 +3843,7 @@ namespace user
       if(matchany.is_there_no_item())
          return false;
       ::payload varId;
-      tab_pane_array & panea = get_data()->m_panea;
+      tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
       for(i32 i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_id;

@@ -164,7 +164,7 @@ public:
    DECL_GEN_SIGNAL(_001OnClose);
    DECL_GEN_SIGNAL(_001OnShowWindow);
    DECL_GEN_SIGNAL(_001OnViewFullScreen);
-   DECL_GEN_SIGNAL(_001OnMouseMove);
+   DECL_GEN_SIGNAL(on_message_mouse_move);
    DECL_GEN_SIGNAL(_001OnUpdateViewFullScreen);
    DECL_GEN_SIGNAL(_001OnToggleCustomFrame);
    DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame);

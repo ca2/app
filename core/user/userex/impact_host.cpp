@@ -610,6 +610,8 @@ namespace userex
 
       __pointer(::user::document) pdocument = get_doc(idView);
 
+      auto papplication = get_application();
+
       if (pdocument.is_set())
       {
 
@@ -619,7 +621,7 @@ namespace userex
 
       ::id id = idView;
 
-      auto puser = User;
+      auto puser = user();
 
       ::user::impact_system * pimpactsystem = puser->m_mapimpactsystem[idView];
 
@@ -698,9 +700,11 @@ namespace userex
 
       bool bShow = true;
 
+      auto papplication = get_application();
+
       papplication->data_set("frame::" + idView.to_string() + ".visible", bShow);
 
-      auto puser = User;
+      auto puser = user();
 
       puser->will_use_view_hint(idView);
 
@@ -730,6 +734,8 @@ namespace userex
 
       bool bShow = false;
 
+      auto papplication = get_application();
+
       papplication->data_set("frame::" + idView + ".visible", bShow);
 
       __pointer(::simple_frame_window) pframewindow = _001GetFrame(idView);
@@ -758,6 +764,8 @@ namespace userex
 
             bool bShow = false;
 
+            auto papplication = get_application();
+
             papplication->data_get("frame::" + idView + ".visible", bShow);
 
             bShow = !bShow;
@@ -785,9 +793,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto& app = papplication;
+      auto papplication = get_application();
 
-      app.data_get("frame::" + idView + ".visible", bShow);
+      papplication->data_get("frame::" + idView + ".visible", bShow);
 
       if (!bShow)
       {

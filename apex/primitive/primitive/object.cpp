@@ -509,88 +509,12 @@ void object::set_topic_text(const ::string & strTopicText)
 ::e_status object::initialize(::context_object * pcontextobject)
 {
 
-   auto estatus = ::success;
+   auto estatus = ::subject::manager::initialize(pcontextobject);
 
-#if OBJ_TYP_CTR
-
-   if (!m_eobject.is(e_object_obj_typ_ctr))
+   if (!estatus)
    {
 
-      m_eobject += e_object_obj_typ_ctr;
-
-      OBJ_TYP_CTR_INC;
-
-   }
-
-#endif
-
-//#if OBJ_REF_DBG
-//
-//   string strType = type_name();
-//
-//   if (strType.contains_ci("session"))
-//   {
-//
-//      if (m_pobjrefdbg->m_iStep == 39)
-//      {
-//
-//         output_debug_string("session");
-//
-//      }
-//
-//   }
-//
-//#endif
-
-   if (!get_system())
-   {
-    
-      m_psystem = pcontextobject->get_system();
-
-   }
-
-   if (!get_application())
-   {
-
-      set_context_app(pcontextobject->m_papplication);
-
-   }
-
-   if (!get_session())
-   {
-
-      set_context_session(pcontextobject->m_psession);
-
-   }
-
-   //if (!psystem)
-   //{
-
-   //   set_context_system(::::apex::get_system(pobject) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
-   //}
-
-   if (!get_context())
-   {
-
-      if (m_papplication)
-      {
-
-         m_pcontext = m_papplication;
-
-      }
-      else if (m_psession)
-      {
-
-         m_pcontext = m_psession;
-
-      }
-      else if (m_psystem)
-      {
-
-         m_pcontext = m_psystem;
-
-      }
+      return estatus;
 
    }
 

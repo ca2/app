@@ -14,12 +14,12 @@ namespace account
    view::view()
    {
 
-      m_plabelUser = new ::simple_ui::label;
-      m_peditUser = new ::simple_ui::edit_box;
-      m_plabelPassword = new ::simple_ui::label;
-      m_ppassword = new ::simple_ui::password;
-      m_ptap = new ::simple_ui::tap;
-      m_ptapClose = new ::simple_ui::tap;
+      m_pstillUser = new ::user::still;
+      m_peditUser = new ::user::plain_edit;
+      m_pstillPassword = new ::user::still;
+      m_peditPassword = new ::user::plain_edit;
+      m_pbutton = new ::user::button;
+      m_pbuttonClose = new ::user::button;
 
       m_bSelfLayout = false;
 
@@ -69,12 +69,12 @@ namespace account
 
       sleep(49_ms);*/
 
-      ::acme::del(m_plabelUser);
+      ::acme::del(m_pstillUser);
       ::acme::del(m_peditUser);
-      ::acme::del(m_plabelPassword);
-      ::acme::del(m_ppassword);
-      ::acme::del(m_ptap);
-      ::acme::del(m_ptapClose);
+      ::acme::del(m_pstillPassword);
+      ::acme::del(m_peditPassword);
+      ::acme::del(m_pbutton);
+      ::acme::del(m_pbuttonClose);
 
    }
 
@@ -93,13 +93,13 @@ namespace account
    {
 
       if (strUser.has_char())
-         m_plabelUser->set_window_text(strUser);
+         m_pstillUser->set_window_text(strUser);
 
       if (strPass.has_char())
-         m_plabelPassword->set_window_text(strPass);
+         m_pstillPassword->set_window_text(strPass);
 
       if (strOpen.has_char())
-         m_ptap->set_window_text(strOpen);
+         m_pbutton->set_window_text(strOpen);
 
    }
 
@@ -194,18 +194,18 @@ namespace account
       i32 pad = (int)(5 * ry);
 
       i32 y = (int)((49 + 86) * ry);
-      m_plabelUser->set_dim(x1, y, w2, h1);
+      m_pstillUser->set_dim(x1, y, w2, h1);
       y += h1 + pad;
       m_peditUser->set_dim(x1, y, w2, h1);
       y += h1 + pad;
-      m_plabelPassword->set_dim(x1, y, w2, h1);
+      m_pstillPassword->set_dim(x1, y, w2, h1);
       y += h1 + pad;
-      m_ppassword->set_dim(x1, y, w2, h1);
+      m_peditPassword->set_dim(x1, y, w2, h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_ptap->set_dim(x1, y, w2, h1 * 3);;
+      m_pbutton->set_dim(x1, y, w2, h1 * 3);;
 
-      m_ptapClose->set_dim(w - 36, 12, 24, 24);
+      m_pbuttonClose->set_dim(w - 36, 12, 24, 24);
 
    }
 
@@ -217,11 +217,11 @@ namespace account
 
       //return;
 
-      ::simple_ui::draw draw;
+      //::user::draw draw;
 
       ::rectangle_i32 r = get_client_rect();
 
-      draw.simple_ui_draw_frame_window_rect(r, pgraphics);
+      //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
 
 
@@ -321,7 +321,11 @@ namespace account
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         f->create_point_font(os_font_name(e_font_sans_ex), fHeight * 1.0);
+         auto psystem = get_system();
+
+         auto pnode = psystem->node();
+
+         f->create_point_font(pnode->font_name(e_font_sans_ex), fHeight * 1.0);
 
 
          pgraphics->set(f);
@@ -354,13 +358,19 @@ namespace account
       if (!strcmp(pszId, "submit"))
       {
 
-
          if (!m_bCred)
          {
+
             string strText;
-            m_ppassword->_001GetText(strText);
+
+            m_peditPassword->_001GetText(strText);
+
+            auto psystem = get_system();
+
             strText = psystem->crypto().nessie(strText);
-            m_ppassword->_001SetText(strText, ::e_source_database);
+
+            m_peditPassword->_001SetText(strText, ::e_source_database);
+
          }
 
          m_strResponse = "ok";
@@ -372,7 +382,7 @@ namespace account
       {
 
          get_parent()->display(e_display_none);
-         m_ppassword->_001SetText("", ::e_source_database);
+         m_peditPassword->_001SetText("", ::e_source_database);
          get_parent()->EndModalLoop("cancel");
 
          return true;
@@ -394,31 +404,31 @@ namespace account
       if (pcreate->previous())
          return;
 
-      if (!m_plabelUser->create_control(this, "label_user")
+      if (!m_pstillUser->create_control(this, "label_user")
             || !m_peditUser->create_control(this, "edit_user")
-            || !m_plabelPassword->create_control(this, "label_password")
-            || !m_ppassword->create_control(this, "password")
-            || !m_ptap->create_control(this, "submit")
-            || !m_ptapClose->create_control(this, "escape"))
+            || !m_pstillPassword->create_control(this, "label_password")
+            || !m_peditPassword->create_control(this, "password")
+            || !m_pbutton->create_control(this, "submit")
+            || !m_pbuttonClose->create_control(this, "escape"))
       {
          pcreate->m_lresult = -1;
          pcreate->m_bRet = true;
          return;
       }
 
-      m_ptapClose->m_estockicon = stock_icon_close;
+      m_pbuttonClose->m_estockicon = stock_icon_close;
 
-      //m_plabelUser->set_window_text("e-mail:");
-      //m_plabelPassword->set_window_text("password:");
-      //m_ptap->set_window_text("open");
+      //m_pstillUser->set_window_text("e-mail:");
+      //m_pstillPassword->set_window_text("password:");
+      //m_pbutton->set_window_text("open");
 
-      //m_plabelUser->set_window_text("@");
-      //m_plabelPassword->set_window_text("********");
-      //m_ptap->set_window_text("===>");
+      //m_pstillUser->set_window_text("@");
+      //m_pstillPassword->set_window_text("********");
+      //m_pbutton->set_window_text("===>");
 
-      m_plabelUser->set_window_text("");
-      m_plabelPassword->set_window_text("");
-      m_ptap->set_window_text("");
+      m_pstillUser->set_window_text("");
+      m_pstillPassword->set_window_text("");
+      m_pbutton->set_window_text("");
 
       set_dim(0, 0, 800, 450);
 
@@ -528,7 +538,7 @@ namespace account
 
       m_peditUser->_001SetText(pcredentials->m_puser->m_strLogin, ::e_source_initialize);
 
-      m_ppassword->_001SetText(pcredentials->m_strPassword, ::e_source_initialize);
+      m_peditPassword->_001SetText(pcredentials->m_strPassword, ::e_source_initialize);
 
       m_strResponse.Empty();
 
@@ -541,7 +551,7 @@ namespace account
 
          m_peditUser->_001GetText(pcredentials->m_puser->m_strLogin);
 
-         m_ppassword->_001GetText(pcredentials->m_strPassword);
+         m_peditPassword->_001GetText(pcredentials->m_strPassword);
 
          if(pcredentials->m_puser->m_strLogin.has_char()
                && pcredentials->m_strPassword.has_char())

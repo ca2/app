@@ -37,7 +37,7 @@ namespace user
 
 
 
-      pointer_array < __STATUSPANE >     m_panea;
+      pointer_array < __STATUSPANE >     m_panecompositea;
       i32                                    m_nMinHeight;
 
 

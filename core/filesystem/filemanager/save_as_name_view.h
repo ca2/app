@@ -6,13 +6,9 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_edit_view :
-      virtual public ::user::show < ::user::plain_edit >,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::show < ::user::plain_edit > >
    {
    public:
-
-
-      
 
 
       bool m_bVoidSync;
@@ -34,13 +30,10 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_button :
-      virtual public ::user::show < ::user::button >,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::show < ::user::button > >
    {
    public:
 
-
-      
 
       save_as_button();
 
@@ -61,8 +54,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_view:
-      virtual public ::user::split_view,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::split_view >
    {
    public:
 

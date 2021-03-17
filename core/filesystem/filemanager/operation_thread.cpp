@@ -142,7 +142,7 @@ namespace filemanager
       poperation->m_id = id;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
-      poperation->set_object(this);
+      poperation->initialize(this);
 
       if(bDeleteOriginOnSuccessfulCopy)
       {

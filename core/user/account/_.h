@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core/user/simple_ui/_.h"
+//#include "core/user/simple_ui/_.h"
 
 
 #include "login.h"
@@ -10,7 +10,10 @@
 #include "dialog.h"
 
 
-#include "simple_ui.h"
+#include "account_style.h"
+
+
+#include "main_window.h"
 
 
 

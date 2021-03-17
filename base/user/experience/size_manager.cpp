@@ -162,7 +162,7 @@ namespace experience
    }
 
 
-   bool size_manager::_001OnMouseMove(::message::mouse * pmouse)
+   bool size_manager::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_sizing_enabled())

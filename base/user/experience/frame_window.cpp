@@ -1262,7 +1262,7 @@ namespace experience
 
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::on_message_mouse_move);
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
@@ -1334,7 +1334,7 @@ namespace experience
    }
 
 
-   void frame_window::_001OnMouseMove(::message::message * pmessage)
+   void frame_window::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1366,7 +1366,7 @@ namespace experience
 
             //INFO("e_message_mouse_move for experience::frame");
 
-            if (m_pframe->_001OnMouseMove(pmouse))
+            if (m_pframe->on_message_mouse_move(pmouse))
             {
 
                pmouse->m_bRet = true;

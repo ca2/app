@@ -414,7 +414,7 @@ namespace linux
 //
 //      fflush(stdout);
 //
-//      auto puser = User;
+//      auto puser = user();
 //
 //      auto pwindowing = puser->windowing();
 //

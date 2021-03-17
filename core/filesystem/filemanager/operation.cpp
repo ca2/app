@@ -91,7 +91,7 @@ namespace filemanager
       m_strBase = strBase;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize())
+      if(!initialize(this))
          return false;
       return true;
    }
@@ -103,7 +103,7 @@ namespace filemanager
       m_str = psz;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize())
+      if(!initialize(this))
          return false;
       return true;
    }
@@ -114,13 +114,15 @@ namespace filemanager
       m_stra = stra;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize())
+      if(!initialize(this))
          return false;
       return true;
    }
 
    bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
    {
+
+      auto pcontext = get_context();
 
       if(pcontext->dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
@@ -203,6 +205,8 @@ namespace filemanager
 
       m_fileDst = pcontext->file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
+      auto papplication = get_application();
+
       if(m_fileDst.is_null())
       {
 
@@ -277,6 +281,9 @@ namespace filemanager
    
    ::e_status operation::step()
    {
+
+      auto pcontext = get_context();
+
       switch(m_eoperation)
       {
       case operation_copy:
@@ -464,12 +471,23 @@ namespace filemanager
    }
 
 
-   bool operation::initialize()
+   ::e_status operation::initialize(::context_object* pcontextobject)
    {
+
+      auto estatus = ::object::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       m_dSize = 0.0;
 
       ::payload varLen;
+
+      auto pcontext = get_context();
 
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
@@ -510,7 +528,7 @@ namespace filemanager
 
       }
 
-      return true;
+      return estatus;
 
    }
 
@@ -688,6 +706,8 @@ namespace filemanager
       }
 
 
+      auto pcontext = get_context();
+
       if(has_digit(strName))
       {
          i64 iValue = get_number_value(strName);
@@ -720,6 +740,10 @@ namespace filemanager
    {
 
       listingExpanded.m_pprovider = get_context();
+
+      auto pcontext = get_context();
+
+      auto papplication = get_application();
 
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {

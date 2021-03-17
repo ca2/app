@@ -62,6 +62,14 @@ namespace user
       tree();
       virtual ~tree();
 
+
+
+      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
+      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
+      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       void user_tree_common_construct();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -118,13 +126,13 @@ namespace user
       __pointer(::image_list) get_image_list();
 
       // Overrides
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
+      DECL_GEN_SIGNAL(on_message_mouse_leave);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(on_message_right_button_up);
       void _001OnTimer(::timer * ptimer) override;
       DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnVScroll);

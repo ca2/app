@@ -26,6 +26,10 @@ namespace filemanager
       virtual ~component();
 
 
+
+      inline ::core::session* get_session() const;
+      inline ::core::user* user() const;
+
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
 

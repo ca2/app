@@ -102,7 +102,9 @@ namespace user
       __pointer(format) data::add_format()
       {
 
-         auto pformat = __new(format(m_pformata));
+         auto pformat = __new(format);
+
+         pformat->initialize_user_rich_text_format(m_pformata);
 
          m_pformata->add(pformat);
 
@@ -2077,8 +2079,6 @@ namespace user
 
          {
 
-            stream.set_object(this);
-
             stream << m_spana;
 
          }
@@ -2106,8 +2106,6 @@ namespace user
          }
 
          {
-
-            stream.set_object(this);
 
             stream >> m_spana;
 

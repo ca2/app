@@ -77,7 +77,7 @@ namespace userex
 
       auto psubject = subject(id_key_down);
 
-      psubject->m_puserinteraction = this;
+      psubject->m_puserprimitive = this;
 
       psubject->m_ekey = pkey->m_ekey;
 
@@ -125,7 +125,7 @@ namespace userex
 
                auto psubject = subject(id_after_change_text_delayed);
 
-               psubject->m_puserinteraction = this;
+               psubject->m_puserprimitive = this;
 
                psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
@@ -156,7 +156,7 @@ namespace userex
 
          psubject->m_psender = this;
 
-         psubject->m_puserinteraction = this;
+         psubject->m_puserprimitive = this;
 
          get_document()->update_all_views(psubject);
 

@@ -3,13 +3,6 @@
 #include "core/user/rich_text/_rich_text.h"
 
 
-//#ifdef WINDOWS_DESKTOP
-//#include <Commdlg.h>
-//#endif
-
-
-
-
 namespace user
 {
 
@@ -18,10 +11,8 @@ namespace user
    {
 
       
-      format_tool::format_tool()
+   format_tool::format_tool()
    {
-
-      m_formata.add(__new(::user::rich_text::format(&m_formata)));
 
    }
 
@@ -30,6 +21,31 @@ namespace user
    {
 
    }
+
+
+   e_status format_tool::initialize(::context_object* pcontextobject)
+   {
+
+      auto estatus = ::user::tool_window::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pformat = __new(::user::rich_text::format);
+
+      estatus = pformat->initialize_user_rich_text_format(&m_formata);
+
+      m_formata.add(pformat);
+
+      return estatus;
+
+   }
+
+
 
 
    ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const

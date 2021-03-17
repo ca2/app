@@ -277,7 +277,7 @@ public:
    inline ::e_status __release(__reference(BASE_TYPE)& preference OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status release_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __release(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
 
    virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;

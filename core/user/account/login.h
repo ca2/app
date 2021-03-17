@@ -14,12 +14,12 @@ namespace account
    public:
 
 
-      __composite(::simple_ui::label)        m_plabelUser;
-      __composite(::simple_ui::edit_box)     m_peditUser;
-      __composite(::simple_ui::label)        m_plabelPassword;
-      __composite(::simple_ui::password)     m_ppassword;
-      __composite(::simple_ui::tap)          m_ptap;
-      __composite(::simple_ui::tap)          m_ptapClose;
+      __composite(::user::still)             m_pstillUser;
+      __composite(::user::plain_edit)        m_peditUser;
+      __composite(::user::still)             m_pstillPassword;
+      __composite(::user::plain_edit)        m_peditPassword;
+      __composite(::user::button)            m_pbutton;
+      __composite(::user::button)            m_pbuttonClose;
 
 
       string                        m_strUsername;

@@ -109,6 +109,8 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 //#include "aura/common.h"
 
 
+#include "core/platform/core.h"
+
 #if defined(LINUX)
 
 #include "aura/os/ansios/_.h"
@@ -219,6 +221,8 @@ class ifs;
 
 #include "core/platform/system.h"
 
+
+
 //#include "core/multimedia/audio/speaker.h"
 
 //#include "core/multimedia/audio.h"
@@ -260,4 +264,4 @@ class ifs;
 #include "core/platform/_impl.h"
 
 
-
+#include "core/filesystem/filemanager/_impl.h"

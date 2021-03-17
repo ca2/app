@@ -31,10 +31,10 @@ namespace html
       edisplay             m_edisplay;
 
 
-      style(::context_object * pcontextobject);
+      style();
       style(const style & style);
 
-      void initialize(e_tag etag);
+      void initialize_style(e_tag etag);
 
       //static edisplay display_name_to_id(const ::payload & varDisplay, e_tag e_tag);
       //static edisplay tag_to_display(e_tag e_tag);

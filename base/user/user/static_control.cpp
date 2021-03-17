@@ -72,8 +72,8 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &static_control::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &static_control::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &static_control::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::_001OnMouseLeave);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &static_control::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::on_message_mouse_leave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &static_control::on_message_mouse_move);
 
    }
 
@@ -123,7 +123,7 @@ namespace user
 
    }
 
-   void static_control::_001OnMouseMove(::message::message * pmessage)
+   void static_control::on_message_mouse_move(::message::message * pmessage)
    {
 
 //      __pointer(::message::mouse) pmouse(pmessage);
@@ -131,7 +131,7 @@ namespace user
    }
 
 
-   void static_control::_001OnMouseLeave(::message::message * pmessage)
+   void static_control::on_message_mouse_leave(::message::message * pmessage)
    {
 
 //      __pointer(::message::mouse) pleave(pmessage);

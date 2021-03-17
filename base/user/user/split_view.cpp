@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "split_pane.h"
 
 
 namespace user
@@ -228,7 +229,7 @@ namespace user
 
       //}
 
-      split_layout::Pane* ppane = m_panea[pimpactdata->m_id.index()];
+      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_id.index()];
 
       if (ppane != nullptr)
       {

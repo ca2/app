@@ -115,7 +115,7 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnView);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
 
       DECL_GEN_SIGNAL(_001OnMouseActivate);
       DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
@@ -128,7 +128,7 @@ namespace user
 
 
       DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnMButtonDown);
+      DECL_GEN_SIGNAL(on_message_middle_button_down);
 
 
       void OnUpdateSplitCmd(::message::command* pCmdUI);
@@ -232,6 +232,12 @@ namespace user
       {
 
       }
+
+
+      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
+      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
       virtual ::e_status initialize(::context_object * pcontextobject) override

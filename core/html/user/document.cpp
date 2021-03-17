@@ -337,6 +337,8 @@ void html_document::on_command_probe(::message::command * pcommand)
 void html_document::on_command(::message::command * pcommand)
 {
 
+   auto papplication = get_application();
+
    if(pcommand->m_id == "viewindefaultbrowser")
    {
 

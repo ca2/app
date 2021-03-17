@@ -332,7 +332,7 @@ enum enum_object : i64
    e_object_alertable_wait = 1 << 16,
    e_object_any_hook = 1 << 17,
    e_object_any_update = (1 << 18) | e_object_any_hook,
-   //e_object_set_finish = 1 << 19,
+   //e_object_composite = 1 << 19,
 #if OBJ_TYP_CTR
    e_object_obj_typ_ctr = 1 << 20,
 #endif

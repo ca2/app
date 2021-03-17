@@ -65,7 +65,11 @@ namespace uwp
       //#endif
 
 
-      auto pdocument = create_xml_document();
+      auto pdocument =       auto psystem = get_system();
+
+      auto pxml = psystem->xml();
+
+      auto pdocument= pxml->create_document();
 
       pdocument->load(get_context()->file().as_string(appdata() / "configuration\\directory.xml"));
 

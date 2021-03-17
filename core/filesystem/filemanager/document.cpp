@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "aura/update.h"
+#include "base/user/user/tab_pane.h"
 
 
 namespace filemanager
@@ -127,6 +128,8 @@ namespace filemanager
 
             // assume can resume at least from this exception one time
 
+            auto pcontext = get_context();
+
             m_pitem = __new(::file::item(pcontext->defer_process_path(strOldPath), strOldPath));
 
             OnFileManagerBrowse(context + ::e_source_sync);
@@ -140,6 +143,8 @@ namespace filemanager
       if (m_filewatchid >= 0)
       {
 
+         auto pcontext = get_context();
+
          pcontext->dir().watcher().remove_watch(m_filewatchid);
 
       }
@@ -147,9 +152,9 @@ namespace filemanager
       try
       {
 
-         auto& context = Context;
+         auto pcontext = get_context();
 
-         auto& dir = context.dir();
+         auto& dir = pcontext->dir();
 
          auto& watcher = dir.watcher();
 
@@ -390,6 +395,8 @@ namespace filemanager
 
       ::file::path pathUser = pszPath;
 
+      auto pcontext = get_context();
+
       ::file::path pathFinal = pcontext->defer_process_path(pathUser);
 
       __pointer(::file::item) pitem = __new(::file::item(pathUser, pathFinal));
@@ -492,7 +499,7 @@ namespace filemanager
    void document::defer_check_manager_id(string strManagerId)
    {
 
-      auto puser = User;
+      auto puser = user();
 
       if(puser->m_pathFilemanagerProject.has_char())
       {
@@ -679,7 +686,7 @@ namespace filemanager
       if (context.is_user_source())
       {
 
-         auto puser = User;
+         auto puser = user();
 
          if (puser->m_pathFilemanagerProject.is_empty())
          {
@@ -690,7 +697,7 @@ namespace filemanager
          else
          {
 
-            auto puser = User;
+            auto puser = user();
 
             puser->filemanager_save_project();
 
@@ -767,7 +774,7 @@ namespace filemanager
 
       pcreate->finish_initialization();
 
-      auto puser = User;
+      auto puser = user();
 
       puser->add_filemanager("", pcreate);
 
@@ -809,7 +816,7 @@ namespace filemanager
 
       }
 
-      auto puser = User;
+      auto puser = user();
 
       puser->remove_filemanager(pdocument.m_p);
 
@@ -1384,7 +1391,7 @@ namespace filemanager
       if (m_pfilemanagerdata.is_null())
       {
 
-         auto puser = User;
+         auto puser = user();
 
          m_pfilemanagerdata = puser->filemanager(FILEMANAGER_IMPACT);
 
@@ -1427,6 +1434,8 @@ namespace filemanager
    {
 
       //::filemanager::callback::on_request(pcreate);
+
+      auto papplication = get_application();
 
       papplication->call_request(pcreate);
 

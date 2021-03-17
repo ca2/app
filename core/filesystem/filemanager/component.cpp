@@ -34,7 +34,9 @@ namespace filemanager
 
       mem.set_size(get_manager_id_byte_len());
 
-      psystem->math().random_bytes(mem.get_data(), mem.get_size());
+      auto pmathematics = ::mathematics::mathematics();
+
+      pmathematics->random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 
@@ -389,6 +391,8 @@ namespace filemanager
 
    void component::filemanager_load_project(const ::file::path & pathFilemanagerProject, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
+
+      auto pcontext = get_context();
 
       {
 

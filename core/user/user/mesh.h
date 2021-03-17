@@ -249,7 +249,10 @@ namespace user
       //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem);
 
 
-
+      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
+      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
+      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
+      inline ::core::user* user() const { return get_session()->user(); }
 
 
       virtual void install_message_routing(::channel * pchannel) override;
@@ -446,13 +449,13 @@ namespace user
 
 
       DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_leave);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(on_message_right_button_up);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(_001OnVScroll);

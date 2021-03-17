@@ -284,6 +284,14 @@ namespace user
    }
 
 
+   void interaction::enable_drag_move()
+   {
+
+      __construct_new(m_pdragmove);
+
+   }
+
+
    ::windowing::window *interaction::window() const
    {
 
@@ -1336,8 +1344,13 @@ namespace user
 
       __pointer(::aura::application) papplication = get_application();
 
-      // return true to set focus to this control
-      papplication->keyboard_focus_OnSetFocus(this);
+      if (papplication)
+      {
+
+         // return true to set focus to this control
+         papplication->keyboard_focus_OnSetFocus(this);
+
+      }
 
       auto einputtypePreferred = preferred_input_type();
 
@@ -14396,12 +14409,12 @@ restart:
 
       m_bSimpleUIDefaultMouseHandling = true;
 
-      MESSAGE_LINK((enum_message) e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
-      MESSAGE_LINK((enum_message) e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
-      MESSAGE_LINK((enum_message) e_message_middle_button_down, pchannel, this, &interaction::_001OnMButtonDown);
-      MESSAGE_LINK((enum_message) e_message_middle_button_up, pchannel, this, &interaction::_001OnMButtonUp);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::_001OnMouseMove);
-      MESSAGE_LINK((enum_message) e_message_mouse_leave, pchannel, this, &interaction::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
 
    }
 
@@ -14563,7 +14576,14 @@ restart:
 
             }
 
-            pmouse->m_bRet = true;
+            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_client;
+
+            if (pmouse->m_bRet)
+            {
+
+               return;
+
+            }
 
          }
          else
@@ -14582,7 +14602,37 @@ restart:
 
             simple_on_control_event(pmessage, ::user::e_event_button_down);
 
+            if (pmessage->m_bRet)
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
          }
+
+      }
+
+      if (m_pdragmove)
+      {
+
+         get_wnd()->show_keyboard(false);
+
+         m_pdragmove->m_bLButtonDown = true;
+
+         m_pdragmove->m_bDrag = false;
+
+         m_pdragmove->m_pointLButtonDown = pmouse->m_point;
+
+         m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
+
+         set_mouse_capture();
+
+         pmouse->m_bRet = true;
+
+         return;
 
       }
 
@@ -14596,6 +14646,34 @@ restart:
 
       if (!is_window_enabled())
       {
+
+         return;
+
+      }
+
+      if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+      {
+
+         m_pdragmove->m_bLButtonDown = false;
+
+         if (pmouse->previous())
+         {
+
+            return;
+
+         }
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_mouse_capture();
+
+         m_pdragmove->m_bDrag = false;
+
+         pmessage->m_bRet = true;
 
          return;
 
@@ -14721,7 +14799,7 @@ restart:
 
 
 
-   void interaction::_001OnMButtonDown(::message::message* pmessage)
+   void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -14745,7 +14823,7 @@ restart:
    }
 
 
-   void interaction::_001OnMButtonUp(::message::message* pmessage)
+   void interaction::on_message_middle_button_up(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -14769,7 +14847,7 @@ restart:
    }
 
 
-   void interaction::_001OnMouseMove(::message::message* pmessage)
+   void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -14780,6 +14858,8 @@ restart:
          return;
 
       }
+
+
 
       synchronization_lock synchronizationlock(mutex());
 
@@ -14793,6 +14873,31 @@ restart:
          update_hover(pmouse->m_point, false);
 
       }
+
+      if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+      {
+
+         pmouse->m_ecursor = e_cursor_move;
+
+         if (!m_pdragmove->m_bDrag)
+         {
+
+            m_pdragmove->m_bDrag = true;
+
+            auto point = pmouse->m_point - m_pdragmove->m_sizeLButtonDownOffset;
+
+            move_to(point);
+
+            m_pdragmove->m_bDrag = false;
+
+         }
+
+         pmessage->m_bRet = true;
+
+         return;
+
+      }
+
 
    }
 
@@ -14902,7 +15007,7 @@ restart:
    }
 
 
-   void interaction::_001OnMouseLeave(::message::message * pmessage)
+   void interaction::on_message_mouse_leave(::message::message * pmessage)
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -16000,7 +16105,12 @@ restart:
 
          __pointer(::aura::application) papplication = get_application();
 
-         papplication->route_command_message(pcommand);
+         if (papplication)
+         {
+
+            papplication->route_command_message(pcommand);
+
+         }
 
       }
 
@@ -16641,6 +16751,13 @@ restart:
       }
 
       return pimpl2->get_oswindow();
+
+   }
+
+   interaction::drag_move::drag_move()
+   {
+
+      m_bDrag = false;
 
    }
 

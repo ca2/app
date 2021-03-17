@@ -100,7 +100,7 @@ namespace calculator
 
             _001GetText(strExp);
 
-            parser parser(this);
+            auto pparser = __create_new< parser >();
 
             error e;
 
@@ -214,7 +214,7 @@ namespace calculator
             try
             {
 
-               pelement = parser.parse(strExp);
+               pelement = pparser->parse(strExp);
                //__throw(::exception::exception("now a simple exception here"));
 
             }

@@ -107,12 +107,12 @@ void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
 }
 
 
-void simple_tab_view::_001OnMouseMove(::message::message * pmessage)
+void simple_tab_view::on_message_mouse_move(::message::message * pmessage)
 {
    
    __pointer(::message::mouse) pmouse(pmessage);
    
-   ::user::tab::_001OnMouseMove(pmessage);
+   ::user::tab::on_message_mouse_move(pmessage);
    
    if (pmouse->m_bRet)
    {
@@ -124,12 +124,12 @@ void simple_tab_view::_001OnMouseMove(::message::message * pmessage)
 }
 
 
-void simple_tab_view::_001OnMouseLeave(::message::message * pmessage)
+void simple_tab_view::on_message_mouse_leave(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   ::user::tab::_001OnMouseLeave(pmessage);
+   ::user::tab::on_message_mouse_leave(pmessage);
 
    if (pmouse->m_bRet)
    {

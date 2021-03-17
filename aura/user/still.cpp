@@ -41,10 +41,10 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
       //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
       //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::_001OnMButtonDown);
-      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::_001OnMButtonUp);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
-      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::_001OnMouseLeave);
+      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
+      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
+      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
+      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
 
    }
@@ -179,7 +179,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMButtonDown(::message::message * pmessage)
+   //void still::on_message_middle_button_down(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -209,7 +209,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMButtonUp(::message::message * pmessage)
+   //void still::on_message_middle_button_up(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -311,7 +311,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMouseMove(::message::message * pmessage)
+   //void still::on_message_mouse_move(::message::message * pmessage)
    //{
 
    //   //__pointer(::message::mouse) pmouse(pmessage);
@@ -357,7 +357,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMouseLeave(::message::message * pmessage)
+   //void still::on_message_mouse_leave(::message::message * pmessage)
    //{
 
    //   //__pointer(::user::message) pusermessage(pmessage);
@@ -610,9 +610,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->color_blend(rectClient,
-         crBk,
-         127);
+         pgraphics->color_blend(rectClient, crBk, 127);
 
       }
       else

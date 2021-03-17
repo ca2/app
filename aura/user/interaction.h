@@ -15,6 +15,21 @@ namespace user
    public:
 
 
+      class drag_move :
+         virtual public ::matter
+      {
+      public:
+
+         bool                       m_bLButtonDown;
+         ::point_i32                m_pointLButtonDown;
+         ::size_i32                 m_sizeLButtonDownOffset;
+
+         bool                       m_bDrag;
+
+         drag_move();
+
+      };
+
       class iterator
       {
       public:
@@ -182,6 +197,7 @@ namespace user
 
       ::user::interaction_layout                   m_layout;
 
+      __pointer(drag_move)                         m_pdragmove;
       //index                                     m_iControl;
       index                                        m_iItem;
       index                                        m_iSubItem;
@@ -364,8 +380,6 @@ namespace user
       interaction();
       virtual ~interaction();
 
-
-
       void user_interaction_common_construct();
 
       virtual void on_create_user_interaction();
@@ -383,6 +397,10 @@ namespace user
       virtual bool _001Restore();
 
       virtual bool _001Minimize();
+
+      void enable_drag_move();
+
+
 
       virtual ::windowing::window * window() const;
 
@@ -1245,9 +1263,9 @@ namespace user
 
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
       DECL_GEN_SIGNAL(_001OnMouseEnter);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(on_message_mouse_leave);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
 
@@ -1710,8 +1728,8 @@ namespace user
 
 
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMButtonDown);
-      DECL_GEN_SIGNAL(_001OnMButtonUp);
+      DECL_GEN_SIGNAL(on_message_middle_button_down);
+      DECL_GEN_SIGNAL(on_message_middle_button_up);
 
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
@@ -1789,8 +1807,8 @@ namespace user
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
       //virtual void on_hit_test(::user::item & item) override;
       //DECL_GEN_SIGNAL(on_message_create);
-      //DECL_GEN_SIGNAL(_001OnMouseMove);
-      //DECL_GEN_SIGNAL(_001OnMouseLeave);
+      //DECL_GEN_SIGNAL(on_message_mouse_move);
+      //DECL_GEN_SIGNAL(on_message_mouse_leave);
       //DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnEnable);
       //DECL_GEN_SIGNAL(_001OnSetFocus);

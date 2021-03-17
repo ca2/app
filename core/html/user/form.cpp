@@ -38,6 +38,8 @@ html_form::~html_form()
 
    }
 
+   __pointer(::core::system) psystem = get_system();
+
    estatus = psystem->defer_create_html();
 
    if (!estatus)
@@ -158,8 +160,8 @@ void html_form::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::_001OnMouseMove);
-   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::_001OnMouseLeave);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
+   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
 
    MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
@@ -218,6 +220,8 @@ void html_form::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);
+
+   auto psystem = get_system();
 
    psystem->defer_create_html();
 
@@ -278,7 +282,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 }
 
 
-void html_form::_001OnMouseMove(::message::message * pmessage)
+void html_form::on_message_mouse_move(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -339,7 +343,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 }
 
 
-void html_form::_001OnMouseLeave(::message::message * pmessage)
+void html_form::on_message_mouse_leave(::message::message * pmessage)
 {
 
    if(m_pelementHover != nullptr)
@@ -482,6 +486,8 @@ void html_form::set_need_load_form_data()
 {
 
    auto path = varFile.get_file_path();
+
+   auto psystem = get_system();
 
    if (path.is_empty())
    {
@@ -810,6 +816,8 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
          {
 
             ::file::path matter;
+
+            auto pcontext = get_context();
 
             matter = pcontext->dir().matter(psubject->payload(id_form));
 

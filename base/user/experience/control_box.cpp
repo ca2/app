@@ -103,7 +103,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnMouseMove(::message::message * pmessage)
+   void control_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -390,7 +390,7 @@ namespace experience
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);

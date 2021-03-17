@@ -14,29 +14,12 @@ namespace filemanager
    }
 
 
-   void form::install_message_routing(::channel * pchannel)
-   {
-
-      ::filemanager::impact::install_message_routing(pchannel);
-      ::user::form_view::install_message_routing(pchannel);
-
-   }
-
-
-   void form::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
-
-      ::filemanager::impact::on_subject(psubject, pcontext);
-
-      ::user::form_view::on_subject(psubject, pcontext);
-
-   }
-
-
    void form::on_control_event(::user::control_event * pevent)
    {
+
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
+
          if(pevent->m_puie->m_id == "lfs")
          {
 
@@ -65,7 +48,11 @@ namespace filemanager
          {
             if(m_strPath == "filemanager_add_location_lfs.xhtml")
             {
+               
                string_array stra;
+
+               auto papplication = get_application();
+
                papplication->data_get(filemanager_data()->m_dataidStatic,stra);
 
                auto pinteraction = get_child_by_name("lfs");

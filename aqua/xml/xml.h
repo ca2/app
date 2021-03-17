@@ -25,6 +25,7 @@ namespace xml
 
       virtual ::e_status init();
 
+      virtual __pointer(::xml::document) create_document(); 
 
 
       string special_chars(const char * psz);

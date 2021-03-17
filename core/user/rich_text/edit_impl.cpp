@@ -109,8 +109,8 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::_001OnMouseMove);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::_001OnMouseLeave);
+         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::on_message_mouse_move);
+         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
@@ -439,7 +439,7 @@ namespace user
       }
 
 
-      void edit_impl::_001OnMouseMove(::message::message* pmessage)
+      void edit_impl::on_message_mouse_move(::message::message* pmessage)
       {
 
          __pointer(::message::mouse) pmouse(pmessage);
@@ -520,7 +520,7 @@ namespace user
 
 
 
-      void edit_impl::_001OnMouseLeave(::message::message * pmessage)
+      void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
          auto psession = get_session();

@@ -166,6 +166,8 @@ namespace userfs
                   m_bPendingSize = true;
                }*/
 
+         auto pcontext = get_context();
+
          try
          {
 
@@ -280,7 +282,9 @@ namespace userfs
 
             ::file::path & pathFinal = m_itema.get_item((::index) pitem->m_iItem)->m_filepathFinal;
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pitem->m_iImage = puser->shell()->get_file_image(
                               pathFinal,

@@ -6,20 +6,17 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::userfs::list,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::userfs::list >
    {
    public:
 
 
-      
-
-      context_menu                     m_contextmenu;
-      string_array                          m_straOpenWith;
-      bool                             m_bFileSize;
-      bool                             m_bShow;
-      index                            m_iSizeSubItem;
-      millis m_millisLastFileSizeGet;
+      context_menu                        m_contextmenu;
+      string_array                        m_straOpenWith;
+      bool                                m_bFileSize;
+      bool                                m_bShow;
+      index                               m_iSizeSubItem;
+      millis                              m_millisLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;

@@ -248,6 +248,17 @@ namespace color
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
 
+      color operator +(const ::opacity& opacity) const
+      {
+
+         color color(*this);
+
+         color.alpha = opacity.get_alpha();
+
+         return color;
+
+      }
+
    };
 
 

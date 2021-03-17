@@ -497,7 +497,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE) & preference OBJ_REF_
 
 
 template < typename SOURCE >
-inline ::e_status object::release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return release_reference(psource.m_p);

@@ -104,11 +104,11 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    ::user::toolbar::install_message_routing(pchannel);
 
    MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
-   //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::_001OnMouseMove);
+   //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
    //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::_001OnMouseLeave);
+   //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    install_simple_ui_default_mouse_handling(pchannel);
    
@@ -689,7 +689,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = get_item_style(iItem);
 
-   auto puser = User;
+   __pointer(::core::session) psession = get_session();
+
+   auto puser = psession->user();
 
    __pointer(::user::menu_central) pmenucentral = puser->menu();
 
@@ -732,13 +734,8 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
-               psystem->imaging().color_blend(
-               pgraphics,
-               rectItem.left,
-               rectItem.top,
-               rectItem.width(),
-               rectItem.height(),
-               rgb(255, 255, 250), 208);
+
+               pgraphics->color_blend(rectItem, rgb(255, 255, 250), 208);
 
                pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
@@ -798,7 +795,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.85);
+               pgraphics->draw(rectangle, item.m_pimage,  ::opacity(0.85));
 
             }
             else if (uImage != 0xffffffffu)
@@ -846,7 +843,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+            pgraphics->draw(rectangle, item.m_pimage);
 
          }
          else if (uImage != 0xffffffff)
@@ -893,7 +890,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //    }
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.23);
+               pgraphics->draw(rectangle, item.m_pimage,::opacity(0.23));
 
             }
 
@@ -1229,7 +1226,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-//void simple_toolbar::_001OnMouseMove(::message::message * pmessage)
+//void simple_toolbar::on_message_mouse_move(::message::message * pmessage)
 //{
 //
 //   __pointer(::message::mouse) pmouse(pmessage);
@@ -1604,9 +1601,10 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through simple_tool_command class
 
-simple_tool_command::simple_tool_command(::context_object * pcontextobject) :
-   ::message::command(pobject)
+simple_tool_command::simple_tool_command(::context_object * pcontextobject)
 {
+
+   initialize(pcontextobject);
 
 }
 
@@ -2478,7 +2476,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 }
 
 
-//void simple_toolbar::_001OnMouseLeave(::message::message * pmessage)
+//void simple_toolbar::on_message_mouse_leave(::message::message * pmessage)
 //{
 //
 //   __pointer(::user::message) pusermessage(pmessage);

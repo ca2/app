@@ -64,6 +64,8 @@ namespace user
 
       string str;
 
+      auto papplication = get_application();
+
       str = papplication->load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
       //m_font->create_point_font("Verdana", 10.0);
 
@@ -419,7 +421,7 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
    void list_header::on_message_left_button_down(::message::message * pmessage)
@@ -491,7 +493,7 @@ namespace user
 
 
 
-   void list_header::_001OnMouseMove(::message::message * pmessage)
+   void list_header::on_message_mouse_move(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;

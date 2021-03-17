@@ -41,7 +41,7 @@ namespace user
 
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

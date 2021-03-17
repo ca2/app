@@ -43,7 +43,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
    MESSAGE_LINK(e_message_hscroll, pchannel, this, &simple_scroll_bar::_001OnHScroll);
@@ -81,7 +81,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 //}
 
 
-void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
+void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);

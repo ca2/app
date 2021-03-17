@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
+#include "base/user/user/split_pane.h"
 
 
 namespace userex
@@ -39,7 +40,7 @@ namespace userex
 
       }
 
-      Pane * ppane = (Pane *) m_panea.element_at(iPane);
+      auto ppane = m_splitpanecompositea[iPane].get();
 
       if (!pimpactdata->m_pplaceholder)
       {
@@ -92,15 +93,15 @@ namespace userex
 
       ASSERT(iPane < get_pane_count());
 
-      Pane & pane = m_panea(iPane);
+      auto ppane = m_splitpanecompositea[iPane].get();
 
-      pane.m_bFixedSize = bFixedSize;
+      ppane->m_bFixedSize = bFixedSize;
 
-      pane.m_id = id;
+      ppane->m_id = id;
 
       ::rectangle_i32 rectClient;
 
-      pane.m_pplaceholder->get_client_rect(rectClient);
+      ppane->m_pplaceholder->get_client_rect(rectClient);
 
       ::user::impact_data * pdata = create_impact(id);
 

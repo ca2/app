@@ -177,7 +177,7 @@ namespace user
          if(m_panea[i].is_null())
          {
 
-            m_panea[i] = __new(::user::split_layout::Pane);
+            m_panea[i] = __new(::user::split_pane);
 
             m_panea(i).m_bFixedSize =  false;
 

@@ -24,7 +24,7 @@ namespace subject
       __pointer(::property_object)        m_pobjectTopic;
       ::action_context                    m_actioncontext;
       __pointer(::property_object)        m_psender;
-      __pointer(::property_object)        m_puserinteraction; // user::interaction
+      __pointer(::user::primitive)        m_puserprimitive; // user::interaction
       __pointer(::property_object)        m_pcontrolevent; // user::control_event
       __pointer(::file::item)             m_pfileitem;
       bool                                m_bRet;

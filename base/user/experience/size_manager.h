@@ -33,7 +33,7 @@ namespace experience
 
 
       bool on_message_left_button_down(::message::mouse * pmouse);
-      bool _001OnMouseMove(::message::mouse * pmouse);
+      bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
 
 

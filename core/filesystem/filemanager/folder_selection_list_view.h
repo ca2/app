@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_selection_list_view:
-      virtual public ::user::split_view,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::split_view >
    {
    public:
 

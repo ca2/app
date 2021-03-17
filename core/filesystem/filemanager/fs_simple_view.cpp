@@ -146,6 +146,8 @@ namespace filemanager
             fork([this, iFolder]()
             {
 
+                  auto pcontext = get_context();
+
                auto phttpmessage = __new(::http::message);
 
                phttpmessage->payload("request") = "";
@@ -167,6 +169,8 @@ namespace filemanager
          {
 
             string strUrl;
+
+            auto psystem = get_system();
 
             strUrl.Format("http://file.ca2.cc/ifs/get?name=" + psystem->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 

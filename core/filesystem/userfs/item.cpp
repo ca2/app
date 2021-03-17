@@ -75,17 +75,17 @@ namespace userfs
    }
 
 
-   string item::data_item_get_text(object * pobject) const
+   string item::data_item_get_text(context_object * pcontextobject) const
    {
 
-      UNREFERENCED_PARAMETER(pobject);
+      UNREFERENCED_PARAMETER(pcontextobject);
 
       return m_strName;
 
    }
 
 
-   index item::data_item_get_image(object * pobject) const
+   index item::data_item_get_image(context_object * pcontextobject) const
    {
 
       ::user::shell::e_file_attribute efileattribute;
@@ -118,14 +118,16 @@ namespace userfs
 
       }
 
-      auto puser = User;
+      auto psession = m_ptree->get_session();
+
+      auto puser = psession->user();
 
       return puser->shell()->get_file_image(m_filepathFinal, efileattribute, eicon);
 
    }
 
 
-   ::image_list * item::data_item_get_image_list(object * pobject) const
+   ::image_list * item::data_item_get_image_list(::context_object * pcontextobject) const
    {
 
       return m_ptree->m_pimagelist;

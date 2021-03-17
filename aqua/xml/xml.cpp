@@ -89,6 +89,14 @@ namespace xml
 
    }
 
+   
+   __pointer(::xml::document) xml::create_document()
+   { 
+      
+      return ::__create_new < ::xml::document >(); 
+   
+   }
+
 
    string xml::special_chars(const char * psz)
    {

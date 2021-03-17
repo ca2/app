@@ -1862,7 +1862,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 
          ASSERT(m_oswindow->is_window());
 
-         ::hyperlink hyperlink;
+         auto phyperlink = __create_new < ::hyperlink >();
 
          hyperlink.open_link(str, "", "");
 

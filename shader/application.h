@@ -11,7 +11,7 @@ namespace app_shader
    public:
 
 
-      __composite(window)                    m_pwindow;
+      __composite(::app_shader::main_window)                    m_pmainwindow;
 
 
       application();

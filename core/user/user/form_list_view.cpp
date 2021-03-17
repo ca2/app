@@ -45,7 +45,7 @@ namespace user
             if(!psubject->payload(id_form).is_empty())
             {
 
-               string strMatter = pcontext->dir().matter(psubject->payload(id_form));
+               string strMatter = get_context()->dir().matter(psubject->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {

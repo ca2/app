@@ -59,9 +59,9 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = false;
 
-         pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
 
-         auto puser = User;
+         auto puser = user();
 
          puser->m_pdocumenttemplateForm->do_request(pcreate);
 
@@ -115,9 +115,9 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = false;
 
-         pcreate->m_puserinteractionParent = this;
+         pcreate->m_puserprimitiveParent = this;
 
-         auto puser = User;
+         auto puser = user();
 
          puser->m_pdocumenttemplateOperation->do_request(pcreate);
 
@@ -154,7 +154,7 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = true;
 
-         pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
 
          pcreate->payload("filemanager::data") = pfilemanagerdata;
 
@@ -185,6 +185,8 @@ namespace filemanager
          __pointer(document) pdocument = get_document();
 
          create_view < view >(pimpactdata);
+
+         auto pcontext = get_context();
 
          if(pdocument != nullptr)
          {

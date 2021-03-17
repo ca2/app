@@ -13,8 +13,6 @@ namespace html
    element::element()
    {
 
-      m_pstyle = __new(::html::style(this));
-
    }
 
 
@@ -109,7 +107,9 @@ namespace html
 
       }
 
-      auto puser = User;
+      __pointer(::core::session) psession = m_pimpl->get_session();
+
+      auto puser = psession->user();
 
       m_etag = puser->m_phtml->tag_name_to_id(m_idTagName);
 
@@ -128,7 +128,7 @@ namespace html
 
       }
 
-      m_pstyle->initialize(m_etag);
+      m_pstyle->initialize_style(m_etag);
 
       if (m_pbase->get_type() == ::html::base::type_value)
       {
@@ -904,7 +904,7 @@ namespace html
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
+            __pointer(style_sheet) pstylesheet(__create_new < style_sheet > ());
 
             string strUrl(get_tag()->get_attr_value("href"));
 
@@ -919,6 +919,7 @@ namespace html
             else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
                     ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
+               auto psystem = get_system();
                strUrl = psystem->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
             }
             else
@@ -926,7 +927,10 @@ namespace html
                strUrl = m_pdata->m_pcoredata->m_strPathName.sibling(strUrl);
                strUrl.replace("/","\\");
             }
-            pstylesheet->parse(pdata, Ctx(pdata).file().as_string(strUrl));
+            auto pcontext = get_context();
+
+
+            pstylesheet->parse(pdata, pcontext->file().as_string(strUrl));
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
@@ -949,16 +953,22 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_idTagName == __id(html_style))
          {
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
+            __pointer(style_sheet) pstylesheet(__create_new < style_sheet >());
             pstylesheet->parse(pdata, pvalue->get_value());
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_idTagName == __id(html_link)
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
-            __pointer(style_sheet) pstylesheet(__new(style_sheet(get_application())));
-            pstylesheet->parse(pdata, Ctx(pdata).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            
+            __pointer(style_sheet) pstylesheet(__create_new < style_sheet > ());
+
+            auto pcontext = get_context();
+
+            pstylesheet->parse(pdata, pcontext->file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
+
          }
       }
       else
@@ -1369,7 +1379,8 @@ namespace html
 
       }
 
-      set_context_app(pdata->get_application());
+      m_pstyle = __create_new < ::html::style > ();
+
       m_pparent = pparent;
       m_pimpl = nullptr;
       m_pbase = nullptr;
@@ -1575,7 +1586,9 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         auto puser = Usr(pdata->m_pcoredata->get_session());
+         __pointer(::core::session) psession = pdata->m_pcoredata->get_session();
+
+         auto puser = psession->user();
 
          str += puser->m_phtml->entities(m_strBody);
 
@@ -1609,7 +1622,9 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            auto puser = Usr(pdata->m_pcoredata->get_session());
+            __pointer(::core::session) psession = pdata->m_pcoredata->get_session();
+
+            auto puser = psession->user();
 
             str += puser->m_phtml->entities(m_strBody);
 

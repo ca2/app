@@ -42,7 +42,7 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      auto puser = User;
+      auto puser = user();
 
       __compose(m_pimagelist, puser->shell()->GetImageList(16));
 
@@ -97,6 +97,8 @@ namespace filemanager
 
       ::file::path strDir;
 
+      auto papplication = get_application();
+
       if(bOnlyParent && pathUser.has_char())
       {
 
@@ -115,6 +117,8 @@ namespace filemanager
          papplication->dir().ls(listing, pathUser);
 
       }
+
+      auto pcontext = get_context();
 
       for (auto & item : listing)
       {
@@ -169,6 +173,8 @@ namespace filemanager
       synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
 
       synchronization_lock synchronizationlock(pm);
+
+      auto pcontext = get_context();
 
       auto pointOffset = get_viewport_offset();
 
@@ -431,7 +437,7 @@ namespace filemanager
 
          });
 
-      auto puser = User;
+      auto puser = user();
 
       __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
 
@@ -747,7 +753,7 @@ namespace filemanager
    void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
    }
 

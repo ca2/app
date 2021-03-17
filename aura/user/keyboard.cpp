@@ -28,6 +28,29 @@ namespace user
    keyboard::keyboard()
    {
 
+
+
+   }
+
+
+   keyboard::~keyboard()
+   {
+
+   }
+
+
+   ::e_status keyboard::initialize(::context_object * pcontextobject)
+   {
+
+      auto estatus = ::object::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       auto psystem = get_system();
 
       SET_ENUM_TEXT(e_key_0);
@@ -134,27 +157,6 @@ namespace user
       SET_ENUM_TEXT(e_key_f11);
       SET_ENUM_TEXT(e_key_f12);
 
-
-   }
-
-
-   keyboard::~keyboard()
-   {
-
-   }
-
-
-   ::e_status keyboard::initialize(::context_object * pcontextobject)
-   {
-
-      auto estatus = ::object::initialize(pcontextobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
       return ::success;
 

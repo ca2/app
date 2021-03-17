@@ -45,7 +45,7 @@ namespace user
    tab_pane * tab_data::get_pane_by_id(id id)
    {
 
-      return m_panea.get_by_id(id);
+      return m_tabpanecompositea.get_by_id(id);
 
    }
 
@@ -53,7 +53,7 @@ namespace user
    ::count tab_data::get_visible_tab_count()
    {
 
-      return m_panea.get_visible_count();
+      return m_tabpanecompositea.get_visible_count();
 
    }
 

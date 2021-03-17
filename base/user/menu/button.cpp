@@ -331,7 +331,7 @@ namespace user
    }
 
 
-   void menu_button::_001OnMouseMove(::message::message * pmessage)
+   void menu_button::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

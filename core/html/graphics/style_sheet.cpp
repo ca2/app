@@ -6,9 +6,25 @@ namespace html
 {
 
 
-   style_sheet::style_sheet(::context_object * pcontextobject) :
-      ::object(pobject)
+   style_sheet::style_sheet()
    {
+
+   }
+
+
+   ::e_status style_sheet::initialize(::context_object* pcontextobject)
+   {
+
+      auto estatus = ::object::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -37,7 +53,7 @@ namespace html
             psz++;
          }
 
-         auto pstyle = __new(class style(this));
+         auto pstyle = __create_new < class style >();
 
          string strStyle = str.Left(psz - pszStart);
 
@@ -54,7 +70,9 @@ namespace html
 
             strStyle.make_lower();
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pstyle->m_etag = puser->m_phtml->tag_name_to_id(strStyle);
 

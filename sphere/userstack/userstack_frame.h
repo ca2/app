@@ -32,7 +32,7 @@ namespace userstack
       virtual void install_message_routing(::channel * pchannel);
 
       DECL_GEN_SIGNAL(_001OnApp1);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(on_message_mouse_leave);
       virtual void _000OnMouse(::message::mouse * pmouse);
 
       void OnHoverAction();

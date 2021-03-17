@@ -7,8 +7,7 @@ namespace account
 
 
    class dialog :
-      virtual public ::user::interaction,
-      virtual public ::simple_ui::style
+      virtual public ::user::interaction
    {
    public:
 
@@ -50,7 +49,7 @@ namespace account
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       void _001OnTimer(::timer * ptimer) override;
 

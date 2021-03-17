@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "split_pane.h"
 
 
 namespace user
@@ -60,7 +61,7 @@ namespace user
 
       //::count iSplitBarCount = get_split_count();
 
-      //split_layout::Pane * pcomponent;
+      //split_pane * pcomponent;
 
       //__pointer(::user::interaction) puserinteraction;
 
@@ -91,9 +92,9 @@ namespace user
       //for (i = 0; i < get_pane_count(); i++)
       //{
 
-      //   rectangle_i32 & rectPane = m_panea[i]->m_rectangle;
+      //   rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
 
-      //   pcomponent = m_panea.element_at(i);
+      //   pcomponent = m_splitpanecompositea.element_at(i);
 
       //   if (pcomponent == nullptr)
       //   {
@@ -138,7 +139,7 @@ namespace user
 
       m_iPaneCount = iPaneCount;
 
-      m_panea.set_size(iPaneCount);
+      m_splitpanecompositea.set_size(iPaneCount);
 
       m_splitbara.set_size(iPaneCount - 1);
 
@@ -172,15 +173,24 @@ namespace user
 
       }
 
-      for(::index i = 0; i < m_panea.get_count(); i++)
+      for(::index i = 0; i < m_splitpanecompositea.get_count(); i++)
       {
 
-         if(m_panea[i].is_null())
+         if(m_splitpanecompositea[i].is_null())
          {
 
-            m_panea[i] = __new(::user::split_layout::Pane);
+            auto & ppane = m_splitpanecompositea.add_new();
 
-            m_panea(i).m_bFixedSize =  false;
+            auto estatus = __compose_new(ppane);
+
+            if (!estatus)
+            {
+
+               return false;
+
+            }
+
+            ppane->m_bFixedSize =  false;
 
          }
 
@@ -204,13 +214,13 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      for(::index i = 0; i < m_panea.get_count(); i++)
+      for(::index i = 0; i < m_splitpanecompositea.get_count(); i++)
       {
 
-         if(m_panea[i]->m_pplaceholder.is_null())
+         if(m_splitpanecompositea[i]->m_pplaceholder.is_null())
          {
 
-            m_panea[i]->m_pplaceholder = get_new_place_holder(m_panea[i]->m_rectClient);
+            m_splitpanecompositea[i]->m_pplaceholder = get_new_place_holder(m_splitpanecompositea[i]->m_rectClient);
 
          }
 
@@ -484,7 +494,7 @@ namespace user
 
       ::count iSplitBarCount = get_split_count();
 
-      split_layout::Pane * pcomponent;
+      split_pane * pcomponent;
 
       __pointer(::user::interaction) puserinteraction;
 
@@ -498,7 +508,7 @@ namespace user
 
          puserinteraction = m_splitbara.element_at(i);
 
-         if (!m_bSplitBar || !is_pane_visible(i) || !bIsWindowVisible || m_panea[i]->m_bFixedSize)
+         if (!m_bSplitBar || !is_pane_visible(i) || !bIsWindowVisible || m_splitpanecompositea[i]->m_bFixedSize)
          {
 
             puserinteraction->hide();
@@ -527,13 +537,13 @@ namespace user
       for(i = 0; i < get_pane_count(); i++)
       {
 
-         ::rectangle_i32 & rectPane = m_panea[i]->m_rectangle;
+         ::rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
 
-         ::rectangle_i32 & rectClient = m_panea[i]->m_rectClient;
+         ::rectangle_i32 & rectClient = m_splitpanecompositea[i]->m_rectClient;
 
          CalcPaneRect(i,&rectPane);
 
-         pcomponent = m_panea.element_at(i);
+         pcomponent = m_splitpanecompositea.element_at(i);
 
          puserinteraction = pcomponent->m_pplaceholder;
 
@@ -636,7 +646,7 @@ namespace user
    ::count split_layout::get_pane_count()
    {
 
-      return (i32) m_panea.get_count();
+      return (i32) m_splitpanecompositea.get_count();
 
    }
 
@@ -679,14 +689,14 @@ namespace user
 
       }
 
-      if (iPane >= m_panea.get_size())
+      if (iPane >= m_splitpanecompositea.get_size())
       {
 
          return false;
 
       }
 
-      split_layout::Pane * ppane = m_panea[iPane];
+      split_pane * ppane = m_splitpanecompositea[iPane];
 
       if (ppane == nullptr)
       {
@@ -924,13 +934,22 @@ namespace user
 
       }
 
-      m_panea.insert_at(iIndex, new Pane);
+      auto& ppane = m_splitpanecompositea.add_new();
+
+      auto estatus= __compose_new(ppane);
+
+      if (!estatus)
+      {
+
+         return false;
+
+      }
 
       ASSERT(iIndex >= 0);
 
       ASSERT(iIndex < get_pane_count());
 
-      split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
+      split_pane * pcomponent = m_splitpanecompositea.element_at(iIndex);
 
       if(pcomponent->m_pplaceholder != nullptr)
       {
@@ -959,7 +978,7 @@ namespace user
 
       pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
 
-      m_panea[iIndex]->m_bFixedSize = bFixedSize;
+      m_splitpanecompositea[iIndex]->m_bFixedSize = bFixedSize;
 
       return true;
 
@@ -975,7 +994,7 @@ namespace user
 
       ASSERT(iIndex < get_pane_count());
 
-      m_panea.remove_at(iIndex);
+      m_splitpanecompositea.remove_at(iIndex);
 
       ::count iSplitBarCount = get_pane_count();
 
@@ -1013,7 +1032,7 @@ namespace user
 
       ASSERT(iIndex < get_pane_count());
 
-      split_layout::Pane * pcomponent = m_panea.element_at(iIndex);
+      split_pane * pcomponent = m_splitpanecompositea.element_at(iIndex);
 
       if(pcomponent->m_pplaceholder != nullptr)
       {
@@ -1046,7 +1065,7 @@ namespace user
 
       pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
 
-      m_panea[iIndex]->m_bFixedSize = bFixedSize;
+      m_splitpanecompositea[iIndex]->m_bFixedSize = bFixedSize;
 
       return true;
 
@@ -1272,7 +1291,7 @@ namespace user
 
       }
 
-      return m_panea[iPane]->m_rectClient;
+      return m_splitpanecompositea[iPane]->m_rectClient;
 
    }
 
@@ -1291,7 +1310,7 @@ namespace user
 
       }
 
-      return m_panea[iPane]->m_pplaceholder;
+      return m_splitpanecompositea[iPane]->m_pplaceholder;
 
    }
 
@@ -1327,23 +1346,23 @@ namespace user
 
       }
 
-      Pane & pane = m_panea(iPane);
+      auto & ppane = m_splitpanecompositea[iPane];
 
-      return pane.m_id;
+      return ppane->m_id;
 
    }
 
 
-   split_layout::Pane * split_layout::get_pane_by_id(::id id)
+   split_pane * split_layout::get_pane_by_id(::id id)
    {
 
-      for(index iPane = 0; iPane < m_panea.get_count(); iPane++)
+      for(index iPane = 0; iPane < m_splitpanecompositea.get_count(); iPane++)
       {
 
-         if (m_panea[iPane]->m_id == id)
+         if (m_splitpanecompositea[iPane]->m_id == id)
          {
 
-            return m_panea[iPane].get();
+            return m_splitpanecompositea[iPane].get();
 
          }
 
@@ -1354,18 +1373,6 @@ namespace user
    }
 
 
-   split_layout::Pane::Pane()
-   {
-
-      m_pplaceholder = nullptr;
-
-      m_rectangle.Null();
-
-      m_rectClient.Null();
-
-      m_sizeFixed = ::size_i32(0, 0);
-
-   }
 
 
    void split_layout::draw_control_background(::draw2d::graphics_pointer & pgraphics)

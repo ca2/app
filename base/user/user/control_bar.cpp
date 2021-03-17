@@ -48,7 +48,7 @@ namespace user
 //#endif
       MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
@@ -620,7 +620,7 @@ namespace user
       pmouse->previous();
    }
 
-   void control_bar::_001OnMouseMove(::message::message * pmessage)
+   void control_bar::on_message_mouse_move(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)

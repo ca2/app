@@ -1166,6 +1166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="main_window.cpp" />
     <ClCompile Include="render.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -1179,14 +1180,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="main_window.h" />
     <ClInclude Include="render.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="window.h" />
     <ClInclude Include="_user.h" />
   </ItemGroup>
   <ItemGroup>

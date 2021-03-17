@@ -17,6 +17,8 @@ void menu_view::on_subject(::subject::subject * psubject, ::subject::context * p
 void menu_view::on_control_event(::user::control_event * pevent)
 {
 
+   auto papplication = get_application();
+
    papplication->on_control_event(pevent);
 
    if(pevent->m_bRet)
@@ -83,6 +85,8 @@ void menu_view::_001OnTimer(::timer * ptimer)
       ev.m_etimer = ptimer->m_etimer;
 
       ev.m_puie = this;
+
+      auto papplication = get_application();
 
       papplication->on_control_event(&ev);
 

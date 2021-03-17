@@ -2207,13 +2207,13 @@ namespace draw2d
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
-      auto estatus1 = color_blend({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft, opacityTopLeft);
+      auto estatus1 = fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft + opacityTopLeft);
 
-      auto estatus2 = color_blend({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft, opacityTopLeft);
+      auto estatus2 = fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft + opacityTopLeft);
 
-      auto estatus3 = color_blend({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight, opacityBottomRight);
+      auto estatus3 = fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight + opacityBottomRight);
 
-      auto estatus4 = color_blend({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight, opacityBottomRight);
+      auto estatus4 = fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight + opacityBottomRight);
 
       return estatus1 && estatus2 && estatus3 && estatus4 ;
 

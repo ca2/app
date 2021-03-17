@@ -675,7 +675,7 @@ namespace userfs
       if (i == 0)
       {
 
-         auto puser = User;
+         auto puser = user();
 
          return puser->shell()->GetImageList(16);
 
@@ -937,7 +937,9 @@ namespace userfs
 
             auto pfsitem = pdata->item((::index) pitem->m_iItem);
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pitem->m_iImage = puser->shell()->get_file_image(
                               pfsitem->m_filepathFinal,

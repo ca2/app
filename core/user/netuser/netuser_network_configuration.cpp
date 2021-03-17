@@ -23,8 +23,10 @@ namespace usernet
 
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
-      
-      auto puser = User;
+
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       m_pdocument = puser->create_form(this, this, puiParent);
 
@@ -47,7 +49,9 @@ namespace usernet
    bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
    {
 
-      auto puser = User;
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       puser->create_child_form(this, this, puiParent);
 
@@ -66,8 +70,12 @@ namespace usernet
 
    }
 
+
    void network_configuration::on_show()
    {
+
+      auto pcontext = get_context();
+
       if(!m_pdocument->on_open_document(pcontext->dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
@@ -94,12 +102,15 @@ namespace usernet
 
    }
 
+
    void network_configuration::on_control_event(::user::control_event * pevent)
    {
 
+      auto pcontext = get_context();
 
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
+
          if(pevent->m_puie->m_id == "submit")
          {
 

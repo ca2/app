@@ -603,15 +603,34 @@ namespace datetime
       }
    }
 
-   scanner::scanner(const ::apex::str_context * pcontext)
+   scanner::scanner()
    {
-      m_pstrcontext     = pcontext;
       m_ptoken          = NULL;
       input             = NULL;
    }
 
    scanner::~scanner()
    {
+   }
+
+
+
+   ::e_status scanner::initialize_datetime_scanner(::apex::str_context* pstrcontext)
+   {
+
+      auto estatus = ::object::initialize(pstrcontext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pstrcontext = pstrcontext;
+
+      return estatus;
+
    }
 
 

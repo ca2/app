@@ -207,7 +207,7 @@ namespace datetime
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point_i32))
+            if (hit_test((enum_element)iElement, point))
             {
 
                return (enum_element)iElement;

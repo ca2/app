@@ -7,24 +7,31 @@
 namespace datetime
 {
 
+
    element::element()
    {
+      
       m_pparent   = NULL;
       m_pelement1 = NULL;
       m_pelement2 = NULL;
       m_pelement3 = NULL;
+
    }
+
 
    element::~element()
    {
+
    }
 
 
-   ::payload element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   ::datetime::result element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
       {
+
+         __pointer(::apex::system) psystem = get_system();
 
          return ::datetime::time(psystem->datetime().strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
 
@@ -121,11 +128,15 @@ namespace datetime
       if(m_ptoken->m_etoken == e_token_number)
       {
 
+         __pointer(::apex::system) psystem = get_system();
+
          return psystem->datetime().international().get_gmt_date_time(::datetime::time((psystem->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
       {
+
+         __pointer(::apex::system) psystem = get_system();
 
          return psystem->datetime().international().get_gmt_date_time(::datetime::time((psystem->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 

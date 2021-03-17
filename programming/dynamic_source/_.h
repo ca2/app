@@ -39,7 +39,7 @@ class script_manager;
 #include "script_compiler.h"
 
 
-#include "library_class.h"
+//#include "library_class.h"
 
 
 #include "httpd_socket.h"

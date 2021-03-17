@@ -20,10 +20,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_cache::initialize(::context_object * pcontextobject)
+   ::e_status script_cache::initialize_script_cache(script_manager* pscriptmanager)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pscriptmanager);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace dynamic_source
 
       }
 
-      m_pmanager = pobject;
+      m_pmanager = pscriptmanager;
 
       return estatus;
 
@@ -66,7 +66,7 @@ namespace dynamic_source
 
       synchronization_lock synchronizationlock(mutex());
 
-      auto passoc = m_map.get_assoc(strName);
+      auto passoc = m_map.get_association(strName);
 
       if (::is_set(passoc)
          && passoc->element2().is_set()
@@ -93,7 +93,7 @@ namespace dynamic_source
 
       single_lock synchronizationlock(mutex(), true);
 
-      auto ppair = m_map.get_assoc(strName);
+      auto ppair = m_map.get_association(strName);
 
       if(ppair != nullptr)
       {

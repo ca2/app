@@ -1565,6 +1565,8 @@ namespace dynamic_source
 
       strScript = strName.title();
 
+      auto pcontext = get_context();
+
 #ifdef WINDOWS
 
       return pcontext->dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";

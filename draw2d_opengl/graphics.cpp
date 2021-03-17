@@ -666,8 +666,8 @@ namespace draw2d_opengl
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / psystem->math().get_pi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / psystem->math().get_pi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / pmathematics->get_pi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / pmathematics->get_pi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -687,8 +687,8 @@ namespace draw2d_opengl
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / psystem->math().get_pi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / psystem->math().get_pi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / pmathematics->get_pi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / pmathematics->get_pi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)

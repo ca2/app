@@ -47,8 +47,12 @@ namespace datetime
       const ::apex::str_context *   m_pstrcontext;
 
 
-      scanner(const ::apex::str_context * pstrcontext);
+      scanner();
       virtual ~scanner();
+
+
+      virtual ::e_status initialize_datetime_scanner(::apex::str_context* pstrcontext);
+
 
       void initialize(const char * psz);
       void peek();

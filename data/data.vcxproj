@@ -956,10 +956,12 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="mysql\mysql_database.h" />
+    <ClInclude Include="mysql\mysql_database_impl.h" />
     <ClInclude Include="mysql\mysql_dataset.h" />
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -973,6 +975,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="mysql\mysql_database.cpp" />
+    <ClCompile Include="mysql\mysql_database_impl.cpp" />
     <ClCompile Include="mysql\mysql_dataset.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

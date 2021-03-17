@@ -625,7 +625,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
          }
          if (!vec.get_count())
             return false;
-         ai = vec[psystem->math().rnd() % vec.get_count()];
+         ai = vec[pmathematics->rnd() % vec.get_count()];
          {
             ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
          }

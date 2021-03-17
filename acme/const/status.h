@@ -169,6 +169,7 @@ enum enum_status : ::i64
    error_range,
    error_invalid_type,
    error_unexpected_situation,
+   error_datetime_parser,
 
    error_io = INT_FAILURE_STATUS(STATUS_RANGE_IO),
    error_serial,

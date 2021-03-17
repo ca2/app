@@ -130,6 +130,8 @@ namespace dynamic_source
    inline void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload)
    {
 
+      __pointer(::axis::system) psystem = get_system();
+
       psystem->url().set_key(strUrl, pszUrl, pszKey, payload);
 
    }
@@ -137,6 +139,8 @@ namespace dynamic_source
 
    inline void script_interface::uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam)
    {
+
+      __pointer(::axis::system) psystem = get_system();
 
       psystem->url().set_param(strUrl, pszUrl, pszKey, strParam);
 
@@ -146,6 +150,8 @@ namespace dynamic_source
    inline string script_interface::query_get_param(const char* pszUrl, const char* pszKey)
    {
 
+      __pointer(::axis::system) psystem = get_system();
+
       return psystem->url().get_param(pszUrl, pszKey);
 
    }
@@ -153,6 +159,8 @@ namespace dynamic_source
 
    inline ::payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
    {
+
+      __pointer(::axis::system) psystem = get_system();
 
       return psystem->url().get_var(pszUrl, pszKey);
 

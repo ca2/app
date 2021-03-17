@@ -97,7 +97,7 @@ namespace dynamic_source
       virtual ~script_compiler();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
       void prepare_compile_and_link_environment();
 
       void run_persistent();

@@ -973,7 +973,6 @@
   <ItemGroup>
     <ClInclude Include="dynamic_source\exit_exception.h" />
     <ClInclude Include="dynamic_source\httpd_socket.h" />
-    <ClInclude Include="dynamic_source\library_class.h" />
     <ClInclude Include="dynamic_source\script.h" />
     <ClInclude Include="dynamic_source\script_cache.h" />
     <ClInclude Include="dynamic_source\script_compiler.h" />
@@ -993,7 +992,6 @@
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp" />
     <ClCompile Include="dynamic_source\httpd_socket.cpp" />
-    <ClCompile Include="dynamic_source\library_class.cpp" />
     <ClCompile Include="dynamic_source\script.cpp" />
     <ClCompile Include="dynamic_source\script_cache.cpp" />
     <ClCompile Include="dynamic_source\script_compiler.cpp" />

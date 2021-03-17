@@ -7,15 +7,52 @@
 namespace datetime
 {
 
-   parser::parser(const ::apex::str_context * pcontext) :
-      ::object(pcontext),
-      m_scanner(pcontext)
+
+   parser::parser()
    {
+
    }
+
 
    parser::~parser()
    {
    }
+
+
+   ::e_status parser::initialize_datetime_parse(::apex::str_context* pstrcontext)
+   {
+
+      auto estatus = ::object::initialize(pstrcontext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::__construct_new(m_pscanner);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pscanner->initialize_datetime_scanner(pstrcontext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
 
    element * parser::new_node()
    {
@@ -42,24 +79,35 @@ namespace datetime
 
 
 element * parser::parse(const char * psz)
- {
+{
+
    ::datetime::element *node;
-   m_scanner.initialize(psz);
+
+   m_pscanner->initialize(psz);
+
    node = expr(term(factor()));
-   if(m_scanner.m_ptoken->m_etoken != e_token_end)
+
+   if (m_pscanner->m_ptoken->m_etoken != e_token_end)
+   {
+
       syntax_error("Possible errors: illegal character, missing beginning parenthesis or missing operation");
+
+   }
+
    return node;
+
 }
+
 
 element * parser::expr(::datetime::element * pelement1)
 {
    ::datetime::element * top_node;
-   m_scanner.peek();
-   if(m_scanner.m_ptoken->m_etoken == e_token_addition || m_scanner.m_ptoken->m_etoken == e_token_subtraction)
+   m_pscanner->peek();
+   if(m_pscanner->m_ptoken->m_etoken == e_token_addition || m_pscanner->m_ptoken->m_etoken == e_token_subtraction)
    {
-      m_scanner.next();
+      m_pscanner->next();
       top_node = new_node();
-      top_node->m_ptoken      = m_scanner.m_ptoken;
+      top_node->m_ptoken      = m_pscanner->m_ptoken;
       top_node->m_pelement1   = pelement1;
       top_node->m_pelement2   = expr(term(factor()));
       return top_node;
@@ -70,12 +118,12 @@ element * parser::expr(::datetime::element * pelement1)
    element *parser::term(::datetime::element *m_pelement1)
    {
       ::datetime::element *top_node;
-      m_scanner.peek();
-      if(m_scanner.m_ptoken->m_etoken == e_token_multiplication || m_scanner.m_ptoken->m_etoken == e_token_division)
+      m_pscanner->peek();
+      if(m_pscanner->m_ptoken->m_etoken == e_token_multiplication || m_pscanner->m_ptoken->m_etoken == e_token_division)
       {
-         m_scanner.next();
+         m_pscanner->next();
          top_node                = new_node();
-         top_node->m_ptoken      = m_scanner.m_ptoken;
+         top_node->m_ptoken      = m_pscanner->m_ptoken;
          top_node->m_pelement1   = m_pelement1;
          top_node->m_pelement2   = term(factor());
          return top_node;
@@ -87,49 +135,49 @@ element * parser::expr(::datetime::element * pelement1)
    element *parser::factor()
    {
       ::datetime::element *node;
-      m_scanner.peek();
-      if(m_scanner.m_ptoken->m_etoken == e_token_identifier)
+      m_pscanner->peek();
+      if(m_pscanner->m_ptoken->m_etoken == e_token_identifier)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node = new_node();
-         node->m_ptoken = m_scanner.m_ptoken;
+         node->m_ptoken = m_pscanner->m_ptoken;
          return node;
       }
-      else if(m_scanner.m_ptoken->m_etoken == e_token_addition)
+      else if(m_pscanner->m_ptoken->m_etoken == e_token_addition)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node                = new_node();
-         node->m_ptoken      = m_scanner.m_ptoken;
+         node->m_ptoken      = m_pscanner->m_ptoken;
          node->m_pelement1   = factor();
          return node;
       }
-      else if(m_scanner.m_ptoken->m_etoken == e_token_subtraction)
+      else if(m_pscanner->m_ptoken->m_etoken == e_token_subtraction)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node                = new_node();
-         node->m_ptoken      = m_scanner.m_ptoken;
+         node->m_ptoken      = m_pscanner->m_ptoken;
          node->m_pelement1   = factor();
          return node;
       }
-      else if(m_scanner.m_ptoken->m_etoken == e_token_open_paren)
+      else if(m_pscanner->m_ptoken->m_etoken == e_token_open_paren)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node = expr(term(factor()));
          expect(e_token_close_paren);
          return node;
       }
-      else if(m_scanner.m_ptoken->m_etoken == e_token_number)
+      else if(m_pscanner->m_ptoken->m_etoken == e_token_number)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node = new_node();
-         node->m_ptoken = m_scanner.m_ptoken;
+         node->m_ptoken = m_pscanner->m_ptoken;
          return node;
       }
-      else if(m_scanner.m_ptoken->m_etoken == e_token_function)
+      else if(m_pscanner->m_ptoken->m_etoken == e_token_function)
       {
-         m_scanner.next();
+         m_pscanner->next();
          node                = new_node();
-         node->m_ptoken      = m_scanner.m_ptoken;
+         node->m_ptoken      = m_pscanner->m_ptoken;
          int32_t iCount;
          if(node->m_ptoken->m_str == "sqr")
          {
@@ -199,10 +247,10 @@ element * parser::expr(::datetime::element * pelement1)
       char error_msg[11] = "expected ";
       error_msg[9] = value;
       error_msg[10] = '\0';
-      m_scanner.peek();
-      if (m_scanner.m_ptoken->m_etoken == (enum_token) value)
+      m_pscanner->peek();
+      if (m_pscanner->m_ptoken->m_etoken == (enum_token) value)
       {
-         m_scanner.next();
+         m_pscanner->next();
 
       }
       else

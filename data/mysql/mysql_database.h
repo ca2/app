@@ -19,10 +19,6 @@ namespace mysql
    public:
 
 
-      ::count                 m_cAffectedRows;
-      mysql_protocol_type     m_protocol;
-      MYSQL *                 m_pmysql;
-
 
       database();
       virtual ~database();
@@ -35,7 +31,7 @@ namespace mysql
       virtual ::e_status _connect() override;
 
 
-      bool close_mysql_database();
+      virtual bool close_mysql_database();
 
       virtual void * get_handle();
 
@@ -45,12 +41,7 @@ namespace mysql
 
       virtual __pointer(::database::result_set) query_result(const char * pszQuery, ::count iRowCount  = -1, ::count iColumnCount = -1);
 
-      virtual MYSQL_RES * _mysql_query_result(const char * pszSql);
-      virtual bool _mysql_result_free(MYSQL_RES * pres);
-      virtual MYSQL_ROW _mysql_fetch_row(MYSQL_RES * pres);
-      virtual unsigned long * _mysql_fetch_lengths(MYSQL_RES * pres);
-      virtual i64 _mysql_num_fields(MYSQL_RES * pres);
-      virtual i64 _mysql_num_rows(MYSQL_RES * pres);
+
 
       virtual ::count get_affected_rows_count() override;
 
@@ -64,10 +55,10 @@ namespace mysql
 
       virtual ::payload get_agent(const char * pszTable, const char * pszEmail, const char * pszUser);
 
-      string escape(void * p, strsize iLine);
-      string escape(const char * psz);
+      virtual string escape(void * p, strsize iLine);
+      virtual string escape(const char * psz);
 
-      ::payload get_insert_id();
+      virtual ::payload get_insert_id();
 
       virtual string error1(const char * pszPrefix = nullptr) override;
 

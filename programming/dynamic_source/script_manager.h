@@ -26,7 +26,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      virtual public ::user::message_queue_listener
+      virtual public ::user::message_window_listener
    {
    public:
 
@@ -93,7 +93,7 @@ namespace dynamic_source
       string_map < bool >                                   m_mapShouldBuild;
       ::mutex                                               m_mutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
-      __composite(::user::message_queue)                    m_pmessagequeue;
+      __composite(::user::message_window)                   m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
       ::mutex                                               m_mutexOutLink;

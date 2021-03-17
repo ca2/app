@@ -32,6 +32,9 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mysql\mysql_database_impl.h">
+      <Filter>Header Files\mysql</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -45,6 +48,12 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql\mysql_database_impl.cpp">
+      <Filter>Source Files\mysql</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

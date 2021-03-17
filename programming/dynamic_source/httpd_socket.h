@@ -21,15 +21,12 @@ namespace dynamic_source
       void *                                       m_posdataNetnodeSocket;
 
 
-      httpd_socket(::sockets::);
+      httpd_socket();
       ~httpd_socket();
-   protected:
-      httpd_socket(const httpd_socket& s);
 
-
-   public:
 
       virtual void Reset();
+
 
    };
 

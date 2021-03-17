@@ -1010,7 +1010,7 @@ namespace introjection
       strElem += "/";
       string strHmhLctvWildPdbPath;
       string strRndTitle;
-      psystem->math().gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
+      pmathematics->gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
 
       strRndTitle.release_string_buffer();
 

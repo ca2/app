@@ -141,6 +141,8 @@ namespace datetime
       string calendar::GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
+         __pointer(::apex::system) psystem = get_system();
+
          return psystem->datetime().get_week_day_str(pcontext, iWeekDay);
 
       }
@@ -149,6 +151,8 @@ namespace datetime
       string calendar::GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
+         __pointer(::apex::system) psystem = get_system();
+
          return psystem->datetime().get_tiny_week_day_str(pcontext, iWeekDay);
 
       }
@@ -156,6 +160,8 @@ namespace datetime
 
       string calendar::GetMonth(const ::apex::str_context* pcontext, int32_t iMonth)
       {
+
+         __pointer(::apex::system) psystem = get_system();
 
          return psystem->datetime().get_month_str(pcontext, iMonth);
 
@@ -225,7 +231,7 @@ namespace datetime
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point_i32))
+            if (hit_test((enum_element)iElement, point))
             {
 
                return (enum_element)iElement;

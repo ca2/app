@@ -295,6 +295,8 @@ namespace dynamic_source
 
       synchronization_lock synchronizationlock(mutex());
 
+      auto pcontext = get_context();
+
       if(!pcontext->file().exists(m_strScriptPath))
       {
 
@@ -345,7 +347,7 @@ namespace dynamic_source
             if(dwMessageId == 0x139)
             {
 
-               debug_break();
+               ASSERT(FALSE);
 
             }
 
@@ -416,6 +418,8 @@ namespace dynamic_source
 
    __pointer(script_instance) ds_script::create_instance()
    {
+
+      __pointer(::aura::application) papplication = get_application();
 
       synchronization_lock slCompiler(&papplication->m_semCompiler);
 

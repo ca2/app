@@ -45,7 +45,7 @@ namespace dynamic_source
 
       }
 
-      __pointer(script_interface) pinterface = pobject;
+      __pointer(script_interface) pinterface = pcontextobject;
 
       if (pinterface)
       {

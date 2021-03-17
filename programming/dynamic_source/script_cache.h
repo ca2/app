@@ -22,7 +22,7 @@ namespace dynamic_source
       virtual ~script_cache();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize_script_cache(script_manager * pscriptmanager);
 
       __pointer(script_instance) create_instance(const char * lpcszName, __pointer(script) & pscript);
 

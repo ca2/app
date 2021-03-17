@@ -34,7 +34,7 @@ namespace filemanager
 
       mem.set_size(get_manager_id_byte_len());
 
-      psystem->math().random_bytes(mem.get_data(), mem.get_size());
+      pmathematics->random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 

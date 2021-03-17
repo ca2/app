@@ -27,7 +27,7 @@ namespace simple_ui
       MESSAGE_LINK(e_message_create, pchannel, this, &top::on_message_create);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&top::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&top::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::on_message_mouse_move);
 
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &top::_001OnNcActivate);
@@ -158,7 +158,7 @@ namespace simple_ui
    }
 
 
-   void top::_001OnMouseMove(::message::message * pmessage)
+   void top::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

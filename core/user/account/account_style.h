@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace simple_ui
+namespace account
 {
 
 

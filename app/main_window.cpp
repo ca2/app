@@ -8,7 +8,7 @@ namespace app_app
 {
 
 
-   window::window()
+   main_window::main_window()
    {
 
       m_bTransparent = true;
@@ -24,17 +24,17 @@ namespace app_app
    }
 
 
-   window::~window()
+   main_window::~main_window()
    {
 
 
    }
 
 
-   void window::on_create_user_interaction()
+   void main_window::on_create_user_interaction()
    {
 
-      main_window::on_create_user_interaction();
+      ::user::main_window::on_create_user_interaction();
 
 #if !STEPPY_DEBUG
 
@@ -62,7 +62,7 @@ namespace app_app
    }
 
 
-   void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
       //return;
 
@@ -194,9 +194,9 @@ namespace app_app
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pmainwindow = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pmainwindow->get_cursor_position();
 
          update_hover(pointCursor);
 
@@ -207,7 +207,7 @@ namespace app_app
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
    {
 
       if (::is_null(pitem))

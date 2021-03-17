@@ -31,7 +31,7 @@ namespace simple_ui
       DECL_GEN_SIGNAL(on_message_create);
       DECL_GEN_SIGNAL(on_message_left_button_down);
       DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(on_message_mouse_move);
 
       DECL_GEN_SIGNAL(_001OnActivate);
       DECL_GEN_SIGNAL(_001OnNcActivate);

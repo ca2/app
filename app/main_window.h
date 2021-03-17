@@ -5,7 +5,7 @@ namespace app_app
 {
 
 
-   class CLASS_DECL_APP_APP_APP window :
+   class CLASS_DECL_APP_APP_APP main_window :
       virtual public ::user::main_window
    {
    public:
@@ -17,8 +17,8 @@ namespace app_app
       int         m_iCloseButtonDraw;
 
 
-      window();
-      virtual ~window();
+      main_window();
+      virtual ~main_window();
 
 
       virtual void on_create_user_interaction() override;

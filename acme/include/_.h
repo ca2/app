@@ -954,6 +954,9 @@ namespace axis
    class system;
 
 
+   class user;
+
+
 } // namespace axis
 
 

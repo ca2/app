@@ -171,9 +171,6 @@
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{39efcfa2-db07-4180-9fa3-9c343b0286e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
     </Filter>
@@ -637,9 +634,6 @@
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="const\id.h">
       <Filter>Header Files\const</Filter>
@@ -1412,9 +1406,6 @@
     <ClInclude Include="parallelization\retry_single_lock.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\service_base.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\service_status.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -1513,6 +1504,15 @@
     </ClInclude>
     <ClInclude Include="user\primitive.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_handler.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\apex.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1801,42 +1801,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\application.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\crypto.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\dir_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\factory_exchange.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\ip_enum.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\os_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\process.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\thread.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\timer.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\trace.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
     </ClCompile>
@@ -1948,9 +1912,6 @@
     <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\file_os_watcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -2058,9 +2019,6 @@
     </ClCompile>
     <ClCompile Include="compress\context.cpp">
       <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\dir_system.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\international_locale_schema.cpp">
       <Filter>Source Files\platform</Filter>
@@ -2170,9 +2128,6 @@
     <ClCompile Include="parallelization\handler.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\service_base.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\thread.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -2190,18 +2145,6 @@
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\interprocess_communication.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\service.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\shell_launcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\launcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
@@ -2235,6 +2178,18 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\context_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service_handler.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\launcher.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

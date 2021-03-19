@@ -4,50 +4,28 @@
 
 CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 
-CLASS_DECL_ACME HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
+//CLASS_DECL_ACME HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
 //const char* get_cube_app_id();
-
-
-
-
-
-
 
 
 CLASS_DECL_ACME i32 ca2_main();
 
 
-void CLASS_DECL_ACME __cdecl _ca2_purecall()
-{
-
-   __throw(::exception::exception());
-
-}
-
-
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-
-
-
 
 
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
+
    UNREFERENCED_PARAMETER(uiCode);
    UNREFERENCED_PARAMETER(ppointers);
+
 }
 
 
 
-
-
-
-
-
-
 #undef new
-
 
 
 CLASS_DECL_ACME bool os_init_application()
@@ -60,7 +38,6 @@ CLASS_DECL_ACME bool os_init_application()
 
 CLASS_DECL_ACME void os_term_application()
 {
-
 
 
 }
@@ -133,11 +110,9 @@ string ca2_command_line(hinstance hinstance)
 //} // namespace acme
 //
 
-//
-//
+
 void os_post_quit()
 {
-
 
 
 }

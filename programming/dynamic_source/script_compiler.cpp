@@ -2896,6 +2896,8 @@ ch_else:
 
       ::file::listing stra;
 
+      auto papplication = get_application();
+
       papplication->dir().rls(stra, strPath);
 
       string strCat;
@@ -3123,9 +3125,10 @@ ch_else:
    }
 
 
-   library::library(::context_object * pcontextobject):
-      object(pobject)
+   library::library(::context_object * pcontextobject)
    {
+
+      initialize(pcontextobject);
 
    }
 
@@ -3170,6 +3173,8 @@ ch_else:
    {
 
       ::file::listing straFile;
+
+      auto papplication = get_application();
 
       papplication->dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
 
@@ -3243,6 +3248,8 @@ ch_else:
    {
 
       synchronization_lock synchronizationlock(m_pmanager->mutex());
+
+      auto psystem = get_system();
 
       psystem->str().set(pszTopic,idLocale,idSchema,psz);
 

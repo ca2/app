@@ -6,8 +6,8 @@ namespace process
 
 
    bidirectional_pipe::bidirectional_pipe() :
-      m_sppipeIn(e_create),
-      m_sppipeOut(e_create)
+      m_ppipeIn(e_create),
+      m_ppipeOut(e_create)
    {
 
    }
@@ -22,7 +22,7 @@ namespace process
    bool bidirectional_pipe::create(bool bBlock,bool bInherit)
    {
 
-      if(!m_sppipeIn->create(bBlock,bInherit))
+      if(!m_ppipeIn->create(bBlock,bInherit))
       {
 
          return false;
@@ -40,7 +40,7 @@ namespace process
 
 #endif
 
-      if(!m_sppipeOut->create(bBlock,bInherit))
+      if(!m_ppipeOut->create(bBlock,bInherit))
       {
 
          return false;

@@ -24,6 +24,10 @@ namespace user
    {
    public:
 
+      ::axis::user* m_paxisuser;
+      ::base::user* m_pbaseuser;
+      ::bred::user* m_pbreduser;
+      ::core::user* m_pcoreuser;
 
       __pointer(::user::primitive)              m_pmousefocusLButtonDown;
       __pointer(::user::primitive)              m_pmousefocusRButtonDown;

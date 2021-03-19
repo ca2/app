@@ -183,7 +183,7 @@ namespace process
       while(!m_pprocess->has_exited())
       {
 
-         strRead = m_pprocess->m_pipe.m_sppipeOut->read();
+         strRead = m_pprocess->m_pipe.m_ppipeOut->read();
 
          if(m_pstrRead != nullptr)
          {
@@ -213,7 +213,7 @@ namespace process
       while(task_get_run())
       {
 
-         strRead = m_pprocess->m_pipe.m_sppipeOut->read();
+         strRead = m_pprocess->m_pipe.m_ppipeOut->read();
 
          if(strRead.is_empty())
          {

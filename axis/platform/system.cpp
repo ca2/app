@@ -92,6 +92,8 @@ namespace axis
    system::system()
    {
 
+      m_paxixsystem = this;
+
       create_factory < ::axis::application, ::apex::application >();
       create_factory < ::axis::session, ::apex::session >();
       create_factory < ::axis::idpool, ::apex::idpool >();

@@ -15,8 +15,6 @@ namespace sqlite
    database::database()
    {
 
-      defer_create_mutex();
-
       m_bActive = false;
       m_bTransactionActive = false;      // for transaction
 
@@ -56,7 +54,7 @@ namespace sqlite
    ::database::e_connection database::connection_status()
    {
 
-      if (m_bActive == false)
+      if (isActive() == false)
       {
 
          return ::database::connection_none;
@@ -286,7 +284,7 @@ namespace sqlite
 
       }
 
-      if (!m_bActive)
+      if (!isActive())
       {
 
          return;
@@ -305,15 +303,25 @@ namespace sqlite
 
    }
 
+   string database::add_error_message(const string& str)
+   {
 
-   ::e_status      database::drop()
+      m_strError += str;
+
+      return m_strError;
+
+   }
+
+
+
+   ::e_status database::drop()
    {
 
       synchronization_lock synchronizationlock(mutex());
 
       disconnect();
 
-      if (m_bActive)
+      if (isActive())
       {
 
          return error_failed;
@@ -345,7 +353,7 @@ namespace sqlite
 
    //   synchronization_lock synchronizationlock(mutex());
 
-   //   if(!m_bActive)
+   //   if(!isActive())
    //   {
 
    //      return DB_UNEXPECTED_RESULT;
@@ -408,7 +416,7 @@ namespace sqlite
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"begin",nullptr,nullptr,nullptr);
          m_bTransactionActive = true;
@@ -421,7 +429,7 @@ namespace sqlite
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"commit",nullptr,nullptr,nullptr);
          m_bTransactionActive = false;
@@ -434,7 +442,7 @@ namespace sqlite
 
       synchronization_lock synchronizationlock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"rollback",nullptr,nullptr,nullptr);
          m_bTransactionActive = false;

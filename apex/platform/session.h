@@ -31,6 +31,12 @@ namespace apex
 //#endif
 
 
+      ::aqua::session* m_paquasession;
+      ::aura::session* m_paurasession;
+      ::axis::session* m_paxissession;
+      ::base::session* m_pbasesession;
+      ::bred::session* m_pbredsession;
+      ::core::session* m_pcoresession;
 
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.

@@ -197,11 +197,11 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinst, DWORD 
 
 
 CLASS_DECL_ACME HANDLE dup_handle(HANDLE h);
-#include "file.h"
+#include "acme/os/windows/file.h"
 
-#include "simple_hold_handle.h"
-#include "process.h"
-#include "registry.h"
+#include "acme/os/windows/simple_hold_handle.h"
+#include "acme/os/windows/process.h"
+#include "acme/os/windows/registry.h"
 
 inline comptr < IStream > create_istream(const memory_base & memory)
 {
@@ -229,19 +229,19 @@ CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE h
 
 
 
-#include "exception_engine.h"
+#include "acme/os/windows/exception_engine.h"
 
 
-#include "dir.h"
+#include "acme/os/windows/dir.h"
 
 
-#include "itemidlist.h"
+#include "acme/os/windows/itemidlist.h"
 
 
 //#include "top_level_enum.h"
 
 
-#include "extract_icon.h"
+#include "acme/os/windows/extract_icon.h"
 
 
 //#include "file_memory_map.h"
@@ -253,7 +253,7 @@ CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE h
 
 
 
-#include "api.h"
+#include "acme/os/windows/api.h"
 
 
 

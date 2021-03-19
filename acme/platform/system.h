@@ -14,6 +14,15 @@ namespace acme
    public:
 
 
+      ::apex::system *              m_papexsystem;
+      ::aqua::system *              m_paquasystem;
+      ::aura::system *              m_paurasystem;
+      ::axis::system *              m_paxixsystem;
+      ::base::system *              m_pbasesystem;
+      ::bred::system *              m_pbredsystem;
+      ::core::system *              m_pcoresystem;
+
+
 #ifdef LINUX
       enum_linux_distribution                            m_elinuxdistribution;
 #endif

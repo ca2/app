@@ -65,6 +65,8 @@ namespace axis
    session::session()
    {
 
+      m_paxissession = this;
+
    }
 
 

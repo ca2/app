@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "apex/operating_system.h"
+#include "apex/platform/apex.h"
 
 
 //CLASS_DECL_APEX string ca2_command_line(hinstance hinstance);
@@ -119,7 +120,7 @@ namespace apex
 
          ::dir::mk(pathLnk.folder());
 
-         os_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+         m_psystem->m_papexsystem->m_papex->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
       }
 

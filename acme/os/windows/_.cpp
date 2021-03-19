@@ -161,7 +161,7 @@ void windows_registry_init();
 bool __node_acme_pos_init()
 {
 
-   _set_purecall_handler(_ca2_purecall);
+   //_set_purecall_handler(_ca2_purecall);
 
    //HMODULE hmoduleUser32 = ::LoadLibraryW(L"User32");
    //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");

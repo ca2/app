@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "apex/const/method.h"
+#include "apex/platform/launcher.h"
+#include "apex/platform/app_launcher.h"
 
 
 interprocess_intercommunication::interprocess_intercommunication(const string & strApp) :
@@ -137,7 +139,9 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    }
 
-   ::apex::app_launcher launcher(process_platform_dir_name2(), strApp);
+   auto plauncher = __new(::apex::app_launcher);
+   
+   plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
 
    id idPid = -1;
 
@@ -148,7 +152,7 @@ bool interprocess_intercommunication::start(const string & strApp)
       if(ida.is_empty())
       {
 
-         launcher.start();
+         plauncher->start();
 
          int iStep = 0;
 

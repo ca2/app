@@ -1893,7 +1893,7 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
    __pointer(::apex::system) psystem = get_system();
 
-   if (!papp->is_serviceable() || papp->is_user_service())
+   if (!papp->is_service() || papp->is_user_service())
    {
 
       psystem->m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));

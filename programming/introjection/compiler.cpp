@@ -37,11 +37,12 @@ namespace introjection
 
 
    library::library(::context_object * pcontextobject):
-      object(pobject),
       m_plibrary(__new(::apex::library()))
    {
 
       defer_create_mutex();
+
+      initialize(pcontextobject);
 
       __zero(m_filetimeset);
 
@@ -82,12 +83,16 @@ namespace introjection
 
       }
 
+      auto pcontext = get_context();
+
 #ifdef WINDOWS
       {
 
          ::file::path path;
 
          path = ::dir::config() / "programming/vs.txt";
+
+
 
          m_strVs = pcontext->file().as_string(path);
 
@@ -118,7 +123,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(strMessage, strMessage, e_message_box_ok);
+            message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -174,6 +179,10 @@ namespace introjection
 
    void compiler::prepare_compile_and_link_environment()
    {
+
+      auto papplication = get_application();
+
+      auto pcontext = get_context();
 
       pcontext->dir().mk(::dir::system() / "introjection\\symbols");
 
@@ -362,6 +371,8 @@ namespace introjection
 
       string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build();
 
+      auto psystem = get_system();
+
       ::payload payload = psystem->process().get_output(strCommandLine);
 
       TRACE("%s", payload.get_string().c_str());
@@ -406,6 +417,8 @@ namespace introjection
       //sleep(15000_ms);
 
       string strBuildCmd = m_strEnv;
+
+      auto papplication = get_application();
 
       if (m_strVs == "2015")
       {
@@ -463,6 +476,8 @@ namespace introjection
 
 #endif
 #endif
+
+      auto pcontext = get_context();
 
       ::file::path strFolder;
       strFolder = pcontext->dir().install();
@@ -595,6 +610,8 @@ namespace introjection
       strScript = strName.title();
 
       ::file::path strTransformName = strName;
+
+      auto pcontext = get_context();
 
       if(pcontext->file().exists(strName))
       {
@@ -1010,6 +1027,9 @@ namespace introjection
       strElem += "/";
       string strHmhLctvWildPdbPath;
       string strRndTitle;
+
+      auto pmathematics = ::mathematics::mathematics();
+
       pmathematics->gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
 
       strRndTitle.release_string_buffer();

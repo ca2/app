@@ -25,6 +25,10 @@ namespace user
    user::user()
    {
 
+      m_paxisuser = nullptr;
+      m_pbaseuser = nullptr;
+      m_pbreduser = nullptr;
+      m_pcoreuser = nullptr;
       ::initialize_user_mutex();
       initialize_children_mutex();
 

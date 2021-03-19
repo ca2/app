@@ -591,6 +591,15 @@
     <ClInclude Include="math\calculator\result.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="database\database\database_composite.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_impl.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\transaction.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -826,6 +835,15 @@
     </ClCompile>
     <ClCompile Include="math\calculator\result.cpp">
       <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_impl.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_composite.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\transaction.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

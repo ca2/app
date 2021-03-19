@@ -253,7 +253,7 @@
    }
 
 
-   ::e_status os_context::create_service()
+   ::e_status os_context::enable_service()
    {
 
 
@@ -266,7 +266,7 @@
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::disable_service()
    {
 
 

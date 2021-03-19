@@ -1,6 +1,6 @@
 //Created on 2013-03-16 00:37 BRT <3ThomasBS_ My Sweet!!
 #include "framework.h"
-#include "mysql/mysql_database_impl.h"
+#include "mysql/mysql_database.h"
 
 //namespace imaging_wic
 //{
@@ -37,10 +37,10 @@
 ////
 
 extern "C"
-void imaging_wic_factory_exchange(::factory_map * pfactorymap)
+void data_factory_exchange(::factory_map * pfactorymap)
 {
 
-   pfactorymap->create_factory < ::mysql::database_impl, ::database::database >();
+   pfactorymap->create_factory < ::mysql::database, ::database::database >();
 
 }
 

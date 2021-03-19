@@ -34,16 +34,16 @@ CLASS_DECL_APEX bool on_init_thread();
 CLASS_DECL_APEX bool on_term_thread();
 
 
-CLASS_DECL_APEX void __init_thread();
-CLASS_DECL_APEX void __term_thread();
+//CLASS_DECL_APEX void __init_thread();
+//CLASS_DECL_APEX void __term_thread();
 
 
 CLASS_DECL_APEX bool __os_init_thread();
 CLASS_DECL_APEX bool __os_term_thread();
 
 
-CLASS_DECL_APEX bool __node_init_thread(::thread * pthread);
-CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
+//CLASS_DECL_APEX bool __node_init_thread(::thread * pthread);
+//CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
 
 
 CLASS_DECL_APEX void __init_threading_count();

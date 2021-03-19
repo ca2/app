@@ -110,6 +110,7 @@ namespace aura
    system::system()
    {
 
+      m_paurasystem = this;
 
       m_bAvoidFirstResponder = false;
 
@@ -1695,39 +1696,39 @@ namespace aura
 
       ::aqua::system::term2();
 
-      for (int i = 0; i < m_serviceptra.get_size(); i++)
-      {
+      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            m_serviceptra[i]->Stop(0);
+      //      m_serviceptra[i]->Stop(0);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      for (int i = 0; i < m_serviceptra.get_size(); i++)
-      {
+      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            m_serviceptra[i]->Stop((5000) * 2);
+      //      m_serviceptra[i]->Stop((5000) * 2);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      m_serviceptra.remove_all();
+      //m_serviceptra.remove_all();
 
       try
       {

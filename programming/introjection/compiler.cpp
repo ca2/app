@@ -36,9 +36,7 @@ namespace introjection
 {
 
 
-   library::library(::context_object * pcontextobject):
-      object(pobject),
-      m_plibrary(__new(::apex::library()))
+   library::library()
    {
 
       defer_create_mutex();
@@ -51,6 +49,32 @@ namespace introjection
    library::~library()
    {
 
+
+   }
+
+
+   ::e_status library::initialize (::context_object* pcontextobject) 
+   {
+
+      auto estatus = ::object::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+         
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_plibrary);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -81,6 +105,8 @@ namespace introjection
          return estatus;
 
       }
+
+      auto pcontext = get_context();
 
 #ifdef WINDOWS
       {
@@ -118,7 +144,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(strMessage, strMessage, e_message_box_ok);
+            message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -175,6 +201,8 @@ namespace introjection
    void compiler::prepare_compile_and_link_environment()
    {
 
+      auto pcontext = get_context();
+
       pcontext->dir().mk(::dir::system() / "introjection\\symbols");
 
       ::file::path strVars;
@@ -191,6 +219,7 @@ namespace introjection
 #endif
 #endif
 
+      auto papplication = get_application();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -349,6 +378,7 @@ namespace introjection
       //
       //#endif
 
+      auto psystem = get_system();
 
 #ifdef _UWP
 
@@ -402,6 +432,9 @@ namespace introjection
 
    void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    {
+
+      auto papplication = get_application();
+
 #ifdef WINDOWS
       //sleep(15000_ms);
 
@@ -464,7 +497,10 @@ namespace introjection
 #endif
 #endif
 
+      auto pcontext = get_context();
+
       ::file::path strFolder;
+
       strFolder = pcontext->dir().install();
       if(!::str::ends(strFolder,"/") && !::str::ends(strFolder,"\\"))
          strFolder += "/";
@@ -537,7 +573,7 @@ namespace introjection
       if(!plibrary)
       {
 
-         plibrary = __new(library(this));
+         plibrary = __create_new < library > ();
 
       }
       else if(!bNew)
@@ -595,6 +631,8 @@ namespace introjection
       strScript = strName.title();
 
       ::file::path strTransformName = strName;
+
+      auto pcontext = get_context();
 
       if(pcontext->file().exists(strName))
       {
@@ -1010,6 +1048,9 @@ namespace introjection
       strElem += "/";
       string strHmhLctvWildPdbPath;
       string strRndTitle;
+
+      auto pmathematics = ::mathematics::mathematics();
+
       pmathematics->gen_rand_alnum(strRndTitle.get_string_buffer(64),64);
 
       strRndTitle.release_string_buffer();

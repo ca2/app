@@ -18,8 +18,10 @@ namespace introjection
       filetime_set                              m_filetimeset;
 
 
-      library(::context_object * pcontextobject);
+      library();
       virtual ~library();
+
+      virtual ::e_status initialize(::context_object* pcontextobject) override;
 
 
    };

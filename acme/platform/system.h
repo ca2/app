@@ -117,7 +117,7 @@ namespace acme
 
       virtual ::e_status start();
       //virtual ::e_status run_system();
-
+      virtual ::e_status main();
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;

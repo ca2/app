@@ -22,6 +22,14 @@ void service::set_arguments(int argc, char** argv)
 }
 
 
+void service::set_arguments(int argc, wchar_t** argv)
+{
+
+
+
+}
+
+
 ::e_status service::start_service()
 {
 

@@ -61,6 +61,23 @@ namespace acme
    }
 
 
+   ::e_status system::main()
+   {
+
+      auto estatus = run();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
 //   ::acme::node * system::node()
 //   {
 //

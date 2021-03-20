@@ -19,7 +19,7 @@ public:
 
 
    //::u32                      m_dwStopTimeout;
-   //string                     m_serviceName;
+   string                     m_strServiceName;
    //manual_reset_event         m_stopped;
    ////bool                       m_bStopping;
    //i32                        m_iPid;
@@ -44,6 +44,8 @@ public:
    //virtual ::e_status service_main();
 
    void set_arguments(int argc, char** argv);
+
+   void set_arguments(int argc, wchar_t** argv);
 
    virtual ::e_status start_service();
 

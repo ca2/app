@@ -8,6 +8,7 @@ namespace aqua
    application::application()
    {
 
+      m_paquaapplication = this;
       ///set_layer(LAYERED_AQUA, this);
 
    }

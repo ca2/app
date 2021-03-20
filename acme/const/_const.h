@@ -4,8 +4,6 @@
 #include "GLOBAL_ID.h"
 
 
-
-
 enum enum_property : ::i64
 {
 
@@ -743,3 +741,19 @@ enum enum_linux_distribution
    e_linux_distribution_centos,
 
 };
+
+
+
+enum enum_service_status
+{
+
+   e_service_status_stopped,
+   e_service_status_starting,
+   e_service_status_running,
+   e_service_status_stopping,
+
+};
+
+
+
+

@@ -30,7 +30,7 @@ string get_error_message(::u32 dwError);
 
 
 
-void CLASS_DECL_ACME __cdecl _ca2_purecall();
+//void CLASS_DECL_ACME __cdecl _ca2_purecall();
 void CLASS_DECL_ACME __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 bool CLASS_DECL_ACME __windows_init();
 //i32 CLASS_DECL_ACME __windows_main(::acme::system * psystem, ::create * pmaininitdata);

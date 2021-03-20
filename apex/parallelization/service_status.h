@@ -6,6 +6,7 @@
 //      Description:    Provides default initialization for SERVICE_STATUS.
 //
 //*****************************************************************************
+// Recreated on ~2021 by camilo <3ThomasBS_!!
 #pragma once
 
 

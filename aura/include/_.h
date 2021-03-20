@@ -2156,7 +2156,7 @@ namespace draw2d
 //#define Session Sess(get_context())
 //#define papplication App(get_context())
 //#define ThisApp (*::application_consumer < application >::get_app())
-//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//#define m_papplication->
 //
 //
 //#undef Ctx

@@ -9,6 +9,7 @@ namespace axis
    user::user()
    {
 
+      m_paxisuser = this;
 
    }
 

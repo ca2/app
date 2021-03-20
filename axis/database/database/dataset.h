@@ -78,7 +78,7 @@ namespace database
       virtual database * get_database() { return m_pdatabase; }
       virtual void * get_handle();
 
-      virtual bool isActive() { return m_bActive; }
+      //virtual bool isActive() { return isActive(); }
 
       virtual ::count num_rows()= 0;
 

@@ -52,7 +52,7 @@ namespace simpledb
 
       }
 
-      auto pdatabase = __new(::sqlite::database());
+      auto pdatabase = __create_new < ::database::server > ();
 
       if (pdatabase.is_null())
       {
@@ -63,7 +63,7 @@ namespace simpledb
 
       synchronization_lock synchronizationlock(pdatabase->mutex());
 
-      estatus = pdatabase->connect(pszDatabase);
+      estatus = pdatabase->set_finish(this);
 
       if (!estatus)
       {

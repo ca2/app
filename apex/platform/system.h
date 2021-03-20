@@ -20,6 +20,8 @@ namespace apex
 
       __composite(::apex::system)                        m_psystemParent;
 
+      __composite(::apex::apex)                          m_papex;
+
       // apex commented
       //__composite(::apex::audio)                         m_paudio;
 
@@ -61,7 +63,7 @@ namespace apex
       __composite(::crypto::crypto)                      m_pcrypto;
       //__composite(class ::account::user_set)             m_puserset;
 
-      __composite_array(service_base)                    m_serviceptra;
+      __composite_array(service)                         m_servicecompositea;
       __composite(class ::apex::log)                     m_ptrace;
 
       // apex commented
@@ -817,7 +819,7 @@ namespace apex
       void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 
       ::e_status     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
-      ::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
+      //::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 
 
 

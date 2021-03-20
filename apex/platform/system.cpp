@@ -12,6 +12,7 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
+#include "apex/platform/apex.h"
 
 
 //extern ::apex::system* g_papexsystem;
@@ -107,6 +108,8 @@ namespace apex
 
    system::system()
    {
+
+      m_papexsystem = this;
 
       create_factory < ::thread >();
 
@@ -373,7 +376,7 @@ namespace apex
 
       //create_factory < ::draw2d::icon >();
 
-      __node_apex_factory_exchange(::factory::get_factory_map());
+      //__node_apex_factory_exchange(::factory::get_factory_map());
 
       estatus = __compose_new(m_pdatetime);
 
@@ -1333,11 +1336,20 @@ namespace apex
    ::e_status system::process_init()
    {
 
+      auto estatus = do_factory_exchange("apex", "windows");
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
 //      set_system_update(&apex_system_update);
 
       //set_system_set_modified(&apex_system_set_modified);
 
-      auto estatus = system_prep();
+      estatus = system_prep();
 
       if (!estatus)
       {
@@ -2468,39 +2480,39 @@ namespace apex
    void system::term2()
    {
 
-      for (int i = 0; i < m_serviceptra.get_size(); i++)
-      {
+      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            m_serviceptra[i]->Stop(0);
+      //      m_serviceptra[i]->Stop(0);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      for (int i = 0; i < m_serviceptra.get_size(); i++)
-      {
+      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            m_serviceptra[i]->Stop((5000) * 2);
+      //      m_serviceptra[i]->Stop((5000) * 2);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      m_serviceptra.remove_all();
+      //m_serviceptra.remove_all();
 
       try
       {
@@ -4826,43 +4838,6 @@ namespace apex
    }
 
 
-   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      try
-      {
-
-         ::windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
-
-         string strCurrentVersion;
-
-         key.get("CurrentVersion", strCurrentVersion);
-
-         key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox\\" + strCurrentVersion + "\\Main");
-
-         key.get("PathToExe", strPathToExe);
-
-         key.get("Install Directory", strInstallDirectory);
-
-      }
-      catch (const ::e_status & estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
-
-#else
-
-      return ::error_failed;
-
-#endif
-
-   }
 
 
    ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
@@ -4892,7 +4867,7 @@ namespace apex
 
       }
 
-      auto estatus = get_firefox_installation_info(strBrowserPath, strBrowserDir);
+      auto estatus = m_papex->get_firefox_installation_info(strBrowserPath, strBrowserDir);
 
       if (::failed(estatus))
       {

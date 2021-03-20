@@ -22,6 +22,13 @@ namespace apex
    {
    public:
 
+      ::aqua::application* m_paquaapplication;
+      ::aura::application* m_pauraapplication;
+      ::axis::application* m_paxixapplication;
+      ::base::application* m_pbaseapplication;
+      ::bred::application* m_pbredapplication;
+      ::core::application* m_pcoreapplication;
+
 
       void* m_pnativeapp;
 
@@ -80,7 +87,7 @@ namespace apex
 
       bool                                            m_bInterprocessIntercommunication;
       __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
-      __composite(service_base)                       m_pservice;
+      //__composite(service)                            m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
@@ -157,7 +164,9 @@ namespace apex
       string_array                                    m_straAppInterest;
       //string_map < oswindow, oswindow >               m_mapAppInterest;
 
-      ::duration                                      m_durationGcomBackgroundUpdate;
+      //::duration                                      m_durationGcomBackgroundUpdate;
+
+      __composite(::service_handler) m_pservicehanlder;
 
 
       application(const char * pszAppId = nullptr);
@@ -198,7 +207,7 @@ namespace apex
 
       virtual bool is_system() const override;
       virtual bool is_session() const override;
-      virtual bool is_serviceable() const;
+      virtual bool is_service() const;
       virtual bool is_user_service() const;
 
 
@@ -253,10 +262,11 @@ namespace apex
       virtual bool do_uninstall();
 
 
-      virtual bool on_install();
-      virtual bool on_uninstall();
+      virtual ::e_status on_install();
+      virtual ::e_status on_uninstall();
 
-
+      virtual ::e_status enable_service();
+      virtual ::e_status disable_service();
 
 
 
@@ -339,6 +349,9 @@ namespace apex
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
       virtual void on_service_request(::create * pcreate);
+
+      virtual service* allocate_service();
+
 
       virtual string get_mutex_name_gen();
 
@@ -612,23 +625,12 @@ namespace apex
       virtual void _001OnFileNew(::message::message * pmessage);
 
 
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
       virtual ::e_status get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
 
       virtual ::e_status get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
 
-      service_base * get_service();
-      virtual service_base * allocate_new_service();
-      virtual ::e_status init_service();
-
-      virtual ::e_status os_create_service();
-      virtual ::e_status os_remove_service();
-
-      virtual ::e_status os_start_service();
-      virtual ::e_status os_stop_service();
+      inline service_handler* service_handler() const { return m_pservicehanlder; }
 
       //virtual void on_service_request(::create * pcreate);
 

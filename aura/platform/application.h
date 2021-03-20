@@ -68,7 +68,7 @@ namespace aura
 
       //bool                                            m_bIpi;
       //__pointer(::interprocess_intercommunication)    m_pinterprocessintercommunication;
-      __pointer(service_base)                         m_pservice;
+      //__pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
       __composite(::user::interaction_array)            m_puiptraFrame;
@@ -245,8 +245,8 @@ namespace aura
       virtual bool do_uninstall() override;
 
 
-      virtual bool on_install() override;
-      virtual bool on_uninstall() override;
+      virtual ::e_status on_install() override;
+      virtual ::e_status on_uninstall() override;
 
 
 

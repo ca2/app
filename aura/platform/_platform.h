@@ -55,7 +55,7 @@ namespace experience
 } // namespace experience
 
 
-class service_base;
+class service;
 
 
 namespace bergedge

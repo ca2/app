@@ -83,6 +83,7 @@ namespace aura
       //m_semCompiler(64, 64)
    {
 
+      m_pauraapplication = this;
 #ifdef LINUX
       m_bSnLauncheeSetup = false;
 #endif
@@ -451,7 +452,7 @@ namespace aura
    void application::on_request(::create * pcreate)
    {
 
-      if (is_serviceable())
+      if (is_service())
       {
 
          ::aura::application::on_service_request(pcreate);
@@ -1726,22 +1727,22 @@ retry_license:
    }
 
 
-
-
-   bool application::on_install()
+   ::e_status application::on_install()
    {
 
-      if (is_serviceable())
+      if (is_service())
       {
 
-         if (!init_service())
-         {
+         ::apex::application::on_install();
 
-            return false;
+         //if (!init_service())
+         //{
 
-         }
+         //   return false;
 
-         os_start_service();
+         //}
+
+         //os_start_service();
 
       }
       else
@@ -1763,7 +1764,7 @@ retry_license:
    }
 
 
-   bool application::on_uninstall()
+   ::e_status application::on_uninstall()
    {
 
       //bool bOk = axis::application::on_uninstall();
@@ -1771,15 +1772,16 @@ retry_license:
       bool bOk = true;
 
 
-      if (is_serviceable())
+      if (is_service())
       {
+         ::apex::application::on_uninstall();
 
-         if (!os_remove_service())
-         {
+         //if (!os_remove_service())
+         //{
 
-            bOk = false;
+         //   bOk = false;
 
-         }
+         //}
 
       }
 

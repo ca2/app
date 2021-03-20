@@ -187,6 +187,8 @@ namespace dynamic_source
 
          pwatcher->m_pmanager = this;
 
+         auto pcontext = get_context();
+
          pcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
@@ -196,6 +198,8 @@ namespace dynamic_source
       auto papplication = get_application();
 
       papplication->dir().ls_dir(listing, m_strNetnodePath);
+
+      auto pcontext = get_context();
 
       forallref(listing)
       {
@@ -662,7 +666,10 @@ namespace dynamic_source
       //SetDllDirectory(buf);
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
-      delete buf;*/
+      del*/
+
+      auto pcontext = get_context();
+
 
       ::file::path str;
       auto pcontext = get_context();
@@ -868,6 +875,8 @@ namespace dynamic_source
 
    bool script_manager::include_matches_file_exists(const string & strPath)
    {
+
+      auto pcontext = get_context();
       single_lock synchronizationlock(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.plookup(strPath);
       if (ppair != nullptr)
@@ -900,18 +909,17 @@ namespace dynamic_source
    {
       single_lock synchronizationlock(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.plookup(strPath);
+
+      auto pcontext = get_context();
+
       if (ppair != nullptr)
       {
-
          return ppair->element2();
-
       }
-      
-      auto pcontext = get_context();
-         bool bIsDir = pcontext->dir().is(strPath);
+
+      bool bIsDir = pcontext->dir().is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
-      
    }
 
    bool script_manager::include_has_script(const string & strPath)
@@ -932,6 +940,8 @@ namespace dynamic_source
       auto pcontext = get_context();
 
          // roughly detect this way: by finding the <?
+
+      auto pcontext = get_context();
 
          bool bHasScript = pcontext->file().as_string(strPath).find("<?") >= 0;
 

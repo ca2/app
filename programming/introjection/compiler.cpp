@@ -41,6 +41,8 @@ namespace introjection
 
       defer_create_mutex();
 
+      initialize(pcontextobject);
+
       __zero(m_filetimeset);
 
    }
@@ -114,6 +116,8 @@ namespace introjection
          ::file::path path;
 
          path = ::dir::config() / "programming/vs.txt";
+
+
 
          m_strVs = pcontext->file().as_string(path);
 
@@ -200,6 +204,8 @@ namespace introjection
 
    void compiler::prepare_compile_and_link_environment()
    {
+
+      auto papplication = get_application();
 
       auto pcontext = get_context();
 
@@ -392,6 +398,8 @@ namespace introjection
 
       string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build();
 
+      auto psystem = get_system();
+
       ::payload payload = psystem->process().get_output(strCommandLine);
 
       TRACE("%s", payload.get_string().c_str());
@@ -439,6 +447,8 @@ namespace introjection
       //sleep(15000_ms);
 
       string strBuildCmd = m_strEnv;
+
+      auto papplication = get_application();
 
       if (m_strVs == "2015")
       {

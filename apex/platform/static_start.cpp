@@ -227,7 +227,7 @@ namespace apex
 
 
 
-   void apex::construct()
+   void static_start::construct()
    {
 
       //::set_thread_get_run(&apex_thread_get_run);
@@ -381,7 +381,7 @@ namespace apex
    }
 
 
-   apex::apex()
+   static_start::static_start()
    {
 
       m_bRef = false;
@@ -589,7 +589,7 @@ namespace apex
    }
 
 
-   apex::~apex()
+   static_start::~static_start()
    {
 
       term();
@@ -841,7 +841,7 @@ namespace apex
    }
 
 
-   void apex::this_ref()
+   void static_start::this_ref()
    {
 
       m_bRef = true;
@@ -863,26 +863,26 @@ namespace apex
 
 
 
-   ::e_status apex::init()
+   ::e_status static_start::init()
    {
 
       //::apex::static_start::init();
 
-      if (!__node_apex_pre_init())
-      {
+      //if (!__node_apex_pre_init())
+      //{
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
 
       ::parallelization::initialize();
 
-      if (!__node_apex_pos_init())
-      {
+      //if (!__node_apex_pos_init())
+      //{
 
-         return ::error_failed;
+        // return ::error_failed;
 
-      }
+      //}
 
 //#ifdef WINDOWS
 //
@@ -899,7 +899,7 @@ namespace apex
    }
 
 
-   ::e_status apex::term()
+   ::e_status static_start::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -915,7 +915,7 @@ namespace apex
 
       ::parallelization::finalize();
 
-      __node_apex_pre_term();
+      //__node_apex_pre_term();
 
 //#ifdef WINDOWS
 //
@@ -927,7 +927,7 @@ namespace apex
 
       processor_cache_oriented_destroy_all_memory_pools();
 
-      __node_apex_pos_term();
+      //__node_apex_pos_term();
 
       //::apex::static_start::term();
 
@@ -1304,7 +1304,7 @@ void apex_ref()
 {
 
 
-   ::apex::apex::g_apex.this_ref();
+   ::apex::static_start::g_staticstart.this_ref();
    set_platform_level(e_platform_level_apex);
 
 

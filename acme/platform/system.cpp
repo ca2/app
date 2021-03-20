@@ -16,6 +16,13 @@ namespace acme
    {
 
       m_psystem = this;
+      m_papexsystem = nullptr;
+      m_paquasystem = nullptr;
+      m_paurasystem = nullptr;
+      m_paxixsystem = nullptr;
+      m_pbasesystem = nullptr;
+      m_pbredsystem = nullptr;
+      m_pcoresystem = nullptr;
 
 #ifdef LINUX
 

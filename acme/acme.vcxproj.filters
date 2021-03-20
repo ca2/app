@@ -243,6 +243,9 @@
     <Filter Include="Header Files\primitive\collection">
       <UniqueIdentifier>{fa21be76-75d0-485c-984d-ccd11bea77d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\const">
+      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2249,57 +2252,6 @@
     <ClInclude Include="compress\gz.h">
       <Filter>Source Files\compress</Filter>
     </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\future.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\routine.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Source Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="_start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2569,6 +2521,63 @@
     </ClInclude>
     <ClInclude Include="platform\acme_main_data.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="const\code_page.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\_.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\_const.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\charset.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\check.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\context.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\future.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\GLOBAL_ID.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\id.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\idpool.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\timer.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\impact.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\message.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\routine.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\simple_command.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\source.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\status_range_authentication.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\thread.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

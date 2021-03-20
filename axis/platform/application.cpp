@@ -11,6 +11,7 @@ namespace axis
       ::aura::application(pszAppId)
    {
 
+      m_paxixapplication = this;
       m_bInitializeDataCentral = true;
 
    }

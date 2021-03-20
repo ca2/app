@@ -23,25 +23,19 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mysql\mysql_database.h">
-      <Filter>Header Files\mysql</Filter>
-    </ClInclude>
     <ClInclude Include="mysql\mysql_dataset.h">
       <Filter>Header Files\mysql</Filter>
     </ClInclude>
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mysql\mysql_database_impl.h">
+    <ClInclude Include="mysql\mysql_database.h">
       <Filter>Header Files\mysql</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mysql\mysql_database.cpp">
-      <Filter>Source Files\mysql</Filter>
     </ClCompile>
     <ClCompile Include="mysql\mysql_dataset.cpp">
       <Filter>Source Files\mysql</Filter>
@@ -52,7 +46,7 @@
     <ClCompile Include="factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mysql\mysql_database_impl.cpp">
+    <ClCompile Include="mysql\mysql_database.cpp">
       <Filter>Source Files\mysql</Filter>
     </ClCompile>
   </ItemGroup>

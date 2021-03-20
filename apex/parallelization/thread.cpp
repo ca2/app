@@ -3,6 +3,7 @@
 #include "apex/message.h"
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
+#include "apex/platform/apex.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -421,7 +422,7 @@ void thread::term_thread()
 
    __set_thread_off();
 
-   ::__term_thread();
+   m_psystem->m_papexsystem->m_papex->thread_finalize(this);
 
    ::e_status estatus = m_result.m_estatus;
 
@@ -2555,7 +2556,7 @@ void thread::__os_initialize()
 
 #endif
 
-   __node_init_thread(this);
+   m_psystem->m_papexsystem->m_papex->node_thread_initialize(this);
 
 
 }
@@ -2564,7 +2565,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   __node_term_thread(this);
+   m_psystem->m_papexsystem->m_papex->node_thread_finalize(this);
 
 }
 
@@ -2659,7 +2660,7 @@ void thread::__os_finalize()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      ::__init_thread();
+      m_psystem->m_papexsystem->m_papex->parallelization_initialize();
 
    }
 

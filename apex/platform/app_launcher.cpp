@@ -1,17 +1,37 @@
 #include "framework.h"
 #include "apex/operating_system.h"
+#include "launcher.h"
+#include "app_launcher.h"
 
 
 namespace apex
 {
 
 
-   app_launcher::app_launcher(string strPlatform, string strApp)
+   app_launcher::app_launcher()
    {
 
-      m_strPlatform     = strPlatform;
 
-      m_strApp          = strApp;
+   }
+
+
+   ::e_status app_launcher::initialize_app_launcher(::context_object* pcontextobject, string strPlatform, string strApp)
+   {
+
+      auto estatus = ::context_object::initialize(pcontextobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_strPlatform = strPlatform;
+
+      m_strApp = strApp;
+
+      return estatus;
 
    }
 
@@ -39,6 +59,8 @@ namespace apex
       strExe += ".exe";
 
 #endif
+
+      auto pcontext = get_context();
 
       ::file::path pathCandidate = get_context()->dir().ca2module() / strExe;
 

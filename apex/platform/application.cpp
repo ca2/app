@@ -14,6 +14,7 @@
 
 
 #include "apex/node/_node.h"
+#include "apex.h"
 //#include "apex/os/_os.h"
 
 #ifdef WINDOWS_DESKTOP
@@ -120,6 +121,13 @@ namespace apex
    {
 
       m_papplication = this;
+
+      m_paquaapplication = nullptr;
+      m_pauraapplication = nullptr;
+      m_paxixapplication = nullptr;
+      m_pbaseapplication = nullptr;
+      m_pbredapplication = nullptr;
+      m_pcoreapplication = nullptr;
       //set_layer(LAYERED_APEX, this);
 
 #ifdef LINUX
@@ -215,7 +223,7 @@ namespace apex
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      m_durationGcomBackgroundUpdate = 30_s;
+      //m_durationGcomBackgroundUpdate = 30_s;
 
    }
 
@@ -381,6 +389,18 @@ namespace apex
       m_bAppHasInstallerProtected = bSet;
 
       m_bAppHasInstallerChangedProtected = true;
+
+   }
+   
+   
+   void application::show_wait_cursor(bool bShow)
+   {
+
+      auto psystem = get_system();
+
+      auto papex = psystem->m_papex;
+
+      papex->show_wait_cursor(bShow);
 
    }
 
@@ -768,7 +788,7 @@ namespace apex
    void application::on_request(::create * pcreate)
    {
 
-      if (is_serviceable())
+      if (is_service())
       {
 
          ::apex::application::on_service_request(pcreate);
@@ -1162,7 +1182,7 @@ namespace apex
    }
 
 
-   bool application::is_serviceable() const
+   bool application::is_service() const
    {
 
       return false;
@@ -1175,7 +1195,7 @@ namespace apex
 
       bool bIsUserService = true;
 
-      bool bIsService = is_serviceable();
+      bool bIsService = is_service();
 
       return bIsUserService && bIsService;
 
@@ -2744,22 +2764,21 @@ retry_license:
    }
 
 
-
-
-   bool application::on_install()
+   ::e_status application::on_install()
    {
 
-      if (is_serviceable())
+      if (is_service())
       {
 
-         if (!init_service())
+         auto estatus = enable_service();
+
+         if (!estatus)
          {
 
-            return false;
+            return estatus;
 
          }
-
-         os_start_service();
+         return estatus;
 
       }
       else
@@ -2772,12 +2791,13 @@ retry_license:
 #endif
 
       }
-      return true;
+
+      return ::success;
 
    }
 
 
-   bool application::on_uninstall()
+   ::e_status application::on_uninstall()
    {
 
       //bool bOk = axis::application::on_uninstall();
@@ -2785,19 +2805,75 @@ retry_license:
       bool bOk = true;
 
 
-      if (is_serviceable())
+      if (is_service())
       {
 
-         if (!os_remove_service())
+         auto estatus = disable_service();
+
+         if(!estatus)
          {
 
-            bOk = false;
+            return estatus;
 
          }
+
+         return estatus;
 
       }
 
       return bOk;
+
+   }
+
+   
+   e_status application::enable_service()
+   {
+
+      auto estatus = m_psystem->m_papexsystem->os().enable_service();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = service_handler()->start_service();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   e_status application::disable_service()
+   {
+
+      auto estatus = service_handler()->stop_service();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = os().disable_service();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -2966,15 +3042,15 @@ retry_license:
    }
 
 
-   service_base* application::get_service()
-   {
+   //service * application::get_service()
+   //{
 
-      return m_pservice;
+   //   return m_pservicehanlder->m_pservice;
 
-   }
+   //}
 
 
-   service_base* application::allocate_new_service()
+   service * application::allocate_service()
    {
 
       return nullptr;
@@ -2982,85 +3058,43 @@ retry_license:
    }
 
 
-   ::e_status application::init_service()
-   {
 
-      if (!is_serviceable())
-      {
+   //::e_status application::os_create_service()
+   //{
 
-         __throw(error_unsupported_function);
+   //   return get_context()->os().create_service();
 
-      }
-
-      if (m_pservice)
-      {
-
-         return false;
-
-      }
-
-      __own(this, m_pservice, allocate_new_service() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::int_service") );
-
-      if (!m_pservice)
-      {
-
-         return false;
-
-      }
-
-      auto estatus = m_pservice->initialize(this);
-
-      if (!estatus)
-      {
-
-         return false;
-
-      }
-
-      __pointer(::apex::system) psystem = get_system();
-
-      psystem->m_serviceptra.add(m_pservice);
-
-      return true;
-
-   }
-
-   ::e_status application::os_create_service()
-   {
-
-      return get_context()->os().create_service();
-
-   }
+   //}
 
 
-   ::e_status application::os_remove_service()
-   {
+   //::e_status application::os_remove_service()
+   //{
 
-      return get_context()->os().remove_service();
+   //   return get_context()->os().remove_service();
 
-   }
-
-
-   ::e_status application::os_start_service()
-   {
-
-      return get_context()->os().start_service();
-
-   }
+   //}
 
 
-   ::e_status application::os_stop_service()
-   {
+   //::e_status application::os_start_service()
+   //{
 
-      return get_context()->os().stop_service();
+   //   return get_context()->os().start_service();
 
-   }
+   //}
+
+
+   //::e_status application::os_stop_service()
+   //{
+
+   //   return get_context()->os().stop_service();
+
+   //}
 
 
    void application::on_service_request(::create * pcreate)
    {
 
-      if (!is_serviceable())
+      if (!is_service())
       {
 
          return;
@@ -3070,43 +3104,43 @@ retry_license:
       if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
       {
 
-         os_create_service();
+         enable_service();
 
       }
       else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
       {
 
-         os_start_service();
+         service_handler()->defer_service();
+
+         service_handler()->start_service();
 
       }
       else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
       {
 
-         os_stop_service();
+         service_handler()->stop_service();
 
       }
       else if (pcreate->m_pcommandline->m_varQuery.has_property("remove_service"))
       {
 
-         os_remove_service();
+         disable_service();
 
       }
       else if (has_property("service"))
       {
 
-         init_service();
+         service_handler()->defer_service();
 
-         __throw(todo);
-
-         //service_main(m_pservice);
+         service_handler()->start_service();
 
       }
       else if (has_property("run"))
       {
 
-         init_service();
+         service_handler()->defer_service();
 
-         m_pservice->Start(0);
+         service_handler()->get_service()->run();
 
       }
 
@@ -10963,6 +10997,29 @@ retry_license:
 
    //}
 
+
+   string application::get_version()
+   {
+
+      auto psystem = get_system();
+
+      auto papex = psystem->m_papex;
+
+      return papex->get_version();
+
+   }
+
+
+   ::e_status application::_001InitializeShellOpen()
+   {
+
+      auto psystem = get_system();
+
+      auto papex = psystem->m_papex;
+
+      return papex->_001InitializeShellOpen();
+
+   }
 
 
 

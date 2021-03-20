@@ -88,6 +88,8 @@ namespace apex
    class node;
    class session;
    class application;
+   
+   class apex;
 
 
    //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
@@ -638,7 +640,7 @@ namespace html
 
 //#define papplication (App(this))
 //#define ThisApp (*::application_consumer < application >::get_app())
-//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//#define m_papplication->
 
 
 //#undef Ctx
@@ -689,11 +691,11 @@ class object;
 class context;
 
 
-CLASS_DECL_APEX bool __node_apex_pre_init();
-CLASS_DECL_APEX bool __node_apex_pos_init();
+//CLASS_DECL_APEX bool __node_apex_pre_init();
+//CLASS_DECL_APEX bool __node_apex_pos_init();
 
-CLASS_DECL_APEX bool __node_apex_pre_term();
-CLASS_DECL_APEX bool __node_apex_pos_term();
+//CLASS_DECL_APEX bool __node_apex_pre_term();
+//CLASS_DECL_APEX bool __node_apex_pos_term();
 
 
 //extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char * psz);
@@ -939,7 +941,8 @@ class message_queue;
 #include "apex/parallelization/thread.h"
 #include "apex/parallelization/handler.h"
 //#include "apex/parallelization/service_status.h"
-#include "apex/parallelization/service_base.h"
+#include "apex/parallelization/service.h"
+#include "apex/parallelization/service_handler.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/fork.h"
@@ -971,11 +974,12 @@ namespace user
 
 #include "apex/net/_.h"
 
-#include "apex/platform/launcher.h"
+class launcher;
+//#include "apex/platform/launcher.h"
 
 #include "apex/platform/interprocess_communication.h"
 
-#include "apex/platform/app_launcher.h"
+//#include "apex/platform/app_launcher.h"
 
 
 class zip_context;

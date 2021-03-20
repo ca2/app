@@ -8,29 +8,13 @@ namespace database
    class dataset;
    class transaction;
 
+
    class CLASS_DECL_AXIS database :
       virtual public ::object
    {
    public:
 
       friend class transaction;
-
-      bool              m_bActive;
-      e_connection      m_econnection;
-      string            m_strError;
-      string            m_strHost;
-      string            m_strPort;
-      string            m_strName;
-      string            m_strUser;
-      string            m_strPass;
-      string            m_strSckt;
-      u64               m_uConnectionFlags;
-
-
-      bool              m_bTransactionActive;
-      i32               m_iLastError;
-      string            m_strLastError;
-      i64               m_iLastUsedTime;
 
 
       database();
@@ -39,21 +23,23 @@ namespace database
 
    protected:
 
-      virtual void start_transaction() {};
-      virtual void commit_transaction() {};
-      virtual void rollback_transaction() {};
+      virtual void start_transaction();
+      virtual void commit_transaction();
+      virtual void rollback_transaction();
+   
 
    public:
       //virtual __pointer(class dataset) dataset() = 0;
 
-      virtual bool isActive() { return m_bActive; }
+      virtual bool isActive() = 0;
 
 
-      virtual ::e_status     init();
-      virtual e_connection connection_status() { return m_econnection; }
-      virtual ::e_status     set_error_code(int iErrorCode);
-      virtual string get_error_message();
+      virtual ::e_status     init() = 0;
+      virtual e_connection connection_status() = 0;
+      virtual ::e_status     set_error_code(int iErrorCode) = 0;
+      virtual string get_error_message() = 0;
       virtual void * get_handle() = 0;
+
 
       virtual ::e_status     connect(
       const char * name,
@@ -62,76 +48,68 @@ namespace database
       const char * user = nullptr,
       const char * pass = nullptr,
       const char * sckt = nullptr,
-      u64 uConnectionFlags = 0);
+      u64 uConnectionFlags = 0) = 0;
 
       virtual ::e_status     _connect() = 0;
 
-      virtual void disconnect() { m_bActive = false; }
-      virtual ::e_status     reset() { return ::success; }
-      virtual ::e_status     create() { return ::success; }
-      virtual ::e_status     drop() { return ::success; }
+      virtual void disconnect();
+      virtual ::e_status     reset() = 0;
+      virtual ::e_status     create() = 0;
+      virtual ::e_status     drop() = 0;
 
       //virtual string escape(const char * psz);
 
-      inline __pointer(class transaction) transaction();
+      virtual  __pointer(class transaction) transaction();
+
+      virtual ::count get_affected_rows_count() = 0;
+
+      virtual bool in_transaction() = 0;
 
 
-      virtual ::count get_affected_rows_count();
-
-      virtual bool in_transaction() {return m_bTransactionActive;};
+      virtual bool exec(const char * pszQuery) = 0;
 
 
-      virtual bool exec(const char * pszQuery);
-
-
-      virtual __pointer(result_set) query_result(const char * pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
-      inline auto query(const char * pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
+      virtual __pointer(result_set) query_result(const char * pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) = 0;
+      virtual __pointer(result_set)  query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
 
 
       //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      virtual ::payload query_table_item(const char* table, const char* item, const char* where, const ::payload & payload = ::payload());
       virtual __pointer(row_array) query_rows(const char * pszQuery);
       virtual __pointer(row) query_row(const char * pszQuery);
       virtual __pointer(var_array) query_items(const char * pszQuery);
-      virtual ::payload query_item(const char * pszQuery);
-      virtual bool memory_query_item(get_memory getmemory, const char * pszQuery);
-
-      //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
-      //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
-      //virtual bool query_items(__pointer(var_array) & items, const char * pszQuery);
-      //virtual bool query_item(::payload & item, const char * pszQuery);
+      virtual ::payload query_item(const char * pszQuery, const ::payload & payloadDefault = ::payload());
+      virtual bool memory_query_item(get_memory getmemory, const char * pszQuery) = 0;
 
 
-      virtual string escape(const char * psz);
-
-      virtual string error1(const char * pszPrefix = nullptr);
-      virtual void trace_error1(const char * pszPrefix = nullptr);
+      virtual bool query_table_item(::payload& payload, const char* table, const char* item, const char* where);
 
 
-   };
+      virtual bool query_rows(__pointer(row_array)& rows, const char* pszQuery);
+      virtual bool query_row(__pointer(row)& rows, const char* pszQuery);
+      virtual bool query_items(__pointer(var_array)& items, const char* pszQuery);
+      virtual bool query_item(::payload& item, const char* pszQuery);
 
 
-   class CLASS_DECL_AXIS transaction :
-      virtual public context_object
-   {
-   public:
 
-      bool m_bProcessed;
-      __pointer(database) m_pdatabase;
+      virtual ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) = 0;
 
-      transaction(database * pdatabase);
-      ~transaction();
 
-      void rollback();
-      void commit();
+      virtual string escape(const char * psz) = 0;
+
+      virtual string add_error_message(const ::string& strErrorMessage);
+
+
+      virtual string error1(const char * pszPrefix = nullptr) = 0;
+      virtual void trace_error1(const char * pszPrefix = nullptr) = 0;
+
+      virtual ::payload get_insert_id() = 0;
 
 
    };
-
-   inline __pointer(transaction) database::transaction()
-   {
-      return __new(class transaction(this));
-   }
 
 
 } // namespace database
+
+
 

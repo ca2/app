@@ -53,6 +53,13 @@ namespace apex
    session::session()
    {
 
+
+      m_paquasession = nullptr;
+      m_paurasession = nullptr;
+      m_paxissession = nullptr;
+      m_pbasesession = nullptr;
+      m_pbredsession = nullptr;
+      m_pcoresession = nullptr;
       m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;

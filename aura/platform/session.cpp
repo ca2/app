@@ -75,6 +75,8 @@ namespace aura
    session::session()
    {
 
+      m_paurasession = this;
+
       m_bAcceptsFirstResponder = true;
 
       m_bSimpleMessageLoop = false;

@@ -61,9 +61,9 @@
       virtual bool native_modern_web_browser(const char * pcsz);
 
 
-      virtual ::e_status create_service();
+      virtual ::e_status enable_service();
 
-      virtual ::e_status remove_service();
+      virtual ::e_status disable_service();
 
       virtual ::e_status start_service();
 

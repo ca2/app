@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   view::view(::context_object * pcontextobject) :
+   view::view(::object * pobject) :
       ::object(pobject),
       ::user::interaction(pobject)
    {

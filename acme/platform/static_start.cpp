@@ -303,7 +303,7 @@ namespace acme
 
 
 
-   void acme::construct()
+   void static_start::construct()
    {
 
       __seed_srand();
@@ -478,7 +478,7 @@ namespace acme
    }
 
 
-   acme::acme()
+   static_start::static_start()
    {
 
       static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
@@ -735,7 +735,7 @@ namespace acme
    }
 
 
-   acme::~acme()
+   static_start::~static_start()
    {
 
       ::user::os_term_theme_colors();
@@ -1044,7 +1044,7 @@ namespace acme
    }
 
 
-   void acme::this_ref()
+   void static_start::this_ref()
    {
 
       m_bRef = true;
@@ -1066,7 +1066,7 @@ namespace acme
 
 
 
-   ::e_status acme::init()
+   ::e_status static_start::init()
    {
 
       //::acme::static_start::init();
@@ -1105,7 +1105,7 @@ namespace acme
    }
 
 
-   ::e_status acme::term()
+   ::e_status static_start::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1366,7 +1366,7 @@ locale_t get_c_locale()
 void acme_ref()
 {
 
-   ::acme::acme::g_acme.this_ref();
+   ::acme::static_start::g_staticstart.this_ref();
 
 }
 

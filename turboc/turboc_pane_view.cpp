@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   pane_view::pane_view(::context_object * pcontextobject) :
+   pane_view::pane_view(::object * pobject) :
       ::object(pobject),
       ::user::tab(pobject),
 

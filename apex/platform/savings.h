@@ -31,7 +31,7 @@ namespace apex
       savings();
       virtual ~savings();
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void save(enum_resource eresource);
       virtual void try_to_save(enum_resource eresource);

@@ -6,7 +6,7 @@ namespace android
 {
 
 
-   crypto::crypto(::context_object * pcontextobject) :
+   crypto::crypto(::object * pobject) :
       ::object(pobject),
       ::crypto::crypto(pobject)
    {
@@ -21,7 +21,7 @@ namespace android
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return pcontext->dir().appdata() /  ".ca2/cryptkey";
+      return pcontext->m_pcontext->dir().appdata() /  ".ca2/cryptkey";
 
    }
 

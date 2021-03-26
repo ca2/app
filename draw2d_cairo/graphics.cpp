@@ -164,7 +164,7 @@ graphics::graphics()
 void graphics::assert_valid() const
 {
 
-    context_object::assert_valid();
+    object::assert_valid();
 
 }
 
@@ -172,7 +172,7 @@ void graphics::assert_valid() const
 void graphics::dump(dump_context & dumpcontext) const
 {
 
-    context_object::dump(dumpcontext);
+    object::dump(dumpcontext);
 
     dumpcontext << "\n";
 
@@ -2942,7 +2942,7 @@ void graphics::HIMETRICtoDP(::size_f64 * psize)
 // special graphics drawing primitives/helpers
 
 
-//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::context_object * pcontextobject)
+//::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::object * pobject)
 //{
 //
 //    return nullptr;

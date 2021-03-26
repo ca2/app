@@ -6,7 +6,7 @@ namespace apex
 
 
    template < class APP >
-   __transport(::apex::application) single_application_library < APP > ::new_application(const char * pszAppId)
+   __transport(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -36,7 +36,7 @@ namespace apex
 
       }
 
-//      auto estatus = papp->initialize(pcontextobject);
+//      auto estatus = papp->initialize(pobject);
 //
 //      if (!estatus)
 //      {

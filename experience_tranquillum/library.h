@@ -10,7 +10,7 @@ namespace experience
 
 
       class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM library:
-            virtual public ::apex::library
+            virtual public ::acme::library
          {
          public:
 

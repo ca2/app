@@ -185,7 +185,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const char * pszEntity, string & strCh
    pszBegin++;
 
 
-   // numeric (decimal or hexadecimal) entity context_object?
+   // numeric (decimal or hexadecimal) entity object?
    if (*pszBegin == '#')
 
    {
@@ -210,7 +210,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const char * pszEntity, string & strCh
       }
    }
 
-   // character entity context_object?
+   // character entity object?
    else
    {
       string   strKey(pszBegin, (i32)(pszEnd - pszBegin));
@@ -253,7 +253,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const char * pszEntity, string & strCh
          }
       }
 
-      // is this a known entity context_object?
+      // is this a known entity object?
       if (m_CharEntityRefs.lookup(strKey, chTemp))
       {
          strChar = chTemp;

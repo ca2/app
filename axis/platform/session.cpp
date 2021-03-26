@@ -2,7 +2,7 @@
 #include "axis/user/_user.h"
 #include "acme/const/id.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
@@ -41,7 +41,7 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 //extern ::mutex * psystem->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -78,10 +78,10 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pcontextobject);
+      auto estatus = ::thread::initialize(pobject);
 
       if (!estatus)
       {
@@ -98,9 +98,7 @@ namespace axis
 
       m_pimplPendingFocus2             = nullptr;
 
-      set_context_session(this);
-
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (psystem != nullptr)
       {
@@ -283,7 +281,7 @@ namespace axis
 //
 //            }
 //
-//            auto estatus = papp->initialize(pcontextobject);
+//            auto estatus = papp->initialize(pobject);
 //
 //            if (!estatus)
 //            {
@@ -300,7 +298,7 @@ namespace axis
 //         }
 //         synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
 //
-//         __pointer(::apex::library) & plibrary = psystem->m_mapLibrary[pszAppId];
+//         __pointer(::acme::library) & plibrary = psystem->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -355,7 +353,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __new(::apex::library);
+//                     plibrary = __new(::acme::library);
 //
 //                     plibrary->initialize_aura_library(pobject, 0, nullptr);
 //
@@ -443,7 +441,7 @@ namespace axis
 //
 //         {
 //
-//            ::apex::library & library = *plibrary;
+//            ::acme::library & library = *plibrary;
 //
 //
 //            papp = library.get_new_application(this, strAppId);
@@ -755,10 +753,10 @@ namespace axis
 
 
 
-   //::e_status session::initialize(::context_object * pcontextobject)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pcontextobject);
+   //   auto estatus = ::aura::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -1199,6 +1197,16 @@ namespace axis
    }
 
 
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aura::session::on_instantiate_application(papp);
+
+      papp->m_paxissession = this;
+
+   }
+
+
    ::user::style * session::get_user_style()
    {
 
@@ -1229,7 +1237,7 @@ namespace axis
       //if(puser->m_strPathPrefix.is_empty())
       //{
 
-      //   puser->m_strPathPrefix = pcontext->dir().default_os_user_path_prefix();
+      //   puser->m_strPathPrefix = pcontext->m_pcontext->dir().default_os_user_path_prefix();
 
       //}
 
@@ -1244,9 +1252,9 @@ namespace axis
 
       auto pcontext = get_context();
 
-      puser->m_pathFolder = pcontext->dir().appdata() / "profile" / puser->m_strLogin;
+      puser->m_pathFolder = pcontext->m_pcontext->dir().appdata() / "profile" / puser->m_strLogin;
 
-      pcontext->dir().mk(puser->m_pathFolder);
+      pcontext->m_pcontext->dir().mk(puser->m_pathFolder);
 
       for (auto& papp : m_applicationa)
       {

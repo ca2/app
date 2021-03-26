@@ -23,10 +23,10 @@ namespace user
    }
 
 
-   e_status format_tool::initialize(::context_object* pcontextobject)
+   e_status format_tool::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::tool_window::initialize(pcontextobject);
+      auto estatus = ::user::tool_window::initialize(pobject);
 
       if (!estatus)
       {

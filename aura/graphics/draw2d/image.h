@@ -6,7 +6,7 @@
 /// </summary>
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
-   virtual public ::context_object,
+   virtual public ::object,
    virtual public ::image_drawer
 {
 public:
@@ -23,7 +23,7 @@ public:
    virtual void defer_update_image();
 
 
-   inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::context_object::is_ok()); }
+   inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::object::is_ok()); }
 
 
    virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)

@@ -14,7 +14,7 @@ namespace calculator
    public:
 
 
-      calculator(::context_object * pcontextobject);
+      calculator(::object * pobject);
       virtual ~calculator();
 
 

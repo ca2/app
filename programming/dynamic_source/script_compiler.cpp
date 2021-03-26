@@ -403,7 +403,7 @@ namespace dynamic_source
 
       ::ansi_zero_pad(strMillis, 3);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       strRndTitle = "_" + psystem->datetime().international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
@@ -1631,7 +1631,7 @@ namespace dynamic_source
       if(::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if(m_straSync.get_count() > 1)
       {
@@ -3125,10 +3125,10 @@ ch_else:
    }
 
 
-   library::library(::context_object * pcontextobject)
+   library::library(::object * pobject)
    {
 
-      initialize(pcontextobject);
+      initialize(pobject);
 
    }
 
@@ -3249,7 +3249,7 @@ ch_else:
 
       synchronization_lock synchronizationlock(m_pmanager->mutex());
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       psystem->str().set(pszTopic,idLocale,idSchema,psz);
 

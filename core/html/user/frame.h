@@ -7,7 +7,7 @@
 //{
 //   
 //public: // create from serialization only
-//   html_frame(::context_object * pcontextobject);
+//   html_frame(::object * pobject);
 //   // // DECLARE_DYNCREATE(html_frame)
 //
 //// Attributes

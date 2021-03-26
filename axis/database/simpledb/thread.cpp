@@ -109,7 +109,7 @@ namespace simpledb
 
                strUrl = "https://ca2.cc/api/account/str_set_save?key=";
 
-               auto psystem = get_system();
+               auto psystem = m_psystem->m_paurasystem;
 
                strUrl += psystem->url().url_encode(strKey);
 
@@ -121,7 +121,7 @@ namespace simpledb
 
                   synchronization_lock slDatabase(mutex());
 
-                  get_context()->http().get(strUrl, set);
+                  m_pcontext->m_pcontext->http().get(strUrl, set);
 
                }
 

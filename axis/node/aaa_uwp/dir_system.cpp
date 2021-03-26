@@ -18,10 +18,10 @@ namespace uwp
    }
 
 
-   ::e_status dir_system::initialize(::context_object * pcontextobject)
+   ::e_status dir_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_system::initialize(pcontextobject);
+      auto estatus = ::dir_system::initialize(pobject);
 
       if (!estatus)
       {
@@ -43,7 +43,7 @@ namespace uwp
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(pcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(pcontext->m_pcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->get_root()->get_name() == "directory_configuration")
       //{
@@ -135,7 +135,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userdata(::context_object * pcontextobject)
+   //::file::path dir_system::userdata(::object * pobject)
    //{
 
    //   return userfolder(pobject) / "data";
@@ -143,7 +143,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::userfolder(::context_object * pcontextobject)
+   //::file::path dir_system::userfolder(::object * pobject)
    //{
 
    //   string str = appdata();
@@ -160,7 +160,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_os_user_path_prefix(::context_object * pcontextobject)
+   //::file::path dir_system::default_os_user_path_prefix(::object * pobject)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);

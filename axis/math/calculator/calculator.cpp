@@ -18,10 +18,10 @@ namespace calculator
    }
 
 
-   ::e_status calculator::initialize(::context_object * pcontextobject)
+   ::e_status calculator::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {

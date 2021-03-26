@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   view::view(::context_object * pcontextobject) :
+   view::view(::object * pobject) :
       ::object(pobject),
       m_pfont(e_create)
    {
@@ -105,7 +105,7 @@ namespace filehandler
 
    }
 
-   view::item::item(::context_object * pcontextobject) :
+   view::item::item(::object * pobject) :
       ::object(pobject)
    {
 
@@ -160,7 +160,7 @@ namespace filehandler
    }
 
 
-   view::list::list(::context_object * pcontextobject) :
+   view::list::list(::object * pobject) :
       ::object(pobject)
    {
       m_iItemHeight = 30;

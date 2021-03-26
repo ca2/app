@@ -41,7 +41,7 @@ color32_t SetAValue(byte a, color32_t cr)
 
 
 
-            frame_002::frame_002(::context_object * pcontextobject) :
+            frame_002::frame_002(::object * pobject) :
                object(pobject),
                frame(pobject)
             {

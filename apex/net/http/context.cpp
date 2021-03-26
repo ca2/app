@@ -47,7 +47,7 @@ namespace http
 
       set["app"] = get_application();
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       string strServer = psystem->url().get_root(pszUrl);
 
@@ -174,14 +174,14 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = get_context()->dir().cache() / strFile + ".meta_information";
+      strFile = m_pcontext->m_pcontext->dir().cache() / strFile + ".meta_information";
 
       string strCache;
 
       if (!set["nocache"].get_bool())
       {
 
-         get_context()->file().as_string(strFile);
+         m_pcontext->m_pcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -243,7 +243,7 @@ namespace http
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if (::str::find_wwci("ca2", psystem->url().get_server(pszUrl)) < 0 && psystem->url().get_object(pszUrl).find_ci("/matter/") < 0)
       {
@@ -292,7 +292,7 @@ namespace http
 
       }
 
-      get_context()->file().put_contents(strFile, strCache);
+      m_pcontext->m_pcontext->file().put_contents(strFile, strCache);
 
       if (::is_set(petype))
       {
@@ -324,7 +324,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = get_context()->dir().cache() / strFile + ".length_question";
+      strFile = m_pcontext->m_pcontext->dir().cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -333,7 +333,7 @@ namespace http
       if (!bNoCache)
       {
 
-         strCache = get_context()->file().as_string(strFile);
+         strCache = m_pcontext->m_pcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -370,7 +370,7 @@ namespace http
 
       }
 
-      get_context()->file().put_contents(strFile, strCache);
+      m_pcontext->m_pcontext->file().put_contents(strFile, strCache);
 
       return len;
 
@@ -535,16 +535,16 @@ namespace http
       //      else if(i == 1)
       //      {
       //         // telmico: no proxy
-      //         string str = get_context()->file().as_string(get_context()->dir().appdata() / "machine/proxy.xml");
+      //         string str = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata() / "machine/proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            get_context()->file().copy(get_context()->dir().appdata()/ "proxy_original.xml", get_context()->dir().install()/ "proxy.xml", false);
+      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/ "proxy_original.xml", m_pcontext->m_pcontext->dir().install()/ "proxy.xml", false);
       //         }
-      //         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy.xml"))
+      //         if(m_pcontext->m_pcontext->file().exists(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml"))
       //         {
       //            try
       //            {
-      //               get_context()->file().del(get_context()->dir().appdata()/ "proxy.xml");
+      //               m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml");
       //            }
       //            catch(...)
       //            {
@@ -554,20 +554,20 @@ namespace http
       //      else if(i == 2)
       //      {
       //         // telmico: original proxy configuration
-      //         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy_original.xml"))
+      //         if(m_pcontext->m_pcontext->file().exists(m_pcontext->m_pcontext->dir().appdata()/ "proxy_original.xml"))
       //         {
-      //            get_context()->file().copy(get_context()->dir().appdata()/ "proxy.xml", get_context()->dir().appdata()/"proxy_original.xml", false);
+      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml", m_pcontext->m_pcontext->dir().appdata()/"proxy_original.xml", false);
       //         }
       //      }
       //      else
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-      //         string str = get_context()->file().as_string(get_context()->dir().appdata()/"proxy.xml");
+      //         string str = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata()/"proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            get_context()->file().copy(get_context()->dir().appdata()/"proxy_original.xml", get_context()->dir().appdata()/"proxy.xml", false);
+      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/"proxy_original.xml", m_pcontext->m_pcontext->dir().appdata()/"proxy.xml", false);
       //         }
-      //         get_context()->file().put_contents(get_context()->dir().appdata()/"proxy.xml", "proxy");
+      //         m_pcontext->m_pcontext->file().put_contents(m_pcontext->m_pcontext->dir().appdata()/"proxy.xml", "proxy");
       //      }
    }
 
@@ -575,7 +575,7 @@ namespace http
    void context::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = get_context()->file().as_string(get_context()->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -605,7 +605,7 @@ namespace http
 
    }
 
-   //context::pac::pac(::context_object * pcontextobject) :
+   //context::pac::pac(::object * pobject) :
    //   ::object(pobject)
    //{
 
@@ -667,7 +667,7 @@ namespace http
          varFile["disable_ca2_sessid"] = true;
          varFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = get_context()->file().as_string(varFile);
+         ppac->m_strAutoConfigScript = m_pcontext->m_pcontext->file().as_string(varFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -700,7 +700,7 @@ namespace http
    }
 
 
-   //context::proxy::proxy(::context_object * pcontextobject) :
+   //context::proxy::proxy(::object * pobject) :
    //   ::object(pobject)
    //{
 
@@ -772,7 +772,7 @@ namespace http
 
       string strHost;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       strHost = psystem->url().get_server(pszUrl);
 
@@ -855,9 +855,9 @@ namespace http
 
       //xml::document doc;
 
-      //::file::path pathProxyXml = get_context()->dir().appdata() / "proxy.xml";
+      //::file::path pathProxyXml = m_pcontext->m_pcontext->dir().appdata() / "proxy.xml";
 
-      //if (!get_context()->file().exists(pathProxyXml))
+      //if (!m_pcontext->m_pcontext->file().exists(pathProxyXml))
       //{
 
       //   pproxy->m_bDirect = true;
@@ -866,7 +866,7 @@ namespace http
 
       //}
 
-      //string str = get_context()->file().as_string(pathProxyXml);
+      //string str = m_pcontext->m_pcontext->file().as_string(pathProxyXml);
 
       //if (str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       //{
@@ -982,14 +982,14 @@ namespace http
       ////      if(!bOk)
       ////      {
       ////
-      ////         //bool bAutoDetect = get_context()->os().connection_settings_get_auto_detect();
+      ////         //bool bAutoDetect = m_pcontext->m_pcontext->os().connection_settings_get_auto_detect();
       ////
       ////         //if(bAutoDetect)
       ////         //{
       ////
       ////         //   TRACE("proxy auto_detect true");
       ////
-      ////         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_pcontext->m_pcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1007,7 +1007,7 @@ namespace http
       ////
       ////         //   TRACE("proxy auto_detect false");
       ////
-      ////         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_pcontext->m_pcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1125,7 +1125,7 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_papexsystem;
 
          string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
 
@@ -1139,7 +1139,7 @@ namespace http
 
       property_set setQuery;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       setQuery.parse_url_query(psystem->url().get_query(strUrl));
 
@@ -1258,7 +1258,7 @@ namespace http
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if (!bSeemsOk)
       {
@@ -1294,7 +1294,7 @@ namespace http
 
          auto tickTimeProfile1 = ::millis::now();
 
-         ::apex::application * papp = psession->m_phandler->get_application();
+         ::apex::application * papp = psession->m_psockethandler->get_application();
 
          string strRequest = psystem->url().get_object(pszRequest);
 
@@ -1445,7 +1445,7 @@ namespace http
 
          }
 
-         psession->m_phandler->add(psession);
+         psession->m_psockethandler->add(psession);
 
          i32 iIteration = 0;
 
@@ -1470,13 +1470,13 @@ namespace http
 
          TRACE("Higher Level Diagnosis : iNTERTIMe context::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
-         while ((psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
+         while ((psession->m_psockethandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
             tick1 = ::millis::now();
 
-            psession->m_phandler->select(240, 0);
+            psession->m_psockethandler->select(240, 0);
 
 //            keeplive.keep_alive();
 
@@ -1738,7 +1738,7 @@ namespace http
 
       __keep(ptask->payload("work_url"), pszUrl);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
@@ -1927,9 +1927,9 @@ namespace http
 
       strTopicText.Format(__prhttpget, iHttpGetSerial);
 
-      psocket->set_topic_text(strTopicText);
+      //psocket->set_topic_text(strTopicText);
 
-      psocket->m_bEnablePool = psocket->m_phandler->PoolEnabled();
+      psocket->m_bEnablePool = psocket->m_psockethandler->PoolEnabled();
 
       if ((bool)set["disable_common_name_cert_check"])
       {
@@ -2107,7 +2107,7 @@ namespace http
 
       }
 
-      psocket->m_phandler->add(psocket);
+      psocket->m_psockethandler->add(psocket);
 
       i32 iIteration = 1;
 
@@ -2142,9 +2142,9 @@ namespace http
 
       //}
 
-      psocket->m_bEnablePool = psocket->m_phandler->PoolEnabled();
+      psocket->m_bEnablePool = psocket->m_psockethandler->PoolEnabled();
 
-      if (psocket->m_phandler->PoolEnabled())
+      if (psocket->m_psockethandler->PoolEnabled())
       {
 
          psocket->SetRetain();
@@ -2159,7 +2159,7 @@ namespace http
 
       tick1 = ::millis::now();
 
-      while (psocket->m_phandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
+      while (psocket->m_psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
 
          if (tickStart.elapsed() > tickTotalTimeout)
@@ -2181,7 +2181,7 @@ namespace http
 
          iContentLength = psocket->m_content_length;
 
-         psocket->m_phandler->select((i32)iSelectTimeoutSeconds, 0);
+         psocket->m_psockethandler->select((i32)iSelectTimeoutSeconds, 0);
 
          set["http_content_length"] = iContentLength;
 
@@ -2501,7 +2501,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       domain.create(psystem->url().get_server(pmessageMessage->m_strUrl));
 
@@ -2592,7 +2592,7 @@ namespace http
    bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
    {
 
-      file_pointer spfile = get_context()->file().get_file(varFile,
+      file_pointer spfile = m_pcontext->m_pcontext->file().get_file(varFile,
          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2617,7 +2617,7 @@ namespace http
 
       {
 
-         auto rfile = get_context()->file().get_file(varFile,
+         auto rfile = m_pcontext->m_pcontext->file().get_file(varFile,
             ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)
@@ -2690,7 +2690,7 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_papexsystem;
 
          domain.create(psystem->url().get_server(pszUrl));
 
@@ -2767,7 +2767,7 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       domain.create(psystem->url().get_server(pszUrl));
 
@@ -2862,9 +2862,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   strUserNameFile = get_context()->dir().appdata() / strSection + "_1";
+   //   strUserNameFile = m_pcontext->m_pcontext->dir().appdata() / strSection + "_1";
 
-   //   strPasswordFile = get_context()->dir().appdata() / strSection + "_2";
+   //   strPasswordFile = m_pcontext->m_pcontext->dir().appdata() / strSection + "_2";
 
    //   bool bOk = true;
 
@@ -2918,9 +2918,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   get_context()->file().del(get_context()->dir().appdata() / strSection + "_1");
+   //   m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata() / strSection + "_1");
 
-   //   get_context()->file().del(get_context()->dir().appdata() / strSection + "_2");
+   //   m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata() / strSection + "_2");
 
    //}
 

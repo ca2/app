@@ -20,10 +20,10 @@ namespace android
    }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {
@@ -258,7 +258,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = pcontext->dir_context().path(pcontext->file().name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = pcontext->m_pcontext->dir_context().path(pcontext->m_pcontext->file().name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -388,7 +388,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(!pcontext->dir_context().is(strPath))
+   //      if(!pcontext->m_pcontext->dir_context().is(strPath))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -429,7 +429,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = pcontext->dir_context().path(strPath, pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = pcontext->m_pcontext->dir_context().path(strPath, pstraRelative->element_at(i));
 
    //         }
 
@@ -476,7 +476,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(!pcontext->dir_context().is(strPath))
+   //      if(!pcontext->m_pcontext->dir_context().is(strPath))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -534,7 +534,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(pcontext->dir_context().is(strPath))
+   //      if(pcontext->m_pcontext->dir_context().is(strPath))
    //         continue;
 
 
@@ -615,7 +615,7 @@ namespace android
    //      if(pbaIsDir != nullptr || piaSize != nullptr)
    //      {
 
-   //         bIsDir = pcontext->dir_context().is(strPath);
+   //         bIsDir = pcontext->m_pcontext->dir_context().is(strPath);
 
    //      }
 
@@ -894,7 +894,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->file().del(str);
+                     pcontext->m_pcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -903,7 +903,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->file().del(str);
+                     pcontext->m_pcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -993,7 +993,7 @@ namespace android
 
       xml::document doc;
 
-      doc.load(pcontext->file().as_string(appdata() / "configuration\\directory.xml"));
+      doc.load(pcontext->m_pcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = psystem->m_pathCacheDir;
 

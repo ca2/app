@@ -6,6 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
+      virtual public ::acme::context,
       virtual public ::acme_main_data,
       //virtual public ::subject::manager,
       virtual public ::task
@@ -14,14 +15,16 @@ namespace acme
    public:
 
 
-      ::apex::system *              m_papexsystem;
-      ::aqua::system *              m_paquasystem;
-      ::aura::system *              m_paurasystem;
-      ::axis::system *              m_paxixsystem;
-      ::base::system *              m_pbasesystem;
-      ::bred::system *              m_pbredsystem;
-      ::core::system *              m_pcoresystem;
+      //::apex::system *              m_papexsystem;
+      //::aqua::system *              m_paquasystem;
+      //::aura::system *              m_paurasystem;
+      //::axis::system *              m_paxixsystem;
+      //::base::system *              m_pbasesystem;
+      //::bred::system *              m_pbredsystem;
+      //::core::system *              m_pcoresystem;
 
+
+      string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
 
 #ifdef LINUX
       enum_linux_distribution                            m_elinuxdistribution;
@@ -34,6 +37,14 @@ namespace acme
       ::mutex                                            m_mutexTaskOn;
       map < itask_t, itask_t >                           m_mapTaskOn;
 
+
+      ::mutex                                            m_mutexLibrary;
+      ::acme::library_map                                m_mapLibrary;
+      string_map < PFN_NEW_LIBRARY >                     m_mapNewLibrary;
+      ::acme::library_map                                m_mapLibCall;
+
+      ::mutex                                            m_mutexContainerizedLibrary;
+      ::string_map < ::acme::library_map >               m_mapContainerizedLibrary;
 
 
       string                                             m_strOsUserTheme;
@@ -48,6 +59,10 @@ namespace acme
 
       __composite(class ::xml::xml)                      m_pxml;
 
+      class ::acme::acme *                               m_pacme;
+      class ::acme_dir *                                 m_pacmedir;
+      class ::acme_path *                                m_pacmepath;
+      __pointer(::parallelization::cleanup_task)         m_pcleanuptask;
 
 
       system();
@@ -61,8 +76,22 @@ namespace acme
 
       inline ::xml::xml                *  xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
+      inline acme                      *  acme() const { return m_pacme; }
 
-      virtual  ::xml::xml* _xml();
+      inline acme_dir                  *  acmedir() const { return m_pacmedir; }
+
+      inline acme_path                 *  acmepath() const { return m_pacmepath; }
+
+
+      inline void add_pending_finish(::matter* pmatter)
+      {
+
+         m_pcleanuptask->add(pmatter);
+
+      }
+
+
+      virtual ::xml::xml* _xml();
 
 
 
@@ -88,6 +117,8 @@ namespace acme
 
       //virtual void defer_calc_os_user_theme();
 
+      void process_exit_status(::object* pobject, const ::e_status& estatus);
+
       virtual ::apex::application* get_main_application();
 
       virtual void system_construct(int argc, char** argv, char** envp);
@@ -112,6 +143,10 @@ namespace acme
 
       virtual ::e_status inline_init();
       virtual ::e_status inline_term();
+
+
+      virtual ::e_status process_init();
+
       
       virtual ::e_status on_start();
 
@@ -121,6 +156,17 @@ namespace acme
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
+
+      virtual ::acme::library* on_get_library(const char* pszLibrary);
+
+      virtual ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
+      virtual __pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+
+      virtual __pointer(::acme::library) open_containerized_component_library(const char* pszComponent, const char* pszImplementation);
+
+      virtual ::extended::transport < ::acme::library > do_containerized_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
 
 
       virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -150,10 +196,8 @@ namespace acme
 #endif
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::context_object* pcontextobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
-
-      ::file::path get_memory_map_base_folder_path() const;
 
 
       template < typename ENUM >
@@ -314,6 +358,8 @@ namespace acme
       static inline ::id_space& id();
       inline ::id id(const ::payload& payload);
       inline ::id id(const property& prop);
+
+      virtual void check_exit();
 
       
    };

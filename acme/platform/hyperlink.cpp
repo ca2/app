@@ -26,7 +26,7 @@ hyperlink::~hyperlink()
 //}
 //
 
-::e_status hyperlink::open_link()
+::e_status hyperlink::run()
 {
 
    if (m_bProfile)
@@ -37,8 +37,6 @@ hyperlink::~hyperlink()
    }
 
    return get_system()->open_link(m_strLink, m_strProfile, m_strTarget);
-
-   
 
 }
 

@@ -644,7 +644,7 @@ void stream::write(const memory_base & m)
 //   if (strLink.has_char())
 //   {
 //
-//      get_context()->save_to_file(strLink, m_pvarOptions, preference);
+//      m_pcontext->m_pcontext->save_to_file(strLink, m_pvarOptions, preference);
 //
 //   }
 //
@@ -682,7 +682,7 @@ void stream::write(const memory_base & m)
 //   if (strLink.has_char())
 //   {
 //
-//      get_context()->load_from_file(preference, strLink);
+//      m_pcontext->m_pcontext->load_from_file(preference, strLink);
 //
 //   }
 //

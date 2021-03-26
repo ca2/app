@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_APEX action_context :
-   virtual public context_object
+   virtual public object
 {
 public:
 

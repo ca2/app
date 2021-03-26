@@ -8647,7 +8647,8 @@ bool image::on_exif_orientation()
 
 
 
-save_image::save_image(::matter * pmatter)
+//save_image::save_image(::matter * pmatter)
+save_image::save_image()
 {
 
    m_eformat = ::draw2d::format_png;
@@ -8659,62 +8660,62 @@ save_image::save_image(::matter * pmatter)
 }
 
 
-save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
-{
-
-   __pointer(::aura::system) psystem = m_psystem;
-
-   auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
-
-   if (eformat != ::draw2d::format_none)
-   {
-
-      __pointer(::aura::system) psystem = m_psystem;
-
-      eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
-
-   }
-
-   if (eformat == ::draw2d::format_none)
-   {
-
-      m_eformat = ::draw2d::format_png;
-
-   }
-
-   if (varOptions["quality"].get_type() == e_type_double
-      || varOptions["quality"].get_type() == e_type_float)
-   {
-
-      m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);
-
-   }
-   else
-   {
-
-      m_iQuality = varOptions["quality"].i32();
-
-   }
-
-   if (m_iQuality == 0)
-   {
-
-      m_iQuality = 100;
-
-   }
-
-   m_iDpi = varOptions["dpi"];
-
-   if (m_iDpi == 0)
-   {
-
-      m_iDpi = 96;
-
-   }
-
-
-}
-
+//save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
+//{
+//
+//   __pointer(::aura::system) psystem = m_psystem;
+//
+//   auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
+//
+//   if (eformat != ::draw2d::format_none)
+//   {
+//
+//      __pointer(::aura::system) psystem = m_psystem;
+//
+//      eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
+//
+//   }
+//
+//   if (eformat == ::draw2d::format_none)
+//   {
+//
+//      m_eformat = ::draw2d::format_png;
+//
+//   }
+//
+//   if (varOptions["quality"].get_type() == e_type_double
+//      || varOptions["quality"].get_type() == e_type_float)
+//   {
+//
+//      m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);
+//
+//   }
+//   else
+//   {
+//
+//      m_iQuality = varOptions["quality"].i32();
+//
+//   }
+//
+//   if (m_iQuality == 0)
+//   {
+//
+//      m_iQuality = 100;
+//
+//   }
+//
+//   m_iDpi = varOptions["dpi"];
+//
+//   if (m_iDpi == 0)
+//   {
+//
+//      m_iDpi = 96;
+//
+//   }
+//
+//
+//}
+//
 
 //bool image::load_matter_icon(string_array & straMatter, string strIcon)
 //{
@@ -8726,7 +8727,7 @@ save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::pa
 //
 //      path = strMatter;
 //
-//      path = pcontext->dir().matter(path / strIcon);
+//      path = pcontext->m_pcontext->dir().matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {

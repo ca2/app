@@ -162,10 +162,10 @@ namespace filemanager
    }
 
 
-   ::e_status component::initialize_filemanager_component(::context_object * pcontextobject)
+   ::e_status component::initialize_filemanager_component(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -385,7 +385,7 @@ namespace filemanager
 
          __keep(m_bRestoring);
 
-         if (pathFilemanagerProject.is_empty() || pcontext->dir().is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || pcontext->m_pcontext->dir().is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().compare_ci("component") != 0)
          {
 
@@ -407,12 +407,12 @@ namespace filemanager
 
             synchronization_lock synchronizationlock(&m);
 
-            stra.add_lines(pcontext->file().as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(pcontext->m_pcontext->file().as_string(m_pathFilemanagerProject), true);
 
          }
 
 
-         if (pcontext->dir().is(pathFilemanagerProject))
+         if (pcontext->m_pcontext->dir().is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -568,7 +568,7 @@ namespace filemanager
 
       //   synchronization_lock synchronizationlock(&m);
 
-      //   pcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   pcontext->m_pcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 
@@ -796,7 +796,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (pcontext->dir().is(pathFolder))
+//      if (pcontext->m_pcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -927,7 +927,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (pcontext->dir().is(pathFolder))
+//      if (pcontext->m_pcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

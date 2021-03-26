@@ -57,7 +57,7 @@ namespace account
          
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
       
       string strName = psystem->url().os_fsname(strToken);
       

@@ -375,6 +375,8 @@ namespace user
       
       if(m_templateptra.add_unique(ptemplate))
       {
+         
+         ptemplate->initialize(this);
 
          ptemplate->load_template();
 

@@ -53,13 +53,13 @@ namespace net
    }
 
 
-   ::e_status     address_department::initialize(::context_object * pcontextobject)
+   ::e_status     address_department::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
          return true;
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -100,19 +100,19 @@ namespace net
    }
 
 
-   void address_department::finalize()
+   ::e_status address_department::finalize()
    {
 
       ::object::finalize();
 
-      if (!m_bInitialized)
+      if (m_bInitialized)
       {
 
-         return;
+         m_bInitialized = false;
 
       }
 
-      m_bInitialized = false;
+      return ::success;
 
    }
 

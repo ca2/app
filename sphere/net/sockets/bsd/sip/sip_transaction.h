@@ -15,7 +15,7 @@ namespace sip
       string m_null;
 
 
-      transaction(::context_object * pcontextobject);
+      transaction(::object * pobject);
       transaction(const transaction & src);
       virtual ~transaction();
 

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   document::document(::context_object * pcontextobject) :
+   document::document(::object * pobject) :
       ::object(pobject),
       ::data::data_container_base(pobject),
       ::aura::document(pobject)
@@ -57,7 +57,7 @@ namespace turboc
       else if(get_typed_view < edit_view >() != NULL)
       {
 
-         string str = pcontext->file().as_string(varFile);
+         string str = pcontext->m_pcontext->file().as_string(varFile);
 
          str = str.Left(84);
 

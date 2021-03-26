@@ -29,7 +29,7 @@ public:
    virtual ~timer();
 
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
 
    const char* debug_note() const override;

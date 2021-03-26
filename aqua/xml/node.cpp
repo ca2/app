@@ -1014,7 +1014,7 @@ namespace xml
                _SetString( xml, pszEnd, &m_strValue, trim, escape );
                xml = pszEnd;
 
-               // TEXTVALUE context_object
+               // TEXTVALUE object
                if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                   m_strValue = pparseinfo->m_pentities->ref_to_entity(m_strValue);
             }

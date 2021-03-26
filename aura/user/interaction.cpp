@@ -1751,7 +1751,7 @@ namespace user
    }
 
 
-   ::e_status interaction::finish(::property_object* pcontextobjectFinish)
+   ::e_status interaction::finish()
    {
 
       //if (!m_bUserInteractionSetFinish)
@@ -1771,15 +1771,15 @@ namespace user
 
       //}
 
-      return ::user::primitive::finish(pcontextobjectFinish);
+      return ::user::primitive::finish();
 
    }
 
 
-   void interaction::notify_on_finish(::property_object* pcontextobject)
+   void interaction::notify_on_finish(::property_object* pobject)
    {
 
-      ::user::primitive::notify_on_finish(pcontextobject);
+      ::user::primitive::notify_on_finish(pobject);
 
    }
 
@@ -2422,7 +2422,7 @@ namespace user
             try
             {
 
-               pinteraction->finish(this);
+               pinteraction->finish();
 
             }
             catch (...)
@@ -3196,7 +3196,7 @@ namespace user
          else
          {
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             auto pnode = psystem->node();
 
@@ -3804,7 +3804,7 @@ namespace user
    }
 
 
-   bool interaction::add_prodevian(::context_object * pobject)
+   bool interaction::add_prodevian(::object * pobject)
    {
 
       if (get_host_window() == nullptr)
@@ -3819,7 +3819,7 @@ namespace user
    }
 
 
-   bool interaction::remove_prodevian(::context_object * pobject)
+   bool interaction::remove_prodevian(::object * pobject)
    {
 
       if (get_wnd() == nullptr || get_wnd()->m_pimpl == nullptr)
@@ -4145,6 +4145,26 @@ namespace user
    }
 
 
+   void interaction::enumerate_composite(matter_array& a)
+   {
+
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (puserinteractionpointeraChild)
+      {
+
+         for (auto& puserinteractionChild : puserinteractionpointeraChild->interactiona())
+         {
+
+            a.add_non_null(puserinteractionChild);
+
+         }
+
+      }
+
+   }
+
+
    ::e_status interaction::main_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
@@ -4171,7 +4191,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       psystem->delivery_for(id_os_dark_mode, this);
 
@@ -4397,6 +4417,13 @@ namespace user
 
    void interaction::_000OnMouseLeave(::message::message* pmessage)
    {
+
+      if (!m_pimpl)
+      {
+
+         return;
+
+      }
 
       m_pimpl->_000OnMouseLeave(pmessage);
 
@@ -5864,7 +5891,7 @@ namespace user
    //}
 
    
-   ::object * interaction::parent_property_set_holder() const
+   ::property_object * interaction::parent_property_set_holder() const
    {
 
       ::object * pobject = get_parent();
@@ -6587,73 +6614,121 @@ namespace user
    //}
 
 
-   void interaction::on_finish()
+   ::e_status interaction::on_finish()
    {
 
-      DestroyWindow();
+      if (m_ewindowflag & e_window_flag_is_window)
+      {
+
+         DestroyWindow();
+
+         return error_pending;
+
+      }
+
+      if (m_pthreadUserInteraction && m_pthreadUserInteraction->is_running())
+      {
+
+         return error_pending;
+
+      }
+
+      auto estatus = ::object::on_finish();
+
+      return estatus;
 
    }
 
 
-   ::e_status interaction::set_finish_composites(::property_object* pcontextobjectFinish)
+
+
+   ::e_status interaction::finish_composites()
    {
 
-      bool bStillFinishing = false;
+      auto estatus = ::object::finish_composites();
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if(puserinteractionpointeraChild)
-      {
-
-         for (auto & pui : puserinteractionpointeraChild->interactiona())
-         {
-
-            auto estatus = pui->finish(pcontextobjectFinish);
-
-            if (estatus == ::error_pending)
-            {
-
-               bStillFinishing = true;
-
-            }
-
-         }
-
-      }
-
-      if (m_pimpl && !m_pimpl->m_bSetFinish)
-      {
-
-         auto estatus = m_pimpl->finish(pcontextobjectFinish);
-
-         if (estatus == ::error_pending)
-         {
-
-            bStillFinishing = true;
-
-         }
-
-      }
-
-      auto estatus = ::user::primitive::set_finish_composites(pcontextobjectFinish);
-
-      if (estatus == ::error_pending)
-      {
-
-         bStillFinishing = true;
-
-      }
-
-      if (bStillFinishing)
-      {
-
-         return ::error_pending;
-
-      }
-
-      return ::success;
+      return estatus;
 
    }
+
+
+
+   //::e_status interaction::set_finish_composites(::property_object* pcontextobjectFinish)
+   //{
+
+   //   bool bStillFinishing = false;
+
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+   //   if(puserinteractionpointeraChild)
+   //   {
+
+   //      for (auto & pui : puserinteractionpointeraChild->interactiona())
+   //      {
+
+   //         auto estatus = pui->finish(pcontextobjectFinish);
+
+   //         if (estatus == ::error_pending)
+   //         {
+
+   //            bStillFinishing = true;
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //   if (m_pimpl && !m_pimpl->m_bSetFinish)
+   //   {
+
+   //      auto estatus = m_pimpl->finish(pcontextobjectFinish);
+
+   //      if (estatus == ::error_pending)
+   //      {
+
+   //         bStillFinishing = true;
+
+   //      }
+
+   //   }
+
+   //   auto estatus = ::user::primitive::set_finish_composites(pcontextobjectFinish);
+
+   //   if (estatus == ::error_pending)
+   //   {
+
+   //      bStillFinishing = true;
+
+   //   }
+
+   //   if (bStillFinishing)
+   //   {
+
+   //      return ::error_pending;
+
+   //   }
+
+   //   return ::success;
+
+   //}
+
+
+   //::e_status interaction::on_finish()
+   //{
+
+   //   auto estatus = finalize();
+
+   //   if (estatus == error_pending)
+   //   {
+
+   //      estatus = error_failed;
+
+   //   }
+
+   //   return estatus;
+
+   //}
 
 
    bool interaction::DestroyWindow()
@@ -6708,7 +6783,7 @@ namespace user
    }
 
 
-   void interaction::finalize()
+   ::e_status interaction::finalize()
    {
 
       ::user::primitive::finalize();
@@ -6719,6 +6794,60 @@ namespace user
          m_pimpl->finalize();
 
       }
+
+      // ownership
+      m_pusersystem && m_pusersystem->finalize();
+      m_playout && m_playout->finalize();
+      m_pshapeaClip && m_pshapeaClip->finalize();
+      m_pdragmove && m_pdragmove->finalize();
+      m_pgraphicscalla && m_pgraphicscalla->finalize();
+      m_pdrawcontext && m_pdrawcontext->finalize();
+      m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->finalize();
+      m_puiLabel && m_puiLabel->finalize();
+      m_useritema.finalize_all();
+      m_pform && m_pform->finalize();
+      m_palphasource && m_palphasource->finalize();
+      m_pdrawableBackground && m_pdrawableBackground->finalize();
+      m_pimpl && m_pimpl->finalize();
+      m_pimpl2 && m_pimpl2->finalize();
+      m_puserinteractionpointeraOwned && m_puserinteractionpointeraOwned->finalize();
+      m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->finalize();
+      m_pthreadUserInteraction && m_pthreadUserInteraction->finalize();
+      m_ptooltip && m_ptooltip->finalize();
+      m_pmenuitem && m_pmenuitem->finalize();
+      m_menua.finalize_all();
+
+      // ownership
+      m_pusersystem.release();
+      m_playout.release();
+      m_pshapeaClip.release();
+      m_pdragmove.release();
+      m_pgraphicscalla.release();
+      m_pdrawcontext.release();
+      m_puserinteractionCustomWindowProc.release();
+      m_puiLabel.release();
+      m_useritema.remove_all();
+      m_pform.release();
+      m_palphasource.release();
+      m_pdrawableBackground.release();
+      m_pimpl.release();
+      m_pimpl2.release();
+      m_puserinteractionpointeraOwned.release();
+      m_puserinteractionpointeraChild.release();
+      m_ptooltip.release();
+      m_pmenuitem.release();
+      m_menua.remove_all();
+
+
+      // references
+      __release(m_pitemComposing);
+      __release(m_pthreadUserInteraction);
+      m_puserinteractionParent.release();
+      m_pupdowntarget.release();
+      m_pthreadModal.release();
+      m_puserinteractionOwner.release();
+
+      return ::success;
 
    }
 
@@ -8580,16 +8709,25 @@ namespace user
    windowing::window * interaction::get_window() const
    {
 
-      if (m_pimpl2)
+      auto puserinteraction = get_wnd();
+
+      if (!puserinteraction)
       {
 
-         return m_pimpl2->m_pwindow;
+         return nullptr;
 
       }
 
-      auto puserinteraction = get_wnd();
+      auto pimpl2 = puserinteraction->m_pimpl2;
 
-      return puserinteraction->get_window();
+      if (!pimpl2)
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl2->get_window();
 
    }
 
@@ -9948,13 +10086,13 @@ namespace user
    void interaction::OnLinkClick(const char * psz, const char * pszTarget)
    {
 
-      hyperlink hyperlink;
+      auto phyperlink = __create_new < ::hyperlink >();
 
-      hyperlink.m_strLink = psz;
+      phyperlink->m_strLink = psz;
 
-      hyperlink.m_strTarget = pszTarget;
+      phyperlink->m_strTarget = pszTarget;
 
-      hyperlink.open_link();
+      phyperlink->run();
 
       //hyperlink.open_link(psz, "", pszTarget);
 
@@ -10887,6 +11025,15 @@ restart:
    ::user::interaction * interaction::get_wnd() const
    {
 
+      if (m_puserinteractionParent == this)
+      {
+
+         ((::user::interaction *)this)->m_puserinteractionParent.release();
+
+         return nullptr;
+
+      }
+
       if (m_puserinteractionParent == nullptr)
       {
 
@@ -11028,7 +11175,7 @@ restart:
                fork([this]()
                   {
 
-                     __pointer(::aura::application) papplication = get_application();
+                     auto papplication = get_application();
 
                      papplication->_001TryCloseApplication();
 
@@ -11502,7 +11649,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_menu_file(::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
-   //   string strXml = pcontext->file().as_string(varXmlFile);
+   //   string strXml = pcontext->m_pcontext->file().as_string(varXmlFile);
 
    //   return track_popup_xml_menu_text(strXml, iFlags, point, sizeMinimum)
 
@@ -13714,7 +13861,7 @@ restart:
    }
 
 
-   void interaction::redraw_add(::context_object * p)
+   void interaction::redraw_add(::object * p)
    {
 
       get_wnd()->m_pimpl->redraw_add(p);
@@ -13722,7 +13869,7 @@ restart:
    }
 
 
-   void interaction::redraw_remove(::context_object * p)
+   void interaction::redraw_remove(::object * p)
    {
 
       get_wnd()->m_pimpl->redraw_remove(p);
@@ -13833,7 +13980,7 @@ restart:
    {
 
       // If this is a "top level" or "operating system" window,
-      // the operating system may keep context_object to this object,
+      // the operating system may keep object to this object,
       // preventing it from being fully released.
       // If the window DestroyWindow member is called in interaction::~interaction destructor,
       // derived classes from interaction::~interaction may have deleted object resources
@@ -15506,12 +15653,12 @@ restart:
    }
 
 
-   void interaction::on_finalize()
-   {
+   //::e_status interaction::finalize()
+   //{
 
-      DestroyWindow();
+   //   DestroyWindow();
 
-   }
+   //}
 
 
 // please refer to object::finish verses/documentation
@@ -15522,7 +15669,7 @@ restart:
    void interaction::delete_this()
    {
 
-      context_object::delete_this();
+      object::delete_this();
 
    }
 

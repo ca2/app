@@ -636,7 +636,7 @@ namespace user
          m_point.y = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
-         psystem->geometry().deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
+         ::geometry::deflate(&rectangle, 0.5, 0.0, 0.0, 0.5);
          point =  rectangle.random_point();
          break;
       default:

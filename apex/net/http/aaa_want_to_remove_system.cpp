@@ -13,7 +13,7 @@ namespace http
 {
 
 
-   system::system(::context_object * pcontextobject) :
+   system::system(::object * pobject) :
       ::object(pobject)
    {
 
@@ -128,7 +128,7 @@ namespace http
 
    }
 
-   system::pac::pac(::context_object * pcontextobject) :
+   system::pac::pac(::object * pobject) :
       ::object(pobject)
    {
 
@@ -204,7 +204,7 @@ namespace http
    }
 
 
-   system::proxy::proxy(::context_object * pcontextobject) :
+   system::proxy::proxy(::object * pobject) :
       ::object(pobject)
    {
 

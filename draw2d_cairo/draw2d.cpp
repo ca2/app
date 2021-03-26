@@ -40,10 +40,10 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::initialize(::context_object * pcontextobject)
+   ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::draw2d::draw2d::initialize(pcontextobject);
+      auto estatus = ::draw2d::draw2d::initialize(pobject);
 
       if (!estatus)
       {
@@ -191,7 +191,7 @@ namespace draw2d_cairo
    }
 
 
-   void draw2d::finalize()
+   ::e_status draw2d::finalize()
    {
 
       m_papi.release();
@@ -902,9 +902,9 @@ namespace draw2d_cairo
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_pcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-//            auto psystem = get_system();
+//            auto psystem = m_psystem->m_paurasystem;
 
       auto pxml = psystem->xml();
 

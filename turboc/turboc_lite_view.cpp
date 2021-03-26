@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   lite_view::lite_view(::context_object * pcontextobject):
+   lite_view::lite_view(::object * pobject):
       ::object(pobject),
       view(pobject)
    {

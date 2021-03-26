@@ -11,7 +11,7 @@ namespace experience
 
 
       class CLASS_DECL_APP_EXPERIENCE_ANTHILL library:
-         virtual public ::apex::library
+         virtual public ::acme::library
       {
       public:
 

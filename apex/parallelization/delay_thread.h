@@ -15,7 +15,7 @@ public:
    {
 
       m_dwSleep = dwSleep;
-      //initialize(pcontextobject);
+      //initialize(pobject);
 
 
    }

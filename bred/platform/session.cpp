@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 namespace bred
@@ -25,10 +25,10 @@ namespace bred
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::session::initialize(pcontextobject);
+      auto estatus = ::apex::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -38,6 +38,16 @@ namespace bred
       }
 
       return estatus;
+
+   }
+
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aura::session::on_instantiate_application(papp);
+
+      papp->m_pbredsession = this;
 
    }
 

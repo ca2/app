@@ -95,7 +95,7 @@ namespace apex
       }
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       inline auto& operator[](const ::id& id) { return m_map[id]; }

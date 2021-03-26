@@ -3,6 +3,7 @@
 #include "aura/message.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 #ifdef MACOS
@@ -511,7 +512,7 @@ namespace user
 
                   auto papplication = get_application();
 
-                  papplication->image().save_image(::dir::system() / "control_alt_p.png", pimage1);
+                  papplication->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -537,7 +538,7 @@ namespace user
 
                   pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
-                  papplication->image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
+                  papplication->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 

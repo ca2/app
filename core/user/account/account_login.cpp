@@ -86,10 +86,10 @@ namespace account
    }
 
 
-   ::e_status login::initialize(::context_object * pcontextobject)
+   ::e_status login::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pcontextobject);
+      auto estatus = ::user::interaction::initialize(pobject);
       
       if (!estatus)
       {
@@ -366,7 +366,7 @@ namespace account
          if(!m_bCred)
          {
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             strText = psystem->crypto().nessie(strText);
 

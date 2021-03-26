@@ -107,7 +107,7 @@ namespace account
       //   if(puser->m_strHost == psystem->url().get_server(psession->account()->get_default_url()))
       //   {
 
-      //      pcontext->file().put_contents(pcontext->dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
+      //      pcontext->m_pcontext->file().put_contents(pcontext->m_pcontext->dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
 
       //   }
 
@@ -219,7 +219,7 @@ namespace account
 
       string strDeferRegistration;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if(puser->m_bDeferRegistration)
       {
@@ -266,13 +266,13 @@ namespace account
 
       auto pcontext = get_context();
 
-      auto strResponse = pcontext->http().get(strAuthUrl, set);
+      auto strResponse = pcontext->m_pcontext->http().get(strAuthUrl, set);
 
       pcredentials->m_strResponse = strResponse;
 
       pcredentials->m_estatusHttp = (::e_status    ) set["get_status"].i64();
 
-      TRACE("login_task::NetLogin Total time pcontext->http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
+      TRACE("login_task::NetLogin Total time pcontext->m_pcontext->http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
 
       TRACE("NetLogin: Authentication Millis = " __prtick, __pr(tickAuthBeg.elapsed()));
 
@@ -312,7 +312,7 @@ namespace account
 
       //auto pinteractive = pcredentials->m_pinteractive;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       puser->m_strHost = psystem->url().get_server(puser->m_pathUrl);
 
@@ -322,9 +322,9 @@ namespace account
 
       auto pcontext = get_context();
 
-      psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",pcontext->get_locale());
+      psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_pcontext->get_locale());
 
-      psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",pcontext->get_schema());
+      psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",pcontext->m_pcontext->get_schema());
 
       string strNode;
 
@@ -343,7 +343,7 @@ namespace account
 
          set["raw_http"] = true;
 
-         strNode = pcontext->http().get(strGetFontopus, set);
+         strNode = pcontext->m_pcontext->http().get(strGetFontopus, set);
 
          if(::failed(set["get_status"]))
          {
@@ -506,7 +506,7 @@ namespace account
 //
 //      set["raw_http"] = true;
 //
-//      strNode = pcontext->http().get(strGetFontopus, set);
+//      strNode = pcontext->m_pcontext->http().get(strGetFontopus, set);
 //
 //      ::u32 tickEnd= ::millis::now();
 //

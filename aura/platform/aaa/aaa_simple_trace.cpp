@@ -117,7 +117,7 @@ CLASS_DECL_AURA::mutex * g_pmutexMemoryCounters = nullptr;
 
 int g_iMemoryCountersStartable = 0;
 
-CLASS_DECL_AURA bool memcnts()
+CLASS_DECL_AURA bool memory_counter_on()
 {
 
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
@@ -142,7 +142,7 @@ CLASS_DECL_AURA bool memcnts()
 ::file::path * g_pMemoryCounters = nullptr;
 
 
-CLASS_DECL_AURA::file::path memcnts_base_path()
+CLASS_DECL_AURA::file::path memory_counter_base_path()
 {
 
    if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)

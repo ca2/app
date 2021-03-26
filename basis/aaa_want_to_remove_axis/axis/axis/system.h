@@ -110,7 +110,7 @@ namespace axis
 
 
 
-      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
+      //virtual string dir_appmatter_locator(::object * pobject);
 
 
       virtual void hist_hist(const char * psz);

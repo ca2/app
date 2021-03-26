@@ -9,7 +9,7 @@ namespace net
 
 
    class CLASS_DECL_APEX port_forward_change_callbacks :
-      virtual public context_object
+      virtual public object
    {
    public:
 

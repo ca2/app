@@ -125,7 +125,7 @@ class multi_lock;
 //{
 //public:
 //
-//   predicate_holder_base(::context_object * pcontextobject) :
+//   predicate_holder_base(::object * pobject) :
 //      ::object(pobject),
 //      m_pholdref(pholdref)
 //   {

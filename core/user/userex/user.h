@@ -138,13 +138,13 @@ namespace core
       virtual ~user();
 
 
-      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
-      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
-      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
@@ -192,9 +192,9 @@ namespace core
       virtual void _001OnFileNew();
 
 
-      __pointer(::user::list_header) default_create_list_header(::context_object * pcontextobject);
-      __pointer(::user::mesh_data) default_create_mesh_data(::context_object * pcontextobject);
-      __pointer(::user::list_data) default_create_list_data(::context_object * pcontextobject);
+      __pointer(::user::list_header) default_create_list_header(::object * pobject);
+      __pointer(::user::mesh_data) default_create_mesh_data(::object * pobject);
+      __pointer(::user::list_data) default_create_list_data(::object * pobject);
 
 
       ::type default_type_mesh_data();
@@ -238,7 +238,7 @@ namespace core
 
 
 
-      virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      virtual ::e_status     initialize(::object * pobject) override;
 
 
       virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
@@ -336,7 +336,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      ////virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -506,7 +506,7 @@ namespace core
 
 
 
-      ////virtual ::e_status initialize(::context_object * pcontextobject) override;
+      ////virtual ::e_status initialize(::object * pobject) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
@@ -561,7 +561,7 @@ namespace core
 
       //virtual void will_use_view_hint(::id idView);
 
-      ////virtual void on_app_request_bergedge_callback(::context_object * pcontextobject);
+      ////virtual void on_app_request_bergedge_callback(::object * pobject);
 
       //virtual ::write_text::font_list* get_single_column_font_list();
 
@@ -659,7 +659,7 @@ namespace core
       ////virtual __pointer(::user::impact)                      get_view();
 
 
-      ////virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      ////virtual ::e_status     initialize(::object * pobject) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;

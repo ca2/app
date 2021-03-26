@@ -2,7 +2,7 @@
 #include "apex/operating_system.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 
@@ -53,6 +53,9 @@ namespace apex
    session::session()
    {
 
+      m_papexsession = this;
+      ::object::m_pcontext = this;
+      m_pcontext = this;
 
       m_paquasession = nullptr;
       m_paurasession = nullptr;
@@ -60,7 +63,7 @@ namespace apex
       m_pbasesession = nullptr;
       m_pbredsession = nullptr;
       m_pcoresession = nullptr;
-      m_psession = this;
+      //m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -95,10 +98,10 @@ namespace apex
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pcontextobject);
+      auto estatus = ::thread::initialize(pobject);
 
       if (!estatus)
       {
@@ -113,9 +116,9 @@ namespace apex
 
       m_bSystemSynchronizedCursor      = true;
 
-      set_context_session(this);
+      //set_context_session(this);
 
-      set_context(this);
+      m_pcontext = this;
 
       __pointer(::apex::system) psystem = get_system();
 
@@ -650,7 +653,7 @@ namespace apex
          if (!papp)
          {
 
-            finish(get_context());
+            finish();
 
          }
 
@@ -949,6 +952,14 @@ namespace apex
       papp->do_request(pcreate);
 
       return true;
+
+   }
+
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      papp->m_papexsession = this;
 
    }
 
@@ -2197,10 +2208,10 @@ namespace apex
 
 
 
-   //::e_status session::initialize(::context_object * pcontextobject)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pcontextobject);
+   //   auto estatus = ::apex::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -2248,34 +2259,34 @@ namespace apex
    }
 
 
-   ::e_status     session::do_request(::create* pcreate)
+   void session::do_request(::create* pcreate)
    {
 
-      return ::thread::do_request(pcreate);
+      request(pcreate);
 
    }
 
 
 
 
-   void session::request_topic_file(::payload& varQuery)
-   {
+   //void session::request_topic_file(::payload& varQuery)
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile, varQuery);
+   //   request_file(psession->m_varTopicFile, varQuery);
 
-   }
+   //}
 
 
-   void session::request_topic_file()
-   {
+   //void session::request_topic_file()
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile);
+   //   request_file(psession->m_varTopicFile);
 
-   }
+   //}
 
 
    __pointer(::apex::application) session::get_current_application()
@@ -2291,7 +2302,7 @@ namespace apex
    {
 
 
-      return get_context()->os().is_remote_session();
+      return m_pcontext->m_pcontext->os().is_remote_session();
 
 
    }
@@ -2370,21 +2381,21 @@ namespace apex
    }
 
 
-   void session::check_topic_file_change()
-   {
+   //void session::check_topic_file_change()
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
-      {
+   //   if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+   //   {
 
-         psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
-         request_topic_file();
+   //      request_topic_file();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
@@ -2857,12 +2868,14 @@ namespace apex
 
 
 
-   void session::finalize()
+   ::e_status session::finalize()
    {
 
       ::application_container::m_applicationa.remove_all();
 
       ::apex::context_thread::finalize();
+
+      return success;
 
    }
 

@@ -162,6 +162,12 @@ namespace user
 
       }
 
+      ppane->initialize_tab_pane(this);
+
+      // second colon starts the text.
+      // if the text is a ID, the ID will be result when no translation
+      // if the text is a text (in English), the text (in English) will be the result when there is no translation.
+      //set_tille("text://hellomultiverse/AKDFJG./:Main Tab"));
       ppane->set_title(pcsz);
 
       ppane->m_bTabPaneVisible   = bVisible;
@@ -2444,7 +2450,7 @@ namespace user
    void tab::on_message_create(::message::message * pmessage)
    {
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       m_bNoTabs = psystem->has_property("no_tabs");
 

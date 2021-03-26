@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   toggle_view::toggle_view(::context_object * pcontextobject):
+   toggle_view::toggle_view(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::button(pobject)

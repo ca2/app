@@ -200,7 +200,8 @@ public:
    virtual ~thread_ptra();
 
    virtual ::count get_count_except_current_thread();
-   virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
+   //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
+   virtual ::e_status finish() override;
    virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }

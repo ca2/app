@@ -18,26 +18,6 @@
 #endif
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-#include <Shlobj.h>
-
-
-//namespace windows
-//{
-
-
-   CLASS_DECL_ACME ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
-
-
-//} // namespace windows
-
-
-#endif
-
-
-::file::path * g_ppathInstallFolder = nullptr;
 
 
 void TranslateLastError()
@@ -81,6 +61,40 @@ using namespace ::Windows::get_system();
 
 namespace dir
 {
+
+
+      string name(const char * path1)
+      {
+         const char * psz = path1 + strlen(path1) - 1;
+         while(psz >= path1)
+         {
+            if(*psz != '\\' && *psz != '/' && *psz != ':')
+               break;
+            psz--;
+         }
+         while(psz >= path1)
+         {
+            if(*psz == '\\' || *psz == '/' || *psz == ':')
+               break;
+            psz--;
+         }
+         if(psz >= path1) // strChar == "\\" || strChar == "/"
+         {
+            const char * pszEnd = psz;
+            /*while(psz >= path1)
+             {
+             if(*psz != '\\' && *psz != '/' && *psz != ':')
+             break;
+             psz--;
+             }*/
+            return string(path1, pszEnd - path1 + 1);
+         }
+         else
+         {
+            return "";
+         }
+      }
+   
 
 
    ::file::path ca2_module()
@@ -529,128 +543,6 @@ namespace dir
 
    }
 
-
-   CLASS_DECL_ACME::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration)
-   {
-
-   #ifdef WINDOWS_DESKTOP
-
-      ::file::path path;
-
-      string strFolder;
-
-      strsize iFind = strAppId.find('/');
-
-      if (strPlatform.compare_ci("win32") == 0 || strPlatform.compare_ci("x86") == 0)
-      {
-
-         path = ::dir::program_files_x86();
-
-      }
-      else
-      {
-         path = ::dir::program_files_x86();
-
-
-         path = ::dir::program_files();
-
-      }
-
-      if (iFind < 0)
-      {
-
-         path /= strAppId;
-
-      }
-      else
-      {
-
-         path /= strAppId.Left(iFind);
-
-         path /= strAppId.Mid(iFind + 1);
-
-      }
-
-      return path;
-
-   #elif defined(ANDROID)
-
-      return ::dir::roaming();
-
-   #else
-
-      return ::file::app_module().folder(4);
-
-   #endif
-
-
-   }
-
-
-   CLASS_DECL_ACME::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
-   {
-
-   #ifdef WINDOWS_DESKTOP
-
-      ::file::path path;
-
-      string strFolder;
-
-      strsize iFind = strAppId.find('/');
-
-      path = ::dir::ca2roaming();
-
-      path /= "_matter";
-
-      return path;
-
-   #elif defined(ANDROID)
-
-      return ::dir::roaming();
-
-   #else
-
-      return ::file::app_module().folder(4);
-
-   #endif
-
-
-   }
-
-
-   ::file::path install()
-   {
-
-      if (g_ppathInstallFolder == nullptr || g_ppathInstallFolder->is_empty())
-      {
-
-         return default_install();
-
-      }
-
-      return *g_ppathInstallFolder;
-
-   }
-
-
-   ::file::path default_install()
-   {
-
-   #ifdef ANDROID
-
-      return ::dir::roaming();
-
-   #elif defined(__APPLE__)
-
-      return ::file::app_module().folder(3);
-
-   #else
-
-      return ::file::app_module().folder(4);
-
-   #endif
-
-   }
 
 
    bool mk(const ::file::path & path)
@@ -1695,148 +1587,7 @@ namespace dir
    }
 
 
-   ::file::path beforeca2()
-   {
-
-      return dir::name(dir::install());
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-
-   #include <Shlobj.h>
-
-
-   ::file::path program_files_x86()
-   {
-
-      wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
-
-      wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
-
-      wcscpy(wstrModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
-
-      if(wcslen(wstrModuleFilePath) == 0)
-      {
-
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-      }
-
-      wstrModuleFilePath.trim_right(L"\\/");
-
-      wcscpy(wstrModuleFolder,wstrModuleFilePath);
-
-      return string(wstrModuleFolder);
-
-   }
-
-
-   ::file::path program_files()
-   {
-
-      wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
-
-      wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
-
-      wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMW6432"));
-
-      if (wcslen(wstrModuleFilePath) == 0)
-      {
-
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-      }
-
-      wstrModuleFilePath.trim_right(L"\\/");
-
-      wstrModuleFolder = wstrModuleFilePath;
-
-      return string(wstrModuleFolder);
-
-
-
-   }
-
-
-#else
-
-
-   ::file::path program_files_x86()
-   {
-
-      ::file::path path("/opt/ca2");
-
-      return path;
-
-   }
-
-
-   ::file::path program_files()
-   {
-
-      ::file::path path("/opt/ca2");
-
-      return path;
-
-   }
-
-
-#endif
-
-
-   ::file::path stage(string strAppId, string strPlatform, string strConfiguration)
-   {
-
-      return inplace_install(strAppId, strPlatform, strConfiguration) /  "time" / time_binary_platform(strPlatform) / strConfiguration;
-
-   }
-
-
-#ifdef LINUX
-
-
-   ::file::path home()
-   {
-
-      return getenv("HOME");
-
-   }
-
-
-#endif
-
-
-#if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
-
-
-   ::file::path bookmark()
-   {
-
-      return ::dir::localconfig() / "bookmark";
-
-   }
-
-
-#endif
-
-
-#ifdef _UWP
-
-
-   ::file::path home()
-   {
-
-      return "";
-
-   }
-
-
-#endif
-
-
+ 
 } // namespace dir
 
 
@@ -1849,16 +1600,3 @@ extern "C" int make_path(const char * psz)
 
 
 
-CLASS_DECL_ACME void set_path_install_folder(const char * pszPath)
-{
-
-   if (g_ppathInstallFolder == nullptr)
-   {
-
-      g_ppathInstallFolder = new ::file::path();
-
-   }
-
-   g_ppathInstallFolder->operator=(pszPath);
-
-}

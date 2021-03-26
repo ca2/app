@@ -19,10 +19,10 @@ namespace userfs
    }
 
    
-   ::e_status userfs::initialize(::context_object * pcontextobject)
+   ::e_status userfs::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {

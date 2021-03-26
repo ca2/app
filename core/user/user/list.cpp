@@ -3961,7 +3961,9 @@ namespace user
 
                         }
 
-                        pcontext->file().put_contents(strSort, stra.implode("\r\n"));
+                        auto pcontext = get_context();
+
+                        pcontext->m_pcontext->file().put_contents(strSort, stra.implode("\r\n"));
 
                         synchronizationlock.unlock();
 
@@ -6311,6 +6313,8 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
+      auto psystem = m_psystem->m_paxissystem;
+
       m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
@@ -7530,6 +7534,8 @@ namespace user
 
                __defer_construct(pimage2);
 
+               auto psystem = m_psystem->m_paurasystem;
+
                if (psystem->draw2d()->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
@@ -7832,7 +7838,9 @@ namespace user
 
          strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
-         string str = pcontext->file().as_string(strSort);
+         auto pcontext = get_context();
+
+         string str = pcontext->m_pcontext->file().as_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

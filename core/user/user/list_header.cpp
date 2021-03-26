@@ -383,6 +383,8 @@ namespace user
 
          }
 
+         auto papplication = get_application();
+
          if (!papplication->data_set(datakey, iaWidth))
          {
 
@@ -393,6 +395,8 @@ namespace user
       }
       else
       {
+
+         auto papplication = get_application();
 
          if (papplication->data_get(datakey, iaWidth))
          {

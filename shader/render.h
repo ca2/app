@@ -31,7 +31,7 @@ namespace app_shader
       virtual ~render();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 #ifdef DEBUG
       virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;

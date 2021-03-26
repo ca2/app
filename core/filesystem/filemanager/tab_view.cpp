@@ -208,7 +208,7 @@ namespace filemanager
             try
             {
 
-               bPathIsDir = pathFolder.has_char() && pcontext->dir().is(pathFolder);
+               bPathIsDir = pathFolder.has_char() && pcontext->m_pcontext->dir().is(pathFolder);
 
             }
             catch (...)

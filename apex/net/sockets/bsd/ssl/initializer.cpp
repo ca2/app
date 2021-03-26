@@ -263,7 +263,7 @@ namespace sockets
       if (m_rand_file.get_length())
       {
 
-         get_context()->file().del(m_rand_file);
+         m_pcontext->m_pcontext->file().del(m_rand_file);
 
       }
 

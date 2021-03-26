@@ -84,12 +84,14 @@ namespace write_text
    }
 
 
-   void write_text::finalize()
+   ::e_status write_text::finalize()
    {
 
       m_pfontdepartment.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 

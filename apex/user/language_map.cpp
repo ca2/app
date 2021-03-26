@@ -25,10 +25,10 @@ namespace user
    }
 
 
-   ::e_status language_map::initialize(::context_object * pcontextobject)
+   ::e_status language_map::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pcontextobject);
+      ::e_status estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -253,9 +253,9 @@ namespace user
 
             straMatterLocator.add(strLocator);
 
-            ::file::path pathApplication = get_context()->dir().matter_from_locator("stringtable.po", straMatterLocator);
+            ::file::path pathApplication = m_pcontext->m_pcontext->dir().matter_from_locator("stringtable.po", straMatterLocator);
 
-            string strPoData = get_context()->file().as_string(pathApplication);
+            string strPoData = m_pcontext->m_pcontext->file().as_string(pathApplication);
 
             if (strPoData.has_char())
             {

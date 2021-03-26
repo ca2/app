@@ -4,7 +4,7 @@
 namespace calculator
 {
 
-   department::department(::context_object * pcontextobject) :
+   department::department(::object * pobject) :
       ::apex::department(pobject)
    {
    }

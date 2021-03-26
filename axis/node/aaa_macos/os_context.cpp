@@ -394,7 +394,7 @@ namespace macos
        keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
        keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
        keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-       keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+       keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
        registry::Key keyApplicationCa2;
 
@@ -781,11 +781,11 @@ namespace macos
    bool os_context::resolve_link(::file::path & pathTarget, const string & strSource, string * pstrFolder, string * pstrParams, ::user::primitive * puiMessageParentOptional)
    {
 
-      pathTarget = pcontext->defer_process_path(strSource);
+      pathTarget = pcontext->m_pcontext->defer_process_path(strSource);
 
       pathTarget = node_full_file_path(pathTarget);
 
-      while(pcontext->os_resolve_alias(pathTarget, pathTarget, puiMessageParentOptional))
+      while(pcontext->m_pcontext->os_resolve_alias(pathTarget, pathTarget, puiMessageParentOptional))
       {
 
          pathTarget = node_full_file_path(pathTarget);
@@ -842,7 +842,7 @@ namespace macos
       {
 
          //string strDir;
-         //strDir = pcontext->dir().path(getenv("HOME"), "Pictures");
+         //strDir = pcontext->m_pcontext->dir().path(getenv("HOME"), "Pictures");
          //imagefileset.add_search(strDir);
          string strDir;
          strDir = "/Library/Desktop Pictures";
@@ -941,7 +941,7 @@ namespace macos
 
       }
 
-      if(pcontext->dir().is(strAppReturn))
+      if(pcontext->m_pcontext->dir().is(strAppReturn))
       {
 
          return strAppReturn;
@@ -1128,7 +1128,7 @@ namespace macos
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      path = pcontext->defer_process_path(path);
+      path = pcontext->m_pcontext->defer_process_path(path);
 
       ns_main_async(^
       {

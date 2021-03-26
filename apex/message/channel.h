@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX channel :
-   virtual public ::object
+   virtual public ::subject::manager
 {
 public:
 
@@ -28,7 +28,7 @@ public:
 
    static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
    virtual void remove_receiver(::object * preceiver);
 

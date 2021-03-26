@@ -33,10 +33,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_interface::initialize(::context_object * pcontextobject)
+   ::e_status script_interface::initialize(::object * pobject)
    {
 
-      auto estatus = ::html::file::initialize(pcontextobject);
+      auto estatus = ::html::file::initialize(pobject);
 
       if (!estatus)
       {
@@ -45,7 +45,7 @@ namespace dynamic_source
 
       }
 
-      __pointer(script_interface) pinterface = pcontextobject;
+      __pointer(script_interface) pinterface = pobject;
 
       if (pinterface)
       {
@@ -74,7 +74,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::finalize()
+   ::e_status script_interface::finalize()
    {
 
       ::html::file::finalize();

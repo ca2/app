@@ -21,7 +21,7 @@
                virtual ~frame_013();
 
 
-               virtual void finalize() override;
+               virtual ::e_status finalize() override;
 
 
             };

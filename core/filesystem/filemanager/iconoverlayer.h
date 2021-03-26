@@ -14,8 +14,8 @@ namespace filemanager
       iconoverlayer();
       virtual ~iconoverlayer();
 
-      virtual ::e_status initialize(::context_object * pcontextobject) = 0;
-      virtual void finalize() = 0;
+      virtual ::e_status initialize(::object * pobject) = 0;
+      virtual ::e_status finalize() = 0;
 
 
       // give a chance to cache and optimize

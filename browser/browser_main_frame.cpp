@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   main_frame::main_frame(::context_object * pcontextobject) :
+   main_frame::main_frame(::object * pobject) :
       object(pobject),
       simple_frame_window(pobject),
       simple_main_frame(pobject)

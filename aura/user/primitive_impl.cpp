@@ -143,12 +143,14 @@ namespace user
    }
 
 
-   void primitive_impl::finalize()
+   ::e_status primitive_impl::finalize()
    {
 
       ::user::primitive::finalize();
 
-      m_puserinteraction.release();
+      auto estatus = m_puserinteraction.release();
+
+      return estatus;
 
    }
 
@@ -1611,13 +1613,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::context_object * point_i32)
+   void primitive_impl::redraw_add(::object * point_i32)
    {
 
    }
 
 
-   void primitive_impl::redraw_remove(::context_object * point_i32)
+   void primitive_impl::redraw_remove(::object * point_i32)
    {
 
    }

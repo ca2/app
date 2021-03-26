@@ -24,8 +24,8 @@ namespace mysql
       virtual ~database();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
 
       virtual ::e_status _connect() override;

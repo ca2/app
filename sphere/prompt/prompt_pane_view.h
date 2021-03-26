@@ -16,7 +16,7 @@ namespace prompt
       
 
 
-      pane_view(::context_object * pcontextobject);
+      pane_view(::object * pobject);
       virtual ~pane_view();
 
 

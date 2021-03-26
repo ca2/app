@@ -42,7 +42,7 @@ namespace colorertake5
           * Searches for catalog.xml in the set of predefined locations
           * @__throw( ParserFactoryException If can't find catalog at any of standard locations.
           */
-         ParserFactory(::context_object * pcontextobject);
+         ParserFactory(::object * pobject);
 
          /**
           * ParserFactory Constructor with explicit catalog path.

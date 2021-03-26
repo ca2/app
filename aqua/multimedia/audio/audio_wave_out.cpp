@@ -9,7 +9,7 @@
 //   {
 //
 //
-//      out::out(::context_object * pcontextobject) :
+//      out::out(::object * pobject) :
 //         ::object(pobject)
 //      {
 //

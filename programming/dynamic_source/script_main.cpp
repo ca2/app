@@ -45,10 +45,10 @@ namespace dynamic_source
 #endif
 
 
-   ::e_status script_main::initialize(::context_object * pcontextobject)
+   ::e_status script_main::initialize(::object * pobject)
    {
 
-      auto estatus = ::html::file::initialize(pcontextobject);
+      auto estatus = ::html::file::initialize(pobject);
 
       if (!estatus)
       {
@@ -62,7 +62,7 @@ namespace dynamic_source
    }
 
 
-   void script_main::finalize()
+   ::e_status script_main::finalize()
    {
          
       script_interface::finalize();

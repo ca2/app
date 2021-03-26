@@ -23,12 +23,12 @@ public:
 
 
    /// posting/sending object
-   inline lparam(const ::context_object * pobject);
+   inline lparam(const ::object * pobject);
 
 
    /// posting/sending object
    template < typename T >
-   inline lparam(const __pointer(T) & p) : lparam((const ::context_object *) p.m_p) { }
+   inline lparam(const __pointer(T) & p) : lparam((const ::object *) p.m_p) { }
 
 
 

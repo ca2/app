@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace account
@@ -58,7 +59,7 @@ namespace account
 
       __pointer(user) puser;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       {
 
@@ -106,7 +107,7 @@ namespace account
       try
       {
 
-         pcontext->file().del(::dir::appdata()/"license_auth/00001.data");
+         pcontext->m_pcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -117,7 +118,7 @@ namespace account
       try
       {
 
-         pcontext->file().del(::dir::appdata()/"license_auth/00002.data");
+         pcontext->m_pcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00002.data");
 
       }
       catch(...)
@@ -219,7 +220,7 @@ namespace account
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       string strHost = psystem->url().get_server(pathUrl);
 

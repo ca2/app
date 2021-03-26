@@ -414,7 +414,7 @@ namespace uwp
             keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 
@@ -476,7 +476,7 @@ namespace uwp
 
       ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
 
-      path = pcontext->defer_process_path(path);
+      path = pcontext->m_pcontext->defer_process_path(path);
 
       try
       {

@@ -5,7 +5,7 @@
 namespace helloworld
 {
 
-   pane_view::pane_view(::context_object * pcontextobject) :
+   pane_view::pane_view(::object * pobject) :
       object(pobject),
       ::user::tab(pobject),
 
@@ -448,13 +448,13 @@ namespace helloworld
       if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
       {
 
-         str = pcontext->file().as_string("matter://home.html");
+         str = pcontext->m_pcontext->file().as_string("matter://home.html");
 
       }
       else
       {
 
-         str = pcontext->file().as_string("matter://menu.html");
+         str = pcontext->m_pcontext->file().as_string("matter://menu.html");
 
       }
 
@@ -495,9 +495,9 @@ namespace helloworld
 
       ::file::path path;
 
-      path = pcontext->dir().appdata() / "helloworld_menu.html";
+      path = pcontext->m_pcontext->dir().appdata() / "helloworld_menu.html";
 
-      pcontext->file().put_contents(path, str);
+      pcontext->m_pcontext->file().put_contents(path, str);
 
       return path;
 

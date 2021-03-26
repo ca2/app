@@ -2,6 +2,7 @@
 #include "apex/operating_system.h"
 #include "launcher.h"
 #include "app_launcher.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 namespace apex
@@ -15,10 +16,10 @@ namespace apex
    }
 
 
-   ::e_status app_launcher::initialize_app_launcher(::context_object* pcontextobject, string strPlatform, string strApp)
+   ::e_status app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
    {
 
-      auto estatus = ::context_object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -39,7 +40,7 @@ namespace apex
    string app_launcher::get_executable_path()
    {
 
-      ::file::path path = get_last_run_application_path(m_strApp);
+      ::file::path path = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path(m_strApp);
 
       if(file_exists(path))
       {
@@ -62,16 +63,16 @@ namespace apex
 
       auto pcontext = get_context();
 
-      ::file::path pathCandidate = get_context()->dir().ca2module() / strExe;
+      ::file::path pathCandidate = m_pcontext->m_pcontext->dir().ca2module() / strExe;
 
-      if (get_context()->file().exists(pathCandidate))
+      if (m_pcontext->m_pcontext->file().exists(pathCandidate))
       {
 
          return ::move(pathCandidate);
 
       }
 
-      return ::path::app_app(m_strPlatform, process_configuration_dir_name());
+      return m_psystem->m_pacmepath->app_app(m_strPlatform, process_configuration_dir_name());
 
    }
 

@@ -1156,7 +1156,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::add_prodevian(::context_object * pobject)
+   bool interaction_impl::add_prodevian(::object * pobject)
    {
 
       synchronization_lock synchronizationlock(m_puserthread->mutex());
@@ -1175,7 +1175,7 @@ namespace user
    }
 
 
-   bool interaction_impl::remove_prodevian(::context_object * pobject)
+   bool interaction_impl::remove_prodevian(::object * pobject)
    {
 
       if (!m_puserthread)
@@ -1524,7 +1524,7 @@ namespace user
 
          m_bDestroyImplOnly = true;
 
-         m_pprodevian->set_finish(m_pprodevian);
+         m_pprodevian->set_finish();
 
          if (::is_set(m_puserinteraction))
          {
@@ -3946,7 +3946,7 @@ namespace user
 
 
 
-   guie_message_wnd::guie_message_wnd(::property_object * pcontextobject)
+   guie_message_wnd::guie_message_wnd(::property_object * pobject)
    {
 
       m_puiForward = nullptr;
@@ -4017,7 +4017,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_finish(::context_object * pcontextobjectFinish)
+   ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
       if(!m_bFinishing)
@@ -4040,7 +4040,7 @@ namespace user
 
       }
 
-      return ::user::primitive_impl::set_finish(pcontextobjectFinish);
+      return ::user::primitive_impl::set_finish();
 
    }
 
@@ -4067,7 +4067,7 @@ namespace user
 
             //pprodevian->m_pimpl = nullptr;
 
-            pprodevian->set_finish(this);
+            pprodevian->set_finish();
 
          }
 
@@ -4145,7 +4145,7 @@ namespace user
    //}
 
 
-   void interaction_impl::finalize()
+   ::e_status interaction_impl::finalize()
    {
 
       return ::user::primitive::finalize();
@@ -4586,7 +4586,7 @@ namespace user
 
 
 
-   void interaction_impl::redraw_add(::context_object * p)
+   void interaction_impl::redraw_add(::object * p)
    {
 
       synchronization_lock synchronizationlock(mutex_redraw());
@@ -4596,7 +4596,7 @@ namespace user
    }
 
 
-   void interaction_impl::redraw_remove(::context_object * p)
+   void interaction_impl::redraw_remove(::object * p)
    {
 
       synchronization_lock synchronizationlock(mutex_redraw());

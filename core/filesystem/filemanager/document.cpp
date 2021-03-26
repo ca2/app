@@ -130,7 +130,7 @@ namespace filemanager
 
             auto pcontext = get_context();
 
-            m_pitem = __new(::file::item(pcontext->defer_process_path(strOldPath), strOldPath));
+            m_pitem = __new(::file::item(pcontext->m_pcontext->defer_process_path(strOldPath), strOldPath));
 
             OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -145,7 +145,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->dir().watcher().remove_watch(m_filewatchid);
+         pcontext->m_pcontext->dir().watcher().remove_watch(m_filewatchid);
 
       }
 
@@ -154,7 +154,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         auto& dir = pcontext->dir();
+         auto& dir = pcontext->m_pcontext->dir();
 
          auto& watcher = dir.watcher();
 
@@ -176,12 +176,14 @@ namespace filemanager
    void document::on_file_manager_open_context_menu_folder(__pointer(::file::item)  item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_open_context_menu_folder(filemanager_data(), item, straCommand, straCommandTitle, context);
+         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu_folder(pfilemanagerdata, item, straCommand, straCommandTitle, context);
 
       }
 
@@ -191,12 +193,14 @@ namespace filemanager
    void document::on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & context)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_open_context_menu_file(filemanager_data(), itema, context);
+         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu_file(pfilemanagerdata, itema, context);
 
       }
 
@@ -206,12 +210,14 @@ namespace filemanager
    void document::on_file_manager_open_context_menu(const ::action_context & context)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_open_context_menu(filemanager_data(), context);
+         pfilemanagerdata->m_pcallback->on_file_manager_open_context_menu(pfilemanagerdata, context);
 
       }
 
@@ -221,9 +227,11 @@ namespace filemanager
    void document::on_file_manager_open(const ::file::item_array & itema, const ::action_context & context)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->is_topic() && itema.get_count() == 1)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->is_topic() && itema.get_count() == 1)
       {
 
          __pointer(document) pdocument = this;
@@ -236,10 +244,10 @@ namespace filemanager
 
          pdocument->update_all_views(psubject);
 
-         filemanager_data()->m_pdocumentTopic = nullptr;
+         pfilemanagerdata->m_pdocumentTopic = nullptr;
 
       }
-      else if (filemanager_data()->m_pcallback != nullptr)
+      else if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
          ::payload varFile;
@@ -255,7 +263,7 @@ namespace filemanager
 
                varQuery["::filemanager::id"] = "filemanager::main::left";
 
-               filemanager_data()->m_pcallback->request_file(varFile, varQuery);
+               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
             }
 
@@ -265,7 +273,7 @@ namespace filemanager
 
                varQuery["::filemanager::id"] = "filemanager::main::right";
 
-               filemanager_data()->m_pcallback->request_file(varFile, varQuery);
+               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
             }
 
@@ -279,7 +287,7 @@ namespace filemanager
 
                varQuery["::filemanager::id"] = "filemanager::main::right";
 
-               filemanager_data()->m_pcallback->request_file(varFile, varQuery);
+               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
             }
 
@@ -289,7 +297,7 @@ namespace filemanager
 
                varQuery["::filemanager::id"] = "filemanager::main::left";
 
-               filemanager_data()->m_pcallback->request_file(varFile, varQuery);
+               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
             }
 
@@ -303,9 +311,9 @@ namespace filemanager
 
             varQuery["::filemanager::id"] = m_id;
 
-            auto pcallback = filemanager_data()->m_pcallback;
+            auto pcallback = pfilemanagerdata->m_pcallback;
 
-            pcallback->request_file(varFile, varQuery);
+            pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
          }
 
@@ -317,12 +325,14 @@ namespace filemanager
    void document::on_file_manager_open_folder(__pointer(::file::item)  item, const ::action_context & context)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_open_folder(filemanager_data(), item, context);
+         pfilemanagerdata->m_pcallback->on_file_manager_open_folder(pfilemanagerdata, item, context);
 
       }
 
@@ -332,12 +342,14 @@ namespace filemanager
    void document::on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_item_update(filemanager_data(), pcommand, itema);
+         pfilemanagerdata->m_pcallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
 
       }
 
@@ -347,12 +359,14 @@ namespace filemanager
    void document::on_file_manager_item_command(const char * pszId, const ::file::item_array & itema)
    {
 
-      ASSERT(filemanager_data()->m_pcallback != nullptr);
+      auto pfilemanagerdata = filemanager_data();
 
-      if (filemanager_data()->m_pcallback != nullptr)
+      ASSERT(pfilemanagerdata->m_pcallback != nullptr);
+
+      if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         filemanager_data()->m_pcallback->on_file_manager_item_command(filemanager_data(), pszId, itema);
+         pfilemanagerdata->m_pcallback->on_file_manager_item_command(pfilemanagerdata, pszId, itema);
 
       }
 
@@ -397,7 +411,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path pathFinal = pcontext->defer_process_path(pathUser);
+      ::file::path pathFinal = pcontext->m_pcontext->defer_process_path(pathUser);
 
       __pointer(::file::item) pitem = __new(::file::item(pathUser, pathFinal));
 
@@ -608,7 +622,9 @@ namespace filemanager
 
       string strManagerId;
 
-      m_path = filemanager_project_entry(strManagerId, varFile.get_string(), get_context());
+      auto pcontext = m_pcontext->m_pcontext;
+
+      m_path = filemanager_project_entry(strManagerId, varFile.get_string(), pcontext);
 
       defer_check_manager_id(strManagerId);
 
@@ -644,7 +660,7 @@ namespace filemanager
 
       }
 
-      opt_fork(__routine([this, pitem, context]()
+      fork(__routine([this, pitem, context]()
       {
 
          full_browse(pitem, context);
@@ -688,10 +704,12 @@ namespace filemanager
 
          auto puser = user();
 
+         auto pfilemanagerdata = filemanager_data();
+
          if (puser->m_pathFilemanagerProject.is_empty())
          {
 
-            filemanager_data()->set_last_browse_path(this, m_pitem->m_filepathUser);
+            pfilemanagerdata->set_last_browse_path(this, m_pitem->m_filepathUser);
 
          }
          else
@@ -721,10 +739,12 @@ namespace filemanager
    void document::on_command(::message::command * pcommand)
    {
 
-      if (filemanager_data() != nullptr)
+      auto pfilemanagerdata = filemanager_data();
+
+      if (pfilemanagerdata != nullptr)
       {
 
-         if (pcommand->m_id == filemanager_data()->m_strLevelUp)
+         if (pcommand->m_id == pfilemanagerdata->m_strLevelUp)
          {
 
             FileManagerOneLevelUp(::e_source_user);
@@ -936,7 +956,7 @@ namespace filemanager
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //pcontext->file().paste(filemanager_data()->filemanager_item().m_strPath, psystem->m_strCopy);
+      //pcontext->m_pcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_views(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }
@@ -1060,7 +1080,9 @@ namespace filemanager
 
          string str;
 
-         auto path = filemanager_data()->get_last_browse_path(this, filemanager_data()->m_pathDefault);
+         auto pfilemanagerdata = filemanager_data();
+
+         auto path = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
 
             browse(path, ::e_source_initialize);
 
@@ -1106,10 +1128,10 @@ namespace filemanager
 //            }
 
          //}
-         //else if (filemanager_data()->m_pathDefault.has_char())
+         //else if (pfilemanagerdata->m_pathDefault.has_char())
          //{
 
-         //   browse(filemanager_data()->m_pathDefault, ::e_source_initialize);
+         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);
 
          //}
          //else
@@ -1191,19 +1213,21 @@ namespace filemanager
    bool document::HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand, ::file::item_array & itema)
    {
 
+      auto pfilemanagerdata = filemanager_data();
+
       if (pcommand->is_command_probe())
       {
 
-         if (filemanager_data() != nullptr)
+         if (pfilemanagerdata != nullptr)
          {
 
-            if (filemanager_data()->m_pcallback != nullptr)
+            if (pfilemanagerdata->m_pcallback != nullptr)
             {
 
-               if (filemanager_data()->m_pcallback->get_file_manager_item_callback(filemanager_data(), pcommand->m_id, itema))
+               if (pfilemanagerdata->m_pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_id, itema))
                {
 
-                  filemanager_data()->m_pcallback->on_file_manager_item_update(filemanager_data(), pcommand, itema);
+                  pfilemanagerdata->m_pcallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
 
                   return true;
 
@@ -1217,18 +1241,18 @@ namespace filemanager
       else if (pcommand->is_command())
       {
 
-         if (filemanager_data() != nullptr)
+         if (pfilemanagerdata != nullptr)
          {
 
-            auto pcallback = filemanager_data()->m_pcallback;
+            auto pcallback = pfilemanagerdata->m_pcallback;
 
             if (::is_set(pcallback))
             {
 
-               if (pcallback->get_file_manager_item_callback(filemanager_data(), pcommand->m_id, itema))
+               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_id, itema))
                {
 
-                  pcallback->on_file_manager_item_command(filemanager_data(), pcommand->m_id, itema);
+                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_id, itema);
 
                   return true;
 
@@ -1299,7 +1323,9 @@ namespace filemanager
    void document::FileManagerSaveAs(::user::document * pdocument)
    {
 
-      filemanager_data()->m_pdocumentTopic = pdocument;
+      auto pfilemanagerdata = filemanager_data();
+
+      pfilemanagerdata->m_pdocumentTopic = pdocument;
 
       m_emode = ::userfs::mode_saving;
 
@@ -1327,7 +1353,9 @@ namespace filemanager
    void document::FileManagerImport(::user::document * pdocument)
    {
 
-      filemanager_data()->m_pdocumentTopic = pdocument;
+      auto pfilemanagerdata = filemanager_data();
+
+      pfilemanagerdata->m_pdocumentTopic = pdocument;
 
       m_emode = ::userfs::mode_import;
 
@@ -1355,7 +1383,9 @@ namespace filemanager
    void document::FileManagerExport(::user::document * pdocument)
    {
 
-      filemanager_data()->m_pdocumentTopic = pdocument;
+      auto pfilemanagerdata = filemanager_data();
+
+      pfilemanagerdata->m_pdocumentTopic = pdocument;
 
       m_emode = ::userfs::mode_export;
 
@@ -1472,7 +1502,9 @@ namespace filemanager
 
       string strToolbar;
 
-      strToolbar = filemanager_data()->m_setToolbar[m_emode];
+      auto pfilemanagerdata = filemanager_data();
+
+      strToolbar = pfilemanagerdata->m_setToolbar[m_emode];
 
       if(pframe->get_parent() != nullptr)
       {

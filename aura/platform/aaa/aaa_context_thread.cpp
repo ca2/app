@@ -82,7 +82,7 @@ namespace aura
    }
 
 
-   void context_thread::finalize()
+   ::e_status context_thread::finalize()
    {
 
       ::thread::finalize();

@@ -67,7 +67,7 @@
     <ClCompile Include="frame_011.cpp" />
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="library.cpp" />
+    <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="style.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,9 @@
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_core.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>experience_core</ProjectName>
@@ -738,8 +741,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>

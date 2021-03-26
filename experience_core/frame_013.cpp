@@ -23,10 +23,12 @@
             }
 
 
-            void frame_013::finalize()
+            ::e_status frame_013::finalize()
             {
 
-               frame_008::finalize();
+               auto estatus = frame_008::finalize();
+
+               return estatus;
 
             }
 

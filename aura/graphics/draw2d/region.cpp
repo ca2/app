@@ -35,13 +35,15 @@ namespace draw2d
    }
 
 
-   void region::finalize()
+   ::e_status region::finalize()
    {
 
       ::acme::adel(m_lppoints);
       ::acme::adel(m_lppolycounts);
       m_pregion1.release();
       m_pregion2.release();
+
+      return ::success;
 
    }
 

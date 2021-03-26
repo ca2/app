@@ -19,7 +19,7 @@ namespace draw2d_opengl
       BITMAPINFO           m_bitmapinfo;
 
 
-      image(::context_object * pcontextobject);
+      image(::object * pobject);
       virtual void construct(i32 cx, i32 cy);
       virtual ~image();
 

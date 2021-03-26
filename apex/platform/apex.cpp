@@ -138,6 +138,30 @@ namespace apex
    }
 
 
+   bool apex::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      return false;
+
+   }
+
+   bool apex::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+
+      return false;
+
+   }
+
+   
+   bool apex::set_last_run_application_path(string strAppId)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace apex
 
 

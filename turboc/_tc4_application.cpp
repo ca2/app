@@ -5,7 +5,7 @@ namespace tc4
 {
 
 
-   application::application(::context_object * pcontextobject) :
+   application::application(::object * pobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -175,7 +175,7 @@ namespace tc4
 
 
 extern "C"
-::apex::library * get_new_library(::context_object * pcontextobject)
+::acme::library * get_new_library(::object * pobject)
 {
 
    return new ::apex::single_application_library < ::tc4::application > (pobject, "app-core");

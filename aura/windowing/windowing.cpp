@@ -73,12 +73,14 @@ namespace windowing
    }
 
 
-   void windowing::finalize()
+   ::e_status windowing::finalize()
    {
 
       m_pcursormanager.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 

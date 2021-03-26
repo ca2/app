@@ -17,7 +17,7 @@
 //
 //   }
 //
-//   virtual ::matter * new_object(::context_object * pcontextobject) = 0;
+//   virtual ::matter * new_object(::object * pobject) = 0;
 //
 //
 //};
@@ -37,7 +37,7 @@
 //   }
 //
 //
-//   virtual ::matter * new_object(::context_object * pcontextobject) override
+//   virtual ::matter * new_object(::object * pobject) override
 //   {
 //
 //      return new TYPE(pobject);

@@ -10,7 +10,7 @@ namespace hellobase
 
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,

@@ -19,7 +19,7 @@ namespace message
 
 
    class CLASS_DECL_APEX message :
-      virtual public context_object
+      virtual public object
    {
    public:
 

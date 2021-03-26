@@ -355,7 +355,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 //
 //   ::file::path path = varFile.get_file_path();
 //
-//   path = pcontext->defer_process_matter_path(path);
+//   path = pcontext->m_pcontext->defer_process_matter_path(path);
 //
 //   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
 //      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
@@ -382,7 +382,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 
    auto pcontext = get_context();
 
-   return add_icon(pcontext->dir().matter(pszMatter));
+   return add_icon(pcontext->m_pcontext->dir().matter(pszMatter));
 
 }
 
@@ -459,7 +459,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 //   if(pobject == nullptr)
 //   {
 //
-//      auto & dir = pcontext->dir();
+//      auto & dir = pcontext->m_pcontext->dir();
 //
 //      path = dir.matter(pcsz);
 //
@@ -511,7 +511,7 @@ i32 image_list::add_std_matter(const char * pcsz, int iItem)
 
    auto pcontext = get_context();
 
-   return add_file(pcontext->dir().matter(pcsz), iItem);
+   return add_file(pcontext->m_pcontext->dir().matter(pcsz), iItem);
 
 }
 

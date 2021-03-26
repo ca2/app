@@ -21,7 +21,7 @@ namespace draw2d_xlib
       color                   m_color;
 
 
-      pen(::context_object * pcontextobject);
+      pen(::object * pobject);
       virtual ~pen();
       /*virtual void construct(i32 nPenStyle, double nWidth, color32_t crColor);
       virtual void construct(i32 nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, i32 nStyleCount = 0, const ::u32* lpStyle = nullptr);

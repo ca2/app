@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "app_core.h"
-#include "static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "apex/platform/static_start.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -14,7 +15,7 @@ CLASS_DECL_APEX int_bool os_init_windowing();
 CLASS_DECL_APEX void os_term_windowing();
 
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 //extern ::mutex * psystem->m_mutexLibrary;
 
@@ -87,7 +88,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::context_object * pcontextobject);
+//void debug_context_object(::object * pobject);
 
 
 #ifdef __APPLE__
@@ -247,7 +248,7 @@ extern "C"
 ::apex::system * apex_create_apex_system();
 
 
-CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
+//CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
 
 CLASS_DECL_APEX void set_debug_pointer(void * p);
 
@@ -273,7 +274,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-      set_path_install_folder(pathModule.folder(4));
+      m_psystem->m_pacmedir->set_path_install_folder(pathModule.folder(4));
 
    }
 
@@ -520,7 +521,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    ::set_task(psystem);
 
-   debug_context_object(psystem);
+   //debug_context_object(psystem);
 
    psystem->initialize(psystem);
 
@@ -533,9 +534,9 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString = ::dir::system() / strAppId / "output_debug_string.txt" ;
+   ::file::path pathOutputDebugString = m_psystem->m_pacmedir->system() / strAppId / "output_debug_string.txt" ;
 
-   ::file::path pathGlobalOutputDebugString = ::dir::config() / "output_debug_string.txt" ;
+   ::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedir->config() / "output_debug_string.txt" ;
 
    //::apex::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
 
@@ -559,7 +560,7 @@ void app_core::set_command_line(const char * psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder = ::dir::ca2roaming() / "program";
+   ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 
@@ -614,7 +615,7 @@ void app_core::set_command_line(const char * psz)
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __new(::apex::library);
+//         m_plibrary = __new(::acme::library);
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -988,7 +989,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
 struct heap_test_struct :
-   virtual public context_object
+   virtual public object
 {
 
    byte m_ucha[1024];
@@ -1648,7 +1649,7 @@ string apple_get_bundle_identifier()
 bool app_core::has_apex_application_factory() const
 {
 
-   if (m_pfnNewAuraApplication)
+   if (m_pfnnewmatterApplication)
    {
 
       return true;
@@ -1712,7 +1713,7 @@ bool app_core::has_apex_application_factory() const
 __transport(::apex::application) app_core::new_application()
 {
 
-   if (!m_pfnNewAuraApplication)
+   if (!m_pfnnewmatterApplication)
    {
 
       return nullptr;
@@ -1721,7 +1722,7 @@ __transport(::apex::application) app_core::new_application()
 
    __pointer(::apex::application) papp;
 
-   papp = m_pfnNewAuraApplication();
+   papp = m_pfnnewmatterApplication();
 
    if (papp.is_null())
    {
@@ -1747,7 +1748,11 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
    if (psetup)
    {
 
-      papp.reset(psetup->create_new_application() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      auto pmatterApp = psetup->create_new_application();
+
+      __pointer(::apex::application) papexApplication = pmatterApp;
+
+      papp.reset(papexApplication OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       if (papp)
       {
@@ -1834,7 +1839,7 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 //         if(papp)
 //         {
 //
-//            estatus = papp->initialize(pcontextobject);
+//            estatus = papp->initialize(pobject);
 //
 //         }
 
@@ -1921,10 +1926,10 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 }
 
 
-::e_status app_core::initialize_application(::apex::application *papplication, ::context_object * pcontextobject)
+::e_status app_core::initialize_application(::apex::application *papplication, ::object * pobject)
 {
 
-   auto estatus = papplication->initialize(pcontextobject);
+   auto estatus = papplication->initialize(pobject);
 
    if (!estatus)
    {

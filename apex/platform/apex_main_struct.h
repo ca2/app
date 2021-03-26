@@ -12,14 +12,7 @@ namespace apex
 } // namespace apex
 
 
-extern "C"
-typedef ::apex::library * NEW_APEX_LIBRARY();
 
-typedef NEW_APEX_LIBRARY * PFN_NEW_APEX_LIBRARY;
-
-typedef ::apex::application* NEW_APEX_APPLICATION();
-
-typedef NEW_APEX_APPLICATION* PFN_NEW_APEX_APPLICATION;
 
 
 struct CLASS_DECL_APEX apex_main_struct
@@ -42,8 +35,8 @@ struct CLASS_DECL_APEX apex_main_struct
    int                           m_iMatterFromHttpCache;
 
    const char *                  m_pszMain;
-   PFN_NEW_APEX_APPLICATION      m_pfnNewAuraApplication;
-   PFN_NEW_APEX_LIBRARY          m_pfnNewAuraLibrary;
+   PFN_NEW_MATTER                m_pfnnewmatterApplication;
+   PFN_NEW_LIBRARY               m_pfnnewlibrary;
 
 
    apex_main_struct()
@@ -67,8 +60,8 @@ struct CLASS_DECL_APEX apex_main_struct
       #endif
       
       m_pszMain = nullptr;
-      m_pfnNewAuraApplication = nullptr;
-      m_pfnNewAuraLibrary = nullptr;
+      m_pfnnewmatterApplication = nullptr;
+      m_pfnnewlibrary = nullptr;
       
    }
 
@@ -97,8 +90,8 @@ struct CLASS_DECL_APEX apex_main_struct
          m_iMatterFromHttpCache= mainstruct.m_iMatterFromHttpCache;
 
          m_pszMain = mainstruct.m_pszMain;
-         m_pfnNewAuraApplication = mainstruct.m_pfnNewAuraApplication;
-         m_pfnNewAuraLibrary = mainstruct.m_pfnNewAuraLibrary;
+         m_pfnnewmatterApplication = mainstruct.m_pfnnewmatterApplication;
+         m_pfnnewlibrary = mainstruct.m_pfnnewlibrary;
 
       }
       

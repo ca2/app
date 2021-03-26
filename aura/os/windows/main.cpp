@@ -106,7 +106,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = pcontext->file().module();
+//         pathObj = pcontext->m_pcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -142,7 +142,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //}
 
 
-//CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
+//CLASS_DECL_AURA void main_async_runnable(::object * pobjectTaskParam)
 //{
 //
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
@@ -157,7 +157,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //}
 
 
-//CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTaskParam, ::duration durationTimeout)
+//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectTaskParam, ::duration durationTimeout)
 //{
 //   
 //   __pointer(::object) pobjectTask = pobjectTaskParam;

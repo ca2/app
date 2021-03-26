@@ -12,10 +12,10 @@ namespace html
    }
 
 
-   ::e_status style_sheet::initialize(::context_object* pcontextobject)
+   ::e_status style_sheet::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

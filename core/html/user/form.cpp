@@ -26,10 +26,10 @@ html_form::~html_form()
 }
 
 
-::e_status html_form::initialize(::context_object * pcontextobject)
+::e_status html_form::initialize(::object * pobject)
 {
 
-   auto estatus = ::user::form_view::initialize(pcontextobject);
+   auto estatus = ::user::form_view::initialize(pobject);
 
    if (!estatus)
    {
@@ -221,7 +221,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_pcoresystem;
 
    psystem->defer_create_html();
 
@@ -487,7 +487,7 @@ void html_form::set_need_load_form_data()
 
    auto path = varFile.get_file_path();
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_paurasystem;
 
    if (path.is_empty())
    {
@@ -819,7 +819,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
             auto pcontext = get_context();
 
-            matter = pcontext->dir().matter(psubject->payload(id_form));
+            matter = pcontext->m_pcontext->dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {

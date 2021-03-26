@@ -149,7 +149,7 @@ int xinerama_get_screen_size(int& width, int& height)
 
 
 // it doesn't work for final purpose, but it has example on how to "sort" rectangles with stability
-::array < rectangle_i32 > get_ordered_monitor_recta(::context_object * pcontextobject)
+::array < rectangle_i32 > get_ordered_monitor_recta(::object * pobject)
 {
 
    index iMonitor = 0;

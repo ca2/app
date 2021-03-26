@@ -230,14 +230,14 @@ namespace user
 
 
 
-struct CPrintPreviewState;  // forward context_object (see afxext.h)
+struct CPrintPreviewState;  // forward object (see afxext.h)
 namespace user
 {
-   class control_bar;          // forward context_object (see afxext.h)
+   class control_bar;          // forward object (see afxext.h)
 }
 
 
-class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
+class mini_dock_frame_window;    // forward object (see afxpriv.h)
 
 
 //#include "button.h"
@@ -312,7 +312,7 @@ protected:
 
 
 typedef u32 DROPEFFECT;
-class COleDataObject;   // forward context_object (see afxole.h)
+class COleDataObject;   // forward object (see afxole.h)
 
 */
 
@@ -551,7 +551,7 @@ namespace base
    inline ::base::user* session::user() const
    { 
       
-      return m_puser ? m_puser.cast < ::base::user >() : nullptr; 
+      return m_puser ? m_puser->m_pbaseuser : nullptr; 
    
    }
 

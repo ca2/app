@@ -76,7 +76,7 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
@@ -265,8 +265,8 @@ namespace user
 
       virtual void show_task(bool bShow);
 
-      virtual void redraw_add(::context_object * point_i32);
-      virtual void redraw_remove(::context_object * point_i32);
+      virtual void redraw_add(::object * point_i32);
+      virtual void redraw_remove(::object * point_i32);
       virtual bool has_redraw();
 
       virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;

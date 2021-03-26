@@ -37,10 +37,10 @@ imaging::~imaging()
 }
 
 
-::e_status imaging::initialize(::context_object * pcontextobject)
+::e_status imaging::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pcontextobject);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {

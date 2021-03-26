@@ -126,7 +126,7 @@ namespace aura
    void interprocess_communication::call::exclude_this_app()
    {
 
-      m_iaExclude.add(pcontext->os().get_pid());
+      m_iaExclude.add(pcontext->m_pcontext->os().get_pid());
 
    }
 
@@ -249,10 +249,10 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::initialize(::context_object * pcontextobject)
+   ::e_status interprocess_communication::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -274,9 +274,9 @@ namespace aura
 
       }
 
-      int iPid = pcontext->os().get_pid();
+      int iPid = pcontext->m_pcontext->os().get_pid();
 
-      //defer_add_module(pcontext->file().module(), iPid);
+      //defer_add_module(pcontext->m_pcontext->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -306,7 +306,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::finalize()
+   ::e_status interprocess_communication::finalize()
    {
 
       ::object::finalize();
@@ -946,7 +946,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = pcontext->file().module();
+      ::file::path pathThisModule = pcontext->m_pcontext->file().module();
 
       string strItem;
 
@@ -967,7 +967,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      pcontext->file().put_contents(pathModule,strModuleList);
+      pcontext->m_pcontext->file().put_contents(pathModule,strModuleList);
 
 #endif
 

@@ -44,10 +44,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::context_object * pcontextobject)
+   ::e_status sockets::initialize(::object * pobject)
    {
 
-      auto estatus = sockets_base::initialize(pcontextobject);
+      auto estatus = sockets_base::initialize(pobject);
 
       if (!estatus)
       {
@@ -100,7 +100,7 @@ namespace sockets
    }
 
    
-   void sockets::finalize()
+   ::e_status sockets::finalize()
    {
 
       sockets_base::finalize();
@@ -195,6 +195,8 @@ namespace sockets
       }
 
       ///::acme::del(m_pajpaxissocketinit);
+
+      return ::success;
 
    }
 

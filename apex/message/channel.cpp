@@ -259,7 +259,7 @@ void channel::channel_common_construct()
 }
 
 
-void channel::finalize()
+::e_status channel::finalize()
 {
 
    if (m_pchannel && m_pchannel != this)
@@ -289,6 +289,8 @@ void channel::finalize()
    m_routinemap.remove_all();
 
    ::object::finalize();
+
+   return ::success;
 
 }
 

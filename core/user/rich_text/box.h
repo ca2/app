@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE box :
-         virtual public context_object
+         virtual public object
       {
       public:
 

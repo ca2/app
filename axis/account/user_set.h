@@ -11,7 +11,7 @@ namespace account
    public:
 
 
-      user_set(::context_object * pcontextobject);
+      user_set(::object * pobject);
       virtual ~user_set();
 
 

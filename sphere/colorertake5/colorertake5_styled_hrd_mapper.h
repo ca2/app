@@ -18,7 +18,7 @@ namespace colorertake5
    public:
       
       
-      StyledHRDMapper(::context_object * pcontextobject);
+      StyledHRDMapper(::object * pobject);
       ~StyledHRDMapper();
 
       

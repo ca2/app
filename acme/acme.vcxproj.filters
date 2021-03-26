@@ -246,6 +246,12 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\text">
+      <UniqueIdentifier>{545f16d0-41cd-47fa-a030-7e700a6a109d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\text">
+      <UniqueIdentifier>{8fa46e2c-61a9-402f-9c89-238183e49030}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2579,6 +2585,51 @@
     <ClInclude Include="const\thread.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="platform\acme.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\library.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\static_setup.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_dir.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\counter.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\object.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\cleanup_task.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\text.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\text\translator.h">
+      <Filter>Header Files\primitive\text</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\text\data.h">
+      <Filter>Header Files\primitive\text</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\text\text.h">
+      <Filter>Header Files\primitive\text</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\text\_.h">
+      <Filter>Header Files\primitive\text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3696,6 +3747,45 @@
     </ClCompile>
     <ClCompile Include="primitive\mathematics\mathematics.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\library.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\acme_dir.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\acme_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\library.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\counter.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\static_setup.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\object.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\cleanup_task.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\text\text.cpp">
+      <Filter>Source Files\primitive\text</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\text\data.cpp">
+      <Filter>Source Files\primitive\text</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\text\translator.cpp">
+      <Filter>Source Files\primitive\text</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

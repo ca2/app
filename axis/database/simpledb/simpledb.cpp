@@ -305,11 +305,11 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             strUrl += psystem->url().url_encode(strKey);
 
-            strValue = get_context()->http().get(strUrl, set);
+            strValue = m_pcontext->m_pcontext->http().get(strUrl, set);
 
             if (strValue.is_empty() || ::failed(set["get_status"]))
             {

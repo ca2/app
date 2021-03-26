@@ -31,7 +31,7 @@ namespace user
 
 
 
-   class toolbar_control; // forward context_object (see afxcmn.h for definition)
+   class toolbar_control; // forward object (see afxcmn.h for definition)
 
 
    class CLASS_DECL_BASE toolbar :

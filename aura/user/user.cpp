@@ -2,7 +2,7 @@
 #include "aura/user/_user.h"
 #include "aura/update.h"
 //#include "simple_view.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 
@@ -44,10 +44,10 @@ namespace user
    }
 
 
-   ::e_status user::initialize(::context_object * pcontextobject)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -156,7 +156,7 @@ namespace user
 
       auto pwindow = pwindowing->get_keyboard_focus(pthread);
 
-      if (::is_null(pwindowing))
+      if (::is_null(pwindow))
       {
 
          return nullptr;
@@ -369,7 +369,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = pcontext->file().as_string(pcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -405,7 +405,7 @@ namespace user
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -573,7 +573,7 @@ namespace user
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::context_object * pcontextobject)
+//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
 //   {
 //
 //      if (papp == nullptr)
@@ -602,7 +602,7 @@ namespace user
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::context_object * pcontextobject)
+//   ::user::front_end * GetUfe(::object * pobject)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -723,7 +723,7 @@ namespace aura
       if (eend == ::apex::e_end_app)
       {
 
-         finish(get_context());
+         finish();
 
          return;
 
@@ -740,7 +740,7 @@ namespace aura
             if (psession)
             {
 
-               psession->finish(get_context());
+               psession->finish();
 
             }
 
@@ -760,12 +760,12 @@ namespace aura
          try
          {
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             if (psystem)
             {
 
-               psystem->finish(get_context());
+               psystem->finish();
 
             }
 
@@ -861,7 +861,7 @@ namespace aura
    }
 
 
-//   void session::on_app_request_bergedge_callback(::context_object * pcontextobject)
+//   void session::on_app_request_bergedge_callback(::object * pobject)
 //   {
 //
 //      if (&App(pobject) != nullptr)
@@ -1282,7 +1282,7 @@ namespace user
 
 #elif defined(WINDOWS_DESKTOP)
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          estatus = psystem->do_factory_exchange("windowing", "win32");
 
@@ -1317,7 +1317,7 @@ namespace user
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       auto pnode = psystem->node();
 

@@ -21,10 +21,10 @@ namespace windows
 
 
 
-   ::e_status shell_open::initialize(::context_object * pcontextobject)
+   ::e_status shell_open::initialize(::object * pobject)
    {
 
-      auto estatus = ::shell_open::initialize(pcontextobject);
+      auto estatus = ::shell_open::initialize(pobject);
 
       if (!estatus)
       {

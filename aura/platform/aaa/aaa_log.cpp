@@ -656,7 +656,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
                while (::task_get_run())
                {
 
-                  load_flags(pcontext->local_ini());
+                  load_flags(pcontext->m_pcontext->local_ini());
 
                   //task_sleep(10_s);
 
@@ -705,7 +705,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //}
 
 
-   void log::finalize()
+   ::e_status log::finalize()
    {
 
       synchronization_lock synchronizationlock(mutex());

@@ -58,7 +58,7 @@ namespace draw2d_direct2d
    }
 
 
-   printer::document_properties::document_properties(::context_object * pcontextobject) :
+   printer::document_properties::document_properties(::object * pobject) :
       ::object(pobject)
    {
       m_hdc = nullptr;

@@ -25,7 +25,7 @@
 //#undef App
 
 
-//#define get_system() (::get_context_system()->m_paquasystem)
+//#define get_system() (psystem->m_paquasystem)
 //#define Sess(pcontextsession) (pcontextsession->m_paquasession)
 //#define App(playered) (*::get_application(playered)->m_paquaapplication)
 

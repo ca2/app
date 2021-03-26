@@ -61,7 +61,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto psystem = get_system();
+               auto psystem = m_psystem->m_paurasystem;
 
                auto imaging = psystem->imaging();
 

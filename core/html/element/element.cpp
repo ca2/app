@@ -919,7 +919,7 @@ namespace html
             else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
                     ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
-               auto psystem = get_system();
+               auto psystem = m_psystem->m_paurasystem;
                strUrl = psystem->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
             }
             else
@@ -930,7 +930,7 @@ namespace html
             auto pcontext = get_context();
 
 
-            pstylesheet->parse(pdata, pcontext->file().as_string(strUrl));
+            pstylesheet->parse(pdata, pcontext->m_pcontext->file().as_string(strUrl));
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
@@ -965,7 +965,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(pdata, pcontext->file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, pcontext->m_pcontext->file().as_string(m_pparent->get_tag()->get_attr_value("href")));
 
             pdata->m_pcoredata->m_stylesheeta.add(pstylesheet);
 
@@ -1760,7 +1760,7 @@ namespace html
    //void element::nextstyle(::user::style_context * pcontext)
    //{
 
-   //   pcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;
+   //   pcontext->m_pcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;
 
    //}
 

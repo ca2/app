@@ -43,7 +43,7 @@ bool font_department::is_initialized()
 }
 
 
-::e_status font_department::initialize(::context_object * pcontextobject)
+::e_status font_department::initialize(::object * pobject)
 {
 
    if (is_initialized())
@@ -108,17 +108,17 @@ bool font_department::is_initialized()
 }
 
 
-void font_department::finalize()
+::e_status font_department::finalize()
 {
 
-   if (!is_initialized())
+   if (is_initialized())
    {
 
-      return;
+      m_bInitialized = false;
 
    }
 
-   m_bInitialized = false;
+   return ::success;
 
 }
 

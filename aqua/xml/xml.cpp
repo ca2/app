@@ -93,8 +93,10 @@ namespace xml
    __pointer(::xml::document) xml::create_document()
    { 
       
-      return ::__create_new < ::xml::document >(); 
-   
+      auto pxmldocument = __create_new < ::xml::document >(); 
+
+      return pxmldocument;
+
    }
 
 

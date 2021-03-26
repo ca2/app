@@ -58,7 +58,7 @@ namespace sockets
       string m_strTlsHostName;
       
       struct output :
-         virtual public context_object
+         virtual public object
       {
          
          
@@ -156,7 +156,7 @@ namespace sockets
       /** Constructor with standard values on input/output buffers. */
       tcp_socket();
       /** Constructor with custom values for i/o buffer.
-      \lparam h base_socket_handler context_object
+      \lparam h base_socket_handler object
       \lparam isize Input buffer size_i32
       \lparam osize Output buffer size_i32 */
       tcp_socket(memsize isize,memsize osize);

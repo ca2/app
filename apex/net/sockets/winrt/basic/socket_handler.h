@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          ~socket_handler();
 
-         /** get ::mutex context_object for threadsafe operations. */
+         /** get ::mutex object for threadsafe operations. */
          ::synchronization_object & GetMutex() const;
 
          /** add socket instance to socket ::map. Removal is always automatic. */

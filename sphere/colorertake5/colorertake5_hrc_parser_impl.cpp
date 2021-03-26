@@ -6,7 +6,7 @@ namespace colorertake5
 {
 
 
-   HRCParserImpl::HRCParserImpl(::context_object * pcontextobject) :
+   HRCParserImpl::HRCParserImpl(::object * pobject) :
       object(pobject),
       fileTypeHash(pobject),
       schemeHash(pobject),
@@ -60,7 +60,7 @@ namespace colorertake5
       }
       thisType->inputSourceLoading = true;
 
-      thisType->m_strSource = pcontext->file().as_string(thisType->m_strSourceLocation);
+      thisType->m_strSource = pcontext->m_pcontext->file().as_string(thisType->m_strSourceLocation);
 
       try
       {
@@ -296,7 +296,7 @@ namespace colorertake5
             };
             type->m_strSourceLocation = m_strCurrentSourceLocation.sibling(locationLink);
             /*type->m_strSource =
-            pcontext->file().as_string(
+            pcontext->m_pcontext->file().as_string(
             type->m_strSourceLocation);*/
 
          };

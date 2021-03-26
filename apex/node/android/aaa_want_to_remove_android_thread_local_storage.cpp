@@ -183,9 +183,9 @@ void CLASS_DECL_APEX __term_local_data(HINSTANCE hInst, bool bAll)
       __thread_data->DeleteValues(hInst, bAll);
 }*/
 
-// This context_object count is needed to support Win32s, such that the
+// This object count is needed to support Win32s, such that the
 // thread-local and process-local data is not destroyed prematurely.
-// It is basically a context_object count of the number of processes that
+// It is basically a object count of the number of processes that
 // have attached to the ca2 API DLL.
 
 long gen_TlsRef = 0;

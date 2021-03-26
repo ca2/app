@@ -25,10 +25,10 @@ namespace aqua
    }
 
 
-   ::e_status multimedia::initialize_multimedia(::context_object* pcontextobject)
+   ::e_status multimedia::initialize_multimedia(::object * pobject)
    {
 
-      auto estatus = initialize(pcontextobject);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {
@@ -186,7 +186,7 @@ CLASS_DECL_AQUA ::aqua::multimedia * get_new_multimedia()
 }
 
 
-//CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::context_object * pcontextobject)
+//CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::object * pobject)
 //{
 //
 //   return get_system()->defer_get_multimedia();

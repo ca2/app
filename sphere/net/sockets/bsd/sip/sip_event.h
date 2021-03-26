@@ -16,7 +16,7 @@ namespace sockets
 
       e_event     m_eevent;
 
-      sip_event(::context_object * pcontextobject);
+      sip_event(::object * pobject);
    };
 
 

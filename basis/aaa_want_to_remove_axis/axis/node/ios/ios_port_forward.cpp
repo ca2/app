@@ -6,7 +6,7 @@ namespace ios
 {
 
 
-   port_forward::port_forward(::context_object * pcontextobject) :
+   port_forward::port_forward(::object * pobject) :
       ::object(pobject)
    {
 

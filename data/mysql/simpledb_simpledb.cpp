@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(::context_object * pcontextobject) :
+   simpledb::simpledb(::object * pobject) :
       ::object(pobject),
       ::apex::department(pobject)
    {

@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(::context_object * pcontextobject) :
+   pane_view::pane_view(::object * pobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),

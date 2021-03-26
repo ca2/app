@@ -471,10 +471,10 @@ namespace linux
    }
 
 
-   ::e_status copydesk::initialize(::context_object * pcontextobject)
+   ::e_status copydesk::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pcontextobject);
+      auto estatus = ::user::copydesk::initialize(pobject);
 
       if(!estatus)
       {
@@ -488,7 +488,7 @@ namespace linux
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
       ::user::copydesk::finalize();

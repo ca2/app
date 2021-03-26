@@ -13,7 +13,7 @@
 
 
 class CLASS_DECL_APEX service :
-   virtual public ::context_object
+   virtual public ::object
 {
 public:
 

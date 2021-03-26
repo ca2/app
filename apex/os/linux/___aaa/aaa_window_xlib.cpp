@@ -52,7 +52,7 @@ namespace xlib
    }
 
 
-   void buffer::finalize()
+   ::e_status buffer::finalize()
    {
 
       synchronization_lock synchronizationlock(mutex());

@@ -31,12 +31,12 @@ namespace apex
 //#endif
 
 
-      ::aqua::session* m_paquasession;
-      ::aura::session* m_paurasession;
-      ::axis::session* m_paxissession;
-      ::base::session* m_pbasesession;
-      ::bred::session* m_pbredsession;
-      ::core::session* m_pcoresession;
+      //::aqua::session* m_paquasession;
+      //::aura::session* m_paurasession;
+      //::axis::session* m_paxissession;
+      //::base::session* m_pbasesession;
+      //::bred::session* m_pbredsession;
+      //::core::session* m_pcoresession;
 
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
@@ -128,7 +128,7 @@ namespace apex
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      virtual ::e_status     initialize(::object * pobject) override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -225,7 +225,7 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -272,6 +272,8 @@ namespace apex
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
       ::apex::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
@@ -355,7 +357,7 @@ namespace apex
 
 
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
@@ -371,7 +373,7 @@ namespace apex
       //virtual void term3() override;
       //virtual bool finalize_filemanager();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
@@ -412,7 +414,7 @@ namespace apex
 
       //virtual void will_use_view_hint(::id idView);
 
-      //virtual void on_app_request_bergedge_callback(::context_object * pcontextobject);
+      //virtual void on_app_request_bergedge_callback(::object * pobject);
 
       // apex commented
       //virtual ::write_text::font_list* get_single_column_font_list();
@@ -420,7 +422,7 @@ namespace apex
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
 
-      virtual ::e_status do_request(::create* pcreate) override;
+      virtual void do_request(::create* pcreate) override;
 
       // apex commented
       //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
@@ -428,11 +430,11 @@ namespace apex
       // apex commented
       //virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
 
-      virtual void request_topic_file(::payload& varQuery);
+      //virtual void request_topic_file(::payload& varQuery);
 
-      virtual void request_topic_file();
+      //virtual void request_topic_file();
 
-      virtual void check_topic_file_change();
+      //virtual void check_topic_file_change();
 
 
       void launch_app(const char* psz);

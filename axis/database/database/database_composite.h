@@ -20,21 +20,27 @@ namespace database
       composite();
       virtual ~composite();
 
-      virtual void start_transaction() {};
-      virtual void commit_transaction() {};
-      virtual void rollback_transaction() {};
+      
+      virtual void start_transaction();
+      virtual void commit_transaction();
+      virtual void rollback_transaction();
+
 
    public:
+      
+      
       //virtual __pointer(class dataset) dataset() = 0;
 
-      virtual bool isActive() { return m_pdatabase->isActive(); }
+
+      virtual bool isActive();
 
 
-      virtual ::e_status     init();
-      virtual e_connection connection_status() { return m_pdatabase->connection_status(); }
-      virtual ::e_status     set_error_code(int iErrorCode);
+      virtual ::e_status init();
+      virtual e_connection connection_status(); 
+      virtual ::e_status set_error_code(int iErrorCode);
       virtual string get_error_message();
-      virtual void* get_handle() = 0;
+      virtual void* get_handle();
+
 
       virtual ::e_status     connect(
          const char* name,
@@ -45,19 +51,24 @@ namespace database
          const char* sckt = nullptr,
          u64 uConnectionFlags = 0);
 
+
       virtual ::e_status     _connect();
+
 
       virtual void disconnect();
       virtual ::e_status     reset();
       virtual ::e_status     create();
       virtual ::e_status     drop();
 
+
       //virtual string escape(const char * psz);
+
 
       //inline __pointer(class transaction) transaction();
 
 
       virtual ::count get_affected_rows_count();
+
 
       virtual bool in_transaction() { return m_pdatabase->in_transaction(); };
 
@@ -66,7 +77,8 @@ namespace database
 
 
       virtual __pointer(result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
-      inline auto query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
+      virtual __pointer(result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+
 
       virtual ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) override;
      
@@ -86,8 +98,6 @@ namespace database
       virtual bool memory_query_item(get_memory getmemory, const char* pszQuery) override;
 
 
-
-
       virtual string escape(const char* psz);
 
       virtual string error1(const char* pszPrefix = nullptr);
@@ -99,7 +109,7 @@ namespace database
    };
 
 
-
-
 } // namespace database
+
+
 

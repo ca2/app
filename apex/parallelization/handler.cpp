@@ -66,13 +66,20 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::set_finish_composites(::property_object * pcontextobjectFinish)
+//::e_status handler_manager::set_finish_composites(::property_object * pcontextobjectFinish)
+//{
+//
+//   return ::object::set_finish_composites(pcontextobjectFinish);
+//
+//}
+
+
+::e_status handler_manager::finish_composites()
 {
 
-   return ::object::set_finish_composites(pcontextobjectFinish);
+   return ::object::finish_composites();
 
 }
-
 
 
 ::e_status handler_manager::async(const ::routine & routine)

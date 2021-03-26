@@ -9,7 +9,7 @@ class virtual_memory;
 
 
 class CLASS_DECL_ACME memory_container :
-   virtual public ::matter
+   virtual public ::object
 {
 protected:
 

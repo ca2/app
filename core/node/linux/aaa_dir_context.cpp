@@ -81,10 +81,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -118,13 +118,13 @@ namespace linux
 
       m_pdirsystem->m_pathCa2 = pathCa2;
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
       auto pxml = psystem->xml();
 
       auto pdocument= pxml->create_document();
 
-      pdocument->load(pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+      pdocument->load(pcontext->m_pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 
       if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -248,7 +248,7 @@ namespace linux
 
             ::file::listing straDir;
 
-            pcontext->dir().ls_dir(straDir, listing.m_pathFinal);
+            pcontext->m_pcontext->dir().ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -277,7 +277,7 @@ namespace linux
 
                listing.m_pathFinal = strDir;
 
-               pcontext->dir().ls(listing);
+               pcontext->m_pcontext->dir().ls(listing);
 
 
             }
@@ -291,7 +291,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            pcontext->dir().ls_file(listing, listing.m_pathFinal);
+            pcontext->m_pcontext->dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -550,7 +550,7 @@ namespace linux
                try
                {
 
-                  pcontext->file().del(str);
+                  pcontext->m_pcontext->file().del(str);
 
                }
                catch(...)
@@ -565,7 +565,7 @@ namespace linux
                try
                {
 
-                  pcontext->file().del(str);
+                  pcontext->m_pcontext->file().del(str);
 
                }
                catch(...)
@@ -696,7 +696,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::context_object * pcontextobject)
+   ::file::path dir_context::userquicklaunch(::object * pobject)
    {
 
       ::file::path path;
@@ -708,7 +708,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::context_object * pcontextobject)
+   ::file::path dir_context::userprograms(::object * pobject)
    {
 
       ::file::path path;

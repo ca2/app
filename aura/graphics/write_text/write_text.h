@@ -24,7 +24,7 @@ namespace write_text
       class font_department * fonts();
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
       virtual void term() override;
 
 

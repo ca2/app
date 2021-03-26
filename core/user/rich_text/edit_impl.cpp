@@ -23,10 +23,10 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize(::context_object * pcontextobject)
+      ::e_status edit_impl::initialize(::object * pobject)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pcontextobject);
+         auto estatus = ::user::rich_text::edit::initialize(pobject);
 
          if (!estatus)
          {

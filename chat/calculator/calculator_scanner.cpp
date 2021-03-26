@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   scanner::scanner(::context_object * pcontextobject) :
+   scanner::scanner(::object * pobject) :
       ::object(pobject)
    {
       m_ptoken    = nullptr;

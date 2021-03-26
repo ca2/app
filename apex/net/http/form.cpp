@@ -263,7 +263,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!get_context()->file().exists(strTempFile))
+                        if (!m_pcontext->m_pcontext->file().exists(strTempFile))
                         {
 
                            break;
@@ -272,7 +272,7 @@ namespace http
 
                         string strMessage;
 
-                        auto psystem = get_system();
+                        auto psystem = m_psystem->m_papexsystem;
 
                         strMessage = psystem->datetime().international().get_gmt_date_time() + " " + strTempFile;
 
@@ -282,7 +282,7 @@ namespace http
 
                      }
 
-                     file_pointer spfile(get_context()->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(m_pcontext->m_pcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
                      //synchronizationlock.unlock();
 

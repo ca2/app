@@ -565,6 +565,8 @@ namespace user
 
             m_bFirstShown = true;
 
+            auto psystem = m_psystem->m_paurasystem;
+
             psystem->set_modified(id_font_enumeration);
 
             //fork([this]()

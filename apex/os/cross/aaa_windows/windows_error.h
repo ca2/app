@@ -4578,7 +4578,7 @@
 //
 // MessageText:
 //
-// An attempt was made to context_object a token that does not exist.
+// An attempt was made to object a token that does not exist.
 //
 #define ERROR_NO_TOKEN                   1008L
 
@@ -9305,7 +9305,7 @@
 //
 // MessageText:
 //
-// A null context_object pointer was passed to the stub.
+// A null object pointer was passed to the stub.
 //
 #define RPC_X_NULL_REF_POINTER           1780L
 
@@ -15670,7 +15670,7 @@
 //
 // MessageText:
 //
-// A context_object to an attribute that is not defined in the schema occurred.
+// A object to an attribute that is not defined in the schema occurred.
 //
 #define ERROR_DS_ATT_NOT_DEF_IN_SCHEMA   8303L
 
@@ -16202,7 +16202,7 @@
 //
 // MessageText:
 //
-// The cross context_object for the specified naming action_context could not be found.
+// The cross object for the specified naming action_context could not be found.
 //
 #define ERROR_DS_NO_CROSSREF_FOR_NC      8363L
 
@@ -16292,7 +16292,7 @@
 //
 // MessageText:
 //
-// The name context_object is invalid.
+// The name object is invalid.
 //
 #define ERROR_DS_NAME_REFERENCE_INVALID  8373L
 
@@ -16301,7 +16301,7 @@
 //
 // MessageText:
 //
-// A cross context_object already exists.
+// A cross object already exists.
 //
 #define ERROR_DS_CROSS_REF_EXISTS        8374L
 
@@ -16310,7 +16310,7 @@
 //
 // MessageText:
 //
-// It is not permitted to delete a master cross context_object.
+// It is not permitted to delete a master cross object.
 //
 #define ERROR_DS_CANT_DEL_MASTER_CROSSREF 8375L
 
@@ -16589,7 +16589,7 @@
 //
 // MessageText:
 //
-// No superior context_object has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
+// No superior object has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
 //
 #define ERROR_DS_MISSING_SUPREF          8406L
 
@@ -16643,7 +16643,7 @@
 //
 // MessageText:
 //
-// The specified naming action_context is missing a cross context_object.
+// The specified naming action_context is missing a cross object.
 //
 #define ERROR_DS_NCNAME_MISSING_CR_REF   8412L
 
@@ -16967,7 +16967,7 @@
 //
 // MessageText:
 //
-// The replication context_object information for the target server already exists.
+// The replication object information for the target server already exists.
 //
 #define ERROR_DS_DRA_REF_ALREADY_EXISTS  8448L
 
@@ -16976,7 +16976,7 @@
 //
 // MessageText:
 //
-// The replication context_object information for the target server does not exist.
+// The replication object information for the target server does not exist.
 //
 #define ERROR_DS_DRA_REF_NOT_FOUND       8449L
 
@@ -18114,7 +18114,7 @@
 //
 // MessageText:
 //
-// Unable to find a valid security descriptor context_object domain for this partition.
+// Unable to find a valid security descriptor object domain for this partition.
 //
 #define ERROR_DS_NO_REF_DOMAIN           8575L
 
@@ -18348,7 +18348,7 @@
 //
 // MessageText:
 //
-// The remote create cross context_object operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
+// The remote create cross object operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
 //
 #define ERROR_DS_REMOTE_CROSSREF_OP_FAILED 8601L
 
@@ -18357,7 +18357,7 @@
 //
 // MessageText:
 //
-// A cross context_object is in use locally with the same name.
+// A cross object is in use locally with the same name.
 //
 #define ERROR_DS_CROSS_REF_BUSY          8602L
 
@@ -20191,7 +20191,7 @@
 //
 // MessageText:
 //
-// File handle context_object is no longer available.
+// File handle object is no longer available.
 //
 #define WSAESTALE                        10070L
 
@@ -22191,7 +22191,7 @@
 //
 // MessageText:
 //
-// The manifest contains a context_object to an invalid URI.
+// The manifest contains a object to an invalid URI.
 //
 #define ERROR_SXS_INVALID_XML_NAMESPACE_URI 14014L
 
@@ -22200,7 +22200,7 @@
 //
 // MessageText:
 //
-// The appliCAtion manifest contains a context_object to a dependent assembly which is not installed
+// The appliCAtion manifest contains a object to a dependent assembly which is not installed
 //
 #define ERROR_SXS_ROOT_MANIFEST_DEPENDENCY_NOT_INSTALLED 14015L
 
@@ -22209,7 +22209,7 @@
 //
 // MessageText:
 //
-// The manifest for an assembly used by the appliCAtion has a context_object to a dependent assembly which is not installed
+// The manifest for an assembly used by the appliCAtion has a object to a dependent assembly which is not installed
 //
 #define ERROR_SXS_LEAF_MANIFEST_DEPENDENCY_NOT_INSTALLED 14016L
 
@@ -22857,7 +22857,7 @@
 //
 // MessageText:
 //
-// A kernel mode component is releasing a context_object on an activation action_context.
+// A kernel mode component is releasing a object on an activation action_context.
 //
 #define ERROR_SXS_RELEASE_ACTIVATION_CONTEXT 14088L
 
@@ -23341,7 +23341,7 @@
 //
 // MessageText:
 //
-// The description string for parameter context_object (%1) could not be found.
+// The description string for parameter object (%1) could not be found.
 //
 #define ERROR_EVT_UNRESOLVED_PARAMETER_INSERT 15030L
 
@@ -27613,7 +27613,7 @@
 //
 // MessageText:
 //
-// Invalid forward context_object, or context_object to uncompiled type.
+// Invalid forward object, or object to uncompiled type.
 //
 #define TYPE_E_INVALIDSTATE              _HRESULT_TYPEDEF_(0x80028029L)
 
@@ -31447,7 +31447,7 @@
 //
 // MessageText:
 //
-// A memory context_object CAused a data alignment fault.
+// A memory object CAused a data alignment fault.
 //
 #define CERTSRV_E_ALIGNMENT_FAULT        _HRESULT_TYPEDEF_(0x80094010L)
 
@@ -31834,7 +31834,7 @@
 //
 // MessageText:
 //
-// Tried to context_object a part of the file outside the proper range.
+// Tried to object a part of the file outside the proper range.
 //
 #define MSSIPOTF_E_OUTOFMEMRANGE         _HRESULT_TYPEDEF_(0x80097001L)
 
@@ -32698,7 +32698,7 @@
 //
 // MessageText:
 //
-// The context_object string supplied for this interface device is invalid.
+// The object string supplied for this interface device is invalid.
 //
 #define SPAPI_E_INVALID_REFERENCE_STRING _HRESULT_TYPEDEF_(0x800F021FL)
 
@@ -35397,7 +35397,7 @@
 //
 // MessageText:
 //
-// An object being referenced has reach the maximum context_object count already and can't be context_object further.
+// An object being referenced has reach the maximum object count already and can't be object further.
 //
 #define ERROR_GRAPHICS_TOO_MANY_REFERENCES _HRESULT_TYPEDEF_(0xC0262103L)
 

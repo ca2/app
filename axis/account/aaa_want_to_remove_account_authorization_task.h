@@ -40,7 +40,7 @@ namespace account
       
       
       
-      authorization_task(::context_object * pcontextobject);
+      authorization_task(::object * pobject);
       virtual ~authorization_task();
       
 

@@ -12,7 +12,7 @@
 
 
 class CLASS_DECL_APEX create :
-   virtual public ::context_object
+   virtual public ::object
 {
 public:
 

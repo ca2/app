@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,

@@ -64,7 +64,7 @@ namespace install
    }
 
 
-   plugin::plugin(::context_object * pcontextobject) :
+   plugin::plugin(::object * pobject) :
       ::object(pobject),
       ::simple_ui::style(pobject),
       ::aura::session(pobject),
@@ -375,7 +375,7 @@ namespace install
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(::context_object * pcontextobject) :
+   plugin::thread_start_ca2::thread_start_ca2(::object * pobject) :
       ::object(pobject),
       thread(pobject)
    {
@@ -686,7 +686,7 @@ namespace install
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-                  pcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+                  pcontext->m_pcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
 
                   if(::http::status_succeeded(set["get_status"]))
                      break;
@@ -1406,7 +1406,7 @@ retry_get_prompt:
 
             set["raw_http"] = true;
 
-            strData = pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strData = pcontext->m_pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if(strData.is_empty())
             {
@@ -1550,7 +1550,7 @@ restart:
 
       property_set set;
 
-      while((str = pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = pcontext->m_pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1659,7 +1659,7 @@ restart:
 
 #if !defined(CUBE) && !defined(ANDROID)
 
-::hotplugin::plugin * new_hotplugin(::context_object * pcontextobject)
+::hotplugin::plugin * new_hotplugin(::object * pobject)
 {
    return new ::install::plugin(pobject);
 }

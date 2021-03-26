@@ -28,7 +28,7 @@
          {
 
 
-            frame_005::frame_005(::context_object * pcontextobject) :
+            frame_005::frame_005(::object * pobject) :
                object(pobject),
                frame(pobject),
                m_brushGrip(e_create),

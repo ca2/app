@@ -50,10 +50,10 @@ namespace account
    }
 
 
-   ::e_status user::initialize(::context_object * pcontextobject)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

@@ -17,7 +17,10 @@ namespace bred
       void common_construct();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
+
+
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
 
       //inline ::bred::user* user() { return m_puser ? m_puser->m_pbreduser : nullptr; }

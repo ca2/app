@@ -68,7 +68,7 @@ public:
 
    virtual bool on_timer();
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
    //bool impl_start();
    //bool impl_restart();

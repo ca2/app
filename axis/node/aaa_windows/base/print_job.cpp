@@ -18,7 +18,7 @@ namespace windows
 
    }
 
-   //void print_job::construct_print_job(::context_object * pcontextobject)
+   //void print_job::construct_print_job(::object * pobject)
    //{
 
    //   construct_user_job(pobject);

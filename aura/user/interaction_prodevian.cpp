@@ -294,7 +294,7 @@ void prodevian::term_thread()
 }
 
 
-void prodevian::finalize()
+::e_status prodevian::finalize()
 {
 
    m_evUpdateScreen.SetEvent();
@@ -305,7 +305,9 @@ void prodevian::finalize()
 
    m_synchronizationa.clear();
    
-   ::thread::finalize();
+   auto estatus = ::thread::finalize();
+
+   return estatus;
 
 }
 

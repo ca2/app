@@ -8,7 +8,7 @@ i32 g_idbchange;
 #define new ACME_NEW
 
 
-db_server::db_server(::context_object * pcontextobject) :
+db_server::db_server(::object * pobject) :
    ::object(pobject),
    server(pobject)
 {
@@ -121,23 +121,23 @@ bool db_server::initialize()
    if (papplication->is_system())
    {
 
-      str = pcontext->dir().appdata() / "system.sqlite";
+      str = pcontext->m_pcontext->dir().appdata() / "system.sqlite";
 
    }
    else if (papplication->is_session())
    {
 
-      str = pcontext->dir().appdata() / "session.sqlite";
+      str = pcontext->m_pcontext->dir().appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = pcontext->dir().appdata() / "app.sqlite";
+      str = pcontext->m_pcontext->dir().appdata() / "app.sqlite";
 
    }
 
-   if(!pcontext->dir().mk(str.folder()))
+   if(!pcontext->m_pcontext->dir().mk(str.folder()))
    {
 
       return false;

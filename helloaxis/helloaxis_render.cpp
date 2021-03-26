@@ -16,7 +16,7 @@ namespace helloaxis
 
 
 
-   render::render(::context_object * pcontextobject) :
+   render::render(::object * pobject) :
       object(pobject),
       thread(pobject),
       ::helloaura::render(pobject)

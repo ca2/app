@@ -218,7 +218,7 @@ namespace user
 
 #endif
 
-      set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
+      //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
       ::set_thread_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
 
@@ -734,53 +734,70 @@ namespace user
    }
 
 
-   ::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
+   ::e_status thread::finish_composites()
    {
 
-      auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+      auto estatus = ::channel::finish_composites();
 
-      if (estatus == error_pending)
-      {
-
-         return estatus;
-
-      }
-
-      if (m_pimpl)
-      {
-
-         auto puserinteraction = m_pimpl->m_puserinteraction;
-
-         if (puserinteraction)
-         {
-
-            if (!m_pimpl->m_bDestroying)
-            {
-
-               puserinteraction->DestroyWindow();
-
-            }
-
-         }
-
-         return error_pending;
-
-      }
-
-      if (task_active())
-      {
-
-         set_finish_bit();
-
-         post_quit();
-
-         return error_pending;
-
-      }
-
-      return ::success;
+      return estatus;
 
    }
+
+
+   void thread::enumerate_composite(matter_array& a)
+   {
+
+
+   }
+
+
+   //::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
+   //{
+
+   //   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+
+   //   if (estatus == error_pending)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   if (m_pimpl)
+   //   {
+
+   //      auto puserinteraction = m_pimpl->m_puserinteraction;
+
+   //      if (puserinteraction)
+   //      {
+
+   //         if (!m_pimpl->m_bDestroying)
+   //         {
+
+   //            puserinteraction->DestroyWindow();
+
+   //         }
+
+   //      }
+
+   //      return error_pending;
+
+   //   }
+
+   //   if (task_active())
+   //   {
+
+   //      set_finish_bit();
+
+   //      post_quit();
+
+   //      return error_pending;
+
+   //   }
+
+   //   return ::success;
+
+   //}
 
 
    ::e_status thread::run()
@@ -1005,15 +1022,15 @@ namespace user
    }
 
 
-   ::e_status thread::finish(::property_object * pcontextobjectFinish)
+   ::e_status thread::finish()
    {
 
-      return ::thread::finish(pcontextobjectFinish);
+      return ::thread::finish();
 
    }
 
 
-   void thread::finalize()
+   ::e_status thread::finalize()
    {
 
       synchronization_lock synchronizationlock(mutex());
@@ -1050,6 +1067,8 @@ namespace user
          ::thread::finalize();
 
       }
+
+      return ::success;
 
    }
 

@@ -27,7 +27,7 @@ public:
    virtual ~imaging();
 
 
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual void pixelate_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 xSrc, i32 ySrc, i32 wSrc, i32 iSize);

@@ -85,7 +85,7 @@ namespace draw2d_quartz2d
    void object::dump(dump_context & dumpcontext) const
    {
 
-      ::context_object::dump(dumpcontext);
+      ::object::dump(dumpcontext);
       
    }
    
@@ -93,7 +93,7 @@ namespace draw2d_quartz2d
    void object::assert_valid() const
    {
 
-      ::context_object::assert_valid();
+      ::object::assert_valid();
 
    }
    

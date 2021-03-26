@@ -25,7 +25,7 @@ namespace userstack
 
 
 
-      pane_view(::context_object * pcontextobject);
+      pane_view(::object * pobject);
       virtual ~pane_view();
 
       using ::user::tab_view::on_change_cur_sel;

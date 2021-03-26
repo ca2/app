@@ -33,7 +33,7 @@ namespace draw2d
       virtual ~draw2d();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status process_init() override;
 
@@ -42,7 +42,11 @@ namespace draw2d
 
       virtual void term() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
+
+
+      __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
+
 
 
       virtual class api & api();

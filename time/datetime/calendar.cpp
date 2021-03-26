@@ -28,7 +28,7 @@ namespace datetime
       }
 
 
-      ::e_status calendar::initialize(::context_object * pcontextobject)
+      ::e_status calendar::initialize(::object * pobject)
       {
 
          return ::success;

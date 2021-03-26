@@ -1615,7 +1615,7 @@ namespace url
 
          ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
 
-         get_context()->file().load_lines(m_straPublicDomainExtension, pathPublicDomainExtensionList);
+         m_pcontext->m_pcontext->file().load_lines(m_straPublicDomainExtension, pathPublicDomainExtensionList);
 
          m_straPublicDomainExtension.trim();
 

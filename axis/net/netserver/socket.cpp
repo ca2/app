@@ -124,7 +124,7 @@ namespace netserver
       if (key == __id(location) && straValue.get_count() >= 1)
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
          
          for (int i = 0; i < straValue.get_size(); i++)
          {

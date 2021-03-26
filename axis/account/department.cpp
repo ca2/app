@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "system_storage.h"
 #include "network_authenticator.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace account
@@ -43,7 +44,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return ::dir::system() / "credential_storage";
+      return m_psystem->m_pacmedir->system() / "credential_storage";
 
    }
 
@@ -235,10 +236,10 @@ namespace account
 //   }
 
 
-   ::e_status department::initialize(::context_object * pcontextobject)
+   ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {

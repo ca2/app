@@ -13,7 +13,7 @@ namespace music
       {
          
 
-         sequence::sequence(::context_object * pcontextobject) :
+         sequence::sequence(::object * pobject) :
             ::object(pobject),
             ::music::midi::object(pobject),
             ::ikaraoke::karaoke(pobject),

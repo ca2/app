@@ -34,12 +34,12 @@ namespace base
       virtual ~user();
 
 
-      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
-      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
-      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
 
@@ -74,7 +74,7 @@ namespace base
 
       virtual ::e_status initialize1_experience();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
 

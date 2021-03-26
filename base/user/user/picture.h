@@ -12,7 +12,7 @@ namespace user
 
 
       class CLASS_DECL_BASE picture_impl :
-         virtual public context_object
+         virtual public object
       {
       public:
 

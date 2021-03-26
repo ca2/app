@@ -22,7 +22,7 @@ namespace core
       void common_construct();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       inline ::core::user* user();

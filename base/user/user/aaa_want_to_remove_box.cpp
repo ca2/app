@@ -25,10 +25,10 @@ namespace user
    }
 
 
-   ::e_status box::initialize(::context_object * pcontextobject)
+   ::e_status box::initialize(::object * pobject)
    {
 
-      auto estatus = interaction::initialize(pcontextobject);
+      auto estatus = interaction::initialize(pobject);
 
       if (!estatus)
       {

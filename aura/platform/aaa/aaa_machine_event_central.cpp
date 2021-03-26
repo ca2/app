@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::context_object * pcontextobject)
+::e_status machine_event_central::initialize(::object * pobject)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ machine_event_central::~machine_event_central()
 
    }
 
-   auto estatus = ::object::initialize(pcontextobject);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {

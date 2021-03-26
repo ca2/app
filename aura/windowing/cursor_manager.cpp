@@ -91,7 +91,7 @@ namespace windowing
    }
 
 
-   void cursor_manager::finalize()
+   ::e_status cursor_manager::finalize()
    {
 
       for (auto & pcursor : m_cursormap.values())
@@ -103,7 +103,9 @@ namespace windowing
 
       m_cursormap.remove_all();
 
-      ::matter::finalize();
+      auto estatus = ::matter::finalize();
+
+      return estatus;
 
    }
 
@@ -208,7 +210,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
@@ -258,7 +260,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->file().as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(pcontext->m_pcontext->file().as_string(pathDir / "hotspot.txt"));
 
    }
 
@@ -318,7 +320,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      ::file::path pathArrow = pcontext->dir().matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->m_pcontext->dir().matter(pathMatter / "arrow.png");
 
       ::file::path pathFolder = pathArrow.folder();
 

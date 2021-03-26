@@ -121,7 +121,7 @@ namespace user
       virtual bool _001OnControlKillFocus(::user::interaction * pinteraction);
 
 
-      //        ::user::form_window(::context_object * pcontextobject);
+      //        ::user::form_window(::object * pobject);
       //    virtual ~::user::form_window();
 
       //virtual void install_message_routing(::channel * pchannel);
@@ -129,7 +129,7 @@ namespace user
       //      DECL_GEN_SIGNAL(on_message_create);
 
 
-      //      ::user::form_window(::context_object * pcontextobject);
+      //      ::user::form_window(::object * pobject);
 
       //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       //      virtual void on_control_event(::user::control_event * pevent);

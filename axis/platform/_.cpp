@@ -9,7 +9,7 @@
 
 #endif
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
 //extern ::mutex * psystem->m_mutexLibrary;
 
@@ -211,7 +211,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //}
 
 
-//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
@@ -226,7 +226,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //}
 //
 //
-//CLASS_DECL_AXIS string_map < __pointer(::apex::library) >& __library()
+//CLASS_DECL_AXIS string_map < __pointer(::acme::library) >& __library()
 //{
 //
 //   return psystem->m_mapLibrary;
@@ -254,7 +254,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //}
 //
 //
-//CLASS_DECL_AXIS::apex::library& get_library(const char* psz)
+//CLASS_DECL_AXIS::acme::library& get_library(const char* psz)
 //{
 //
 //   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
@@ -274,7 +274,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //}
 //
 //
-//CLASS_DECL_AXIS void register_library(const char* psz, ::apex::library* plibrary)
+//CLASS_DECL_AXIS void register_library(const char* psz, ::acme::library* plibrary)
 //{
 //
 //   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
@@ -510,12 +510,12 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //
 //   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
 //
-//   __pointer(::apex::library)& plibrary = psystem->m_mapLibrary[strLibrary];
+//   __pointer(::acme::library)& plibrary = psystem->m_mapLibrary[strLibrary];
 //
 //   if (!plibrary)
 //   {
 //
-//      plibrary = new ::apex::library();
+//      plibrary = new ::acme::library();
 //
 //   }
 //

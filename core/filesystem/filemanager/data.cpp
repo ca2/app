@@ -69,10 +69,10 @@ namespace filemanager
    }
 
 
-   ::e_status data::initialize_filemanager_data(::context_object * pcontextobject)
+   ::e_status data::initialize_filemanager_data(::object * pobject)
    {
 
-      auto estatus = ::data::data::initialize(pcontextobject);
+      auto estatus = ::data::data::initialize(pobject);
 
       if (!estatus)
       {
@@ -290,7 +290,7 @@ namespace filemanager
 
          }
 
-         //pcontext->dir().mk(strPath);
+         //pcontext->m_pcontext->dir().mk(strPath);
 
          if (papplication->dir().is(strPath))
          {

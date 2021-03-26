@@ -220,7 +220,7 @@ namespace aura
    }
 
 
-   void timer_array::finalize()
+   ::e_status timer_array::finalize()
    {
 
       m_bOk = false;

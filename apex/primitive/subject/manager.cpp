@@ -74,7 +74,7 @@ namespace subject
 
       //auto pnode = Node;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -262,12 +262,14 @@ namespace subject
 //   }
 
 
-   void manager::finalize()
+   ::e_status manager::finalize()
    {
 
       property_object::finalize();
 
       m_pmapSubject.release();
+
+      return ::success;
 
    }
 

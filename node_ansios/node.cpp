@@ -151,7 +151,7 @@ namespace node_ansios
    }
 
 
-   ::e_status node::initialize(::context_object * pcontextobject)
+   ::e_status node::initialize(::object * pobject)
    {
 
       //::node_gnome::g_defer_init();

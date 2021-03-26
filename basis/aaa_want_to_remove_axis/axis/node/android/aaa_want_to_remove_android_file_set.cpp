@@ -6,7 +6,7 @@ namespace android
 {
 
 
-   file_set::file_set(::context_object * pcontextobject) :
+   file_set::file_set(::object * pobject) :
       ::object(pobject),
 	   m_listing(pobject)
    {

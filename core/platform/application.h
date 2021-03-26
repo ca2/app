@@ -16,14 +16,14 @@ namespace core
 
       void common_construct();
 
-      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
-      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session >() : nullptr; }
-      inline ::core::system* get_system() const;
+      inline ::core::application* get_application() const { return m_pcoreapplication; }
+      inline ::core::session* get_session() const { return m_pcoresession; }
+      inline ::core::system* get_system() const { return m_pcoresystem; }
       inline ::core::user* user() const;
 
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
       virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
    };

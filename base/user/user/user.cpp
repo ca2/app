@@ -3,7 +3,8 @@
 #include "base/user/menu/_menu.h"
 #include "aura/update.h"
 #include "simple_view.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace base
@@ -13,6 +14,7 @@ namespace base
    user::user()
    {
 
+      m_pbaseuser = this;
 
    }
 
@@ -23,10 +25,10 @@ namespace base
    }
 
 
-   ::e_status user::initialize(::context_object * pcontextobject)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::user::initialize(pcontextobject);
+      auto estatus = ::axis::user::initialize(pobject);
 
       if (!estatus)
       {
@@ -35,7 +37,7 @@ namespace base
 
       }
 
-      estatus = ::user::document_manager_container::initialize(pcontextobject);
+      estatus = ::user::document_manager_container::initialize(pobject);
 
       if (!estatus)
       {
@@ -141,7 +143,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = pcontext->file().as_string(pcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -177,7 +179,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -243,7 +245,7 @@ namespace base
    }
 
 
-   void user::finalize()
+   ::e_status user::finalize()
    {
 
       for (auto& style : m_mapUserStyle.values())
@@ -255,7 +257,9 @@ namespace base
 
       m_mapUserStyle.remove_all();
 
-      ::axis::user::finalize();
+      auto estatus = ::axis::user::finalize();
+
+      return estatus;
 
    }
 
@@ -327,7 +331,7 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::context_object * pcontextobject)
+//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
 //   {
 //
 //      if (papp == nullptr)
@@ -356,7 +360,7 @@ namespace base
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::context_object * pcontextobject)
+//   ::user::front_end * GetUfe(::object * pobject)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -650,7 +654,7 @@ namespace base
    //}
 
 
-//   void session::on_app_request_bergedge_callback(::context_object * pcontextobject)
+//   void session::on_app_request_bergedge_callback(::object * pobject)
 //   {
 //
 //      if (&App(pobject) != nullptr)
@@ -1143,7 +1147,7 @@ namespace base
 
       auto pcontext = get_context();
 
-      string strXml = pcontext->file().as_string(varXmlFile);
+      string strXml = pcontext->m_pcontext->file().as_string(varXmlFile);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
 
@@ -1274,7 +1278,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / papplication->m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1287,7 +1291,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1300,7 +1304,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1313,7 +1317,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / "system/experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1348,11 +1352,17 @@ namespace base
 
          }
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_pbasesystem;
 
-         auto plibrary = psystem->get_library(strLibrary, true);
+         string strComponent = "experience";
 
-         if (::is_null(plibrary))
+         string strImplementation = strLibrary;
+
+         strImplementation.begins_eat_ci("experience_");
+
+         auto plibrary = psystem->do_containerized_factory_exchange("experience", strImplementation);
+
+         if (!plibrary)
          {
 
             ERR("Failed to Load %s", strLibrary.c_str());
@@ -1361,7 +1371,7 @@ namespace base
 
          }
 
-         pstyle = plibrary->create_object("user_theme");
+         pstyle = plibrary->m_pfactorymap->new_object < ::user::style >();
 
          if (!pstyle)
          {

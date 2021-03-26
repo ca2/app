@@ -68,9 +68,9 @@ namespace base
 //      __composite(::gpu::approach)                       m_pgpu;
 //
 //      ::mutex                                            m_mutexLibrary;
-//      string_map < __pointer(::apex::library) >          m_mapLibrary;
+//      string_map < __pointer(::acme::library) >          m_mapLibrary;
 //      string_map < PFN_NEW_BASE_LIBRARY >                m_mapNewAuraLibrary;
-//      string_map < __pointer(::apex::library) >          m_mapLibCall;
+//      string_map < __pointer(::acme::library) >          m_mapLibCall;
 //
 //
 //
@@ -185,7 +185,7 @@ namespace base
 //      //double_array                                       m_daLon;
 //      //double_array                                       m_daLat;
 //
-//      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+//      //string_map < __pointer(::acme::library) >          m_mapLibrary;
 //
 //      //string_map < __pointer(openweather_city) >                   m_mapCity;
 //
@@ -236,9 +236,9 @@ namespace base
 //      //bool                                         m_bProcessInitialize;
 //      //bool                                         m_bProcessInitializeResult;
 //
-//      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
+//      strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
 //
-//      __pointer_array(::apex::library)                         m_libraryspa;
+//      __pointer_array(::acme::library)                         m_libraryspa;
 //
 //#ifdef _UWP
 //
@@ -254,7 +254,7 @@ namespace base
 //
       void common_construct();
 //
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 //
 //      virtual ::e_status init();
 //      //virtual ::e_status init_instance() override;
@@ -365,7 +365,7 @@ namespace base
 //
 //
 //
-//      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
+//      //virtual string dir_appmatter_locator(::object * pobject);
 //
 //
 //      virtual void hist_hist(const char * psz);
@@ -536,9 +536,9 @@ namespace base
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
 //
-//      virtual ::apex::library * on_get_library(const char * pszLibrary);
+//      virtual ::acme::library * on_get_library(const char * pszLibrary);
 //
-//      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+//      virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
 //      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -684,7 +684,7 @@ namespace base
 //
 //      virtual void on_end_find_applications_to_cache(stream & os);
 //
-//      virtual void on_map_application_library(::apex::library & library);
+//      virtual void on_map_application_library(::acme::library & library);
 //
 //      //virtual void defer_check_exit();
 //
@@ -769,7 +769,7 @@ namespace base
 //
 //
 //
-//      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+//      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 //
 //
 //      virtual string get_user_language();
@@ -831,7 +831,7 @@ namespace base
 //      ::e_status set_history(::aura::history* phistory);
 //
 //
-//      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
+//      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
 //
 //
 //      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -899,7 +899,7 @@ namespace base
 //
 //      virtual string get_host_location_url();
 //
-//      virtual ::e_status add_view_library(::apex::library* plibrary);
+//      virtual ::e_status add_view_library(::acme::library* plibrary);
 //
 //      //virtual void get_cursor_position(POINT_I32 * ppoint);
 //
@@ -936,7 +936,7 @@ namespace base
 //
 //      //virtual void on_end_find_applications_to_cache(stream& os) override;
 //
-//      //virtual void on_map_application_library(::apex::library& library) override;
+//      //virtual void on_map_application_library(::acme::library& library) override;
 //
 //      //virtual void on_graphics_ready() override;
 //
@@ -983,7 +983,7 @@ namespace base
 //
 //      //virtual bool initialize_native_window1() override;
 //
-//      //virtual ::apex::library* load_library(const char* pszLibrary);
+//      //virtual ::acme::library* load_library(const char* pszLibrary);
 
    };
 
@@ -1085,7 +1085,7 @@ namespace base
 //
 ////
 ////
-////inline ::traits & traits(::context_object * p)
+////inline ::traits & traits(::object * p)
 ////{
 ////
 ////   auto traits = psystem->m_traits[p];

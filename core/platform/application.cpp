@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "core/user/userex/progress.h"
 
 
@@ -27,10 +27,10 @@ namespace core
    }
 
 
-   ::e_status application::initialize(::context_object * pcontextobject)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::application::initialize(pcontextobject);
+      auto estatus = ::base::application::initialize(pobject);
 
       if (!estatus)
       {

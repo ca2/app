@@ -23,7 +23,7 @@ namespace android
    ::e_status dir_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {

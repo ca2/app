@@ -1,7 +1,7 @@
 #include "acme/_start.h"
 #include "apex/_.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "apex/_defer.h"
 
 

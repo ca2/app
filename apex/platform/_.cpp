@@ -9,7 +9,7 @@
 //
 //#endif
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
 //extern ::mutex * psystem->m_mutexLibrary;
 
@@ -188,7 +188,7 @@ int g_iApexRefCount = 0;
 //}
 //
 
-//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewApexLibrary = nullptr;
 
 
@@ -203,7 +203,7 @@ int g_iApexRefCount = 0;
 //}
 //
 //
-//CLASS_DECL_APEX string_map < __composite(::apex::library) >& __library()
+//CLASS_DECL_APEX string_map < __composite(::acme::library) >& __library()
 //{
 //
 //   return psystem->m_mapLibrary;
@@ -231,7 +231,7 @@ int g_iApexRefCount = 0;
 //}
 
 //
-//CLASS_DECL_APEX::apex::library& get_library(const char* psz)
+//CLASS_DECL_APEX::acme::library& get_library(const char* psz)
 //{
 //
 //   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
@@ -251,7 +251,7 @@ int g_iApexRefCount = 0;
 //}
 
 //
-//CLASS_DECL_APEX void register_library(const char* psz, ::apex::library* plibrary)
+//CLASS_DECL_APEX void register_library(const char* psz, ::acme::library* plibrary)
 //{
 //
 //   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
@@ -494,7 +494,7 @@ CLASS_DECL_APEX int get_apex_init()
 //   if (!plibrary)
 //   {
 //
-//      __own(psystem, m_mapLibrary[strLibrary], __new(::apex::library));
+//      __own(psystem, m_mapLibrary[strLibrary], __new(::acme::library));
 //
 //   }
 //
@@ -522,7 +522,7 @@ CLASS_DECL_APEX int get_apex_init()
 
 
 
-//CLASS_DECL_APEX ::context * get_context(::context_object * pcontextobject)
+//CLASS_DECL_APEX ::context * get_context(::object * pobject)
 //{
 //
 //  if (pobject == nullptr)
@@ -555,7 +555,7 @@ CLASS_DECL_APEX int get_apex_init()
 //}
 
 
-//CLASS_DECL_APEX ::apex::application * get_application(::context_object * pcontextobject)
+//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject)
 //{
 //
 //  if (pobject == nullptr)
@@ -588,7 +588,7 @@ CLASS_DECL_APEX int get_apex_init()
 //}
 
 
-//CLASS_DECL_APEX ::apex::session * get_session(::context_object * pcontextobject)
+//CLASS_DECL_APEX ::apex::session * get_session(::object * pobject)
 //{
 //
 //  if (pobject == nullptr)
@@ -621,7 +621,7 @@ CLASS_DECL_APEX int get_apex_init()
 //}
 
 
-//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::context_object * pcontextobject)
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::object * pobject)
 //{
 //
 //  if (pobject == nullptr)

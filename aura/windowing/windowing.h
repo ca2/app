@@ -72,7 +72,7 @@ namespace windowing
 
       virtual void finalize_windowing();
 
-      virtual void finalize();
+      virtual ::e_status finalize();
 
 
       virtual ::e_status start();

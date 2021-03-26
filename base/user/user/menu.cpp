@@ -229,6 +229,8 @@ namespace user
    bool menu::load_xml_menu(const ::payload & varXml)
    {
 
+      m_psystem->m_paquasystem->_xml();
+
       auto papplication = get_application();
 
       auto strXml = papplication->as_string(varXml.get_string());
@@ -965,9 +967,11 @@ namespace user
 
                      puiNotify->_001SendCommand(&command);
 
+                     pevent->m_bRet = command.m_bRet;
+
                   }
 
-                  pevent->m_bRet = true;
+                  
 
                }
             }
@@ -1361,7 +1365,7 @@ namespace user
          }
 
          //DestroyWindow();
-         set_finish(this);
+         set_finish();
 
       }
 

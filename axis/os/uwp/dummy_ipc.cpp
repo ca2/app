@@ -15,7 +15,7 @@
 //   {
 //
 //
-//      base::base(::context_object * pcontextobject) :
+//      base::base(::object * pobject) :
 //         object(pobject)
 //      {
 //
@@ -39,7 +39,7 @@
 //      }
 //
 //
-//      tx::tx(::context_object * pcontextobject):
+//      tx::tx(::object * pobject):
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -145,7 +145,7 @@
 //
 //
 //
-//      rx::rx(::context_object * pcontextobject) :
+//      rx::rx(::object * pobject) :
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -459,7 +459,7 @@
 //
 //      }
 //
-//      ipc::ipc(::context_object * pcontextobject):
+//      ipc::ipc(::object * pobject):
 //         object(pobject),
 //         base(pobject),
 //         tx(pobject),

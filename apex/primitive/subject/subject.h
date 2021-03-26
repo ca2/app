@@ -6,7 +6,7 @@ namespace subject
 
 
    class CLASS_DECL_APEX subject :
-      virtual public property_object
+      virtual public object
    {
    public:
 

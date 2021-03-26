@@ -10,7 +10,7 @@ namespace axis
 {
 
 
-//   application::application(::context_object * pcontextobject) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
@@ -311,7 +311,7 @@ namespace axis
    bool application::os_on_start_application()
    {
 
-      ::file::path path = pcontext->file().module();
+      ::file::path path = pcontext->m_pcontext->file().module();
 
       path -= 3;
       

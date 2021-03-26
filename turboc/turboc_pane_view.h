@@ -14,7 +14,7 @@ namespace turboc
       ::turboc::view *                     m_pflagview;
 
 
-      pane_view(::context_object * pcontextobject);
+      pane_view(::object * pobject);
 	   virtual ~pane_view();
 
       

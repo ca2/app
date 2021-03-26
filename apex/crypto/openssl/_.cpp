@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_openssl.h"
+#include "apex/crypto/_crypto.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

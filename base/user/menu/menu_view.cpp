@@ -165,8 +165,7 @@ namespace user
 
       }
 
-
-      set_topic_text("menu_view> ");
+      //set_topic_text("menu_view> ");
 
       string strId = get_document()->m_pimpactsystem->m_strMatter;
 
@@ -180,7 +179,7 @@ namespace user
 
       m_fontTitle.create(this);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       auto pnode = psystem->node();
 
@@ -640,7 +639,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string str = pcontext->file().as_string(varFile);
+      string str = pcontext->m_pcontext->file().as_string(varFile);
 
       if (!m_pxmldoc->load(str))
       {

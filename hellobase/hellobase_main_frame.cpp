@@ -5,7 +5,7 @@ namespace hellobase
 {
 
 
-   main_frame::main_frame(::context_object * pcontextobject) :
+   main_frame::main_frame(::object * pobject) :
       object(pobject)
    {
 

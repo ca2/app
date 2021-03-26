@@ -50,12 +50,12 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(get_context()->file().exists(file))
+      if(m_pcontext->m_pcontext->file().exists(file))
       {
 
          m_filename = file;
 
-         m_content_length = get_context()->file().length(file);
+         m_content_length = m_pcontext->m_pcontext->file().length(file);
 
       }
       else

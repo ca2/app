@@ -45,10 +45,10 @@ namespace sqlite
 
       //virtual __pointer(class dataset) dataset() = 0;
 
-      virtual bool isActive() = 0;
+      virtual bool isActive();
 
 
-      virtual ::e_status     init() = 0;
+      virtual ::e_status init();
 
       virtual string add_error_message(const ::string& strErrorMessage);
 
@@ -59,34 +59,34 @@ namespace sqlite
          const char* user = nullptr,
          const char* pass = nullptr,
          const char* sckt = nullptr,
-         u64 uConnectionFlags = 0) = 0;
+         u64 uConnectionFlags = 0);
 
 
-      virtual ::e_status     reset() = 0;
+      virtual ::e_status reset();
 
       //virtual string escape(const char * psz);
 
 
 
-      virtual ::count get_affected_rows_count() = 0;
+      virtual ::count get_affected_rows_count();
 
-      virtual bool in_transaction() = 0;
-
-
-      virtual bool exec(const char* pszQuery) = 0;
+      virtual bool in_transaction();
 
 
-      virtual __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount) = 0;
+      virtual bool exec(const char* pszQuery);
 
-      inline auto query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
+
+      virtual __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount);
+
+      inline __pointer(::database::result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
 
 
       //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      virtual __pointer(::database::row_array) query_rows(const char* pszQuery) = 0;
-      virtual __pointer(::database::row) query_row(const char* pszQuery) = 0;
-      virtual __pointer(::var_array) query_items(const char* pszQuery) = 0;
-      virtual ::payload query_item(const char* pszQuery) = 0;
-      virtual bool memory_query_item(get_memory getmemory, const char* pszQuery) = 0;
+      virtual __pointer(::database::row_array) query_rows(const char* pszQuery);
+      virtual __pointer(::database::row) query_row(const char* pszQuery);
+      virtual __pointer(::var_array) query_items(const char* pszQuery);
+      virtual ::payload query_item(const char* pszQuery);
+      virtual bool memory_query_item(get_memory getmemory, const char* pszQuery);
 
       //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
       //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);

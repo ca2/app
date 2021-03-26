@@ -21,10 +21,10 @@ namespace imaging_wic
    }
 
 
-   ::e_status context_image::initialize(::context_object * pcontextobject)
+   ::e_status context_image::initialize(::object * pobject)
    {
 
-      auto estatus = ::context_image::initialize(pcontextobject);
+      auto estatus = ::context_image::initialize(pobject);
 
       if (!estatus)
       {
@@ -244,9 +244,9 @@ namespace imaging_wic
 
       package->RequestedOperation = ::Windows::ApplicationModel::DataTransfer::DataPackageOperation::Copy;
 
-      auto context_object = ::Windows::Storage::Streams::RandomAccessStreamReference::CreateFromStream(randomAccessStream);
+      auto object = ::Windows::Storage::Streams::RandomAccessStreamReference::CreateFromStream(randomAccessStream);
 
-      package->SetBitmap(context_object);
+      package->SetBitmap(object);
 
       defer_main_thread([&package, this]()
          {

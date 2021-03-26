@@ -36,7 +36,7 @@ namespace gpu
       virtual ~approach();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual context * create_context();

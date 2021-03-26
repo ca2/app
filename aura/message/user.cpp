@@ -29,7 +29,7 @@ namespace message
 
 
 
-   //base::base(::context_object * pcontextobject) :
+   //base::base(::object * pobject) :
    //   ::message::message(psignal)
    //{
 

@@ -6,7 +6,7 @@ namespace console
 {
 
 
-   prompt_document::prompt_document(::context_object * pcontextobject) :
+   prompt_document::prompt_document(::object * pobject) :
       ::object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),
@@ -64,7 +64,7 @@ namespace console
    bool prompt_document::on_open_document(const ::payload & varFile)
    {
 
-      string str = pcontext->file().as_string(varFile);
+      string str = pcontext->m_pcontext->file().as_string(varFile);
       //  m_prompt_document.load(str);
 
 

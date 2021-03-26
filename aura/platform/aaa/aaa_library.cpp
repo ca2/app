@@ -2,7 +2,7 @@
 #include "aura/platform/static_setup.h"
 
 
-//extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 //extern ::mutex * ::aura::get_system()->m_mutexLibrary;
 
@@ -17,10 +17,10 @@ namespace aura
    const char * psz_empty_app_id = "";
 
 
-   ::e_status     library::initialize(::context_object * pcontextobject)
+   ::e_status     library::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       m_plibrary = nullptr;
 
@@ -34,7 +34,7 @@ namespace aura
    ::e_status library::initialize_aura_library(::object * pobject,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
-      auto estatus = initialize(pcontextobject);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {
@@ -152,7 +152,7 @@ namespace aura
          if(m_plibrary == nullptr)
          {
 
-            ERR("apex::library::open");
+            ERR("acme::library::open");
 
             return false;
 
@@ -164,13 +164,13 @@ namespace aura
       catch(...)
       {
 
-         ERR("apex::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
+         ERR("acme::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
 
          return false;
 
       }
 
-      INFO("apex::library::open success");
+      INFO("acme::library::open success");
 
       if (m_strCa2Name.has_char())
       {
@@ -582,7 +582,7 @@ namespace aura
             if (papp)
             {
 
-               auto estatus = papp->initialize(pcontextobject);
+               auto estatus = papp->initialize(pobject);
 
                if (!estatus)
                {
@@ -643,7 +643,7 @@ namespace aura
                if (papp)
                {
 
-                  papp->initialize(pcontextobject);
+                  papp->initialize(pobject);
 
                }
 
@@ -772,7 +772,7 @@ namespace aura
 
       }
 
-      pobject->initialize(pcontextobject);
+      pobject->initialize(pobject);
 
       return pobject;
 
@@ -965,10 +965,10 @@ namespace aura
 } // namespace aura
 
 
-//string_map < __pointer(::apex::library) > * g_pmapLibCall = nullptr;
+//string_map < __pointer(::acme::library) > * g_pmapLibCall = nullptr;
 
 
-::apex::library * lib(const char * psz)
+::acme::library * lib(const char * psz)
 {
 
    //if (::aura::get_system()->m_mapLibCall == nullptr)
@@ -978,12 +978,12 @@ namespace aura
 
    //}
 
-   __pointer(::apex::library) & plibrary = ::aura::get_system()->m_mapLibCall[psz];
+   __pointer(::acme::library) & plibrary = ::aura::get_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {
       
-      plibrary = __new(::apex::library);
+      plibrary = __new(::acme::library);
 
       plibrary->initialize(::get_task());
 

@@ -19,7 +19,7 @@ namespace ios
       virtual ~dir_context();
       
       
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
       //virtual void update_module_path();
       virtual ::e_status init_context() override;
 
@@ -61,10 +61,10 @@ namespace ios
       virtual ::file::path commonappdata_root() override;
       
 //      virtual ::file::path usersystemappdata(::object * pobject, const char * lpcszPrefix);
-//      virtual ::file::path userappdata(::context_object * pcontextobject);
-//      virtual ::file::path userdata(::context_object * pcontextobject);
-//      //virtual ::file::path userfolder(::context_object * pcontextobject);
-//      virtual ::file::path default_os_user_path_prefix(::context_object * pcontextobject);
+//      virtual ::file::path userappdata(::object * pobject);
+//      virtual ::file::path userdata(::object * pobject);
+//      //virtual ::file::path userfolder(::object * pobject);
+//      virtual ::file::path default_os_user_path_prefix(::object * pobject);
 //      virtual ::file::path default_userappdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin );
 //      virtual ::file::path default_userdata(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin);
 //      virtual ::file::path default_userfolder(::object * pobject,const string & lpcszPrefix,const string & lpcszLogin);

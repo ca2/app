@@ -31,7 +31,7 @@ namespace simple_ui
       ::object(pobject)
    {
 
-      auto estatus = initialize(pcontextobject);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {

@@ -83,7 +83,7 @@ namespace imaging_wic
 
             }
 
-            get_context()->file().as_memory(payload, *pmemory);
+            m_pcontext->m_pcontext->file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 
@@ -544,7 +544,7 @@ namespace imaging_wic
 
 #else
 
-      comptr < IStream > pstream = LIBCALL(shlwapi, SHCreateMemStream)(nullptr, NULL);
+      comptr < IStream > pstream = SHCreateMemStream(nullptr, NULL);
 
 #endif
 

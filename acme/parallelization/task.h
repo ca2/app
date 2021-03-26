@@ -7,7 +7,7 @@ typedef map < task *, itask_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
-   virtual public property_object
+   virtual public object
 {
 
 public:
@@ -54,7 +54,7 @@ public:
    virtual const char * get_task_tag() override;
 
 
-   //virtual context_object * calc_parent_thread();
+   //virtual object * calc_parent_thread();
 
    virtual bool set_thread_name(const char* pszName);
 
@@ -72,8 +72,8 @@ public:
    virtual void register_task();
    virtual void unregister_task();
 
-   virtual void add_notify(::matter* pmatter);
-   virtual void remove_notify(::matter* pmatter);
+   //virtual void add_notify(::matter* pmatter);
+   //virtual void remove_notify(::matter* pmatter);
 
 
    virtual ::e_status task_caller_on_init();

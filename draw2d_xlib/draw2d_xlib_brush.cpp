@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   brush::brush(::context_object * pcontextobject) :
+   brush::brush(::object * pobject) :
       ::object(pobject)
    {
 

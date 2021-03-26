@@ -605,7 +605,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {

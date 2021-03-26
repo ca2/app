@@ -709,7 +709,7 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object("control_box"));
+         __compose(m_pcontrolbox, m_pexperience->m_plibrary->new_object < ::experience::control_box >());
 
          m_pcontrolbox->initialize(this);
 

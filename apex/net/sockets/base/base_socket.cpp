@@ -117,7 +117,25 @@ namespace sockets
    }
 
 
-   e_trace_category base_socket::trace_category()
+   ::e_status base_socket::initialize_socket(base_socket_handler* phandler)
+   {
+
+      auto estatus = ::object::initialize(phandler);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+
+   }
+
+
+   e_trace_category base_socket::trace_category() const
    {
 
       return trace_category_socket;
@@ -125,15 +143,15 @@ namespace sockets
    }
 
 
-   void base_socket::on_finalize()
-   {
+   //void base_socket::on_finalize()
+   //{
 
-      //__release(m_psocketthread);
+   //   //__release(m_psocketthread);
 
-      ::object::on_finalize();
+   //   ::object::on_finalize();
 
 
-   }
+   //}
 
 
    void base_socket::Init()
@@ -256,12 +274,12 @@ namespace sockets
 
       if (topic_text() == nullptr)
       {
+         
+          //string strTopicText;
 
-          string strTopicText;
+          //strTopicText.Format("socket_%d> ", s);
 
-          strTopicText.Format("socket_%d> ", s);
-
-          set_topic_text(strTopicText);
+          //set_topic_text(strTopicText);
 
       }
 
@@ -332,7 +350,7 @@ namespace sockets
 
       }
 
-      return m_phandler;
+      return m_psockethandler;
 
    }
 
@@ -340,7 +358,7 @@ namespace sockets
    base_socket_handler* base_socket::master_socket_handler() const
    {
       
-      return m_phandler;
+      return m_psockethandler;
 
    }
 
@@ -1004,11 +1022,11 @@ namespace sockets
 
       __refer(m_psocket, psocket);
 
-      m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
+      //m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
          
       __compose(m_phandler, __new(class socket_handler()));
 
-      m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
+      //m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
 
       begin_synch();
 

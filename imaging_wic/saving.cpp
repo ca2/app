@@ -34,7 +34,7 @@ namespace imaging_wic
 
 #else
 
-      comptr < IStream > pstream = LIBCALL(shlwapi, SHCreateMemStream)(nullptr, NULL);
+      comptr < IStream > pstream = SHCreateMemStream(nullptr, NULL);
 
 #endif
 

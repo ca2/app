@@ -96,7 +96,7 @@ namespace parallelization
 //
 //
    CLASS_DECL_APEX void initialize();
-   CLASS_DECL_APEX void finalize();
+   CLASS_DECL_APEX ::e_status finalize();
 //
 //   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
 //   //CLASS_DECL_APEX bool thread_id_registered(itask_t id);
@@ -127,9 +127,9 @@ namespace parallelization
 
 
 
-//CLASS_DECL_APEX void __end_thread(::context_object * pcontextobject);
+//CLASS_DECL_APEX void __end_thread(::object * pobject);
 
-//CLASS_DECL_APEX void __term_thread(::context_object * pcontextobject);
+//CLASS_DECL_APEX void __term_thread(::object * pobject);
 
 
 

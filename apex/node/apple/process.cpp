@@ -464,7 +464,7 @@ namespace apple
 
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, true);
 
-      // Create authorization context_object
+      // Create authorization object
       OSStatus status;
 
       AuthorizationRef authorizationRef;

@@ -80,7 +80,7 @@ namespace sockets
       base_socket_handler(::apex::log * plogger = nullptr);
       virtual ~base_socket_handler();
 
-      ///** get ::mutex context_object for threadsafe operations. */
+      ///** get ::mutex object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
       virtual void set_logger(::apex::log * plog);

@@ -563,9 +563,7 @@ namespace sockets
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         auto psystem = get_system();
-
-         m_strBase64 = psystem->base64().encode(m);
+         m_strBase64 = m_psystem->m_papexsystem->base64().encode(m);
 
          int iLen;
 

@@ -20,10 +20,10 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::initialize(::context_object * pcontextobject)
+   ::e_status font_enumeration::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

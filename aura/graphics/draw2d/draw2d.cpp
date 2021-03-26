@@ -40,10 +40,10 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::initialize(::context_object * pcontextobject)
+   ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -86,9 +86,9 @@ namespace draw2d
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
-      if (psystem->m_bWriteText)
+      if (psystem->m_paurasystem->m_bWriteText)
       {
 
          if (!initialize_write_text())
@@ -223,17 +223,76 @@ namespace draw2d
    }
 
 
-   void draw2d::finalize()
+   ::e_status draw2d::finalize()
    {
 
       m_papi.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 
 
+   __pointer(save_image) draw2d::new_save_image(const ::payload& varFile, const ::payload& varOptions)
+   {
 
+      auto psaveimage = __new(save_image);
+
+      __pointer(::aura::system) psystem = m_psystem;
+
+      auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
+
+      if (eformat != ::draw2d::format_none)
+      {
+
+         __pointer(::aura::system) psystem = m_psystem;
+
+         eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
+
+      }
+
+      if (eformat == ::draw2d::format_none)
+      {
+
+         psaveimage->m_eformat = ::draw2d::format_png;
+
+      }
+
+      if (varOptions["quality"].get_type() == e_type_double
+         || varOptions["quality"].get_type() == e_type_float)
+      {
+
+         psaveimage->m_iQuality = (int)(varOptions["quality"].get_double() * 100.0);
+
+      }
+      else
+      {
+
+         psaveimage->m_iQuality = varOptions["quality"].i32();
+
+      }
+
+      if (psaveimage->m_iQuality == 0)
+      {
+
+         psaveimage->m_iQuality = 100;
+
+      }
+
+      psaveimage->m_iDpi = varOptions["dpi"];
+
+      if (psaveimage->m_iDpi == 0)
+      {
+
+         psaveimage->m_iDpi = 96;
+
+      }
+
+      return psaveimage;
+
+   }
 
 
 
@@ -934,9 +993,9 @@ breakFilter2:
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_pcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-      //auto psystem = get_system();
+      //auto psystem = m_psystem->m_paurasystem;
 
       //auto pxml = psystem->xml();
 

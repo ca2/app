@@ -50,7 +50,7 @@ namespace uwp
    }
 
 
-   interaction_impl::interaction_impl(::context_object * pcontextobject):
+   interaction_impl::interaction_impl(::object * pobject):
       ::object(pobject)
    {
 

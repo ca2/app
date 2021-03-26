@@ -133,7 +133,7 @@ namespace user
    }
 
 
-   //plain_edit::plain_edit(::context_object * pcontextobject) :
+   //plain_edit::plain_edit(::object * pobject) :
    //   ::object(pobject),
    //   ::user::interaction(pobject),
    //   m_pmemorygraphics(e_create)
@@ -5983,7 +5983,7 @@ finished_update:
 
             m_base64map.remove_all();
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             psystem->_001AddPacks(m_base64map, str);
 
@@ -6657,7 +6657,7 @@ finished_update:
 
       on_before_change_text();
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       psystem->_001AddPacks(m_base64map, strText);
 

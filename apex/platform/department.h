@@ -15,7 +15,7 @@ namespace apex
       virtual ~department();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject);
+      virtual ::e_status initialize(::object * pobject);
 
 
       virtual void connect_to_application_signal();

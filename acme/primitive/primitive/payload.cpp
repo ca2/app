@@ -5918,12 +5918,7 @@ IMPL_VAR_ENUM(check);
       for (auto & varFunction : vara())
       {
 
-         if (varFunction.get_type() == type_routine)
-         {
-
-            result.add(varFunction.m_routine());
-
-         }
+         result.add(varFunction());
 
       }
 

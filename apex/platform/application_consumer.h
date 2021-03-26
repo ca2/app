@@ -14,12 +14,12 @@ public:
    application_consumer()
    {
 
-      add_routine(CREATE_ROUTINE, __routine([this]()
-         {
+      //add_routine(CREATE_ROUTINE, __routine([this]()
+        // {
 
-            initialize_application_consumer();
+           // initialize_application_consumer();
 
-         }));
+         //}));
 
    }
 

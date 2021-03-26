@@ -1126,6 +1126,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="filesystem\filemanager\update_hint.cpp" />
     <ClCompile Include="filesystem\filemanager\view.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
+    <ClCompile Include="filesystem\fs\ftpnet.cpp" />
     <ClCompile Include="filesystem\userfs\document.cpp" />
     <ClCompile Include="filesystem\userfs\item.cpp" />
     <ClCompile Include="filesystem\userfs\list.cpp" />
@@ -1969,7 +1970,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\fs\ftpfs.h" />
     <ClInclude Include="filesystem\fs\ftp_file.h" />
-    <ClInclude Include="filesystem\fs\ftp_net.h" />
+    <ClInclude Include="filesystem\fs\ftpnet.h" />
     <ClInclude Include="filesystem\fs\_.h" />
     <ClInclude Include="filesystem\fs\_fs.h" />
     <ClInclude Include="filesystem\userfs\const.h" />

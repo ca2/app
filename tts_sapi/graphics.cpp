@@ -163,7 +163,7 @@ namespace draw2d_gdiplus
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -171,7 +171,7 @@ namespace draw2d_gdiplus
    void graphics::dump(dump_context & dumpcontext) const
    {
       
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "m_pgraphics = " << (iptr) m_pgraphics;
       dumpcontext << "\nm_bPrinting = " << m_bPrinting;
@@ -3416,7 +3416,7 @@ namespace draw2d_gdiplus
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)

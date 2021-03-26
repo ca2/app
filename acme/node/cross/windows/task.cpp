@@ -57,7 +57,7 @@ const char * task::get_task_tag()
 }
 
 
-//::context_object * task::calc_parent_thread()
+//::object * task::calc_parent_thread()
 //{
 //
 //   return ::get_task();

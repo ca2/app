@@ -53,7 +53,7 @@ namespace user
       virtual ~user();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }

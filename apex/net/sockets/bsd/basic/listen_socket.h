@@ -27,7 +27,7 @@ namespace sockets
 
 
       /** Constructor.
-      \lparam h base_socket_handler context_object
+      \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
       listen_socket_base();
 
@@ -141,7 +141,7 @@ namespace sockets
 
 
       /** Constructor.
-      \lparam h base_socket_handler context_object
+      \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
       listen_socket(bool use_creator = true) :
          m_bHasCreate(false),
@@ -210,7 +210,7 @@ namespace sockets
 
             pbasesocket = __new(LISTENER());
 
-            pbasesocket->m_phandler = socket_handler();
+            pbasesocket->m_psockethandler = socket_handler();
 
             m_psocket = pbasesocket.cast < LISTENER >();
 

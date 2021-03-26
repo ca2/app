@@ -148,7 +148,7 @@ namespace ansios
 {
 
 
-   process::process(::context_object * pcontextobject):
+   process::process(::object * pobject):
       object(pobject),
       ::process::process(pobject)
    {

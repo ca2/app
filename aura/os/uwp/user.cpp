@@ -583,7 +583,7 @@ namespace user
    CLASS_DECL_AURA ::color::color calc_system_app_background_color()
    {
 
-      auto psystem = ::get_context_system()->m_paurasystem;
+      auto psystem = psystem->m_paurasystem;
 
       if (!psystem)
       {

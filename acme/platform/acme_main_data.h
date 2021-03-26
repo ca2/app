@@ -16,4 +16,17 @@ public:
    string                           m_strCommandLine;
 
 
+   acme_main_data()
+   {
+
+      m_argc = 0;
+      m_argv = nullptr;
+      m_envp = nullptr;
+      m_wargv = nullptr;
+      m_wenvp = nullptr;
+      m_iExitCode = 0;
+
+   }
+
+
 };

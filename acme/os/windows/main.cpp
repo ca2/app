@@ -84,7 +84,7 @@ string ca2_command_line(hinstance hinstance)
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = get_context()->file().module();
+//         pathObj = m_pcontext->m_pcontext->file().module();
 //
 //         string strLinkTitle;
 //

@@ -64,7 +64,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         ::file::path filepathUser = pcontext->defer_process_path(filepathFinal);
+         ::file::path filepathUser = pcontext->m_pcontext->defer_process_path(filepathFinal);
 
          auto pfileitem = __new(::file::item(filepathUser, filepathFinal));
 

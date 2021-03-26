@@ -84,15 +84,15 @@ namespace base
 //   void style::nextstyle(style_context * pcontext)
 //   {
 //
-//      if (pcontext->m_econtroltype != control_none
-//            && m_map.lookup(pcontext->m_econtroltype, pcontext->pstyle))
+//      if (pcontext->m_pcontext->m_econtroltype != control_none
+//            && m_map.lookup(pcontext->m_pcontext->m_econtroltype, pcontext->m_pcontext->pstyle))
 //      {
 //
 //         return;
 //
 //      }
 //
-//      pcontext->pstyle = this;
+//      pcontext->m_pcontext->pstyle = this;
 //
 //   }
 //

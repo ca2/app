@@ -75,17 +75,17 @@ namespace userfs
    }
 
 
-   string item::data_item_get_text(context_object * pcontextobject) const
+   string item::data_item_get_text(object * pobject) const
    {
 
-      UNREFERENCED_PARAMETER(pcontextobject);
+      UNREFERENCED_PARAMETER(pobject);
 
       return m_strName;
 
    }
 
 
-   index item::data_item_get_image(context_object * pcontextobject) const
+   index item::data_item_get_image(object * pobject) const
    {
 
       ::user::shell::e_file_attribute efileattribute;
@@ -127,7 +127,7 @@ namespace userfs
    }
 
 
-   ::image_list * item::data_item_get_image_list(::context_object * pcontextobject) const
+   ::image_list * item::data_item_get_image_list(::object * pobject) const
    {
 
       return m_ptree->m_pimagelist;

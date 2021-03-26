@@ -44,11 +44,12 @@ timer::~timer()
 }
 
 
-
-void timer::finalize()
+::e_status timer::finalize()
 {
 
    m_ptimercallback.release(OBJ_REF_DBG_THIS);
+
+   return ::success;
 
 }
 

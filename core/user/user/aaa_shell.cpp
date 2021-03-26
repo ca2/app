@@ -151,7 +151,7 @@ namespace user
       }
 
 
-      ::e_status shell::initialize(::context_object * pcontextobject)
+      ::e_status shell::initialize(::object * pobject)
       {
 
          if (m_bInitialized)
@@ -161,7 +161,7 @@ namespace user
 
          }
 
-         auto estatus = ::object::initialize(pcontextobject);
+         auto estatus = ::object::initialize(pobject);
 
          if (!estatus)
          {
@@ -900,18 +900,18 @@ namespace user
    }
 
 
-   ::e_status shell::thread::finish(::property_object * pcontextobject)
+   ::e_status shell::thread::finish(::property_object * pobject)
    {
 
-      return ::thread::finish(pcontextobject);
+      return ::thread::finish(pobject);
 
    }
 
 
-   ::e_status shell::finish(::property_object * pcontextobject)
+   ::e_status shell::finish(::property_object * pobject)
    {
 
-      ::object::finish(pcontextobject);
+      ::object::finish(pobject);
 
       //task_remove_all();
 

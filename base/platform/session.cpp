@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 namespace base
@@ -9,6 +9,8 @@ namespace base
 
    session::session()
    {
+
+      m_pbasesession = this;
 
    }
 
@@ -21,10 +23,10 @@ namespace base
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::session::initialize(pcontextobject);
+      auto estatus = ::axis::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -49,6 +51,15 @@ namespace base
 
    }
 
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aura::session::on_instantiate_application(papp);
+
+      papp->m_pbasesession = this;
+
+   }
 
 
    __namespace_session_factory(session);

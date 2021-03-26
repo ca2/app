@@ -18,7 +18,7 @@ namespace draw2d_xlib
       XFontSet m_fontset;
       XftFont *      m_pft;
 
-      font(::context_object * pcontextobject);
+      font(::object * pobject);
       virtual ~font();
 
 

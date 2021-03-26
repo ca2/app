@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace experience
@@ -69,7 +70,13 @@ namespace experience
 
 #endif
 
-      auto plibrary = psystem->get_library(strLibrary, true);
+      string strComponent = "experience";
+
+      string strImplementation = strLibrary;
+
+      strImplementation.begins_eat_ci("experience_");
+
+      auto plibrary = psystem->do_containerized_factory_exchange(strComponent, strImplementation);
 
       if (!plibrary)
       {
@@ -98,7 +105,7 @@ namespace experience
 
       //}
 
-      __pointer(::experience::experience) pexperience = plibrary->create_object("experience");
+      auto pexperience = plibrary->m_pfactorymap->new_object <::experience::experience>();
 
       if(pexperience == nullptr)
       {
@@ -139,7 +146,7 @@ namespace experience
 
       string_array straLibrary;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       auto strExperience = psystem->payload("experience").get_string();
 
@@ -216,7 +223,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / papplication->m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -229,7 +236,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -242,7 +249,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -255,7 +262,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->file().as_string(::dir::config() / "system/experience.txt");
+         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -269,7 +276,7 @@ namespace experience
 
       {
 
-         string strConfig = pcontext->file().as_string(::dir::config() / "system/experience.txt");
+         string strConfig = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strConfig.has_char())
          {
@@ -313,7 +320,7 @@ namespace experience
       if (pexperience.is_null())
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_pbasesystem;
 
          __throw(exit_exception(psystem, "no experience_* plugin installed"));
 

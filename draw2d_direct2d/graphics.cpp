@@ -73,7 +73,7 @@ namespace draw2d_direct2d
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -81,7 +81,7 @@ namespace draw2d_direct2d
    void graphics::dump(dump_context & dumpcontext) const
    {
 
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "get_handle1() = " << (::iptr) get_handle1();
       dumpcontext << "\nm_hAttribDC = " << (::iptr) get_handle2();
@@ -3294,7 +3294,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*
       ::aura::LockGlobals(CRIT_HALFTONEBRUSH);

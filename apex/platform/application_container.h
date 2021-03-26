@@ -43,4 +43,7 @@ public:
    __pointer(::apex::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
 
 
+   virtual void on_instantiate_application(::apex::application* papp);
+
+
 };

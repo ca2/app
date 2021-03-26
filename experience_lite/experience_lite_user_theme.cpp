@@ -15,7 +15,7 @@ namespace lite
 {
 
 
-   theme::theme(::context_object * pcontextobject):
+   theme::theme(::object * pobject):
       object(pobject),
       ::user::style(pobject),
       ::user::theme(pobject)

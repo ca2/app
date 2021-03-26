@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "base/const/idpool.h"
 
 
@@ -96,6 +96,8 @@ namespace base
    void system::common_construct()
    {
 
+      m_pbasesystem = this;
+
       create_factory < ::base::session, ::apex::session >();
       create_factory < ::base::application, ::apex::application >();
       create_factory < ::base::idpool, ::apex::idpool >();
@@ -104,10 +106,10 @@ namespace base
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::system::initialize(pcontextobject);
+      auto estatus = ::axis::system::initialize(pobject);
 
       if (!estatus)
       {

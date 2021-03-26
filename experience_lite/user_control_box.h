@@ -7,7 +7,7 @@ class CLASS_DECL_APP_EXPERIENCE_LITE MetaControlBox :
 public:
 
 
-   MetaControlBox(::context_object * pcontextobject);
+   MetaControlBox(::object * pobject);
    virtual ~MetaControlBox();
 
 

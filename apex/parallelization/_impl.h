@@ -200,7 +200,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   }
 //
 //
-//   hold(::context_object * pcontextobject)
+//   hold(::object * pobject)
 //   {
 //
 //   }
@@ -345,10 +345,10 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //
-////inline thread_parameter::thread_parameter(const context_object * psimpleobject)
+////inline thread_parameter::thread_parameter(const object * psimpleobject)
 ////{
 ////
-////   m_psimpleobject = (context_object *)psimpleobject;
+////   m_psimpleobject = (object *)psimpleobject;
 ////
 ////   m_psimpleobject->add_ref(OBJ_REF_DBG_ARGS);
 ////
@@ -468,7 +468,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //   }
 //
 //
-//   hold(::context_object * pcontextobject) :
+//   hold(::object * pobject) :
 //      m_pobject(pobject)
 //   {
 //
@@ -515,26 +515,5 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //   }
 //
 //};
-
-
-template < typename PRED >
-inline ::thread_pointer object::fork(PRED pred)
-{
-
-   auto pmethod = __routine(pred);
-
-   auto pthread = __create_new < ::thread >();
-
-   pthread->m_pmatter = pmethod;
-
-   pthread->m_id = typeid(pred).name();
-
-   pthread->begin_thread();
-
-   return pthread;
-
-}
-
-
 
 

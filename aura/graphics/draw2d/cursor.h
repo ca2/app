@@ -30,7 +30,7 @@ namespace draw2d
 
       virtual bool initialize_system_default();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       //::windowing::cursor * get_cursor(::user::interaction * pinteraction);
 

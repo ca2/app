@@ -21,7 +21,7 @@ namespace linux
    ::e_status file_system::initialize(::matter * pobject)
    {
 
-      auto estatus = ::file_system::initialize(pcontextobject);
+      auto estatus = ::file_system::initialize(pobject);
 
       if(!estatus)
       {

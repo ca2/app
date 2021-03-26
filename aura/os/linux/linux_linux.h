@@ -49,10 +49,10 @@ CLASS_DECL_AURA bool main_initialize();
 CLASS_DECL_AURA bool main_finalize();
 
 /*
-bool os_on_start_application(::context_object * pcontextobject);
-::file::path app_desktop_file_path(::context_object * pcontextobject);
+bool os_on_start_application(::object * pobject);
+::file::path app_desktop_file_path(::object * pobject);
 ::file::path app_desktop_file_path(::object * pobject, string strAppId);
-bool linux_prepare_app_desktop_file(::context_object * pcontextobject);
+bool linux_prepare_app_desktop_file(::object * pobject);
 bool linux_prepare_app_desktop_file(::object * pobject, string strAppId);
 */
 

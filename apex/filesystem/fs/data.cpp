@@ -210,7 +210,7 @@ namespace fs
 
       ::file::listing listing;
 
-      get_context()->dir().ls(listing, path.folder());
+      m_pcontext->m_pcontext->dir().ls(listing, path.folder());
 
       return listing.contains_ci(path.name());
 
@@ -222,7 +222,7 @@ namespace fs
 
       ::file::listing listing;
 
-      get_context()->dir().ls(listing, path.folder());
+      m_pcontext->m_pcontext->dir().ls(listing, path.folder());
 
       index iFind = listing.find_first_ci(path.name());
 

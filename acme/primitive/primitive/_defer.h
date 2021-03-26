@@ -73,7 +73,7 @@ inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2)
 }
 
 
-class context_object;
+//class object;
 
 
 namespace papaya

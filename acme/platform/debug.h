@@ -318,20 +318,12 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-extern CLASS_DECL_ACME ::mutex * g_pmutexMemoryCounters;
+//extern CLASS_DECL_ACME ::mutex * g_pmutexMemoryCounters;
 
-CLASS_DECL_ACME bool memcnts();
+//CLASS_DECL_ACME bool memory_counter_on();
 
-CLASS_DECL_ACME ::file::path memcnts_base_path();
+//CLASS_DECL_ACME ::file::path memory_counter_base_path();
 
-template < typename T >
-::file::path memcnts_path(T * pthis);
-
-template < typename T >
-void memcnts_inc(T * pthis);
-
-template < typename T >
-void memcnts_dec(T * pthis);
 
 
 namespace papaya

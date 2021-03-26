@@ -23,10 +23,10 @@ namespace experience
       }
 
 
-         ::e_status experience::initialize(::context_object * pcontextobject)
+         ::e_status experience::initialize(::object * pobject)
          {
 
-            auto estatus = ::experience::experience::initialize(pcontextobject);
+            auto estatus = ::experience::experience::initialize(pobject);
 
             if (!estatus)
             {

@@ -37,7 +37,9 @@ exit_exception::~exit_exception()
 
       }
 
-      m_ptaskExit->finish(pcontextobjectFinish);
+      //m_ptaskExit->finish(pcontextobjectFinish);
+
+      m_ptaskExit->finish();
 
       m_ptaskExit.release();
 

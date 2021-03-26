@@ -196,7 +196,7 @@ public:
    //virtual void __destroy() override;
 
 
-   // virtual void finalize() override;
+   // virtual ::e_status finalize() override;
 
 
 };

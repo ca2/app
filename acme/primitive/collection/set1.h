@@ -1204,7 +1204,7 @@ template < class ELEMENT, class ARG_ELEMENT >
 void set < ELEMENT, ARG_ELEMENT >::dump(dump_context & dumpcontext) const
 {
    
-   //::context_object::dump_context(dumpcontext);
+   //::object::dump_context(dumpcontext);
 
 }
 

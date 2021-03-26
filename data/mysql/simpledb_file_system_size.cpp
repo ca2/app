@@ -25,7 +25,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(::context_object * pcontextobject) :
+file_size_table::file_size_table(::object * pobject) :
    ::object(pobject)
 {
    m_hmap = nullptr;
@@ -230,7 +230,7 @@ void file_size_table::item::update_size_recursive(::object * pobject, index & iI
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(::context_object * pcontextobject) :
+DBFileSystemSizeSet::DBFileSystemSizeSet(::object * pobject) :
    ::object(pobject), m_table(pobject)
 {
    m_iMaxIteration = 230;
@@ -307,7 +307,7 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
       bPending = true;
       return true;
    }
-   string strTitle = pcontext->file().name_(pszPath);
+   string strTitle = pcontext->m_pcontext->file().name_(pszPath);
    file_size_table::item * pitem = m_table.m_item.FindItem(get_application(), pszPath, iIteration);
    if(pitem != nullptr)
    {
@@ -328,7 +328,7 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(::context_object * pcontextobject) :
+FileSystemSizeWnd::FileSystemSizeWnd(::object * pobject) :
    ::object(pobject),
    ::user::interaction_impl *(pobject)
 {
@@ -513,7 +513,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(::context_object * pcontextobject) :
+FileSystemSizeServerThread::FileSystemSizeServerThread(::object * pobject) :
    ::object(pobject),
    thread(pobject)
 {
@@ -537,7 +537,7 @@ void FileSystemSizeWnd::ClientStartServer()
    {
       m_millisLastStartTime= ::millis::now();
 
-      simple_shell_launcher launcher(nullptr, nullptr, pcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
+      simple_shell_launcher launcher(nullptr, nullptr, pcontext->m_pcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 
       launcher.execute();
 

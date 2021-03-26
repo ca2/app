@@ -22,10 +22,10 @@ namespace simpledb
    }
 
 
-   ::e_status server::initialize_simpledb_server(::context_object * pcontextobject, const char * pszDatabase)
+   ::e_status server::initialize_simpledb_server(::object * pobject, const char * pszDatabase)
    {
 
-      auto estatus = ::database::server::initialize(pcontextobject);
+      auto estatus = ::database::server::initialize(pobject);
 
       if (!estatus)
       {
@@ -34,7 +34,7 @@ namespace simpledb
 
       }
 
-      m_bRemote = !get_context()->is_local_data();
+      m_bRemote = !m_pcontext->m_pcontext->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {
@@ -45,14 +45,14 @@ namespace simpledb
 
       ::file::path pathDatabase(pszDatabase);
 
-      if (!get_context()->dir().mk(pathDatabase.folder()))
+      if (!m_pcontext->m_pcontext->dir().mk(pathDatabase.folder()))
       {
 
          return false;
 
       }
 
-      auto pdatabase = __create_new < ::database::server > ();
+      auto pdatabase = (*m_psystem->m_pfactorymapsquare)["simpledb"]->new_object<::database::database>();
 
       if (pdatabase.is_null())
       {
@@ -63,14 +63,14 @@ namespace simpledb
 
       synchronization_lock synchronizationlock(pdatabase->mutex());
 
-      estatus = pdatabase->set_finish(this);
+      //estatus = pdatabase->set_finish(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pdatabaseLocal = pdatabase;
 
@@ -204,7 +204,7 @@ namespace simpledb
    }
 
 
-   void server::finalize()
+   ::e_status server::finalize()
    {
 
       m_bWorking = false;
@@ -218,7 +218,9 @@ namespace simpledb
 
       m_pdatabaseLocal.release();
 
-      ::database::server::finalize();
+      auto estatus = ::database::server::finalize();
+
+      return estatus;
 
    }
 

@@ -45,7 +45,7 @@ namespace simpledb
       socket *                m_psocket;
 
 
-      socket_thread(::context_object * pcontextobject);
+      socket_thread(::object * pobject);
       virtual ~socket_thread();
 
 

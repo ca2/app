@@ -32,7 +32,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         pcontext->dir().mk(pszFileName.folder());
+         pcontext->m_pcontext->dir().mk(pszFileName.folder());
 
 
       }

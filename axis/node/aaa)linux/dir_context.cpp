@@ -80,10 +80,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -119,7 +119,7 @@ namespace linux
 
 //      auto pdocument = create_xml_document();
 //
-//      pdocument->load(pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+//      pdocument->load(pcontext->m_pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 //
 //      if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
 //      {
@@ -545,7 +545,7 @@ namespace linux
                try
                {
 
-                  pcontext->file().del(str);
+                  pcontext->m_pcontext->file().del(str);
 
                }
                catch(...)
@@ -560,7 +560,7 @@ namespace linux
                try
                {
 
-                  pcontext->file().del(str);
+                  pcontext->m_pcontext->file().del(str);
 
                }
                catch(...)
@@ -689,7 +689,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::context_object * pcontextobject)
+   ::file::path dir_context::userquicklaunch(::object * pobject)
    {
 
       ::file::path path;
@@ -701,7 +701,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::context_object * pcontextobject)
+   ::file::path dir_context::userprograms(::object * pobject)
    {
 
       ::file::path path;

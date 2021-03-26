@@ -13,7 +13,7 @@ namespace userstack
 
       
 
-      document(::context_object * pcontextobject);
+      document(::object * pobject);
       virtual ~document();
 
 

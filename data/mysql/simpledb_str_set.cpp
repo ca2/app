@@ -101,7 +101,7 @@ public:
    pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(::context_object * pcontextobject):
+   db_str_sync_queue(::object * pobject):
       ::object(pobject),
       thread(pobject),
       ::thread(pobject),
@@ -182,7 +182,7 @@ repeat:;
 
 
 
-             strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/str_set_save?key=";
+             strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/str_set_save?key=";
              strUrl += psystem->url().url_encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
              strUrl += psystem->url().url_encode(m_itema[0]->m_str);
@@ -193,12 +193,12 @@ repeat:;
 
              set["user"] = psession->account()->get_user();
 
-             m_phttpsession = pcontext->http().request(m_phttpsession, strUrl, set);
+             m_phttpsession = pcontext->m_pcontext->http().request(m_phttpsession, strUrl, set);
 
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
                 sleep(2000_ms);
-                pcontext->dir().m_strApiCc = "";
+                pcontext->m_pcontext->dir().m_strApiCc = "";
                 goto repeat;
              }
 
@@ -299,7 +299,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/str_set_load?key=";
+      strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/str_set_load?key=";
 
       strUrl += psystem->url().url_encode(lpKey);
 
@@ -307,7 +307,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      m_pcore->m_phttpsession = pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
+      m_pcore->m_phttpsession = pcontext->m_pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {

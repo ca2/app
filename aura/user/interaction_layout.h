@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_layout :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

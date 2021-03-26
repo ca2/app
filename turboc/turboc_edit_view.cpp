@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   edit_view::edit_view(::context_object * pcontextobject):
+   edit_view::edit_view(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::scroll_view(pobject),

@@ -23,7 +23,7 @@ public:
 
 
    //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
-   virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
+   virtual ::e_status finish_composites() override;
 
 
    ::e_status async(const ::routine & routine);

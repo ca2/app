@@ -91,10 +91,10 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::e_status simple_frame_window::initialize(::context_object * pcontextobject)
+::e_status simple_frame_window::initialize(::object * pobject)
 {
 
-   auto estatus = ::experience::frame_window::initialize(pcontextobject);
+   auto estatus = ::experience::frame_window::initialize(pobject);
 
    if (!estatus)
    {
@@ -176,7 +176,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 #ifdef WINDOWS_DESKTOP
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_pbasesystem;
 
    MESSAGE_LINK(psystem->m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
 
@@ -785,7 +785,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          if (m_pdocumenttemplate->m_strMatter.has_char())
          {
 
-            m_varFrame = pcontext->file().as_json(pathFrameJson);
+            m_varFrame = pcontext->m_pcontext->file().as_json(pathFrameJson);
 
          }
 
@@ -877,16 +877,16 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   string strAppTitle = papplication->m_strAppTitle;
+   auto textAppTitle = papplication->m_textAppTitle;
 
-   if (strAppTitle.is_empty())
+   if (textAppTitle.get_text().is_empty())
    {
 
       string_array stra;
 
       stra.explode("/", papplication->m_strAppId);
 
-      strAppTitle = stra.slice(1).implode(" ");
+      string strAppTitle = stra.slice(1).implode(" ");
 
       strAppTitle.replace("_", " ");
 
@@ -904,7 +904,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+         notify_icon_insert_item(iNotifyIconItem, textAppTitle.get_text(), "notify_icon_topic");
 
          auto c = papplication->applicationmenu().get_count();
 
@@ -1564,7 +1564,7 @@ void simple_frame_window::_001OnAppExit(::message::message * pmessage)
 
    auto papplication = get_application();
 
-   papplication->request({::command_france_exit});
+   papplication->france_exit();
 
    if (pmessage != nullptr)
    {
@@ -2513,7 +2513,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       class imaging & imaging = psystem->imaging();
 
@@ -2731,7 +2731,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    auto pcontext = get_context();
 
-   string strMatter = pcontext->dir().matter(pszToolBar);
+   string strMatter = pcontext->m_pcontext->dir().matter(pszToolBar);
 
    if (ptoolbar->payload("matter_annotation") == strMatter)
    {
@@ -2740,7 +2740,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    }
 
-   string strXml = pcontext->file().as_string(strMatter);
+   string strXml = pcontext->m_pcontext->file().as_string(strMatter);
 
    if(!ptoolbar->LoadXmlToolBar(strXml))
    {
@@ -2994,7 +2994,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //         (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
 //         (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
 //   {
-//      // make duplicates of the incoming atoms (really adding a context_object)
+//      // make duplicates of the incoming atoms (really adding a object)
 //      wchar_t szAtomName[_MAX_PATH];
 //      GlobalGetAtomNameW(pApp->m_atomApp, szAtomName, _MAX_PATH - 1);
 //      GlobalAddAtomW(szAtomName);
@@ -3797,9 +3797,9 @@ bool simple_frame_window::on_create_bars()
 
       auto pcontext = get_context();
 
-      ::file::path path = pcontext->dir().matter(pathToolbar);
+      ::file::path path = pcontext->m_pcontext->dir().matter(pathToolbar);
 
-      if (pcontext->file().exists(path))
+      if (pcontext->m_pcontext->file().exists(path))
       {
 
          LoadToolBar(pathToolbar, pathToolbar);

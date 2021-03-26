@@ -21,7 +21,7 @@ namespace ios
 //
 //      m_strCa2 = strCa2Module;
 //
-//      pcontext->file().path().eat_end_level(m_strCa2, 2, "/");
+//      pcontext->m_pcontext->file().path().eat_end_level(m_strCa2, 2, "/");
 
       }
 

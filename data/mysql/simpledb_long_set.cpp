@@ -92,7 +92,7 @@ public:
 
    pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(::context_object * pcontextobject):
+   db_long_sync_queue(::object * pobject):
       ::object(pobject),
       thread(pobject),
       ::thread(pobject),
@@ -147,7 +147,7 @@ repeat:;
 
           set["interactive_user"] = true;
 
-          strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/long_set_save?key=";
+          strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/long_set_save?key=";
           strUrl += psystem->url().url_encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
           strUrl += __str(m_itema[0]->m_l);
@@ -158,7 +158,7 @@ repeat:;
 
           set["user"] = psession->account()->get_user();
 
-          m_phttpsession = pcontext->http().request( m_phttpsession, strUrl, set);
+          m_phttpsession = pcontext->m_pcontext->http().request( m_phttpsession, strUrl, set);
 
           if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
           {
@@ -228,11 +228,11 @@ bool db_long_set::load(const char * lpKey, i64 * plValue)
 
       set["interactive_user"] = true;
 
-      strUrl = "https://" + pcontext->dir().get_api_cc() + "/account/long_set_load?key=";
+      strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/long_set_load?key=";
       strUrl += psystem->url().url_encode(lpKey);
 
-      //m_phttpsession = pcontext->http().request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);
-      m_pcore-> m_phttpsession = pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
+      //m_phttpsession = pcontext->m_pcontext->http().request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);
+      m_pcore-> m_phttpsession = pcontext->m_pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {

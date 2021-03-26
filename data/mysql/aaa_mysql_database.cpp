@@ -22,10 +22,10 @@ namespace mysql
    }
 
 
-   ::e_status database::initialize(::context_object * pcontextobject)
+   ::e_status database::initialize(::object * pobject)
    {
 
-      auto estatus = ::database::database::initialize(pcontextobject);
+      auto estatus = ::database::database::initialize(pobject);
 
       if (!estatus)
       {
@@ -39,7 +39,7 @@ namespace mysql
    }
 
 
-   void database::finalize()
+   ::e_status database::finalize()
    {
 
       close_mysql_database();

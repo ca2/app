@@ -36,7 +36,7 @@ namespace os
       point_i32                      m_pointCursor;
 
 
-      simple_ui(::context_object * pcontextobject);
+      simple_ui(::object * pobject);
       virtual ~simple_ui();
 
 

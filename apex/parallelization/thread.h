@@ -138,8 +138,8 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual ::e_status set_finish(::property_object * ppropertyobjectFinish) override;
-   virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
+   virtual ::e_status set_finish() override;
+   //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
    void add_waiting_event(event * pevent);
@@ -375,12 +375,12 @@ public:
 
    virtual bool task_get_run() const override;
    //virtual bool set_run();
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
    //virtual bool is_set_finish() const;
    //virtual void finish() override;
    virtual void kick_idle() override;
    virtual void post_quit() override;
-   virtual void on_finish() override;
+   virtual ::e_status on_finish() override;
 
 
    virtual bool post_quit_message(int nExitCode);
@@ -418,7 +418,7 @@ public:
    operator htask_t() const;
 
 
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual ::e_status do_task() override;
@@ -460,9 +460,9 @@ public:
 
    virtual void message_handler(::message::message * pmessage);
 
-   virtual ::e_status     do_request(::create * pcreate) override;
+   virtual void do_request(::create * pcreate) override;
 
-   virtual ::e_status     get_result_status();
+   virtual ::e_status get_result_status();
 
    virtual void delete_this() override;
 
@@ -599,7 +599,7 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
 }
 
 
-CLASS_DECL_APEX void defer_create_thread(::context_object * pcontextobject);
+CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
 

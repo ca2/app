@@ -21,7 +21,7 @@ namespace graphics
       //
       // Please, do not create array of reference
       // it is perfectly possible, but...
-      // (But behind, there is a parallel context_object array in the composer (the array type)
+      // (But behind, there is a parallel object array in the composer (the array type)
       // ("mirroring"  the references). So why are you keeping references in the array)
       //
       // Easy-Coding Advantage

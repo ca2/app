@@ -496,7 +496,7 @@ namespace html
    
       string strUrl(pszUrl);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (strUrl.find(":") >= 0)
       {
@@ -626,7 +626,7 @@ namespace html
 
          phyperlink->m_strLink = strPath;
 
-         phyperlink->open_link();
+         phyperlink->run();
 
          /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
@@ -735,7 +735,7 @@ namespace html
 
       auto pcontext = get_context();
 
-      str = pcontext->file().as_string(varFile);
+      str = pcontext->m_pcontext->file().as_string(varFile);
 
       //if (!varFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
@@ -764,7 +764,7 @@ namespace html
       if (str.is_empty())
       {
          string strCandidate = m_strPathName / varFile.get_file_path();
-         str = pcontext->file().as_string(strCandidate);
+         str = pcontext->m_pcontext->file().as_string(strCandidate);
          if (str.is_empty())
          {
 

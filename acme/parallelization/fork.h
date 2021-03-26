@@ -15,7 +15,7 @@ public:
    PRED m_predicate;
 
 
-   predicate_task(::context_object * pcontextobject, PRED pred) :
+   predicate_task(::object * pobject, PRED pred) :
       m_predicate(pred)
    {
 
@@ -25,7 +25,7 @@ public:
 
       //m_bFork = true;
 
-      auto estatus = initialize(pcontextobject);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {
@@ -450,7 +450,7 @@ public:
    __pointer(object)  m_pholdref;
 
 
-   forking_count_task(::context_object * pcontextobject, __pointer(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
+   forking_count_task(::object * pobject, __pointer(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_pholdref(pholdref),
    m_predicate(pred),
    m_iOrder(iOrder),
@@ -460,10 +460,10 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
-      initialize(pcontextobject);
+      initialize(pobject);
    }
 
-   forking_count_task(::context_object * pcontextobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
+   forking_count_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_predicate(pred),
    m_iOrder(iOrder),
    m_iIndex(iIndex),
@@ -472,7 +472,7 @@ public:
    m_pobjectTaskEnd(pobjectTaskEnd)
    {
       construct();
-      initialize(pcontextobject);
+      initialize(pobject);
    }
 
    

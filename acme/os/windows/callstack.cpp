@@ -366,27 +366,27 @@ namespace windows
 
 
 #ifdef AMD64
-      m_stackframe.AddrPC.Offset = pcontext->Rip;
+      m_stackframe.AddrPC.Offset = pcontext->m_pcontext->Rip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->Rsp;
+      m_stackframe.AddrStack.Offset = pcontext->m_pcontext->Rsp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->Rsp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_pcontext->Rsp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #elif defined(X86)
-      m_stackframe.AddrPC.Offset = pcontext->Eip;
+      m_stackframe.AddrPC.Offset = pcontext->m_pcontext->Eip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->Esp;
+      m_stackframe.AddrStack.Offset = pcontext->m_pcontext->Esp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->Ebp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_pcontext->Ebp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #else
-      m_stackframe.AddrPC.offset = (u32)pcontext->Fir;
+      m_stackframe.AddrPC.offset = (u32)pcontext->m_pcontext->Fir;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrReturn.offset = (u32)pcontext->IntRa;
+      m_stackframe.AddrReturn.offset = (u32)pcontext->m_pcontext->IntRa;
       m_stackframe.AddrReturn.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.offset = (u32)pcontext->IntSp;
+      m_stackframe.AddrStack.offset = (u32)pcontext->m_pcontext->IntSp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.offset = (u32)pcontext->IntFp;
+      m_stackframe.AddrFrame.offset = (u32)pcontext->m_pcontext->IntFp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #endif
 
@@ -1102,7 +1102,7 @@ namespace windows
 
 #else
 
-            pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+            pcontext->m_pcontext->signal = GetThreadContext(pcontext->m_pcontext->thread, pcontext) ? 1 : -1;
 
 #endif
 

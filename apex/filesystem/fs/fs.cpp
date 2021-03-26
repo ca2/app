@@ -18,10 +18,10 @@ namespace fs
    }
 
 
-   ::e_status fs::initialize(::context_object * pcontextobject)
+   ::e_status fs::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {

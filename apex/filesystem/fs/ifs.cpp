@@ -40,7 +40,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
@@ -53,7 +53,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   get_context()->dir().ls(listing, path);
+   m_pcontext->m_pcontext->dir().ls(listing, path);
 
    synchronizationlock.lock();
 
@@ -85,7 +85,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
@@ -134,7 +134,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //property_set set;
 
-   //strSource = get_context()->http().get(strUrl, set);
+   //strSource = m_pcontext->m_pcontext->http().get(strUrl, set);
 
    //if(strSource.is_empty())
    //{
@@ -294,14 +294,14 @@ int ifs::is_dir(const ::file::path & path)
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if(dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
    {
 
       ::file::listing listing;
 
-      get_context()->dir().ls(listing, path.folder());
+      m_pcontext->m_pcontext->dir().ls(listing, path.folder());
 
    }
 

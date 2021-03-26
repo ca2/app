@@ -3,6 +3,7 @@
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
 #include "tab_pane.h"
+#include "acme/primitive/text/_.h"
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -65,7 +66,7 @@ namespace user
 
          m_ptab = tab_pane.m_ptab;
          m_id = tab_pane.m_id;
-         m_strTitle = tab_pane.m_strTitle;
+         m_textTitle = tab_pane.m_textTitle;
          m_pimage = tab_pane.m_pimage;
          m_pplaceholder = tab_pane.m_pplaceholder;
          m_bTabPaneVisible = tab_pane.m_bTabPaneVisible;
@@ -80,7 +81,7 @@ namespace user
    string tab_pane::get_title()
    {
 
-      return m_strTitle;
+      return m_textTitle.get_text();
 
    }
 
@@ -88,22 +89,22 @@ namespace user
    void tab_pane::set_title(const char * pszTitle)
    {
 
-      string strTitle(pszTitle);
+      //string strTitle(pszTitle);
 
-      auto psystem = get_system();
+      //auto psystem = m_psystem->m_pbasesystem;
 
-      auto pxml = psystem->xml();
+      //auto pxml = psystem->xml();
 
-      auto pdocument = pxml->create_document();
+      //auto pdocument = pxml->create_document();
 
-      if (pdocument->load(strTitle))
-      {
+      //if (pdocument->load(strTitle))
+      //{
 
-         strTitle = pdocument->root()->get_value();
+      //   strTitle = pdocument->root()->get_value();
 
-      }
+      //}
 
-      m_strTitle = strTitle;
+      m_textTitle = m_ptab->__text(pszTitle);
 
       m_ptab->set_need_layout();
 

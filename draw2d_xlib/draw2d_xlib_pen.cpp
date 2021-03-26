@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   pen::pen(::context_object * pcontextobject) :
+   pen::pen(::object * pobject) :
       ::object(pobject)
    {
    }

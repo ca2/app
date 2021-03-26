@@ -534,10 +534,10 @@ namespace ios
 //   }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
       
       if(!estatus)
       {

@@ -25,7 +25,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void finalize()
+   CLASS_DECL_APEX ::e_status finalize()
    {
 
       __node_term_multithreading();
@@ -35,6 +35,8 @@ namespace parallelization
       //::acme::del(s_piaThread2);
 
       //::acme::del(s_pcs2);
+
+      return ::success;
 
    }
 
@@ -140,7 +142,7 @@ namespace parallelization
          try
          {
 
-            pair.element1()->finish(psystem);
+            pair.element1()->finish();
 
          }
          catch (...)
@@ -345,10 +347,10 @@ namespace parallelization
 //   if (pthread->get_context())
 //   {
 //
-//      if (::is_null(pthread->get_context()->file()))
+//      if (::is_null(pthread->m_pcontext->m_pcontext->file()))
 //      {
 //
-//         pthread->get_context()->initialize_context();
+//         pthread->m_pcontext->m_pcontext->initialize_context();
 //
 //      }
 //
@@ -892,7 +894,7 @@ namespace apex
 
 
 
-::e_status thread_ptra::finish(::property_object* pcontextobjectFinish)
+::e_status thread_ptra::finish()
 {
 
    try
@@ -911,7 +913,7 @@ namespace apex
             /// this is quite dangerous
             //synchronization_lock slThread(pthread->mutex());
 
-            pthread->finish(pcontextobjectFinish);
+            pthread->finish();
 
          }
          catch (...)

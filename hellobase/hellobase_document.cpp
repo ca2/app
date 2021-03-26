@@ -5,7 +5,7 @@ namespace hellobase
 {
 
 
-   document::document(::context_object * pcontextobject) :
+   document::document(::object * pobject) :
       object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),
@@ -86,8 +86,8 @@ namespace hellobase
 
       }
       else if(get_typed_view < ::user::plain_edit_view >() != nullptr
-              && pcontext->file().exists(varFile)
-              && (str = pcontext->file().as_string(varFile)).has_char())
+              && pcontext->m_pcontext->file().exists(varFile)
+              && (str = pcontext->m_pcontext->file().as_string(varFile)).has_char())
       {
 
          get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);

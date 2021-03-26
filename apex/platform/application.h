@@ -22,12 +22,12 @@ namespace apex
    {
    public:
 
-      ::aqua::application* m_paquaapplication;
-      ::aura::application* m_pauraapplication;
-      ::axis::application* m_paxixapplication;
-      ::base::application* m_pbaseapplication;
-      ::bred::application* m_pbredapplication;
-      ::core::application* m_pcoreapplication;
+      //::aqua::application* m_paquaapplication;
+      //::aura::application* m_pauraapplication;
+      //::axis::application* m_paxixapplication;
+      //::base::application* m_pbaseapplication;
+      //::bred::application* m_pbredapplication;
+      //::core::application* m_pcoreapplication;
 
 
       void* m_pnativeapp;
@@ -41,7 +41,7 @@ namespace apex
 
       __reference(::apex::application)                m_pappParent;
       string                                          m_strAppName;
-      string                                          m_strAppTitle;
+      text                                            m_textAppTitle;
       string                                          m_strAppId;
       string                                          m_strBaseSupportId;
       string                                          m_strRoot;
@@ -173,14 +173,18 @@ namespace apex
       virtual ~application();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual string __get_text(string str) override;
+      virtual string __get_text(string str);
+
+
+      virtual void process_command_line(command_line* pcommandline);
+
 
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::id & id, stream & os) override;
@@ -275,6 +279,8 @@ namespace apex
 
 
       //virtual void SetCurrentHandles() override;
+
+      virtual ::e_status france_exit();
 
 
       virtual ::e_status process_exception(const ::exception::exception & e) override;
@@ -400,7 +406,7 @@ namespace apex
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
 
       application_menu & applicationmenu();
@@ -442,7 +448,7 @@ namespace apex
       virtual ::file::path local_application_home_path();
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       //virtual void release_parents() override;
@@ -693,8 +699,8 @@ namespace apex
 
       //virtual bool assert_user_logged_in();
 
-      virtual ::e_status     do_request(::create * pcreate) override;
-      virtual ::e_status     call_request(::create * pcreate) override;
+      virtual void do_request(::create * pcreate) override;
+      virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -744,7 +750,7 @@ namespace apex
       virtual void _001FranceExit();
 
 
-      virtual string lstr(const ::id & id, string strDefault = "") override;
+      //virtual string lstr(const ::id & id, string strDefault = "") override;
 
 
 
@@ -869,7 +875,7 @@ namespace apex
       virtual void HideApplication();
 
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -1254,7 +1260,7 @@ namespace apex
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::e_status add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::acme::library * plibrary);
 
       //virtual ::e_status initialize_userex();
       virtual ::e_status userfs_init1();
@@ -1357,7 +1363,7 @@ namespace apex
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;

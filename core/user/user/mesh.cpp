@@ -601,7 +601,7 @@ namespace user
             color32_t crTranslucid = rgb(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
-            psystem->imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
+            pdrawitem->m_pgraphics->color_blend(rectangle,crTranslucid,127);
          }
       }
 
@@ -4030,14 +4030,14 @@ namespace user
 
       auto pointScroll = get_viewport_offset();
 
-      index iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
+      auto iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
       {
-         iyScroll = iItem - m_nDisplayCount + 1;
+         iyScroll = iItem - (double) m_nDisplayCount + 1;
       }
       else if(iItem >= iyScroll + m_nDisplayCount)
       {
-         iyScroll = iItem;
+         iyScroll = (double) iItem;
       }
       if(pointScroll.y / maximum(1,m_dItemHeight) != iyScroll)
       {
@@ -4054,8 +4054,8 @@ namespace user
 
             });
 
-         item.set_lower_bound(iyScroll);
-         item.set_upper_bound(minimum(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
+         item.set_lower_bound((index)iyScroll);
+         item.set_upper_bound(minimum((index)(iyScroll + m_nDisplayCount - 1), (index)(m_nItemCount - 1)));
          range.add_item(item);
       }
    }
@@ -4477,6 +4477,8 @@ namespace user
       stra.add_tokens(strFilter," ",false);
 
       //m_pregexFilter1->setPositionMoves(1);
+
+      auto psystem = m_psystem->m_paxissystem;
 
       m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
@@ -5588,6 +5590,8 @@ namespace user
 
             //::aura::application * get_application() = m_pmesh->get_application();
 
+            auto psystem = m_psystem->m_paurasystem;
+
             psystem->imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
             psystem->imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
@@ -5596,7 +5600,7 @@ namespace user
             pimage2->set_rgb(0,0,0);
 
 
-            psystem->imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
+            m_pgraphics->draw(m_rectText, pimage2, point_i32(1,1), ::opacity(0.50));
 
 
             brushText->create_solid(argb(255,255,255,255));

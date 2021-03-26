@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
 //#endif
@@ -45,10 +45,10 @@ namespace aqua
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pcontextobject);
+      auto estatus = ::apex::system::initialize(pobject);
 
       if (!estatus)
       {

@@ -908,7 +908,7 @@ namespace axis
    //   else
    //   {
 
-   //      pcontext->pstyle.release();
+   //      pcontext->m_pcontext->pstyle.release();
 
    //   }
 
@@ -1475,7 +1475,7 @@ namespace axis
       //   else
       //   {
 
-      //      pcontext->pstyle.release();
+      //      pcontext->m_pcontext->pstyle.release();
 
       //   }
 

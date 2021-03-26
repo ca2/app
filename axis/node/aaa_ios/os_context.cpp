@@ -397,7 +397,7 @@ namespace ios
        keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
        keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
        keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-       keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+       keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
        registry::Key keyApplicationCa2;
 
@@ -825,7 +825,7 @@ namespace ios
       {
 
          //string strDir;
-         //strDir = pcontext->dir().path(getenv("HOME"), "Pictures");
+         //strDir = pcontext->m_pcontext->dir().path(getenv("HOME"), "Pictures");
          //imagefileset.add_search(strDir);
          string strDir;
          strDir = "/Library/Wallpaper";
@@ -844,7 +844,7 @@ namespace ios
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      path = pcontext->defer_process_path(path);
+      path = pcontext->m_pcontext->defer_process_path(path);
 
       ns_main_async(^
       {

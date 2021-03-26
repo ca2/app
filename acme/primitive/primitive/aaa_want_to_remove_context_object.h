@@ -142,7 +142,7 @@ struct CLASS_DECL_ACME matter :
 
    //virtual stream & call_read(const ::stream & stream) { return read((::stream &)(stream)); }
 
-   //virtual void finalize();
+   //virtual ::e_status finalize();
 
    //virtual void call();
 

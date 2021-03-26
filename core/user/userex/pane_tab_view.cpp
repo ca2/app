@@ -410,9 +410,9 @@ namespace userex
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      ::apex::library * plibrary = nullptr;
+      ::acme::library * plibrary = nullptr;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {

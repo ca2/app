@@ -34,11 +34,12 @@ namespace fs
    }
 
 
-   void set::finalize()
+   ::e_status set::finalize()
    {
 
       for (auto& pdata : m_spafsdata)
       {
+
          pdata->finalize();
 
 
@@ -55,9 +56,9 @@ namespace fs
 
       m_fsdatamap.remove_all();
       
-      
       ::fs::data::finalize();
 
+      return ::success;
 
    }
 
@@ -283,7 +284,7 @@ namespace fs
       {
          try
          {
-            get_context()->file().copy(pszDst, pszSrc);
+            m_pcontext->m_pcontext->file().copy(pszDst, pszSrc);
          }
          catch(...)
          {

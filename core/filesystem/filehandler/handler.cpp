@@ -18,10 +18,10 @@ namespace filehandler
    }
 
 
-   ::e_status handler::initialize(::context_object * pcontextobject)
+   ::e_status handler::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if(!estatus)
       {
@@ -44,7 +44,7 @@ namespace filehandler
    }
 
 
-   void handler::defer_add_library(::apex::library * plibrary)
+   void handler::defer_add_library(::acme::library * plibrary)
    {
 
       menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);

@@ -207,7 +207,7 @@ namespace apex
    }
 
 
-   void timer_array::finalize()
+   ::e_status timer_array::finalize()
    {
 
       m_bOk = false;
@@ -215,6 +215,8 @@ namespace apex
       delete_all_timers();
 
       ::timer_callback::finalize();
+
+      return ::success;
 
    }
 

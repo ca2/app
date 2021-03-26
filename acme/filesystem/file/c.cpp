@@ -85,24 +85,22 @@ int_bool file_path_is_relative_dup(const char * psz)
 
 }
 
-
-
-
-
-CLASS_DECL_ACME int_bool dir_appdata(char * psz, size_t size)
-{
-
-#ifdef WINDOWS
-
-   return strncpy_s(psz, size, ::dir::appdata(), size) == 0;
-
-#else
-
-   return ansi_count_copy(psz,::dir::appdata(), size) != nullptr;
-
-#endif
-
-}
+//
+//
+//CLASS_DECL_ACME int_bool dir_appdata(char * psz, size_t size)
+//{
+//
+//#ifdef WINDOWS
+//
+//   return strncpy_s(psz, size, ::dir::appdata(), size) == 0;
+//
+//#else
+//
+//   return ansi_count_copy(psz,::dir::appdata(), size) != nullptr;
+//
+//#endif
+//
+//}
 
 
 int dir_mk(const char * psz)

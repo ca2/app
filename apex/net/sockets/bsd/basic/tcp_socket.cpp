@@ -1868,7 +1868,7 @@ namespace sockets
          if (keyfile.ends_ci(".cat"))
          {
 
-            strCert = get_context()->file().as_string(keyfile);
+            strCert = m_pcontext->m_pcontext->file().as_string(keyfile);
 
          }
          else

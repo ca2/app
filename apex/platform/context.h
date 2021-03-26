@@ -5,7 +5,7 @@ namespace apex { class context_thread; }
 
 
 class CLASS_DECL_APEX context :
-   virtual public ::object,
+   virtual public ::acme::context,
    virtual public ::file::listing_provider
 {
 public:
@@ -26,8 +26,8 @@ public:
    string_array                        m_straMatterLocator;
 
 
-   context(){}
-   virtual ~context(){}
+   context();
+      virtual ~context();
 
 
    virtual ::e_status initialize_context();
@@ -157,7 +157,7 @@ public:
    inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
 
 };

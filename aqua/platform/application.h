@@ -22,7 +22,7 @@ namespace aqua
 
       inline ::aqua::system* get_system();
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
       //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
       virtual void _001OnFranceExit() override;

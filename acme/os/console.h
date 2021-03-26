@@ -81,7 +81,7 @@ namespace console
 
 
    class CLASS_DECL_ACME console:
-      virtual public ::property_object
+      virtual public object
    {
    public:
 

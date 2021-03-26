@@ -108,7 +108,7 @@ namespace filemanager
 
       ::user::split_view::on_subject(psubject, pcontext);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (filemanager_document() == psubject->cast < ::user::document >(id_document))
       {

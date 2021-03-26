@@ -3,8 +3,9 @@
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
 #include "acme/platform/profiler.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "axis/const/idpool.h"
+#include "axis/database/sqlitedb/database.h"
 
 
 void __node_axis_factory_exchange(::factory_map * pfactorymap);
@@ -26,7 +27,7 @@ void __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
-::apex::library * experience_get_new_library();
+::acme::library * experience_get_new_library();
 #endif
 
 
@@ -35,7 +36,7 @@ void ___compile_test_sort_array_21304528734();
 void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::context_object * pcontextobject);
+CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * pobject);
 #endif
 
 
@@ -43,7 +44,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::context_obj
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
+extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
 CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
@@ -92,7 +93,9 @@ namespace axis
    system::system()
    {
 
-      m_paxixsystem = this;
+      m_paxissystem = this;
+
+      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
 
       create_factory < ::axis::application, ::apex::application >();
       create_factory < ::axis::session, ::apex::session >();
@@ -125,10 +128,10 @@ namespace axis
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::system::initialize(pcontextobject);
+      auto estatus = ::aura::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -179,6 +182,26 @@ namespace axis
 
       }
 
+      auto & factorymapsquare = *m_pfactorymapsquare;
+
+      auto & pfactorySimpledb = factorymapsquare["simpledb"];
+
+      if (!pfactorySimpledb)
+      {
+
+         estatus = __construct_new(pfactorySimpledb);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         pfactorySimpledb->create_factory<::sqlite::database, ::database::database>();
+
+      }
+
       create_factory < ::database::field >();
 
       return true;
@@ -221,10 +244,10 @@ namespace axis
    }
 
 
-   ::e_status system::post_create_requests()
+   ::e_status system::post_creation_requests()
    {
 
-      auto estatus = ::aura::system::post_create_requests();
+      auto estatus = ::aura::system::post_creation_requests();
 
       if (!estatus)
       {
@@ -266,6 +289,8 @@ namespace axis
          return estatus;
 
       }
+
+      ::acme::del(m_pfactorymapsquare);
 
       return estatus;
 

@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   void cursor_set::finalize()
+//   ::e_status cursor_set::finalize()
 //   {
 //
 //      for (auto& pcursor : m_cursormap.values())
@@ -189,7 +189,7 @@
 //   void cursor_set::load_hotspot(const ::file::path& pathDir)
 //   {
 //
-//      parse_hotspot_text(pcontext->file().as_string(pathDir / "hotspot.txt"));
+//      parse_hotspot_text(pcontext->m_pcontext->file().as_string(pathDir / "hotspot.txt"));
 //
 //   }
 //
@@ -244,7 +244,7 @@
 //
 //      // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 //
-//      ::file::path pathArrow = pcontext->dir().matter(pathMatter / "arrow.png");
+//      ::file::path pathArrow = pcontext->m_pcontext->dir().matter(pathMatter / "arrow.png");
 //
 //      ::file::path pathFolder = pathArrow.folder();
 //

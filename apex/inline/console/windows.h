@@ -5,7 +5,7 @@ CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);
 
 
 class console : 
-   virtual public property_object
+   virtual public object
 {
 public:
 

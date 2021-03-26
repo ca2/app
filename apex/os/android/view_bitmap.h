@@ -16,7 +16,7 @@
 //      ::mutex                m_mutex;
 //
 //
-//      impact_bitmap(::context_object * pcontextobject);
+//      impact_bitmap(::object * pobject);
 //      virtual ~impact_bitmap();
 //
 //      virtual void create_window_graphics(oswindow interaction_impl, i64 cx, i64 cy, int iStride = -1);

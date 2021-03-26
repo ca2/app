@@ -32,7 +32,7 @@ namespace aura
       virtual bool remove_timer(::timer * ptimer);
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
       virtual void delete_all_timers();
 
       virtual bool on_timer(::timer * ptimer) override;

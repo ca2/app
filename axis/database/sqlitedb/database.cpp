@@ -207,11 +207,116 @@ namespace sqlite
 
    }
 
+   
+   __pointer(::database::result_set) database::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   { 
+      
+      return query_result(pszQuery, iRowCount, iColumnCount); 
+   
+   }
+
+
+   bool database::isActive()
+   {
+
+      return false;
+
+   }
+
 
    string database::get_error_message()
    {
 
       return m_strError;
+
+   }
+
+
+   ::e_status database::init()
+   {
+
+      return ::success;
+
+   }
+
+
+   ___pointer<class var_array> database::query_row(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+
+
+
+   ::payload database::query_item(const char* psz)
+   {
+
+      return ::payload();
+
+   }
+
+
+   __pointer(var_array) database::query_items(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+   ::e_status     database::connect(
+      const char* name,
+      const char* host,
+      const char* port,
+      const char* user,
+      const char* pass,
+      const char* sckt,
+      u64 uConnectionFlags)
+   {
+
+      return error_failed;
+
+   }
+
+
+
+   __pointer(__pointer_array(var_array)) database::query_rows(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool database::memory_query_item(get_memory getmemory, const char* psz)
+   {
+
+      return ::payload();
+
+   }
+
+
+   ::e_status database::reset()
+   {
+
+      return error_failed;
+
+   }
+
+
+   ::i64 database::get_affected_rows_count()
+   {
+
+      return -1;
+
+   }
+
+
+   bool database::in_transaction()
+   {
+
+      return false;
 
    }
 
@@ -333,7 +438,7 @@ namespace sqlite
 
          auto pcontext = get_context();
 
-         pcontext->file().del(m_strName);
+         pcontext->m_pcontext->file().del(m_strName);
 
       }
       catch(...)

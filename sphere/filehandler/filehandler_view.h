@@ -29,7 +29,7 @@ namespace filehandler
          ::rectangle_i32         m_rectStatusImage;
          ::rectangle_i32         m_rectName;
 
-         item(::context_object * pcontextobject);
+         item(::object * pobject);
 
          void parse(const char * pszApp);
 
@@ -44,7 +44,7 @@ namespace filehandler
 
          i32 m_iItemHeight;
 
-         list(::context_object * pcontextobject);
+         list(::object * pobject);
 
 
          void parse(::filehandler::handler * phandler, const char * pszTopic);
@@ -62,7 +62,7 @@ namespace filehandler
       ::write_text::font_pointer       m_pfont;
 
 
-      view(::context_object * pcontextobject);
+      view(::object * pobject);
       virtual ~view();
 
 

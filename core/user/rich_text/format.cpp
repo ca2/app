@@ -85,7 +85,7 @@ namespace user
 
          m_pcontainer = pcontainer;
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          auto pnode = psystem->node();
 

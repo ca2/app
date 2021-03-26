@@ -22,7 +22,7 @@
 //#undef App
 //
 //
-//#define System (::get_context_system()->m_paxissystem)
+//#define System (psystem->m_paxissystem)
 //#define Sess(pcontextsession) (pcontextsession->m_paxissession)
 //#define App(pobject) (*pobject->get_app()->m_paxisapplication)
 

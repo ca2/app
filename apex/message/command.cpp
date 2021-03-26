@@ -90,7 +90,7 @@ namespace message
    //}
 
 
-   //command::command(::context_object * pcontextobject) :
+   //command::command(::object * pobject) :
    //   ::object(pobject)
    //{
 

@@ -59,11 +59,11 @@ public:
    }
 
 
-   inline ___pointer(enum_create_new, ::context_object * pcontextobject) :
+   inline ___pointer(enum_create_new, ::object * pobject) :
       m_p(new T)
    {
 
-      m_p->initialize(pcontextobject);
+      m_p->initialize(pobject);
 
    }
 

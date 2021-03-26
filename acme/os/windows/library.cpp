@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 
 
 void * __node_library_open(const char * pszPath, string & strMessage)
@@ -17,28 +18,28 @@ void * __node_library_open(const char * pszPath, string & strMessage)
    if (ansi_ends_ci(strPath, ".ilk"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if(ansi_ends_ci(strPath,".pdb"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if(ansi_ends_ci(strPath,".lib"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if(ansi_ends_ci(strPath,".exp"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
@@ -241,28 +242,28 @@ void * __node_library_touch(const char * pszPath, string & strMessage)
    if (ansi_ends_ci(strPath, ".ilk"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if (ansi_ends_ci(strPath, ".pdb"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if (ansi_ends_ci(strPath, ".lib"))
    {
 
-      return false;
+      return nullptr;
 
    }
 
    if (ansi_ends_ci(strPath, ".exp"))
    {
 
-      return false;
+      return nullptr;
 
    }
 

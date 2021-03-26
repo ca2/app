@@ -22,7 +22,7 @@ namespace uwp
    ::e_status dir_context::initialize(::matter* pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {
@@ -65,13 +65,13 @@ namespace uwp
       //#endif
 
 
-      auto pdocument =       auto psystem = get_system();
+      auto pdocument =       auto psystem = m_psystem->m_paurasystem;
 
       auto pxml = psystem->xml();
 
       auto pdocument= pxml->create_document();
 
-      pdocument->load(get_context()->file().as_string(appdata() / "configuration\\directory.xml"));
+      pdocument->load(m_pcontext->m_pcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -382,7 +382,7 @@ namespace uwp
 
    ::file::path dir_context::warehouse()
    {
-      return get_context()->dir().ca2module();
+      return m_pcontext->m_pcontext->dir().ca2module();
    }
 
    ::file::path dir_context::time()
@@ -490,7 +490,7 @@ namespace uwp
                try
                {
 
-                  get_context()->file().del(str);
+                  m_pcontext->m_pcontext->file().del(str);
 
                }
                catch (...)
@@ -505,7 +505,7 @@ namespace uwp
                try
                {
 
-                  get_context()->file().del(str);
+                  m_pcontext->m_pcontext->file().del(str);
 
                }
                catch (...)

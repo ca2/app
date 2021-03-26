@@ -160,7 +160,7 @@
 //      virtual ~application();
 //
 //
-//      virtual ::e_status initialize(::context_object * pcontextobject) override;
+//      virtual ::e_status initialize(::object * pobject) override;
 //
 //
 //      virtual void assert_valid() const override;
@@ -375,7 +375,7 @@
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+//      //virtual ::e_status initialize(::object * pobject) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -417,7 +417,7 @@
 //      virtual ::file::path local_application_home_path();
 //
 //
-//      virtual void finalize() override;
+//      virtual ::e_status finalize() override;
 //
 //
 //      //virtual void release_parents() override;
@@ -856,7 +856,7 @@
 //      virtual void HideApplication();
 //
 //      
-//      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+//      //virtual ::e_status initialize(::object * pobject) override;
 //
 //      //virtual ::e_status process_init() override;
 //
@@ -1244,7 +1244,7 @@
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
-//      //virtual ::e_status add_library(::apex::library * plibrary);
+//      //virtual ::e_status add_library(::acme::library * plibrary);
 //
 //      virtual ::e_status initialize_userex();
 //      virtual ::e_status userfs_init1();
@@ -1347,7 +1347,7 @@
 //      //virtual ~application();
 //
 //
-//      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
+//      //virtual ::e_status     initialize(::object * pobject) override;
 //
 //
 //      //virtual void install_message_routing(::channel * pchannel) override;

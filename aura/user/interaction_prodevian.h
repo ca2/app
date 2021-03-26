@@ -98,7 +98,7 @@ namespace user
 
       virtual void term_thread() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual ::e_status run() override;
 

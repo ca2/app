@@ -1,10 +1,23 @@
 #include "framework.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
 
+context::context()
+{
+
+   m_pcontext = this;
+
+}
+
+context::~context()
+{
+
+
+}
 
 string context::get_latest_build_number(const char * pszConfiguration, const char * pszAppId)
 {
@@ -134,7 +147,7 @@ bool context::is_local_data() const
    if(is_system())
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       get_session()->initialize(psystem);
 
@@ -446,7 +459,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "usersystem://"))
    {
 
-      path = ::dir::system() / path;
+      path = m_psystem->m_pacmedir->system() / path;
 
    }
    else if (::str::begins_eat_ci(path, "desktop://"))
@@ -848,7 +861,7 @@ string context::http_get(const string & strUrl, ::property_set & set)
 ::handle::ini context::local_ini()
 {
 
-   ::file::path pathFolder = ::dir::localconfig();
+   ::file::path pathFolder = m_psystem->m_pacmedir->localconfig();
 
    return ini_from_path(pathFolder);
 
@@ -985,7 +998,7 @@ string context::http_get(const char * pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file().put_contents_utf8(::dir::config() / strPath, strValue);
+   return file().put_contents_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
 
 }
 
@@ -993,7 +1006,7 @@ bool context::sys_set(string strPath, string strValue)
 string context::sys_get(string strPath, string strDefault)
 {
 
-   string strValue = file().as_string(::dir::config() / strPath);
+   string strValue = file().as_string(m_psystem->m_pacmedir->config() / strPath);
 
    if (strValue.is_empty())
    {
@@ -1102,7 +1115,7 @@ void context::add_matter_locator(::apex::application * papp)
 ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(get_context()->file().get_reader(varFile));
+   binary_stream reader(m_pcontext->m_pcontext->file().get_reader(varFile));
 
    read(reader);
 
@@ -1114,7 +1127,7 @@ void context::add_matter_locator(::apex::application * papp)
 ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
-   binary_stream writer(get_context()->file().get_writer(varFile));
+   binary_stream writer(m_pcontext->m_pcontext->file().get_writer(varFile));
 
    write(writer);
 
@@ -1123,10 +1136,12 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-void context::finalize()
+::e_status context::finalize()
 {
 
-   ::object::finalize();
+   auto estatus = ::object::finalize();
+
+   return estatus;
 
 }
 

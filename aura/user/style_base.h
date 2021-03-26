@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA style_base :
-      virtual public object
+      virtual public subject::manager
    {
    public:
 

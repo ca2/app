@@ -22,8 +22,8 @@
 //#undef App
 //
 //
-//#define ::aura::get_system() (::get_context_system()->m_paurasystem)
-//#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
+//#define ::aura::get_system() (psystem->m_paurasystem)
+//#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
 //#define App(playered) (*::get_application(playered)->m_pauraapplication)
 
@@ -551,9 +551,9 @@ CLASS_DECL_AURA void aura_ref();
 //
 //CLASS_DECL_AURA ::matter * trace_object(e_trace_category ecategory);
 //
-//const char * topic_text(::matter * pcontextobject);
+//const char * topic_text(::matter * pobject);
 //
-//e_trace_category object_trace_category(::matter * pcontextobject);
+//e_trace_category object_trace_category(::matter * pobject);
 //
 //
 //
@@ -968,7 +968,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //class composite_base;
-//class context_object;
+//class object;
 //class object;
 //
 //
@@ -984,7 +984,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 ////
 ////extern "C"
-////CLASS_DECL_AURA void register_aura_library(const char * psz, ::apex::library * plibrary);
+////CLASS_DECL_AURA void register_aura_library(const char * psz, ::acme::library * plibrary);
 ////
 ////
 ////extern "C"
@@ -992,7 +992,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //#define DECLARE_NEW_AURA_LIBRARY(X) extern "C" \
-//::apex::library * X##_new_aura_library()
+//::acme::library * X##_new_aura_library()
 //
 //
 //#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_aura_library(#X, &X##_get_new_library)
@@ -2227,11 +2227,11 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 ////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 //
 //
-////CLASS_DECL_AURA ::apex::library & get_library(const char* psz);
-////CLASS_DECL_AURA void register_aura_library(const char* psz, ::apex::library* plibrary);
+////CLASS_DECL_AURA ::acme::library & get_library(const char* psz);
+////CLASS_DECL_AURA void register_aura_library(const char* psz, ::acme::library* plibrary);
 ////
 ////CLASS_DECL_AURA ::context * get_context();
-////CLASS_DECL_AURA inline ::context * get_context(::context_object * pcontextobject);
+////CLASS_DECL_AURA inline ::context * get_context(::object * pobject);
 ////CLASS_DECL_AURA inline ::context * get_context(::context * pcontext);
 //
 //
@@ -2240,17 +2240,17 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //CLASS_DECL_AURA ::aura::application * get_application();
-//CLASS_DECL_AURA inline ::aura::application * get_application(::context_object * pcontextobject);
+//CLASS_DECL_AURA inline ::aura::application * get_application(::object * pobject);
 //CLASS_DECL_AURA inline ::aura::application * get_application(::aura::application * papp);
 //CLASS_DECL_AURA inline ::aura::application * get_app() { return get_application(); }
 //
 //
 //CLASS_DECL_AURA::aura::session * get_session();
-//CLASS_DECL_AURA inline ::aura::session * get_session(::context_object * pcontextobject);
+//CLASS_DECL_AURA inline ::aura::session * get_session(::object * pobject);
 //CLASS_DECL_AURA inline ::aura::session * get_session(::aura::session * psession);
 //
 //CLASS_DECL_AURA::aura::system * get_context_system();
-//CLASS_DECL_AURA inline ::aura::system * get_context_system(::context_object * pcontextobject);
+//CLASS_DECL_AURA inline ::aura::system * get_context_system(::object * pobject);
 //CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psystem);
 //
 //
@@ -2620,7 +2620,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/primitive/member.h"
 //
 //
-//#include "aura/primitive/primitive/context_object.h"
+//#include "aura/primitive/primitive/object.h"
 //
 //
 //#include "aura/primitive/primitive/trait.h"
@@ -2643,7 +2643,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/geometry2d/_.h"
 //
 //
-////#include "aura/primitive/primitive/context_object.h"
+////#include "aura/primitive/primitive/object.h"
 //
 //
 //#include "aura/primitive/primitive/_factory_prefix.h"
@@ -2689,7 +2689,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 ////using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
 //
-////using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
+////using object_ptra = __pointer_array(::object); // Please use just for keeping non-member-based references.
 //
 //using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 //

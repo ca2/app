@@ -95,7 +95,7 @@ namespace hi5
 
          __pointer(::create) pcreate(e_create);
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          pcreate->m_bMakeVisible = false;
          pcreate->m_puserprimitiveParent = psystem->cast < ::user::interaction >("top_parent");
@@ -152,7 +152,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         setDoc["application_name"] = pcontext->http().get(strUrl,set);
+         setDoc["application_name"] = pcontext->m_pcontext->http().get(strUrl,set);
 
          setDoc["authorization_link"] = m_strAuthorizationUrl;
 
@@ -170,7 +170,7 @@ namespace hi5
 
          }
 
-         if(!m_pdocAuth->on_open_document(pcontext->dir().matter(m_strForm)))
+         if(!m_pdocAuth->on_open_document(pcontext->m_pcontext->dir().matter(m_strForm)))
          {
 
             return;
@@ -236,7 +236,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         m_pdocAuth->on_open_document(pcontext->dir().matter(pszMatter));
+         m_pdocAuth->on_open_document(pcontext->m_pcontext->dir().matter(pszMatter));
          display_main_frame();
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

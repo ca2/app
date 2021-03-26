@@ -16,7 +16,7 @@
          {
 
 
-            frame::frame(::context_object * pcontextobject) :
+            frame::frame(::object * pobject) :
                object(pobject),
                ::experience::frame(pobject),
                //m_schema(pobject),

@@ -5,14 +5,14 @@
 //{
 //
 //
-//   command::command(::context_object * pcontextobject)
+//   command::command(::object * pobject)
 //   {
 //
 //         common_construct();
 //         if (::is_set(pobject))
 //         {
 //
-//            initialize(pcontextobject);
+//            initialize(pobject);
 //
 //         }
 //
@@ -20,7 +20,7 @@
 //
 //
 //      command::command(const ::id & id) :
-//         context_object(id)
+//         object(id)
 //      {
 //
 //         common_construct();
@@ -83,7 +83,7 @@
 //      //}
 //
 //
-//      //command::command(::context_object * pcontextobject) :
+//      //command::command(::object * pobject) :
 //      //   ::object(pobject)
 //      //{
 //

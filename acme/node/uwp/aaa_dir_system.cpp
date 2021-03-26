@@ -21,7 +21,7 @@ namespace uwp
    ::e_status dir_system::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_system::initialize(pcontextobject);
+      auto estatus = ::dir_system::initialize(pobject);
 
       if (!estatus)
       {

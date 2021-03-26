@@ -11,7 +11,7 @@ namespace colorertake5
       public:
 
 
-         colorertake5(::context_object * pcontextobject);
+         colorertake5(::object * pobject);
          virtual ~colorertake5();
 
 

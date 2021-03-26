@@ -6,12 +6,9 @@ namespace user
 {
 
 
-   tooltip::tooltip(::context_object * pcontextobject):
-      ::object(pobject),
+   tooltip::tooltip(::object * pobject):
       m_font(e_create)
    {
-
-      m_font->create_point_font(os_font_name(e_font_sans_ex),12.0);
 
       m_bError = false;
 
@@ -49,8 +46,20 @@ namespace user
 
       pmessage->previous();
 
-      if(pmessage->m_bRet)
+      if (pmessage->m_bRet)
+      {
+
          return;
+
+      }
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pnode = psystem->node();
+
+      auto strFontName = pnode->font_name(e_font_sans_ex);
+
+      m_font->create_point_font(strFontName, 12.0);
 
    }
 

@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   //interaction_child::interaction_child(::context_object * pcontextobject) :
+   //interaction_child::interaction_child(::object * pobject) :
    //   ::object(pobject)
    //{
 

@@ -3797,7 +3797,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                else
                {
 
-                  TRACE("cannot create Input pcontext->\n");
+                  TRACE("cannot create Input pcontext->m_pcontext->\n");
 
                }
 

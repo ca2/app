@@ -16,7 +16,7 @@ namespace base
    inline ::base::session* application::get_session() const
    {
 
-      return ::is_set(m_psession) ? m_psession.cast < ::base::session >() : nullptr;
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
 
    }
 

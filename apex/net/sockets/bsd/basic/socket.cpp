@@ -23,7 +23,7 @@ namespace sockets
 
 
    socket::socket() //:
-      //::context_object(h),
+      //::object(h),
       //base_socket(h)
    {
 
@@ -48,6 +48,15 @@ namespace sockets
       }
 
    }
+
+
+   //::e_status socket::initialize_socket(base_socket_handler* phandler)
+   //{
+
+
+
+
+   //}
 
 
    i32 socket::close_socket(SOCKET s)

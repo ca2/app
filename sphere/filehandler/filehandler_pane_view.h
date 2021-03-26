@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-            pane_view(::context_object * pcontextobject);
+            pane_view(::object * pobject);
 
       void rotate() override;
 

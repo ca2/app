@@ -534,10 +534,10 @@ namespace ios
 //   }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
       
       if(!estatus)
       {
@@ -623,7 +623,7 @@ namespace ios
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = pcontext->file().as_string(strPath);
+      string strDocument = pcontext->m_pcontext->file().as_string(strPath);
 
       if(doc.load(strDocument))
       {

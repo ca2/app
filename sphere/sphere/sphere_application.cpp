@@ -6,7 +6,7 @@ namespace sphere
 
 
 
-   application::application(::context_object * pcontextobject) :
+   application::application(::object * pobject) :
       ::aura::application(pobject),
       ::axis::application(pobject),
       ::base::application(pobject),
@@ -697,7 +697,7 @@ namespace sphere
             {
                if(::str::ends_ci(pcreate->m_pcommandline->m_varFile, ".ca2"))
                {
-                  string strCommand = pcontext->file().as_string(pcreate->m_pcommandline->m_varFile);
+                  string strCommand = pcontext->m_pcontext->file().as_string(pcreate->m_pcommandline->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                   || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -815,9 +815,9 @@ namespace sphere
 
    //   string strSentinelPath;
 
-   //   strSentinelPath = pcontext->dir().install() / "stage/x86/app.sentinel.exe";
+   //   strSentinelPath = pcontext->m_pcontext->dir().install() / "stage/x86/app.sentinel.exe";
 
-   //   pcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
+   //   pcontext->m_pcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 
    //   return ::asphere::department::on_install();
    //}

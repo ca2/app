@@ -75,7 +75,7 @@
 //#define get_system() (::get_context_system())
 
 
-//#define Node (::get_context_system()->node())
+//#define Node (psystem->node())
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -86,7 +86,7 @@
 
 class object;
 class thread;
-class context_object;
+//class object;
 
 
 CLASS_DECL_ACME void acme_ref();
@@ -125,6 +125,8 @@ namespace acme
 
    class system;
 
+
+   class acme;
 
 //   CLASS_DECL_ACME system * get_system();
 
@@ -387,13 +389,31 @@ namespace acme
 {
 
 
-   class acme;
+   class static_start;
 
 
    extern CLASS_DECL_ACME bool g_bAcme;
 
 
 } // namespace acme
+
+
+class acme_dir;
+
+
+class acme_path;
+
+
+namespace PLATFORM_NAMESPACE
+{
+
+
+   class acme_dir;
+
+   class acme_path;
+
+
+} // namespace PLATFORM_NAMESPACE
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
@@ -476,6 +496,21 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #endif
 
 
+#endif
+
+
+#ifdef WINDOWS 
+#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
+#define ARG_SEC_ATTRS , void * psaAttributes
+#define PARAM_SEC_ATTRS (LPSECURITY_ATTRIBUTES) psaAttributes
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) , ATTRS
+#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
+#else
+#define ARG_SEC_ATTRS_DEF 
+#define ARG_SEC_ATTRS
+#define PARAM_SEC_ATTRS
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) 
+#define ADD_PARAM_SEC_ATTRS 
 #endif
 
 
@@ -830,24 +865,24 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 
-CLASS_DECL_ACME::matter * general_trace_object();
+CLASS_DECL_ACME const ::matter * general_trace_object();
 
 CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 
-inline ::matter * context_trace_object() { return general_trace_object(); }
+inline const ::matter * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 #define __alog(...) __tracef(__VA_ARGS__)
 
-#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define INFO(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 
 #define TRACE(...) INFO(__VA_ARGS__)
 
@@ -855,11 +890,11 @@ CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const
 
 CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
 
-CLASS_DECL_ACME ::matter *trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const ::matter *trace_object(e_trace_category ecategory);
 
-CLASS_DECL_ACME const char *topic_text(::matter *pcontextobject);
+CLASS_DECL_ACME const char *topic_text(::matter *pobject);
 
-CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pobject);
 
 
 //
@@ -2524,6 +2559,17 @@ class type;
 #include "acme/primitive/string/_.h"
 
 
+class text;
+class text_data;
+class text_translator;
+
+
+//#include "acme/primitive/text/data.h"
+
+
+#include "acme/primitive/text/text.h"
+
+
 #include "acme/platform/definition.h"
 
 #include "acme/memory/new.h"
@@ -2555,6 +2601,8 @@ class thread_parameter;
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/primitive/id.h"
 #include "acme/primitive/primitive/uid.h"
+
+
 
 
 namespace primitive
@@ -2995,7 +3043,7 @@ using element_address_array = ::address_array<matter *>;
 
 class sticker;
 
-inline ::matter *trace_object(::matter *pobject) { return pobject; }
+inline const ::matter *trace_object(const ::matter *pobject) { return pobject; }
 
 template<typename POINTER_TYPE>
 class ptr_array;
@@ -3100,10 +3148,14 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 #include "acme/primitive/primitive/linked_property.h"
 
 
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
+using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
+
+
 #include "acme/primitive/primitive/property_object.h"
 
 
-#include "acme/primitive/primitive/layered.h"
+//#include "acme/primitive/primitive/layered.h"
 
 
 #include "acme/primitive/comparison/var_strict.h"
@@ -3120,8 +3172,26 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 
 #include "acme/platform/predicate_process.h"
 
+#include "acme/primitive/primitive/factory.h"
+
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
+#include "acme/primitive/primitive/object.h"
+
+
+#include "acme/parallelization/_.h"
+
+
+
+
+//#include "acme/parallelization/critical_section.h"
+
+
+#include "acme/primitive/text/_.h"
+
+
+#include "acme/platform/context.h"
+
 
 #include "acme/parallelization/pool.h"
 
@@ -3132,6 +3202,8 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 class message_box;
 
+#include "acme/memory/counter.h"
+
 #include "acme/platform/debug.h"
 
 #include "acme/platform/class.h"
@@ -3140,7 +3212,7 @@ class message_box;
 
 #include "acme/primitive/primitive/request_interface.h"
 
-#include "acme/parallelization/synchronization_result.h"
+
 
 //#include "acme/parallelization/synchronization_object.h"
 
@@ -3207,6 +3279,8 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 #include "acme/primitive/collection/composite_array.h"
 
 
+
+
 namespace acme
 {
 
@@ -3232,7 +3306,13 @@ template<class POINTER_TYPE>
 inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINTER_TYPE *(); }
 
 
+
+
+
 #include "acme/platform/display.h"
+
+
+
 
 
 #include "acme/filesystem/file/file.h"
@@ -3323,28 +3403,12 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/platform/enum.h"
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-#define CRITICAL_SECTION_FUNCTION_RETURN int
-
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
-
-#else
-
-#define CRITICAL_SECTION_FUNCTION_RETURN void
-
-#endif
-
-
-#include "acme/parallelization/critical_section.h"
-
-
-#include "acme/primitive/primitive/factory.h"
 
 
 
 
-#include "acme/parallelization/_.h"
+
+
 
 
 //namespace acme
@@ -4110,6 +4174,12 @@ namespace draw2d
 
 
 #include "acme/platform/acme_main_data.h"
+
+
+#include "acme/platform/library.h"
+
+
+#include "acme/parallelization/cleanup_task.h"
 
 
 #include "acme/platform/system.h"

@@ -32,7 +32,7 @@
          {
 
 
-            frame_Minimal001::frame_Minimal001(::context_object * pcontextobject) :
+            frame_Minimal001::frame_Minimal001(::object * pobject) :
                object(pobject),
                frame(pobject)
             {

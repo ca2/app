@@ -91,7 +91,7 @@ namespace sockets
 #endif
       string                  m_password; ///< ssl password
 
-      __pointer(base_socket_handler)   m_phandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      __pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
@@ -211,6 +211,7 @@ namespace sockets
       virtual ~base_socket();
 
 
+      virtual ::e_status initialize_socket(base_socket_handler* phandler);
 
 
 
@@ -223,13 +224,13 @@ namespace sockets
       */
       virtual base_socket *new_listen_socket() { return nullptr; }
 
-      /** Returns context_object to sockethandler that owns the base_socket.
-      If the base_socket is detached, this is a context_object to the slave sockethandler.
+      /** Returns object to sockethandler that owns the base_socket.
+      If the base_socket is detached, this is a object to the slave sockethandler.
       */
       base_socket_handler * socket_handler() const;
 
-      /** Returns context_object to sockethandler that owns the base_socket.
-      This one always returns the context_object to the original sockethandler,
+      /** Returns object to sockethandler that owns the base_socket.
+      This one always returns the object to the original sockethandler,
       even if the base_socket is detached.
       */
       base_socket_handler * master_socket_handler() const;
@@ -760,15 +761,15 @@ namespace sockets
       virtual ::e_status run() override;
       virtual ::e_status step() override;
 
-      //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
+      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
+      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
 
       virtual string get_short_description();
 
 
-      virtual e_trace_category trace_category() override;
+      virtual e_trace_category trace_category() const override;
 
-      virtual void on_finalize() override;
+      //virtual void on_finalize() override;
 
 
    };

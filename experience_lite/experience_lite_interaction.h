@@ -22,7 +22,7 @@
 
 
 
-            experience(::context_object * pcontextobject);
+            experience(::object * pobject);
             virtual ~experience();
 
             virtual void update();

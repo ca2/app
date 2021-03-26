@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   path::path(::context_object * pcontextobject) :
+   path::path(::object * pobject) :
       ::object(pobject)
    {
 

@@ -18,7 +18,7 @@ namespace user
    }
 
 
-   //style::style(::context_object * pcontextobject) :
+   //style::style(::object * pobject) :
    //{
 
    //   m_puserstyle = this;
@@ -43,10 +43,10 @@ namespace user
    }
 
 
-   ::e_status style::initialize(::context_object* pcontextobject)
+   ::e_status style::initialize(::object * pobject)
    {
 
-      auto estatus = style_base::initialize(pcontextobject);
+      auto estatus = style_base::initialize(pobject);
 
       if (!estatus)
       {
@@ -981,7 +981,7 @@ namespace user
    //   else
    //   {
 
-   //      pcontext->pstyle.release();
+   //      pcontext->m_pcontext->pstyle.release();
 
    //   }
 

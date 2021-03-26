@@ -60,7 +60,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      string strPath = pcontext->dir().matter(strMatter);
+      string strPath = pcontext->m_pcontext->dir().matter(strMatter);
 
       if (!load_file(strPath))
       {

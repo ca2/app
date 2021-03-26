@@ -21,7 +21,7 @@ public:
 
 protected:
 
-   pcre_context(::context_object * pcontextobject);
+   pcre_context(::object * pobject);
 
 };
 

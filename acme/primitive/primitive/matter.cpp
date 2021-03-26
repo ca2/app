@@ -59,10 +59,12 @@ void matter::dump(dump_context & dumpcontext) const
 
 }
 
-::e_status matter::initialize(::context_object * pcontextobject)
+::e_status matter::initialize(::object * pobject)
 {
 
-   return ::success;
+   auto estatus = initialize_matter(pobject);
+
+   return estatus;
 
 }
 
@@ -75,14 +77,18 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-void matter::on_finish()
+::e_status matter::on_finish()
 {
 
+   auto estatus = finalize();
+
+   return estatus;
 
 }
 
 
-::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
+//::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
+::e_status matter::finish_composites()
 {
 
    return ::success;
@@ -93,22 +99,23 @@ void matter::on_finish()
 
 
 
-::e_status matter::set_finish(::property_object * pcontextobjectFinish)
+//::e_status matter::set_finish(::property_object * pcontextobjectFinish)
+//{
+//
+//   set_finish_bit();
+//
+//   return ::success;
+//
+//}
+
+
+//::e_status matter::finish(::property_object * pcontextobjectFinish)
+::e_status matter::finish()
 {
 
-   set_finish_bit();
+   auto estatus = set_finish();
 
-   return ::success;
-
-}
-
-
-::e_status matter::finish(::property_object * pcontextobjectFinish)
-{
-
-   set_finish_bit();
-
-   return ::success;
+   return estatus;
 
 }
 
@@ -121,8 +128,38 @@ void matter::post_quit()
 }
 
 
-void matter::finalize()
+::e_status matter::set_finish()
 {
+
+   set_finish_bit();
+
+   finalize();
+
+   return ::success;
+
+}
+
+
+::e_status matter::finalize()
+{
+
+   return ::success;
+
+}
+
+
+::e_status matter::set_library_name(const char* pszLibraryName)
+{
+
+   return error_none;
+
+}
+
+
+::e_status matter::set_application_id(const char* pszApplicationId)
+{
+
+   return error_none;
 
 }
 
@@ -321,7 +358,7 @@ void matter::task_remove(::task* ptask)
 }
 
 
-void matter::notify_on_finish(::property_object * pcontextobject)
+void matter::notify_on_finish(::property_object * pobject)
 {
 
 }
@@ -417,9 +454,13 @@ void matter::on_future(const ::payload & payload)
 ::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   __throw(error_not_implemented);
+   //__throw(error_not_implemented);
 
-   return ::error_not_implemented;
+   pmatter->add_ref();
+
+   return ::success;
+
+   //return ::error_not_implemented;
 
 }
 
@@ -530,40 +571,56 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 {
 
 
 }
 
 
-void matter::__tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
 {
 
    va_list valist;
 
    va_start(valist, pszFormat);
 
-   __tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, valist);
+   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
 
    va_end(valist);
 
 }
 
 
-void matter::__tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
 {
 
    string str;
 
    str.FormatV(pszFormat, valist);
 
-   __tracea(pobject, elevel, pszFunction, pszFile, iLine, str);
+   __tracea(elevel, pszFunction, pszFile, iLine, str);
 
 }
 
 
-e_trace_category matter::trace_category()
+void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
+{
+
+   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+
+}
+
+
+void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
+{
+
+   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
+
+}
+
+
+e_trace_category matter::trace_category() const
 {
 
    return trace_category_general;
@@ -571,7 +628,7 @@ e_trace_category matter::trace_category()
 }
 
 
-e_trace_category matter::trace_category(::matter * pobject)
+e_trace_category matter::trace_category(const ::matter * pobject) const
 {
 
    return pobject->trace_category();

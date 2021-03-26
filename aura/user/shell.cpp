@@ -5,7 +5,7 @@
 #include "acme/compress/zip/_.h"
 #include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
-
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 #if defined(RASPBIAN)
 #define PLATFORM_NAMESPACE linux
@@ -151,7 +151,7 @@ namespace user
    }
 
 
-   ::e_status shell::initialize(::context_object * pcontextobject)
+   ::e_status shell::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -161,7 +161,7 @@ namespace user
 
       }
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -430,9 +430,9 @@ namespace user
    void shell::on_add_default_file_image()
    {
 
-      create_file_icon_image(::dir::bookmark(), file_attribute_directory, icon_normal, "matter://quickaccess.ico");
+      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_normal, "matter://quickaccess.ico");
 
-      create_file_icon_image(::dir::bookmark(), file_attribute_directory, icon_open, "matter://quickaccess.ico");
+      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_open, "matter://quickaccess.ico");
 
    }
 
@@ -901,18 +901,18 @@ namespace user
    }
 
 
-   ::e_status shell::thread::finish(::property_object * pcontextobject)
+   ::e_status shell::thread::finish()
    {
 
-      return ::thread::finish(pcontextobject);
+      return ::thread::finish();
 
    }
 
 
-   ::e_status shell::finish(::property_object * pcontextobject)
+   ::e_status shell::finish()
    {
 
-      ::object::finish(pcontextobject);
+      ::object::finish();
 
       //task_remove_all();
 

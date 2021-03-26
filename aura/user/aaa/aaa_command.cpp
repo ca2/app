@@ -6,14 +6,14 @@ namespace user
 {
 
 
-   command::command(::context_object * pcontextobject)
+   command::command(::object * pobject)
    {
 
       common_construct();
       if (::is_set(pobject))
       {
 
-         initialize(pcontextobject);
+         initialize(pobject);
 
       }
 
@@ -83,7 +83,7 @@ namespace user
    //}
 
 
-   //command::command(::context_object * pcontextobject) :
+   //command::command(::object * pobject) :
    //   ::object(pobject)
    //{
 

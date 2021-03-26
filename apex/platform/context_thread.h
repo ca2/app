@@ -35,7 +35,7 @@ namespace apex
 
       string command_line_text() const;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       //virtual ::task_pool* taskpool() override;
 

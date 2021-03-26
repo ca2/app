@@ -19,7 +19,7 @@ property_object::~property_object()
 //}
 
 
-//::e_status     property_object::initialize(::context_object * pcontextobject)
+//::e_status     property_object::initialize(::object * pobject)
 //{
 //
 //   set_object(pobject);
@@ -29,7 +29,7 @@ property_object::~property_object()
 //}
 
 
-void property_object::finalize()
+::e_status property_object::finalize()
 {
 
    ::id_matter::finalize();
@@ -39,6 +39,8 @@ void property_object::finalize()
    m_pia.release(OBJ_REF_DBG_THIS);
 
    m_pset.release(OBJ_REF_DBG_THIS);
+
+   return ::success;
 
 }
 
@@ -57,7 +59,8 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
    if (m_bFinishing)
    {
 
-      finish(nullptr);
+      //finish(nullptr);
+      finish();
 
    }
 
@@ -72,58 +75,65 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 //}
 
 
-::e_status property_object::finish(::property_object * pcontextobjectFinish)
+//::e_status property_object::finish(::property_object * pcontextobjectFinish)
+::e_status property_object::finish()
 {
 
-   return ::matter::finish(pcontextobjectFinish);
+   //return ::matter::finish(pcontextobjectFinish);
+
+   auto estatus = ::id_matter::finish();
+
+   return estatus;
 
 }
 
 
-void property_object::on_finish()
+::e_status property_object::on_finish()
 {
 
-   id_matter::on_finish();
+   auto estatus = id_matter::on_finish();
 
-   synchronization_lock synchronizationlock(mutex());
+   return estatus;
 
-   if (m_pnotifya)
-   {
+   //synchronization_lock synchronizationlock(mutex());
 
-      auto pnotifya = m_pnotifya;
+   //if (m_pnotifya)
+   //{
 
-      restart_notifya_loop:
+   //   auto pnotifya = m_pnotifya;
 
-      for (auto pmatter : *pnotifya)
-      {
+   //   restart_notifya_loop:
 
-         if (pmatter && pmatter->m_bFinishing)
-         {
+   //   for (auto pmatter : *pnotifya)
+   //   {
 
-            synchronizationlock.unlock();
+   //      if (pmatter && pmatter->m_bFinishing)
+   //      {
 
-            sleep(10_ms);
+   //         synchronizationlock.unlock();
 
-            auto estatus = pmatter->finish();
+   //         sleep(10_ms);
 
-            if (estatus == ::success)
-            {
+   //         auto estatus = pmatter->finish();
 
-               synchronizationlock.lock();
+   //         if (estatus == ::success)
+   //         {
 
-               pnotifya->remove(pmatter);
+   //            synchronizationlock.lock();
 
-               goto restart_notifya_loop;
+   //            pnotifya->remove(pmatter);
 
-            }
+   //            goto restart_notifya_loop;
 
-            synchronizationlock.lock();
+   //         }
 
-         }
+   //         synchronizationlock.lock();
 
-      }
+   //      }
 
-   }
+   //   }
+
+   //}
    
 }
 

@@ -116,7 +116,7 @@ namespace database
 
 
    //class CLASS_DECL_AXIS transaction :
-   //   virtual public context_object
+   //   virtual public object
    //{
    //public:
 

@@ -101,7 +101,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
       //if (pparent)
       //{
 
-      //   auto pcontextobjectParent = pparent.cast < ::context_object>();
+      //   auto pcontextobjectParent = pparent.cast < ::object>();
 
       //   if (pcontextobjectParent)
       //   {
@@ -114,7 +114,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       //      m_strDebugNote += strFormat;
 
-      //      auto pcontextobjectContainer = playeredContainer.cast < ::context_object> ();
+      //      auto pcontextobjectContainer = playeredContainer.cast < ::object> ();
 
       //      if (pcontextobjectContainer)
       //      {
@@ -264,7 +264,7 @@ bool timer_task::task_active() const
 
 
 
-void timer_task::finalize()
+::e_status timer_task::finalize()
 {
 
    {
@@ -294,6 +294,8 @@ void timer_task::finalize()
    ::timer::finalize();
 
    ::task::finalize();
+
+   return ::success;
 
 }
 

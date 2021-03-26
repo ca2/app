@@ -4990,7 +4990,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status interaction_impl::finish(::context_object * pcontextobjectFinish)
+//   ::e_status interaction_impl::finish(::object * pcontextobjectFinish)
 //   {
 //
 //      auto estatus = set_finish(pcontextobjectFinish);

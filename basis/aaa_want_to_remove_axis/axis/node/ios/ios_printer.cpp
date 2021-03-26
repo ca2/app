@@ -5,7 +5,7 @@ namespace ios2
 {
 
 
-   printer::printer(::context_object * pcontextobject) :
+   printer::printer(::object * pobject) :
       ::object(pobject),
       ::user::printer(pobject),
       m_documentproperties(pobject)
@@ -50,7 +50,7 @@ namespace ios2
    }
 
 
-   printer::document_properties::document_properties(::context_object * pcontextobject) :
+   printer::document_properties::document_properties(::object * pobject) :
       ::object(pobject)
    {
       m_hdc = nullptr;

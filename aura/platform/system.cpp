@@ -4,12 +4,13 @@
 //#include "acme/const/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "apex/platform/str_context.h"
 //#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/const/idpool.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 //#ifdef _UWP
 //#include "aura/node/uwp/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
@@ -26,7 +27,7 @@ void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
-::apex::library * experience_get_new_library();
+::acme::library * experience_get_new_library();
 #endif
 
 
@@ -40,7 +41,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::context_object * pcontextobject);
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::object * pobject);
 #endif
 
 
@@ -48,7 +49,7 @@ CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::co
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
+extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
 CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
@@ -140,10 +141,10 @@ namespace aura
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::system::initialize(pcontextobject);
+      auto estatus = ::aqua::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -188,7 +189,7 @@ namespace aura
 
          bool bGlobalEnableStackTrace = true;
 
-         ::file::path pathNoExceptionStackTrace = ::dir::config() / "system/no_exception_stack_trace.txt";
+         ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
          if (file_exists(pathNoExceptionStackTrace))
          {
@@ -292,7 +293,7 @@ namespace aura
 
 
 
-//   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+//   ::acme::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
 //      synchronization_lock synchronizationlock(m_mutexLibrary);
@@ -322,7 +323,7 @@ namespace aura
 //            {
 //
 ////#if !defined(ANDROID)
-////               if (!plibrary->open(pcontext->dir().ca2module() / pszLibrary))
+////               if (!plibrary->open(pcontext->m_pcontext->dir().ca2module() / pszLibrary))
 ////#endif
 ////               {
 ////
@@ -585,12 +586,12 @@ namespace aura
 //
 //         string str;
 //
-//         str = ::dir::home() / ".profile";
+//         str = m_psystem->m_pacmedir->home() / ".profile";
 //
 //         if(!file_exists(str))
 //         {
 //
-//            str = ::dir::home() / ".bashrc";
+//            str = m_psystem->m_pacmedir->home() / ".bashrc";
 //
 //         }
 //
@@ -733,7 +734,7 @@ namespace aura
 //
 //#if 0
 //
-//         // Create authorization context_object
+//         // Create authorization object
 //         OSStatus status;
 //
 //         AuthorizationRef authorizationRef;
@@ -871,10 +872,10 @@ namespace aura
 
       //}
 
-      ////output_debug_string("CommonAppData (matter) : " + pcontext->dir().commonappdata()  + "\n");
-      ////output_debug_string("commonappdata (matter) : " + pcontext->dir().commonappdata() + "\n");
-      ////output_debug_string("Common App Data (matter) : " + pcontext->dir().commonappdata() + "\n");
-      ////output_debug_string("common app data (matter) : " + pcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("CommonAppData (matter) : " + pcontext->m_pcontext->dir().commonappdata()  + "\n");
+      ////output_debug_string("commonappdata (matter) : " + pcontext->m_pcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("Common App Data (matter) : " + pcontext->m_pcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("common app data (matter) : " + pcontext->m_pcontext->dir().commonappdata() + "\n");
 
       //__compose_new(m_pcrypto);
 
@@ -918,7 +919,7 @@ namespace aura
 //      if(m_iMatterFromHttpCache == -1)
 //      {
 //
-//         ::file::path pathSide = pcontext->side_get_matter_path("app/_matter/main");
+//         ::file::path pathSide = pcontext->m_pcontext->side_get_matter_path("app/_matter/main");
 //
 //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 //
@@ -1097,7 +1098,7 @@ namespace aura
 
       string str;
 
-      ::file::path path = ::dir::config() / "system/draw2d.txt";
+      ::file::path path = m_psystem->m_pacmedir->config() / "system/draw2d.txt";
 
       str = file_as_string(path);
 
@@ -1108,7 +1109,7 @@ namespace aura
 
       }
 
-      path = ::dir::appdata() / "draw2d.txt";
+      path = m_psystem->m_pacmedir->appdata() / "draw2d.txt";
 
       str = file_as_string(path);
 
@@ -1606,7 +1607,7 @@ namespace aura
    }
 
 
-   //::e_status system::post_create_requests()
+   //::e_status system::post_creation_requests()
    //{
 
    //   //while(auto pcreate = get_command()->get_create())
@@ -1761,7 +1762,7 @@ namespace aura
       try
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          synchronization_lock synchronizationlock(&m_mutexLibrary);
 
@@ -2355,7 +2356,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //            
-//            plauncher->setup(nullptr, nullptr, pcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+//            plauncher->setup(nullptr, nullptr, pcontext->m_pcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2391,7 +2392,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr,pcontext->dir().module()/strApp,nullptr,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr,pcontext->m_pcontext->dir().module()/strApp,nullptr,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2433,7 +2434,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2469,7 +2470,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2664,7 +2665,7 @@ namespace aura
    //::file::path system::local_get_matter_path()
    //{
 
-   //   return ::dir::ca2roaming() / "appmatter";
+   //   return m_psystem->m_pacmedir->ca2roaming() / "appmatter";
 
    //}
 
@@ -2688,7 +2689,7 @@ namespace aura
    //::file::path system::local_get_matter_cache_path()
    //{
 
-   //   return ::dir::ca2roaming() / "cache/appmatter";
+   //   return m_psystem->m_pacmedir->ca2roaming() / "cache/appmatter";
 
    //}
 
@@ -2711,7 +2712,7 @@ namespace aura
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = pcontext->file().get_file(pcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = pcontext->m_pcontext->file().get_file(pcontext->m_pcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -2744,7 +2745,7 @@ namespace aura
 ////
 ////      ::file::listing straTitle(this);
 ////
-////      ::file::path pathCa2Module = pcontext->dir().ca2module();
+////      ::file::path pathCa2Module = pcontext->m_pcontext->dir().ca2module();
 ////
 ////      ::output_debug_string("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
@@ -2787,7 +2788,7 @@ namespace aura
 ////      try
 ////      {
 ////
-////         file = psession->file().get_file(pcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////         file = psession->file().get_file(pcontext->m_pcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
 ////      catch(::exception::exception &)
@@ -2811,7 +2812,7 @@ namespace aura
 //   bool system::map_application_library(const char * pszLibrary)
 //   {
 //
-//      ::apex::library library;
+//      ::acme::library library;
 //
 //      library.initialize_apex_library(this, 0);
 //
@@ -3750,7 +3751,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_as_string(pcontext->dir().standalone() / (str + ".txt"));
+   //   return file_as_string(pcontext->m_pcontext->dir().standalone() / (str + ".txt"));
 
    //}
 
@@ -3760,7 +3761,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_put_contents(pcontext->dir().standalone() / (str + ".txt"), strSetting);
+   //   return file_put_contents(pcontext->m_pcontext->dir().standalone() / (str + ".txt"), strSetting);
 
    //}
 
@@ -3827,7 +3828,7 @@ namespace aura
 //
 ////         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 //
-//            ::file::path pathScript = ::dir::tool() / "papaya/script/xcode_set_active_scheme.scpt";
+//            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 //
 //            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 //
@@ -3886,7 +3887,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   /*void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
    {
 
       if (m_ptrace.is_null())
@@ -3900,7 +3901,7 @@ namespace aura
 
       log().__tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
 
-   }
+   }*/
 
 
 //   ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
@@ -3917,7 +3918,7 @@ namespace aura
 //
 //         //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
 //
-//         pcontext->os().link_open(strUrl);
+//         pcontext->m_pcontext->os().link_open(strUrl);
 //
 //         return;
 //
@@ -3934,7 +3935,7 @@ namespace aura
 //
 //      string strParam;
 //
-//      pcontext->os().get_default_browser(strId, path, strParam);
+//      pcontext->m_pcontext->os().get_default_browser(strId, path, strParam);
 //
 //      if (strProfile.is_empty() || strProfile == "native")
 //      {
@@ -3950,7 +3951,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
 //      {
 //
-//         strWeather = pcontext->file().as_string(::dir::system() / "browser_weather.txt");
+//         strWeather = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4031,7 +4032,7 @@ namespace aura
 //         //if (m_strAppName == "app-core/commander")
 //         {
 //
-//            chromium(strUrl, strBrowser, strId, pcontext->os().get_app_path("chrome"), strProfile, strParam);
+//            chromium(strUrl, strBrowser, strId, pcontext->m_pcontext->os().get_app_path("chrome"), strProfile, strParam);
 //
 //         }
 //         //else
@@ -4223,7 +4224,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//      pcontext->os().native_full_web_browser(strUrl);
+//      pcontext->m_pcontext->os().native_full_web_browser(strUrl);
 //
 //      return;
 //
@@ -4233,7 +4234,7 @@ namespace aura
 //
 //      pathDir = path.folder();
 //
-//      ::file::path pathAppDataDir(::dir::ca2roaming());
+//      ::file::path pathAppDataDir(m_psystem->m_pacmedir->ca2roaming());
 //
 //      ::file::path pathProfile;
 //
@@ -4386,7 +4387,7 @@ namespace aura
 //
 //#else
 //
-//      if (pcontext->dir().is(pathProfile))
+//      if (pcontext->m_pcontext->dir().is(pathProfile))
 //      {
 //
 //         return;
@@ -4401,7 +4402,7 @@ namespace aura
 //
 //      pathProfileDir = pathProfile.folder();
 //
-//      pcontext->dir().mk(pathProfileDir);
+//      pcontext->m_pcontext->dir().mk(pathProfileDir);
 //
 //      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 //
@@ -4458,7 +4459,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//      pcontext->os().native_full_web_browser(strUrl);
+//      pcontext->m_pcontext->os().native_full_web_browser(strUrl);
 //
 //#else
 //
@@ -4489,7 +4490,7 @@ namespace aura
 //
 //      }
 //
-//      if (!pcontext->file().exists(strBrowserPath) || !pcontext->dir().is(strBrowserDir))
+//      if (!pcontext->m_pcontext->file().exists(strBrowserPath) || !pcontext->m_pcontext->dir().is(strBrowserDir))
 //      {
 //
 //         return error_not_found;
@@ -4518,11 +4519,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
+//         pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
+//         pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
+//         pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -5072,7 +5073,7 @@ namespace aura
 //CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
 //{
 //
-//   ::file::path pathFile = ::dir::local() / "appdata" / strAppId / "last_run_path.txt";
+//   ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
 //
 //   return pathFile;
 //
@@ -5259,7 +5260,7 @@ namespace aura
   //
   //      }
   //
-  //      //estatus = ::aura::application::initialize(pcontextobject);
+  //      //estatus = ::aura::application::initialize(pobject);
   //
   //     //if (!estatus)
   //     //{
@@ -5283,7 +5284,7 @@ namespace aura
   //
   //
   //
-  //            //estatus = ::aura::application::initialize(pcontextobject);
+  //            //estatus = ::aura::application::initialize(pobject);
   //
   //            //if (!estatus)
   //            //{
@@ -5467,7 +5468,7 @@ namespace aura
 
       }
 
-         //post_create_requests();
+         //post_creation_requests();
 
 
 
@@ -5678,7 +5679,7 @@ namespace aura
 
    //}
 
-   //void system::on_map_application_library(::apex::library& library)
+   //void system::on_map_application_library(::acme::library& library)
    //{
 
    //   __throw(todo, "filehandler");
@@ -5884,10 +5885,10 @@ namespace aura
    //}
 
 
-   //::apex::library * system::on_get_library(const char* pszLibrary)
+   //::acme::library * system::on_get_library(const char* pszLibrary)
    //{
 
-   //   __pointer(::apex::library) plibrary;
+   //   __pointer(::acme::library) plibrary;
 
    //   bool bLibraryOk = false;
 
@@ -5982,7 +5983,7 @@ namespace aura
 
    //{
 
-   //   string filename = pcontext->file().time_square();
+   //   string filename = pcontext->m_pcontext->file().time_square();
 
    //   property_set set;
 
@@ -5990,7 +5991,7 @@ namespace aura
 
    //   set["cookies"] = pcookies;
 
-   //   if (!pcontext->http().download(pszUrl, filename, set))
+   //   if (!pcontext->m_pcontext->http().download(pszUrl, filename, set))
 
    //   {
 
@@ -6011,13 +6012,13 @@ namespace aura
 
    //      set["cookies"] = pcookies;
 
-   //      pcontext->file().del(filename);
+   //      pcontext->m_pcontext->file().del(filename);
 
-   //      return pcontext->http().download(str, strLocation, set);
+   //      return pcontext->m_pcontext->http().download(str, strLocation, set);
 
    //   }
 
-   //   str = pcontext->file().as_string(filename);
+   //   str = pcontext->m_pcontext->file().as_string(filename);
 
    //   return true;
 
@@ -6122,7 +6123,7 @@ namespace aura
    }
 
 
-   ::e_status system::add_view_library(::apex::library* plibrary)
+   ::e_status system::add_view_library(::acme::library* plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -6286,7 +6287,7 @@ namespace aura
 //
 //      }
 //
-//      //estatus = ::aura::application::initialize(pcontextobject);
+//      //estatus = ::aura::application::initialize(pobject);
 //
 //      //if (!estatus)
 //      //{
@@ -6783,7 +6784,7 @@ namespace aura
    //}
 
 
-   void system::finalize()
+   ::e_status system::finalize()
    {
 
       if (m_pdraw2d)
@@ -6795,7 +6796,9 @@ namespace aura
 
       }
 
-      ::aqua::system::finalize();
+      auto estatus = ::aqua::system::finalize();
+
+      return estatus;
 
    }
 

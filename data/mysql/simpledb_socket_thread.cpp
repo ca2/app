@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   socket_thread::socket_thread(::context_object * pcontextobject) :
+   socket_thread::socket_thread(::object * pobject) :
       ::object(pobject),
       thread(pobject),
       ::sockets::socket_handler(pobject),

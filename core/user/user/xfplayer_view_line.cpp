@@ -38,9 +38,11 @@ xfplayer_view_line::xfplayer_view_line() :
 
 
 xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
-   object(pContainer),
    m_font(e_create)
 {
+
+   initialize(pContainer);
+
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
    m_bCacheEmboss = false;
@@ -64,9 +66,11 @@ xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
 
 
 xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line) :
-   object(line.this),
+
    m_font(e_create)
 {
+
+   initialize((object *) &line);
 
    operator = (line);
 
@@ -1377,7 +1381,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       point.y = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      pgraphics->color_blend(point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
+      pgraphics->draw(::rectangle_i32(point, m_pimageMain->get_size()), m_pimageMain, ::point_i32(), ::opacity(dBlend));
 
       if (m_bColonPrefix)
       {
@@ -1387,6 +1391,8 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
          ::size_i32 size;
 
          size = pgraphics->GetTextExtent(m_strPrefix);
+
+         auto psystem = m_psystem->m_pcoresystem;
 
          psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), cr, dBlend);
 
@@ -1416,6 +1422,8 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
       {
 
          pgraphics->set(m_font);
+
+         auto psystem = m_psystem->m_pcoresystem;
 
          psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, cr, dBlend);
 
@@ -1533,6 +1541,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    }
 
+   auto psystem = m_psystem->m_pcoresystem;
 
    psystem->imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
@@ -1561,6 +1570,8 @@ void xfplayer_view_line::PrepareURLLinks()
    single_lock synchronizationlock(m_pContainer->mutex());
 
    string str;
+
+   auto psystem = m_psystem->m_pcoresystem;
 
    auto pregex = psystem->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
@@ -1864,7 +1875,9 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 
          auto phyperlink = __create_new < ::hyperlink >();
 
-         hyperlink.open_link(str, "", "");
+         phyperlink->m_strLink = str;
+
+         phyperlink->run();
 
       }
 

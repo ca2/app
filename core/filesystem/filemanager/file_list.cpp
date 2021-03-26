@@ -130,7 +130,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->file().rename(filepathNew, filepath);
+      pcontext->m_pcontext->file().rename(filepathNew, filepath);
 
       browse_sync(context);
 
@@ -571,7 +571,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->file().trash_that_is_not_trash(patha);
+      pcontext->m_pcontext->file().trash_that_is_not_trash(patha);
 
       _001Refresh();
 
@@ -610,7 +610,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
+         pcontext->m_pcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
 
@@ -737,7 +737,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->os().file_open(pathUser);
+         pcontext->m_pcontext->os().file_open(pathUser);
 
          pcommand->m_bRet = true;
 
@@ -776,19 +776,19 @@ namespace filemanager
    //   for (i32 i = 0; i < itema.get_size(); i++)
    //   {
 
-   //      if (pcontext->dir().is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
+   //      if (pcontext->m_pcontext->dir().is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
    //      {
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
    //         for (i32 j = 0; j < straSub.get_size(); j++)
    //         {
-   //            if (!pcontext->dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
+   //            if (!pcontext->m_pcontext->dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_pcontext->file().length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_pcontext->file().md5(straSub[j]) + "\n";
    //            }
    //         }
    //      }
@@ -796,8 +796,8 @@ namespace filemanager
    //      {
    //         strFileList += itema[i]->m_filepathUser + "\n";
    //         strFileCheck += itema[i]->m_filepathUser + ",";
-   //         strFileCheck += pcontext->file().length(itema[i]->m_filepathFinal).get_string() + ",";
-   //         strFileCheck += pcontext->file().md5(itema[i]->m_filepathFinal) + "\n";
+   //         strFileCheck += pcontext->m_pcontext->file().length(itema[i]->m_filepathFinal).get_string() + ",";
+   //         strFileCheck += pcontext->m_pcontext->file().md5(itema[i]->m_filepathFinal) + "\n";
    //      }
    //   }
 
@@ -818,8 +818,8 @@ namespace filemanager
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-   //   pcontext->file().put_contents(strList, strFileList);
-   //   pcontext->file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_pcontext->file().put_contents(strList, strFileList);
+   //   pcontext->m_pcontext->file().put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -862,15 +862,15 @@ namespace filemanager
 
    //            string strExtension = straSub[j].extension();
 
-   //            if (!pcontext->dir().is(straSub[j])
+   //            if (!pcontext->m_pcontext->dir().is(straSub[j])
    //                  && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
    //                      || strExtension == "exe.manifest"))
    //            {
 
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_pcontext->file().length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_pcontext->file().md5(straSub[j]) + "\n";
 
    //            }
 
@@ -887,8 +887,8 @@ namespace filemanager
 
    //            strFileList += pdata->item(i)->m_filepathUser + "\n";
    //            strFileCheck += pdata->item(i)->m_filepathUser + ",";
-   //            strFileCheck += pcontext->file().length(pdata->item(i)->m_filepathFinal).get_string() + ",";
-   //            strFileCheck += pcontext->file().md5(pdata->item(i)->m_filepathFinal) + "\n";
+   //            strFileCheck += pcontext->m_pcontext->file().length(pdata->item(i)->m_filepathFinal).get_string() + ",";
+   //            strFileCheck += pcontext->m_pcontext->file().md5(pdata->item(i)->m_filepathFinal) + "\n";
 
    //         }
 
@@ -913,9 +913,9 @@ namespace filemanager
 
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
-   //   pcontext->file().put_contents(strList, strFileList);
+   //   pcontext->m_pcontext->file().put_contents(strList, strFileList);
 
-   //   pcontext->file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_pcontext->file().put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -996,7 +996,7 @@ namespace filemanager
 
             ::file::path pathItem = stra[i];
 
-            if (pcontext->dir().is(pathItem))
+            if (pcontext->m_pcontext->dir().is(pathItem))
             {
 
                item.m_flags.add(::file::e_flag_folder);
@@ -1009,7 +1009,7 @@ namespace filemanager
 
             item.m_filepathUser = strPath;
 
-            item.m_filepathFinal = pcontext->defer_process_path(strPath);
+            item.m_filepathFinal = pcontext->m_pcontext->defer_process_path(strPath);
 
             item.m_strName = strName;
 
@@ -1093,7 +1093,7 @@ namespace filemanager
 
             ::file::path pathFinal = listingFinal[i];
 
-            pathFinal = pcontext->defer_process_path(pathFinal);
+            pathFinal = pcontext->m_pcontext->defer_process_path(pathFinal);
 
             pathFinal.m_iDir = listingFinal[i].m_iDir;
 
@@ -1739,7 +1739,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (pcontext->dir().is(pathFinal))
+      if (pcontext->m_pcontext->dir().is(pathFinal))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -1869,7 +1869,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         pcontext->file().move(fs_list_item(strict)->m_filepathFinal, strPath);
+         pcontext->m_pcontext->file().move(fs_list_item(strict)->m_filepathFinal, strPath);
 
       }
       else
@@ -2121,7 +2121,7 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
+               pcontext->m_pcontext->file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
 
             }
 
@@ -2136,7 +2136,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               pcontext->dir().mk(pathFolder);
+               pcontext->m_pcontext->dir().mk(pathFolder);
 
                psubject->m_bRet = true;
 

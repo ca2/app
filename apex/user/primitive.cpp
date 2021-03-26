@@ -732,7 +732,7 @@ namespace user
    //}
 
 
-   bool primitive::add_prodevian(::context_object * pobject)
+   bool primitive::add_prodevian(::object * pobject)
    {
 
       return false;
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   bool primitive::remove_prodevian(::context_object * pobject)
+   bool primitive::remove_prodevian(::object * pobject)
    {
 
       return false;

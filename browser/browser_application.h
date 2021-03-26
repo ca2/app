@@ -36,7 +36,7 @@ namespace browser
       pane_view *                            m_ppaneview;
 
 
-      application(::context_object * pcontextobject);
+      application(::object * pobject);
       virtual ~application();
 
 

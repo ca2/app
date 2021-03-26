@@ -15,7 +15,7 @@ namespace browser
       view *                  m_pview;
 
 
-      main_view(::context_object * pcontextobject);
+      main_view(::object * pobject);
       virtual ~main_view();
 
 

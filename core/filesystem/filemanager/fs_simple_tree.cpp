@@ -29,10 +29,10 @@ namespace filemanager
          }
 
 
-         ::e_status tree::initialize(::context_object * pcontextobject)
+         ::e_status tree::initialize(::object * pobject)
          {
 
-            auto estatus = ::user::tree_data::initialize(pcontextobject);
+            auto estatus = ::user::tree_data::initialize(pobject);
 
             if (!estatus)
             {

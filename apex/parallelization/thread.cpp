@@ -53,14 +53,14 @@ struct send_thread_message :
 
    manual_reset_event      m_ev;
 
-   send_thread_message(::context_object * pcontextobject);
+   send_thread_message(::object * pobject);
 
    virtual ~send_thread_message();
 
 };
 
 
-send_thread_message::send_thread_message(::context_object * pcontextobject)
+send_thread_message::send_thread_message(::object * pobject)
 {
 
    __zero(m_message);
@@ -162,7 +162,7 @@ thread::thread()
 
 #endif
 
-   memcnts_inc(this);
+   memory_counter_increment(this);
 
 }
 
@@ -200,7 +200,7 @@ void thread::thread_common_construct()
 thread::~thread()
 {
 
-   memcnts_dec(this);
+   memory_counter_decrement(this);
 
    ::acme::del(m_puiptraThread);
 
@@ -680,7 +680,7 @@ bool thread::thread_step()
 
    }
 
-   if (m_pmatter)
+   if (m_pmatter && m_pmatter != this)
    {
 
       m_id = m_pmatter->type_name();
@@ -802,31 +802,31 @@ __pointer(::matter) thread::running(const char * pszTag) const
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   //synchronization_lock synchronizationlock(mutex());
 
-   for(auto & pcomposite : *m_pcompositea)
-   {
+   //for(auto & pcomposite : *m_pcompositea)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         const char * pszTaskTag = pcomposite->get_task_tag();
+   //      const char * pszTaskTag = pcomposite->get_task_tag();
 
-         if (!strcmp(pszTaskTag, pszTag))
-         {
+   //      if (!strcmp(pszTaskTag, pszTag))
+   //      {
 
-            return pcomposite;
+   //         return pcomposite;
 
-         }
+   //      }
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
 
-      }
+   //   }
 
-   }
+   //}
 
    return nullptr;
 
@@ -1398,12 +1398,21 @@ void thread::post_quit()
 }
 
 
-void thread::on_finish()
+::e_status thread::on_finish()
 {
 
-//   channel::on_finish();
-
    post_quit();
+
+   auto estatus = ::channel::on_finish();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -1509,18 +1518,18 @@ void thread::task_remove(::task * ptask)
 
       }
 
-      synchronization_lock slChild(ptask->mutex());
+      //synchronization_lock slChild(ptask->mutex());
 
-      if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
-      {
+      //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
+      //{
 
-         __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
+      //   __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
 
-      }
+      //}
 
       ptask->m_pobjectParent.release();
 
-      m_pcompositea->remove(ptask);
+      //m_pcompositea->remove(ptask);
 
       if (finish_bit())
       {
@@ -1532,7 +1541,7 @@ void thread::task_remove(::task * ptask)
 
          }
 
-         finish(this);
+         finish();
 
       }
 
@@ -1546,7 +1555,7 @@ void thread::task_remove(::task * ptask)
 }
 
 
-void thread::finalize()
+::e_status thread::finalize()
 {
 
    call_routine(DESTROY_ROUTINE);
@@ -1633,12 +1642,12 @@ void thread::finalize()
 
    ::channel::finalize();
 
-   auto pcontextobject = this;
+   auto pobject = this;
 
-   if(pcontextobject)
+   if(pobject)
    {
 
-      auto estatus = pcontextobject->release_composite2(this);
+      auto estatus = pobject->release_composite2(this);
 
       if(!estatus)
       {
@@ -1649,6 +1658,7 @@ void thread::finalize()
 
    }
 
+   return ::success;
 
 }
 
@@ -1743,10 +1753,10 @@ bool thread::is_system() const
 u32 __thread_entry(void * p);
 
 
-::e_status thread::initialize(::context_object * pcontextobject)
+::e_status thread::initialize(::object * pobject)
 {
 
-   auto estatus = ::channel::initialize(pcontextobject);
+   auto estatus = ::channel::initialize(pobject);
 
    if (!estatus)
    {
@@ -1755,19 +1765,19 @@ u32 __thread_entry(void * p);
 
    }
 
-   if (::is_set(pcontextobject))
-   {
+   //if (::is_set(pobject))
+   //{
 
-      auto pthreadContext = dynamic_cast<::thread *>(pcontextobject);
+   //   auto pthreadContext = dynamic_cast<::thread *>(pobject);
 
-      if (pthreadContext)
-      {
+   //   if (pthreadContext)
+   //   {
 
-         set_context_thread(pthreadContext);
+   //      set_context_thread(pthreadContext);
 
-      }
+   //   }
 
-   }
+   //}
 
    thread_common_construct();
 
@@ -2176,7 +2186,7 @@ void thread::process_message_filter(i32 code,::message::message * pmessage)
 
 
 
-//thread_startup::thread_startup(::context_object * pcontextobject) :
+//thread_startup::thread_startup(::object * pobject) :
 //   ::object(pobject)
 //{
 //
@@ -2570,7 +2580,7 @@ void thread::__os_finalize()
 }
 
 
-//::context_object* thread::calc_parent_thread()
+//::object* thread::calc_parent_thread()
 //{
 //
 //   return ::parallelization::calc_parent(this);
@@ -2866,9 +2876,9 @@ namespace apex
 
       //}
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
-      psystem->post_to_all_threads(id, wparam, lparam);
+      psystem->m_papexsystem->post_to_all_threads(id, wparam, lparam);
 
    }
 
@@ -3422,17 +3432,30 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::e_status thread::set_finish(::property_object * pcontextobjectFinish)
+::e_status thread::set_finish()
 {
 
-   auto estatus = channel::set_finish(pcontextobjectFinish);
+   auto estatus = ::object::set_finish();
 
-   if (estatus == error_pending)
+   if (!estatus)
    {
 
       return estatus;
 
    }
+
+   return estatus;
+
+   //set_finish_bit();
+
+   //auto estatus = channel::set_finish();
+
+   //if (!estatus)
+   //{
+
+   //   return false;
+
+   //}
 
    //if (task_active())
    //{
@@ -3450,7 +3473,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 
    //}
 
-   return estatus;
+   //return success;
 
 //   auto estatus = set_finish_composites();
 //
@@ -3633,43 +3656,43 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
-{
-
-   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
-
-   if (estatus == error_pending)
-   {
-
-      return estatus;
-
-   }
-
-   if (task_active())
-   {
-
-      set_finish_bit();
-
-      if (m_bMessageThread)
-      {
-
-         post_quit();
-
-         return error_pending;
-
-      }
-      else
-      {
-
-         ::output_debug_string("!m_bMessageThread");
-
-      }
-
-   }
-
-   return ::success;
-
-}
+//::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
+//{
+//
+//   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+//
+//   if (estatus == error_pending)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   if (task_active())
+//   {
+//
+//      set_finish_bit();
+//
+//      if (m_bMessageThread)
+//      {
+//
+//         post_quit();
+//
+//         return error_pending;
+//
+//      }
+//      else
+//      {
+//
+//         ::output_debug_string("!m_bMessageThread");
+//
+//      }
+//
+//   }
+//
+//   return ::success;
+//
+//}
 
 
 int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
@@ -3688,7 +3711,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
          if (!finish_bit())
          {
 
-            finish(get_context());
+            finish();
 
          }
 
@@ -3781,7 +3804,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
       if (!finish_bit())
       {
 
-         finish(get_context());
+         finish();
 
       }
 
@@ -4067,7 +4090,7 @@ void thread::message_handler(::message::message * pmessage)
          //else if (msg.wParam == system_message_runnable)
          //{
 
-         //   __pointer(::context_object) pobjectTask((lparam)msg.lParam);
+         //   __pointer(::object) pobjectTask((lparam)msg.lParam);
 
          //   pobjectTask->call();
 
@@ -4399,12 +4422,12 @@ bool thread::kick_thread()
 }
 
 
-::e_status thread::do_request(::create * pcreate)
+void thread::do_request(::create * pcreate)
 {
 
    post_object(e_message_system, e_system_message_create, pcreate);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -4570,7 +4593,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object * p
 //::array < __pointer(thread) > * g_pthreadaDeferredCreate = nullptr;
 //
 //
-//CLASS_DECL_APEX void defer_create_thread(::context_object * pcontextobject)
+//CLASS_DECL_APEX void defer_create_thread(::object * pobject)
 //{
 //
 //   auto pthread = ::get_task();
@@ -4683,7 +4706,7 @@ bool thread::is_running() const
 void thread::delete_this()
 {
 
-   context_object::delete_this();
+   object::delete_this();
 
 }
 

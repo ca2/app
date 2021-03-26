@@ -82,7 +82,7 @@
 //
 //private:
 //
-//   // Include the default context_object counting implementation.
+//   // Include the default object counting implementation.
 //   IMPLEMENT_REFCOUNTING(ClientHandler);
 //   // Include the default locking implementation.
 //   IMPLEMENT_LOCKING(ClientHandler);
@@ -203,7 +203,7 @@ namespace browser
 //      CefRefPtr <ClientHandler>       m_pclienthandler;
       CefRefPtr<CefBrowser>   m_pbrowser;
 
-      view(::context_object * pcontextobject);
+      view(::object * pobject);
       virtual ~view();
 
       virtual void assert_valid() const;

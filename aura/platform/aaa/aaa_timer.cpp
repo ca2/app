@@ -318,7 +318,7 @@ void timer::term_thread()
 
 }
 
-//void timer::finalize()
+//::e_status timer::finalize()
 //{
 //
 //

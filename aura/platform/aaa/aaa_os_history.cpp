@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_history::os_history(::context_object * pcontextobject) :
+os_history::os_history(::object * pobject) :
    ::object(pobject)//,
    //::aura::history(pobject)
 {

@@ -16,7 +16,7 @@ namespace uwp
 
 
       virtual ::e_status initialize(::matter * pobject) override;
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual bool _set_filea(const ::file::patha & stra, e_op eop) override;
       virtual bool _get_filea(::file::patha & stra, e_op & eop) override;

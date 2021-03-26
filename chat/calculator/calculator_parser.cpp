@@ -6,7 +6,7 @@
 namespace calculator
 {
 
-   parser::parser(::context_object * pcontextobject) :
+   parser::parser(::object * pobject) :
       ::object(pobject),
       m_scanner(pobject)
    {

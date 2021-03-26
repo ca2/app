@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
 #include "core/user/account/_account.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "aura/user/shell.h"
@@ -92,10 +92,10 @@ namespace core
    }
 
 
-   ::e_status user::initialize(::context_object * pcontextobject)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::user::initialize(pcontextobject);
+      auto estatus = ::base::user::initialize(pobject);
 
       if (!estatus)
       {
@@ -254,7 +254,7 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -325,7 +325,7 @@ namespace core
 
       auto pcontext = get_context();
 
-      string strUser = pcontext->file().as_string(pcontext->dir().appdata() / "langstyle_settings.xml");
+      string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata() / "langstyle_settings.xml");
 
       string strLangUser;
 
@@ -450,7 +450,7 @@ namespace core
    }
 
 
-   void user::finalize()
+   ::e_status user::finalize()
    {
 
       try
@@ -475,6 +475,7 @@ namespace core
 
       }
 
+      return ::success;
 
    }
 
@@ -628,7 +629,7 @@ namespace core
 
       }
 
-      process_subject(pbox->m_idResponse);
+      //process_subject(pbox->m_idResponse);
 
       return pfuture;
 
@@ -1472,26 +1473,26 @@ namespace core
    }
 
 
-   __pointer(::user::list_header) user::default_create_list_header(::context_object * pcontextobject)
+   __pointer(::user::list_header) user::default_create_list_header(::object * pobject)
    {
 
-      return pcontextobject->__id_create < ::user::list_header > (default_type_list_header());
+      return pobject->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
 
-   __pointer(::user::mesh_data) user::default_create_mesh_data(::context_object * pcontextobject)
+   __pointer(::user::mesh_data) user::default_create_mesh_data(::object * pobject)
    {
 
-      return pcontextobject->__id_create < ::user::mesh_data > (default_type_list_data());
+      return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
 
-   __pointer(::user::list_data) user::default_create_list_data(::context_object * pcontextobject)
+   __pointer(::user::list_data) user::default_create_list_data(::object * pobject)
    {
 
-      return pcontextobject->__id_create <::user::list_data >(default_type_list_data());
+      return pobject->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -2087,7 +2088,7 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          psystem->draw2d()->write_text()->fonts();
 

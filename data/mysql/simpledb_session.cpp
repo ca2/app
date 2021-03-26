@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   session::session(::context_object * pcontextobject) :
+   session::session(::object * pobject) :
       ::object(pobject)
    {
       m_pserver = nullptr;

@@ -35,7 +35,7 @@ namespace helloworld
    }
 
 
-   render::render(::context_object * pcontextobject) :
+   render::render(::object * pobject) :
       object(pobject),
       thread(pobject),
       m_font(e_create),

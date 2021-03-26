@@ -30,7 +30,7 @@ namespace aqua
       void common_construct();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       //virtual ::e_status initialize_rich_text();

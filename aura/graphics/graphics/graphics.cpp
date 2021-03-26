@@ -60,12 +60,14 @@ namespace graphics
    }
 
 
-   void graphics::finalize()
+   ::e_status graphics::finalize()
    {
 
       destroy_buffer();
 
-      object::finalize();
+      auto estatus = object::finalize();
+
+      return estatus;
 
    }
 

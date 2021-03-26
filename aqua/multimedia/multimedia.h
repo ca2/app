@@ -40,7 +40,7 @@ namespace aqua
       virtual ~multimedia();
 
 
-      virtual ::e_status initialize_multimedia(::context_object* pcontextobject);
+      virtual ::e_status initialize_multimedia(::object * pobject);
 
       virtual void on_song_added(const string& strId);
 
@@ -84,7 +84,7 @@ extern "C"
 CLASS_DECL_AQUA ::aqua::multimedia * get_get_new_multimedia();
 
 
-CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::context_object * pcontextobject);
+CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::object * pobject);
 
 
 CLASS_DECL_AQUA bool has_multimedia();

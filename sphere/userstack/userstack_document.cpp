@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   document::document(::context_object * pcontextobject) :
+   document::document(::object * pobject) :
       ::object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),

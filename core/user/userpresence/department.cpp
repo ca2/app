@@ -33,10 +33,10 @@ namespace userpresence
    }
 
 
-   ::e_status department::initialize(::context_object * pcontextobject)
+   ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -57,7 +57,7 @@ namespace userpresence
    }
 
 
-   void department::finalize()
+   ::e_status department::finalize()
    {
 
       defer_finalize_user_presence();

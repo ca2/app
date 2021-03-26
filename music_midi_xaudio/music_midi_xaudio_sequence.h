@@ -107,7 +107,7 @@ namespace music
 
 
 
-            sequence(::context_object * pcontextobject);
+            sequence(::object * pobject);
             virtual ~sequence();
 
 

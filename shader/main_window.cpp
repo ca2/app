@@ -146,11 +146,11 @@ namespace app_shader
          fork([this, pimage]()
             {
 
-               auto psaveimage = __new(save_image(this));
+               auto psaveimage = __new(save_image());
 
                psaveimage->m_eformat = ::draw2d::format_png;
 
-               auto psystem = get_system();
+               auto psystem = m_psystem->m_paurasystem;
 
                string strDate = psystem->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 

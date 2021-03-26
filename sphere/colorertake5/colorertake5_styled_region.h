@@ -45,7 +45,7 @@ public:
   }
 
   /** copy constructor.
-      Clones all values including region context_object. */
+      Clones all values including region object. */
   StyledRegion(const StyledRegion &rd){
     operator=(rd);
   }

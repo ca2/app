@@ -50,7 +50,7 @@
     <ClCompile Include="frame_Minimal001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="library.cpp">
+    <ClCompile Include="factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -111,5 +111,10 @@
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_core.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -404,14 +404,14 @@ namespace apple
 
       ::file::path path = str;
 
-      if(pcontext->file().exists(path.folder() / "libaura.dylib"))
+      if(pcontext->m_pcontext->file().exists(path.folder() / "libaura.dylib"))
       {
 
          ::file::path folderNew = path.folder();
 
          folderNew -= 3;
 
-         if(pcontext->file().exists(folderNew / "libaura.dylib"))
+         if(pcontext->m_pcontext->file().exists(folderNew / "libaura.dylib"))
          {
 
             strFallback = folderNew;
@@ -464,7 +464,7 @@ namespace apple
 
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, true);
 
-      // Create authorization context_object
+      // Create authorization object
       OSStatus status;
 
       AuthorizationRef authorizationRef;

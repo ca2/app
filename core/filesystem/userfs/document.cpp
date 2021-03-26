@@ -20,10 +20,10 @@ namespace userfs
    }
 
 
-   ::e_status document::initialize(::context_object * pcontextobject)
+   ::e_status document::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::document::initialize(pcontextobject);
+      auto estatus = ::user::document::initialize(pobject);
 
       if (!estatus)
       {
@@ -189,7 +189,7 @@ namespace userfs
 
          }
 
-         ::file::path pathFinal  = pcontext->defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
+         ::file::path pathFinal  = pcontext->m_pcontext->defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
@@ -222,7 +222,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = pcontext->dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = pcontext->m_pcontext->dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 

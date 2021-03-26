@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "acme/id.h"
+#include "acme/platform/acme.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace acme
@@ -572,7 +574,7 @@ namespace acme
    string node::font_name(enum_font efont)
    {
 
-//      auto psystem = get_system();
+//      auto psystem = m_psystem;
 //
 //#ifdef WINDOWS
 //
@@ -627,7 +629,11 @@ namespace acme
    string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      auto pathFolder = get_system()->get_memory_map_base_folder_path();
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->acmedir();
+
+      auto pathFolder = pacmedir->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 

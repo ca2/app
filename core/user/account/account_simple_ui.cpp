@@ -113,11 +113,11 @@ namespace account
 
       string strOpen;
 
-      strUser = lstr("account::login::email","e-mail");
+      //strUser = lstr("account::login::email","e-mail");
 
-      strPass = lstr("account::login::password","password");
+      //strPass = lstr("account::login::password","password");
 
-      strOpen = lstr("account::login::open","open");
+      //strOpen = lstr("account::login::open","open");
 
       m_plogin->defer_translate(strUser,strPass,strOpen);
 
@@ -257,7 +257,7 @@ namespace account
 
          phyperlink->m_strLink = "ca2account:this";
 
-         phyperlink->open_link();
+         phyperlink->run();
 
          return "";
 

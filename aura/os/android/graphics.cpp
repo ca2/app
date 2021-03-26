@@ -71,12 +71,12 @@ namespace draw2d
 
       double dAndroid = 4.4;
 
-      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
+      string strSystemFonts = pcontext->m_pcontext->file().as_string("/system/etc/system_fonts.xml");
 
       if (strSystemFonts.is_empty())
       {
 
-         strSystemFonts = pcontext->file().as_string("/system/etc/fonts.xml");
+         strSystemFonts = pcontext->m_pcontext->file().as_string("/system/etc/fonts.xml");
 
       }
 

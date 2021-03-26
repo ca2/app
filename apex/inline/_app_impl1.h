@@ -209,13 +209,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
-//::apex::application * prefix##_get_new_app(::context_object * pcontextobject); \
+//::apex::application * prefix##_get_new_app(::object * pobject); \
 //prelude apexprelude(&prefix##_get_new_app);
 //
 //
 //#define LIBRARY_PRELUDE(prefix) \
 //extern "C" \
-//::apex::library * prefix##_get_new_library(::context_object * pcontextobject); \
+//::acme::library * prefix##_get_new_library(::object * pobject); \
 //prelude apexprelude(&prefix##_get_new_library);
 
 

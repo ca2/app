@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace aura
@@ -20,10 +21,10 @@ namespace aura
    }
 
 
-   ::e_status theme::initialize(::context_object * pcontextobject)
+   ::e_status theme::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -178,11 +179,11 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = ::dir::config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
-      string strState = pcontext->file().as_string(pathWeatherState);
+      string strState = pcontext->m_pcontext->file().as_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -307,11 +308,11 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = ::dir::config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
-      string strWeatherState = pcontext->file().as_string(pathWeatherState);
+      string strWeatherState = pcontext->m_pcontext->file().as_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 
@@ -449,7 +450,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      pcontext->dir().matter_ls("sphere/theme", patha);
+      pcontext->m_pcontext->dir().matter_ls("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -458,7 +459,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (pcontext->dir().is(path))
+         if (pcontext->m_pcontext->dir().is(path))
          {
 
             string strTheme = path.name();
@@ -471,7 +472,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->dir().watcher().add_watch(::dir::config(), this, false);
+      m_watchidWeather = pcontext->m_pcontext->dir().watcher().add_watch(m_psystem->m_pacmedir->config(), this, false);
       
       on_change_theme();
 

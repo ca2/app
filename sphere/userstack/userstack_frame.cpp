@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   frame::frame(::context_object * pcontextobject) :
+   frame::frame(::object * pobject) :
       ::object(pobject),
       simple_frame_window(pobject),
       m_spqueue(e_create)

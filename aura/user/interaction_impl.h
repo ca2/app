@@ -228,8 +228,8 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      virtual bool add_prodevian(::context_object * pobject) override;
-      virtual bool remove_prodevian(::context_object * pobject) override;
+      virtual bool add_prodevian(::object * pobject) override;
+      virtual bool remove_prodevian(::object * pobject) override;
       inline bool has_prodevian() const noexcept { return m_ptraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
@@ -246,7 +246,7 @@ namespace user
       //bool attach(::windowing::window * pwindow_New) override;
       //oswindow detach() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void route_command_message(::message::command * pcommand) override;
 
@@ -680,7 +680,7 @@ namespace user
       virtual bool is_composite();
 
 
-      virtual ::e_status set_finish(::context_object * pcontextobject);
+      virtual ::e_status set_finish(::object * pobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -697,8 +697,8 @@ namespace user
       //virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status impl_clear_keyboard_focus() override;
 
-      virtual void redraw_add(::context_object * point_i32) override;
-      virtual void redraw_remove(::context_object * point_i32) override;
+      virtual void redraw_add(::object * point_i32) override;
+      virtual void redraw_remove(::object * point_i32) override;
       virtual bool has_redraw() override;
       virtual ::mutex * mutex_redraw();
 
@@ -771,7 +771,7 @@ namespace user
       ::user::interaction * m_puiForward;
 
 
-      guie_message_wnd(::property_object * pcontextobject);
+      guie_message_wnd(::property_object * pobject);
 
 
       virtual void message_handler(::message::message * pusermessage);

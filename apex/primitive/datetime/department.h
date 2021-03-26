@@ -37,7 +37,7 @@ namespace datetime
          international();
 
 
-         virtual ::e_status initialize(::context_object * pcontextobject) override;
+         virtual ::e_status initialize(::object * pobject) override;
 
 
          void parse_str(const char * psz,property_set & set);
@@ -81,7 +81,7 @@ namespace datetime
          
          str();
 
-         virtual ::e_status initialize(::context_object * pcontextobject) override;
+         virtual ::e_status initialize(::object * pobject) override;
          
          string get_gmt_date_time();
 
@@ -110,8 +110,8 @@ namespace datetime
       department();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
       i32 get_month_day_count(i32 year,i32 month);
       i32 get_weekday(i32 year,i32 month,i32 day);

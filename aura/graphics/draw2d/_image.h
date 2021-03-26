@@ -28,7 +28,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 
 
 //class CLASS_DECL_AURA image_base :
-//   virtual public context_object
+//   virtual public object
 //{
 //public:
 //

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
+#include "apex/platform/apex.h"
 
 
 extern ::app_core * g_pappcore;
@@ -51,7 +52,7 @@ void application_container::app_remove(::apex::application * papp)
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      finish(this);
+      set_finish();
 
    }
 
@@ -277,6 +278,8 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
    }
 
+   on_instantiate_application(papp);
+
    if (pcreate != nullptr)
    {
 
@@ -332,6 +335,11 @@ __pointer(::apex::application) application_container::create_platform(::apex::se
 
 
 
+void application_container::on_instantiate_application(::apex::application* papp)
+{
+
+
+}
 
 
 __pointer(::apex::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
@@ -393,7 +401,7 @@ __pointer(::apex::application) application_container::start_application(const ch
 
    __pointer(::apex::system) psystem = get_system();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+   if (!m_psystem->m_papexsystem->m_papex->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
       psystem->get_system_configuration(), strLocale, strSchema))
    {
 

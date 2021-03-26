@@ -1,7 +1,10 @@
+//  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
 #include "framework.h"
 #include "static_setup.h"
 
+
 ::static_setup * static_setup::s_psetupList = nullptr;
+
 
 static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
    m_pszName(pszName),
@@ -152,15 +155,15 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::application* static_setup::create_new_application()
+::matter * static_setup::create_new_application()
 {
 
-   auto papplication = new_application();
+   auto papplication = new_application_as_matter();
 
    if (::is_set(papplication))
    {
 
-      papplication->m_strAppId = m_pszName;
+      papplication->set_application_id(m_pszName);
 
    }
 
@@ -169,7 +172,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::library* static_setup::create_new_library()
+::acme::library* static_setup::create_new_library()
 {
 
    auto plibrary = new_library();
@@ -195,7 +198,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::application* static_setup::new_application()
+::matter * static_setup::new_application_as_matter()
 {
 
    return nullptr;
@@ -203,7 +206,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::library* static_setup::new_library()
+::acme::library* static_setup::new_library()
 {
 
    return nullptr;

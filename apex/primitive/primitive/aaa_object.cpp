@@ -29,13 +29,13 @@ CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
 #endif
 
 
-//object::object(::context_object * pcontextobject) :
+//object::object(::object * pobject) :
 //   m_pmeta(nullptr)
 //{
 //
 //   set_layer(0, this);
 //
-//   initialize(pcontextobject);
+//   initialize(pobject);
 //
 //}
 //
@@ -506,10 +506,10 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-::e_status object::initialize(::context_object * pcontextobject)
+::e_status object::initialize(::object * pobject)
 {
 
-   auto estatus = ::subject::manager::initialize(pcontextobject);
+   auto estatus = ::subject::manager::initialize(pobject);
 
    if (!estatus)
    {
@@ -829,7 +829,7 @@ void object::system(const char * pszProjectName)
 ::e_status object::operator()()
 {
 
-   return ::context_object::operator()();
+   return ::object::operator()();
 
 }
 
@@ -840,7 +840,7 @@ void object::on_finalize()
 }
 
 
-void object::finalize()
+::e_status object::finalize()
 {
 
    //if (m_pmeta)
@@ -914,14 +914,14 @@ void object::on_finish()
    //      if (pcomposite)
    //      {
 
-   //         auto pcontextobject = pcomposite->_get_context_object();
+   //         auto pobject = pcomposite->_get_context_object();
 
-   //         if (pcontextobject && pcontextobject->m_pnotifya)
+   //         if (pobject && pobject->m_pnotifya)
    //         {
 
    //            synchronizationlock.unlock();
 
-   //            pcontextobject->m_pnotifya->remove(this);
+   //            pobject->m_pnotifya->remove(this);
 
    //            synchronizationlock.lock();
 
@@ -944,7 +944,7 @@ void object::delete_this()
 
    finalize();
 
-   context_object::delete_this();
+   object::delete_this();
 
 }
 
@@ -1065,12 +1065,12 @@ void object::copy_from(const object & o)
 
             }
 
-            //auto pcontextobject = pcomposite->_get_context_object();
+            //auto pobject = pcomposite->_get_context_object();
 
-            //if (pcontextobject)
+            //if (pobject)
             //{
 
-            //   pcontextobject->notify_array().add_unique(this);
+            //   pobject->notify_array().add_unique(this);
 
             //}
 
@@ -2142,12 +2142,12 @@ struct context_object_test_struct :
 
 };
 
-void debug_context_object(::context_object * pcontextobject)
+void debug_context_object(::object * pobject)
 {
 
-   auto p1 = __new(struct context_object_test_struct(pcontextobject));
+   auto p1 = __new(struct context_object_test_struct(pobject));
 
-   auto p2 = __new(struct context_object_test_struct(pcontextobject));
+   auto p2 = __new(struct context_object_test_struct(pobject));
 
    p2 = p1;
 

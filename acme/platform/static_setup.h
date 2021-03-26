@@ -3,6 +3,7 @@
 //  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 18/08/19.
+//  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
 //
 #pragma once
 
@@ -10,10 +11,10 @@
 class node_data_exchange;
 
 
-void apex_set_get_new_application(PFN_NEW_APEX_APPLICATION pnewapplication);
+//void apex_set_get_new_application(PFN_NEW_APEX_APPLICATION pnewapplication);
 
 
-class CLASS_DECL_APEX static_setup 
+class CLASS_DECL_ACME static_setup 
 {
 public:
 
@@ -53,12 +54,12 @@ public:
    static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
 
    virtual ::matter * create_new_object();
-   virtual ::apex::application* create_new_application();
-   virtual ::apex::library* create_new_library();
+   virtual ::matter* create_new_application();
+   virtual ::acme::library* create_new_library();
 
    virtual ::matter* new_object();
-   virtual ::apex::application* new_application();
-   virtual ::apex::library* new_library();
+   virtual ::matter* new_application_as_matter();
+   virtual ::acme::library* new_library();
 
 
 };
@@ -71,7 +72,7 @@ class static_library_factory :
 public:
 
 
-   virtual ::apex::library* new_library() override { return new LIBRARY; }
+   virtual ::acme::library* new_library() override { return new LIBRARY; }
 
 
    static_library_factory(const char * pszName = "") :

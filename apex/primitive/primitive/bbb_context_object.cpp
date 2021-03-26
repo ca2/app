@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-context_object::~context_object()
+object::~object()
 {
 
 }
@@ -11,7 +11,7 @@ context_object::~context_object()
 #ifdef DEBUG
 
 
-i64 context_object::add_ref(OBJ_REF_DBG_PARAMS)
+i64 object::add_ref(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::add_ref(OBJ_REF_DBG_ARGS);
@@ -19,7 +19,7 @@ i64 context_object::add_ref(OBJ_REF_DBG_PARAMS)
 }
 
 
-i64 context_object::dec_ref(OBJ_REF_DBG_PARAMS)
+i64 object::dec_ref(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::dec_ref(OBJ_REF_DBG_ARGS);
@@ -27,7 +27,7 @@ i64 context_object::dec_ref(OBJ_REF_DBG_PARAMS)
 }
 
 
-i64 context_object::release(OBJ_REF_DBG_PARAMS)
+i64 object::release(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::release(OBJ_REF_DBG_ARGS);
@@ -38,7 +38,7 @@ i64 context_object::release(OBJ_REF_DBG_PARAMS)
 #else
 
 
-i64 context_object::add_ref(OBJ_REF_DBG_PARAMS)
+i64 object::add_ref(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::add_ref(OBJ_REF_DBG_ARGS);
@@ -46,7 +46,7 @@ i64 context_object::add_ref(OBJ_REF_DBG_PARAMS)
 }
 
 
-i64 context_object::dec_ref(OBJ_REF_DBG_PARAMS)
+i64 object::dec_ref(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::dec_ref(OBJ_REF_DBG_ARGS);
@@ -54,7 +54,7 @@ i64 context_object::dec_ref(OBJ_REF_DBG_PARAMS)
 }
 
 
-i64 context_object::release(OBJ_REF_DBG_PARAMS)
+i64 object::release(OBJ_REF_DBG_PARAMS)
 {
 
    return property_object::release(OBJ_REF_DBG_ARGS);
@@ -65,21 +65,21 @@ i64 context_object::release(OBJ_REF_DBG_PARAMS)
 #endif
 
 
-//::apex::system* context_object::get_system() const
+//::apex::system* object::get_system() const
 //{
 //
 //
 //}
 //
 
-void context_object::process_exit_status(const ::e_status& estatus)
+void object::process_exit_status(const ::e_status& estatus)
 {
 
 
 }
 
 
-::apex::application* context_object::_get_application()
+::apex::application* object::_get_application()
 {
 
    return m_papplication;
@@ -87,28 +87,28 @@ void context_object::process_exit_status(const ::e_status& estatus)
 }
 
 
-   //inline ::apex::application* context_object::application() { return m_papplication; }
+   //inline ::apex::application* object::application() { return m_papplication; }
 
 
    //template < typename BASE_TYPE >
    //__pointer(BASE_TYPE) file_as(const ::payload& varFile);
 
 
-   void context_object::add_routine(const ::id& idRoutine, const ::routine& routine)
+   void object::add_routine(const ::id& idRoutine, const ::routine& routine)
    {
 
 
     }
 
 
-    void context_object::add_each_routine_from(const ::id& idRoutine, ::object* pobjectSource)
+    void object::add_each_routine_from(const ::id& idRoutine, ::object* pobjectSource)
     {
 
 
     }
 
 
-    array < ::routine >* context_object::routinea(const ::id& idRoutine)
+    array < ::routine >* object::routinea(const ::id& idRoutine)
     {
 
        return nullptr;
@@ -116,7 +116,7 @@ void context_object::process_exit_status(const ::e_status& estatus)
     }
 
 
-    void context_object::call_routine(const ::id& idRoutine)
+    void object::call_routine(const ::id& idRoutine)
     {
 
 
@@ -124,18 +124,18 @@ void context_object::process_exit_status(const ::e_status& estatus)
     }
 
 
-   //inline ::payload context_object::context_value(const ::payload& payload)
+   //inline ::payload object::context_value(const ::payload& payload)
 
 
 
-   void context_object::task_remove(::task* ptask)
+   void object::task_remove(::task* ptask)
    {
 
 
     }
 
 
-       ::e_status context_object::sleep(const ::duration& duration)
+       ::e_status object::sleep(const ::duration& duration)
     {
 
        return ::success;
@@ -147,7 +147,7 @@ void context_object::process_exit_status(const ::e_status& estatus)
    //void save_to(const ::payload& varFile, BASE_TYPE* pobject);
 
    
-   ::e_status context_object::initialize(::context_object* pcontextobject)
+   ::e_status object::initialize(::object * pobject)
    {
       auto estatus = ::success;
 
@@ -185,21 +185,21 @@ void context_object::process_exit_status(const ::e_status& estatus)
       if (!get_system())
       {
 
-         m_psystem = pcontextobject->get_system();
+         m_psystem = pobject->get_system();
 
       }
 
       if (!m_papplication)
       {
 
-         m_papplication = pcontextobject->m_papplication;
+         m_papplication = pobject->m_papplication;
 
       }
 
       if (!m_psession)
       {
 
-         m_psession = pcontextobject->m_psession;
+         m_psession = pobject->m_psession;
 
       }
 
@@ -239,14 +239,14 @@ void context_object::process_exit_status(const ::e_status& estatus)
    }
 
 
-    void context_object::finalize()
+    ::e_status object::finalize()
     {
 
 
     }
 
 
-    ::thread_pointer context_object::launch(const ::routine& routine)
+    ::thread_pointer object::launch(const ::routine& routine)
     {
 
        auto pthread = __create_new < ::thread >();
@@ -263,9 +263,9 @@ void context_object::process_exit_status(const ::e_status& estatus)
 
 
 
-   //inline const char* context_object::topic_text();
+   //inline const char* object::topic_text();
 
-    //context& context_object::__context(const ::payload& payload)
+    //context& object::__context(const ::payload& payload)
     //{
 
 
@@ -277,14 +277,14 @@ void context_object::process_exit_status(const ::e_status& estatus)
 
     //}
 
-    ::payload context_object::__context_value(const ::payload& payload)
+    ::payload object::__context_value(const ::payload& payload)
     {
 
        return ::payload();
 
    }
 
-   void context_object::set_topic_text(const string& str)
+   void object::set_topic_text(const string& str)
    {
 
 
@@ -296,13 +296,13 @@ void context_object::process_exit_status(const ::e_status& estatus)
 
    //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   //inline ::context* context_object::get_context() const { return m_pcontext; }
+   //inline ::context* object::get_context() const { return m_pcontext; }
 
-   //inline ::thread* context_object::get_thread() const { return m_pthread; }
+   //inline ::thread* object::get_thread() const { return m_pthread; }
 
-   //inline ::apex::application* context_object::get_application() const { return m_papplication; }
+   //inline ::apex::application* object::get_application() const { return m_papplication; }
 
-   //inline ::apex::session* context_object::get_session() const { return m_psession; }
+   //inline ::apex::session* object::get_session() const { return m_psession; }
 
    //::apex::system * psystem const { return m_psystemContext; }
 
@@ -310,7 +310,7 @@ void context_object::process_exit_status(const ::e_status& estatus)
 
    //inline ::apex::application * application() const { return m_papplication; }
 
-    string context_object::get_text(const ::payload& payload, const ::id& id)
+    string object::get_text(const ::payload& payload, const ::id& id)
     {
 
        return "";
@@ -334,12 +334,12 @@ void context_object::process_exit_status(const ::e_status& estatus)
 //#endif
 
 
-   // void set_object(::context_object * pcontextobject) 
+   // void set_object(::object * pobject) 
 
 
-   //inline void defer_set_object(::context_object * pcontextobject);
+   //inline void defer_set_object(::object * pobject);
 
-       ::e_status context_object::operator()()
+       ::e_status object::operator()()
     {
 
        return ::success;
@@ -359,14 +359,14 @@ void context_object::process_exit_status(const ::e_status& estatus)
    // ::user::interaction * get_host_window();
 
 
-       void context_object::dev_log(string str) const
+       void object::dev_log(string str) const
     {
 
 
     }
 
 
-    ::context_object& context_object::operator = (const ::payload& payload)
+    ::object& object::operator = (const ::payload& payload)
     {
 
        return *this;
@@ -498,46 +498,38 @@ void context_object::process_exit_status(const ::e_status& estatus)
    //template < typename SOURCE >
    //inline ::e_status add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
-void context_object::delete_this()
+void object::delete_this()
 {
 
 
     }
 
-       void context_object::destruct()
+       void object::destruct()
     {
 
 
     }
 
-    void context_object::system(const char* pszProjectName)
+    void object::system(const char* pszProjectName)
     {
 
    }
 
-   ::e_status context_object::enable_application_events(bool bEnable)
+   ::e_status object::enable_application_events(bool bEnable)
    {
 
       return ::success;
 
     }
 
-    ::e_status context_object::handle_exception(const ::exception::exception& e)
+    ::e_status object::handle_exception(const ::exception::exception& e)
     {
 
        return ::success;
 
     }
 
-    ::e_status context_object::top_handle_exception(const ::exception::exception& e)
-    {
-
-       return ::success;
-
-    }
-
-
-    ::e_status context_object::process_exception(const ::exception::exception& e)
+    ::e_status object::top_handle_exception(const ::exception::exception& e)
     {
 
        return ::success;
@@ -545,7 +537,15 @@ void context_object::delete_this()
     }
 
 
-    ::property_object* context_object::parent_property_set_holder() const
+    ::e_status object::process_exception(const ::exception::exception& e)
+    {
+
+       return ::success;
+
+    }
+
+
+    ::property_object* object::parent_property_set_holder() const
     {
 
        if (m_papplication && m_papplication.m_p != this)
@@ -574,14 +574,14 @@ void context_object::delete_this()
    }
 
 
-    void context_object::copy_from(const object& o)
+    void object::copy_from(const object& o)
     {
 
 
    }
 
 
-    string context_object:: get_tag() const
+    string object:: get_tag() const
    {
 
        return "";
@@ -589,21 +589,21 @@ void context_object::delete_this()
     }
 
 
-    bool context_object::is_thread() const
+    bool object::is_thread() const
     {
        return false;
 
     }
 
 
-       bool context_object::task_get_run() const
+       bool object::task_get_run() const
     {
 
           return true;
     }
 
 
-    bool context_object::is_running() const
+    bool object::is_running() const
     {
 
        return true;
@@ -611,35 +611,35 @@ void context_object::delete_this()
     }
     
     
-    void context_object::child_post_quit(const char* pszTag)
+    void object::child_post_quit(const char* pszTag)
     {
 
 
     }
 
 
-    void context_object::child_post_quit_and_wait(const char* pszTag, const duration& duration)
+    void object::child_post_quit_and_wait(const char* pszTag, const duration& duration)
     {
 
 
     }
 
 
-    ::e_status context_object::finish(::property_object * pcontextobjectFinish)
+    ::e_status object::finish(::property_object * pcontextobjectFinish)
     {
 
        return ::success;
 
     }
 
-   ::e_status context_object::set_finish(::property_object* pcontextobjectFinish)
+   ::e_status object::set_finish(::property_object* pcontextobjectFinish)
     {
 
        return ::success;
 
     }
     
-       ::e_status context_object::set_finish_composites(::property_object* pcontextobjectFinish)
+       ::e_status object::set_finish_composites(::property_object* pcontextobjectFinish)
     {
 
           return ::success;
@@ -647,21 +647,21 @@ void context_object::delete_this()
     }
     
        
-       void context_object::on_finish()
+       void object::on_finish()
     {
 
 
     }
 
 
-       void context_object::defer_update_object_id()
+       void object::defer_update_object_id()
     {
 
 
     }
 
     
-    ::id context_object::calc_default_object_id() const
+    ::id object::calc_default_object_id() const
     {
 
        return ::id();
@@ -669,27 +669,27 @@ void context_object::delete_this()
     }
 
 
-    void context_object::install_message_routing(::channel* pchannel)
+    void object::install_message_routing(::channel* pchannel)
     {
 
 
     }
 
-    void context_object::message_receiver_destruct()
+    void object::message_receiver_destruct()
     {
 
 
 
    }
 
-   void context_object::_001OnUpdate(::message::message* pmessage)
+   void object::_001OnUpdate(::message::message* pmessage)
    {
 
 
    }
 
 
-   ::e_status context_object::request_file(const ::payload& varFile)
+   ::e_status object::request_file(const ::payload& varFile)
    {
 
       return ::success;
@@ -697,7 +697,7 @@ void context_object::delete_this()
     }
 
 
-    ::e_status context_object::request_file(const ::payload& varFile, ::payload varQuery)
+    ::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
     {
 
       return ::success;
@@ -705,7 +705,7 @@ void context_object::delete_this()
     }
 
 
-    ::e_status context_object::request(arguments arguments)
+    ::e_status object::request(arguments arguments)
     {
 
        return ::success;
@@ -713,7 +713,7 @@ void context_object::delete_this()
     }
 
 
-    ::e_status context_object::do_request(::create* pcreate)
+    ::e_status object::do_request(::create* pcreate)
     {
 
        return ::success;
@@ -721,7 +721,7 @@ void context_object::delete_this()
     }
 
 
-    __pointer(::extended::future < ::conversation >)  context_object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
+    __pointer(::extended::future < ::conversation >)  object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
     {
 
        return nullptr;
@@ -744,46 +744,46 @@ void context_object::delete_this()
    // ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
    // ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
-    void context_object::release_references()
+    void object::release_references()
     {
 
     }
 
-    __pointer(::matter) context_object::running(const char* pszTag) const
+    __pointer(::matter) object::running(const char* pszTag) const
     {
 
        return nullptr;
 
     }
 
-    bool context_object::___is_reference(::matter* pobject) const
+    bool object::___is_reference(::matter* pobject) const
     {
 
        return false;
 
     }
 
-    bool context_object::__is_composite(::matter* pobject) const
+    bool object::__is_composite(::matter* pobject) const
     {
 
        return false;
 
     }
 
-    bool context_object::__is_child_task(::task* ptask) const
+    bool object::__is_child_task(::task* ptask) const
     {
 
        return false;
 
     }
 
-    void context_object::on_finalize()
+    void object::on_finalize()
     {
 
 
     }
 
-    ::e_status context_object::call_request(::create* pcreate)
+    ::e_status object::call_request(::create* pcreate)
     {
 
        return ::success;
@@ -792,7 +792,7 @@ void context_object::delete_this()
 
    //// former user::server
    // ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
-    void context_object::on_request(::create* pcreate)
+    void object::on_request(::create* pcreate)
     {
 
 
@@ -804,7 +804,7 @@ void context_object::delete_this()
    // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
-    ::e_status context_object::run()
+    ::e_status object::run()
     {
 
        return ::success;
@@ -812,7 +812,7 @@ void context_object::delete_this()
     }
 
 
-    string context_object::lstr(const ::id& id, string strDefault)
+    string object::lstr(const ::id& id, string strDefault)
     {
 
        return "";
@@ -820,7 +820,7 @@ void context_object::delete_this()
     }
 
 
-    string context_object::__get_text(string str)
+    string object::__get_text(string str)
     {
 
        return "";
@@ -841,7 +841,7 @@ void context_object::delete_this()
 
 
 
-   bool context_object::IsSerializable() const
+   bool object::IsSerializable() const
    {
 
       return false;
@@ -849,21 +849,21 @@ void context_object::delete_this()
    }
 
 
-   void context_object::start()
+   void object::start()
    {
 
 
    }
 
 
-   void context_object::single_fork(const ::routine_array& routinea)
+   void object::single_fork(const ::routine_array& routinea)
    {
 
 
    }
 
 
-   void context_object::multiple_fork(const ::routine_array& routinea)
+   void object::multiple_fork(const ::routine_array& routinea)
    {
 
 
@@ -907,7 +907,7 @@ void context_object::delete_this()
    }*/
 
 
-   //inline ::e_status context_object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   //inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
 
 
    //template < typename THREAD >
@@ -929,7 +929,7 @@ void context_object::delete_this()
 
 
    //template < typename METHOD >
-   //inline ::task_pointer context_object::opt_fork(const ::routine& routine)
+   //inline ::task_pointer object::opt_fork(const ::routine& routine)
    //{
 
    //   auto ptask = ::get_task();
@@ -975,7 +975,7 @@ void context_object::delete_this()
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer context_object::begin(::e_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+   //::thread_pointer object::begin(::e_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
    //{
 
    //   return nullptr;
@@ -994,7 +994,7 @@ void context_object::delete_this()
    // void to_string(string & str) const 
 
 
-    ::file_result context_object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+    ::file_result object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
     {
 
        return nullptr;
@@ -1068,7 +1068,7 @@ void context_object::delete_this()
    //::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
 
 
-    matter* context_object::get_taskpool_container()
+    matter* object::get_taskpool_container()
     {
 
        return nullptr;

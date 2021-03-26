@@ -31,7 +31,7 @@ public:
 
 
    object() : m_pmeta(nullptr) { }
-   //object(::context_object * pcontextobject);
+   //object(::object * pobject);
    object(enum_default_initialization) : ::object() {};
    virtual ~object();
 
@@ -112,8 +112,8 @@ public:
    template < typename BASE_TYPE >
    void save_to(const ::payload& varFile, BASE_TYPE* pobject);
 
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
-   virtual void finalize() override;
+   virtual ::e_status initialize(::object * pobject) override;
+   virtual ::e_status finalize() override;
 
    inline const char* topic_text();
 
@@ -162,10 +162,10 @@ public:
 #endif
 
 
-   //virtual void set_object(::context_object * pcontextobject) override;
+   //virtual void set_object(::object * pobject) override;
 
 
-   //inline void defer_set_object(::context_object * pcontextobject);
+   //inline void defer_set_object(::object * pobject);
 
    virtual ::e_status operator()() override;
 

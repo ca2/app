@@ -72,7 +72,7 @@ namespace str
       if(::str::ends_ci(listing.m_pathUser, ".zip"))
       {
 
-         listing.m_pathFinal = m_pcontext->m_pcontext->defer_process_path(listing.m_pathUser);
+         listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
          strZip = listing.m_pathFinal;
 
@@ -84,7 +84,7 @@ namespace str
       else if(::str::find_file_extension("zip:", listing.m_pathUser) >= 0)
       {
 
-         listing.m_pathFinal = m_pcontext->m_pcontext->defer_process_path(listing.m_pathUser);
+         listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
          strZip = listing.m_pathFinal;
 
@@ -113,7 +113,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_pcontext->file().get_reader(pathZip);
+      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
 
       if (!pfile)
       {
@@ -232,7 +232,7 @@ namespace str
       if (::str::ends_ci(strPath, ".zip"))
       {
 
-         pathFinal = m_pcontext->m_pcontext->defer_process_path(strPath);
+         pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);
 
          strZip = strPath;
 
@@ -244,7 +244,7 @@ namespace str
       else if (::str::find_file_extension("zip:", strPath) >= 0)
       {
 
-         pathFinal = m_pcontext->m_pcontext->defer_process_path(strPath);
+         pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);
 
          strZip = strPath;
 
@@ -274,7 +274,7 @@ namespace str
 
       }
 
-      auto pfile = m_pcontext->m_pcontext->file().get_reader(pathZip);
+      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
 
       if (!pfile)
       {
@@ -341,7 +341,7 @@ namespace str
    bool zip_context::extract_all(const char * pszDir,::payload varFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      auto pfile = m_pcontext->m_pcontext->file().get_file(varFile,::file::e_open_binary | ::file::e_open_read);
+      auto pfile = m_pcontext->m_papexcontext->file().get_file(varFile,::file::e_open_binary | ::file::e_open_read);
 
       if (!pfile)
       {
@@ -398,7 +398,7 @@ namespace str
 
                ::file::path path = ::file::path(pszDir) / strRelative;
 
-               file_pointer spfile = m_pcontext->m_pcontext->file().get_file(
+               file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(
                                 path,
                                 ::file::e_open_create | ::file::e_open_write | ::file::e_open_defer_create_directory);
 
@@ -448,7 +448,7 @@ namespace str
          
       }
       
-      auto pfile = m_pcontext->m_pcontext->file().get_reader(pszFileName);
+      auto pfile = m_pcontext->m_papexcontext->file().get_reader(pszFileName);
       
       if(!pfile)
       {

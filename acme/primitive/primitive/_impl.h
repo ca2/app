@@ -1361,7 +1361,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //   if (pcomposite)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (m_pcompositea)
 //      {
@@ -1391,7 +1391,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //   if (preference)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (m_preferencea)
 //      {
@@ -2244,7 +2244,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //
 //   auto pgroup = get_system()->task_group(epriority);
 //
-//   synchronization_lock slGroup(pgroup->mutex());
+//   synchronous_lock slGroup(pgroup->mutex());
 //
 //   ///   auto ptool = get_system()->task_tool(op_fork_count);
 //
@@ -2507,9 +2507,9 @@ inline ::apex::session * object::get_session() const
 //
 //   auto ptask = ::get_task();
 //
-//   synchronization_lock synchronizationlock(ptask->mutex());
+//   synchronous_lock synchronouslock(ptask->mutex());
 //
-//   if (ptask && ptask->m_bitIsPred)
+//   if (ptask && ptask->m_bIsPredicate)
 //   {
 //
 //      routine();
@@ -2958,7 +2958,7 @@ inline ::e_status object::__release(__composite(BASE_TYPE)& pcomposite OBJ_REF_D
    if (pcomposite)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       //if (m_pcompositea)
       //{
@@ -2986,7 +2986,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJ_REF_D
    if (preference)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       //if (m_preferencea)
       //{
@@ -3753,19 +3753,13 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 //
 
 
-
 template < typename TYPE >
-inline __pointer(TYPE) object::cast(const ::id& id)
+inline __pointer(TYPE) material_object::cast(const ::id& id)
 {
 
    return payload(id).cast < TYPE>();
 
 }
-
-
-
-
-
 
 
 //
@@ -3795,9 +3789,6 @@ inline __pointer(TYPE) object::cast(const ::id& id)
 //  return varOptions;
 //
 //}
-
-
-
 
 
 //inline void callback::receive_response(const ::payload & payload) const
@@ -3846,7 +3837,6 @@ inline __pointer(TYPE) object::cast(const ::id& id)
 //routine::routine(const ::id& id, PRED pred, ::matter* pobjectHold) : function_base(id, __new(__λprocedure < PRED >(pred, pobjectHold))) { }
 //template < typename PRED >
 //routine::routine(PRED pred, ::matter* pobjectHold) : routine(::id(), pred, pobjectHold) { }
-
 
 
 ////namespace user

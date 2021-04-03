@@ -477,7 +477,7 @@ namespace simple_ui
 
       ::write_text::font_pointer f(e_create);
 
-      f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
+      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
 
       pgraphics->set(f);
 

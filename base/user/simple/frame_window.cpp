@@ -284,7 +284,7 @@ void simple_frame_window::SaveWindowRectThreadProcedure()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (!should_save_window_rect())
    {
@@ -520,7 +520,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -785,7 +785,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          if (m_pdocumenttemplate->m_strMatter.has_char())
          {
 
-            m_varFrame = pcontext->m_pcontext->file().as_json(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
 
          }
 
@@ -2284,8 +2284,8 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
    }
 
-   if (psession->savings().is_trying_to_save(::e_resource_processing)
-         || psession->savings().is_trying_to_save(::e_resource_translucent_background))
+   if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+         || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
       ::rectangle_i32 rectClient;
@@ -2319,7 +2319,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pimpl->m_puserinteraction == nullptr)
       {
@@ -2525,14 +2525,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       auto psession = get_session();
 
-      if(psession->savings().is_trying_to_save(::e_resource_translucent_background))
+      if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rectangle(rectClient, rgb(150, 220, 140));
 
       }
-      else if(psession->savings().is_trying_to_save(::e_resource_processing)
-              || psession->savings().is_trying_to_save(::e_resource_blur_background))
+      else if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+              || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
          pgraphics->color_blend(rectClient,rgb(150,180,140),150);
@@ -2731,7 +2731,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    auto pcontext = get_context();
 
-   string strMatter = pcontext->m_pcontext->dir().matter(pszToolBar);
+   string strMatter = pcontext->m_papexcontext->dir().matter(pszToolBar);
 
    if (ptoolbar->payload("matter_annotation") == strMatter)
    {
@@ -2740,7 +2740,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    }
 
-   string strXml = pcontext->m_pcontext->file().as_string(strMatter);
+   string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
 
    if(!ptoolbar->LoadXmlToolBar(strXml))
    {
@@ -3296,7 +3296,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   uia = m_uiptraChild;
 
@@ -3515,7 +3515,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 
    auto psession = get_session();
 
-   if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+   if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -3656,8 +3656,8 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
 //   {
-//      return !psession->savings().is_trying_to_save(::e_resource_processing)
-//             && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
+//      return !psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+//             && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth);
 //   }
 //   else
 //   {
@@ -3797,9 +3797,9 @@ bool simple_frame_window::on_create_bars()
 
       auto pcontext = get_context();
 
-      ::file::path path = pcontext->m_pcontext->dir().matter(pathToolbar);
+      ::file::path path = pcontext->m_papexcontext->dir().matter(pathToolbar);
 
-      if (pcontext->m_pcontext->file().exists(path))
+      if (pcontext->m_papexcontext->file().exists(path))
       {
 
          LoadToolBar(pathToolbar, pathToolbar);
@@ -4045,8 +4045,10 @@ void simple_frame_window::on_select_user_style()
 
       if (strSchema.has_char() || is_top_level_window())
       {
+
+         auto psession = get_session();
          
-         auto puser = user();
+         auto puser = psession->user();
 
          auto pstyle = puser->get_user_style(strSchema, get_application());
 
@@ -4090,7 +4092,7 @@ void simple_frame_window::notification_area_action(const char * pszId)
 string simple_frame_window::notification_area_get_xml_menu()
 {
 
-   auto pdocument = __new(::xml::document);
+   auto pdocument = __create_new<::xml::document>();
 
    pdocument->create_root("menu");
 

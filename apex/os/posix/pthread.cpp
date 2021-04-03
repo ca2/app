@@ -91,7 +91,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
             if (pmq.is_set())
             {
 
-               synchronization_lock synchronizationlock(pmq->mutex());
+               synchronous_lock synchronouslock(pmq->mutex());
 
                if (pmq->m_messagea.has_element())
                {
@@ -454,7 +454,7 @@ int g_iDebug_post_thread_msg_time;
 //CLASS_DECL_APEX int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   synchronization_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->mutex());
 //
 //   MESSAGE msg;
 //

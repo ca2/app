@@ -185,7 +185,7 @@ namespace parallelization
 
 
 class sync_interface;
-class synchronization_lock;
+class synchronous_lock;
 
 
 class CLASS_DECL_APEX thread_ptra :
@@ -202,7 +202,7 @@ public:
    virtual ::count get_count_except_current_thread();
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual ::e_status finish() override;
-   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
+   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -227,7 +227,7 @@ public:
 //#include "single_lock.h"
 //#include "retry_single_lock.h"
 //#include "initial_single_lock.h"
-//#include "synchronization_lock.h"
+//#include "synchronous_lock.h"
 //#include "multi_lock.h"
 //#include "retry_multi_lock.h"
 

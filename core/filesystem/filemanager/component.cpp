@@ -136,7 +136,7 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string& strManagerId, const char* psz, ::context* pcontext)
+   ::file::path filemanager_project_entry(string& strManagerId, const char* psz, ::aura::context* pcontext)
    {
 
       if (is_valid_filemanager_project_entry(psz))
@@ -399,7 +399,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         if (pathFilemanagerProject.is_empty() || pcontext->m_pcontext->dir().is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().compare_ci("component") != 0)
          {
 
@@ -419,13 +419,13 @@ namespace filemanager
 
             ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-            synchronization_lock synchronizationlock(&m);
+            synchronous_lock synchronouslock(&m);
 
-            stra.add_lines(pcontext->m_pcontext->file().as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(pcontext->m_papexcontext->file().as_string(m_pathFilemanagerProject), true);
 
          }
 
-         if (pcontext->m_pcontext->dir().is(pathFilemanagerProject))
+         if (pcontext->m_papexcontext->dir().is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -579,9 +579,9 @@ namespace filemanager
 
       //   ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-      //   synchronization_lock synchronizationlock(&m);
+      //   synchronous_lock synchronouslock(&m);
 
-      //   pcontext->m_pcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   pcontext->m_papexcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 
@@ -804,7 +804,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (pcontext->m_pcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -935,7 +935,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (pcontext->m_pcontext->dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

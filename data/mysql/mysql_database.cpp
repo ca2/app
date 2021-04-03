@@ -77,7 +77,9 @@ namespace mysql
 
       close_mysql_database();
 
-      ::database::database::finalize();
+      auto estatus = ::database::database::finalize();
+
+      return estatus;
 
    }
 

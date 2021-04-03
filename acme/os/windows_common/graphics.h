@@ -52,14 +52,14 @@ namespace draw2d
 
 
    class CLASS_DECL_ACME lock :
-      public synchronization_lock
+      public synchronous_lock
    {
    public:
 
       static ::mutex * g_pmutex;
 
       lock() :
-         synchronization_lock(g_pmutex)
+         synchronous_lock(g_pmutex)
       {
 
       }

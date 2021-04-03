@@ -239,7 +239,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
    try
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronous_lock synchronouslock(x11_mutex());
 
       xdisplay d(pdisplay);
 
@@ -364,7 +364,7 @@ bool xcb_message_loop_step()
 //
 //      g_bInitX11Thread = true;
 //
-//      synchronization_lock synchronizationlock(x11_mutex());
+//      synchronous_lock synchronouslock(x11_mutex());
 //
 //      xdisplay d(pdisplay);
 //
@@ -386,7 +386,7 @@ bool xcb_message_loop_step()
    try
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronous_lock synchronouslock(x11_mutex());
 
       xdisplay d(pdisplay);
 

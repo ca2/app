@@ -121,7 +121,7 @@ namespace parallelization
 
    //   }
 
-   //   synchronization_lock synchronizationlock(::acme::get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
    //   for (auto & pair : ::acme::get_system()->m_threadidmap)
    //   {
@@ -152,7 +152,7 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronization_lock synchronizationlock(::acme::get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
    //   for (auto& pair : ::acme::get_system()->m_threadidmap)
    //   {
@@ -176,7 +176,7 @@ namespace parallelization
    //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    //{
 
-   //   synchronization_lock synchronizationlock(::acme::get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
    //   for (auto& pair : ::acme::get_system()->m_threadidmap)
    //   {

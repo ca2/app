@@ -18,7 +18,7 @@ namespace parallelization
 
       void add(matter* pmatter);
 
-      virtual ::e_status on_task();
+      virtual ::e_status run();
 
    };
 

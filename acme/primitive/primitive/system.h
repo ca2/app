@@ -554,7 +554,7 @@ namespace apex
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 

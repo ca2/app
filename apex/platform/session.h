@@ -275,7 +275,7 @@ namespace apex
 
       virtual void on_instantiate_application(::apex::application* papp) override;
 
-      ::apex::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::apex::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       virtual bool is_key_pressed(::user::enum_key ekey);
 

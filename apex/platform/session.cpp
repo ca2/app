@@ -5,7 +5,6 @@
 #include "acme/platform/static_setup.h"
 
 
-
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
@@ -416,16 +415,16 @@ namespace apex
 
       INFO("apex::session::process_init");
 
-      auto estatus = ::context::initialize_context();
+      //auto estatus = ::apex::context::initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+         //return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_puserstrcontext);
+      auto estatus = __compose_new(m_puserstrcontext);
 
       if (!estatus)
       {
@@ -643,7 +642,9 @@ namespace apex
 
       INFO("::apex::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
 
-      if (pcreate->m_strAppId.has_char())
+      string strAppId = pcreate->m_strAppId;
+
+      if (strAppId.has_char())
       {
 
          INFO("m_strAppId = " + pcreate->m_strAppId);
@@ -960,83 +961,86 @@ namespace apex
    {
 
       papp->m_papexsession = this;
+      papp->m_papexsystem = m_papexsystem;
+      papp->m_pacmenode = m_pacmenode;
+      papp->m_papexnode = m_papexnode;
 
    }
 
 
-   ::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
-   {
+   //::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //{
 
-      __pointer(::apex::application) papp;
+   //   __pointer(::apex::application) papp;
 
-      if (m_applicationa.lookup(pszAppId, papp))
-      {
+   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   {
 
-         return papp;
+   //      return papp;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (!bCreate)
-         {
+   //      if (!bCreate)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         papp = nullptr;
+   //      papp = nullptr;
 
-         try
-         {
+   //      try
+   //      {
 
-            papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(pszAppId, bSynch, pcreate);
 
-         }
-         catch (const ::exception::exception & e)
-         {
+   //      }
+   //      catch (const ::exception::exception & e)
+   //      {
 
-            // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
-            // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+   //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
-            handle_exception(e);
+   //         handle_exception(e);
 
-            //if (!get_system()->on_run_exception(esp))
-            //{
+   //         //if (!get_system()->on_run_exception(esp))
+   //         //{
 
-            //   if (!App(this).on_run_exception(esp))
-            //   {
+   //         //   if (!App(this).on_run_exception(esp))
+   //         //   {
 
-            //      papp = nullptr;
+   //         //      papp = nullptr;
 
-            //   }
+   //         //   }
 
-            //}
+   //         //}
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-            //papp = nullptr;
+   //         //papp = nullptr;
 
-         }
+   //      }
 
-         if (!papp)
-         {
+   //      if (!papp)
+   //      {
 
-            return nullptr;
+   //         return nullptr;
 
-         }
+   //      }
 
-         app_add(papp);
+   //      app_add(papp);
 
-         return papp;
+   //      return papp;
 
-      }
+   //   }
 
-   }
+   //}
 
 
 
@@ -1882,7 +1886,16 @@ ret:
    ::e_status session::init1()
    {
 
-      auto estatus = __compose_new(m_pfs);
+      auto estatus = initialize_context();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose_new(m_pfs);
 
       if (!estatus)
       {
@@ -2108,7 +2121,6 @@ ret:
 
       }
 
-
       return estatus;
 
    }
@@ -2302,7 +2314,7 @@ namespace apex
    {
 
 
-      return m_pcontext->m_pcontext->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os().is_remote_session();
 
 
    }

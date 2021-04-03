@@ -303,49 +303,49 @@ namespace axis
 
 
 
-   ::e_status     application::main()
-   {
-
-      INFO("aura::application::main");
-
-      try
-      {
-
-         m_bReady = true;
-
-         m_estatus = on_run();
-
-//         if(m_iErrorCode != 0)
+//   ::e_status     application::main()
+//   {
+//
+//      INFO("aura::application::main");
+//
+//      try
+//      {
+//
+//         m_bReady = true;
+//
+//         m_estatus = on_run();
+//
+////         if(m_iErrorCode != 0)
+////         {
+////
+////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+////
+////            ::output_debug_string("application::main on_run termination failure\n");
+////
+////         }
+//
+//      }
+//      catch (const ::exception::exception & e)
+//      {
+//
+//         if (!handle_exception(e))
 //         {
 //
-//            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
-//
-//            ::output_debug_string("application::main on_run termination failure\n");
 //
 //         }
-
-      }
-      catch (const ::exception::exception & e)
-      {
-
-         if (!handle_exception(e))
-         {
-
-
-         }
-
-      }
-      catch (...)
-      {
-
-         //dappy(string(typeid(*this).name()) + " : on_run general exception");
-
-      }
-
-      return m_estatus;
-
-   }
-
+//
+//      }
+//      catch (...)
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+//
+//      }
+//
+//      return m_estatus;
+//
+//   }
+//
 
    ::e_status application::init_instance()
    {
@@ -1198,7 +1198,7 @@ namespace axis
 
          auto pcontext = get_context();
 
-         ::file::path pathFolder = pcontext->m_pcontext->dir().appdata();
+         ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata();
 
          if (is_system())
          {

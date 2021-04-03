@@ -49,7 +49,7 @@ namespace android
    ::e_status file_system::update_module_path()
    {
 
-      m_pathModule = ::file::app_module();
+      m_pathModule = m_psystem->m_pacmepath->app_module();
 
       m_pathCa2Module = m_pathModule;
 

@@ -131,7 +131,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bInitialized)
       {
@@ -208,7 +208,7 @@ namespace apex
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       print("<log>Log Initialized!!</log>");
 
@@ -317,9 +317,9 @@ namespace apex
 
       //const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
 
-      //synchronization_lock sl2(&m_mutexTrace);
+      //synchronous_lock sl2(&m_mutexTrace);
 
-//      synchronization_lock sl2(mutex());
+//      synchronous_lock sl2(mutex());
 //
 //      ::trace::category * pcategory = nullptr;
 //
@@ -455,7 +455,7 @@ namespace apex
 //
 //      }
 //
-//      //synchronizationlock.lock();
+//      //synchronouslock.lock();
 //      if (m_bTrace &&
 //         (m_pfile == nullptr
 //            || m_iYear != time.GetYear()
@@ -559,7 +559,7 @@ namespace apex
 //
 //                  sleep(1_s);
 //
-//                  if (!::file::app_module().contains_ci("logviewer") && file_exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
+//                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
 //                  {
 //
 //                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
@@ -672,7 +672,7 @@ namespace apex
                while (::task_get_run())
                {
 
-                  load_flags(m_pcontext->m_pcontext->local_ini());
+                  load_flags(m_pcontext->m_papexcontext->local_ini());
 
                   //task_sleep(10_s);
 
@@ -724,7 +724,7 @@ namespace apex
    ::e_status log::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bInitialized)
       {

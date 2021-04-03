@@ -33,6 +33,8 @@ namespace aqua
       virtual ::e_status initialize(::object * pobject) override;
 
 
+      virtual void on_add_session(::apex::session* papexsession) override;
+
       //virtual ::e_status initialize_rich_text();
 
       virtual ::xml::xml* _xml();
@@ -48,6 +50,8 @@ namespace aqua
 
 
       inline ::aqua::audio * audio() { return m_paudio; }
+
+      inline bool has_audio() const { return ::is_set(m_paudio); }
 
       inline ::aqua::multimedia * multimedia() { return m_pmultimedia; }
 

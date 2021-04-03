@@ -208,7 +208,7 @@ namespace database
    }
 
 
-   bool database_impl::memory_query_item(get_memory getmemory, const char* pszQuery)
+   bool database_impl::query_blob(get_memory getmemory, const char* pszQuery)
    {
 
       return false;

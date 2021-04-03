@@ -1741,7 +1741,7 @@ return { 0,0 };
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_itema.remove_all();
 
@@ -1782,7 +1782,9 @@ return { 0,0 };
             if(pchild->attribute("image").get_string().has_char())
             {
 
-               item->m_pimage = papplication->image().load_image(pchild->attribute("image"), false);
+               auto pcontext = m_pcontext;
+
+               item->m_pimage = pcontext->m_pauracontext->image().load_image(pchild->attribute("image"), false);
 
             }
 

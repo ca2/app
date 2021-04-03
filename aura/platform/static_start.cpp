@@ -624,7 +624,7 @@ namespace aura
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::context >();
+      create_factory < ::aura::context >();
 
 
 #if OBJ_TYP_CTR
@@ -692,7 +692,7 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -706,7 +706,7 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   psystem->g_mapLibrary.remove_all();
 

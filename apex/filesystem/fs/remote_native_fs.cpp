@@ -47,7 +47,7 @@ namespace fs
 
       //property_set set;
 
-      //strSource = m_pcontext->m_pcontext->http().get(strUrl, set);
+      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return false;
@@ -121,7 +121,7 @@ namespace fs
 
       //property_set set;
 
-      //strSource = m_pcontext->m_pcontext->http().get(strUrl, set);
+      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return listing = ::error_failed;
@@ -218,7 +218,7 @@ namespace fs
             
             ::file::listing l;
 
-            m_pcontext->m_pcontext->dir().ls(l, path);
+            m_pcontext->m_papexcontext->dir().ls(l, path);
             
          }
          else
@@ -238,7 +238,7 @@ namespace fs
             
             ::file::listing l;
 
-            m_pcontext->m_pcontext->dir().ls(l, path);
+            m_pcontext->m_papexcontext->dir().ls(l, path);
          }
          else
          {
@@ -270,7 +270,7 @@ namespace fs
 
       string strSource;
 
-      strSource = m_pcontext->m_pcontext->http().get(strUrl);
+      strSource = m_pcontext->m_papexcontext->http().get(strUrl);
 
       if(strSource.is_empty())
       return false;
@@ -342,7 +342,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //m_pcontext->m_pcontext->http().get("http://file.ca2.cc/");
+         //m_pcontext->m_papexcontext->http().get("http://file.ca2.cc/");
          m_bInitialized = true;
       }
 

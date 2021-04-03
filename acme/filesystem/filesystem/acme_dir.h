@@ -68,6 +68,7 @@ public:
    virtual ::file::path machine_event_file_path();
 
    virtual ::file::path user_appdata_local();
+   //virtual ::file::path tool();
 
 
 };

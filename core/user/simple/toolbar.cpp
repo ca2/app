@@ -1811,7 +1811,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index nCount, index nWidth)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    index nResult = 0;
 

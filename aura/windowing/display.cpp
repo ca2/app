@@ -187,7 +187,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      return m_rectaMonitor.get_count();
 //
@@ -437,7 +437,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {

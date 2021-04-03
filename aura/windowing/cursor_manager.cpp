@@ -173,7 +173,7 @@ namespace windowing
    __pointer(cursor) cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -202,7 +202,7 @@ namespace windowing
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pcursor = get_cursor(ecursor);
 
@@ -260,7 +260,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->m_pcontext->file().as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
 
    }
 
@@ -320,7 +320,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      ::file::path pathArrow = pcontext->m_pcontext->dir().matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
 
       ::file::path pathFolder = pathArrow.folder();
 
@@ -657,7 +657,7 @@ namespace windowing
    __pointer(cursor) cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       cursor * pcursor = get_cursor(ecursor);
 

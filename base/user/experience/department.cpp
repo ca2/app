@@ -19,7 +19,7 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_new_experience2(::object * pobject, const char * pszExperienceLibrary)
+   __pointer(::experience::experience) department::create_experience2(::object * pobject, const char * pszExperienceLibrary)
    {
 
       string strId(pszExperienceLibrary);
@@ -114,7 +114,7 @@ namespace experience
 
       }
 
-      pexperience->initialize(this);
+      pexperience->initialize(pobject);
 
       pexperience->m_plibrary = plibrary;
 
@@ -123,7 +123,7 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_experience2(::object * pobject, const char * pszUinteraction)
+   __pointer(::experience::experience) department::get_experience2(::object * pobject, const char * pszUinteraction)
    {
 
       auto & pexperience = m_mapExperience[pszUinteraction];
@@ -131,7 +131,7 @@ namespace experience
       if(pexperience == nullptr)
       {
 
-         __compose(pexperience, get_new_experience2(pobject, pszUinteraction));
+         __compose(pexperience, create_experience2(pobject, pszUinteraction));
 
       }
 
@@ -141,7 +141,7 @@ namespace experience
    }
 
 
-   ::experience::frame * department::experience_get_frame2(::object * pobject, const char * pszLibrary, const char * pszFrame)
+   __pointer(::experience::frame) department::experience_get_frame2(::object * pobject, const char * pszLibrary, const char * pszFrame)
    {
 
       string_array straLibrary;
@@ -223,7 +223,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -236,7 +236,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -249,7 +249,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -262,7 +262,7 @@ namespace experience
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -276,7 +276,7 @@ namespace experience
 
       {
 
-         string strConfig = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+         string strConfig = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strConfig.has_char())
          {

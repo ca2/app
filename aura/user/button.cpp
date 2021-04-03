@@ -1034,19 +1034,19 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papplication = get_application();
+      auto pcontext = get_context();
 
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = papplication->image().get_image(payload);
+         m_pbitmap->m_pimage = pcontext->m_pauracontext->image().get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = papplication->image().get_image(varSel);
+         m_pbitmap->m_pimageSel = pcontext->m_pauracontext->image().get_image(varSel);
 
       }
 
@@ -1054,7 +1054,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = papplication->image().get_image(varFocus);
+         m_pbitmap->m_pimageFocus = pcontext->m_pauracontext->image().get_image(varFocus);
 
       }
 
@@ -1062,7 +1062,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = papplication->image().get_image(varDisabled);
+         m_pbitmap->m_pimageDisabled = pcontext->m_pauracontext->image().get_image(varDisabled);
 
       }
 
@@ -1070,7 +1070,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = papplication->image().get_image(varHover);
+         m_pbitmap->m_pimageHover = pcontext->m_pauracontext->image().get_image(varHover);
 
       }
 

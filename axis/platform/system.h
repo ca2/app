@@ -33,6 +33,8 @@ namespace axis
 
       virtual ::e_status initialize(::object * pobject) override;
 
+      virtual void on_add_session(::apex::session * papexsession) override;
+
       virtual ::e_status init() override;
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
@@ -57,7 +59,7 @@ namespace axis
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
 
 

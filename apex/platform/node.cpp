@@ -23,6 +23,164 @@ namespace apex
    }
 
 
+   ::e_status node::on_initialize_object()
+   {
+
+      auto estatus = ::acme::node::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_papexnode = this;
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::parallelization_initialize()
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::parallelization_finalize()
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::thread_initialize(::thread* pthread)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::thread_finalize(::thread* pthread)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::node_thread_initialize(::thread* pthread)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status node::node_thread_finalize(::thread* pthread)
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   string node::get_version()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::_001InitializeShellOpen()
+   {
+
+      __throw(::error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   void node::show_wait_cursor(bool bShow)
+   {
+
+   }
+
+
+   ::e_status node::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   string node::multimedia_audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   string node::multimedia_audio_mixer_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   string node::veriwell_multimedia_music_midi_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      return false;
+
+   }
+
+   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+
+      return false;
+
+   }
+
+
+   bool node::set_last_run_application_path(string strAppId)
+   {
+
+      return false;
+
+   }
+
+
+
    void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
    {
 
@@ -64,20 +222,6 @@ namespace apex
    }
 
 
-#ifdef WINDOWS
-
-
-   ::e_status node::register_dll(const ::file::path & pathDll)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
-
-
-#endif
 
    void node::on_os_dark_mode_change()
    {

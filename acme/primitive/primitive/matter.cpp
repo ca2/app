@@ -272,20 +272,20 @@ void matter::defer_create_mutex()
 }
 
 
-::e_status matter::do_task()
-{
+//::e_status matter::run()
+//{
+//
+//   return ::success;
+//
+//}
 
-   return on_task();
 
-}
-
-
-::e_status matter::on_task()
-{
-
-   return run();
-   
-}
+//::e_status matter::on_task()
+//{
+//
+//   return run();
+//   
+//}
 
 
 bool matter::is_thread() const

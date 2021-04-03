@@ -29,6 +29,8 @@ namespace core
    void system::common_construct()
    {
 
+      m_pcoresystem = this;
+
       create_factory < ::core::application, ::apex::application >();
       create_factory < ::core::session, ::apex::session >();
       create_factory < ::core::idpool, ::apex::idpool >();
@@ -55,6 +57,28 @@ namespace core
    }
 
 
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::bred::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_pcoresession)
+         {
+
+            m_pcoresession = papexsession->m_pcoresession;
+
+         }
+
+      }
+
+      papexsession->m_pcoresystem = this;
+
+   }
+
+
    ::e_status system::initialize_rich_text()
    {
 
@@ -72,7 +96,7 @@ namespace core
 
    void system::InsertTime(::ftp::file_status& ftpFileStatus)
    {
-      //tm m = { 0 };
+      
       if (ftpFileStatus.m_timeModification > 0)
       {
 

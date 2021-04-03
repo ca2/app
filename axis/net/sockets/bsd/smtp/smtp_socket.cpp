@@ -63,12 +63,12 @@ namespace sockets
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = psystem->base64().encode(m_pcontext->m_pcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               strResponse = psystem->base64().encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = psystem->base64().encode(m_pcontext->m_pcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               strResponse = psystem->base64().encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
                print(strResponse + "\r\n");
             }
          }

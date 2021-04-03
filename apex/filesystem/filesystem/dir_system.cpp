@@ -66,7 +66,7 @@ dir_system::~dir_system()
 
    }
 
-   m_pfilewatcher.create();
+   m_pfilewatcher.create(this);
 
    ::dir::mk(m_psystem->m_pacmedir->bookmark());
 

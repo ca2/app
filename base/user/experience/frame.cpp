@@ -142,7 +142,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      synchronization_lock synchronizationlock(pframewindow->mutex());
+      synchronous_lock synchronouslock(pframewindow->mutex());
 
       ::rectangle_i32 rectWindow;
 

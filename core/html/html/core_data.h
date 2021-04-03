@@ -185,7 +185,7 @@ namespace html
       ::file::path                     m_strPathName;
       ::user::interaction_ptra         m_uiptra;
       tag *                            m_ptag;
-      ::html::element                  m_element;
+      __pointer(::html::element)       m_pelement;
       bool                             m_bImplemented;
 
 

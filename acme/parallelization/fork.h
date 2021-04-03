@@ -19,7 +19,7 @@ public:
       m_predicate(pred)
    {
 
-      m_bitIsPred = true;
+      m_bIsPredicate = true;
 
       //m_bLastingThread = false;
 
@@ -287,7 +287,7 @@ template < typename PRED >
 //
 //   defer_create_mutex();
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   ptask = ::fork(ptask, this, pred, pszTag, iCallStackAddUp);
 //
@@ -304,7 +304,7 @@ template < typename PRED >
 //
 //   defer_create_mutex();
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   return fork(pred, pszTag, iCallStackAddUp, epriority);
 //
@@ -530,7 +530,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    int iAffinityOrder = get_current_process_affinity_order();
 
-   if (::get_task() != nullptr && ::get_task()->m_bitAvoidProcFork)
+   if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
    {
 
       iAffinityOrder = 1;
@@ -574,7 +574,7 @@ template < typename PRED, typename PRED_END >
 
    int iAffinityOrder = get_current_process_affinity_order();
 
-   if (::get_task() == nullptr || ::get_task()->m_bitAvoidProcFork)
+   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
    {
 
       iAffinityOrder = 1;
@@ -676,7 +676,7 @@ auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart 
 
    int iAffinityOrder = get_current_process_affinity_order();
 
-   if (::get_task() == nullptr || ::get_task()->m_bitAvoidProcFork)
+   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
    {
 
       iAffinityOrder = 1;
@@ -708,7 +708,7 @@ auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END p
 
    int iAffinityOrder = get_current_process_affinity_order();
 
-   if (::get_task() == nullptr || ::get_task()->m_bitAvoidProcFork)
+   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
    {
 
       iAffinityOrder = 1;
@@ -762,7 +762,7 @@ __pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCo
 
    iCount = maximum(1, iCount);
 
-   if (::get_task() == nullptr || ::get_task()->m_bitAvoidProcFork)
+   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
    {
 
       iCount = 1;

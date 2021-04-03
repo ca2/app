@@ -161,7 +161,9 @@ namespace user
          if (strImage.has_char())
          {
 
-            __compose(m_pimage, papplication->image().matter_image(strImage));
+            auto pcontext = m_pcontext;
+
+            __compose(m_pimage, pcontext->m_pauracontext->image().matter_image(strImage));
 
          }
 

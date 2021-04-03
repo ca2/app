@@ -19,7 +19,7 @@ namespace experience
 
          m_pfont.create(e_create);
 
-         m_pfont->create_point_font(os_font_name(e_font_sans_ui), 12.0);
+         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12.0);
 
       }
 

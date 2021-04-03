@@ -13,9 +13,9 @@ class CLASS_DECL_ACME task :
 public:
 
 
-   int                                 m_bitAvoidProcFork : 1;
+   int                                 m_bAvoidProcedureFork : 1;
    int                                 m_bitIsRunning : 1;
-   int                                 m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                                 m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
    int                                 m_bitCoInitialize : 1;
 
 

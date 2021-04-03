@@ -10,7 +10,7 @@ task::task()
 
    m_bitCoInitialize = false;
    m_bitIsRunning = false;
-   m_bitIsPred = true;
+   m_bIsPredicate = true;
    m_htask = null_hthread;
    m_itask = 0;
 
@@ -174,7 +174,7 @@ void* task::s_os_task(void* p)
 void task::add_notify(::matter* pmatter)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -184,7 +184,7 @@ void task::add_notify(::matter* pmatter)
 void task::remove_notify(::matter* pmatter)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (m_pnotifya)
    {
@@ -271,14 +271,14 @@ void task::term_task()
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    //if (m_pnotifya)
    //{
 
    //   auto notifya = *m_pnotifya;
 
-   //   synchronizationlock.unlock();
+   //   synchronouslock.unlock();
 
    //   for (auto & pmatter : notifya)
    //   {
@@ -289,7 +289,7 @@ void task::term_task()
 
    //   }
 
-   //   synchronizationlock.lock();
+   //   synchronouslock.lock();
 
    //}
 
@@ -333,7 +333,7 @@ void task::term_task()
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pmatter = m_pmatter.m_p;
 
@@ -421,7 +421,7 @@ void task::term_task()
 
    }
 
-   //if (m_pobjectParent && m_bitIsPred)
+   //if (m_pobjectParent && m_bIsPredicate)
    //{
 
    //   //auto pthreadParent = calc_parent_thread();
@@ -580,7 +580,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         synchronization_lock synchronizationlock(pthread->mutex());
+         synchronous_lock synchronouslock(pthread->mutex());
 
          if (pthread->m_pevSleep.is_null())
          {

@@ -569,7 +569,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::context >();
+      create_factory < ::apex::context, ::acme::context >();
 
 
 #if OBJ_TYP_CTR
@@ -627,7 +627,7 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -641,7 +641,7 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   psystem->g_mapLibrary.remove_all();
 

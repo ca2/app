@@ -286,7 +286,7 @@ namespace gpu
 
       auto pcontext = get_context();
 
-      auto & file = pcontext->m_pcontext->file();
+      auto & file = pcontext->m_papexcontext->file();
 
       string strFragment = file.as_string(path);
 

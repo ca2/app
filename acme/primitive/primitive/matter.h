@@ -99,6 +99,10 @@ public:
 
    inline bool is_set() const { return ::is_set(this); }
 
+
+   inline bool is_shared() const { return m_countReference > 1; }
+
+
    // synchronization_object/::mutex
    inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
@@ -131,7 +135,7 @@ public:
    //::e_status remove_update(const ::id& id);
    void remove_from_any_source();
 
-   inline bool is_shared() const { return m_countReference > 1; }
+   //inline bool is_shared() const { return m_countReference > 1; }
 
 
    inline const char* type_c_str() const { return typeid(*this).name(); }
@@ -161,8 +165,8 @@ public:
    virtual ::e_status set_application_id(const char* pszApplicationId);
 
 
-   virtual ::e_status do_task();
-   virtual ::e_status on_task();
+   //virtual ::e_status do_task();
+   //virtual ::e_status on_task();
 
 
    virtual ::e_status osthread_init();

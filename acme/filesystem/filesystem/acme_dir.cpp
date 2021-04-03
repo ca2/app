@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme_dir.h"
+#include "acme_path.h"
 
 
 ::file::path acme_dir::appdata()
@@ -111,7 +112,7 @@ string acme_dir::system_short_name()
 ::file::path acme_dir::app_relative()
 {
 
-   ::file::path path = ::file::app_module();
+   ::file::path path = m_psystem->m_pacmepath->app_module();
 
    path = relative(path);
 
@@ -169,11 +170,11 @@ string acme_dir::system_short_name()
 
 #elif defined(ANDROID)
 
-   return ::dir::roaming();
+   return pacmedir->roaming();
 
 #else
 
-   return ::file::app_module().folder(4);
+   return m_psystem->m_pacmepath->app_module().folder(4);
 
 #endif
 
@@ -200,11 +201,11 @@ string acme_dir::system_short_name()
 
 #elif defined(ANDROID)
 
-   return ::dir::roaming();
+   return pacmedir->roaming();
 
 #else
 
-   return ::file::app_module().folder(4);
+   return m_psystem->m_pacmepath->app_module().folder(4);
 
 #endif
 
@@ -232,15 +233,15 @@ string acme_dir::system_short_name()
 
 #ifdef ANDROID
 
-   return ::dir::roaming();
+   return pacmedir->roaming();
 
 #elif defined(__APPLE__)
 
-   return ::file::app_module().folder(3);
+   return m_psystem->m_pacmepath->app_module().folder(3);
 
 #else
 
-   return ::file::app_module().folder(4);
+   return m_psystem->m_pacmepath->app_module().folder(4);
 
 #endif
 
@@ -371,7 +372,7 @@ string acme_dir::system_short_name()
 ::file::path acme_dir::bookmark()
 {
 
-   return ::dir::localconfig() / "bookmark";
+   return pacmedir->localconfig() / "bookmark";
 
 }
 
@@ -540,7 +541,7 @@ void acme_dir::set_path_install_folder(const char* pszPath)
 
       strCandidate = stra[i] / pszTopic;
 
-      //if (m_pcontext->m_pcontext->file().exists(strCandidate))
+      //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
       if (file_exists(strCandidate))
       {
          
@@ -564,6 +565,14 @@ void acme_dir::set_path_install_folder(const char* pszPath)
 }
 
 
+//string acme_dir::system_short_name()
+//{
+//
+//   return "";
+//
+//}
+
+
 ::file::path acme_dir::machine_event_file_path()
 {
 
@@ -578,6 +587,14 @@ void acme_dir::set_path_install_folder(const char* pszPath)
    return "";
 
 }
+
+
+//::file::path acme_dir::tool()
+//{
+//
+//   return archive() / "tool-windows";
+//
+//}
 
 
 

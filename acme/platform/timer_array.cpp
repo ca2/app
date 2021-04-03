@@ -28,7 +28,7 @@ namespace apex
    bool timer_array::create_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bOk)
       {
@@ -97,7 +97,7 @@ namespace apex
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -122,7 +122,7 @@ namespace apex
    bool timer_array::remove_timer(::timer * ptimer)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -226,7 +226,7 @@ namespace apex
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 
@@ -240,7 +240,7 @@ namespace apex
             try
             {
 
-               synchronization_lock synchronizationlock(ptimer->mutex());
+               synchronous_lock synchronouslock(ptimer->mutex());
 
                ptimer->m_eobject -= e_object_success;
 
@@ -263,7 +263,7 @@ namespace apex
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 

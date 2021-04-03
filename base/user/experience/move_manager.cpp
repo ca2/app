@@ -349,7 +349,7 @@ namespace experience
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         critical_section_lock synchronizationlock(m_pframewindow->m_pimpl->cs_display());
+//         critical_section_lock synchronouslock(m_pframewindow->m_pimpl->cs_display());
 //         //m_pframewindow->m_rectParentClient.move_to(point_i64(point));
 //         m_pframewindow->m_pimpl->_001UpdateWindow();
 //

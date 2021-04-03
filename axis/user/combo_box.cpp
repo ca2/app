@@ -1178,7 +1178,7 @@ namespace user
    void combo_box::ResetContent()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_straList.remove_all();
 
@@ -1539,7 +1539,7 @@ namespace user
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT(m_edatamode == data_mode_opaque);
 

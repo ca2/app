@@ -166,6 +166,8 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr < IDWriteTextRenderer > textRenderer;
 
+      auto psystem = m_psystem->m_paurasystem;
+
       CreatePathTextRenderer(psystem->m_dpi, &textRenderer);
 
       textLayout->Draw(this, textRenderer.Get(), 0, 0);
@@ -618,7 +620,8 @@ namespace draw2d_direct2d
 
    }
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::text_out & textout)
+
+   bool path::_set(::draw2d::graphics * pgraphics, const ::write_text::text_out & textout)
    {
 
       return true;
@@ -626,7 +629,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text & drawtext)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text & drawtext)
    {
 
       return true;

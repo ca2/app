@@ -62,7 +62,7 @@ namespace linux
 
       }
 
-      ::file::path pathAppModule = ::file::app_module();
+      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
 
       m_pathModule = pathAppModule;
 

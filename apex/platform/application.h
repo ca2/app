@@ -164,7 +164,7 @@ namespace apex
       string_array                                    m_straAppInterest;
       //string_map < oswindow, oswindow >               m_mapAppInterest;
 
-      //::duration                                      m_durationGcomBackgroundUpdate;
+      //
 
       __composite(::service_handler) m_pservicehanlder;
 
@@ -240,7 +240,7 @@ namespace apex
 
 
       virtual ::e_status     run() override;
-      virtual ::e_status     main() override;
+      //virtual ::e_status     main() override;
       virtual ::e_status     on_run();
 
       virtual ::e_status application_pre_run();
@@ -356,7 +356,7 @@ namespace apex
 
       virtual void on_service_request(::create * pcreate);
 
-      virtual service* allocate_service();
+      virtual service* new_service();
 
 
       virtual string get_mutex_name_gen();

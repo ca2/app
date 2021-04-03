@@ -66,7 +66,7 @@ namespace fs
    ::file::listing & set::root_ones(::file::listing & listing)
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       m_fsdatamap.remove_all();
 
@@ -79,11 +79,11 @@ namespace fs
 
          data * pdata =  m_spafsdata[i];
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          pdata->root_ones(straFsPath);
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          listing.add(straFsPath);
 
@@ -106,7 +106,7 @@ namespace fs
    __pointer(data) set::path_data(const ::file::path & psz)
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       auto p = m_fsdatamap.begin();
 
@@ -284,7 +284,7 @@ namespace fs
       {
          try
          {
-            m_pcontext->m_pcontext->file().copy(pszDst, pszSrc);
+            m_pcontext->m_papexcontext->file().copy(pszDst, pszSrc);
          }
          catch(...)
          {

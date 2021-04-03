@@ -40,7 +40,7 @@ namespace app_shader
 
       }
 
-      initialize_application_consumer();
+      //initialize_application_consumer();
 
       __pointer(::aura::system) psystem = get_system();
 
@@ -127,9 +127,11 @@ namespace app_shader
 
       ::file::listing listing;
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
-      papplication->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+      auto pcontext = ::object::m_pcontext;
+
+      pcontext->m_papexcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
       for (auto& path : listing)
       {

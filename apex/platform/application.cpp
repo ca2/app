@@ -12,11 +12,11 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 
 
 #include "apex/node/_node.h"
-#include "apex.h"
+#include "node.h"
 //#include "apex/os/_os.h"
 
 #ifdef WINDOWS_DESKTOP
@@ -399,9 +399,9 @@ namespace apex
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto papex = psystem->m_papex;
+      auto papexnode = psystem->m_papexnode;
 
-      papex->show_wait_cursor(bShow);
+      papexnode->show_wait_cursor(bShow);
 
    }
 
@@ -503,7 +503,7 @@ namespace apex
    bool application::enable_application_events(::object * pobject, bool bEnable)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(bEnable)
       {
@@ -590,7 +590,7 @@ namespace apex
 
       }
 
-      return m_pcontext->m_pcontext->file().module().title();
+      return m_pcontext->m_papexcontext->file().module().title();
 
    }
 
@@ -620,7 +620,7 @@ namespace apex
 
       auto pathFolder = get_app_localconfig_folder();
 
-      auto preader = m_pcontext->m_pcontext->file().get_reader(pathFolder / "this.ini");
+      auto preader = m_pcontext->m_papexcontext->file().get_reader(pathFolder / "this.ini");
 
       if (preader)
       {
@@ -673,6 +673,8 @@ namespace apex
    void application::do_request(::create * pcreate)
    {
 
+      pcreate->m_pcontext = this;
+          
       request(pcreate);
 
    }
@@ -1103,7 +1105,7 @@ namespace apex
 
       }
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       if (m_stringtableStd.lookup(strTable, pmap))
       {
@@ -1130,7 +1132,7 @@ namespace apex
       else if (bLoadStringTable)
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          load_string_table(strTable, "");
 
@@ -1373,7 +1375,7 @@ namespace apex
    //      if (strLink.begins_ci("mailto:"))
    //      {
 
-   //         return m_pcontext->m_pcontext->os().file_open(this, strLink);
+   //         return m_pcontext->m_papexcontext->os().file_open(this, strLink);
 
    //      }
 
@@ -1564,48 +1566,52 @@ namespace apex
    //}
 
 
-   ::e_status     application::main()
-   {
-
-      INFO("apex::application::main");
-
-      try
-      {
-
-         m_bReady = true;
-
-         m_estatus = on_run();
-
-//         if(m_iErrorCode != 0)
-//         {
+//   ::e_status     application::main()
+//   {
 //
-//            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
 //
-//            ::output_debug_string("application::main on_run termination failure\n");
+//      return ::thread::main();
 //
-//         }
-
-      }
-      catch (const ::exception::exception & e)
-      {
-
-         if (!handle_exception(e))
-         {
-
-
-         }
-
-      }
-      catch (...)
-      {
-
-         //dappy(string(typeid(*this).name()) + " : on_run general exception");
-
-      }
-
-      return m_estatus;
-
-   }
+////
+////      INFO("apex::application::main");
+////
+////      try
+////      {
+////
+////         m_bReady = true;
+////
+////         m_estatus = on_run();
+////
+//////         if(m_iErrorCode != 0)
+//////         {
+//////
+//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+//////
+//////            ::output_debug_string("application::main on_run termination failure\n");
+//////
+//////         }
+////
+////      }
+////      catch (const ::exception::exception & e)
+////      {
+////
+////         if (!handle_exception(e))
+////         {
+////
+////
+////         }
+////
+////      }
+////      catch (...)
+////      {
+////
+////         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+////
+////      }
+////
+////      return m_estatus;
+//
+//   }
 
 
    ::e_status application::init_thread()
@@ -1878,7 +1884,7 @@ namespace apex
 
       ::thread::on_pos_run_thread();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //try
       //{
@@ -2050,7 +2056,7 @@ namespace apex
       if (m_pinterprocessintercommunication)
       {
 
-         m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_pcontext->file().module(), m_pcontext->m_pcontext->os().get_pid());
+         m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
 
       }
 
@@ -2062,7 +2068,7 @@ namespace apex
 
       //   ::file::path pathDatabase;
 
-      //   ::file::path pathFolder = m_pcontext->m_pcontext->dir().appdata();
+      //   ::file::path pathFolder = m_pcontext->m_papexcontext->dir().appdata();
 
       //   if (is_system())
       //   {
@@ -2484,10 +2490,14 @@ namespace apex
 
       m_millisHeartBeat.Now();
 
+      ::e_status estatus = ::success;
+
       try
       {
 
-         if (!process_init())
+         estatus = process_init();
+
+         if(!estatus)
          {
 
             return false;
@@ -2804,7 +2814,7 @@ retry_license:
 
 #ifdef WINDOWS_DESKTOP
 
-         m_psystem->m_pacme->install_crash_dump_reporting(m_pcontext->m_pcontext->file().module().name());
+         m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
 
 #endif
 
@@ -2912,7 +2922,7 @@ retry_license:
 
       __pointer(::apex::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(psystem->m_pmutexSystemAppData);
+      synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = psystem->m_strLocale;
@@ -2923,7 +2933,7 @@ retry_license:
       straLocale = payload("locale");
       straSchema = payload("schema");
 
-      ::file::path pathExe = ::file::app_module();
+      ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
       straLocale.insert_at(0, strSystemLocale);
       straSchema.insert_at(0, strSystemSchema);
@@ -2938,7 +2948,7 @@ retry_license:
 
          string strSchema = straSchema[i];
 
-         m_psystem->m_papexsystem->m_papex->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         m_psystem->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -3068,7 +3078,7 @@ retry_license:
    //}
 
 
-   service * application::allocate_service()
+   service * application::new_service()
    {
 
       return nullptr;
@@ -3080,7 +3090,7 @@ retry_license:
    //::e_status application::os_create_service()
    //{
 
-   //   return m_pcontext->m_pcontext->os().create_service();
+   //   return m_pcontext->m_papexcontext->os().create_service();
 
    //}
 
@@ -3088,7 +3098,7 @@ retry_license:
    //::e_status application::os_remove_service()
    //{
 
-   //   return m_pcontext->m_pcontext->os().remove_service();
+   //   return m_pcontext->m_papexcontext->os().remove_service();
 
    //}
 
@@ -3096,7 +3106,7 @@ retry_license:
    //::e_status application::os_start_service()
    //{
 
-   //   return m_pcontext->m_pcontext->os().start_service();
+   //   return m_pcontext->m_papexcontext->os().start_service();
 
    //}
 
@@ -3104,7 +3114,7 @@ retry_license:
    //::e_status application::os_stop_service()
    //{
 
-   //   return m_pcontext->m_pcontext->os().stop_service();
+   //   return m_pcontext->m_papexcontext->os().stop_service();
 
    //}
 
@@ -3155,6 +3165,9 @@ retry_license:
       }
       else if (has_property("run"))
       {
+
+         __compose(m_pservicehanlder)
+            ;
 
          service_handler()->defer_service();
 
@@ -3233,14 +3246,14 @@ retry_license:
 
       }
 
-      auto estatus = initialize_context();
+      //auto estatus = initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //if (m_bAuraProcessInitialize)
       //{
@@ -3322,7 +3335,7 @@ retry_license:
 
       //return true;
 
-      estatus = userfs_process_init();
+      auto estatus = userfs_process_init();
 
       if(!estatus && estatus != error_not_implemented)
       {
@@ -3515,9 +3528,18 @@ retry_license:
    ::e_status application::init1()
    {
 
+      auto estatus = initialize_context();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       __pointer(::apex::system) psystem = get_system();
 
-      ::e_status estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
+      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
 
       if (!estatus)
       {
@@ -4325,9 +4347,9 @@ retry_license:
 
             auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-            pcall->add_arg(m_pcontext->m_pcontext->file().module());
+            pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-            pcall->add_arg(m_pcontext->m_pcontext->os().get_pid());
+            pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
 
             pcall->add_arg(psystem->command_line_text());
 
@@ -4386,9 +4408,9 @@ retry_license:
 
             auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-            pcall->add_arg(m_pcontext->m_pcontext->file().module());
+            pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-            pcall->add_arg(m_pcontext->m_pcontext->os().get_pid());
+            pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
 
             pcall->add_arg(psystem->command_line_text());
 
@@ -4985,9 +5007,9 @@ retry_license:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
-         m_pcontext->m_pcontext->file().add_contents(m_pcontext->m_pcontext->dir().appdata() / (m_pcontext->m_pcontext->file().module().name() + "_log_error.txt"), strMessage);
+         m_pcontext->m_papexcontext->file().add_contents(m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt"), strMessage);
 
       }
 
@@ -5019,14 +5041,14 @@ retry_license:
 
       static int g_iCount = 0;
 
-      string strFile = m_pcontext->m_pcontext->dir().appdata() / (m_pcontext->m_pcontext->file().module().name() + "_log_error.txt");
+      string strFile = m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt");
 
       g_iCount++;
 
       if (g_iCount == 1)
       {
 
-         m_pcontext->m_pcontext->os().file_open(strFile);
+         m_pcontext->m_papexcontext->os().file_open(strFile);
 
       }
 
@@ -5135,7 +5157,7 @@ retry_license:
    ::e_status application::app_set(string strPath, string strValue)
    {
 
-      return m_pcontext->m_pcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
+      return m_pcontext->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
 
    }
 
@@ -5143,7 +5165,7 @@ retry_license:
    string application::app_get(string strPath, string strDefault)
    {
 
-      return m_pcontext->m_pcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
+      return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
 
    }
 
@@ -5164,7 +5186,7 @@ retry_license:
    void application::install_trace(const string & str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -5174,7 +5196,7 @@ retry_license:
    void application::install_trace(double dRate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5659,9 +5681,9 @@ retry_license:
 
       ::file::path path2;
 
-      path1 = m_pcontext->m_pcontext->defer_process_path(path1Param);
+      path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
 
-      path2 = m_pcontext->m_pcontext->defer_process_path(path2Param);
+      path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
       path1 = node_full_file_path(path1);
 
@@ -5679,7 +5701,7 @@ retry_license:
 //
 //      {
 //
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         ptra = m_objectptraEventHook;
 //
@@ -5852,7 +5874,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5886,7 +5908,7 @@ retry_license:
 
       }
 
-      m_psystem->m_papexsystem->m_papex->set_last_run_application_path(strAppId);
+      m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
 
       if (!os_on_start_application())
       {
@@ -5984,7 +6006,7 @@ retry_license:
    string application::load_string(const ::id & id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       string str;
 
@@ -6092,7 +6114,7 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -6571,19 +6593,19 @@ retry_license:
    //      if (is_system())
    //      {
 
-   //         pathDatabase = m_pcontext->m_pcontext->dir().appdata() / "system.sqlite";
+   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
    //      }
    //      else if (is_session())
    //      {
 
-   //         pathDatabase = m_pcontext->m_pcontext->dir().appdata() / "session.sqlite";
+   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
    //      }
    //      else
    //      {
 
-   //         pathDatabase = m_pcontext->m_pcontext->dir().appdata() / "app.sqlite";
+   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
    //      }
 
@@ -6853,7 +6875,7 @@ retry_license:
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
-      ::file::path strFile = m_pcontext->m_pcontext->dir().install() / strRelative;
+      ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if (framework_is_basis())
@@ -6877,7 +6899,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (m_pcontext->m_pcontext->http().open(psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (m_pcontext->m_papexcontext->http().open(psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -6894,7 +6916,7 @@ retry_license:
 
       set["get_memory"] = "";
 
-      if (!m_pcontext->m_pcontext->http().request(psession, strUrl, set))
+      if (!m_pcontext->m_papexcontext->http().request(psession, strUrl, set))
       {
 
          return false;
@@ -6990,11 +7012,11 @@ retry_license:
 
       varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = m_pcontext->m_pcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
       varFile["url"] = strMatter;
 
-      return m_pcontext->m_pcontext->file().as_string(varFile);
+      return m_pcontext->m_papexcontext->file().as_string(varFile);
 
    }
 
@@ -9206,13 +9228,13 @@ retry_license:
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -9387,7 +9409,7 @@ retry_license:
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronization_lock synchronizationlock(&user_mutex());
+//      //      synchronous_lock synchronouslock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -9585,7 +9607,7 @@ retry_license:
 //      // i16 file name so we need to use the i16 file name.
 //      string strShortName;
 //
-//      strShortName = m_pcontext->m_pcontext->file().module();
+//      strShortName = m_pcontext->m_papexcontext->file().module();
 //
 //      // strip out path
 //      //string strFileName = ::PathFindFileName(strShortName);
@@ -10613,7 +10635,7 @@ retry_license:
       //      }
       //      else
       //      {
-      //         //               synchronizationlock.unlock();
+      //         //               synchronouslock.unlock();
       //         try
       //         {
       //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
@@ -10622,7 +10644,7 @@ retry_license:
       //         {
 
       //         }
-      //         //             synchronizationlock.lock();
+      //         //             synchronouslock.lock();
       //      }
       //   }
 
@@ -10739,7 +10761,7 @@ retry_license:
    //            {
 
    //               pcheck->_001SetCheck(
-   //                  m_pcontext->m_pcontext->os().is_user_auto_start(get_executable_appid()),
+   //                  m_pcontext->m_papexcontext->os().is_user_auto_start(get_executable_appid()),
    //                  ::e_source_initialize);
 
    //            }
@@ -10767,7 +10789,7 @@ retry_license:
    //            if (pcheck.is_set())
    //            {
 
-   //               m_pcontext->m_pcontext->os().register_user_auto_start(
+   //               m_pcontext->m_papexcontext->os().register_user_auto_start(
    //                  get_executable_appid(),
    //                  get_executable_path(),
    //                  pcheck->echeck() == ::check_checked);
@@ -10850,7 +10872,7 @@ retry_license:
 
       ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
 
-      string strBuild = m_pcontext->m_pcontext->file().as_string(path);
+      string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
 
       strBuild.trim();
 
@@ -11023,7 +11045,7 @@ retry_license:
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto papex = psystem->m_papex;
+      auto papex = psystem->m_papexnode;
 
       return papex->get_version();
 
@@ -11035,7 +11057,7 @@ retry_license:
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto papex = psystem->m_papex;
+      auto papex = psystem->m_papexnode;
 
       return papex->_001InitializeShellOpen();
 

@@ -25,6 +25,8 @@ public:
 
    virtual  string from(string str);
 
+   virtual ::file::path app_module();
+
 
 };
 

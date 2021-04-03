@@ -100,6 +100,12 @@ public:
 
       m_estatus = (::e_status) m_psystem->inline_init();
 
+      auto papp = m_psystem->m_papexsystem->m_papplicationStartup;
+
+      __refer(m_psystem->m_papexsystem->m_papplicationMain, m_psystem->m_papexsystem->m_papplicationStartup.get());
+
+      __unbind(m_psystem->m_papexsystem, m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(m_psystem, ""));
+
    }
 
 

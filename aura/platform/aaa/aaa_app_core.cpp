@@ -518,9 +518,9 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString = ::dir::system() / strAppId / "output_debug_string.txt" ;
+   ::file::path pathOutputDebugString = pacmedir->system() / strAppId / "output_debug_string.txt" ;
 
-   ::file::path pathGlobalOutputDebugString = ::dir::config() / "output_debug_string.txt" ;
+   ::file::path pathGlobalOutputDebugString = pacmedir->config() / "output_debug_string.txt" ;
 
    ::aura::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
 
@@ -542,7 +542,7 @@ void app_core::set_command_line(const char * psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder = ::dir::ca2roaming() / "program";
+   ::file::path pathFolder = pacmedir->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 
@@ -1816,7 +1816,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    string strAppId = pszAppId;
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
    __pointer(::acme::library)& plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
 

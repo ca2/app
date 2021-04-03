@@ -268,7 +268,9 @@ namespace filemanager
       string strPath;
 
       __pointer(::core::application) papplication = pobject->get_application();
-      
+
+      auto pcontext = m_pcontext;
+
       if (papplication->data_get({true, "last_browse_folder"}, strPath))
       {
 
@@ -290,9 +292,9 @@ namespace filemanager
 
          }
 
-         //pcontext->m_pcontext->dir().mk(strPath);
+         //pcontext->m_papexcontext->dir().mk(strPath);
 
-         if (papplication->dir().is(strPath))
+         if (pcontext->m_papexcontext->dir().is(strPath))
          {
 
             return strPath;
@@ -310,7 +312,7 @@ namespace filemanager
       else
       {
 
-         strPath = papplication->dir().desktop();
+         strPath = pcontext->m_papexcontext->dir().desktop();
 
       }
 

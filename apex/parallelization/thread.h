@@ -34,7 +34,7 @@ public:
    };
 
 
-   __composite(message_queue)                                    m_pmq;
+   __composite(message_queue)                         m_pmq;
    bool                                               m_bClosedMq;
 
 
@@ -316,6 +316,7 @@ public:
    virtual ::e_status on_pre_run_thread();
 
    virtual ::e_status run() override;
+   virtual ::e_status main();
 
    virtual void on_pos_run_thread();
    virtual void term_thread();
@@ -343,7 +344,7 @@ public:
    virtual void dispatch_thread_message(::message::message * pmessage);  // helper
 
 
-   virtual ::e_status     main();
+   
 
 
    virtual void wait();
@@ -421,12 +422,12 @@ public:
    virtual ::e_status initialize(::object * pobject) override;
 
 
-   virtual ::e_status do_task() override;
+   //virtual ::e_status run() override;
 
 
    virtual ::e_status osthread_init() override;
    virtual ::e_status __thread_init() override;
-   virtual ::e_status __thread_main() override;
+   //virtual ::e_status __thread_main() override;
    virtual ::e_status __thread_term() override;
    virtual ::e_status osthread_term() override;
 

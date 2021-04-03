@@ -198,7 +198,7 @@ namespace tranquillum
    void button::on_hit_test(::user::item & item)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_spregion.is_null())
       {

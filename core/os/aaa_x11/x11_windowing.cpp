@@ -147,7 +147,7 @@ int display_lines(const string_array & stra, const string & strTitle)
 GC simple_ui_display::create_gc()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    //windowing_output_debug_string("\n::get_window_rect 1");
 
@@ -202,7 +202,7 @@ GC simple_ui_display::create_gc()
 void simple_ui_display::on_expose()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    //windowing_output_debug_string("\n::get_window_rect 1");
 
@@ -302,7 +302,7 @@ void simple_ui_display::on_expose()
 int simple_ui_display::show()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    //windowing_output_debug_string("\n::get_window_rect 1");
 

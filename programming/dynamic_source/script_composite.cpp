@@ -38,9 +38,11 @@ namespace dynamic_source
    ::e_status script_composite::finalize()
    {
 
-      script_interface::finalize();
+      auto estatus = script_interface::finalize();
 
       __finalize_and_release(m_pinterface);
+
+      return estatus;
 
    }
 

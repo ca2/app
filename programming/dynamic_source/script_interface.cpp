@@ -77,11 +77,13 @@ namespace dynamic_source
    ::e_status script_interface::finalize()
    {
 
-      ::html::file::finalize();
+      auto estatus = ::html::file::finalize();
 
       m_pmain.release(OBJ_REF_DBG_THIS);
       m_pinstanceParent2.release(OBJ_REF_DBG_THIS);
       m_pscript2.release(OBJ_REF_DBG_THIS);
+
+      return estatus;
 
    }
 

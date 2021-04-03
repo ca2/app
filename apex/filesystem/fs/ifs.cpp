@@ -16,7 +16,7 @@ ifs::ifs(const char * pszRoot)
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
@@ -36,7 +36,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
@@ -49,13 +49,13 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    ::file::listing listing;
 
-   m_pcontext->m_pcontext->dir().ls(listing, path);
+   m_pcontext->m_papexcontext->dir().ls(listing, path);
 
-   synchronizationlock.lock();
+   synchronouslock.lock();
 
    return dir.get_count() > 0;
 
@@ -81,7 +81,7 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::ls(::file::listing & listing)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -134,7 +134,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //property_set set;
 
-   //strSource = m_pcontext->m_pcontext->http().get(strUrl, set);
+   //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
    //if(strSource.is_empty())
    //{
@@ -290,7 +290,7 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -301,7 +301,7 @@ int ifs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      m_pcontext->m_pcontext->dir().ls(listing, path.folder());
+      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
 
    }
 

@@ -106,7 +106,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = pcontext->m_pcontext->file().module();
+//         pathObj = pcontext->m_papexcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -116,7 +116,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //         strLinkTitle.replace("\\", "_");
 //         strLinkTitle.replace("-", "_");
 //
-//         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//         pathLnk = pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //         ::dir::mk(pathLnk.folder());
 //

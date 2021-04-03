@@ -795,7 +795,7 @@ namespace hotplugin
 
          uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 
-         ::file::path pathName = pcontext->m_pcontext->dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
+         ::file::path pathName = pcontext->m_papexcontext->dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
          if(!m_memorymapBitmap.open(pathName,true,true,bCreate, size))
          {

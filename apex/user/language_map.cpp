@@ -253,9 +253,9 @@ namespace user
 
             straMatterLocator.add(strLocator);
 
-            ::file::path pathApplication = m_pcontext->m_pcontext->dir().matter_from_locator("stringtable.po", straMatterLocator);
+            ::file::path pathApplication = m_pcontext->m_papexcontext->dir().matter_from_locator("stringtable.po", straMatterLocator);
 
-            string strPoData = m_pcontext->m_pcontext->file().as_string(pathApplication);
+            string strPoData = m_pcontext->m_papexcontext->file().as_string(pathApplication);
 
             if (strPoData.has_char())
             {

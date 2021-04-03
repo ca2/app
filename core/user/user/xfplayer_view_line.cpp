@@ -86,7 +86,7 @@ xfplayer_view_line::~xfplayer_view_line()
 bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    UNREFERENCED_PARAMETER(flags);
 
@@ -126,7 +126,7 @@ bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, str
 void xfplayer_view_line::add_char(widechar wch, strsize & index)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_str += wch;
 
@@ -145,7 +145,7 @@ void xfplayer_view_line::add_char(widechar wch, strsize & index)
 void xfplayer_view_line::add_char(widechar wch, strsize & index, ::write_text::font * pFont)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    UNREFERENCED_PARAMETER(pFont);
    index++;
@@ -163,7 +163,7 @@ void xfplayer_view_line::GetPlacement(RECTANGLE_I32 * prectangle)
 
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    *prectangle = m_rectangle;
 
@@ -173,7 +173,7 @@ void xfplayer_view_line::GetPlacement(RECTANGLE_I32 * prectangle)
 bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    string strFinal(m_str);
 
@@ -387,7 +387,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ::rectangle_i32 rectPlacement;
 
@@ -693,7 +693,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_bCacheEmboss = false;
 
@@ -995,7 +995,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 void xfplayer_view_line::SetAutoSize(bool bAutoSize)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_bAutoSizeX = bAutoSize;
    m_bAutoSizeY = bAutoSize;
@@ -1004,7 +1004,7 @@ void xfplayer_view_line::SetAutoSize(bool bAutoSize)
 void xfplayer_view_line::SetAlign(i32 iAlign)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_iAlign = iAlign;
 }
@@ -1039,7 +1039,7 @@ xfplayer_view_line & xfplayer_view_line::operator = (const xfplayer_view_line & 
 void xfplayer_view_line::Show(bool bShow)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    if (bShow && !m_bVisible)
    {
@@ -1066,7 +1066,7 @@ void xfplayer_view_line::Show(bool bShow)
 void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, rectangle_i32_array &  rectaModified)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    if (IsVisible())
    {
@@ -1103,7 +1103,7 @@ void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, r
 void xfplayer_view_line::SetAnimateType(i32 iAnimateType)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_iAnimateType = iAnimateType;
    m_dAnimateProgress = 0.0;
@@ -1113,7 +1113,7 @@ void xfplayer_view_line::SetAnimateType(i32 iAnimateType)
 void xfplayer_view_line::SetTextEffect(i32 iTextEffect)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_iTextEffect = iTextEffect;
 }
@@ -1122,7 +1122,7 @@ void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
 
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_lpPenEmboss = pPen;
 
@@ -1132,7 +1132,7 @@ void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
 void xfplayer_view_line::SetForegroundColor(color32_t cr)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_colorForeground = cr;
 }
@@ -1145,7 +1145,7 @@ void xfplayer_view_line::SetForegroundColor(color32_t cr)
 i32 xfplayer_view_line::MapToFontEffect(i32 iLineEffect)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    switch (iLineEffect)
    {
@@ -1161,7 +1161,7 @@ i32 xfplayer_view_line::MapToFontEffect(i32 iLineEffect)
 void xfplayer_view_line::SetAnimateIncrement(double dIncrement)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_dAnimateProgressIncrement = dIncrement;
 }
@@ -1185,7 +1185,7 @@ void xfplayer_view_line::SetRenderCriticalSection(critical_section * pcs)
 i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_ppenLyricLeft = ppenLeft;
    m_ppenLyricRight = ppenRight;
@@ -1195,7 +1195,7 @@ i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * p
 i32 xfplayer_view_line::SetLyricColors(color32_t crLeft, color32_t crRight)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_colorLyricLeft = crLeft;
    m_colorLyricRight = crRight;
@@ -1207,7 +1207,7 @@ i32 xfplayer_view_line::SetLyricColors(color32_t crLeft, color32_t crRight)
 void xfplayer_view_line::SetPlacement(const ::rectangle_i32 & rectangle)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_rectangle = rectangle;
 
@@ -1229,7 +1229,7 @@ void xfplayer_view_line::AddVmsFont(::write_text::font * pfont)
 void xfplayer_view_line::Invalidate(const rectangle_i32 & rectParam)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ::rectangle_i32 rectPlacement;
 
@@ -1260,7 +1260,7 @@ void xfplayer_view_line::Invalidate(const rectangle_i32 & rectParam)
 void xfplayer_view_line::Validate(const rectangle_i32 & rectParam)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ::rectangle_i32 rectPlacement;
 
@@ -1291,7 +1291,7 @@ void xfplayer_view_line::Validate(const rectangle_i32 & rectParam)
 bool xfplayer_view_line::IsVisible()
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    return m_bVisible;
 
@@ -1302,7 +1302,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    embossed_text_out(
    pgraphics,
@@ -1323,7 +1323,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    UNREFERENCED_PARAMETER(pimageCache);
 
@@ -1441,7 +1441,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_cr = cr;
    m_colorOutline = crOutline;
@@ -1454,7 +1454,7 @@ void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 //void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
 //{
 //
-//   single_lock synchronizationlock(m_pContainer->mutex());
+//   single_lock synchronouslock(m_pContainer->mutex());
 //
 //   //lf = m_logfont;
 //}
@@ -1466,7 +1466,7 @@ void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const char * pcsz, strsize iLen, ::image_pointer & pimageCache)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    if (!m_bEnhancedEmboss)
    {
@@ -1557,7 +1557,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 void xfplayer_view_line::SetFont(::write_text::font * pfont)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    m_font = pfont;
 
@@ -1567,7 +1567,7 @@ void xfplayer_view_line::SetFont(::write_text::font * pfont)
 void xfplayer_view_line::PrepareURLLinks()
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    string str;
 
@@ -1592,7 +1592,7 @@ void xfplayer_view_line::PrepareURLLinks()
 bool xfplayer_view_line::CharHasLink(strsize iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    return GetCharLink(iChar) > -1;
 }
@@ -1600,7 +1600,7 @@ bool xfplayer_view_line::CharHasLink(strsize iChar)
 bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    index iLink = GetCharLink(iChar);
    if (iLink < 0)
@@ -1612,7 +1612,7 @@ bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
 ::user::enum_line_hit xfplayer_view_line::get_link(string & strUrl, const ::point_i32 & pointCursor)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    strsize iChar;
    ::user::enum_line_hit etest = hit_test(pointCursor, iChar);
@@ -1626,7 +1626,7 @@ bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
 index xfplayer_view_line::GetCharLink(strsize iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    for (index i = 0; i < m_iaLinkStart.get_size(); i++)
    {
@@ -1642,7 +1642,7 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
 ::user::enum_line_hit xfplayer_view_line::hit_test(const point_i32 &pointCursorParam, strsize &iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    bool bInside;
    const ::point_i32 & pointCursor = pointCursorParam;
@@ -1679,7 +1679,7 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
 bool xfplayer_view_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ::rectangle_i32 rectPlacement;
    GetPlacement(rectPlacement);
@@ -1716,7 +1716,7 @@ bool xfplayer_view_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    __pointer(::message::mouse) pmouse(pmessage);
    strsize iChar;
@@ -1836,7 +1836,7 @@ void xfplayer_view_line::OnSetCursor(::message::message * pmessage)
 void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    __pointer(::message::mouse) pmouse(pmessage);
 
@@ -1855,7 +1855,7 @@ void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
 void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    __pointer(::message::mouse) pmouse(pmessage);
 
@@ -1913,7 +1913,7 @@ void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 ::write_text::font * xfplayer_view_line::GetFont()
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    return m_font;
 
@@ -1923,7 +1923,7 @@ void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 void xfplayer_view_line::set_blend(double d)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ASSERT(d >= 0.0);
 
@@ -1944,7 +1944,7 @@ void xfplayer_view_line::set_blend(double d)
 void xfplayer_view_line::update_hover(point_i32 &pointCursor)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    ::index iLine = m_iIndex;
 
@@ -2012,7 +2012,7 @@ bool xfplayer_view_line::is_hover()
 index xfplayer_view_line::GetLinkIndex(index iLine, strsize iChar)
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    if (!has_link())
    {
@@ -2036,7 +2036,7 @@ index xfplayer_view_line::GetLinkIndex(index iLine, strsize iChar)
 bool xfplayer_view_line::has_link()
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    return m_iaLinkStart.get_count() > 0;
 
@@ -2054,7 +2054,7 @@ bool xfplayer_view_line::has_link()
 inline XfplayerViewLineSelection & xfplayer_view_line::GetSelection()
 {
 
-   single_lock synchronizationlock(m_pContainer->mutex());
+   single_lock synchronouslock(m_pContainer->mutex());
 
    if (m_pContainer == nullptr)
       return m_selection;

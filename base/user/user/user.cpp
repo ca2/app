@@ -143,7 +143,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -308,7 +308,7 @@ namespace base
 
          __pointer(::base::application) papplicationItem = papplicationApex;
 
-         synchronization_lock synchronizationlock(&papplicationItem->m_mutexFrame);
+         synchronous_lock synchronouslock(&papplicationItem->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
@@ -1063,7 +1063,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
-      __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
+      __pointer(::user::menu) pmenu = pinteraction->__create <  ::user::menu  > ();
 
       pmenu->m_sizeMinimum = sizeMinimum;
 
@@ -1147,7 +1147,7 @@ namespace base
 
       auto pcontext = get_context();
 
-      string strXml = pcontext->m_pcontext->file().as_string(varXmlFile);
+      string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
 
@@ -1278,7 +1278,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1291,7 +1291,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1304,7 +1304,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1317,7 +1317,7 @@ namespace base
 
       {
 
-         string strWndFrm = pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1384,7 +1384,7 @@ namespace base
 
          pstyle->initialize(papp);
 
-         //synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+         //synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 
          //psystem->m_mapLibrary[strLibrary] = plibrary;
 

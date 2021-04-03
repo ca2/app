@@ -32,7 +32,7 @@ namespace database
 
       }
 
-      if (m_pcontext->m_pcontext->is_system() || m_pcontext->m_pcontext->is_session())
+      if (m_pcontext->m_papexcontext->is_system() || m_pcontext->m_papexcontext->is_session())
       {
 
          m_bRemote = false;

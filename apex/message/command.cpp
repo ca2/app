@@ -20,7 +20,7 @@ namespace message
 
 
    command::command(const ::id & id) :
-      id_matter(id)
+      material_object(id)
    {
 
       common_construct();

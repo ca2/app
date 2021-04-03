@@ -255,6 +255,8 @@ namespace base
       void common_construct();
 //
       virtual ::e_status initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session * papexsession) override;
 //
 //      virtual ::e_status init();
 //      //virtual ::e_status init_instance() override;
@@ -514,7 +516,7 @@ namespace base
 //      //   if(idType.is_empty())
 //      //      return nullptr;
 //
-//      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+//      //   synchronous_lock synchronouslock(&m_mutexFactory);
 //
 //      //   return m_typemap[idType].m_p;
 //
@@ -1010,7 +1012,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 //
@@ -1025,7 +1027,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 //
@@ -1038,7 +1040,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   i64 iValue;
 //

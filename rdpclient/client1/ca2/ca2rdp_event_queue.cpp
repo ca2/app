@@ -40,7 +40,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,::u32 scancode,const ::id & id,POINT_I32 pt)
 {
 
-   synchronization_lock synchronizationlock(ca2rdp_get_event_queue_mutex());
+   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex());
 
    rdp_event_item item;
    item.input = input;
@@ -56,7 +56,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down
 CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* input)
 {
 
-   synchronization_lock synchronizationlock(ca2rdp_get_event_queue_mutex());
+   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex());
 
    if(g_eventmap[input].has_elements())
    {

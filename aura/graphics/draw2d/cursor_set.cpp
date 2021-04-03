@@ -113,7 +113,7 @@
 //   __pointer(cursor) cursor_set::get_cursor(enum_cursor ecursor)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      auto & pcursor = m_cursormap[ecursor];
 //
@@ -142,7 +142,7 @@
 //
 //      //{
 //
-//      //   synchronization_lock synchronizationlock(mutex());
+//      //   synchronous_lock synchronouslock(mutex());
 //
 //      //   pcursor = get_cursor(ecursor);
 //
@@ -189,7 +189,7 @@
 //   void cursor_set::load_hotspot(const ::file::path& pathDir)
 //   {
 //
-//      parse_hotspot_text(pcontext->m_pcontext->file().as_string(pathDir / "hotspot.txt"));
+//      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
 //
 //   }
 //
@@ -244,7 +244,7 @@
 //
 //      // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 //
-//      ::file::path pathArrow = pcontext->m_pcontext->dir().matter(pathMatter / "arrow.png");
+//      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
 //
 //      ::file::path pathFolder = pathArrow.folder();
 //
@@ -455,7 +455,7 @@
 //   __pointer(cursor) cursor_set::set_system_default_cursor(enum_cursor ecursor)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      cursor* pcursor = get_cursor(ecursor);
 //

@@ -805,7 +805,7 @@ namespace uwp
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
 
-   //   ////synchronizationlock.lock();
+   //   ////synchronouslock.lock();
 
    //   //dc->detach();
 

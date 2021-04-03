@@ -778,7 +778,7 @@ namespace acme
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -792,7 +792,7 @@ namespace acme
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
       //   get_system()->g_mapLibrary.remove_all();
 

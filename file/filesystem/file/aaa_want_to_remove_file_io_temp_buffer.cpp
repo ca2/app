@@ -45,8 +45,8 @@ namespace file
          return true;
       if (!_tempFileCreated)
       {
-         _tempFileName = pcontext->m_pcontext->file().time_square(kTempFilePrefixString);
-         _tempFile = pcontext->m_pcontext->file().get(_tempFileName);
+         _tempFileName = pcontext->m_papexcontext->file().time_square(kTempFilePrefixString);
+         _tempFile = pcontext->m_papexcontext->file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
       memsize processed = size;

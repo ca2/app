@@ -82,7 +82,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * 
 
    }
 
-   synchronization_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->mutex());
 
    pmq->m_messagea.predicate_remove([=](MESSAGE & message)
    {

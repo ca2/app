@@ -108,7 +108,7 @@ namespace userfs
    void list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 //      if(is_locked())
 //         return;
@@ -171,7 +171,7 @@ namespace userfs
          try
          {
 
-            //::file::path path = pcontext->m_pcontext->defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
+            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
 
             //if (!m_itema.m_parray->contains_index(pitem->m_iItem) || m_itema[pitem->m_iItem].is_null())
             //{
@@ -187,7 +187,7 @@ namespace userfs
             if (path.m_iDir < 0)
             {
 
-               path.m_iDir = pcontext->m_pcontext->dir().is(path) ? 1 : 0;
+               path.m_iDir = pcontext->m_papexcontext->dir().is(path) ? 1 : 0;
 
             }
 
@@ -203,7 +203,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  path.m_iSize = pcontext->m_pcontext->file().length(path);
+                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
 
                }
 
@@ -260,7 +260,7 @@ namespace userfs
    void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 //      if(is_locked())
       //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)

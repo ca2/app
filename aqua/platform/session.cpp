@@ -52,7 +52,7 @@ namespace aqua
       apex::session::on_instantiate_application(papp);
 
       papp->m_paquasession = this;
-
+      papp->m_paquasystem = m_paquasystem;
 
    }
 

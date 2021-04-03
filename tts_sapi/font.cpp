@@ -142,7 +142,7 @@ namespace draw2d_gdiplus
 
          m_pfontcollection = new FontCollection();
 
-         m_pfontcollection->AddFontFile(pcontext->m_pcontext->dir().matter(m_strFontFamilyName));
+         m_pfontcollection->AddFontFile(pcontext->m_papexcontext->dir().matter(m_strFontFamilyName));
 
       }*/
 

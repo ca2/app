@@ -288,8 +288,8 @@ namespace user
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
 
-            synchronization_lock synchronizationlock(mutex());
-            //cslock synchronizationlock(&m_mutex);
+            synchronous_lock synchronouslock(mutex());
+            //cslock synchronouslock(&m_mutex);
             {
                //      TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
@@ -961,7 +961,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT(iIndex >= 0);
 
@@ -1183,7 +1183,7 @@ namespace user
          {
             //cslock lock(&m_mutex);
             
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             {
                TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

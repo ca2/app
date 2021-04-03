@@ -49,7 +49,7 @@ namespace multimedia
 
       auto pcontext = get_context();
 
-      return pcontext->m_pcontext->file().get_file(varFile, eopen);
+      return pcontext->m_papexcontext->file().get_file(varFile, eopen);
 
    }
 

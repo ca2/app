@@ -67,7 +67,7 @@ i32 html_data::create_font(::html::element* pelemental)
 void html_data::delete_contents()
 {
 
-   synchronization_lock lock(mutex());
+   synchronous_lock lock(mutex());
 
    destroy();
 

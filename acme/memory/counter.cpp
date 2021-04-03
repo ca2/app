@@ -1,6 +1,6 @@
 // Created on 2021-03-21 16:35 <3ThomasBS_!!
 #include "framework.h"
-#include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
@@ -82,7 +82,7 @@ bool initialize_memory_counter(::matter* pmatter)
 void _memory_counter_increment(const char* psz)
 {
 
-   synchronization_lock lock(g_pmutexMemoryCounters);
+   synchronous_lock lock(g_pmutexMemoryCounters);
 
    g_pmapMemoryCounter->operator[](psz)++;
 
@@ -92,7 +92,7 @@ void _memory_counter_increment(const char* psz)
 void _memory_counter_decrement(const char* psz)
 {
 
-   synchronization_lock lock(g_pmutexMemoryCounters);
+   synchronous_lock lock(g_pmutexMemoryCounters);
 
    g_pmapMemoryCounter->operator[](psz)++;
 

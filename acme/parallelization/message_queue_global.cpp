@@ -32,7 +32,7 @@ message_queue * get_message_queue(itask_t itask, bool bCreate)
 
    }
 
-   synchronization_lock synchronizationlock(g_pmutexMq);
+   synchronous_lock synchronouslock(g_pmutexMq);
 
    auto & pmessagequeue = (*g_pmapMq)[itask];
 
@@ -58,7 +58,7 @@ message_queue * get_message_queue(itask_t itask, bool bCreate)
 void clear_message_queue(itask_t idthread)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexMq);
+   synchronous_lock synchronouslock(g_pmutexMq);
 
    g_pmapMq->remove_key(idthread);
 
@@ -133,7 +133,7 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   }
 ////
-////   synchronization_lock ml(&pmq->m_mutex);
+////   synchronous_lock ml(&pmq->m_mutex);
 ////
 ////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 ////   {
@@ -159,7 +159,7 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 
    }
 
-   synchronization_lock ml(g_pmutexMq);
+   synchronous_lock ml(g_pmutexMq);
 
    pmq->m_messagea.remove_all();
 

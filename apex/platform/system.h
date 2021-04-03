@@ -21,7 +21,7 @@ namespace apex
 
       __composite(::apex::system)                        m_psystemParent;
 
-      __composite(::apex::apex)                          m_papex;
+      ///__composite(::apex::node)                          m_papexnode;
 
       //__composite(::apex::session)                       m_psessionMain;
 
@@ -71,8 +71,6 @@ namespace apex
 
       // apex commented
       //__composite(math::math)                            m_pmath;
-
-      __composite(geometry::geometry)                    m_pgeometry;
 
       __composite(::apex::str)                           m_puserstr;
 
@@ -237,8 +235,7 @@ namespace apex
 
       void common_construct();
 
-      virtual ::e_status  initialize(::object * pobject) override;
-
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void system_construct(int argc, char** argv, char** envp);
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
@@ -269,7 +266,7 @@ namespace apex
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
-      virtual ::e_status init_system();
+      virtual ::e_status init_system() override;
       virtual void term_system();
 
       virtual ::e_status on_system_construct();
@@ -474,12 +471,7 @@ namespace apex
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
 
-      geometry::geometry                           &  geometry()
-      {
 
-         return *m_pgeometry;
-
-      }
       //inline  class imaging & imaging() { return *m_pimaging; }
 
       virtual ::sockets::sockets & sockets() { return *m_psockets; }
@@ -572,7 +564,7 @@ namespace apex
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -595,9 +587,9 @@ namespace apex
       virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
 
 
+      virtual void on_add_session(::apex::session* psession);
       virtual void session_add(index iEdge, ::apex::session * psession);
       virtual void session_remove(index iEdge);
-
 
 
 

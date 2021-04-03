@@ -104,7 +104,7 @@ namespace account
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_map[strAppId] = __new(::account::product);
 

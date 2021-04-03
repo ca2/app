@@ -149,11 +149,11 @@ namespace fs
 
       m_plisting->m_pathUser = pathFolder;
 
-      m_plisting->m_pprovider = m_pcontext->m_pcontext;
+      m_plisting->m_pprovider = m_pcontext->m_papexcontext;
 
       m_plisting->clear_results();
 
-      m_pcontext->m_pcontext->dir().ls(*m_plisting);
+      m_pcontext->m_papexcontext->dir().ls(*m_plisting);
 
    }
 

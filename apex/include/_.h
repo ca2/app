@@ -89,7 +89,7 @@ namespace apex
    class session;
    class application;
    
-   class apex;
+   //class apex;
 
 
    //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
@@ -687,8 +687,20 @@ typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 class object;
 
+namespace apex
+{
 
-class context;
+   class context;
+
+}
+
+
+namespace aura
+{
+
+   class context;
+
+}
 
 
 //CLASS_DECL_APEX bool __node_apex_pre_init();
@@ -815,7 +827,16 @@ namespace http
 
 } // namespace http
 
-class context;
+
+namespace apex
+{
+
+   
+   class context;
+
+
+} // namespace apex
+
 
 namespace draw2d
 {

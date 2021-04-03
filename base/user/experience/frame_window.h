@@ -55,9 +55,9 @@ namespace experience
       virtual ~frame_window();
 
 
-      virtual ::experience::experience* get_new_experience(const char* pszExperienceLibrary);
-      virtual ::experience::experience* get_experience(const char* pszExperienceLibrary);
-      virtual ::experience::frame* get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle = nullptr);
+      virtual __pointer(::experience::experience) create_experience(const char* pszExperienceLibrary);
+      virtual __pointer(::experience::experience) get_experience(const char* pszExperienceLibrary);
+      virtual __pointer(::experience::frame) get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle = nullptr);
 
 
 

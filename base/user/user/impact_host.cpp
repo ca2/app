@@ -343,7 +343,7 @@ namespace user
       if(!bCallOnCreateView)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          return m_impactdatamap[id];
 

@@ -346,7 +346,7 @@ namespace user
    interaction * form_list::_001GetControl(index iItem, index iSubItem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
@@ -1261,7 +1261,7 @@ break_click:;
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          for (index i = 0; i < m_columna.get_size(); i++)
          {

@@ -127,7 +127,7 @@ public:
 i32 db_str_sync_queue::run()
 {
 
-   single_lock synchronizationlock(&m_mutex, false);
+   single_lock synchronouslock(&m_mutex, false);
 
    m_bRun = true;
 
@@ -143,18 +143,18 @@ repeat:;
          break;
        {
 
-          synchronizationlock.lock();
+          synchronouslock.lock();
 
           if(m_itema.get_size() <= 0)
           {
-             synchronizationlock.unlock();
+             synchronouslock.unlock();
              sleep(2000_ms);
              goto repeat;
           }
 
           if(psession->account()->m_puser == nullptr)
           {
-             synchronizationlock.unlock();
+             synchronouslock.unlock();
              sleep(5000_ms);
              goto repeat;
           }
@@ -164,7 +164,7 @@ repeat:;
              if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {
                 m_itema.remove_at(0);
-                synchronizationlock.unlock();
+                synchronouslock.unlock();
                 goto repeat;
              }
           }
@@ -182,23 +182,23 @@ repeat:;
 
 
 
-             strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/str_set_save?key=";
+             strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/str_set_save?key=";
              strUrl += psystem->url().url_encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
              strUrl += psystem->url().url_encode(m_itema[0]->m_str);
 
              m_itema.remove_at(0);
 
-             synchronizationlock.unlock();
+             synchronouslock.unlock();
 
              set["user"] = psession->account()->get_user();
 
-             m_phttpsession = pcontext->m_pcontext->http().request(m_phttpsession, strUrl, set);
+             m_phttpsession = pcontext->m_papexcontext->http().request(m_phttpsession, strUrl, set);
 
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
                 sleep(2000_ms);
-                pcontext->m_pcontext->dir().m_strApiCc = "";
+                pcontext->m_papexcontext->dir().m_strApiCc = "";
                 goto repeat;
              }
 
@@ -207,7 +207,7 @@ repeat:;
           {
           }
 
-          synchronizationlock.unlock();
+          synchronouslock.unlock();
 
        }
 
@@ -225,7 +225,7 @@ repeat:;
 void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    __pointer(db_str_set_queue_item) item(new db_str_set_queue_item);
 
@@ -274,7 +274,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       papplication->assert_user_logged_in();
 
-      synchronization_lock synchronizationlock(&m_mutex);
+      synchronous_lock synchronouslock(&m_mutex);
 
       if(m_pcore->m_phttpsession == nullptr)
       {
@@ -299,7 +299,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://" + pcontext->m_pcontext->dir().get_api_cc() + "/account/str_set_load?key=";
+      strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/str_set_load?key=";
 
       strUrl += psystem->url().url_encode(lpKey);
 
@@ -307,7 +307,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      m_pcore->m_phttpsession = pcontext->m_pcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
+      m_pcore->m_phttpsession = pcontext->m_papexcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {

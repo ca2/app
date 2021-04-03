@@ -12,7 +12,32 @@ namespace acme
    ::e_status system::start()
    {
 
-      auto estatus = on_start();
+      //auto estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   auto estatus = m_pnode->start();
+
+      //}
+
+      auto estatus = inline_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = on_start();
 
       if (!estatus)
       {
@@ -102,6 +127,10 @@ namespace acme
       return ::success;
 
    }
+
+   
+
+
 
 
    ::e_status system::on_start()

@@ -19,6 +19,7 @@ namespace bred
 
       virtual ::e_status initialize(::object * pobject) override;
 
+      virtual void on_add_session(::apex::session * papexsession) override;
 
    };
 

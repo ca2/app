@@ -981,7 +981,7 @@ namespace user
    //   else
    //   {
 
-   //      pcontext->m_pcontext->pstyle.release();
+   //      pcontext->m_papexcontext->pstyle.release();
 
    //   }
 

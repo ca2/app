@@ -44,7 +44,7 @@ namespace aura
 
 #else
 
-      ::file::path pathTrace = ::dir::system() / "trace.txt";
+      ::file::path pathTrace = pacmedir->system() / "trace.txt";
 
 #ifdef __DEBUG
 
@@ -162,7 +162,7 @@ namespace aura
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bInitialized)
       {
@@ -175,7 +175,7 @@ namespace aura
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(::dir::system() / "log.txt"))
+      if (file_is_true_dup(pacmedir->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -206,7 +206,7 @@ namespace aura
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       print("<log>Log Initialized!!</log>");
 
@@ -315,7 +315,7 @@ namespace aura
 
       const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
 
-      synchronization_lock sl2(&m_mutexTrace);
+      synchronous_lock sl2(&m_mutexTrace);
 
       ::aura::trace::category * pcategory = nullptr;
 
@@ -443,7 +443,7 @@ namespace aura
 
       }
 
-      //synchronizationlock.lock();
+      //synchronouslock.lock();
       if (m_bTrace &&
          (m_pfile == nullptr
             || m_iYear != time.GetYear()
@@ -545,7 +545,7 @@ namespace aura
 
                   sleep(1_s);
 
-                  if (!::file::app_module().contains_ci("logviewer") && file_exists(::dir::system() / "logviewer.txt"))
+                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(pacmedir->system() / "logviewer.txt"))
                   {
 
                      call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_normal, false);
@@ -656,7 +656,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
                while (::task_get_run())
                {
 
-                  load_flags(pcontext->m_pcontext->local_ini());
+                  load_flags(pcontext->m_papexcontext->local_ini());
 
                   //task_sleep(10_s);
 
@@ -708,7 +708,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    ::e_status log::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bInitialized)
       {

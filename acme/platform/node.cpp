@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "acme/id.h"
-#include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
@@ -25,6 +25,98 @@ namespace acme
    {
 
 
+   }
+
+
+   ::e_status node::initialize(::object * pobject)
+   {
+
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      initialize_memory_counter();
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_pacmenode = this;
+
+      return estatus;
+
+   }
+
+
+   void node::initialize_memory_counter()
+   {
+
+      ::initialize_memory_counter(this);
+
+   }
+
+   //::file::path node::roaming()
+   //{
+
+   //   return "";
+
+   //}
+
+
+   //::file::path node::program_data()
+   //{
+
+   //   return "";
+
+   //}
+
+
+#ifdef WINDOWS
+
+
+   ::e_status node::register_dll(const ::file::path& pathDll)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+#endif
+
+
+   void node::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
+   {
+
+
+
+
+   }
+
+   ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   {
+
+      return error_interface_only;
    }
 
 

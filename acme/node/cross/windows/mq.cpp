@@ -65,7 +65,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   m_messagea.add(message);
 //
@@ -87,7 +87,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   while (true)
 //   {
@@ -149,11 +149,11 @@
 //
 //      {
 //
-//         synchronizationlock.unlock();
+//         synchronouslock.unlock();
 //
 //         m_eventNewMessage.wait();
 //
-//         synchronizationlock.lock();
+//         synchronouslock.lock();
 //
 //         m_eventNewMessage.ResetEvent();
 //
@@ -174,7 +174,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   ::count count = m_messagea.get_count();
 //
@@ -201,7 +201,7 @@
 //
 //   }
 //
-//   synchronizationlock.unlock();
+//   synchronouslock.unlock();
 //
 ////#if defined(LINUX) // || defined(ANDROID)
 ////
@@ -228,7 +228,7 @@
 //message_queue * get_message_queue(itask_t itask, bool bCreate)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexMq);
+//   synchronous_lock synchronouslock(g_pmutexMq);
 //
 //   auto p = g_pmapMq->plookup(itask);
 //
@@ -260,7 +260,7 @@
 //void clear_message_queue(itask_t idthread)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexMq);
+//   synchronous_lock synchronouslock(g_pmutexMq);
 //
 //   g_pmapMq->remove_key(idthread);
 //
@@ -335,7 +335,7 @@
 //////
 //////   }
 //////
-//////   synchronization_lock ml(&pmq->m_mutex);
+//////   synchronous_lock ml(&pmq->m_mutex);
 //////
 //////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 //////   {
@@ -361,7 +361,7 @@
 //
 //   }
 //
-//   synchronization_lock ml(g_pmutexMq);
+//   synchronous_lock ml(g_pmutexMq);
 //
 //   pmq->m_messagea.remove_all();
 //

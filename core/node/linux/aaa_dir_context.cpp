@@ -124,7 +124,7 @@ namespace linux
 
       auto pdocument= pxml->create_document();
 
-      pdocument->load(pcontext->m_pcontext->file().as_string(appdata() /"configuration\\directory.xml"));
+      pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 
       if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -248,7 +248,7 @@ namespace linux
 
             ::file::listing straDir;
 
-            pcontext->m_pcontext->dir().ls_dir(straDir, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir().ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -277,7 +277,7 @@ namespace linux
 
                listing.m_pathFinal = strDir;
 
-               pcontext->m_pcontext->dir().ls(listing);
+               pcontext->m_papexcontext->dir().ls(listing);
 
 
             }
@@ -291,7 +291,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            pcontext->m_pcontext->dir().ls_file(listing, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -550,7 +550,7 @@ namespace linux
                try
                {
 
-                  pcontext->m_pcontext->file().del(str);
+                  pcontext->m_papexcontext->file().del(str);
 
                }
                catch(...)
@@ -565,7 +565,7 @@ namespace linux
                try
                {
 
-                  pcontext->m_pcontext->file().del(str);
+                  pcontext->m_papexcontext->file().del(str);
 
                }
                catch(...)

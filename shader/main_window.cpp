@@ -220,7 +220,7 @@ namespace app_shader
    void main_window::update_shader()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       start_layout();
 
@@ -240,7 +240,7 @@ namespace app_shader
 
       }
 
-      m_rendera[m_iShader]->initialize_application_consumer();
+      //m_rendera[m_iShader]->initialize_application_consumer();
 
       m_rendera[m_iShader]->m_pinteraction = this;
 

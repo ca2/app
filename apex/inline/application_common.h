@@ -3,7 +3,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 #include "apex/_defer.h"
-
+#include "acme/inline/implement.h"
 
 //#ifndef NO_DRAW2D
 //#ifdef WINDOWS

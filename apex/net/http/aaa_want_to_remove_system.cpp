@@ -58,16 +58,16 @@ namespace http
 //      else if(i == 1)
 //      {
 //         // telmico: no proxy
-//         string str = get_context()->file().as_string(get_context()->dir().appdata() / "machine/proxy.xml");
+//         string str = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "machine/proxy.xml");
 //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
 //         {
-//            get_context()->file().copy(get_context()->dir().appdata()/ "proxy_original.xml", get_context()->dir().install()/ "proxy.xml", false);
+//            pcontext->m_papexcontext->file().copy(pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml", pcontext->m_papexcontext->dir().install()/ "proxy.xml", false);
 //         }
-//         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy.xml"))
+//         if(pcontext->m_papexcontext->file().exists(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml"))
 //         {
 //            try
 //            {
-//               get_context()->file().del(get_context()->dir().appdata()/ "proxy.xml");
+//               pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
 //            }
 //            catch(...)
 //            {
@@ -77,20 +77,20 @@ namespace http
 //      else if(i == 2)
 //      {
 //         // telmico: original proxy configuration
-//         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy_original.xml"))
+//         if(pcontext->m_papexcontext->file().exists(pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml"))
 //         {
-//            get_context()->file().copy(get_context()->dir().appdata()/ "proxy.xml", get_context()->dir().appdata()/"proxy_original.xml", false);
+//            pcontext->m_papexcontext->file().copy(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml", pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", false);
 //         }
 //      }
 //      else
 //      {
 //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-//         string str = get_context()->file().as_string(get_context()->dir().appdata()/"proxy.xml");
+//         string str = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"proxy.xml");
 //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
 //         {
-//            get_context()->file().copy(get_context()->dir().appdata()/"proxy_original.xml", get_context()->dir().appdata()/"proxy.xml", false);
+//            pcontext->m_papexcontext->file().copy(pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", pcontext->m_papexcontext->dir().appdata()/"proxy.xml", false);
 //         }
-//         get_context()->file().put_contents(get_context()->dir().appdata()/"proxy.xml", "proxy");
+//         pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().appdata()/"proxy.xml", "proxy");
 //      }
    }
 
@@ -98,7 +98,7 @@ namespace http
    void system::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = get_context()->file().as_string(get_context()->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -152,7 +152,7 @@ namespace http
    system::pac * system::get_pac(const char * pszUrl)
    {
 
-      single_lock synchronizationlock(m_pmutexPac, true);
+      single_lock synchronouslock(m_pmutexPac, true);
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
@@ -176,7 +176,7 @@ namespace http
          varFile["disable_ca2_sessid"] = true;
          varFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = get_context()->file().as_string(varFile);
+         ppac->m_strAutoConfigScript = pcontext->m_papexcontext->file().as_string(varFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -215,7 +215,7 @@ namespace http
    ::http::system::proxy * system::get_proxy(const char * pszUrl)
    {
 
-      single_lock synchronizationlock(m_pmutexProxy, true);
+      single_lock synchronouslock(m_pmutexProxy, true);
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
@@ -249,7 +249,7 @@ namespace http
    bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy)
    {
 
-      single_lock synchronizationlock(m_pmutexPac, true);
+      single_lock synchronouslock(m_pmutexPac, true);
 
       string strProxyServer;
 
@@ -346,9 +346,9 @@ namespace http
 
       xml::document doc;
 
-      ::file::path pathProxyXml = get_context()->dir().appdata() / "proxy.xml";
+      ::file::path pathProxyXml = pcontext->m_papexcontext->dir().appdata() / "proxy.xml";
 
-      if(!get_context()->file().exists(pathProxyXml))
+      if(!pcontext->m_papexcontext->file().exists(pathProxyXml))
       {
 
          pproxy->m_bDirect = true;
@@ -357,7 +357,7 @@ namespace http
 
       }
 
-      string str = get_context()->file().as_string(pathProxyXml);
+      string str = pcontext->m_papexcontext->file().as_string(pathProxyXml);
 
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
@@ -2087,7 +2087,7 @@ retry_session:
    bool system::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
    {
 
-      single_lock synchronizationlock(m_pmutexDownload, true);
+      single_lock synchronouslock(m_pmutexDownload, true);
 
       i32 iStatusCode = 0;
 
@@ -2097,17 +2097,17 @@ retry_session:
          while (m_straExists.contains(pszUrl))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             sleep(100_ms);
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
          }
 
          m_straExists.add(pszUrl);
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          ::sockets::socket_handler handler(this);
 
@@ -2129,7 +2129,7 @@ retry_session:
          if (!http_get(handler, psocket, pszUrl, set))
          {
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             m_straExists.remove(pszUrl);
 
@@ -2146,7 +2146,7 @@ retry_session:
 
          iStatusCode = psocket->outattr("http_status_code");
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
       }
       catch(...)
@@ -2285,9 +2285,9 @@ retry_session:
       
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
-      strUserNameFile = get_context()->dir().appdata() / strSection + "_1";
+      strUserNameFile = pcontext->m_papexcontext->dir().appdata() / strSection + "_1";
       
-      strPasswordFile = get_context()->dir().appdata() / strSection + "_2";
+      strPasswordFile = pcontext->m_papexcontext->dir().appdata() / strSection + "_2";
       
       bool bOk = true;
 
@@ -2341,9 +2341,9 @@ retry_session:
       
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
-      get_context()->file().del(get_context()->dir().appdata() / strSection + "_1");
+      pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata() / strSection + "_1");
       
-      get_context()->file().del(get_context()->dir().appdata() / strSection + "_2");
+      pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata() / strSection + "_2");
 
    }
 
@@ -2365,7 +2365,7 @@ retry_session:
 
       set["noclose"] = false;
 
-      return get_context()->http().get(pszUrl, set);
+      return pcontext->m_papexcontext->http().get(pszUrl, set);
 
    }
 
@@ -2377,7 +2377,7 @@ retry_session:
 
       __pointer(::sockets::http_client_socket) psocket;
 
-      if (!get_context()->http().http_get(sockethandler, psocket, pszUrl, set))
+      if (!pcontext->m_papexcontext->http().http_get(sockethandler, psocket, pszUrl, set))
       {
 
          return false;
@@ -2394,7 +2394,7 @@ retry_session:
 
       set[__id(http_method)] = pszMethod;
 
-      return get_context()->http().get(pszUrl, set);
+      return pcontext->m_papexcontext->http().get(pszUrl, set);
 
    }
 

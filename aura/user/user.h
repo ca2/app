@@ -48,6 +48,8 @@ namespace user
 
       ::list < __pointer(::matter) >            m_listRunnable;
 
+      __composite(::user::shell)                   m_pshell;
+
 
       user();
       virtual ~user();
@@ -60,6 +62,12 @@ namespace user
       inline ::aura::application* get_application();
       inline ::aura::session * get_session();
       inline ::aura::system* get_system();
+
+
+      ::user::shell* shell();
+
+
+
       
 
       virtual ::user::interaction * interaction(oswindow oswindow);
@@ -99,7 +107,7 @@ namespace user
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
       inline ::type get_html_view_type() { return m_typeHtmlView; }
 
-
+      virtual ::e_status create_user_shell();
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);

@@ -56,8 +56,8 @@ namespace install
 
 #endif
 
-      if(file_exists(::dir::system() / "config\\plugin\\version.txt"))
-         strVersion = file_as_string(::dir::system() / "config\\plugin\\version.txt");
+      if(file_exists(pacmedir->system() / "config\\plugin\\version.txt"))
+         strVersion = file_as_string(pacmedir->system() / "config\\plugin\\version.txt");
 
       return strVersion;
 
@@ -686,7 +686,7 @@ namespace install
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-                  pcontext->m_pcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+                  pcontext->m_papexcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
 
                   if(::http::status_succeeded(set["get_status"]))
                      break;
@@ -1406,7 +1406,7 @@ retry_get_prompt:
 
             set["raw_http"] = true;
 
-            strData = pcontext->m_pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strData = pcontext->m_papexcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if(strData.is_empty())
             {
@@ -1550,7 +1550,7 @@ restart:
 
       property_set set;
 
-      while((str = pcontext->m_pcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = pcontext->m_papexcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

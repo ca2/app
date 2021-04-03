@@ -106,10 +106,10 @@ namespace write_text
 
 #ifdef WINDOWS
 
-      //if (ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
+      //if (ansi_compare_ci(pszFacename, pnode->font_name(e_font_sans)) == 0)
       //{
 
-      //   m_strFontFamilyName = os_font_name(e_font_sans);
+      //   m_strFontFamilyName = pnode->font_name(e_font_sans);
 
       //}
       //else
@@ -622,8 +622,8 @@ namespace write_text
 //   bool font::AddGlyph(::u32 user)
 //   {
 //
-//      //   single_lock synchronizationlock(&m_mutex);
-//      //   synchronizationlock.lock(U32_INFINITE_TIMEOUT);
+//      //   single_lock synchronouslock(&m_mutex);
+//      //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 //
 //      return TRUE;
 //

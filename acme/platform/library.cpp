@@ -121,7 +121,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -199,7 +199,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -372,7 +372,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -419,7 +419,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       try
       {
@@ -471,7 +471,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if (!contains_app(pszAppName))
       {
@@ -531,7 +531,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -593,7 +593,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       try
       {
@@ -702,7 +702,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if(get_library() != nullptr)
       {
@@ -773,7 +773,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       ::matter * p = nullptr;
 
@@ -809,7 +809,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if (get_library() == nullptr)
       {
@@ -828,7 +828,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       string_array stra;
 
@@ -844,7 +844,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -863,7 +863,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -875,7 +875,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -895,7 +895,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 

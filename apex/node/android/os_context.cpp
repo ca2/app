@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_application()->file_as_string(m_pcontext->m_pcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->file_as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -654,13 +654,13 @@ namespace android
 //   void os_context::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock synchronizationlock(::apex::g_pcsFont);
+//      critical_section_lock synchronouslock(::apex::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = m_pcontext->m_pcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
 //            auto psystem = m_psystem->m_paurasystem;
 
@@ -800,91 +800,91 @@ namespace android
 //      {
 //
 //
-//#ifdef os_font_name(e_font_mono)
+//#ifdef pnode->font_name(e_font_mono)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_mono);
+//         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
-//         pitem->m_strName = os_font_name(e_font_mono);
+//         pitem->m_strName = pnode->font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans)
+//#ifdef pnode->font_name(e_font_sans)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans);
+//         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
-//         pitem->m_strName = os_font_name(e_font_sans);
+//         pitem->m_strName = pnode->font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif)
+//#ifdef pnode->font_name(e_font_serif)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif);
+//         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
-//         pitem->m_strName = os_font_name(e_font_serif);
+//         pitem->m_strName = pnode->font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_ex)
+//#ifdef pnode->font_name(e_font_sans_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_ex);
+//         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_ex)
+//#ifdef pnode->font_name(e_font_serif_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_ex);
+//         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_fx)
+//#ifdef pnode->font_name(e_font_sans_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_fx);
+//         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_fx)
+//#ifdef pnode->font_name(e_font_serif_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_fx);
+//         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //

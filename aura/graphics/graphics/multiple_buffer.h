@@ -54,7 +54,7 @@ namespace graphics
       virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
-      // synchronization_lock screen synchronization_object first...
+      // synchronous_lock screen synchronization_object first...
       virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 

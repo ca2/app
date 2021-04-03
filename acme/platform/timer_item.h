@@ -21,7 +21,7 @@
 //      virtual ~timer_item();
 //
 //
-//      //bool check(single_lock & synchronizationlock);
+//      //bool check(single_lock & synchronouslock);
 //
 //
 //   };

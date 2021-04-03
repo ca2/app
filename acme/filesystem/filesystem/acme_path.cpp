@@ -96,4 +96,12 @@ string acme_path::from(string str)
 }
 
 
+::file::path acme_path::app_module()
+{
+
+   return "";
+
+}
+
+
 

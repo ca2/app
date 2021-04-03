@@ -24,12 +24,6 @@ namespace core
       ::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      __composite(::user::shell)                   m_pshell;
-
-
-
-
-
       map < ::type, ::user::impact_system * >      m_mapTemplate;
 
       id_map < ::user::impact_system * >           m_mapimpactsystem;
@@ -157,8 +151,6 @@ namespace core
       virtual ::e_status init2() override;
       virtual ::e_status init() override;
 
-      virtual ::user::shell* shell();
-
 
       virtual __pointer(::extended::future < ::conversation >) dialog_box(::object * pobject, const char * pszMatter, property_set & propertyset);
 
@@ -230,8 +222,6 @@ namespace core
 
       ::user::document * hold(__pointer(::user::interaction) pinteraction);
 
-
-      virtual ::e_status create_user_shell();
 
 
 

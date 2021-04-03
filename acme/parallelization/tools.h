@@ -75,7 +75,7 @@ public:
 
 
 class CLASS_DECL_ACME task_tool :
-   virtual public ::id_matter
+   virtual public ::material_object
 {
 public:
 

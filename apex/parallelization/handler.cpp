@@ -87,7 +87,7 @@ handler_manager::~handler_manager()
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_routinea.add(routine);
 
@@ -119,16 +119,16 @@ handler_manager::~handler_manager()
 ::routine handler_manager::pick_new_task()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (m_routinea.is_empty())
    {
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       m_pevTaskOnQueue->wait(1_s);
 
-      synchronizationlock.lock();
+      synchronouslock.lock();
 
    }
 

@@ -95,7 +95,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       if(str::begins_ci(pstrName, "Local\\") || str::begins_ci(pstrName, "Local\\"))
       {
-         strPath = ::dir::home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
       }
       else
       {
@@ -214,7 +214,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //void semaphore_timer_handler (int signum)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexSemaphore);
+//   synchronous_lock synchronouslock(g_pmutexSemaphore);
 //
 //   if(g_pthreadaSemaphore != nullptr)
 //   {

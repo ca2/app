@@ -1820,7 +1820,7 @@ namespace hi5
       set.merge(m_setHttp);
 
       /* Send http request */
-      bool bOk = pcontext->m_pcontext->http().get(getUrl, m_strResponse, set);
+      bool bOk = pcontext->m_papexcontext->http().get(getUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1854,7 +1854,7 @@ namespace hi5
       set["headers"] = headers;
 
       /* Send http request */
-      bool bOk = pcontext->m_pcontext->http().get(getUrl, m_strResponse, set);
+      bool bOk = pcontext->m_papexcontext->http().get(getUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1884,7 +1884,7 @@ namespace hi5
 //         set["http_method"] = "POST";
 //
 //         // Send http request
-////      bool bOk = pcontext->m_pcontext->http().get(getUrl, m_strResponse, set);
+////      bool bOk = pcontext->m_papexcontext->http().get(getUrl, m_strResponse, set);
 ////
 ////      headers = set["get_headers"].propset();
 ////
@@ -1918,7 +1918,7 @@ namespace hi5
       set["http_method"] = "DELETE";
 
       /* Send http request */
-      bool bOk = pcontext->m_pcontext->http().get(deleteUrl, m_strResponse, set);
+      bool bOk = pcontext->m_papexcontext->http().get(deleteUrl, m_strResponse, set);
 
       string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1959,7 +1959,7 @@ namespace hi5
 
          }
 
-         bOk = pcontext->m_pcontext->http().get(postUrl, m_strResponse, set);
+         bOk = pcontext->m_papexcontext->http().get(postUrl, m_strResponse, set);
 
          string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -1981,7 +1981,7 @@ namespace hi5
 
          setHttp["http_method"] = "POST";
 
-         bOk = pcontext->m_pcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
+         bOk = pcontext->m_papexcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
 
          string m_strConnectionStatus = ::http::conn_status(setHttp);
 
@@ -2012,7 +2012,7 @@ namespace hi5
 
          }
 
-         bOk = pcontext->m_pcontext->http().get(postUrl, m_strResponse, set);
+         bOk = pcontext->m_papexcontext->http().get(postUrl, m_strResponse, set);
 
          string m_strConnectionStatus = ::http::conn_status(set);
 
@@ -2046,7 +2046,7 @@ namespace hi5
 
          }
 
-         bOk = pcontext->m_pcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
+         bOk = pcontext->m_papexcontext->http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].estatus() == ::success;
 
          string m_strConnectionStatus = ::http::conn_status(setHttp);
 

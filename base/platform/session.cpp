@@ -55,9 +55,10 @@ namespace base
    void session::on_instantiate_application(::apex::application* papp)
    {
 
-      ::aura::session::on_instantiate_application(papp);
+      ::axis::session::on_instantiate_application(papp);
 
       papp->m_pbasesession = this;
+      papp->m_pbasesystem = m_pbasesystem;
 
    }
 

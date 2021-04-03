@@ -94,7 +94,7 @@ namespace user
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iPane < 0)
       {
@@ -174,7 +174,7 @@ namespace user
       ppane->m_bPermanent        = bPermanent;
       ppane->m_pplaceholder      = pholder;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (id.is_empty())
       {
@@ -272,7 +272,7 @@ namespace user
       ppane->set_title(pcszTitle);
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       
       auto papplication = get_application();
 
@@ -285,7 +285,10 @@ namespace user
 
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
-      ppane->m_pimage       = papplication->image().load_image(pszImage, false);
+
+      auto pcontext = m_pcontext;
+
+      ppane->m_pimage       = pcontext->m_pauracontext->image().load_image(pszImage, false);
 
       
 
@@ -299,7 +302,7 @@ namespace user
    void tab::remove_tab(::index iPane, bool bVisible)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iPane < 0 || iPane >= get_data()->m_tabpanecompositea.get_size())
       {
@@ -362,7 +365,7 @@ namespace user
    void tab::remove_all_tabs()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       get_data()->m_tabpanecompositea.remove_all();
 
@@ -1597,6 +1600,12 @@ namespace user
 
          pholder->display(::e_display_normal);
 
+         pholder->set_need_layout();
+
+         pholder->set_need_redraw();
+
+         pholder->post_redraw();
+
       }
       else if(::is_set(ppaneSel) && ppaneSel->m_eflag & e_flag_hide_all_others_on_show)
       {
@@ -2224,7 +2233,7 @@ namespace user
    void tab::defer_remove_child_pane(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       index iPane = find_child_pane(pinteraction);
 
@@ -2291,7 +2300,7 @@ namespace user
    void tab::on_hit_test(::user::item & item)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectScroll;
 
@@ -2550,7 +2559,7 @@ namespace user
 
       {
 
-         synchronization_lock lock(get_data()->mutex());
+         synchronous_lock lock(get_data()->mutex());
 
          get_data()->m_idaSel.remove_all();
 
@@ -3299,7 +3308,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       *prectangle = get_data()->m_rectTabClient;
 

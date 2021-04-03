@@ -43,7 +43,7 @@ namespace uwp
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(get_context()->file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->get_root()->get_name() == "directory_configuration")
       //{

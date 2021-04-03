@@ -100,7 +100,7 @@ namespace linux
 
       ::file::path pathJson;
 
-      pathJson = ::dir::home() / ".dropbox/info.json";
+      pathJson = pacmedir->home() / ".dropbox/info.json";
 
       return pathJson;
 

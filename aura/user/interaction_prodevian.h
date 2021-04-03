@@ -102,7 +102,7 @@ namespace user
 
       virtual ::e_status run() override;
 
-      virtual ::e_status do_task() override;
+      //virtual ::e_status do_task() override;
 
 
    };

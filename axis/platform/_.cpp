@@ -238,7 +238,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   auto ppair = psystem->m_mapNewAuraLibrary.plookup(psz);
 //
@@ -257,7 +257,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS::acme::library& get_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   return *psystem->m_mapLibrary[psz];
 //
@@ -267,7 +267,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 //
@@ -277,7 +277,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS void register_library(const char* psz, ::acme::library* plibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __library()[psz] = plibrary;
 //
@@ -508,7 +508,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //{
 //
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __pointer(::acme::library)& plibrary = psystem->m_mapLibrary[strLibrary];
 //

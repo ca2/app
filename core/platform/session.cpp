@@ -9,6 +9,8 @@ namespace core
    session::session()
    {
 
+      m_pcoresession = this;
+
    }
 
 
@@ -41,6 +43,16 @@ namespace core
 
    }
 
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::bred::session::on_instantiate_application(papp);
+
+      papp->m_pcoresession = this;
+      papp->m_pcoresystem = m_pcoresystem;
+
+   }
 
    __namespace_session_factory(session);
 

@@ -175,7 +175,9 @@ namespace user
 
       papplication->data_get(m_id + ".cur_text", strText);
 
-      m_pimageLogo = papplication->image().load_image("matter://main/logo.png", false);
+      auto pcontext = m_pcontext;
+
+      m_pimageLogo = pcontext->m_pauracontext->image().load_image("matter://main/logo.png", false);
 
       m_fontTitle.create(this);
 
@@ -639,7 +641,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_pcontext->file().as_string(varFile);
+      string str = pcontext->m_papexcontext->file().as_string(varFile);
 
       if (!m_pxmldoc->load(str))
       {
@@ -683,7 +685,7 @@ namespace user
 
             get_item_rect(iPos, rectangle);
 
-            ::image_pointer pimage1 = papplication->image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            ::image_pointer pimage1 = pcontext->m_pauracontext->image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
             if (pimage1)
             {

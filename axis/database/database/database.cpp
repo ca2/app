@@ -419,7 +419,7 @@ namespace database
 
 
 
-   bool database::memory_query_item(get_memory getmemory, const char* pszQuery)
+   bool database::query_blob(get_memory getmemory, const char* pszQuery)
    {
 
       return false;

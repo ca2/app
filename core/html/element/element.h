@@ -30,13 +30,13 @@ namespace html
 
       // always present property?! "text"
       property_set               m_propertyset;
-      __pointer(impl::element) m_pimpl;
-      element *                m_pparent;
+      __pointer(impl::element)   m_pimpl;
+      element *                  m_pparent;
       base *                     m_pbase;
       html_data *                m_pdata;
 
       __pointer(::html::style)   m_pstyle;
-      __pointer_array(element)      m_elementalptra;
+      __pointer_array(element)   m_elementalptra;
 
       e_tag                      m_etag;
       string                     m_strBody;
@@ -52,6 +52,10 @@ namespace html
 
 
       virtual ::e_status initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
+
+
+      virtual ::e_status initialize_html_element(html_data* phtmldata);
+
 
 
       virtual void _001SetText(const string & str, const ::action_context & action_context) override;
@@ -87,8 +91,6 @@ namespace html
 
       virtual ::color::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
       virtual ::write_text::font_pointer get_font();
-
-      void initialize();
 
       tag * get_tag();
 

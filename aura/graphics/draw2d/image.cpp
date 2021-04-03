@@ -1559,11 +1559,11 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    auto pgroup = psystem->task_group();
 
-   synchronization_lock slGroup(pgroup->mutex());
+   synchronous_lock slGroup(pgroup->mutex());
 
    auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
-   synchronization_lock slTool(ptool->mutex());
+   synchronous_lock slTool(ptool->mutex());
 
    if(!pgroup || !ptool)
    {
@@ -8727,7 +8727,7 @@ save_image::save_image()
 //
 //      path = strMatter;
 //
-//      path = pcontext->m_pcontext->dir().matter(path / strIcon);
+//      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {

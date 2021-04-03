@@ -488,7 +488,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //synchronization_lock synchronizationlock(pimpl->m_spgraphics->mutex());
+                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->mutex());
 
                   ::image_pointer pimage1;
 
@@ -502,7 +502,7 @@ namespace user
 
                   ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
 
-                  synchronization_lock synchronizationlock(psync);
+                  synchronous_lock synchronouslock(psync);
 
                   auto rectDst = ::rectangle_f64(rectangle.size());
 
@@ -510,9 +510,9 @@ namespace user
 
                   psession->copydesk().image_to_desk(pimage1);
 
-                  auto papplication = get_application();
+                  auto pcontext = m_pcontext;
 
-                  papplication->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
+                  pcontext->m_pauracontext->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -538,7 +538,7 @@ namespace user
 
                   pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
-                  papplication->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
+                  pcontext->m_pauracontext->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -2935,7 +2935,7 @@ namespace user
 
       auto psession = get_session();
 
-      if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -3068,9 +3068,9 @@ namespace user
          _008CallOnDraw(pgraphics);
 
       }
-      else if (!psession->savings().is_trying_to_save(::e_resource_processing)
-               && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth)
-               && !psession->savings().is_trying_to_save(::e_resource_memory))
+      else if (!psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth)
+               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_memory))
       {
 
 #if TEST

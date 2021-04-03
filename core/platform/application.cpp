@@ -11,6 +11,8 @@ namespace core
    application::application()
    {
 
+      m_pcoreapplication = this;
+
    }
 
 

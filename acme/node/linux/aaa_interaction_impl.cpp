@@ -960,7 +960,7 @@ namespace linux
 
       {
 
-         single_lock synchronizationlock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
 
          ::thread* pThread = ::get_task();
 
@@ -983,7 +983,7 @@ namespace linux
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
 //
-//         synchronization_lock synchronizationlock(m_puserinteraction->m_pthread->mutex());
+//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->mutex());
 //
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
@@ -2041,7 +2041,7 @@ namespace linux
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+//      /*      single_lock synchronouslock(afxMutexHwnd(), true);
 //            hwnd_map * pMap = afxMapHWND();
 //            if (pMap == nullptr)
 //               return false;
@@ -4861,7 +4861,7 @@ namespace linux
          //x11_sync([&]()
          //{
 
-         synchronization_lock synchronizationlock(x11_mutex());
+         synchronous_lock synchronouslock(x11_mutex());
 
             _001UpdateScreen();
 

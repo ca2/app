@@ -252,7 +252,7 @@ namespace coreimage_imaging
 
       }
 
-      pcontext->m_pcontext->file().as_memory(varFile, *pmemory);
+      pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 

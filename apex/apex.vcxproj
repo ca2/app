@@ -1150,6 +1150,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClInclude Include="inline\implement\ansi.h" />
+    <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="net\address_department.h" />
     <ClCompile Include="net\address_department.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp" />
@@ -1185,7 +1187,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\threading.cpp" />
     <ClCompile Include="parallelization\thread_os.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
-    <ClCompile Include="platform\apex.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
     <ClCompile Include="platform\application.cpp" />
@@ -1400,7 +1401,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\_.h" />
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="platform\all.h" />
-    <ClInclude Include="platform\apex.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\application_array.h" />
@@ -1415,7 +1415,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\app_launcher.h" />
     <ClInclude Include="platform\assert_running_task.h" />
     <ClInclude Include="platform\async.h" />
-    <ClInclude Include="platform\apex_apex.h" />
     <ClInclude Include="platform\apex_regex.h" />
     <ClInclude Include="platform\apex_str_pool.h" />
     <ClInclude Include="platform\apex_aura.h" />

@@ -13,10 +13,11 @@ class CLASS_DECL_ACME task :
 public:
 
 
-   int                                             m_bitAvoidProcFork : 1;
-   int                                             m_bitIsRunning : 1;
-   int                                             m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
-   int                                             m_bitCoInitialize : 1;
+   bool                                            m_bAvoidProcedureFork : 1;
+   bool                                            m_bIsRunning : 1;
+   bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
+   bool                                            m_bCoInitialize : 1;
+   bool                                            m_bMessageThread : 1;
 
 
    ::u64                                           m_uThreadAffinityMask;
@@ -39,7 +40,8 @@ public:
    char *                                          m_pszDebug;
 #endif
    __pointer(counter<::i32>)                       m_pcounter;
-
+   ::thread *                                      m_pthread;
+   ::routine                                       m_routineNext;
 
 
    task();
@@ -83,8 +85,8 @@ public:
 
    virtual void init_task();
    virtual void term_task();
-   virtual ::e_status do_task() override;
-   virtual ::e_status on_task() override;
+   //virtual ::e_status do_task() override;
+   //virtual ::e_status on_task() override;
 
    virtual bool do_events();
    virtual bool defer_pump_message();
@@ -134,6 +136,10 @@ public:
 
    virtual bool task_active() const;
    virtual bool is_running() const;
+
+
+   virtual ::e_status main();
+
 
    //virtual bool set_thread_name(const char* pszThreadName);
 

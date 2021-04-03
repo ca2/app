@@ -48,7 +48,7 @@ namespace acme
 
 
       string                                             m_strOsUserTheme;
-      __pointer(::acme::node)                         m_pnode;
+      //__pointer(::acme::node)                         m_pnode;
 
       
       ::millis                                           m_millisFileListingCache;
@@ -59,10 +59,12 @@ namespace acme
 
       __composite(class ::xml::xml)                      m_pxml;
 
-      class ::acme::acme *                               m_pacme;
-      class ::acme_dir *                                 m_pacmedir;
-      class ::acme_path *                                m_pacmepath;
+      __composite(class ::acme::node)                    m_pnode;
+      __composite(class ::acme_dir)                      m_pacmedir;
+      __composite(class ::acme_path)                     m_pacmepath;
       __pointer(::parallelization::cleanup_task)         m_pcleanuptask;
+      __composite(geometry::geometry)                    m_pgeometry;
+
 
 
       system();
@@ -75,8 +77,6 @@ namespace acme
       inline ::acme::node              *  node() { return m_pnode; }
 
       inline ::xml::xml                *  xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
-
-      inline acme                      *  acme() const { return m_pacme; }
 
       inline acme_dir                  *  acmedir() const { return m_pacmedir; }
 
@@ -94,6 +94,14 @@ namespace acme
       virtual ::xml::xml* _xml();
 
 
+      geometry::geometry& geometry()
+      {
+
+         return *m_pgeometry;
+
+      }
+
+      virtual ::e_status init1();
 
       virtual ::e_status create_os_node();
 
@@ -147,7 +155,10 @@ namespace acme
 
       virtual ::e_status process_init();
 
-      
+
+      virtual ::e_status init_system();
+
+
       virtual ::e_status on_start();
 
       virtual ::e_status start();
@@ -204,7 +215,7 @@ namespace acme
       inline void set_enum_text(ENUM e, const char* psz)
       {
 
-         critical_section_lock synchronizationlock(&m_csEnumText);
+         critical_section_lock synchronouslock(&m_csEnumText);
 
          m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -217,7 +228,7 @@ namespace acme
       inline string enum_text(ENUM e)
       {
 
-         critical_section_lock synchronizationlock(&m_csEnumText);
+         critical_section_lock synchronouslock(&m_csEnumText);
 
          return m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -228,7 +239,7 @@ namespace acme
       inline ENUM text_enum(ENUM& e, const char* psz, ENUM eDefault = (ENUM)0)
       {
 
-         critical_section_lock synchronizationlock(m_csEnumText);
+         critical_section_lock synchronouslock(m_csEnumText);
 
          i64 iValue;
 
@@ -282,7 +293,7 @@ namespace acme
 
          auto pgroup = task_group(epriority);
 
-         synchronization_lock slGroup(mutex());
+         synchronous_lock slGroup(mutex());
 
          ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
 

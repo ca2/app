@@ -12,7 +12,7 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
-#include "apex/platform/apex.h"
+#include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
@@ -111,8 +111,6 @@ namespace apex
    {
 
       m_papexsystem = this;
-      ::object::m_pcontext = this;
-      m_pcontext = this;
 
       create_factory < ::thread >();
 
@@ -688,6 +686,27 @@ namespace apex
    }
 
 
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_papexsession)
+         {
+
+            m_papexsession = papexsession;
+
+         }
+
+      }
+
+      papexsession->m_pacmesystem = this;
+      papexsession->m_pacmesystem = this;
+
+   }
+
+
    void system::session_add(index iEdge, ::apex::session * psession)
    {
 
@@ -707,17 +726,7 @@ namespace apex
 
       m_sessionmap[iEdge] = psession;
 
-      if (iEdge == 0)
-      {
-
-         if (!m_papexsession)
-         {
-
-            m_papexsession = psession;
-
-         }
-
-      }
+      on_add_session(psession);
 
    }
 
@@ -767,7 +776,7 @@ namespace apex
 
       __pointer(::apex::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       string strLibrary(pszLibrary1);
 
@@ -796,7 +805,7 @@ namespace apex
             {
 
 //#if !defined(ANDROID)
-//               if (!plibrary->open(m_pcontext->m_pcontext->dir().ca2module() / pszLibrary))
+//               if (!plibrary->open(m_pcontext->m_papexcontext->dir().ca2module() / pszLibrary))
 //#endif
 //               {
 //
@@ -1030,6 +1039,10 @@ namespace apex
    ::e_status system::process_init()
    {
 
+      create_factory<::create>();
+      create_factory<command_line>();
+      create_factory<http::context>();
+
       auto estatus = ::acme::system::process_init();
 
       if (!estatus)
@@ -1039,16 +1052,41 @@ namespace apex
 
       }
 
+#ifdef LINUX
+
+      auto edesktop = get_edesktop();
+
+      if (edesktop & ::user::e_desktop_kde)
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+      }
+      else if (edesktop & ::user::e_desktop_gnome)
+      {
+
+         estatus = do_factory_exchange("node", "gnome");
+
+      }
+      else
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+         if (!estatus)
+         {
+
+            estatus = do_factory_exchange("node", "gnome");
+
+         }
+
+      }
+
+#elif defined(WINDOWS_DESKTOP)
+
       estatus = do_factory_exchange("apex", "windows");
 
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __compose(m_papex);
+#endif
 
       if (!estatus)
       {
@@ -1056,6 +1094,15 @@ namespace apex
          return estatus;
 
       }
+
+      //estatus = __compose(m_papexnode);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
 //      set_system_update(&apex_system_update);
 
@@ -1070,38 +1117,225 @@ namespace apex
 
       }
 
-      if (!create_session())
+      return estatus;
+
+   }
+
+
+   ::e_status system::on_system_construct()
+   {
+
+      //auto estatus = create_os_node();
+
+      //if(m_bUser)
+      //{
+
+      //   if (!estatus)
+      //   {
+
+      //      return estatus;
+
+      //   }
+
+      //}
+
+      //return estatus;
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::on_start()
+   {
+
+      //auto papp = m_papplicationMain;
+
+      //auto psession = m_papexsession;
+
+      //papp->initialize(psession);
+
+      //set_main_struct(*papp);
+
+      //papp->inline_init();
+
+      auto pcreate = __create_new< ::create> ();
+
+      string strAppId = m_strAppId;
+
+      if (strAppId.is_empty())
       {
 
-         message_box("Failed to allocate get_session()!!");
+         if (m_papplicationStartup)
+         {
 
-         return false;
+            strAppId = m_papplicationStartup->m_strAppId;
+
+         }
 
       }
 
-      if (!m_papplicationStartup)
+      pcreate->m_strAppId = strAppId;
+
+      pcreate->m_pcommandline = __create_new < command_line > ();
+
+      string strCommandLine = get_command_line();
+
+      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+
+      pcreate->finish_initialization();
+
+      add_create(pcreate);
+
+      post_creation_requests();
+
+      return ::success;
+
+   }
+
+
+//   ::e_status system::start()
+//   {
+//
+//      auto pnode = Node;
+//
+//      ::e_status estatus = error_exception;
+//
+//      if(pnode)
+//      {
+//
+//         estatus = pnode->start();
+//
+//      }
+//      else
+//      {
+//
+//         estatus = on_start();
+//
+//      }
+//
+//      return estatus;
+//
+//   }
+
+
+   void system::get_time(micro_duration * pmicroduration)
+   {
+
+
+#ifdef _WIN32
+      
+      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+      
+      GetSystemTimeAsFileTime(&ft);
+      
+      u64 tt;
+      
+      ::memcpy_dup(&tt, &ft, sizeof(tt));
+
+      tt /= 10; // make it usecs
+      
+      pmicroduration->m_secs = (long)tt / 1'000'000;
+      
+      pmicroduration->m_micros = (long)tt % 1'000'000;
+
+#else
+
+      struct timeval timeval;
+
+      gettimeofday(&timeval, nullptr);
+
+      pmicroduration->m_secs = timeval.tv_sec;
+
+      pmicroduration->m_micros = timeval.tv_usec;
+
+#endif
+
+
+   }
+
+
+   ::e_status system::init_thread()
+   {
+
+      //if (!m_papplicationStartup)
+      //{
+
+      //   message_box("Startup application is not allocated!!");
+
+      //   return false;
+
+      //}
+
+      //auto estatus = m_papplicationStartup->initialize(get_session());
+
+      //if (!estatus)
+      //{
+
+      //   message_box("Failed to initialize papplication object!!");
+
+      //   return false;
+
+      //}
+
+      if (m_psystemParent)
       {
 
-         message_box("Startup application is not allocated!!");
-
-         return false;
+         m_psystemParent->add_reference(this);
 
       }
 
-      estatus = m_papplicationStartup->initialize(get_session());
+      auto estatus = process_init();
 
       if (!estatus)
       {
 
-         message_box("Failed to initialize papplication object!!");
-
-         return false;
+         return estatus;
 
       }
 
-      set_main_struct(*m_papplicationStartup);
+      estatus = init_system();
 
-      m_strAppId = m_papplicationStartup->m_strAppId;
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = process_creation_requests();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      return true;
+
+   }
+
+
+   ::e_status system::init()
+   {
+
+      return true;
+
+   }
+
+
+   ::e_status system::init1()
+   {
+
+      auto estatus = ::acme::system::init1();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       estatus = system_init();
 
@@ -1183,7 +1417,7 @@ namespace apex
 
       }
 
-      string strAppId = m_papplicationStartup->m_strAppId;
+      //string strAppId = m_papplicationStartup->m_strAppId;
 
       ::apex::idpool::init();
 
@@ -1202,70 +1436,70 @@ namespace apex
 
       }
 
-//#ifdef LINUX
-//
-//      {
-//
-//         string str;
-//
-//         str = m_psystem->m_pacmedir->home() / ".profile";
-//
-//         if(!file_exists(str))
-//         {
-//
-//            str = m_psystem->m_pacmedir->home() / ".bashrc";
-//
-//         }
-//
-//         string_array straLines;
-//
-//         {
-//
-//            memory memory;
-//
-//            FILE * fp = popen(". " + str + " ; echo PATH=$PATH ;", "r");
-//
-//            memory.fread(fp);
-//
-//            pclose(fp);
-//
-//            string strContents = memory.as_utf8();
-//
-//            straLines.add_lines(strContents);
-//
-//         }
-//
-//         for(auto & strLine : straLines)
-//         {
-//
-//            strLine.trim();
-//
-//            strsize i = strLine.find('=');
-//
-//            if(i > 0)
-//            {
-//
-//               int iSize = strLine.get_length();
-//
-//               iSize *= 2;
-//
-//               iSize = maximum(iSize, 4096);
-//
-//               char * pszEnvLine = (char *) ::malloc(iSize);
-//
-//               ::zero(pszEnvLine, iSize);
-//
-//               strcpy(pszEnvLine, strLine);
-//
-//               ::putenv(pszEnvLine);
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//#endif
+      //#ifdef LINUX
+      //
+      //      {
+      //
+      //         string str;
+      //
+      //         str = m_psystem->m_pacmedir->home() / ".profile";
+      //
+      //         if(!file_exists(str))
+      //         {
+      //
+      //            str = m_psystem->m_pacmedir->home() / ".bashrc";
+      //
+      //         }
+      //
+      //         string_array straLines;
+      //
+      //         {
+      //
+      //            memory memory;
+      //
+      //            FILE * fp = popen(". " + str + " ; echo PATH=$PATH ;", "r");
+      //
+      //            memory.fread(fp);
+      //
+      //            pclose(fp);
+      //
+      //            string strContents = memory.as_utf8();
+      //
+      //            straLines.add_lines(strContents);
+      //
+      //         }
+      //
+      //         for(auto & strLine : straLines)
+      //         {
+      //
+      //            strLine.trim();
+      //
+      //            strsize i = strLine.find('=');
+      //
+      //            if(i > 0)
+      //            {
+      //
+      //               int iSize = strLine.get_length();
+      //
+      //               iSize *= 2;
+      //
+      //               iSize = maximum(iSize, 4096);
+      //
+      //               char * pszEnvLine = (char *) ::malloc(iSize);
+      //
+      //               ::zero(pszEnvLine, iSize);
+      //
+      //               strcpy(pszEnvLine, strLine);
+      //
+      //               ::putenv(pszEnvLine);
+      //
+      //            }
+      //
+      //         }
+      //
+      //      }
+      //
+      //#endif
 
       {
 
@@ -1320,10 +1554,7 @@ namespace apex
 
       //}
 
-      create_factory<::create>();
       //create_factory < application_bias >();
-      create_factory<command_line>();
-      create_factory<http::context>();
 
       //create_factory < ::mutex >();
       //create_factory < event >();
@@ -1357,7 +1588,7 @@ namespace apex
 
 #if 0
 
-         // Create authorization object
+                  // Create authorization object
          OSStatus status;
 
          AuthorizationRef authorizationRef;
@@ -1368,9 +1599,9 @@ namespace apex
          // determine or extend the allowable rights.
          // http://developer.apple.com/qa/qa2001/qa1172.html
          status = AuthorizationCreate(nullptr, kAuthorizationEmptyEnvironment,
-                                      kAuthorizationFlagDefaults, &authorizationRef);
+            kAuthorizationFlagDefaults, &authorizationRef);
 
-         if(status != errAuthorizationSuccess)
+         if (status != errAuthorizationSuccess)
          {
             TRACE("Error Creating Initial Authorization: %d", status);
 
@@ -1379,14 +1610,14 @@ namespace apex
          }
 
          // kAuthorizationRightExecute == "system.privilege.admin"
-         AuthorizationItem right = {kAuthorizationRightExecute, 0, nullptr, 0};
+         AuthorizationItem right = { kAuthorizationRightExecute, 0, nullptr, 0 };
 
-         AuthorizationRights rights = {1, &right};
+         AuthorizationRights rights = { 1, &right };
 
          AuthorizationFlags flags = kAuthorizationFlagDefaults |
-                                    kAuthorizationFlagInteractionAllowed |
-                                    kAuthorizationFlagPreAuthorize |
-                                    kAuthorizationFlagExtendRights;
+            kAuthorizationFlagInteractionAllowed |
+            kAuthorizationFlagPreAuthorize |
+            kAuthorizationFlagExtendRights;
 
          // Call AuthorizationCopyRights to determine or extend the allowable rights.
 
@@ -1479,14 +1710,14 @@ namespace apex
 
       }
 
-      estatus = ::context::initialize_context();
+      //estatus = ::apex::context::initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       __pointer(::apex::system) psystem = get_system();
 
@@ -1506,7 +1737,7 @@ namespace apex
             if (m_argv && m_argv[i])
             {
 
-               char * thisCmd = m_argv[i];
+               char* thisCmd = m_argv[i];
 
                straCmds.add(thisCmd);
 
@@ -1514,7 +1745,7 @@ namespace apex
             else if (m_wargv && m_wargv[i])
             {
 
-               wchar_t * thisCmd = m_wargv[i];
+               wchar_t* thisCmd = m_wargv[i];
 
                straCmds.add(thisCmd);
 
@@ -1524,7 +1755,9 @@ namespace apex
 
          string strCmd = straCmds.implode("\n");
 
-         string strCmdLineDumpFileName =  strAppId / strLogTime + "-command_line.txt";
+         string strAppId = m_strAppId;
+
+         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
 
          ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
 
@@ -1565,6 +1798,8 @@ namespace apex
 
          string strEnv = straEnv.implode("\n");
 
+         string strAppId = m_strAppId;
+
          string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
 
          ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
@@ -1590,10 +1825,19 @@ namespace apex
 
       }
 
-      //output_debug_string("CommonAppData (matter) : " + m_pcontext->m_pcontext->dir().commonappdata()  + "\n");
-      //output_debug_string("commonappdata (matter) : " + m_pcontext->m_pcontext->dir().commonappdata() + "\n");
-      //output_debug_string("Common App Data (matter) : " + m_pcontext->m_pcontext->dir().commonappdata() + "\n");
-      //output_debug_string("common app data (matter) : " + m_pcontext->m_pcontext->dir().commonappdata() + "\n");
+      estatus = initialize_context();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+      
+      //output_debug_string("CommonAppData (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata()  + "\n");
+      //output_debug_string("commonappdata (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
+      //output_debug_string("Common App Data (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
+      //output_debug_string("common app data (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
 
       __compose_new(m_pcrypto);
 
@@ -1605,30 +1849,30 @@ namespace apex
       }
 
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (m_bGdiplus)
-//      {
-//
-//         init_gdi_plus();
-//
-//      }
-//
-//#endif
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      if (m_bGdiplus)
+      //      {
+      //
+      //         init_gdi_plus();
+      //
+      //      }
+      //
+      //#endif
 
-      //if(m_bDraw2d)
-      //{
+            //if(m_bDraw2d)
+            //{
 
-      //   if (!init_draw2d())
-      //   {
+            //   if (!init_draw2d())
+            //   {
 
-      //      return false;
+            //      return false;
 
-      //   }
+            //   }
 
-      //}
+            //}
 
-      //enum_display_monitors();
+            //enum_display_monitors();
 
       on_update_matter_locator();
 
@@ -1645,10 +1889,10 @@ namespace apex
 
       bool bMatterFromHttpCache = false;
 
-      if(m_iMatterFromHttpCache == -1)
+      if (m_iMatterFromHttpCache == -1)
       {
 
-         ::file::path pathSide = m_pcontext->m_pcontext->side_get_matter_path("app/_matter/main");
+         ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
 
          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
@@ -1711,179 +1955,8 @@ namespace apex
 
       INFO("success");
 
-      return true;
+//      return true;
 
-   }
-
-
-   ::e_status system::on_system_construct()
-   {
-
-      //auto estatus = create_os_node();
-
-      //if(m_bUser)
-      //{
-
-      //   if (!estatus)
-      //   {
-
-      //      return estatus;
-
-      //   }
-
-      //}
-
-      //return estatus;
-
-      return ::success;
-
-   }
-
-
-   ::e_status system::on_start()
-   {
-
-      auto papp = m_papplicationStartup;
-
-      auto pcreate = papp->__create_new< ::create> ();
-
-      string strAppId = papp->m_strAppId;
-
-      pcreate->m_strAppId = strAppId;
-
-      pcreate->m_pcommandline = __create_new < command_line > ();
-
-      string strCommandLine = get_command_line();
-
-      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
-
-      pcreate->finish_initialization();
-
-      __pointer(::apex::system) psystem = get_system();
-
-      psystem->add_create(pcreate);
-
-      psystem->post_creation_requests();
-
-      return ::success;
-
-   }
-
-
-//   ::e_status system::start()
-//   {
-//
-//      auto pnode = Node;
-//
-//      ::e_status estatus = error_exception;
-//
-//      if(pnode)
-//      {
-//
-//         estatus = pnode->start();
-//
-//      }
-//      else
-//      {
-//
-//         estatus = on_start();
-//
-//      }
-//
-//      return estatus;
-//
-//   }
-
-
-   void system::get_time(micro_duration * pmicroduration)
-   {
-
-
-#ifdef _WIN32
-      
-      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-      
-      GetSystemTimeAsFileTime(&ft);
-      
-      u64 tt;
-      
-      ::memcpy_dup(&tt, &ft, sizeof(tt));
-
-      tt /= 10; // make it usecs
-      
-      pmicroduration->m_secs = (long)tt / 1'000'000;
-      
-      pmicroduration->m_micros = (long)tt % 1'000'000;
-
-#else
-
-      struct timeval timeval;
-
-      gettimeofday(&timeval, nullptr);
-
-      pmicroduration->m_secs = timeval.tv_sec;
-
-      pmicroduration->m_micros = timeval.tv_usec;
-
-#endif
-
-
-   }
-
-
-   ::e_status system::init_thread()
-   {
-
-      if (m_psystemParent)
-      {
-
-         m_psystemParent->add_reference(this);
-
-      }
-
-      auto estatus = process_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = init_system();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      //estatus = process_creation_requests();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      return true;
-
-   }
-
-
-   ::e_status system::init()
-   {
-
-
-      return true;
-
-   }
-
-
-   ::e_status system::init1()
-   {
 
 //#ifdef DEBUG
 //
@@ -1891,31 +1964,7 @@ namespace apex
 //
 //#endif
 
-      auto estatus = __compose_new(m_puserstr);
 
-      if (!m_puserstr || !estatus)
-      {
-
-         return estatus;
-
-      }
-
-      //// apex commented
-      //estatus = __compose(m_pimaging);
-
-      //if (!estatus)
-      //{
-
-      //   if (m_bUser && m_bDraw2d)
-      //   {
-
-      //      return estatus;
-
-      //   }
-
-      //}
-
-      get_session()->m_puserstrcontext->defer_ok(m_puserstr);
 
       //__throw(todo("filehandler"));
 
@@ -1984,15 +2033,18 @@ namespace apex
 
       }
 
-      //set_context_app(m_papplicationStartup);
+      auto papplicationStartup = new_application(m_strAppId);
 
-      m_papplicationStartup->inline_init();
+      if (!papplicationStartup)
+      {
+
+         return -1;
+
+      }
+
+      __refer(m_papplicationStartup, papplicationStartup);
 
       m_papplicationStartup->get_property_set().merge(get_property_set());
-
-      __refer(m_papplicationMain, m_papplicationStartup.get());
-
-      __unbind(this, m_papplicationStartup OBJ_REF_DBG_COMMA_THIS);
 
       return estatus;
 
@@ -2056,34 +2108,16 @@ namespace apex
    ::e_status system::init_system()
    {
 
-      if (m_bConsole)
+      auto estatus = ::acme::system::init_system();
+
+      if (!estatus)
       {
 
-         auto estatus = get_session()->inline_init();
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-      else
-      {
-
-         if (!get_session()->begin_synch())
-         {
-
-            output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
-
-            return false;
-
-         }
+         return estatus;
 
       }
 
-      auto estatus = init1();
+      estatus = init1();
 
       if(!estatus)
       {
@@ -2144,7 +2178,7 @@ namespace apex
    ::acme::library * system::lib(const char * psz)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexLibrary);
+      synchronous_lock synchronouslock(&m_mutexLibrary);
 
       auto & plibrary = m_mapLibCall[psz];
 
@@ -2296,7 +2330,7 @@ namespace apex
    //void system::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    //{
 
-   //   synchronization_lock synchronizationlock(m_mutexThread);
+   //   synchronous_lock synchronouslock(m_mutexThread);
 
    //   for (auto& pair : get_system()->m_threadidmap)
    //   {
@@ -2415,49 +2449,6 @@ namespace apex
    {
 
       ::e_status estatus = ::success;
-
-#ifdef LINUX
-
-      auto edesktop = get_edesktop();
-
-      if(edesktop & ::user::e_desktop_kde)
-      {
-
-         estatus = do_factory_exchange("node", "kde");
-
-      }
-      else if(edesktop & ::user::e_desktop_gnome)
-      {
-
-         estatus = do_factory_exchange("node", "gnome");
-
-      }
-      else
-      {
-
-         estatus = do_factory_exchange("node", "kde");
-
-         if(!estatus)
-         {
-
-            estatus = do_factory_exchange("node", "gnome");
-
-         }
-
-      }
-
-#elif defined(WINDOWS_DESKTOP)
-
-      estatus = do_factory_exchange("node", "windows");
-
-#endif
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
 
       estatus = ::acme::system::create_os_node();
 
@@ -2650,7 +2641,7 @@ namespace apex
 //   ::mutex * system::get_openweather_city_mutex()
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
@@ -2899,7 +2890,7 @@ namespace apex
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_pcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2934,7 +2925,7 @@ namespace apex
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_pcontext->dir().module() / strApp, nullptr, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, nullptr, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2974,7 +2965,7 @@ namespace apex
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_pcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -3008,7 +2999,7 @@ namespace apex
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_pcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -3127,10 +3118,6 @@ namespace apex
 
       }
 
-      //psession->set_context_system(this);
-
-      //set_context_session(psession);
-
       psession->m_iEdge = iEdge;
 
       return psession;
@@ -3194,8 +3181,6 @@ namespace apex
 #endif
 
    }
-
-
 
 
    void system::on_request(::create * pcreate)
@@ -3267,7 +3252,7 @@ namespace apex
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = m_pcontext->m_pcontext->file().get_file(m_pcontext->m_pcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+//      file_pointer pfile = m_pcontext->m_papexcontext->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -3300,7 +3285,7 @@ namespace apex
 //
 //      ::file::listing straTitle(this);
 //
-//      ::file::path pathCa2Module = m_pcontext->m_pcontext->dir().ca2module();
+//      ::file::path pathCa2Module = m_pcontext->m_papexcontext->dir().ca2module();
 //
 //      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
 //
@@ -3343,7 +3328,7 @@ namespace apex
 //      try
 //      {
 //
-//         file = psession->file().get_file(m_pcontext->m_pcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+//         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -3554,7 +3539,7 @@ namespace apex
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_millisCommandLineLast.Now();
 
@@ -3853,7 +3838,7 @@ namespace apex
    string system::standalone_setting(string str)
    {
 
-      return file_as_string(m_pcontext->m_pcontext->dir().standalone() / (str + ".txt"));
+      return file_as_string(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
 
    }
 
@@ -3861,7 +3846,7 @@ namespace apex
    bool system::set_standalone_setting(string str, string strSetting)
    {
 
-      return file_put_contents(m_pcontext->m_pcontext->dir().standalone() / (str + ".txt"), strSetting);
+      return file_put_contents(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -4046,7 +4031,7 @@ namespace apex
    ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-       m_pcontext->m_pcontext->os().link_open(strUrl);
+       m_pcontext->m_papexcontext->os().link_open(strUrl);
 
        return ::success;
 
@@ -4057,7 +4042,7 @@ namespace apex
 
          //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-         m_pcontext->m_pcontext->os().link_open(strUrl);
+         m_pcontext->m_papexcontext->os().link_open(strUrl);
 
          return;
 
@@ -4074,7 +4059,7 @@ namespace apex
 
       string strParam;
 
-      m_pcontext->m_pcontext->os().get_default_browser(strId, path, strParam);
+      m_pcontext->m_papexcontext->os().get_default_browser(strId, path, strParam);
 
       if (strProfile.is_empty() || strProfile == "native")
       {
@@ -4090,7 +4075,7 @@ namespace apex
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
-         strWeather = m_pcontext->m_pcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
+         strWeather = m_pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
 
       }
 
@@ -4171,7 +4156,7 @@ namespace apex
          //if (m_strAppName == "app-core/commander")
          {
 
-            chromium(strUrl, strBrowser, strId, m_pcontext->m_pcontext->os().get_app_path("chrome"), strProfile, strParam);
+            chromium(strUrl, strBrowser, strId, m_pcontext->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
 
          }
          //else
@@ -4363,7 +4348,7 @@ namespace apex
 
 #ifdef _UWP
 
-      m_pcontext->m_pcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 
       return;
 
@@ -4526,7 +4511,7 @@ namespace apex
 
 #else
 
-      if (m_pcontext->m_pcontext->dir().is(pathProfile))
+      if (m_pcontext->m_papexcontext->dir().is(pathProfile))
       {
 
          return;
@@ -4541,7 +4526,7 @@ namespace apex
 
       pathProfileDir = pathProfile.folder();
 
-      m_pcontext->m_pcontext->dir().mk(pathProfileDir);
+      m_pcontext->m_papexcontext->dir().mk(pathProfileDir);
 
       string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 
@@ -4561,7 +4546,7 @@ namespace apex
 
 #ifdef _UWP
 
-      m_pcontext->m_pcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 
 #else
 
@@ -4583,7 +4568,7 @@ namespace apex
 
       }
 
-      auto estatus = m_papex->get_firefox_installation_info(strBrowserPath, strBrowserDir);
+      auto estatus = m_papexnode->get_firefox_installation_info(strBrowserPath, strBrowserDir);
 
       if (::failed(estatus))
       {
@@ -4592,7 +4577,7 @@ namespace apex
 
       }
 
-      if (!m_pcontext->m_pcontext->file().exists(strBrowserPath) || !m_pcontext->m_pcontext->dir().is(strBrowserDir))
+      if (!m_pcontext->m_papexcontext->file().exists(strBrowserPath) || !m_pcontext->m_papexcontext->dir().is(strBrowserDir))
       {
 
          return error_not_found;
@@ -4621,11 +4606,11 @@ namespace apex
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_pcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 
       }
 
@@ -4669,14 +4654,14 @@ namespace apex
    //::task_group * system::task_group(::e_priority epriority)
    //{
 
-   //   if (m_bitAvoidProcFork)
+   //   if (m_bAvoidProcedureFork)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4697,7 +4682,7 @@ namespace apex
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
@@ -5038,6 +5023,74 @@ namespace apex
    ::e_status system::init2()
    {
 
+      ::e_status estatus = ::success;
+
+      if (!create_session())
+      {
+
+         message_box("Failed to allocate get_session()!!");
+
+         return false;
+
+      }
+
+      if (m_bConsole)
+      {
+
+         estatus = get_session()->inline_init();
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+      else
+      {
+
+         if (!m_papexsession->begin_synch())
+         {
+
+            output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+
+            return false;
+
+         }
+
+      }
+
+
+      //// apex commented
+      //estatus = __compose(m_pimaging);
+
+      //if (!estatus)
+      //{
+
+      //   if (m_bUser && m_bDraw2d)
+      //   {
+
+      //      return estatus;
+
+      //   }
+
+      //}
+
+      estatus = __compose_new(m_puserstr);
+
+      if (!m_puserstr || !estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto psession = get_session();
+
+      psession->m_puserstrcontext->defer_ok(m_puserstr);
+
+
       //if(!::apex::application::init2())
       //   return false;
 
@@ -5050,7 +5103,7 @@ namespace apex
 
       //}
 
-         auto estatus = __compose_new(m_phistory);
+         estatus = __compose_new(m_phistory);
 
          if(!estatus)
          {
@@ -5283,7 +5336,7 @@ namespace apex
 
    {
 
-      string filename = m_pcontext->m_pcontext->file().time_square();
+      string filename = m_pcontext->m_papexcontext->file().time_square();
 
       property_set set;
 
@@ -5291,7 +5344,7 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!m_pcontext->m_pcontext->http().download(pszUrl, filename, set))
+      if (!m_pcontext->m_papexcontext->http().download(pszUrl, filename, set))
 
       {
 
@@ -5312,13 +5365,13 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         m_pcontext->m_pcontext->file().del(filename);
+         m_pcontext->m_papexcontext->file().del(filename);
 
-         return m_pcontext->m_pcontext->http().download(str, strLocation, set);
+         return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
 
       }
 
-      str = m_pcontext->m_pcontext->file().as_string(filename);
+      str = m_pcontext->m_papexcontext->file().as_string(filename);
 
       return true;
 

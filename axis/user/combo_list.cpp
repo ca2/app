@@ -103,7 +103,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronization_lock synchronizationlock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->mutex());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -136,7 +136,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronization_lock synchronizationlock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->mutex());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
 
@@ -329,7 +329,7 @@ namespace user
    void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -1192,7 +1192,7 @@ namespace user
 
             auto psession = get_session();
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             auto pinteraction = __create_new < ::user::interaction >();
 
@@ -1212,7 +1212,7 @@ namespace user
 
             auto psession = get_session();
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             auto puser = psession->user();
 

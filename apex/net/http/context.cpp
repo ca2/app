@@ -174,14 +174,14 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = m_pcontext->m_pcontext->dir().cache() / strFile + ".meta_information";
+      strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".meta_information";
 
       string strCache;
 
       if (!set["nocache"].get_bool())
       {
 
-         m_pcontext->m_pcontext->file().as_string(strFile);
+         m_pcontext->m_papexcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -292,7 +292,7 @@ namespace http
 
       }
 
-      m_pcontext->m_pcontext->file().put_contents(strFile, strCache);
+      m_pcontext->m_papexcontext->file().put_contents(strFile, strCache);
 
       if (::is_set(petype))
       {
@@ -324,7 +324,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = m_pcontext->m_pcontext->dir().cache() / strFile + ".length_question";
+      strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -333,7 +333,7 @@ namespace http
       if (!bNoCache)
       {
 
-         strCache = m_pcontext->m_pcontext->file().as_string(strFile);
+         strCache = m_pcontext->m_papexcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -370,7 +370,7 @@ namespace http
 
       }
 
-      m_pcontext->m_pcontext->file().put_contents(strFile, strCache);
+      m_pcontext->m_papexcontext->file().put_contents(strFile, strCache);
 
       return len;
 
@@ -535,16 +535,16 @@ namespace http
       //      else if(i == 1)
       //      {
       //         // telmico: no proxy
-      //         string str = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata() / "machine/proxy.xml");
+      //         string str = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata() / "machine/proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/ "proxy_original.xml", m_pcontext->m_pcontext->dir().install()/ "proxy.xml", false);
+      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml", m_pcontext->m_papexcontext->dir().install()/ "proxy.xml", false);
       //         }
-      //         if(m_pcontext->m_pcontext->file().exists(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml"))
+      //         if(m_pcontext->m_papexcontext->file().exists(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml"))
       //         {
       //            try
       //            {
-      //               m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml");
+      //               m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
       //            }
       //            catch(...)
       //            {
@@ -554,20 +554,20 @@ namespace http
       //      else if(i == 2)
       //      {
       //         // telmico: original proxy configuration
-      //         if(m_pcontext->m_pcontext->file().exists(m_pcontext->m_pcontext->dir().appdata()/ "proxy_original.xml"))
+      //         if(m_pcontext->m_papexcontext->file().exists(m_pcontext->m_papexcontext->dir().appdata()/ "proxy_original.xml"))
       //         {
-      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/ "proxy.xml", m_pcontext->m_pcontext->dir().appdata()/"proxy_original.xml", false);
+      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/ "proxy.xml", m_pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", false);
       //         }
       //      }
       //      else
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-      //         string str = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata()/"proxy.xml");
+      //         string str = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            m_pcontext->m_pcontext->file().copy(m_pcontext->m_pcontext->dir().appdata()/"proxy_original.xml", m_pcontext->m_pcontext->dir().appdata()/"proxy.xml", false);
+      //            m_pcontext->m_papexcontext->file().copy(m_pcontext->m_papexcontext->dir().appdata()/"proxy_original.xml", m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml", false);
       //         }
-      //         m_pcontext->m_pcontext->file().put_contents(m_pcontext->m_pcontext->dir().appdata()/"proxy.xml", "proxy");
+      //         m_pcontext->m_papexcontext->file().put_contents(m_pcontext->m_papexcontext->dir().appdata()/"proxy.xml", "proxy");
       //      }
    }
 
@@ -575,7 +575,7 @@ namespace http
    void context::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = m_pcontext->m_pcontext->file().as_string(m_pcontext->m_pcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = m_pcontext->m_papexcontext->file().as_string(m_pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -643,7 +643,7 @@ namespace http
    context::pac * context::get_pac(const char * pszUrl)
    {
 
-      single_lock synchronizationlock(m_pmutexPac, true);
+      single_lock synchronouslock(m_pmutexPac, true);
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
@@ -667,7 +667,7 @@ namespace http
          varFile["disable_ca2_sessid"] = true;
          varFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = m_pcontext->m_pcontext->file().as_string(varFile);
+         ppac->m_strAutoConfigScript = m_pcontext->m_papexcontext->file().as_string(varFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -716,10 +716,11 @@ namespace http
 
    }
 
+
    ::http::context::proxy * context::get_proxy(const char * pszUrl)
    {
 
-      single_lock synchronizationlock(m_pmutexProxy, true);
+      single_lock synchronouslock(m_pmutexProxy, true);
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
@@ -753,7 +754,7 @@ namespace http
    bool context::try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy)
    {
 
-      single_lock synchronizationlock(m_pmutexPac, true);
+      single_lock synchronouslock(m_pmutexPac, true);
 
       string strProxyServer;
 
@@ -855,9 +856,9 @@ namespace http
 
       //xml::document doc;
 
-      //::file::path pathProxyXml = m_pcontext->m_pcontext->dir().appdata() / "proxy.xml";
+      //::file::path pathProxyXml = m_pcontext->m_papexcontext->dir().appdata() / "proxy.xml";
 
-      //if (!m_pcontext->m_pcontext->file().exists(pathProxyXml))
+      //if (!m_pcontext->m_papexcontext->file().exists(pathProxyXml))
       //{
 
       //   pproxy->m_bDirect = true;
@@ -866,7 +867,7 @@ namespace http
 
       //}
 
-      //string str = m_pcontext->m_pcontext->file().as_string(pathProxyXml);
+      //string str = m_pcontext->m_papexcontext->file().as_string(pathProxyXml);
 
       //if (str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       //{
@@ -982,14 +983,14 @@ namespace http
       ////      if(!bOk)
       ////      {
       ////
-      ////         //bool bAutoDetect = m_pcontext->m_pcontext->os().connection_settings_get_auto_detect();
+      ////         //bool bAutoDetect = m_pcontext->m_papexcontext->os().connection_settings_get_auto_detect();
       ////
       ////         //if(bAutoDetect)
       ////         //{
       ////
       ////         //   TRACE("proxy auto_detect true");
       ////
-      ////         //   string strUrl = m_pcontext->m_pcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1007,7 +1008,7 @@ namespace http
       ////
       ////         //   TRACE("proxy auto_detect false");
       ////
-      ////         //   string strUrl = m_pcontext->m_pcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1171,12 +1172,12 @@ namespace http
 
       }
 
-      TRACE("just before open open http_session ::http::context::open " __prtick, __pr(tick1.elapsed()));
+      TRACE("just before open open http_session ::http::apex::context::open " __prtick, __pr(tick1.elapsed()));
 
       if (!psession->open(bConfigProxy))
       {
 
-         TRACE("Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -1612,7 +1613,7 @@ namespace http
                if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
-                  TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+                  TRACE("Not Licensed Result Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
                   string strLocation;
                   
@@ -1638,7 +1639,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         TRACE("Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE("Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
       }
       catch (...)
@@ -2089,7 +2090,7 @@ namespace http
 
             auto tick2 = ::millis::now();
 
-            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             return false;
 
@@ -2101,7 +2102,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -2367,7 +2368,7 @@ namespace http
 
             auto tick2 = ::millis::now();
 
-            TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            TRACE(__prhttpget "Not Licensed Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             string strLocation;
             
@@ -2512,12 +2513,12 @@ namespace http
 
          property_set& set = pmessage->get_property_set();
 
-         single_lock synchronizationlock(m_pmutexDownload, true);
+         single_lock synchronouslock(m_pmutexDownload, true);
 
          if (!(m_straDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             pmessageMessage->m_estatusRet = error_http;
 
@@ -2592,7 +2593,7 @@ namespace http
    bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
    {
 
-      file_pointer spfile = m_pcontext->m_pcontext->file().get_file(varFile,
+      file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(varFile,
          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2617,7 +2618,7 @@ namespace http
 
       {
 
-         auto rfile = m_pcontext->m_pcontext->file().get_file(varFile,
+         auto rfile = m_pcontext->m_papexcontext->file().get_file(varFile,
             ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)
@@ -2662,7 +2663,7 @@ namespace http
    bool context::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
    {
 
-      single_lock synchronizationlock(m_pmutexDownload, true);
+      single_lock synchronouslock(m_pmutexDownload, true);
 
       i32 iStatusCode = 0;
 
@@ -2672,17 +2673,17 @@ namespace http
          while (m_straExists.contains(pszUrl))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             sleep(100_ms);
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
          }
 
          m_straExists.add(pszUrl);
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          auto phandler = __create_new < ::sockets::socket_handler >();
 
@@ -2706,7 +2707,7 @@ namespace http
          if (!http_get(psocket, pszUrl, set))
          {
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             m_straExists.remove(pszUrl);
 
@@ -2723,7 +2724,7 @@ namespace http
 
          iStatusCode = psocket->outattr("http_status_code");
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
       }
       catch (...)
@@ -2862,9 +2863,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   strUserNameFile = m_pcontext->m_pcontext->dir().appdata() / strSection + "_1";
+   //   strUserNameFile = m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1";
 
-   //   strPasswordFile = m_pcontext->m_pcontext->dir().appdata() / strSection + "_2";
+   //   strPasswordFile = m_pcontext->m_papexcontext->dir().appdata() / strSection + "_2";
 
    //   bool bOk = true;
 
@@ -2918,9 +2919,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata() / strSection + "_1");
+   //   m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1");
 
-   //   m_pcontext->m_pcontext->file().del(m_pcontext->m_pcontext->dir().appdata() / strSection + "_2");
+   //   m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata() / strSection + "_2");
 
    //}
 

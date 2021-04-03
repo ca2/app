@@ -316,7 +316,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_messagebasea.has_elements())
          {
@@ -325,7 +325,7 @@ namespace user
 
             m_messagebasea.remove_at(0);
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             m_pimpl->m_puserinteraction->message_handler(pusermessage);
 
@@ -823,80 +823,88 @@ namespace user
 
       //   }
       //}
-            int_bool    fResult = true;
+      int_bool    fResult = true;
 
-            //while (fResult)
-            //{
-            //   MSG     msg;
-            //   BOOL    fEaten;
+      //while (fResult)
+      //{
+      //   MSG     msg;
+      //   BOOL    fEaten;
 
-               /*
-               Get the next message in the queue. fResult receives false if e_message_quit is encountered
-               */
-//            }
+         /*
+         Get the next message in the queue. fResult receives false if e_message_quit is encountered
+         */
+         //            }
 
-      //}
+               //}
 
-            //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
-            //{
-            //   fResult = false;
-            //}
-            //else if (e_message_key_down == msg.message)
-            //{
-            //   // does an ime want it?
-            //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-            //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-            //   {
-            //      continue;
-            //   }
-            //}
-            //else if (e_message_key_up == msg.message)
-            //{
-            //   // does an ime want it?
-            //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-            //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-            //   {
-            //      continue;
-            //   }
-            //}
+                     //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
+                     //{
+                     //   fResult = false;
+                     //}
+                     //else if (e_message_key_down == msg.message)
+                     //{
+                     //   // does an ime want it?
+                     //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+                     //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+                     //   {
+                     //      continue;
+                     //   }
+                     //}
+                     //else if (e_message_key_up == msg.message)
+                     //{
+                     //   // does an ime want it?
+                     //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+                     //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+                     //   {
+                     //      continue;
+                     //   }
+                     //}
 
-            //if (fResult)
-            //{
-            //   TranslateMessage(&msg);
-            //   DispatchMessage(&msg);
-            //}
+                     //if (fResult)
+                     //{
+                     //   TranslateMessage(&msg);
+                     //   DispatchMessage(&msg);
+                     //}
 
-            //if (e_message_quit == msg.message)
-            //{
-            //   nReturn = (int)msg.wParam;
-            //}
+                     //if (e_message_quit == msg.message)
+                     //{
+                     //   nReturn = (int)msg.wParam;
+                     //}
 
-      while (task_get_run())
+      if (m_bMessageThread)
       {
 
-         if (!pump_message())
+         while (task_get_run())
          {
 
-            if (m_strDebugType.contains("filemanager"))
+            if (!pump_message())
             {
 
-               //INFO("filemanager");
+               if (m_strDebugType.contains("filemanager"))
+               {
+
+                  //INFO("filemanager");
+
+               }
+
+               if (m_strDebugType.contains("main_frame"))
+               {
+
+                  output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
+
+               }
+
+               break;
+
+
 
             }
 
-            if (m_strDebugType.contains("main_frame"))
-            {
-
-               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
-
-            }
-
-            break;
 
          }
 
-
       }
+
       //m_pMsgPump->Release();
 
       //   m_pKeyMgr->Release();
@@ -1033,7 +1041,7 @@ namespace user
    ::e_status thread::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pimpl)
       {
@@ -1081,7 +1089,7 @@ namespace user
          INFO("notify_icon");
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pimpl.release();
 

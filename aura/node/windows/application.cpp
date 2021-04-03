@@ -197,10 +197,10 @@ namespace aura
 
    //   string str;
 
-   //   if (file_exists(::dir::system() / "config\\system\\audio.txt"))
+   //   if (file_exists(pacmedir->system() / "config\\system\\audio.txt"))
    //   {
 
-   //      str = file_as_string(::dir::system() / "config\\system\\audio.txt");
+   //      str = file_as_string(pacmedir->system() / "config\\system\\audio.txt");
 
    //   }
    //   else

@@ -31,7 +31,7 @@ namespace account
 //      
 //      string strName = psystem->url().os_fsname(strToken);
 //      
-//      return ::dir::system() / "credential_storage" / strName;
+//      return pacmedir->system() / "credential_storage" / strName;
 //      
 //   }
 //   

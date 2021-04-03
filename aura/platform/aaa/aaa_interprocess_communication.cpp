@@ -126,7 +126,7 @@ namespace aura
    void interprocess_communication::call::exclude_this_app()
    {
 
-      m_iaExclude.add(pcontext->m_pcontext->os().get_pid());
+      m_iaExclude.add(pcontext->m_papexcontext->os().get_pid());
 
    }
 
@@ -177,9 +177,9 @@ namespace aura
 
       auto psynca = synca();
 
-      synchronization_lock synchronizationlock(psynca);
+      synchronous_lock synchronouslock(psynca);
 
-      return synchronizationlock.wait(m_duration);
+      return synchronouslock.wait(m_duration);
 
    }
 
@@ -274,9 +274,9 @@ namespace aura
 
       }
 
-      int iPid = pcontext->m_pcontext->os().get_pid();
+      int iPid = pcontext->m_papexcontext->os().get_pid();
 
-      //defer_add_module(pcontext->m_pcontext->file().module(), iPid);
+      //defer_add_module(pcontext->m_papexcontext->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -320,7 +320,7 @@ namespace aura
    bool interprocess_communication::start(const string & strApp)
    {
 
-      synchronization_lock sl1(mutex());
+      synchronous_lock sl1(mutex());
 
       auto & pmutex = m_mapAppMutex[strApp];
 
@@ -333,7 +333,7 @@ namespace aura
 
       sl1.unlock();
 
-      synchronization_lock synchronizationlock(pmutex);
+      synchronous_lock synchronouslock(pmutex);
 
       auto idaPid = get_pid(strApp);
 
@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 #elif defined(__APPLE__)
 
@@ -511,7 +511,7 @@ started:
 
 #else
 
-      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 
 #endif
@@ -671,7 +671,7 @@ started:
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -685,7 +685,7 @@ started:
    __pointer(class interprocess_communication::task) interprocess_communication::get_task(i64 iTask)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return m_mapTask[iTask];
 
@@ -777,7 +777,7 @@ started:
 
       ::file::path pathModule;
 
-      pathModule = ::dir::system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
@@ -867,7 +867,7 @@ repeat:
 
       m_straModule.remove_all();
 
-      pathModule = ::dir::system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 
@@ -946,7 +946,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = pcontext->m_pcontext->file().module();
+      ::file::path pathThisModule = pcontext->m_papexcontext->file().module();
 
       string strItem;
 
@@ -967,7 +967,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      pcontext->m_pcontext->file().put_contents(pathModule,strModuleList);
+      pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
 
 #endif
 

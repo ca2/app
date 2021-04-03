@@ -183,7 +183,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strState = pcontext->m_pcontext->file().as_string(pathWeatherState);
+      string strState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -312,7 +312,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strWeatherState = pcontext->m_pcontext->file().as_string(pathWeatherState);
+      string strWeatherState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 
@@ -450,7 +450,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      pcontext->m_pcontext->dir().matter_ls("sphere/theme", patha);
+      pcontext->m_papexcontext->dir().matter_ls("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -459,7 +459,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (pcontext->m_pcontext->dir().is(path))
+         if (pcontext->m_papexcontext->dir().is(path))
          {
 
             string strTheme = path.name();
@@ -472,7 +472,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_pcontext->dir().watcher().add_watch(m_psystem->m_pacmedir->config(), this, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedir->config(), this, false);
       
       on_change_theme();
 

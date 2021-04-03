@@ -22,7 +22,7 @@ namespace write_text
    class font_department * write_text::fonts()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pfontdepartment == nullptr)
       {

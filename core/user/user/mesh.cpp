@@ -592,7 +592,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(255,96,96,96));
          }
@@ -808,7 +808,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_bTopText)
       {
@@ -908,7 +908,7 @@ namespace user
    bool mesh::_001OnUpdateItemCount(u32 dwFlags)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       UNREFERENCED_PARAMETER(dwFlags);
 
@@ -1168,7 +1168,7 @@ namespace user
 
       return;
 
-//      synchronization_lock synchronizationlock(&m_mutexData);
+//      synchronous_lock synchronouslock(&m_mutexData);
 
 //      index iColumn;
 
@@ -2519,7 +2519,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto psession = get_session();
 
@@ -5009,7 +5009,7 @@ namespace user
 
       pmessage->previous();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_eview == impact_grid)
       {

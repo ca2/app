@@ -48,8 +48,8 @@ namespace install
 
 #endif
 
-      if(file_exists(::dir::system() / "config\\plugin\\version.txt"))
-         strVersion = file_as_string(::dir::system() / "config\\plugin\\version.txt");
+      if(file_exists(pacmedir->system() / "config\\plugin\\version.txt"))
+         strVersion = file_as_string(pacmedir->system() / "config\\plugin\\version.txt");
 
       ::set_thread(m_pplugin);
 

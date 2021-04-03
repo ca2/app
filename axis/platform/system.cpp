@@ -156,18 +156,26 @@ namespace axis
    }
 
 
+   void system::on_add_session(::apex::session* papexsession)
+   {
 
+      ::aura::system::on_add_session(papexsession);
 
+      if (papexsession->m_iEdge == 0)
+      {
 
+         if (!m_paxissession)
+         {
 
+            m_paxissession = papexsession->m_paxissession;
 
+         }
 
+      }
 
+      papexsession->m_paxissystem = this;
 
-
-
-
-
+   }
 
 
    ::e_status system::process_init()
@@ -396,13 +404,13 @@ namespace axis
    }
 
 
-   void system::on_request(::create * pcreate)
-   {
+   //void system::on_request(::create * pcreate)
+   //{
 
-      ::aura::system::on_request(pcreate);
+   //   ::aura::system::on_request(pcreate);
 
 
-   }
+   //}
 
 
 

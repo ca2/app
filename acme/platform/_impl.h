@@ -223,7 +223,7 @@ void memory_counter_increment(T * pthis)
 
       _memory_counter_increment(psz);
 
-      //synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
       //int i = atoi(file_as_string(path));
 
@@ -965,17 +965,17 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
 
 
 
-template < typename TYPE >
-inline __transport(TYPE) property_object::__create_new()
-{
-
-   auto p = __new(TYPE);
-
-   p->initialize_matter(this);
-
-   return p;
-
-}
+//template < typename TYPE >
+//inline __transport(TYPE) property_object::__create_new()
+//{
+//
+//   auto p = __new(TYPE);
+//
+//   p->initialize_matter(this);
+//
+//   return p;
+//
+//}
 
 
 

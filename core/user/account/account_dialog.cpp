@@ -166,7 +166,7 @@ namespace account
 
                {
 
-                  synchronization_lock slInteractive(m_pcredentials->mutex());
+                  synchronous_lock slInteractive(m_pcredentials->mutex());
 
                   pcredentials = __new(::account::credentials(*m_pcredentials));
 
@@ -333,11 +333,11 @@ namespace account
 
 #if !MOBILE_PLATFORM
 
-      single_lock synchronizationlock(&psession->account()->m_semaphoreDialog);
+      single_lock synchronouslock(&psession->account()->m_semaphoreDialog);
 
       bool bWasWaiting = false;
 
-      while (!synchronizationlock.wait(one_second()).signaled())
+      while (!synchronouslock.wait(one_second()).signaled())
       {
 
          if (!::task_get_run())
@@ -460,7 +460,9 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            m_plogin->m_pimage = papplication->image().load_matter_image(stra[0]);
+            auto pcontext = m_pcontext;
+
+            m_plogin->m_pimage = pcontext->m_pauracontext->image().load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 

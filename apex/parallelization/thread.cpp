@@ -3,7 +3,7 @@
 #include "apex/message.h"
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
-#include "apex/platform/apex.h"
+#include "apex/platform/node.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -98,11 +98,13 @@ thread::file_info::~file_info()
 thread::thread()
 {
 
+   m_bMessageThread = true;
+       
    //set_layer(LAYERED_THREAD, this);
 
    m_bThreadClosed = false;
 
-   m_bitIsPred = false;
+   m_bIsPredicate = false;
 
    m_bAuraMessageQueue = false;
 
@@ -184,13 +186,13 @@ void thread::thread_common_construct()
    if (::get_task() != nullptr)
    {
 
-      m_bitAvoidProcFork = ::get_task()->m_bitAvoidProcFork;
+      m_bAvoidProcedureFork = ::get_task()->m_bAvoidProcedureFork;
 
    }
    else
    {
 
-      m_bitAvoidProcFork = false;
+      m_bAvoidProcedureFork = false;
 
    }
 
@@ -358,7 +360,7 @@ void thread::term_thread()
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto & pmanualresetevent : m_eventaWait)
       {
@@ -394,7 +396,7 @@ void thread::term_thread()
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pevSleep.is_set())
       {
@@ -422,7 +424,7 @@ void thread::term_thread()
 
    __set_thread_off();
 
-   m_psystem->m_papexsystem->m_papex->thread_finalize(this);
+   m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
 
    ::e_status estatus = m_result.m_estatus;
 
@@ -645,6 +647,12 @@ bool thread::thread_step()
 
 }
 
+//::e_status thread::run()
+//{
+//
+//   return ::success;
+//
+//}
 
 ::e_status thread::run()
 {
@@ -756,7 +764,7 @@ bool thread::thread_step()
 bool thread::pump_runnable()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    while(task_get_run())
    {
@@ -775,7 +783,7 @@ bool thread::pump_runnable()
       if (method)
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          method();
 
@@ -802,7 +810,7 @@ __pointer(::matter) thread::running(const char * pszTag) const
 
    }
 
-   //synchronization_lock synchronizationlock(mutex());
+   //synchronous_lock synchronouslock(mutex());
 
    //for(auto & pcomposite : *m_pcompositea)
    //{
@@ -1271,7 +1279,7 @@ void thread::kick_idle()
          if (m_pmq && !m_bClosedMq)
          {
 
-            synchronization_lock synchronizationlock(m_pmq->mutex());
+            synchronous_lock synchronouslock(m_pmq->mutex());
 
             m_pmq->m_bKickIdle = true;
 
@@ -1357,7 +1365,7 @@ void thread::post_quit()
    // {
 
    //    /// this is quite dangerous
-   //    synchronization_lock synchronizationlock(mutex());
+   //    synchronous_lock synchronouslock(mutex());
 
    //    __pointer(manual_reset_event) pev = m_pevSync;
 
@@ -1378,7 +1386,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(manual_reset_event) pev = m_pevSleep;
 
@@ -1450,7 +1458,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (ptask == this)
 //      {
@@ -1466,7 +1474,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      synchronization_lock slChild(ptask->mutex());
+//      synchronous_lock slChild(ptask->mutex());
 //
 //      if (::parallelization::is_child(ptask) || ptask->m_pthreadParent)
 //      {
@@ -1509,7 +1517,7 @@ void thread::task_remove(::task * ptask)
 
       string strThreadChild = ptask->type_name();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (::is_null(ptask))
       {
@@ -1518,7 +1526,7 @@ void thread::task_remove(::task * ptask)
 
       }
 
-      //synchronization_lock slChild(ptask->mutex());
+      //synchronous_lock slChild(ptask->mutex());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -1786,7 +1794,7 @@ u32 __thread_entry(void * p);
 }
 
 
-::e_status thread::do_task()
+::e_status thread::main()
 {
 
    ::u32 u = -1;
@@ -1813,7 +1821,34 @@ u32 __thread_entry(void * p);
    if (::succeeded(estatusStart))
    {
 
-      estatus = __thread_main();
+      if (m_pevStarted.is_set())
+      {
+
+         m_pevStarted->set_event();
+
+         m_pevStarted.release();
+
+      }
+
+      estatus = run();
+
+      m_bThreadClosed = true;
+
+      try
+      {
+
+         if (m_pevReady)
+         {
+
+            m_pevReady->SetEvent();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
@@ -1850,7 +1885,7 @@ u32 __thread_entry(void * p);
 
    m_htask = nullptr;
 
-   m_bitIsRunning = false;
+   m_bIsRunning = false;
 
    return estatus;
 
@@ -2566,7 +2601,7 @@ void thread::__os_initialize()
 
 #endif
 
-   m_psystem->m_papexsystem->m_papex->node_thread_initialize(this);
+   m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
 
 }
@@ -2575,7 +2610,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   m_psystem->m_papexsystem->m_papex->node_thread_finalize(this);
+   m_psystem->m_papexsystem->m_papexnode->node_thread_finalize(this);
 
 }
 
@@ -2670,7 +2705,7 @@ void thread::__os_finalize()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      m_psystem->m_papexsystem->m_papex->parallelization_initialize();
+      m_psystem->m_papexsystem->m_papexnode->parallelization_initialize();
 
    }
 
@@ -2784,42 +2819,14 @@ void thread::__set_thread_off()
 
 }
 
-
-::e_status thread::__thread_main()
-{
-
-   if (m_pevStarted.is_set())
-   {
-
-      m_pevStarted->set_event();
-
-      m_pevStarted.release();
-
-   }
-
-   auto estatus = main();
-
-   m_bThreadClosed = true;
-
-   try
-   {
-
-      if (m_pevReady)
-      {
-
-         m_pevReady->SetEvent();
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return estatus;
-
-}
+//
+//::e_status thread::__thread_main()
+//{
+//
+//   auto estatus = main();
+//
+//
+//}
 
 
 bool thread::is_idle_message(::message::message * pmessage)
@@ -2896,7 +2903,7 @@ bool thread::post_task(const ::routine & routine)
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_routinea.add(routine);
 
@@ -3239,8 +3246,6 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 
 error:;
 
-
-
    if(bError)
    {
 
@@ -3257,103 +3262,103 @@ error:;
 }
 
 
-::e_status thread::main()
-{
-
-   string strType = type_name();
-
-   if(strType.contains("wave_player"))
-   {
-
-      output_debug_string("I am xxthread::main from wave_player");
-
-   }
-   else if(strType.ends_ci("out"))
-   {
-
-      output_debug_string("I am xxthread::main from out");
-
-   }
-   else if(strType.contains("output_thread"))
-   {
-
-      output_debug_string("I am xxthread::main from output_thread");
-
-   }
-
-   // first -- check for simple worker thread
-   ::e_status estatus = ::success;
-
-   // else check for thread with message loop
-   ASSERT_VALID(this);
-
-   try
-   {
-
-      m_bReady = true;
-
-      run();
-
-   }
-   catch (const ::exit_exception & e)
-   {
-
-      e.m_ptaskExit->finish();
-      //if (___thread(e.m_pthreadExit) != this)
-      //{
-
-      //   psystem->finish(psystem);
-
-      //}
-
-      //::release(pe);
-
-   }
-   catch (const ::exception::exception & e)
-   {
-
-      top_handle_exception(e);
-
-   }
-   catch(...)
-   {
-
-      output_debug_string("exception occurred");
-
-   }
-
-   if(strType.contains("wave_player"))
-   {
-
-      output_debug_string("after run xxthread::main from wave_player");
-
-   }
-   else if(strType.ends_ci("out"))
-   {
-
-      output_debug_string("after run xxthread::main from out");
-
-   }
-   else if(strType.contains("output_thread"))
-   {
-
-      output_debug_string("after run xxthread::main from output_thread");
-
-   }
-
-   estatus = m_result.estatus();
-
-   //clear_finish_bit();
-
-   return estatus;
-
-}
+//::e_status thread::main()
+//{
+//
+//   string strType = type_name();
+//
+//   if(strType.contains("wave_player"))
+//   {
+//
+//      output_debug_string("I am xxthread::main from wave_player");
+//
+//   }
+//   else if(strType.ends_ci("out"))
+//   {
+//
+//      output_debug_string("I am xxthread::main from out");
+//
+//   }
+//   else if(strType.contains("output_thread"))
+//   {
+//
+//      output_debug_string("I am xxthread::main from output_thread");
+//
+//   }
+//
+//   // first -- check for simple worker thread
+//   ::e_status estatus = ::success;
+//
+//   // else check for thread with message loop
+//   ASSERT_VALID(this);
+//
+//   try
+//   {
+//
+//      m_bReady = true;
+//
+//      run();
+//
+//   }
+//   catch (const ::exit_exception & e)
+//   {
+//
+//      e.m_ptaskExit->finish();
+//      //if (___thread(e.m_pthreadExit) != this)
+//      //{
+//
+//      //   psystem->finish(psystem);
+//
+//      //}
+//
+//      //::release(pe);
+//
+//   }
+//   catch (const ::exception::exception & e)
+//   {
+//
+//      top_handle_exception(e);
+//
+//   }
+//   catch(...)
+//   {
+//
+//      output_debug_string("exception occurred");
+//
+//   }
+//
+//   if(strType.contains("wave_player"))
+//   {
+//
+//      output_debug_string("after run xxthread::main from wave_player");
+//
+//   }
+//   else if(strType.ends_ci("out"))
+//   {
+//
+//      output_debug_string("after run xxthread::main from out");
+//
+//   }
+//   else if(strType.contains("output_thread"))
+//   {
+//
+//      output_debug_string("after run xxthread::main from output_thread");
+//
+//   }
+//
+//   estatus = m_result.estatus();
+//
+//   //clear_finish_bit();
+//
+//   return estatus;
+//
+//}
 
 
 message_queue* thread::_get_mq()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(m_bSetFinish || m_bThreadClosed)
    {
@@ -3538,7 +3543,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 //
 //      //      auto & ptask = m_ptaska->element_at(iTask);
 //
-//      //      synchronizationlock.unlock();
+//      //      synchronouslock.unlock();
 //
 //      //      auto estatus = ptask->finish();
 //
@@ -3549,7 +3554,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 //
 //      //      }
 //
-//      //      synchronizationlock.lock();
+//      //      synchronouslock.lock();
 //
 //      //      if (countTask != m_ptaska->get_count())
 //      //      {
@@ -3882,7 +3887,7 @@ void thread::dump(dump_context & dumpcontext) const
 
    {
 
-      synchronization_lock synchronizationlock(m_pmutexThreadUiPtra);
+      synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
       if (::is_set(m_puiptraThread))
       {
@@ -3980,7 +3985,7 @@ bool thread::initialize_message_queue()
    //}
 
 
-   //single_lock synchronizationlock(&m_sptimera->m_mutex,true);
+   //single_lock synchronouslock(&m_sptimera->m_mutex,true);
 
    //i32 iMin = 100;
 
@@ -3996,7 +4001,7 @@ bool thread::initialize_message_queue()
 
    //}
 
-   //synchronizationlock.unlock();
+   //synchronouslock.unlock();
 
    //m_spqueue->message_queue_set_timer((uptr)-2,iMin);
 
@@ -4451,7 +4456,7 @@ user_interaction_ptr_array & thread::uiptra()
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
@@ -4462,7 +4467,7 @@ user_interaction_ptr_array & thread::uiptra()
 
    }
 
-   synchronization_lock synchronizationlock(m_pmutexThreadUiPtra);
+   synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
    if (m_puiptraThread == nullptr)
    {
@@ -4555,9 +4560,9 @@ CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object * p
       if (::is_set(psync))
       {
 
-         synchronization_lock synchronizationlock(psync);
+         synchronous_lock synchronouslock(psync);
 
-         if (synchronizationlock.wait(::millis()).succeeded())
+         if (synchronouslock.wait(::millis()).succeeded())
          {
 
             break;
@@ -4609,7 +4614,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object * p
 //
 //      set_task(pthreadNew);
 //
-//      synchronization_lock synchronizationlock(g_pmutexThreadDeferredCreation);
+//      synchronous_lock synchronouslock(g_pmutexThreadDeferredCreation);
 //
 //      g_pthreadaDeferredCreate->add(pthreadNew);
 //
@@ -4628,7 +4633,7 @@ void thread::add_waiting_event(event * pevent)
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_eventaWait.add(pevent);
 
@@ -4638,7 +4643,7 @@ void thread::add_waiting_event(event * pevent)
 void thread::remove_waiting_event(event * pevent)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_eventaWait.remove(pevent);
 

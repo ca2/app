@@ -217,6 +217,8 @@ namespace user
       for(::index i = 0; i < m_splitpanecompositea.get_count(); i++)
       {
 
+         __compose_new(m_splitpanecompositea[i]);
+
          if(m_splitpanecompositea[i]->m_pplaceholder.is_null())
          {
 
@@ -297,8 +299,8 @@ namespace user
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{
 
-         //   synchronization_lock synchronizationlock(mutex());
-         //   //critical_section_lock synchronizationlock(&m_mutex);
+         //   synchronous_lock synchronouslock(mutex());
+         //   //critical_section_lock synchronouslock(&m_mutex);
          //   {
          //      //      TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
@@ -503,8 +505,18 @@ namespace user
 
       ::u32 uFlags = uBaseFlags;
 
+      m_splitbara.set_size(iSplitBarCount);
+
+
       for(i = 0; i < iSplitBarCount; i++)
       {
+
+         if (!m_splitbara.element_at(i))
+         {
+
+            __construct_new(m_splitbara.element_at(i));
+
+         }
 
          puserinteraction = m_splitbara.element_at(i);
 
@@ -988,7 +1000,7 @@ namespace user
    bool split_layout::RemovePaneAt(index iIndex)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT(iIndex >= 0);
 
@@ -1222,7 +1234,7 @@ namespace user
 //         {
 //            //critical_section_lock lock(&m_mutex);
 //
-//            synchronization_lock synchronizationlock(mutex());
+//            synchronous_lock synchronouslock(mutex());
 //
 //            {
 //               TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

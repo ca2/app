@@ -36,6 +36,7 @@ namespace aura
       virtual ~node();
 
 
+      virtual ::e_status on_initialize_object() override;
 
 //#ifdef LINUX
 

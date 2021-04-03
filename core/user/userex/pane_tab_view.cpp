@@ -456,7 +456,10 @@ namespace userex
          //pcreate->m_pusersystem
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+
+         auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
+
+         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 

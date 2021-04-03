@@ -566,13 +566,13 @@ namespace draw2d_direct2d
 
       using ::draw2d::graphics::draw;
 
-      virtual bool draw(const ::text_out & textout, ::draw2d::pen * ppen);
+      virtual bool draw(const ::write_text::text_out & textout, ::draw2d::pen * ppen);
 
-      virtual bool fill(const ::text_out & textout, ::draw2d::brush * pbrush);
+      virtual bool fill(const ::write_text::text_out & textout, ::draw2d::brush * pbrush);
 
-      virtual bool draw(const ::draw_text & drawtext, ::draw2d::pen* ppen);
+      virtual bool draw(const ::write_text::draw_text & drawtext, ::draw2d::pen* ppen);
 
-      virtual bool fill(const ::draw_text & drawtext, ::draw2d::brush* pbrush);
+      virtual bool fill(const ::write_text::draw_text & drawtext, ::draw2d::brush* pbrush);
 
 
       virtual bool flush() override;

@@ -6,7 +6,7 @@
 #include "apex/platform/str_context.h"
 #include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-#include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 
 
 extern ::app_core * g_pappcore;
@@ -782,7 +782,7 @@ namespace aura
 
    //   }
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -809,7 +809,7 @@ namespace aura
    //   else if (bLoadStringTable)
    //   {
 
-   //      synchronizationlock.unlock();
+   //      synchronouslock.unlock();
 
    //      load_string_table(strTable, "");
 
@@ -1779,7 +1779,7 @@ retry_license:
 
          string strModuleName = psystem->file().module();
 
-         m_psystem->m_pacme->install_crash_dump_reporting(strModuleName);
+         m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
 
 #endif
 
@@ -1829,7 +1829,7 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(psystem->m_spmutexSystemAppData);
+   //   synchronous_lock synchronouslock(psystem->m_spmutexSystemAppData);
 
    //   string strId(pszId);
    //   string strSystemLocale = psystem->m_strLocale;
@@ -1840,7 +1840,7 @@ retry_license:
    //   straLocale = value("locale");
    //   straSchema = value("schema");
 
-   //   ::file::path pathExe = ::file::app_module();
+   //   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
    //   straLocale.insert_at(0, strSystemLocale);
    //   straSchema.insert_at(0, strSystemSchema);
@@ -3396,7 +3396,7 @@ retry_license:
 //
 //      {
 //
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         file().add_contents(dir().appdata() / (file().module().name() + "_log_error.txt"), strMessage);
 //
@@ -3577,7 +3577,7 @@ retry_license:
    //void application::install_trace(const string & str)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3587,7 +3587,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3850,9 +3850,9 @@ retry_license:
 
 #endif
 
-      //synchronization_lock synchronizationlock(&m_mutexFrame);
+      //synchronous_lock synchronouslock(&m_mutexFrame);
 
-      //synchronization_lock slChildren(::user::mutex_children2());
+      //synchronous_lock slChildren(::user::mutex_children2());
 
       auto puiptraFrame = m_puiptraFrame;
 
@@ -3889,7 +3889,7 @@ retry_license:
 
       }
 
-      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
       if (m_puiptraFrame->add_unique_interaction(puserinteraction))
       {
@@ -3937,7 +3937,7 @@ retry_license:
    void application::remove_frame(::user::interaction * puserinteraction)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.remove(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.remove(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
 
       //if(get_active_uie() == puserinteraction)
@@ -4311,7 +4311,7 @@ retry_license:
 ////
 ////      {
 ////
-////         synchronization_lock synchronizationlock(mutex());
+////         synchronous_lock synchronouslock(mutex());
 ////
 ////         ptra = m_objectptraEventHook;
 ////
@@ -4474,7 +4474,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4520,62 +4520,62 @@ retry_license:
    //}
 
 
-   bool application::start_application(bool bSynch, ::create * pcreate)
-   {
-
-//      try
+//   bool application::start_application(bool bSynch, ::create * pcreate)
+//   {
+//
+////      try
+////      {
+////
+////         if (pbias != nullptr)
+////         {
+////
+////            if (pbias->m_pcallback != nullptr)
+////            {
+////
+////               pbias->m_pcallback->connect_to(this);
+////
+////            }
+////
+////         }
+////      }
+////      catch (...)
+////      {
+////      }
+//
+////      if (pbias != nullptr)
+////      {
+////
+////         m_biasCalling = *pbias;
+////
+////      }
+//
+//      if (bSynch)
 //      {
 //
-//         if (pbias != nullptr)
+//         if (m_htask == nullptr)
 //         {
 //
-//            if (pbias->m_pcallback != nullptr)
+//            if (!begin_synch())
 //            {
 //
-//               pbias->m_pcallback->connect_to(this);
+//               return false;
 //
 //            }
 //
 //         }
-//      }
-//      catch (...)
-//      {
-//      }
-
-//      if (pbias != nullptr)
-//      {
-//
-//         m_biasCalling = *pbias;
 //
 //      }
-
-      if (bSynch)
-      {
-
-         if (m_htask == nullptr)
-         {
-
-            if (!begin_synch())
-            {
-
-               return false;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         begin();
-
-      }
-
-
-      return true;
-
-   }
+//      else
+//      {
+//
+//         begin();
+//
+//      }
+//
+//
+//      return true;
+//
+//   }
 
 
    void application::HideApplication()
@@ -4616,7 +4616,7 @@ retry_license:
    //string application::load_string(const ::id & id)
    //{
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   string str;
 
@@ -4724,7 +4724,7 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -7631,13 +7631,13 @@ namespace aura
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -7799,7 +7799,7 @@ namespace aura
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronization_lock synchronizationlock(&user_mutex());
+//      //      synchronous_lock synchronouslock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -8362,8 +8362,21 @@ namespace aura
 
    }
 
+   
+   bool application::is_system() const
+   {
 
+      return false;
 
+   }
+   
+   
+   bool application::is_session() const
+   {
+
+      return false;
+
+   }
 
 
    void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
@@ -8952,7 +8965,7 @@ namespace aura
            }
            else
            {
-              //               synchronizationlock.unlock();
+              //               synchronouslock.unlock();
               try
               {
                  pinteraction->send_message(WM_IDLEUPDATECMDUI, (wparam)true);
@@ -8961,7 +8974,7 @@ namespace aura
               {
 
               }
-              //             synchronizationlock.lock();
+              //             synchronouslock.lock();
            }
         }
 

@@ -437,7 +437,7 @@ namespace ios
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock synchronizationlock(&m_mutex, true);
+//      single_lock synchronouslock(&m_mutex, true);
 //
 //      return m_strCa2;
 //
@@ -623,7 +623,7 @@ namespace ios
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = pcontext->m_pcontext->file().as_string(strPath);
+      string strDocument = pcontext->m_papexcontext->file().as_string(strPath);
 
       if(doc.load(strDocument))
       {

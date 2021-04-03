@@ -234,10 +234,10 @@ namespace database
    }
 
 
-   bool composite::memory_query_item(get_memory getmemory, const char* pszQuery)
+   bool composite::query_blob(get_memory getmemory, const char* pszQuery)
    {
 
-      return m_pdatabase->memory_query_item(getmemory, pszQuery);
+      return m_pdatabase->query_blob(getmemory, pszQuery);
 
    }
 

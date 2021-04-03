@@ -934,9 +934,9 @@ void object::delete_this()
 
    //   auto ptask = ::get_task();
 
-   //   synchronization_lock synchronizationlock(ptask->mutex());
+   //   synchronous_lock synchronouslock(ptask->mutex());
 
-   //   if (ptask && ptask->m_bitIsPred)
+   //   if (ptask && ptask->m_bIsPredicate)
    //   {
 
    //      routine();

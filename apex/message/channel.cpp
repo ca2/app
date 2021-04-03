@@ -34,7 +34,7 @@ void channel::install_message_routing(::channel* pchannel)
 void channel::remove_receiver(::object * preceiver)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
    for (auto & pair : m_handlermap)
    {
@@ -62,7 +62,7 @@ void channel::remove_receiver(::object * preceiver)
 void channel::transfer_receiver(::message::handler_map & handlermap, ::object * preceiver)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
    for (auto & pair : m_handlermap)
    {
@@ -103,7 +103,7 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_phandlera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -196,7 +196,7 @@ void channel::remove_all_routes()
    try
    {
 
-      synchronization_lock synchronizationlock(channel_mutex());
+      synchronous_lock synchronouslock(channel_mutex());
 
       if(m_bNewChannel)
       {
@@ -225,7 +225,7 @@ void channel::remove_all_routes()
 //               try
 //               {
 //
-//                  synchronization_lock synchronizationlock(route->m_preceiver->m_pmutexChannel);
+//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel);
 //
 //                  route->m_preceiver->m_sendera.remove(this);
 //
@@ -434,7 +434,7 @@ void channel::on_command(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
    __restore(pcommand->m_id.m_etype);
 

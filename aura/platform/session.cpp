@@ -1316,7 +1316,7 @@ namespace aura
 
    //         {
 
-   //            synchronization_lock synchronizationlock(mutex());
+   //            synchronous_lock synchronouslock(mutex());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1653,7 +1653,7 @@ ret:
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -2231,7 +2231,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return pcontext->m_pcontext->os().is_remote_session();
+      return pcontext->m_papexcontext->os().is_remote_session();
 
    }
 
@@ -2521,6 +2521,8 @@ namespace aura
       ::aqua::session::on_instantiate_application(papp);
 
       papp->m_paurasession = this;
+      papp->m_paurasystem = m_paurasystem;
+      papp->m_pauranode = m_pauranode;
 
    }
 

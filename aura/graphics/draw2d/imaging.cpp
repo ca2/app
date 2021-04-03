@@ -1595,7 +1595,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    return false;
 
-   //    single_lock synchronizationlock(&m_csMem, true);
+   //    single_lock synchronouslock(&m_csMem, true);
 
    /*i32 iOriginalMapMode ;
 
@@ -4393,7 +4393,7 @@ i32 w3)
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
-//   //   single_lock synchronizationlock(&m_csMem, true);
+//   //   single_lock synchronouslock(&m_csMem, true);
 //
 //
 //   ::u32 user;
@@ -4992,7 +4992,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    __pointer(::aura::system) psystem = m_psystem;
 
-   synchronization_lock synchronizationlock(psystem->draw2d()->mutex());
+   synchronous_lock synchronouslock(psystem->draw2d()->mutex());
 
    auto & pmemory = psystem->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -5038,7 +5038,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    byte * pFilterData = pmemory->get_data();
 
@@ -6853,12 +6853,12 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 ::image_pointer imaging::get_work_image()
 {
 
-   synchronization_lock synchronizationlock(&m_mutexWork);
+   synchronous_lock synchronouslock(&m_mutexWork);
 
    if (m_imageaWork.is_empty())
    {
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       return create_image();
 
@@ -6866,7 +6866,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
    auto pimpl = m_imageaWork.pop();
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    if (pimpl.is_null())
    {
@@ -6890,7 +6890,7 @@ void imaging::free_work_image(::image * pimage)
 
    }
 
-   synchronization_lock synchronizationlock(&m_mutexWork);
+   synchronous_lock synchronouslock(&m_mutexWork);
 
    m_imageaWork.push(pimage);
 

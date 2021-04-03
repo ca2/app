@@ -141,12 +141,6 @@
     <Filter Include="Source Files\memory\os_alloc">
       <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\inline\application">
-      <UniqueIdentifier>{a9eadea7-9e66-4c8b-91a6-38b7ed88e8cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\inline\console">
-      <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
@@ -155,9 +149,6 @@
     </Filter>
     <Filter Include="Header Files\os\windows_common">
       <UniqueIdentifier>{52ca7eb0-c1c7-4e43-abec-e9b5ba44a8c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\inline\NewFilter1">
-      <UniqueIdentifier>{1f1a5d9c-187c-42b3-a17a-dd8e896a1c10}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
@@ -251,6 +242,9 @@
     </Filter>
     <Filter Include="Source Files\primitive\text">
       <UniqueIdentifier>{8fa46e2c-61a9-402f-9c89-238183e49030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline\implement">
+      <UniqueIdentifier>{5846658e-dba2-4498-a425-81a96195f269}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1313,15 +1307,6 @@
     <ClInclude Include="primitive\primitive\member.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\linux.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\macos.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
     <ClInclude Include="inline\application.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -1345,12 +1330,6 @@
     </ClInclude>
     <ClInclude Include="inline\console.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console\linux.h">
-      <Filter>Header Files\inline\console</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console\windows.h">
-      <Filter>Header Files\inline\console</Filter>
     </ClInclude>
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
@@ -1931,7 +1910,7 @@
     <ClInclude Include="os\microsecond_sleep.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\id_matter.h">
+    <ClInclude Include="primitive\primitive\material_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\system_time.h">
@@ -1943,7 +1922,7 @@
     <ClInclude Include="parallelization\synchronization_array.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\synchronization_lock.h">
+    <ClInclude Include="parallelization\synchronous_lock.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\synchronization_result.h">
@@ -2585,9 +2564,6 @@
     <ClInclude Include="const\thread.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="platform\acme.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\library.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2629,6 +2605,18 @@
     </ClInclude>
     <ClInclude Include="primitive\text\_.h">
       <Filter>Header Files\primitive\text</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\strdup_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\ansi.h">
+      <Filter>Header Files\inline\implement</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\windows.h">
+      <Filter>Header Files\inline\implement</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement.h">
+      <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3616,7 +3604,7 @@
     <ClCompile Include="node\windows\file_memory_map.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\id_matter.cpp">
+    <ClCompile Include="primitive\primitive\material_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
@@ -3748,9 +3736,6 @@
     <ClCompile Include="primitive\mathematics\mathematics.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="platform\acme.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\library.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3786,6 +3771,12 @@
     </ClCompile>
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\strdup_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\strdup_array.cpp">
+      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

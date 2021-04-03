@@ -66,7 +66,7 @@ namespace write_text
       try
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_pfontenumeration.is_null())
          {
@@ -94,7 +94,7 @@ namespace write_text
       try
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_font_enumeration(psubject);
 
@@ -115,7 +115,7 @@ namespace write_text
       try
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_font_enumeration(psubject);
 
@@ -133,7 +133,7 @@ namespace write_text
    bool font_list::set_sel_by_name(string str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       index iSel = find_name(str);
 
@@ -149,7 +149,7 @@ namespace write_text
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -284,7 +284,7 @@ namespace write_text
    void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -404,7 +404,7 @@ namespace write_text
    void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_etype == type_wide)
       {
@@ -427,7 +427,7 @@ namespace write_text
 
       text_box* pbox = &pitem->m_box[iBox];
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (::is_null(pbox))
       {
@@ -439,7 +439,7 @@ namespace write_text
       if (!pbox->m_bInit)
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          ::size_f64 s;
 
@@ -668,7 +668,6 @@ namespace write_text
    }
 
 
-
    void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
@@ -687,30 +686,30 @@ namespace write_text
          }
 
       }
-      //else if (eid == id_font_extents)
-      //{
+      else if (eid == id_font_extents)
+      {
 
-      //   update_extents();
+         update_extents();
 
-      //}
-      //else if (eid == id_font_list_layout)
-      //{
+      }
+      else if (eid == id_font_list_layout)
+      {
 
-      //   layout();
+         layout();
 
-      //}
-      //else if (eid == id_font_list_total_size)
-      //{
+      }
+      else if (eid == id_font_list_total_size)
+      {
 
-      //   set_need_layout();
+         set_need_layout();
 
-      //}
-      //else if (eid == id_font_list_redraw)
-      //{
+      }
+      else if (eid == id_font_list_redraw)
+      {
 
-      //   set_need_redraw();
+         set_need_redraw();
 
-      //}
+      }
 
    }
 
@@ -757,7 +756,7 @@ namespace write_text
    void font_list::update_extents()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_pitema)
       {
@@ -773,12 +772,12 @@ namespace write_text
 
       }
 
-      if (m_rectClient.is_empty())
-      {
+      //if (m_rectClient.is_empty())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       int iBaseSize;
 
@@ -889,7 +888,7 @@ namespace write_text
 
          __pointer(font_list_item) pitem;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          for (index iItem = 0; iItem < plistdata->get_count(); )
          {
@@ -949,7 +948,7 @@ namespace write_text
 
       m_iLayoutSerial = 0;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       auto iFontCount = plistdata->get_count();
 
@@ -979,7 +978,7 @@ namespace write_text
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                if (plistdata->m_iSerial != iSerial)
                {
@@ -999,7 +998,7 @@ namespace write_text
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                pitem = plistdata->element_at(iItem);
 
@@ -1041,7 +1040,7 @@ namespace write_text
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                if (plistdata->m_iSerial != iSerial)
                {
@@ -1070,7 +1069,7 @@ namespace write_text
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (plistdata != m_plistdata)
             {
@@ -1128,7 +1127,7 @@ namespace write_text
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                if (plistdata != m_plistdata)
                {
@@ -1151,7 +1150,7 @@ namespace write_text
    void font_list::layout()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::size_i32 sizeTotal;
 
@@ -1192,7 +1191,7 @@ namespace write_text
 
       TRACE("font_list::layout_wide");
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::size_i32 sizeTotal;
 
@@ -1419,7 +1418,7 @@ namespace write_text
    ::size_i32 font_list::layout_single_column()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::size_i32 sizeTotal;
 
@@ -1480,7 +1479,7 @@ namespace write_text
    ::user::item font_list::hit_test(const ::point_i32& point)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_etype == type_wide)
       {
@@ -1501,7 +1500,7 @@ namespace write_text
    ::user::item font_list::hit_test_wide(const ::point_i32 & point)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto plistdata = m_plistdata;
 
@@ -1551,7 +1550,7 @@ namespace write_text
    ::user::item font_list::hit_test_single_column(const ::point_i32 & point)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto plistdata = m_plistdata;
 
@@ -1593,7 +1592,7 @@ namespace write_text
    bool font_list::get_box_rect(RECTANGLE_I32 * lprect, ::index i)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_etype == type_wide)
       {
@@ -1614,7 +1613,7 @@ namespace write_text
    bool font_list::get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto plistdata = m_plistdata;
 
@@ -1649,7 +1648,7 @@ namespace write_text
    bool font_list::get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto plistdata = m_plistdata;
 
@@ -1712,7 +1711,7 @@ namespace write_text
    index font_list::find_name(string str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto plistdata = m_plistdata;
 

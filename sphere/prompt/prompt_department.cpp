@@ -89,7 +89,7 @@ namespace prompt
       UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
       {
-         pcontext->m_pcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
+         pcontext->m_papexcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
 //#ifdef WINDOWS_DESKTOP
 //
 //         ::ShellExecuteW(

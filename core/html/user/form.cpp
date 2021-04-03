@@ -128,7 +128,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectClient;
 
-         synchronization_lock lock(get_html_data()->mutex());
+         synchronous_lock lock(get_html_data()->mutex());
 
          auto pimage = create_image({ 50,  50 });
 
@@ -186,7 +186,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(get_html_data() == nullptr)
    {
@@ -250,7 +250,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      m_pelementLButtonDown = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      m_pelementLButtonDown = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
    }
 
@@ -293,14 +293,14 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(::is_set(get_html_data()))
    {
 
-      synchronization_lock synchronizationlock(get_html_data()->mutex());
+      synchronous_lock synchronouslock(get_html_data()->mutex());
 
-      html::element * pelement = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
       if(pelement != nullptr)
       {
@@ -378,7 +378,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
    }
 
@@ -450,7 +450,7 @@ void html_form::soft_reload()
 
       auto psync = phtmldata->mutex();
 
-      synchronization_lock lock(psync);
+      synchronous_lock lock(psync);
 
       str = phtmldata->m_pcoredata->m_strSource;
 
@@ -551,7 +551,7 @@ void html_form::set_need_load_form_data()
 void html_form::_001GetText(string & str) const
 {
 
-   ((html_form *) this)->get_html_data()->m_pcoredata->m_element.get_html((const_cast < html_form * > (this)->get_html_data()), str);
+   ((html_form *) this)->get_html_data()->m_pcoredata->m_pelement->get_html((const_cast < html_form * > (this)->get_html_data()), str);
 
 }
 
@@ -819,7 +819,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
             auto pcontext = get_context();
 
-            matter = pcontext->m_pcontext->dir().matter(psubject->payload(id_form));
+            matter = pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
@@ -866,7 +866,7 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (get_html_data() == nullptr)
             {

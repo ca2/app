@@ -196,7 +196,7 @@ namespace file
 
       __pointer(listener) plistener(plistenerParam);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(watch) pwatch;
 
@@ -262,7 +262,7 @@ namespace file
    void watcher::remove_watch(watch_id watch_id)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       watch_map::pair * ppair = m_watchmap.plookup(watch_id);
 
@@ -306,7 +306,7 @@ namespace file
    void watcher::remove_watch(const ::file::path & pathFolder)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto & pair : m_watchmap)
       {

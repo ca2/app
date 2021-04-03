@@ -173,7 +173,7 @@ namespace filemanager
 
    CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const char *);
 
-   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::context * pcontext);
+   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::aura::context * pcontext);
 
 
 } // namespace filemanager

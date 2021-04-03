@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
-#include "acme.h"
+#include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
@@ -24,9 +24,9 @@ namespace acme
 
       m_psystem = this;
 
-      m_pacme = nullptr;
-      m_pacmedir = nullptr;
-      m_pacmepath = nullptr;
+      //m_pacme = nullptr;
+      //m_pacmedir = nullptr;
+      //m_pacmepath = nullptr;
 
       m_pacmesystem = this;
       ::object::m_pcontext = this;
@@ -111,7 +111,7 @@ namespace acme
 
       }
 
-      auto estatus = __construct(m_pnode);
+      auto estatus = __compose(m_pnode);
 
       if(!estatus)
       {
@@ -155,16 +155,16 @@ namespace acme
 
       }
 
-      m_pacme = ::__create < ::acme::acme >();
+      //estatus = __compose(m_pacmenode);
 
-      if (!m_pacme)
-      {
+      //if (!m_pacmenode)
+      //{
 
-         return error_no_memory;
+      //   return error_no_memory;
 
-      }
+      //}
 
-      estatus = m_pacme->initialize_matter(this);
+      estatus = __compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -173,17 +173,18 @@ namespace acme
 
       }
 
-      auto pacmedir = ::__create< acme_dir > ();
+//      m_pacmedir = pacmedir;
 
-      m_pacmedir = pacmedir;
+  //    m_pacmedir->add_ref();
 
-      m_pacmedir->add_ref();
+      estatus = __compose(m_pacmepath);
 
-      auto pacmepath = ::__create < acme_path >();
+      if (!estatus)
+      {
 
-      m_pacmepath = pacmepath;
+         return estatus;
 
-      m_pacmepath->add_ref();
+      }
 
       return estatus;
 
@@ -298,7 +299,7 @@ namespace acme
    ::task * system::get_task(itask_t itask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       return m_taskmap[itask];
 
@@ -308,7 +309,7 @@ namespace acme
    itask_t system::get_task_id(const ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       itask_t itask = null_ithread;
 
@@ -327,7 +328,7 @@ namespace acme
    void system::set_task(itask_t itask, ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       m_taskmap[itask].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -339,7 +340,7 @@ namespace acme
    void system::unset_task(itask_t itask, ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 
@@ -392,7 +393,7 @@ namespace acme
    bool system::is_task_on(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       return m_mapTaskOn.plookup(id) != nullptr;
 
@@ -417,7 +418,7 @@ namespace acme
    void system::set_task_on(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       m_mapTaskOn.set_at(id, id);
 
@@ -427,7 +428,7 @@ namespace acme
    void system::set_task_off(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       m_mapTaskOn.remove_key(id);
 
@@ -521,6 +522,31 @@ namespace acme
    }
 
 
+   ::e_status system::init_system()
+   {
+
+      auto estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::init1()
+   {
+
+      return ::success;
+
+   }
+
+
    __pointer(::acme::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
    {
 
@@ -528,7 +554,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       __pointer(::acme::library) plibrary = psystem->m_mapLibrary[pszComponent];
 
@@ -636,7 +662,7 @@ namespace acme
 
       __pointer(::acme::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexContainerizedLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
       __pointer(::acme::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
 

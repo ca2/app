@@ -54,7 +54,7 @@ namespace filemanager
    void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
-      synchronization_lock synchronizationlock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
 
       string_array stra;
 
@@ -99,6 +99,8 @@ namespace filemanager
 
       auto papplication = get_application();
 
+      auto pcontext = m_pcontext;
+
       if(bOnlyParent && pathUser.has_char())
       {
 
@@ -114,16 +116,14 @@ namespace filemanager
 
          strDir = pathUser;
 
-         papplication->dir().ls(listing, pathUser);
+         pcontext->m_papexcontext->dir().ls(listing, pathUser);
 
       }
-
-      auto pcontext = get_context();
 
       for (auto & item : listing)
       {
 
-         ::file::path pathFinal = pcontext->m_pcontext->defer_process_path(item);
+         ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
          listingFinal.add(pathFinal);
 
@@ -172,7 +172,7 @@ namespace filemanager
 
       synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
 
-      synchronization_lock synchronizationlock(pm);
+      synchronous_lock synchronouslock(pm);
 
       auto pcontext = get_context();
 
@@ -200,7 +200,7 @@ namespace filemanager
 
             string strName;
 
-            strName = pcontext->m_pcontext->defer_get_file_title(pathAscendant);
+            strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
 
             if (pathAscendant.has_char() && strName.has_char())
             {
@@ -212,7 +212,7 @@ namespace filemanager
 
                   pitemChild->m_filepathUser = pathAscendant;
 
-                  pitemChild->m_filepathFinal = pcontext->m_pcontext->defer_process_path(pathAscendant);
+                  pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathAscendant);
 
                   pitemChild->m_strName = strName;
 
@@ -293,7 +293,7 @@ namespace filemanager
 
             string strName;
 
-            strName = pcontext->m_pcontext->defer_get_file_title(pathUser);
+            strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
 
             auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 
@@ -308,7 +308,7 @@ namespace filemanager
 
             pitemChild->m_filepathUser = pathUser;
 
-            pitemChild->m_filepathFinal = pcontext->m_pcontext->defer_process_path(pathFinal);
+            pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
 
             pitemChild->m_strName = strName;
 

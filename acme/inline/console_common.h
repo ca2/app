@@ -2,6 +2,7 @@
 
 
 #include "application_common.h"
+#include "implement.h"
 
 
 int console_end(::e_status estatus)

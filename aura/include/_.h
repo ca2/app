@@ -2749,6 +2749,8 @@ namespace draw2d
 
 #include "aura/platform/shell_open.h"
 
+#include "aura/platform/context.h"
+
 #include "aura/platform/application.h"
 
 #include "aura/filesystem/filemanager/item_action.h"

@@ -193,7 +193,7 @@ namespace user
    void tab_view::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::user::tab::_001OnRemoveTab(ptabpane);
 
@@ -478,7 +478,7 @@ namespace user
             else
             {
 
-               //synchronization_lock synchronizationlock(mutex_children());
+               //synchronous_lock synchronouslock(mutex_children());
 
                get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
@@ -498,7 +498,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (pimpactdata->m_idTitle.has_char())
          {
@@ -537,7 +537,7 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
 
-//         synchronization_lock synchronizationlock(mutex_children());
+//         synchronous_lock synchronouslock(mutex_children());
 
 
 
@@ -775,7 +775,7 @@ namespace user
 
    //         {
 
-   //            synchronization_lock synchronizationlock(mutex());
+   //            synchronous_lock synchronouslock(mutex());
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_id == pimpactdata->m_id)
    //            {

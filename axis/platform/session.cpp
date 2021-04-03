@@ -296,7 +296,7 @@ namespace axis
 //
 //
 //         }
-//         synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //         __pointer(::acme::library) & plibrary = psystem->m_mapLibrary[pszAppId];
 //
@@ -974,10 +974,10 @@ namespace axis
    //   if (is_remote_session())
    //   {
 
-   //      //psession->savings().save(::e_resource_display_bandwidth);
-   //      //psession->savings().save(::e_resource_blur_background);
-   //      //psession->savings().save(::e_resource_blurred_text_embossing);
-   //      //psession->savings().save(::e_resource_translucent_background);
+   //      //psession->m_paurasession->savings().save(::e_resource_display_bandwidth);
+   //      //psession->m_paurasession->savings().save(::e_resource_blur_background);
+   //      //psession->m_paurasession->savings().save(::e_resource_blurred_text_embossing);
+   //      //psession->m_paurasession->savings().save(::e_resource_translucent_background);
 
    //   }
 
@@ -1203,6 +1203,7 @@ namespace axis
       ::aura::session::on_instantiate_application(papp);
 
       papp->m_paxissession = this;
+      papp->m_paxissystem = m_paxissystem;
 
    }
 
@@ -1237,7 +1238,7 @@ namespace axis
       //if(puser->m_strPathPrefix.is_empty())
       //{
 
-      //   puser->m_strPathPrefix = pcontext->m_pcontext->dir().default_os_user_path_prefix();
+      //   puser->m_strPathPrefix = pcontext->m_papexcontext->dir().default_os_user_path_prefix();
 
       //}
 
@@ -1252,9 +1253,9 @@ namespace axis
 
       auto pcontext = get_context();
 
-      puser->m_pathFolder = pcontext->m_pcontext->dir().appdata() / "profile" / puser->m_strLogin;
+      puser->m_pathFolder = pcontext->m_papexcontext->dir().appdata() / "profile" / puser->m_strLogin;
 
-      pcontext->m_pcontext->dir().mk(puser->m_pathFolder);
+      pcontext->m_papexcontext->dir().mk(puser->m_pathFolder);
 
       for (auto& papp : m_applicationa)
       {

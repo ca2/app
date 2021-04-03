@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX context_thread :
       virtual public ::thread,
-      virtual public ::context
+      virtual public ::apex::context
    {
    public:
 

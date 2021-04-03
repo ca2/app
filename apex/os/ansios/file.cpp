@@ -204,112 +204,116 @@
 //}
 
 
+namespace apex
+{
+
+
 #ifndef WINDOWS
 
 
-bool context::_os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
-{
-
-   if (::is_null(psz))
+   bool context::_os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
    {
 
-      return false;
+      if (::is_null(psz))
+      {
 
-   }
+         return false;
+
+      }
 
 
 
 
-   char * pszRealPath = ::realpath(psz, NULL);
+      char* pszRealPath = ::realpath(psz, NULL);
 
-   if (pszRealPath == NULL)
-   {
+      if (pszRealPath == NULL)
+      {
 
-      return false;
+         return false;
 
-   }
+      }
 
-   if (strcmp(psz, pszRealPath) == 0)
-   {
+      if (strcmp(psz, pszRealPath) == 0)
+      {
+
+         ::free(pszRealPath);
+
+         return false;
+
+      }
+
+      try
+      {
+
+         path = pszRealPath;
+
+      }
+      catch (...)
+      {
+
+      }
 
       ::free(pszRealPath);
-
-      return false;
-
-   }
-
-   try
-   {
-
-      path = pszRealPath;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   ::free(pszRealPath);
-
-   return true;
-
-}
-
-#endif
-
-
-bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
-{
-
-   return _os_resolve_alias(path, psz, bNoUI, bNoMount);
-
-}
-
-
-
-// CLASS_DECL_APEX bool _os_may_have_alias(const char * psz)
-// {
-
-//    return true;
-
-// }
-
-
-#ifndef WINDOWS
-
-CLASS_DECL_APEX bool context::os_is_alias(const char * path)
-{
-
-   if (is_null(path))
-   {
-
-      return false;
-
-   }
-
-   struct stat st;
-
-   if (lstat(path, &st) == -1)
-   {
-
-      return false;
-
-   }
-
-   if (S_ISLNK(st.st_mode))
-   {
 
       return true;
 
    }
 
-   return false;
+#endif
 
-}
+
+   bool context::os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
+   {
+
+      return _os_resolve_alias(path, psz, bNoUI, bNoMount);
+
+   }
+
+
+
+   // CLASS_DECL_APEX bool _os_may_have_alias(const char * psz)
+   // {
+
+   //    return true;
+
+   // }
+
+
+#ifndef WINDOWS
+
+   CLASS_DECL_APEX bool context::os_is_alias(const char* path)
+   {
+
+      if (is_null(path))
+      {
+
+         return false;
+
+      }
+
+      struct stat st;
+
+      if (lstat(path, &st) == -1)
+      {
+
+         return false;
+
+      }
+
+      if (S_ISLNK(st.st_mode))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
 
 #endif
 
 
-
+} // namespace apex
 
 

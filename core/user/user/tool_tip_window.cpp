@@ -354,7 +354,7 @@ namespace user
    //   
    //   m_puserinteraction = puserinteraction;
 
-   //   m_font->create_point_font(os_font_name(e_font_sans), 10.0);
+   //   m_font->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
    //   auto pusersystem = __new(::user::system);
 

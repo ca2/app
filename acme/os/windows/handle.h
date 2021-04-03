@@ -235,7 +235,7 @@ template < class HT, class CT >
 CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer(::acme::application), HANDLE), __pointer(::acme::application) papp)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
@@ -321,7 +321,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    //bool bEnable = __enable_memory_tracking(false);
    m_permanentMap[(LPVOID)h] = permOb;
@@ -335,7 +335,7 @@ template < class HT, class CT >
 void handle_map < HT, CT > ::remove_handle(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    // make sure the handle entry is consistent before deleting
    CT* pTemp = lookup_temporary(h);
@@ -366,7 +366,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::delete_temp()
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    if (::is_null(this))
       return;
@@ -418,7 +418,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_permanent(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    CT * pt = m_permanentMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)
@@ -432,7 +432,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    CT * pt = m_temporaryMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)

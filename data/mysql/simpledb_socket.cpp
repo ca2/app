@@ -183,14 +183,14 @@ namespace simpledb
          strRelative = psystem->url().url_decode(psystem->url().get_script(inattr("request_uri")));
       }
       string strPath;
-      strPath = pcontext->m_pcontext->dir().path(psz, strRelative);
+      strPath = pcontext->m_papexcontext->dir().path(psz, strRelative);
       read_file(strPath, &rangea);
    }
 
 
    bool socket::read_file(const char * lpcsz, pointer_array < int_array > * prangea, const char * pszContentType)
    {
-      string strExtension = pcontext->m_pcontext->file().extension(lpcsz);
+      string strExtension = pcontext->m_papexcontext->file().extension(lpcsz);
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
@@ -247,7 +247,7 @@ namespace simpledb
       }
       else
       {
-         i32 iLen = pcontext->m_pcontext->file().length(lpcsz);
+         i32 iLen = pcontext->m_papexcontext->file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;

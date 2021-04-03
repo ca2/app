@@ -95,6 +95,8 @@ create::create()
    
    m_pcommandline->m_varFile = varFile;
 
+   m_puserprimitiveParent = puiParent;
+
    return estatus;
 
 }

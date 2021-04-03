@@ -369,7 +369,7 @@
 //   bool channel::has_command_handler(::message::command * pcommand)
 //   {
 //
-//      synchronization_lock synchronizationlock(channel_mutex());
+//      synchronous_lock synchronouslock(channel_mutex());
 //
 //      __restore(pcommand->m_id.m_etype);
 //

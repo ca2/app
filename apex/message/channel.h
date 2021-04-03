@@ -41,6 +41,13 @@ public:
 
    template < typename RECEIVER >
    bool add_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
+   template < typename RECEIVER >
+   bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
+   {
+
+      return add_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
+
+   }
 
    template < typename MESSAGE_PRED >
    //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);

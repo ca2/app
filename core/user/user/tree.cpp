@@ -287,7 +287,7 @@ namespace user
 
          auto pitem = m_pitemFirstVisible;
 
-         synchronization_lock synchronizationlock(!pitem ? nullptr : pitem->m_ptree->mutex());
+         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->mutex());
 
          index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -422,7 +422,7 @@ namespace user
 
       //TRACE("(1)TreeItemElapsed %d", millis.elapsed());
 
-      //      ::aura::savings & savings = psession->savings();
+      //      ::aura::savings & savings = psession->m_paurasession->savings();
 
       if (bHover) // selected
       {
@@ -436,7 +436,7 @@ namespace user
       if(bSelected) // selected
       {
 
-         //if(psession->savings().is_trying_to_save(::e_resource_processing))
+         //if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
             data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96,96,96));
@@ -671,7 +671,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_treeitemaExpand.add_unique(pitem);
 
@@ -681,7 +681,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_treeitemaOpen.add_unique(pitem);
 
@@ -802,7 +802,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
 
       __pointer(::data::tree_item) pitem = get_proper_item(iItem);
 
@@ -1403,7 +1403,7 @@ namespace user
    __pointer(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
-      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
 
       index nOffset;
 
@@ -2101,7 +2101,7 @@ namespace user
    index tree::get_proper_item_count()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_ptree)
       {

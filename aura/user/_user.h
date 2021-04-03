@@ -763,6 +763,14 @@ typedef struct _AppIndicator AppIndicator;
 //#define new AURA_NEW
 
 
+namespace user
+{
+
+   class shell;
+
+} // namespace user
+
+
 #include "user.h"
 
 

@@ -366,27 +366,27 @@ namespace windows
 
 
 #ifdef AMD64
-      m_stackframe.AddrPC.Offset = pcontext->m_pcontext->Rip;
+      m_stackframe.AddrPC.Offset = pcontext->m_papexcontext->Rip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->m_pcontext->Rsp;
+      m_stackframe.AddrStack.Offset = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->m_pcontext->Rsp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #elif defined(X86)
-      m_stackframe.AddrPC.Offset = pcontext->m_pcontext->Eip;
+      m_stackframe.AddrPC.Offset = pcontext->m_papexcontext->Eip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->m_pcontext->Esp;
+      m_stackframe.AddrStack.Offset = pcontext->m_papexcontext->Esp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->m_pcontext->Ebp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_papexcontext->Ebp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #else
-      m_stackframe.AddrPC.offset = (u32)pcontext->m_pcontext->Fir;
+      m_stackframe.AddrPC.offset = (u32)pcontext->m_papexcontext->Fir;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrReturn.offset = (u32)pcontext->m_pcontext->IntRa;
+      m_stackframe.AddrReturn.offset = (u32)pcontext->m_papexcontext->IntRa;
       m_stackframe.AddrReturn.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.offset = (u32)pcontext->m_pcontext->IntSp;
+      m_stackframe.AddrStack.offset = (u32)pcontext->m_papexcontext->IntSp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.offset = (u32)pcontext->m_pcontext->IntFp;
+      m_stackframe.AddrFrame.offset = (u32)pcontext->m_papexcontext->IntFp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #endif
 
@@ -1102,7 +1102,7 @@ namespace windows
 
 #else
 
-            pcontext->m_pcontext->signal = GetThreadContext(pcontext->m_pcontext->thread, pcontext) ? 1 : -1;
+            pcontext->m_papexcontext->signal = GetThreadContext(pcontext->m_papexcontext->thread, pcontext) ? 1 : -1;
 
 #endif
 
@@ -1622,7 +1622,7 @@ namespace  windows
 
       const char * psz;
 
-      //synchronization_lock synchronizationlock(::callstack().mutex());
+      //synchronous_lock synchronouslock(::callstack().mutex());
 
    #if defined(LINUX)
 

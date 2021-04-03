@@ -250,7 +250,7 @@ namespace imaging_freeimage
 
       }
 
-      Ctx(get_context()).file().as_memory(varFile, *pmemory);
+      m_pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 
@@ -275,7 +275,7 @@ namespace imaging_freeimage
 
       }
 
-      auto estatus = papplication->image().load_svg(pimage, pmemory);
+      auto estatus = m_pcontext->m_pauracontext->image().load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {

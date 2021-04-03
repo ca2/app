@@ -56,7 +56,7 @@ ftpfs::~ftpfs()
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    //   millis tickTimeout;
 
@@ -81,7 +81,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[path];
 
@@ -154,7 +154,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -285,7 +285,7 @@ retry:
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -353,7 +353,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    //millis tickTimeout;
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -430,7 +430,7 @@ retry:
 
       }
 
-      ::file::path pathTemp = m_pcontext->m_pcontext->file().time(m_pcontext->m_pcontext->dir().time());
+      ::file::path pathTemp = m_pcontext->m_papexcontext->file().time(m_pcontext->m_papexcontext->dir().time());
 
       auto psystem = m_psystem->m_papexsystem;
 
@@ -454,7 +454,7 @@ retry:
 
       }
 
-      return m_pcontext->m_pcontext->file().get_file(pathTemp, eopen);
+      return m_pcontext->m_papexcontext->file().get_file(pathTemp, eopen);
 
    }
    else

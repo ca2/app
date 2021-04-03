@@ -96,7 +96,7 @@ namespace user
       template < class T >
       ::count get_typed_view_count() const
       {
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
          ::count count = 0;
          for (index index = 0; index < m_viewa.get_count(); index++)
          {
@@ -115,7 +115,7 @@ namespace user
       __pointer(T) get_typed_view(index indexFind = 0) const
       {
 
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
 
          if (indexFind < 0 || indexFind >= m_viewa.get_count())
          {
@@ -167,7 +167,7 @@ namespace user
       __pointer(T) get_typed_view_with_id(id id) const
       {
 
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
 
          ::count count = 0;
 

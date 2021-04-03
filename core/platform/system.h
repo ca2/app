@@ -20,6 +20,8 @@ namespace core
       virtual ::e_status initialize(::object * pobject) override;
 
 
+      virtual void on_add_session(::apex::session * papexsession) override;
+
       virtual ::e_status initialize_rich_text();
 
       virtual void InsertTime(::ftp::file_status& ftpFileStatus);

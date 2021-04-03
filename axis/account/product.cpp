@@ -91,7 +91,7 @@ namespace account
 //
 //      set["post"]["entered_license"] = m_strAppId;
 //
-//      ::payload strAuth = pcontext->m_pcontext->http().get(strAuthUrl, set);
+//      ::payload strAuth = pcontext->m_papexcontext->http().get(strAuthUrl, set);
 //
 //      xml::document doc;
 //

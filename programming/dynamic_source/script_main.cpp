@@ -65,9 +65,11 @@ namespace dynamic_source
    ::e_status script_main::finalize()
    {
          
-      script_interface::finalize();
+      auto estatus = script_interface::finalize();
 
       __named_release(m_pmain);
+
+      return estatus;
 
    }
 

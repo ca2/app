@@ -74,7 +74,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 bool timer_task::start(const ::duration& duration, bool bPeriodic)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -203,7 +203,7 @@ bool timer_task::task_active() const
 }
 
 
-::e_status timer_task::on_task()
+::e_status timer_task::run()
 {
 
    ::i64 iSleepMs = m_duration.u32_millis();
@@ -269,7 +269,7 @@ bool timer_task::task_active() const
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {

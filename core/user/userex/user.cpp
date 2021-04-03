@@ -164,27 +164,6 @@ namespace core
 
    }
 
-   ::user::shell* user::shell()
-   {
-
-      if (!m_pshell)
-      {
-
-         auto estatus = create_user_shell();
-
-         if (!estatus)
-         {
-
-            TRACE("failed to create user shell");
-
-         }
-
-      }
-
-      return m_pshell;
-
-   }
-
 
    ::e_status user::init()
    {
@@ -325,7 +304,7 @@ namespace core
 
       auto pcontext = get_context();
 
-      string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata() / "langstyle_settings.xml");
+      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
 
       string strLangUser;
 
@@ -479,37 +458,6 @@ namespace core
 
    }
 
-
-   ::e_status user::create_user_shell()
-   {
-
-      ::e_status estatus = ::success;
-
-      if (!m_pshell)
-      {
-
-         //estatus = __compose(m_pshell, __new(::windows::shell));
-         estatus = __compose(m_pshell);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-
-      if (!m_pshell)
-      {
-
-         return ::error_failed;
-
-      }
-
-      return ::success;
-
-   }
 
    ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
@@ -925,7 +873,7 @@ namespace core
 
          auto psession = get_session();
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->savings().m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 

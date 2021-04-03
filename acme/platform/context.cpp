@@ -10,7 +10,9 @@ namespace acme
    context::context()
    {
 
-      m_pcontext = nullptr;
+      m_pcontext = this;
+      m_papexcontext = nullptr;
+      m_pauracontext = nullptr;
       m_papexapplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
@@ -33,6 +35,9 @@ namespace acme
       m_pbasesystem = nullptr;
       m_pbredsystem = nullptr;
       m_pcoresystem = nullptr;
+      m_pacmenode = nullptr;
+      m_papexnode = nullptr;
+      m_pauranode = nullptr;
       
       m_ptexttranslator = new text_translator();
 
@@ -45,6 +50,14 @@ namespace acme
    {
 
       ::release(m_ptexttranslator);
+
+   }
+
+
+   ::e_status context::initialize_context()
+   {
+
+      return ::success;
 
    }
 

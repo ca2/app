@@ -555,9 +555,9 @@ namespace android
    void interaction_impl::win_update_graphics()
    {
 
-      single_lock synchronizationlock(m_puserinteraction->mutex(),false);
+      single_lock synchronouslock(m_puserinteraction->mutex(),false);
 
-      if(!synchronizationlock.lock())
+      if(!synchronouslock.lock())
       {
          m_bUpdateGraphics = true;
          return;
@@ -624,7 +624,7 @@ namespace android
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock synchronizationlock(m_puserinteraction->get_application()->mutex(), true);
+      single_lock synchronouslock(m_puserinteraction->get_application()->mutex(), true);
 
       ::user::interaction_impl * pwindow;
 
@@ -775,7 +775,7 @@ namespace android
    //bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    //{
 
-   //   //synchronization_lock synchronizationlock(&user_mutex());
+   //   //synchronous_lock synchronouslock(&user_mutex());
 
    //   //ASSERT(::is_window(get_handle()));
 
@@ -1616,7 +1616,7 @@ namespace android
 //bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //{
 //   // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//   /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+//   /*      single_lock synchronouslock(afxMutexHwnd(), true);
 //   hwnd_map * pMap = afxMapHWND();
 //   if (pMap == nullptr)
 //   return false;
@@ -2383,7 +2383,7 @@ namespace android
 //
 //      return ::user::interaction_impl::set_window_position(z, x, y, cx, cy, nFlags);
 //
-//      //      single_lock synchronizationlock(&user_mutex(), true);
+//      //      single_lock synchronouslock(&user_mutex(), true);
 //
 //      //xdisplay d(m_oswindow->display());
 //
@@ -4611,7 +4611,7 @@ namespace android
 
       pfocus->_001GetText(strText);
 
-      synchronization_lock synchronizationlock(osmutex());
+      synchronous_lock synchronouslock(osmutex());
 
       ::oslocal()->m_iEditorSelectionStart = iBeg;
 
@@ -4671,7 +4671,7 @@ namespace android
    bool interaction_impl::has_pending_graphical_update()
    {
 
-      //synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      //synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 

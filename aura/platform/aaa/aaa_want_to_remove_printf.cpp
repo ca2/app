@@ -58,7 +58,7 @@ i32 vwprintf_dup(const widechar *format, va_list args)
 i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
-   synchronization_lock ml(g_pmutexCvt);
+   synchronous_lock ml(g_pmutexCvt);
 
    char * psz = ecvt(d, i, pi1, pi2);
 
@@ -77,7 +77,7 @@ i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz,
 i32 fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
-   synchronization_lock ml(g_pmutexCvt);
+   synchronous_lock ml(g_pmutexCvt);
 
    char * psz = fcvt(d, i, pi1, pi2);
 

@@ -32,7 +32,7 @@ void os_alloc_check_bounds(u8 * point_i32)
 void * os_alloc(size_t size)
 {
 
-	critical_section_lock synchronizationlock(g_pmutexSystemHeap);
+	critical_section_lock synchronouslock(g_pmutexSystemHeap);
 
 	u8 * point = (u8 *)os_impl_alloc(size + 512 + sizeof(uptr));
 
@@ -52,7 +52,7 @@ void * os_alloc(size_t size)
 void * os_realloc(void * pParam, size_t size)
 {
 
-	critical_section_lock synchronizationlock(g_pmutexSystemHeap);
+	critical_section_lock synchronouslock(g_pmutexSystemHeap);
 
 	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 
@@ -76,7 +76,7 @@ void * os_realloc(void * pParam, size_t size)
 void os_free(void * pParam)
 {
 
-	critical_section_lock synchronizationlock(g_pmutexSystemHeap);
+	critical_section_lock synchronouslock(g_pmutexSystemHeap);
 
 	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 

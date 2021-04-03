@@ -10,7 +10,7 @@ namespace parallelization
    void cleanup_task::remove(matter* pmatter)
    {
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       m_mattera.remove(pmatter);
 
@@ -20,14 +20,14 @@ namespace parallelization
    void cleanup_task::add(matter* pmatter)
    {
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       m_mattera.add_unique(pmatter);
 
    }
 
 
-   ::e_status cleanup_task::on_task()
+   ::e_status cleanup_task::run()
    {
 
       while (task_get_run())
@@ -44,7 +44,7 @@ namespace parallelization
 
                bShouldSleep = true;
 
-               synchronization_lock lock(mutex());
+               synchronous_lock lock(mutex());
 
                for (; i < m_mattera.get_count(); )
                {

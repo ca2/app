@@ -36,12 +36,16 @@ namespace experience
             }
 
 #if !defined(CUBE)
+
             fork([this]()
                {
+
+                  auto psession = get_session();
 
                   psession->user()->windowing()->set_cursor_set_from_matter("cursor/tranquillum");
 
                });
+
 #endif
 
             return ::success;

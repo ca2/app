@@ -126,7 +126,7 @@ namespace acme
    class system;
 
 
-   class acme;
+   class node;
 
 //   CLASS_DECL_ACME system * get_system();
 
@@ -2921,7 +2921,7 @@ namespace factory
 
 
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/id_matter.h"
+#include "acme/primitive/primitive/material_object.h"
 
 
 
@@ -3176,7 +3176,15 @@ using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, 
 
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
+
+
 #include "acme/primitive/primitive/object.h"
+
+
+class optional_base1 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
+class optional_base2 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
+class optional_base3 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
+class optional_base4 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
 
 
 #include "acme/parallelization/_.h"

@@ -22,7 +22,7 @@ void ns_main_async(dispatch_block_t block);
 int oswindow_find(NSWindow * window)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
    for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
    {
@@ -39,7 +39,7 @@ int oswindow_find(NSWindow * window)
 oswindow_data * oswindow_get(nswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -119,7 +119,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 bool oswindow_remove(nswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
    iptr iFind = oswindow_find(window);
 
@@ -420,7 +420,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+   synchronous_lock synchronouslock(g_pmutexOsWindowData);
    
    if(g_oswindowActive != window)
    {
@@ -440,7 +440,7 @@ void deactivate_window(oswindow window)
 oswindow set_active_window(oswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
    oswindow windowOld(g_oswindowActive);
 

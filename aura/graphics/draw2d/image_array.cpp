@@ -27,9 +27,9 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
    ::size_i32 size(sizeParam);
 
-   __pointer(::aura::application) papplication = pobject->get_application();
+   auto pcontext = pobject->get_context();
 
-   auto pimageSource = papplication->image().get_image(varFile);
+   auto pimageSource = pcontext->m_pauracontext->image().get_image(varFile);
 
    //if (!imageSource.load_image(varFile, bCreateHelperMaps))
    //{

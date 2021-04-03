@@ -312,7 +312,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto puser = get_user(pathUrl);
 

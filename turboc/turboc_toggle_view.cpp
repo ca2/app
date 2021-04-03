@@ -47,7 +47,7 @@ namespace turboc
    //      return;
 
    //   {
-   //      synchronization_lock synchronizationlock(&m_pmainview->m_pview->m_mutexText);
+   //      synchronous_lock synchronouslock(&m_pmainview->m_pview->m_mutexText);
    //      _001GetText(m_pmainview->m_pview->m_strNewHelloMultiverse);
    //   }
 

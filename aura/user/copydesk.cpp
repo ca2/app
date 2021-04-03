@@ -64,7 +64,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (pcontext->m_pcontext->dir().is(strPath) || pcontext->m_pcontext->file().exists(strPath)))
+         if (strPath.has_char() && (pcontext->m_papexcontext->dir().is(strPath) || pcontext->m_papexcontext->file().exists(strPath)))
          {
 
             if (ppatha == nullptr)
@@ -210,7 +210,9 @@ namespace user
 
             auto psystem = m_psystem->m_paurasystem;
 
-            if (papplication->image().save_image(mem, pimage, psaveimage))
+            auto pcontext = get_context();
+
+            if (pcontext->m_pauracontext->image().save_image(mem, pimage, psaveimage))
             {
 
                str = psystem->m_papexsystem->base64().encode(mem);
@@ -265,9 +267,9 @@ namespace user
                   varFile["raw_http"] = true;
                   varFile["disable_common_name_cert_check"] = true;
 
-                  __pointer(::aura::application) papplication = get_application();
+                  auto pcontext = get_context();
 
-                  auto pimage = papplication->image().load_image(varFile, false);
+                  auto pimage = pcontext->m_pauracontext->image().load_image(varFile, false);
 
                   if (pimage)
                   {
@@ -276,7 +278,7 @@ namespace user
 
                      auto pcontext = get_context();
 
-                     pcontext->m_pcontext->file().as_memory(varFile, mem);
+                     pcontext->m_papexcontext->file().as_memory(varFile, mem);
 
                      auto psystem = m_psystem->m_paurasystem;
 
@@ -390,13 +392,13 @@ namespace user
 
                auto pcontext = get_context();
 
-               pcontext->m_pcontext->file().as_memory(varFile, *pmemory);
+               pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
 
             }
 
-            __pointer(::aura::application) papplication = get_application();
+            auto pcontext = get_context();
 
-            if (!papplication->image().load_image(pimage, pmemory))
+            if (!pcontext->m_pauracontext->image().load_image(pimage, pmemory))
             {
 
                // Couldn't load image from file/URL path...

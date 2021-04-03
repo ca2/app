@@ -2,7 +2,7 @@
       if(g_iFtLevel < 0)
       {
 
-         strPath = pcontext->m_pcontext->dir().install() / "app/_matter/main/_std/_std/font/truetype/arialuni.ttf";
+         strPath = pcontext->m_papexcontext->dir().install() / "app/_matter/main/_std/_std/font/truetype/arialuni.ttf";
 
          if(g_ft == nullptr)
          {

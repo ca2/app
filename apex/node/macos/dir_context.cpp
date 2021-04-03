@@ -112,7 +112,7 @@ namespace macos
 //
 //      string strPath = ::dir::appdata() / "configuration\\directory.xml";
 //
-//      string strDocument = get_context()->file().as_string(strPath);
+//      string strDocument = pcontext->m_papexcontext->file().as_string(strPath);
 //
 //      if(doc.load(strDocument))
 //      {
@@ -500,7 +500,7 @@ namespace macos
                   try
                   {
 
-                     get_context()->file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
 
                   }
                   catch(...)
@@ -515,7 +515,7 @@ namespace macos
                   try
                   {
 
-                     get_context()->file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
 
                   }
                   catch(...)
@@ -1030,7 +1030,7 @@ try1:
    ::file::path dir_context::install()
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       return m_pdirsystem->m_pathCa2;
 

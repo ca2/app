@@ -111,7 +111,7 @@ namespace fs
 
          setRequest["get_response"] = ""; // touch/create property to get_response
 
-         m_pcontext->m_pcontext->http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
+         m_pcontext->m_papexcontext->http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
 
          string strResponse(setRequest["get_response"]);
 
@@ -121,7 +121,7 @@ namespace fs
 
          string strMd5Here;
 
-         strMd5Here = m_pcontext->m_pcontext->file().md5(m_varFile["xml"].cast < ::memory_file >());
+         strMd5Here = m_pcontext->m_papexcontext->file().md5(m_varFile["xml"].cast < ::memory_file >());
 
          string strMd5There;
          
@@ -135,7 +135,7 @@ namespace fs
 
          property_set setPut;
 
-         m_pcontext->m_pcontext->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
+         m_pcontext->m_papexcontext->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
 
          return;
       }
@@ -146,7 +146,7 @@ namespace fs
 
       property_set set;
 
-      m_pcontext->m_pcontext->http().put(strUrl, &m_memfile, set);
+      m_pcontext->m_papexcontext->http().put(strUrl, &m_memfile, set);
 
 
    }

@@ -125,6 +125,28 @@ namespace base
    }
 
 
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::axis::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_pbasesession)
+         {
+
+            m_pbasesession = papexsession->m_pbasesession;
+
+         }
+
+      }
+
+      papexsession->m_pbasesystem = this;
+
+   }
+
+
    __namespace_system_factory(system);
 
 

@@ -1182,7 +1182,7 @@ end_processing_adding:
 
                         __pointer(::apex::system) psystem = get_system();
 
-                        synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+                        synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
                         __pointer(pool_socket) ppoolsocket = __new(pool_socket(psocket));
 
@@ -1673,7 +1673,7 @@ end_processing_adding:
 
       __pointer(::apex::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+      synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
       auto p = psystem->sockets().m_pool.begin();
 

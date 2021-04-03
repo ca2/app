@@ -64,7 +64,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         ::file::path filepathUser = pcontext->m_pcontext->defer_process_path(filepathFinal);
+         ::file::path filepathUser = pcontext->m_papexcontext->defer_process_path(filepathFinal);
 
          auto pfileitem = __new(::file::item(filepathUser, filepathFinal));
 
@@ -131,9 +131,9 @@ namespace filemanager
 
       ::file::listing patha;
 
-      auto papplication = get_application();
+      auto pcontext = m_pcontext;
 
-      papplication->dir().ls(patha, strParent);
+      pcontext->m_papexcontext->dir().ls(patha, strParent);
 
       for (i32 i = 0; i < patha.get_count(); i++)
       {

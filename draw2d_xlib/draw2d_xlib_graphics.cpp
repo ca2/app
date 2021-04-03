@@ -28,7 +28,7 @@ namespace draw2d_xlib
       m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
 
       m_pfont.create(this);
-      m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
+      m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
       m_pfont->m_dFontSize = 12.0;
 
 
@@ -74,7 +74,7 @@ namespace draw2d_xlib
    graphics::~graphics()
    {
 
-//      synchronization_lock ml(&xlib_mutex());
+//      synchronous_lock ml(&xlib_mutex());
 
       /*      HDC hdc = Detach();
 
@@ -139,7 +139,7 @@ namespace draw2d_xlib
    bool graphics::CreateCompatibleDC(::image * pimage)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pdc != nullptr)
       {
@@ -1370,7 +1370,7 @@ namespace draw2d_xlib
    bool graphics::BitBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pimageAlphaBlend->is_set())
       {
@@ -1514,7 +1514,7 @@ namespace draw2d_xlib
 
       return false;
 
-      /*      synchronization_lock ml(&xlib_mutex());
+      /*      synchronous_lock ml(&xlib_mutex());
 
             if(pgraphicsSrc == nullptr)
                return false;
@@ -2715,7 +2715,7 @@ namespace draw2d_xlib
 
       return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc);
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pimageAlphaBlend->is_set())
       {
@@ -3390,7 +3390,7 @@ namespace draw2d_xlib
    bool graphics::DeleteDC()
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       m_pbitmap.release();
 
@@ -3875,7 +3875,7 @@ namespace draw2d_xlib
    i32 graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
-      /*synchronization_lock ml(&xlib_mutex());
+      /*synchronous_lock ml(&xlib_mutex());
       if(pregion == nullptr)
       {
 
@@ -4525,7 +4525,7 @@ namespace draw2d_xlib
    i32 graphics::draw_text(const string & str, RECTANGLE_I32 * prectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pfont.is_null())
          return 0;
@@ -4661,7 +4661,7 @@ namespace draw2d_xlib
    size_i32 graphics::GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex) const
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       //int direction = 0, fontAscent = 0, fontDescent = 0;
 
@@ -4755,7 +4755,7 @@ namespace draw2d_xlib
    bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, i32 iIndex) const
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       ::size_i32  sz = GetTextExtent(lpszString, nCount, iIndex);
 
@@ -4930,7 +4930,7 @@ namespace draw2d_xlib
       if(cx <= 0 || cy <= 0)
          return;
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       set_os_color(clr);
 
@@ -4942,7 +4942,7 @@ namespace draw2d_xlib
    bool graphics::text_out(i32 x, i32 y, const char * lpszString, i32 nCount)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       if(m_pfont.is_null())
          return false;
@@ -5022,7 +5022,7 @@ namespace draw2d_xlib
    bool graphics::LineTo(double x, double y)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       set(m_ppen);
 
@@ -5044,7 +5044,7 @@ namespace draw2d_xlib
    void graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       try
       {
@@ -5403,7 +5403,7 @@ namespace draw2d_xlib
       char * szmf;
 
       pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
-                                  XFT_FAMILY, XftTypeString, os_font_name(e_font_sans),
+                                  XFT_FAMILY, XftTypeString, pnode->font_name(e_font_sans),
                                   pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
                                   nullptr);
 

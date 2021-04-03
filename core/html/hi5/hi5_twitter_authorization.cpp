@@ -152,7 +152,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         setDoc["application_name"] = pcontext->m_pcontext->http().get(strUrl,set);
+         setDoc["application_name"] = pcontext->m_papexcontext->http().get(strUrl,set);
 
          setDoc["authorization_link"] = m_strAuthorizationUrl;
 
@@ -170,7 +170,7 @@ namespace hi5
 
          }
 
-         if(!m_pdocAuth->on_open_document(pcontext->m_pcontext->dir().matter(m_strForm)))
+         if(!m_pdocAuth->on_open_document(pcontext->m_papexcontext->dir().matter(m_strForm)))
          {
 
             return;
@@ -236,7 +236,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         m_pdocAuth->on_open_document(pcontext->m_pcontext->dir().matter(pszMatter));
+         m_pdocAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
          display_main_frame();
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

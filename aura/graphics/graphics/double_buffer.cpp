@@ -182,7 +182,7 @@ namespace graphics
    bool double_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronization_lock slScreen(get_screen_sync());
+      synchronous_lock slScreen(get_screen_sync());
 
       if (m_iCurrentBuffer == 0)
       {
@@ -238,13 +238,13 @@ namespace graphics
    bool double_buffer::update_window()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      synchronization_lock slScreen(get_screen_sync());
+      synchronous_lock slScreen(get_screen_sync());
 
       auto pimage = get_screen_image();
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       if (!::is_ok(pimage))
       {

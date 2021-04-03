@@ -1064,7 +1064,7 @@ void oswindow_data::exit_full_screen()
 void oswindow_data::exit_zoomed()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    xdisplay d(display());
 
@@ -1320,7 +1320,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, i32 x, i32 y, i32
 bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    windowing_output_debug_string("\n::oswindow_data::set_window_position 1");
 

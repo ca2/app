@@ -1,15 +1,15 @@
 #pragma once
 
 
-namespace file
-{
-
-
-   CLASS_DECL_ACME ::file::path app_module();
-   CLASS_DECL_ACME string system_short_name();
-
-
-} // namespace file
+//namespace file
+//{
+//
+//
+//   //CLASS_DECL_ACME ::file::path app_module();
+//   //CLASS_DECL_ACME string system_short_name();
+//
+//
+//} // namespace file
 
 
 

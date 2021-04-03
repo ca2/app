@@ -32,7 +32,7 @@ task_pool::~task_pool()
 
    }
 
-   if (ptask->m_bitIsRunning)
+   if (ptask->m_bIsRunning)
    {
 
       return ptask;

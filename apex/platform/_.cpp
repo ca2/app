@@ -215,7 +215,7 @@ int g_iApexRefCount = 0;
 //CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 //
 //   auto ppair = psystem->m_mapNewApexLibrary.plookup(psz);
 //
@@ -234,7 +234,7 @@ int g_iApexRefCount = 0;
 //CLASS_DECL_APEX::acme::library& get_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 //
 //   return *psystem->m_mapLibrary[psz];
 //
@@ -244,7 +244,7 @@ int g_iApexRefCount = 0;
 //CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewApexLibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 //
 //   __get_new_apex_library()[psz] = pfnNewApexLibrary;
 //
@@ -254,7 +254,7 @@ int g_iApexRefCount = 0;
 //CLASS_DECL_APEX void register_library(const char* psz, ::acme::library* plibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 //
 //   __own(psystem, m_mapLibrary[psz], plibrary);
 //
@@ -487,7 +487,7 @@ CLASS_DECL_APEX int get_apex_init()
 //{
 //
 //
-//   synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 //
 //   auto & plibrary = psystem->m_mapLibrary[strLibrary];
 //

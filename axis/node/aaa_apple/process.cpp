@@ -54,7 +54,7 @@ critical_section * get_pid_cs()
 chldstatus get_chldstatus(int iPid)
 {
 
-   cslock synchronizationlock(get_pid_cs());
+   cslock synchronouslock(get_pid_cs());
 
    return g_ppid->operator[](iPid);
 
@@ -95,7 +95,7 @@ void ansios_sigchld_handler(int sig)
 
       {
 
-         cslock synchronizationlock(get_pid_cs());
+         cslock synchronouslock(get_pid_cs());
 
          auto ppair = g_ppid->plookup(iPid);
 
@@ -257,7 +257,7 @@ namespace apple
 
       {
 
-         cslock synchronizationlock(get_pid_cs());
+         cslock synchronouslock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
@@ -404,14 +404,14 @@ namespace apple
 
       ::file::path path = str;
 
-      if(pcontext->m_pcontext->file().exists(path.folder() / "libaura.dylib"))
+      if(pcontext->m_papexcontext->file().exists(path.folder() / "libaura.dylib"))
       {
 
          ::file::path folderNew = path.folder();
 
          folderNew -= 3;
 
-         if(pcontext->m_pcontext->file().exists(folderNew / "libaura.dylib"))
+         if(pcontext->m_papexcontext->file().exists(folderNew / "libaura.dylib"))
          {
 
             strFallback = folderNew;
@@ -830,7 +830,7 @@ auto tickStart = ::millis::now();
 
       {
 
-         cslock synchronizationlock(get_pid_cs());
+         cslock synchronouslock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 

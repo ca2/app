@@ -26,6 +26,8 @@ namespace draw2d
 
       defer_create_mutex();
 
+      m_pimpl = nullptr;
+
       //m_pmutexFont = __new(::mutex);
 
       //create_factory < e_cursor_set >();
@@ -115,7 +117,7 @@ namespace draw2d
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_papi->open())
       {
@@ -194,7 +196,7 @@ namespace draw2d
    void draw2d::term()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -409,7 +411,7 @@ namespace draw2d
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -467,7 +469,7 @@ namespace draw2d
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 maxx1 = cx;
       i32 maxy1 = cy;
@@ -724,7 +726,7 @@ breakFilter:
       i32 rSquare;
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -753,7 +755,7 @@ breakFilter:
          }
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 cx = pimageDst->width();
       i32 cy = pimageDst->height();
@@ -987,13 +989,13 @@ breakFilter2:
 //   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+//      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_pcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
       //auto psystem = m_psystem->m_paurasystem;
 
@@ -1133,91 +1135,91 @@ breakFilter2:
 //      {
 //
 //
-//#ifdef os_font_name(e_font_mono)
+//#ifdef pnode->font_name(e_font_mono)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_mono);
+//         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
-//         pitem->m_strName = os_font_name(e_font_mono);
+//         pitem->m_strName = pnode->font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans)
+//#ifdef pnode->font_name(e_font_sans)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans);
+//         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
-//         pitem->m_strName = os_font_name(e_font_sans);
+//         pitem->m_strName = pnode->font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif)
+//#ifdef pnode->font_name(e_font_serif)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif);
+//         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
-//         pitem->m_strName = os_font_name(e_font_serif);
+//         pitem->m_strName = pnode->font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_ex)
+//#ifdef pnode->font_name(e_font_sans_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_ex);
+//         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_ex)
+//#ifdef pnode->font_name(e_font_serif_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_ex);
+//         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_fx)
+//#ifdef pnode->font_name(e_font_sans_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_fx);
+//         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_fx)
+//#ifdef pnode->font_name(e_font_serif_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_fx);
+//         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //
@@ -1278,7 +1280,7 @@ breakFilter2:
 
       __pointer(::aura::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 

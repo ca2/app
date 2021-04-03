@@ -11,7 +11,8 @@ namespace acme
    public:
 
 
-      ::context *                                     m_pcontext;
+      ::apex::context *                               m_papexcontext;
+      ::aura::context *                               m_pauracontext;
       ::apex::application *                           m_papexapplication;
       ::aqua::application *                           m_paquaapplication;
       ::aura::application *                           m_pauraapplication;
@@ -34,6 +35,9 @@ namespace acme
       ::base::system *                                m_pbasesystem;
       ::bred::system *                                m_pbredsystem;
       ::core::system *                                m_pcoresystem;
+      ::acme::node *                                  m_pacmenode;
+      ::apex::node *                                  m_papexnode;
+      ::aura::node *                                  m_pauranode;
 
       __pointer(::text_translator)                    m_ptexttranslator;
 
@@ -42,6 +46,8 @@ namespace acme
       context();
       virtual ~context();
 
+
+      virtual ::e_status initialize_context();
 
       virtual void translate_text_data(text_data* ptextdata);
       virtual text __text(const ::id& id);

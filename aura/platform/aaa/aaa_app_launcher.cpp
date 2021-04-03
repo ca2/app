@@ -41,9 +41,9 @@ namespace aura
 
 #endif
 
-      ::file::path pathCandidate = pcontext->m_pcontext->dir().ca2module() / strExe;
+      ::file::path pathCandidate = pcontext->m_papexcontext->dir().ca2module() / strExe;
 
-      if (pcontext->m_pcontext->file().exists(pathCandidate))
+      if (pcontext->m_papexcontext->file().exists(pathCandidate))
       {
 
          return ::move(pathCandidate);

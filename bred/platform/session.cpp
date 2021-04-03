@@ -45,9 +45,10 @@ namespace bred
    void session::on_instantiate_application(::apex::application* papp)
    {
 
-      ::aura::session::on_instantiate_application(papp);
+      ::base::session::on_instantiate_application(papp);
 
       papp->m_pbredsession = this;
+      papp->m_pbredsystem = m_pbredsystem;
 
    }
 

@@ -437,7 +437,7 @@ namespace user
       void queue_graphics_call(PRED pred)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __defer_construct_new(m_pgraphicscalla);
 
@@ -738,6 +738,9 @@ namespace user
       virtual void on_select() override;
 
       virtual bool is_place_holder() override;
+
+      virtual double get_output_fps();
+
 
       
       virtual enum_cursor get_cursor() override;

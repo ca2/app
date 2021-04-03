@@ -258,7 +258,7 @@ namespace sockets
       else if (bConfigProxy)
       {
 
-         m_pcontext->m_pcontext->http().config_proxy(get_url(), this);
+         m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
 
       }
       else

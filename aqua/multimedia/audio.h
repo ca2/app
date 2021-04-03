@@ -65,8 +65,6 @@ CLASS_DECL_AQUA ::aqua::audio * get_get_new_audio();
 CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::object * pobject);
 
 
-CLASS_DECL_AQUA bool has_audio();
-
 
 namespace audio
 {

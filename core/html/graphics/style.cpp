@@ -644,7 +644,8 @@ namespace html
          style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
          if(pstyle == nullptr)
          {
-            if(pelement->m_pparent != nullptr
+            if(::is_set(pelement->m_pparent)
+               && ::is_set(pelement->m_pparent->m_pstyle)
                   && ansi_compare_ci(idName, "padding") != 0
                   && ansi_compare_ci(idName, "margin") != 0
                   && ansi_compare_ci(idName, "border") != 0)

@@ -560,7 +560,7 @@ namespace user
 //////
 //////      }
 //////
-//////      synchronization_lock synchronizationlock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_mutexLongPtr);
 //////
 //////      return (LONG_PTR)m_longptr[nIndex];
 ////
@@ -585,7 +585,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronization_lock synchronizationlock(&m_mutexLongPtr);
+////      synchronous_lock synchronouslock(&m_mutexLongPtr);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1240,7 +1240,7 @@ namespace user
             if (pimpl2)
             {
 
-               synchronization_lock synchronizationlock(pimpl2->mutex());
+               synchronous_lock synchronouslock(pimpl2->mutex());
 
                pimpl2->m_uiptraMouseHover.remove(m_puserinteraction);
 
@@ -1445,7 +1445,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          try
          {
@@ -1534,7 +1534,7 @@ namespace user
    void primitive_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       //try
       //{

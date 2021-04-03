@@ -198,7 +198,7 @@ namespace graphics
    i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect)
    {
 
-      synchronization_lock synchronizationlock(get_screen_sync());
+      synchronous_lock synchronouslock(get_screen_sync());
 
       ::color::color colorTransparent(0);
 

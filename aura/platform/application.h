@@ -8,7 +8,8 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
       virtual public ::user::callback,
-      virtual public ::filemanager::callback
+      virtual public ::filemanager::callback,
+      virtual public ::aura::context
    {
    public:
 
@@ -437,7 +438,7 @@ namespace aura
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
-      virtual bool start_application(bool bSynch, ::create * pcreate) override;
+      //virtual bool start_application(bool bSynch, ::create * pcreate) override;
 
 
 
@@ -1191,6 +1192,9 @@ namespace aura
       void update_app_interest();
       void ensure_app_interest();
 
+
+      virtual bool is_system() const override;
+      virtual bool is_session() const override;
 
       //virtual oswindow get_ca2_app_wnd(const char* psz) override;
 

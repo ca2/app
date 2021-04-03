@@ -423,7 +423,7 @@ namespace user
    string box::calc_display()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string strDisplay;
 
@@ -444,7 +444,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -457,7 +457,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_strDisplay = calc_display();
 

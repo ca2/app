@@ -391,7 +391,7 @@
       if(::str::ends_ci(strSource, ".desktop"))
       {
 
-         string str = pcontext->m_pcontext->file().as_string(strSource);
+         string str = pcontext->m_papexcontext->file().as_string(strSource);
 
          string_array stra;
 

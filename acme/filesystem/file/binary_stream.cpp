@@ -537,7 +537,7 @@ void binary_stream::read(id & id)
 //
 //   nOpenFlags = ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive;
 //
-//   stream.m_pfile = m_pcontext->m_pcontext->file().get_file(path, nOpenFlags);
+//   stream.m_pfile = m_pcontext->m_papexcontext->file().get_file(path, nOpenFlags);
 //
 //   matter.write(*this);
 //
@@ -558,7 +558,7 @@ void binary_stream::read(id & id)
 //
 //   ::stream stream(e_create_new, this, FIRST_VERSION);
 //
-//   stream.m_pfile = m_pcontext->m_pcontext->file().get_reader(path, ::file::e_open_share_deny_write);
+//   stream.m_pfile = m_pcontext->m_papexcontext->file().get_reader(path, ::file::e_open_share_deny_write);
 //
 //   matter.read(*this);
 //
@@ -780,7 +780,7 @@ void binary_stream::read(id & id)
 //   if (strLink.has_char())
 //   {
 //
-//      m_pcontext->m_pcontext->save_to_file(strLink, m_pvarOptions, preference);
+//      m_pcontext->m_papexcontext->save_to_file(strLink, m_pvarOptions, preference);
 //
 //   }
 //
@@ -818,7 +818,7 @@ void binary_stream::read(id & id)
 //   if (strLink.has_char())
 //   {
 //
-//      m_pcontext->m_pcontext->load_from_file(preference, strLink);
+//      m_pcontext->m_papexcontext->load_from_file(preference, strLink);
 //
 //   }
 //

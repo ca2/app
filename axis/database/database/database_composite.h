@@ -95,7 +95,7 @@ namespace database
       virtual bool query_row(__pointer(row) & prow, const char* pszQuery) override;
       virtual bool query_items(__pointer(var_array) & pvara, const char* pszQuery) override;
       virtual bool query_item(::payload & payload, const char* pszQuery) override;
-      virtual bool memory_query_item(get_memory getmemory, const char* pszQuery) override;
+      virtual bool query_blob(get_memory getmemory, const char* pszQuery) override;
 
 
       virtual string escape(const char* psz);

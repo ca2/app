@@ -298,7 +298,7 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 

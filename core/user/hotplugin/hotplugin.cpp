@@ -40,13 +40,13 @@ namespace hotplugin
 
 //         g_paxissystem = new ::axis::system(nullptr, );
 
-//         if(file_exists(::dir::system() / "config\\plugin\\npca2_beg_debug_box.txt"))
+//         if(file_exists(pacmedir->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         {
 
 //            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",e_message_box_ok);
 
 //         }
-//         if(file_exists(::dir::system() / "config\\plugin\\npca2_beg_sleep.txt"))
+//         if(file_exists(pacmedir->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 //         {
 
 //            sleep(10000_ms);

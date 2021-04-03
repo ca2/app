@@ -176,7 +176,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pmeshdata->mutex());
+      synchronous_lock synchronouslock(m_pmeshdata->mutex());
 
       ::rectangle_i32 rectClient = get_client_rect();
 
@@ -682,7 +682,7 @@ namespace user
          {
 
          }
-         else if (psession->savings().is_trying_to_save(::e_resource_processing))
+         else if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, argb(255, 96, 96, 96));
@@ -911,7 +911,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto rect1 = get_client_rect();
 
@@ -1045,7 +1045,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_nItemCount = nCount;
 
@@ -3174,7 +3174,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_plistheader == nullptr)
       {
@@ -3215,7 +3215,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
@@ -3328,7 +3328,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bDrag)
       {
@@ -3521,7 +3521,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto psession = get_session();
 
@@ -3887,7 +3887,7 @@ namespace user
 
       KillTimer(224455);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 
       if (m_bDrag)
@@ -3948,7 +3948,7 @@ namespace user
 
                         strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
-                        synchronizationlock.lock();
+                        synchronouslock.lock();
 
                         string_array stra;
 
@@ -3963,9 +3963,9 @@ namespace user
 
                         auto pcontext = get_context();
 
-                        pcontext->m_pcontext->file().put_contents(strSort, stra.implode("\r\n"));
+                        pcontext->m_papexcontext->file().put_contents(strSort, stra.implode("\r\n"));
 
-                        synchronizationlock.unlock();
+                        synchronouslock.unlock();
 
                         update_icon_list_view_sort();
 
@@ -4007,7 +4007,7 @@ namespace user
 
                   }
 
-                  synchronizationlock.unlock();
+                  synchronouslock.unlock();
 
                   if(m_iClick == 1)
                   {
@@ -4084,7 +4084,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!has_keyboard_focus())
       {
@@ -5275,7 +5275,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_columna.remove_all();
 
@@ -5554,7 +5554,7 @@ namespace user
    void list::CacheHint()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pcache.is_set())
       {
@@ -6523,7 +6523,7 @@ namespace user
    void list::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto point = get_viewport_offset();
 
@@ -7313,7 +7313,7 @@ namespace user
       else
       {
 
-         synchronization_lock synchronizationlock(get_image_list()->mutex());
+         synchronous_lock synchronouslock(get_image_list()->mutex());
 
          if(get_image_list()->m_pimage->is_null()
                || get_image_list()->m_pimage->area() <= 0)
@@ -7827,7 +7827,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
@@ -7840,7 +7840,7 @@ namespace user
 
          auto pcontext = get_context();
 
-         string str = pcontext->m_pcontext->file().as_string(strSort);
+         string str = pcontext->m_papexcontext->file().as_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

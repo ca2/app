@@ -12,37 +12,27 @@ class object;
 
 
 class CLASS_DECL_ACME property_object :
-   virtual public id_matter
+   virtual public material_object
 {
 public:
 
 
    ::e_status                                m_estatus;
+   __pointer(::id_map < routine_array >)     m_pmapPropertyRoutine;
    __pointer(::i64_array)                    m_pia;
    __pointer(property_set)                   m_pset;
-   __pointer(::id_map < routine_array >)     m_pmapPropertyRoutine;
 
 
    property_object() { }
-   property_object(const ::id& id) : id_matter(id) {}
+   property_object(const ::id& id) : material_object(id) {}
    property_object(const property_object & object);
    property_object(property_object && object) :
-      id_matter(::move(object)),
+      material_object(::move(object)),
       m_pia(::move(object.m_pia)),
       m_estatus(object.m_estatus),
       m_pset(::move(object.m_pset))
       {  }
    virtual ~property_object();
-
-
-   inline routine_array & _routine_array(const ::id& id);
-
-
-   inline routine_array & routine_array(const ::id& id);
-
-
-   inline void add_routine(const ::id& id, const ::routine& routine);
-
 
 
 
@@ -52,8 +42,6 @@ public:
 
    virtual void notify_on_finish(::property_object * pcontextobjectFinish) override;
 
-
-   //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
 
    virtual ::e_status finish() override;
 
@@ -73,14 +61,6 @@ public:
    virtual ::e_status operator()() override;
 
 
-   inline ::i64_array & idarray() const;
-
-
-   inline bool is_shared() const { return m_countReference > 1; }
-
-
-   inline bool is_status_ok() const { return (bool)m_estatus; }
-   inline bool has_failed_status() const { return !is_status_ok(); }
 
 
    virtual ::e_status run() override;
@@ -100,21 +80,34 @@ public:
    virtual void on_catch_all_exception();
 
 
+
    virtual stream & write(::stream & stream) const override;
    virtual stream & read(::stream & stream) override;
 
 
-   template < typename TYPE >
-   inline __pointer(TYPE) cast() {return this;}
 
-   template < typename TYPE >
-   inline __pointer(TYPE) cast() const {return (::property_object *) this;}
 
-   template < typename TYPE >
-   inline bool is() const {return cast < TYPE > ();}
+   inline bool is_status_ok() const { return (bool)m_estatus; }
+   inline bool has_failed_status() const { return !is_status_ok(); }
 
-   template < typename TYPE >
-   inline __pointer(TYPE) cast(const ::id & id);
+
+
+
+
+   inline routine_array& _routine_array(const ::id& id);
+
+
+   inline routine_array& routine_array(const ::id& id);
+
+
+   inline void add_routine(const ::id& id, const ::routine& routine);
+
+
+
+   inline ::i64_array& idarray() const;
+
+
+
 
 
    inline bool has_property(const id & id) const;
@@ -145,9 +138,7 @@ public:
    template < typename TYPE >
    inline bool find_attribute(const ::id & id, TYPE & t);
 
-
    inline ::payload & get_object(const ::id & id);
-
 
    inline ::payload operator()(const ::id & id) const;
    inline ::payload operator()(const ::id & id, const ::payload & varDefault) const;
@@ -164,7 +155,6 @@ public:
    inline ::payload find_payload(const ::id & id) const;
    inline ::payload find_payload(const ::id & id, const ::payload & varDefault) const;
 
-
    inline string find_string(const ::id & id, const ansichar * pszDefault = nullptr) const;
 
    inline ::i32 find_i32(const ::id & id, ::i32 iDefault = 0) const;
@@ -172,6 +162,8 @@ public:
    inline ::u32 find_u32(const ::id & id, ::u32 iDefault = 0) const;
 
    template < typename TYPE > inline TYPE & get_cast(const ::id & id, TYPE * pDefault = nullptr);
+
+   using material_object::cast;
 
    template < typename TYPE > inline __pointer(TYPE) cast(const ::id & id) const;
 
@@ -203,10 +195,6 @@ public:
    virtual ::linked_property on_fetch_property(const ::id & id) const;
 
    virtual ::property_object * parent_property_set_holder() const;
-
-
-   template < typename TYPE >
-   inline __transport(TYPE) __create_new();
 
 
 };

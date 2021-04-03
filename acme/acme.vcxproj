@@ -1283,6 +1283,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\windows\mutex.cpp" />
     <ClCompile Include="node\windows\shared_memory.cpp" />
     <ClCompile Include="node\windows\standard_exception.cpp" />
+    <ClCompile Include="node\windows\strdup_array.cpp" />
     <ClCompile Include="node\windows\system.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
@@ -1566,7 +1567,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\waitable.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
-    <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
@@ -1616,6 +1616,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\collection\rectangle_array.cpp" />
+    <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\stringa.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
@@ -1643,7 +1644,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
-    <ClCompile Include="primitive\primitive\id_matter.cpp" />
+    <ClCompile Include="primitive\primitive\material_object.cpp" />
     <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
@@ -1736,14 +1737,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="id.h" />
-    <ClInclude Include="inline\application\linux.h" />
-    <ClInclude Include="inline\application\macos.h" />
-    <ClInclude Include="inline\application\uwp.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
-    <ClInclude Include="inline\console\linux.h" />
-    <ClInclude Include="inline\console\windows.h" />
     <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\implement.h" />
+    <ClInclude Include="inline\implement\ansi.h" />
+    <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="inline\_application.h" />
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
@@ -1882,7 +1881,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\socket_event.h" />
     <ClInclude Include="parallelization\sync.h" />
     <ClInclude Include="parallelization\synchronization_array.h" />
-    <ClInclude Include="parallelization\synchronization_lock.h" />
+    <ClInclude Include="parallelization\synchronous_lock.h" />
     <ClInclude Include="parallelization\synchronization_object.h" />
     <ClInclude Include="parallelization\synchronized_process.h" />
     <ClInclude Include="parallelization\synchronization_result.h" />
@@ -1900,7 +1899,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="parallelization\_thread_os_create_impl.h" />
     <ClInclude Include="parallelization\_types.h" />
-    <ClInclude Include="platform\acme.h" />
     <ClInclude Include="platform\acme_main_data.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\aura_aura.h" />
@@ -2019,6 +2017,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\single.h" />
     <ClInclude Include="primitive\collection\std_iterator.h" />
     <ClInclude Include="primitive\collection\std_pair.h" />
+    <ClInclude Include="primitive\collection\strdup_array.h" />
     <ClInclude Include="primitive\collection\tiny_array.h" />
     <ClInclude Include="primitive\collection\_.h" />
     <ClInclude Include="primitive\collection\_array_base_impl.h" />
@@ -2119,7 +2118,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\osdata_array.h" />
     <ClInclude Include="primitive\primitive\property_object.h" />
-    <ClInclude Include="primitive\primitive\id_matter.h" />
+    <ClInclude Include="primitive\primitive\material_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />

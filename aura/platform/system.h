@@ -269,6 +269,8 @@ namespace aura
 
       virtual ::e_status  initialize(::object * pobject) override;
 
+      virtual void on_add_session(::apex::session* papexsession) override;
+
       virtual ::e_status init() override;
       //virtual ::e_status init_instance() override;
       //virtual void term_instance() override;
@@ -361,7 +363,7 @@ namespace aura
 
       //virtual __pointer(::aura::session) on_create_session() override;
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
       //virtual void construct(const char * pszAppId);
 
@@ -547,7 +549,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 

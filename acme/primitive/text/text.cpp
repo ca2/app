@@ -50,6 +50,13 @@ text_data * text::clone_text_data() const
 
    auto ptextdata = m_ptextdata;
 
+   if (::is_null(ptextdata))
+   {
+
+      return nullptr;
+
+   }
+
    auto ptexttranslator = ptextdata->m_ptexttranslator;
 
    return ptexttranslator->clone_text_data(ptextdata);
@@ -60,7 +67,14 @@ text_data * text::clone_text_data() const
 string text::get_text() const
 {
 
-   synchronization_lock lock(m_ptextdata->m_ptexttranslator->mutex());
+   if (::is_null(m_ptextdata))
+   {
+
+      return "";
+
+   }
+
+   synchronous_lock lock(m_ptextdata->m_ptexttranslator->mutex());
 
    if (m_ptextdata->m_bPendingUpdate)
    {

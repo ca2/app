@@ -75,9 +75,9 @@ bool db_server::initialize()
 
    string str;
 
-   str = pcontext->m_pcontext->dir().userappdata("database.sqlite");
+   str = pcontext->m_papexcontext->dir().userappdata("database.sqlite");
 
-   pcontext->m_pcontext->dir().mk(pcontext->m_pcontext->dir().name(str));
+   pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(str));
 
    m_pdb->setDatabase(str);
 

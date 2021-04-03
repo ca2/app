@@ -107,7 +107,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   }
 //
-//  synchronization_lock synchronizationlock(channel_mutex());
+//  synchronous_lock synchronouslock(channel_mutex());
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -197,7 +197,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 //{
 //
-//  synchronization_lock synchronizationlock(s_pmutexChannel);
+//  synchronous_lock synchronouslock(s_pmutexChannel);
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //

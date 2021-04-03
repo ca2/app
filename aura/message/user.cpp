@@ -195,9 +195,11 @@ namespace message
       else
       {
 
-         __pointer(::aura::session) psession = get_session();
+         auto psession = get_session();
 
-         auto puser = psession->m_puser;
+         auto paurasession = psession->m_paurasession;
+
+         auto puser = paurasession->m_puser;
 
          auto pwindowing = puser->m_pwindowing;
 

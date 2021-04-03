@@ -72,7 +72,7 @@ namespace sockets
    void socket::create_socket()
    {
 
-      synchronization_lock ml(s_pmutex);
+      synchronous_lock ml(s_pmutex);
 
       m_socket = s_socketNextIdSeed;
 
@@ -173,7 +173,7 @@ namespace sockets
       socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
       socket_handler()->AddList(m_socket, LIST_RETRY, false);
       socket_handler()->AddList(m_socket, LIST_CLOSE, false);
-      synchronization_lock ml(s_pmutex);
+      synchronous_lock ml(s_pmutex);
       s_mapSocket.remove_key(m_socket);
       m_socket = INVALID_SOCKET;
 

@@ -5,6 +5,7 @@
 #include "acme/platform/static_setup.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
+#include "shell.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
@@ -68,6 +69,28 @@ namespace user
       }
 
       return estatus;
+
+   }
+
+
+   ::user::shell* user::shell()
+   {
+
+      if (!m_pshell)
+      {
+
+         auto estatus = create_user_shell();
+
+         if (!estatus)
+         {
+
+            TRACE("failed to create user shell");
+
+         }
+
+      }
+
+      return m_pshell;
 
    }
 
@@ -369,7 +392,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_pcontext->file().as_string(pcontext->m_pcontext->dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -491,6 +514,40 @@ namespace user
    }
 
 
+   ::e_status user::create_user_shell()
+   {
+
+      ::e_status estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         //estatus = __compose(m_pshell, __new(::windows::shell));
+         estatus = __compose(m_pshell);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (!m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+
+
    ::user::primitive * user::get_mouse_focus_LButtonDown()
    {
 
@@ -502,7 +559,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -512,7 +569,7 @@ namespace user
    void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -550,7 +607,7 @@ namespace user
 
          __pointer(::aura::application) papplicationAura = papplication;
 
-         synchronization_lock synchronizationlock(&papplicationAura->m_mutexFrame);
+         synchronous_lock synchronouslock(&papplicationAura->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
@@ -1202,7 +1259,7 @@ namespace user
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1335,18 +1392,18 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      synchronization_lock synchronizationlock(&m_mutexRunnable);
+      synchronous_lock synchronouslock(&m_mutexRunnable);
 
       while (m_listRunnable.has_elements() && ::task_get_run())
       {
 
          auto prunnable = m_listRunnable.pop_front();
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          prunnable->operator()();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          bDoneALotOfThings = true;
 

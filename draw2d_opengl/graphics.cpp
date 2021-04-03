@@ -5294,7 +5294,7 @@ namespace draw2d_opengl
    //plusplus::Pen * graphics::gl2d_pen()
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   if(m_ppen.is_null())
    //   {
@@ -5394,7 +5394,7 @@ namespace draw2d_opengl
    bool graphics::flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 //      m_pgraphics->Flush();
 
@@ -5406,7 +5406,7 @@ namespace draw2d_opengl
    bool graphics::sync_flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //m_pgraphics->Flush(plusplus::FlushIntentionSync);
 
@@ -5445,7 +5445,7 @@ namespace draw2d_opengl
 
       return;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       draw2d_opengl_enum_fonts fonts(itema);
 

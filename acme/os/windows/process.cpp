@@ -687,7 +687,7 @@ id_array module_path_get_pid(const char * pszModulePath, bool bModuleNameIsPrope
 
    ::mutex veri_global_ca2(e_create_new, NULL, "Global\\the_veri_global_ca2");
 
-   synchronization_lock lock_the_veri_global_ca2(&veri_global_ca2);
+   synchronous_lock lock_the_veri_global_ca2(&veri_global_ca2);
 
    HANDLE process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 

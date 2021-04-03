@@ -24,7 +24,7 @@ namespace geo
    void department::defer_check_openweather_city_list()
    {
 
-      synchronization_lock synchronizationlock(get_openweather_city_mutex());
+      synchronous_lock synchronouslock(get_openweather_city_mutex());
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -43,7 +43,7 @@ namespace geo
 
       auto pcontext = m_pcontext->m_pcontext;
 
-      auto& file = pcontext->file();
+      auto& file = pcontext->m_papexcontext->file();
 
       try
       {
@@ -55,11 +55,11 @@ namespace geo
          *file.get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
 
 
-         //pcontext->m_pcontext->file().to_array(m_straCity, dir::system() / "weather-cit.bin");
-         //pcontext->m_pcontext->file().to_array(m_straCityLo, dir::system() / "weather-cil.bin");
-         //pcontext->m_pcontext->file().to_array(m_iaIds, dir::system() / "weather-ids.bin");
-         //pcontext->m_pcontext->file().to_array(m_daLon, dir::system() / "weather-lon.bin");
-         //pcontext->m_pcontext->file().to_array(m_daLat, dir::system() / "weather-lat.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCity, m_pcontext->m_papexcontext->system() / "weather-cit.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCityLo, m_pcontext->m_papexcontext->system() / "weather-cil.bin");
+         //pcontext->m_papexcontext->file().to_array(m_iaIds, m_pcontext->m_papexcontext->system() / "weather-ids.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLon, m_pcontext->m_papexcontext->system() / "weather-lon.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLat, m_pcontext->m_papexcontext->system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()
@@ -476,9 +476,9 @@ namespace geo
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_pcontext->http().get(strGetUrl, set);
+      string str = pcontext->m_papexcontext->http().get(strGetUrl, set);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       const char* pszJson = str;
 
@@ -549,7 +549,7 @@ namespace geo
 
       {
 
-         synchronization_lock synchronizationlock(&m);
+         synchronous_lock synchronouslock(&m);
 
          if (!m_bInitialLocalityTimeZoneInit)
          {
@@ -562,7 +562,7 @@ namespace geo
 
                auto pcontext = get_context();
 
-               auto file = pcontext->m_pcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
+               auto file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
 
                if (file.is_set())
                {
@@ -610,7 +610,7 @@ namespace geo
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_pcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
 
       if (str.has_char())
       {
@@ -656,13 +656,13 @@ namespace geo
 
       {
 
-         synchronization_lock synchronizationlock(&m);
+         synchronous_lock synchronouslock(&m);
 
          m_cityTimeZone[(iptr)pcity->m_iId] = timezone;
 
          ::file::path path = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
 
-         auto file = pcontext->m_pcontext->file().get_writer(path);
+         auto file = pcontext->m_papexcontext->file().get_writer(path);
 
          ::binary_stream writer(file);
 
@@ -797,13 +797,13 @@ namespace geo
       //
       //      {
       //
-      //         synchronization_lock synchronizationlock(&m);
+      //         synchronous_lock synchronouslock(&m);
       //
       //         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
       //
       //         ::file::path path = m_psystem->m_pacmedir->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = pcontext->m_pcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+      //         auto & file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //

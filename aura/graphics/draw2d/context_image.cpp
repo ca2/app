@@ -391,7 +391,7 @@ context_image::~context_image()
 
    auto pcontext = get_context();
 
-   ::file::path path = pcontext->m_pcontext->dir().matter(strMatter);
+   ::file::path path = pcontext->m_papexcontext->dir().matter(strMatter);
 
    auto estatus = _load_image(pimage, path, bSync, bCreateHelperMaps);
 
@@ -419,7 +419,7 @@ context_image::~context_image()
 
       path = strMatter;
 
-      path = pcontext->m_pcontext->dir().matter(path / strIcon);
+      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
 
       auto estatus = _load_image(pimage, path, true);
 
@@ -507,7 +507,7 @@ context_image::~context_image()
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_pcontext->file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!pfile)
       {
@@ -560,7 +560,7 @@ context_image::~context_image()
 
    auto pcontext = get_context();
 
-   return pcontext->m_pcontext->file().put_contents(varFile, mem);
+   return pcontext->m_papexcontext->file().put_contents(varFile, mem);
 
 }
 
@@ -592,7 +592,7 @@ context_image::~context_image()
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_pcontext->file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {

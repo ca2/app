@@ -32,7 +32,7 @@ property_object::~property_object()
 ::e_status property_object::finalize()
 {
 
-   ::id_matter::finalize();
+   ::material_object::finalize();
 
    //m_pobject.release(OBJ_REF_DBG_THIS);
 
@@ -81,7 +81,7 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 
    //return ::matter::finish(pcontextobjectFinish);
 
-   auto estatus = ::id_matter::finish();
+   auto estatus = ::material_object::finish();
 
    return estatus;
 
@@ -91,11 +91,11 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 ::e_status property_object::on_finish()
 {
 
-   auto estatus = id_matter::on_finish();
+   auto estatus = material_object::on_finish();
 
    return estatus;
 
-   //synchronization_lock synchronizationlock(mutex());
+   //synchronous_lock synchronouslock(mutex());
 
    //if (m_pnotifya)
    //{
@@ -110,7 +110,7 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
    //      if (pmatter && pmatter->m_bFinishing)
    //      {
 
-   //         synchronizationlock.unlock();
+   //         synchronouslock.unlock();
 
    //         sleep(10_ms);
 
@@ -119,7 +119,7 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
    //         if (estatus == ::success)
    //         {
 
-   //            synchronizationlock.lock();
+   //            synchronouslock.lock();
 
    //            pnotifya->remove(pmatter);
 
@@ -127,7 +127,7 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 
    //         }
 
-   //         synchronizationlock.lock();
+   //         synchronouslock.lock();
 
    //      }
 

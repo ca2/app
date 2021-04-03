@@ -116,28 +116,28 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str = ::dir::system() / "database.sqlite";
+   //str = pacmedir->system() / "database.sqlite";
 
    if (papplication->is_system())
    {
 
-      str = pcontext->m_pcontext->dir().appdata() / "system.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
    }
    else if (papplication->is_session())
    {
 
-      str = pcontext->m_pcontext->dir().appdata() / "session.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = pcontext->m_pcontext->dir().appdata() / "app.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
    }
 
-   if(!pcontext->m_pcontext->dir().mk(str.folder()))
+   if(!pcontext->m_papexcontext->dir().mk(str.folder()))
    {
 
       return false;
@@ -289,7 +289,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::key k
 bool db_server::data_server_save(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    UNREFERENCED_PARAMETER(pobject);
 
@@ -355,7 +355,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(get_db_str_set() == nullptr)
    {
@@ -373,7 +373,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 bool db_server::save(const ::database::key & key, memory & mem)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    string str;
 

@@ -19,7 +19,24 @@ namespace acme
 }
 
 
-class context;
+namespace apex
+{
+
+ 
+   class context;
+
+
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class context;
+
+
+} // namespace aura
 
 
 class CLASS_DECL_ACME object :
@@ -121,9 +138,14 @@ public:
    template < typename BASE_TYPE >
    void save_to(const ::payload& varFile, BASE_TYPE* pobject);
 
+   
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status set_finish() override;
    virtual ::e_status finalize() override;
+
+
+   virtual ::e_status on_initialize_object();
+
 
    //inline const char* topic_text();
 
@@ -802,6 +824,9 @@ public:
    //template < typename TYPE >
    //inline __transport(TYPE) __create_new();
 
+   //template < typename TYPE >
+   //inline __transport(TYPE) __create_new();
+
    //inline ::e_status __compose(__composite(::image) & pimage);
 
    //inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
@@ -1086,9 +1111,9 @@ public:
 
    //   auto ptask = ::get_task();
 
-   //   synchronization_lock synchronizationlock(ptask->mutex());
+   //   synchronous_lock synchronouslock(ptask->mutex());
 
-   //   if (ptask && ptask->m_bitIsPred)
+   //   if (ptask && ptask->m_bIsPredicate)
    //   {
 
    //      routine();

@@ -425,7 +425,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "usersystem://"))
    {
 
-      path = ::dir::system() / path;
+      path = pacmedir->system() / path;
 
    }
    else if (::str::begins_eat_ci(path, "desktop://"))
@@ -820,7 +820,7 @@ string context::http_get(const string & strUrl, ::property_set & set)
 ::handle::ini context::local_ini()
 {
 
-   ::file::path pathFolder = ::dir::localconfig();
+   ::file::path pathFolder = pacmedir->localconfig();
 
    return ini_from_path(pathFolder);
 
@@ -943,7 +943,7 @@ string context::http_get(const char * pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file().put_contents_utf8(::dir::config() / strPath, strValue);
+   return file().put_contents_utf8(pacmedir->config() / strPath, strValue);
 
 }
 
@@ -951,7 +951,7 @@ bool context::sys_set(string strPath, string strValue)
 string context::sys_get(string strPath, string strDefault)
 {
 
-   string strValue = file().as_string(::dir::config() / strPath);
+   string strValue = file().as_string(pacmedir->config() / strPath);
 
    if (strValue.is_empty())
    {
@@ -976,7 +976,7 @@ string context::load_string(const char * psz)
 void context::on_update_matter_locator()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_straMatterLocator.remove_all();
 
@@ -1027,7 +1027,7 @@ string context::matter_locator(::aura::application * papp)
 void context::add_matter_locator(string strApp)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    string strMatterLocator = matter_locator(strApp);
 
@@ -1044,7 +1044,7 @@ void context::add_matter_locator(string strApp)
 void context::add_matter_locator(::aura::application * papp)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    string strMatterLocator = matter_locator(papp);
 
@@ -1060,7 +1060,7 @@ void context::add_matter_locator(::aura::application * papp)
 ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(pcontext->m_pcontext->file().get_reader(varFile));
+   binary_stream reader(pcontext->m_papexcontext->file().get_reader(varFile));
 
    read(reader);
 
@@ -1072,7 +1072,7 @@ void context::add_matter_locator(::aura::application * papp)
 ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
-   binary_stream writer(pcontext->m_pcontext->file().get_writer(varFile));
+   binary_stream writer(pcontext->m_papexcontext->file().get_writer(varFile));
 
    write(writer);
 

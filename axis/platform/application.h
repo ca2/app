@@ -71,7 +71,7 @@ namespace axis
 
 
       virtual ::e_status     run() override;
-      virtual ::e_status     main() override;
+      //virtual ::e_status     main() override;
       virtual ::e_status     on_run() override;
 
       virtual ::e_status application_pre_run() override;

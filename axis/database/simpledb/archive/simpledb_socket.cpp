@@ -256,7 +256,7 @@ namespace simpledb
       }
       else
       {
-         i32 iLen = pcontext->m_pcontext->file().length(lpcsz);
+         i32 iLen = pcontext->m_papexcontext->file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;

@@ -57,7 +57,7 @@ namespace turboc
       else if(get_typed_view < edit_view >() != NULL)
       {
 
-         string str = pcontext->m_pcontext->file().as_string(varFile);
+         string str = pcontext->m_papexcontext->file().as_string(varFile);
 
          str = str.Left(84);
 

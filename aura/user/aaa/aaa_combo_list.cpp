@@ -291,7 +291,7 @@ namespace user
    void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -1094,7 +1094,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             auto & preference = psession->m_uiptraToolWindow.add_new();
 
@@ -1110,7 +1110,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             ::index iFind = psession->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 

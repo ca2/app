@@ -31,7 +31,7 @@
    //if (::get_context_system() != nullptr)
    //{
 
-   //   synchronization_lock synchronizationlock(get_system()->mutex());
+   //   synchronous_lock synchronouslock(get_system()->mutex());
 
    //  get_system()->m_pathConfig = path;
 

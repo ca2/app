@@ -55,7 +55,7 @@ void xcb_handle_just_hooks()
       try
       {
 
-         synchronization_lock synchronizationlock(x11_mutex());
+         synchronous_lock synchronouslock(x11_mutex());
 
          XLockDisplay(pdisplay);
 

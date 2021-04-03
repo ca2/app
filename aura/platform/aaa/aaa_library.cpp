@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const char * pszAppName)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -567,7 +567,7 @@ namespace aura
    __transport(::aura::application) library::get_new_application(::object * pobject, const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       try
       {
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array & stra)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -739,7 +739,7 @@ namespace aura
    __pointer(::matter) library::create_object(::object * pobject, const char * pszClass)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClass))
       {
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const char * pszClassId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       string_array stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -865,7 +865,7 @@ namespace aura
    void * library::raw_get(const char * pszEntryName)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 

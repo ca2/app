@@ -130,7 +130,7 @@ namespace filemanager
 
             auto pcontext = get_context();
 
-            m_pitem = __new(::file::item(pcontext->m_pcontext->defer_process_path(strOldPath), strOldPath));
+            m_pitem = __new(::file::item(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath));
 
             OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -145,7 +145,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_pcontext->dir().watcher().remove_watch(m_filewatchid);
+         pcontext->m_papexcontext->dir().watcher().remove_watch(m_filewatchid);
 
       }
 
@@ -154,7 +154,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         auto& dir = pcontext->m_pcontext->dir();
+         auto& dir = pcontext->m_papexcontext->dir();
 
          auto& watcher = dir.watcher();
 
@@ -411,7 +411,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path pathFinal = pcontext->m_pcontext->defer_process_path(pathUser);
+      ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
 
       __pointer(::file::item) pitem = __new(::file::item(pathUser, pathFinal));
 
@@ -622,7 +622,7 @@ namespace filemanager
 
       string strManagerId;
 
-      auto pcontext = m_pcontext->m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
       m_path = filemanager_project_entry(strManagerId, varFile.get_string(), pcontext);
 
@@ -956,7 +956,7 @@ namespace filemanager
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //pcontext->m_pcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
+      //pcontext->m_papexcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_views(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }

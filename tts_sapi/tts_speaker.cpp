@@ -574,7 +574,7 @@ namespace tts_sapi
 
          //}
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_co_initialize_ex(false);
 
@@ -777,7 +777,7 @@ namespace tts_sapi
 
          //}
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_co_initialize_ex(false);
 
@@ -959,7 +959,7 @@ namespace tts_sapi
 
          }
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_voice[strLang].is_null())
          {

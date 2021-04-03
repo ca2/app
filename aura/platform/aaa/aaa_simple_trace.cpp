@@ -123,7 +123,7 @@ CLASS_DECL_AURA bool memory_counter_on()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = file_exists(::dir::config() / "system/memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = file_exists(pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -152,13 +152,13 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
 #if defined(_UWP)
 
-      string strBasePath = ::dir::system() / "memory_counters";
+      string strBasePath = pacmedir->system() / "memory_counters";
 
 #else
 
       ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath = ::dir::system() / "memory_counters" / strModule.title() / __str(getpid());
+      string strBasePath = pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
 
 #endif
 

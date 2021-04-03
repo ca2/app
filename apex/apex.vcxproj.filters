@@ -252,6 +252,9 @@
     <Filter Include="Header Files\primitive\subject">
       <UniqueIdentifier>{1afcffb1-fdf1-4bfd-944d-9e578472682c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\inline\implement">
+      <UniqueIdentifier>{78f8d54c-d7ac-45af-8d44-3331413b29d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -843,9 +846,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\async.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_apex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\apex_regex.h">
@@ -1490,11 +1490,14 @@
     <ClInclude Include="parallelization\service_handler.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="platform\apex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\library.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\windows.h">
+      <Filter>Header Files\inline\implement</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\ansi.h">
+      <Filter>Header Files\inline\implement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2142,9 +2145,6 @@
     </ClCompile>
     <ClCompile Include="parallelization\service_handler.cpp">
       <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\apex.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>

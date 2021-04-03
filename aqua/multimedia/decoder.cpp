@@ -103,7 +103,7 @@ namespace multimedia
 
          auto pmultimedia = psystem->multimedia();
 
-         synchronization_lock synchronizationlock(pmultimedia->mutex());
+         synchronous_lock synchronouslock(pmultimedia->mutex());
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 
@@ -225,7 +225,7 @@ namespace multimedia
    bool decoder::multimedia_get_attribute(::e_id eattribute, ::payload & payload)
    {
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       if (eattribute == id_title)
       {

@@ -244,10 +244,10 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    return false;
-   single_lock synchronizationlock(m_table.mutex(), false);
+   single_lock synchronouslock(m_table.mutex(), false);
    // Wait for ::mutex. Once it is obtained, no other client may
    // communicate with the server
-   if(!synchronizationlock.lock(duration::zero()))
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(!m_table.check_map())
       return false;
@@ -288,8 +288,8 @@ bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath,
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    index iIteration = 0;
-   single_lock synchronizationlock(m_table.mutex(), false);
-   if(!synchronizationlock.lock(duration::zero()))
+   single_lock synchronouslock(m_table.mutex(), false);
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(!get_fs_size(i64Size, pszPath, bPending, iIteration))
       return false;
@@ -299,15 +299,15 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
 
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
 {
-   single_lock synchronizationlock(m_table.mutex(), false);
-   if(!synchronizationlock.lock(duration::zero()))
+   single_lock synchronouslock(m_table.mutex(), false);
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(iIteration >= m_iMaxIteration)
    {
       bPending = true;
       return true;
    }
-   string strTitle = pcontext->m_pcontext->file().name_(pszPath);
+   string strTitle = pcontext->m_papexcontext->file().name_(pszPath);
    file_size_table::item * pitem = m_table.m_item.FindItem(get_application(), pszPath, iIteration);
    if(pitem != nullptr)
    {
@@ -445,7 +445,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       ::file::byte_stream_memory_file file(get_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      single_lock synchronizationlock(m_criticalsection, true);
+      single_lock synchronouslock(m_criticalsection, true);
       size.m_oswindow = (oswindow) pusermessage->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
@@ -492,7 +492,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
          while(m_sizea.get_size() > 0)
          {
-            single_lock synchronizationlock(m_criticalsection, true);
+            single_lock synchronouslock(m_criticalsection, true);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);
@@ -537,7 +537,7 @@ void FileSystemSizeWnd::ClientStartServer()
    {
       m_millisLastStartTime= ::millis::now();
 
-      simple_shell_launcher launcher(nullptr, nullptr, pcontext->m_pcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
+      simple_shell_launcher launcher(nullptr, nullptr, pcontext->m_papexcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 
       launcher.execute();
 

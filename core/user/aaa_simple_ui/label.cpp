@@ -56,11 +56,11 @@ namespace simple_ui
 
       ::write_text::font_pointer f(e_create);
 
-      /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height() * 0.7);
+      /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectClient.height() * 0.7);
 
       float fMargin = (rectClient.height() * ((1.0f - 0.7f) / 2.0f));*/
 
-      f->create_pixel_font(os_font_name(e_font_sans), (i32)rectClient.height() * .84);
+      f->create_pixel_font(pnode->font_name(e_font_sans), (i32)rectClient.height() * .84);
 
       float fMargin = 0.0;
 

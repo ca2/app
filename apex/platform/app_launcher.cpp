@@ -63,9 +63,9 @@ namespace apex
 
       auto pcontext = get_context();
 
-      ::file::path pathCandidate = m_pcontext->m_pcontext->dir().ca2module() / strExe;
+      ::file::path pathCandidate = m_pcontext->m_papexcontext->dir().ca2module() / strExe;
 
-      if (m_pcontext->m_pcontext->file().exists(pathCandidate))
+      if (m_pcontext->m_papexcontext->file().exists(pathCandidate))
       {
 
          return ::move(pathCandidate);

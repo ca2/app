@@ -1891,7 +1891,7 @@ namespace handle
    //localini::localini(::matter * pobject)
    //{
 
-   //   auto preader = Ctx(pobject).file().get_reader(::dir::localconfig() / "this.ini");
+   //   auto preader = Ctx(pobject).file().get_reader(pacmedir->localconfig() / "this.ini");
 
    //   if (preader)
    //   {

@@ -57,7 +57,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               synchronization_lock synchronizationlock(&pmq->m_mutex);
+               synchronous_lock synchronouslock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -116,7 +116,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
             if(pmq != nullptr)
             {
 
-               synchronization_lock synchronizationlock(&pmq->m_mutex);
+               synchronous_lock synchronouslock(&pmq->m_mutex);
 
                if(pmq->ma.get_count() > 0)
                {
@@ -376,7 +376,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WP
 
    }
 
-   synchronization_lock ml(&pmq->m_mutex);
+   synchronous_lock ml(&pmq->m_mutex);
 
    MESSAGE msg;
 

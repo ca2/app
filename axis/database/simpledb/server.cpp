@@ -34,7 +34,7 @@ namespace simpledb
 
       }
 
-      m_bRemote = !m_pcontext->m_pcontext->is_local_data();
+      m_bRemote = !m_pcontext->m_papexcontext->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {
@@ -45,7 +45,7 @@ namespace simpledb
 
       ::file::path pathDatabase(pszDatabase);
 
-      if (!m_pcontext->m_pcontext->dir().mk(pathDatabase.folder()))
+      if (!m_pcontext->m_papexcontext->dir().mk(pathDatabase.folder()))
       {
 
          return false;
@@ -61,7 +61,7 @@ namespace simpledb
 
       }
 
-      synchronization_lock synchronizationlock(pdatabase->mutex());
+      synchronous_lock synchronouslock(pdatabase->mutex());
 
       //estatus = pdatabase->set_finish(this);
 
@@ -180,7 +180,7 @@ namespace simpledb
       try
       {
 
-         synchronization_lock synchronizationlock(pdatabase->mutex());
+         synchronous_lock synchronouslock(pdatabase->mutex());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

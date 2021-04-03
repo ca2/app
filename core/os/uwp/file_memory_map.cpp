@@ -94,7 +94,7 @@ namespace file
    bool memory_map::close()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pdata != nullptr)
       {

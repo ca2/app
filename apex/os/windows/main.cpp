@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/operating_system.h"
-#include "apex/platform/apex.h"
+#include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
@@ -107,7 +107,7 @@ namespace apex
 
          ::file::path pathLnk;
 
-         pathObj = m_pcontext->m_pcontext->file().module();
+         pathObj = m_pcontext->m_papexcontext->file().module();
 
          string strLinkTitle;
 
@@ -121,7 +121,7 @@ namespace apex
 
          ::dir::mk(pathLnk.folder());
 
-         m_psystem->m_papexsystem->m_papex->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+         m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
       }
 

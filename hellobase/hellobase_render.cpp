@@ -100,9 +100,9 @@ namespace hellobase
       //if (m_bNewLayout)
       //{
 
-      //   synchronization_lock sl2(&m_mutexWork);
-      //   synchronization_lock sl3(&m_mutexDraw);
-      //   synchronization_lock sl4(&m_mutexSwap);
+      //   synchronous_lock sl2(&m_mutexWork);
+      //   synchronous_lock sl3(&m_mutexDraw);
+      //   synchronous_lock sl4(&m_mutexSwap);
 
 /*      //   bool bNewSize = m_pimage->width() != sizeNew.cx || m_pimage->m_size.cy != sizeNew.cy;
 
@@ -300,7 +300,7 @@ namespace hellobase
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexWork);
+         synchronous_lock synchronouslock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -345,7 +345,7 @@ namespace hellobase
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       if (m_bDib1)
       {
@@ -362,7 +362,7 @@ namespace hellobase
 
       }
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if (m_bDib1)
       {
@@ -441,7 +441,7 @@ namespace hellobase
 //
 //      {
 //
-//         synchronization_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText);
 //
 //         strHelloBase = get_helloaura().c_str(); // rationale : string allocation fork *for parallelization*
 //
@@ -472,7 +472,7 @@ namespace hellobase
 //
 //            {
 //
-//               synchronization_lock slDib(&m_mutexDib);
+//               synchronous_lock slDib(&m_mutexDib);
 //
 //               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
 //               {
@@ -515,7 +515,7 @@ namespace hellobase
 //
 //      {
 //
-//         synchronization_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText);
 //
 //         if (strHelloBase != get_helloaura() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
 //            return;
@@ -618,7 +618,7 @@ namespace hellobase
 //      if(!m_bFirstDone)
 //      {
 //
-//         synchronization_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText);
 //
 //         if (strHelloBase == get_helloaura() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
 //         {
@@ -729,7 +729,7 @@ namespace hellobase
 //
 //      {
 //
-//         synchronization_lock slDib(&m_mutexDib);
+//         synchronous_lock slDib(&m_mutexDib);
 //
 //         if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //         {
@@ -851,7 +851,7 @@ namespace hellobase
 //      if (papplication->m_iErrorAiFont == 0)
 //      {
 //
-//         synchronization_lock slAiFont(&papplication->m_mutexAiFont);
+//         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
 //
 //         FT_Face & face = (FT_Face &)papplication->m_faceAi;
 //
@@ -1046,7 +1046,7 @@ namespace hellobase
       //         if (m_strLast23.has_char())
       //         {
 
-      //            synchronization_lock synchronizationlock(&m_mutexDib23);
+      //            synchronous_lock synchronouslock(&m_mutexDib23);
 
       //            auto & pimage = image23(m_strLast23);
 
@@ -1064,7 +1064,7 @@ namespace hellobase
       //         if (m_strCurrent23.has_char())
       //         {
 
-      //            synchronization_lock synchronizationlock(&m_mutexDib23);
+      //            synchronous_lock synchronouslock(&m_mutexDib23);
 
       //            auto & pimage = image23(m_strCurrent23);
 
@@ -1083,7 +1083,7 @@ namespace hellobase
       //      else if (m_strCurrent23.has_char())
       //      {
 
-      //         synchronization_lock synchronizationlock(&m_mutexDib23);
+      //         synchronous_lock synchronouslock(&m_mutexDib23);
 
       //         auto & pimage = image23(m_strCurrent23);
 
@@ -1115,7 +1115,7 @@ namespace hellobase
 
       //      {
 
-      //         synchronization_lock slText(&m_pview->m_mutexText);
+      //         synchronous_lock slText(&m_pview->m_mutexText);
 
       //         strHelloBase = m_pview->get_processed_helloaura().c_str();
 
@@ -1128,7 +1128,7 @@ namespace hellobase
 
       //         ::write_text::font_pointer font(e_create);
 
-      //         font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
+      //         font->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
       //         pgraphics->set_font(font);
 
@@ -1138,7 +1138,7 @@ namespace hellobase
 
       //         double ratey = fHeight * 0.84 / size.cy;
 
-      //         font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      //         font->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
       //         m_font = font;
 
@@ -1179,9 +1179,9 @@ namespace hellobase
       //if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       //{
 
-      //   synchronization_lock sl1(m_pview->get_wnd()->mutex());
+      //   synchronous_lock sl1(m_pview->get_wnd()->mutex());
 
-      //   synchronization_lock slDraw(&m_mutexDraw);
+      //   synchronous_lock slDraw(&m_mutexDraw);
 
       //   if (m_bFast || m_pimageFast->is_null())
       //   {
@@ -1190,7 +1190,7 @@ namespace hellobase
 
       //      {
 
-      //         synchronization_lock slText(&m_pview->m_mutexText);
+      //         synchronous_lock slText(&m_pview->m_mutexText);
 
       //         helloaura_fast_render(m_pview->get_processed_helloaura());
 
@@ -1232,9 +1232,9 @@ namespace hellobase
 
       //::image_pointer pimageFast = m_pimageFast;
 
-      //synchronization_lock synchronizationlock(&m_mutexDraw);
+      //synchronous_lock synchronouslock(&m_mutexDraw);
 
-      //synchronization_lock slSwap(&m_mutexSwap);
+      //synchronous_lock slSwap(&m_mutexSwap);
 
       //pimage = m_pimageOut;
 
@@ -1304,7 +1304,7 @@ namespace hellobase
    //void render::defer_update_bilbo()
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   for (auto & bilbo : m_bilboa)
    //   {
@@ -1335,7 +1335,7 @@ namespace hellobase
    //   for (auto str23 : m_stra23)
    //   {
 
-   //      synchronization_lock synchronizationlock(&m_mutexDib23);
+   //      synchronous_lock synchronouslock(&m_mutexDib23);
 
    //      image23(str23);
 
@@ -1358,7 +1358,7 @@ namespace hellobase
    //   if (m_cx <= 0 || m_cy <= 0)
    //      return;
 
-   //   synchronization_lock slDraw(&m_mutexDraw);
+   //   synchronous_lock slDraw(&m_mutexDraw);
 
    //   ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 

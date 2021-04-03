@@ -102,7 +102,7 @@ namespace dir
 
    #if defined(ANDROID)
 
-      return ::file::app_module().folder();
+      return m_psystem->m_pacmepath->app_module().folder();
 
    #elif defined(_UWP)
 
@@ -1579,12 +1579,6 @@ namespace dir
    }
 
 
-   ::file::path tool()
-   {
-
-      return ::dir::archive() / "tool-windows";
-
-   }
 
 
  

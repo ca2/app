@@ -234,7 +234,7 @@ static int g_iMutex = 0;
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "::payload/tmp/ca2/lock/::mutex" / string(pstrName);
+         path = pacmedir->system() / "::payload/tmp/ca2/lock/::mutex" / string(pstrName);
 
 #else
 
@@ -248,7 +248,7 @@ static int g_iMutex = 0;
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "home/user/ca2/lock/::mutex" / string(pstrName);
+         path = pacmedir->system() / "home/user/ca2/lock/::mutex" / string(pstrName);
 
 #elif defined __APPLE__
 

@@ -27,14 +27,14 @@ namespace dynamic_source
 
       millis m_millisLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
-      __pointer(::apex::library)                       m_plibraryLib;
+      __pointer(::acme::library)                       m_plibraryLib;
 
 
       raw_array < __time_t >                    m_ftaLibCreation;
       raw_array < __time_t >                    m_ftaLibAccess;
       raw_array < __time_t >                    m_ftaLibModified;
 
-      library(::context_object * pcontextobject);
+      library(::object * pobject);
       virtual ~library();
 
       void load_library();

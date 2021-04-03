@@ -92,7 +92,7 @@ namespace music
             bool                                m_bStart;
 
             
-            sequence(::context_object * pcontextobject);
+            sequence(::object * pobject);
             virtual ~sequence();
 
 

@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   application::application(::context_object * pcontextobject) :
+   application::application(::object * pobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -209,7 +209,7 @@ namespace helloworld
 
 
 extern "C"
-::apex::library * app_helloworld_get_new_library(::context_object * pcontextobject)
+::acme::library * app_helloworld_get_new_library(::object * pobject)
 {
 
    return new ::apex::single_application_library < ::helloworld::application > (pobject, "app/helloworld");

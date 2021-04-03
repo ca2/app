@@ -170,7 +170,7 @@ namespace user
 //
 //   {
 //
-//      synchronization_lock slSystem(psystem->mutex());
+//      synchronous_lock slSystem(psystem->mutex());
 //
 //      if (psystem->m_pwindowmap->m_map.remove_key(oswindow))
 //      {

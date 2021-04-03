@@ -13,7 +13,7 @@ namespace ios
 //   public:
 //      
 //      
-//      thread(::context_object * pcontextobject);
+//      thread(::object * pobject);
 //      virtual ~thread();
 //      
 //      

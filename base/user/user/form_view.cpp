@@ -73,7 +73,7 @@ namespace user
    ::e_status form_view::open_document(const ::payload & varFile)
    {
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       psystem->defer_create_html();
 
@@ -183,7 +183,7 @@ namespace user
    ::e_status form_view::open_html(const string & str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto pformOld = m_pform;
 

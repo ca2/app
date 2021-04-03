@@ -6,6 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
+      virtual public ::acme::context,
       virtual public ::acme_main_data,
       //virtual public ::subject::manager,
       virtual public ::task
@@ -14,14 +15,16 @@ namespace acme
    public:
 
 
-      ::apex::system *              m_papexsystem;
-      ::aqua::system *              m_paquasystem;
-      ::aura::system *              m_paurasystem;
-      ::axis::system *              m_paxixsystem;
-      ::base::system *              m_pbasesystem;
-      ::bred::system *              m_pbredsystem;
-      ::core::system *              m_pcoresystem;
+      //::apex::system *              m_papexsystem;
+      //::aqua::system *              m_paquasystem;
+      //::aura::system *              m_paurasystem;
+      //::axis::system *              m_paxixsystem;
+      //::base::system *              m_pbasesystem;
+      //::bred::system *              m_pbredsystem;
+      //::core::system *              m_pcoresystem;
 
+
+      string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
 
 #ifdef LINUX
       enum_linux_distribution                            m_elinuxdistribution;
@@ -35,9 +38,17 @@ namespace acme
       map < itask_t, itask_t >                           m_mapTaskOn;
 
 
+      ::mutex                                            m_mutexLibrary;
+      ::acme::library_map                                m_mapLibrary;
+      string_map < PFN_NEW_LIBRARY >                     m_mapNewLibrary;
+      ::acme::library_map                                m_mapLibCall;
+
+      ::mutex                                            m_mutexContainerizedLibrary;
+      ::string_map < ::acme::library_map >               m_mapContainerizedLibrary;
+
 
       string                                             m_strOsUserTheme;
-      __pointer(::acme::node)                         m_pnode;
+      //__pointer(::acme::node)                         m_pnode;
 
       
       ::millis                                           m_millisFileListingCache;
@@ -47,6 +58,12 @@ namespace acme
 
 
       __composite(class ::xml::xml)                      m_pxml;
+
+      __composite(class ::acme::node)                    m_pnode;
+      __composite(class ::acme_dir)                      m_pacmedir;
+      __composite(class ::acme_path)                     m_pacmepath;
+      __pointer(::parallelization::cleanup_task)         m_pcleanuptask;
+      __composite(geometry::geometry)                    m_pgeometry;
 
 
 
@@ -61,10 +78,30 @@ namespace acme
 
       inline ::xml::xml                *  xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
+      inline acme_dir                  *  acmedir() const { return m_pacmedir; }
 
-      virtual  ::xml::xml* _xml();
+      inline acme_path                 *  acmepath() const { return m_pacmepath; }
 
 
+      inline void add_pending_finish(::matter* pmatter)
+      {
+
+         m_pcleanuptask->add(pmatter);
+
+      }
+
+
+      virtual ::xml::xml* _xml();
+
+
+      geometry::geometry& geometry()
+      {
+
+         return *m_pgeometry;
+
+      }
+
+      virtual ::e_status init1();
 
       virtual ::e_status create_os_node();
 
@@ -87,6 +124,8 @@ namespace acme
       //virtual ::user::enum_desktop calc_edesktop();
 
       //virtual void defer_calc_os_user_theme();
+
+      void process_exit_status(::object* pobject, const ::e_status& estatus);
 
       virtual ::apex::application* get_main_application();
 
@@ -112,7 +151,14 @@ namespace acme
 
       virtual ::e_status inline_init();
       virtual ::e_status inline_term();
-      
+
+
+      virtual ::e_status process_init();
+
+
+      virtual ::e_status init_system();
+
+
       virtual ::e_status on_start();
 
       virtual ::e_status start();
@@ -121,6 +167,17 @@ namespace acme
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
+
+      virtual ::acme::library* on_get_library(const char* pszLibrary);
+
+      virtual ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
+      virtual __pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+
+      virtual __pointer(::acme::library) open_containerized_component_library(const char* pszComponent, const char* pszImplementation);
+
+      virtual ::extended::transport < ::acme::library > do_containerized_factory_exchange(const char* pszComponent, const char* pszImplementation);
+
 
 
       virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -150,17 +207,15 @@ namespace acme
 #endif
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::context_object* pcontextobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
-
-      ::file::path get_memory_map_base_folder_path() const;
 
 
       template < typename ENUM >
       inline void set_enum_text(ENUM e, const char* psz)
       {
 
-         critical_section_lock synchronizationlock(&m_csEnumText);
+         critical_section_lock synchronouslock(&m_csEnumText);
 
          m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -173,7 +228,7 @@ namespace acme
       inline string enum_text(ENUM e)
       {
 
-         critical_section_lock synchronizationlock(&m_csEnumText);
+         critical_section_lock synchronouslock(&m_csEnumText);
 
          return m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -184,7 +239,7 @@ namespace acme
       inline ENUM text_enum(ENUM& e, const char* psz, ENUM eDefault = (ENUM)0)
       {
 
-         critical_section_lock synchronizationlock(m_csEnumText);
+         critical_section_lock synchronouslock(m_csEnumText);
 
          i64 iValue;
 
@@ -238,7 +293,7 @@ namespace acme
 
          auto pgroup = task_group(epriority);
 
-         synchronization_lock slGroup(mutex());
+         synchronous_lock slGroup(mutex());
 
          ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
 
@@ -314,6 +369,8 @@ namespace acme
       static inline ::id_space& id();
       inline ::id id(const ::payload& payload);
       inline ::id id(const property& prop);
+
+      virtual void check_exit();
 
       
    };

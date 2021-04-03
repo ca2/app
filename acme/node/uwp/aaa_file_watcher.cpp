@@ -263,7 +263,7 @@ namespace file
    //watch_id os_watcher::add_watch(const ::file::path& pathFolderParam, listener* plistenerParam, bool bRecursive)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   id watchid = ++m_idLast;
 

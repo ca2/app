@@ -732,7 +732,7 @@ namespace user
    //}
 
 
-   bool primitive::add_prodevian(::context_object * pobject)
+   bool primitive::add_prodevian(::object * pobject)
    {
 
       return false;
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   bool primitive::remove_prodevian(::context_object * pobject)
+   bool primitive::remove_prodevian(::object * pobject)
    {
 
       return false;
@@ -3908,7 +3908,7 @@ namespace user
    //void primitive::add_thread(::thread * pthread)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   m_threadptra.add(pthread);
 
@@ -3918,7 +3918,7 @@ namespace user
    //void primitive::remove_thread(::thread * pthread)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   m_threadptra.remove(pthread);
 

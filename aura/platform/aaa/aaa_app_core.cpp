@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //extern ::mutex* ::aura::get_system()->m_mutexLibrary;
 
@@ -66,7 +66,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-void debug_context_object(::context_object * pcontextobject);
+void debug_context_object(::object * pobject);
 
 
 #ifdef __APPLE__
@@ -518,9 +518,9 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString = ::dir::system() / strAppId / "output_debug_string.txt" ;
+   ::file::path pathOutputDebugString = pacmedir->system() / strAppId / "output_debug_string.txt" ;
 
-   ::file::path pathGlobalOutputDebugString = ::dir::config() / "output_debug_string.txt" ;
+   ::file::path pathGlobalOutputDebugString = pacmedir->config() / "output_debug_string.txt" ;
 
    ::aura::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
 
@@ -542,7 +542,7 @@ void app_core::set_command_line(const char * psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder = ::dir::ca2roaming() / "program";
+   ::file::path pathFolder = pacmedir->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 
@@ -597,7 +597,7 @@ void app_core::set_command_line(const char * psz)
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __new(::apex::library);
+//         m_plibrary = __new(::acme::library);
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -999,7 +999,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
 struct heap_test_struct :
-   virtual public context_object
+   virtual public object
 {
 
    byte m_ucha[1024];
@@ -1795,7 +1795,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    }
 
-   auto estatus = papp->initialize(pcontextobject);
+   auto estatus = papp->initialize(pobject);
 
    if (!estatus)
    {
@@ -1816,9 +1816,9 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
    string strAppId = pszAppId;
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
-   __pointer(::apex::library)& plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
+   __pointer(::acme::library)& plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
 
    if (papp)
    {
@@ -1826,7 +1826,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
       if (!plibrary)
       {
 
-         plibrary = new ::apex::library();
+         plibrary = new ::acme::library();
 
          plibrary->m_strName = "";
 
@@ -1885,7 +1885,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
          else
          {
 
-            //plibrary = __new(::apex::library);
+            //plibrary = __new(::acme::library);
 
             //plibrary->initialize_aura_library(pobject, 0, nullptr);
 
@@ -1973,7 +1973,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
    if (!papp)
    {
 
-      ::apex::library& library = *plibrary;
+      ::acme::library& library = *plibrary;
 
       papp = library.get_new_application(::aura::get_system()->get_session(), strAppId);
 

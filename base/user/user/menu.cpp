@@ -143,7 +143,7 @@ namespace user
 //
 //         {
 //
-//            synchronization_lock synchronizationlock(mutex_children());
+//            synchronous_lock synchronouslock(mutex_children());
 //
 //            m_uiptraChild.remove_all();
 //
@@ -176,7 +176,7 @@ namespace user
 //
       {
 
-        // synchronization_lock synchronizationlock(mutex_children());
+        // synchronous_lock synchronouslock(mutex_children());
 
          // m_uiptraChild.interactiona().remove_all();
 
@@ -228,6 +228,8 @@ namespace user
 
    bool menu::load_xml_menu(const ::payload & varXml)
    {
+
+      m_psystem->m_paquasystem->_xml();
 
       auto papplication = get_application();
 
@@ -965,9 +967,11 @@ namespace user
 
                      puiNotify->_001SendCommand(&command);
 
+                     pevent->m_bRet = command.m_bRet;
+
                   }
 
-                  pevent->m_bRet = true;
+                  
 
                }
             }
@@ -1133,7 +1137,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             update_command(m_pmenuitem);
 
@@ -1361,7 +1365,7 @@ namespace user
          }
 
          //DestroyWindow();
-         set_finish(this);
+         set_finish();
 
       }
 

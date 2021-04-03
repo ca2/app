@@ -13,7 +13,7 @@ public:
   /** Creates ErrorHandler instance.
       @param writer writer, which is used to output error logs.
   */
-   ErrorHandlerWriter(::context_object * pcontextobject);
+   ErrorHandlerWriter(::object * pobject);
   ~ErrorHandlerWriter();
 
   void fatalError(const string &msg);

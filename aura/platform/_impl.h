@@ -54,7 +54,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //extern lparam_dbg g_lparamdbg;
 //
-//inline lparam::lparam(const ::context_object * p)
+//inline lparam::lparam(const ::object * p)
 //{
 //
 //   if (is_null(p))
@@ -66,7 +66,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //   }
 //
-//   ((context_object *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
+//   ((object *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
 //
 //   m_lparam = (lparam)p;
 //
@@ -161,7 +161,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto estatus = papp->initialize(pcontextobject);
+//      auto estatus = papp->initialize(pobject);
 //
 //      if (!estatus)
 //      {
@@ -204,28 +204,28 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 //template < typename T >
-//::file::path memcnts_path(T * pthis)
+//::file::path memory_counter_path(T * pthis)
 //{
 //
 //   string str = typeid(*pthis).name();
 //
 //   str.replace("::", "/");
 //
-//   return memcnts_base_path() / (str + ".txt");
+//   return memory_counter_base_path() / (str + ".txt");
 //
 //}
 
 
 //template < typename T >
-//void memcnts_inc(T * pthis)
+//void memory_counter_increment(T * pthis)
 //{
 //
-//   if (memcnts())
+//   if (memory_counter_on())
 //   {
 //
-//      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+//      synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 //
-//      ::file::path path = memcnts_path(pthis);
+//      ::file::path path = memory_counter_path(pthis);
 //
 //      int i = atoi(file_as_string(path));
 //
@@ -237,15 +237,15 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 //template < typename T >
-//void memcnts_dec(T * pthis)
+//void memory_counter_decrement(T * pthis)
 //{
 //
-//   if (memcnts())
+//   if (memory_counter_on())
 //   {
 //
-//      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+//      synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 //
-//      ::file::path path = memcnts_path(pthis);
+//      ::file::path path = memory_counter_path(pthis);
 //
 //      int i = atoi(file_as_string(path));
 //
@@ -287,7 +287,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //::message::route & channel::add_route(const ::id & id, RECEIVER * preceiverDerived)
 //{
 //
-//   synchronization_lock synchronizationlock(defer_mutex_channel());
+//   synchronous_lock synchronouslock(defer_mutex_channel());
 //
 //   ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -375,7 +375,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 //{
 //
-//   synchronization_lock synchronizationlock(s_pmutexChannel);
+//   synchronous_lock synchronouslock(s_pmutexChannel);
 //
 //   ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //
@@ -493,7 +493,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < typename BASE >
-//inline __pointer(BASE) alloc_object(::context_object * pcontextobject)
+//inline __pointer(BASE) alloc_object(::object * pobject)
 //{
 //
 //   return BASE::g_pallocfactory->alloc_object(pobject);
@@ -552,7 +552,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::context * get_context(::context_object * pcontextobject)
+//CLASS_DECL_AURA inline ::context * get_context(::object * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -576,7 +576,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::aura::application * get_application(::context_object * pcontextobject)
+//CLASS_DECL_AURA inline ::aura::application * get_application(::object * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -600,7 +600,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::aura::session * get_session(::context_object * pcontextobject)
+//CLASS_DECL_AURA inline ::aura::session * get_session(::object * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -624,7 +624,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::aura::system * get_context_system(::context_object * pcontextobject)
+//CLASS_DECL_AURA inline ::aura::system * get_context_system(::object * pobject)
 //{
 //
 //   if (pobject == nullptr)
@@ -689,7 +689,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < typename T >
-//inline __pointer(T) & pointer < T >::clone(::context_object * pcontextobject)
+//inline __pointer(T) & pointer < T >::clone(::object * pobject)
 //{
 //
 //   if (::is_null(pobject))
@@ -719,7 +719,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(::aura::get_image_mutex());
+//   synchronous_lock synchronouslock(::aura::get_image_mutex());
 //
 //   ::image_pointer & pimage = psystem->m_mapImage[path];
 //
@@ -730,7 +730,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //      pimage->set_nok();
 //
-//      synchronizationlock.unlock();
+//      synchronouslock.unlock();
 //
 //      psystem->m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
 //
@@ -868,11 +868,11 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //      strPath.replace("::", "/");
 //
-//      synchronization_lock synchronizationlock(psystem->m_spmutexUserAppData);
+//      synchronous_lock synchronouslock(psystem->m_spmutexUserAppData);
 //
 //      {
 //
-//         file_pointer file = this->file().get_file(pcontext->dir().appdata() / "gudo" / strPath, ::file::e_open_read);
+//         file_pointer file = this->file().get_file(pcontext->m_papexcontext->dir().appdata() / "gudo" / strPath, ::file::e_open_read);
 //
 //         if (file.is_null())
 //         {
@@ -911,11 +911,11 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //      strPath.replace("::", "/");
 //
-//      synchronization_lock synchronizationlock(psystem->m_spmutexUserAppData);
+//      synchronous_lock synchronouslock(psystem->m_spmutexUserAppData);
 //
 //      {
 //
-//         file_pointer file = this->file().get_file(pcontext->dir().appdata() / "gudo" / strPath, ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+//         file_pointer file = this->file().get_file(pcontext->m_papexcontext->dir().appdata() / "gudo" / strPath, ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
 //
 //         if (file.is_null())
 //         {

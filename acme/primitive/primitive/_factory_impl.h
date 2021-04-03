@@ -174,7 +174,7 @@ inline __pointer(BASE_TYPE) __create()
 
 
 template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create(::context_object * pcontextobject)
+inline __pointer(BASE_TYPE) __create(::object * pobject)
 {
 
    auto p = __create < BASE_TYPE >();
@@ -186,7 +186,7 @@ inline __pointer(BASE_TYPE) __create(::context_object * pcontextobject)
 
    }
 
-   auto estatus = p->initialize(pcontextobject);
+   auto estatus = p->initialize(pobject);
 
    if (!estatus)
    {
@@ -275,7 +275,7 @@ inline __pointer(TYPE) __create_new(const TYPE & t)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) __create_new(::context_object * pcontextobject)
+inline __pointer(TYPE) __create_new(::object * pobject)
 {
 
    auto ptype = __create_new< TYPE > ();
@@ -287,7 +287,7 @@ inline __pointer(TYPE) __create_new(::context_object * pcontextobject)
 
    }
 
-   auto estatus = ptype->initialize(pcontextobject);
+   auto estatus = ptype->initialize(pobject);
 
    if (!estatus)
    {

@@ -26,7 +26,7 @@ namespace subject
    ::subject::subject * manager::subject(const ::id & id)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_pmapSubject)
       {
@@ -74,7 +74,7 @@ namespace subject
 
       //auto pnode = Node;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -262,12 +262,14 @@ namespace subject
 //   }
 
 
-   void manager::finalize()
+   ::e_status manager::finalize()
    {
 
       property_object::finalize();
 
       m_pmapSubject.release();
+
+      return ::success;
 
    }
 
@@ -275,7 +277,7 @@ namespace subject
    void manager::remove(::matter *pmatter)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto &pupdate : m_pmapSubject->values())
       {
@@ -290,7 +292,7 @@ namespace subject
    void manager::__remove(::matter *pmatter)
    {
 
-      critical_section_lock synchronizationlock(&s_criticalsection);
+      critical_section_lock synchronouslock(&s_criticalsection);
 
       for (auto & manager : s_managerset)
       {

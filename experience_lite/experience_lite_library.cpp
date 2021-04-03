@@ -13,9 +13,9 @@
       {
 
 
-         library::library(::context_object * pcontextobject):
+         library::library(::object * pobject):
             object(pobject),
-            ::apex::library(pobject,0,"")
+            ::acme::library(pobject,0,"")
          {
          }
 
@@ -25,7 +25,7 @@
          }
 
 
-         __pointer(::context_object) library::alloc(::object * pobject, const char * pszClass, object * p)
+         __pointer(::object) library::alloc(::object * pobject, const char * pszClass, object * p)
          {
 
             if(string(pszClass) == "experience")
@@ -75,7 +75,7 @@
 #ifdef CUBE
 
 extern "C"
-::apex::library * experience_lite_get_new_library(::context_object * pcontextobject)
+::acme::library * experience_lite_get_new_library(::object * pobject)
 {
 
    return new ::user::experience::experience_lite::library(pobject);
@@ -87,7 +87,7 @@ extern "C"
 
 
 extern "C"
-::apex::library * get_new_library(::context_object * pcontextobject)
+::acme::library * get_new_library(::object * pobject)
 {
    return new ::user::experience::experience_lite::library (pobject);
 }

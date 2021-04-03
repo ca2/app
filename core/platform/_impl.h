@@ -6,12 +6,12 @@ namespace core
 {
 
 
-   inline ::core::system* application::get_system() const
-   {
+   //inline ::core::system* application::get_system() const
+   //{
 
-      return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr;
+   //   return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr;
 
-   }
+   //}
 
 
    inline ::core::system* session::get_system() const

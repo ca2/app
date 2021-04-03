@@ -123,7 +123,7 @@ namespace user
       __pointer(span) data::add_span(const span & span)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          return __new(class span(this, span));
 
@@ -133,7 +133,7 @@ namespace user
       __pointer(span) data::add_span(::e_align ealignNewLine)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto pspan = create_span(ealignNewLine);
 
@@ -171,7 +171,7 @@ namespace user
       void data::on_selection_change(format * pformat)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          index iSelBeg = get_sel_beg();
 
@@ -185,7 +185,7 @@ namespace user
       void data::get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          update_span_cache(m_spana);
 
@@ -235,7 +235,7 @@ namespace user
       strsize data::hit_test(point_f64 point)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //double xLast = 0.0;
 
@@ -356,7 +356,7 @@ namespace user
       strsize data::hit_test_line_x(index iLine, double x)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto plinea = m_plinea;
 
@@ -429,7 +429,7 @@ namespace user
       void data::_001GetText(string & str) const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          str = text(m_spana);
 
@@ -439,7 +439,7 @@ namespace user
       void data::_001GetLayoutText(string & str) const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          str = layout_text(*m_plinea);
 
@@ -457,7 +457,7 @@ namespace user
       index data::LineColumnToSel(index iLine, strsize iColumn) const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (iLine < 0)
          {
@@ -512,7 +512,7 @@ namespace user
 
          }
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          update_span_cache(m_spana);
 
@@ -619,7 +619,7 @@ namespace user
       string data::get_full_text()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          update_span_cache(m_spana);
 
@@ -635,7 +635,7 @@ namespace user
 
          straLines.add_lines(psz);
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          index iSelBeg = get_sel_beg();
 
@@ -796,7 +796,7 @@ namespace user
       void data::_001SetSelFontFormat(const format * pformat, const eattribute & eattribute)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          optimize_data();
 
@@ -1071,7 +1071,7 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   synchronization_lock synchronizationlock(mutex());
+      //   synchronous_lock synchronouslock(mutex());
 
       //   if (m_pgraphics.is_null())
       //   {
@@ -1094,7 +1094,7 @@ namespace user
 
          //m_rectangle = rectangle;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1512,7 +1512,7 @@ namespace user
       void data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (pgraphics->m_bPrinting)
          {
@@ -1885,7 +1885,7 @@ namespace user
       void data::optimize_data()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_pformata->remove_all();
 
@@ -1949,7 +1949,7 @@ namespace user
       strsize data::_001GetTextLength() const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_spana.is_empty())
          {
@@ -1966,7 +1966,7 @@ namespace user
       strsize data::_001GetLayoutTextLength() const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto plinea = m_plinea;
 
@@ -1985,7 +1985,7 @@ namespace user
       void data::internal_update_sel_char()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2069,7 +2069,7 @@ namespace user
       stream & data::write(::stream & stream) const
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          {
 
@@ -2091,7 +2091,7 @@ namespace user
       stream & data::read(::stream & stream)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_plinea->remove_all();
 
@@ -2119,13 +2119,13 @@ namespace user
       void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectBox)
       {
 
-         synchronization_lock synchronizationlock(pgraphics->mutex());
+         synchronous_lock synchronouslock(pgraphics->mutex());
 
-         synchronization_lock sl1(mutex());
+         synchronous_lock sl1(mutex());
 
-         //synchronization_lock sl2(m_plinea->mutex());
+         //synchronous_lock sl2(m_plinea->mutex());
 
-         //synchronization_lock sl3(m_pformata->mutex());
+         //synchronous_lock sl3(m_pformata->mutex());
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

@@ -6,7 +6,7 @@ namespace subject
 
 
    class CLASS_DECL_APEX subject :
-      virtual public property_object
+      virtual public object
    {
    public:
 
@@ -75,7 +75,7 @@ namespace subject
 
          return false;
 
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         return m_mattercontext.is_empty();
 
@@ -117,7 +117,7 @@ namespace subject
       void reset_update(const ::id &id);
 
 
-      virtual ::e_status on_task() override;
+      //virtual ::e_status run() override;
 
 
       operator subject *() { return this; }

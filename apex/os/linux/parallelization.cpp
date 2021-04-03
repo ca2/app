@@ -129,10 +129,10 @@ bool __os_term_thread()
 
 
 
-CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectRunnable, ::duration durationTimeout)
+CLASS_DECL_APEX void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
 {
 
-   __pointer(context_object) prunnable = pobjectRunnable;
+   __pointer(object) prunnable = pobjectRunnable;
 
    auto pevent = __new(manual_reset_event);
 
@@ -161,10 +161,10 @@ CLASS_DECL_APEX void main_sync_runnable(::context_object * pobjectRunnable, ::du
 }
 
 
-CLASS_DECL_APEX void main_async_runnable(::context_object * prunnableParam)
+CLASS_DECL_APEX void main_async_runnable(::object * prunnableParam)
 {
 
-   __pointer(context_object) prunnable = prunnableParam;
+   __pointer(object) prunnable = prunnableParam;
 
    auto pnode = Node;
 

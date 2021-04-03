@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view(::context_object * pcontextobject):
+   plain_edit_view::plain_edit_view(::object * pobject):
       object(pobject),
       ::user::interaction(pobject),
       ::user::plain_edit(pobject)
@@ -32,7 +32,7 @@ namespace calculator
 
          {
 
-            synchronization_lock synchronizationlock(m_pcallback == nullptr ? nullptr : m_pcallback->get_mutex());
+            synchronous_lock synchronouslock(m_pcallback == nullptr ? nullptr : m_pcallback->get_mutex());
 
             string strExp;
 

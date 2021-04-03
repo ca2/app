@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "apex/net/sockets/_.h"
 #include "apex/platform/app_core.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 CLASS_DECL_APEX string thread_get_name();
@@ -42,36 +43,6 @@ namespace apex
 
 #else
 
-      ::file::path pathTrace = ::dir::system() / "trace.txt";
-
-#ifdef __DEBUG
-
-      if (!file_exists(pathTrace))
-      {
-
-         ::file_put_contents(pathTrace, "yes");
-
-      }
-
-
-#endif // __DEBUG
-
-#ifdef COMPILE_WITH_VALGRIND
-
-#if !defined(RASPBIAN) && !defined(ANDROID) && !defined(WINDOWS)
-      if (!RUNNING_ON_VALGRIND)
-#endif
-      {
-
-         m_bTrace = ::file_is_true_dup(pathTrace) || ::is_debugger_attached();
-
-         //m_bTrace = ::file_is_true_dup(pathTrace);
-
-      }
-
-#endif
-
-#endif
 
       defer_create_mutex();
 
@@ -160,7 +131,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bInitialized)
       {
@@ -173,7 +144,40 @@ namespace apex
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(::dir::system() / "log.txt"))
+
+      ::file::path pathTrace = m_psystem->m_pacmedir->system() / "trace.txt";
+
+#ifdef __DEBUG
+
+      if (!file_exists(pathTrace))
+      {
+
+         ::file_put_contents(pathTrace, "yes");
+
+      }
+
+
+#endif // __DEBUG
+
+#ifdef COMPILE_WITH_VALGRIND
+
+#if !defined(RASPBIAN) && !defined(ANDROID) && !defined(WINDOWS)
+      if (!RUNNING_ON_VALGRIND)
+#endif
+      {
+
+         m_bTrace = ::file_is_true_dup(pathTrace) || ::is_debugger_attached();
+
+         //m_bTrace = ::file_is_true_dup(pathTrace);
+
+      }
+
+#endif
+
+#endif
+
+
+      if (file_is_true_dup(m_psystem->m_pacmedir->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -204,7 +208,7 @@ namespace apex
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       print("<log>Log Initialized!!</log>");
 
@@ -308,304 +312,306 @@ namespace apex
    //}
 
 
-   void log::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
    {
 
-      const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
-
-      synchronization_lock sl2(&m_mutexTrace);
-
-      ::trace::category * pcategory = nullptr;
-
-      if (elevel != e_trace_level_none)
-      {
-
-         pcategory = m_ptrace->enabled_get(object_trace_category(pobject), elevel);
-
-         if (pcategory == nullptr)
-         {
-
-            return;
-
-         }
-
-      }
-
-      if (!m_bLog)
-      {
-
-#ifndef DEBUG
-
-         if (elevel >= e_trace_level_error)
-         {
-
-#endif // !DEBUG
-
-            string str;
-
-            if (::is_set(pszTopicText))
-            {
-
-               string strTopicText(pszTopicText);
-
-               if (strTopicText.has_char())
-               {
-
-                  ::str::begins_eat_ci(strTopicText, "class ");
-
-                  ::str::begins_eat_ci(strTopicText, "struct ");
-
-                  str += strTopicText;
-
-                  str += "> ";
-
-               }
-
-            }
-
-            str += psz;
-
-            str += "\n";
-
-            output_debug_string(str);
-
-#ifndef DEBUG
-
-         }
-
-#endif // !DEBUG
-
-         return;
-
-      }
-
-      string_array stra;
-
-      stra.add_lines(psz, false);
-
-      string strPre;
-
-      ::datetime::time time;
-      time = time.get_current_time();
-      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
-      string strTick;
-      auto millisTotal = ::get_millis() - ::first_milli();
-      i64 uiMillis = millisTotal % 1000;
-      i64 uiTotalSeconds = millisTotal / 1000;
-      i64 uiSeconds = uiTotalSeconds % 60;
-      i64 uiTotalMinutes = uiTotalSeconds / 60;
-      i64 uiMinutes = uiTotalMinutes % 60;
-      i64 uiTotalHours = uiTotalMinutes / 60;
-      i64 uiHours = uiTotalHours % 24;
-      i64 uiTotalDays = uiTotalHours / 24;
-      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
-      if (uiTotalDays > 0)
-      {
-         strTick.Format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
-      }
-      else if(uiTotalHours > 0)
-      {
-         strTick.Format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
-      }
-      else if (uiTotalMinutes > 0)
-      {
-         strTick.Format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
-      }
-      else if (uiTotalSeconds > 0)
-      {
-         strTick.Format(" %d.%03ds ", uiSeconds, uiMillis);
-      }
-      else
-      {
-         strTick.Format(" %3dms ", uiMillis);
-      }
-
-      //string strCat(pcategory->m_pszName);
-
-      string strCat(pszTopicText);
-
-      string strMiddle;
-
-      if (m_bLogThreadName)
-      {
-
-         strMiddle += "{" + ::thread_get_name() + "} ";
-
-      }
-
-      if (m_bLogFunctionName)
-      {
-
-         strMiddle += "[" + string(pszFunction) + "] ";
-
-      }
-
-      if (m_bLogFileName)
-      {
-
-         strMiddle += "\""+ string(pszFile) + "\"";
-
-         strMiddle += "(" + __str(iLine) + "): ";
-
-      }
-
-      //synchronizationlock.lock();
-      if (m_bTrace &&
-         (m_pfile == nullptr
-            || m_iYear != time.GetYear()
-            || m_iMonth != time.GetMonth()
-            || m_iDay != time.GetDay()))
-      {
-         if (m_pfile != nullptr)
-         {
-            fflush(m_pfile);
-            fclose(m_pfile);
-            m_pfile = nullptr;
-         }
-         i32 iRetry = 0;
-      retry:
-
-         string strDatetime;
-
-         time.Format(strDatetime, "%Y/%m/%d/%H-%M-%S");
-
-         string strIndex;
-
-         strIndex.Format("%d-%05d", get_current_process_id(), iRetry);
-
-         m_strLogPath = ::dir::appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
-
-         try
-         {
-
-            ::dir::mk(::dir::name(m_strLogPath));
-
-            if (!(m_pfile = fopen(m_strLogPath, "at")))
-            {
-               i32 iError = errno;
-               if (iError == ENOENT)
-               {
-                  goto skip_further_possible_recursive_impossible_logging_in_file;
-               }
-               else
-               {
-                  if (iError == EAGAIN)
-                  {
-                  }
-                  else
-                  {
-                     iRetry++;
-                     if (iRetry >= 100000)
-                        return;
-                     goto retry;
-
-                  }
-               }
-            }
-         }
-         catch (...)
-         {
-            try
-            {
-               if (m_pfile)
-               {
-                  fclose(m_pfile);
-                  m_pfile = nullptr;
-               }
-
-               iRetry++;
-               if (iRetry >= 100000)
-               {
-
-                  return;
-
-               }
-
-               goto retry;
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-         m_iYear = time.GetYear();
-
-         m_iMonth = time.GetMonth();
-
-         m_iDay = time.GetDay();
-
-         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
-
-         output_debug_string("\n" + m_strLogPath + "\n");
-
-#if !defined(_UWP)
-
-         __pointer(::apex::system) psystem = get_system();
-
-         if (is_debugger_attached() && !psystem->has_apex_application_factory())
-         {
-
-            fork([this]()
-               {
-
-                  sleep(1_s);
-
-                  if (!::file::app_module().contains_ci("logviewer") && file_exists(::dir::system() / "logviewer.txt"))
-                  {
-
-                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
-
-                  }
-
-               });
-
-         }
-
-#endif
-
-         }
-
-skip_further_possible_recursive_impossible_logging_in_file:
-
-      if(m_bTrace && m_pfile != nullptr)
-      {
-
-         fseek(m_pfile,0,SEEK_END);
-
-      }
-
-      for(i32 i = 0; i < stra.get_size(); i++)
-      {
-
-         string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";
-
-         try
-         {
-#ifdef ANDROID
-            ::output_debug_string(stra[i]);
-#else
-            ::output_debug_string(strLine);
-#endif
-
-            if(m_bTrace && m_pfile)
-            {
-
-               fputs(strLine,m_pfile);
-
-            }
-
-         }
-         catch(::exception::exception &)
-         {
-
-            // Ignore exception here because this class/function is used for debugging
-
-         }
-
-      }
+      //const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
+
+      //synchronous_lock sl2(&m_mutexTrace);
+
+//      synchronous_lock sl2(mutex());
+//
+//      ::trace::category * pcategory = nullptr;
+//
+//      if (elevel != e_trace_level_none)
+//      {
+//
+//         pcategory = m_ptrace->enabled_get(this);
+//
+//         if (pcategory == nullptr)
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
+//
+//      if (!m_bLog)
+//      {
+//
+//#ifndef DEBUG
+//
+//         if (elevel >= e_trace_level_error)
+//         {
+//
+//#endif // !DEBUG
+//
+//            string str;
+//
+//            if (::is_set(pszTopicText))
+//            {
+//
+//               string strTopicText(pszTopicText);
+//
+//               if (strTopicText.has_char())
+//               {
+//
+//                  ::str::begins_eat_ci(strTopicText, "class ");
+//
+//                  ::str::begins_eat_ci(strTopicText, "struct ");
+//
+//                  str += strTopicText;
+//
+//                  str += "> ";
+//
+//               }
+//
+//            }
+//
+//            str += psz;
+//
+//            str += "\n";
+//
+//            output_debug_string(str);
+//
+//#ifndef DEBUG
+//
+//         }
+//
+//#endif // !DEBUG
+//
+//         return;
+//
+//      }
+//
+//      string_array stra;
+//
+//      stra.add_lines(psz, false);
+//
+//      string strPre;
+//
+//      ::datetime::time time;
+//      time = time.get_current_time();
+//      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
+//      string strTick;
+//      auto millisTotal = ::get_millis() - ::first_milli();
+//      i64 uiMillis = millisTotal % 1000;
+//      i64 uiTotalSeconds = millisTotal / 1000;
+//      i64 uiSeconds = uiTotalSeconds % 60;
+//      i64 uiTotalMinutes = uiTotalSeconds / 60;
+//      i64 uiMinutes = uiTotalMinutes % 60;
+//      i64 uiTotalHours = uiTotalMinutes / 60;
+//      i64 uiHours = uiTotalHours % 24;
+//      i64 uiTotalDays = uiTotalHours / 24;
+//      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
+//      if (uiTotalDays > 0)
+//      {
+//         strTick.Format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
+//      }
+//      else if(uiTotalHours > 0)
+//      {
+//         strTick.Format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
+//      }
+//      else if (uiTotalMinutes > 0)
+//      {
+//         strTick.Format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
+//      }
+//      else if (uiTotalSeconds > 0)
+//      {
+//         strTick.Format(" %d.%03ds ", uiSeconds, uiMillis);
+//      }
+//      else
+//      {
+//         strTick.Format(" %3dms ", uiMillis);
+//      }
+//
+//      //string strCat(pcategory->m_pszName);
+//
+//      string strCat(pszTopicText);
+//
+//      string strMiddle;
+//
+//      if (m_bLogThreadName)
+//      {
+//
+//         strMiddle += "{" + ::thread_get_name() + "} ";
+//
+//      }
+//
+//      if (m_bLogFunctionName)
+//      {
+//
+//         strMiddle += "[" + string(pszFunction) + "] ";
+//
+//      }
+//
+//      if (m_bLogFileName)
+//      {
+//
+//         strMiddle += "\""+ string(pszFile) + "\"";
+//
+//         strMiddle += "(" + __str(iLine) + "): ";
+//
+//      }
+//
+//      //synchronouslock.lock();
+//      if (m_bTrace &&
+//         (m_pfile == nullptr
+//            || m_iYear != time.GetYear()
+//            || m_iMonth != time.GetMonth()
+//            || m_iDay != time.GetDay()))
+//      {
+//         if (m_pfile != nullptr)
+//         {
+//            fflush(m_pfile);
+//            fclose(m_pfile);
+//            m_pfile = nullptr;
+//         }
+//         i32 iRetry = 0;
+//      retry:
+//
+//         string strDatetime;
+//
+//         time.Format(strDatetime, "%Y/%m/%d/%H-%M-%S");
+//
+//         string strIndex;
+//
+//         strIndex.Format("%d-%05d", get_current_process_id(), iRetry);
+//
+//         m_strLogPath = m_psystem->m_pacmedir->appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
+//
+//         try
+//         {
+//
+//            ::dir::mk(::dir::name(m_strLogPath));
+//
+//            if (!(m_pfile = fopen(m_strLogPath, "at")))
+//            {
+//               i32 iError = errno;
+//               if (iError == ENOENT)
+//               {
+//                  goto skip_further_possible_recursive_impossible_logging_in_file;
+//               }
+//               else
+//               {
+//                  if (iError == EAGAIN)
+//                  {
+//                  }
+//                  else
+//                  {
+//                     iRetry++;
+//                     if (iRetry >= 100000)
+//                        return;
+//                     goto retry;
+//
+//                  }
+//               }
+//            }
+//         }
+//         catch (...)
+//         {
+//            try
+//            {
+//               if (m_pfile)
+//               {
+//                  fclose(m_pfile);
+//                  m_pfile = nullptr;
+//               }
+//
+//               iRetry++;
+//               if (iRetry >= 100000)
+//               {
+//
+//                  return;
+//
+//               }
+//
+//               goto retry;
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//         }
+//
+//         m_iYear = time.GetYear();
+//
+//         m_iMonth = time.GetMonth();
+//
+//         m_iDay = time.GetDay();
+//
+//         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
+//
+//         output_debug_string("\n" + m_strLogPath + "\n");
+//
+//#if !defined(_UWP)
+//
+//         __pointer(::apex::system) psystem = get_system();
+//
+//         if (is_debugger_attached() && !psystem->has_apex_application_factory())
+//         {
+//
+//            fork([this]()
+//               {
+//
+//                  sleep(1_s);
+//
+//                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
+//                  {
+//
+//                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
+//
+//                  }
+//
+//               });
+//
+//         }
+//
+//#endif
+//
+//         }
+//
+//skip_further_possible_recursive_impossible_logging_in_file:
+//
+//      if(m_bTrace && m_pfile != nullptr)
+//      {
+//
+//         fseek(m_pfile,0,SEEK_END);
+//
+//      }
+//
+//      for(i32 i = 0; i < stra.get_size(); i++)
+//      {
+//
+//         string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";
+//
+//         try
+//         {
+//#ifdef ANDROID
+//            ::output_debug_string(stra[i]);
+//#else
+//            ::output_debug_string(strLine);
+//#endif
+//
+//            if(m_bTrace && m_pfile)
+//            {
+//
+//               fputs(strLine,m_pfile);
+//
+//            }
+//
+//         }
+//         catch(::exception::exception &)
+//         {
+//
+//            // Ignore exception here because this class/function is used for debugging
+//
+//         }
+//
+//      }
 
    }
 
@@ -630,7 +636,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       va_start(valist, pszFormat);
 
-      __tracef(general_trace_object(), e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
+      __tracef(e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
 
       va_end(valist);
 
@@ -666,7 +672,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
                while (::task_get_run())
                {
 
-                  load_flags(get_context()->local_ini());
+                  load_flags(m_pcontext->m_papexcontext->local_ini());
 
                   //task_sleep(10_s);
 
@@ -715,30 +721,30 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //}
 
 
-   void log::finalize()
+   ::e_status log::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (!m_bInitialized)
+      if (m_bInitialized)
       {
 
-         return;
+         ::object::finalize();
+
+         if (m_pfile)
+         {
+
+            fclose(m_pfile);
+
+            m_pfile = nullptr;
+
+         }
+
+         m_bInitialized = false;
 
       }
 
-      ::object::finalize();
-
-      if (m_pfile)
-      {
-
-         fclose(m_pfile);
-
-         m_pfile = nullptr;
-
-      }
-
-      m_bInitialized = false;
+      return ::success;
 
    }
 

@@ -248,7 +248,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient,rectangle,eside);
 
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
 
 
 
@@ -335,7 +335,7 @@ SizingNone:;
                bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
                //    CVMSApp * pApp = (CVMSApp *) System;
-               //::aura::savings & savings = psession->savings();
+               //::aura::savings & savings = psession->m_paurasession->savings();
 
                //auto rectClient = pframewindow->get_client_rect();
 

@@ -95,7 +95,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 
 //CLASS_DECL_CORE ::core::user * get_context_user();
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::context_object * pcontextobject);
+//CLASS_DECL_CORE inline ::core::user * get_context_user(::object * pobject);
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
 //
 //
@@ -190,6 +190,13 @@ namespace fs
 }
 
 class ifs;
+
+namespace ftp
+{
+
+   class file_status;
+
+} // namespace ftp
 
 //#include "axis/programming/javascript/javascript.h"
 

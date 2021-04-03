@@ -151,7 +151,7 @@ namespace node_ansios
    }
 
 
-   ::e_status node::initialize(::context_object * pcontextobject)
+   ::e_status node::initialize(::object * pobject)
    {
 
       //::node_gnome::g_defer_init();
@@ -199,7 +199,7 @@ namespace node_ansios
 //
 //      bool bOk2 = true;
 //
-//      //if(::file::system_short_name().contains_ci("manjaro"))
+//      //if(m_psystem->m_pacmedir->system_short_name().contains_ci("manjaro"))
 //      {
 //
 //         bOk2 = ::node_gnome::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strUserTheme);
@@ -424,7 +424,7 @@ namespace node_ansios
 //      node_fork(__routine([psession]
 //                           {
 //
-//                              synchronization_lock sl(x11_mutex());
+//                              synchronous_lock sl(x11_mutex());
 //
 //                              xdisplay d(x11_get_display());
 //
@@ -437,7 +437,7 @@ namespace node_ansios
 //
 //                              }
 //
-//                              synchronization_lock slSession(psession->mutex());
+//                              synchronous_lock slSession(psession->mutex());
 //
 //                              ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 //

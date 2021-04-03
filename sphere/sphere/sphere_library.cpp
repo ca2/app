@@ -5,9 +5,9 @@ namespace sphere
 {
 
 
-   library::library(::context_object * pcontextobject) :
+   library::library(::object * pobject) :
       ::object(pobject),
-      ::apex::library(pobject, 0, "app"),
+      ::acme::library(pobject, 0, "app"),
       ::apex::single_application_library < application > (pobject, "app"),
       ::filehandler::library(pobject),
       ::filehandler::menu_library(pobject)
@@ -85,7 +85,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::apex::library * get_new_library(::context_object * pcontextobject)
+::acme::library * get_new_library(::object * pobject)
 {
 
    return new ::sphere::library(pobject);

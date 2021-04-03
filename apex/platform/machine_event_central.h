@@ -7,8 +7,8 @@ class CLASS_DECL_APEX machine_event_central :
 public:
 
 
-   machine_event     m_machineevent;
-   bool              m_bInitialized;
+   __pointer(machine_event)      m_pmachineevent;
+   bool                          m_bInitialized;
 
 
    machine_event_central();
@@ -18,7 +18,7 @@ public:
    void read(machine_event_data * pdata);
    void write(machine_event_data * pdata);
 
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status     run() override;
 
    bool is_close_application();

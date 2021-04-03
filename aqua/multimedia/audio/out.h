@@ -17,7 +17,7 @@
 //
 //
 //
-//            out(::context_object * pcontextobject);
+//            out(::object * pobject);
 //            virtual ~out();
 //
 //

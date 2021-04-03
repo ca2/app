@@ -6,7 +6,7 @@ CLASS_DECL_ACME int os_get_system_update_poll_time(::i64 iUpdate);
 using update_map = map < __pointer(matter), __pointer(::update_item) > ;
 
 class CLASS_DECL_ACME update :
-   virtual public ::context_object
+   virtual public ::object
 {
 protected:
 
@@ -68,7 +68,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { synchronization_lock synchronizationlock(mutex()); return m_map.is_empty(); };
+   inline bool is_ending() { synchronous_lock synchronouslock(mutex()); return m_map.is_empty(); };
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
 
    static inline bool should_poll(int iMillis)

@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,
@@ -201,7 +201,7 @@ namespace turboc
 
 
 
-            m_font->create_pixel_font(os_font_name(e_font_sans),fHeight,e_font_weight_bold);
+            m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
             pgraphics->set_font(m_font);
 
@@ -211,7 +211,7 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(os_font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+            m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
             //m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
 
@@ -271,7 +271,7 @@ namespace turboc
       if(m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-         synchronization_lock slDraw(&m_mutexDraw);
+         synchronous_lock slDraw(&m_mutexDraw);
 
          if(m_bFast || m_pimageFast->is_null())
          {
@@ -314,9 +314,9 @@ namespace turboc
 
       ::image_pointer pimageFast = m_pimageFast;
 
-      synchronization_lock synchronizationlock(&m_mutexDraw);
+      synchronous_lock synchronouslock(&m_mutexDraw);
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -406,7 +406,7 @@ namespace turboc
       if(m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
 
@@ -425,7 +425,7 @@ namespace turboc
 
       float fHeight = 100.0;
 
-      m_font->create_pixel_font(os_font_name(e_font_sans),fHeight,e_font_weight_bold);
+      m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
       pgraphics->set_font(m_font);
 
@@ -435,7 +435,7 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(os_font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+      m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
       m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
 
@@ -483,7 +483,7 @@ namespace turboc
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexWork);
+         synchronous_lock synchronouslock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -504,10 +504,10 @@ namespace turboc
       if(m_bNewLayout)
       {
 
-         synchronization_lock sl1(m_spmutex);
-         synchronization_lock sl2(&m_mutexWork);
-         synchronization_lock sl3(&m_mutexDraw);
-         synchronization_lock sl4(&m_mutexSwap);
+         synchronous_lock sl1(m_spmutex);
+         synchronous_lock sl2(&m_mutexWork);
+         synchronous_lock sl3(&m_mutexDraw);
+         synchronous_lock sl4(&m_mutexSwap);
 
 /*         bool bNewSize = m_pimage->width() < sizeNew.cx || m_pimage->m_size.cy < sizeNew.cy;
 
@@ -583,7 +583,7 @@ namespace turboc
       if(m_bFirstDone)
       {
 
-         synchronization_lock slUser(m_spmutex);
+         synchronous_lock slUser(m_spmutex);
 
          turboc_draw();
 
@@ -667,7 +667,7 @@ namespace turboc
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       if(m_bDib1)
       {
@@ -682,7 +682,7 @@ namespace turboc
 
       }
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -830,7 +830,7 @@ namespace turboc
    string view::get_turboc()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloMultiverse != m_strNewHelloMultiverse)
       {

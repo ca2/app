@@ -13,7 +13,7 @@ namespace music
       {
          
 
-         sequence::sequence(::context_object * pcontextobject) :
+         sequence::sequence(::object * pobject) :
             ::object(pobject),
             ::music::midi::object(pobject),
             ::ikaraoke::karaoke(pobject),
@@ -66,7 +66,7 @@ namespace music
          ::e_status     sequence::Start()
          {
 
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
 
             if (sequence::e_state_pre_rolled != get_state())
             {
@@ -81,7 +81,7 @@ namespace music
 
             ::e_status     estatus = ::success;
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             if(estatus == ::success)
             {
@@ -158,7 +158,7 @@ namespace music
 
             //return ::error_internal;
 
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         if(get_state() != e_state_pre_rolled)
    //            return error_unsupported_function;
@@ -321,7 +321,7 @@ namespace music
           ***************************************************************************/
    //      ::e_status     sequence::Pause()
    //      {
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         //    assert(nullptr != pSeq);
    //
@@ -365,7 +365,7 @@ namespace music
    //      {
    //         //    assert(nullptr != pSeq);
    //
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         if (e_state_paused != get_state())
    //            return error_unsupported_function;
@@ -404,7 +404,7 @@ namespace music
          ::e_status     sequence::Stop()
          {
 
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
 
             if(get_state() == e_state_stopping)
                return ::success;
@@ -469,7 +469,7 @@ namespace music
          ::e_status     sequence::get_ticks(imedia_time &  pTicks)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             //::e_status                    mmr;
 
@@ -516,7 +516,7 @@ namespace music
          ::e_status     sequence::get_millis(imedia_time & time)
          {
 
-            single_lock synchronizationlock(mutex());
+            single_lock synchronouslock(mutex());
 
             if (e_state_playing != get_state() &&
                   e_state_paused != get_state() &&
@@ -880,7 +880,7 @@ namespace music
 
    //      ::e_status     sequence::CloseStream()
    //      {
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //         if(IsPlaying())
    //         {
    //            Stop();
@@ -914,7 +914,7 @@ namespace music
             void sequence::OnMidiPlaybackEnd(::music::midi::sequence::event * pevent)
          {
             UNREFERENCED_PARAMETER(pevent);
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
             //::e_status     estatus;
@@ -969,8 +969,8 @@ namespace music
 
          /*imedia_time sequence::GetPositionTicks()
           {
-          single_lock synchronizationlock(mutex());
-          if(!synchronizationlock.lock(millis(0)))
+          single_lock synchronouslock(mutex());
+          if(!synchronouslock.lock(millis(0)))
           return -1;
           MMTIME mmt;
           mmt.wType = TIME_TICKS;

@@ -42,24 +42,24 @@ namespace crypto
 #include "hasher.h"
 #include "rsa.h"
 
+//
+//namespace crypto
+//{
+//
+//
+//   CLASS_DECL_APEX void md5(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_APEX void sha1(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_APEX void sha256(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_APEX void nessie(void* ptarget, const void* psource, ::memsize size);
+//
+//
+//} //   namespace crypto
+//
 
-namespace crypto
-{
-
-
-   CLASS_DECL_APEX void md5(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void sha1(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void sha256(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void nessie(void* ptarget, const void* psource, ::memsize size);
-
-
-} //   namespace crypto
-
-
-#include "hasher_algorithm.h"
-#include "hasher.h"
-#include "rsa.h"
-
+//#include "hasher_algorithm.h"
+//#include "hasher.h"
+//#include "rsa.h"
+//
 
 namespace openssl
 {

@@ -66,7 +66,7 @@ bool interprocess_call::is_auto_launch() const
 void interprocess_call::exclude_this_app()
 {
 
-   m_iaExclude.add(get_context()->os().get_pid());
+   m_iaExclude.add(m_pcontext->m_papexcontext->os().get_pid());
 
 }
 
@@ -117,9 +117,9 @@ __pointer(synchronization_array) interprocess_call::synca()
 
    auto psynca = synca();
 
-   synchronization_lock synchronizationlock(psynca);
+   synchronous_lock synchronouslock(psynca);
 
-   return synchronizationlock.wait(m_duration);
+   return synchronouslock.wait(m_duration);
 
 }
 

@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      frame(::context_object * pcontextobject);
+      frame(::object * pobject);
       virtual ~frame();
 
 

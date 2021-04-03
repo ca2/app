@@ -160,7 +160,7 @@ namespace sockets
 
       socket * psocket = dynamic_cast < socket * > (pbasesocket);
 
-      if (psocket->m_phandler.is_set())
+      if (psocket->m_psockethandler.is_set())
       {
 
          WARN(psocket, "add", -1, "socket is already being handled by another handler");
@@ -199,7 +199,7 @@ namespace sockets
 
       m_add[psocket->GetSocket()] = psocket;
 
-      psocket->m_phandler = this;
+      psocket->m_psockethandler = this;
 
       psocket->m_estatus = ::success;
 
@@ -916,7 +916,7 @@ end_processing_adding:
 
                      set(socket, false, false, false);
 
-                     // After DetachSocket(), all calls to socket_handler() will return a context_object
+                     // After DetachSocket(), all calls to socket_handler() will return a object
                      // to the new slave socket_handler running in the new thread.
                      try
                      {
@@ -1182,11 +1182,11 @@ end_processing_adding:
 
                         __pointer(::apex::system) psystem = get_system();
 
-                        synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+                        synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
                         __pointer(pool_socket) ppoolsocket = __new(pool_socket(psocket));
 
-                        ppoolsocket->m_phandler = this;
+                        ppoolsocket->m_psockethandler = this;
 
                         ppoolsocket->SetDeleteByHandler();
 
@@ -1450,7 +1450,7 @@ end_processing_adding:
       
       __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
 
-      presolvsocket->m_phandler = this;
+      presolvsocket->m_psockethandler = this;
 
       presolvsocket->SetId(++m_resolv_id);
 
@@ -1487,7 +1487,7 @@ end_processing_adding:
 
       __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
 
-      resolv->m_phandler = this;
+      resolv->m_psockethandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1522,7 +1522,7 @@ end_processing_adding:
 
       __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
 
-      resolv->m_phandler = this;
+      resolv->m_psockethandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1557,7 +1557,7 @@ end_processing_adding:
 
       __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
 
-      resolv->m_phandler = this;
+      resolv->m_psockethandler = this;
 
       resolv->SetId(++m_resolv_id);
 
@@ -1673,7 +1673,7 @@ end_processing_adding:
 
       __pointer(::apex::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->sockets().m_mutexPool);
+      synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
       auto p = psystem->sockets().m_pool.begin();
 

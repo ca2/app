@@ -66,7 +66,7 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //synchronization_lock synchronizationlock(mutex_children());
+      //synchronous_lock synchronouslock(mutex_children());
 
       if (!can_merge(pinteraction))
       {
@@ -256,7 +256,7 @@ namespace user
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (puserinteractionpointeraChild->has_no_interaction())
+      if (!puserinteractionpointeraChild || puserinteractionpointeraChild->has_no_interaction())
       {
 
          return nullptr;

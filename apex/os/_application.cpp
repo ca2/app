@@ -1,29 +1,29 @@
 #include "framework.h"
 
 
-PFN_NEW_APEX_APPLICATION g_pfnNewAuraApplication = nullptr;
+PFN_NEW_MATTER g_pfnnewmatterApplication = nullptr;
 
 
-::apex::application * new_apex_application()
+::matter * new_application_as_matter()
 {
 
-   return g_pfnNewAuraApplication();
+   return g_pfnnewmatterApplication();
 
 }
 
 
-void set_apex_application_factory(PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
+void set_application_factory(PFN_NEW_MATTER pfnnewmatterApplication)
 {
 
-   g_pfnNewAuraApplication = pfnNewAuraApplication;
+   g_pfnnewmatterApplication = pfnnewmatterApplication;
 
 }
 
 
-PFN_NEW_APEX_APPLICATION get_apex_application_factory()
+PFN_NEW_MATTER get_application_factory()
 {
 
-   return g_pfnNewAuraApplication;
+   return g_pfnnewmatterApplication;
 
 }
 

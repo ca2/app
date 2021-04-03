@@ -317,11 +317,11 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          auto pnode = psystem->node();
 
@@ -365,7 +365,7 @@ namespace account
 
             m_peditPassword->_001GetText(strText);
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             strText = psystem->crypto().nessie(strText);
 
@@ -494,7 +494,7 @@ namespace account
    void view::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //single_lock synchronizationlock(mutex(), true);
+      //single_lock synchronouslock(mutex(), true);
 
       //int i = 5;
 
@@ -532,7 +532,7 @@ namespace account
 
       pcredentials->m_estatus = error_credentials;
 
-      synchronization_lock synchronizationlock(&m_mutexResponse);
+      synchronous_lock synchronouslock(&m_mutexResponse);
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 

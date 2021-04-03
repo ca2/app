@@ -22,7 +22,7 @@ namespace windows
       virtual ~shell_open();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       static HDDEDATA CALLBACK DdeCallback(
          u32 uType,

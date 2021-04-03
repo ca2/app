@@ -42,7 +42,7 @@ namespace imaging_wic
       virtual ~context_image();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       //virtual ::e_status _load_image(::context_image * pcontextimage, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps) override;

@@ -73,7 +73,7 @@ namespace file
 
 
 
-   stream_binder::stream_binder(::context_object * pcontextobject) :
+   stream_binder::stream_binder(::object * pobject) :
       ::object(pobject)
    {
    }

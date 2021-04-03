@@ -81,7 +81,7 @@ void SSL_set_app_data2(SSL *ssl, void *arg)
 static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
 {
    int result = false;
-   synchronization_lock synchronizationlock(c->mutex());
+   synchronous_lock synchronouslock(c->mutex());
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
@@ -93,7 +93,7 @@ static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
 static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
 {
    int result = false;
-   synchronization_lock synchronizationlock(c->mutex());
+   synchronous_lock synchronouslock(c->mutex());
    for (auto & ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
@@ -1387,7 +1387,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
+      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_mutex);
 
       if (is_true("from_pool"))
          return;
@@ -1494,7 +1494,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      //synchronization_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
+      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_mutex);
 
       {
          if(m_psslcontext.is_set()
@@ -1510,7 +1510,7 @@ namespace sockets
       }
 
 
-      //synchronization_lock synchronizationlock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx);
 
       //slMap.unlock();
 
@@ -1868,7 +1868,7 @@ namespace sockets
          if (keyfile.ends_ci(".cat"))
          {
 
-            strCert = get_context()->file().as_string(keyfile);
+            strCert = m_pcontext->m_papexcontext->file().as_string(keyfile);
 
          }
          else
@@ -2024,7 +2024,7 @@ namespace sockets
 
 
       {
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
          int i;
 
          __pointer(::apex::system) psystem = get_system();

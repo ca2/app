@@ -22,7 +22,7 @@ namespace write_text
    class font_department * write_text::fonts()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pfontdepartment == nullptr)
       {
@@ -84,12 +84,14 @@ namespace write_text
    }
 
 
-   void write_text::finalize()
+   ::e_status write_text::finalize()
    {
 
       m_pfontdepartment.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 

@@ -9,13 +9,13 @@ namespace xml
 
    // Parse info.
    class CLASS_DECL_AQUA parse_info :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
       
       bool                 m_bTrimValue;        // [set] do trim when parse?
-      bool                 m_bEntityValue;      // [set] do convert from context_object to entity? ( &lt; -> < )
+      bool                 m_bEntityValue;      // [set] do convert from object to entity? ( &lt; -> < )
       __pointer(entities)  m_pentities;         // [set] entity table for entity decode
       char                 m_chEscapeValue;     // [set] escape value (default '\\')
       bool                 m_bForceParse;       // [set] force parse even if xml is not welformed

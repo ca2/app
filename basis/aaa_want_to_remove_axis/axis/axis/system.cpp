@@ -33,7 +33,7 @@ namespace axis
 
       }
 
-      //estatus = ::axis::application::initialize(pcontextobject);
+      //estatus = ::axis::application::initialize(pobject);
 
       //if (!estatus)
       //{

@@ -191,7 +191,7 @@ namespace subject
    void subject::deliver()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto & pair : m_mattercontext)
       {
@@ -228,7 +228,7 @@ namespace subject
    ::subject::context * subject::context(::matter * pmatter)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & pcontext = m_mattercontext[pmatter];
 
@@ -270,12 +270,12 @@ namespace subject
    }
 
 
-   ::e_status subject::on_task()
-   {
+   //::e_status subject::on_task()
+   //{
 
-      return run();
+   //   return run();
 
-   }
+   //}
 
 
    bool subject::is_up_to_date(const ::subject::context * pcontext) const
@@ -328,7 +328,7 @@ namespace subject
    void subject::add(::matter * pmatter, bool bForkWhenNotify)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //bool bShouldFork = false;
 
@@ -370,7 +370,7 @@ namespace subject
    void subject::remove(::matter * pmatter)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mattercontext.remove_key(pmatter);
 
@@ -380,7 +380,7 @@ namespace subject
    void subject::set_modified()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_bModified = true;
 
@@ -399,7 +399,7 @@ namespace subject
    void subject::post_destroy_all()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mattercontext.remove_all();
 

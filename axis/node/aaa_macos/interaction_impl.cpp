@@ -70,7 +70,7 @@ namespace macos
    }
 
 
-   interaction_impl::interaction_impl(::context_object * pcontextobject) :
+   interaction_impl::interaction_impl(::object * pobject) :
       ::object(pobject)
    {
 
@@ -235,7 +235,7 @@ namespace macos
 
       }
 
-      //single_lock synchronizationlock(afxMutexHwnd(), true);
+      //single_lock synchronouslock(afxMutexHwnd(), true);
       //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
@@ -256,7 +256,7 @@ namespace macos
       oswindow hWnd = (oswindow)get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock synchronizationlock(afxMutexHwnd(), true);
+         //         single_lock synchronouslock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->remove_handle(get_handle());
@@ -736,7 +736,7 @@ namespace macos
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock synchronizationlock(afxMutexHwnd(), true);
+       single_lock synchronouslock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -1619,7 +1619,7 @@ namespace macos
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+//      /*      single_lock synchronouslock(afxMutexHwnd(), true);
 //       hwnd_map * pMap = afxMapHWND();
 //       if (pMap == nullptr)
 //       return false;
@@ -4330,9 +4330,9 @@ namespace macos
 
       g->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      synchronization_lock slGraphics(pmultiplebuffer->mutex());
+      synchronous_lock slGraphics(pmultiplebuffer->mutex());
       
-      synchronization_lock sl1(pmultiplebuffer->get_screen_sync());
+      synchronous_lock sl1(pmultiplebuffer->get_screen_sync());
 
       ::image_pointer & imageBuffer2 = pmultiplebuffer->get_screen_image();
 
@@ -4949,7 +4949,7 @@ namespace macos
 ////
 ////      {
 ////
-////         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+////         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 ////
 ////         if (pt != m_puserinteraction->m_rectParentClient.top_left())
 ////         {

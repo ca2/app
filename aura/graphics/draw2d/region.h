@@ -110,7 +110,7 @@ namespace draw2d
 
 
       
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       
 

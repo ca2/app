@@ -227,7 +227,7 @@ namespace user
       else
       {
 
-         auto papplication = get_application();
+         auto papplication = pdocument->get_application();
 
          strDocName = papplication->load_string("untitled");
 

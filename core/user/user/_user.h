@@ -234,7 +234,7 @@ namespace user
    class control_bar;
 
 
-   struct PrintPreviewState;  // forward context_object (see afxext.h)
+   struct PrintPreviewState;  // forward object (see afxext.h)
 
 
 }
@@ -415,16 +415,16 @@ namespace user
 
 
 
-struct CPrintPreviewState;  // forward context_object (see afxext.h)
+struct CPrintPreviewState;  // forward object (see afxext.h)
 namespace user
 {
-   class control_bar;          // forward context_object (see afxext.h)
+   class control_bar;          // forward object (see afxext.h)
 }
-class CReBar;               // forward context_object (see afxext.h)
+class CReBar;               // forward object (see afxext.h)
 class simple_frame_window;
-class CDockBar;             // forward context_object (see afxpriv.h)
-class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
-class CDockState;           // forward context_object (see afxpriv.h)
+class CDockBar;             // forward object (see afxpriv.h)
+class mini_dock_frame_window;    // forward object (see afxpriv.h)
+class CDockState;           // forward object (see afxpriv.h)
 
 
 

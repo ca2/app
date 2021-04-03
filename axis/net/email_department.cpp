@@ -19,7 +19,7 @@ namespace net
 
       auto psocket = __create_new < ::sockets::smtp_socket >();
 
-      string strHost = get_context()->file().as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
+      string strHost = m_pcontext->m_papexcontext->file().as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
 
       if (!psocket->open(strHost, (port_t)25))
       {
@@ -141,7 +141,7 @@ namespace net
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (!psystem->url().is_valid_public_domain(strDomain))
       {

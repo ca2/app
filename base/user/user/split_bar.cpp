@@ -105,7 +105,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pparent->m_iIndex = m_iIndex;
 
@@ -131,7 +131,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -160,7 +160,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto point = pmouse->m_point;
 

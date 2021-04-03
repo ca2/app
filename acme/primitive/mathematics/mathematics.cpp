@@ -285,10 +285,10 @@ namespace mathematics
    }
 
 
-   ::e_status mathematics::initialize(::context_object * pcontextobject)
+   ::e_status mathematics::initialize(::object * pobject)
    {
 
-      auto estatus = ::matter::initialize(pcontextobject);
+      auto estatus = ::matter::initialize(pobject);
 
       if (!estatus)
       {
@@ -311,10 +311,12 @@ namespace mathematics
    }
 
 
-   void mathematics::finalize()
+   ::e_status mathematics::finalize()
    {
 
       //::apex::department::finalize();
+
+      return ::success;
 
    }
 

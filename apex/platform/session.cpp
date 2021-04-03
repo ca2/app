@@ -2,8 +2,7 @@
 #include "apex/operating_system.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
-
+#include "acme/platform/static_setup.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -53,6 +52,9 @@ namespace apex
    session::session()
    {
 
+      m_papexsession = this;
+      ::object::m_pcontext = this;
+      m_pcontext = this;
 
       m_paquasession = nullptr;
       m_paurasession = nullptr;
@@ -60,7 +62,7 @@ namespace apex
       m_pbasesession = nullptr;
       m_pbredsession = nullptr;
       m_pcoresession = nullptr;
-      m_psession = this;
+      //m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
@@ -95,10 +97,10 @@ namespace apex
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pcontextobject);
+      auto estatus = ::thread::initialize(pobject);
 
       if (!estatus)
       {
@@ -113,9 +115,9 @@ namespace apex
 
       m_bSystemSynchronizedCursor      = true;
 
-      set_context_session(this);
+      //set_context_session(this);
 
-      set_context(this);
+      m_pcontext = this;
 
       __pointer(::apex::system) psystem = get_system();
 
@@ -413,16 +415,16 @@ namespace apex
 
       INFO("apex::session::process_init");
 
-      auto estatus = ::context::initialize_context();
+      //auto estatus = ::apex::context::initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+         //return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_puserstrcontext);
+      auto estatus = __compose_new(m_puserstrcontext);
 
       if (!estatus)
       {
@@ -640,7 +642,9 @@ namespace apex
 
       INFO("::apex::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
 
-      if (pcreate->m_strAppId.has_char())
+      string strAppId = pcreate->m_strAppId;
+
+      if (strAppId.has_char())
       {
 
          INFO("m_strAppId = " + pcreate->m_strAppId);
@@ -650,7 +654,7 @@ namespace apex
          if (!papp)
          {
 
-            finish(get_context());
+            finish();
 
          }
 
@@ -953,79 +957,90 @@ namespace apex
    }
 
 
-   ::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
-      __pointer(::apex::application) papp;
-
-      if (m_applicationa.lookup(pszAppId, papp))
-      {
-
-         return papp;
-
-      }
-      else
-      {
-
-         if (!bCreate)
-         {
-
-            return nullptr;
-
-         }
-
-         papp = nullptr;
-
-         try
-         {
-
-            papp = create_application(pszAppId, bSynch, pcreate);
-
-         }
-         catch (const ::exception::exception & e)
-         {
-
-            // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
-            // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
-
-            handle_exception(e);
-
-            //if (!get_system()->on_run_exception(esp))
-            //{
-
-            //   if (!App(this).on_run_exception(esp))
-            //   {
-
-            //      papp = nullptr;
-
-            //   }
-
-            //}
-
-            //papp = nullptr;
-
-         }
-         catch (...)
-         {
-
-            //papp = nullptr;
-
-         }
-
-         if (!papp)
-         {
-
-            return nullptr;
-
-         }
-
-         app_add(papp);
-
-         return papp;
-
-      }
+      papp->m_papexsession = this;
+      papp->m_papexsystem = m_papexsystem;
+      papp->m_pacmenode = m_pacmenode;
+      papp->m_papexnode = m_papexnode;
 
    }
+
+
+   //::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //{
+
+   //   __pointer(::apex::application) papp;
+
+   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   {
+
+   //      return papp;
+
+   //   }
+   //   else
+   //   {
+
+   //      if (!bCreate)
+   //      {
+
+   //         return nullptr;
+
+   //      }
+
+   //      papp = nullptr;
+
+   //      try
+   //      {
+
+   //         papp = create_application(pszAppId, bSynch, pcreate);
+
+   //      }
+   //      catch (const ::exception::exception & e)
+   //      {
+
+   //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+
+   //         handle_exception(e);
+
+   //         //if (!get_system()->on_run_exception(esp))
+   //         //{
+
+   //         //   if (!App(this).on_run_exception(esp))
+   //         //   {
+
+   //         //      papp = nullptr;
+
+   //         //   }
+
+   //         //}
+
+   //         //papp = nullptr;
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //         //papp = nullptr;
+
+   //      }
+
+   //      if (!papp)
+   //      {
+
+   //         return nullptr;
+
+   //      }
+
+   //      app_add(papp);
+
+   //      return papp;
+
+   //   }
+
+   //}
 
 
 
@@ -1871,7 +1886,16 @@ ret:
    ::e_status session::init1()
    {
 
-      auto estatus = __compose_new(m_pfs);
+      auto estatus = initialize_context();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose_new(m_pfs);
 
       if (!estatus)
       {
@@ -2097,7 +2121,6 @@ ret:
 
       }
 
-
       return estatus;
 
    }
@@ -2197,10 +2220,10 @@ namespace apex
 
 
 
-   //::e_status session::initialize(::context_object * pcontextobject)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pcontextobject);
+   //   auto estatus = ::apex::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -2248,34 +2271,34 @@ namespace apex
    }
 
 
-   ::e_status     session::do_request(::create* pcreate)
+   void session::do_request(::create* pcreate)
    {
 
-      return ::thread::do_request(pcreate);
+      request(pcreate);
 
    }
 
 
 
 
-   void session::request_topic_file(::payload& varQuery)
-   {
+   //void session::request_topic_file(::payload& varQuery)
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile, varQuery);
+   //   request_file(psession->m_varTopicFile, varQuery);
 
-   }
+   //}
 
 
-   void session::request_topic_file()
-   {
+   //void session::request_topic_file()
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile);
+   //   request_file(psession->m_varTopicFile);
 
-   }
+   //}
 
 
    __pointer(::apex::application) session::get_current_application()
@@ -2291,7 +2314,7 @@ namespace apex
    {
 
 
-      return get_context()->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os().is_remote_session();
 
 
    }
@@ -2370,21 +2393,21 @@ namespace apex
    }
 
 
-   void session::check_topic_file_change()
-   {
+   //void session::check_topic_file_change()
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
-      {
+   //   if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+   //   {
 
-         psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
-         request_topic_file();
+   //      request_topic_file();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
@@ -2857,12 +2880,14 @@ namespace apex
 
 
 
-   void session::finalize()
+   ::e_status session::finalize()
    {
 
       ::application_container::m_applicationa.remove_all();
 
       ::apex::context_thread::finalize();
+
+      return success;
 
    }
 

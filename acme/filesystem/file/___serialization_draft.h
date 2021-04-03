@@ -14,7 +14,7 @@ inline stream & operator << (stream & stream, const TYPE & t) { stream.defer_set
 int file_procedure()
 {
 
-   ::file pfile = get_context()->file().get_file("C:\\window.window");
+   ::file pfile = m_pcontext->m_papexcontext->file().get_file("C:\\window.window");
 
    in_addr addr;
 

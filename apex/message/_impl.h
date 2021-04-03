@@ -2,7 +2,7 @@
 
 
 #define MESSAGE_LINK(id, pchannel, preceiver, phandler) \
-   pchannel->add_handler(id, preceiver, phandler)
+   pchannel->add_message_handler(id, preceiver, phandler)
 
 //#define ON_TYPED_MESSAGE(id, MESSAGE, name) \
 //   this->get_typed_route < typename ::remove_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)

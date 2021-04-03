@@ -13,7 +13,7 @@ namespace experience
    public:
 
 
-      __pointer(::apex::library)          m_plibrary;
+      __pointer(::acme::library)          m_plibrary;
       property_set                        m_set;
 
 
@@ -21,9 +21,9 @@ namespace experience
       virtual ~experience();
 
 
-      inline ::base::application* get_application() const { return m_papplication ? m_papplication.cast < ::base::application >() : nullptr; }
-      inline ::base::session* get_session() const { return m_psession ? m_psession.cast < ::base::session >() : nullptr; }
-      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 

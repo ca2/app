@@ -79,7 +79,7 @@ public:
    bool isHexColorValue() const;
 
    /**
-    * Determines if the attribute value contains a color context_object
+    * Determines if the attribute value contains a color object
     * @return true, if attribute value is color value, false otherwise.
     * @since 1.0
     * @author Gurmeet S. Kochar

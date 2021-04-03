@@ -100,7 +100,7 @@ void update::notify()
 __pointer(update) & update::task(::i64 iUpdate)
 {
 
-   cslock synchronizationlock(g_pcs);
+   cslock synchronouslock(g_pcs);
 
    if(!g_pmap)
    {
@@ -117,7 +117,7 @@ __pointer(update) & update::task(::i64 iUpdate)
 void update::add(::matter * pmatter)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(m_elementa.is_empty())
    {
@@ -139,7 +139,7 @@ void update::add(::matter * pmatter)
 void update::remove(::matter * pmatter)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_elementa.remove(pmatter);
 
@@ -149,7 +149,7 @@ void update::remove(::matter * pmatter)
 void update::_remove(::i64 iUpdate, ::matter * pmatter)
 {
 
-   cslock synchronizationlock(g_pcs);
+   cslock synchronouslock(g_pcs);
 
    auto& ptask = task(iUpdate);
 
@@ -162,7 +162,7 @@ void update::_remove(::matter* pmatter)
 {
 
 
-   cslock synchronizationlock(g_pcs);
+   cslock synchronouslock(g_pcs);
 
    for (auto& ptask : g_pmap->values())
    {
@@ -177,7 +177,7 @@ void update::_remove(::matter* pmatter)
 void update::set_modified(::i64 iUpdate)
 {
 
-   cslock synchronizationlock(::update::g_pcs);
+   cslock synchronouslock(::update::g_pcs);
 
    auto & ptask = update::task(iUpdate);
 
@@ -203,7 +203,7 @@ void update::set_modified(::i64 iUpdate)
 void update::post_destroy_all()
 {
 
-   cslock synchronizationlock(g_pcs);
+   cslock synchronouslock(g_pcs);
 
    if(::is_null(g_pmap))
    {
@@ -220,7 +220,7 @@ void update::post_destroy_all()
 void update::_add(::i64 iUpdate, ::matter * pmatter)
 {
 
-   cslock synchronizationlock(g_pcs);
+   cslock synchronouslock(g_pcs);
 
    auto & ptask = task(iUpdate);
 

@@ -50,7 +50,7 @@ namespace helloworld
 
 
 
-      impact_base(::context_object * pcontextobject);
+      impact_base(::object * pobject);
       virtual ~impact_base();
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS)

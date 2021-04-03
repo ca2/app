@@ -162,7 +162,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int
 }
 
 
-CLASS_DECL_ACME ::matter* general_trace_object()
+CLASS_DECL_ACME const ::matter* general_trace_object()
 {
 
    return trace_category::s_ptracecategorya->element_at(0);
@@ -170,7 +170,7 @@ CLASS_DECL_ACME ::matter* general_trace_object()
 }
 
 
-CLASS_DECL_ACME ::matter* trace_object(e_trace_category ecategory)
+CLASS_DECL_ACME const ::matter* trace_object(e_trace_category ecategory)
 {
 
    return trace_category::s_ptracecategorya->element_at((iptr)ecategory);

@@ -325,10 +325,10 @@ namespace str
    }
 
 
-   //::e_status base64::initialize(::context_object * pcontextobject)
+   //::e_status base64::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::matter::initialize(pcontextobject);
+   //   auto estatus = ::matter::initialize(pobject);
 
    //   if (!estatus)
    //   {

@@ -415,6 +415,18 @@ namespace database
 
    }
 
+
+
+
+
+   bool database::query_blob(get_memory getmemory, const char* pszQuery)
+   {
+
+      return false;
+
+   }
+
+
    bool database::query_rows(__pointer(row_array)& rows, const char* pszQuery)
    {
 

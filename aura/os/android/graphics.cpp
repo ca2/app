@@ -65,18 +65,18 @@ namespace draw2d
    void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array & itema)
    {
 
-      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+      critical_section_lock synchronouslock(::aura::g_pcsFont);
 
       __pointer(::write_text::font_enum_item) pitem;
 
       double dAndroid = 4.4;
 
-      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
+      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 
       if (strSystemFonts.is_empty())
       {
 
-         strSystemFonts = pcontext->file().as_string("/system/etc/fonts.xml");
+         strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/fonts.xml");
 
       }
 
@@ -348,91 +348,91 @@ namespace draw2d
       {
 
 
-#ifdef os_font_name(e_font_mono)
+#ifdef pnode->font_name(e_font_mono)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_mono);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_mono);
 
-         pitem->m_strName = os_font_name(e_font_mono);
+         pitem->m_strName = pnode->font_name(e_font_mono);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_sans)
+#ifdef pnode->font_name(e_font_sans)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_sans);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_sans);
 
-         pitem->m_strName = os_font_name(e_font_sans);
+         pitem->m_strName = pnode->font_name(e_font_sans);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_serif)
+#ifdef pnode->font_name(e_font_serif)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_serif);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_serif);
 
-         pitem->m_strName = os_font_name(e_font_serif);
+         pitem->m_strName = pnode->font_name(e_font_serif);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_sans_ex)
+#ifdef pnode->font_name(e_font_sans_ex)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_sans_ex);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_sans_ex);
 
-         pitem->m_strName = os_font_name(e_font_sans_ex);
+         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_serif_ex)
+#ifdef pnode->font_name(e_font_serif_ex)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_serif_ex);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_serif_ex);
 
-         pitem->m_strName = os_font_name(e_font_serif_ex);
+         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_sans_fx)
+#ifdef pnode->font_name(e_font_sans_fx)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_sans_fx);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_sans_fx);
 
-         pitem->m_strName = os_font_name(e_font_sans_fx);
+         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 
          itema.add(pitem);
 
 #endif
 
 
-#ifdef os_font_name(e_font_serif_fx)
+#ifdef pnode->font_name(e_font_serif_fx)
 
          pitem = __new(::write_text::font_enum_item);
 
-         pitem->m_mapFileName[0] = os_font_name(e_font_serif_fx);
+         pitem->m_mapFileName[0] = pnode->font_name(e_font_serif_fx);
 
-         pitem->m_strName = os_font_name(e_font_serif_fx);
+         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 
          itema.add(pitem);
 

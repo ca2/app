@@ -17,7 +17,7 @@ namespace calculator
       bool                       m_bTimerOn;
 
 
-      frame(::context_object * pcontextobject);
+      frame(::object * pobject);
       virtual ~frame();
 
       virtual bool pre_create_window(::user::system * pusersystem);

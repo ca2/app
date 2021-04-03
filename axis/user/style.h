@@ -11,7 +11,7 @@ namespace axis
    public:
 
 
-      //__pointer(::apex::library)             m_plibrary;
+      //__pointer(::acme::library)             m_plibrary;
 
       //::write_text::font_pointer                 m_pfont;
       //::write_text::font_pointer                 m_pfontMenu;
@@ -49,7 +49,7 @@ namespace axis
       //::draw2d::pen_pointer                  m_penFocusRect9;
 
       style();
-      style(::context_object * pcontextobject);
+      style(::object * pobject);
       virtual ~style();
 
       void default_style_construct();

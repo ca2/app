@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME task_pool :
-   virtual public ::property_object
+   virtual public object
 {
 protected:
 

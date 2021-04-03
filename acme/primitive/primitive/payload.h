@@ -520,6 +520,27 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
+   template < typename PREDICATE >
+   void predicate_each(PREDICATE predicate)
+   {
+
+      auto c = array_get_count();
+      
+      for (auto i = 0; i < c; i++)
+      {
+
+         predicate(at(i));
+
+      }
+
+   }
+
+
+
+
+
+
+
    payload & operator = (const ::matter & o);
 
    inline payload & operator = (const ::file::path & path)
@@ -934,6 +955,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::extended::status run();
 
+   ::extended::status operator()() { return run(); }
 
    void receive_response(const payload & payload);
 

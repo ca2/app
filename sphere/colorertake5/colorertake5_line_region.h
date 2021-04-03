@@ -17,7 +17,7 @@ namespace colorertake5
       /** Reference to HRC region, which identifies type of this range */
       class region *region;
       /** Reference to RegionDefine class (it's subclass).
-      This context_object can contain concrete information about region
+      This object can contain concrete information about region
       extended properties.
       Can be nullptr, if no region mapping were defined.
       */
@@ -27,7 +27,7 @@ namespace colorertake5
       /** Reference to region's HRC scheme */
       const class scheme *scheme;
       /** Previous and next links to ranged region in this line.
-      First region of each line contains context_object to it's last
+      First region of each line contains object to it's last
       region in prev field.
       If @ca next field is nullptr, this is a last region in line.
       */
@@ -38,13 +38,13 @@ namespace colorertake5
       */
       bool special;
 
-      /** Transforms this region's context_object into styled region define
+      /** Transforms this region's object into styled region define
       and returns new pointer.
       */
       const StyledRegion *styled(){
          return StyledRegion::cast(rdef);
       };
-      /** Transforms this region's context_object into text region define
+      /** Transforms this region's object into text region define
       and returns new pointer.
       */
       const TextRegion *texted(){

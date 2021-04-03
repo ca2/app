@@ -8,7 +8,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA icon :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

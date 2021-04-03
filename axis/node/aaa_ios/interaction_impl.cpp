@@ -358,7 +358,7 @@ namespace ios
 
       if (hWndNew == nullptr)
          return false;
-      //single_lock synchronizationlock(afxMutexHwnd(), true);
+      //single_lock synchronouslock(afxMutexHwnd(), true);
       //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
@@ -379,7 +379,7 @@ namespace ios
       oswindow hWnd = (oswindow) get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock synchronizationlock(afxMutexHwnd(), true);
+         //         single_lock synchronouslock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->remove_handle(get_handle());
@@ -736,7 +736,7 @@ namespace ios
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock synchronizationlock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+      single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
 
       //pmessage->m_bRet = true;
 
@@ -811,7 +811,7 @@ namespace ios
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock synchronizationlock(afxMutexHwnd(), true);
+       single_lock synchronouslock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -895,7 +895,7 @@ namespace ios
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock synchronizationlock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+      single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
 
       if(get_handle() == nullptr)
          return false;
@@ -1748,7 +1748,7 @@ namespace ios
    bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
    {
       // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+      /*      single_lock synchronouslock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if (pMap == nullptr)
        return false;
@@ -5049,7 +5049,7 @@ namespace ios
 
       {
 
-         single_lock synchronizationlock(m_puserinteraction->mutex(), true);
+         single_lock synchronouslock(m_puserinteraction->mutex(), true);
 
          double sh = status_bar_height();
          
@@ -5078,7 +5078,7 @@ namespace ios
 
       }
       
-      synchronization_lock sl1(pbuffer->get_screen_sync());
+      synchronous_lock sl1(pbuffer->get_screen_sync());
       
       auto & pimage = pbuffer->get_screen_image();
 
@@ -5678,7 +5678,7 @@ namespace ios
 
       {
 
-         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
          m_puserinteraction->m_stateRequest2.m_point = pointMove;
 
@@ -5736,7 +5736,7 @@ namespace ios
 
       }
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       for (auto p : m_puserinteraction->m_uiptraChild)
       {

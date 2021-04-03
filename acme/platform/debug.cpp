@@ -4,10 +4,8 @@
 //#include "acme/user/_user.h"
 CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
 CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
-CLASS_DECL_ACME void __simple_tracev(::matter* pmatter, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
-CLASS_DECL_ACME void __simple_tracea(::matter* pmatter, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
 
-CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+//CLASS_DECL_ACME void __tracev(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 //#endif
 #include "acme/update.h"
@@ -158,69 +156,9 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 
 
 
-int g_iMemoryCounters = -1;
+//int g_iMemoryCounters = -1;
 
-CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
-
-int g_iMemoryCountersStartable = 0;
-
-CLASS_DECL_ACME bool memcnts()
-{
-
-   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
-   {
-
-      g_iMemoryCounters = file_exists(::dir::config() / "system/memory_counters.txt") ? 1 : 0;
-
-      if (g_iMemoryCounters)
-      {
-
-         g_pmutexMemoryCounters = new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
-
-      }
-
-   }
-
-   return g_iMemoryCountersStartable && g_iMemoryCounters;
-
-}
-
-
-::file::path* g_pMemoryCounters = nullptr;
-
-
-CLASS_DECL_ACME::file::path memcnts_base_path()
-{
-
-   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
-   {
-
-      g_pMemoryCounters = new ::file::path();
-
-#if defined(_UWP)
-
-      string strBasePath = ::dir::system() / "memory_counters";
-
-#else
-
-      ::file::path strModule = module_path_from_pid(getpid());
-
-      string strBasePath = ::dir::system() / "memory_counters" / strModule.title() / __str(getpid());
-
-#endif
-
-      * g_pMemoryCounters = strBasePath;
-
-   }
-
-   return *g_pMemoryCounters;
-
-}
-
-
-
-
-
+//CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
 
 
 
@@ -232,55 +170,55 @@ CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const
    if (::is_null(pmatter->m_psystem))
    {
 
-      __simple_tracea(pmatter, elevel, pszFunction, pszFile, iLine, psz);
+      pmatter->__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
 
       return;
 
    }
 
-   pmatter->m_psystem->__tracea(pmatter, elevel, pszFunction, pszFile, iLine, psz);
+   pmatter->m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
 
-CLASS_DECL_ACME void __tracef(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
-{
+//CLASS_DECL_ACME void __tracef(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+//{
+//
+//   va_list list;
+//
+//   va_start(list, pszFormat);
+//
+//   try
+//   {
+//
+//      __tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   va_end(list);
+//
+//}
 
-   va_list list;
 
-   va_start(list, pszFormat);
-
-   try
-   {
-
-      __tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, list);
-
-   }
-   catch (...)
-   {
-
-   }
-
-   va_end(list);
-
-}
-
-
-CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
-{
-
-   if (::is_null(pmatter->m_psystem))
-   {
-
-      __simple_tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-      return;
-
-   }
-
-   pmatter->m_psystem->__tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-}
+//CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+//{
+//
+//   if (::is_null(pmatter->m_psystem))
+//   {
+//
+//      pmatter->__simple_tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//      return;
+//
+//   }
+//
+//   pmatter->m_psystem->__tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//}
 
 //
 //

@@ -110,7 +110,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   auto & system = ::aura::get_system();
 //
-//   synchronization_lock slSystem(system.mutex());
+//   synchronous_lock slSystem(system.mutex());
 //
 //   auto pmap = system.m_pwindowmap;
 //
@@ -121,7 +121,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   }
 //
-//   //synchronization_lock slMap(pmap->mutex());
+//   //synchronous_lock slMap(pmap->mutex());
 //
 //   ::user::primitive * pusermessage;
 //
@@ -257,7 +257,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   }
 //
-//   synchronization_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->mutex());
 //
 //   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 //   {

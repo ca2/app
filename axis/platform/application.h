@@ -31,7 +31,7 @@ namespace axis
       virtual ~application();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void assert_valid() const override;
@@ -71,7 +71,7 @@ namespace axis
 
 
       virtual ::e_status     run() override;
-      virtual ::e_status     main() override;
+      //virtual ::e_status     main() override;
       virtual ::e_status     on_run() override;
 
       virtual ::e_status application_pre_run() override;

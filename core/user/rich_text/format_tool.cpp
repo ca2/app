@@ -23,10 +23,10 @@ namespace user
    }
 
 
-   e_status format_tool::initialize(::context_object* pcontextobject)
+   e_status format_tool::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::tool_window::initialize(pcontextobject);
+      auto estatus = ::user::tool_window::initialize(pobject);
 
       if (!estatus)
       {
@@ -123,13 +123,13 @@ namespace user
       m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_background);
 
       m_pcomboFamily->create_control(this, "combo_family");
-      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
+      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
       //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
 
       m_pcomboSize->create_control(this, "combo_size");
-      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
+      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
       //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
@@ -583,7 +583,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_formata[0]->mutex());
+      synchronous_lock synchronouslock(m_formata[0]->mutex());
 
       if (bSaveAndValidate)
       {
@@ -727,7 +727,7 @@ namespace user
 //::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
 //
@@ -738,7 +738,7 @@ namespace user
 //
 //      m_ptoolwindowFont = pfontformattool;
 //
-//      synchronizationlock.unlock();
+//      synchronouslock.unlock();
 //
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;

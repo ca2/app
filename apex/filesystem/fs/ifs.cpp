@@ -16,7 +16,7 @@ ifs::ifs(const char * pszRoot)
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
@@ -36,11 +36,11 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
@@ -49,13 +49,13 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    ::file::listing listing;
 
-   get_context()->dir().ls(listing, path);
+   m_pcontext->m_papexcontext->dir().ls(listing, path);
 
-   synchronizationlock.lock();
+   synchronouslock.lock();
 
    return dir.get_count() > 0;
 
@@ -81,11 +81,11 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::ls(::file::listing & listing)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
@@ -134,7 +134,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //property_set set;
 
-   //strSource = get_context()->http().get(strUrl, set);
+   //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
    //if(strSource.is_empty())
    //{
@@ -290,18 +290,18 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = get_system();
+   auto psystem = m_psystem->m_papexsystem;
 
    if(dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
    {
 
       ::file::listing listing;
 
-      get_context()->dir().ls(listing, path.folder());
+      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
 
    }
 

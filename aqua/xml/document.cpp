@@ -47,9 +47,9 @@ namespace xml
       
       string str;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
-      str = get_context()->file().as_string(psz);
+      str = m_pcontext->m_papexcontext->file().as_string(psz);
 
       return load(str);
 
@@ -312,7 +312,7 @@ namespace xml
 
          pszXmlParam = pszXml;
 
-         return get_context()->file().as_string(m_pathLocation.sibling(extEnt));
+         return m_pcontext->m_papexcontext->file().as_string(m_pathLocation.sibling(extEnt));
 
       }
 

@@ -317,7 +317,7 @@ ___keep < TYPE > keep(TYPE & kept, const TYPE_KEEP & keepValue, const TYPE_KEEP_
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronization_lock synchronizationlock(mutex()); \
+synchronous_lock synchronouslock(mutex()); \
  \
 if (flag) \
 { \
@@ -328,20 +328,20 @@ if (flag) \
 \
 auto TOKEN_AT_LINE(__task_guard_task_ret) = keep(flag); \
 \
-synchronizationlock.unlock()
+synchronouslock.unlock()
 
 #define __task_guard(flag) __task_guard_ret(flag, return)
 
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronization_lock synchronizationlock(mutex()); \
+synchronous_lock synchronouslock(mutex()); \
  \
 while (flag) \
 { \
 \
    \
-   synchronizationlock.unlock(); \
+   synchronouslock.unlock(); \
    \
    if (!task_sleep(100_ms)) \
    {\
@@ -350,14 +350,14 @@ while (flag) \
    \
    } \
    \
-   synchronizationlock.lock(); \
+   synchronouslock.lock(); \
    \
    \
 } \
 \
 auto TOKEN_AT_LINE(__guard_wait_ret) = keep(&flag); \
 \
-synchronizationlock.unlock()
+synchronouslock.unlock()
 
 #define __guard_wait(flag) __task_guard_ret(flag, return)
 

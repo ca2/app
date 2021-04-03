@@ -107,7 +107,7 @@ inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
 
 template < class T >
 template < typename T2, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pcontextobject)
+inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pobject)
 {
 
    auto p = __new(T2);
@@ -115,7 +115,7 @@ inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pcontextobject)
    if (p)
    {
 
-      p->initialize(pcontextobject);
+      p->initialize(pobject);
 
    }
 

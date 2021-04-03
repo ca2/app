@@ -49,8 +49,8 @@ namespace mathematics
       virtual ~mathematics();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
 
       i32 LinearMap(i32 iMin, i32 iMax, i32 iValue, i32 iValueMin, i32 iValueMax);

@@ -244,7 +244,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
+         path = pacmedir->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -258,7 +258,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "home/user/ca2/lock/mutex" / string(pstrName);
+         path = pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
 #elif defined __APPLE__
 

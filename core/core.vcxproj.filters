@@ -299,7 +299,7 @@
     <ClInclude Include="filesystem\fs\ftp_file.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\ftp_net.h">
+    <ClInclude Include="filesystem\fs\ftpnet.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\fs\ftpfs.h">
@@ -2160,6 +2160,9 @@
     </ClCompile>
     <ClCompile Include="user\user\list_column.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\ftpnet.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

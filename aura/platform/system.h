@@ -77,9 +77,9 @@ namespace aura
       __composite(::gpu::approach)                       m_pgpu;
 
       //::mutex                                            m_mutexLibrary;
-      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < __pointer(::acme::library) >          m_mapLibrary;
       //string_map < PFN_NEW_AURA_LIBRARY >                m_mapNewAuraLibrary;
-      //string_map < __pointer(::apex::library) >          m_mapLibCall;
+      //string_map < __pointer(::acme::library) >          m_mapLibCall;
 
 
 
@@ -197,7 +197,7 @@ namespace aura
       //double_array                                       m_daLon;
       //double_array                                       m_daLat;
 
-      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < __pointer(::acme::library) >          m_mapLibrary;
 
       //string_map < __pointer(openweather_city) >                   m_mapCity;
 
@@ -248,9 +248,9 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::apex::library* >                  m_idmapCreateViewLibrary;
+      strid_map < ::acme::library* >                  m_idmapCreateViewLibrary;
 
-      __pointer_array(::apex::library)          m_libraryspa;
+      __pointer_array(::acme::library)          m_libraryspa;
 
 #ifdef _UWP
 
@@ -267,7 +267,9 @@ namespace aura
 
       void common_construct();
 
-      virtual ::e_status  initialize(::context_object * pcontextobject) override;
+      virtual ::e_status  initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session* papexsession) override;
 
       virtual ::e_status init() override;
       //virtual ::e_status init_instance() override;
@@ -306,8 +308,8 @@ namespace aura
       ::aura::estamira& estamira();
 
 
-      inline ::aura::session* get_session() { return m_psession ? m_psession.cast < ::aura::session >() : nullptr; }
-      inline ::aura::node* node() { return m_pnode ? m_pnode.cast < ::aura::node >() : nullptr; }
+      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
+      inline ::aura::node* node() { return m_pnode ? m_pnode->m_pauranode : nullptr; }
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };
@@ -353,7 +355,7 @@ namespace aura
       virtual string crypto_md5_text(const string & str) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::context_object * pcontextobject, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
@@ -361,7 +363,7 @@ namespace aura
 
       //virtual __pointer(::aura::session) on_create_session() override;
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
       //virtual void construct(const char * pszAppId);
 
@@ -370,7 +372,7 @@ namespace aura
       //virtual i32 exit_instance();
       //virtual bool finalize();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
 
@@ -397,7 +399,7 @@ namespace aura
 
 
 
-      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
+      //virtual string dir_appmatter_locator(::object * pobject);
 
 
       //virtual void hist_hist(const char * psz);
@@ -426,7 +428,7 @@ namespace aura
       //class ::user::window_map                     &  window_map();
 
 
-      //__pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      //__pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       //::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
@@ -547,7 +549,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -569,9 +571,9 @@ namespace aura
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
-      //virtual ::apex::library * on_get_library(const char * pszLibrary) override;
+      //virtual ::acme::library * on_get_library(const char * pszLibrary) override;
 
-      //virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
+      //virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
       //virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0) override;
@@ -606,7 +608,7 @@ namespace aura
 
       //virtual ::e_status init2();
 
-      //virtual ::e_status post_create_requests() override;
+      //virtual ::e_status post_creation_requests() override;
 
       //virtual void term_system();
 
@@ -718,7 +720,7 @@ namespace aura
 
       //virtual void on_end_find_applications_to_cache(stream & os) override;
 
-      //virtual void on_map_application_library(::apex::library & library) override;
+      //virtual void on_map_application_library(::acme::library & library) override;
 
       //virtual void defer_check_exit();
 
@@ -777,7 +779,7 @@ namespace aura
 
 
 
-      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const override;
 
 
       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
@@ -833,7 +835,7 @@ namespace aura
       //::e_status set_history(::apex::history* phistory);
 
 
-      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -901,7 +903,7 @@ namespace aura
 
       virtual string get_host_location_url() override;
 
-      virtual ::e_status add_view_library(::apex::library* plibrary);
+      virtual ::e_status add_view_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 
@@ -938,7 +940,7 @@ namespace aura
 
       //virtual void on_end_find_applications_to_cache(stream& os) override;
 
-      //virtual void on_map_application_library(::apex::library& library) override;
+      //virtual void on_map_application_library(::acme::library& library) override;
 
       //virtual void on_graphics_ready() override;
 

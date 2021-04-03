@@ -93,7 +93,7 @@ namespace colorertake5
       }
    private:
       /**
-      * region's start position as a context_object to inparse sequence.
+      * region's start position as a object to inparse sequence.
       */
       LineRegion *startRef;
 

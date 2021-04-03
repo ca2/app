@@ -240,7 +240,7 @@ strsize lite_html_reader::parseDocument()
          break;
       }
 
-      // entity context_object beginning delimeter?
+      // entity object beginning delimeter?
       case '&':
       {
          UngetChar();

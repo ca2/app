@@ -34,7 +34,7 @@ namespace sockets
 
 
       /** Constructor.
-      \lparam h base_socket_handler context_object
+      \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
       listen_socket_base();
       virtual ~listen_socket_base();
@@ -191,7 +191,7 @@ namespace sockets
 
 
       /** Constructor.
-      \param h base_socket_handler context_object
+      \param h base_socket_handler object
       \param use_creator Optional use of creator (default true) */
       listen_socket(bool use_creator = true) :
          ::object(h.get_application()), 

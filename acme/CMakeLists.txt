@@ -290,8 +290,8 @@ list(APPEND acme_source
    primitive/primitive/handler.cpp
    primitive/primitive/id.cpp
    primitive/primitive/id_array.cpp
-   primitive/primitive/id_matter.cpp
-   primitive/primitive/id_matter.h
+   primitive/primitive/material_object.cpp
+   primitive/primitive/material_object.h
    primitive/primitive/id_space.cpp
    primitive/primitive/interlocked_long.cpp
    primitive/primitive/interlocked_long_pulse.cpp
@@ -761,7 +761,7 @@ list(APPEND acme_source
    parallelization/socket_event.h
    parallelization/synchronization_array.cpp
    parallelization/synchronization_array.h
-   parallelization/synchronization_lock.h
+   parallelization/synchronous_lock.h
    parallelization/synchronization_object.cpp
    parallelization/synchronization_object.h
    parallelization/synchronization_result.cpp

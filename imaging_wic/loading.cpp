@@ -83,7 +83,7 @@ namespace imaging_wic
 
             }
 
-            get_context()->file().as_memory(payload, *pmemory);
+            m_pcontext->m_papexcontext->file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 
@@ -105,9 +105,9 @@ namespace imaging_wic
 
             }
 
-            __pointer(::aura::application) papplication = get_application();
+            auto pcontext = get_context();
 
-            auto estatus = papplication->image().load_svg(pimage, pmemory);
+            auto estatus = pcontext->m_pauracontext->image().load_svg(pimage, pmemory);
 
             if (::succeeded(estatus))
             {
@@ -544,7 +544,7 @@ namespace imaging_wic
 
 #else
 
-      comptr < IStream > pstream = LIBCALL(shlwapi, SHCreateMemStream)(nullptr, NULL);
+      comptr < IStream > pstream = SHCreateMemStream(nullptr, NULL);
 
 #endif
 

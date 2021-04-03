@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-#define FONTFACENAME_MENU os_font_name(e_font_sans)
+#define FONTFACENAME_MENU pnode->font_name(e_font_sans)
 
-#define FONTFACENAME_LUCIDA os_font_name(e_font_sans)
+#define FONTFACENAME_LUCIDA pnode->font_name(e_font_sans)
 
 
 font_department::font_department()
@@ -43,8 +43,17 @@ bool font_department::is_initialized()
 }
 
 
-::e_status font_department::initialize(::context_object * pcontextobject)
+::e_status font_department::initialize(::object * pobject)
 {
+
+   auto estatus = ::apex::department::initialize(pobject);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
 
    if (is_initialized())
    {
@@ -108,17 +117,17 @@ bool font_department::is_initialized()
 }
 
 
-void font_department::finalize()
+::e_status font_department::finalize()
 {
 
-   if (!is_initialized())
+   if (is_initialized())
    {
 
-      return;
+      m_bInitialized = false;
 
    }
 
-   m_bInitialized = false;
+   return ::success;
 
 }
 

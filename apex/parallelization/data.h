@@ -35,7 +35,7 @@
 //public:
 //
 //
-//   static __thread_pointer < __pointer_array(::context_object) > t_preferencea;
+//   static __thread_pointer < __pointer_array(::object) > t_preferencea;
 //
 //   inline operator T *() { return (T *)get(); }
 //   inline T * operator ->() { return operator T *(); }
@@ -47,10 +47,10 @@
 //      if (p != pPrevious)
 //      {
 //
-//         if (t_preferencea.operator pointer_array<context_object> * () == nullptr)
+//         if (t_preferencea.operator pointer_array<object> * () == nullptr)
 //         {
 //
-//            t_preferencea = __new(__pointer_array(::context_object));
+//            t_preferencea = __new(__pointer_array(::object));
 //
 //         }
 //

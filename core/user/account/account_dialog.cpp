@@ -106,11 +106,11 @@ namespace account
 
       string strOpen;
 
-      strUser = lstr("account::login::email","e-mail");
+      //strUser = lstr("account::login::email","e-mail");
 
-      strPass = lstr("account::login::password","password");
+      //strPass = lstr("account::login::password","password");
 
-      strOpen = lstr("account::login::open","open");
+      //strOpen = lstr("account::login::open","open");
 
       m_plogin->defer_translate(strUser,strPass,strOpen);
 
@@ -166,7 +166,7 @@ namespace account
 
                {
 
-                  synchronization_lock slInteractive(m_pcredentials->mutex());
+                  synchronous_lock slInteractive(m_pcredentials->mutex());
 
                   pcredentials = __new(::account::credentials(*m_pcredentials));
 
@@ -311,7 +311,7 @@ namespace account
 
             phyperlink->m_strLink = "ca2account:this";
 
-            phyperlink->open_link();
+            phyperlink->run();
 
             sleep(5000_ms);
 
@@ -323,7 +323,7 @@ namespace account
 
             phyperlink->m_strLink = "ca2account:this";
 
-            phyperlink->open_link();
+            phyperlink->run();
 
          }
 
@@ -333,11 +333,11 @@ namespace account
 
 #if !MOBILE_PLATFORM
 
-      single_lock synchronizationlock(&psession->account()->m_semaphoreDialog);
+      single_lock synchronouslock(&psession->account()->m_semaphoreDialog);
 
       bool bWasWaiting = false;
 
-      while (!synchronizationlock.wait(one_second()).signaled())
+      while (!synchronouslock.wait(one_second()).signaled())
       {
 
          if (!::task_get_run())
@@ -460,7 +460,9 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            m_plogin->m_pimage = papplication->image().load_matter_image(stra[0]);
+            auto pcontext = m_pcontext;
+
+            m_plogin->m_pimage = pcontext->m_pauracontext->image().load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 

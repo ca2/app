@@ -19,7 +19,7 @@ public:
    virtual ~html_form();
 
    
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

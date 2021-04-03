@@ -76,7 +76,7 @@ namespace userex
    bool image_list_view::update_data(bool bSaveAndValidate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (bSaveAndValidate)
       {
@@ -87,20 +87,22 @@ namespace userex
       else
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_imageaThumb.remove_all();
 
          m_imagea.remove_all();
+
+         auto pcontext = m_pcontext;
+
+         auto papplication = get_application();
 
          if (m_pathFolder.has_char())
          {
 
             m_plisting->remove_all();
 
-            auto papplication = get_application();
-
-            papplication->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
+            pcontext->m_papexcontext->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
 
          }
 
@@ -121,22 +123,22 @@ namespace userex
       fork([this]()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          int iForkDib = m_iForkAddDib;
 
          for (index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             ::image_pointer pimage1;
 
             ::file::path path = m_plisting->element_at(i);
 
-            auto papplication = get_application();
+            auto pcontext = m_pcontext;
 
-            pimage1 = papplication->image().load_image(path, false);
+            pimage1 = pcontext->m_pauracontext->image().load_image(path, false);
 
             if (pimage1)
             {
@@ -159,7 +161,7 @@ namespace userex
 
                   pimage1->extension()->payload("read_only_link") = get_link_prefix() + path.name();
 
-                  synchronizationlock.lock();
+                  synchronouslock.lock();
 
                   i++;
 
@@ -171,7 +173,7 @@ namespace userex
                else
                {
 
-                  synchronizationlock.lock();
+                  synchronouslock.lock();
 
                   TRACE("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
@@ -183,7 +185,7 @@ namespace userex
             else
             {
 
-               synchronizationlock.lock();
+               synchronouslock.lock();
 
                TRACE("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 

@@ -6,12 +6,12 @@ namespace userstack
 {
 
 
-   view::view(::context_object * pcontextobject) :
+   view::view(::object * pobject) :
       ::object(pobject),
       m_font(e_create)
    {
 
-      m_font->create_point_font(os_font_name(e_font_sans_ex), 8.4);
+      m_font->create_point_font(pnode->font_name(e_font_sans_ex), 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;
@@ -135,13 +135,13 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = pcontext->dir().appdata() / "image";
+      string strImageDir = pcontext->m_papexcontext->dir().appdata() / "image";
       m_straImagePath.m_pprovider = get_application();
       m_straImagePath.rls(strImageDir);
 
       for(i32 i = 0; i < m_straImagePath.get_size();)
       {
-         if(pcontext->dir().is(m_straImagePath[i]))
+         if(pcontext->m_papexcontext->dir().is(m_straImagePath[i]))
          {
             m_straImagePath.remove_at(i);
          }

@@ -19,10 +19,10 @@ namespace html
    }
 
 
-   bool font::create(::context_object * pcontextobject)
+   bool font::create(::object * pobject)
    {
 
-      initialize(pcontextobject);
+      initialize(pobject);
 
       m_font.create(this);
 

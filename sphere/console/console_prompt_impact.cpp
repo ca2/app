@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt_impact::prompt_impact(::context_object * pcontextobject) :
+   prompt_impact::prompt_impact(::object * pobject) :
       ::object(pobject)
    {
 

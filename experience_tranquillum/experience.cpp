@@ -23,10 +23,10 @@ namespace experience
       }
 
 
-         ::e_status experience::initialize(::context_object * pcontextobject)
+         ::e_status experience::initialize(::object * pobject)
          {
 
-            auto estatus = ::experience::experience::initialize(pcontextobject);
+            auto estatus = ::experience::experience::initialize(pobject);
 
             if (!estatus)
             {
@@ -36,12 +36,16 @@ namespace experience
             }
 
 #if !defined(CUBE)
+
             fork([this]()
                {
+
+                  auto psession = get_session();
 
                   psession->user()->windowing()->set_cursor_set_from_matter("cursor/tranquillum");
 
                });
+
 #endif
 
             return ::success;

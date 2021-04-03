@@ -188,10 +188,10 @@ namespace apex
    }
 
 
-   ::e_status str::initialize(::context_object * pcontextobject)
+   ::e_status str::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -206,7 +206,7 @@ namespace apex
 
 #endif
 
-      auto strMain = get_context()->dir().install() / "app/_appmatter/main";
+      auto strMain = m_pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
 
       if (!load(strMain))
       {
@@ -225,7 +225,7 @@ namespace apex
 
       return true;
 
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      string strMain = pszBaseDir;
 //
@@ -635,7 +635,7 @@ namespace apex
 
       memory mem;
 
-      get_context()->file().as_memory(pszFilePath,mem);
+      m_pcontext->m_papexcontext->file().as_memory(pszFilePath,mem);
 
 
       strsize len;
@@ -1042,7 +1042,7 @@ end:
    bool str_context::match(string_array & stra, const char * psz, id idExpression, id idRoot) const
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string_array straCandidate;
 

@@ -23,7 +23,7 @@ public:
 
 int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
-   synchronization_lock lockMutex(m_mutex, false);
+   synchronous_lock lockMutex(m_mutex, false);
    while(true)
    {
       lockMutex.lock();
@@ -75,7 +75,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 {
 
 
-   synchronization_lock lockMutex(m_mutex, false);
+   synchronous_lock lockMutex(m_mutex, false);
 
 
    for(i32 i = 0; i < m_threadptra.get_count(); i++)

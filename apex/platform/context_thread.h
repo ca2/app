@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX context_thread :
       virtual public ::thread,
-      virtual public ::context
+      virtual public ::apex::context
    {
    public:
 
@@ -35,7 +35,7 @@ namespace apex
 
       string command_line_text() const;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       //virtual ::task_pool* taskpool() override;
 

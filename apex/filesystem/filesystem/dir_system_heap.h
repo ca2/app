@@ -34,7 +34,7 @@ namespace file
          millis m_millisTimeout;
 
 
-         is_dir_map(::context_object * pcontextobject);
+         is_dir_map(::object * pobject);
 
 
          bool lookup(const ::file::path & strPath, bool &bIsDir, u32 & dwLastError);
@@ -59,7 +59,7 @@ namespace file
          ::file::path         m_pathUser;
          ::file::path         m_pathHome;
 
-         dir_system_heap(::context_object * pcontextobject) :
+         dir_system_heap(::object * pobject) :
             m_isdirmap(pobject)
          {
 

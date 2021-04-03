@@ -127,8 +127,8 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual bool add_prodevian(::context_object * pobject);
-      virtual bool remove_prodevian(::context_object * pobject);
+      virtual bool add_prodevian(::object * pobject);
+      virtual bool remove_prodevian(::object * pobject);
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 

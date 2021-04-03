@@ -6,7 +6,7 @@ namespace subject
 
 
    class CLASS_DECL_APEX manager :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -59,7 +59,7 @@ namespace subject
       //static handler_pointer fork_handler(const ::id &id, ::matter *pmatter = nullptr);
       //subject_pointer subject(const ::id &id, ::matter *pmatter = nullptr);
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       //virtual void source_add(::matter* pmatter);
       //virtual void source_remove(::matter* pmatter);

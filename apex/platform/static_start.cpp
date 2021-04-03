@@ -70,7 +70,7 @@ namespace apex
 
    ::mutex * g_pmutexThreadWaitClose;
 
-   //string_map < __pointer(::apex::library) >* g_pmapLibrary;
+   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -287,7 +287,7 @@ namespace apex
 
       //::map < void *, void *,::apex::application *, ::apex::application * > * g_pmapAura;
 
-      //string_map < __pointer(::apex::library) > * g_pmapLibCall;
+      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
 
       //g_pheap = nullptr;
 
@@ -524,7 +524,7 @@ namespace apex
 
       //psystem->g_mutexLibrary = new ::mutex;
 
-      //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_APEX_LIBRARY >();
 
@@ -543,7 +543,7 @@ namespace apex
 
 #endif
 
-      //g_pmapLibCall = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -569,7 +569,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::context >();
+      create_factory < ::apex::context, ::acme::context >();
 
 
 #if OBJ_TYP_CTR
@@ -627,7 +627,7 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   g_pmapLibCall->remove_all();
 
@@ -641,7 +641,7 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(psystem->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
       //   psystem->g_mapLibrary.remove_all();
 

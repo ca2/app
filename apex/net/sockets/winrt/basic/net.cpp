@@ -30,10 +30,10 @@ namespace sockets
    }
 
 
-   ::e_status net::initialize(::context_object * pcontextobject)
+   ::e_status net::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (estatus)
       {
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   //::e_status net::initialize(::context_object * pcontextobject)
+   //::e_status net::initialize(::object * pobject)
    //{
 
    //   return ::success;
@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   void net::finalize()
+   ::e_status net::finalize()
    {
 
       //return true;

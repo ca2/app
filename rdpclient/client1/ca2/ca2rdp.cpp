@@ -523,41 +523,41 @@ int main(int argc, char* argv[])
 
 ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext)
 {
-   if(pcontext->ca2rdpi == nullptr)
+   if(pcontext->m_papexcontext->ca2rdpi == nullptr)
       return nullptr;
-   return ::draw2d::image_get_graphics(pcontext->ca2rdpi->surface);
+   return ::draw2d::image_get_graphics(pcontext->m_papexcontext->ca2rdpi->surface);
 
 }
 
 color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 {
 //#ifdef _WIN32
-//   if(pcontext->primary == nullptr)
+//   if(pcontext->m_papexcontext->primary == nullptr)
 //      return nullptr;
-//   return (color32_t *) pcontext->primary->pdata;
+//   return (color32_t *) pcontext->m_papexcontext->primary->pdata;
 //#else
-   if(pcontext->gdi == nullptr)
+   if(pcontext->m_papexcontext->gdi == nullptr)
       return nullptr;
-   /*   if(pcontext->gdi->drawing == nullptr)
+   /*   if(pcontext->m_papexcontext->gdi->drawing == nullptr)
          return nullptr;
-      if(pcontext->gdi->drawing->bitmap == nullptr)
+      if(pcontext->m_papexcontext->gdi->drawing->bitmap == nullptr)
          return nullptr;
-      return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
-   return (color32_t *)pcontext->gdi->primary_buffer;
+      return (color32_t *)pcontext->m_papexcontext->gdi->drawing->bitmap->p*/
+   return (color32_t *)pcontext->m_papexcontext->gdi->primary_buffer;
    ;
 //#endif
 }
 
 int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
 {
-   if(pcontext->gdi == nullptr)
+   if(pcontext->m_papexcontext->gdi == nullptr)
       return 0;
-   /*   if(pcontext->gdi->drawing == nullptr)
+   /*   if(pcontext->m_papexcontext->gdi->drawing == nullptr)
    return nullptr;
-   if(pcontext->gdi->drawing->bitmap == nullptr)
+   if(pcontext->m_papexcontext->gdi->drawing->bitmap == nullptr)
    return nullptr;
-   return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
-   return pcontext->gdi->bitmap_size;
+   return (color32_t *)pcontext->m_papexcontext->gdi->drawing->bitmap->p*/
+   return pcontext->m_papexcontext->gdi->bitmap_size;
    ;
 }
 

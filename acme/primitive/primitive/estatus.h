@@ -56,6 +56,8 @@ public:
 
    bool operator ==(enum_status estatus) const { return m_estatus == estatus; }
    bool operator ==(const e_status& estatus) const { return m_estatus == estatus; }
+   bool operator <(const e_status& estatus) const { return m_estatus < estatus; }
+   bool operator <(const enum_status& estatus) const { return m_estatus < estatus; }
 
    
 };

@@ -25,10 +25,10 @@ namespace html
    }
 
 
-   ::e_status html::initialize(::context_object * pcontextobject)
+   ::e_status html::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -363,7 +363,7 @@ namespace html
    }
 
 
-   //::e_status html::initialize(::context_object * pcontextobject)
+   //::e_status html::initialize(::object * pobject)
    //{
 
 

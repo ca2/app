@@ -348,7 +348,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
 
    m_strValue.replace('\t', ' ');
 
-   /** resolve entity context_object(s) */
+   /** resolve entity object(s) */
    strsize iCurPos = -1, iParseLen = 0;
 
    string strChar;

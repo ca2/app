@@ -5,6 +5,9 @@
 #include "acme/platform/profiler.h"
 #include "apex/platform/str_context.h"
 #include "apex/compress/zip/context.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/platform/node.h"
+
 
 extern ::app_core * g_pappcore;
 
@@ -19,13 +22,13 @@ extern "C"
 }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
+//
+//
+//#endif
 
 
 #ifdef MACOS
@@ -181,10 +184,10 @@ namespace aura
    }
 
 
-   ::e_status application::initialize(::context_object * pcontextobject)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pcontextobject);
+      auto estatus = ::apex::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -241,7 +244,7 @@ namespace aura
    //::file::path application::local_application_path()
    //{
 
-   //   return ::dir::localconfig() / "application" / m_strAppName ;
+   //   return m_psystem->m_pacmedir->localconfig() / "application" / m_strAppName ;
 
 
    //}
@@ -264,10 +267,32 @@ namespace aura
    }
 */
 
-   void application::finalize()
+   ::e_status application::finalize()
    {
 
-      ::apex::application::finalize();
+      auto estatus = ::apex::application::finalize();
+
+      return estatus;
+
+   }
+
+
+   void application::enumerate_composite(matter_array& a)
+   {
+
+      auto puiptraFrame = m_puiptraFrame.get();
+
+      if (puiptraFrame)
+      {
+
+         for (auto& pframe : puiptraFrame->interactiona())
+         {
+
+            a.add_non_null(pframe);
+
+         }
+
+      }
 
    }
 
@@ -337,7 +362,7 @@ namespace aura
    }
 
 
-   ::e_status application::call_request(::create * pcreate)
+   void application::call_request(::create * pcreate)
    {
 
       __pointer(::aura::system) psystem = get_system();
@@ -359,7 +384,7 @@ namespace aura
             if (pinteraction == nullptr)
             {
 
-               return error_failed;
+               return;
 
             }
 
@@ -368,14 +393,14 @@ namespace aura
             if (papp == nullptr)
             {
 
-               return error_failed;
+               return;
 
             }
 
             if (papp->m_pinterprocessintercommunication == nullptr)
             {
 
-               return error_failed;
+               return;
 
             }
 
@@ -426,7 +451,7 @@ namespace aura
 
          m_bAgreeExitOk = true;
 
-         return ::success;
+         return;
 
       }
       else if (pcreate->m_ecommand == ::command_france_exit)
@@ -434,7 +459,7 @@ namespace aura
 
          _001FranceExit();
 
-         return ::success;
+         return;
 
       }
       else
@@ -444,7 +469,7 @@ namespace aura
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -757,7 +782,7 @@ namespace aura
 
    //   }
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -784,7 +809,7 @@ namespace aura
    //   else if (bLoadStringTable)
    //   {
 
-   //      synchronizationlock.unlock();
+   //      synchronouslock.unlock();
 
    //      load_string_table(strTable, "");
 
@@ -1754,7 +1779,7 @@ retry_license:
 
          string strModuleName = psystem->file().module();
 
-         windows_install_crash_dump_reporting(strModuleName);
+         m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
 
 #endif
 
@@ -1804,7 +1829,7 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(psystem->m_spmutexSystemAppData);
+   //   synchronous_lock synchronouslock(psystem->m_spmutexSystemAppData);
 
    //   string strId(pszId);
    //   string strSystemLocale = psystem->m_strLocale;
@@ -1815,7 +1840,7 @@ retry_license:
    //   straLocale = value("locale");
    //   straSchema = value("schema");
 
-   //   ::file::path pathExe = ::file::app_module();
+   //   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
    //   straLocale.insert_at(0, strSystemLocale);
    //   straSchema.insert_at(0, strSystemSchema);
@@ -3371,7 +3396,7 @@ retry_license:
 //
 //      {
 //
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         file().add_contents(dir().appdata() / (file().module().name() + "_log_error.txt"), strMessage);
 //
@@ -3482,7 +3507,7 @@ retry_license:
    //::file::path application::get_executable_path()
    //{
 
-   //   return ::dir::module() / (get_executable_title() + get_executable_extension());
+   //   return m_psystem->m_pacmedir->module() / (get_executable_title() + get_executable_extension());
 
 
    //}
@@ -3552,7 +3577,7 @@ retry_license:
    //void application::install_trace(const string & str)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3562,7 +3587,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3580,7 +3605,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content_type = L"application/x-spa";
 //
-//      wstring app(::dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//      wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
 //
 //      wstring icon(app);
 //
@@ -3627,7 +3652,7 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(dir::stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//      wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
@@ -3825,9 +3850,9 @@ retry_license:
 
 #endif
 
-      //synchronization_lock synchronizationlock(&m_mutexFrame);
+      //synchronous_lock synchronouslock(&m_mutexFrame);
 
-      //synchronization_lock slChildren(::user::mutex_children2());
+      //synchronous_lock slChildren(::user::mutex_children2());
 
       auto puiptraFrame = m_puiptraFrame;
 
@@ -3864,7 +3889,7 @@ retry_license:
 
       }
 
-      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
       if (m_puiptraFrame->add_unique_interaction(puserinteraction))
       {
@@ -3912,7 +3937,7 @@ retry_license:
    void application::remove_frame(::user::interaction * puserinteraction)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexFrame); // recursive lock (on m_framea.remove(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.remove(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
 
       //if(get_active_uie() == puserinteraction)
@@ -4286,7 +4311,7 @@ retry_license:
 ////
 ////      {
 ////
-////         synchronization_lock synchronizationlock(mutex());
+////         synchronous_lock synchronouslock(mutex());
 ////
 ////         ptra = m_objectptraEventHook;
 ////
@@ -4306,7 +4331,7 @@ retry_license:
    //::file::path application::appconfig_folder()
    //{
 
-   //   return ::dir::config() / m_strAppName;
+   //   return m_psystem->m_pacmedir->config() / m_strAppName;
 
    //}
 
@@ -4345,7 +4370,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       psystem->on_initial_frame_position(pframe);
 
@@ -4449,7 +4474,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4463,7 +4488,7 @@ retry_license:
 
    //   auto& file = psystem->file();
 
-   //   string strJson = file.as_string(::dir::config() / strAppId / +"http.json");
+   //   string strJson = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.json");
 
    //   if (strJson.has_char())
    //   {
@@ -4495,62 +4520,62 @@ retry_license:
    //}
 
 
-   bool application::start_application(bool bSynch, ::create * pcreate)
-   {
-
-//      try
+//   bool application::start_application(bool bSynch, ::create * pcreate)
+//   {
+//
+////      try
+////      {
+////
+////         if (pbias != nullptr)
+////         {
+////
+////            if (pbias->m_pcallback != nullptr)
+////            {
+////
+////               pbias->m_pcallback->connect_to(this);
+////
+////            }
+////
+////         }
+////      }
+////      catch (...)
+////      {
+////      }
+//
+////      if (pbias != nullptr)
+////      {
+////
+////         m_biasCalling = *pbias;
+////
+////      }
+//
+//      if (bSynch)
 //      {
 //
-//         if (pbias != nullptr)
+//         if (m_htask == nullptr)
 //         {
 //
-//            if (pbias->m_pcallback != nullptr)
+//            if (!begin_synch())
 //            {
 //
-//               pbias->m_pcallback->connect_to(this);
+//               return false;
 //
 //            }
 //
 //         }
-//      }
-//      catch (...)
-//      {
-//      }
-
-//      if (pbias != nullptr)
-//      {
-//
-//         m_biasCalling = *pbias;
 //
 //      }
-
-      if (bSynch)
-      {
-
-         if (m_htask == nullptr)
-         {
-
-            if (!begin_synch())
-            {
-
-               return false;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         begin();
-
-      }
-
-
-      return true;
-
-   }
+//      else
+//      {
+//
+//         begin();
+//
+//      }
+//
+//
+//      return true;
+//
+//   }
 
 
    void application::HideApplication()
@@ -4591,7 +4616,7 @@ retry_license:
    //string application::load_string(const ::id & id)
    //{
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   string str;
 
@@ -4699,7 +4724,7 @@ retry_license:
 
    //   }
 
-   //   synchronization_lock synchronizationlock(&m_mutexStr);
+   //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   __pointer(string_to_string) pmap;
 
@@ -5159,7 +5184,7 @@ retry_license:
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          psystem->install_progress_add_up();
 
@@ -5194,7 +5219,7 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       strUrl += psystem->url().url_encode(strRelative);
 
@@ -5275,10 +5300,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_as_string(::dir::system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -5890,10 +5915,10 @@ namespace aura
    //}
 
 
-   //::e_status application::initialize(::context_object * pcontextobject)
+   //::e_status application::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::application::initialize(pcontextobject);
+   //   auto estatus = ::aura::application::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -7606,13 +7631,13 @@ namespace aura
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock synchronizationlock(&m_mapObjectSet, true);
+   single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -7722,7 +7747,7 @@ namespace aura
 
       varQuery["command"] = "new_file";
 
-      request_file(varFile, varQuery);
+      //request_file(varFile, varQuery);
 
       pmessage->m_bRet = true;
 
@@ -7774,7 +7799,7 @@ namespace aura
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //
-//      //      synchronization_lock synchronizationlock(&user_mutex());
+//      //      synchronous_lock synchronouslock(&user_mutex());
 //
 //      xdisplay pdisplay.
 //      pdisplay.open(nullptr) = x11_get_display();
@@ -8043,7 +8068,9 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            get_system()->set_finish(get_system());
+            //get_system()->set_finish(get_system());
+
+            get_system()->set_finish();
 
          }
 
@@ -8051,7 +8078,7 @@ namespace aura
       else
       {
 
-         get_system()->finish(get_system());
+         get_system()->finish();
 
       }
 
@@ -8090,7 +8117,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            get_system()->finish(get_system());
+            get_system()->finish();
 
          }
 
@@ -8098,7 +8125,7 @@ namespace aura
       else
       {
 
-         get_system()->finish(get_system());
+         get_system()->finish();
 
       }
 
@@ -8335,8 +8362,21 @@ namespace aura
 
    }
 
+   
+   bool application::is_system() const
+   {
 
+      return false;
 
+   }
+   
+   
+   bool application::is_session() const
+   {
+
+      return false;
+
+   }
 
 
    void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
@@ -8649,10 +8689,10 @@ namespace aura
    //}
 
 
-   //::e_status application::initialize(::context_object * pcontextobject)
+   //::e_status application::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::application::initialize(pcontextobject);
+   //   auto estatus = ::aura::application::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -8835,7 +8875,7 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = file_as_string(::dir::system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
 
          if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
          {
@@ -8925,7 +8965,7 @@ namespace aura
            }
            else
            {
-              //               synchronizationlock.unlock();
+              //               synchronouslock.unlock();
               try
               {
                  pinteraction->send_message(WM_IDLEUPDATECMDUI, (wparam)true);
@@ -8934,7 +8974,7 @@ namespace aura
               {
 
               }
-              //             synchronizationlock.lock();
+              //             synchronouslock.lock();
            }
         }
 
@@ -9155,7 +9195,7 @@ namespace aura
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = dir::config() / "programming/vs_build.txt";
+      ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
 
       string strBuild = file().as_string(path);
 

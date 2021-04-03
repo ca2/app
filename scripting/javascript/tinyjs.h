@@ -263,8 +263,8 @@ public:
    CScriptVarLink *lastChild;
 
    /// For memory management/garbage collection
-   CScriptVar *ref(); ///< add context_object to this variable
-   void unref(); ///< Remove a context_object, and delete this variable if required
+   CScriptVar *ref(); ///< add object to this variable
+   void unref(); ///< Remove a object, and delete this variable if required
    i32 getRefs(); ///< Get the number of references to this script variable
 protected:
    i32 refs; ///< The number of references held to this - used for garbage collection

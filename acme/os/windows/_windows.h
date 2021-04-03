@@ -40,8 +40,6 @@ namespace str
 
 CLASS_DECL_ACME void TRACELASTERROR();
 
-//CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
-//#include "acme/os/windows_common/comptr.h"
 
 
 #include "acme/os/windows_common/comptr.h"

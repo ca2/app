@@ -26,6 +26,8 @@ namespace draw2d
 
       defer_create_mutex();
 
+      m_pimpl = nullptr;
+
       //m_pmutexFont = __new(::mutex);
 
       //create_factory < e_cursor_set >();
@@ -40,10 +42,10 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::initialize(::context_object * pcontextobject)
+   ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -86,9 +88,9 @@ namespace draw2d
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
-      if (psystem->m_bWriteText)
+      if (psystem->m_paurasystem->m_bWriteText)
       {
 
          if (!initialize_write_text())
@@ -115,7 +117,7 @@ namespace draw2d
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_papi->open())
       {
@@ -194,7 +196,7 @@ namespace draw2d
    void draw2d::term()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -223,17 +225,76 @@ namespace draw2d
    }
 
 
-   void draw2d::finalize()
+   ::e_status draw2d::finalize()
    {
 
       m_papi.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 
 
+   __pointer(save_image) draw2d::new_save_image(const ::payload& varFile, const ::payload& varOptions)
+   {
 
+      auto psaveimage = __new(save_image);
+
+      __pointer(::aura::system) psystem = m_psystem;
+
+      auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
+
+      if (eformat != ::draw2d::format_none)
+      {
+
+         __pointer(::aura::system) psystem = m_psystem;
+
+         eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
+
+      }
+
+      if (eformat == ::draw2d::format_none)
+      {
+
+         psaveimage->m_eformat = ::draw2d::format_png;
+
+      }
+
+      if (varOptions["quality"].get_type() == e_type_double
+         || varOptions["quality"].get_type() == e_type_float)
+      {
+
+         psaveimage->m_iQuality = (int)(varOptions["quality"].get_double() * 100.0);
+
+      }
+      else
+      {
+
+         psaveimage->m_iQuality = varOptions["quality"].i32();
+
+      }
+
+      if (psaveimage->m_iQuality == 0)
+      {
+
+         psaveimage->m_iQuality = 100;
+
+      }
+
+      psaveimage->m_iDpi = varOptions["dpi"];
+
+      if (psaveimage->m_iDpi == 0)
+      {
+
+         psaveimage->m_iDpi = 96;
+
+      }
+
+      return psaveimage;
+
+   }
 
 
 
@@ -350,7 +411,7 @@ namespace draw2d
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -408,7 +469,7 @@ namespace draw2d
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 maxx1 = cx;
       i32 maxy1 = cy;
@@ -665,7 +726,7 @@ breakFilter:
       i32 rSquare;
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -694,7 +755,7 @@ breakFilter:
          }
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 cx = pimageDst->width();
       i32 cy = pimageDst->height();
@@ -928,15 +989,15 @@ breakFilter2:
 //   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+//      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-      //auto psystem = get_system();
+      //auto psystem = m_psystem->m_paurasystem;
 
       //auto pxml = psystem->xml();
 
@@ -1074,91 +1135,91 @@ breakFilter2:
 //      {
 //
 //
-//#ifdef os_font_name(e_font_mono)
+//#ifdef pnode->font_name(e_font_mono)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_mono);
+//         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
-//         pitem->m_strName = os_font_name(e_font_mono);
+//         pitem->m_strName = pnode->font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans)
+//#ifdef pnode->font_name(e_font_sans)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans);
+//         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
-//         pitem->m_strName = os_font_name(e_font_sans);
+//         pitem->m_strName = pnode->font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif)
+//#ifdef pnode->font_name(e_font_serif)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif);
+//         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
-//         pitem->m_strName = os_font_name(e_font_serif);
+//         pitem->m_strName = pnode->font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_ex)
+//#ifdef pnode->font_name(e_font_sans_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_ex);
+//         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_ex)
+//#ifdef pnode->font_name(e_font_serif_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_ex);
+//         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_fx)
+//#ifdef pnode->font_name(e_font_sans_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_fx);
+//         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_fx)
+//#ifdef pnode->font_name(e_font_serif_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_fx);
+//         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //
@@ -1219,7 +1280,7 @@ breakFilter2:
 
       __pointer(::aura::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 

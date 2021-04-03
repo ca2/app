@@ -198,7 +198,7 @@ namespace coreimage_imaging
       
       memory memory;
       
-      bool bOk = pcontext->file().as_memory(varFile, memory);
+      bool bOk = pcontext->m_papexcontext->file().as_memory(varFile, memory);
       
       if(!bOk)
       {

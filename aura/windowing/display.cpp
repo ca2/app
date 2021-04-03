@@ -42,12 +42,12 @@ namespace windowing
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (psystem != nullptr)
       {
 
-         m_bSystemSynchronizedScreen = psystem->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen = psystem->m_paurasystem->m_bSystemSynchronizedScreen;
 
       }
 
@@ -187,7 +187,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      return m_rectaMonitor.get_count();
 //
@@ -437,7 +437,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {
@@ -505,9 +505,9 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
-      double dMargin = psystem->m_dpi;
+      double dMargin = psystem->m_paurasystem->m_dpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
 //#endif
@@ -45,10 +45,10 @@ namespace aqua
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pcontextobject);
+      auto estatus = ::apex::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -61,6 +61,27 @@ namespace aqua
 
    }
 
+
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::apex::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_paquasession)
+         {
+
+            m_paquasession = papexsession->m_paquasession;
+
+         }
+
+      }
+
+      papexsession->m_paquasystem = this;
+
+   }
 
    //::e_status system::initialize_rich_text()
    //{

@@ -17,6 +17,42 @@ namespace database
    }
 
 
+   void composite::start_transaction()
+   {
+
+
+   }
+
+
+   void composite::commit_transaction()
+   {
+
+   }
+
+
+   void composite::rollback_transaction()
+   {
+
+
+   }
+
+
+   bool composite::isActive()
+   {
+      
+      return m_pdatabase->isActive(); 
+   
+   }
+
+
+   e_connection composite::connection_status()
+   {
+      
+      return m_pdatabase->connection_status(); 
+   
+   }
+
+
    ::e_status composite::connect(const char* name, const char* host, const char* port, const char* user, const char* pass, const char* sckt, u64 uConnectionFlags)
    {
 
@@ -122,6 +158,14 @@ namespace database
    }
 
 
+   void* composite::get_handle()
+   {
+
+      return nullptr;
+
+   }
+
+
    ::e_status     composite::set_error_code(int iErrorCode)
    {
 
@@ -190,18 +234,27 @@ namespace database
    }
 
 
-   bool composite::memory_query_item(get_memory getmemory, const char* pszQuery)
+   bool composite::query_blob(get_memory getmemory, const char* pszQuery)
    {
 
-      return m_pdatabase->memory_query_item(getmemory, pszQuery);
+      return m_pdatabase->query_blob(getmemory, pszQuery);
 
    }
+
 
    __pointer(::database::result_set) composite::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return m_pdatabase->query_result(pszQuery, iRowCount, iColumnCount);
 
+   }
+
+
+   __pointer(result_set) composite::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   {
+      
+      return query_result(pszQuery, iRowCount, iColumnCount);
+   
    }
 
    

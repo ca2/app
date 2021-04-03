@@ -16,7 +16,7 @@ __pointer_array(xcb_hook) g_xcbhooka;
 ::e_status xcb_hook::hook()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    g_xcbhooka.add(this);
 
@@ -28,7 +28,7 @@ __pointer_array(xcb_hook) g_xcbhooka;
 ::e_status xcb_hook::unhook()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    g_xcbhooka.remove(this);
 

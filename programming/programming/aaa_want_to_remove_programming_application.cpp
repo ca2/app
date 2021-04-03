@@ -50,7 +50,7 @@ namespace programming
 
          bool bNew = true;
 
-         __pointer(::apex::library) lib = pcompiler->compile(::dir::system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
+         __pointer(::acme::library) lib = pcompiler->compile(pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib->m_pca2library == nullptr)
          {
@@ -79,7 +79,7 @@ namespace programming
 
       ::file::path path = dir::config() / "programming/vs_build.txt";
 
-      string strBuild = pcontext->file().as_string(path);
+      string strBuild = pcontext->m_papexcontext->file().as_string(path);
 
       strBuild.trim();
 

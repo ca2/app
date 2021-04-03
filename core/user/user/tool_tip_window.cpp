@@ -354,7 +354,7 @@ namespace user
    //   
    //   m_puserinteraction = puserinteraction;
 
-   //   m_font->create_point_font(os_font_name(e_font_sans), 10.0);
+   //   m_font->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
    //   auto pusersystem = __new(::user::system);
 
@@ -636,7 +636,7 @@ namespace user
          m_point.y = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
-         psystem->geometry().deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
+         ::geometry::deflate(&rectangle, 0.5, 0.0, 0.0, 0.5);
          point =  rectangle.random_point();
          break;
       default:

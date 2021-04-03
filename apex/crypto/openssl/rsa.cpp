@@ -134,7 +134,7 @@ namespace openssl
 
 #else
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       i32 iRsaSize = 8192;
 
@@ -292,7 +292,7 @@ namespace openssl
 
 #else
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       i32 iRsaSize = 8192;
 

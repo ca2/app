@@ -18,10 +18,10 @@ namespace filemanager
    }
 
 
-   ::e_status file_properties_form::initialize(::context_object * pcontextobject)
+   ::e_status file_properties_form::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::impact_host::initialize(pcontextobject);
+      auto estatus = ::user::impact_host::initialize(pobject);
 
       if (!estatus)
       {
@@ -91,7 +91,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path path = pcontext->dir().matter("filemanager/file_properties.html");
+      ::file::path path = pcontext->m_papexcontext->dir().matter("filemanager/file_properties.html");
 
       if(!m_pdocGeneral->on_open_document(path))
       {

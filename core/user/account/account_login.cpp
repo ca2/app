@@ -86,10 +86,10 @@ namespace account
    }
 
 
-   ::e_status login::initialize(::context_object * pcontextobject)
+   ::e_status login::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pcontextobject);
+      auto estatus = ::user::interaction::initialize(pobject);
       
       if (!estatus)
       {
@@ -298,7 +298,7 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 
@@ -366,7 +366,7 @@ namespace account
          if(!m_bCred)
          {
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             strText = psystem->crypto().nessie(strText);
 

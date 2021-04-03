@@ -15,7 +15,7 @@
       virtual ~dir_context();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual ::e_status init_system();
@@ -125,7 +125,7 @@
 
       virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       //virtual ::file::path get_api_cc();
 

@@ -21,10 +21,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::context_object * pcontextobject)
+   ::e_status sockets::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -116,7 +116,7 @@ namespace sockets
    //}
 
 
-   void sockets::finalize()
+   ::e_status sockets::finalize()
    {
 
       //bool bOk = true;

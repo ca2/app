@@ -17,7 +17,7 @@
 //   }
 //
 //   begin();
-//   //synchronization_lock synchronizationlock(mutex());
+//   //synchronous_lock synchronouslock(mutex());
 //
 //   //add_ref(OBJ_REF_DBG_ARGS);
 //
@@ -38,7 +38,7 @@
 //void timer::impl_init()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   m_hTimer = nullptr;
 //
@@ -57,7 +57,7 @@
 //void timer::impl_term()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimerQueue != INVALID_HANDLE_VALUE)
 //   {
@@ -74,7 +74,7 @@
 //void timer::impl_stop()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimer != nullptr)
 //   {
@@ -92,7 +92,7 @@
 //bool timer::impl_restart()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   DeleteTimerQueueTimer(m_hTimerQueue, m_hTimer, nullptr);
 //

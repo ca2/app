@@ -38,13 +38,13 @@ Contact : nish@voidnish.com
 //#endif
 //   }
 //
-//   void notification_area::Initialize(::context_object * pcontextobject)
+//   void notification_area::Initialize(::object * pobject)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
 //      //LOGFONTW lf = {0};
-//      //wcscpy(lf.lfFaceName, wstring(os_font_name(e_font_sans)));
+//      //wcscpy(lf.lfFaceName, wstring(pnode->font_name(e_font_sans)));
 //
 //      //lf.lfHeight = 16;
 //      //m_hfontRegular = CreateFontIndirectW(&lf);

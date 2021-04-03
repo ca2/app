@@ -89,7 +89,7 @@ namespace apex
    class session;
    class application;
    
-   class apex;
+   //class apex;
 
 
    //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
@@ -367,15 +367,15 @@ class machine_event_central;
 
 
 extern "C"
-CLASS_DECL_APEX void register_apex_library(const char * psz, ::apex::library * plibrary);
+CLASS_DECL_APEX void register_library(const char * psz, ::acme::library * plibrary);
 
 
 extern "C"
-CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
+CLASS_DECL_APEX void register_get_new_library(const char* psz, PFN_NEW_LIBRARY pfnnewlibrary);
 
 
 #define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
-::apex::library * X##_new_apex_library()
+::acme::library * X##_new_apex_library()
 
 #define REGISTER_GET_NEW_APEX_LIBRARY(X) register_get_new_apex_library(#X, &X##_get_new_library)
 
@@ -687,8 +687,20 @@ typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 class object;
 
+namespace apex
+{
 
-class context;
+   class context;
+
+}
+
+
+namespace aura
+{
+
+   class context;
+
+}
 
 
 //CLASS_DECL_APEX bool __node_apex_pre_init();
@@ -702,11 +714,11 @@ class context;
 //extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
-//CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
-//CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
+//CLASS_DECL_APEX ::acme::library & get_library(const char* psz);
+//CLASS_DECL_APEX void register_apex_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::context_object * pcontextobject);
+//CLASS_DECL_APEX ::context * get_context(::object * pobject);
 //CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
@@ -718,17 +730,17 @@ class context;
 
 
 //CLASS_DECL_APEX ::apex::application * get_application();
-//CLASS_DECL_APEX ::apex::application * get_application(::context_object * pcontextobject);
+//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject);
 //CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp);
 //CLASS_DECL_APEX inline ::apex::application * get_app() { return get_application(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();
-//CLASS_DECL_APEX ::apex::session * get_session(::context_object * pcontextobject);
+//CLASS_DECL_APEX ::apex::session * get_session(::object * pobject);
 //CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession);
 
 
-//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::context_object * pcontextobject);
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::object * pobject);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -815,7 +827,16 @@ namespace http
 
 } // namespace http
 
-class context;
+
+namespace apex
+{
+
+   
+   class context;
+
+
+} // namespace apex
+
 
 namespace draw2d
 {
@@ -843,11 +864,11 @@ namespace core
 } // namespace core
 
 
-#include "apex/primitive/primitive/context_object.h"
+//#include "apex/primitive/primitive/object.h"
 
 #include "apex/primitive/subject/_.h"
 
-#include "apex/primitive/primitive/object.h"
+//#include "apex/primitive/primitive/object.h"
 
 #include "apex/primitive/primitive/object_meta.h"
 
@@ -863,6 +884,7 @@ namespace core
 
 
 #include "apex/filesystem/filesystem.h"
+
 
 #include "apex/platform/progress.h"
 
@@ -1126,13 +1148,13 @@ namespace apex
 #include "apex/parallelization/retry.h"
 
 
-CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
-CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
-CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
-CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
+//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
+//CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
+//CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
+//CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
 
 
 CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);

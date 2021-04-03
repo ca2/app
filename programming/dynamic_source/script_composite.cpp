@@ -18,10 +18,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_composite::initialize(::context_object * pcontextobject)
+   ::e_status script_composite::initialize(::object * pobject)
    {
 
-      auto estatus = script_interface::initialize(pcontextobject);
+      auto estatus = script_interface::initialize(pobject);
 
       if (!estatus)
       {
@@ -35,12 +35,14 @@ namespace dynamic_source
    }
 
 
-   void script_composite::finalize()
+   ::e_status script_composite::finalize()
    {
 
-      script_interface::finalize();
+      auto estatus = script_interface::finalize();
 
       __finalize_and_release(m_pinterface);
+
+      return estatus;
 
    }
 

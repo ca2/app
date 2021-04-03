@@ -12,7 +12,7 @@ namespace fs
 
 
 class CLASS_DECL_APEX command_line :
-   virtual public ::context_object
+   virtual public ::object
 {
 public:
 

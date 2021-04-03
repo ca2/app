@@ -439,7 +439,7 @@ SizingNone:
 
                            ::draw2d::pen_pointer pen(e_create);
 
-                           pen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
+                           pen->create_solid(1.0, argb((byte) ((i+1) * 5), 0, 0, 0));
 //                           pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                            pgraphics->draw_round_rect(rectA, pen, (int)(10 - i), eborder);

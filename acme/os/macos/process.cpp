@@ -13,7 +13,7 @@
 ::file::path macos_app_path(string strApp)
 {
 
-   ::file::path path = ::dir::home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path = pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
 
    return file_as_string(path);
 
@@ -342,7 +342,7 @@ bool launch_command(const char * const pszCommand)
    
    strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams, ::dir::home(), e_display_none, false) != 0)
+   if (call_async("/bin/bash", strParams, pacmedir->home(), e_display_none, false) != 0)
    {
       
       return false;

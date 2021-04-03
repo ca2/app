@@ -116,7 +116,7 @@ void * unaligned_memory_alloc(size_t size)
 
    pblock->m_size = nAllocSize;
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
 
    pblock->m_pprevious = nullptr;
 
@@ -397,7 +397,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, i32 nBlockUse, const char
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {
@@ -570,7 +570,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 #elif MEMDLEAK
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {

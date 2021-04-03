@@ -200,7 +200,7 @@ namespace acme
    
    CLASS_DECL_ACME void ref();
 
-   class acme
+   class static_start
    {
    public:
 
@@ -208,10 +208,10 @@ namespace acme
       bool m_bRef;
 
 
-      acme();
-      ~acme();
+      static_start();
+      ~static_start();
 
-      static acme g_acme;
+      static static_start g_staticstart;
       
       void this_ref();
 

@@ -8,7 +8,7 @@ namespace http
    /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
    class CLASS_DECL_APEX form :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

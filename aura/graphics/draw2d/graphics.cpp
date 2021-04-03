@@ -1517,7 +1517,7 @@ namespace draw2d
 
       ASSERT(m_pimageAlphaBlend->is_ok());
 
-      single_lock synchronizationlock(mutex());
+      single_lock synchronouslock(mutex());
 
       // "Reference" implementation for TextOutAlphaBlend
 
@@ -4876,7 +4876,7 @@ namespace draw2d
    ::file::path graphics::get_font_path(const string & strName, int iWeight, bool bItalic)
    {
 
-      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+      critical_section_lock synchronouslock(::aura::g_pcsFont);
 
       string strFontName(strName);
 

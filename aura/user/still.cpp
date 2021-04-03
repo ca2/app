@@ -605,7 +605,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {
@@ -875,9 +875,9 @@ namespace user
       if (!payload.is_empty())
       {
 
-         __pointer(::aura::application) papplication = get_application();
+         auto pcontext = get_context();
 
-         m_pimage = papplication->image().get_image(payload);
+         m_pimage = pcontext->m_pauracontext->image().get_image(payload);
 
       }
 

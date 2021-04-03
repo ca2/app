@@ -10,7 +10,7 @@ namespace aura
 {
 
 
-//   application::application(::context_object * pcontextobject) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
@@ -311,14 +311,14 @@ namespace aura
    bool application::os_on_start_application()
    {
 
-      ::file::path path = pcontext->file().module();
+      ::file::path path = pcontext->m_papexcontext->file().module();
 
       path -= 3;
       
       if(::dir::is(path))
       {
 
-         ::file::path path2 = ::dir::localconfig() / "monitor-0/desk/2desk" / path.name();
+         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
          
          if(::file_exists(path2))
          {

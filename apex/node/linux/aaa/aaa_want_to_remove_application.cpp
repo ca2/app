@@ -11,7 +11,7 @@
 namespace apex
 {
 
-//   application::application(::context_object * pcontextobject) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 //

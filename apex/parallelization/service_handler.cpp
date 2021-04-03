@@ -36,12 +36,21 @@ service* service_handler::get_service()
 
       __pointer(::apex::application) papplication = get_application();
 
-      auto pservice = papplication->allocate_service();
+      auto pservice = papplication->new_service();
 
       if (!pservice)
       {
 
          return error_failed;
+
+      }
+
+      auto estatus = pservice->initialize(papplication);
+
+      if (!estatus)
+      {
+
+         return estatus;
 
       }
 
@@ -53,17 +62,6 @@ service* service_handler::get_service()
          return false;
 
       }
-
-      auto estatus = m_pservice->initialize(this);
-
-      if (!estatus)
-      {
-
-         return false;
-
-      }
-
-      //__pointer(::apex::system) psystem = get_system();
 
       //psystem->m_serviceptra.add(m_pservice);
 

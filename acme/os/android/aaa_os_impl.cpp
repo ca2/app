@@ -99,7 +99,7 @@ const char* g_pszCacheDir = NULL;
 //
 //   }
 //
-//   synchronization_lock slScreen(pbuffer->get_screen_sync());
+//   synchronous_lock slScreen(pbuffer->get_screen_sync());
 //
 //   auto pimage = pbuffer->get_screen_image();
 //
@@ -249,7 +249,7 @@ JNIEnv* get_jni_env()
 void android_exchange()
 {
 
-   synchronization_lock synchronizationlock(osmutex());
+   synchronous_lock synchronouslock(osmutex());
 
    auto plocal = g_poslocal;
 

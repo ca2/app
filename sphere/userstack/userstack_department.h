@@ -14,7 +14,7 @@
 //   public:
 //
 //
-//      department(::context_object * pcontextobject);
+//      department(::object * pobject);
 //      virtual ~department();
 //
 //

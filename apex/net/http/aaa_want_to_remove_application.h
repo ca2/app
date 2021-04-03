@@ -14,7 +14,7 @@ namespace http
       ::property_set       m_setHttp;
 
 
-      application(::context_object * pcontextobject);
+      application(::object * pobject);
       virtual ~application();
 
       void http_application_destruct();

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   edit_view::edit_view(::context_object * pcontextobject):
+   edit_view::edit_view(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::scroll_view(pobject),
@@ -43,7 +43,7 @@ namespace turboc
 
       {
 
-         synchronization_lock synchronizationlock(&m_ptopview->m_pview->m_mutexText);
+         synchronous_lock synchronouslock(&m_ptopview->m_pview->m_mutexText);
 
          _001GetText(m_ptopview->m_pview->m_strNewHelloMultiverse);
 

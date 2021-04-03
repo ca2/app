@@ -305,7 +305,7 @@
    }
 
 
-   bool os_context::create_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
+   bool os_context::enable_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
    {
 
 
@@ -318,7 +318,7 @@
    }
 
 
-   bool os_context::remove_service(const string & strServiceName)
+   bool os_context::disable_service(const string & strServiceName)
    {
 
 
@@ -391,7 +391,7 @@
       if(::str::ends_ci(strSource, ".desktop"))
       {
 
-         string str = get_context()->file().as_string(strSource);
+         string str = m_pcontext->m_papexcontext->file().as_string(strSource);
 
          string_array stra;
 

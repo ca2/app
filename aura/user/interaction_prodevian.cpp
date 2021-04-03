@@ -148,12 +148,12 @@ namespace user
    }
 
    
-   ::e_status prodevian::do_task()
-   {
+   //::e_status prodevian::do_task()
+   //{
 
-      return ::thread::do_task();
+   //   return ::thread::do_task();
 
-   }
+   //}
 
 
    ::e_status prodevian::run()
@@ -294,7 +294,7 @@ void prodevian::term_thread()
 }
 
 
-void prodevian::finalize()
+::e_status prodevian::finalize()
 {
 
    m_evUpdateScreen.SetEvent();
@@ -305,7 +305,9 @@ void prodevian::finalize()
 
    m_synchronizationa.clear();
    
-   ::thread::finalize();
+   auto estatus = ::thread::finalize();
+
+   return estatus;
 
 }
 
@@ -327,7 +329,7 @@ bool prodevian::prodevian_iteration()
    try
    {
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       if (strType.contains_ci("filemanager"))
       {
@@ -360,7 +362,7 @@ bool prodevian::prodevian_iteration()
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
-         //synchronization_lock synchronizationlock(m_pimpl->mutex());
+         //synchronous_lock synchronouslock(m_pimpl->mutex());
 
       }
 
@@ -871,7 +873,7 @@ bool prodevian::prodevian_iteration()
       try
       {
 
-         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
          if(!m_puserinteraction)
          {
@@ -937,7 +939,7 @@ bool prodevian::prodevian_iteration()
          if (!m_puserinteraction->m_bLockWindowUpdate)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
@@ -945,7 +947,7 @@ bool prodevian::prodevian_iteration()
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             if(!m_puserinteraction)
             {
@@ -1050,7 +1052,7 @@ bool prodevian::prodevian_iteration()
          if (bDraw && m_pimpl)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             m_millisBeforeDrawing.Now();
 

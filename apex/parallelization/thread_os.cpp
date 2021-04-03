@@ -2,7 +2,7 @@
 
 
 //class thread_proc_runner :
-//   virtual public context_object
+//   virtual public object
 //{
 //public:
 //

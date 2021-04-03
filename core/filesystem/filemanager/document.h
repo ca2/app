@@ -28,10 +28,10 @@ namespace filemanager
       virtual ~document();
 
 
-      inline ::core::application* get_application() const { return m_papplication ? m_papplication.cast < ::core::application >() : nullptr; }
-      inline ::core::session* get_session() const { return m_psession ? m_psession.cast < ::core::session > (): nullptr; }
-      inline ::core::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::core::system*> (m_psystem) : nullptr; }
-      inline ::core::user* user() const { return get_session()->user(); }
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
@@ -167,13 +167,13 @@ namespace filemanager
 
    CLASS_DECL_CORE int get_manager_id_len();
 
-   CLASS_DECL_CORE string create_manager_id(::context_object * pcontextobject);
+   CLASS_DECL_CORE string create_manager_id(::object * pobject);
 
    CLASS_DECL_CORE bool is_valid_manager_id(const char *);
 
    CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const char *);
 
-   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::context * pcontext);
+   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::aura::context * pcontext);
 
 
 } // namespace filemanager

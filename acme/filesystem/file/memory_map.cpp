@@ -42,7 +42,7 @@ namespace file
 //      if (::str::begins_eat_ci(str, "Local\\"))
 //      {
 //
-//         path /= ::dir::home() / str;
+//         path /= pacmedir->home() / str;
 //
 //      }
 //      else

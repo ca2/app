@@ -40,7 +40,7 @@ template < typename PRED >
 void x11_sync(PRED pred)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    pred();
 

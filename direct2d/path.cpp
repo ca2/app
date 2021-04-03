@@ -882,7 +882,7 @@ _Out_ FLOAT* pixelsPerDip
 // IUnknown methods
 //
 // These use a basic, non-thread-safe implementation of the
-// standard context_object-counting logic.
+// standard object-counting logic.
 //
 HRESULT PathTextRenderer::QueryInterface(
 REFIID riid,

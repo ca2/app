@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 namespace aqua
@@ -29,10 +29,10 @@ namespace aqua
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::session::initialize(pcontextobject);
+      auto estatus = ::apex::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -42,6 +42,17 @@ namespace aqua
       }
 
       return estatus;
+
+   }
+
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      apex::session::on_instantiate_application(papp);
+
+      papp->m_paquasession = this;
+      papp->m_paquasystem = m_paquasystem;
 
    }
 

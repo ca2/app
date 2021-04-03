@@ -40,28 +40,31 @@ DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 #include "draw_text.h"
 
 
+namespace write_text
+{
 
 
-using text_out_shape = _shape < ::text_out, e_shape_text_out >;
-using draw_text_shape = _shape < ::draw_text, e_shape_draw_text >;
+   using text_out_shape = _shape < text_out, e_shape_text_out >;
+   using draw_text_shape = _shape < draw_text, e_shape_draw_text >;
 
 
+} // namespace write_text
 
 
 template < >
-inline ___shape* __new_shape(const ::text_out& textout)
+inline ___shape* __new_shape(const ::write_text::text_out& textout)
 {
 
-   return new text_out_shape(textout);
+   return new ::write_text::text_out_shape(textout);
 
 }
 
 
 template < >
-inline ___shape* __new_shape(const ::draw_text& drawtext)
+inline ___shape* __new_shape(const ::write_text::draw_text& drawtext)
 {
 
-   return new draw_text_shape(drawtext);
+   return new ::write_text::draw_text_shape(drawtext);
 
 }
 
@@ -83,6 +86,8 @@ inline ___shape* __new_shape(const ::draw_text& drawtext)
 //#include "font_list.h"
 
 #include "write_text.h"
+
+
 
 
 

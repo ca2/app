@@ -28,7 +28,7 @@ namespace simpledb
       db_server   *  m_pserver;
 
 
-      simpledb(::context_object * pcontextobject);
+      simpledb(::object * pobject);
       virtual ~simpledb();
 
       virtual bool init2();

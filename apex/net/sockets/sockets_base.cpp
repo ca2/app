@@ -22,10 +22,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets_base::initialize(::context_object * pcontextobject)
+   ::e_status sockets_base::initialize(::object * pobject)
    {
 
-      auto estatus = object::initialize(pcontextobject);
+      auto estatus = object::initialize(pobject);
 
       if (!estatus)
       {
@@ -39,11 +39,12 @@ namespace sockets
    }
 
 
-   void sockets_base::finalize()
+   ::e_status sockets_base::finalize()
    {
 
       ::object::finalize();
 
+      return ::success;
 
    }
 

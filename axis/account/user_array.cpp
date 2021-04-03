@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace account
@@ -58,7 +59,7 @@ namespace account
 
       __pointer(user) puser;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       {
 
@@ -73,7 +74,7 @@ namespace account
 
          }
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_map[strHost] = puser;
 
@@ -106,7 +107,7 @@ namespace account
       try
       {
 
-         pcontext->file().del(::dir::appdata()/"license_auth/00001.data");
+         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -117,7 +118,7 @@ namespace account
       try
       {
 
-         pcontext->file().del(::dir::appdata()/"license_auth/00002.data");
+         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00002.data");
 
       }
       catch(...)
@@ -177,11 +178,11 @@ namespace account
    void user_array::cleanup_users()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto map = m_map;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       __pointer(::axis::session) psession = get_session();
 
@@ -193,11 +194,11 @@ namespace account
 
             psession->on_remove_user(pair.element2());
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             m_map.remove_key(pair.element1());
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
          }
 
@@ -219,20 +220,20 @@ namespace account
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       string strHost = psystem->url().get_server(pathUrl);
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto & puser = m_map[strHost];
 
          if (bFetch && (puser.is_null() || !puser->is_authenticated()))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             _get_user(pathUrl, bInteractive);
 
@@ -270,11 +271,11 @@ namespace account
       if(eclock == e_clock_slow)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto map = m_map;
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          for(auto & pair : map)
          {

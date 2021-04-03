@@ -12,7 +12,7 @@ namespace draw2d_xlib
 {
 
 
-   font::font(::context_object * pcontextobject) :
+   font::font(::object * pobject) :
    ::object(pobject)
    {
 

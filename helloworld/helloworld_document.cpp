@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   document::document(::context_object * pcontextobject) :
+   document::document(::object * pobject) :
       object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),
@@ -76,7 +76,7 @@ namespace helloworld
 
          {
 
-            synchronization_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
 
             get_typed_view < view >()->m_strHelloWorld = "image:" + get_typed_view < view >()->m_strImage + "," + get_typed_view < view >()->m_strHelloWorld;
 
@@ -86,8 +86,8 @@ namespace helloworld
 
       }
       else if(get_typed_view < ::user::plain_edit_view >() != nullptr
-              && pcontext->file().exists(varFile)
-              && (str = pcontext->file().as_string(varFile)).has_char())
+              && pcontext->m_papexcontext->file().exists(varFile)
+              && (str = pcontext->m_papexcontext->file().as_string(varFile)).has_char())
       {
 
          get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);

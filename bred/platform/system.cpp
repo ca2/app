@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "bred/const/idpool.h"
 
 
@@ -34,10 +34,10 @@ namespace bred
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pcontextobject);
+      auto estatus = ::apex::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -51,6 +51,27 @@ namespace bred
    }
 
 
+
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::base::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_pbredsession)
+         {
+
+            m_pbredsession = papexsession->m_pbredsession;
+
+         }
+
+      }
+
+      papexsession->m_pbredsystem = this;
+
+   }
    //::e_status system::initialize_rich_text()
    //{
 

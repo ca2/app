@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   main::main(::context_object * pcontextobject) :
+   main::main(::object * pobject) :
       ::thread(pobject)
    {
 

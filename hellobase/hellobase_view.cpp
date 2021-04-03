@@ -10,7 +10,7 @@ namespace hellobase
 
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -25,7 +25,7 @@ namespace hellobase
       m_flagNonClient.remove(non_client_background);
       m_flagNonClient.remove(non_client_focus_rect);
 
-      m_strNewFont = os_font_name(e_font_sans);
+      m_strNewFont = pnode->font_name(e_font_sans);
 
       m_eeffect                  = effect_none;
 
@@ -122,11 +122,11 @@ namespace hellobase
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       {
 
-         synchronization_lock slText(&m_mutexText);
+         synchronous_lock slText(&m_mutexText);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -239,7 +239,7 @@ namespace hellobase
    string view::get_processed_hellobase()
    {
 
-      synchronization_lock slText(&m_mutexText);
+      synchronous_lock slText(&m_mutexText);
 
       string str = get_hellobase();
 
@@ -340,7 +340,7 @@ namespace hellobase
    string view::get_hellobase()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -398,14 +398,14 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {
 
             m_prender->m_strHelloBase = get_processed_hellobase().c_str(); // rationale : string allocation fork *for parallelization*
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             set_need_layout();
 

@@ -53,7 +53,7 @@ namespace netserver
 
          auto psocket = new ::sockets::listen_socket < SOCKET >;
 
-         psocket->m_phandler = m_psockethandler;
+         psocket->m_psockethandler = m_psockethandler;
 
          return psocket;
 

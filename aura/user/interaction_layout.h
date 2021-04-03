@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_layout :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -330,7 +330,7 @@ namespace user
    //inline void visual_state::set_busy()
    //{
 
-   //   synchronization_lock synchronizationlock(m_playout->mutex());
+   //   synchronous_lock synchronouslock(m_playout->mutex());
 
    //   m_bBusy = true;
 
@@ -340,7 +340,7 @@ namespace user
    //inline bool visual_state::set_ready()
    //{
 
-   //   synchronization_lock synchronizationlock(m_playout->mutex());
+   //   synchronous_lock synchronouslock(m_playout->mutex());
 
    //   if (!m_bBusy)
    //   {

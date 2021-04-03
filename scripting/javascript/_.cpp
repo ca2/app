@@ -52,8 +52,8 @@
    Version 0.15 :  Fix for possible memory leaks
    Version 0.16 :  Removal of un-needed findRecursive calls
                    symbol_axis removed and replaced with 'scopes' stack
-                   Added context_object counting a proper tree structure
-                       (Allowing pass by context_object)
+                   Added object counting a proper tree structure
+                       (Allowing pass by object)
                    Allowed JSON output to output IDs, not strings
                    Added get/set for array indices
                    Changed Callbacks to include user data pointer
@@ -1815,7 +1815,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
             }
             else
             {
-               // pass by context_object
+               // pass by object
                functionRoot->addChild(v->name, value->payload);
             }
          }

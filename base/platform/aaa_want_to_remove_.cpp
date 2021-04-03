@@ -9,7 +9,7 @@
 
 #endif
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
 //extern ::mutex* psystem->m_mutexLibrary;
 
@@ -211,7 +211,7 @@ void __post_quit_message(i32 nExitCode)
 }
 
 
-//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_BASE_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
@@ -226,7 +226,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 //
 //
-//CLASS_DECL_BASE string_map < __pointer(::apex::library) >& __library()
+//CLASS_DECL_BASE string_map < __pointer(::acme::library) >& __library()
 //{
 //
 //   return psystem->m_mapLibrary;
@@ -238,7 +238,7 @@ void __post_quit_message(i32 nExitCode)
 //CLASS_DECL_BASE PFN_NEW_BASE_LIBRARY get_get_new_aura_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   auto ppair = psystem->m_mapNewAuraLibrary.plookup(psz);
 //
@@ -254,10 +254,10 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-CLASS_DECL_BASE::apex::library& get_library(const char* psz)
+CLASS_DECL_BASE::acme::library& get_library(const char* psz)
 {
 
-   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 
    return *psystem->m_mapLibrary[psz];
 
@@ -267,17 +267,17 @@ CLASS_DECL_BASE::apex::library& get_library(const char* psz)
 //CLASS_DECL_BASE void register_get_new_aura_library(const char* psz, PFN_NEW_BASE_LIBRARY pfnNewAuraLibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 //
 //}
 
 
-CLASS_DECL_BASE void register_library(const char* psz, ::apex::library* plibrary)
+CLASS_DECL_BASE void register_library(const char* psz, ::acme::library* plibrary)
 {
 
-   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 
    __library()[psz] = plibrary;
 
@@ -508,14 +508,14 @@ CLASS_DECL_BASE ::e_status load_factory_library(string strLibrary)
 {
 
 
-   synchronization_lock synchronizationlock(psystem->m_mutexLibrary);
+   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 
-   __pointer(::apex::library)& plibrary = psystem->m_mapLibrary[strLibrary];
+   __pointer(::acme::library)& plibrary = psystem->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {
 
-      plibrary = new ::apex::library();
+      plibrary = new ::acme::library();
 
    }
 

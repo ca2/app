@@ -276,7 +276,7 @@ namespace serial
 
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
-       * \lparam buffer A context_object to a vector of u8.
+       * \lparam buffer A object to a vector of u8.
        * \lparam size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
@@ -290,7 +290,7 @@ namespace serial
 
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
-       * \lparam buffer A context_object to a string.
+       * \lparam buffer A object to a string.
        * \lparam size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
@@ -319,7 +319,7 @@ namespace serial
        *
        * Reads from the serial port until a single line has been read.
        *
-       * \lparam buffer A string context_object used to store the data.
+       * \lparam buffer A string object used to store the data.
        * \lparam size A maximum length of a line, defaults to 65536 (2^16)
        * \lparam eol A string to match against for the EOL.
        *
@@ -365,7 +365,7 @@ namespace serial
 
       /*! Write a string to the serial port.
        *
-       * \lparam data A const context_object containing the data to be written
+       * \lparam data A const object containing the data to be written
        * to the serial port.
        *
        * \lparam size A size_t that indicates how many bytes should be written from
@@ -383,7 +383,7 @@ namespace serial
 
       /*! Write a string to the serial port.
        *
-       * \lparam data A const context_object containing the data to be written
+       * \lparam data A const object containing the data to be written
        * to the serial port.
        *
        * \return A size_t representing the number of bytes actually written to
@@ -398,7 +398,7 @@ namespace serial
 
       /*! Write a string to the serial port.
        *
-       * \lparam data A const context_object containing the data to be written
+       * \lparam data A const object containing the data to be written
        * to the serial port.
        *
        * \return A size_t representing the number of bytes actually written to
@@ -413,7 +413,7 @@ namespace serial
 
       /*! Sets the serial port identifier.
        *
-       * \lparam port A const string context_object containing the address of the
+       * \lparam port A const string object containing the address of the
        * serial port, which would be something like 'COM1' on Windows and
        * '/dev/ttyS0' on Linux.
        *

@@ -86,10 +86,10 @@ namespace ftp
                                 unsigned int uiTimeout/*=10*/,
                                 unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
                                 const string& strRemoteDirectorySeparator/*="/"*/) :
-      ::sockets::base_socket(handler),
-      ::sockets::socket(handler),
-      ::sockets::stream_socket(handler),
-      ::sockets::tcp_socket(handler),
+      //::sockets::base_socket(handler),
+      //::sockets::socket(handler),
+      //::sockets::stream_socket(handler),
+      //::sockets::tcp_socket(handler),
       mc_uiTimeout(uiTimeout),
       mc_uiResponseWait(uiResponseWait),
       mc_strEolCharacterSequence("\r\n"),
@@ -197,7 +197,7 @@ namespace ftp
          return false;
       }
 
-      m_handler.add(this);
+      m_psockethandler->add(this);
 
       return true;
    }
@@ -798,13 +798,13 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = new ::sockets::write_socket(m_handler);
+            apSckDataConnection = new ::sockets::write_socket();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = new ::sockets::read_socket(m_handler);
+            apSckDataConnection = new ::sockets::read_socket();
 
          }
          else
@@ -832,13 +832,13 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = new ::sockets::listen_socket < ::sockets::write_socket >(m_handler);
+            apSckDataConnection = new ::sockets::listen_socket < ::sockets::write_socket >();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = new ::sockets::listen_socket < ::sockets::read_socket >(m_handler);
+            apSckDataConnection = new ::sockets::listen_socket < ::sockets::read_socket >();
 
          }
          else
@@ -849,6 +849,8 @@ namespace ftp
          }
 
          pbasesocket2 = apSckDataConnection;
+
+         pbasesocket2->m_psockethandler = m_psockethandler;
 
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
@@ -987,7 +989,7 @@ namespace ftp
          //message_box(nullptr, strMessage);
          return false;
       }
-      m_handler.add(&sckDataConnection);
+      m_psockethandler->add(&sckDataConnection);
 
 
       WINUSHORT ushLocalSock = 0;
@@ -1038,7 +1040,7 @@ namespace ftp
       while (sckDataConnection.m_pbasesocket == nullptr)
       {
 
-         m_handler.select(1, 0);
+         m_psockethandler->select(1, 0);
 
       }
 
@@ -1107,7 +1109,7 @@ namespace ftp
          return false;
       }
 
-      m_handler.add(&sckDataConnection);
+      m_psockethandler->add(&sckDataConnection);
 
       // if resuming is activated then set offset
       if (m_fResumeIfPossible &&
@@ -1161,7 +1163,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               synchronization_lock synchronizationlock(sckDataConnection.mutex());
+               synchronous_lock synchronouslock(sckDataConnection.mutex());
 
                sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1252,7 +1254,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                iNumRead = sckDataConnection.m_file.remove_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1407,7 +1409,7 @@ auto tickStart = ::millis::now();
    void client_socket::OnLine(const string & strLine)
    {
 
-      single_lock synchronizationlock(mutex());
+      single_lock synchronouslock(mutex());
 
       m_qResponseBuffer.add_tail(strLine);
 
@@ -1434,7 +1436,7 @@ auto tickStart = ::millis::now();
 
             {
 
-               single_lock synchronizationlock(mutex());
+               single_lock synchronouslock(mutex());
 
                if (m_qResponseBuffer.has_elements())
                {
@@ -1454,7 +1456,7 @@ auto tickStart = ::millis::now();
             else
             {
 
-               m_handler.select(1,0);
+               m_psockethandler->select(1,0);
 
                if (IsSSL())
                {
@@ -1510,7 +1512,7 @@ auto tickStart = ::millis::now();
          // get first response-line from buffer
          {
 
-            single_lock synchronizationlock(mutex());
+            single_lock synchronouslock(mutex());
 
             strResponse = m_qResponseBuffer.pop_head();
 

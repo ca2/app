@@ -346,7 +346,7 @@ namespace sockets
       msg.msg_controllen = sizeof(cmsg_un.data);
       msg.msg_flags = 0;
 
-      // Original version - for context_object only
+      // Original version - for object only
       //int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 
       int n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);

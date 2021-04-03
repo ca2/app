@@ -15,7 +15,7 @@ public:
    virtual ~file_system();
 
 
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
    virtual ::e_status init_system();
 

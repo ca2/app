@@ -8,7 +8,7 @@ namespace windowing
    inline ::aura::application* cursor_manager::get_application() const
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -16,7 +16,7 @@ namespace windowing
    inline ::aura::session* cursor_manager::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
 
    }
 
@@ -32,7 +32,7 @@ namespace windowing
    inline ::aura::application* windowing::get_application() const
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -40,7 +40,7 @@ namespace windowing
    inline ::aura::session* windowing::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
 
    }
 
@@ -56,7 +56,7 @@ namespace windowing
    inline ::aura::application* window::get_application() const
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -64,7 +64,7 @@ namespace windowing
    inline ::aura::session* window::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
 
    }
 
@@ -72,7 +72,7 @@ namespace windowing
    inline ::aura::system* window::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
 
    }
 

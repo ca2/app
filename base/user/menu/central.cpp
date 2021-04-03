@@ -27,7 +27,7 @@ namespace user
 
       defer_initialize();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       i32 iIndex;
 
@@ -136,7 +136,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pil)
       {
@@ -150,7 +150,7 @@ namespace user
       __construct_new(m_pilBlend);
       __construct_new(m_pilHueLight);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       auto pnode = psystem->node();
 

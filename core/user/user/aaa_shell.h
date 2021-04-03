@@ -99,7 +99,7 @@ namespace user
 
          virtual ::e_status run() override;
 
-         virtual ::e_status finish(::property_object * pcontextobject) override;
+         virtual ::e_status finish(::property_object * pobject) override;
 
 
       };
@@ -141,7 +141,7 @@ namespace user
 
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
       virtual void do_initialize();
 
 
@@ -191,7 +191,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
 
 
-      virtual ::e_status finish(::property_object * pcontextobject) override;
+      virtual ::e_status finish(::property_object * pobject) override;
 
 
    };

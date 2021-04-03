@@ -70,7 +70,7 @@ application_array::~application_array()
 ::aura::application * application_array::find_by_app_name(string strAppName)
 {
 
-   //synchronization_lock synchronizationlock(mutex());
+   //synchronous_lock synchronouslock(mutex());
 
 restart:
 

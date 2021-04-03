@@ -50,7 +50,7 @@ namespace uwp
    }
 
 
-   interaction_impl::interaction_impl(::context_object * pcontextobject):
+   interaction_impl::interaction_impl(::object * pobject):
       ::object(pobject)
    {
 
@@ -208,17 +208,17 @@ namespace uwp
 
       //::size_i32 sizeDrawn;
 
-      //synchronization_lock slGraphics(m_pgraphics->mutex());
+      //synchronous_lock slGraphics(m_pgraphics->mutex());
 
       //::synchronization_object * psync = m_pgraphics->get_draw_lock();
 
-      //synchronization_lock synchronizationlock(psync);
+      //synchronous_lock synchronouslock(psync);
 
       ////::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
       //slGraphics.unlock();
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       m_puserinteraction->place(m_rectangle);
 
@@ -287,7 +287,7 @@ namespace uwp
 
    //   //      {
 
-   //   //         synchronization_lock synchronizationlock(&m_mutexQueue);
+   //   //         synchronous_lock synchronouslock(&m_mutexQueue);
 
    //   //         if (m_messageaQueue.has_elements())
    //   //         {
@@ -303,7 +303,7 @@ namespace uwp
 
    //   //            }
 
-   //   //            synchronizationlock.unlock();
+   //   //            synchronouslock.unlock();
 
    //   //            m_puserinteraction->message_handler(pmessage);
 
@@ -314,11 +314,11 @@ namespace uwp
    //   //            do
    //   //            {
 
-   //   //               synchronizationlock.unlock();
+   //   //               synchronouslock.unlock();
 
    //   //               m_evQueue.wait(millis(300));
 
-   //   //               synchronizationlock.lock();
+   //   //               synchronouslock.lock();
 
    //   //            }
    //   //            while (m_messageaQueue.is_empty() && ::task_get_run());
@@ -500,7 +500,7 @@ namespace uwp
 #endif
 
          // should also be in the permanent or temporary handle ::map
-         //single_lock synchronizationlock(afxMutexHwnd(),true);
+         //single_lock synchronouslock(afxMutexHwnd(),true);
          //hwnd_map * pMap = afxMapHWND();
          //if(pMap == nullptr) // inside thread not having windows
          //   return; // let go
@@ -570,7 +570,7 @@ namespace uwp
 
    bool interaction_impl::DestroyWindow()
    {
-      //single_lock synchronizationlock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
+      //single_lock synchronouslock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
       //::user::interaction_impl * pWnd;
       //hwnd_map * pMap;
       //oswindow hWndOrig;
@@ -2055,7 +2055,7 @@ return true;
    {
       return false;
       //// get the ::map, and if no ::map, then this message does not need reflection
-      //single_lock synchronizationlock(afxMutexHwnd(),true);
+      //single_lock synchronouslock(afxMutexHwnd(),true);
       //hwnd_map * pMap = afxMapHWND();
       //if(pMap == nullptr)
       //   return false;
@@ -3602,7 +3602,7 @@ return true;
 
       {
 
-         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
          m_strWindowText = lpszString;
 
@@ -3617,7 +3617,7 @@ return true;
 
          {
 
-            synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+            synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
             applicationview->Title = m_strWindowText;
 
@@ -5947,7 +5947,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
       {
          // class registered successfully, add to registered list
          __MODULE_STATE* pModuleState = __get_module_state();
-         single_lock synchronizationlock(&pModuleState->m_mutexRegClassList, true);
+         single_lock synchronouslock(&pModuleState->m_mutexRegClassList, true);
          if(pModuleState->m_pstrUnregisterList == nullptr)
             pModuleState->m_pstrUnregisterList = new string;
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
@@ -6017,7 +6017,7 @@ namespace uwp
 
       }
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
@@ -6053,7 +6053,7 @@ namespace uwp
 
       //m_puserinteraction->on_after_graphical_update();
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
@@ -6183,7 +6183,7 @@ namespace uwp
 
          //}
 
-         //synchronization_lock synchronizationlock(&m_mutexQueue);
+         //synchronous_lock synchronouslock(&m_mutexQueue);
 
          //m_messageaQueue.add(pusermessage);
 

@@ -26,11 +26,11 @@
 //#endif
 
 
-#include "crypto_crypto.h"
+#include "_.h"
 
-i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
+CLASS_DECL_APEX i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 
-i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
+CLASS_DECL_APEX i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
 
 
 

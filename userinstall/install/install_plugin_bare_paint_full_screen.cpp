@@ -64,7 +64,7 @@ namespace hotplugin
 
       ::write_text::font_pointer f(e_create);
 
-      f->create_pixel_font(os_font_name(e_font_sans_fx), 49);
+      f->create_pixel_font(pnode->font_name(e_font_sans_fx), 49);
 
       pgraphics->SelectObject(f);
 
@@ -76,13 +76,13 @@ namespace hotplugin
 
       pgraphics->text_out(rectangle.left + 84, rectangle.top + 84, strStatus);
 
-      f->create_pixel_font(os_font_name(e_font_sans_fx), 90, true);
+      f->create_pixel_font(pnode->font_name(e_font_sans_fx), 90, true);
 
       pgraphics->SelectObject(f);
 
       pgraphics->text_out(rectangle.left + 84, (i32)(rectangle.top + 133 + 49 * 0.2), strProgress);
 
-      f->create_pixel_font(os_font_name(e_font_sans_fx), 23);
+      f->create_pixel_font(pnode->font_name(e_font_sans_fx), 23);
 
       pgraphics->SelectObject(f);
 

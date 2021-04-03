@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   region::region(::context_object * pcontextobject) :
+   region::region(::object * pobject) :
       ::object(pobject)
    {
 

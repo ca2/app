@@ -1117,6 +1117,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\exception_engine.cpp" />
     <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\throw.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
@@ -1151,6 +1153,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
     <ClCompile Include="memory\allocation.cpp" />
+    <ClCompile Include="memory\counter.cpp" />
     <ClCompile Include="memory\heap.cpp" />
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -1280,6 +1283,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\windows\mutex.cpp" />
     <ClCompile Include="node\windows\shared_memory.cpp" />
     <ClCompile Include="node\windows\standard_exception.cpp" />
+    <ClCompile Include="node\windows\strdup_array.cpp" />
     <ClCompile Include="node\windows\system.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
@@ -1510,6 +1514,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\windows\internal.cpp" />
     <ClCompile Include="os\windows\itemidlist.cpp" />
     <ClCompile Include="os\windows\language.cpp" />
+    <ClCompile Include="os\windows\library.cpp" />
     <ClCompile Include="os\windows\list_serial_ports.cpp" />
     <ClCompile Include="os\windows\lock.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
@@ -1536,6 +1541,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\windows_common\time.cpp" />
     <ClCompile Include="os\windows_common\unicode.cpp" />
     <ClCompile Include="os\windows_common\_dll.cpp" />
+    <ClCompile Include="parallelization\cleanup_task.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\critical_section.cpp" />
@@ -1565,6 +1571,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
+    <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
@@ -1574,6 +1581,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\future.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\international.cpp" />
+    <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\logic.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
     <ClCompile Include="platform\math.cpp" />
@@ -1592,6 +1600,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\routine_array.cpp" />
     <ClCompile Include="platform\serial_impl.cpp" />
     <ClCompile Include="platform\simple_trace.cpp" />
+    <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1607,6 +1616,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\collection\rectangle_array.cpp" />
+    <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\stringa.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
@@ -1631,15 +1641,19 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
+    <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
-    <ClCompile Include="primitive\primitive\id_matter.cpp" />
+    <ClCompile Include="primitive\primitive\material_object.cpp" />
     <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
+    <ClCompile Include="primitive\text\data.cpp" />
+    <ClCompile Include="primitive\text\text.cpp" />
+    <ClCompile Include="primitive\text\translator.cpp" />
     <ClCompile Include="process\bidirectional_pipe.cpp" />
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\main.cpp" />
@@ -1705,6 +1719,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\_c.h" />
     <ClInclude Include="exception\_const.h" />
     <ClInclude Include="exception\_dump_context.h" />
+    <ClInclude Include="filesystem\filesystem\acme_dir.h" />
+    <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
     <ClInclude Include="filesystem\filesystem\path_object.h" />
@@ -1721,18 +1737,17 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="id.h" />
-    <ClInclude Include="inline\application\linux.h" />
-    <ClInclude Include="inline\application\macos.h" />
-    <ClInclude Include="inline\application\uwp.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
-    <ClInclude Include="inline\console\linux.h" />
-    <ClInclude Include="inline\console\windows.h" />
     <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\implement.h" />
+    <ClInclude Include="inline\implement\ansi.h" />
+    <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="inline\_application.h" />
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="memory\counter.h" />
     <ClInclude Include="memory\os_alloc.h" />
     <ClInclude Include="memory\_impl.h" />
     <ClInclude Include="net\_net_impl.h" />
@@ -1845,6 +1860,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="os\_c2.h" />
     <ClInclude Include="os\_impl2.h" />
     <ClInclude Include="os\_os2.h" />
+    <ClInclude Include="parallelization\cleanup_task.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\condition.h" />
     <ClInclude Include="parallelization\condition_variable.h" />
@@ -1865,7 +1881,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\socket_event.h" />
     <ClInclude Include="parallelization\sync.h" />
     <ClInclude Include="parallelization\synchronization_array.h" />
-    <ClInclude Include="parallelization\synchronization_lock.h" />
+    <ClInclude Include="parallelization\synchronous_lock.h" />
     <ClInclude Include="parallelization\synchronization_object.h" />
     <ClInclude Include="parallelization\synchronized_process.h" />
     <ClInclude Include="parallelization\synchronization_result.h" />
@@ -1897,6 +1913,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\console_application.h" />
     <ClInclude Include="platform\const.h" />
     <ClInclude Include="platform\constraint.h" />
+    <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\display.h" />
@@ -1915,6 +1932,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\keep.h" />
     <ClInclude Include="platform\keep_true.h" />
     <ClInclude Include="platform\less.h" />
+    <ClInclude Include="platform\library.h" />
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
     <ClInclude Include="platform\main.h" />
@@ -1946,6 +1964,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_trace.h" />
     <ClInclude Include="platform\sprintf.h" />
+    <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
@@ -1998,6 +2017,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\single.h" />
     <ClInclude Include="primitive\collection\std_iterator.h" />
     <ClInclude Include="primitive\collection\std_pair.h" />
+    <ClInclude Include="primitive\collection\strdup_array.h" />
     <ClInclude Include="primitive\collection\tiny_array.h" />
     <ClInclude Include="primitive\collection\_.h" />
     <ClInclude Include="primitive\collection\_array_base_impl.h" />
@@ -2095,9 +2115,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
+    <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\osdata_array.h" />
     <ClInclude Include="primitive\primitive\property_object.h" />
-    <ClInclude Include="primitive\primitive\id_matter.h" />
+    <ClInclude Include="primitive\primitive\material_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
     <ClInclude Include="primitive\primitive\matter.h" />
     <ClInclude Include="primitive\primitive\estatus.h" />
@@ -2114,6 +2135,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\change.h" />
     <ClInclude Include="primitive\primitive\aaa_update.h" />
     <ClInclude Include="primitive\primitive\source.h" />
+    <ClInclude Include="primitive\primitive\text.h" />
     <ClInclude Include="primitive\primitive\work.h" />
     <ClInclude Include="primitive\primitive\update.h" />
     <ClInclude Include="primitive\primitive\_context_object_impl.h" />
@@ -2134,10 +2156,15 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\subject\subject.h" />
     <ClInclude Include="primitive\subject\_.h" />
     <ClInclude Include="primitive\subject\_impl.h" />
+    <ClInclude Include="primitive\text\data.h" />
+    <ClInclude Include="primitive\text\text.h" />
+    <ClInclude Include="primitive\text\translator.h" />
+    <ClInclude Include="primitive\text\_.h" />
     <ClInclude Include="process\bidirectional_pipe.h" />
     <ClInclude Include="process\exit_status.h" />
     <ClInclude Include="process\pipe.h" />
     <ClInclude Include="process\_.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user\conversation.h" />
     <ClInclude Include="user\os_colors.h" />

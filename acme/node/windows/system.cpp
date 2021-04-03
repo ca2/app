@@ -12,7 +12,32 @@ namespace acme
    ::e_status system::start()
    {
 
-      auto estatus = on_start();
+      //auto estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   auto estatus = m_pnode->start();
+
+      //}
+
+      auto estatus = inline_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = on_start();
 
       if (!estatus)
       {
@@ -22,6 +47,38 @@ namespace acme
       }
 
       return estatus;
+
+   }
+
+
+   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
+   {
+
+      if (estatus == error_exit_system)
+      {
+      
+         m_psystem->finish();
+      
+      }
+      //   else if (estatus == error_exit_session)
+      //   {
+      //
+      //      get_session()->finish();
+      //
+      //   }
+      //   else if (estatus == error_exit_application)
+      //   {
+      //
+      //      get_session()->finish();
+      //
+      //   }
+      //   else if (estatus == error_exit_application)
+      //   {
+      //
+      //      ::get_task()->finish();
+      //
+      //   }
+      //
 
    }
 
@@ -50,6 +107,15 @@ namespace acme
    ::e_status system::inline_init()
    {
 
+      auto estatus = process_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       return ::success;
 
    }
@@ -62,6 +128,10 @@ namespace acme
 
    }
 
+   
+
+
+
 
    ::e_status system::on_start()
    {
@@ -69,6 +139,7 @@ namespace acme
       return ::success;
 
    }
+
 
    void system::os_construct()
    {
@@ -93,16 +164,16 @@ namespace acme
    }
 
 
-   ::file::path system::get_memory_map_base_folder_path() const
-   {
+   // ::file::path system::get_memory_map_base_folder_path() const
+   // {
       
-      auto path = get_known_folder(FOLDERID_RoamingAppData);
+   //    auto path = get_known_folder(FOLDERID_RoamingAppData);
 
-      path /= "ca2/memory_map";
+   //    path /= "ca2/memory_map";
 
-      return path;
+   //    return path;
 
-   }
+   // }
 
 
 } // namespace acme

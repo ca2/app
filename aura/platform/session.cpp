@@ -4,7 +4,7 @@
 //#endif
 //#include "acme/const/id.h"
 //#include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 //#include "apex/platform/str_context.h"
 
 //#ifdef LINUX
@@ -112,10 +112,10 @@ namespace aura
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::session::initialize(pcontextobject);
+      auto estatus = ::aqua::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -1316,7 +1316,7 @@ namespace aura
 
    //         {
 
-   //            synchronization_lock synchronizationlock(mutex());
+   //            synchronous_lock synchronouslock(mutex());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1527,10 +1527,10 @@ namespace aura
 
 
 
-   ::e_status session::finish(::property_object * pcontextobjectFinish)
+   ::e_status session::finish()
    {
 
-      return ::aqua::session::finish(pcontextobjectFinish);
+      return ::aqua::session::finish();
 
    }
 
@@ -1653,7 +1653,7 @@ ret:
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -2134,10 +2134,10 @@ namespace aura
 
 
 
-   //::e_status session::initialize(::context_object * pcontextobject)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pcontextobject);
+   //   auto estatus = ::aura::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -2186,7 +2186,7 @@ namespace aura
    }
 
 
-   ::e_status     session::do_request(::create* pcreate)
+   void session::do_request(::create* pcreate)
    {
 
       return ::thread::do_request(pcreate);
@@ -2196,24 +2196,24 @@ namespace aura
 
 
 
-   void session::request_topic_file(::payload& varQuery)
-   {
+   //void session::request_topic_file(::payload& varQuery)
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile, varQuery);
+   //   request_file(psession->m_varTopicFile, varQuery);
 
-   }
+   //}
 
 
-   void session::request_topic_file()
-   {
+   //void session::request_topic_file()
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile);
+   //   request_file(psession->m_varTopicFile);
 
-   }
+   //}
 
 
    __pointer(::aura::application) session::get_current_application()
@@ -2231,7 +2231,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return pcontext->os().is_remote_session();
+      return pcontext->m_papexcontext->os().is_remote_session();
 
    }
 
@@ -2312,19 +2312,19 @@ namespace aura
    }
 
 
-   void session::check_topic_file_change()
-   {
+   //void session::check_topic_file_change()
+   //{
 
-      if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
-      {
+   //   if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+   //   {
 
-         m_varCurrentViewFile = m_varTopicFile;
+   //      m_varCurrentViewFile = m_varTopicFile;
 
-         request_topic_file();
+   //      request_topic_file();
 
-      }
+   //   }
 
-   }
+   //}
 
    //}
 
@@ -2515,6 +2515,18 @@ namespace aura
    }
 
 
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aqua::session::on_instantiate_application(papp);
+
+      papp->m_paurasession = this;
+      papp->m_paurasystem = m_paurasystem;
+      papp->m_pauranode = m_pauranode;
+
+   }
+
+
    //void session::frame_pre_translate_message(::message::message* pmessage)
    //{
 
@@ -2600,10 +2612,12 @@ namespace aura
    //}
 
 
-   void session::finalize()
+   ::e_status session::finalize()
    {
 
-      ::apex::session::finalize();
+      auto estatus = ::apex::session::finalize();
+
+      return estatus;
 
    }
 

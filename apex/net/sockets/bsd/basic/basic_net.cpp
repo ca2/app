@@ -49,13 +49,13 @@ namespace sockets
    }
 
 
-   ::e_status     net::initialize(::context_object * pcontextobject)
+   ::e_status     net::initialize(::object * pobject)
    {
 
       if(m_bInitialized)
          return true;
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -96,19 +96,19 @@ namespace sockets
    }
 
 
-   void net::finalize()
+   ::e_status net::finalize()
    {
 
       ::object::finalize();
 
-      if (!m_bInitialized)
+      if (m_bInitialized)
       {
 
-         return;
+         m_bInitialized = false;
 
       }
 
-      m_bInitialized = false;
+      return ::success;
 
    }
 
@@ -239,7 +239,7 @@ namespace sockets
 //      if(str.is_empty())
 //         return false;
 //
-//      single_lock synchronizationlock(&m_mutexCache, true);
+//      single_lock synchronouslock(&m_mutexCache, true);
 //      dns_cache_item item;
 //      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_millisLastChecked.elapsed()) < (5 * 60 * 1000)))))
 //      {
@@ -804,7 +804,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse_schedule(reverse_cache_item * pitem)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   m_reversecacheaRequest.add(pitem);
 //
@@ -818,12 +818,12 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //            ::set_thread_name("reverse_dns");
 //
-//            single_lock synchronizationlock(mutex());
+//            single_lock synchronouslock(mutex());
 //
 //            while (task_get_run())
 //            {
 //
-//               synchronizationlock.lock();
+//               synchronouslock.lock();
 //
 //               if (m_reversecacheaRequest.has_elements())
 //               {
@@ -832,7 +832,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //                  m_reversecacheaRequest.remove_at(0);
 //
-//                  synchronizationlock.unlock();
+//                  synchronouslock.unlock();
 //
 //                  reverse_sync(pitem);
 //
@@ -840,7 +840,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //               else
 //               {
 //
-//                  synchronizationlock.unlock();
+//                  synchronouslock.unlock();
 //
 //                  if (!task_sleep(100_ms))
 //                  {
@@ -867,7 +867,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse(string & hostname, const ::net::address & address)
 //{
 //
-//   single_lock synchronizationlock(&m_mutexReverseCache, true);
+//   single_lock synchronouslock(&m_mutexReverseCache, true);
 //
 //   auto & pitem = m_mapReverseCache[address.get_display_number()];
 //
@@ -1018,13 +1018,13 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 ////   reverse_cache_item item;
 //
-//   single_lock synchronizationlock(&m_mutexReverseCache, true);
+//   single_lock synchronouslock(&m_mutexReverseCache, true);
 //
 //   pitem->m_strReverse = host;
 //   //item.m_strService = serv;
 //   pitem->m_millisLastChecked.Now();
 //
-//   //single_lock synchronizationlock(&m_mutexCache, true);
+//   //single_lock synchronouslock(&m_mutexCache, true);
 //
 //   //m_mapReverseCache.set_at(strIpString, item);
 //

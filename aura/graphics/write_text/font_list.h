@@ -6,7 +6,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_list_item :
-      virtual public context_object
+      virtual public object
    {
    public:
 
@@ -43,9 +43,8 @@ namespace write_text
    };
 
 
-
    class CLASS_DECL_AURA font_list :
-      virtual public ::object
+      virtual public ::subject::manager
    {
    public:
 
@@ -105,7 +104,7 @@ namespace write_text
       virtual ~font_list();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void on_subject(::subject::subject * psubject) override;
 

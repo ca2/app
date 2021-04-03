@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX channel :
-   virtual public ::object
+   virtual public ::subject::manager
 {
 public:
 
@@ -28,7 +28,7 @@ public:
 
    static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
    virtual void remove_receiver(::object * preceiver);
 
@@ -41,6 +41,13 @@ public:
 
    template < typename RECEIVER >
    bool add_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
+   template < typename RECEIVER >
+   bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
+   {
+
+      return add_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
+
+   }
 
    template < typename MESSAGE_PRED >
    //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);

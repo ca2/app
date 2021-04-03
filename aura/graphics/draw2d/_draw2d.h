@@ -100,8 +100,7 @@ public:
    int                     m_iDpi;
 
 
-   save_image(::matter * pmatter);
-   save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions);
+   save_image();
 
 
 };

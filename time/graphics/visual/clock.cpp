@@ -21,7 +21,7 @@ namespace datetime
 
    }
 
-   ::e_status graphics::initialize(::context_object * pcontextobject)
+   ::e_status graphics::initialize(::object * pobject)
    {
 
       return ::success;

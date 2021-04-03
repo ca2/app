@@ -5,7 +5,9 @@
 namespace acme
 {
 
-   ::acme::acme acme::g_acme;
+   
+   ::acme::static_start static_start::g_staticstart;
+
 
 } // namespace acme
 

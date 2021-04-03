@@ -128,8 +128,7 @@ namespace user
             }
             else
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(255, 255, 150),
                   bAlpha);
@@ -139,16 +138,14 @@ namespace user
          {
             if(m_itemHover.item_index() == i)
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(255, 180, 180),
                   bAlpha);
             }
             else
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(100, 100, 255),
                   bAlpha);

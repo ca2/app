@@ -58,7 +58,7 @@ namespace sockets
 
 
       /** Constructor.
-      \param h base_socket_handler context_object
+      \param h base_socket_handler object
       \param ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
       \param ipv6 'true' if this is an ipv6 socket */
       udp_socket(int ibufsz = 16384,bool ipv6 = false, int retries = 0);

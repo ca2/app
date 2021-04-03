@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   switcher_view::switcher_view(::context_object * pcontextobject):
+   switcher_view::switcher_view(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),

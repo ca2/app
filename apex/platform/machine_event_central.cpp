@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::context_object * pcontextobject)
+::e_status machine_event_central::initialize(::object * pobject)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ machine_event_central::~machine_event_central()
 
    }
 
-   auto estatus = ::object::initialize(pcontextobject);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {
@@ -38,6 +38,14 @@ machine_event_central::~machine_event_central()
 
    }
 
+   estatus = __construct_new(m_pmachineevent);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
 
    // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for machine messages pooling in the machine event data file.
 
@@ -69,7 +77,7 @@ machine_event_central::~machine_event_central()
    {
 
       {
-         synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+         synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
 
          //machine_event_data data;
 
@@ -92,11 +100,11 @@ machine_event_central::~machine_event_central()
 bool machine_event_central::is_close_application()
 {
 
-   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+   synchronous_lock lockMachineEvent(m_pmachineevent->mutex());
 
    machine_event_data data;
 
-   m_machineevent.read(&data);
+   m_pmachineevent->read(&data);
 
    __pointer(::apex::system) psystem = get_system();
 
@@ -110,7 +118,7 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(__pointer(::xml::node) pnode)
 //{
 //
-//   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+//   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
 //
 //   machine_event_data data;
 //

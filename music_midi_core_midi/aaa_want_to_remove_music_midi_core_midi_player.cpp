@@ -14,7 +14,7 @@ namespace music
          
 
 
-         player::player(::context_object * pcontextobject) :
+         player::player(::object * pobject) :
             object(pobject),
             thread(pobject),
             ::music::midi::player::player(pobject)

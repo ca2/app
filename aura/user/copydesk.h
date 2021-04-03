@@ -36,8 +36,8 @@ namespace user
       virtual ~copydesk();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
       /// pass nullptr to ppatha to probe if there is at least one existing
       /// directory or file in str parsed as multiline.

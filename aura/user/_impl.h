@@ -297,7 +297,7 @@ namespace user
    inline ::aura::application* interaction::get_application() const
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -305,7 +305,7 @@ namespace user
    inline ::aura::session* interaction::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
 
    }
 
@@ -313,7 +313,7 @@ namespace user
    inline ::aura::system* interaction::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
 
    }
 
@@ -321,7 +321,7 @@ namespace user
    inline ::aura::application* user::get_application()
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 
@@ -329,7 +329,7 @@ namespace user
    inline ::aura::session* user::get_session()
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
 
    }
 
@@ -345,7 +345,7 @@ namespace user
    inline ::aura::application* primitive_impl::get_application() const
    {
 
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr;
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
 
    }
 
@@ -353,7 +353,7 @@ namespace user
    inline ::aura::session* primitive_impl::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr;
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
 
    }
 
@@ -361,7 +361,7 @@ namespace user
    inline ::aura::system* primitive_impl::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
 
    }
 
@@ -369,7 +369,7 @@ namespace user
    inline ::aura::application* form::get_application() const 
    {
       
-      return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; 
    
    }
 
@@ -377,7 +377,7 @@ namespace user
    inline ::aura::session* form::get_session() const 
    {
       
-      return m_psession ? m_psession.cast < ::aura::session >() : nullptr; 
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr; 
    
    }
 

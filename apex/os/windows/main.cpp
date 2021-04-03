@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
-#include "apex/platform/apex.h"
+#include "apex/platform/node.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 //CLASS_DECL_APEX string ca2_command_line(hinstance hinstance);
@@ -106,7 +107,7 @@ namespace apex
 
          ::file::path pathLnk;
 
-         pathObj = get_context()->file().module();
+         pathObj = m_pcontext->m_papexcontext->file().module();
 
          string strLinkTitle;
 
@@ -116,11 +117,11 @@ namespace apex
          strLinkTitle.replace("\\", "_");
          strLinkTitle.replace("-", "_");
 
-         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+         pathLnk = m_psystem->m_pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
          ::dir::mk(pathLnk.folder());
 
-         m_psystem->m_papexsystem->m_papex->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+         m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
       }
 

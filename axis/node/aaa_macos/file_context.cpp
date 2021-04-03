@@ -59,10 +59,10 @@ namespace macos
    }
 
 
-   ::e_status file_context::initialize(::context_object * pcontextobject)
+   ::e_status file_context::initialize(::object * pobject)
    {
       
-      auto estatus = ::file_context::initialize(pcontextobject);
+      auto estatus = ::file_context::initialize(pobject);
       
       if(!estatus)
       {

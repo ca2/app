@@ -12,7 +12,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA menu_item :
-      virtual public id_matter
+      virtual public material_object
    {
    public:
 

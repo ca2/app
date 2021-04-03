@@ -69,10 +69,10 @@ namespace filemanager
    }
 
 
-   ::e_status data::initialize_filemanager_data(::context_object * pcontextobject)
+   ::e_status data::initialize_filemanager_data(::object * pobject)
    {
 
-      auto estatus = ::data::data::initialize(pcontextobject);
+      auto estatus = ::data::data::initialize(pobject);
 
       if (!estatus)
       {
@@ -268,7 +268,9 @@ namespace filemanager
       string strPath;
 
       __pointer(::core::application) papplication = pobject->get_application();
-      
+
+      auto pcontext = m_pcontext;
+
       if (papplication->data_get({true, "last_browse_folder"}, strPath))
       {
 
@@ -290,9 +292,9 @@ namespace filemanager
 
          }
 
-         //pcontext->dir().mk(strPath);
+         //pcontext->m_papexcontext->dir().mk(strPath);
 
-         if (papplication->dir().is(strPath))
+         if (pcontext->m_papexcontext->dir().is(strPath))
          {
 
             return strPath;
@@ -310,7 +312,7 @@ namespace filemanager
       else
       {
 
-         strPath = papplication->dir().desktop();
+         strPath = pcontext->m_papexcontext->dir().desktop();
 
       }
 

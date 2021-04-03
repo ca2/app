@@ -183,33 +183,15 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
-      //__pointer(::future < ::id >)       m_pprocess;
-      __pointer(::user::system)                    m_pusersystem;
-      __pointer(::user::interaction)               m_puserinteractionParent;
-
-
-      // updown
-      __pointer(::user::interaction)               m_pupdowntarget;
       ::user::interaction::e_updown                m_eupdown;
-      //end updown
-      //__pointer(control_descriptor)                m_pdescriptor;
-      __pointer(shape_array)                       m_pshapeaClip;
 
       ::user::interaction_layout                   m_layout;
 
-      __pointer(drag_move)                         m_pdragmove;
-      //index                                     m_iControl;
       index                                        m_iItem;
       index                                        m_iSubItem;
       index                                        m_iListItem;
       index                                        m_iColumn;
-      //__pointer(::user::interaction)            m_puserinteraction;
-      //__pointer(::user::interaction)            m_puserinteractionParent;
-      __pointer(::user::interaction_layout)     m_playout;
-      //index_map < __pointer(interaction) >      m_controlmap;
 
-      __pointer(graphics_call_array)            m_pgraphicscalla;
-      //id                                        m_id;
       id                                        m_uiText;
       ::type                                    m_type;
       id                                        m_idPrivateDataSection;
@@ -268,18 +250,14 @@ namespace user
       bool                                         m_bLayoutModified;
 
       // control member variables BEGIN
-      __pointer(::aura::draw_context)              m_pdrawcontext;
-      __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       bool                                         m_bCustomWindowProc;
       // index                                        m_iEditItem;
       bool                                         m_bControlExCommandEnabled;
-      __pointer(::user::interaction)               m_puiLabel;
       bool                                         m_bIdBound;
       // control member variables END
 
       string                                       m_strInteractionTag;
 
-      __pointer_array(::user::item)           m_useritema;
       bool                                         m_bOverdraw;
       ::index                                      m_iIndex;
       ::user::item                                 m_itemLButtonDown;
@@ -301,7 +279,6 @@ namespace user
       bool                                         m_bNeedSaveFormData;
       millis                                         m_millisLastRedraw;
       ::id                                         m_idView;
-      __pointer(::user::form)                      m_pform;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
       point_i32                                        m_pointScroll;
@@ -322,23 +299,14 @@ namespace user
       // create a fast path/low latency callback system
       ::millis                                     m_millisMouseMove;
       ::millis                                     m_millisMouseMoveIgnore;
-      __pointer(alpha_source)                      m_palphasource;
       double                                       m_dItemHeight;
       point_i32                                        m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
-      __pointer(::aura::drawable)                  m_pdrawableBackground;
       bool                                         m_bBackgroundBypass;
       millis                                       m_millisLastFullUpdate;
       bool                                         m_bSizeMove;
       millis                                       m_millisLastVisualChange;
-      __reference(::file::insert_item)             m_pitemComposing;
-      __pointer(primitive_impl)                    m_pimpl;
-      __pointer(interaction_impl)                  m_pimpl2;
-      //__pointer(interaction)                       m_puserinteraction;
-      __pointer(primitive_pointer_array)           m_puserinteractionpointeraOwned;
-      __pointer(interaction_array)                 m_puserinteractionpointeraChild;
       string                                       m_strName;
-      __pointer(interaction)                       m_puserinteractionOwner;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
       enum_cursor                                  m_ecursor;
@@ -346,11 +314,8 @@ namespace user
       bool                                         m_bParentScroll;
       string                                       m_strWindowText;
       bool                                         m_bModal;
-      __pointer(::thread)                          m_pthreadModal;
-      __reference(::thread)                        m_pthreadUserInteraction;
       id                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      __pointer(interaction)                       m_ptooltip;
 
       bool                                         m_bNeedRedraw;
       bool                                         m_bNeedLayout;
@@ -370,11 +335,37 @@ namespace user
       /// represents (this window is a button [a menu button],
       /// this window is a checkbox [a menu checkbox],
       /// this window is a player/view [a menu picture/video/chat?!])
-      __pointer(::object)                          m_pmenuitem;
-      __pointer_array(interaction)                 m_menua;
       bool                                         m_bWfiUpDownTarget;
 
 
+      // references
+      __reference(::file::insert_item)             m_pitemComposing;
+      __reference(::thread)                        m_pthreadUserInteraction;
+      __pointer(::user::interaction)               m_puserinteractionParent;
+      __pointer(::user::interaction)               m_pupdowntarget;
+      __pointer(::thread)                          m_pthreadModal;
+      __pointer(interaction)                       m_puserinteractionOwner;
+
+      // ownership
+      __pointer(::user::system)                    m_pusersystem;
+      __pointer(::user::interaction_layout)        m_playout;
+      __pointer(shape_array)                       m_pshapeaClip;
+      __pointer(drag_move)                         m_pdragmove;
+      __pointer(graphics_call_array)               m_pgraphicscalla;
+      __pointer(::aura::draw_context)              m_pdrawcontext;
+      __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
+      __pointer(::user::interaction)               m_puiLabel;
+      __pointer_array(::user::item)                m_useritema;
+      __pointer(::user::form)                      m_pform;
+      __pointer(alpha_source)                      m_palphasource;
+      __pointer(::aura::drawable)                  m_pdrawableBackground;
+      __pointer(primitive_impl)                    m_pimpl;
+      __pointer(interaction_impl)                  m_pimpl2;
+      __pointer(primitive_pointer_array)           m_puserinteractionpointeraOwned;
+      __pointer(interaction_array)                 m_puserinteractionpointeraChild;
+      __pointer(interaction)                       m_ptooltip;
+      __pointer(::object)                          m_pmenuitem;
+      __pointer_array(interaction)                 m_menua;
 
 
       interaction();
@@ -446,7 +437,7 @@ namespace user
       void queue_graphics_call(PRED pred)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __defer_construct_new(m_pgraphicscalla);
 
@@ -465,6 +456,8 @@ namespace user
 
       //virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
 
+
+      virtual void enumerate_composite(matter_array& a) override;
 
       virtual ::e_status main_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
@@ -618,7 +611,7 @@ namespace user
 
       virtual string get_display_tag();
 
-      virtual void on_finalize() override;
+      virtual ::e_status finalize() override;
       virtual void delete_this() override;
 
 
@@ -655,7 +648,7 @@ namespace user
 
 
       virtual void defer_restore(const ::rectangle_i32& rectRequest);
-      ::object * parent_property_set_holder() const override;
+      ::property_object * parent_property_set_holder() const override;
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
@@ -714,8 +707,8 @@ namespace user
       inline bool set_prodevian() { return add_prodevian(this); }
       inline bool clear_prodevian() { return remove_prodevian(this); }
 
-      virtual bool add_prodevian(::context_object* pobject) override;
-      virtual bool remove_prodevian(::context_object* pobject) override;
+      virtual bool add_prodevian(::object* pobject) override;
+      virtual bool remove_prodevian(::object* pobject) override;
       inline bool has_prodevian() const noexcept;
 
 
@@ -745,6 +738,9 @@ namespace user
       virtual void on_select() override;
 
       virtual bool is_place_holder() override;
+
+      virtual double get_output_fps();
+
 
       
       virtual enum_cursor get_cursor() override;
@@ -1034,15 +1030,19 @@ namespace user
 
       virtual void destroy_window() override;
 
-      virtual void on_finish() override;
+      virtual ::e_status on_finish() override;
 
-      virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
+      //virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
 
-      virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
+   
+
+      virtual ::e_status finish_composites() override;
+
+      virtual ::e_status finish() override;
 
       virtual void notify_on_finish(::property_object* pcontextobjectFinish) override;
 
-      virtual void finalize() override;
+      //virtual ::e_status finalize() override;
 
 
 //#ifdef WINDOWS
@@ -1685,9 +1685,9 @@ namespace user
       virtual void check_transparent_mouse_events();
 
 
-      virtual void redraw_add(::context_object * pobject);
+      virtual void redraw_add(::object * pobject);
 
-      virtual void redraw_remove(::context_object * pobject);
+      virtual void redraw_remove(::object * pobject);
 
       virtual bool has_redraw();
 

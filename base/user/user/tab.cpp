@@ -94,7 +94,7 @@ namespace user
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iPane < 0)
       {
@@ -162,13 +162,19 @@ namespace user
 
       }
 
+      ppane->initialize_tab_pane(this);
+
+      // second colon starts the text.
+      // if the text is a ID, the ID will be result when no translation
+      // if the text is a text (in English), the text (in English) will be the result when there is no translation.
+      //set_tille("text://hellomultiverse/AKDFJG./:Main Tab"));
       ppane->set_title(pcsz);
 
       ppane->m_bTabPaneVisible   = bVisible;
       ppane->m_bPermanent        = bPermanent;
       ppane->m_pplaceholder      = pholder;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (id.is_empty())
       {
@@ -266,7 +272,7 @@ namespace user
       ppane->set_title(pcszTitle);
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       
       auto papplication = get_application();
 
@@ -279,7 +285,10 @@ namespace user
 
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
-      ppane->m_pimage       = papplication->image().load_image(pszImage, false);
+
+      auto pcontext = m_pcontext;
+
+      ppane->m_pimage       = pcontext->m_pauracontext->image().load_image(pszImage, false);
 
       
 
@@ -293,7 +302,7 @@ namespace user
    void tab::remove_tab(::index iPane, bool bVisible)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iPane < 0 || iPane >= get_data()->m_tabpanecompositea.get_size())
       {
@@ -356,7 +365,7 @@ namespace user
    void tab::remove_all_tabs()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       get_data()->m_tabpanecompositea.remove_all();
 
@@ -1591,6 +1600,12 @@ namespace user
 
          pholder->display(::e_display_normal);
 
+         pholder->set_need_layout();
+
+         pholder->set_need_redraw();
+
+         pholder->post_redraw();
+
       }
       else if(::is_set(ppaneSel) && ppaneSel->m_eflag & e_flag_hide_all_others_on_show)
       {
@@ -2218,7 +2233,7 @@ namespace user
    void tab::defer_remove_child_pane(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       index iPane = find_child_pane(pinteraction);
 
@@ -2285,7 +2300,7 @@ namespace user
    void tab::on_hit_test(::user::item & item)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectScroll;
 
@@ -2444,7 +2459,7 @@ namespace user
    void tab::on_message_create(::message::message * pmessage)
    {
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_pbasesystem;
 
       m_bNoTabs = psystem->has_property("no_tabs");
 
@@ -2544,7 +2559,7 @@ namespace user
 
       {
 
-         synchronization_lock lock(get_data()->mutex());
+         synchronous_lock lock(get_data()->mutex());
 
          get_data()->m_idaSel.remove_all();
 
@@ -3293,7 +3308,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       *prectangle = get_data()->m_rectTabClient;
 

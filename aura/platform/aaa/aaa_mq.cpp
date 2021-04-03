@@ -67,7 +67,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronization_lock ml(mutex());
+   synchronous_lock ml(mutex());
 
    m_messagea.add(message);
 
@@ -88,7 +88,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    while (true)
    {
@@ -150,11 +150,11 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          m_eventNewMessage.wait();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -175,7 +175,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    ::count count = m_messagea.get_count();
 
@@ -202,7 +202,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
@@ -394,7 +394,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   synchronization_lock ml(&pmq->m_mutex);
+//   synchronous_lock ml(&pmq->m_mutex);
 //
 //   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
 //   {
@@ -420,7 +420,7 @@ CLASS_DECL_AURA void mq_clear(itask_t idthread)
 
    }
 
-   synchronization_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->mutex());
 
    pmq->m_messagea.remove_all();
 

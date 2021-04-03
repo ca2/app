@@ -84,15 +84,15 @@ namespace base
 //   void style::nextstyle(style_context * pcontext)
 //   {
 //
-//      if (pcontext->m_econtroltype != control_none
-//            && m_map.lookup(pcontext->m_econtroltype, pcontext->pstyle))
+//      if (pcontext->m_papexcontext->m_econtroltype != control_none
+//            && m_map.lookup(pcontext->m_papexcontext->m_econtroltype, pcontext->m_papexcontext->pstyle))
 //      {
 //
 //         return;
 //
 //      }
 //
-//      pcontext->pstyle = this;
+//      pcontext->m_papexcontext->pstyle = this;
 //
 //   }
 //
@@ -116,7 +116,7 @@ namespace base
 //
 //      theme_current_control(e_control_type_button);
 //
-//      create_point_font(font_default, os_font_name(e_font_sans), 11.0);
+//      create_point_font(font_default, pnode->font_name(e_font_sans), 11.0);
 //
 //      create_opaque_color(color_text_normal, ::color_black);
 //      create_session_default_opaque_color(color_text_press, COLOR_HIGHLIGHT);
@@ -133,7 +133,7 @@ namespace base
 //
 //      theme_current_control(control_menu_button);
 //
-//      create_point_font(font_default, os_font_name(e_font_sans), 12.0);
+//      create_point_font(font_default, pnode->font_name(e_font_sans), 12.0);
 //
 //      create_color(color_text_normal, alpha_color(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
@@ -150,7 +150,7 @@ namespace base
 //
 //      theme_current_control(control_menu_popup);
 //
-//      create_point_font(font_default, os_font_name(e_font_sans), 9.0, e_font_weight_bold);
+//      create_point_font(font_default, pnode->font_name(e_font_sans), 9.0, e_font_weight_bold);
 //      create_color(color_text_normal, alpha_color(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
 //      create_color(color_text_disabled, alpha_color(200, ::color_gray));

@@ -18,10 +18,10 @@ namespace fs
    }
 
 
-   ::e_status link::initialize(::context_object * pcontextobject) 
+   ::e_status link::initialize(::object * pobject) 
    {
 
-      auto estatus = ::fs::native::initialize(pcontextobject);
+      auto estatus = ::fs::native::initialize(pobject);
 
       if (!estatus)
       {
@@ -149,11 +149,11 @@ namespace fs
 
       m_plisting->m_pathUser = pathFolder;
 
-      m_plisting->m_pprovider = get_context();
+      m_plisting->m_pprovider = m_pcontext->m_papexcontext;
 
       m_plisting->clear_results();
 
-      get_context()->dir().ls(*m_plisting);
+      m_pcontext->m_papexcontext->dir().ls(*m_plisting);
 
    }
 

@@ -39,7 +39,7 @@ namespace direct2d
       static void initialize();
       static void terminate();
   
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       static IDWriteFactory * dwrite_factory(bool bCreate = true);
@@ -63,7 +63,7 @@ namespace direct2d
       //float y_dpi(oswindow hwnd, float y);
       //float x_dpi(oswindow hwnd, float y);
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       
 

@@ -24,22 +24,22 @@ public:
    {
    public:
 
-      ::millis          m_millisLast;
+      ::millis                      m_millisLast;
 
    };
 
 
-   string         m_strRoot;
-   bool           m_bInitialized;
-   string         m_strServer;
+   string                           m_strRoot;
+   bool                             m_bInitialized;
+   string                           m_strServer;
 
-   string_array        m_straFtpServer;
+   string_array                     m_straFtpServer;
 
-   __composite(ftpnet)      m_pftpnet;
+   __composite(ftpnet)              m_pftpnet;
 
 
 
-   file_path_map < dir_listing > m_map;
+   file_path_map < dir_listing >    m_map;
 
 
    //file_path_map < u32 >    m_mapdirTimeout;

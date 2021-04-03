@@ -17,7 +17,7 @@ namespace html
       style_sheet();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       void parse(html_data * pdocument, const char * psz);

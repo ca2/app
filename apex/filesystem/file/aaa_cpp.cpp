@@ -14,7 +14,7 @@ namespace file
 
 #else
 
-      ::file::path pathSystemShortName = ::dir::localconfig() / "system_short_name.txt";
+      ::file::path pathSystemShortName = pacmedir->localconfig() / "system_short_name.txt";
 
       return file_as_string(pathSystemShortName).trimmed();
 

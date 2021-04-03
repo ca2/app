@@ -49,9 +49,9 @@ namespace user
 	bool text_composition_client::is_text_composition_active() const
 	{
 
-	   return m_bTextCompositionActive;
+	   //return m_ptextcompositionclient;
 
-		//return m_ptextcompositionclient->is_text_composition_active();
+		return m_ptextcompositionclient->is_text_composition_active();
 
 	}
 
@@ -59,9 +59,9 @@ namespace user
 	string text_composition_client::get_ime_composition() const
 	{
 
-	   return m_strImeComposition;
+	   //return m_strImeComposition;
 
-		//return m_ptextcompositionclient->get_ime_composition();
+		return m_ptextcompositionclient->get_ime_composition();
 
 	}
 

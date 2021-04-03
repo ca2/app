@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline id_matter::id_matter(const id_matter & idmatter) :
+inline material_object::material_object(const material_object & idmatter) :
    matter(idmatter),
    m_id(idmatter.m_id)
 {
@@ -9,7 +9,7 @@ inline id_matter::id_matter(const id_matter & idmatter) :
 }
 
 inline property_object::property_object(const property_object & object) :
-      id_matter(object),
+      material_object(object),
       m_pia(__new(::i64_array(*object.m_pia))),
       m_estatus(object.m_estatus),
       m_pset(__new(::property_set(*object.m_pset)))

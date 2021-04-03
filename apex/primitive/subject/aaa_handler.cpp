@@ -42,7 +42,7 @@ namespace subject
    i64 handler::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -50,7 +50,7 @@ namespace subject
    i64 handler::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -58,7 +58,7 @@ namespace subject
    i64 handler::release(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return ::context_object::release(OBJ_REF_DBG_ARGS);
+      return ::object::release(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -141,7 +141,7 @@ namespace subject
    ::subject::context * handler::context(::matter *pmatter)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & pcontext = m_mattercontext[pmatter];
 
@@ -160,7 +160,7 @@ namespace subject
    void handler::deliver()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto &pair : m_mattercontext)
       {
@@ -176,7 +176,7 @@ namespace subject
 
          }
 
-         if (pcontext->m_bFork)
+         if (pcontext->m_papexcontext->m_bFork)
          {
 
             ::task::launch(__new(subject(this, pcontext, pmatter)));
@@ -268,7 +268,7 @@ namespace subject
    void handler::add(::matter *pmatter, bool bForkWhenNotify)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //bool bShouldFork = false;
 
@@ -317,7 +317,7 @@ namespace subject
    void handler::remove(::matter *pmatter)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mattercontext.remove_key(pmatter);
 
@@ -327,7 +327,7 @@ namespace subject
    void handler::set_modified()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_bModified = true;
 
@@ -346,7 +346,7 @@ namespace subject
    void handler::post_destroy_all()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mattercontext.remove_all();
 

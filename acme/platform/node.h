@@ -5,6 +5,8 @@
 //
 // Created by camilo on 19/01/2021. <3-<3ThomasBS!!
 //
+
+// Created by camilo on 2021-03-21 18:11 <3ThomasBS_!!
 #pragma once
 
 
@@ -13,7 +15,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::property_object
+      virtual public object
       //, virtual public layered < node >
    {
    public:
@@ -41,6 +43,33 @@ namespace acme
 //      virtual enum_linux_distribution get_linux_distribution() const;
 //
 //#endif
+
+      virtual ::e_status initialize(::object * pobject) override;
+
+      virtual ::e_status on_initialize_object() override;
+
+      virtual void initialize_memory_counter();
+
+
+      virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
+
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual ::e_status register_dll(const ::file::path& pathDll);
+
+#endif
+
+
+
+
+      //virtual bool memory_counter_on();
+
+      //virtual ::file::path memory_counter_base_path();
+
+      virtual ::e_status datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time);
+
+
 
       virtual int node_init_check(int * pi, char *** ppz);
 

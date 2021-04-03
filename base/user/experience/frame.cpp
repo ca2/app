@@ -142,7 +142,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      synchronization_lock synchronizationlock(pframewindow->mutex());
+      synchronous_lock synchronouslock(pframewindow->mutex());
 
       ::rectangle_i32 rectWindow;
 
@@ -709,7 +709,7 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object("control_box"));
+         __compose(m_pcontrolbox, m_pexperience->m_plibrary->new_object < ::experience::control_box >());
 
          m_pcontrolbox->initialize(this);
 

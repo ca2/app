@@ -414,7 +414,7 @@ namespace uwp
             keyPlugin.SetValue("Path", ::acme::get_system()->m_strCa2Module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", papplication->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 

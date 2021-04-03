@@ -15,10 +15,10 @@ shell_open::~shell_open()
 }
 
 
-::e_status shell_open::initialize(::context_object * pcontextobject)
+::e_status shell_open::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pcontextobject);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {

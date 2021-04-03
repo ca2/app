@@ -266,7 +266,7 @@ namespace user
    message_box::~message_box()
    {
 
-      //synchronization_lock sl(x11_mutex());
+      //synchronous_lock sl(x11_mutex());
 
       //Display * pdisplay = x11_get_display();
 
@@ -632,7 +632,7 @@ namespace user
 
       //{
 
-      //   synchronization_lock sl(x11_mutex());
+      //   synchronous_lock sl(x11_mutex());
 
       //   Display * pdisplay = x11_get_display();
 
@@ -1119,14 +1119,16 @@ namespace aura
 {
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::context_object* pcontextobject, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto psession = get_session();
+      //auto psession = get_session();
 
-      auto puser = psession->m_puser;
+      //auto paurasession = psession->m_paurasession;
 
-      auto pmessagebox = pcontextobject->__create_new < ::user::message_box >();
+      //auto puser = psession->m_puser;
+
+      auto pmessagebox = pobject->__create_new < ::user::message_box >();
 
       auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 

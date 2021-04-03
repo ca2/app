@@ -3,10 +3,10 @@
 #include "wait_cursor.h"
 
 
-wait_cursor::wait_cursor(::context_object * pcontextobject)
+wait_cursor::wait_cursor(::object * pobject)
 {
 
-   auto estatus = initialize(pcontextobject);
+   auto estatus = initialize(pobject);
 
    if (!estatus)
    {

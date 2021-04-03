@@ -6,7 +6,7 @@ namespace sip
 {
 
 
-   request::request(::context_object * pcontextobject) :
+   request::request(::object * pobject) :
       ::object(pobject),
       transaction(pobject),
       m_file(pobject),

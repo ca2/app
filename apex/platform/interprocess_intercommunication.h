@@ -102,9 +102,9 @@
       virtual ~interprocess_intercommunication();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void defer_add_module(const string & strModule, const ::id & idPid);
 

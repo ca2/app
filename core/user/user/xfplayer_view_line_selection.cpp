@@ -138,7 +138,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
                   string str;
 
-                  auto psession = get_session();
+                  __pointer(::core::session) psession = get_session();
 
                   auto puser = psession->user();
 
@@ -159,7 +159,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
          else if(message == e_message_mouse_move)
          {
 
-            auto psession = get_session();
+            __pointer(::core::session) psession = get_session();
 
             auto puser = psession->user();
 
@@ -180,7 +180,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       if(uEvent == ::e_timer_hover)
       {
 
-         auto psession = get_session();
+         __pointer(::core::session) psession = get_session();
 
          auto puser = psession->user();
 
@@ -681,7 +681,7 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
       if(viewline.is_hover())
       {
          
-         auto psession = get_session();
+         __pointer(::core::session) psession = get_session();
 
          auto puser = psession->user();
 

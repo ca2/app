@@ -15,7 +15,7 @@ public:
 
    image();
    image(std::nullptr_t);
-   image(::context_object * pcontextobject);
+   image(::object * pobject);
    image(::image * pimage);
    image(const ::image_pointer & pimpl);
    image(::image_pointer && pimpl);
@@ -410,8 +410,8 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
    inline bool is_empty() const;
-   //inline void alloc(::context_object * pcontextobject);
-   //inline void defer_alloc(::context_object * pcontextobject);
+   //inline void alloc(::object * pobject);
+   //inline void defer_alloc(::object * pobject);
 
 
    inline ::draw2d::graphics * g() const;

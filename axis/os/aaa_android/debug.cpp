@@ -9,7 +9,7 @@
 VOID WINAPI output_debug_string(const char * lpOutputString)
 {
 
-   synchronization_lock synchronizationlock(g_pmutexOutputDebugStringA);
+   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
 
    //if (m_pstrOutputDebugStringA == nullptr)
    //{

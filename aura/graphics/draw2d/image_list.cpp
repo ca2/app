@@ -60,7 +60,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 
    defer_create_mutex();
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_iSize = 0;
    m_iGrow = nGrow;
@@ -80,7 +80,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 bool image_list::realize(::draw2d::graphics * pgraphics) const
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    return m_pimage->realize(pgraphics);
 
@@ -90,7 +90,7 @@ bool image_list::realize(::draw2d::graphics * pgraphics) const
 image_list & image_list::operator=(const image_list & imagelist)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(this != &imagelist)
    {
@@ -115,7 +115,7 @@ i32 image_list::get_image_count() const
 bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    try
    {
@@ -142,7 +142,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity & opacity)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    UNREFERENCED_PARAMETER(iFlag);
 
@@ -188,7 +188,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(iImage >= get_image_count())
    {
@@ -229,7 +229,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 i32 image_list::reserve_image(int iItem)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (iItem < 0)
    {
@@ -263,7 +263,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -305,7 +305,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -355,7 +355,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 //
 //   ::file::path path = varFile.get_file_path();
 //
-//   path = pcontext->defer_process_matter_path(path);
+//   path = pcontext->m_papexcontext->defer_process_matter_path(path);
 //
 //   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
 //      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
@@ -382,7 +382,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 
    auto pcontext = get_context();
 
-   return add_icon(pcontext->dir().matter(pszMatter));
+   return add_icon(pcontext->m_papexcontext->dir().matter(pszMatter));
 
 }
 
@@ -390,16 +390,16 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 i32 image_list::add_file(::payload varFile, int iItem)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    iItem = reserve_image(iItem);
 
    fork([this, varFile, iItem]()
       {
 
-         __pointer(::aura::application) papplication = get_application();
+      auto pcontext = get_context();
 
-         auto pimage = papplication->image().load_image(varFile, true);
+         auto pimage = pcontext->m_pauracontext->image().load_image(varFile, true);
 
          if (!pimage)
          {
@@ -424,7 +424,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    iItem = reserve_image(iItem);
 
@@ -459,7 +459,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 //   if(pobject == nullptr)
 //   {
 //
-//      auto & dir = pcontext->dir();
+//      auto & dir = pcontext->m_papexcontext->dir();
 //
 //      path = dir.matter(pcsz);
 //
@@ -480,7 +480,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 //i32 image_list::add_image(image_list * pil, int iImage, int iItem)
 //{
 //
-//   synchronization_lock synchronizationlock(pil->mutex());
+//   synchronous_lock synchronouslock(pil->mutex());
 //
 //   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
 //
@@ -511,7 +511,7 @@ i32 image_list::add_std_matter(const char * pcsz, int iItem)
 
    auto pcontext = get_context();
 
-   return add_file(pcontext->dir().matter(pcsz), iItem);
+   return add_file(pcontext->m_papexcontext->dir().matter(pcsz), iItem);
 
 }
 
@@ -534,7 +534,7 @@ i32 image_list::_get_alloc_count()
 bool image_list::_grow(int iAddUpHint)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    i32 cx = m_size.cx;
 

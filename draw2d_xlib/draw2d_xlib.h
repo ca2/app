@@ -19,7 +19,7 @@ class window;
 
 
 ::mutex & xlib_mutex();
-void init_xlib_mutex(::context_object * pcontextobject);
+void init_xlib_mutex(::object * pobject);
 
 
 #include "draw2d_xlib_factory_exchange.h"

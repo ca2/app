@@ -172,7 +172,7 @@ namespace sockets
       m_pfile           = nullptr;
       m_iFinalSize      = -1;
 
-      memcnts_inc(this);
+      memory_counter_increment(this);
 
    }
 
@@ -225,7 +225,7 @@ namespace sockets
       m_pfile                                   = nullptr;
       m_iFinalSize                              = -1;
 
-      memcnts_inc(this);
+      memory_counter_increment(this);
 
    }
 
@@ -233,7 +233,7 @@ namespace sockets
    http_client_socket::~http_client_socket()
    {
 
-      memcnts_dec(this);
+      memory_counter_decrement(this);
 
    }
 

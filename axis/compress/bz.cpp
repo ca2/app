@@ -176,10 +176,10 @@ stop1:
 
 
 
-uncompress_bz::uncompress_bz(::context_object * pcontextobject)
+uncompress_bz::uncompress_bz(::object * pobject)
 {
 
-   initialize(pcontextobject);
+   initialize(pobject);
 
 }
 

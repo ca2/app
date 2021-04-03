@@ -16,7 +16,7 @@ namespace sockets
       i32      m_iPort;
 
 
-      sip_server(::context_object * pcontextobject);
+      sip_server(::object * pobject);
    
 
       virtual i32 run();

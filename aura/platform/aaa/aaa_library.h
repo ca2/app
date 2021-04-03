@@ -27,7 +27,7 @@ namespace aura
       library() {}
       virtual ~library();
 
-      virtual ::e_status     initialize(::context_object * pcontextobject);
+      virtual ::e_status     initialize(::object * pobject);
       virtual ::e_status     initialize_aura_library(::object * pobject, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
@@ -155,7 +155,7 @@ CLASS_DECL_AURA bool __node_library_close(void * plibrary);
 CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 
-CLASS_DECL_AURA ::apex::library * lib(const char * psz);
+CLASS_DECL_AURA ::acme::library * lib(const char * psz);
 
 #define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
 
@@ -170,12 +170,12 @@ CLASS_DECL_AURA ::file::path libfilename(const string & str);
                                                                         \
                                                                         \
 class library :                                                         \
-   virtual public ::apex::library                                       \
+   virtual public ::acme::library                                       \
 {                                                                       \
 public:                                                                 \
                                                                         \
                                                                         \
-     library(::context_object * pcontextobject) : ::apex::library(pobject) {}          \
+     library(::object * pobject) : ::acme::library(pobject) {}          \
      virtual ~library(){}                                               \
                                                                         \
                                                                         \
@@ -202,7 +202,7 @@ virtual void initialize_factory() override                              \
 #define END_ONLY_FACT(libname) END_CREATE_OBJECT \
  END_LIBRARY \
  \
-CLASS_DECL_EXPORT ::apex::library * libname ## _ ## get_new_library(::context_object * pcontextobject) \
+CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * pobject) \
 { \
 \
    return new library(pobject); \

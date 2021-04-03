@@ -152,46 +152,46 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //}
 
 
-namespace windows
-{
-
-
-   CLASS_DECL_ACME void time_to_filetime(::object* pobject, const ::datetime::time& time, LPFILETIME pFileTime)
-   {
-
-      SYSTEMTIME sysTime;
-
-      sysTime.wYear = (::u16)time.GetYear();
-      sysTime.wMonth = (::u16)time.GetMonth();
-      sysTime.wDay = (::u16)time.GetDay();
-      sysTime.wHour = (::u16)time.GetHour();
-      sysTime.wMinute = (::u16)time.GetMinute();
-      sysTime.wSecond = (::u16)time.GetSecond();
-      sysTime.wMilliseconds = 0;
-
-      // convert system time to local file time
-      FILETIME localTime;
-      if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
-      {
-
-         DWORD dwLastError = ::GetLastError();
-
-         ::file::throw_os_error(dwLastError);
-
-      }
-
-      // convert local file time to UTC file time
-      if (!LocalFileTimeToFileTime(&localTime, pFileTime))
-      {
-
-         DWORD dwLastError = ::GetLastError();
-
-         ::file::throw_os_error(dwLastError);
-
-      }
-
-   }
-
-
-} // namespace windows
+//namespace windows
+//{
+//
+//
+//   CLASS_DECL_ACME void time_to_filetime(::object* pobject, const ::datetime::time& time, LPFILETIME pFileTime)
+//   {
+//
+//      SYSTEMTIME sysTime;
+//
+//      sysTime.wYear = (::u16)time.GetYear();
+//      sysTime.wMonth = (::u16)time.GetMonth();
+//      sysTime.wDay = (::u16)time.GetDay();
+//      sysTime.wHour = (::u16)time.GetHour();
+//      sysTime.wMinute = (::u16)time.GetMinute();
+//      sysTime.wSecond = (::u16)time.GetSecond();
+//      sysTime.wMilliseconds = 0;
+//
+//      // convert system time to local file time
+//      FILETIME localTime;
+//      if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+//      {
+//
+//         DWORD dwLastError = ::GetLastError();
+//
+//         ::file::throw_os_error(dwLastError);
+//
+//      }
+//
+//      // convert local file time to UTC file time
+//      if (!LocalFileTimeToFileTime(&localTime, pFileTime))
+//      {
+//
+//         DWORD dwLastError = ::GetLastError();
+//
+//         ::file::throw_os_error(dwLastError);
+//
+//      }
+//
+//   }
+//
+//
+//} // namespace windows
 

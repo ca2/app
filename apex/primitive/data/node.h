@@ -20,7 +20,7 @@ namespace data
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::context_object
+      virtual public ::object
    {
    protected:
 

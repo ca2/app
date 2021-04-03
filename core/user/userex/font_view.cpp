@@ -83,7 +83,7 @@ namespace userex
          if (m_ptopview != nullptr && psubject->m_puserprimitive == m_ptopview->m_peditview)
          {
 
-            synchronization_lock synchronizationlock(m_pview->m_pfontlist->mutex());
+            synchronous_lock synchronouslock(m_pview->m_pfontlist->mutex());
 
             string strText;
 

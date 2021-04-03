@@ -76,7 +76,7 @@ namespace draw2d_opengl
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -84,7 +84,7 @@ namespace draw2d_opengl
    void graphics::dump(dump_context& dumpcontext) const
    {
       
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "m_hdc = " << (iptr) m_hdc;
       dumpcontext << "\nm_hAttribDC = " << (iptr) m_hdc;
@@ -3034,7 +3034,7 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
@@ -5294,7 +5294,7 @@ namespace draw2d_opengl
    //plusplus::Pen * graphics::gl2d_pen()
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   if(m_ppen.is_null())
    //   {
@@ -5394,7 +5394,7 @@ namespace draw2d_opengl
    bool graphics::flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 //      m_pgraphics->Flush();
 
@@ -5406,7 +5406,7 @@ namespace draw2d_opengl
    bool graphics::sync_flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //m_pgraphics->Flush(plusplus::FlushIntentionSync);
 
@@ -5445,7 +5445,7 @@ namespace draw2d_opengl
 
       return;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       draw2d_opengl_enum_fonts fonts(itema);
 

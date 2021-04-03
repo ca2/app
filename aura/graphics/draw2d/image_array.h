@@ -14,9 +14,9 @@ public:
    //::aura::application * application() { return m_papplication.cast < ::aura::application > (); }
 
 
-   virtual bool explode(::context_object * pobject, ::payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::object * pobject, ::payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
-   virtual bool explode(::context_object * pobject, const ::size_i32 & size, ::payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual bool explode(::object * pobject, const ::size_i32 & size, ::payload varFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
 
 };

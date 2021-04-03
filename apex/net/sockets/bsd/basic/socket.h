@@ -25,7 +25,6 @@ namespace sockets
 
 
 
-
       /** create a socket file descriptor.
       \lparam af Address family AF_INET / AF_INET6 / ...
       \lparam type SOCK_STREAM / SOCK_DGRAM / ...

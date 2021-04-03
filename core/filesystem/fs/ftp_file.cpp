@@ -12,7 +12,7 @@ ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 
    m_pclient = pclient;
 
-   m_varFile = get_context()->file().time(get_context()->dir().time());
+   m_varFile = m_pclient->m_pcontext->m_papexcontext->file().time(m_pclient->m_pcontext->m_papexcontext->dir().time());
 
 }
 
@@ -63,6 +63,8 @@ retry:
       goto retry;
 
    }
+
+   auto psystem = m_psystem->m_papexsystem;
 
    string strRemoteFile = psystem->url().get_object(m_filepath);
 

@@ -12,7 +12,7 @@ namespace filehandler
 
 
       
-      frame(::context_object * pcontextobject);
+      frame(::object * pobject);
       virtual ~frame();
 
       virtual void assert_valid() const;

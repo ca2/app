@@ -24,7 +24,7 @@ typedef void (*hash_free_func)(const xmpp_ctx_t * const ctx, void *p);
 hash_t *hash_new(xmpp_ctx_t * const ctx, const int size,
 		 hash_free_func free);
 
-/** allocate a new context_object to an existing hash table */
+/** allocate a new object to an existing hash table */
 hash_t *hash_clone(hash_t * const table);
 
 /** release a hash table when no longer needed */

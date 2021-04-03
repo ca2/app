@@ -15,7 +15,7 @@ namespace aura
 
    template < class TYPE >
    class simple_chain :
-      virtual public context_object
+      virtual public object
    {
    public:
 

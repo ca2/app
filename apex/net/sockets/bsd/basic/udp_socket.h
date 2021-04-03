@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_iWriteFlags;
 
          /** Constructor.
-         \lparam h base_socket_handler context_object
+         \lparam h base_socket_handler object
          \lparam ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
          \lparam ipv6 'true' if this is an ipv6 socket */
          udp_socket(i32 ibufsz = 16384,bool ipv6 = false, i32 retries = 0);

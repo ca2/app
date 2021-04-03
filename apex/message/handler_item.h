@@ -8,7 +8,7 @@ namespace message
 {
 
 //   class messageable :
-//      virtual public ::context_object
+//      virtual public ::object
 //   {
 //   public:
 //

@@ -31,7 +31,9 @@ namespace axis
 
       void common_construct();
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session * papexsession) override;
 
       virtual ::e_status init() override;
       virtual ::e_status inline_init() override;
@@ -57,7 +59,7 @@ namespace axis
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
 
 
@@ -88,7 +90,7 @@ namespace axis
 
       //virtual ::e_status init2();
 
-      virtual ::e_status post_create_requests() override;
+      virtual ::e_status post_creation_requests() override;
 
       //virtual void term_system();
 

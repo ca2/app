@@ -30,7 +30,7 @@ namespace user
       inline ::user::user * user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

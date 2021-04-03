@@ -3680,7 +3680,7 @@ namespace windows
    void interaction_impl::show_task(bool bShow)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       // https://www.daniweb.com/programming/software-development/threads/457564/mfc-application-disablehide-taskbar-icon
 
@@ -4990,7 +4990,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status interaction_impl::finish(::context_object * pcontextobjectFinish)
+//   ::e_status interaction_impl::finish(::object * pcontextobjectFinish)
 //   {
 //
 //      auto estatus = set_finish(pcontextobjectFinish);

@@ -114,7 +114,7 @@
 //   if (p)
 //   {
 //
-//      p->initialize(pcontextobject);
+//      p->initialize(pobject);
 //
 //   }
 //

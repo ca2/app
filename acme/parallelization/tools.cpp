@@ -85,7 +85,7 @@ task_group::~task_group()
 bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    for (auto & ptask : m_taska)
    {
@@ -133,7 +133,7 @@ bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 bool task_group::add_predicate(::predicate_holder_base * ppred)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if ((m_etaskop != ::e_task_op_predicate && m_etaskop != ::e_task_op_fork_count) || is_full())
    {
@@ -161,7 +161,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 bool task_group::start()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (m_cCount <= 0)
    {
@@ -187,7 +187,7 @@ bool task_group::start()
 bool task_group::wait()
 {
 
-   //synchronization_lock synchronizationlock(mutex());
+   //synchronous_lock synchronouslock(mutex());
 
    //if (m_cCount <= 0)
    //{
@@ -198,7 +198,7 @@ bool task_group::wait()
 
    //multi_lock ml(m_cCount, m_synchronizationa);
 
-   //synchronizationlock.unlock();
+   //synchronouslock.unlock();
 
    return m_synchronizationa.wait(5_s).succeeded();
 

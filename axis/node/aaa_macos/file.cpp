@@ -110,7 +110,7 @@ namespace macos
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
          
-         pcontext->dir().mk(::file::path(lpszFileName).folder());
+         pcontext->m_papexcontext->dir().mk(::file::path(lpszFileName).folder());
          
       }
 

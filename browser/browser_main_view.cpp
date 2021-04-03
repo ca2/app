@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   main_view::main_view(::context_object * pcontextobject):
+   main_view::main_view(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),

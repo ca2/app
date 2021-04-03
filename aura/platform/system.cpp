@@ -4,12 +4,13 @@
 //#include "acme/const/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "apex/platform/str_context.h"
 //#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/const/idpool.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 //#ifdef _UWP
 //#include "aura/node/uwp/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
@@ -26,7 +27,7 @@ void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
-::apex::library * experience_get_new_library();
+::acme::library * experience_get_new_library();
 #endif
 
 
@@ -40,7 +41,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::context_object * pcontextobject);
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::object * pobject);
 #endif
 
 
@@ -48,7 +49,7 @@ CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::co
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
+extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
 CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
@@ -140,10 +141,10 @@ namespace aura
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::system::initialize(pcontextobject);
+      auto estatus = ::aqua::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -188,7 +189,7 @@ namespace aura
 
          bool bGlobalEnableStackTrace = true;
 
-         ::file::path pathNoExceptionStackTrace = ::dir::config() / "system/no_exception_stack_trace.txt";
+         ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
          if (file_exists(pathNoExceptionStackTrace))
          {
@@ -244,6 +245,28 @@ namespace aura
    }
 
 
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::apex::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_paurasession)
+         {
+
+            m_paurasession = papexsession->m_paurasession;
+
+         }
+
+      }
+
+      papexsession->m_paurasystem = this;
+
+   }
+
+
    void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
    {
 
@@ -292,10 +315,10 @@ namespace aura
 
 
 
-//   ::apex::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+//   ::acme::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronization_lock synchronizationlock(m_mutexLibrary);
+//      synchronous_lock synchronouslock(m_mutexLibrary);
 //
 //      string strLibrary(pszLibrary1);
 //
@@ -322,7 +345,7 @@ namespace aura
 //            {
 //
 ////#if !defined(ANDROID)
-////               if (!plibrary->open(pcontext->dir().ca2module() / pszLibrary))
+////               if (!plibrary->open(pcontext->m_papexcontext->dir().ca2module() / pszLibrary))
 ////#endif
 ////               {
 ////
@@ -500,6 +523,16 @@ namespace aura
 
       }
 
+      estatus = do_factory_exchange("aura", "windows");
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
       //auto estatus = system_prep();
 
       //if (!estatus)
@@ -585,12 +618,12 @@ namespace aura
 //
 //         string str;
 //
-//         str = ::dir::home() / ".profile";
+//         str = m_psystem->m_pacmedir->home() / ".profile";
 //
 //         if(!file_exists(str))
 //         {
 //
-//            str = ::dir::home() / ".bashrc";
+//            str = m_psystem->m_pacmedir->home() / ".bashrc";
 //
 //         }
 //
@@ -733,7 +766,7 @@ namespace aura
 //
 //#if 0
 //
-//         // Create authorization context_object
+//         // Create authorization object
 //         OSStatus status;
 //
 //         AuthorizationRef authorizationRef;
@@ -855,7 +888,7 @@ namespace aura
 
       //}
 
-      //estatus = ::context::initialize_context();
+      //estatus = ::apex::context::initialize_context();
 
       //if (!estatus)
       //{
@@ -871,10 +904,10 @@ namespace aura
 
       //}
 
-      ////output_debug_string("CommonAppData (matter) : " + pcontext->dir().commonappdata()  + "\n");
-      ////output_debug_string("commonappdata (matter) : " + pcontext->dir().commonappdata() + "\n");
-      ////output_debug_string("Common App Data (matter) : " + pcontext->dir().commonappdata() + "\n");
-      ////output_debug_string("common app data (matter) : " + pcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("CommonAppData (matter) : " + pcontext->m_papexcontext->dir().commonappdata()  + "\n");
+      ////output_debug_string("commonappdata (matter) : " + pcontext->m_papexcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("Common App Data (matter) : " + pcontext->m_papexcontext->dir().commonappdata() + "\n");
+      ////output_debug_string("common app data (matter) : " + pcontext->m_papexcontext->dir().commonappdata() + "\n");
 
       //__compose_new(m_pcrypto);
 
@@ -884,91 +917,6 @@ namespace aura
       //   return false;
 
       //}
-
-      if(m_bDraw2d)
-      {
-
-         if (!initialize_draw2d())
-         {
-
-            return false;
-
-         }
-
-      }
-
-   
-      
-      on_update_matter_locator();
-
-//
-//    estatus = initialize_sockets();
-//
-//      if (!estatus)
-//      {
-//
-//         m_estatus = estatus;
-//
-//         return estatus;
-//
-//      }
-//
-//      bool bMatterFromHttpCache = false;
-//
-//      if(m_iMatterFromHttpCache == -1)
-//      {
-//
-//         ::file::path pathSide = pcontext->side_get_matter_path("app/_matter/main");
-//
-//         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
-//
-//         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
-//
-//         bMatterFromHttpCache = !bFileSystemMatter;
-//
-//      }
-//      else
-//      {
-//
-//         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
-//
-//      }
-//
-//      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
-//
-//      //estatus = create_html();
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   FATAL("axis::application::process_init .2");
-//
-//      //   return false;
-//
-//      //}
-//
-//      INFO("start");
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (m_uiWindowsTaskbarCreatedMessage == 0)
-//      {
-//
-//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
-//
-//      }
-//
-//#endif
-
-      ::acme::profiler::initialize();
-
-//#ifdef LINUX
-//
-//      ::user::g_defer_init();
-//
-//#endif // LINUX
-
-      INFO("success");
 
       return true;
 
@@ -1056,7 +1004,7 @@ namespace aura
 
       __pointer(::aura::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&m_mutexLibrary);
+      synchronous_lock synchronouslock(&m_mutexLibrary);
 
       estatus = __construct(m_pdraw2d);
 
@@ -1097,7 +1045,7 @@ namespace aura
 
       string str;
 
-      ::file::path path = ::dir::config() / "system/draw2d.txt";
+      ::file::path path = m_psystem->m_pacmedir->config() / "system/draw2d.txt";
 
       str = file_as_string(path);
 
@@ -1108,7 +1056,7 @@ namespace aura
 
       }
 
-      path = ::dir::appdata() / "draw2d.txt";
+      path = m_psystem->m_pacmedir->appdata() / "draw2d.txt";
 
       str = file_as_string(path);
 
@@ -1489,21 +1437,21 @@ namespace aura
       if (has_property("save_processing"))
       {
 
-         psession->savings().save(::e_resource_processing);
+         psession->m_paurasession->savings().save(::e_resource_processing);
 
       }
 
       if (has_property("save_blur_back"))
       {
 
-         psession->savings().save(::e_resource_blur_background);
+         psession->m_paurasession->savings().save(::e_resource_blur_background);
 
       }
 
       if (has_property("save_transparent_back"))
       {
 
-         psession->savings().save(::e_resource_translucent_background);
+         psession->m_paurasession->savings().save(::e_resource_translucent_background);
 
       }
 
@@ -1533,12 +1481,22 @@ namespace aura
 //
 //#endif
 
-      auto estatus = __compose_new(m_puserstr);
+      //auto estatus = __compose_new(m_puserstr);
 
-      if (!m_puserstr || !estatus)
+      //if (!m_puserstr || !estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto estatus = ::apex::system::init1();
+
+      if (!estatus)
       {
 
          return estatus;
+
 
       }
 
@@ -1556,14 +1514,14 @@ namespace aura
 
       }
 
-      auto psession = get_session();
+      //auto psession = get_session();
 
-      if (psession->m_puserstrcontext)
-      {
+      //if (psession->m_puserstrcontext)
+      //{
 
-         psession->m_puserstrcontext->defer_ok(m_puserstr);
+      //   psession->m_puserstrcontext->defer_ok(m_puserstr);
 
-      }
+      //}
 
       //__throw(todo("filehandler"));
 
@@ -1599,6 +1557,91 @@ namespace aura
 
 #endif
 
+      if (m_bDraw2d)
+      {
+
+         if (!initialize_draw2d())
+         {
+
+            return false;
+
+         }
+
+      }
+
+
+
+      on_update_matter_locator();
+
+      //
+      //    estatus = initialize_sockets();
+      //
+      //      if (!estatus)
+      //      {
+      //
+      //         m_estatus = estatus;
+      //
+      //         return estatus;
+      //
+      //      }
+      //
+      //      bool bMatterFromHttpCache = false;
+      //
+      //      if(m_iMatterFromHttpCache == -1)
+      //      {
+      //
+      //         ::file::path pathSide = pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+      //
+      //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+      //
+      //         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
+      //
+      //         bMatterFromHttpCache = !bFileSystemMatter;
+      //
+      //      }
+      //      else
+      //      {
+      //
+      //         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+      //
+      //      }
+      //
+      //      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+      //
+      //      //estatus = create_html();
+      //
+      //      //if (!estatus)
+      //      //{
+      //
+      //      //   FATAL("axis::application::process_init .2");
+      //
+      //      //   return false;
+      //
+      //      //}
+      //
+      //      INFO("start");
+      //
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      if (m_uiWindowsTaskbarCreatedMessage == 0)
+      //      {
+      //
+      //         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+      //
+      //      }
+      //
+      //#endif
+
+      ::acme::profiler::initialize();
+
+      //#ifdef LINUX
+      //
+      //      ::user::g_defer_init();
+      //
+      //#endif // LINUX
+
+      INFO("success");
+
 //      enum_display_monitors();
 
       return true;
@@ -1606,7 +1649,7 @@ namespace aura
    }
 
 
-   //::e_status system::post_create_requests()
+   //::e_status system::post_creation_requests()
    //{
 
    //   //while(auto pcreate = get_command()->get_create())
@@ -1761,9 +1804,9 @@ namespace aura
       try
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
-         synchronization_lock synchronizationlock(&m_mutexLibrary);
+         synchronous_lock synchronouslock(&m_mutexLibrary);
 
          if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
          {
@@ -2096,7 +2139,7 @@ namespace aura
 //   ::mutex * system::get_openweather_city_mutex()
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
@@ -2355,7 +2398,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //            
-//            plauncher->setup(nullptr, nullptr, pcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+//            plauncher->setup(nullptr, nullptr, pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2391,7 +2434,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr,pcontext->dir().module()/strApp,nullptr,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr,pcontext->m_papexcontext->dir().module()/strApp,nullptr,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2433,7 +2476,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2469,7 +2512,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2642,29 +2685,29 @@ namespace aura
 
 
 
-   void system::on_request(::create * pcreate)
-   {
+   //void system::on_request(::create * pcreate)
+   //{
 
-      ::apex::session * psession = session();
+   //   ::apex::session * psession = session();
 
-      if(psession == nullptr)
-      {
+   //   if(psession == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      INFO("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__str((iptr) psession)+")\n\n").c_str());
+   //   INFO("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__str((iptr) psession)+")\n\n").c_str());
 
-      psession->do_request(pcreate);
+   //   psession->do_request(pcreate);
 
-   }
+   //}
 
 
    //::file::path system::local_get_matter_path()
    //{
 
-   //   return ::dir::ca2roaming() / "appmatter";
+   //   return m_psystem->m_pacmedir->ca2roaming() / "appmatter";
 
    //}
 
@@ -2688,7 +2731,7 @@ namespace aura
    //::file::path system::local_get_matter_cache_path()
    //{
 
-   //   return ::dir::ca2roaming() / "cache/appmatter";
+   //   return m_psystem->m_pacmedir->ca2roaming() / "cache/appmatter";
 
    //}
 
@@ -2711,7 +2754,7 @@ namespace aura
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = pcontext->file().get_file(pcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = pcontext->m_papexcontext->file().get_file(pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -2744,7 +2787,7 @@ namespace aura
 ////
 ////      ::file::listing straTitle(this);
 ////
-////      ::file::path pathCa2Module = pcontext->dir().ca2module();
+////      ::file::path pathCa2Module = pcontext->m_papexcontext->dir().ca2module();
 ////
 ////      ::output_debug_string("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
@@ -2787,7 +2830,7 @@ namespace aura
 ////      try
 ////      {
 ////
-////         file = psession->file().get_file(pcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////         file = psession->file().get_file(pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
 ////      catch(::exception::exception &)
@@ -2811,7 +2854,7 @@ namespace aura
 //   bool system::map_application_library(const char * pszLibrary)
 //   {
 //
-//      ::apex::library library;
+//      ::acme::library library;
 //
 //      library.initialize_apex_library(this, 0);
 //
@@ -2996,7 +3039,7 @@ namespace aura
    //bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   m_millisCommandLineLast.Now();
 
@@ -3074,13 +3117,13 @@ namespace aura
    //bool system::on_application_menu_action(const char * pszCommand)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto psession = get_session();
 
    //   auto applicationa = psession->m_applicationa;
 
-   //   synchronizationlock.unlock();
+   //   synchronouslock.unlock();
 
    //   for(auto & papp : applicationa)
    //   {
@@ -3385,7 +3428,7 @@ namespace aura
 
 #elif defined(LINUX)
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return m_rectaMonitor.get_count();
 
@@ -3429,7 +3472,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (iMonitor < 0 || iMonitor >= get_monitor_count())
 //      {
@@ -3584,7 +3627,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
@@ -3691,7 +3734,7 @@ namespace aura
 
       }
 
-      synchronization_lock synchronizationlock(get_image_mutex());
+      synchronous_lock synchronouslock(get_image_mutex());
 
       auto & pimage = m_mapImage[path];
 
@@ -3717,9 +3760,9 @@ namespace aura
       if (!::is_ok(pimage))
       {
 
-         __pointer(::aura::application) papplication = get_application();
+         auto pcontext = get_context();
 
-         papplication->image()._load_image(pimage, varFile, bSync);
+         pcontext->m_pauracontext->image()._load_image(pimage, varFile, bSync);
 
       }
 
@@ -3750,7 +3793,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_as_string(pcontext->dir().standalone() / (str + ".txt"));
+   //   return file_as_string(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
 
    //}
 
@@ -3760,7 +3803,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_put_contents(pcontext->dir().standalone() / (str + ".txt"), strSetting);
+   //   return file_put_contents(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
 
    //}
 
@@ -3827,7 +3870,7 @@ namespace aura
 //
 ////         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 //
-//            ::file::path pathScript = ::dir::tool() / "papaya/script/xcode_set_active_scheme.scpt";
+//            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 //
 //            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 //
@@ -3886,7 +3929,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   /*void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
    {
 
       if (m_ptrace.is_null())
@@ -3900,7 +3943,7 @@ namespace aura
 
       log().__tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
 
-   }
+   }*/
 
 
 //   ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
@@ -3917,7 +3960,7 @@ namespace aura
 //
 //         //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
 //
-//         pcontext->os().link_open(strUrl);
+//         pcontext->m_papexcontext->os().link_open(strUrl);
 //
 //         return;
 //
@@ -3934,7 +3977,7 @@ namespace aura
 //
 //      string strParam;
 //
-//      pcontext->os().get_default_browser(strId, path, strParam);
+//      pcontext->m_papexcontext->os().get_default_browser(strId, path, strParam);
 //
 //      if (strProfile.is_empty() || strProfile == "native")
 //      {
@@ -3950,7 +3993,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
 //      {
 //
-//         strWeather = pcontext->file().as_string(::dir::system() / "browser_weather.txt");
+//         strWeather = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4031,7 +4074,7 @@ namespace aura
 //         //if (m_strAppName == "app-core/commander")
 //         {
 //
-//            chromium(strUrl, strBrowser, strId, pcontext->os().get_app_path("chrome"), strProfile, strParam);
+//            chromium(strUrl, strBrowser, strId, pcontext->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
 //
 //         }
 //         //else
@@ -4223,7 +4266,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//      pcontext->os().native_full_web_browser(strUrl);
+//      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 //
 //      return;
 //
@@ -4233,7 +4276,7 @@ namespace aura
 //
 //      pathDir = path.folder();
 //
-//      ::file::path pathAppDataDir(::dir::ca2roaming());
+//      ::file::path pathAppDataDir(m_psystem->m_pacmedir->ca2roaming());
 //
 //      ::file::path pathProfile;
 //
@@ -4315,7 +4358,7 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
+//            strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //            call_async(path, strParam, pathDir, e_display_default, false);
 //
@@ -4329,7 +4372,7 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
+//         string strChrome = file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string_array sa2 = get_c_args_for_c(strChrome);
 //
@@ -4354,7 +4397,7 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
+//         strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string strCmd = path + " " + strParam;
 //
@@ -4386,7 +4429,7 @@ namespace aura
 //
 //#else
 //
-//      if (pcontext->dir().is(pathProfile))
+//      if (pcontext->m_papexcontext->dir().is(pathProfile))
 //      {
 //
 //         return;
@@ -4401,7 +4444,7 @@ namespace aura
 //
 //      pathProfileDir = pathProfile.folder();
 //
-//      pcontext->dir().mk(pathProfileDir);
+//      pcontext->m_papexcontext->dir().mk(pathProfileDir);
 //
 //      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 //
@@ -4458,7 +4501,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//      pcontext->os().native_full_web_browser(strUrl);
+//      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 //
 //#else
 //
@@ -4489,7 +4532,7 @@ namespace aura
 //
 //      }
 //
-//      if (!pcontext->file().exists(strBrowserPath) || !pcontext->dir().is(strBrowserDir))
+//      if (!pcontext->m_papexcontext->file().exists(strBrowserPath) || !pcontext->m_papexcontext->dir().is(strBrowserDir))
 //      {
 //
 //         return error_not_found;
@@ -4518,11 +4561,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
+//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
+//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
+//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -4566,7 +4609,7 @@ namespace aura
 //   ::thread* system::get_task(itask_t itask)
 //   {
 //
-//      synchronization_lock synchronizationlock(&m_mutexTask);
+//      synchronous_lock synchronouslock(&m_mutexTask);
 //
 //      return m_threadmap[itask];
 //
@@ -4576,7 +4619,7 @@ namespace aura
 //   itask_t system::get_thread_id(::thread* pthread)
 //   {
 //
-//      synchronization_lock synchronizationlock(&m_mutexTask);
+//      synchronous_lock synchronouslock(&m_mutexTask);
 //
 //      itask_t itask = null_ithread;
 //
@@ -4595,7 +4638,7 @@ namespace aura
 //   void system::set_thread(itask_t itask, ::thread* pthread)
 //   {
 //
-//      synchronization_lock synchronizationlock(&m_mutexTask);
+//      synchronous_lock synchronouslock(&m_mutexTask);
 //
 //      m_threadmap[itask].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4623,7 +4666,7 @@ namespace aura
 //   void system::unset_thread(itask_t itask, ::thread * pthread)
 //   {
 //
-//      synchronization_lock synchronizationlock(&m_mutexTask);
+//      synchronous_lock synchronouslock(&m_mutexTask);
 //
 //#if OBJ_REF_DBG
 //
@@ -4685,14 +4728,14 @@ namespace aura
 
    //   //return nullptr;
 
-   //   if (m_bitAvoidProcFork)
+   //   if (m_bAvoidProcedureFork)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4713,7 +4756,7 @@ namespace aura
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
@@ -5072,7 +5115,7 @@ namespace aura
 //CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
 //{
 //
-//   ::file::path pathFile = ::dir::local() / "appdata" / strAppId / "last_run_path.txt";
+//   ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
 //
 //   return pathFile;
 //
@@ -5094,7 +5137,7 @@ namespace aura
 //CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
 //{
 //
-//   ::file::path path = ::file::app_module();
+//   ::file::path path = m_psystem->m_pacmepath->app_module();
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
@@ -5259,7 +5302,7 @@ namespace aura
   //
   //      }
   //
-  //      //estatus = ::aura::application::initialize(pcontextobject);
+  //      //estatus = ::aura::application::initialize(pobject);
   //
   //     //if (!estatus)
   //     //{
@@ -5283,7 +5326,7 @@ namespace aura
   //
   //
   //
-  //            //estatus = ::aura::application::initialize(pcontextobject);
+  //            //estatus = ::aura::application::initialize(pobject);
   //
   //            //if (!estatus)
   //            //{
@@ -5446,6 +5489,15 @@ namespace aura
    ::e_status system::init2()
    {
 
+      auto estatus = ::apex::system::init2();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       //if(!::aura::application::init2())
       //   return false;
 
@@ -5458,18 +5510,16 @@ namespace aura
 
       //}
 
-         auto estatus = __compose_new(m_phistory);
+      estatus = __compose_new(m_phistory);
 
-         if(!estatus)
-         {
+      if(!estatus)
+      {
 
-            return estatus;
+         return estatus;
 
       }
 
-         //post_create_requests();
-
-
+      //post_creation_requests();
 
       return estatus;
 
@@ -5678,7 +5728,7 @@ namespace aura
 
    //}
 
-   //void system::on_map_application_library(::apex::library& library)
+   //void system::on_map_application_library(::acme::library& library)
    //{
 
    //   __throw(todo, "filehandler");
@@ -5884,10 +5934,10 @@ namespace aura
    //}
 
 
-   //::apex::library * system::on_get_library(const char* pszLibrary)
+   //::acme::library * system::on_get_library(const char* pszLibrary)
    //{
 
-   //   __pointer(::apex::library) plibrary;
+   //   __pointer(::acme::library) plibrary;
 
    //   bool bLibraryOk = false;
 
@@ -5982,7 +6032,7 @@ namespace aura
 
    //{
 
-   //   string filename = pcontext->file().time_square();
+   //   string filename = pcontext->m_papexcontext->file().time_square();
 
    //   property_set set;
 
@@ -5990,7 +6040,7 @@ namespace aura
 
    //   set["cookies"] = pcookies;
 
-   //   if (!pcontext->http().download(pszUrl, filename, set))
+   //   if (!pcontext->m_papexcontext->http().download(pszUrl, filename, set))
 
    //   {
 
@@ -6011,13 +6061,13 @@ namespace aura
 
    //      set["cookies"] = pcookies;
 
-   //      pcontext->file().del(filename);
+   //      pcontext->m_papexcontext->file().del(filename);
 
-   //      return pcontext->http().download(str, strLocation, set);
+   //      return pcontext->m_papexcontext->http().download(str, strLocation, set);
 
    //   }
 
-   //   str = pcontext->file().as_string(filename);
+   //   str = pcontext->m_papexcontext->file().as_string(filename);
 
    //   return true;
 
@@ -6122,7 +6172,7 @@ namespace aura
    }
 
 
-   ::e_status system::add_view_library(::apex::library* plibrary)
+   ::e_status system::add_view_library(::acme::library* plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -6286,7 +6336,7 @@ namespace aura
 //
 //      }
 //
-//      //estatus = ::aura::application::initialize(pcontextobject);
+//      //estatus = ::aura::application::initialize(pobject);
 //
 //      //if (!estatus)
 //      //{
@@ -6749,13 +6799,13 @@ namespace aura
    //bool system::on_application_menu_action(const char * pszCommand)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto psession = get_session();
 
    //   auto applicationa = psession->m_applicationa;
 
-   //   synchronizationlock.unlock();
+   //   synchronouslock.unlock();
 
    //   for (auto & papp : applicationa)
    //   {
@@ -6783,7 +6833,7 @@ namespace aura
    //}
 
 
-   void system::finalize()
+   ::e_status system::finalize()
    {
 
       if (m_pdraw2d)
@@ -6795,7 +6845,9 @@ namespace aura
 
       }
 
-      ::aqua::system::finalize();
+      auto estatus = ::aqua::system::finalize();
+
+      return estatus;
 
    }
 

@@ -263,7 +263,7 @@ namespace sockets
       if (m_rand_file.get_length())
       {
 
-         get_context()->file().del(m_rand_file);
+         m_pcontext->m_papexcontext->file().del(m_rand_file);
 
       }
 
@@ -282,7 +282,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    UNREFERENCED_PARAMETER(line);
 
-   synchronization_lock synchronizationlock(::sockets::g_pmutexMap);
+   synchronous_lock synchronouslock(::sockets::g_pmutexMap);
 
    ::mutex * pmutex = nullptr;
 
@@ -307,7 +307,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    if (mode & CRYPTO_LOCK)
    {

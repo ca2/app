@@ -161,7 +161,7 @@ public:
 //
 //      }
 //
-//      auto estatus = papp->initialize(pcontextobject);
+//      auto estatus = papp->initialize(pobject);
 //
 //      if (!estatus)
 //      {
@@ -204,52 +204,49 @@ inline bool IsDirSep(widechar ch)
 
 
 template < typename T >
-::file::path memcnts_path(T * pthis)
+const char * memory_counter_id(T * pthis)
 {
 
-   string str = typeid(*pthis).name();
-
-   str.replace("::", "/");
-
-   return memcnts_base_path() / (str + ".txt");
+   return typeid(*pthis).name();
 
 }
 
 
 template < typename T >
-void memcnts_inc(T * pthis)
+void memory_counter_increment(T * pthis)
 {
 
-   if (memcnts())
+   if (memory_counter_on())
    {
 
-      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+      auto psz = memory_counter_id(pthis);
 
-      ::file::path path = memcnts_path(pthis);
+      _memory_counter_increment(psz);
 
-      int i = atoi(file_as_string(path));
+      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      file_put_contents(path, __str(i + 1));
+      //int i = atoi(file_as_string(path));
 
+      //file_put_contents(path, __str(i + 1));
    }
 
 }
 
 
 template < typename T >
-void memcnts_dec(T * pthis)
+void memory_counter_decrement(T * pthis)
 {
 
-   if (memcnts())
+   if (memory_counter_on())
    {
 
-      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+      auto psz = memory_counter_id(pthis);
 
-      ::file::path path = memcnts_path(pthis);
+      _memory_counter_decrement(psz);
 
-      int i = atoi(file_as_string(path));
+      //int i = atoi(file_as_string(path));
 
-      file_put_contents(path, __str(i - 1));
+      //file_put_contents(path, __str(i - 1));
 
    }
 
@@ -968,16 +965,18 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
 
 
 
-template < typename TYPE >
-inline __transport(TYPE) property_object::__create_new()
-{
+//template < typename TYPE >
+//inline __transport(TYPE) property_object::__create_new()
+//{
+//
+//   auto p = __new(TYPE);
+//
+//   p->initialize_matter(this);
+//
+//   return p;
+//
+//}
 
-   auto p = __new(TYPE);
 
-   p->initialize_matter(this);
-
-   return p;
-
-}
 
 

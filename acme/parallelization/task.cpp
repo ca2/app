@@ -15,9 +15,11 @@
 task::task()
 {
 
-   m_bitCoInitialize = false;
-   m_bitIsRunning = false;
-   m_bitIsPred = true;
+   m_pthread = nullptr;
+   m_bMessageThread = false;
+   m_bCoInitialize = false;
+   m_bIsRunning = false;
+   m_bIsPredicate = true;
    m_htask = null_hthread;
    m_itask = 0;
 
@@ -64,7 +66,7 @@ const char * task::get_task_tag()
 }
 
 
-//::context_object * task::calc_parent_thread()
+//::object * task::calc_parent_thread()
 //{
 //
 //   return ::get_task();
@@ -115,7 +117,24 @@ bool task::task_active() const
 bool task::is_running() const
 {
 
-   return m_bitIsRunning;
+   return m_bIsRunning;
+
+}
+
+
+::e_status task::main()
+{
+
+   if (m_pmatter != this)
+   {
+
+      return m_pmatter->run();
+
+   }
+
+   auto estatus = run();
+
+   return estatus;
 
 }
 
@@ -152,7 +171,7 @@ void* task::s_os_task(void* p)
 
       pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
-      pthread->do_task();
+      pthread->main();
 
 #if OBJ_REF_DBG
 
@@ -181,7 +200,7 @@ void* task::s_os_task(void* p)
 bool task::is_task_registered() const
 {
    
-   auto psystem = get_system();
+   auto psystem = m_psystem;
 
    return psystem->get_task_id(this) != 0;
 
@@ -191,7 +210,7 @@ bool task::is_task_registered() const
 void task::register_task()
 {
 
-   auto psystem = get_system();
+   auto psystem = m_psystem;
 
    psystem->set_task(m_itask, this);
 
@@ -201,36 +220,36 @@ void task::register_task()
 void task::unregister_task()
 {
 
-   auto psystem = get_system();
+   auto psystem = m_psystem;
 
    psystem->unset_task(m_itask, this);
 
 }
 
 
-void task::add_notify(::matter* pmatter)
-{
-
-   synchronization_lock synchronizationlock(mutex());
-
-   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
-}
-
-
-void task::remove_notify(::matter* pmatter)
-{
-
-   synchronization_lock synchronizationlock(mutex());
-
-   if (m_pnotifya)
-   {
-
-      m_pnotifya->remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
-
-   }
-
-}
+//void task::add_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+//
+//}
+//
+//
+//void task::remove_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   if (m_pnotifya)
+//   {
+//
+//      m_pnotifya->remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+//
+//   }
+//
+//}
 
 
 bool task::on_get_thread_name(string & strThreadName)
@@ -308,14 +327,14 @@ void task::term_task()
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    //if (m_pnotifya)
    //{
 
    //   auto notifya = *m_pnotifya;
 
-   //   synchronizationlock.unlock();
+   //   synchronouslock.unlock();
 
    //   for (auto & pmatter : notifya)
    //   {
@@ -326,7 +345,7 @@ void task::term_task()
 
    //   }
 
-   //   synchronizationlock.lock();
+   //   synchronouslock.lock();
 
    //}
 
@@ -344,60 +363,60 @@ void task::term_task()
 }
 
 
-::e_status task::do_task()
-{
-
-   init_task();
-
-   auto estatus = on_task();
-
-   term_task();
-
-   return estatus;
-
-}
-
-
-::e_status task::on_task()
-{
-
-   ::e_status estatus = ::success;
-
-   while (!m_bSetFinish)
-   {
-
-      ::matter* pmatter;
-
-      {
-
-         synchronization_lock synchronizationlock(mutex());
-
-         pmatter = m_pmatter.m_p;
-
-         m_bitIsRunning = pmatter != nullptr;
-
-         if (!m_bitIsRunning)
-         {
-
-            break;
-
-         }
-
-         m_id = pmatter->type_name();
-
-         set_thread_name(m_id);
-
-         m_pmatter.m_p = nullptr;
-
-      }
-
-      pmatter->on_task();
-
-   }
-
-   return estatus;
-
-}
+//::e_status task::do_task()
+//{
+//
+//   init_task();
+//
+//   auto estatus = on_task();
+//
+//   term_task();
+//
+//   return estatus;
+//
+//}
+//
+//
+//::e_status task::on_task()
+//{
+//
+//   //::e_status estatus = ::success;
+//
+//   //while (!m_bSetFinish)
+//   //{
+//
+//   //   ::matter* pmatter;
+//
+//   //   {
+//
+//   //      synchronous_lock synchronouslock(mutex());
+//
+//   //      pmatter = m_pmatter.m_p;
+//
+//   //      m_bitIsRunning = pmatter != nullptr;
+//
+//   //      if (!m_bitIsRunning)
+//   //      {
+//
+//   //         break;
+//
+//   //      }
+//
+//   //      m_id = pmatter->type_name();
+//
+//   //      set_thread_name(m_id);
+//
+//   //      m_pmatter.m_p = nullptr;
+//
+//   //   }
+//
+//   //   pmatter->on_task();
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
 
 bool task::do_events()
@@ -473,6 +492,13 @@ bool task::has_message() const
 
    }
 
+   if (::is_null(m_pmatter))
+   {
+
+      m_pmatter = this;
+
+   }
+
 #ifdef __DEBUG
 
    string strId = m_id;
@@ -525,8 +551,6 @@ bool task::has_message() const
 
 #endif
 
-
-
    auto estatus = task_caller_on_init();
 
    if (!estatus)
@@ -536,7 +560,7 @@ bool task::has_message() const
 
    }
 
-   //if (m_pobjectParent && m_bitIsPred)
+   //if (m_pobjectParent && m_bIsPredicate)
    //{
 
    //   //auto pthreadParent = calc_parent_thread();
@@ -556,7 +580,7 @@ bool task::has_message() const
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-   m_bitIsRunning = true;
+   m_bIsRunning = true;
 
 #ifdef WINDOWS
 
@@ -592,7 +616,7 @@ bool task::has_message() const
    if (!m_htask)
    {
 
-      m_bitIsRunning = false;
+      m_bIsRunning = false;
 
       return ::error_failed;
 
@@ -699,7 +723,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         synchronization_lock synchronizationlock(pthread->mutex());
+         synchronous_lock synchronouslock(pthread->mutex());
 
          if (pthread->m_pevSleep.is_null())
          {

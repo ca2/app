@@ -31,7 +31,7 @@ namespace simple_ui
       ::object(pobject)
    {
 
-      auto estatus = initialize(pcontextobject);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {
@@ -246,7 +246,7 @@ namespace simple_ui
 
       __pointer(::write_text::font) font(e_create);
 
-      font->create_point_font(os_font_name(e_font_sans),12);
+      font->create_point_font(pnode->font_name(e_font_sans),12);
 
       pgraphics->set(font);
 

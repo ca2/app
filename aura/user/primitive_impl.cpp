@@ -143,12 +143,14 @@ namespace user
    }
 
 
-   void primitive_impl::finalize()
+   ::e_status primitive_impl::finalize()
    {
 
       ::user::primitive::finalize();
 
-      m_puserinteraction.release();
+      auto estatus = m_puserinteraction.release();
+
+      return estatus;
 
    }
 
@@ -558,7 +560,7 @@ namespace user
 //////
 //////      }
 //////
-//////      synchronization_lock synchronizationlock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_mutexLongPtr);
 //////
 //////      return (LONG_PTR)m_longptr[nIndex];
 ////
@@ -583,7 +585,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronization_lock synchronizationlock(&m_mutexLongPtr);
+////      synchronous_lock synchronouslock(&m_mutexLongPtr);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1238,7 +1240,7 @@ namespace user
             if (pimpl2)
             {
 
-               synchronization_lock synchronizationlock(pimpl2->mutex());
+               synchronous_lock synchronouslock(pimpl2->mutex());
 
                pimpl2->m_uiptraMouseHover.remove(m_puserinteraction);
 
@@ -1443,7 +1445,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          try
          {
@@ -1532,7 +1534,7 @@ namespace user
    void primitive_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       //try
       //{
@@ -1611,13 +1613,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::context_object * point_i32)
+   void primitive_impl::redraw_add(::object * point_i32)
    {
 
    }
 
 
-   void primitive_impl::redraw_remove(::context_object * point_i32)
+   void primitive_impl::redraw_remove(::object * point_i32)
    {
 
    }

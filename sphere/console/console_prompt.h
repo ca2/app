@@ -14,7 +14,7 @@ namespace console
       ::user::single_document_template * m_pdocumenttemplate;
 
       
-      prompt(::context_object * pcontextobject);
+      prompt(::object * pobject);
 
 
       prompt_impact & impact(bool bShow = true, bool bCreateMini = true);

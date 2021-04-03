@@ -36,7 +36,7 @@ namespace macos
       if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
       {
          
-         get_context()->dir().mk(::file::path(lpszFileName).folder());
+         pcontext->m_papexcontext->dir().mk(::file::path(lpszFileName).folder());
          
       }
 

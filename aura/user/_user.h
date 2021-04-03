@@ -419,7 +419,7 @@ namespace user
    //class control_bar;
 
 
-   struct PrintPreviewState;  // forward context_object (see afxext.h)
+   struct PrintPreviewState;  // forward object (see afxext.h)
 
 
 }
@@ -630,14 +630,14 @@ namespace user
 //#include "check_box.h"
 
 
-struct CPrintPreviewState;  // forward context_object (see afxext.h)
+struct CPrintPreviewState;  // forward object (see afxext.h)
 namespace user
 {
-   class control_bar;          // forward context_object (see afxext.h)
+   class control_bar;          // forward object (see afxext.h)
 }
 
 
-class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
+class mini_dock_frame_window;    // forward object (see afxpriv.h)
 
 
 //#include "button.h"
@@ -706,7 +706,7 @@ protected:
 
 
 typedef u32 DROPEFFECT;
-class COleDataObject;   // forward context_object (see afxole.h)
+class COleDataObject;   // forward object (see afxole.h)
 
 */
 
@@ -761,6 +761,14 @@ typedef struct _AppIndicator AppIndicator;
 
 
 //#define new AURA_NEW
+
+
+namespace user
+{
+
+   class shell;
+
+} // namespace user
 
 
 #include "user.h"

@@ -74,7 +74,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 bool timer_task::start(const ::duration& duration, bool bPeriodic)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
@@ -101,7 +101,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
       //if (pparent)
       //{
 
-      //   auto pcontextobjectParent = pparent.cast < ::context_object>();
+      //   auto pcontextobjectParent = pparent.cast < ::object>();
 
       //   if (pcontextobjectParent)
       //   {
@@ -114,7 +114,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
       //      m_strDebugNote += strFormat;
 
-      //      auto pcontextobjectContainer = playeredContainer.cast < ::context_object> ();
+      //      auto pcontextobjectContainer = playeredContainer.cast < ::object> ();
 
       //      if (pcontextobjectContainer)
       //      {
@@ -203,7 +203,7 @@ bool timer_task::task_active() const
 }
 
 
-::e_status timer_task::on_task()
+::e_status timer_task::run()
 {
 
    ::i64 iSleepMs = m_duration.u32_millis();
@@ -264,12 +264,12 @@ bool timer_task::task_active() const
 
 
 
-void timer_task::finalize()
+::e_status timer_task::finalize()
 {
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -294,6 +294,8 @@ void timer_task::finalize()
    ::timer::finalize();
 
    ::task::finalize();
+
+   return ::success;
 
 }
 

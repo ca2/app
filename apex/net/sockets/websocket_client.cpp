@@ -563,9 +563,7 @@ namespace sockets
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         auto psystem = get_system();
-
-         m_strBase64 = psystem->base64().encode(m);
+         m_strBase64 = m_psystem->m_papexsystem->base64().encode(m);
 
          int iLen;
 
@@ -717,7 +715,7 @@ namespace sockets
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexWebsocketWrite);
+      synchronous_lock synchronouslock(&m_mutexWebsocketWrite);
 
       http_client_socket::write(buf, c);
 

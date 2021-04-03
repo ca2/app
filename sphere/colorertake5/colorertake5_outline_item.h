@@ -8,7 +8,7 @@ namespace colorertake5
    /**
    * Item in outliner's list.
    * Contans all the information about single
-   * structured token with specified type (region context_object).
+   * structured token with specified type (region object).
    * @ingroup colorer_editor
    */
    class OutlineItem

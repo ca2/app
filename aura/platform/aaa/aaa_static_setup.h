@@ -54,11 +54,11 @@ public:
 
    virtual ::matter * create_new_object();
    virtual ::aura::application* create_new_application();
-   virtual ::apex::library* create_new_library();
+   virtual ::acme::library* create_new_library();
 
    virtual ::matter* new_object();
    virtual ::aura::application* new_application();
-   virtual ::apex::library* new_library();
+   virtual ::acme::library* new_library();
 
 
 };
@@ -71,7 +71,7 @@ class static_library_factory :
 public:
 
 
-   virtual ::apex::library* new_library() override { return new LIBRARY; }
+   virtual ::acme::library* new_library() override { return new LIBRARY; }
 
 
    static_library_factory(const char * pszName = "") :

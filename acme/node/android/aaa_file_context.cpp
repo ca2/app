@@ -21,7 +21,7 @@ namespace android
    ::e_status file_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::file_context::initialize(pcontextobject);
+      auto estatus = ::file_context::initialize(pobject);
 
       if (!estatus)
       {

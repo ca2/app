@@ -53,7 +53,7 @@ namespace simpledb
    bool simpledb::remove(const ::database::key & key)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -85,7 +85,7 @@ namespace simpledb
    bool simpledb::load(const ::database::key & key, get_memory getmemory)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -106,7 +106,7 @@ namespace simpledb
          try
          {
 
-            return pdatabase->memory_query_item(getmemory, "SELECT `value` FROM fun_user_str_set WHERE user = '" + pserver->m_strUser + "' AND `key` = '" + pdatabase->escape(strKey) + "'");
+            return pdatabase->query_blob(getmemory, "SELECT `value` FROM fun_user_str_set WHERE user = '" + pserver->m_strUser + "' AND `key` = '" + pdatabase->escape(strKey) + "'");
 
          }
          catch (...)
@@ -150,7 +150,7 @@ namespace simpledb
 
          class synchronization_object * pmutex = pdatabase->mutex();
 
-         synchronization_lock slDatabase(pmutex);
+         synchronous_lock slDatabase(pmutex);
 
       retry_statement:
 
@@ -274,13 +274,13 @@ namespace simpledb
 
          // Remote
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          __pointer(::axis::application) papplication = get_application();
 
          papplication->assert_user_logged_in();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
@@ -291,7 +291,7 @@ namespace simpledb
 
          }
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          string strValue;
 
@@ -305,11 +305,11 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             strUrl += psystem->url().url_encode(strKey);
 
-            strValue = get_context()->http().get(strUrl, set);
+            strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
             if (strValue.is_empty() || ::failed(set["get_status"]))
             {
@@ -346,7 +346,7 @@ namespace simpledb
 
                stritem.m_block.from_base64(strValue, strValue.get_length());
 
-               synchronizationlock.lock();
+               synchronouslock.lock();
 
                pstorage->m_map[strKey] = stritem;
 
@@ -377,7 +377,7 @@ namespace simpledb
    bool simpledb::save(const ::database::key & key, block block)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -436,7 +436,7 @@ namespace simpledb
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             pitem = pstorage->m_map.plookup(strKey);
 
@@ -447,7 +447,7 @@ namespace simpledb
          if (pitem != nullptr)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (pitem->element2().m_block == block)
             {
@@ -481,7 +481,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 
@@ -510,7 +510,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 

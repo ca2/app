@@ -29,7 +29,7 @@ namespace draw2d
       byte *						m_lpBitmap;
 
 
-      font(::context_object * pcontextobject);
+      font(::object * pobject);
       virtual ~font();
 
       glyph * GetGlyph(WCHAR wchar);

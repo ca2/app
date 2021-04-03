@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   pane_view::pane_view(::context_object * pcontextobject) :
+   pane_view::pane_view(::object * pobject) :
       object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),
@@ -547,13 +547,13 @@ namespace browser
       if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
       {
 
-         str = pcontext->file().as_string("matter://home.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://home.html");
 
       }
       else
       {
 
-         str = pcontext->file().as_string("matter://menu.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://menu.html");
 
       }
 
@@ -594,9 +594,9 @@ namespace browser
 
       ::file::path path;
 
-      path = pcontext->dir().appdata() / "browser_menu.html";
+      path = pcontext->m_papexcontext->dir().appdata() / "browser_menu.html";
 
-      pcontext->file().put_contents(path, str);
+      pcontext->m_papexcontext->file().put_contents(path, str);
 
       return path;
 

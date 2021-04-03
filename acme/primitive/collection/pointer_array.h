@@ -61,17 +61,17 @@ public:
 
 
    template < typename OBJECT >
-   __pointer(T) & add_new(OBJECT * pcontextobject)
+   __pointer(T) & add_new(OBJECT * pobject)
    {
 
       __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
       p.create();
 
-      if (::is_set(pcontextobject))
+      if (::is_set(pobject))
       {
 
-         p->initialize(pcontextobject);
+         p->initialize(pobject);
 
       }
 
@@ -176,6 +176,20 @@ public:
 
    ::index add(T * p)
    {
+
+      return this->add_item(p);
+
+   }
+
+   ::index add_non_null(T* p)
+   {
+
+      if (::is_null(p))
+      {
+
+         return -1;
+
+      }
 
       return this->add_item(p);
 
@@ -824,6 +838,29 @@ public:
       comparable_array < ___pointer < T >, const T* >::operator = (::move(a));
 
       return *this;
+
+   }
+
+   ::e_status finalize_all()
+   {
+
+      ::e_status estatus = ::success;
+
+      for (auto& p : *this)
+      {
+
+         auto estatusItem = p->finalize();
+
+         if (!estatusItem)
+         {
+
+            estatus = estatusItem;
+
+         }
+
+      }
+
+      return estatus;
 
    }
 

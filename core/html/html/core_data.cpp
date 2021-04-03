@@ -18,9 +18,9 @@ namespace html
    bool core_data::image::load_image()
    {
 
-      __pointer(::core::application) papplication = get_application();
+      auto pcontext = m_pcontext;
 
-      m_pimage = papplication->image().load_image(m_strPath);
+      m_pimage = pcontext->m_pauracontext->image().load_image(m_strPath);
 
       return m_pimage;
 
@@ -34,7 +34,7 @@ namespace html
 
       m_pcoredata = this;
 
-      m_element.m_pdata = this;
+      ///m_pelement->m_pdata = this;
       m_pcookies = nullptr;
       m_bEdit = false;
       m_puserinteraction = nullptr;
@@ -188,7 +188,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       destroy();
 
@@ -208,7 +208,14 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_element.destroy(this);
+      if (m_pelement)
+      {
+
+         m_pelement->destroy(this);
+
+         m_pelement.release();
+
+      }
 
       m_bImplemented = false;
 
@@ -222,7 +229,7 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_element.delete_implementation(this);
+      m_pelement->delete_implementation(this);
 
       m_bImplemented = false;
 
@@ -264,7 +271,15 @@ namespace html
 
       }
 
-      m_element.load(this, m_ptag);
+      m_pelement = __new(element);
+
+      //m_pelement->m_pbase = new ::html::tag(nullptr);
+
+      m_pelement->initialize_html_elemental(this);
+
+      //m_pelement->initialize_html_element(this);
+
+      m_pelement->load(this, m_ptag);
 
       m_pform->set_need_layout();
 
@@ -278,13 +293,15 @@ namespace html
    void core_data::implement(::draw2d::graphics_pointer & pgraphics)
    {
 
+      m_bImplemented = false;
+
       __guard_wait(m_bImplement);
 
       m_pgraphics = pgraphics;
 
       m_focusptra.remove_all();
 
-      m_element.implement(this);
+      m_pelement->implement(this);
 
       if (m_pform->m_puserinteractionpointeraChild)
       {
@@ -349,7 +366,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bImplemented)
       {
@@ -366,7 +383,7 @@ namespace html
 
       m_layoutstate3.reset();
 
-      m_element.on_layout(this);
+      m_pelement->on_layout(this);
 
       if (m_pcallback != nullptr)
       {
@@ -392,7 +409,7 @@ namespace html
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pgraphics = pgraphics;
 
@@ -405,7 +422,7 @@ namespace html
 
       m_bDrawFirstBody = false;
 
-      m_element._001OnDraw(this);
+      m_pelement->_001OnDraw(this);
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
@@ -420,7 +437,7 @@ namespace html
    ::html::element * core_data::get_element_by_name(id id)
    {
 
-      return m_element.get_element_by_name(id);
+      return m_pelement->get_element_by_name(id);
 
    }
 
@@ -428,7 +445,7 @@ namespace html
    ::html::element * core_data::get_element_by_id(id id)
    {
 
-      return m_element.get_element_by_id(id);
+      return m_pelement->get_element_by_id(id);
 
    }
 
@@ -496,7 +513,7 @@ namespace html
    
       string strUrl(pszUrl);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (strUrl.find(":") >= 0)
       {
@@ -562,7 +579,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      synchronization_lock lockImage(pimage->mutex());
+      synchronous_lock lockImage(pimage->mutex());
 
       bool bRet = false;
 
@@ -626,7 +643,7 @@ namespace html
 
          phyperlink->m_strLink = strPath;
 
-         phyperlink->open_link();
+         phyperlink->run();
 
          /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
@@ -669,7 +686,7 @@ namespace html
 
       //i32 iRetry = 0;
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
    //restart:
 
@@ -735,7 +752,7 @@ namespace html
 
       auto pcontext = get_context();
 
-      str = pcontext->file().as_string(varFile);
+      str = pcontext->m_papexcontext->file().as_string(varFile);
 
       //if (!varFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
@@ -764,7 +781,7 @@ namespace html
       if (str.is_empty())
       {
          string strCandidate = m_strPathName / varFile.get_file_path();
-         str = pcontext->file().as_string(strCandidate);
+         str = pcontext->m_papexcontext->file().as_string(strCandidate);
          if (str.is_empty())
          {
 
@@ -897,7 +914,7 @@ namespace html
 
       }
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       m_puserinteraction = pform;
 
@@ -946,7 +963,7 @@ namespace html
 
       }
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       m_puserinteraction = pform;
 
@@ -984,7 +1001,7 @@ namespace html
 
       }
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       m_puserinteraction = pform;
 

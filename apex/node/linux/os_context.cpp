@@ -499,7 +499,7 @@ namespace linux
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_application()->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -705,7 +705,7 @@ namespace linux
 
    }
 
-   bool os_context::create_service(::context_object * pcontextobject)
+   bool os_context::create_service(::object * pobject)
    {
 
       //__throw(error_not_implemented);
@@ -758,7 +758,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::context_object * pcontextobject)
+   bool os_context::remove_service(::object * pobject)
    {
 //      __throw(error_not_implemented);
       return false;
@@ -799,7 +799,7 @@ namespace linux
       */
    }
 
-   bool os_context::start_service(::context_object * pcontextobject)
+   bool os_context::start_service(::object * pobject)
    {
       //__throw(error_not_implemented);
       return false;
@@ -840,7 +840,7 @@ namespace linux
             */
    }
 
-   bool os_context::stop_service(::context_object * pcontextobject)
+   bool os_context::stop_service(::object * pobject)
    {
       __throw(error_not_implemented);
       return false;
@@ -950,7 +950,7 @@ namespace linux
    //
    //#elif defined(MACos_context)
    //   //string strDir;
-   //   //strDir = get_context()->dir().path(getenv("HOME"), "Pictures");
+   //   //strDir = pcontext->m_papexcontext->dir().path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";

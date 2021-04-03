@@ -12,7 +12,7 @@ namespace user
 
 
       ::index                                m_iUpdate;
-      __pointer(::apex::library)             m_plibrary;
+      __pointer(::acme::library)             m_plibrary;
       map < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
       //__pointer(::user::plain_edit_style)    m_pplaineditstyel;
 
@@ -56,14 +56,14 @@ namespace user
 
 
       style();
-      //style(::context_object * pcontextobject);
+      //style(::object * pobject);
       virtual ~style();
 
 
       inline auto node() const { return m_pnode; }
 
 
-      virtual ::e_status initialize(::context_object* pcontextobject);
+      virtual ::e_status initialize(::object * pobject);
 
 
       void default_style_construct();

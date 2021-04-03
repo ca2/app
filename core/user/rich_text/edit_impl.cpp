@@ -23,10 +23,10 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize(::context_object * pcontextobject)
+      ::e_status edit_impl::initialize(::object * pobject)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pcontextobject);
+         auto estatus = ::user::rich_text::edit::initialize(pobject);
 
          if (!estatus)
          {
@@ -761,7 +761,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
 
@@ -984,7 +984,7 @@ namespace user
       void edit_impl::_001OnKeyDown(::message::message * pmessage)
       {
 
-         //synchronization_lock synchronizationlock(mutex());
+         //synchronous_lock synchronouslock(mutex());
 
          {
 
@@ -1285,7 +1285,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(m_pdata->mutex());
+            synchronous_lock synchronouslock(m_pdata->mutex());
 
             strsize i1 = m_pdata->get_sel_beg();
 
@@ -1422,7 +1422,7 @@ namespace user
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1504,7 +1504,7 @@ namespace user
                      on_reset_focus_start_tick();
 
                      {
-                        synchronization_lock synchronizationlock(m_pdata->mutex());
+                        synchronous_lock synchronouslock(m_pdata->mutex());
 
                         strsize i1 = m_pdata->get_sel_beg();
 
@@ -1569,7 +1569,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   double x;
 
@@ -1603,7 +1603,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   double x;
 
@@ -1641,7 +1641,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1651,7 +1651,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1661,7 +1661,7 @@ namespace user
                   else
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
                      {
@@ -1700,7 +1700,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1710,7 +1710,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1720,7 +1720,7 @@ namespace user
                   else if (m_pdata->m_iSelEnd > 0)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      string strText;
 
@@ -1751,7 +1751,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   if (bControl)
                   {
@@ -1785,7 +1785,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   if (bControl)
                   {

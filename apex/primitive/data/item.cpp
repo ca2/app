@@ -13,21 +13,21 @@ namespace data
    {
    }
 
-   string item::data_item_get_text(::context_object* pcontextobject) const
+   string item::data_item_get_text(::object * pobject) const
    {
-      UNREFERENCED_PARAMETER(pcontextobject);
+      UNREFERENCED_PARAMETER(pobject);
       return "";
    }
 
-   index item::data_item_get_image(::context_object* pcontextobject) const
+   index item::data_item_get_image(::object * pobject) const
    {
-      UNREFERENCED_PARAMETER(pcontextobject);
+      UNREFERENCED_PARAMETER(pobject);
       return -1;
    }
 
-   image_list * item::data_item_get_image_list(::context_object* pcontextobject) const
+   image_list * item::data_item_get_image_list(::object * pobject) const
    {
-      UNREFERENCED_PARAMETER(pcontextobject);
+      UNREFERENCED_PARAMETER(pobject);
       return nullptr;
    }
 

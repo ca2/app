@@ -20,10 +20,10 @@ namespace android
    }
 
 
-   ::e_status dir_context::initialize(::context_object * pcontextobject)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pcontextobject);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {
@@ -258,7 +258,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = get_context()->dir_context().path(get_context()->file().name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = get_context()->dir_context().path(pcontext->m_papexcontext->file().name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -830,7 +830,7 @@ namespace android
    ::file::path dir_context::install()
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       return m_pdirsystem->m_pathInstall;
 
@@ -897,7 +897,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     get_context()->file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -906,7 +906,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     get_context()->file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -998,15 +998,15 @@ namespace android
 
       //xml::document doc;
 
-      //doc.load(get_context()->file().as_string(appdata() / "configuration\\directory.xml"));
+      //doc.load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = ::apex::get_system()->m_pathCacheDirectory;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(::dir::system() / "home");
+      //nodeos_set_home(pacmedir->system() / "home");
 
-      //nodeos_set_temp(::dir::system() / "temp");
+      //nodeos_set_temp(pacmedir->system() / "temp");
 
       m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
 
@@ -1133,7 +1133,7 @@ namespace android
 
       string str;
 
-      str = ::dir::system() / ".ca2/app/appdata";
+      str = pacmedir->system() / ".ca2/app/appdata";
       
       string strRelative;
 

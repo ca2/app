@@ -84,7 +84,7 @@ string ca2_command_line(hinstance hinstance)
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = get_context()->file().module();
+//         pathObj = m_pcontext->m_papexcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -94,7 +94,7 @@ string ca2_command_line(hinstance hinstance)
 //         strLinkTitle.replace("\\", "_");
 //         strLinkTitle.replace("-", "_");
 //
-//         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//         pathLnk = pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //         ::dir::mk(pathLnk.folder());
 //

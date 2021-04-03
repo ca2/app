@@ -328,7 +328,7 @@ namespace sockets
 
       }
 
-      tmp->set_topic_text(strTopicText);
+      //tmp->set_topic_text(strTopicText);
 
       tmp->m_strCat = m_strCat;
       

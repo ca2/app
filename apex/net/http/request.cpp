@@ -74,7 +74,7 @@ namespace http
 
       m_form.clear();
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       m_strQueryString = psystem->url().object_get_query(m_strRequestUri);
       attr(__id(query_string)) = m_strQueryString;

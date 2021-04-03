@@ -35,7 +35,7 @@ namespace simpledb
       string_map < ::simpledb::session * >      m_mapSession;
 
 
-      manager(::context_object * pcontextobject);
+      manager(::object * pobject);
       ~manager();
 
       

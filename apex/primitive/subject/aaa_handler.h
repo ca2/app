@@ -12,7 +12,7 @@ namespace promise
 
 
    class CLASS_DECL_ACME handler :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -62,7 +62,7 @@ namespace promise
       inline bool is_ending()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          return m_mattercontext.is_empty();
 

@@ -90,7 +90,7 @@ namespace user
    inline ::base::session* menu_interaction::get_session() const
    {
 
-      return m_psession ? m_psession.cast < ::base::session >() : nullptr;
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
 
    }
 
@@ -98,7 +98,7 @@ namespace user
    inline ::base::application* form_control::get_application() const
    {
       
-      return m_papplication ? m_papplication.cast < ::base::application >() : nullptr;
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
    
    }
 
@@ -106,7 +106,7 @@ namespace user
    inline ::base::session* form_control::get_session() const
    { 
       
-      return m_psession ? m_psession.cast < ::base::session >() : nullptr; 
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
    
    }
 

@@ -4,7 +4,7 @@
 //::image_result con::get_image(const ::payload & varFile, bool bCache, bool bSync)
 //{
 //
-//   return pcontext->load_image(varFile, bCache, bSync);
+//   return pcontext->m_papexcontext->load_image(varFile, bCache, bSync);
 //
 //}
 //
@@ -44,7 +44,7 @@
 //
 //   }
 //
-//   estatus = pcontext->_load_image(pimage, varFile, bSync, bCreateHelperMaps);
+//   estatus = pcontext->m_papexcontext->_load_image(pimage, varFile, bSync, bCreateHelperMaps);
 //
 //   if (!estatus && estatus != error_not_ready)
 //   {
@@ -72,7 +72,7 @@
 //
 //   }
 //
-//   estatus = pcontext->_load_matter_image(pimage, pszMatter, bSync, bCreateHelperMaps);
+//   estatus = pcontext->m_papexcontext->_load_matter_image(pimage, pszMatter, bSync, bCreateHelperMaps);
 //
 //   if (!estatus)
 //   {
@@ -98,7 +98,7 @@
 //
 //   }
 //
-//   auto estatus = pcontext->_load_matter_icon(pimage, straMatter, strIcon);
+//   auto estatus = pcontext->m_papexcontext->_load_matter_icon(pimage, straMatter, strIcon);
 //
 //   if (!estatus)
 //   {
@@ -124,7 +124,7 @@
 //
 //   }
 //
-//   auto estatus = pcontext->_load_thumbnail(pimage, varFile, w, h);
+//   auto estatus = pcontext->m_papexcontext->_load_thumbnail(pimage, varFile, w, h);
 //
 //   if (!estatus)
 //   {
@@ -150,7 +150,7 @@
 //
 //   }
 //
-//   auto estatus = pcontext->_load_thumbnail(pimage, pszPath);
+//   auto estatus = pcontext->m_papexcontext->_load_thumbnail(pimage, pszPath);
 //
 //   if (!estatus)
 //   {
@@ -176,7 +176,7 @@
 //
 //   }
 //
-//   auto estatus = pcontext->_load_dib(pimage, pathDib);
+//   auto estatus = pcontext->m_papexcontext->_load_dib(pimage, pathDib);
 //
 //   if (!estatus)
 //   {

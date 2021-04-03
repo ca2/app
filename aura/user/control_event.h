@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_AURA control_event :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

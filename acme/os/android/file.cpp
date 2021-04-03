@@ -73,7 +73,7 @@ CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses
 // ::file::path dir::bookmark()
 // {
 
-//    return ::dir::localconfig() / "favorites";
+//    return pacmedir->localconfig() / "favorites";
 
 // }
 

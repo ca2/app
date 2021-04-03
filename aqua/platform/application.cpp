@@ -27,10 +27,10 @@ namespace aqua
    }
 
 
-   ::e_status application::initialize(::context_object * pcontextobject)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pcontextobject);
+      auto estatus = ::apex::application::initialize(pobject);
 
       if (!estatus)
       {

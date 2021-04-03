@@ -42,7 +42,7 @@
  * @author Gurmeet S. Kochar
  */
 class CLASS_DECL_AXIS LiteHTMLEntityResolver :
-   virtual public ::context_object
+   virtual public ::object
 {
 public:
    
@@ -64,12 +64,12 @@ public:
 
 // Operations
    /**
-    * Resolves a character or numeric entity context_object.
+    * Resolves a character or numeric entity object.
     *
     * @lparam rStr - entity to resolve
     * @lparam ch - payload that will receive the result
     *
-    * @return number of TCHARs used to resolve entity context_object
+    * @return number of TCHARs used to resolve entity object
     * @since 1.0
     * @author Gurmeet S. Kochar
     */

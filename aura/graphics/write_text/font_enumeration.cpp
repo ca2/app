@@ -20,10 +20,10 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::initialize(::context_object * pcontextobject)
+   ::e_status font_enumeration::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -78,7 +78,7 @@ namespace write_text
    bool font_enumeration::has_font_name(const string& str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto& pitem : *m_pitema)
       {
@@ -100,7 +100,7 @@ namespace write_text
    __pointer(::write_text::font_enum_item) font_enumeration::similar_font(const char* psz)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(::write_text::font_enum_item) pitemFound;
 
@@ -184,7 +184,7 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem->m_paurasystem;
 
       psystem->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
 

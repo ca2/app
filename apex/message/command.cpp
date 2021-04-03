@@ -20,7 +20,7 @@ namespace message
 
 
    command::command(const ::id & id) :
-      id_matter(id)
+      material_object(id)
    {
 
       common_construct();
@@ -90,7 +90,7 @@ namespace message
    //}
 
 
-   //command::command(::context_object * pcontextobject) :
+   //command::command(::object * pobject) :
    //   ::object(pobject)
    //{
 

@@ -273,15 +273,6 @@ ret1:
 
 
 
-::file::path dir::sys_temp()
-{
-
-   return ::dir::appdata() / "time";
-
-}
-
-
-
 string file_as_string(const char * path, strsize iReadAtMostByteCount)
 {
 

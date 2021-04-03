@@ -208,6 +208,14 @@ namespace database
    }
 
 
+   bool database_impl::query_blob(get_memory getmemory, const char* pszQuery)
+   {
+
+      return false;
+
+   }
+
+
    ::payload database_impl::query_item(const char* pszQuery, const ::payload & payloadDefault)
    {
 
@@ -224,22 +232,6 @@ namespace database
 
    }
 
-
-   bool database_impl::memory_query_item(get_memory getmemory, const char* pszQuery)
-   {
-
-      ::payload item = query_item(pszQuery);
-
-      if (!item)
-      {
-
-         return false;
-
-      }
-
-      return getmemory.get_base64(item.get_string());
-
-   }
 
    /*
       bool database_impl::query_rows(__pointer(row_array) & rows, const char * pszQuery)

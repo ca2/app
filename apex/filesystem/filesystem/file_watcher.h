@@ -124,7 +124,7 @@ namespace file
    class os_watch;
 
    class CLASS_DECL_APEX watch :
-      virtual public context_object
+      virtual public object
    {
    public:
 

@@ -318,7 +318,7 @@ namespace sockets
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       u8 * pbuf = (u8 *) pdata;
 
@@ -352,7 +352,7 @@ namespace sockets
 
    //      {
 
-   //         synchronization_lock synchronizationlock(mutex());
+   //         synchronous_lock synchronouslock(mutex());
 
    //         iRead = m_file.remove_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -426,7 +426,7 @@ namespace sockets
    void write_socket::OnWrite()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       write(m_file.get_data(), (memsize)m_file.get_size());
 

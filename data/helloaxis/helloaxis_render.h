@@ -106,11 +106,11 @@ namespace helloaxis
       bool                             m_bFastOnEmpty;
 
 
-      render(::context_object * pcontextobject);
+      render(::object * pobject);
       virtual ~render();
 
 
-      string get_helloaxis() { synchronization_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaxis() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual i32 run();

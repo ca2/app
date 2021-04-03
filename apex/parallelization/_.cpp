@@ -25,7 +25,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void finalize()
+   CLASS_DECL_APEX ::e_status finalize()
    {
 
       __node_term_multithreading();
@@ -35,6 +35,8 @@ namespace parallelization
       //::acme::del(s_piaThread2);
 
       //::acme::del(s_pcs2);
+
+      return ::success;
 
    }
 
@@ -97,7 +99,7 @@ namespace parallelization
 
    //   __pointer(::apex::system) psystem = get_system();
 
-   //   synchronization_lock synchronizationlock(&psystem->m_mutexTask);
+   //   synchronous_lock synchronouslock(&psystem->m_mutexTask);
 
    //   for (auto & pair : psystem->m_taskidmap)
    //   {
@@ -132,7 +134,7 @@ namespace parallelization
 
       //__pointer(::apex::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexTask);
+      synchronous_lock synchronouslock(&psystem->m_mutexTask);
 
       for (auto& pair : psystem->m_taskidmap)
       {
@@ -140,7 +142,7 @@ namespace parallelization
          try
          {
 
-            pair.element1()->finish(psystem);
+            pair.element1()->finish();
 
          }
          catch (...)
@@ -156,7 +158,7 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::id & id, wparam wparam, lparam lparam)
    {
 
-      synchronization_lock synchronizationlock(&psystem->m_mutexTask);
+      synchronous_lock synchronouslock(&psystem->m_mutexTask);
 
       for (auto& pair : psystem->m_taskidmap)
       {
@@ -345,10 +347,10 @@ namespace parallelization
 //   if (pthread->get_context())
 //   {
 //
-//      if (::is_null(pthread->get_context()->file()))
+//      if (::is_null(pthread->m_pcontext->m_papexcontext->file()))
 //      {
 //
-//         pthread->get_context()->initialize_context();
+//         pthread->m_pcontext->m_papexcontext->initialize_context();
 //
 //      }
 //
@@ -892,13 +894,13 @@ namespace apex
 
 
 
-::e_status thread_ptra::finish(::property_object* pcontextobjectFinish)
+::e_status thread_ptra::finish()
 {
 
    try
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       for (index i = 0; i < get_count(); i++)
       {
@@ -909,9 +911,9 @@ namespace apex
          {
 
             /// this is quite dangerous
-            //synchronization_lock slThread(pthread->mutex());
+            //synchronous_lock slThread(pthread->mutex());
 
-            pthread->finish(pcontextobjectFinish);
+            pthread->finish();
 
          }
          catch (...)
@@ -965,7 +967,7 @@ namespace apex
 }
 
 
-void thread_ptra::wait(const duration& duration, synchronization_lock& synchronizationlock)
+void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslock)
 {
 
    ::datetime::time timeEnd = ::datetime::time::get_current_time() + maximum(seconds(2), duration);
@@ -973,7 +975,7 @@ void thread_ptra::wait(const duration& duration, synchronization_lock& synchroni
    try
    {
 
-      //      synchronization_lock synchronizationlock(psyncParent);
+      //      synchronous_lock synchronouslock(psyncParent);
       //
       ::count cCount = get_count_except_current_thread();
 
@@ -982,7 +984,7 @@ void thread_ptra::wait(const duration& duration, synchronization_lock& synchroni
       while (cCount > 0 && timeNow < timeEnd)
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          timeNow = ::datetime::time::get_current_time();
 
@@ -990,7 +992,7 @@ void thread_ptra::wait(const duration& duration, synchronization_lock& synchroni
 
          sleep(500_ms);
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
       }
 

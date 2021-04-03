@@ -50,7 +50,7 @@ void cairo_keep::save()
    if(m_bSave)
       return;
 
-   synchronization_lock synchronizationlock(cairo_mutex());
+   synchronous_lock synchronouslock(cairo_mutex());
 
    cairo_save(m_pdc);
 
@@ -62,7 +62,7 @@ void cairo_keep::save()
 void cairo_keep::restore()
 {
 
-   synchronization_lock ml(cairo_mutex());
+   synchronous_lock ml(cairo_mutex());
 
    if(m_pdc == nullptr)
    {
@@ -88,7 +88,7 @@ void cairo_keep::restore()
 void cairo_keep::pulse()
 {
 
-   synchronization_lock ml(cairo_mutex());
+   synchronous_lock ml(cairo_mutex());
 
    restore();
 

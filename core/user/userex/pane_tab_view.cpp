@@ -410,9 +410,9 @@ namespace userex
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      ::apex::library * plibrary = nullptr;
+      ::acme::library * plibrary = nullptr;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {
@@ -456,7 +456,10 @@ namespace userex
          //pcreate->m_pusersystem
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+
+         auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
+
+         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 

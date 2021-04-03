@@ -169,7 +169,7 @@ namespace apex
       //double_array                                       m_daLon;
       //double_array                                       m_daLat;
 
-      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < __pointer(::acme::library) >          m_mapLibrary;
 
       //string_map < __pointer(openweather_city) >                   m_mapCity;
 
@@ -220,9 +220,9 @@ namespace apex
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      //strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
+      //strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
 
-      //__pointer_array(::apex::library)                         m_libraryspa;
+      //__pointer_array(::acme::library)                         m_libraryspa;
 
 #ifdef _UWP
 
@@ -238,7 +238,7 @@ namespace apex
 
       void common_construct();
 
-      virtual ::e_status  initialize(::context_object * pcontextobject) override;
+      virtual ::e_status  initialize(::object * pobject) override;
 
 
       virtual ::apex::application* get_main_application() override;
@@ -263,8 +263,8 @@ namespace apex
 
       virtual string get_application_server_name();
 
-      virtual ::apex::library* lib(const char* psz);
-      //CLASS_DECL_APEX::apex::library* lib(const char* psz);
+      virtual ::acme::library* lib(const char* psz);
+      //CLASS_DECL_APEX::acme::library* lib(const char* psz);
       //
       //template < typename FUNCTION >
       //FUNCTION library_function(const char* pszLibrary)
@@ -359,7 +359,7 @@ namespace apex
       //virtual i32 exit_instance();
       //virtual bool finalize();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
 
@@ -390,7 +390,7 @@ namespace apex
 
 
 
-      //virtual string dir_appmatter_locator(::context_object * pcontextobject);
+      //virtual string dir_appmatter_locator(::object * pobject);
 
 
       virtual void hist_hist(const char * psz);
@@ -420,13 +420,13 @@ namespace apex
       //class ::user::window_map                     &  window_map();
 
 
-      __pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      __pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
-      __pointer(::apex::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
+      __pointer(::acme::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
 
-      ::extended::transport < ::apex::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
+      ::extended::transport < ::acme::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
 
       ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
@@ -554,7 +554,7 @@ namespace apex
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -571,9 +571,9 @@ namespace apex
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
-      virtual ::apex::library * on_get_library(const char * pszLibrary);
+      virtual ::acme::library * on_get_library(const char * pszLibrary);
 
-      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+      virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
       virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -611,7 +611,7 @@ namespace apex
 
       //virtual ::e_status init2();
 
-      virtual ::e_status post_create_requests();
+      virtual ::e_status post_creation_requests();
 
       //virtual void term_system();
 
@@ -713,7 +713,7 @@ namespace apex
 
       virtual void on_end_find_applications_to_cache(stream & os);
 
-      virtual void on_map_application_library(::apex::library & library);
+      virtual void on_map_application_library(::acme::library & library);
 
       //virtual void defer_check_exit();
 
@@ -783,7 +783,7 @@ namespace apex
 
 
 
-      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 
 
       virtual string get_user_language();
@@ -845,7 +845,7 @@ namespace apex
       ::e_status set_history(::apex::history* phistory);
 
 
-      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
 
 
       //virtual ::apex::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -920,7 +920,7 @@ namespace apex
 
       virtual string get_host_location_url();
 
-      //virtual ::e_status add_view_library(::apex::library* plibrary);
+      //virtual ::e_status add_view_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 
@@ -949,7 +949,7 @@ namespace apex
 
       //virtual void on_end_find_applications_to_cache(stream& os) override;
 
-      //virtual void on_map_application_library(::apex::library& library) override;
+      //virtual void on_map_application_library(::acme::library& library) override;
 
       //virtual void on_graphics_ready() override;
 
@@ -1000,7 +1000,7 @@ namespace apex
 
       //virtual bool initialize_native_window1() override;
 
-      //virtual ::apex::library* load_library(const char* pszLibrary);
+      //virtual ::acme::library* load_library(const char* pszLibrary);
 
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
@@ -1038,12 +1038,12 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
-#define finish(::property_object * pcontextobject)(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
+#define finish(::property_object * pobject)(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
 
 
 //
 //
-//inline ::traits & traits(::context_object * p)
+//inline ::traits & traits(::object * p)
 //{
 //
 //   auto traits = psystem->m_traits[p];

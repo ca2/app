@@ -48,7 +48,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(::apex::library)       m_plibrary;
+      __pointer(::acme::library)       m_plibrary;
 
 
       filetime_set                     m_ft;

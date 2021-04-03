@@ -215,7 +215,7 @@ inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFl
 }
 
 
-// inline ::image_result __create_image(::context_object * pcontextobject)
+// inline ::image_result __create_image(::object * pobject)
 // {
 
 //    auto ptype = __create_new_image();
@@ -227,7 +227,7 @@ inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFl
 
 //    }
 
-//    auto estatus = ptype->initialize(pcontextobject);
+//    auto estatus = ptype->initialize(pobject);
 
 //    if (!estatus)
 //    {

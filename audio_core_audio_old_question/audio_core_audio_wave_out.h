@@ -23,7 +23,7 @@ namespace multimedia
          i32                                   m_iBufferSampleCount;
 
 
-         out(::context_object * pcontextobject);
+         out(::object * pobject);
          virtual ~out();
 
 

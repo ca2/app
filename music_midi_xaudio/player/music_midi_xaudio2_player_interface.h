@@ -25,7 +25,7 @@ namespace music
             public:
 
 
-               player_interface(::context_object * pcontextobject);
+               player_interface(::object * pobject);
                virtual ~player_interface();
 
 

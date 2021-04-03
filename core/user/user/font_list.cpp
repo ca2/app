@@ -283,7 +283,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       //m_pgraphics = pgraphics;
 
@@ -389,7 +389,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       auto pstyle = get_style(pgraphics);
 
@@ -425,7 +425,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
 
@@ -444,7 +444,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
 
@@ -454,7 +454,7 @@ namespace user
    item font_list::current_item()
    {
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       if (m_pfontlist->m_iSel < 0)
       {
@@ -478,7 +478,7 @@ namespace user
    item font_list::hover_item()
    {
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       if (m_pfontlist->m_iHover < 0)
       {
@@ -564,6 +564,8 @@ namespace user
          {
 
             m_bFirstShown = true;
+
+            auto psystem = m_psystem->m_paurasystem;
 
             psystem->set_modified(id_font_enumeration);
 

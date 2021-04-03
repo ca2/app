@@ -79,7 +79,7 @@
 //void keep_sealed_object(Object ^ o)
 //{
 //
-//   synchronization_lock synchronizationlock(&g_mutexSealed);
+//   synchronous_lock synchronouslock(&g_mutexSealed);
 //
 //   g_setSealed.add(o);
 //
@@ -89,7 +89,7 @@
 //void remove_sealed_object(Object ^ o)
 //{
 //
-//   synchronization_lock synchronizationlock(&g_mutexSealed);
+//   synchronous_lock synchronouslock(&g_mutexSealed);
 //
 //   g_setSealed.remove(o);
 //

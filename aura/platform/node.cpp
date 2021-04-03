@@ -27,6 +27,25 @@ namespace aura
    }
 
 
+   ::e_status node::on_initialize_object()
+   {
+
+      auto estatus = ::apex::node::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_pauranode = this;
+
+      return estatus;
+
+   }
+
+
 //#ifdef LINUX
 //
 //   ::linux::appindicator * node::appindicator_allocate()

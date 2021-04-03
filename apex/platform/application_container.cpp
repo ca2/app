@@ -1,8 +1,11 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
+#include "apex/platform/node.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 extern ::app_core * g_pappcore;
+
 
 application_container::application_container()
 {
@@ -51,7 +54,7 @@ void application_container::app_remove(::apex::application * papp)
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      finish(this);
+      set_finish();
 
    }
 
@@ -156,7 +159,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    return m_applicationa;
 
@@ -173,7 +176,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (papp == this)
 //   {
@@ -190,7 +193,7 @@ application_array application_container::get_applicationa()
 //void application_container::app_remove(::apex::application * papp)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (m_applicationa.is_set())
 //   {
@@ -247,6 +250,8 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
          papp = psystem->m_papplicationStartup;
 
+         __refer(psystem->m_papplicationMain, psystem->m_papplicationStartup.get());
+
          __unbind(psystem, m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(psystem, ""));
 
       }
@@ -276,6 +281,12 @@ __pointer(::apex::application) application_container::instantiate_application(co
       }
 
    }
+
+   papp->initialize(this);
+
+   m_psystem->m_papexsystem->set_main_struct(*papp);
+
+   on_instantiate_application(papp);
 
    if (pcreate != nullptr)
    {
@@ -332,6 +343,11 @@ __pointer(::apex::application) application_container::create_platform(::apex::se
 
 
 
+void application_container::on_instantiate_application(::apex::application* papp)
+{
+
+
+}
 
 
 __pointer(::apex::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
@@ -341,7 +357,7 @@ __pointer(::apex::application) application_container::assert_running(const char 
 
   {
 
-     synchronization_lock synchronizationlock(mutex());
+     synchronous_lock synchronouslock(mutex());
 
      papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -389,11 +405,11 @@ __pointer(::apex::application) application_container::start_application(const ch
 
    string strBuild;
 
-   ::file::path pathExe = ::file::app_module();
+   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
    __pointer(::apex::system) psystem = get_system();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+   if (!m_psystem->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
       psystem->get_system_configuration(), strLocale, strSchema))
    {
 
@@ -468,60 +484,63 @@ __pointer(::apex::application) application_container::start_application(const ch
 }
 
 
-
-
-
 ::apex::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+{
+
+   __pointer(::apex::application) papp;
+
+   if(m_applicationa.lookup(pszAppId,papp))
    {
 
-      __pointer(::apex::application) papp;
+      return papp;
 
-      if(m_applicationa.lookup(pszAppId,papp))
-      {
+   }
 
-         return papp;
+   if (!bCreate)
+   {
 
-      }
+      return nullptr;
 
-      if(!bCreate)
-         return nullptr;
+   }
 
-      papp = nullptr;
+   papp = nullptr;
 
-      try
-      {
+   try
+   {
 
-         papp = create_application(pszAppId, bSynch, pcreate);
+      papp = create_application(pszAppId, bSynch, pcreate);
 
-      }
-      catch (const ::exception::exception & e)
-      {
+   }
+   catch (const ::exception::exception & e)
+   {
 
-         if (handle_exception(e))
-         {
-
-            papp = nullptr;
-
-         }
-
-      }
-      catch(...)
+      if (handle_exception(e))
       {
 
          papp = nullptr;
 
       }
 
-      if (papp == nullptr)
-      {
+   }
+   catch(...)
+   {
 
-         return nullptr;
-
-      }
-
-      app_add(papp);
-
-      return papp;
+      papp = nullptr;
 
    }
+
+   if (papp == nullptr)
+   {
+
+      return nullptr;
+
+   }
+
+   app_add(papp);
+
+   return papp;
+
+}
+
+
 

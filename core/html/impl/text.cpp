@@ -33,7 +33,7 @@ namespace html
       void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         synchronization_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -130,7 +130,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         synchronization_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::layout_phase0(pdata);
 

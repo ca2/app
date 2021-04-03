@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   impact_base::impact_base(::context_object * pcontextobject):
+   impact_base::impact_base(::object * pobject):
       object(pobject),
 
       m_fontDrawStatus(e_create)
@@ -232,7 +232,7 @@ auto m_millisRoll = ::millis::now();
 
       //d->get_graphics()->BitBlt(rectClient, pimage->g());
 
-      //d.save_to_file(::dir::system() / "obs.png");
+      //d.save_to_file(pacmedir->system() / "obs.png");
 
 
       //pdcParam->set_font(m_fontDrawStatus);

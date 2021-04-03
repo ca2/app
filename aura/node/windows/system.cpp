@@ -54,7 +54,7 @@ namespace aura
    ::e_status system::start()
    {
 
-      auto estatus = create_os_node();
+      auto estatus = ::aqua::system::start();
 
       if (!estatus)
       {
@@ -63,21 +63,21 @@ namespace aura
 
       }
 
-      if (m_pnode)
-      {
+      //estatus = create_os_node();
 
-         return m_pnode->start();
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      estatus = ::aqua::system::start();
+      //}
 
-      if (!estatus)
-      {
+      //if (m_pnode)
+      //{
 
-         return estatus;
+      //   return m_pnode->start();
 
-      }
+      //}
 
       return ::success;
 

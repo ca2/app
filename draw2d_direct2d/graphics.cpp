@@ -73,7 +73,7 @@ namespace draw2d_direct2d
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -81,7 +81,7 @@ namespace draw2d_direct2d
    void graphics::dump(dump_context & dumpcontext) const
    {
 
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "get_handle1() = " << (::iptr) get_handle1();
       dumpcontext << "\nm_hAttribDC = " << (::iptr) get_handle2();
@@ -151,7 +151,9 @@ namespace draw2d_direct2d
 
       auto psession = get_session();
 
-      auto puser = psession->user();
+      auto paurasession = psession->m_paurasession;
+
+      auto puser = paurasession->user();
 
       auto pwindowing = puser->windowing();
 
@@ -3294,7 +3296,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::context_object * pcontextobject)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*
       ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
@@ -5451,13 +5453,13 @@ namespace draw2d_direct2d
          if(ppath->m_shapea[i]->eshape() == e_shape_text_out)
          {
 
-            draw(ppath->m_shapea[i]->shape < ::text_out>(), ppen);
+            draw(ppath->m_shapea[i]->shape < ::write_text::text_out>(), ppen);
 
          }
          else if (ppath->m_shapea[i]->eshape() == e_shape_draw_text)
          {
 
-            draw(ppath->m_shapea[i]->shape < ::draw_text>(), ppen);
+            draw(ppath->m_shapea[i]->shape < ::write_text::draw_text>(), ppen);
 
          }
 
@@ -5499,13 +5501,13 @@ namespace draw2d_direct2d
          if (ppath->m_shapea[i]->eshape() == ::e_shape_text_out)
          {
 
-            fill(ppath->m_shapea[i]->shape < ::text_out >(), m_pbrush);
+            fill(ppath->m_shapea[i]->shape < ::write_text::text_out >(), m_pbrush);
 
          }
          else if (ppath->m_shapea[i]->eshape() == ::e_shape_draw_text)
          {
 
-            fill(ppath->m_shapea[i]->shape < ::draw_text >(), m_pbrush);
+            fill(ppath->m_shapea[i]->shape < ::write_text::draw_text >(), m_pbrush);
 
          }
 
@@ -5556,13 +5558,13 @@ namespace draw2d_direct2d
          if (ppath->m_shapea[i]->eshape() == ::e_shape_text_out)
          {
 
-            fill(ppath->m_shapea[i]->shape < ::text_out >(), pbrushParam);
+            fill(ppath->m_shapea[i]->shape < ::write_text::text_out >(), pbrushParam);
 
          }
          else if (ppath->m_shapea[i]->eshape() == ::e_shape_draw_text)
          {
 
-            fill(ppath->m_shapea[i]->shape < ::draw_text >(), pbrushParam);
+            fill(ppath->m_shapea[i]->shape < ::write_text::draw_text >(), pbrushParam);
 
          }
 
@@ -5592,7 +5594,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw(const ::text_out & textout, ::draw2d::pen * ppen)
+   bool graphics::draw(const ::write_text::text_out & textout, ::draw2d::pen * ppen)
    {
 
       wstring szOutline(textout.m_strText);
@@ -5632,7 +5634,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill(const ::text_out & textout, ::draw2d::brush * pbrush)
+   bool graphics::fill(const ::write_text::text_out & textout, ::draw2d::brush * pbrush)
    {
 
       wstring szOutline(textout.m_strText);
@@ -5679,7 +5681,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::draw(const ::draw_text & drawtext, ::draw2d::pen* ppen)
+   bool graphics::draw(const ::write_text::draw_text & drawtext, ::draw2d::pen* ppen)
    {
 
       wstring szOutline(drawtext.m_strText);
@@ -5719,7 +5721,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill(const ::draw_text & drawtext, ::draw2d::brush* pbrush)
+   bool graphics::fill(const ::write_text::draw_text & drawtext, ::draw2d::brush* pbrush)
    {
 
       wstring szOutline(drawtext.m_strText);

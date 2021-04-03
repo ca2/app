@@ -43,10 +43,10 @@ namespace datetime
    }
 
 
-   ::e_status department::initialize(::context_object * pcontextobject)
+   ::e_status department::initialize(::object * pobject)
    {
     
-      auto estatus = ::apex::department::initialize(pcontextobject);
+      auto estatus = ::apex::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -80,10 +80,10 @@ namespace datetime
    }
 
 
-   ::e_status department::international::initialize(::context_object * pcontextobject)
+   ::e_status department::international::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -97,10 +97,10 @@ namespace datetime
    }
 
 
-   ::e_status department::str::initialize(::context_object * pcontextobject)
+   ::e_status department::str::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -114,7 +114,7 @@ namespace datetime
    }
 
 
-   void department::finalize()
+   ::e_status department::finalize()
    {
 
       m_pinternational.release();
@@ -122,6 +122,8 @@ namespace datetime
       m_pstr.release();
 
       ::apex::department::finalize();
+
+      return ::success;
 
    }
 

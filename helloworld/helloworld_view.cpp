@@ -10,7 +10,7 @@ namespace helloworld
 
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -25,7 +25,7 @@ namespace helloworld
       m_flagNonClient.remove(non_client_background);
       m_flagNonClient.remove(non_client_focus_rect);
 
-      m_strNewFont = os_font_name(e_font_sans);
+      m_strNewFont = pnode->font_name(e_font_sans);
 
       m_eeffect                  = effect_none;
 
@@ -139,11 +139,11 @@ namespace helloworld
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       {
 
-         synchronization_lock slText(&m_mutexText);
+         synchronous_lock slText(&m_mutexText);
 
          if(m_strNewHelloWorld.is_empty())
          {
@@ -295,7 +295,7 @@ namespace helloworld
    string view::get_processed_helloworld()
    {
 
-      synchronization_lock slText(&m_mutexText);
+      synchronous_lock slText(&m_mutexText);
 
       string str = get_helloworld();
 
@@ -397,7 +397,7 @@ namespace helloworld
    string view::get_helloworld()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloWorld != m_strNewHelloWorld)
       {
@@ -455,14 +455,14 @@ namespace helloworld
       if (m_prender != nullptr)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          if (get_processed_helloworld() != m_prender->m_strHelloWorld)
          {
 
             m_prender->m_strHelloWorld = get_processed_helloworld().c_str(); // rationale : string allocation fork *for parallelization*
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             set_need_layout();
 

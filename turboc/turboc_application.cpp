@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   application::application(::context_object * pcontextobject) :
+   application::application(::object * pobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),

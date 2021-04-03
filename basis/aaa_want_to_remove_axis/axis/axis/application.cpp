@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status application::initialize(::context_object * pcontextobject)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = aura::application::initialize(pcontextobject);
+      auto estatus = aura::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::id & id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       __pointer(string_to_string) pmap;
 
@@ -647,19 +647,19 @@ resume_on_exception:
          if (is_system())
          {
 
-            pathDatabase = pcontext->dir().appdata() / "system.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
          }
          else if (is_session())
          {
 
-            pathDatabase = pcontext->dir().appdata() / "session.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
          }
          else
          {
 
-            pathDatabase = pcontext->dir().appdata() / "app.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
          }
 
@@ -854,7 +854,7 @@ m_millisHeartBeat.Now();
       //      && m_varTopicQuery["app"] != "app-gtech/alarm"
       //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
       //{
-      //   pcontext->http().defer_auto_initialize_proxy_configuration();
+      //   pcontext->m_papexcontext->http().defer_auto_initialize_proxy_configuration();
       //}
 m_millisHeartBeat.Now();
 
@@ -1029,7 +1029,7 @@ m_millisHeartBeat.Now();
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
-      ::file::path strFile = pcontext->dir().install() / strRelative;
+      ::file::path strFile = pcontext->m_papexcontext->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if(framework_is_basis())
@@ -1051,7 +1051,7 @@ m_millisHeartBeat.Now();
 
             property_set setEmpty;
 
-            if (pcontext->http().open(handler, psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (pcontext->m_papexcontext->http().open(handler, psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -1068,7 +1068,7 @@ m_millisHeartBeat.Now();
 
       set["get_memory"] = "";
 
-      if (!pcontext->http().request(handler, psession, strUrl, set))
+      if (!pcontext->m_papexcontext->http().request(handler, psession, strUrl, set))
       {
 
          return false;
@@ -1120,10 +1120,10 @@ m_millisHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(file_as_string(::dir::system() / "config\\system\\ignition_server.txt").has_char())
+      if(file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -1164,11 +1164,11 @@ m_millisHeartBeat.Now();
 
       varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = pcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
       varFile["url"] = strMatter;
 
-      return pcontext->file().as_string(varFile);
+      return pcontext->m_papexcontext->file().as_string(varFile);
 
    }
 

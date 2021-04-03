@@ -755,8 +755,8 @@ typedef struct tagENHMETAHEADER
    ::u32   offDescription;     // Offset to the metafile description record.
    // This is 0 if there is no description string
    ::u32   nPalEntries;        // Number of entries in the metafile palette.
-   SIZEL   szlDevice;          // Size of the context_object device in pels
-   SIZEL   szlMillimeters;     // Size of the context_object device in millimeters
+   SIZEL   szlDevice;          // Size of the object device in pels
+   SIZEL   szlMillimeters;     // Size of the object device in millimeters
 #if(WINVER >= 0x0400)
    ::u32   cbPixelFormat;      // Size of PIXELFORMATDESCRIPTOR information
    // This is 0 if no pixel format is set
@@ -766,7 +766,7 @@ typedef struct tagENHMETAHEADER
    // the metafile, otherwise false
 #endif /* WINVER >= 0x0400 */
 #if(WINVER >= 0x0500)
-   SIZEL   szlMicrometers;     // Size of the context_object device in micrometers
+   SIZEL   szlMicrometers;     // Size of the object device in micrometers
 #endif /* WINVER >= 0x0500 */
 
 } ENHMETAHEADER,*PENHMETAHEADER,*LPENHMETAHEADER;

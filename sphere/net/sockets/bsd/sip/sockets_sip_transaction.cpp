@@ -6,7 +6,7 @@ namespace sip
 {
 
 
-   transaction::transaction(::context_object * pcontextobject) :
+   transaction::transaction(::object * pobject) :
       ::object(pobject)
    {
 

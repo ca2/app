@@ -451,9 +451,9 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
+//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
 //
-//   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
+//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{
@@ -1011,9 +1011,9 @@ void openURL(const string& url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
+//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
 //
-//   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
+//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{

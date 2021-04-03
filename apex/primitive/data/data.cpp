@@ -107,12 +107,12 @@ namespace data
    void data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      if (m_pdatacontainerbase)
-      {
+      //if (m_pdatacontainerbase)
+      //{
 
-         m_pdatacontainerbase->process(psubject);
+      //   m_pdatacontainerbase->process(psubject);
 
-      }
+      //}
 
    }
 

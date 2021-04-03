@@ -338,7 +338,7 @@ int_bool WINAPI RtlTimeFieldsToTime(
 
    utc = time( nullptr );
 
-   synchronization_lock ml(g_pmutexTz);
+   synchronous_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
    if (utc != last_utc)
    {
@@ -767,7 +767,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
-   synchronization_lock ml(g_pmutexTz);
+   synchronous_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
    year_start = time(nullptr);

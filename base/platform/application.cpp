@@ -10,13 +10,15 @@ namespace base
       ::axis::application(pszAppId)
    {
 
+      m_pbaseapplication = this;
+
    }
 
 
-   ::e_status     application::initialize(::context_object * pcontextobject)
+   ::e_status     application::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::application::initialize(pcontextobject);
+      auto estatus = ::axis::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -25,7 +27,7 @@ namespace base
 
       }
 
-      estatus = ::user::document_manager_container::initialize(pcontextobject);
+      estatus = ::user::document_manager_container::initialize(pobject);
 
       if (!estatus)
       {

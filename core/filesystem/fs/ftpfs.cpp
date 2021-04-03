@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/net/ftp/_.h"
 #include "apex/filesystem/fs/_fs.h"
-#include "ftp_net.h"
+#include "ftpnet.h"
 #include "ftp_file.h"
 
 
@@ -12,10 +12,18 @@ ftpfs::ftpfs()
 }
 
 
-::e_status ftpfs::initialize_ftpfs(::object * pobject, const char * pszRoot)
+ftpfs::~ftpfs()
 {
 
-   auto estatus = ::fs::data::initialize(pcontextobject);
+   //::acme::del(m_pftpnet);
+
+}
+
+
+::e_status ftpfs::initialize_ftpfs(::object * pobject, const char* pszRoot)
+{
+
+   auto estatus = ::fs::data::initialize(pobject);
 
    if (!estatus)
    {
@@ -34,15 +42,8 @@ ftpfs::ftpfs()
 }
 
 
-ftpfs::~ftpfs()
-{
-
-   //::acme::del(m_pftpnet);
-
-}
-
 //
-//::e_status ftpfs::initialize(::context_object * pcontextobject)
+//::e_status ftpfs::initialize(::object * pobject)
 //{
 //
 //   auto estatus = __compose_new(this, m_pftpnet);
@@ -55,13 +56,15 @@ ftpfs::~ftpfs()
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    //   millis tickTimeout;
 
    dir_listing & dir = m_map[path];
 
-   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   auto psystem = m_psystem->m_pcoresystem;
+
+   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -78,11 +81,13 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[path];
 
-      if (dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+      auto psystem = m_psystem;
+
+      if (dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
       {
 
          return dir.get_count() > 0;
@@ -149,11 +154,13 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      if (dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+      auto psystem = m_psystem->m_paurasystem;
+
+      if (dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
       {
 
          listing = dir;
@@ -228,6 +235,8 @@ retry:
 
    string strPath;
 
+   auto psystem = m_psystem->m_paurasystem;
+
    strPath = psystem->url().get_object(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
@@ -276,7 +285,7 @@ retry:
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -344,11 +353,13 @@ int ftpfs::is_dir(const ::file::path & path)
 
    //millis tickTimeout;
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
-   if (dir.m_millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+   auto psystem = m_psystem->m_pcoresystem;
+
+   if (dir.m_millisLast.elapsed() > psystem->m_millisFileListingCache)
    {
 
       ::file::listing listing;
@@ -419,7 +430,9 @@ retry:
 
       }
 
-      ::file::path pathTemp = get_context()->file().time(get_context()->dir().time());
+      ::file::path pathTemp = m_pcontext->m_papexcontext->file().time(m_pcontext->m_papexcontext->dir().time());
+
+      auto psystem = m_psystem->m_papexsystem;
 
       string strRemoteFile = psystem->url().get_object(path);
 
@@ -441,7 +454,7 @@ retry:
 
       }
 
-      return get_context()->file().get_file(pathTemp, eopen);
+      return m_pcontext->m_papexcontext->file().get_file(pathTemp, eopen);
 
    }
    else
@@ -492,6 +505,8 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __new(::ftp::logon);
 
+   auto psystem = m_psystem->m_pcoresystem;
+
    plogon->Hostname() = psystem->url().get_server(strPath);
    //logon.Username() = psystem->url().get_username(listing.m_path);
 
@@ -503,10 +518,14 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    int iTry = 0;
 
+   auto papplication = m_pcontext->m_pcoreapplication;
+
    if (!pclient)
    {
 
-      pclient = __new(::ftp::client_socket(m_pftpnet->m_sockethandler));
+      pclient = __new(::ftp::client_socket);
+
+      pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       __pointer(::ftp::output) & poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 

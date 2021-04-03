@@ -59,7 +59,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { synchronization_lock synchronizationlock(mutex()); return m_elementa.is_empty();};
+   inline bool is_ending() { synchronous_lock synchronouslock(mutex()); return m_elementa.is_empty();};
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdate);};
 
    static inline bool should_poll(int iMillis)

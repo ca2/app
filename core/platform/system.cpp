@@ -1,7 +1,8 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "core/user/user/_user.h"
 #include "core/const/idpool.h"
+#include "core/net/ftp/file_status.h"
 
 
 bool __rich_text_initialize();
@@ -28,6 +29,8 @@ namespace core
    void system::common_construct()
    {
 
+      m_pcoresystem = this;
+
       create_factory < ::core::application, ::apex::application >();
       create_factory < ::core::session, ::apex::session >();
       create_factory < ::core::idpool, ::apex::idpool >();
@@ -37,10 +40,10 @@ namespace core
    }
 
 
-   ::e_status system::initialize(::context_object * pcontextobject)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::system::initialize(pcontextobject);
+      auto estatus = ::base::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -50,6 +53,28 @@ namespace core
       }
 
       return estatus;
+
+   }
+
+
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::bred::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_pcoresession)
+         {
+
+            m_pcoresession = papexsession->m_pcoresession;
+
+         }
+
+      }
+
+      papexsession->m_pcoresystem = this;
 
    }
 
@@ -65,6 +90,19 @@ namespace core
       }
 
       return ::success;
+
+   }
+
+
+   void system::InsertTime(::ftp::file_status& ftpFileStatus)
+   {
+      
+      if (ftpFileStatus.m_timeModification > 0)
+      {
+
+         ftpFileStatus.m_strModificationTime = datetime().international().get_gmt_date_time(ftpFileStatus.m_timeModification);
+
+      }
 
    }
 

@@ -17,7 +17,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
+   virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
 };

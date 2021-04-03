@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
 #include "core/user/account/_account.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "aura/user/shell.h"
@@ -92,10 +92,10 @@ namespace core
    }
 
 
-   ::e_status user::initialize(::context_object * pcontextobject)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::user::initialize(pcontextobject);
+      auto estatus = ::base::user::initialize(pobject);
 
       if (!estatus)
       {
@@ -161,27 +161,6 @@ namespace core
       //m_bProcessInitializeResult = true;
 
       return true;
-
-   }
-
-   ::user::shell* user::shell()
-   {
-
-      if (!m_pshell)
-      {
-
-         auto estatus = create_user_shell();
-
-         if (!estatus)
-         {
-
-            TRACE("failed to create user shell");
-
-         }
-
-      }
-
-      return m_pshell;
 
    }
 
@@ -254,7 +233,7 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -325,7 +304,7 @@ namespace core
 
       auto pcontext = get_context();
 
-      string strUser = pcontext->file().as_string(pcontext->dir().appdata() / "langstyle_settings.xml");
+      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
 
       string strLangUser;
 
@@ -450,7 +429,7 @@ namespace core
    }
 
 
-   void user::finalize()
+   ::e_status user::finalize()
    {
 
       try
@@ -475,40 +454,10 @@ namespace core
 
       }
 
-
-   }
-
-
-   ::e_status user::create_user_shell()
-   {
-
-      ::e_status estatus = ::success;
-
-      if (!m_pshell)
-      {
-
-         //estatus = __compose(m_pshell, __new(::windows::shell));
-         estatus = __compose(m_pshell);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-
-      if (!m_pshell)
-      {
-
-         return ::error_failed;
-
-      }
-
       return ::success;
 
    }
+
 
    ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
@@ -628,7 +577,7 @@ namespace core
 
       }
 
-      process_subject(pbox->m_idResponse);
+      //process_subject(pbox->m_idResponse);
 
       return pfuture;
 
@@ -924,7 +873,7 @@ namespace core
 
          auto psession = get_session();
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->savings().m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 
@@ -1472,26 +1421,26 @@ namespace core
    }
 
 
-   __pointer(::user::list_header) user::default_create_list_header(::context_object * pcontextobject)
+   __pointer(::user::list_header) user::default_create_list_header(::object * pobject)
    {
 
-      return pcontextobject->__id_create < ::user::list_header > (default_type_list_header());
+      return pobject->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
 
-   __pointer(::user::mesh_data) user::default_create_mesh_data(::context_object * pcontextobject)
+   __pointer(::user::mesh_data) user::default_create_mesh_data(::object * pobject)
    {
 
-      return pcontextobject->__id_create < ::user::mesh_data > (default_type_list_data());
+      return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
 
-   __pointer(::user::list_data) user::default_create_list_data(::context_object * pcontextobject)
+   __pointer(::user::list_data) user::default_create_list_data(::object * pobject)
    {
 
-      return pcontextobject->__id_create <::user::list_data >(default_type_list_data());
+      return pobject->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -2087,7 +2036,7 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          psystem->draw2d()->write_text()->fonts();
 

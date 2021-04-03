@@ -30,7 +30,7 @@ namespace node_ansios
 
       virtual ::e_status start() override;
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status get_system_time(system_time_t * psystemtime) override;
 

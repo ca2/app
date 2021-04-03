@@ -7,15 +7,15 @@ typedef map < task *, itask_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
-   virtual public context_object
+   virtual public object
 {
 
 public:
 
 
-   int                                 m_bitAvoidProcFork : 1;
+   int                                 m_bAvoidProcedureFork : 1;
    int                                 m_bitIsRunning : 1;
-   int                                 m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                                 m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
    int                                 m_bitCoInitialize : 1;
 
 
@@ -23,7 +23,7 @@ public:
    itask_t                           m_itask;
    string                              m_strTaskName;
    string                              m_strTaskTag;
-   __pointer(::context_object)    m_pobjectParent;
+   __pointer(::object)    m_pobjectParent;
 
    __pointer(::matter)            m_pmatter;
    __pointer(manual_reset_event)       m_pevSleep;

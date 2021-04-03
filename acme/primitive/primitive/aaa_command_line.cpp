@@ -241,10 +241,10 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
    if (!m_varQuery.propset().has_property("build") || m_varQuery["build"].is_empty())
    {
 
-      if (file_exists(::dir::system() / "config\\plugin\\build.txt"))
+      if (file_exists(pacmedir->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = file_as_string(::dir::system() / "config\\plugin\\build.txt");
+         string str = file_as_string(pacmedir->system() / "config\\plugin\\build.txt");
 
          m_varQuery["build"] = str;
 

@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::user::impact
    {
    public:
-      view(::context_object * pcontextobject);
+      view(::object * pobject);
       virtual ~view();
 
 

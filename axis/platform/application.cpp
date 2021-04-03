@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "axis/user/_user.h"
 #include "aura/id.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace axis
@@ -11,7 +12,7 @@ namespace axis
       ::aura::application(pszAppId)
    {
 
-      m_paxixapplication = this;
+      m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
    }
@@ -23,10 +24,10 @@ namespace axis
    }
 
 
-   ::e_status     application::initialize(::context_object * pcontextobject)
+   ::e_status     application::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::application::initialize(pcontextobject);
+      auto estatus = ::aura::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -302,49 +303,49 @@ namespace axis
 
 
 
-   ::e_status     application::main()
-   {
-
-      INFO("aura::application::main");
-
-      try
-      {
-
-         m_bReady = true;
-
-         m_estatus = on_run();
-
-//         if(m_iErrorCode != 0)
+//   ::e_status     application::main()
+//   {
+//
+//      INFO("aura::application::main");
+//
+//      try
+//      {
+//
+//         m_bReady = true;
+//
+//         m_estatus = on_run();
+//
+////         if(m_iErrorCode != 0)
+////         {
+////
+////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+////
+////            ::output_debug_string("application::main on_run termination failure\n");
+////
+////         }
+//
+//      }
+//      catch (const ::exception::exception & e)
+//      {
+//
+//         if (!handle_exception(e))
 //         {
 //
-//            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
-//
-//            ::output_debug_string("application::main on_run termination failure\n");
 //
 //         }
-
-      }
-      catch (const ::exception::exception & e)
-      {
-
-         if (!handle_exception(e))
-         {
-
-
-         }
-
-      }
-      catch (...)
-      {
-
-         //dappy(string(typeid(*this).name()) + " : on_run general exception");
-
-      }
-
-      return m_estatus;
-
-   }
-
+//
+//      }
+//      catch (...)
+//      {
+//
+//         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+//
+//      }
+//
+//      return m_estatus;
+//
+//   }
+//
 
    ::e_status application::init_instance()
    {
@@ -494,7 +495,7 @@ namespace axis
 
          data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_paurasystem;
 
          psystem->appa_load_string_table();
 
@@ -917,12 +918,12 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
             if (psystem != nullptr)
             {
 
-               psystem->request({::command_check_exit});
+               psystem->check_exit();
 
             }
 
@@ -1197,7 +1198,7 @@ namespace axis
 
          auto pcontext = get_context();
 
-         ::file::path pathFolder = pcontext->dir().appdata();
+         ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata();
 
          if (is_system())
          {
@@ -2112,10 +2113,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (file_as_string(::dir::system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

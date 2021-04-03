@@ -15,7 +15,7 @@ namespace helloworld
       view *                  m_pview;
 
 
-      switcher_view(::context_object * pcontextobject);
+      switcher_view(::object * pobject);
       virtual ~switcher_view();
 
 

@@ -2593,12 +2593,12 @@ extern struct _TEB * WINAPI NtCurrentTeb(void);
 //    ::u32 ne_csip;              /* 14 Initial CS:IP */
 //    ::u32 ne_sssp;              /* 18 Initial SS:SP */
 //    ::u16  ne_cseg;              /* 1c # of entries in segment table */
-//    ::u16  ne_cmod;              /* 1e # of entries in module context_object tab. */
+//    ::u16  ne_cmod;              /* 1e # of entries in module object tab. */
 //    ::u16  ne_cbnrestab;         /* 20 Length of nonresident-name table     */
 //    ::u16  ne_segtab;            /* 22 Offset to segment table */
 //    ::u16  ne_rsrctab;           /* 24 Offset to resource table */
 //    ::u16  ne_restab;            /* 26 Offset to resident-name table */
-//    ::u16  ne_modtab;            /* 28 Offset to module context_object table */
+//    ::u16  ne_modtab;            /* 28 Offset to module object table */
 //    ::u16  ne_imptab;            /* 2a Offset to imported name table */
 //    ::u32 ne_nrestab;           /* 2c Offset to nonresident-name table */
 //    ::u16  ne_cmovent;           /* 30 # of movable entry points */

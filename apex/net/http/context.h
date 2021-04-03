@@ -26,7 +26,7 @@ namespace http
          millis           m_millisLastChecked;
 
 
-         //pac(::context_object * pcontextobject);
+         //pac(::object * pobject);
          pac();
          virtual ~pac();
 
@@ -47,7 +47,7 @@ namespace http
          millis m_millisLastChecked;
 
 
-         //proxy(::context_object * pcontextobject);
+         //proxy(::object * pobject);
          proxy();
 
 
@@ -65,7 +65,7 @@ namespace http
 
 
 
-      //context(::context_object * pcontextobject);
+      //context(::object * pobject);
       context();
       virtual ~context();
 

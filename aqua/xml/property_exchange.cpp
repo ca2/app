@@ -6,7 +6,7 @@ namespace xml
 {
 
 
-   property_set_exchange::property_set_exchange(::context_object * pcontextobject)
+   property_set_exchange::property_set_exchange(::object * pobject)
    {
 
       m_ppropertyset = nullptr;

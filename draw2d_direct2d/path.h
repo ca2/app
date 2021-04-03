@@ -98,9 +98,9 @@ namespace draw2d_direct2d
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond);
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::text_out& ptextout);
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::text_out& ptextout);
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::draw_text& pdrawtext);
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& pdrawtext);
 
 
       static void CreatePathTextRenderer(FLOAT pixelsPerDip,IDWriteTextRenderer **textRenderer);

@@ -644,7 +644,8 @@ namespace html
          style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
          if(pstyle == nullptr)
          {
-            if(pelement->m_pparent != nullptr
+            if(::is_set(pelement->m_pparent)
+               && ::is_set(pelement->m_pparent->m_pstyle)
                   && ansi_compare_ci(idName, "padding") != 0
                   && ansi_compare_ci(idName, "margin") != 0
                   && ansi_compare_ci(idName, "border") != 0)
@@ -661,7 +662,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
                   auto pnode = psystem->node();
                   str = pnode->font_name(e_font_serif);
                   return true;
@@ -685,7 +686,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -710,7 +711,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);
@@ -735,7 +736,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
                   auto pnode = psystem->node();
 
                   str = pnode->font_name(e_font_serif);

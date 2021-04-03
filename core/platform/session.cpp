@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 namespace core
@@ -8,6 +8,8 @@ namespace core
 
    session::session()
    {
+
+      m_pcoresession = this;
 
    }
 
@@ -25,10 +27,10 @@ namespace core
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::session::initialize(pcontextobject);
+      auto estatus = ::base::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -41,6 +43,16 @@ namespace core
 
    }
 
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::bred::session::on_instantiate_application(papp);
+
+      papp->m_pcoresession = this;
+      papp->m_pcoresystem = m_pcoresystem;
+
+   }
 
    __namespace_session_factory(session);
 

@@ -5,7 +5,7 @@
 i32 g_idbchange;
 
 
-db_server::db_server(::context_object * pcontextobject) :
+db_server::db_server(::object * pobject) :
    ::object(pobject)
 {
 
@@ -75,9 +75,9 @@ bool db_server::initialize()
 
    string str;
 
-   str = pcontext->dir().userappdata("database.sqlite");
+   str = pcontext->m_papexcontext->dir().userappdata("database.sqlite");
 
-   pcontext->dir().mk(pcontext->dir().name(str));
+   pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(str));
 
    m_pdb->setDatabase(str);
 

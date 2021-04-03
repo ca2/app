@@ -1334,7 +1334,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       auto psession = get_session();
 
-      if (psession->savings().is_trying_to_save(::e_resource_processing))
+      if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
       {
 
          pgraphics->fill_rectangle(rectClient, rgb(255, 255, 255));

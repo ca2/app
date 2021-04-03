@@ -138,7 +138,7 @@ namespace windows
       virtual void * get_os_data() const;
 
 
-      //virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
+      //virtual ::e_status finish(::object * pcontextobjectFinish) override;
 
 
       //      virtual ::user::interaction * from_handle(::windowing::window * pwindow);

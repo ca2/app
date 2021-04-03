@@ -113,7 +113,7 @@ namespace linux
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         get_context()->dir().mk(pszFileName.folder());
+         pcontext->m_papexcontext->dir().mk(pszFileName.folder());
 
 
       }

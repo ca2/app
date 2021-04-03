@@ -394,7 +394,7 @@ namespace macos
        keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
        keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
        keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-       keyPlugin.SetValue("Version", get_application()->file_as_string(get_context()->dir().ca2("appdata/x86/ca2_build.txt")));
+       keyPlugin.SetValue("Version", get_application()->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
        registry::Key keyApplicationCa2;
 
@@ -842,7 +842,7 @@ namespace macos
       {
 
          //string strDir;
-         //strDir = get_context()->dir().path(getenv("HOME"), "Pictures");
+         //strDir = pcontext->m_papexcontext->dir().path(getenv("HOME"), "Pictures");
          //imagefileset.add_search(strDir);
          string strDir;
          strDir = "/Library/Desktop Pictures";
@@ -941,7 +941,7 @@ namespace macos
 
       }
 
-      if(get_context()->dir().is(strAppReturn))
+      if(pcontext->m_papexcontext->dir().is(strAppReturn))
       {
 
          return strAppReturn;
@@ -974,7 +974,7 @@ namespace macos
 
          ::file::path p;
 
-         p = ::dir::ca2roaming();
+         p = pacmedir->ca2roaming();
 
          p /= "mypath" / pcommand->m_pcommandline->m_varQuery.propset()["app"].get_string() + ".txt";
 
@@ -987,24 +987,24 @@ namespace macos
          if(iFind > 0)
          {
 
-            p = ::dir::ca2roaming();
+            p = pacmedir->ca2roaming();
 
             p /= "mypath" / pcommand->m_pcommandline->m_varQuery.propset()["app"].get_string() + "-app";
 
             ::file::path p2;
 
-            p2 = ::dir::ca2roaming();
+            p2 = pacmedir->ca2roaming();
 
             p2 /= "mypath" / ::file::path(pcommand->m_pcommandline->m_varQuery.propset()["app"].get_string()).folder()/ ::file::path(strApp.Left(iFind + strlen(".app"))).name();
 
             ns_create_alias(p2, strApp.Left(iFind + strlen(".app")));
 
-            if(::dir::is(::dir::localconfig() / "monitor-0/desk/2desk"))
+            if(::dir::is(pacmedir->localconfig() / "monitor-0/desk/2desk"))
             {
 
                ::file::path p3;
 
-               p3 = ::dir::localconfig() / "monitor-0/desk/2desk" / ::file::path(strApp.Left(iFind + strlen(".app"))).name();
+               p3 = pacmedir->localconfig() / "monitor-0/desk/2desk" / ::file::path(strApp.Left(iFind + strlen(".app"))).name();
 
                ns_create_alias(p3, strApp.Left(iFind + strlen(".app")));
 

@@ -252,7 +252,7 @@ namespace http
 
                      //static ::mutex s_mutex(nullptr);
 
-                     //single_lock synchronizationlock(&s_mutex, true);
+                     //single_lock synchronouslock(&s_mutex, true);
 
                      while (true)
                      {
@@ -263,7 +263,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!get_context()->file().exists(strTempFile))
+                        if (!m_pcontext->m_papexcontext->file().exists(strTempFile))
                         {
 
                            break;
@@ -272,7 +272,7 @@ namespace http
 
                         string strMessage;
 
-                        auto psystem = get_system();
+                        auto psystem = m_psystem->m_papexsystem;
 
                         strMessage = psystem->datetime().international().get_gmt_date_time() + " " + strTempFile;
 
@@ -282,9 +282,9 @@ namespace http
 
                      }
 
-                     file_pointer spfile(get_context()->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(m_pcontext->m_papexcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
-                     //synchronizationlock.unlock();
+                     //synchronouslock.unlock();
 
                      if(spfile.is_set())
                      {

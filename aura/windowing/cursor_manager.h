@@ -12,7 +12,7 @@ namespace windowing
    // with him in Chat again, now at windowing component...
 
    class CLASS_DECL_AURA cursor_manager :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -44,7 +44,7 @@ namespace windowing
       ::e_status set_cursor_set_system_default();
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
    };
@@ -94,7 +94,7 @@ namespace windowing
 //      ::count set_cursor_set_system_default();
 //
 //
-//      virtual void finalize() override;
+//      virtual ::e_status finalize() override;
 //
 //
 //   };

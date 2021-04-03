@@ -254,7 +254,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  auto psystem = get_system();
+                  auto psystem = m_psystem->m_paurasystem;
 
 
 

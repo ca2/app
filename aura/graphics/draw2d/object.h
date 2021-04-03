@@ -6,7 +6,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA object :
-      virtual public ::matter,
+      virtual public ::material_object,
       virtual public ::osdata_array
    {
    public:

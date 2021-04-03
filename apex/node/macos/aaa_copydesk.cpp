@@ -136,10 +136,10 @@ namespace macos
 
 
 
-   ::e_status copydesk::initialize(::context_object * pcontextobject)
+   ::e_status copydesk::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pcontextobject);
+      auto estatus = ::user::copydesk::initialize(pobject);
       
       if(!estatus)
       {
@@ -159,7 +159,7 @@ namespace macos
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
      

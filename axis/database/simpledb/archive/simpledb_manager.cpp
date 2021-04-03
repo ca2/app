@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   manager::manager(::context_object * pcontextobject) :
+   manager::manager(::object * pobject) :
       ::object(pobject),
       thread(pobject),
       
@@ -85,7 +85,7 @@ namespace simpledb
 
    session * & manager::get_session(const char * pszId)
    {
-      single_lock synchronizationlock(&m_mutexSession, true);
+      single_lock synchronouslock(&m_mutexSession, true);
       ::simpledb::session * & psession = m_mapSession[pszId];
       return psession;
    }

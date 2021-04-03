@@ -67,7 +67,7 @@ private:
 
    bool is_closing_;
 
-   // Include the default context_object counting implementation.
+   // Include the default object counting implementation.
    IMPLEMENT_REFCOUNTING(SimpleHandler);
 };
 

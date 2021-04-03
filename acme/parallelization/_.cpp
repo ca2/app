@@ -101,7 +101,7 @@ namespace parallelization
 
    //   }
 
-   //   synchronization_lock synchronizationlock(get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(get_system()->m_mutexThread);
 
    //   for (auto & pair : get_system()->m_threadidmap)
    //   {
@@ -132,7 +132,7 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronization_lock synchronizationlock(get_system()->m_mutexThread);
+   //   synchronous_lock synchronouslock(get_system()->m_mutexThread);
 
    //   for (auto& pair : get_system()->m_threadidmap)
    //   {

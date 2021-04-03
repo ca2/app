@@ -96,10 +96,10 @@ namespace sockets
    }
 
 
-   ::e_status resolv_socket::initialize(::context_object * pcontextobject)
+   ::e_status resolv_socket::initialize(::object * pobject)
    {
 
-      auto estatus = tcp_socket::initialize(pcontextobject);
+      auto estatus = tcp_socket::initialize(pobject);
 
       if (!estatus)
       {
@@ -131,11 +131,14 @@ namespace sockets
    }
 
 
-   void resolv_socket::finalize()
+   ::e_status resolv_socket::finalize()
    {
 
       m_psystem.release();
+
       m_paddressdepartment.release();
+
+      return ::success;
 
    }
 

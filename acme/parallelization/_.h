@@ -3,6 +3,15 @@
 
 #include "common.h"
 
+namespace factory
+{
+
+
+   template < typename TYPE, typename BASE_TYPE >
+   class reusable_factory;
+
+
+} // namespace factory
 
 #ifndef WINDOWS
 
@@ -15,6 +24,20 @@
 
 #ifdef APPLEOS
 #include <semaphore.h>
+#endif
+
+#include "synchronization_result.h"
+
+#ifdef PARALLELIZATION_PTHREAD
+
+#define CRITICAL_SECTION_FUNCTION_RETURN int
+
+CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
+
+#else
+
+#define CRITICAL_SECTION_FUNCTION_RETURN void
+
 #endif
 
 
@@ -188,7 +211,7 @@ namespace parallelization
 
 
 class sync_interface;
-class synchronization_lock;
+class synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
@@ -204,7 +227,7 @@ class synchronization_lock;
 //
 //   virtual ::count get_count_except_current_thread();
 //   virtual void finish();
-//   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
+//   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 //
 //   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
 //   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -228,7 +251,7 @@ class synchronization_lock;
 #include "single_lock.h"
 //#include "retry_single_lock.h"
 #include "initial_single_lock.h"
-#include "synchronization_lock.h"
+#include "synchronous_lock.h"
 #include "multiple_lock.h"
 //#include "retry_multi_lock.h"
 

@@ -9,7 +9,7 @@ class simple_tool_command : public ::message::command        // class private to
 {
 public: // re-implementations only
 
-   simple_tool_command(::context_object * pcontextobject);
+   simple_tool_command(::object * pobject);
    virtual void enable(bool bOn = true, const ::action_context & context = ::e_source_system);
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
@@ -1601,10 +1601,10 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through simple_tool_command class
 
-simple_tool_command::simple_tool_command(::context_object * pcontextobject)
+simple_tool_command::simple_tool_command(::object * pobject)
 {
 
-   initialize(pcontextobject);
+   initialize(pobject);
 
 }
 
@@ -1811,7 +1811,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index nCount, index nWidth)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    index nResult = 0;
 

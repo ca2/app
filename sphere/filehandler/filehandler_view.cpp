@@ -6,12 +6,12 @@ namespace filehandler
 {
 
 
-   view::view(::context_object * pcontextobject) :
+   view::view(::object * pobject) :
       ::object(pobject),
       m_pfont(e_create)
    {
       m_pxmldoc = new xml::document(this);
-      m_pfont->create_point_font(os_font_name(e_font_sans_ex),14.0);
+      m_pfont->create_point_font(pnode->font_name(e_font_sans_ex),14.0);
 
    }
 
@@ -105,7 +105,7 @@ namespace filehandler
 
    }
 
-   view::item::item(::context_object * pcontextobject) :
+   view::item::item(::object * pobject) :
       ::object(pobject)
    {
 
@@ -160,7 +160,7 @@ namespace filehandler
    }
 
 
-   view::list::list(::context_object * pcontextobject) :
+   view::list::list(::object * pobject) :
       ::object(pobject)
    {
       m_iItemHeight = 30;

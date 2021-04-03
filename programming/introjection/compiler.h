@@ -11,7 +11,7 @@ namespace introjection
    public:
 
 
-      __pointer(::apex::library)                m_plibrary;
+      __pointer(::acme::library)                m_plibrary;
       ::file::path                              m_pathScript;
       ::string_stream                           m_memfileError;
       string                                    m_strError;
@@ -21,7 +21,7 @@ namespace introjection
       library();
       virtual ~library();
 
-      virtual ::e_status initialize(::context_object* pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
    };
@@ -77,13 +77,13 @@ namespace introjection
       compiler();
       virtual ~compiler();
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       void initialize_compiler(const char * pszRepos, const char * pszApp, const char * pszProjectName);
       void prepare1(const char * lpcszSource,const char * lpcszDest);
       void prepare_compile_and_link_environment();
 
-      ::apex::library * compile(string str,bool bNew);
+      ::acme::library * compile(string str,bool bNew);
 
 
    };

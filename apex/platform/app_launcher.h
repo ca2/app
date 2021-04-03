@@ -6,7 +6,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX app_launcher : 
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -20,7 +20,7 @@ namespace apex
 
       app_launcher();
 
-      virtual ::e_status initialize_app_launcher(::context_object* pcontextobject, string strPlatform, string strApp);
+      virtual ::e_status initialize_app_launcher(::object * pobject, string strPlatform, string strApp);
 
 
       virtual string get_executable_path();

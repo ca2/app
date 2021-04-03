@@ -69,9 +69,9 @@
 
       virtual ::e_status stop_service();
 
-      virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
+      virtual bool enable_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
 
-      virtual bool remove_service(const string & strServiceName);
+      virtual bool disable_service(const string & strServiceName);
 
       virtual bool start_service(const string & strServiceName);
 

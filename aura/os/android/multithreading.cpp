@@ -13,7 +13,7 @@ bool defer_process_x_message(htask_t hthread, MESSAGE * lpMsg, oswindow interact
    if(hthread == nullptr || hthread->m_pthread == nullptr || hthread->get_x_window_count() <= 0)
       return false;
 
-   synchronization_lock synchronizationlock(&user_mutex());
+   synchronous_lock synchronouslock(&user_mutex());
 
    bool bRet = false;
 

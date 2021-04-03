@@ -73,12 +73,14 @@ namespace windowing
    }
 
 
-   void windowing::finalize()
+   ::e_status windowing::finalize()
    {
 
       m_pcursormanager.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::apex::department::finalize();
+
+      return estatus;
 
    }
 
@@ -108,7 +110,7 @@ namespace windowing
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pcursormanager.is_null())
       {
@@ -134,7 +136,7 @@ namespace windowing
    ::e_status windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bSettingCursorMatter)
       {
@@ -145,7 +147,7 @@ namespace windowing
 
       __keep(m_bSettingCursorMatter);
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       auto estatus = __construct(m_pcursormanager);
 
@@ -584,7 +586,7 @@ namespace windowing
 
       }
 
-      ////pcursor->m_pimage = papplication->image().load_image(path, bFromCache, bSync);
+      ////pcursor->m_pimage = pcontext->m_pauracontext->image().load_image(path, bFromCache, bSync);
 
       return true;
 

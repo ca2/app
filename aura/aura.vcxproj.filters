@@ -1070,6 +1070,9 @@
     <ClInclude Include="windowing\_impl.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
+    <ClInclude Include="platform\context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1635,6 +1638,9 @@
     </ClCompile>
     <ClCompile Include="user\message_window.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -520,7 +520,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crTopLeft);
@@ -539,7 +539,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crTopLeft);
@@ -559,7 +559,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x + cx - 1, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crBottomRight);
@@ -579,7 +579,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + cy - 1, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crBottomRight);

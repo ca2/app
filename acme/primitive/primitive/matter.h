@@ -99,6 +99,10 @@ public:
 
    inline bool is_set() const { return ::is_set(this); }
 
+
+   inline bool is_shared() const { return m_countReference > 1; }
+
+
    // synchronization_object/::mutex
    inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
@@ -122,7 +126,7 @@ public:
    virtual void task_remove(::task* pthread);
 
 
-   virtual void notify_on_finish(::property_object * pcontextobject);
+   virtual void notify_on_finish(::property_object * pobject);
 
 
    virtual void kick_idle();
@@ -131,7 +135,7 @@ public:
    //::e_status remove_update(const ::id& id);
    void remove_from_any_source();
 
-   inline bool is_shared() const { return m_countReference > 1; }
+   //inline bool is_shared() const { return m_countReference > 1; }
 
 
    inline const char* type_c_str() const { return typeid(*this).name(); }
@@ -151,15 +155,18 @@ public:
    inline i64 release(OBJ_REF_DBG_PARAMS);
 #endif
 
-   virtual ::e_status initialize(::context_object * pcontextobject);
-   //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual void finalize();
+   virtual ::e_status initialize(::object * pobject);
+   virtual ::e_status set_finish();
+   virtual ::e_status finalize();
 
 
+   virtual ::e_status set_library_name(const char* pszLibraryName);
+   // if this is an application/or nano application
+   virtual ::e_status set_application_id(const char* pszApplicationId);
 
 
-   virtual ::e_status do_task();
-   virtual ::e_status on_task();
+   //virtual ::e_status do_task();
+   //virtual ::e_status on_task();
 
 
    virtual ::e_status osthread_init();
@@ -211,14 +218,16 @@ public:
    inline bool finish_bit() const { return m_bSetFinish; }
 
 
-   virtual void on_finish();
-   virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
-   virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish);
+   virtual ::e_status on_finish();
+   //virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
+   //virtual ::e_status set_finish();
+   virtual ::e_status finish_composites();
 
 
    // returns success when object is ready to have finalize called
    // returns error_pending if any child or ascendant is still active
-   virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
+   //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
+   virtual ::e_status finish();
 
 
    virtual void post_quit();
@@ -252,16 +261,19 @@ public:
    inline void defer_set_loading() { if (!is_loading()) set_loading(); }
 
 
-   inline ::matter * context_trace_object() const { return (::matter *)this; }
+   inline const ::matter * context_trace_object() const { return this; }
 
 
-   virtual void __tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-   virtual void __tracef(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-   virtual void __tracev(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+   virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
+   virtual void __tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const;
+   virtual void __tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args) const;
+
+   virtual void __simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const;
+   virtual void __simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const;
 
 
-   virtual e_trace_category trace_category(matter * pcontext);
-   virtual e_trace_category trace_category();
+   virtual e_trace_category trace_category(const matter * pcontext) const;
+   virtual e_trace_category trace_category() const;
 
 
    virtual const char * topic_text() const;

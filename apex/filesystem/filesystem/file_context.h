@@ -11,7 +11,7 @@ public:
    virtual ~file_context();
 
    
-   virtual ::e_status initialize(::context_object * pcontextobject) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual ::e_status init_system();
@@ -212,7 +212,7 @@ public:
 
    virtual ::file_result http_get_file(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
+   virtual ::file_result get_file(const ::payload & varFile, const ::file::e_open & eopen);
 
    virtual ::file_result get_reader(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 

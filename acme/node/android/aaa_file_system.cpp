@@ -32,7 +32,7 @@ namespace android
    ::e_status file_system::initialize(::matter * pobject)
    {
 
-      auto estatus = ::file_system::initialize(pcontextobject);
+      auto estatus = ::file_system::initialize(pobject);
 
       if (!estatus)
       {
@@ -49,7 +49,7 @@ namespace android
    ::e_status file_system::update_module_path()
    {
 
-      m_pathModule = ::file::app_module();
+      m_pathModule = m_psystem->m_pacmepath->app_module();
 
       m_pathCa2Module = m_pathModule;
 

@@ -91,7 +91,7 @@ namespace windowing
    }
 
 
-   void cursor_manager::finalize()
+   ::e_status cursor_manager::finalize()
    {
 
       for (auto & pcursor : m_cursormap.values())
@@ -103,7 +103,9 @@ namespace windowing
 
       m_cursormap.remove_all();
 
-      ::matter::finalize();
+      auto estatus = ::matter::finalize();
+
+      return estatus;
 
    }
 
@@ -171,7 +173,7 @@ namespace windowing
    __pointer(cursor) cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & pcursor = m_cursormap[ecursor];
 
@@ -200,7 +202,7 @@ namespace windowing
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pcursor = get_cursor(ecursor);
 
@@ -208,7 +210,7 @@ namespace windowing
 
       auto path = pathParam;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
@@ -258,7 +260,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->file().as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
 
    }
 
@@ -318,7 +320,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      ::file::path pathArrow = pcontext->dir().matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
 
       ::file::path pathFolder = pathArrow.folder();
 
@@ -655,7 +657,7 @@ namespace windowing
    __pointer(cursor) cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       cursor * pcursor = get_cursor(ecursor);
 

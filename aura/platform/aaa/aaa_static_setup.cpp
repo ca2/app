@@ -169,7 +169,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::library* static_setup::create_new_library()
+::acme::library* static_setup::create_new_library()
 {
 
    auto plibrary = new_library();
@@ -203,7 +203,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-::apex::library* static_setup::new_library()
+::acme::library* static_setup::new_library()
 {
 
    return nullptr;

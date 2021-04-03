@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::context_object * pcontextobject)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::session::initialize(pcontextobject);
+      auto estatus = ::aura::session::initialize(pobject);
 
       if (!estatus)
       {

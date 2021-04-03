@@ -54,7 +54,7 @@ namespace user
       //if(m_puserinteraction != nullptr)
       //{
 
-      //   synchronization_lock synchronizationlock(get_ui_destroyed_mutex());
+      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex());
 
       //   if(m_bDestroyed)
       //   {

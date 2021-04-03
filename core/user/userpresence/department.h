@@ -21,8 +21,8 @@ namespace userpresence
       virtual ~department();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
 
       virtual bool defer_initialize_user_presence();

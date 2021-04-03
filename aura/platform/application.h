@@ -8,7 +8,8 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
       virtual public ::user::callback,
-      virtual public ::filemanager::callback
+      virtual public ::filemanager::callback,
+      virtual public ::aura::context
    {
    public:
 
@@ -150,12 +151,14 @@ namespace aura
       virtual ~application();
 
 
-      virtual ::e_status initialize(::context_object * pcontextobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
+
+      virtual void enumerate_composite(matter_array& a);
 
       inline ::aura::game* game() { return m_pgame->m_pauragame; }
 
@@ -198,7 +201,7 @@ namespace aura
       virtual ::e_status verb() override;
 
 
-      inline ::aura::session* get_session() { return m_psession ? m_psession.cast < ::aura::session>().m_p : nullptr; }
+      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
       inline ::aura::system* get_system();
 
 
@@ -375,7 +378,7 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
 
       //::apex::application_menu & applicationmenu();
@@ -417,7 +420,7 @@ namespace aura
       //virtual ::file::path local_application_home_path() override;
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       //virtual void release_parents() override;
@@ -435,7 +438,7 @@ namespace aura
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
-      virtual bool start_application(bool bSynch, ::create * pcreate) override;
+      //virtual bool start_application(bool bSynch, ::create * pcreate) override;
 
 
 
@@ -684,7 +687,7 @@ namespace aura
       //virtual bool assert_user_logged_in();
 
       //virtual ::e_status     do_request(::create * pcreate) override;
-      virtual ::e_status     call_request(::create * pcreate) override;
+      virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -853,7 +856,7 @@ namespace aura
       virtual void HideApplication() override;
 
 
-      //virtual ::e_status initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -1190,6 +1193,9 @@ namespace aura
       void ensure_app_interest();
 
 
+      virtual bool is_system() const override;
+      virtual bool is_session() const override;
+
       //virtual oswindow get_ca2_app_wnd(const char* psz) override;
 
 
@@ -1243,7 +1249,7 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::e_status add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::acme::library * plibrary);
 
       //virtual ::e_status initialize_userex();
       //virtual ::e_status userfs_init1();
@@ -1348,7 +1354,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      //virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;

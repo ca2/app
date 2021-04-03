@@ -214,19 +214,19 @@ namespace experience
    }
 
 
-   ::experience::experience* frame_window::get_new_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::create_experience(const char* pszExperienceLibrary)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      return puser->experience()->get_new_experience2(this, pszExperienceLibrary);
+      return puser->experience()->create_experience2(this, pszExperienceLibrary);
 
    }
 
 
-   ::experience::experience* frame_window::get_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::get_experience(const char* pszExperienceLibrary)
    {
 
       auto psession = get_session();
@@ -238,7 +238,7 @@ namespace experience
    }
 
 
-   ::experience::frame* frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
+   __pointer(::experience::frame) frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
    {
 
       auto psession = get_session();
@@ -1808,7 +1808,7 @@ namespace experience
 
          }
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_pbasesystem;
 
          double dMargin = psystem->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
 

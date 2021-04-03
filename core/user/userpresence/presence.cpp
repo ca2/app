@@ -6,7 +6,7 @@ namespace userpresence
 {
 
 
-   presence::presence(::context_object * pcontextobject) :
+   presence::presence(::object * pobject) :
       ::object(pobject)
    {
 
@@ -64,7 +64,7 @@ namespace userpresence
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
-      string strHost = pcontext->file().as_string(pcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.cc");
       straRequestingServer.add("eu-api.ca2.cc");
@@ -80,7 +80,7 @@ namespace userpresence
 
       property_set set;
 
-      pcontext->http().get(strUrl, set);
+      pcontext->m_papexcontext->http().get(strUrl, set);
 
    }
 

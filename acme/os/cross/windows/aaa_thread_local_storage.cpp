@@ -89,7 +89,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 //thread_data_index thread_data_allocate()
 //{
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   if (g_puaThreadLocalDataFreeIndexes->get_count() > 0)
 //   {
@@ -113,7 +113,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 //
 //   }
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   try
 //   {
@@ -185,7 +185,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 //   try
 //   {
 //
-//      synchronization_lock lock(g_pmutexThreadLocalData);
+//      synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //      auto pthreadlocaldata = ___get_thread_local_data(idthread);
 //
@@ -240,7 +240,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 //
 //   }
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   auto pthreadlocaldata = ___get_thread_local_data(idthread);
 //
@@ -268,7 +268,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 ////   if (pthreadlocaldata)
 //   {
 //
-//      synchronization_lock ml(g_pmutexThreadLocalData);
+//      synchronous_lock ml(g_pmutexThreadLocalData);
 //
 //      g_pmapThreadLocalData->remove_key(get_current_ithread());
 //
@@ -280,7 +280,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 // void* thread_get_data(thread_data_index dwIndex)
 // {
 
-//    synchronization_lock ml(g_pmutexThreadLocalData);
+//    synchronous_lock ml(g_pmutexThreadLocalData);
 
 //    thread_local_data* pthreadlocaldata = ___get_current_thread_local_data();
 

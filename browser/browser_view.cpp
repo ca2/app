@@ -14,7 +14,7 @@ namespace browser
 {
 
 
-   view::view(::context_object * pcontextobject):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject)
    {
@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            synchronization_lock synchronizationlock(&m_mutexText);
+            synchronous_lock synchronouslock(&m_mutexText);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            synchronization_lock synchronizationlock(&m_mutexText);
+            synchronous_lock synchronouslock(&m_mutexText);
 
             if (m_bPendingImageChange)
             {
@@ -180,7 +180,7 @@ namespace browser
 
                   string strFork = m_strImage.c_str();
 
-                  synchronizationlock.unlock();
+                  synchronouslock.unlock();
 
                   fork([this, strFork]()
                   {
@@ -210,11 +210,11 @@ namespace browser
    void view::on_layout()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       {
 
-         synchronization_lock slText(&m_mutexText);
+         synchronous_lock slText(&m_mutexText);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -473,7 +473,7 @@ namespace browser
    void view::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      synchronization_lock slText(&m_mutexText);
+      synchronous_lock slText(&m_mutexText);
 
       string str;
 
@@ -600,7 +600,7 @@ namespace browser
    string view::get_browser()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -664,14 +664,14 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
 
             m_prender->m_strHelloBrowser = m_strProcessedHellomultiverse.c_str(); // rationale : string allocation fork *for parallelization*
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             set_need_layout();
 
@@ -685,7 +685,7 @@ namespace browser
    void view::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -722,7 +722,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  synchronization_lock synchronizationlock(mutex());
+                  synchronous_lock synchronouslock(mutex());
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -751,7 +751,7 @@ namespace browser
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          m_strNewHelloBrowser = strText;
 
@@ -892,7 +892,7 @@ namespace browser
                       int height)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pixmap p;
 

@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "acme/id.h"
+#include "node.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 ::acme::system * g_psystem = nullptr;
@@ -15,14 +18,19 @@ namespace acme
    system::system()
    {
 
+      m_pcleanuptask = __new(::parallelization::cleanup_task);
+
+      m_pcleanuptask->begin();
+
       m_psystem = this;
-      m_papexsystem = nullptr;
-      m_paquasystem = nullptr;
-      m_paurasystem = nullptr;
-      m_paxixsystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pbredsystem = nullptr;
-      m_pcoresystem = nullptr;
+
+      //m_pacme = nullptr;
+      //m_pacmedir = nullptr;
+      //m_pacmepath = nullptr;
+
+      m_pacmesystem = this;
+      ::object::m_pcontext = this;
+
 
 #ifdef LINUX
 
@@ -103,7 +111,7 @@ namespace acme
 
       }
 
-      auto estatus = __construct(m_pnode);
+      auto estatus = __compose(m_pnode);
 
       if(!estatus)
       {
@@ -115,6 +123,63 @@ namespace acme
       estatus = m_pnode->initialize_matter(this);
 
       if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::process_init()
+   {
+
+      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
+
+      if (!m_pfactorymapsquare)
+      {
+
+         return ::success;
+
+      }
+
+      auto estatus = do_factory_exchange("acme", "windows");
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = __compose(m_pacmenode);
+
+      //if (!m_pacmenode)
+      //{
+
+      //   return error_no_memory;
+
+      //}
+
+      estatus = __compose(m_pacmedir);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+//      m_pacmedir = pacmedir;
+
+  //    m_pacmedir->add_ref();
+
+      estatus = __compose(m_pacmepath);
+
+      if (!estatus)
       {
 
          return estatus;
@@ -234,7 +299,7 @@ namespace acme
    ::task * system::get_task(itask_t itask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       return m_taskmap[itask];
 
@@ -244,7 +309,7 @@ namespace acme
    itask_t system::get_task_id(const ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       itask_t itask = null_ithread;
 
@@ -263,7 +328,7 @@ namespace acme
    void system::set_task(itask_t itask, ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
       m_taskmap[itask].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -275,7 +340,7 @@ namespace acme
    void system::unset_task(itask_t itask, ::task * ptask)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTask);
+      synchronous_lock synchronouslock(&m_mutexTask);
 
 #if OBJ_REF_DBG
 
@@ -298,7 +363,7 @@ namespace acme
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::context_object* pcontextobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::object* pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto presult = __new(::future < ::conversation >);
@@ -316,45 +381,6 @@ namespace acme
    }
 
 
-} // namespace acme
-
-
-string __get_text(const string & str)
-{
-
-   return ::g_psystem->__get_text(str);
-
-}
-
-
-CLASS_DECL_ACME ::acme::system * get_context_system()
-{
-
-   return g_psystem;
-
-}
-
-
-CLASS_DECL_ACME void acme_system_init()
-{
-
-   g_psystem = new acme::system();
-
-}
-
-
-CLASS_DECL_ACME void acme_system_term()
-{
-
-   ::acme::del(g_psystem);
-
-}
-
-
-namespace acme
-{
-
-
    CLASS_DECL_ACME system * get_system()
    {
 
@@ -367,7 +393,7 @@ namespace acme
    bool system::is_task_on(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       return m_mapTaskOn.plookup(id) != nullptr;
 
@@ -392,7 +418,7 @@ namespace acme
    void system::set_task_on(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       m_mapTaskOn.set_at(id, id);
 
@@ -402,7 +428,7 @@ namespace acme
    void system::set_task_off(itask_t id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexTaskOn);
+      synchronous_lock synchronouslock(&m_mutexTaskOn);
 
       m_mapTaskOn.remove_key(id);
 
@@ -425,7 +451,401 @@ namespace acme
    }
 
 
+   ::e_status system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      ::factory_map* pfactorymap = ::factory::get_factory_map();
+
+      pfn_factory_exchange(pfactorymap);
+
+      return ::success;
+
+#endif
+
+   }
+
+
+   ::e_status system::init_system()
+   {
+
+      auto estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::init1()
+   {
+
+      return ::success;
+
+   }
+
+
+   __pointer(::acme::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      __pointer(::acme::system) psystem = get_system();
+
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+
+      __pointer(::acme::library) plibrary = psystem->m_mapLibrary[pszComponent];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::acme::library);
+
+         plibrary->initialize_matter(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
+
+   __pointer(::acme::library) system::open_containerized_component_library(const char* pszComponent, const char* pszImplementation)
+   {
+
+      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      strComponent.trim();
+
+      strImplementation.trim();
+
+      string strLibrary;
+
+      if (strImplementation.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+      __pointer(::acme::system) psystem = get_system();
+
+      synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
+
+      __pointer(::acme::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      strLibrary = strComponent + "_" + strImplementation;
+
+#ifdef CUBE
+
+      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+      if (!plibraryfactory)
+      {
+
+         return nullptr;
+
+      }
+
+      plibrary = plibraryfactory->new_library();
+
+#else
+
+      if (!plibrary)
+      {
+
+         plibrary = __new(::acme::library);
+
+         plibrary->initialize_matter(this);
+
+      }
+
+      if (!plibrary->open(strLibrary))
+      {
+
+         return nullptr;
+
+      }
+
+      if (!plibrary->is_opened())
+      {
+
+         return nullptr;
+
+      }
+
+#endif
+
+      return plibrary;
+
+   }
+
+   
+   ::acme::library * system::on_get_library(const char * pszLibrary)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::extended::transport < ::acme::library > system::do_containerized_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   {
+
+      string strComponent(pszComponent);
+
+      string strImplementation(pszImplementation);
+
+      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+      ::str::begins_eat_ci(strImplementation, strComponent);
+
+#ifdef CUBE
+
+      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      if (::is_null(pfnFactoryExchange))
+      {
+
+         return ::error_failed;
+
+      }
+
+      pfnFactoryExchange();
+
+      return ::success;
+
+#else
+
+      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return ::error_failed;
+
+      }
+
+      string strFunctionName = strComponent + "_" + strImplementation + "_factory_exchange";
+
+      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strFunctionName);
+
+      if (pfn_factory_exchange == nullptr)
+      {
+
+         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+
+         if (pfn_factory_exchange == nullptr)
+         {
+
+            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
+
+            if (pfn_factory_exchange == nullptr)
+            {
+
+               return ::error_failed;
+
+            }
+
+         }
+
+      }
+
+      ::__construct_new(plibrary->m_pfactorymap);
+
+      plibrary->m_pfactorymap->initialize_matter(this);
+
+      pfn_factory_exchange(plibrary->m_pfactorymap);
+
+#endif
+
+      return plibrary;
+
+   }
+
+
+   void system::check_exit()
+   {
+
+
+   }
+
+
 } // namespace acme
 
+
+
+
+
+
+string __get_text(const string& str)
+{
+
+   return ::g_psystem->__get_text(str);
+
+}
+
+
+CLASS_DECL_ACME::acme::system* get_context_system()
+{
+
+   return g_psystem;
+
+}
+
+
+CLASS_DECL_ACME void acme_system_init()
+{
+
+   g_psystem = new acme::system();
+
+}
+
+
+CLASS_DECL_ACME void acme_system_term()
+{
+
+   ::acme::del(g_psystem);
+
+}
 
 

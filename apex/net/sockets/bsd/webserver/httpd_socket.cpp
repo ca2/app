@@ -92,7 +92,7 @@ namespace sockets
          else*/
       {
 
-         auto psystem = get_system();
+         auto psystem = m_psystem->m_papexsystem;
 
          memory mem;
          psystem->base64().decode(mem, str64);
@@ -188,7 +188,7 @@ namespace sockets
    map < int, DH * > * dh_map()
    {
 
-      synchronization_lock synchronizationlock(::get_globals_mutex());
+      synchronous_lock synchronouslock(::get_globals_mutex());
 
       if (g_pmapdh == nullptr)
       {
@@ -205,7 +205,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      synchronization_lock synchronizationlock(::get_globals_mutex());
+      synchronous_lock synchronouslock(::get_globals_mutex());
 
       return dh_map()->operator[](keylength);
 
@@ -215,7 +215,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      synchronization_lock synchronizationlock(::get_globals_mutex());
+      synchronous_lock synchronouslock(::get_globals_mutex());
 
       dh_map()->operator[](keylength) = pdh;
 
@@ -247,7 +247,7 @@ namespace sockets
 
       string strId = m_strCat;
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if (strId.begins_ci("cat://"))
       {

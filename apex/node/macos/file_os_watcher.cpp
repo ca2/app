@@ -57,7 +57,7 @@ namespace file
                                        pathsToWatch,
                                        kFSEventStreamEventIdSinceNow, /* Or a previous event ID */
                                        latency,
-                                       kFSEventStreamCreateFlagFileEvents /* Flags explained in context_object */
+                                       kFSEventStreamCreateFlagFileEvents /* Flags explained in object */
                                        );
          
          FSEventStreamScheduleWithRunLoop(m_stream, CFRunLoopGetCurrent(), kCFRunLoopCommonModes);

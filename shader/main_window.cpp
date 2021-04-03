@@ -146,11 +146,11 @@ namespace app_shader
          fork([this, pimage]()
             {
 
-               auto psaveimage = __new(save_image(this));
+               auto psaveimage = __new(save_image());
 
                psaveimage->m_eformat = ::draw2d::format_png;
 
-               auto psystem = get_system();
+               auto psystem = m_psystem->m_paurasystem;
 
                string strDate = psystem->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
@@ -220,7 +220,7 @@ namespace app_shader
    void main_window::update_shader()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       start_layout();
 
@@ -240,7 +240,7 @@ namespace app_shader
 
       }
 
-      m_rendera[m_iShader]->initialize_application_consumer();
+      //m_rendera[m_iShader]->initialize_application_consumer();
 
       m_rendera[m_iShader]->m_pinteraction = this;
 

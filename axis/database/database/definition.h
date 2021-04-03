@@ -74,7 +74,7 @@ namespace database
 
 
    class CLASS_DECL_AXIS field :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

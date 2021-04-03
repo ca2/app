@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   toggle_view::toggle_view(::context_object * pcontextobject):
+   toggle_view::toggle_view(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::button(pobject)
@@ -47,7 +47,7 @@ namespace turboc
    //      return;
 
    //   {
-   //      synchronization_lock synchronizationlock(&m_pmainview->m_pview->m_mutexText);
+   //      synchronous_lock synchronouslock(&m_pmainview->m_pview->m_mutexText);
    //      _001GetText(m_pmainview->m_pview->m_strNewHelloMultiverse);
    //   }
 

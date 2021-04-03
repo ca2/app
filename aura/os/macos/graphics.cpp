@@ -1153,7 +1153,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
    }
 
-   synchronization_lock synchronizationlock(pmutex);
+   synchronous_lock synchronouslock(pmutex);
 
 
    return mm1_get_file_image(pcr, cx, cy, iScan, psz);

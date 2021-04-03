@@ -1011,7 +1011,7 @@ namespace user
 
    //   }
 
-   //   retry_multi_lock synchronizationlock(synchronization_object, millis(1), millis(1));
+   //   retry_multi_lock synchronouslock(synchronization_object, millis(1), millis(1));
 
    //   try
    //   {
@@ -1155,9 +1155,9 @@ namespace user
       return ::user::box::_001CallOnDraw(pgraphics);
       //on_viewport_offset(pgraphics);
 
-      //synchronization_lock slView(mutex());
+      //synchronous_lock slView(mutex());
 
-      ////synchronization_lock slDocument(get_document()->mutex());.
+      ////synchronous_lock slDocument(get_document()->mutex());.
 
       //{
 

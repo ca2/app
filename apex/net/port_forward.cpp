@@ -300,7 +300,7 @@ namespace net
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 
@@ -316,7 +316,7 @@ namespace net
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
 

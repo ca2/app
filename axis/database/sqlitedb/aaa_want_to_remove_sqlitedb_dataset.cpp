@@ -278,7 +278,7 @@
 //
 //      }
 //
-//      synchronization_lock synchronizationlock(m_pdatabase->mutex());
+//      synchronous_lock synchronouslock(m_pdatabase->mutex());
 //
 //      close();
 //

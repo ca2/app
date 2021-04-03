@@ -19,10 +19,10 @@ namespace user
    }
 
 
-   ::e_status copydesk::initialize(::context_object * pcontextobject)
+   ::e_status copydesk::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pcontextobject);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -31,7 +31,7 @@ namespace user
 
       }
 
-      auto psystem = get_system();
+      auto psystem = m_psystem->m_paurasystem;
 
       auto pnode = psystem->node();
 
@@ -42,10 +42,12 @@ namespace user
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
-      ::object::finalize();
+      auto estatus = ::object::finalize();
+
+      return estatus;
 
    }
 
@@ -62,7 +64,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && (pcontext->dir().is(strPath) || pcontext->file().exists(strPath)))
+         if (strPath.has_char() && (pcontext->m_papexcontext->dir().is(strPath) || pcontext->m_papexcontext->file().exists(strPath)))
          {
 
             if (ppatha == nullptr)
@@ -189,37 +191,39 @@ namespace user
 
             memory mem;
 
-            ::save_image saveimage(this);
+            auto psaveimage = __new(save_image);
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {
 
-               saveimage.m_eformat = ::draw2d::format_gif;
+               psaveimage->m_eformat = ::draw2d::format_gif;
 
             }
             else
             {
 
-               saveimage.m_eformat = ::draw2d::format_png;
+               psaveimage->m_eformat = ::draw2d::format_png;
 
             }
 
             __pointer(::aura::application) papplication = get_application();
 
-            auto psystem = get_system();
+            auto psystem = m_psystem->m_paurasystem;
 
-            if (papplication->image().save_image(mem, pimage, &saveimage))
+            auto pcontext = get_context();
+
+            if (pcontext->m_pauracontext->image().save_image(mem, pimage, psaveimage))
             {
 
-               str = psystem->base64().encode(mem);
+               str = psystem->m_papexsystem->base64().encode(mem);
 
-               if (saveimage.m_eformat == ::draw2d::format_png)
+               if (psaveimage->m_eformat == ::draw2d::format_png)
                {
 
                   str = "data:image/png;base64;" + str;
 
                }
-               else if (saveimage.m_eformat == ::draw2d::format_gif)
+               else if (psaveimage->m_eformat == ::draw2d::format_gif)
                {
 
                   str = "data:image/gif;base64;" + str;
@@ -263,9 +267,9 @@ namespace user
                   varFile["raw_http"] = true;
                   varFile["disable_common_name_cert_check"] = true;
 
-                  __pointer(::aura::application) papplication = get_application();
+                  auto pcontext = get_context();
 
-                  auto pimage = papplication->image().load_image(varFile, false);
+                  auto pimage = pcontext->m_pauracontext->image().load_image(varFile, false);
 
                   if (pimage)
                   {
@@ -274,11 +278,11 @@ namespace user
 
                      auto pcontext = get_context();
 
-                     pcontext->file().as_memory(varFile, mem);
+                     pcontext->m_papexcontext->file().as_memory(varFile, mem);
 
-                     auto psystem = get_system();
+                     auto psystem = m_psystem->m_paurasystem;
 
-                     string strBase64 = psystem->base64().encode(mem);
+                     string strBase64 = psystem->m_papexsystem->base64().encode(mem);
 
                      str = "data:image/gif;base64," + strBase64;
 
@@ -388,13 +392,13 @@ namespace user
 
                auto pcontext = get_context();
 
-               pcontext->file().as_memory(varFile, *pmemory);
+               pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
 
             }
 
-            __pointer(::aura::application) papplication = get_application();
+            auto pcontext = get_context();
 
-            if (!papplication->image().load_image(pimage, pmemory))
+            if (!pcontext->m_pauracontext->image().load_image(pimage, pmemory))
             {
 
                // Couldn't load image from file/URL path...

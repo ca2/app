@@ -18,7 +18,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::context_object * pcontextobject) override;
+      virtual ::e_status     initialize(::object * pobject) override;
 
 
       virtual ::e_status process_init() override;
@@ -37,6 +37,8 @@ namespace axis
       virtual void term1() override;
 
       virtual void process_term() override;
+
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
       virtual ::user::style* get_user_style() override;
 

@@ -413,7 +413,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_poswindowdataptra->mutex());
+   synchronous_lock synchronouslock(g_poswindowdataptra->mutex());
 
    if(window == g_oswindowActive)
    {

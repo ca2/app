@@ -20,10 +20,10 @@ namespace gpu
    }
 
 
-   ::e_status context::initialize(::context_object * pcontextobject)
+   ::e_status context::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pcontextobject);
+      ::e_status estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -286,7 +286,7 @@ namespace gpu
 
       auto pcontext = get_context();
 
-      auto & file = pcontext->file();
+      auto & file = pcontext->m_papexcontext->file();
 
       string strFragment = file.as_string(path);
 

@@ -199,8 +199,6 @@ namespace dynamic_source
 
       papplication->dir().ls_dir(listing, m_strNetnodePath);
 
-      auto pcontext = get_context();
-
       forallref(listing)
       {
 
@@ -672,7 +670,6 @@ namespace dynamic_source
 
 
       ::file::path str;
-      auto pcontext = get_context();
       str = pcontext->dir().module();
       str.go_up(2);
       str = str/ "stage\\basis";
@@ -886,7 +883,7 @@ namespace dynamic_source
 
       }
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
       
       bool bFileExists = pcontext->file().exists(strPath);
       

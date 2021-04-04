@@ -49,6 +49,27 @@ namespace sockets
    }
 
 
+   ::e_status http_socket::on_initialize_object()
+   {
+
+      auto estatus = tcp_socket::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_request.m_psystem = m_psystem;
+
+      m_response.m_psystem = m_psystem;
+
+      return estatus;
+
+   }
+
+
    void http_socket::OnRawData(char * buf, memsize len)
    {
 

@@ -22,7 +22,7 @@ namespace dynamic_source
 
 
       httpd_socket();
-      ~httpd_socket();
+      virtual ~httpd_socket();
 
 
       virtual void Reset();

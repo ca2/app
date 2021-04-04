@@ -51,6 +51,10 @@ namespace sockets
       http_socket();
       virtual ~http_socket();
 
+
+      virtual ::e_status on_initialize_object() override;
+
+
       virtual void OnEndChunk();
 
       virtual void OnRawData(char *buf,memsize len) override;

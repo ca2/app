@@ -7,6 +7,8 @@
 //#include "apex/os/_os.h"
 
 
+//bool __node_apex_pre_init();
+//bool __node_apex_pos_init();
 
 CLASS_DECL_APEX string __apex_get_text(string str);
 
@@ -880,7 +882,7 @@ namespace apex
       //if (!__node_apex_pos_init())
       //{
 
-        // return ::error_failed;
+      //   return ::error_failed;
 
       //}
 

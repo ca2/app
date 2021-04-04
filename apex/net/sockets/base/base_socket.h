@@ -47,7 +47,7 @@ namespace sockets
          virtual ~socket_thread();
 
 
-         virtual ::e_status     initialize_socket_thread(base_socket * psocket);
+         virtual ::e_status initialize_socket_thread(base_socket * psocket);
 
          virtual ::e_status init_thread() override;
 
@@ -212,10 +212,6 @@ namespace sockets
 
 
       virtual ::e_status initialize_socket(base_socket_handler* phandler);
-
-
-
-
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor

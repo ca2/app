@@ -309,6 +309,8 @@ namespace sockets
 
       __pointer(socket) tmp = create_listen_socket();
 
+      tmp->initialize(this);
+
       __pointer(::apex::system) psystem = get_system();
 
       auto lId = psystem->sockets().m_lListenSocket++;

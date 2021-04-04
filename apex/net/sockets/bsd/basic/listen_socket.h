@@ -210,7 +210,7 @@ namespace sockets
 
             pbasesocket = __new(LISTENER());
 
-            pbasesocket->m_psockethandler = socket_handler();
+            //pbasesocket->m_psockethandler = socket_handler();
 
             m_psocket = pbasesocket.cast < LISTENER >();
 

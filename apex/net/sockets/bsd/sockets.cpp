@@ -24,7 +24,7 @@ namespace sockets
    sockets::sockets()
    {
 
-      ::net::g_paddressdepartment = new class ::net::address_department;
+      ::net::g_paddressdepartment = nullptr; 
 
       m_psslinit = nullptr;
 
@@ -55,6 +55,12 @@ namespace sockets
          return estatus;
 
       }
+
+      auto paddressdepartment = pobject->__create_new<class ::net::address_department >();
+
+      paddressdepartment->add_ref();
+
+      ::net::g_paddressdepartment = paddressdepartment;
 
       generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 

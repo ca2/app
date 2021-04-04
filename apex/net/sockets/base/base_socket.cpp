@@ -951,6 +951,8 @@ namespace sockets
 
       SetDetached();
 
+      m_psockethandler.release();
+
       __compose_new(m_psocketthread);
 
       m_psocketthread->initialize_socket_thread(this);
@@ -1025,6 +1027,9 @@ namespace sockets
       //m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
          
       __compose(m_phandler, __new(class socket_handler()));
+
+
+      m_phandler->add(psocket);
 
       //m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
 

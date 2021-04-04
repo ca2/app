@@ -112,7 +112,7 @@ public:
 
    inline bool has_property(const id & id) const;
    inline property * lookup_property(const id & id) const;
-   inline bool remove_key(const id & id);
+   inline bool erase_key(const id & id);
 
    inline property_set & get_property_set();
    inline const property_set & get_property_set() const;

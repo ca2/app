@@ -39,7 +39,7 @@
     <ClInclude Include="simple_drawing_pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_remove_simple_drawing_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_simple_drawing_view_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_drawing_switcher_view.h">
@@ -74,7 +74,7 @@
     <ClCompile Include="simple_drawing_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_remove_simple_drawing_view_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_erase_simple_drawing_view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="simple_drawing_view.cpp">

@@ -18,9 +18,9 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      m_flagNonClient.remove(non_client_background);
+      m_flagNonClient.erase(non_client_background);
 
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_brBkHoverSel->create_solid(argb(255, 230, 230, 230));
 
@@ -669,7 +669,7 @@ namespace user
 
       }
 
-      m_iaPopup.remove_all();
+      m_iaPopup.erase_all();
 
       for (iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
       {

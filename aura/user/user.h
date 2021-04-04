@@ -111,7 +111,7 @@ namespace user
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual void defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
+      virtual void defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
       virtual ::user::primitive * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
 

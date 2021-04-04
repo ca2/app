@@ -235,7 +235,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
    }
 
-   remove_all();
+   erase_all();
 
    if(::acme::g_pheap == this)
    {

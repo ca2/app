@@ -367,12 +367,12 @@ namespace subject
    }
 
 
-   void subject::remove(::matter * pmatter)
+   void subject::erase(::matter * pmatter)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      m_mattercontext.remove_key(pmatter);
+      m_mattercontext.erase_key(pmatter);
 
    }
 
@@ -401,7 +401,7 @@ namespace subject
 
       synchronous_lock synchronouslock(mutex());
 
-      m_mattercontext.remove_all();
+      m_mattercontext.erase_all();
 
    }
 

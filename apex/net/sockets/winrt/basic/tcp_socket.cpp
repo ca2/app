@@ -111,7 +111,7 @@ namespace sockets
 
       }
 
-      m_obuf.remove_all();
+      m_obuf.erase_all();
 
 #ifdef HAVE_OPENSSL
       if (m_ssl)
@@ -638,12 +638,12 @@ namespace sockets
          int n = TryWrite(p -> Buf(), p -> Len());
          if (n > 0)
          {
-            memsize left = p -> remove(n);
+            memsize left = p -> erase(n);
             m_output_length -= n;
             if (!left)
             {
                delete p;
-               m_obuf.remove_item(pnode);
+               m_obuf.erase_item(pnode);
                if (!m_obuf.get_size())
                {
                   m_obuf_top = nullptr;

@@ -8,7 +8,7 @@
 
 //CLASS_DECL_AURA i32 osdisplay_find(Display * pdisplay);
 //CLASS_DECL_AURA osdisplay_data * osdisplay_get(Display * pdisplay);
-//CLASS_DECL_AURA bool osdisplay_remove(Display * pdisplay);
+//CLASS_DECL_AURA bool osdisplay_erase(Display * pdisplay);
 
 
 //class CLASS_DECL_AURA xdisplay

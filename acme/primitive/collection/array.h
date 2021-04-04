@@ -84,8 +84,8 @@ public:
    // Operations that move elements around
    //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
-   //void remove_indexes(const index_array & ia); // remove indexes from ::index array upper bound to ::index array lower bound
-   //void remove_descending_indexes(const index_array & ia); // remove indexes from ::index array lower bound to ::index array upper bound
+   //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound
+   //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array lower bound to ::index array upper bound
    //::index insert_at(::index nStartIndex, array* pNewArray);
 
    using array_base < TYPE, ARG_TYPE, ALLOCATOR > ::operator=;

@@ -547,7 +547,7 @@ namespace base
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);
-//      virtual void session_remove(index iEdge);
+//      virtual void session_erase(index iEdge);
 //
 //
 //

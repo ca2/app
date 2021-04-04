@@ -5,7 +5,7 @@
    pchannel->add_message_handler(id, preceiver, phandler)
 
 //#define ON_TYPED_MESSAGE(id, MESSAGE, name) \
-//   this->get_typed_route < typename ::remove_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)
+//   this->get_typed_route < typename ::erase_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)
 
 //#define ON_MESSAGE(id) \
 //   ON_TYPED_MESSAGE(id, ::message::message, message)

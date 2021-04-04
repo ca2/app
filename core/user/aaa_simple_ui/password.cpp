@@ -198,7 +198,7 @@ namespace simple_ui
       iLineEnd = minimum(iLineEnd,straLines.get_upper_bound());
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
-         straLineFeed.remove_all();
+         straLineFeed.erase_all();
          straLineFeed.add_lines(straLines[i], false);
          if(straLineFeed.get_size() > 0)
          {

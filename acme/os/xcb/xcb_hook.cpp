@@ -30,7 +30,7 @@ __pointer_array(xcb_hook) g_xcbhooka;
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   g_xcbhooka.remove(this);
+   g_xcbhooka.erase(this);
 
    return ::success;
 
@@ -116,7 +116,7 @@ void xcb_hook_init()
 void xcb_hook_term()
 {
 
-    g_xcbhooka.remove_all();
+    g_xcbhooka.erase_all();
 
 }
 

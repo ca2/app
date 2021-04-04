@@ -338,7 +338,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_imagemap.remove_all();
+         m_imagemap.erase_all();
 
          m_iaSize.sort();
 
@@ -362,7 +362,7 @@ namespace user
             else
             {
 
-               m_pil[iSize]->remove_all();
+               m_pil[iSize]->erase_all();
 
             }
 
@@ -376,7 +376,7 @@ namespace user
             else
             {
 
-               m_pilHover[iSize]->remove_all();
+               m_pilHover[iSize]->erase_all();
 
             }
 
@@ -407,7 +407,7 @@ namespace user
 
                   imagekey = m_imagekeySchedule[0];
 
-                  m_imagekeySchedule.remove_at(0);
+                  m_imagekeySchedule.erase_at(0);
 
                   return;
 
@@ -725,7 +725,7 @@ namespace user
                if (iImage & 0x80000000)
                {
 
-                  m_pshell->m_imagemap.remove_key(imagekey);
+                  m_pshell->m_imagemap.erase_key(imagekey);
 
                }
                else
@@ -913,7 +913,7 @@ namespace user
 
       ::object::finish(pobject);
 
-      //task_remove_all();
+      //task_erase_all();
 
       return ::success;
 

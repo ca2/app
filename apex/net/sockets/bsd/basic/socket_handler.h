@@ -179,8 +179,8 @@ namespace sockets
 
 
       void CheckList(socket_list&,const string &); ///< Used by CheckSanity
-      /** remove base_socket from base_socket map, used by base_socket class. */
-      void remove(base_socket *) override;
+      /** erase base_socket from base_socket map, used by base_socket class. */
+      void erase(base_socket *) override;
    };
 
 

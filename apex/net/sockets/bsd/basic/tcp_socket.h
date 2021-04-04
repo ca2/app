@@ -101,7 +101,7 @@ namespace sockets
             _t += len;
             _q += len;
          }
-         i32 remove(i32 len)
+         i32 erase(i32 len)
          {
             _b += len;
             _q -= len;

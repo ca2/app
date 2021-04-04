@@ -58,7 +58,7 @@ namespace sockets
       {
          m_handler.select(8, 0);
       }
-      return m_file.remove_begin(pdata, len);
+      return m_file.erase_begin(pdata, len);
    }
 
    string sync_socket_handler::read_string()

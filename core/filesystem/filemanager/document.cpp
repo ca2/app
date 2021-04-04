@@ -89,7 +89,7 @@ namespace filemanager
       if (m_pfsset->m_spafsdata.is_empty())
       {
 
-         m_pfsset->m_spafsdata.remove_all();
+         m_pfsset->m_spafsdata.erase_all();
 
          auto psession = get_session();
 
@@ -145,7 +145,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir().watcher().remove_watch(m_filewatchid);
+         pcontext->m_papexcontext->dir().watcher().erase_watch(m_filewatchid);
 
       }
 
@@ -838,7 +838,7 @@ namespace filemanager
 
       auto puser = user();
 
-      puser->remove_filemanager(pdocument.m_p);
+      puser->erase_filemanager(pdocument.m_p);
 
       pmessage->m_bRet = true;
 

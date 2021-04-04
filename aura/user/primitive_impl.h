@@ -237,7 +237,7 @@ namespace user
 
 
       virtual bool mouse_hover_add(::user::interaction * pinterface);
-      virtual bool mouse_hover_remove(::user::interaction * pinterface);
+      virtual bool mouse_hover_erase(::user::interaction * pinterface);
 
 
       virtual void register_drop_target();
@@ -245,10 +245,10 @@ namespace user
 
       virtual ::user::primitive * get_keyboard_focus();
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;
       virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status impl_clear_keyboard_focus();
 
 
@@ -266,7 +266,7 @@ namespace user
       virtual void show_task(bool bShow);
 
       virtual void redraw_add(::object * point_i32);
-      virtual void redraw_remove(::object * point_i32);
+      virtual void redraw_erase(::object * point_i32);
       virtual bool has_redraw();
 
       virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;

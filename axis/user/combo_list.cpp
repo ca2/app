@@ -138,7 +138,7 @@ namespace user
 
                synchronous_lock synchronouslock(pimpl->mutex());
 
-               pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
+               pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
             }
 
@@ -1221,7 +1221,7 @@ namespace user
             if (__found(iFind))
             {
 
-               puser->m_uiptraToolWindow.remove_at(iFind);
+               puser->m_uiptraToolWindow.erase_at(iFind);
 
             }
 

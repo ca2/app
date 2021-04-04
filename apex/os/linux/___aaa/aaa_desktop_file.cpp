@@ -148,7 +148,7 @@ namespace linux
 
       }
 
-      straCategory.remove_duplicates_ci();
+      straCategory.erase_duplicates_ci();
 
       return straCategory;
 

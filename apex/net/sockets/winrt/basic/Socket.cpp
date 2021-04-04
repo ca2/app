@@ -65,7 +65,7 @@ namespace sockets
 
    socket::~socket()
    {
-      socket_handler()->remove(this);
+      socket_handler()->erase(this);
    }
 
 
@@ -167,14 +167,14 @@ namespace sockets
 
       }
 
-      socket_handler()->set(m_socket, false, false, false); // remove from fd_set's
+      socket_handler()->set(m_socket, false, false, false); // erase from fd_set's
       socket_handler()->AddList(m_socket, LIST_CALLONCONNECT, false);
       socket_handler()->AddList(m_socket, LIST_DETACH, false);
       socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
       socket_handler()->AddList(m_socket, LIST_RETRY, false);
       socket_handler()->AddList(m_socket, LIST_CLOSE, false);
       synchronous_lock ml(s_pmutex);
-      s_mapSocket.remove_key(m_socket);
+      s_mapSocket.erase_key(m_socket);
       m_socket = INVALID_SOCKET;
 
    }

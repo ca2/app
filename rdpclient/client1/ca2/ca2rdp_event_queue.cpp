@@ -61,7 +61,7 @@ CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* inpu
    if(g_eventmap[input].has_elements())
    {
       item = g_eventmap[input][0];
-      g_eventmap[input].remove_at(0);
+      g_eventmap[input].erase_at(0);
       return true;
    }
    return false;

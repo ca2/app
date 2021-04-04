@@ -128,7 +128,7 @@ namespace user
 
 
       virtual bool add_prodevian(::object * pobject);
-      virtual bool remove_prodevian(::object * pobject);
+      virtual bool erase_prodevian(::object * pobject);
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -194,7 +194,7 @@ namespace user
 
 
       //virtual void mouse_hover_add(::user::interaction * pinterface);
-      //virtual bool mouse_hover_remove(::user::interaction * pinterface);
+      //virtual bool mouse_hover_erase(::user::interaction * pinterface);
 
       //virtual void _task_transparent_mouse_event();
 
@@ -666,7 +666,7 @@ namespace user
       virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual primitive * get_keyboard_focus() const;
       virtual ::e_status set_keyboard_focus();
-      virtual ::e_status remove_keyboard_focus();
+      virtual ::e_status erase_keyboard_focus();
       virtual ::e_status clear_keyboard_focus();
       virtual ::user::primitive * get_keyboard_focus();
       virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);

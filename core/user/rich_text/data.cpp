@@ -547,7 +547,7 @@ namespace user
 
                      pspanBeg->m_str += pspanNext->m_str;
 
-                     m_spana.remove_at(iSpanEnd + 1);
+                     m_spana.erase_at(iSpanEnd + 1);
 
                      return;
 
@@ -566,7 +566,7 @@ namespace user
                if (pspanBeg->m_str.is_empty())
                {
 
-                  m_spana.remove_at(iSpanBeg);
+                  m_spana.erase_at(iSpanBeg);
 
                }
 
@@ -605,7 +605,7 @@ namespace user
             if (iCount > 0)
             {
 
-               m_spana.remove_at(iSpanBeg, iCount);
+               m_spana.erase_at(iSpanBeg, iCount);
 
             }
 
@@ -1326,7 +1326,7 @@ namespace user
 
             }
 
-            straWords.remove_all();
+            straWords.erase_all();
 
             words_trailing_spaces(straWords, strTopic);
 
@@ -1860,8 +1860,8 @@ namespace user
          for (auto& pspan : m_spana.ptra())
          {
 
-            pspan->m_daPositionDeviceLeft.remove_all();
-            pspan->m_daPositionDeviceRight.remove_all();
+            pspan->m_daPositionDeviceLeft.erase_all();
+            pspan->m_daPositionDeviceRight.erase_all();
 
             for (auto& x : pspan->m_daPositionLeft)
             {
@@ -1887,7 +1887,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_pformata->remove_all();
+         m_pformata->erase_all();
 
          for (index i = 0; i < m_spana.get_count(); i++)
          {
@@ -1927,7 +1927,7 @@ namespace user
 
                   pspanTarget->m_str += pspanRemove->m_str;
 
-                  m_spana.remove_at(i);
+                  m_spana.erase_at(i);
 
                }
                else
@@ -2093,11 +2093,11 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_plinea->remove_all();
+         m_plinea->erase_all();
 
-         m_pformata->remove_all();
+         m_pformata->erase_all();
 
-         m_spana.remove_all();
+         m_spana.erase_all();
 
          {
 

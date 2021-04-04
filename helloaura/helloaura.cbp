@@ -103,8 +103,8 @@
 		<Unit filename="helloaura_main_view.h" />
 		<Unit filename="helloaura_pane_view.cpp" />
 		<Unit filename="helloaura_pane_view.h" />
-		<Unit filename="aaa_want_to_remove_helloaura_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_remove_helloaura_view_update_hint.h" />
+		<Unit filename="aaa_want_to_erase_helloaura_view_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_helloaura_view_update_hint.h" />
 		<Unit filename="helloaura_render.cpp" />
 		<Unit filename="helloaura_render.h" />
 		<Unit filename="helloaura_switcher_view.cpp" />

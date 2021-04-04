@@ -220,7 +220,7 @@ static int _handle_features(xmpp_conn_t * const conn,
     xmpp_stanza_t *child, *mech;
     char *text;
 
-    /* remove the handler that detects missing stream:features */
+    /* erase the handler that detects missing stream:features */
     xmpp_timed_handler_delete(conn, _handle_missing_features);
 
     /* check for TLS */
@@ -399,7 +399,7 @@ static int _handle_digestmd5_challenge(xmpp_conn_t * const conn,
 	return _handle_sasl_result(conn, stanza, "DIGEST-MD5");
     }
 
-    /* remove ourselves */
+    /* erase ourselves */
     return 0;
 }
 
@@ -894,7 +894,7 @@ static int _handle_features_sasl(xmpp_conn_t * const conn,
     xmpp_stanza_t *bind, *session, *iq, *res, *text;
     char *resource;
 
-    /* remove missing features handler */
+    /* erase missing features handler */
     xmpp_timed_handler_delete(conn, _handle_missing_features_sasl);
 
     /* we are expecting <bind/> and <session/> since this is a

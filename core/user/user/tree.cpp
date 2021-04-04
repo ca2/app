@@ -84,7 +84,7 @@ namespace user
 
                   _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
 
-                  m_treeitemaExpand.remove_all();
+                  m_treeitemaExpand.erase_all();
 
                }
 
@@ -1782,7 +1782,7 @@ namespace user
 
       bool bContains = m_pitemptraSelected->contains(pitem);
 
-      m_pitemptraSelected->remove_all();
+      m_pitemptraSelected->erase_all();
 
       m_pitemptraSelected->add(pitem);
 
@@ -1791,7 +1791,7 @@ namespace user
    }
 
 
-   bool tree::selection_remove(::data::item * pitemdata, index i)
+   bool tree::selection_erase(::data::item * pitemdata, index i)
    {
 
       auto pitem = find(pitemdata, &i);
@@ -1803,12 +1803,12 @@ namespace user
 
       }
 
-      return selection_remove(pitem);
+      return selection_erase(pitem);
 
    }
 
 
-   ::count tree::selection_remove(::data::tree_item_ptr_array & itemptra)
+   ::count tree::selection_erase(::data::tree_item_ptr_array & itemptra)
    {
 
       ::count count = 0;
@@ -1816,7 +1816,7 @@ namespace user
       for (i32 i = 0; i < itemptra.get_count(); i++)
       {
 
-         if (m_pitemptraSelected->remove(itemptra[i]))
+         if (m_pitemptraSelected->erase(itemptra[i]))
          {
 
             count++;
@@ -1830,10 +1830,10 @@ namespace user
    }
 
 
-   bool tree::selection_remove(::data::tree_item * pitem)
+   bool tree::selection_erase(::data::tree_item * pitem)
    {
 
-      return m_pitemptraSelected->remove(pitem) >= 0;
+      return m_pitemptraSelected->erase(pitem) >= 0;
 
    }
 
@@ -1841,7 +1841,7 @@ namespace user
    ::count tree::clear_selection()
    {
 
-      return m_pitemptraSelected->remove_all();
+      return m_pitemptraSelected->erase_all();
 
    }
 

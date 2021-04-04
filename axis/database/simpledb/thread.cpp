@@ -71,7 +71,7 @@ namespace simpledb
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
                {
 
-                  m_itema.remove_at(0);
+                  m_itema.erase_at(0);
 
                   bFound = true;
 
@@ -92,7 +92,7 @@ namespace simpledb
 
             auto pitem = m_itema[0];
 
-            m_itema.remove_at(0);
+            m_itema.erase_at(0);
 
             synchronouslock.unlock();
 

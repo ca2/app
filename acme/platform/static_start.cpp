@@ -765,7 +765,7 @@ namespace acme
       //    try
       //    {
 
-      //       g_pmapAura->remove_all();
+      //       g_pmapAura->erase_all();
 
       //    }
       //    catch(...)
@@ -780,7 +780,7 @@ namespace acme
 
       //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
-      //   g_pmapLibCall->remove_all();
+      //   g_pmapLibCall->erase_all();
 
 
       //}
@@ -794,7 +794,7 @@ namespace acme
 
       //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
-      //   get_system()->g_mapLibrary.remove_all();
+      //   get_system()->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -808,7 +808,7 @@ namespace acme
          try
          {
 
-            g_pmapRTL->remove_all();
+            g_pmapRTL->erase_all();
 
          }
          catch(...)
@@ -824,7 +824,7 @@ namespace acme
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)

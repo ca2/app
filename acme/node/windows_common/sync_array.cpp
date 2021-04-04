@@ -121,36 +121,36 @@ bool synchronization_array::add(const synchronization_array& synca)
 }
 
 
-void synchronization_array::remove(class synchronization_object * psync)
+void synchronization_array::erase(class synchronization_object * psync)
 {
 
-   m_synchronizationa.remove(psync);
+   m_synchronizationa.erase(psync);
 
    HSYNC hsync = psync->hsync();
 
    if (hsync != nullptr && hsync != INVALID_HSYNC_VALUE)
    {
 
-      m_hsyncaCache.remove(hsync);
+      m_hsyncaCache.erase(hsync);
 
    }
 
 }
 
 
-void synchronization_array::remove(index index)
+void synchronization_array::erase(index index)
 {
 
    if (index >= m_synchronizationa.size())
    {
 
-      __throw(range_error("synchronization_array::remove: index out of bounds"));
+      __throw(range_error("synchronization_array::erase: index out of bounds"));
 
    }
 
    synchronization_object* psync = m_synchronizationa[index];
 
-   remove(psync);
+   erase(psync);
 
 }
 
@@ -313,7 +313,7 @@ synchronization_result synchronization_array::wait(bool waitForAll, const durati
    while (winResult != WAIT_TIMEOUT && winResult != WAIT_FAILED);
    //while (winResult!=WAIT_TIMEOUT && winResult!= WAIT_FAILED && FoundExternal==false);
 
-   ////MBO: remove events to avoid double signalization
+   ////MBO: erase events to avoid double signalization
    //comparable_array < waitable_element >::iterator it;
    //for (it = m_waitableelementa.begin(); it != m_waitableelementa.end(); ++it)
    //   (*it).m_psync->exit_wait();

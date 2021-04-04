@@ -22,7 +22,7 @@ namespace file
       "tooManyOpenFiles",
       "accessDenied",
       "invalidFile",
-      "removeCurrentDir",
+      "eraseCurrentDir",
       "directoryFull",
       "badSeek",
       "hardIO",

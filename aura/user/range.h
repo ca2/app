@@ -89,7 +89,7 @@ namespace user
 
       bool has_item(index iItem) const;
       bool has_sub_item(index iItem, index iSubItem) const;
-      bool remove_item(index iItem);
+      bool erase_item(index iItem);
       bool OnRemoveItem(index iItem);
       void clear();
       void add_item(const item_range& itemrange);

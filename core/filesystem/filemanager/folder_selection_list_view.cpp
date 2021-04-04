@@ -111,7 +111,7 @@ namespace filemanager
 
       m_plistview->GetSel(wstraSel);
 
-      m_plistview->remove(wstraSel);
+      m_plistview->erase(wstraSel);
 
    }
 

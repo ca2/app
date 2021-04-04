@@ -470,7 +470,7 @@
     <ClInclude Include="aura\os\metrowin\metrowin_multithreading.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_multithreading_winrt.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_user_impl.h" />
-    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h" />
+    <ClInclude Include="aura\os\metrowin\aaa_want_to_erase_metrowin_window_impl.h" />
     <ClInclude Include="aura\os\os.h" />
     <ClInclude Include="aura\os\os_binreloc.h" />
     <ClInclude Include="aura\os\os_process.h" />

@@ -155,7 +155,7 @@ namespace xml
    bool document::load(const char * psz)
    {
 
-      m_nodea.remove_all();
+      m_nodea.erase_all();
 
       m_strData1 = psz;
 
@@ -184,7 +184,7 @@ namespace xml
       if((pszNext = m_pnodeRoot->load(pszNext, m_pparseinfo )) == nullptr)
       {
 
-         m_nodea.remove_all();
+         m_nodea.erase_all();
 
          m_pnodeRoot.release();
 

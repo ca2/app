@@ -31,7 +31,7 @@ namespace file
       const FSEventStreamEventFlags eventFlags[],
       const FSEventStreamEventId eventIds[]);
       void addAll();
-      void removeAll();
+      void eraseAll();
 
       bool step()override;
 

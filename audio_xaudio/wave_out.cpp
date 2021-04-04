@@ -220,7 +220,7 @@ namespace multimedia
 
          }
 
-         //m_bufferptra.remove_all();
+         //m_bufferptra.erase_all();
 
          m_psourcevoice = nullptr;
 

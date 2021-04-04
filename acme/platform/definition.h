@@ -116,7 +116,7 @@ HRESULT ComMethod()
 We could add
    if(!m_pFoo) return E_POINTER;
 
-But this is very unlikely to help, since it removes the ability of the developer to debug this problem if it's seen in a retail
+But this is very unlikely to help, since it erases the ability of the developer to debug this problem if it's seen in a retail
 build of the application.
 
 We could try something more severe
@@ -207,8 +207,8 @@ do {                                           \
 ///////////////////////////////////////////////////////////////////////////////
 // By default, the wizards will generate new acme matter classes with this
 // attribute (through the NO_VTABLE macro).  This is normally safe as long
-// the restriction mentioned above is followed.  It is always safe to remove
-// this macro from your class, so if in doubt, remove it.
+// the restriction mentioned above is followed.  It is always safe to erase
+// this macro from your class, so if in doubt, erase it.
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef _DISABLE_NO_VTABLE

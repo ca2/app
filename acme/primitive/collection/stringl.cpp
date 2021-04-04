@@ -111,7 +111,7 @@ string stringl::reverse_implode(const char * pcszSeparator, index iStart, index 
 void stringl::explode(const char * pcszSeparator, const char * psz)
 
 {
-   remove_all();
+   erase_all();
    add_tail_tokens(psz, pcszSeparator, true);
 
 }

@@ -457,7 +457,7 @@ Seq_Open_File_Cleanup:
 
             ASSERT(m_iOpenMode == file::open_for_playing || IsInSpecialModeV001());
 
-            m_flags.remove(e_flag_end_of_file);
+            m_flags.erase(e_flag_end_of_file);
 
             m_estatusLastError = ::success;
 
@@ -588,8 +588,8 @@ Seq_Open_File_Cleanup:
 
 
 
-            m_flags.remove(e_flag_end_of_file);
-            file()->GetFlags().remove(file::EndOfFile);
+            m_flags.erase(e_flag_end_of_file);
+            file()->GetFlags().erase(file::EndOfFile);
             for(i = 1; i < m_buffera.get_size(); i++)
             {
                lpmh = m_buffera[i].GetMidiHdr();
@@ -660,7 +660,7 @@ seq_Preroll_Cleanup:
             if (estatus != ::success)
             {
                SetState(e_state_opened);
-               m_flags.remove(::music::midi::sequence::e_flag_waiting);
+               m_flags.erase(::music::midi::sequence::e_flag_waiting);
             }
             else
             {
@@ -839,7 +839,7 @@ seq_Preroll_Cleanup:
             if (GetState() != e_state_playing
                   && GetState() != e_state_paused)
             {
-               m_flags.remove(::music::midi::sequence::e_flag_waiting);
+               m_flags.erase(::music::midi::sequence::e_flag_waiting);
                GetPlayerLink().OnFinishCommand(::music::midi::player::command_stop);
                return ::success;
             }
@@ -859,7 +859,7 @@ seq_Preroll_Cleanup:
 
                   TRACE( "::music::midi::sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (u32)m_estatusLastError);
 
-                  m_flags.remove(e_flag_waiting);
+                  m_flags.erase(e_flag_waiting);
 
                   return error_not_ready;
 
@@ -1119,7 +1119,7 @@ seq_Preroll_Cleanup:
                //
                if(bSpecialModeV001End)
                {
-                  m_flags.remove(e_flag_operation_end);
+                  m_flags.erase(e_flag_operation_end);
                   TRACE("void CALLBACK ::music::midi::sequence::MidiOutProc m_flags.has(e_flag_operation_end\n");
                   pthread->PostMidiSequenceEvent(
                   this,
@@ -1345,12 +1345,12 @@ seq_Preroll_Cleanup:
             if(m_flags.has(e_flag_operation))
                m_flags.add(e_flag_was_operation);
             else
-               m_flags.remove(e_flag_was_operation);
+               m_flags.erase(e_flag_was_operation);
 
             if(bSet)
                m_flags.add(e_flag_operation);
             else
-               m_flags.remove(e_flag_operation);
+               m_flags.erase(e_flag_operation);
 
          }
 
@@ -1557,7 +1557,7 @@ seq_Preroll_Cleanup:
                }
 
                m_estatusLastError = ::success;
-               m_flags.remove(e_flag_waiting);
+               m_flags.erase(e_flag_waiting);
 
                m_evMmsgDone.SetEvent();
             }
@@ -1707,7 +1707,7 @@ seq_Preroll_Cleanup:
             if(bSet)
                m_flags.add(::music::midi::sequence::e_flag_tempo_change);
             else
-               m_flags.remove(::music::midi::sequence::e_flag_tempo_change);
+               m_flags.erase(::music::midi::sequence::e_flag_tempo_change);
          }
 
 
@@ -1933,12 +1933,12 @@ seq_Preroll_Cleanup:
                pLyricEventsV2B->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
                pLyricEventsV2C->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
                pLyricEventsV2_->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
-               midiEvents.remove_all();
-               noteOnEvents.remove_all();
-               noteOffEvents.remove_all();
-               midiEventsLevel2.remove_all();
-               eventsLevel2Beg.remove_all();
-               eventsLevel2End.remove_all();
+               midiEvents.erase_all();
+               noteOnEvents.erase_all();
+               noteOffEvents.erase_all();
+               midiEventsLevel2.erase_all();
+               eventsLevel2Beg.erase_all();
+               eventsLevel2End.erase_all();
                delete pMidiEventsV1;
             }
 
@@ -2521,7 +2521,7 @@ seq_Preroll_Cleanup:
             if(bSet)
                m_flags.add(::music::midi::sequence::e_flag_setting_position);
             else
-               m_flags.remove(::music::midi::sequence::e_flag_setting_position);
+               m_flags.erase(::music::midi::sequence::e_flag_setting_position);
          }
 
          u32 sequence::GetPreviousState()

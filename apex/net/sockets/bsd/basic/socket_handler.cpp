@@ -109,7 +109,7 @@ namespace sockets
 
       }
 
-      m_sockets.remove_all();
+      m_sockets.erase_all();
 
       m_resolver.release();
 
@@ -452,7 +452,7 @@ start_processing_adding:
 
             FATAL(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in controlled queue");
 
-            m_add.remove_key(socket);
+            m_add.erase_key(socket);
 
             goto start_processing_adding;
 
@@ -504,7 +504,7 @@ start_processing_adding:
 
          m_sockets[socket] = psocket;
 
-         m_add.remove_key(socket);
+         m_add.erase_key(socket);
 
          goto start_processing_adding;
 
@@ -634,7 +634,7 @@ end_processing_adding:
 
                   psocket->SetCloseAndDelete();
 
-                  m_sockets.remove_key(i);
+                  m_sockets.erase_key(i);
 
                }
 
@@ -682,7 +682,7 @@ end_processing_adding:
                      if (n == -1)
                      {
 
-                        // %! bad fd, remove
+                        // %! bad fd, erase
 
                         ERR(it->m_psocket, "Select", (i32)it->m_socket, "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR);
 
@@ -897,7 +897,7 @@ end_processing_adding:
             if (bRemove)
             {
 
-               m_fds_detach.remove(socket);
+               m_fds_detach.erase(socket);
 
             }
 
@@ -929,13 +929,13 @@ end_processing_adding:
 
                      }
 
-                     // Adding the file descriptor to m_fds_erase will now also remove the
+                     // Adding the file descriptor to m_fds_erase will now also erase the
                      // socket from the detach queue - tnx knightmad
                      m_fds_erase.add_tail(socket);
 
-                     m_fds.remove(socket);
+                     m_fds.erase(socket);
 
-                     m_sockets.remove_key(socket);
+                     m_sockets.erase_key(socket);
 
                      bRemove = true;
 
@@ -1031,7 +1031,7 @@ end_processing_adding:
 
                      //TRACE("close() before retry client connect\n");
 
-                     psocket->close(); // removes from m_fds_retry
+                     psocket->close(); // erases from m_fds_retry
 
                      ::net::address ad = psocket->GetClientRemoteAddress();
 
@@ -1192,9 +1192,9 @@ end_processing_adding:
 
                         psystem->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
-                        ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
+                        ppoolsocket->SetCloseAndDelete(false); // added - erase from m_fds_close
 
-                        //point_i32 -> SetCloseAndDelete(false); // added - remove from m_fds_close
+                        //point_i32 -> SetCloseAndDelete(false); // added - erase from m_fds_close
 
                      }
                      else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
@@ -1243,11 +1243,11 @@ end_processing_adding:
 
          SOCKET socket = m_fds_erase.pop_head();
 
-         m_fds_detach.remove(socket);
+         m_fds_detach.erase(socket);
 
-         m_fds.remove(socket);
+         m_fds.erase(socket);
 
-         m_fds_close.remove(socket);
+         m_fds_close.erase(socket);
 
          socket_pointer psocket;
 
@@ -1257,20 +1257,20 @@ end_processing_adding:
             if (psocket.cast < pool_socket >() == nullptr)
             {
 
-               m_sockets.remove_key(socket);
+               m_sockets.erase_key(socket);
 
             }
             else
             {
 
-               m_delete.remove(psocket);
+               m_delete.erase(psocket);
 
             }
 
             if (m_add[socket].cast < pool_socket >() == nullptr)
             {
 
-               m_add.remove_key(socket);
+               m_add.erase_key(socket);
 
             }
 
@@ -1288,7 +1288,7 @@ end_processing_adding:
 
       }
 
-      // remove add's that fizzed
+      // erase add's that fizzed
       while (m_delete.get_size() > 0)
       {
 
@@ -1334,9 +1334,9 @@ end_processing_adding:
 
                      }
 
-                     m_trigger_src.remove_key(p->m_socket);
+                     m_trigger_src.erase_key(p->m_socket);
 
-                     m_trigger_dst.remove_key(p->m_socket);
+                     m_trigger_dst.erase_key(p->m_socket);
 
                      again = true;
 
@@ -1691,7 +1691,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               psystem->sockets().m_pool.remove_key(p->m_socket);
+               psystem->sockets().m_pool.erase_key(p->m_socket);
 
                psocket->SetRetain(); // avoid close in socket destructor
 
@@ -1722,13 +1722,13 @@ end_processing_adding:
    }
 
 
-   void socket_handler::remove(base_socket * psocketRemove)
+   void socket_handler::erase(base_socket * psocketRemove)
    {
 
       if (m_resolve_q.has(psocketRemove))
       {
 
-         m_resolve_q.remove_key(psocketRemove);
+         m_resolve_q.erase_key(psocketRemove);
 
       }
 
@@ -1739,28 +1739,28 @@ end_processing_adding:
 
       }
 
-      if(::remove_value(m_sockets, psocketRemove))
+      if(::erase_value(m_sockets, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -1, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -1, "socket destructor called while still in use");
 
          return;
 
       }
 
-      if (::remove_value(m_add, psocketRemove))
+      if (::erase_value(m_add, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -2, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -2, "socket destructor called while still in use");
 
          return;
 
       }
 
-      if (::remove_value(m_delete, psocketRemove))
+      if (::erase_value(m_delete, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -3, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -3, "socket destructor called while still in use");
 
          return;
 
@@ -1837,7 +1837,7 @@ end_processing_adding:
                      (which_one == LIST_TIMEOUT) ? "time_out" :
                      (which_one == LIST_RETRY) ? "Retry" :
                      (which_one == LIST_CLOSE) ? "close" : "<undef>",
-                     add ? "add" : "remove");*/
+                     add ? "add" : "erase");*/
       }
       if (add)
       {
@@ -1849,8 +1849,8 @@ end_processing_adding:
          }
          return;
       }
-      // remove
-      ref.remove(s);
+      // erase
+      ref.erase(s);
       //TRACE("/AddList\n");
    }
 
@@ -1890,7 +1890,7 @@ end_processing_adding:
       {
          if (m_trigger_dst[id].plookup(psocketDst) != nullptr)
          {
-            m_trigger_dst[id].remove_key(psocketDst);
+            m_trigger_dst[id].erase_key(psocketDst);
             return true;
          }
 
@@ -1928,8 +1928,8 @@ end_processing_adding:
          if (bErase)
          {
 
-            m_trigger_src.remove_key(id);
-            m_trigger_dst.remove_key(id);
+            m_trigger_src.erase_key(id);
+            m_trigger_dst.erase_key(id);
 
          }
 

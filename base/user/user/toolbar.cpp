@@ -250,7 +250,7 @@ namespace user
 //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
 //               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
 //            }
-//            // remove old bitmap, if present
+//            // erase old bitmap, if present
 //            if (bResult)
 //            {
 //               ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
@@ -1743,7 +1743,7 @@ return { 0,0 };
 
       synchronous_lock synchronouslock(mutex());
 
-      m_itema.remove_all();
+      m_itema.erase_all();
 
       xml::document doc;
 

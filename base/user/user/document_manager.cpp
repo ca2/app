@@ -387,12 +387,12 @@ namespace user
    }
 
 
-   void document_manager::remove_document_template(::user::impact_system * ptemplate)
+   void document_manager::erase_document_template(::user::impact_system * ptemplate)
    {
 
       ptemplate->close_all_documents(false);
 
-      ::count c = m_templateptra.remove(ptemplate);
+      ::count c = m_templateptra.erase(ptemplate);
 
       if (c <= 0)
       {
@@ -476,7 +476,7 @@ namespace user
       if (bEndApp)
       {
 
-         m_templateptra.remove_all();
+         m_templateptra.erase_all();
 
       }
 
@@ -911,13 +911,13 @@ namespace user
 //{
 //
 //
-//   //void application::remove_document_template(::user::impact_system * pimpactsystem)
+//   //void application::erase_document_template(::user::impact_system * pimpactsystem)
 //   //{
 //
 //   //   if (m_pdocmanager == nullptr)
 //   //      return;
 //
-//   //   document_manager()->remove_document_template(pimpactsystem);
+//   //   document_manager()->erase_document_template(pimpactsystem);
 //
 //   //}
 //

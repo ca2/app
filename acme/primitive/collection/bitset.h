@@ -442,7 +442,7 @@ private:
 
 	template<bool _Has_bits>
 		void _Trim_if()
-		{	// bits to trim, remove them
+		{	// bits to trim, erase them
          if(_Has_bits)
          {
             _Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;

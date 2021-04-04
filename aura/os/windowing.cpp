@@ -227,7 +227,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //
 
-//CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
+//CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 //   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -259,7 +259,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   synchronous_lock ml(pmq->mutex());
 //
-//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;

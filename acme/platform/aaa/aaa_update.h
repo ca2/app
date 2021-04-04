@@ -16,13 +16,13 @@ protected:
    static __pointer(update)& get(const ::id & id);
 
    virtual void add(::matter* pmatter);
-   virtual void remove(::matter* pmatter);
+   virtual void erase(::matter* pmatter);
 
    static void _add(const :: id & id, ::matter* pmatter);
 
-   static void _remove(const ::id& id, ::matter* pmatter);
+   static void _erase(const ::id& id, ::matter* pmatter);
 
-   static void _remove(::matter* pmatter);
+   static void _erase(::matter* pmatter);
 
    static ::critical_section* g_pcs;
    static ::id_map < __pointer(update) >* g_pmap;

@@ -29,7 +29,7 @@ namespace aura
       virtual bool set_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
 
-      virtual bool remove_timer(::timer * ptimer);
+      virtual bool erase_timer(::timer * ptimer);
 
 
       virtual ::e_status finalize() override;

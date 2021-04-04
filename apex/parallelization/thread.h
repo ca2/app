@@ -34,6 +34,8 @@ public:
    };
 
 
+
+
    __composite(message_queue)                         m_pmq;
    bool                                               m_bClosedMq;
 
@@ -44,7 +46,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::e_status                                          m_estatus;
+   ::e_status                                         m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -138,12 +140,15 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual ::e_status set_finish() override;
+   virtual ::e_status finish() override;
    //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
+   virtual void update_task_ready_to_quit();
+
+
    void add_waiting_event(event * pevent);
-   void remove_waiting_event(event * pevent);
+   void erase_waiting_event(event * pevent);
 
    // file related stuff
    file_info * get_file_info();
@@ -326,7 +331,7 @@ public:
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 
    // virtual void add(::user::primitive * pinteraction);
-   //virtual void remove(::user::primitive * pinteraction);
+   //virtual void erase(::user::primitive * pinteraction);
    //virtual ::count get_ui_count();
    //virtual ::user::primitive * get_ui(index iIndex);
    //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
@@ -388,7 +393,7 @@ public:
 
 
    //virtual ::index task_add(::task * ptask) override;
-   virtual void task_remove(::task * ptask) override;
+   virtual void task_erase(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
    virtual bool kick_thread();

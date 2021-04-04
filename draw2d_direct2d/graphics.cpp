@@ -3532,11 +3532,11 @@ namespace draw2d_direct2d
 
          }
 
-         state->m_maRegion.remove_all();
+         state->m_maRegion.erase_all();
 
-         state->m_sparegionClip.remove_all();
+         state->m_sparegionClip.erase_all();
 
-         m_statea.remove_at(iState);
+         m_statea.erase_at(iState);
 
       }
 
@@ -3762,9 +3762,9 @@ namespace draw2d_direct2d
 
          }
 
-         state->m_maRegion.remove_all();
+         state->m_maRegion.erase_all();
 
-         state->m_sparegionClip.remove_all();
+         state->m_sparegionClip.erase_all();
 
       }
 
@@ -3777,9 +3777,9 @@ namespace draw2d_direct2d
 
       }
 
-      state->m_maRegion.remove_all();
+      state->m_maRegion.erase_all();
 
-      state->m_sparegionClip.remove_all();
+      state->m_sparegionClip.erase_all();
 
       return ::success;
 

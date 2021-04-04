@@ -1366,7 +1366,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //      if (m_pcompositea)
 //      {
 //
-//         if (m_pcompositea->remove(pcomposite) >= 0)
+//         if (m_pcompositea->erase(pcomposite) >= 0)
 //         {
 //
 //            pcomposite->release(OBJ_REF_DBG_THIS);
@@ -1396,7 +1396,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //      if (m_preferencea)
 //      {
 //
-//         if (m_preferencea->remove(preference.get()) >= 0)
+//         if (m_preferencea->erase(preference.get()) >= 0)
 //         {
 //
 //            preference->release(OBJ_REF_DBG_THIS);
@@ -2963,7 +2963,7 @@ inline ::e_status object::__release(__composite(BASE_TYPE)& pcomposite OBJ_REF_D
       //if (m_pcompositea)
       //{
 
-      //   if (m_pcompositea->remove(pcomposite.get()) >= 0)
+      //   if (m_pcompositea->erase(pcomposite.get()) >= 0)
       //   {
 
             pcomposite.clear_member();
@@ -2991,7 +2991,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJ_REF_D
       //if (m_preferencea)
       //{
 
-      //   if (m_preferencea->remove(preference.get()) >= 0)
+      //   if (m_preferencea->erase(preference.get()) >= 0)
       //   {
 
             //preference->release(OBJ_REF_DBG_ARGS);

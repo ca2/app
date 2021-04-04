@@ -55,11 +55,11 @@ public:
    inline bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
    inline bool has(ENUM e) const { return is(e); }
 
-   void remove(ENUM e) { operator -= (e); }
+   void erase(ENUM e) { operator -= (e); }
    void add(const enumeration & e) { operator += (e); }
-   void unset(const enumeration & e) { remove(e); }
+   void unset(const enumeration & e) { erase(e); }
    void set(const enumeration & e) { add(e); }
-   void remove(const enumeration & e) { operator -= (e); }
+   void erase(const enumeration & e) { operator -= (e); }
    void clear() { m_eenum = (ENUM) 0; }
 
    void set(ENUM e, bool bSet) { if(bSet) set(e); else unset(e); }

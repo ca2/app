@@ -29,7 +29,7 @@ matter::~matter()
       if (m_eobject & e_object_any_update)
       {
 
-         remove_from_any_source();
+         erase_from_any_source();
 
       }
 
@@ -114,6 +114,26 @@ void matter::dump(dump_context & dumpcontext) const
 {
 
    auto estatus = set_finish();
+
+   if (estatus == error_pending)
+   {
+
+      m_psystem->add_pending_finish(this);
+
+      return estatus;
+
+   }
+
+   estatus = on_finish();
+
+   if (estatus == error_pending)
+   {
+
+      m_psystem->add_pending_finish(this);
+
+      return estatus;
+
+   }
 
    return estatus;
 
@@ -251,7 +271,7 @@ void matter::set_mutex(synchronization_object* psync)
 }
 
 
-void matter::remove_from_any_source()
+void matter::erase_from_any_source()
 {
 
 }
@@ -351,7 +371,7 @@ const char * matter::get_task_tag()
 //}
 
 
-void matter::task_remove(::task* ptask)
+void matter::task_erase(::task* ptask)
 {
 
 

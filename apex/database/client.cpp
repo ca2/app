@@ -66,7 +66,7 @@ namespace database
 
          synchronous_lock synchronouslock(m_pdataserver->mutex());
 
-         m_pdataserver->m_clienta.remove_client(this);
+         m_pdataserver->m_clienta.erase_client(this);
 
       }
 
@@ -97,7 +97,7 @@ namespace database
          try
          {
 
-            m_pdataserver->m_clienta.remove_client(this);
+            m_pdataserver->m_clienta.erase_client(this);
 
          }
          catch(...)
@@ -302,10 +302,10 @@ namespace database
    }
 
 
-   void client_array::remove_client(client *pclient)
+   void client_array::erase_client(client *pclient)
    {
 
-      remove(pclient);
+      erase(pclient);
 
    }
 

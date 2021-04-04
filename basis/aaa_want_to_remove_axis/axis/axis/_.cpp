@@ -112,7 +112,7 @@ bool axis_term()
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//   ERR_remove_state(::GetCurrentProcessId());
+//   ERR_erase_state(::GetCurrentProcessId());
 //
 //#endif
 

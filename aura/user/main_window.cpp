@@ -35,8 +35,6 @@ namespace user
    void main_window::on_create_user_interaction()
    {
 
-      //set_prodevian();
-
       add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
 
    }
@@ -66,17 +64,12 @@ namespace user
 
       }
 
-      //if (bInitialFramePosition)
-      //{
-      //   
-      //   place(rectWindow);
-
-      //}
-
       return ::success;
 
    }
 
 
-
 } // namespace user
+
+
+

@@ -16,7 +16,7 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra);
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
 
-void wm_add_remove_state(oswindow w, e_net_wm_state estate, bool bSet);
+void wm_add_erase_state(oswindow w, e_net_wm_state estate, bool bSet);
 
 void wm_iconify_window(oswindow w);
 
@@ -988,7 +988,7 @@ namespace linux
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
 //
-//            m_puserinteraction->m_pthread->m_puiptra->remove(m_puserinteraction);
+//            m_puserinteraction->m_pthread->m_puiptra->erase(m_puserinteraction);
 //
 //         }
 //
@@ -1120,7 +1120,7 @@ namespace linux
 
          send_message(e_message_ncdestroy, 0, 0);
 
-         ::oswindow_remove_message_only_window(this);
+         ::oswindow_erase_message_only_window(this);
 
          return true;
 
@@ -4736,7 +4736,7 @@ namespace linux
       //if(eactivation &)
 //      {
 //
-//         wm_add_remove_state(m_oswindow, net_wm_state_hidden, false);
+//         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
 //
 //      }
 //

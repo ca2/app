@@ -50,7 +50,7 @@ namespace simpledb
 
 
    //// true if deleted
-   bool simpledb::remove(const ::database::key & key)
+   bool simpledb::erase(const ::database::key & key)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -77,7 +77,7 @@ namespace simpledb
 
       strKey.replace("\\", "/");
 
-      return pstorage->remove_key(strKey);
+      return pstorage->erase_key(strKey);
 
    }
 

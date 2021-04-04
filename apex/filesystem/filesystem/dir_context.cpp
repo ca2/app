@@ -624,7 +624,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = true;
 
-   //listing.m_straPattern.remove_all();
+   //listing.m_straPattern.erase_all();
 
    return ls(listing);
 
@@ -640,7 +640,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = false;
 
-   listing.m_straPattern.remove_all();
+   listing.m_straPattern.erase_all();
 
    return ls(listing);
 
@@ -656,7 +656,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = true;
 
-   listing.m_straPattern.remove_all();
+   listing.m_straPattern.erase_all();
 
    return ls(listing);
 
@@ -672,7 +672,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = false;
 
-   listing.m_straPattern.remove_all();
+   listing.m_straPattern.erase_all();
 
    return ls(listing);
 

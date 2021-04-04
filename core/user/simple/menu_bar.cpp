@@ -400,7 +400,7 @@ i32_spreadset * prel,
 
 void simple_menu_bar::RemoveAllButtons()
 {
-   m_itema.remove_all();
+   m_itema.erase_all();
 }
 
 void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)

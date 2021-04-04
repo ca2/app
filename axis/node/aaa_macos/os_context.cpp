@@ -647,7 +647,7 @@ namespace macos
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
       //   __throw(error_not_implemented);
       return false;

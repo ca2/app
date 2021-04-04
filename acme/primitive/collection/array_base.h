@@ -32,7 +32,7 @@ DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); } \
 ::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
-::index remove_ ## ITEM(TYPE * p) { return CONTAINER.remove(p); } \
+::index erase_ ## ITEM(TYPE * p) { return CONTAINER.erase(p); } \
 CONTAINER_TYPE ITEM ## a_section(::index iStart = 0, ::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
 template < typename ARRAY > \
 void ITEM ## a_slice(ARRAY & a, ::index iStart = 0, ::count nCount = -1){ CONTAINER.slice(a, iStart, nCount);} \
@@ -504,16 +504,16 @@ public:
    void zero(::index iStart = 0, ::count c = -1);
 
    void _001RemoveIndexes(index_array & ia);
-   void remove_indexes(const index_array & ia);
-   void remove_descending_indexes(const index_array & ia);
+   void erase_indexes(const index_array & ia);
+   void erase_descending_indexes(const index_array & ia);
 
 
    inline bool prepare_first_last(::index & first, ::index& last) const;
    inline bool prepare_first_in_count_last_out(::index& first, ::count & inCountLastOut) const;
 
 
-   inline void remove_last();
-   inline ::count remove_all();
+   inline void erase_last();
+   inline ::count erase_all();
    inline void clear();
 
 
@@ -528,7 +528,7 @@ public:
 
 
    ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
-   ::index remove_at(::index nIndex, ::count nCount = 1);
+   ::index erase_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
 
    
@@ -538,12 +538,12 @@ public:
    array_base pick_at(::index nIndex, ::count nCount);
 
 
-   ::index remove_item(TYPE * p);
+   ::index erase_item(TYPE * p);
 
    ::index index_of(const TYPE * p) const { auto i = p - this->m_pData; return i >= 0 && i < this->m_nSize ? i : -1; }
 
 
-   bool erase(const TYPE * p) { auto i = index_of(p); if (!__found(i)) return false; return __found(remove_at(i)); }
+   bool erase(const TYPE * p) { auto i = index_of(p); if (!__found(i)) return false; return __found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
    template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -785,7 +785,7 @@ public:
 
 
    template < typename PRED >
-   ::count predicate_remove(PRED pred)
+   ::count predicate_erase(PRED pred)
    {
       ::count cTotal = 0;
       for (int i = 0; i < get_count();)
@@ -820,7 +820,7 @@ public:
 
             }
 
-            remove_at(iStart, iCount);
+            erase_at(iStart, iCount);
 
             cTotal += iCount;
 

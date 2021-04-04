@@ -49,10 +49,10 @@
 //   //   id add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn);
 //
 //   //   /// Remove a directory watch. This is a brute force lazy search O(nlogn).
-//   //   void remove_watch(const string & directory);
+//   //   void erase_watch(const string & directory);
 //
 //   //   /// Remove a directory watch. This is a map lookup O(logn).
-//   //   void remove_watch(id watchid);
+//   //   void erase_watch(id watchid);
 //
 //   //   string watch_path(id watchid);
 //

@@ -73,8 +73,8 @@ public:
    itemidlist & operator=(const itemidlist & pidl);
    itemidlist & operator=(LPCITEMIDLIST pidl);
    itemidlist & operator/=(const itemidlist & ciidl);//Add a new pidl to tail.
-   itemidlist & operator-=(int i);//remove i Count items from tail.
-   itemidlist operator -(int i) const;//remove i Count items from tail.
+   itemidlist & operator-=(int i);//erase i Count items from tail.
+   itemidlist operator -(int i) const;//erase i Count items from tail.
    bool operator==(const itemidlist & ciidl) const;
    itemidlist operator[](int nIndex) const;//Return a relative pidl at specified index.
 

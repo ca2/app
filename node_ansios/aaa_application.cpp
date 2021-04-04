@@ -202,7 +202,7 @@ void apex_application_shutdown(GApplication *application)
    if (papexapplication->timeout)
    {
 
-      g_source_remove (papexapplication->timeout);
+      g_source_erase (papexapplication->timeout);
 
       papexapplication->timeout = 0;
 

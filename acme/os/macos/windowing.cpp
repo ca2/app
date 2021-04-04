@@ -116,7 +116,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//bool oswindow_remove(nswindow window)
+//bool oswindow_erase(nswindow window)
 //{
 //
 //   synchronous_lock synchronouslock(g_pmutexOsWindowData);
@@ -130,7 +130,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   g_poswindowdataptra->remove_at(iFind);
+//   g_poswindowdataptra->erase_at(iFind);
 //
 //   return true;
 //

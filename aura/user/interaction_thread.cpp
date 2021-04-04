@@ -323,7 +323,7 @@ namespace user
 
             auto pusermessage = m_messagebasea.first_pointer();
 
-            m_messagebasea.remove_at(0);
+            m_messagebasea.erase_at(0);
 
             synchronouslock.unlock();
 

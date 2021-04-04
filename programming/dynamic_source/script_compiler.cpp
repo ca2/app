@@ -1253,7 +1253,7 @@ namespace dynamic_source
       strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::script_run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
-      straId.remove_all();
+      straId.erase_all();
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd)
@@ -1741,14 +1741,14 @@ namespace dynamic_source
       {
          if(l.m_straLibSourcePath[i].ext() != "ds" && l.m_straLibSourcePath[i].ext() != "cpp")
          {
-            l.m_straLibSourcePath.remove_at(i);
+            l.m_straLibSourcePath.erase_at(i);
          }
          else
          {
             i++;
          }
       }
-      l.m_straLibCppPath.remove_all();
+      l.m_straLibCppPath.erase_all();
       ::file::path strLibRel = ::file::path("dynamic_source/library") / strName;
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
@@ -1766,14 +1766,14 @@ namespace dynamic_source
                || ::str::find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
                || m_pcontext->m_papexcontext->dir().is(l.m_straLibIncludePath[i]))
          {
-            l.m_straLibIncludePath.remove_at(i);
+            l.m_straLibIncludePath.erase_at(i);
          }
          else
          {
             i++;
          }
       }
-      l.m_straLibHppPath.remove_all();
+      l.m_straLibHppPath.erase_all();
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();

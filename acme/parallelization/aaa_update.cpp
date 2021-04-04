@@ -136,29 +136,29 @@ void update::add(::matter * pmatter)
 }
 
 
-void update::remove(::matter * pmatter)
+void update::erase(::matter * pmatter)
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   m_elementa.remove(pmatter);
+   m_elementa.erase(pmatter);
 
 }
 
 
-void update::_remove(::i64 iUpdate, ::matter * pmatter)
+void update::_erase(::i64 iUpdate, ::matter * pmatter)
 {
 
    cslock synchronouslock(g_pcs);
 
    auto& ptask = task(iUpdate);
 
-   ptask->remove(pmatter);
+   ptask->erase(pmatter);
 
 }
 
 
-void update::_remove(::matter* pmatter)
+void update::_erase(::matter* pmatter)
 {
 
 
@@ -167,7 +167,7 @@ void update::_remove(::matter* pmatter)
    for (auto& ptask : g_pmap->values())
    {
 
-      ptask->remove(pmatter);
+      ptask->erase(pmatter);
 
    }
  

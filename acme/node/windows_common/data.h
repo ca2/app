@@ -57,11 +57,11 @@
 //         if (::is_set(p))
 //         {
 //
-//            t_preferencea->remove_first(pPrevious);
+//            t_preferencea->erase_first(pPrevious);
 //
 //         }
 //
-//         t_preferencea->remove_first(pPrevious);
+//         t_preferencea->erase_first(pPrevious);
 //
 //         set(p);
 //

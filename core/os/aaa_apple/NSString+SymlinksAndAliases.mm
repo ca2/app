@@ -183,7 +183,7 @@
 	if (![symlinkPath hasPrefix:@"/"])
 	{
 		//
-		// For relative path symlinks (common case), remove the
+		// For relative path symlinks (common case), erase the
 		// relative links
 		//
 		symlinkPath =

@@ -102,7 +102,7 @@
 //
 //            m_bQuit = true;
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //            continue;
 //
@@ -113,7 +113,7 @@
 //
 //            *pMsg = msg.m_message;
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //            return true;
 //
@@ -191,7 +191,7 @@
 //         if(wRemoveMsg & PM_REMOVE)
 //         {
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //         }
 //
@@ -262,7 +262,7 @@
 //
 //   synchronous_lock synchronouslock(g_pmutexMq);
 //
-//   g_pmapMq->remove_key(idthread);
+//   g_pmapMq->erase_key(idthread);
 //
 //}
 //
@@ -305,7 +305,7 @@
 ////}
 //
 //
-////CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+////CLASS_DECL_APEX int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 ////{
 ////
 //////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -337,7 +337,7 @@
 //////
 //////   synchronous_lock ml(&pmq->m_mutex);
 //////
-//////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//////   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //////   {
 //////
 //////      return item.hwnd == oswindow;
@@ -363,7 +363,7 @@
 //
 //   synchronous_lock ml(g_pmutexMq);
 //
-//   pmq->m_messagea.remove_all();
+//   pmq->m_messagea.erase_all();
 //
 //}
 //

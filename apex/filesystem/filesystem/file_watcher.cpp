@@ -43,7 +43,7 @@ namespace file
             try
             {
 
-               plistener->m_watchptra.remove(this);
+               plistener->m_watchptra.erase(this);
 
             }
             catch (...)
@@ -84,17 +84,17 @@ namespace file
    }
 
 
-   void watch::remove_listener(listener * plistener)
+   void watch::erase_listener(listener * plistener)
    {
 
-      m_listenera.remove(plistener);
+      m_listenera.erase(plistener);
 
-      plistener->m_watchptra.remove(this);
+      plistener->m_watchptra.erase(this);
 
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->remove_watch(m_id);
+         m_pwatcher->erase_watch(m_id);
 
       }
 
@@ -140,7 +140,7 @@ namespace file
             try
             {
 
-               pwatch->remove_listener(this);
+               pwatch->erase_listener(this);
 
             }
             catch (...)
@@ -230,7 +230,7 @@ namespace file
          if (!pwatch->open(pathFolder, bRecursive))
          {
 
-            m_watchmap.remove_key(pwatch->m_id);
+            m_watchmap.erase_key(pwatch->m_id);
 
             return -1;
 
@@ -259,7 +259,7 @@ namespace file
    }
 
 
-   void watcher::remove_watch(watch_id watch_id)
+   void watcher::erase_watch(watch_id watch_id)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -303,7 +303,7 @@ namespace file
    }
 
 
-   void watcher::remove_watch(const ::file::path & pathFolder)
+   void watcher::erase_watch(const ::file::path & pathFolder)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -314,7 +314,7 @@ namespace file
          if (::file_is_equal_path(pathFolder, pair.element2()->m_pathFolder))
          {
 
-            remove_watch(pair.element1());
+            erase_watch(pair.element1());
 
             return;
 
@@ -340,7 +340,7 @@ restart:
 
             pair.element2()->m_pwatchRelease.release();
 
-            m_watchmap.remove_key(pair.element1());
+            m_watchmap.erase_key(pair.element1());
 
             goto restart;
 

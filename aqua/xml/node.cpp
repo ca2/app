@@ -1711,7 +1711,7 @@ namespace xml
    void node::get_child_indexed_path(index_array & iaPath, const node * pnode) const
    {
 
-      iaPath.remove_all();
+      iaPath.erase_all();
       while(pnode != nullptr && pnode != this)
       {
          iaPath.insert_at(0, pnode->get_index());
@@ -1938,7 +1938,7 @@ namespace xml
    }
 
    //========================================================
-   // Name   : remove_child
+   // Name   : erase_child
    // Desc   : detach node and delete object
    // Param  :
    // Return :
@@ -1946,10 +1946,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool node::remove_child( node * pnode )
+   bool node::erase_child( node * pnode )
    {
 
-      if(m_nodea.remove(pnode) > 0)
+      if(m_nodea.erase(pnode) > 0)
       {
 
          //   delete pnode;
@@ -1999,7 +1999,7 @@ namespace xml
    //}
 
    //========================================================
-   // Name   : remove_attr
+   // Name   : erase_attr
    // Desc   : detach attr and delete object
    // Param  :
    // Return :
@@ -2007,10 +2007,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //bool node::remove_attr(::xml::attr * pproperty )
+   //bool node::erase_attr(::xml::attr * pproperty )
    //{
 
-   //   if(m_attra.remove_by_name(pproperty->name()) > 0)
+   //   if(m_attra.erase_by_name(pproperty->name()) > 0)
    //   {
 
    //      //delete pproperty;
@@ -2068,7 +2068,7 @@ namespace xml
       index find = m_nodea.find_first(node);
       if(find >= 0)
       {
-         m_nodea.remove_at(find);
+         m_nodea.erase_at(find);
          return node;
       }
       return nullptr;
@@ -2089,7 +2089,7 @@ namespace xml
          if(find >= 0)
          {
             a
-            m_attra.m_propertyptra.remove_at(find);
+            m_attra.m_propertyptra.erase_at(find);
             return attr;
          }
          return nullptr;
@@ -2244,7 +2244,7 @@ namespace xml
          if (!m_nodea[i])
          {
 
-            m_nodea.remove_at(i);
+            m_nodea.erase_at(i);
             i--;
             continue;
          }
@@ -2269,7 +2269,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::remove_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
+   ::count node::erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
       ::count nRemoveCount = 0;
@@ -2295,7 +2295,7 @@ namespace xml
                   {
                      iCount--;
                      count++;
-                     m_nodea.remove_at(i);
+                     m_nodea.erase_at(i);
                      continue;
                   }
                }
@@ -2306,9 +2306,9 @@ namespace xml
             }
          }
          if(iDepth > 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->remove_child_with_attr(lpszName, pszAttrName, iIndex, iCount, iDepth - 1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, iDepth - 1);
          else if(iDepth < 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->remove_child_with_attr(lpszName, pszAttrName, iIndex, iCount, -1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, -1);
          if(nRemoveCount > 0)
          {
             count    += nRemoveCount;
@@ -2419,7 +2419,7 @@ namespace xml
    void node::close()
    {
 
-      m_nodea.remove_all();
+      m_nodea.erase_all();
 
       //m_pset.release();
 
@@ -2438,7 +2438,7 @@ namespace xml
 
          set_attribute("column_count", 0);
 
-         m_nodea.remove_all();
+         m_nodea.erase_all();
 
       }
       else
@@ -2496,7 +2496,7 @@ namespace xml
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
 
-         str2a.remove_all();
+         str2a.erase_all();
 
          return true;
 

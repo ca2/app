@@ -348,9 +348,9 @@ namespace acme
 
 #endif
 
-      m_taskmap.remove_key(itask);
+      m_taskmap.erase_key(itask);
 
-      m_taskidmap.remove_key(ptask);
+      m_taskidmap.erase_key(ptask);
 
    }
 
@@ -430,7 +430,7 @@ namespace acme
 
       synchronous_lock synchronouslock(&m_mutexTaskOn);
 
-      m_mapTaskOn.remove_key(id);
+      m_mapTaskOn.erase_key(id);
 
    }
 

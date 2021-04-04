@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       private:
          void CheckList(socket_list&,const string &); ///< Used by CheckSanity
-         /** remove socket from socket ::map, used by socket class. */
-         void remove(base_socket *);
+         /** erase socket from socket ::map, used by socket class. */
+         void erase(base_socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
 //         fd_set m_rfds; ///< file descriptor set monitored for read events
   //       fd_set m_wfds; ///< file descriptor set monitored for write events

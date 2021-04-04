@@ -63,7 +63,7 @@
 
       virtual ::e_status create_service();
 
-      virtual ::e_status remove_service();
+      virtual ::e_status erase_service();
 
       virtual ::e_status start_service();
 
@@ -71,7 +71,7 @@
 
       virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
 
-      virtual bool remove_service(const string & strServiceName);
+      virtual bool erase_service(const string & strServiceName);
 
       virtual bool start_service(const string & strServiceName);
 

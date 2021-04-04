@@ -740,7 +740,7 @@ namespace user
 
    //   synchronous_lock synchronouslock(mutex());
 
-   //   //m_controldescriptorset.remove_all();
+   //   //m_controldescriptorset.erase_all();
 
    //}
 
@@ -945,8 +945,8 @@ namespace user
          {
             if(!pinteraction->GetComboBox()->m_datakeyFill.IsNull())
             {
-               pinteraction->GetComboBox()->m_wstra.remove_all();
-               pinteraction->GetComboBox()->m_dwaData.remove_all();
+               pinteraction->GetComboBox()->m_wstra.erase_all();
+               pinteraction->GetComboBox()->m_dwaData.erase_all();
                ::payload payload;
                payload.m_etype = ::e_type_element;
                payload.m_pca2 = pinteraction->GetComboBox();
@@ -1180,7 +1180,7 @@ namespace user
             else
             {
 
-               ia.remove(pinteraction->m_iDataValue);
+               ia.erase(pinteraction->m_iDataValue);
 
             }
 

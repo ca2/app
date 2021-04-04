@@ -183,7 +183,7 @@ namespace userfs
             
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->remove_timer(ptimer);
+            ptimer->m_ptimercallback->erase_timer(ptimer);
 
          }
          
@@ -197,7 +197,7 @@ namespace userfs
          
          m_bTimer123 = false;
          
-         ptimer->m_ptimercallback->remove_timer(ptimer);
+         ptimer->m_ptimercallback->erase_timer(ptimer);
 
       }
 

@@ -126,7 +126,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
 
 
-bool osdisplay_remove(Display * pdisplay)
+bool osdisplay_erase(Display * pdisplay)
 {
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
@@ -140,7 +140,7 @@ bool osdisplay_remove(Display * pdisplay)
 
    XCloseDisplay(pdata->m_pdisplay);
 
-   ::osdisplay_data::s_pdataptra->remove_at(iFind);
+   ::osdisplay_data::s_pdataptra->erase_at(iFind);
 
    return true;
 

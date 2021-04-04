@@ -26,7 +26,7 @@ namespace draw2d
    void font::clear()
    {
 
-      m_glyphset.remove_all();
+      m_glyphset.erase_all();
 
    }
 

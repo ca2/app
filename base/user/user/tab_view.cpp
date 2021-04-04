@@ -10,8 +10,8 @@ namespace user
    tab_view::tab_view()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       get_data()->m_pcallback       = this;
       m_pimpactdata                   = nullptr;
@@ -220,7 +220,7 @@ namespace user
 
       }
 
-      m_placeholdera.remove(ptabpane->m_pplaceholder);
+      m_placeholdera.erase(ptabpane->m_pplaceholder);
 
       id idTab = ptabpane->m_id;
 
@@ -240,7 +240,7 @@ namespace user
 
       }
 
-      m_impactdatamap.remove_key(idTab);
+      m_impactdatamap.erase_key(idTab);
 
    }
 
@@ -319,9 +319,9 @@ namespace user
 
          on_create_impact(pimpactdata);
 
-         remove_tab_by_id(id1);
+         erase_tab_by_id(id1);
 
-         remove_tab_by_id(id2);
+         erase_tab_by_id(id2);
 
          set_cur_tab_by_id(id3);
 
@@ -413,7 +413,7 @@ namespace user
       UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
-         //psystem->remove_frame(m_pdroptargetwindow);
+         //psystem->erase_frame(m_pdroptargetwindow);
          //m_pdroptargetwindow->DestroyWindow();
          //m_pdroptargetwindow = nullptr;
       }
@@ -707,22 +707,22 @@ namespace user
    }
 
 
-   void tab_view::on_remove_child(::user::interaction* pinteraction)
+   void tab_view::on_erase_child(::user::interaction* pinteraction)
    {
 
-      ::user::impact_host::on_remove_child(pinteraction);
+      ::user::impact_host::on_erase_child(pinteraction);
 
-      ::user::tab::on_remove_child(pinteraction);
+      ::user::tab::on_erase_child(pinteraction);
 
    }
 
 
-   void tab_view::on_remove_place_holder_child(::user::interaction* pinteraction)
+   void tab_view::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
-      ::user::impact_host::on_remove_place_holder_child(pinteraction);
+      ::user::impact_host::on_erase_place_holder_child(pinteraction);
 
-      ::user::tab::on_remove_place_holder_child(pinteraction);
+      ::user::tab::on_erase_place_holder_child(pinteraction);
 
    }
 

@@ -3206,9 +3206,9 @@ namespace draw2d
    ::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const string & str, strsize iStart, strsize iCount)
    {
 
-      daLeft.remove_all();
+      daLeft.erase_all();
 
-      daRight.remove_all();
+      daRight.erase_all();
 
       if (str.length() <= 0)
       {

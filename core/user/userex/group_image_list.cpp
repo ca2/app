@@ -115,7 +115,7 @@ namespace userex
       //m_buttonMenu.create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
-      m_buttonMenu.m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
+      m_buttonMenu.m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
 
    }
 

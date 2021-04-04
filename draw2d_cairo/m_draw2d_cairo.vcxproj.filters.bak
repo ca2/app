@@ -160,7 +160,7 @@
     <Filter Include="Header Files\sockets\metrowin\timer">
       <UniqueIdentifier>{eb0a57c6-fa46-43a1-971c-a60c86f5ff89}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\sockets\metrowin\aaa_internal_want_to_remove">
+    <Filter Include="Header Files\sockets\metrowin\aaa_internal_want_to_erase">
       <UniqueIdentifier>{1a35e00d-3e30-49c8-89c1-4ff47a8cf321}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
@@ -1482,7 +1482,7 @@
     <ClCompile Include="database\database_stringhelper.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="database\aaa_want_to_remove_database_update_hint.cpp">
+    <ClCompile Include="database\aaa_want_to_erase_database_update_hint.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database_user_interaction.cpp">
@@ -2759,7 +2759,7 @@
     <ClInclude Include="ca\ca_se_translator.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
+    <ClInclude Include="ca\ca_se_translator.want_to_erase.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_smart_pointer.h">
@@ -3347,7 +3347,7 @@
     <ClInclude Include="database\database_template.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\aaa_want_to_remove_database_update_hint.h">
+    <ClInclude Include="database\aaa_want_to_erase_database_update_hint.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database_user_interaction.h">
@@ -4508,8 +4508,8 @@
     <ClInclude Include="sockets\metrowin\sockets_link_out_socket.h">
       <Filter>Header Files\sockets\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\metrowin\internal\aaa_SSLInitializer_want_to_remove.h">
-      <Filter>Header Files\sockets\metrowin\aaa_internal_want_to_remove</Filter>
+    <ClInclude Include="sockets\metrowin\internal\aaa_SSLInitializer_want_to_erase.h">
+      <Filter>Header Files\sockets\metrowin\aaa_internal_want_to_erase</Filter>
     </ClInclude>
     <ClInclude Include="metrowin\metrowin.h">
       <Filter>Header Files\metrowin</Filter>

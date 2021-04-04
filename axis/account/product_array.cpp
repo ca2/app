@@ -160,7 +160,7 @@ namespace account
 
       ::count count = m_map.get_count();
 
-      m_map.remove_all();
+      m_map.erase_all();
 
       return count;
 
@@ -170,7 +170,7 @@ namespace account
    bool product_array::clear_cache(string strAppId)
    {
 
-      return m_map.remove_key(strAppId) != false;
+      return m_map.erase_key(strAppId) != false;
 
    }
 

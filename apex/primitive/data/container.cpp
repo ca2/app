@@ -84,10 +84,10 @@ namespace data
    }
 
 
-   bool data_container_base::remove_data(::data::data * pdata)
+   bool data_container_base::erase_data(::data::data * pdata)
    {
 
-      auto bRemove = m_datamap.remove_key(pdata->m_id);
+      auto bRemove = m_datamap.erase_key(pdata->m_id);
 
       return bRemove;
 

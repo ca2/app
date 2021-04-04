@@ -98,7 +98,7 @@ public:
    inline ::payload context_value(const ::payload & payload);
 
 
-   virtual void task_remove(::task* ptask) override;
+   virtual void task_erase(::task* ptask) override;
 
 
    virtual ::e_status sleep(const ::duration& duration);
@@ -691,7 +691,7 @@ public:
    inline ::payload context_value(const ::payload& payload);
 
 
-   virtual void task_remove(::task* ptask) override;
+   virtual void task_erase(::task* ptask) override;
 
 
    virtual ::e_status sleep(const ::duration& duration);

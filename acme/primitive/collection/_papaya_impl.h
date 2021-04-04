@@ -57,7 +57,7 @@ inline auto find_value(const CONTAINER & container, const VALUE & value)
 
 
 template < typename CONTAINER, typename VALUE >
-inline bool remove_value(CONTAINER & container, const VALUE & value)
+inline bool erase_value(CONTAINER & container, const VALUE & value)
 {
 
    auto p = find_value(container, value);
@@ -95,7 +95,7 @@ template < typename ITERATOR >
 void erase(ITERATOR & iterator)
 {
 
-   iterator.m_pcontainer->remove_item(iterator.item());
+   iterator.m_pcontainer->erase_item(iterator.item());
 
 }
 

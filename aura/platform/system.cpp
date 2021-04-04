@@ -438,7 +438,7 @@ namespace aura
    //            if (!applicationa[i] || applicationa[i]->is_session() || applicationa[i]->is_system())
    //            {
 
-   //               applicationa.remove_at(i);
+   //               applicationa.erase_at(i);
 
    //               continue;
 
@@ -446,7 +446,7 @@ namespace aura
    //            else if (applicationa[i]->is_serviceable())
    //            {
 
-   //               applicationa.remove_at(i);
+   //               applicationa.erase_at(i);
 
    //               continue;
 
@@ -456,7 +456,7 @@ namespace aura
    //         catch (...)
    //         {
 
-   //            applicationa.remove_at(i);
+   //            applicationa.erase_at(i);
 
    //            continue;
 
@@ -1771,7 +1771,7 @@ namespace aura
 
       //}
 
-      //m_serviceptra.remove_all();
+      //m_serviceptra.erase_all();
 
       try
       {
@@ -1792,7 +1792,7 @@ namespace aura
       try
       {
 
-         m_mapImage.remove_all();
+         m_mapImage.erase_all();
 
       }
       catch (...)
@@ -1982,7 +1982,7 @@ namespace aura
       try
       {
 
-         m_mapAppLibrary.remove_all();
+         m_mapAppLibrary.erase_all();
 
       }
       catch (...)
@@ -2781,7 +2781,7 @@ namespace aura
 //
 //      /*      m_spfilehandler(new ::aura::filehandler::handler(this));*/
 //
-////      m_mapAppLibrary.remove_all();
+////      m_mapAppLibrary.erase_all();
 ////
 ////      string strLibraryId;
 ////
@@ -3084,7 +3084,7 @@ namespace aura
 
    //   ::apex::application * papp = nullptr;
 
-   //   appptra.predicate_remove([](auto & papp)
+   //   appptra.predicate_erase([](auto & papp)
    //   {
 
    //      return papp->is_system() || papp->is_session();
@@ -3165,9 +3165,9 @@ namespace aura
 
    //   string_array straExtra = m_straCommandLineExtra;
 
-   //   m_straCommandLineAccumul.remove_all();
+   //   m_straCommandLineAccumul.erase_all();
 
-   //   m_straCommandLineExtra.remove_all();
+   //   m_straCommandLineExtra.erase_all();
 
    //   command_line_pointer line(e_create_new);
 
@@ -4674,9 +4674,9 @@ namespace aura
 //
 //#endif
 //
-//      m_threadmap.remove_key(itask);
+//      m_threadmap.erase_key(itask);
 //
-//      m_threadidmap.remove_key(pthread);
+//      m_threadidmap.erase_key(pthread);
 //
 //   }
 
@@ -5708,7 +5708,7 @@ namespace aura
    //{
 
    //   __throw(todo, "filehandler");
-   //  // m_pfilehandler->m_ptree->remove_all();
+   //  // m_pfilehandler->m_ptree->erase_all();
 
    //}
 

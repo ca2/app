@@ -39,7 +39,7 @@ namespace sockets
 
       //if(&socket_handler() != nullptr)
       //{
-      //   socket_handler()->remove(this);
+      //   socket_handler()->erase(this);
       //}
 
       if (m_socket != INVALID_SOCKET            && !m_bRetain         )
@@ -102,7 +102,7 @@ namespace sockets
       if(!is_null(socket_handler()))
       {
 
-         socket_handler()->set(m_socket, false, false, false); // remove from fd_set's
+         socket_handler()->set(m_socket, false, false, false); // erase from fd_set's
          socket_handler()->AddList(m_socket, LIST_CALLONCONNECT, false);
          socket_handler()->AddList(m_socket, LIST_DETACH, false);
          socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);

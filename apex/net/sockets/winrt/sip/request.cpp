@@ -108,7 +108,7 @@ namespace sip
 
    //   m_file = std::auto_ptr<IFile>(nullptr);
       m_form.clear();
-      m_cookies.remove_all();
+      m_cookies.erase_all();
       file().Truncate(0);
    }
 

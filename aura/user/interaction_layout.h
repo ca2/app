@@ -233,7 +233,7 @@ namespace user
       inline bool has_appearance(eappearance eappearance) const { return design().appearance() & eappearance; }
       inline void set_appearance(eappearance eappearance) { sketch() = eappearance; sketch().set_modified(); }
       inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; sketch().set_modified(); }
-      inline void remove_appearance(eappearance eappearance) { sketch() -= eappearance; sketch().set_modified(); }
+      inline void erase_appearance(eappearance eappearance) { sketch() -= eappearance; sketch().set_modified(); }
       inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; sketch().set_modified(); }
       inline void clear_appearance() { sketch() = e_appearance_none; sketch().set_modified(); }
 

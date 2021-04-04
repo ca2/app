@@ -413,7 +413,7 @@ namespace music
             if (get_state() != e_state_playing
                   && get_state() != e_state_paused)
             {
-               m_flags.remove(sequence::e_flag_waiting);
+               m_flags.erase(sequence::e_flag_waiting);
                GetPlayerLink().OnFinishCommand(command_stop);
                return ::success;
             }
@@ -430,7 +430,7 @@ namespace music
             //      if(::success != m_estatusLastError)
             //    {
             //     TRACE( "sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (u32)m_estatusLastError);
-            //   m_flags.remove(e_flag_waiting);
+            //   m_flags.erase(e_flag_waiting);
             // return error_not_ready;
             //}
             // }
@@ -761,12 +761,12 @@ namespace music
    //         if(m_flags.has(e_flag_operation))
    //            m_flags.add(e_flag_was_operation);
    //         else
-   //            m_flags.remove(e_flag_was_operation);
+   //            m_flags.erase(e_flag_was_operation);
    //
    //         if(bSet)
    //            m_flags.add(e_flag_operation);
    //         else
-   //            m_flags.remove(e_flag_operation);
+   //            m_flags.erase(e_flag_operation);
    //      }
 
    //      void sequence::set_operation(e_operation eoperation)
@@ -938,7 +938,7 @@ namespace music
                }
 
                m_estatusLastError = ::success;
-               m_flags.remove(e_flag_waiting);
+               m_flags.erase(e_flag_waiting);
 
                m_evMmsgDone.SetEvent();
             }
@@ -994,7 +994,7 @@ namespace music
             if(bSet)
                m_flags.add(sequence::e_flag_tempo_change);
             else
-               m_flags.remove(sequence::e_flag_tempo_change);
+               m_flags.erase(sequence::e_flag_tempo_change);
          }
 
 
@@ -1272,7 +1272,7 @@ namespace music
             if(bSet)
                m_flags.add(sequence::e_flag_setting_position);
             else
-               m_flags.remove(sequence::e_flag_setting_position);
+               m_flags.erase(sequence::e_flag_setting_position);
          }
 
 

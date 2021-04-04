@@ -219,7 +219,7 @@ namespace ios
 //            pcontext->m_papexcontext->dir().mk(str, papp);
 //            if(!pcontext->m_papexcontext->dir().is(str, papp))
 //               __throw(::exception::exception("time square dir does not exist"));
-//            straTitle.remove_all();
+//            straTitle.erase_all();
 //            pcontext->m_papexcontext->dir().ls(papp, str, nullptr, &straTitle);
 //            if(i < iMaxLevel)
 //            {
@@ -289,13 +289,13 @@ namespace ios
 //            {
 //               if(str.get_length() < 2)
 //               {
-//                  stra.remove_at(i);
+//                  stra.erase_at(i);
 //                  i--;
 //                  continue;
 //               }
 //               if(!isdigit((uchar) str[0]) || !isdigit((uchar) str[1]))
 //               {
-//                  stra.remove_at(i);
+//                  stra.erase_at(i);
 //                  i--;
 //                  continue;
 //               }
@@ -889,7 +889,7 @@ namespace ios
 //            __throw(strError);
 //         }
 //#else
-//         if(remove(psz) != 0)
+//         if(erase(psz) != 0)
 //         {
 //            i32 err = errno;
 //            string strError;

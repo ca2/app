@@ -715,7 +715,7 @@ namespace install
                straSeparator.add("\r");
                straSeparator.add("\n");
 
-               m_straLinesNativeLaunch.remove_all();
+               m_straLinesNativeLaunch.erase_all();
 
                m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
 
@@ -772,7 +772,7 @@ namespace install
 
          ::xml::document node;
 
-         // remove install tag : should be turned into a function dependant of spalib at maximum
+         // erase install tag : should be turned into a function dependant of spalib at maximum
 
          if(!node.load(file_as_string(dir::appdata() / "install.xml")))
             goto run_install;
@@ -808,7 +808,7 @@ namespace install
          if(pnode == nullptr)
             goto run_install;
 
-         lpnodeType->remove_child(pnode);
+         lpnodeType->erase_child(pnode);
 
          file_put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 

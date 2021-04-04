@@ -259,7 +259,7 @@ oswindow oswindow_defer_get(Window window)
 
 
 
-bool oswindow_remove(Display * pdisplay, Window window)
+bool oswindow_erase(Display * pdisplay, Window window)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
@@ -269,14 +269,14 @@ bool oswindow_remove(Display * pdisplay, Window window)
    if(iFind < 0)
       return false;
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
 }
 
 
-bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
+bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
@@ -286,7 +286,7 @@ bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessa
    if(iFind < 0)
       return false;
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
@@ -352,7 +352,7 @@ void oswindow_data::post_nc_destroy()
 
    single_lock slOsWindow(s_pmutex, true);
 
-   oswindow_remove(display(), window());
+   oswindow_erase(display(), window());
 
 }
 

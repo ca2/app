@@ -539,30 +539,30 @@ namespace url
 
    }
 
-   ::payload & department::var_remove(::payload & varUrl, const char * pszKey)
+   ::payload & department::var_erase(::payload & varUrl, const char * pszKey)
    {
 
-      return varUrl = remove_key(varUrl, pszKey);
+      return varUrl = erase_key(varUrl, pszKey);
 
    }
 
-   property & department::property_remove(property & propUrl, const char * pszKey)
+   property & department::property_erase(property & propUrl, const char * pszKey)
    {
 
-      propUrl = remove_key(propUrl, pszKey);
+      propUrl = erase_key(propUrl, pszKey);
 
       return propUrl;
 
    }
 
-   string department::string_remove(string & strUrl, const char * pszKey)
+   string department::string_erase(string & strUrl, const char * pszKey)
    {
 
-      return strUrl = remove_key(strUrl, pszKey);
+      return strUrl = erase_key(strUrl, pszKey);
 
    }
 
-   string department::remove_key(const char * pszUrl, const char * pszKey)
+   string department::erase_key(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
@@ -572,7 +572,7 @@ namespace url
       if(iPos < 0)
          return strUrl;
 
-      return strUrl.Left(iPos) + ::str::has_char(query_remove(strUrl.Mid(iPos + 1), pszKey), "?");
+      return strUrl.Left(iPos) + ::str::has_char(query_erase(strUrl.Mid(iPos + 1), pszKey), "?");
 
    }
 
@@ -688,7 +688,7 @@ namespace url
          }
          else
          {
-            strQuery = strKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
       else if(::str::begins(strQuery, strKeyEqual2))
@@ -700,7 +700,7 @@ namespace url
          }
          else
          {
-            strQuery = strKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
       else
@@ -733,7 +733,7 @@ namespace url
             }
             else
             {
-               strQuery = strQuery.Left(iPos) + strAndKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+               strQuery = strQuery.Left(iPos) + strAndKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
             }
          }
       }
@@ -763,7 +763,7 @@ namespace url
          }
          else
          {
-            strQuery = strKey + strParam + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKey + strParam + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
       else
@@ -782,7 +782,7 @@ namespace url
          }
          else
          {
-            strQuery = strKey + strParam + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKey + strParam + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
 
@@ -791,14 +791,14 @@ namespace url
 
    }
 
-   string department::query_remove(const char * pszQuery, const char * pszKey)
+   string department::query_erase(const char * pszQuery, const char * pszKey)
    {
 
       ::property_set set;
 
       set.parse_url_query(pszQuery);
 
-      set.remove_by_name(pszKey);
+      set.erase_by_name(pszKey);
 
       string str;
 
@@ -808,7 +808,7 @@ namespace url
 
    }
 
-   string department::__query_remove(const char * pszQuery, const char * pszAndKeyEqual)
+   string department::__query_erase(const char * pszQuery, const char * pszAndKeyEqual)
    {
 
       string strQuery(pszQuery);
@@ -833,14 +833,14 @@ namespace url
 
    }
 
-   string department::query_remove(const char * pszQuery, string_array & straKey)
+   string department::query_erase(const char * pszQuery, string_array & straKey)
    {
 
       ::property_set set;
 
       set.parse_url_query(pszQuery);
 
-      set.remove_by_name(straKey);
+      set.erase_by_name(straKey);
 
       string str;
 
@@ -1619,7 +1619,7 @@ namespace url
 
          m_straPublicDomainExtension.trim();
 
-         m_straPublicDomainExtension.remove_empty();
+         m_straPublicDomainExtension.erase_empty();
 
          TRACE("m_straPublicDomainExtension");
 

@@ -387,7 +387,7 @@ public:
 
       m_p = new TYPE(*pobject);
 
-      pcontainer->remove(pOld);
+      pcontainer->erase(pOld);
 
       pcontainer->add(m_p);
 

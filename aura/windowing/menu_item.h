@@ -27,7 +27,7 @@ namespace windowing
 
 
       virtual void add_status(enum_status estatus);
-      virtual void remove_status(enum_status estatus);
+      virtual void erase_status(enum_status estatus);
 
       inline bool is_checked() const { return m_estatus & e_status_checked; }
       inline bool should_set_checked() const { return m_estatus & e_status_set_checked; }

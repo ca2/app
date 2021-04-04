@@ -123,7 +123,7 @@
 - (void)dealloc
 {
    
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
+//	[[NSNotificationCenter defaultCenter] eraseObserver:self];
    
 //	[super dealloc];
    

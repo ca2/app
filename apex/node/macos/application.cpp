@@ -179,7 +179,7 @@ namespace apex
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable

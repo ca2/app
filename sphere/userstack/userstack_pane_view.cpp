@@ -363,7 +363,7 @@ namespace userstack
       //pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
       /*      string_array straPath;
             string_array straRelative;
-            straPath.remove_all();
+            straPath.erase_all();
             pcontext->m_papexcontext->dir().rls(pcontext->m_papexcontext->dir().userquicklaunch(), &straPath, nullptr, &straRelative);
             for(i32 i = 0; i < straPath.get_size(); i++)
             {

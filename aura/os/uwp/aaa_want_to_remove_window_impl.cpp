@@ -77,7 +77,7 @@ oswindow oswindow_get(::user::interaction * pinteraction)
 
 
 
-int_bool oswindow_remove(::user::interaction * pinteraction)
+int_bool oswindow_erase(::user::interaction * pinteraction)
 {
 
    iptr iFind = oswindow_find(pinteraction);
@@ -85,7 +85,7 @@ int_bool oswindow_remove(::user::interaction * pinteraction)
    if(iFind < 0)
       return false;
 
-   g_oswindow_dataptra()->remove_at(iFind);
+   g_oswindow_dataptra()->erase_at(iFind);
 
    return true;
 

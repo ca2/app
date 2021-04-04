@@ -88,7 +88,7 @@ void id_space::free_all()
 
    }
 
-   m_psza.remove_all();
+   m_psza.erase_all();
 
 }
 

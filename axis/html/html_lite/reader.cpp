@@ -106,10 +106,10 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 dwNewEventMas
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 addFlags, u32 removeFlags)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 addFlags, u32 eraseFlags)
 {
    u32   dwOldMask = (u32)m_eventMask;
-   u32   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
+   u32   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
    m_eventMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }

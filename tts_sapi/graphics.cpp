@@ -5450,7 +5450,7 @@ namespace draw2d_gdiplus
 
    //::count graphics::GetEachCharTextExtent(array < ::size_f64 > & sizea, const string & str)
    //{
-   //   sizea.remove_all();
+   //   sizea.erase_all();
    //   strsize_array iaLen;
    //   strsize iRange = 0;
    //   strsize i = 0;
@@ -5504,9 +5504,9 @@ namespace draw2d_gdiplus
 
       }
       
-      daLeft.remove_all();
+      daLeft.erase_all();
 
-      daRight.remove_all();
+      daRight.erase_all();
 
       wstring wstrBefore(str.Left(iStartParam));
 

@@ -49,9 +49,9 @@ namespace user
    }
 
 
-   bool place_holder_container::remove_place_holder(::user::place_holder * pholder)
+   bool place_holder_container::erase_place_holder(::user::place_holder * pholder)
    {
-      bool bRemove = m_placeholdera.remove(pholder) > 0;
+      bool bRemove = m_placeholdera.erase(pholder) > 0;
       return bRemove;
    }
 
@@ -60,7 +60,7 @@ namespace user
       __pointer(place_holder) pholder = get_new_place_holder(rectCreate);
       if(!on_place_hold(pinteraction, pholder))
       {
-         remove_place_holder(pholder);
+         erase_place_holder(pholder);
          return nullptr;
       }
       return pholder;
@@ -79,7 +79,7 @@ namespace user
             if(on_unplace(pinteraction, m_placeholdera[i]))
             {
 
-               m_placeholdera.remove_at(i);
+               m_placeholdera.erase_at(i);
 
                return true;
 

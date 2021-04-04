@@ -69,9 +69,9 @@ namespace factory
 
       critical_section_lock synchronouslock(g_pcsFactory);
 
-      g_pfactorymap->remove_all();
+      g_pfactorymap->erase_all();
 
-      g_pfactorya->remove_all();
+      g_pfactorya->erase_all();
 
    }
 

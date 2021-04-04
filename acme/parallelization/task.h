@@ -75,7 +75,7 @@ public:
    virtual void unregister_task();
 
    //virtual void add_notify(::matter* pmatter);
-   //virtual void remove_notify(::matter* pmatter);
+   //virtual void erase_notify(::matter* pmatter);
 
 
    virtual ::e_status task_caller_on_init();

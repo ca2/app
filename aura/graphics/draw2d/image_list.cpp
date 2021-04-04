@@ -625,7 +625,7 @@ bool image_list::get_image_info(i32 nImage, info * pinfo) const
 }
 
 
-void image_list::remove_all()
+void image_list::erase_all()
 {
    m_iSize = 0;
 }

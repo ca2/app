@@ -50,11 +50,11 @@ public:
    inline bool is(enum_object e) const { return (i64)(m_eobject & e) == (i64)e; }
    inline bool has(enum_object e) const { return is(e); }
 
-   void remove(enum_object e) { operator -= (e); }
+   void erase(enum_object e) { operator -= (e); }
    void add(const eobject& e) { operator += (e); }
-   void unset(const eobject& e) { remove(e); }
+   void unset(const eobject& e) { erase(e); }
    void set(const eobject& e) { add(e); }
-   void remove(const eobject& e) { operator -= (e); }
+   void erase(const eobject& e) { operator -= (e); }
    void clear() { m_eobject = (enum_object)0; }
 
    void set(enum_object e, bool bSet) { if (bSet) set(e); else unset(e); }

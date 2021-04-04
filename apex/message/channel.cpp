@@ -16,7 +16,7 @@ channel::channel()
 channel::~channel()
 {
 
-   remove_all_routes();
+   erase_all_routes();
 
 }
 
@@ -31,7 +31,7 @@ void channel::install_message_routing(::channel* pchannel)
 
 
 
-void channel::remove_receiver(::object * preceiver)
+void channel::erase_receiver(::object * preceiver)
 {
 
    synchronous_lock synchronouslock(channel_mutex());
@@ -46,7 +46,7 @@ void channel::remove_receiver(::object * preceiver)
 
       }
 
-      pair.element2().predicate_remove([=](auto & item)
+      pair.element2().predicate_erase([=](auto & item)
       {
 
          return item.m_preceiver == preceiver;
@@ -88,7 +88,7 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 
       });
 
-      pair.element2().predicate_remove([&](auto & item)
+      pair.element2().predicate_erase([&](auto & item)
       {
 
          return item.m_preceiver == preceiver;
@@ -190,7 +190,7 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 
 
 
-void channel::remove_all_routes()
+void channel::erase_all_routes()
 {
 
    try
@@ -207,7 +207,7 @@ void channel::remove_all_routes()
 
       }
 
-      m_handlermap.remove_all();
+      m_handlermap.erase_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -227,7 +227,7 @@ void channel::remove_all_routes()
 //
 //                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel);
 //
-//                  route->m_preceiver->m_sendera.remove(this);
+//                  route->m_preceiver->m_sendera.erase(this);
 //
 //               }
 //               catch (...)
@@ -237,7 +237,7 @@ void channel::remove_all_routes()
 //
 //            });
 //
-//            id_route_array.element2()->remove_all();
+//            id_route_array.element2()->erase_all();
 //
 //         }
 //
@@ -271,22 +271,22 @@ void channel::channel_common_construct()
 
    m_pchannel.release();
 
-   m_idaHandledCommands.remove_all();
+   m_idaHandledCommands.erase_all();
 
-   m_handlermap.remove_all();
+   m_handlermap.erase_all();
 
-   m_handlermapNew.remove_all();
+   m_handlermapNew.erase_all();
 
    for (auto& procedurea : m_routinemap.values())
    {
 
       procedurea.finalize();
 
-      procedurea.remove_all();
+      procedurea.erase_all();
 
    }
 
-   m_routinemap.remove_all();
+   m_routinemap.erase_all();
 
    ::object::finalize();
 

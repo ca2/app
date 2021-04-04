@@ -35,13 +35,13 @@ namespace zip
    bool in_file::zip_open(const char * pszFileName,::u32)
    {
 
-      m_filea.remove_all();
+      m_filea.erase_all();
 
-      m_infilea.remove_all();
+      m_infilea.erase_all();
 
-      m_straPath.remove_all();
+      m_straPath.erase_all();
 
-      m_straPrefix.remove_all();
+      m_straPrefix.erase_all();
 
       string strFile;
 
@@ -102,9 +102,9 @@ namespace zip
          if(!m_infilea.last()->zip_open(m_filea.last_pointer(),str))
          {
 
-            m_filea.remove_all();
+            m_filea.erase_all();
 
-            m_infilea.remove_all();
+            m_infilea.erase_all();
 
             return false;
 
@@ -115,9 +115,9 @@ namespace zip
          if(!m_filea.last_pointer()->zip_open((file_pointer) m_infilea.last_pointer()))
          {
 
-            m_filea.remove_all();
+            m_filea.erase_all();
 
-            m_infilea.remove_all();
+            m_infilea.erase_all();
 
             return false;
 
@@ -150,13 +150,13 @@ namespace zip
    bool in_file::unzip_open(::file::file * pfile, const string_array & straPath, int iBufferLevel, ::file::enum_type * petype)
    {
 
-      m_filea.remove_all();
+      m_filea.erase_all();
 
-      m_infilea.remove_all();
+      m_infilea.erase_all();
 
       m_straPath = straPath;
 
-      m_straPrefix.remove_all();
+      m_straPrefix.erase_all();
 
       m_filea.add(__new(::zip::file));
 
@@ -181,9 +181,9 @@ namespace zip
          if(!m_infilea.last_pointer()->unzip_open(m_filea.last_pointer(),str))
          {
 
-            m_filea.remove_all();
+            m_filea.erase_all();
 
-            m_infilea.remove_all();
+            m_infilea.erase_all();
 
             return false;
 
@@ -194,9 +194,9 @@ namespace zip
          if(!m_filea.last_pointer()->unzip_open((file_pointer)m_infilea.last_pointer()))
          {
 
-            m_filea.remove_all();
+            m_filea.erase_all();
 
-            m_infilea.remove_all();
+            m_infilea.erase_all();
 
             return false;
 
@@ -470,10 +470,10 @@ namespace zip
       unzCloseCurrentFile(get_zip_file()->m_pf);
       }*/
 
-      m_filea.remove_all();
-      m_infilea.remove_all();
-      m_straPath.remove_all();
-      m_straPrefix.remove_all();
+      m_filea.erase_all();
+      m_infilea.erase_all();
+      m_straPath.erase_all();
+      m_straPrefix.erase_all();
       m_strFileName.Empty();
 
       if(bError)

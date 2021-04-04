@@ -145,7 +145,7 @@ namespace fs
 
       //      m_mapdirTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
-      //      m_mapfileTimeout.remove_key(listing.m_pathUser);
+      //      m_mapfileTimeout.erase_key(listing.m_pathUser);
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 
@@ -169,7 +169,7 @@ namespace fs
 
       //      m_mapfileTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
-      //      m_mapdirTimeout.remove_key(listing.m_pathUser);
+      //      m_mapdirTimeout.erase_key(listing.m_pathUser);
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 

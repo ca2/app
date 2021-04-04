@@ -432,7 +432,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.remove_by_name(__id(content_length));
+         m_response.m_propertysetHeader.erase_by_name(__id(content_length));
 
 
       }

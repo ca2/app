@@ -438,9 +438,9 @@
     <ClInclude Include="filesystem\filehandler\filehandler_library.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_callback.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_callback.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_item_action.h" />
     <ClInclude Include="filesystem\filemanager\child_frame.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\const.h" />

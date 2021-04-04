@@ -154,7 +154,7 @@ namespace user
          if (pview)
          {
 
-            get_document()->remove_view(pview);
+            get_document()->erase_view(pview);
 
          }
 

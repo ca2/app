@@ -183,7 +183,7 @@ namespace database
 
 
       virtual void add_client(client * pclient);
-      virtual void remove_client(client * pclient);
+      virtual void erase_client(client * pclient);
       client * client_at(index iClient);
       ::count get_client_count();
 

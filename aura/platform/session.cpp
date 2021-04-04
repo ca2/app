@@ -831,7 +831,7 @@ namespace aura
 //   }
 
 
-//   bool session::remove_keyboard_focus(::user::primitive * pprimitive)
+//   bool session::erase_keyboard_focus(::user::primitive * pprimitive)
 //   {
 //
 //      if (pprimitive == nullptr)
@@ -872,7 +872,7 @@ namespace aura
 //
 //      bool bHasFocus = puiImpl->has_keyboard_focus();
 //
-//      if (!pimpl->remove_keyboard_focus(pprimitive))
+//      if (!pimpl->erase_keyboard_focus(pprimitive))
 //      {
 //
 //         return false;
@@ -898,7 +898,7 @@ namespace aura
 ////#endif
 //      {
 //
-//         ::remove_focus(pimpl->m_oswindow);
+//         ::erase_focus(pimpl->m_oswindow);
 //
 //      }
 //

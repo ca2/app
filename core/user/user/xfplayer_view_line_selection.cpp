@@ -445,7 +445,7 @@ bool    bMerge)
          return;
       }
    }
-   m_itema.remove_all();
+   m_itema.erase_all();
    m_itema.add(
    XfplayerViewLineSelectionItem(
    iLineStart,

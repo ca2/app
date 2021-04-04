@@ -141,7 +141,7 @@ handler_manager::~handler_manager()
 
    auto method = m_routinea.first();
 
-   m_routinea.remove_at(0);
+   m_routinea.erase_at(0);
 
    if (m_routinea.is_empty())
    {

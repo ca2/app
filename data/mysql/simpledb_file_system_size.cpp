@@ -499,7 +499,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
             data.cbData = (u32) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
-            m_sizea.remove_at(0);
+            m_sizea.erase_at(0);
          }
       }
    }

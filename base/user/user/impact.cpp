@@ -185,14 +185,14 @@ namespace user
       //if (get_parent_frame() != nullptr)
       //{
 
-      //   get_parent_frame()->m_interactionaCommandHandlers.remove(this);
+      //   get_parent_frame()->m_interactionaCommandHandlers.erase(this);
 
       //}
 
       if (m_pdocument != nullptr)
       {
 
-         m_pdocument->remove_view(this);
+         m_pdocument->erase_view(this);
 
       }
 
@@ -1332,7 +1332,7 @@ namespace user
    pview->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::impact is
+   // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -1368,7 +1368,7 @@ namespace user
    ( (pview))->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::impact is
+   // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);

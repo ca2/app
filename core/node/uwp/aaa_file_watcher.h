@@ -107,10 +107,10 @@ namespace file
    //   virtual id add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn) override;
 
    //   /// Remove a directory watch. This is a brute force lazy search O(nlogn).
-   //   void remove_watch(const string & directory);
+   //   void erase_watch(const string & directory);
 
    //   /// Remove a directory watch. This is a map lookup O(logn).
-   //   void remove_watch(id watchid);
+   //   void erase_watch(id watchid);
 
    //   /// Return the directory name for a watch id
    //   string watch_path(id watchid);

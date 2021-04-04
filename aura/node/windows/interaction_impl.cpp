@@ -3867,7 +3867,7 @@ namespace windows
 //
 //         /* Maximized windows always have a non-client border that hangs over
 //         the edge of the screen, so the size_i32 proposed by e_message_nccalcsize is
-//         fine. Just adjust the top border to remove the u title. */
+//         fine. Just adjust the top border to erase the u title. */
 //         pncsp->rgrc[0].left = client.left;
 //
 //         pncsp->rgrc[0].top = nonclient.top + wi.cyWindowBorders;
@@ -3883,7 +3883,7 @@ namespace windows
 //         GetMonitorInfoW(mon, &mi);
 //
 //         /* If the client rectangle_i32 is the same as the monitor's rectangle,
-//         the shell assumes that the u has gone fullscreen, so it removes
+//         the shell assumes that the u has gone fullscreen, so it erases
 //         the topmost attribute from any auto-hide appbars, making them
 //         inaccessible. To avoid this, reduce the size_i32 of the client area by
 //         one pixel on a certain edge. The edge is chosen based on which side

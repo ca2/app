@@ -184,9 +184,9 @@ namespace draw2d_cairo
 
 
 
-      m_alpha_spread__24CC_filterMap.remove_all();
+      m_alpha_spread__24CC_filterMap.erase_all();
 
-      m_alpha_spread__32CC_filterMap.remove_all();
+      m_alpha_spread__32CC_filterMap.erase_all();
 
    }
 

@@ -290,7 +290,7 @@ public:
 
    inline node * get_start() const { return get_head(); }
 
-   void remove_item(node * pnode);
+   void erase_item(node * pnode);
 
    node * detach(node * pnode);
 
@@ -321,9 +321,9 @@ public:
    const TYPE& tail() const;
 
    // Operations
-   // get head or tail (and remove it) - don't call on is_empty list !
-   void remove_head();
-   void remove_tail();
+   // get head or tail (and erase it) - don't call on is_empty list !
+   void erase_head();
+   void erase_tail();
 
    TYPE pop_head();
    TYPE pop_tail();
@@ -340,8 +340,8 @@ public:
    void copy_tail(const list < TYPE, ARG_TYPE > & l);
    void copy(const list < TYPE, ARG_TYPE > & l);
 
-   // remove all elements
-   void remove_all();
+   // erase all elements
+   void erase_all();
    void clear();
 
    TYPE & front();
@@ -357,7 +357,7 @@ public:
    //const TYPE& get_previous(node *& rPosition) const; // return *position--
 
 
-   void remove_at(index i);
+   void erase_at(index i);
 
 
 
@@ -641,7 +641,7 @@ list<TYPE, ARG_TYPE>::list(class list && l)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_all()
+void list<TYPE, ARG_TYPE>::erase_all()
 {
 
    ASSERT_VALID(this);
@@ -681,14 +681,14 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::clear()
 {
 
-   remove_all();
+   erase_all();
 
 }
 
 template<class TYPE, class ARG_TYPE>
 list<TYPE, ARG_TYPE>::~list()
 {
-   remove_all();
+   erase_all();
    ASSERT(this->m_count == 0);
 }
 
@@ -750,7 +750,7 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE >  & l)
    if (this == &l)
       return;
 
-   remove_all();
+   erase_all();
 
    node * pnode = l.m_ptail;
 
@@ -805,7 +805,7 @@ TYPE list<TYPE, ARG_TYPE>::pop_tail()
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_head()
+void list<TYPE, ARG_TYPE>::erase_head()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != nullptr);  // don't call on is_empty list !!!
@@ -825,7 +825,7 @@ void list<TYPE, ARG_TYPE>::remove_head()
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_tail()
+void list<TYPE, ARG_TYPE>::erase_tail()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != nullptr);  // don't call on is_empty list !!!
@@ -1460,7 +1460,7 @@ void list<TYPE, ARG_TYPE>::__swap(node * position1, node * position2)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_at(index i)
+void list<TYPE, ARG_TYPE>::erase_at(index i)
 {
 
    this->erase(this->index_iterator(i));
@@ -1468,7 +1468,7 @@ void list<TYPE, ARG_TYPE>::remove_at(index i)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_item(node * pnode)
+void list<TYPE, ARG_TYPE>::erase_item(node * pnode)
 {
 
    ASSERT_VALID(this);

@@ -17,7 +17,7 @@ public:
 
     inline void pop_back(index n = -1)
     {
-       this->remove_at(this->get_upper_bound(n));
+       this->erase_at(this->get_upper_bound(n));
     }
 
 

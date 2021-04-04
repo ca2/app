@@ -174,7 +174,7 @@
 //      m_bCreated = false;
 //      m_edatatype = e_control_data_type_string;
 //      m_flagsfunction.clear();
-//      m_controlmap.remove_all();
+//      m_controlmap.erase_all();
 //      m_bSubclassed = false;
 //      m_iSubItem = -1;
 //      m_iColumn = -1;
@@ -195,7 +195,7 @@
 ////   m_bCreated = false;
 ////   m_edatatype = e_control_data_type_string;
 ////   m_flagsfunction.clear();
-////   m_controlmap.remove_all();
+////   m_controlmap.erase_all();
 ////   m_bSubclassed = false;
 ////   m_iSubItem = -1;
 ////   m_iColumn = -1;
@@ -230,7 +230,7 @@
 //   //   m_edatatype = control_descriptor.m_edatatype;
 //   //   m_idPrivateDataSection = control_descriptor.m_idPrivateDataSection;
 //   //   //m_pcontrol              = control_descriptor.m_pcontrol;
-//   //   m_controlmap.remove_all();
+//   //   m_controlmap.erase_all();
 //   //   m_eddx = control_descriptor.m_eddx;
 //   //   m_puserinteractionParent = control_descriptor.m_puserinteractionParent;
 //   //   m_iSubItem = control_descriptor.m_iSubItem;
@@ -283,10 +283,10 @@
 //   }
 //
 //
-//   void control_descriptor::remove_function(enum_control_function enum_control_function)
+//   void control_descriptor::erase_function(enum_control_function enum_control_function)
 //   {
 //
-//      m_flagsfunction.remove(enum_control_function);
+//      m_flagsfunction.erase(enum_control_function);
 //
 //   }
 //

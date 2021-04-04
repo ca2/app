@@ -257,7 +257,7 @@ namespace draw2d_direct2d
 
          if (hr == DXGI_ERROR_DEVICE_REMOVED)
          {
-            // If the device was removed for any reason, a new device and swapchain will need to be created.
+            // If the device was erased for any reason, a new device and swapchain will need to be created.
             HandleDeviceLost();
 
             // Everything is set up now. Do not continue execution of this method.
@@ -559,13 +559,13 @@ namespace draw2d_direct2d
 
       // Discard the contents of the render target.
       // This is a valid operation only when the existing contents will be entirely
-      // overwritten. If dirty or scroll rects are used, this call should be removed.
+      // overwritten. If dirty or scroll rects are used, this call should be erased.
       m_d3dContext->DiscardView(m_d3dRenderTargetView.Get());
 
       // Discard the contents of the depth stencil.
       m_d3dContext->DiscardView(m_d3dDepthStencilView.Get());
 
-      // If the device was removed either by a disconnect or a driver upgrade, we
+      // If the device was erased either by a disconnect or a driver upgrade, we
       // must recreate all device resources.
       if (hr == DXGI_ERROR_DEVICE_REMOVED)
       {
@@ -595,7 +595,7 @@ namespace draw2d_direct2d
    void directx::ValidateDevice()
    {
       // The D3D Device is no longer valid if the default adapter changes or if
-      // the device has been removed.
+      // the device has been erased.
 
       // First, get the information for the adapter related to the current device.
 
@@ -615,7 +615,7 @@ namespace draw2d_direct2d
       ::draw2d_direct2d::throw_if_failed(dxgiFactory->EnumAdapters1(0, &currentAdapter));
       ::draw2d_direct2d::throw_if_failed(currentAdapter->GetDesc(&currentDesc));
 
-      // If the adapter LUIDs don't match, or if the device reports that it has been removed,
+      // If the adapter LUIDs don't match, or if the device reports that it has been erased,
       // a new D3D device must be created.
 
       if ((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||

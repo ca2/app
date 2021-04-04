@@ -268,7 +268,7 @@ namespace papaya
       ::count copy(TDST & dsta,const TSRC & srca)
       {
 
-         dsta.remove_all();
+         dsta.erase_all();
 
          for(int i = 0; i < srca.get_size(); i++)
          {
@@ -352,7 +352,7 @@ namespace papaya
       }
 
       template < typename T1, typename  T2>
-      inline ::count remove_array(T1 & t1, T2 && t2)
+      inline ::count erase_array(T1 & t1, T2 && t2)
       {
 
          ::count c = 0;
@@ -360,7 +360,7 @@ namespace papaya
          for (auto & t : t2)
          {
 
-            c += t1.remove(t);
+            c += t1.erase(t);
 
          }
 
@@ -434,7 +434,7 @@ namespace papaya
 
       ::count ca = 0;
 
-      dsta.remove_all();
+      dsta.erase_all();
 
       for(int i = 0; i < srca.get_size(); i++)
       {
@@ -455,7 +455,7 @@ namespace papaya
 
          ::count ca = 0;
 
-         dsta.remove_all();
+         dsta.erase_all();
 
          for(int i = 0; i < srca.get_size(); i++)
          {
@@ -473,7 +473,7 @@ namespace papaya
 
          ::count ca = 0;
 
-         dsta.remove_all();
+         dsta.erase_all();
 
          for (int i = 0; i < srca.get_size(); i++)
          {
@@ -502,9 +502,9 @@ namespace papaya
       A2D perm2;
       for(i32 i = 0; i < count; i++)
       {
-         elema.remove_all();
+         elema.erase_all();
          elema.add(a[i]);
-         topermut.remove_all();
+         topermut.erase_all();
          for(i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
@@ -513,7 +513,7 @@ namespace papaya
          {
             topermut.add(a[j]);
          }
-         perm2.remove_all();
+         perm2.erase_all();
          array_permute(perm2, topermut);
          for(i32 j = 0; j < perm2.get_count(); j++)
          {
@@ -536,9 +536,9 @@ namespace papaya
       pointer_array < A > perm2;
       for(i32 i = 0; i < count; i++)
       {
-         elema.remove_all();
+         elema.erase_all();
          elema.add(a[i]);
-         topermut.remove_all();
+         topermut.erase_all();
          for(i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
@@ -547,7 +547,7 @@ namespace papaya
          {
             topermut.add(a[j]);
          }
-         perm2.remove_all();
+         perm2.erase_all();
          array_permute(perm2,topermut);
          for(i32 j = 0; j < perm2.get_count(); j++)
          {
@@ -685,7 +685,7 @@ namespace papaya
 
          ::papaya::array::set_sequence(a, start, end, increment);
 
-         c += remove_lesser_than_or_greater_than(aParam, start, end);
+         c += erase_lesser_than_or_greater_than(aParam, start, end);
 
          for(index i = aParam.get_upper_bound(); i >= 0; i--)
          {
@@ -695,7 +695,7 @@ namespace papaya
             if(::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE >::BASE_ARG_TYPE >))
             {
 
-               a.remove_at(iFind);
+               a.erase_at(iFind);
 
                c++;
 
@@ -703,7 +703,7 @@ namespace papaya
             else
             {
 
-               aParam.remove_at(i);
+               aParam.erase_at(i);
 
                c++;
 
@@ -958,7 +958,7 @@ namespace papaya
       template < class TYPE >
       ::count set_sequence(::numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
       {
-         a.remove_all();
+         a.erase_all();
          return append_sequence(a, start,end,increment);
       }
 
@@ -971,7 +971,7 @@ namespace papaya
 
          typename ARRAY::TYPE t = a.element_at(i);
 
-         a.remove_at(i);
+         a.erase_at(i);
 
          return t;
 
@@ -982,7 +982,7 @@ namespace papaya
       inline void pop_back(ARRAY & a,index n)
       {
 
-         a.remove_at(a.get_upper_bound(n));
+         a.erase_at(a.get_upper_bound(n));
 
       }
 

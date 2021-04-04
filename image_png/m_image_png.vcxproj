@@ -276,7 +276,7 @@ copy "$(SolutionDir)..\..\..\platform\thirdparty\binary\FreeImage.dll" "$(OutDir
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
+    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_erase_xxx.h" />
     <ClInclude Include="kissfft\kissfft.h" />
     <ClInclude Include="kissfft\kissfft_fftd.h" />
     <ClInclude Include="kissfft\kissfft_ifftd.h" />

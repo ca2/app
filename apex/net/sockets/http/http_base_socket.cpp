@@ -230,7 +230,7 @@ namespace sockets
 
                string strLocation = m_response.m_propertysetHeader.lowprop(__id(Location));
 
-               m_response.m_propertysetHeader.remove_by_name("Location");
+               m_response.m_propertysetHeader.erase_by_name("Location");
 
                m_response.m_propertysetHeader["Location"] = strLocation;
 

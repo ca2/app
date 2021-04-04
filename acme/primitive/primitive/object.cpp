@@ -195,7 +195,7 @@ void object::to_string(const class string_exchange& str) const
 //   if (m_pcompositea)
 //   {
 //
-//      if (m_pcompositea->remove(pmatter))
+//      if (m_pcompositea->erase(pmatter))
 //      {
 //
 //         return ::success;
@@ -236,7 +236,7 @@ void object::to_string(const class string_exchange& str) const
 //         if (m_pcompositea)
 //         {
 //
-//            m_pcompositea->remove(pmatter);
+//            m_pcompositea->erase(pmatter);
 //
 //         }
 //
@@ -266,7 +266,7 @@ void object::to_string(const class string_exchange& str) const
 //   if (m_preferencea)
 //   {
 //
-//      if (m_preferencea->remove(pmatter) > 0)
+//      if (m_preferencea->erase(pmatter) > 0)
 //      {
 //
 //         return ::success;
@@ -371,6 +371,33 @@ void object::dev_log(string strMessage) const
 //   return nullptr;
 //
 //}
+
+
+void object::add_object(::object* pobject)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   defer_construct_new(m_pobjecta);
+
+   m_pobjecta->add(pobject);
+
+}
+
+
+void object::on_delete_object(::object* pobject)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   if (m_pobjecta)
+   {
+
+      m_pobjecta->erase(pobject);
+
+   }
+
+}
 
 
 void object::enumerate_composite(matter_array& a)
@@ -865,7 +892,20 @@ void object::system(const char* pszProjectName)
 ::e_status object::on_finish()
 {
 
-   auto estatus = finalize();
+   m_bFinishing = true;
+
+   auto estatus = finish_composites();
+
+   if (estatus == error_pending)
+   {
+
+      m_psystem->add_pending_finish(this);
+
+      return estatus;
+
+   }
+
+   estatus = finalize();
 
    if (estatus == error_pending)
    {
@@ -882,46 +922,21 @@ void object::system(const char* pszProjectName)
 ::e_status object::set_finish()
 {
 
-   __pointer(::object) pobjectHold = this;
-   
+// if "this" gets invalid while a member functions of "this" object
+// is running, something is wrong ? or !!!!
+// Yes, someone destroyed it while someone was running a "this" member function.
+// And the caller that called "this" object's member function,
+// wasn't holding proper reference to "this" member.
+// So actually, I cannot make assumption that something is alive
+// running a member of such an object, that doesn't hold proper
+// reference for the duration of execution of a function.
+// __pointer(::object) pobjectHold = this;
+
    set_finish_bit();
 
-   m_bFinishing = true;
-   
-   auto estatus = finish_composites();
-   
-   if (estatus == error_pending)
-   {
-   
-      m_psystem->add_pending_finish(this);
-   
-      return estatus;
-   
-   }
-   
-   estatus = on_finish();
+   set_finish_composites();
 
-   if (estatus == error_pending)
-   {
-
-      m_psystem->add_pending_finish(this);
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-   //estatus = finalize();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   estatus = error_exception;
-
-   //}
-
-   //return estatus;
+   return ::success;
 
 }
 
@@ -979,6 +994,15 @@ void object::system(const char* pszProjectName)
 
    //release_references();
 
+   for (auto& pobject : m_objecta)
+   {
+
+      pobject->on_delete_object(this);
+
+   }
+
+   m_objecta.erase_all();
+
    return ::success;
 
 }
@@ -1009,7 +1033,7 @@ void object::system(const char* pszProjectName)
 //
 //      //            synchronouslock.unlock();
 //
-//      //            pobject->m_pnotifya->remove(this);
+//      //            pobject->m_pnotifya->erase(this);
 //
 //      //            synchronouslock.lock();
 //
@@ -1189,6 +1213,38 @@ void object::delete_this()
 //}
 
 
+::e_status object::set_finish_composites()
+{
+
+   ::e_status estatus = ::success;
+
+   synchronous_lock synchronouslock(mutex());
+
+   string strTypeName = type_name();
+
+   matter_array compositea;
+
+   enumerate_composite(compositea);
+
+   for (auto& pmatter : compositea)
+   {
+
+      auto estatusItem = pmatter->set_finish();
+
+      if (estatusItem == error_pending)
+      {
+
+         estatus = error_pending;
+
+      }
+
+   }
+
+   return estatus;
+
+}
+
+
 ::e_status object::finish_composites()
 {
 
@@ -1205,7 +1261,7 @@ void object::delete_this()
    for(auto & pmatter : compositea)
    {
 
-      auto estatusItem = pmatter->set_finish();
+      auto estatusItem = pmatter->finish();
 
       if (estatusItem == error_pending)
       {
@@ -1423,7 +1479,7 @@ void object::delete_this()
 //
 //      auto& composite = m_pcompositea->last();
 //
-//      m_pcompositea->remove_last();
+//      m_pcompositea->erase_last();
 //
 //      synchronouslock.unlock();
 //
@@ -1802,7 +1858,7 @@ void object::multiple_fork(const ::routine_array& procedurea)
 //}
 
 
-void object::task_remove(::task* ptask)
+void object::task_erase(::task* ptask)
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -1810,12 +1866,12 @@ void object::task_remove(::task* ptask)
    //if (m_pmeta)
    //{
 
-   //   m_pmeta->task_remove(this, ptask);
+   //   m_pmeta->task_erase(this, ptask);
 
    //}
 
 
-   //void object::task_remove(::task * ptask)
+   //void object::task_erase(::task * ptask)
    //{
 
    try
@@ -1850,7 +1906,7 @@ void object::task_remove(::task* ptask)
       //if (ptaska)
       //{
 
-      //m_pcompositea->remove(ptask);
+      //m_pcompositea->erase(ptask);
 
       //}
 
@@ -2000,7 +2056,7 @@ void object::task_remove(::task* ptask)
 
 
 
-//void object::task_remove_all()
+//void object::task_erase_all()
 //{
 //
 //   /*synchronous_lock synchronouslock(mutex());
@@ -2008,7 +2064,7 @@ void object::task_remove(::task* ptask)
 //   if (m_pmeta)
 //   {
 //
-//      m_pmeta->task_remove_all(this);
+//      m_pmeta->task_erase_all(this);
 //
 //   }*/
 //
@@ -2664,7 +2720,7 @@ matter* object::get_taskpool_container()
 
 //
 //
-//void object::task_remove(::task* ptask)
+//void object::task_erase(::task* ptask)
 //{
 //
 //

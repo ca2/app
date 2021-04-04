@@ -23,13 +23,13 @@ protected:
    static __pointer(update_task) & task(::i64 iUpdate);
 
    virtual void add(::matter * pmatter);
-   virtual void remove(::matter * pmatter);
+   virtual void erase(::matter * pmatter);
 
    static void _add(::i64 iUpdate, ::matter* pmatter);
 
-   static void _remove(::i64 iUpdate, ::matter* pmatter);
+   static void _erase(::i64 iUpdate, ::matter* pmatter);
 
-   static void _remove(::matter* pmatter);
+   static void _erase(::matter* pmatter);
 
 public:
 

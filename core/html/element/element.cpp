@@ -855,7 +855,7 @@ namespace html
             catch(...)
             {
 
-               m_elementalptra.remove_at(i);
+               m_elementalptra.erase_at(i);
 
             }
 
@@ -894,7 +894,7 @@ namespace html
 
       m_pbase = pusermessage;
 
-      m_elementalptra.remove_all();
+      m_elementalptra.erase_all();
 
       ::payload payload;
 
@@ -1572,7 +1572,7 @@ namespace html
 
       }
 
-      m_elementalptra.remove_all();
+      m_elementalptra.erase_all();
 
       if (m_pparent != nullptr)
       {
@@ -1580,7 +1580,7 @@ namespace html
          try
          {
 
-            m_pparent->m_elementalptra.remove(this);
+            m_pparent->m_elementalptra.erase(this);
 
          }
          catch (...)

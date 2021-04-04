@@ -765,7 +765,7 @@ namespace uwp
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
 
 #ifdef WINDOWS_DESKTOP

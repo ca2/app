@@ -37,11 +37,11 @@ namespace data
       else
       {
 
-         pdata->m_listenera.remove(this);
+         pdata->m_listenera.erase(this);
 
-         m_datamap.remove_key(pdata->m_id);
+         m_datamap.erase_key(pdata->m_id);
 
-         //::papaya::map::remove_value(m_datamap, pdata);
+         //::papaya::map::erase_value(m_datamap, pdata);
 
          return true;
 

@@ -74,7 +74,7 @@ namespace filemanager
 
       }
 
-      m_straUpdatePtrFilter.remove_all();
+      m_straUpdatePtrFilter.erase_all();
 
       _001EnsureVisible(pitem);
 
@@ -395,7 +395,7 @@ namespace filemanager
 
             auto iMaxLevel = ptreeitem ? ptreeitem->m_iLevel + 2 : -1;
 
-            // remove level 3 with that aren't expanded.
+            // erase level 3 with that aren't expanded.
 
             while (ptreeitem)
             {
@@ -405,9 +405,9 @@ namespace filemanager
                if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
                {
 
-                  list_remove_all(ptreeitem);
+                  list_erase_all(ptreeitem);
 
-                  list_remove(ptreeitem->m_pparent, ptreeitem);
+                  list_erase(ptreeitem->m_pparent, ptreeitem);
 
                }
 
@@ -670,7 +670,7 @@ namespace filemanager
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->remove_timer(ptimer);
+            ptimer->m_ptimercallback->erase_timer(ptimer);
 
          }
 

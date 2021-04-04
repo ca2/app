@@ -88,7 +88,7 @@ namespace user
       virtual ::user::document * get_document(index index = 0) const = 0;
 
       virtual void add_document(::user::document * pDoc);      // must override
-      virtual void remove_document(::user::document * pDoc);   // must override
+      virtual void erase_document(::user::document * pDoc);   // must override
 
 
 

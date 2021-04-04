@@ -76,9 +76,9 @@ namespace filemanager
 
       document * add_filemanager(const ::file::path & pathFolder, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      bool remove_filemanager(::payload varFile);
+      bool erase_filemanager(::payload varFile);
 
-      bool remove_filemanager(document * pdocument);
+      bool erase_filemanager(document * pdocument);
 
 
       /// id = FILEMANAGER_IMPACT - behaviour

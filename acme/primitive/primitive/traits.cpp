@@ -433,7 +433,7 @@
 ////      else
 ////      {
 ////
-////         notifya.remove_at(i);
+////         notifya.erase_at(i);
 ////
 ////      }
 ////
@@ -482,7 +482,7 @@
 ////      else
 ////      {
 ////
-////         notifya.remove_at(i);
+////         notifya.erase_at(i);
 ////
 ////      }
 ////
@@ -574,7 +574,7 @@
 ////      else
 ////      {
 ////
-////         notifya.remove_at(i);
+////         notifya.erase_at(i);
 ////
 ////      }
 ////
@@ -631,7 +631,7 @@
 ////      else
 ////      {
 ////
-////         notifya.remove_at(i);
+////         notifya.erase_at(i);
 ////
 ////      }
 ////

@@ -1119,7 +1119,7 @@ namespace user
 
                psession->__release(psession->m_uiptraToolWindow[iFind]);
 
-               psession->m_uiptraToolWindow.remove_at(iFind);
+               psession->m_uiptraToolWindow.erase_at(iFind);
 
             }
 

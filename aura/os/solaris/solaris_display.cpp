@@ -64,7 +64,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
 
 
-bool osdisplay_remove(Display * pdisplay)
+bool osdisplay_erase(Display * pdisplay)
 {
 
    mutex_lock synchronouslock(user_mutex(), true);
@@ -74,7 +74,7 @@ bool osdisplay_remove(Display * pdisplay)
    if(iFind < 0)
       return false;
 
-   ::osdisplay_data::s_pdataptra->remove_at(iFind);
+   ::osdisplay_data::s_pdataptra->erase_at(iFind);
 
    return true;
 

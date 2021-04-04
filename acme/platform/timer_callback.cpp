@@ -17,7 +17,7 @@ bool timer_callback::e_timer_is_ok()
 }
 
 
-bool timer_callback::remove_timer(::timer* ptimer)
+bool timer_callback::erase_timer(::timer* ptimer)
 {
 
    return false;

@@ -614,7 +614,7 @@ namespace apex
       //    try
       //    {
 
-      //       g_pmapAura->remove_all();
+      //       g_pmapAura->erase_all();
 
       //    }
       //    catch(...)
@@ -629,7 +629,7 @@ namespace apex
 
       //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   g_pmapLibCall->remove_all();
+      //   g_pmapLibCall->erase_all();
 
 
       //}
@@ -643,7 +643,7 @@ namespace apex
 
       //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   psystem->g_mapLibrary.remove_all();
+      //   psystem->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -657,7 +657,7 @@ namespace apex
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -673,7 +673,7 @@ namespace apex
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)

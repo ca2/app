@@ -648,7 +648,7 @@ namespace uwp
    WinFileException::ThrowOsError(get_application(), (::i32)::get_last_error());
    }
 
-   void native_buffer::remove(const char * pszfileName)
+   void native_buffer::erase(const char * pszfileName)
 
    {
    if (!::Deletenative_buffer((char *)pszfileName))

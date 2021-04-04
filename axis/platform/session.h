@@ -50,7 +50,7 @@ namespace axis
 
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 
-      virtual void on_remove_user(::account::user * puser);
+      virtual void on_erase_user(::account::user * puser);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true) override;
 

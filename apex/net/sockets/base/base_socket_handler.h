@@ -94,8 +94,8 @@ namespace sockets
       /** add socket instance to socket ::map. Removal is always automatic. */
       virtual void add(base_socket *) = 0;
    private:
-      /** remove socket from socket ::map, used by socket class. */
-      virtual void remove(base_socket *) = 0;
+      /** erase socket from socket ::map, used by socket class. */
+      virtual void erase(base_socket *) = 0;
    public:
 
       virtual bool contains(base_socket *) = 0;

@@ -35,7 +35,7 @@ namespace data
       }
 
 
-      virtual void remove_all();
+      virtual void erase_all();
 
       virtual void update_tree();
 
@@ -51,9 +51,9 @@ namespace data
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::primitive * ptree, const ::point_i32 & point);
 
-      virtual void remove(tree_item_ptr_array & itemptra);
-      virtual void remove(tree_item * pitem);
-      virtual void remove(item * pitem, index i = 0);
+      virtual void erase(tree_item_ptr_array & itemptra);
+      virtual void erase(tree_item * pitem);
+      virtual void erase(item * pitem, index i = 0);
 
 
 

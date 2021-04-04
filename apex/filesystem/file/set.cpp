@@ -141,9 +141,9 @@ namespace file
    void set::clear_search()
    {
 
-      m_ppathaSearch->remove_all();
+      m_ppathaSearch->erase_all();
 
-      m_pbaRecursive->remove_all();
+      m_pbaRecursive->erase_all();
 
    }
 
@@ -151,7 +151,7 @@ namespace file
    void set::clear_filter()
    {
 
-      m_straFilter.remove_all();
+      m_straFilter.erase_all();
 
    }
 

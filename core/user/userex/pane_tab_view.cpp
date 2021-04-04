@@ -821,7 +821,7 @@ namespace userex
 
       ::user::tab_view::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.remove_key(ptab->m_id);
+      m_impactdatamap.erase_key(ptab->m_id);
 
    }
 

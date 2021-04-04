@@ -69,7 +69,7 @@ namespace sockets
       {
          m_handler.select(8, 0);
       }
-      return (i32) m_file.remove_begin(pdata, len);
+      return (i32) m_file.erase_begin(pdata, len);
    }
 
 

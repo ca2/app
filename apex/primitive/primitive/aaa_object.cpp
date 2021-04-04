@@ -194,7 +194,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_pcompositea)
    {
 
-      if (m_pcompositea->remove(pmatter))
+      if (m_pcompositea->erase(pmatter))
       {
 
          return ::success;
@@ -235,7 +235,7 @@ void object::to_string(const class string_exchange & str) const
          if (m_pcompositea)
          {
 
-            m_pcompositea->remove(pmatter);
+            m_pcompositea->erase(pmatter);
 
          }
 
@@ -265,7 +265,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_preferencea)
    {
 
-      if (m_preferencea->remove(pmatter) > 0)
+      if (m_preferencea->erase(pmatter) > 0)
       {
 
          return ::success;
@@ -921,7 +921,7 @@ void object::on_finish()
 
    //            synchronouslock.unlock();
 
-   //            pobject->m_pnotifya->remove(this);
+   //            pobject->m_pnotifya->erase(this);
 
    //            synchronouslock.lock();
 
@@ -1303,7 +1303,7 @@ void object::release_references()
 
       auto & composite = m_pcompositea->last();
 
-      m_pcompositea->remove_last();
+      m_pcompositea->erase_last();
 
       synchronouslock.unlock();
 
@@ -1682,7 +1682,7 @@ void object::process_exit_status(const ::e_status& estatus)
 //}
 
 
-void object::task_remove(::task* ptask)
+void object::task_erase(::task* ptask)
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -1690,12 +1690,12 @@ void object::task_remove(::task* ptask)
    //if (m_pmeta)
    //{
 
-   //   m_pmeta->task_remove(this, ptask);
+   //   m_pmeta->task_erase(this, ptask);
 
    //}
 
 
-   //void object::task_remove(::task * ptask)
+   //void object::task_erase(::task * ptask)
    //{
 
       try
@@ -1730,7 +1730,7 @@ void object::task_remove(::task* ptask)
          //if (ptaska)
          //{
 
-            m_pcompositea->remove(ptask);
+            m_pcompositea->erase(ptask);
 
          //}
 
@@ -1880,7 +1880,7 @@ void object::task_remove(::task* ptask)
 
 
 
-//void object::task_remove_all()
+//void object::task_erase_all()
 //{
 //
 //   /*synchronous_lock synchronouslock(mutex());
@@ -1888,7 +1888,7 @@ void object::task_remove(::task* ptask)
 //   if (m_pmeta)
 //   {
 //
-//      m_pmeta->task_remove_all(this);
+//      m_pmeta->task_erase_all(this);
 //
 //   }*/
 //

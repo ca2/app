@@ -116,7 +116,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 }
 
 
-bool oswindow_remove(nswindow window)
+bool oswindow_erase(nswindow window)
 {
 
    synchronous_lock synchronouslock(g_pmutexOsWindowData);
@@ -130,7 +130,7 @@ bool oswindow_remove(nswindow window)
 
    }
 
-   g_poswindowdataptra->remove_at(iFind);
+   g_poswindowdataptra->erase_at(iFind);
 
    return true;
 

@@ -960,7 +960,7 @@ namespace user
 
          //   uia = m_uiptraMouseHover;
 
-         //   m_uiptraMouseHover.remove_all();
+         //   m_uiptraMouseHover.erase_all();
 
          //}
 
@@ -1062,7 +1062,7 @@ namespace user
 
    //         }
 
-   //         ::papaya::array::remove_array(m_uiptraMouseHover, uia.interactiona());
+   //         ::papaya::array::erase_array(m_uiptraMouseHover, uia.interactiona());
 
    //      }
 
@@ -1175,7 +1175,7 @@ namespace user
    }
 
 
-   bool interaction_impl::remove_prodevian(::object * pobject)
+   bool interaction_impl::erase_prodevian(::object * pobject)
    {
 
       if (!m_puserthread)
@@ -1187,7 +1187,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_puserthread->mutex());
 
-      bool bRemove = m_ptraProdevian.remove(pobject) > 0;
+      bool bRemove = m_ptraProdevian.erase(pobject) > 0;
 
       if (bRemove)
       {
@@ -1281,7 +1281,7 @@ namespace user
          else
          {
 
-            m_uiptraMouseHover.remove_at(i);
+            m_uiptraMouseHover.erase_at(i);
 
             pinteraction->send_message(e_message_mouse_leave);
 
@@ -1329,7 +1329,7 @@ namespace user
 //
 //                     uia.add(pinteraction);
 //
-//                     m_uiptraMouseHover.remove_at(i);
+//                     m_uiptraMouseHover.erase_at(i);
 //
 //                  }
 //
@@ -1355,12 +1355,12 @@ namespace user
 //   }
 
 
-   bool interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
+   bool interaction_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_uiptraMouseHover.remove(pinterface) > 0;
+      return m_uiptraMouseHover.erase(pinterface) > 0;
 
    }
 
@@ -1455,7 +1455,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_uiptraMouseHover.remove_all();
+         m_uiptraMouseHover.erase_all();
 
       }
 
@@ -3278,7 +3278,7 @@ namespace user
 
          uiptra = m_uiptraMouseHover;
 
-         m_uiptraMouseHover.remove_all();
+         m_uiptraMouseHover.erase_all();
 
       }
 
@@ -3476,7 +3476,7 @@ namespace user
 
                uiptra = m_uiptraMouseHover;
 
-               m_uiptraMouseHover.remove_all();
+               m_uiptraMouseHover.erase_all();
 
             }
 
@@ -4107,9 +4107,9 @@ namespace user
    //   //if (get_handle() != nullptr)
    //   //{
 
-   //   //   oswindow_remove(get_handle());
+   //   //   oswindow_erase(get_handle());
 
-   //   //   oswindow_remove_impl(this);
+   //   //   oswindow_erase_impl(this);
 
    //   //}
 
@@ -4362,7 +4362,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::impl_remove_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
+   //::e_status interaction_impl::impl_erase_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
    //{
 
    //   if (::is_null(pprimitiveFocusRemove))
@@ -4481,13 +4481,13 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::remove_keyboard_focus(::user::primitive * pprimitive)
+   //::e_status interaction_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   if (pprimitive == nullptr)
    //   {
 
-   //      impl_remove_keyboard_focus(pprimitive);
+   //      impl_erase_keyboard_focus(pprimitive);
 
    //      return true;
 
@@ -4496,7 +4496,7 @@ namespace user
    //   if (pprimitive == m_puserinteraction || pprimitive == this)
    //   {
 
-   //      impl_remove_keyboard_focus(pprimitive);
+   //      impl_erase_keyboard_focus(pprimitive);
 
    //      return true;
 
@@ -4518,7 +4518,7 @@ namespace user
 
    //   }
 
-   //   impl_remove_keyboard_focus(pprimitive);
+   //   impl_erase_keyboard_focus(pprimitive);
 
    //   return true;
 
@@ -4601,12 +4601,12 @@ namespace user
    }
 
 
-   void interaction_impl::redraw_remove(::object * p)
+   void interaction_impl::redraw_erase(::object * p)
    {
 
       synchronous_lock synchronouslock(mutex_redraw());
 
-      m_ptraRedraw.remove(p);
+      m_ptraRedraw.erase(p);
 
    }
 
@@ -5465,7 +5465,7 @@ namespace user
    void interaction_impl::approximate_occlusion_rects(rectangle_i32_array& raTest)
    {
 
-      raTest.remove_all();
+      raTest.erase_all();
 
       ::rectangle_i32_array ra;
 
@@ -5518,13 +5518,13 @@ namespace user
                if (iArea == iMinArea)
                {
 
-                  raTest.remove_at(i);
+                  raTest.erase_at(i);
 
                }
                else
                {
 
-                  raTest.remove_at(j);
+                  raTest.erase_at(j);
 
                }
 
@@ -5559,13 +5559,13 @@ namespace user
                if (iArea == iMaxArea)
                {
 
-                  raTest.remove_at(j);
+                  raTest.erase_at(j);
 
                }
                else
                {
 
-                  raTest.remove_at(i);
+                  raTest.erase_at(i);
 
                }
 

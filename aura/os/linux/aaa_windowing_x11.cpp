@@ -165,7 +165,7 @@ Display * x11_get_display();
 void wm_toolwindow(oswindow w, bool bToolWindow);
 void wm_state_hidden(oswindow w, bool bSet);
 void wm_state_hidden_raw(oswindow w, bool bSet);
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow);
 
 
 int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
@@ -336,7 +336,7 @@ oswindow oswindow_defer_get(Window window)
 
 
 
-bool oswindow_remove(Display * display, Window window)
+bool oswindow_erase(Display * display, Window window)
 {
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
@@ -352,14 +352,14 @@ bool oswindow_remove(Display * display, Window window)
 
    delete ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
 }
 
 
-bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
+bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
 {
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
@@ -375,7 +375,7 @@ bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessa
 
    delete ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
@@ -392,7 +392,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 
    XClientMessageEvent xclient;
 
-#define _NET_WM_STATE_REMOVE        0    /* remove/unset property */
+#define _NET_WM_STATE_REMOVE        0    /* erase/unset property */
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
@@ -1089,7 +1089,7 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   ra.remove_all();
+   ra.erase_all();
 
    windowing_output_debug_string("\n::GetFocus 1");
 
@@ -1556,7 +1556,7 @@ int_bool destroy_window(oswindow window)
 
          pinteraction->send_message(e_message_destroy, 0, 0);
 
-         mq_remove_window_from_all_queues(window);
+         mq_erase_window_from_all_queues(window);
 
          pinteraction->send_message(e_message_ncdestroy, 0, 0);
 
@@ -1577,7 +1577,7 @@ int_bool destroy_window(oswindow window)
 
       }
 
-      oswindow_remove_impl(window->m_pimpl);
+      oswindow_erase_impl(window->m_pimpl);
 
    }
 
@@ -1594,7 +1594,7 @@ int_bool destroy_window(oswindow window)
 
       bool bIs = is_window(window);
 
-      oswindow_remove(pdisplay, win);
+      oswindow_erase(pdisplay, win);
 
       windowing_output_debug_string("\n::DestroyWindow 1");
 
@@ -1695,7 +1695,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //}
 //
-#define _NET_WM_STATE_REMOVE        0    // remove/unset property
+#define _NET_WM_STATE_REMOVE        0    // erase/unset property
 #define _NET_WM_STATE_ADD           1    // add/set property
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
 
@@ -1703,10 +1703,10 @@ Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * items);
 int wm_test_state(oswindow w, const char * pszNetStateFlag);
 int wm_test_state_raw(oswindow w, const char * pszNetStateFlag);
 int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag);
-bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet);
+bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet);
 
 
-void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -1772,23 +1772,23 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 }
 
 
-void wm_add_remove_state_mapped(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state_mapped(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   windowing_output_debug_string("\n::wm_add_remove_state_mapped 1");
+   windowing_output_debug_string("\n::wm_add_erase_state_mapped 1");
 
    xdisplay d(w->display());
 
-   wm_add_remove_state_mapped_raw(w, estate, bSet);
+   wm_add_erase_state_mapped_raw(w, estate, bSet);
 
-   windowing_output_debug_string("\n::wm_add_remove_state_mapped 2");
+   windowing_output_debug_string("\n::wm_add_erase_state_mapped 2");
 
 }
 
 
-void wm_add_remove_state_unmapped_raw(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state_unmapped_raw(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -1814,28 +1814,28 @@ void wm_add_remove_state_unmapped_raw(oswindow w, e_net_wm_state estate, bool bS
 
    Atom atomWmNetState = w->m_osdisplay->net_wm_state_atom(true);
 
-   wm_add_remove_list_raw(w, atomWmNetState, atomFlag, bSet);
+   wm_add_erase_list_raw(w, atomWmNetState, atomFlag, bSet);
 
 }
 
 
-void wm_add_remove_state_unmapped(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state_unmapped(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   windowing_output_debug_string("\n::wm_add_remove_state_unmapped 1");
+   windowing_output_debug_string("\n::wm_add_erase_state_unmapped 1");
 
    xdisplay d(w->display());
 
-   wm_add_remove_state_unmapped_raw(w, estate, bSet);
+   wm_add_erase_state_unmapped_raw(w, estate, bSet);
 
-   windowing_output_debug_string("\n::wm_add_remove_state_unmapped 2");
+   windowing_output_debug_string("\n::wm_add_erase_state_unmapped 2");
 
 }
 
 
-void wm_add_remove_state_raw(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state_raw(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -1843,31 +1843,31 @@ void wm_add_remove_state_raw(oswindow w, e_net_wm_state estate, bool bSet)
    if(IsWindowVisibleRaw(w))
    {
 
-      wm_add_remove_state_mapped_raw(w, estate, bSet);
+      wm_add_erase_state_mapped_raw(w, estate, bSet);
 
    }
    else
    {
 
-      wm_add_remove_state_unmapped_raw(w, estate, bSet);
+      wm_add_erase_state_unmapped_raw(w, estate, bSet);
 
    }
 
 }
 
 
-void wm_add_remove_state(oswindow w, e_net_wm_state estate, bool bSet)
+void wm_add_erase_state(oswindow w, e_net_wm_state estate, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   windowing_output_debug_string("\n::wm_add_remove_state 1");
+   windowing_output_debug_string("\n::wm_add_erase_state 1");
 
    xdisplay d(w->display());
 
-   wm_add_remove_state_raw(w, estate, bSet);
+   wm_add_erase_state_raw(w, estate, bSet);
 
-   windowing_output_debug_string("\n::wm_add_remove_state 2");
+   windowing_output_debug_string("\n::wm_add_erase_state 2");
 
 }
 
@@ -1877,16 +1877,16 @@ void wm_state_clear_raw(oswindow w, bool bSet)
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   wm_add_remove_state_raw(w, net_wm_state_above, false);
-   wm_add_remove_state_raw(w, net_wm_state_below, false);
-   wm_add_remove_state_raw(w, net_wm_state_hidden, false);
+   wm_add_erase_state_raw(w, net_wm_state_above, false);
+   wm_add_erase_state_raw(w, net_wm_state_below, false);
+   wm_add_erase_state_raw(w, net_wm_state_hidden, false);
 
 }
 
 
-//    wm_add_remove_state_raw(w, net_wm_state_maximized_horz, false);
-//    wm_add_remove_state_raw(w, net_wm_state_maximized_vert, false);
-//    wm_add_remove_state_raw(w, net_wm_state_fullscreen, false);
+//    wm_add_erase_state_raw(w, net_wm_state_maximized_horz, false);
+//    wm_add_erase_state_raw(w, net_wm_state_maximized_vert, false);
+//    wm_add_erase_state_raw(w, net_wm_state_fullscreen, false);
 
 
 void wm_state_below_raw(oswindow w, bool bSet)
@@ -1894,9 +1894,9 @@ void wm_state_below_raw(oswindow w, bool bSet)
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   wm_add_remove_state_raw(w, net_wm_state_hidden, false);
-   wm_add_remove_state_raw(w, net_wm_state_above, false);
-   wm_add_remove_state_raw(w, net_wm_state_below, bSet);
+   wm_add_erase_state_raw(w, net_wm_state_hidden, false);
+   wm_add_erase_state_raw(w, net_wm_state_above, false);
+   wm_add_erase_state_raw(w, net_wm_state_below, bSet);
 
 }
 
@@ -1906,9 +1906,9 @@ void wm_state_above_raw(oswindow w, bool bSet)
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   wm_add_remove_state_raw(w, net_wm_state_hidden, false);
-   wm_add_remove_state_raw(w, net_wm_state_below, false);
-   wm_add_remove_state_raw(w, net_wm_state_above, bSet);
+   wm_add_erase_state_raw(w, net_wm_state_hidden, false);
+   wm_add_erase_state_raw(w, net_wm_state_below, false);
+   wm_add_erase_state_raw(w, net_wm_state_above, bSet);
 
 }
 
@@ -1918,9 +1918,9 @@ void wm_state_hidden_raw(oswindow w, bool bSet)
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   wm_add_remove_state_raw(w, net_wm_state_below, false);
-   wm_add_remove_state_raw(w, net_wm_state_above, false);
-   wm_add_remove_state_raw(w, net_wm_state_hidden, bSet);
+   wm_add_erase_state_raw(w, net_wm_state_below, false);
+   wm_add_erase_state_raw(w, net_wm_state_above, false);
+   wm_add_erase_state_raw(w, net_wm_state_hidden, bSet);
 
 }
 
@@ -2012,7 +2012,7 @@ void wm_toolwindow(oswindow w, bool bToolWindow)
 
       Window window = w->window();
 
-      wm_add_remove_state_raw(w, net_wm_state_skip_taskbar, bToolWindow);
+      wm_add_erase_state_raw(w, net_wm_state_skip_taskbar, bToolWindow);
 
       windowing_output_debug_string("\n::wm_toolwindow 2");
 
@@ -2046,7 +2046,7 @@ void wm_hidden_state(oswindow w, bool bHidden)
 
       Window window = w->window();
 
-      wm_add_remove_state_raw(w, net_wm_state_skip_taskbar, bHidden);
+      wm_add_erase_state_raw(w, net_wm_state_skip_taskbar, bHidden);
 
       windowing_output_debug_string("\n::wm_hidden_state 2");
 
@@ -2654,7 +2654,7 @@ int wm_test_state(oswindow w, const char * pszNetStateFlag)
 }
 
 
-bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
+bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -2785,7 +2785,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 //
 //   synchronous_lock synchronouslock(x11_mutex());
 //
-//   g_x11hooka.remove(this);
+//   g_x11hooka.erase(this);
 //
 //   return ::success;
 //
@@ -5417,7 +5417,7 @@ Display * x11_get_display();
 void wm_toolwindow(oswindow w, bool bToolWindow);
 void wm_state_hidden(oswindow w, bool bSet);
 void wm_state_hidden_raw(oswindow w, bool bSet);
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow);
 
 
 int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);

@@ -470,7 +470,7 @@ namespace filemanager
                      if (strOtherPath.compare_ci(strPath) == 0)
                      {
 
-                        stra.remove_at(j);
+                        stra.erase_at(j);
 
                      }
                      else
@@ -496,7 +496,7 @@ namespace filemanager
             else
             {
 
-               stra.remove_at(i);
+               stra.erase_at(i);
 
             }
 
@@ -724,12 +724,12 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(::payload varFile)
+   bool component::erase_filemanager(::payload varFile)
    {
 
       //document * pdocument = find_manager(varFile);
 
-      //m_pdocumenttemplateProject->remove_document(pdocument);
+      //m_pdocumenttemplateProject->erase_document(pdocument);
 
       //save_filemanager_project();
 
@@ -740,12 +740,12 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(document * pdocument)
+   bool component::erase_filemanager(document * pdocument)
    {
 
       //pdocument->close_document();
 
-      ////m_pdocumenttemplateProject->remove_document(pdocument);
+      ////m_pdocumenttemplateProject->erase_document(pdocument);
 
       //save_filemanager_project();
 

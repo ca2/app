@@ -464,7 +464,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::patha &str
          if (str.get_length() < 2)
          {
 
-            stra.remove_at(i);
+            stra.erase_at(i);
 
             i--;
 
@@ -475,7 +475,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::patha &str
          if (!isdigit((uchar) str[0]) || !isdigit((uchar) str[1]))
          {
 
-            stra.remove_at(i);
+            stra.erase_at(i);
 
             i--;
 
@@ -2512,7 +2512,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
       try
       {
 
-         m_pcontext->m_papexcontext->http().m_straDownloading.remove(path);
+         m_pcontext->m_papexcontext->http().m_straDownloading.erase(path);
 
       }
       catch (...)

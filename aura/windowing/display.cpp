@@ -127,7 +127,7 @@ namespace windowing
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      m_monitorinfoa.remove_all();
+//      m_monitorinfoa.erase_all();
 //
 //      ::EnumDisplayMonitors(nullptr, nullptr, &display::monitor_enum_proc, (lparam)(dynamic_cast <::aura::session *> (this)));
 //

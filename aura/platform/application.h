@@ -620,7 +620,7 @@ namespace aura
       //virtual bool init_service() override;
 
       //virtual bool os_create_service() override;
-      //virtual bool os_remove_service() override;
+      //virtual bool os_erase_service() override;
 
       //virtual bool os_start_service() override;
       //virtual bool os_stop_service() override;
@@ -800,7 +800,7 @@ namespace aura
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
       virtual void add_frame(::user::interaction * puserinteraction);
-      virtual void remove_frame(::user::interaction * puserinteraction);
+      virtual void erase_frame(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) override; // with tbs in <3
 
@@ -1331,7 +1331,7 @@ namespace aura
       //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
       //      virtual void set_cred_ok(string strToken, bool bOk) override;
 
-      //user virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
@@ -1395,7 +1395,7 @@ namespace aura
       //using ::user::form_callback::on_control_event;
 
 
-      //virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual void term_application() override;
 

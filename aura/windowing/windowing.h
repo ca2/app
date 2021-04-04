@@ -159,7 +159,7 @@ namespace windowing
 
       virtual class window * new_window(::user::interaction_impl * pimpl);
 
-      virtual ::e_status remove_window(::windowing::window * pwindow);
+      virtual ::e_status erase_window(::windowing::window * pwindow);
 
       //virtual ::e_status hook(class hook * phook);
 

@@ -125,7 +125,7 @@ namespace user
       if (!psession->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
       {
 
-         iaSel.remove_all();
+         iaSel.erase_all();
 
       }
 
@@ -620,7 +620,7 @@ namespace user
 
          //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
 
-         m_imageaThumb.remove_all();
+         m_imageaThumb.erase_all();
 
       }
 
@@ -753,7 +753,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      m_iaSel.remove_all();
+      m_iaSel.erase_all();
 
       m_iaSel.add(iFind);
 

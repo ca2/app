@@ -412,7 +412,7 @@ void thread::term_thread()
    try
    {
 
-      m_handlermap.remove_all();
+      m_handlermap.erase_all();
 
    }
    catch (...)
@@ -778,7 +778,7 @@ bool thread::pump_runnable()
 
       auto method = m_routinea.first();
 
-      m_routinea.remove_at(0);
+      m_routinea.erase_at(0);
 
       if (method)
       {
@@ -1270,12 +1270,6 @@ void thread::kick_idle()
       if (task_active())
       {
 
-#ifdef WINDOWS_DESKTOP
-
-         ::PostThreadMessage((DWORD) m_itask, WM_KICKIDLE, 0, 0);
-
-#else
-
          if (m_pmq && !m_bClosedMq)
          {
 
@@ -1286,8 +1280,12 @@ void thread::kick_idle()
             m_pmq->m_eventNewMessage.SetEvent();
 
          }
+         else
+         {
 
-#endif
+            ::PostThreadMessage((DWORD)m_itask, WM_KICKIDLE, 0, 0);
+
+         }
 
       }
 
@@ -1507,7 +1505,7 @@ bool thread::post_quit_message(int nExitCode)
 //}
 
 
-void thread::task_remove(::task * ptask)
+void thread::task_erase(::task * ptask)
 {
 
    try
@@ -1537,7 +1535,7 @@ void thread::task_remove(::task * ptask)
 
       ptask->m_pobjectParent.release();
 
-      //m_pcompositea->remove(ptask);
+      //m_pcompositea->erase(ptask);
 
       if (finish_bit())
       {
@@ -1674,23 +1672,38 @@ void thread::task_remove(::task * ptask)
 bool thread::task_get_run() const
 {
 
-   if(m_pmq)
+   if (m_bMessageThread)
    {
 
-      if(m_pmq->m_messagea.has_element())
+      if (m_pmq)
       {
 
-         return true;
+         if (m_pmq->m_messagea.has_element())
+         {
+
+            return true;
+
+         }
 
       }
 
+      //auto bSetFinish = m_bSetFinish || m_bReadyToFinish;
+
+      auto bSetFinish = m_bTaskReadyToQuit;
+
+      return !bSetFinish;
+
    }
+   else
+   {
 
-   auto bSetFinish = m_bSetFinish;
+      auto bSetFinish = m_bSetFinish || m_bTaskReadyToQuit;
 
-   auto bFinishing = m_bFinishing;
+      auto bFinishing = m_bFinishing;
 
-   return !bSetFinish;
+      return !bSetFinish;
+
+   }
 
 }
 
@@ -2674,7 +2687,7 @@ void thread::__os_finalize()
    //         if (pthreadParent->m_id.begins_ci("predicate_thread") && m_id.begins_ci("predicate_thread"))
    //         {
 
-   //            pthreadParent->task_remove(this);
+   //            pthreadParent->task_erase(this);
 
    //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
 
@@ -3437,7 +3450,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::e_status thread::set_finish()
+::e_status thread::finish()
 {
 
    auto estatus = ::object::set_finish();
@@ -3448,6 +3461,8 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
       return estatus;
 
    }
+
+   kick_idle();
 
    return estatus;
 
@@ -3661,6 +3676,45 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
+void thread::update_task_ready_to_quit()
+{
+
+   ::e_status estatus = ::success;
+
+   synchronous_lock synchronouslock(mutex());
+
+   string strTypeName = type_name();
+
+   matter_array compositea;
+
+   enumerate_composite(compositea);
+
+   bool bReadyToQuit = true;
+
+   for (auto& pmatter : compositea)
+   {
+
+      if(!pmatter->m_bTaskReadyToQuit)
+      {
+
+         bReadyToQuit = false;
+
+      }
+
+   }
+
+   if (bReadyToQuit)
+   {
+
+      m_bTaskReadyToQuit = true;
+
+   }
+
+   //return estatus;
+
+}
+
+
 //::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
 //{
 //
@@ -3756,7 +3810,41 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
       MSG msg;
 
-      int iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+      int iRet = -1;
+      
+      if (m_bSetFinish)
+      {
+
+         while(!::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
+         {
+
+            sleep(100_ms);
+
+            if (msg.message == e_message_quit)
+            {
+
+               return false;
+
+            }
+
+            update_task_ready_to_quit();
+
+            if (!task_get_run())
+            {
+
+               return false;
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+
+      }
 
       __copy(pMsg, msg);
 
@@ -3892,7 +3980,7 @@ void thread::dump(dump_context & dumpcontext) const
       if (::is_set(m_puiptraThread))
       {
 
-         m_puiptraThread->remove_all();
+         m_puiptraThread->erase_all();
 
       }
 
@@ -4640,12 +4728,12 @@ void thread::add_waiting_event(event * pevent)
 }
 
 
-void thread::remove_waiting_event(event * pevent)
+void thread::erase_waiting_event(event * pevent)
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   m_eventaWait.remove(pevent);
+   m_eventaWait.erase(pevent);
 
 }
 

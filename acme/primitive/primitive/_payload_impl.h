@@ -207,7 +207,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.inta().remove(payload2.i32());
+         payload.inta().erase(payload2.i32());
       }
    }
    else if (m_etype == ::e_type_stra)
@@ -223,7 +223,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.stra().remove(payload2.get_string());
+         payload.stra().erase(payload2.get_string());
       }
    }
    else if (m_etype == ::type_vara)
@@ -235,7 +235,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.vara().remove(payload2);
+         payload.vara().erase(payload2);
       }
    }
    else if (is_double() || payload2.is_double())
@@ -408,7 +408,7 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.stra().remove(payload2.get_string());
+         payload.stra().erase(payload2.get_string());
       }
    }
    else if (m_etype == ::type_vara)
@@ -420,7 +420,7 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.vara().remove(payload2);
+         payload.vara().erase(payload2);
       }
    }
    else if (is_double() || payload2.is_double())

@@ -1158,11 +1158,11 @@ auto tick2 = ::millis::now();
             vector4& p = pix[yw + vxmin[x]];
 
 
-            // remove "past" pixels from the sum
+            // erase "past" pixels from the sum
             sum -= outsum;
 
 
-            // remove "left" side of stack from outsum
+            // erase "left" side of stack from outsum
             stackstart = stackpointer - radius + div;
             vector4& sir = stack[stackstart % div];
             outsum -= sir;

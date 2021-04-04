@@ -75,7 +75,7 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
    case ERROR_INVALID_DRIVE:
       return ::error_bad_path;
    case ERROR_CURRENT_DIRECTORY:
-      return ::error_remove_current_dir;
+      return ::error_erase_current_dir;
    case ERROR_NOT_SAME_DEVICE:
       return ::error_bad_path;
    case ERROR_NO_MORE_FILES:
@@ -183,7 +183,7 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
    case ERROR_DIR_NOT_ROOT:
       return ::error_bad_path;
    case ERROR_DIR_NOT_EMPTY:
-      return ::error_remove_current_dir;
+      return ::error_erase_current_dir;
    case ERROR_LABEL_TOO_LONG:
       return ::error_bad_path;
    case ERROR_BAD_PATHNAME:

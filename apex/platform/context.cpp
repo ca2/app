@@ -222,7 +222,7 @@ namespace apex
    void context::clear_cache()
    {
 
-      m_mapCachedLatestBuild.remove_all();
+      m_mapCachedLatestBuild.erase_all();
 
 
    }
@@ -1038,7 +1038,7 @@ namespace apex
 
       synchronous_lock synchronouslock(mutex());
 
-      m_straMatterLocator.remove_all();
+      m_straMatterLocator.erase_all();
 
       m_straMatterLocator.add(m_straMatterLocatorPriority);
 

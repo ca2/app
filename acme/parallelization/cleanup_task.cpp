@@ -7,12 +7,12 @@ namespace parallelization
 {
 
 
-   void cleanup_task::remove(matter* pmatter)
+   void cleanup_task::erase(matter* pmatter)
    {
 
       synchronous_lock lock(mutex());
 
-      m_mattera.remove(pmatter);
+      m_mattera.erase(pmatter);
 
    }
 
@@ -58,7 +58,7 @@ namespace parallelization
                   if (estatus != error_pending)
                   {
 
-                     m_mattera.remove_at(i);
+                     m_mattera.erase_at(i);
 
                      bShouldSleep = false;
 

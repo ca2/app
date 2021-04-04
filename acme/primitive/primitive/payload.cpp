@@ -629,7 +629,7 @@ void payload::unset(const string & strPropertySetKey)
    if (get_type() == e_type_propset)
    {
 
-      propset().remove_by_name(strPropertySetKey);
+      propset().erase_by_name(strPropertySetKey);
 
    }
 
@@ -1590,7 +1590,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.inta().remove(payload2.i32());
+         //payload.inta().erase(payload2.i32());
       }
    }
    else if(m_etype == ::e_type_stra)
@@ -1602,7 +1602,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.stra().remove(payload2.get_string());
+         //payload.stra().erase(payload2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
@@ -1614,7 +1614,7 @@ bool payload::is_new_or_null() const
       else
       {
          // payload = var1;
-         //payload.vara().remove(payload2);
+         //payload.vara().erase(payload2);
       }
    }
    else if(is_double() || payload.is_double())
@@ -1660,7 +1660,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.inta().remove(payload2.i32());
+         //payload.inta().erase(payload2.i32());
       }
    }
    else if(m_etype == ::e_type_stra)
@@ -1672,7 +1672,7 @@ bool payload::is_new_or_null() const
       else
       {
          //payload = var1;
-         //payload.stra().remove(payload2.get_string());
+         //payload.stra().erase(payload2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
@@ -1684,7 +1684,7 @@ bool payload::is_new_or_null() const
       else
       {
          // payload = var1;
-         //payload.vara().remove(payload2);
+         //payload.vara().erase(payload2);
       }
    }
    else if(is_double() || payload.is_double())

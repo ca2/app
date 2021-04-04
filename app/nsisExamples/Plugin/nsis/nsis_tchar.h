@@ -104,7 +104,7 @@ typedef wchar_t TCHAR;
 // file manipulations
 #define _tfopen     _wfopen
 #define _topen      _wopen
-#define _tremove    _wremove
+#define _terase    _werase
 #define _tunlink    _wunlink
 
 // reading and writing to i/o
@@ -199,7 +199,7 @@ typedef char TCHAR;
 // file manipulations
 #define _tfopen     fopen
 #define _topen      _open
-#define _tremove    remove
+#define _terase    erase
 #define _tunlink    _unlink
 
 // reading and writing to i/o

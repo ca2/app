@@ -370,7 +370,7 @@ void memory_file::load_string(string &str)
 }
 
 
-memsize memory_file::remove_begin(void *pdata, memsize uiCount)
+memsize memory_file::erase_begin(void *pdata, memsize uiCount)
 {
 
    //ASSERT(is_valid());

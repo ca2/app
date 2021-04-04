@@ -61,8 +61,8 @@
 //CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
 //CLASS_DECL_AURA oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
 //CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay, Window window);
-//CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//CLASS_DECL_AURA bool oswindow_erase(Display * pdisplay, Window window);
+//CLASS_DECL_AURA bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 //
 //
 //struct hthread;
@@ -279,11 +279,11 @@
 //   virtual ~oswindow_dataptra()
 //   {
 //
-//      remove_all();
+//      erase_all();
 //
 //   }
 //
-//   void remove_all()
+//   void erase_all()
 //   {
 //
 //      for(auto point : *this)
@@ -293,7 +293,7 @@
 //
 //      }
 //
-//      address_array < oswindow_data * >::remove_all();
+//      address_array < oswindow_data * >::erase_all();
 //   }
 //
 //};

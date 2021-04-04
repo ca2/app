@@ -44,12 +44,12 @@ namespace aura
 
    void savings::use(e_resource eresource)
    {
-      m_eresourceflagsShouldSave.remove(eresource);
+      m_eresourceflagsShouldSave.erase(eresource);
    }
 
    void savings::may_use(e_resource eresource)
    {
-      m_eresourceflagsShouldSave.remove(eresource);
+      m_eresourceflagsShouldSave.erase(eresource);
    }
 
    bool savings::should_save(e_resource eresource)
@@ -69,7 +69,7 @@ namespace aura
 
    void savings::clear_warning(e_resource eresource)
    {
-      m_eresourceflagsWarning.remove(eresource);
+      m_eresourceflagsWarning.erase(eresource);
    }
 
    bool savings::is_warning(e_resource eresource)

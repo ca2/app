@@ -368,7 +368,7 @@ namespace macos
 
                image_key * pkey = m_keyptra.first();
 
-               m_keyptra.remove_at(0);
+               m_keyptra.erase_at(0);
 
                synchronouslock.unlock();
 

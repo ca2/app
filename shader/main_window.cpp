@@ -19,9 +19,9 @@ namespace app_shader
 
       payload(FONTSEL_IMPACT) = true;
 
-      m_flagNonClient.remove(non_client_background);
+      m_flagNonClient.erase(non_client_background);
 
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_colorBackground = 0;
 

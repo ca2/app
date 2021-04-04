@@ -184,7 +184,7 @@ bool context::is_system() const
 void context::clear_cache()
 {
 
-   m_mapCachedLatestBuild.remove_all();
+   m_mapCachedLatestBuild.erase_all();
 
 
 }
@@ -978,7 +978,7 @@ void context::on_update_matter_locator()
 
    synchronous_lock synchronouslock(mutex());
 
-   m_straMatterLocator.remove_all();
+   m_straMatterLocator.erase_all();
 
    m_straMatterLocator.add(m_straMatterLocatorPriority);
 

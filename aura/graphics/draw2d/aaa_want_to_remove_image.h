@@ -460,7 +460,7 @@ public:
 
 
    inline bool has_property(id id) const { return m_pimpl.is_set() && m_pimpl->has_property(id); }
-   inline bool remove_key(id id) { return m_pimpl.is_set() && m_pimpl->remove_key(id); }
+   inline bool erase_key(id id) { return m_pimpl.is_set() && m_pimpl->erase_key(id); }
    inline ::payload value(id id) { return m_pimpl->payload(id); }
    inline ::payload value(id id) const { return m_pimpl->payload(id); }
    inline property & set(id id) { return m_pimpl->set(id); }

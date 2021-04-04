@@ -64,7 +64,7 @@ namespace user
    }
 
 
-   void impact_system::remove_document(::user::document * pdocument)
+   void impact_system::erase_document(::user::document * pdocument)
    {
 
       ASSERT(pdocument->m_pimpactsystem == this);   // must be attached to us

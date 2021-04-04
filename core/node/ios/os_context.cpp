@@ -654,7 +654,7 @@ namespace ios
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
 
       return false;

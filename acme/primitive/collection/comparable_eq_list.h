@@ -17,13 +17,13 @@ public:
    ::count get_count(const TYPE & t, node * start = nullptr, node * pnodeLast = nullptr, ::count countMax = -1) const;
    bool contains(const TYPE & t, node * pnodeStart = nullptr, node * pnodeLast = nullptr, ::count countMin = 1, ::count countMax = -1) const;
    bool rcontains(const TYPE & t, node * pnodeStart = nullptr, node * pnodeLast = nullptr, ::count countMin = 1, ::count countMax = -1) const;
-   bool remove_first(const TYPE & t);
-   bool remove_last(const TYPE & t);
-   bool remove_first(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
-   bool remove_last(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
-   ::count remove(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count rremove(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count remove(const comparable_eq_list & l);
+   bool erase_first(const TYPE & t);
+   bool erase_last(const TYPE & t);
+   bool erase_first(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
+   bool erase_last(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
+   ::count erase(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
+   ::count rerase(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
+   ::count erase(const comparable_eq_list & l);
 
 
 
@@ -48,7 +48,7 @@ public:
    //// helper functions (note: O(n) speed)
    //iterator pnodeFind(ARG_TYPE searchValue, iterator startAfter = nullptr);
    //// defaults to starting at the HEAD, return nullptr if not found
-   //void remove(ARG_TYPE elem);
+   //void erase(ARG_TYPE elem);
 
 
    //const_iterator pnodeFind(ARG_TYPE searchValue, const_iterator startAfter = nullptr) const
@@ -188,7 +188,7 @@ intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
       if(!a.contains(pnode->m_value))
       {
 
-         this->remove(pnode->m_value);
+         this->erase(pnode->m_value);
 
       }
 
@@ -264,7 +264,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const TYPE & t)
 {
 
-   remove(t);
+   erase(t);
 
    return *this;
 
@@ -276,7 +276,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   remove(l);
+   erase(l);
 
    return *this;
 
@@ -288,7 +288,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> comparable_eq_list<TYPE, AR
 operator - (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l) const
 {
    comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> aRet(*this);
-   aRet.remove(l);
+   aRet.erase(l);
    return aRet;
 }
 
@@ -302,12 +302,12 @@ operator |= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-remove_first(const TYPE & t)
+erase_first(const TYPE & t)
 {
    node * pnodeFind = this->find_first(t);
    if(pnodeFind != nullptr)
    {
-      this->remove_item(pnodeFind);
+      this->erase_item(pnodeFind);
       return true;
    }
    return false;
@@ -316,13 +316,13 @@ remove_first(const TYPE & t)
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-remove_first(const TYPE & t, node * & pnodeFind, node * pnodeLast)
+erase_first(const TYPE & t, node * & pnodeFind, node * pnodeLast)
 {
    if((pnodeFind = this->find_first(t, pnodeFind, pnodeLast)) != nullptr)
    {
       node * pnodeRemove = pnodeFind;
       pnodeFind = pnodeFind->m_pnext;
-      this->remove_item(pnodeRemove);
+      this->erase_item(pnodeRemove);
       return true;
    }
    return false;
@@ -330,23 +330,23 @@ remove_first(const TYPE & t, node * & pnodeFind, node * pnodeLast)
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 ::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-remove(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
+erase(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(t, pnodeFind, pnodeLast, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax) && remove_first(t, pnodeFind, pnodeLast))
+      while(conditional(countMax >= 0, count < countMax) && erase_first(t, pnodeFind, pnodeLast))
          count++;
    return count;
 }
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-remove_last(const TYPE & t)
+erase_last(const TYPE & t)
 {
    node * pnodeFind = find_last(t);
    if(pnodeFind != nullptr)
    {
-      this->remove_item(pnodeFind);
+      this->erase_item(pnodeFind);
       return true;
    }
    return false;
@@ -355,13 +355,13 @@ remove_last(const TYPE & t)
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-remove_last(const TYPE & t, node * & pnodeFind, node * pnodeLast)
+erase_last(const TYPE & t, node * & pnodeFind, node * pnodeLast)
 {
    if((pnodeFind = find_last(t, pnodeFind, pnodeLast)) != nullptr)
    {
       node * pnodeRemove = pnodeFind;
       pnodeFind = pnodeFind->m_pprevious;
-      this->remove_item(pnodeRemove);
+      this->erase_item(pnodeRemove);
       return true;
    }
    return false;
@@ -369,17 +369,17 @@ remove_last(const TYPE & t, node * & pnodeFind, node * pnodeLast)
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 ::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-rremove(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
+rerase(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(t, pnodeFind, pnodeLast, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax) && remove_last(t, pnodeFind, pnodeLast))
+      while(conditional(countMax >= 0, count < countMax) && erase_last(t, pnodeFind, pnodeLast))
          count++;
    return count;
 }
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::remove(const comparable_eq_list & l)
+::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase(const comparable_eq_list & l)
 {
 
    ::count count = 0;
@@ -389,7 +389,7 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
    while(pnode != nullptr)
    {
 
-      count += remove(pnode->m_value);
+      count += erase(pnode->m_value);
 
       pnode = pnode->m_pnext;
 

@@ -1779,7 +1779,7 @@
     <ClInclude Include="aura\aura\aura_assert_running_task.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
+    <ClInclude Include="aura\os\metrowin\aaa_want_to_erase_metrowin_window_impl.h">
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_local_memory_map.h">

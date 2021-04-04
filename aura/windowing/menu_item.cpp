@@ -30,7 +30,7 @@ namespace windowing
    }
 
 
-   void menu_item::remove_status(enum_status estatus)
+   void menu_item::erase_status(enum_status estatus)
    {
 
       m_estatus -= estatus;

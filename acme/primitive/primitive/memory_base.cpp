@@ -179,7 +179,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       return true;
    }
 
-   remove_offset();
+   erase_offset();
 
    memsize dwAllocation = calc_allocation(dwNewLength);
 
@@ -299,7 +299,7 @@ void memory_base::reserve(memsize dwNewLength)
 }
 
 
-void memory_base::remove_offset()
+void memory_base::erase_offset()
 {
 
    if(m_memory.m_pbStorage == nullptr || m_memory.m_pdata == nullptr || m_memory.m_iOffset <= 0)
@@ -384,7 +384,7 @@ void memory_base::delete_begin(memsize iSize)
    if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.m_iSize)
    {
 
-      remove_offset();
+      erase_offset();
 
    }
 

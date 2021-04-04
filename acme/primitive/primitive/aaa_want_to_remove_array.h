@@ -54,7 +54,7 @@ inline stream &  operator >>(stream & istream, string_array_base < Type, RawType
 
    }
 
-   this->remove_all();
+   this->erase_all();
 
    this->set_size(iSize);
 

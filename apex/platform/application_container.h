@@ -37,7 +37,7 @@ public:
    application_array get_applicationa();
 
    virtual void app_add(::apex::application * papp);
-   virtual void app_remove(::apex::application * papp);
+   virtual void app_erase(::apex::application * papp);
 
 
    __pointer(::apex::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);

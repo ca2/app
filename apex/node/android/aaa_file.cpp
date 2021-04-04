@@ -600,7 +600,7 @@ namespace android
    ::win::file::throw_os_error( (::i32)::get_last_error());
    }
 
-   void PASCAL file::remove(const char * lpszFileName)
+   void PASCAL file::erase(const char * lpszFileName)
    {
    if (!::DeleteFile((char *)lpszFileName))
    ::win::file::throw_os_error( (::i32)::get_last_error());

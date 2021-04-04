@@ -342,7 +342,7 @@ namespace apex
    ::e_status application::finalize()
    {
 
-      ::application_container::m_applicationa.remove_all();
+      ::application_container::m_applicationa.erase_all();
 
       __unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
 
@@ -521,7 +521,7 @@ namespace apex
       else
       {
 
-         m_objectptraEventHook.remove(pobject);
+         m_objectptraEventHook.erase(pobject);
 
       }
 
@@ -2783,7 +2783,7 @@ retry_license:
 
          return false;
 
-//         psystem->install().remove_spa_start(m_strAppId);
+//         psystem->install().erase_spa_start(m_strAppId);
 
       }
 
@@ -2952,7 +2952,7 @@ retry_license:
 
       }
 
-      //psystem->install().remove_spa_start(strId);
+      //psystem->install().erase_spa_start(strId);
       //psystem->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
       //psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
       //psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
@@ -3095,10 +3095,10 @@ retry_license:
    //}
 
 
-   //::e_status application::os_remove_service()
+   //::e_status application::os_erase_service()
    //{
 
-   //   return m_pcontext->m_papexcontext->os().remove_service();
+   //   return m_pcontext->m_papexcontext->os().erase_service();
 
    //}
 
@@ -3149,7 +3149,7 @@ retry_license:
          service_handler()->stop_service();
 
       }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("remove_service"))
+      else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
       {
 
          disable_service();
@@ -3401,9 +3401,9 @@ retry_license:
       try
       {
 
-         m_stringtable.remove_all();
+         m_stringtable.erase_all();
 
-         m_stringtableStd.remove_all();
+         m_stringtableStd.erase_all();
 
       }
       catch(...)
@@ -3858,14 +3858,14 @@ retry_license:
          if(::is_set(m_pappParent))
          {
 
-            m_pappParent->app_remove(this);
+            m_pappParent->app_erase(this);
 
          }
 
          if(::is_set(get_session()))
          {
 
-            get_session()->app_remove(this);
+            get_session()->app_erase(this);
 
          }
 
@@ -4163,7 +4163,7 @@ retry_license:
    bool application::release_exclusive()
    {
 
-      m_mapExclusive.remove_all();
+      m_mapExclusive.erase_all();
 
       return true;
 
@@ -4815,8 +4815,8 @@ retry_license:
    {
 
 
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
+      localeschema.m_idaLocale.erase_all();
+      localeschema.m_idaSchema.erase_all();
 
 
       string strLocale(pszLocale);
@@ -4841,8 +4841,8 @@ retry_license:
    {
 
 
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
+      localeschema.m_idaLocale.erase_all();
+      localeschema.m_idaSchema.erase_all();
 
 
       //localeschema.m_bAddAlternateStyle = true;
@@ -4859,7 +4859,7 @@ retry_license:
 
       stra = payload("locale").stra();
 
-      stra.remove_ci("_std");
+      stra.erase_ci("_std");
 
       straLocale.add_unique(payload("locale").stra());
 
@@ -4867,7 +4867,7 @@ retry_license:
 
       stra = payload("schema").stra();
 
-      stra.remove_ci("_std");
+      stra.erase_ci("_std");
 
       straSchema.add_unique(payload("schema").stra());
 
@@ -6245,7 +6245,7 @@ retry_license:
 
 #else
 
-         set_finish();
+         finish();
 
 #endif
 
@@ -8205,7 +8205,7 @@ retry_license:
    bool bLast = ((i + 1) == __argc);
    if (pszParam[0] == '-' || pszParam[0] == '/')
    {
-   // remove flag specifier
+   // erase flag specifier
    bFlag = true;
    ++pszParam;
    }
@@ -10613,21 +10613,21 @@ retry_license:
       //      {
       //         //   try
       //         //   {
-      //         //      get_application()->remove_frame(pinteraction);
+      //         //      get_application()->erase_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {
       //         //   }
       //         //   try
       //         //   {
-      //         //      psession->remove_frame(pinteraction);
+      //         //      psession->erase_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {
       //         //   }
       //         //   try
       //         //   {
-      //         //      psystem->remove_frame(pinteraction);
+      //         //      psystem->erase_frame(pinteraction);
       //         //   }
       //         //   catch(...)
       //         //   {

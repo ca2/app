@@ -203,7 +203,7 @@ namespace user
       m_bCreated = false;
       m_edatatype = e_control_data_type_string;
       m_flagsfunction.clear();
-      //m_controlmap.remove_all();
+      //m_controlmap.erase_all();
       m_bSubclassed = false;
       //m_iSubItem = -1;
       //m_iColumn = -1;
@@ -1206,7 +1206,7 @@ namespace user
          if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+            m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
          }
 
@@ -1274,8 +1274,8 @@ namespace user
 
          __pointer(::aura::application) papplication = get_application();
 
-         //psession->remove_frame(this); // no more a top level frame if it were one
-         papplication->remove_frame(this); // no more a top level frame if it were one
+         //psession->erase_frame(this); // no more a top level frame if it were one
+         papplication->erase_frame(this); // no more a top level frame if it were one
 
          m_pimpl = pimplNew;
 
@@ -1999,7 +1999,7 @@ namespace user
       try
       {
 
-         if (mouse_hover_remove(this))
+         if (mouse_hover_erase(this))
          {
 
             call_message_handler(e_message_mouse_leave);
@@ -2191,13 +2191,13 @@ namespace user
    }
 
 
-   void interaction::on_remove_child(::user::interaction * pinteraction)
+   void interaction::on_erase_child(::user::interaction * pinteraction)
    {
 
    }
 
 
-   void interaction::on_remove_place_holder_child(::user::interaction * pinteraction)
+   void interaction::on_erase_place_holder_child(::user::interaction * pinteraction)
    {
 
    }
@@ -2270,7 +2270,7 @@ namespace user
 
             synchronous_lock synchronouslock(pimpl->mutex());
 
-            pimpl->m_uiptraMouseHover.remove(this);
+            pimpl->m_uiptraMouseHover.erase(this);
 
          }
 
@@ -2311,9 +2311,9 @@ namespace user
             if (puiParent->m_bUserPrimitiveOk)
             {
 
-               puiParent->on_remove_child(this);
+               puiParent->on_erase_child(this);
 
-               puserinteractionpointeraChild->remove_interaction(this);
+               puserinteractionpointeraChild->erase_interaction(this);
 
                puiParent->m_puserinteractionpointeraChild = puserinteractionpointeraChild;
 
@@ -2346,7 +2346,7 @@ namespace user
 
                __pointer(::aura::application) papplication = get_application();
 
-               papplication->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
             }
             catch (...)
@@ -2362,7 +2362,7 @@ namespace user
 
                   __pointer(::aura::application) papplication = get_application();
 
-                  papplication->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+                  papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
                }
                catch (...)
@@ -2390,7 +2390,7 @@ namespace user
       }
 
 
-      //task_remove_all();
+      //task_erase_all();
 
       single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pimpl.is_null()
                          || get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == nullptr ? nullptr : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
@@ -3819,7 +3819,7 @@ namespace user
    }
 
 
-   bool interaction::remove_prodevian(::object * pobject)
+   bool interaction::erase_prodevian(::object * pobject)
    {
 
       if (get_wnd() == nullptr || get_wnd()->m_pimpl == nullptr)
@@ -3829,7 +3829,7 @@ namespace user
 
       }
 
-      return get_wnd()->m_pimpl->remove_prodevian(pobject);
+      return get_wnd()->m_pimpl->erase_prodevian(pobject);
 
    }
 
@@ -5412,7 +5412,7 @@ namespace user
 
       }
 
-      remove_all_routes();
+      erase_all_routes();
 
       __pointer(primitive_impl) pimplOld = m_pimpl;
 
@@ -5435,7 +5435,7 @@ namespace user
 
             pimplOld->m_puserinteraction = nullptr;
 
-            pimplOld->remove_all_routes();
+            pimplOld->erase_all_routes();
 
             auto pwindowOld = pimplOld;
 
@@ -5592,7 +5592,7 @@ namespace user
          //         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
          //         {
 
-         //            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+         //            m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
          //         }
 
@@ -5618,7 +5618,7 @@ namespace user
             if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
             {
 
-               m_pthreadUserInteraction->m_puiptraThread->remove(this);
+               m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
             }
 
@@ -5730,7 +5730,7 @@ namespace user
          //         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
          //         {
 
-         //            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+         //            m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
          //         }
 
@@ -5802,7 +5802,7 @@ namespace user
                   if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
                   {
 
-                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+                     m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
                   }
 
@@ -5828,7 +5828,7 @@ namespace user
             if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
             {
 
-               m_pthreadUserInteraction->m_puiptraThread->remove(this);
+               m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
             }
 
@@ -6842,7 +6842,7 @@ namespace user
       m_pdrawcontext.release();
       m_puserinteractionCustomWindowProc.release();
       m_puiLabel.release();
-      m_useritema.remove_all();
+      m_useritema.erase_all();
       m_pform.release();
       m_palphasource.release();
       m_pdrawableBackground.release();
@@ -6852,7 +6852,7 @@ namespace user
       m_puserinteractionpointeraChild.release();
       m_ptooltip.release();
       m_pmenuitem.release();
-      m_menua.remove_all();
+      m_menua.erase_all();
 
 
       // references
@@ -6878,7 +6878,7 @@ namespace user
          try
          {
 
-            remove_all_routes();
+            erase_all_routes();
 
          }
          catch (...)
@@ -6905,7 +6905,7 @@ namespace user
          if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->remove(this);
+            m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
          }
 
@@ -6988,7 +6988,7 @@ namespace user
             try
             {
 
-               puserinteractionpointeraOwned->remove_primitive(this);
+               puserinteractionpointeraOwned->erase_primitive(this);
 
             }
             catch (...)
@@ -10172,12 +10172,12 @@ namespace user
             INFO("-------------------------------------------------------------------");
             INFO("");
             INFO("");
-            INFO("interaction::on_set_parent (remove)");
+            INFO("interaction::on_set_parent (erase)");
             INFO("");
             INFO("");
 
             auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
-            puiptraChildNew->remove_interaction(this);
+            puiptraChildNew->erase_interaction(this);
             m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
 
          }
@@ -10231,7 +10231,7 @@ namespace user
                   if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
                   {
 
-                     m_pthreadUserInteraction->m_puiptraThread->remove(this);
+                     m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
                   }
 
@@ -10328,7 +10328,7 @@ namespace user
          if (!m_pimpl->create_message_queue(this, lpszName))
          {
 
-            //m_threadptra.remove_all();
+            //m_threadptra.erase_all();
 
             m_bUserPrimitiveOk = false;
 
@@ -10890,7 +10890,7 @@ restart:
    }
 
 
-   bool interaction::mouse_hover_remove(::user::interaction * pinterface)
+   bool interaction::mouse_hover_erase(::user::interaction * pinterface)
    {
 
       auto puserinteraction = get_wnd();
@@ -10911,7 +10911,7 @@ restart:
 
       }
 
-      auto bOk = pimpl->mouse_hover_remove(pinterface);
+      auto bOk = pimpl->mouse_hover_erase(pinterface);
 
       if (!bOk)
       {
@@ -13412,7 +13412,7 @@ restart:
    //}
 
 
-   //::e_status interaction::remove_keyboard_focus(::user::primitive * pprimitive)
+   //::e_status interaction::erase_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   auto puserinteractionHost = get_host_window();
@@ -13420,13 +13420,13 @@ restart:
    //   if (this == puserinteractionHost)
    //   {
 
-   //      return m_pimpl->remove_keyboard_focus(pprimitive);
+   //      return m_pimpl->erase_keyboard_focus(pprimitive);
 
    //   }
    //   else
    //   {
 
-   //      return puserinteractionHost->remove_keyboard_focus(pprimitive);
+   //      return puserinteractionHost->erase_keyboard_focus(pprimitive);
 
    //   }
 
@@ -13441,10 +13441,10 @@ restart:
    //}
 
 
-   //::e_status interaction::remove_keyboard_focus()
+   //::e_status interaction::erase_keyboard_focus()
    //{
 
-   //   return remove_keyboard_focus(this);
+   //   return erase_keyboard_focus(this);
 
    //}
 
@@ -13922,10 +13922,10 @@ restart:
    }
 
 
-   void interaction::redraw_remove(::object * p)
+   void interaction::redraw_erase(::object * p)
    {
 
-      get_wnd()->m_pimpl->redraw_remove(p);
+      get_wnd()->m_pimpl->redraw_erase(p);
 
    }
 
@@ -14012,7 +14012,7 @@ restart:
 
    //               m_bMouseHover = false;
 
-   //               get_impl()->mouse_hover_remove(this);
+   //               get_impl()->mouse_hover_erase(this);
 
    //               send_message(e_message_mouse_leave);
 
@@ -16592,7 +16592,7 @@ restart:
       m_bCreated = false;
       m_edatatype = e_control_data_type_string;
       m_flagsfunction.clear();
-      m_controlmap.remove_all();
+      m_controlmap.erase_all();
       m_bSubclassed = false;
       m_iSubItem = -1;
       m_iColumn = -1;
@@ -16613,7 +16613,7 @@ restart:
 //   m_bCreated = false;
 //   m_edatatype = e_control_data_type_string;
 //   m_flagsfunction.clear();
-//   m_controlmap.remove_all();
+//   m_controlmap.erase_all();
 //   m_bSubclassed = false;
 //   m_iSubItem = -1;
 //   m_iColumn = -1;
@@ -16648,7 +16648,7 @@ restart:
    //   m_edatatype = control_descriptor.m_edatatype;
    //   m_idPrivateDataSection = control_descriptor.m_idPrivateDataSection;
    //   //m_pcontrol              = control_descriptor.m_pcontrol;
-   //   m_controlmap.remove_all();
+   //   m_controlmap.erase_all();
    //   m_eddx = control_descriptor.m_eddx;
    //   m_puserinteractionParent = control_descriptor.m_puserinteractionParent;
    //   m_iSubItem = control_descriptor.m_iSubItem;
@@ -16701,10 +16701,10 @@ restart:
    }
 
 
-   void interaction::remove_function(enum_control_function enum_control_function)
+   void interaction::erase_function(enum_control_function enum_control_function)
    {
 
-      m_flagsfunction.remove(enum_control_function);
+      m_flagsfunction.erase(enum_control_function);
 
    }
 

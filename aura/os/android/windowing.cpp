@@ -36,8 +36,8 @@ CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interac
 //CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
 //CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
 //CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//CLASS_DECL_AURA bool oswindow_erase(Display * pdisplay,Window window);
+CLASS_DECL_AURA bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 namespace user
@@ -277,7 +277,7 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 
 
 
-//int_bool oswindow_remove(::user::interaction * pinteraction)
+//int_bool oswindow_erase(::user::interaction * pinteraction)
 //{
 //
 //   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -287,14 +287,14 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 //   if(iFind < 0)
 //      return false;
 //
-//   ::oswindow_data::s_pdataptra->remove_at(iFind);
+//   ::oswindow_data::s_pdataptra->erase_at(iFind);
 //
 //   return true;
 //
 //}
 
 
-bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction)
+bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 {
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -304,7 +304,7 @@ bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction
    if (iFind < 0)
       return false;
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
@@ -392,7 +392,7 @@ void oswindow_data::post_nc_destroy()
 
    synchronous_lock slOsWindow(s_pmutex);
 
-   oswindow_remove(this);
+   oswindow_erase(this);
 
 }
 
@@ -722,7 +722,7 @@ oswindow set_focus(oswindow oswindow)
 }
 
 
-bool remove_focus(oswindow oswindow)
+bool erase_focus(oswindow oswindow)
 {
 
    synchronous_lock synchronouslock(::aura::g_pmutexWindowing);

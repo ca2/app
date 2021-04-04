@@ -43,9 +43,9 @@ namespace user
 
       virtual void on_change_pane_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
 
-      virtual void on_remove_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_child(::user::interaction* pinteraction) override;
 
-      virtual void on_remove_place_holder_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_place_holder_child(::user::interaction* pinteraction) override;
 
       virtual void on_hide_child(::user::interaction* pinteraction) override;
 

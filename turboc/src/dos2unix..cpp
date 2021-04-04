@@ -37,7 +37,7 @@
   for example, to get the integer types to correspond to TurboC integer types.
   The month and day names have been commented out not because they're Czech,
   but because they don't seem to be used by the code.  Similarly, the 
-  sequence_STAR_34X function has been removed because I'm not entirely sure
+  sequence_STAR_34X function has been erased because I'm not entirely sure
   what it's for.  (I mean, I'm sure it translates the control codes for
   some specific type of printer -- perhaps one of the Micronics line --
   but I'm not sure how to document it or whether it's of any general use.)			

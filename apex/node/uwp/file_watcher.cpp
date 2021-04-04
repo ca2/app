@@ -226,7 +226,7 @@ namespace file
       //{
       //   DestroyWatch(ppair->element2().w);
       //}
-      //m_watchmap.remove_all();
+      //m_watchmap.erase_all();
 
    }
 
@@ -302,7 +302,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::remove_watch(const string & directory)
+   //void os_file_watcher::erase_watch(const string & directory)
    //{
 
    //   watch_map::pair * ppair = m_watchmap.get_start();
@@ -315,7 +315,7 @@ namespace file
    //      if(strDir == ppair->element2()->m_strFolder)
    //      {
 
-   //         remove_watch(ppair->element1());
+   //         erase_watch(ppair->element1());
 
    //         return;
 
@@ -326,7 +326,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::remove_watch(id watchid)
+   //void os_file_watcher::erase_watch(id watchid)
    //{
 
    //   watch_map::pair * ppair = m_watchmap.plookup(watchid);
@@ -334,7 +334,7 @@ namespace file
    //   if(ppair == nullptr)
    //      return;
 
-   //   m_watchmap.remove_key(ppair->element1());
+   //   m_watchmap.erase_key(ppair->element1());
 
    //}
 

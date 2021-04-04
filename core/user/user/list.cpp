@@ -1670,7 +1670,7 @@ namespace user
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < m_columna.VisibleGetCount());
 
-      m_columna.remove(iColumn);
+      m_columna.erase(iColumn);
 
    }
 
@@ -4789,10 +4789,10 @@ namespace user
    }
 
 
-   void list_column_array::remove_all()
+   void list_column_array::erase_all()
    {
 
-      pointer_array < list_column >::remove_all();
+      pointer_array < list_column >::erase_all();
 
       OnChange();
 
@@ -4856,12 +4856,12 @@ namespace user
    }
 
 
-   void list_column_array::remove(index iColumn)
+   void list_column_array::erase(index iColumn)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < this->get_size());
 
-      remove_at(iColumn);
+      erase_at(iColumn);
 
       OnChange();
    }
@@ -5277,7 +5277,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_columna.remove_all();
+         m_columna.erase_all();
 
       }
 
@@ -6080,7 +6080,7 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6089,7 +6089,7 @@ namespace user
       }
       else
       {
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6138,7 +6138,7 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piconlayout->m_iaDisplayToStrict.remove_all();
+         m_piconlayout->m_iaDisplayToStrict.erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6147,7 +6147,7 @@ namespace user
       }
       else
       {
-         m_pmeshlayout->m_iaDisplayToStrict.remove_all();
+         m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6168,13 +6168,13 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
       }
       else
       {
 
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
       }
 
@@ -6300,11 +6300,11 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
       }
       else
       {
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
       }
 
       string_array stra;
@@ -6375,7 +6375,7 @@ namespace user
       if (iFound >= 0)
       {
          CSortInfoItem newItem = m_sortinfo.m_itema[iFound];
-         m_sortinfo.m_itema.remove_at(iFound);
+         m_sortinfo.m_itema.erase_at(iFound);
          newItem.m_bAscendent = !newItem.m_bAscendent;
          m_sortinfo.m_itema.insert_at(0, newItem);
       }
@@ -7063,7 +7063,7 @@ namespace user
       }
       else
       {
-         m_flags.remove(flag_auto_arrange);
+         m_flags.erase(flag_auto_arrange);
       }
       if (bAutoArrange)
       {

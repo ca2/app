@@ -150,7 +150,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_view::remove(const string_array & stra)
+   bool folder_list_view::erase(const string_array & stra)
    {
 
       if (stra.get_size() == 0)
@@ -165,7 +165,7 @@ namespace filemanager
 
          __pointer(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
 
-         if(!pdata->remove(stra))
+         if(!pdata->erase(stra))
             return false;
 
       }
@@ -174,7 +174,7 @@ namespace filemanager
 
          auto pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data > ();
 
-         if (!pdata->remove(stra))
+         if (!pdata->erase(stra))
          {
 
             return false;

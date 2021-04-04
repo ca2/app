@@ -52,6 +52,9 @@ public:
    __pointer(::acme::context)                           m_pcontext;
 
 
+   __pointer(__pointer_array(::object))                 m_pobjecta;
+
+
 
    //::object_meta *                                    m_pmeta;
    //::i64                                              m_cRun;
@@ -92,6 +95,9 @@ public:
    //inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
    //inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
+   virtual void add_object(::object * pobject);
+   virtual void on_delete_object(::object * pobject);
+
    virtual void enumerate_composite(matter_array& a);
    virtual void enumerate_reference(matter_array& a);
 
@@ -129,7 +135,7 @@ public:
    virtual text __text(const ::id& id);
 
 
-   virtual void task_remove(::task* ptask) override;
+   virtual void task_erase(::task* ptask) override;
 
 
    virtual ::e_status sleep(const ::duration& duration);
@@ -142,6 +148,25 @@ public:
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status set_finish() override;
    virtual ::e_status finalize() override;
+
+
+   virtual bool is_thread() const override;
+   virtual bool task_get_run() const;
+   virtual bool is_running() const;
+   virtual void child_post_quit(const char* pszTag);
+   virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
+
+   //virtual ::e_status finalize();
+
+   //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
+   //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
+   //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
+   virtual ::e_status on_finish();
+
+   virtual ::e_status set_finish_composites();
+
+   virtual ::e_status finish_composites() override;
+
 
 
    virtual ::e_status on_initialize_object();
@@ -364,20 +389,6 @@ public:
 
 
    virtual string get_tag() const;
-   virtual bool is_thread() const override;
-   virtual bool task_get_run() const;
-   virtual bool is_running() const;
-   virtual void child_post_quit(const char* pszTag);
-   virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
-
-   //virtual ::e_status finalize();
-
-   //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
-   //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
-   //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
-   virtual ::e_status on_finish();
-
-   virtual ::e_status finish_composites() override;
 
 
    virtual void defer_update_object_id();
@@ -720,7 +731,7 @@ public:
    //inline ::payload context_value(const ::payload& payload);
 
 
-   //virtual void task_remove(::task* ptask) override;
+   //virtual void task_erase(::task* ptask) override;
 
 
    //virtual ::e_status sleep(const ::duration& duration);

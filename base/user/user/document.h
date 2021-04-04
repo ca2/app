@@ -87,7 +87,7 @@ namespace user
 
       // Operations
       ::e_status add_view(::user::impact * pview);
-      ::e_status remove_view(::user::impact * pview);
+      ::e_status erase_view(::user::impact * pview);
       virtual ::count get_view_count() const;
       virtual __pointer(::user::impact) get_view(index index = 0) const;
 
@@ -265,7 +265,7 @@ namespace user
 
       // Overridables
       // Special notifications
-      virtual void on_changed_view_list(); // after add or remove ::user::impact
+      virtual void on_changed_view_list(); // after add or erase ::user::impact
       virtual void delete_contents(); // delete doc items etc
 
       virtual bool new_document();

@@ -1366,7 +1366,7 @@ namespace ios
    //                  if (folder.element2().m_millisStart.elapsed() > 30000)
    //                  {
 
-   //                     m_mapFolder.remove_key(folder.element1());
+   //                     m_mapFolder.erase_key(folder.element1());
 
    //                     goto restart;
 
@@ -1708,7 +1708,7 @@ namespace ios
 //
 //            image_key * pkey = m_keyptra.first();
 //
-//            m_keyptra.remove_at(0);
+//            m_keyptra.erase_at(0);
 //
 //            synchronouslock.unlock();
 //
@@ -1965,7 +1965,7 @@ namespace ios
 
                image_key * pkey = m_keyptra.first();
 
-               m_keyptra.remove_at(0);
+               m_keyptra.erase_at(0);
 
                synchronouslock.unlock();
 

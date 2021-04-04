@@ -80,7 +80,7 @@ namespace sockets
             _t += len;
             _q += len;
          }
-         memsize remove(memsize len) {
+         memsize erase(memsize len) {
             _b += len;
             _q -= len;
             return _q;

@@ -184,7 +184,7 @@ namespace filemanager
             {
                delete p->m_element1;
             }
-            m_iconmap.remove_all();
+            m_iconmap.erase_all();
             //         i32 iIcon;
             //         i32 iImage;
             //         IExtractIcon * piextracticon;
@@ -285,7 +285,7 @@ namespace filemanager
 //      //{
 //      //Folder & folder = this->element_at(i);
 //      //}
-//      remove_all();
+//      erase_all();
 //
 //
 //   }
@@ -295,7 +295,7 @@ namespace filemanager
    void folder_list::FolderArray::clear()
    {
 
-      remove_all();
+      erase_all();
 
    }
 

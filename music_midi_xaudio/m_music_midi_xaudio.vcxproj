@@ -266,7 +266,7 @@
     <ClInclude Include="music\xf\music_xf_info_headers.h" />
     <ClInclude Include="music\xf\music_xf_info_header_ls.h" />
     <ClInclude Include="music\xf\music_xf_xf.h" />
-    <ClInclude Include="music_user\aaa_want_to_remove_music_user_musical_player_central_container.h" />
+    <ClInclude Include="music_user\aaa_want_to_erase_music_user_musical_player_central_container.h" />
     <ClInclude Include="music_user\music_user.h" />
     <ClInclude Include="music_user\music_user_midi.h" />
     <ClInclude Include="music_user\music_user_midi_section.h" />

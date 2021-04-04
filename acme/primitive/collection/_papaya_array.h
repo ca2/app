@@ -106,7 +106,7 @@ namespace papaya
 
             index i = (index) (rand() % a.get_size());
             b.add(a.element_at(i));
-            a.remove_at(i);
+            a.erase_at(i);
 
          }
 
@@ -134,7 +134,7 @@ namespace papaya
 
          auto matter = a.element_at(i);
 
-         a.remove_at(i);
+         a.erase_at(i);
 
          return matter;
 
@@ -454,7 +454,7 @@ namespace papaya
 
 
    template < class A >
-   void x1_on_remove(const A & a, typename A::BASE_TYPE & n)
+   void x1_on_erase(const A & a, typename A::BASE_TYPE & n)
    {
       ::count c = 0;
       for (index i = 0; i < a.get_size(); i++)
@@ -624,7 +624,7 @@ namespace papaya
 
 
       template < typename T1, typename  T2>
-      inline ::count remove_array(T1 & t1, T2 && t2);
+      inline ::count erase_array(T1 & t1, T2 && t2);
 
 
       template < typename T1, typename  T2>
@@ -679,28 +679,28 @@ namespace papaya
    } // namespace array2d
 
    template < class TYPE >
-   ::count remove_greater_than(::numeric_array < TYPE > & a, TYPE hi);
+   ::count erase_greater_than(::numeric_array < TYPE > & a, TYPE hi);
 
    template < class TYPE >
-   ::count remove_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE hi);
+   ::count erase_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE hi);
 
    template < class TYPE >
-   ::count remove_lesser_than(::numeric_array < TYPE > & a, TYPE lo);
+   ::count erase_lesser_than(::numeric_array < TYPE > & a, TYPE lo);
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal(::numeric_array < TYPE > & a, TYPE lo);
+   ::count erase_lesser_than_or_equal(::numeric_array < TYPE > & a, TYPE lo);
 
    template < class TYPE >
-   ::count remove_lesser_than_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
 
    template < class TYPE >
-   ::count remove_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
 
 
 }   // namespace papaya

@@ -414,7 +414,7 @@ namespace userex
 
                      __pointer(::userex::pane_tab_view) ptabview = pdocument->get_typed_view < ::userex::pane_tab_view >();
 
-                     ptabview->remove_tab_by_id(pframewindow->m_id);
+                     ptabview->erase_tab_by_id(pframewindow->m_id);
 
                      if (ptabview.is_set() && ptabview->get_tab_count() <= 0)
                      {

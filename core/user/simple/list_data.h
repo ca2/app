@@ -16,7 +16,7 @@ public:
    virtual ~simple_list_data();
 
 
-   bool remove_item(index iItem);
+   bool erase_item(index iItem);
    void get_data(string_array & stra);
    void get_column_data(string_array & stra,index iColumn);
    void set_data(::user::mesh * pmesh,string_array & stra);

@@ -1285,7 +1285,7 @@ namespace browser
 
       //      slide.m_bActive = slide.m_bNew;
 
-      //      m_pimageaSlide->add_remove(slide->m_bActive, get_image(slide->m_strPath));
+      //      m_pimageaSlide->add_erase(slide->m_bActive, get_image(slide->m_strPath));
 
       //m_pview->data_set("slide." + slide.m_strPath, slide.m_bActive);
 

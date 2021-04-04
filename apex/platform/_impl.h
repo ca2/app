@@ -80,7 +80,7 @@ namespace apex
 //void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//  get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
 //
 //}
 

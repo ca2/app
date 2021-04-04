@@ -98,7 +98,7 @@ namespace android
          if(::aura::get_system()->m_pwindowmap != nullptr)
          {
 
-            ::aura::get_system()->m_pwindowmap->m_map.remove_key(get_handle());
+            ::aura::get_system()->m_pwindowmap->m_map.erase_key(get_handle());
 
          }
 
@@ -600,7 +600,7 @@ namespace android
       //if (m_puserinteraction->m_pthreadUserInteraction != nullptr)
       //{
 
-         //m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread->remove(m_puserinteraction);
+         //m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread->erase(m_puserinteraction);
 
       //}
 

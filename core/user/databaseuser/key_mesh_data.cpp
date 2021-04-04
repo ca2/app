@@ -81,12 +81,12 @@ namespace databaseuser
       return true;
    }
 
-   bool data_key_mesh_data::remove(const string_array & stra)
+   bool data_key_mesh_data::erase(const string_array & stra)
    {
       string_array straData;
       if(!data_get(::id(), straData))
          return true;
-      straData.remove(stra);
+      straData.erase(stra);
       if(!data_set(::id(), straData))
          return false;
       return true;

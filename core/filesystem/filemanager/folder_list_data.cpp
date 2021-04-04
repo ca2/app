@@ -161,7 +161,7 @@ namespace filemanager
       while(iaData.get_size() > straData.get_size())
       {
 
-         iaData.remove_last();
+         iaData.erase_last();
 
       }
 
@@ -190,7 +190,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_data::remove(const string_array & stra)
+   bool folder_list_data::erase(const string_array & stra)
    {
 
       string_array straData;
@@ -214,12 +214,12 @@ namespace filemanager
          while((iFind = straData.find_first(stra[i])) >= 0)
          {
 
-            straData.remove_at(iFind);
+            straData.erase_at(iFind);
 
             if(iFind < iaData.get_size())
             {
 
-               iaData.remove_at(iFind);
+               iaData.erase_at(iFind);
 
             }
 
@@ -237,7 +237,7 @@ namespace filemanager
       while(iaData.get_size() > straData.get_size())
       {
 
-         iaData.remove_last();
+         iaData.erase_last();
 
       }
 

@@ -172,7 +172,7 @@ namespace mail
             m_estate = state_receive_top_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_retr_start:
@@ -182,7 +182,7 @@ namespace mail
             m_estate = state_retr_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_retr_only_headers_start:
@@ -192,7 +192,7 @@ namespace mail
             m_estate = state_retr_only_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_listmessages_start:
@@ -405,8 +405,8 @@ namespace mail
       write((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
-      m_ppop3->m_straId.remove_at(0);
-      m_ppop3->m_straIndex.remove_at(0);
+      m_ppop3->m_straId.erase_at(0);
+      m_ppop3->m_straIndex.erase_at(0);
       return true;
    }
 

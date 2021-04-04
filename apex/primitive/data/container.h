@@ -43,7 +43,7 @@ namespace data
 
       bool set_data(const ::id & id, ::data::data * pdata);
       bool add_data(::data::data * pdata);
-      bool remove_data(::data::data * pdata);
+      bool erase_data(::data::data * pdata);
       data * get_data(const ::id & id);
       ::count get_count() const;
 

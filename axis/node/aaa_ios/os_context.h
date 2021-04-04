@@ -50,7 +50,7 @@ namespace ios
       virtual bool open_in_ie(const char * pcsz);
 
       virtual ::e_status create_service() override;
-      virtual ::e_status remove_service() override;
+      virtual ::e_status erase_service() override;
 
       virtual ::e_status start_service() override;
       virtual ::e_status stop_service() override;

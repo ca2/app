@@ -179,9 +179,9 @@
 //
 //      char * errmsg = nullptr;
 //
-//      m_resultsetExecute.m_fielda.remove_all();
+//      m_resultsetExecute.m_fielda.erase_all();
 //
-//      m_resultsetExecute.m_rowa.remove_all();
+//      m_resultsetExecute.m_rowa.erase_all();
 //
 //      m_iLastResult = sqlite3_exec((sqlite3 *)get_handle(), sql, &axis_sqlite_callback, &m_resultsetExecute, &errmsg);
 //
@@ -371,10 +371,10 @@
 //
 //      ::database::dataset::close();
 //
-//      m_result.m_rowa.remove_all();
-//      m_result.m_fielda.remove_all();
-//      m_row.remove_all();
-//      m_rowEdit.remove_all();
+//      m_result.m_rowa.erase_all();
+//      m_result.m_fielda.erase_all();
+//      m_row.erase_all();
+//      m_rowEdit.erase_all();
 //      m_edataset = ::database::dataset_none;
 //      m_bActive = false;
 //
@@ -473,14 +473,14 @@
 //            return DB_UNEXPECTED_RESULT;
 //      }
 //
-//      bool dataset::remove_row()
+//      bool dataset::erase_row()
 //      {
 //         if(feof || fbof)
 //         {
 //            return false;
 //         }
 //
-//         m_result.m_records.remove_at(frecno);
+//         m_result.m_records.erase_at(frecno);
 //
 //         fbof = feof = (num_rows()==0)? true: false;
 //

@@ -58,7 +58,7 @@ namespace filemanager
          m_fileoperationa[m_iOperation]->end();
          single_lock synchronouslock(&m_mutexFileOperationA, true);
          m_estate = ::filemanager::state_start;
-         m_fileoperationa.remove_at(m_iOperation);
+         m_fileoperationa.erase_at(m_iOperation);
 
          // m_iOperation++;
       }

@@ -103,8 +103,8 @@
 		<Unit filename="hellobase_main_view.h" />
 		<Unit filename="hellobase_pane_view.cpp" />
 		<Unit filename="hellobase_pane_view.h" />
-		<Unit filename="aaa_want_to_remove_hellobase_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_remove_hellobase_view_update_hint.h" />
+		<Unit filename="aaa_want_to_erase_hellobase_view_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_hellobase_view_update_hint.h" />
 		<Unit filename="hellobase_render.cpp" />
 		<Unit filename="hellobase_render.h" />
 		<Unit filename="hellobase_switcher_view.cpp" />

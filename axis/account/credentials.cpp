@@ -411,8 +411,8 @@ namespace account
    void credentials::get_mod(string_array & straHash,string_array & straSource)
    {
 
-      straHash.remove_all();
-      straSource.remove_all();
+      straHash.erase_all();
+      straSource.erase_all();
 
    }
 

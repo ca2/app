@@ -863,7 +863,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(mutex());
 //
-//      m_straMatterLocator.remove_all();
+//      m_straMatterLocator.erase_all();
 //
 //      m_straMatterLocator.add(m_straMatterLocatorPriority);
 //

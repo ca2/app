@@ -92,7 +92,7 @@ namespace experience
 
       m_edisplayOrigin = m_pframewindow->layout().design().display();
 
-      m_mapWorkspaceRect.remove_all();
+      m_mapWorkspaceRect.erase_all();
 
       m_bDocking = true;
 

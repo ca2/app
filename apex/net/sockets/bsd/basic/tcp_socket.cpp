@@ -957,7 +957,7 @@ namespace sockets
          if(n > 0)
          {
 
-            memsize left = poutput->remove(n);
+            memsize left = poutput->erase(n);
 
             m_output_length -= n;
 

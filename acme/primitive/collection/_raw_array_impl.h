@@ -68,7 +68,7 @@
 //}
 //
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::remove_all()
+inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase_all()
 {
    return this->allocate(0, -1);
 }
@@ -77,15 +77,15 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::
 clear()
 {
-   remove_all();
+   erase_all();
 }
 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::remove_last()
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase_last()
 {
 
-   this->remove_at(this->get_upper_bound());
+   this->erase_at(this->get_upper_bound());
 
 }
 
@@ -186,7 +186,7 @@ inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop(::index n)
 
    TYPE t = this->element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return t;
 
@@ -196,7 +196,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(::index n)
 {
 
-   this->remove_at(this->get_upper_bound(n));
+   this->erase_at(this->get_upper_bound(n));
 
 }
 
@@ -628,7 +628,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //{
 //   if(pos.m_parray == this)
 //   {
-//      this->remove_at(pos.m_i);
+//      this->erase_at(pos.m_i);
 //      return iterator(pos.m_i, this);
 //   }
 //   else
@@ -645,7 +645,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //      if(begin.m_i >= 0 && begin.m_i < this->get_size())
 //      {
 //         ::count nCount = last.m_i - begin.m_i;
-//         remove_at(begin.m_i, nCount);
+//         erase_at(begin.m_i, nCount);
 //         return iterator(begin.m_i, this);
 //      }
 //      else

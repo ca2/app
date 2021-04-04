@@ -122,7 +122,7 @@ namespace papaya
 
             itnext++;
 
-            container.remove_item(it.item());
+            container.erase_item(it.item());
 
          }
 

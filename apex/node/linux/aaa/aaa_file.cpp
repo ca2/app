@@ -544,7 +544,7 @@ namespace linux
 //      case ERROR_INVALID_DRIVE:
 //         return ::file::exception::badPath;
 //      case ERROR_CURRENT_DIRECTORY:
-//         return ::file::exception::removeCurrentDir;
+//         return ::file::exception::eraseCurrentDir;
 //      case ERROR_NOT_SAME_DEVICE:
 //         return ::file::exception::badPath;
 //      case ERROR_NO_MORE_FILES:
@@ -652,7 +652,7 @@ namespace linux
 //      case ERROR_DIR_NOT_ROOT:
 //         return ::file::exception::badPath;
 //      case ERROR_DIR_NOT_EMPTY:
-//         return ::file::exception::removeCurrentDir;
+//         return ::file::exception::eraseCurrentDir;
 //      case ERROR_LABEL_TOO_LONG:
 //         return ::file::exception::badPath;
 //      case ERROR_BAD_PATHNAME:

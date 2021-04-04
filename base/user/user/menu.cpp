@@ -145,7 +145,7 @@ namespace user
 //
 //            synchronous_lock synchronouslock(mutex_children());
 //
-//            m_uiptraChild.remove_all();
+//            m_uiptraChild.erase_all();
 //
 //         }
 //
@@ -178,7 +178,7 @@ namespace user
 
         // synchronous_lock synchronouslock(mutex_children());
 
-         // m_uiptraChild.interactiona().remove_all();
+         // m_uiptraChild.interactiona().erase_all();
 
          m_puserinteractionpointeraChild.release();
 
@@ -326,7 +326,7 @@ namespace user
          if (::is_set(puserinteractionHost))
          {
 
-            if (puserinteractionHost->m_menua.remove(this)
+            if (puserinteractionHost->m_menua.erase(this)
                   && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 

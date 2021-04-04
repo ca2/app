@@ -169,7 +169,7 @@ namespace userex
 //
 //         }
 //
-//         children_remove(::get_task());
+//         children_erase(::get_task());
 //
 //         close_progress();
 //

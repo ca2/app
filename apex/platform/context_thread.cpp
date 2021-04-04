@@ -186,7 +186,7 @@ namespace apex
 
          on_command_create(pcreate);
 
-         m_createaPending.remove_at(0);
+         m_createaPending.erase_at(0);
 
       }
 

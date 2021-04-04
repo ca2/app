@@ -599,7 +599,7 @@ repeat:
    if (stra.get_count() > 32)
    {
 
-      stra.remove_at(0, 16);
+      stra.erase_at(0, 16);
 
    }
 
@@ -674,7 +674,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    ::file::path pathModule;
 
-   m_straModule.remove_all();
+   m_straModule.erase_all();
 
    pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
 
@@ -738,7 +738,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
       else
       {
 
-         m_straModule.remove_at(i);
+         m_straModule.erase_at(i);
 
       }
 

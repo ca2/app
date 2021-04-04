@@ -589,7 +589,7 @@ namespace apex
 
       virtual void on_add_session(::apex::session* psession);
       virtual void session_add(index iEdge, ::apex::session * psession);
-      virtual void session_remove(index iEdge);
+      virtual void session_erase(index iEdge);
 
 
 

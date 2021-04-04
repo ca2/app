@@ -71,7 +71,7 @@ public:
 
    }
 
-   void remove_all()
+   void erase_all()
    {
 
       if (m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
@@ -112,7 +112,7 @@ public:
    }
    void InitHashTable(::u32 hashSize, bool bAllocNow = true) {  }
 
-   void remove_all()
+   void erase_all()
    {
       zero(m_ppassocHash, sizeof(m_ppassocHash));
    }
@@ -354,7 +354,7 @@ public:
 
       auto value = operator[](key);
 
-      remove_key(key);
+      erase_key(key);
 
       return value;
 
@@ -375,10 +375,10 @@ public:
    //add a new (key, value) SET_ELEMENT_ITEM
    SET_ELEMENT_ITEM * add(ARG_ELEMENT key);
 
-   bool remove(SET_ELEMENT_ITEM * pelement);
+   bool erase(SET_ELEMENT_ITEM * pelement);
 
    //removing existing (key, ?) SET_ELEMENT_ITEM
-   inline bool remove(ARG_ELEMENT key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove(pitem) : false; }
+   inline bool erase(ARG_ELEMENT key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase(pitem) : false; }
 
    template < typename ITERATOR >
    inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -386,7 +386,7 @@ public:
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
 
-   void remove_all();
+   void erase_all();
    void clear();
    void Empty();
 
@@ -475,7 +475,7 @@ public:
 
 
    template < class ARRAY >
-   bool remove_key_array(ARRAY a)
+   bool erase_key_array(ARRAY a)
    {
 
       bool bRemoved = false;
@@ -483,7 +483,7 @@ public:
       for (index i = 0; i < a.get_count(); i++)
       {
 
-         bRemoved |= remove_key(a[i]);
+         bRemoved |= erase_key(a[i]);
 
       }
 
@@ -492,7 +492,7 @@ public:
    }
 
    template < class ARRAY >
-   ::count remove_assoc_array(ARRAY a)
+   ::count erase_assoc_array(ARRAY a)
    {
 
       ::count countRemoved = 0;
@@ -500,7 +500,7 @@ public:
       for (index i = 0; i < a.get_count(); i++)
       {
 
-         if (remove_assoc(a[i]))
+         if (erase_assoc(a[i]))
          {
 
             countRemoved++;
@@ -621,7 +621,7 @@ set< ELEMENT, ARG_ELEMENT > & set < ELEMENT, ARG_ELEMENT >::operator = (const se
    if (this != &m)
    {
 
-      remove_all();
+      erase_all();
 
       for (auto & SET_ELEMENT_ITEM : m)
       {
@@ -751,7 +751,7 @@ set < ELEMENT, ARG_ELEMENT >::set(const set & m)
 }
 
 template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::remove_all()
+void set < ELEMENT, ARG_ELEMENT >::erase_all()
 {
 
    ASSERT_VALID(this);
@@ -775,7 +775,7 @@ void set < ELEMENT, ARG_ELEMENT >::remove_all()
 
    }
 
-   m_hashtable.remove_all();
+   m_hashtable.erase_all();
 
    m_nCount = 0;
    //this->m_passocFree = nullptr;
@@ -796,7 +796,7 @@ void set < ELEMENT, ARG_ELEMENT >::remove_all()
 template < class ELEMENT, class ARG_ELEMENT >
 inline void set < ELEMENT, ARG_ELEMENT >::clear()
 {
-   remove_all();
+   erase_all();
 }
 
 template < class ELEMENT, class ARG_ELEMENT >
@@ -808,7 +808,7 @@ inline void set < ELEMENT, ARG_ELEMENT >::Empty()
 template < class ELEMENT, class ARG_ELEMENT >
 set < ELEMENT, ARG_ELEMENT >::~set()
 {
-   remove_all();
+   erase_all();
    ASSERT(m_nCount == 0);
 }
 
@@ -911,7 +911,7 @@ void set < ELEMENT, ARG_ELEMENT >::free_element(SET_ELEMENT_ITEM * pelement)
 
    // if no more elements, cleanup completely
    if (m_nCount == 0)
-      remove_all();
+      erase_all();
 
 }
 
@@ -1085,8 +1085,8 @@ const ELEMENT & set < ELEMENT, ARG_ELEMENT >::operator[](ARG_ELEMENT key) const
 
 
 template < class ELEMENT, class ARG_ELEMENT >
-inline bool set < ELEMENT, ARG_ELEMENT >::remove(SET_ELEMENT_ITEM * pelement)
-// erase - return true if removed
+inline bool set < ELEMENT, ARG_ELEMENT >::erase(SET_ELEMENT_ITEM * pelement)
+// erase - return true if erased
 {
 
    if (pelement->m_pnextHash != nullptr)
@@ -1134,7 +1134,7 @@ bool set < ELEMENT, ARG_ELEMENT >::has(const ELEMENT & key) const
 //void set < ELEMENT, ARG_ELEMENT >::erase(iterator it)
 //{
 //
-//   remove_key(it->element1());
+//   erase_key(it->element1());
 //
 //}
 

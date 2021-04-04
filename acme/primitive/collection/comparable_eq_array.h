@@ -37,16 +37,16 @@ public:
       }
       return true;
    }
-   using BASE_ARRAY::remove_last;
-   ::index remove_last(ARG_TYPE t);
-   ::index remove_first(ARG_TYPE t);
-   ::index remove_first(ARG_TYPE t, ::index find, ::index last = -1);
-   ::count remove(ARG_TYPE t);
-   ::count remove(ARG_TYPE t, ::index find, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
+   using BASE_ARRAY::erase_last;
+   ::index erase_last(ARG_TYPE t);
+   ::index erase_first(ARG_TYPE t);
+   ::index erase_first(ARG_TYPE t, ::index find, ::index last = -1);
+   ::count erase(ARG_TYPE t);
+   ::count erase(ARG_TYPE t, ::index find, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
    //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
    //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
-   //::index remove(ARG_TYPE t, ::index find = 0, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
-   ::count remove_array(const comparable_eq_array & a);
+   //::index erase(ARG_TYPE t, ::index find = 0, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_array(const comparable_eq_array & a);
 
 
 
@@ -54,7 +54,7 @@ public:
    ::count add_unique(const ARRAY_TYPE & a);
 
 
-   ::count add_remove(bool bAdd, ARG_TYPE t);
+   ::count add_erase(bool bAdd, ARG_TYPE t);
 
 
    // set
@@ -279,12 +279,12 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(ARG_TYPE t)
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_remove(bool bAdd, ARG_TYPE t)
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_erase(bool bAdd, ARG_TYPE t)
 {
    if (bAdd)
       return this->add_unique(t) ? 1 : 0;
    else
-      return this->remove(t);
+      return this->erase(t);
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
@@ -318,7 +318,7 @@ intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
       }
       else
       {
-         this->remove_at(i);
+         this->erase_at(i);
       }
    }
 }
@@ -355,7 +355,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 operator -= (const TYPE & t)
 {
-   remove(t);
+   erase(t);
    return *this;
 }
 
@@ -364,7 +364,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 operator -= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
-   remove_array(a);
+   erase_array(a);
    return *this;
 }
 
@@ -374,7 +374,7 @@ inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > comparable_eq_array < 
 operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
 {
    comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > aRet(*this);
-   aRet.remove_array(a);
+   aRet.erase_array(a);
    return aRet;
 }
 
@@ -388,12 +388,12 @@ operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
 ::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
-remove_last(ARG_TYPE t)
+erase_last(ARG_TYPE t)
 {
    ::index find;
    if((find = find_last(t)) >= 0)
    {
-      this->remove_at(find);
+      this->erase_at(find);
    }
    return find;
 }
@@ -401,12 +401,12 @@ remove_last(ARG_TYPE t)
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
 ::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
-remove_first(ARG_TYPE t)
+erase_first(ARG_TYPE t)
 {
    ::index find;
    if((find = find_first(t)) >= 0)
    {
-      this->remove_at(find);
+      this->erase_at(find);
    }
    return find;
 }
@@ -414,11 +414,11 @@ remove_first(ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-remove_first(ARG_TYPE t, ::index find, ::index last)
+erase_first(ARG_TYPE t, ::index find, ::index last)
 {
    if((find = find_first(t, find, last)) >= 0)
    {
-      this->remove_at(find);
+      this->erase_at(find);
    }
    return find;
 }
@@ -426,7 +426,7 @@ remove_first(ARG_TYPE t, ::index find, ::index last)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-remove(ARG_TYPE t, ::index find, ::index last, ::count countMin, ::count countMax)
+erase(ARG_TYPE t, ::index find, ::index last, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -434,7 +434,7 @@ remove(ARG_TYPE t, ::index find, ::index last, ::count countMin, ::count countMa
    if(contains(t, find, last, countMin, countMax))
    {
 
-      while(::conditional(countMax >= 0, count < countMax) && (find = remove_first(t, find, last)) >= 0)
+      while(::conditional(countMax >= 0, count < countMax) && (find = erase_first(t, find, last)) >= 0)
       {
 
          count++;
@@ -450,12 +450,12 @@ remove(ARG_TYPE t, ::index find, ::index last, ::count countMin, ::count countMa
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
 ::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
-remove(ARG_TYPE t)
+erase(ARG_TYPE t)
 {
 
    ::count count = 0;
 
-   while (remove_last(t) >= 0)
+   while (erase_last(t) >= 0)
    {
 
       count++;
@@ -471,7 +471,7 @@ remove(ARG_TYPE t)
 //::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 //erase(ARG_TYPE t, ::index find, ::index last, ::count countMin, ::count countMax)
 //{
-//   return remove(t, find, last, countMin, countMax);
+//   return erase(t, find, last, countMin, countMax);
 //}
 
 
@@ -491,7 +491,7 @@ remove(ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-remove_array(const comparable_eq_array & a)
+erase_array(const comparable_eq_array & a)
 {
 
    ::count count = 0;
@@ -501,7 +501,7 @@ remove_array(const comparable_eq_array & a)
 
       count = this->get_size();
 
-      this->remove_all();
+      this->erase_all();
 
    }
    else
@@ -510,7 +510,7 @@ remove_array(const comparable_eq_array & a)
       for(::index i = 0; i < a.get_count(); i++)
       {
 
-         count += remove(a[i]);
+         count += erase(a[i]);
 
       }
 

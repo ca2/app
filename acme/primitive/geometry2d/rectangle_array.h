@@ -123,7 +123,7 @@ void rectangle_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
       this->element_at(i).intersect(this->element_at(i), rectangle);
       if (this->element_at(i).is_null())
       {
-         this->remove_at(i);
+         this->erase_at(i);
       }
       else
       {

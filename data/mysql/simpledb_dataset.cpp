@@ -33,8 +33,8 @@ namespace simpledb
    bool set::exec(const char * pszSql)
    {
       ::database::result_set * r = (::database::result_set *) &m_resultset;
-      r->record_header.remove_all();
-      r->records.remove_all();
+      r->record_header.erase_all();
+      r->records.erase_all();
 
       string strInstruction = sql_consume_keyword(pszSql);
 
@@ -56,8 +56,8 @@ namespace simpledb
       m_strDatabaseErrorMessage = "No Database Connection";
       return false;
    }*/
-   /*      m_resultsetExec.record_header.remove_all();
-         m_resultsetExec.records.remove_all();
+   /*      m_resultsetExec.record_header.erase_all();
+         m_resultsetExec.records.erase_all();
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       i32 sz = r->records.get_size();
 
@@ -336,7 +336,7 @@ namespace simpledb
                ::database::record rec;
                rec.::var_array::operator = (recrow.m_var.vara());
                m_resultset.records.add(rec);
-               recrow.m_var.vara().remove_all();
+               recrow.m_var.vara().erase_all();
             }
          }
       }
@@ -676,10 +676,10 @@ namespace simpledb
    void set::close()
    {
       ::database::set::close();
-      m_resultset.record_header.remove_all();
-      m_resultset.records.remove_all();
-      edit_object.remove_all();
-      fields_object.remove_all();
+      m_resultset.record_header.erase_all();
+      m_resultset.records.erase_all();
+      edit_object.erase_all();
+      fields_object.erase_all();
       ds_state = database::dataset_none;
       active = false;
    }
@@ -768,14 +768,14 @@ namespace simpledb
       return DB_UNEXPECTED_RESULT;
    }
 
-   bool set::remove_row()
+   bool set::erase_row()
    {
       if(feof || fbof)
       {
          return false;
       }
 
-      m_resultset.records.remove_at(frecno);
+      m_resultset.records.erase_at(frecno);
 
       fbof = feof = (num_rows()==0)? true: false;
 

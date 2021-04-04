@@ -374,7 +374,7 @@ namespace core
 //         if (!psession->is_licensed(strLicense))
 //         {
 //
-//            //psession->licensing().m_mapInfo.remove_key(strLicense);
+//            //psession->licensing().m_mapInfo.erase_key(strLicense);
 //
 //            if (iRetry > 0)
 //            {

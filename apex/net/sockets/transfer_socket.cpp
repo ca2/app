@@ -354,7 +354,7 @@ namespace sockets
 
    //         synchronous_lock synchronouslock(mutex());
 
-   //         iRead = m_file.remove_begin(&point[nBytesReceived], nSize - nBytesReceived);
+   //         iRead = m_file.erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
    //      }
 

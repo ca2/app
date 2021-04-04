@@ -199,7 +199,7 @@ namespace sip
    {
       m_propertysetAttribute.clear();
       m_propertysetHeader.clear();
-      m_cookies.remove_all();
+      m_cookies.erase_all();
    }
 
    property & transaction::attr(const char * psz)

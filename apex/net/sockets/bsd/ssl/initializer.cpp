@@ -203,7 +203,7 @@ namespace sockets
       //ERR_free_strings();
       //EVP_cleanup();
 
-//      ERR_remove_state(0);
+//      ERR_erase_state(0);
 
 
 

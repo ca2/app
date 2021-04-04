@@ -11,8 +11,8 @@ simple_scroll_bar::simple_scroll_bar() :
 {
 
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   m_flagNonClient.remove(non_client_background);
-   // m_flagNonClient.remove(non_client_focus_rect);
+   m_flagNonClient.erase(non_client_background);
+   // m_flagNonClient.erase(non_client_focus_rect);
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;

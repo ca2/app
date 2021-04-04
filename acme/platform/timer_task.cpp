@@ -277,7 +277,7 @@ bool timer_task::task_active() const
          if (m_ptimera)
          {
 
-            m_ptimera->remove_timer(this);
+            m_ptimera->erase_timer(this);
 
             m_ptimera.release(OBJ_REF_DBG_THIS);
 

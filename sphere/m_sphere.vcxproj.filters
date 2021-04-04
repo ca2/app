@@ -84,7 +84,7 @@
     <ClCompile Include="command\command_pane_view.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="command\aaa_want_to_remove_command_view_update_hint.cpp">
+    <ClCompile Include="command\aaa_want_to_erase_command_view_update_hint.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
     <ClCompile Include="command\command_primary_view.cpp">
@@ -105,7 +105,7 @@
     <ClCompile Include="filehandler\filehandler_pane_view.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\aaa_want_to_remove_filehandler_view_update_hint.cpp">
+    <ClCompile Include="filehandler\aaa_want_to_erase_filehandler_view_update_hint.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_view.cpp">
@@ -129,7 +129,7 @@
     <ClCompile Include="userstack\userstack_pane_view.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\aaa_want_to_remove_userstack_view_update_hint.cpp">
+    <ClCompile Include="userstack\aaa_want_to_erase_userstack_view_update_hint.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
     <ClCompile Include="userstack\userstack_application.cpp">
@@ -200,7 +200,7 @@
     <ClInclude Include="command\command_pane_view.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="command\aaa_want_to_remove_command_view_update_hint.h">
+    <ClInclude Include="command\aaa_want_to_erase_command_view_update_hint.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
     <ClInclude Include="command\command_primary_view.h">
@@ -224,7 +224,7 @@
     <ClInclude Include="filehandler\filehandler_pane_view.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\aaa_want_to_remove_filehandler_view_update_hint.h">
+    <ClInclude Include="filehandler\aaa_want_to_erase_filehandler_view_update_hint.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="filehandler\filehandler_view.h">
@@ -254,7 +254,7 @@
     <ClInclude Include="userstack\userstack_pane_view.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\aaa_want_to_remove_userstack_view_update_hint.h">
+    <ClInclude Include="userstack\aaa_want_to_erase_userstack_view_update_hint.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
     <ClInclude Include="userstack\userstack_application.h">

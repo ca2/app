@@ -44,7 +44,7 @@ CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const
 
 
 
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 {
 
    //auto psession = get_session();
@@ -84,7 +84,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * 
 
    synchronous_lock ml(pmq->mutex());
 
-   pmq->m_messagea.predicate_remove([=](MESSAGE & message)
+   pmq->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
       return message.oswindow == pwindow->get_oswindow();

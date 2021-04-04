@@ -143,7 +143,7 @@ namespace userstack
       {
          if(pcontext->m_papexcontext->dir().is(m_straImagePath[i]))
          {
-            m_straImagePath.remove_at(i);
+            m_straImagePath.erase_at(i);
          }
          else
          {

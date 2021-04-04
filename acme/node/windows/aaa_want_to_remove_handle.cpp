@@ -43,7 +43,7 @@ namespace windows
 
       //for(i32 i = 0; i < oswindowaRemove.get_count(); i++)
       //{
-      //   pMap->m_temporaryMap.remove_key(oswindowaRemove[i]);
+      //   pMap->m_temporaryMap.erase_key(oswindowaRemove[i]);
       //}
 
    }

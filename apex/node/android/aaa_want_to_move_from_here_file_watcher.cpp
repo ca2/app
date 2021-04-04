@@ -74,7 +74,7 @@
 //
 //      //}
 //
-//      m_watchmap.remove_all();
+//      m_watchmap.erase_all();
 //
 //      //delete (fd_mDescriptorSet;
 //
@@ -161,7 +161,7 @@
 //   }
 //
 //
-//   void os_file_watcher::remove_watch(const string & directory)
+//   void os_file_watcher::erase_watch(const string & directory)
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());
@@ -174,7 +174,7 @@
 //         if(directory == ppair->element2()->m_strDirName)
 //         {
 //
-//            remove_watch(ppair->element1());
+//            erase_watch(ppair->element1());
 //
 //            return;
 //
@@ -185,7 +185,7 @@
 //   }
 //
 //
-//   void os_file_watcher::remove_watch(id watchid)
+//   void os_file_watcher::erase_watch(id watchid)
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());
@@ -199,7 +199,7 @@
 //
 //      }
 //
-//      m_watchmap.remove_key(ppair->element1());
+//      m_watchmap.erase_key(ppair->element1());
 //
 //      inotify_rm_watch(mFD, watchid);
 //

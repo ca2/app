@@ -9,8 +9,8 @@ namespace user
    place_holder::place_holder()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
    }
 
@@ -98,13 +98,13 @@ namespace user
    }
 
 
-   void place_holder::on_remove_child(::user::interaction * pinteraction)
+   void place_holder::on_erase_child(::user::interaction * pinteraction)
    {
 
       if (get_parent() != nullptr)
       {
 
-         get_parent()->on_remove_place_holder_child(pinteraction);
+         get_parent()->on_erase_place_holder_child(pinteraction);
 
       }
 

@@ -40,7 +40,7 @@ public:
 
       TYPE t = this->element_at(i);
 
-      this->remove_at(i);
+      this->erase_at(i);
 
       return t;
 

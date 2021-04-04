@@ -790,7 +790,7 @@ repeat:
       if (stra.get_count() > 32)
       {
 
-         stra.remove_at(0, 16);
+         stra.erase_at(0, 16);
 
       }
 
@@ -865,7 +865,7 @@ repeat:
 
       ::file::path pathModule;
 
-      m_straModule.remove_all();
+      m_straModule.erase_all();
 
       pathModule = pacmedir->system() / "interprocess_communication";
 
@@ -929,7 +929,7 @@ repeat:
          else
          {
 
-            m_straModule.remove_at(i);
+            m_straModule.erase_at(i);
 
          }
 

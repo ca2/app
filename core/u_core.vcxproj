@@ -75,9 +75,9 @@
     <ClInclude Include="filesystem\filehandler\tree_interface.h" />
     <ClInclude Include="filesystem\filehandler\_.h" />
     <ClInclude Include="filesystem\filehandler\_filehandler.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_callback.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_callback.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_item_action.h" />
     <ClInclude Include="filesystem\filemanager\child_frame.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\const.h" />
@@ -339,7 +339,7 @@
     <ClInclude Include="user\simple_ui\top.h" />
     <ClInclude Include="user\simple_ui\_.h" />
     <ClInclude Include="user\simple_ui\_simple_ui.h" />
-    <ClInclude Include="user\userex\aaa_want_to_remove_form_update_hint.h" />
+    <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
     <ClInclude Include="user\userex\calculator_edit_view.h" />
     <ClInclude Include="user\userex\color_view.h" />
     <ClInclude Include="user\userex\const.h" />

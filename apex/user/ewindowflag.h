@@ -51,11 +51,11 @@ public:
    inline bool is(enum_window_flag e) const { return (i64)(m_ewindowflag & e) == (i64)e; }
    inline bool has(enum_window_flag e) const { return is(e); }
 
-   void remove(enum_window_flag e) { operator -= (e); }
+   void erase(enum_window_flag e) { operator -= (e); }
    void add(const ewindowflag& e) { operator += (e); }
-   void unset(const ewindowflag& e) { remove(e); }
+   void unset(const ewindowflag& e) { erase(e); }
    void set(const ewindowflag& e) { add(e); }
-   void remove(const ewindowflag& e) { operator -= (e); }
+   void erase(const ewindowflag& e) { operator -= (e); }
    void clear() { m_ewindowflag = (enum_window_flag)0; }
 
    void set(enum_window_flag e, bool bSet) { if (bSet) set(e); else unset(e); }

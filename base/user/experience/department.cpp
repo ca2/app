@@ -295,7 +295,7 @@ namespace experience
       straLibrary.add("experience_hyper");
       straLibrary.add("experience_anthill");
 
-      straLibrary.remove_duplicates_ci();
+      straLibrary.erase_duplicates_ci();
 
       __pointer(::experience::experience) pexperience;
 

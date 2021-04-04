@@ -4207,7 +4207,7 @@ namespace user
       if(m_eview == impact_icon)
       {
 
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
          for(index i = 0; i < iItemCount; i++)
          {
@@ -4220,7 +4220,7 @@ namespace user
       else
       {
 
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
          for(index i = 0; i < iItemCount; i++)
          {
@@ -4275,7 +4275,7 @@ namespace user
       if(m_eview == impact_icon)
       {
 
-         m_piconlayout->m_iaDisplayToStrict.remove_all();
+         m_piconlayout->m_iaDisplayToStrict.erase_all();
 
          for(index i = 0; i < iItemCount; i++)
          {
@@ -4288,7 +4288,7 @@ namespace user
       else
       {
 
-         m_pmeshlayout->m_iaDisplayToStrict.remove_all();
+         m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
          for(index i = 0; i < iItemCount; i++)
          {
@@ -4316,13 +4316,13 @@ namespace user
       if(m_eview == impact_icon)
       {
 
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
       }
       else
       {
 
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
       }
 
@@ -4465,11 +4465,11 @@ namespace user
 
       if(m_eview == impact_icon)
       {
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
       }
       else
       {
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
       }
 
       string_array stra;
@@ -4561,7 +4561,7 @@ namespace user
       if(iFound >= 0)
       {
          CSortInfoItem newItem = m_sortinfo.m_itema[iFound];
-         m_sortinfo.m_itema.remove_at(iFound);
+         m_sortinfo.m_itema.erase_at(iFound);
          newItem.m_bAscendent = !newItem.m_bAscendent;
          m_sortinfo.m_itema.insert_at(0,newItem);
       }
@@ -5271,7 +5271,7 @@ namespace user
       }
       else
       {
-         m_flags.remove(flag_auto_arrange);
+         m_flags.erase(flag_auto_arrange);
       }
       if(bAutoArrange)
       {

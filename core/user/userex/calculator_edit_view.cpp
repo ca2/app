@@ -353,7 +353,7 @@ namespace calculator
             }
             else
             {
-               m_errora.remove_all();
+               m_errora.erase_all();
             }
 
 

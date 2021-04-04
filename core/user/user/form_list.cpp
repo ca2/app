@@ -1398,7 +1398,7 @@ break_click:;
 //      //      pinteraction = under_sibling(pinteraction);
 //      //      if(bError)
 //      //      {
-//      //         m_uiptraChild.remove(puiBefore);
+//      //         m_uiptraChild.erase(puiBefore);
 //      //      }
 //      //   }
 //      //}
@@ -1489,7 +1489,7 @@ break_click:;
 //      //      pinteraction = under_sibling(pinteraction);
 //      //      if(bError)
 //      //      {
-//      //         m_uiptraChild.remove(puiBefore);
+//      //         m_uiptraChild.erase(puiBefore);
 //      //      }
 //      //   }
 //      //}

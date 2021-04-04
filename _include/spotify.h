@@ -312,7 +312,7 @@ typedef enum sp_connection_rules {
  */
 typedef enum sp_artistbrowse_type {
   SP_ARTISTBROWSE_FULL,         /**< All information except tophit tracks
-                   This mode is deprecated and will removed in a future release */
+                   This mode is deprecated and will erased in a future release */
   SP_ARTISTBROWSE_NO_TRACKS,    /**< Only albums and data about them, no tracks.
              In other words, sp_artistbrowse_num_tracks() will return 0
               */
@@ -2393,7 +2393,7 @@ SP_LIBEXPORT(sp_error) sp_image_add_load_callback(sp_image * pimage, image_loade
  * @return                One of the following errors, from ::sp_error
  *                        SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_image_remove_load_callback(sp_image * pimage, image_loaded_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_error) sp_image_erase_load_callback(sp_image * pimage, image_loaded_cb *callback, void *userdata);
 
 /**
  * Check if an image is loaded. Before the image is loaded, the rest of the
@@ -2753,14 +2753,14 @@ typedef struct sp_playlist_callbacks {
   void (SP_CALLCONV *tracks_added)(sp_playlist *pl, sp_track * const *tracks, int num_tracks, int position, void *userdata);
 
   /**
-   * Called when one or more tracks have been removed from a playlist
+   * Called when one or more tracks have been erased from a playlist
    *
    * @param[in]  pl         Playlist object
-   * @param[in]  tracks     Array of positions representing the tracks that were removed
+   * @param[in]  tracks     Array of positions representing the tracks that were erased
    * @param[in]  num_tracks Number of entries in \p tracks
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *tracks_removed)(sp_playlist *pl, const int *tracks, int num_tracks, void *userdata);
+  void (SP_CALLCONV *tracks_erased)(sp_playlist *pl, const int *tracks, int num_tracks, void *userdata);
 
   /**
    * Called when one or more tracks have been moved within a playlist
@@ -2901,7 +2901,7 @@ SP_LIBEXPORT(bool) sp_playlist_is_loaded(sp_playlist *playlist);
  * @param[in]  playlist   Playlist object
  * @param[in]  callbacks  Callbacks, see #sp_playlist_callbacks
  * @param[in]  userdata   Userdata to be passed to callbacks
- * @sa sp_playlist_remove_callbacks
+ * @sa sp_playlist_erase_callbacks
  *
  */
 SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
@@ -2909,11 +2909,11 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playl
 /**
  * Unregister interest in the given playlist
  *
- * The combination of (\p callbacks, \p userdata) is used to find the entry to be removed
+ * The combination of (\p callbacks, \p userdata) is used to find the entry to be erased
  *
  * Here is a snippet from \c jukebox.c:
  * @dontinclude jukebox.c
- * @skipline sp_playlist_remove_callbacks
+ * @skipline sp_playlist_erase_callbacks
  *
  * @param[in]  playlist   Playlist object
  * @param[in]  callbacks  Callbacks, see #sp_playlist_callbacks
@@ -2923,7 +2923,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playl
  *                        SP_ERROR_OK
  *
  */
-SP_LIBEXPORT(sp_error) sp_playlist_remove_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
+SP_LIBEXPORT(sp_error) sp_playlist_erase_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
 
 /**
  * Return number of tracks in the given playlist
@@ -3129,7 +3129,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_tracks(sp_playlist *playlist, sp_track *c
  *                            SP_ERROR_OK
  *                            SP_ERROR_PERMISSION_DENIED
  */
-SP_LIBEXPORT(sp_error) sp_playlist_remove_tracks(sp_playlist *playlist, const int *tracks, int num_tracks);
+SP_LIBEXPORT(sp_error) sp_playlist_erase_tracks(sp_playlist *playlist, const int *tracks, int num_tracks);
 
 /**
  * Move tracks in playlist
@@ -3317,7 +3317,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_release(sp_playlist *playlist);
  * If some callbacks should not be of interest, set them to NULL.
  *
  * @see sp_playlistcontainer_add_callbacks
- * @see sp_playlistcontainer_remove_callbacks
+ * @see sp_playlistcontainer_erase_callbacks
  */
 typedef struct sp_playlistcontainer_callbacks {
   /**
@@ -3332,14 +3332,14 @@ typedef struct sp_playlistcontainer_callbacks {
 
 
   /**
-   * Called when a new playlist has been removed from playlist container
+   * Called when a new playlist has been erased from playlist container
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
    * @param[in]  position   Position in list
    * @param[in]  userdata   Userdata as set in sp_playlistcontainer_add_callbacks()
    */
-  void (SP_CALLCONV *playlist_removed)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
+  void (SP_CALLCONV *playlist_erased)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
 
 
   /**
@@ -3371,12 +3371,12 @@ typedef struct sp_playlistcontainer_callbacks {
  * @param[in]  userdata  Opaque value passed to callbacks.
  *
  * @note Every sp_playlistcontainer_add_callbacks() needs to be paired with a corresponding
- *       sp_playlistcontainer_remove_callbacks() that is invoked before releasing the
+ *       sp_playlistcontainer_erase_callbacks() that is invoked before releasing the
  *       last object you own for the container. In other words, you must make sure
- *       to have removed all the callbacks before the container gets destroyed.
+ *       to have erased all the callbacks before the container gets destroyed.
  *
  * @sa sp_session_playlistcontainer()
- * @sa sp_playlistcontainer_remove_callbacks
+ * @sa sp_playlistcontainer_erase_callbacks
  * @return              One of the following errors, from ::sp_error
  *                      SP_ERROR_OK
  */
@@ -3395,7 +3395,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_callbacks(sp_playlistcontainer *
  * @return              One of the following errors, from ::sp_error
  *                      SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_playlistcontainer_remove_callbacks(sp_playlistcontainer *pc, sp_playlistcontainer_callbacks *callbacks, void *userdata);
+SP_LIBEXPORT(sp_error) sp_playlistcontainer_erase_callbacks(sp_playlistcontainer *pc, sp_playlistcontainer_callbacks *callbacks, void *userdata);
 
 /**
  * Return the number of playlists in the given playlist container
@@ -3497,13 +3497,13 @@ SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_playlist(sp_playlistcontain
  * Remove playlist at index from the given playlist container
  *
  * @param[in]  pc        Playlist container
- * @param[in]  index     Index of playlist to be removed
+ * @param[in]  index     Index of playlist to be erased
  *
  * @return     error     One of the following errors, from ::sp_error
  *                       SP_ERROR_OK
  *                       SP_ERROR_INDEX_OUT_OF_RANGE
  */
-SP_LIBEXPORT(sp_error) sp_playlistcontainer_remove_playlist(sp_playlistcontainer *pc, int index);
+SP_LIBEXPORT(sp_error) sp_playlistcontainer_erase_playlist(sp_playlistcontainer *pc, int index);
 
 /**
  * Move a playlist in the playlist container
@@ -3536,10 +3536,10 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_move_playlist(sp_playlistcontainer *
  * type SP_PLAYLIST_TYPE_START_FOLDER and immediately following a
  * SP_PLAYLIST_TYPE_END_FOLDER one.
  *
- * To remove a playlist folder both of these must be deleted or the list
+ * To erase a playlist folder both of these must be deleted or the list
  * will be left in an inconsistant state.
  *
- * There is no way to rename a playlist folder. Instead you need to remove
+ * There is no way to rename a playlist folder. Instead you need to erase
  * the folder and recreate it again.
  */
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_folder(sp_playlistcontainer *pc, int index, const char *name);

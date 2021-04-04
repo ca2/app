@@ -784,7 +784,7 @@ bool prodevian::prodevian_iteration()
       if (uDiff > 1'000'000'000LL)
       {
 
-         m_iaFrame.remove_at(i);
+         m_iaFrame.erase_at(i);
 
       }
       else
@@ -1245,6 +1245,6 @@ bool prodevian::prodevian_iteration()
 prodevian::~prodevian()
 {
 
-   m_pinteraction->remove_prodevian(this);
+   m_pinteraction->erase_prodevian(this);
 
 }

@@ -71,7 +71,7 @@ public:
 
    }
 
-   void remove_all()
+   void erase_all()
    {
 
       if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
@@ -112,7 +112,7 @@ public:
    }
    void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
 
-   void remove_all()
+   void erase_all()
    {
       zero(m_ppassociationHash,sizeof(m_ppassociationHash));
    }
@@ -357,7 +357,7 @@ public:
 
       auto value = operator[](key);
 
-      remove_key(key);
+      erase_key(key);
 
       return value;
 
@@ -384,10 +384,10 @@ public:
       set_at(payload.key());
    }
 
-   bool remove_item(association * passociation);
+   bool erase_item(association * passociation);
 
    //removing existing (key, ?) association
-   inline bool remove_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove_item(pitem) : false; }
+   inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
 
    template < typename ITERATOR >
    inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -395,7 +395,7 @@ public:
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
 
-   void remove_all();
+   void erase_all();
    void clear();
    void Empty();
 
@@ -485,7 +485,7 @@ public:
 
 
    template < class ARRAY >
-   bool remove_key_array(ARRAY a)
+   bool erase_key_array(ARRAY a)
    {
 
       bool bRemoved = false;
@@ -493,7 +493,7 @@ public:
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         bRemoved |= remove_key(a[i]);
+         bRemoved |= erase_key(a[i]);
 
       }
 
@@ -502,7 +502,7 @@ public:
    }
 
    template < class ARRAY >
-   ::count remove_association_array(ARRAY a)
+   ::count erase_association_array(ARRAY a)
    {
 
       ::count countRemoved = 0;
@@ -510,7 +510,7 @@ public:
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         if(remove_association(a[i]))
+         if(erase_association(a[i]))
          {
 
             countRemoved++;
@@ -631,7 +631,7 @@ set< KEY, ARG_KEY, PAYLOAD > & set < KEY, ARG_KEY, PAYLOAD >::operator = (const 
    if(this != &m)
    {
 
-      remove_all();
+      erase_all();
 
       for(auto & association : m)
       {
@@ -768,7 +768,7 @@ set < KEY, ARG_KEY, PAYLOAD >::set(const set & m)
 
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::remove_all()
+void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
 {
 
    ASSERT_VALID(this);
@@ -792,7 +792,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::remove_all()
 
    }
 
-   m_hashtable.remove_all();
+   m_hashtable.erase_all();
 
    m_nCount = 0;
    //this->m_passociationFree = nullptr;
@@ -813,7 +813,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::remove_all()
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 inline void set < KEY, ARG_KEY, PAYLOAD >::clear()
 {
-   remove_all();
+   erase_all();
 }
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
@@ -825,7 +825,7 @@ inline void set < KEY, ARG_KEY, PAYLOAD >::Empty()
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 set < KEY, ARG_KEY, PAYLOAD >::~set()
 {
-   remove_all();
+   erase_all();
    ASSERT(m_nCount == 0);
 }
 
@@ -928,7 +928,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::free_association(association * passociation)
 
    // if no more elements, cleanup completely
    if (m_nCount == 0)
-      remove_all();
+      erase_all();
 
 }
 
@@ -1092,8 +1092,8 @@ const KEY & set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key) const
 
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline bool set < KEY, ARG_KEY, PAYLOAD >::remove_item(association * passociation)
-// erase - return true if removed
+inline bool set < KEY, ARG_KEY, PAYLOAD >::erase_item(association * passociation)
+// erase - return true if erased
 {
 
    if(passociation->m_pnextHash != nullptr)

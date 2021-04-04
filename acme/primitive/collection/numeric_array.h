@@ -4,10 +4,10 @@
 template < typename ARG_TYPE >
 index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
-   typename ::remove_reference < ARG_TYPE >::TYPE t = t1 - t2;
-   if(t > ::numeric_info< typename ::remove_reference < ARG_TYPE >::TYPE >::null())
+   typename ::erase_reference < ARG_TYPE >::TYPE t = t1 - t2;
+   if(t > ::numeric_info< typename ::erase_reference < ARG_TYPE >::TYPE >::null())
       return 1;
-   else if(t < ::numeric_info < typename ::remove_reference < ARG_TYPE >::TYPE >::null())
+   else if(t < ::numeric_info < typename ::erase_reference < ARG_TYPE >::TYPE >::null())
       return -1;
    else
       return 0;
@@ -861,7 +861,7 @@ numeric_array < TYPE >  numeric_array < TYPE >::operator - (const numeric_array 
 
    numeric_array < TYPE > aRet(*this);
 
-   aRet.remove_array(a);
+   aRet.erase_array(a);
 
    return aRet;
 
@@ -883,7 +883,7 @@ template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)
 {
 
-   this->remove_array(a);
+   this->erase_array(a);
 
    return *this;
 
@@ -1084,15 +1084,15 @@ namespace papaya
 
 
       template<class ARRAY>
-      ::count sort_remove(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      ::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
       {
          ::count ca = 0;
          index iFind = 0;
          while(binary_search(a,t, iFind, fCompare, ia))
          {
-            a.remove_at(iFind);
+            a.erase_at(iFind);
             index iIndex = ia[iFind];
-            ia.remove_at(iFind);
+            ia.erase_at(iFind);
             for(index i = 0; i < ia.get_size(); i++)
             {
                if(ia[i] > iIndex)
@@ -1129,7 +1129,7 @@ namespace papaya
    void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true);
 
    template < class TYPE >
-   ::count remove_greater_than(::numeric_array < TYPE > & a,TYPE hi)
+   ::count erase_greater_than(::numeric_array < TYPE > & a,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1138,7 +1138,7 @@ namespace papaya
       {
          if(a.element_at(i) > hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1149,7 +1149,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE hi)
+   ::count erase_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1158,7 +1158,7 @@ namespace papaya
       {
          if(a.element_at(i) >= hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1169,7 +1169,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than(::numeric_array < TYPE > & a,TYPE lo)
+   ::count erase_lesser_than(::numeric_array < TYPE > & a,TYPE lo)
    {
 
       ::count ca = 0;
@@ -1178,7 +1178,7 @@ namespace papaya
       {
          if(a.element_at(i) < lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1189,7 +1189,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal(::numeric_array < TYPE > & a,TYPE lo)
+   ::count erase_lesser_than_or_equal(::numeric_array < TYPE > & a,TYPE lo)
    {
 
       ::count ca = 0;
@@ -1198,7 +1198,7 @@ namespace papaya
       {
          if(a.element_at(i) <= lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1209,7 +1209,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1218,12 +1218,12 @@ namespace papaya
       {
          if(a.element_at(i) < lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
          else if(a.element_at(i) > hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1234,7 +1234,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1243,12 +1243,12 @@ namespace papaya
       {
          if(a.element_at(i) < lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
          else if(a.element_at(i) >= hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1259,7 +1259,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1268,12 +1268,12 @@ namespace papaya
       {
          if(a.element_at(i) <= lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
          else if(a.element_at(i) > hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }
@@ -1284,7 +1284,7 @@ namespace papaya
 
 
    template < class TYPE >
-   ::count remove_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo,TYPE hi)
+   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo,TYPE hi)
    {
 
       ::count ca = 0;
@@ -1293,12 +1293,12 @@ namespace papaya
       {
          if(a.element_at(i) <= lo)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
          else if(a.element_at(i) >= hi)
          {
-            a.remove_at(i);
+            a.erase_at(i);
             ca++;
          }
       }

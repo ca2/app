@@ -21,8 +21,8 @@ namespace user
    frame_window::frame_window()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_pviewMain = nullptr;
       m_bAutoWindowFrame = true;
@@ -714,7 +714,7 @@ namespace user
       //  modeless windows anyway...
       __pointer(::user::interaction) pParent = get_top_level();
 
-      m_uiptraDisable.remove_all();
+      m_uiptraDisable.erase_all();
 
       /*
       // disable all windows connected to this frame (and add them to the list)
@@ -756,7 +756,7 @@ namespace user
 
       }
 
-      m_uiptraDisable.remove_all();
+      m_uiptraDisable.erase_all();
 
 
    }
@@ -2328,7 +2328,7 @@ namespace user
          }
       }
 
-      // set title if changed, but don't remove completely
+      // set title if changed, but don't erase completely
       // Note: will be excessive for MDI Frame with maximized child
       set_window_text(WindowText);
    }
@@ -2788,7 +2788,7 @@ namespace user
 
    void frame_window::RemoveControlBar(::user::control_bar *pBar)
    {
-      m_barptra.remove(pBar);
+      m_barptra.erase(pBar);
 
    }
 

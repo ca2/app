@@ -1279,7 +1279,7 @@ namespace dir
 
                   }
 
-                  stra.remove_at(0);
+                  stra.erase_at(0);
 
                }
 

@@ -45,10 +45,10 @@ public:
 
    iterator add(const Type & newElement);
 
-   bool remove_empty()
+   bool erase_empty()
    {
 
-      return ::iter::remove_empty(*this);
+      return ::iter::erase_empty(*this);
 
    }
 
@@ -169,12 +169,12 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 //// same as clear
-//void string_iterable < ITERABLE >::remove_all()
+//void string_iterable < ITERABLE >::erase_all()
 //{
 //   set_size(0);
 //}
 //
-//// same as remove all
+//// same as erase all
 //void string_iterable < ITERABLE >::clear()
 //{
 //   set_size(0);

@@ -8,7 +8,7 @@ class mutex;
 
 CLASS_DECL_APEX i32 osdisplay_find(Display * pdisplay);
 CLASS_DECL_APEX osdisplay_data * osdisplay_get(Display * pdisplay);
-CLASS_DECL_APEX bool osdisplay_remove(Display * pdisplay);
+CLASS_DECL_APEX bool osdisplay_erase(Display * pdisplay);
 
 
 class CLASS_DECL_APEX xdisplay

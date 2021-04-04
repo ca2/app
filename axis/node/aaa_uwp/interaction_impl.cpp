@@ -219,7 +219,7 @@ namespace uwp
    //bool interaction_impl::create_native_window(::user::native_window_initialize * pinitialize)
    //{
 
-   //   throw "trying to remove this create native window, it does anything or do less?";
+   //   throw "trying to erase this create native window, it does anything or do less?";
 
    //   //m_window = pinitialize->m_window;
 
@@ -246,7 +246,7 @@ namespace uwp
 
    //   //            __pointer(::user::message) pmessage = m_messageaQueue[0];
 
-   //   //            m_messageaQueue.remove_at(0);
+   //   //            m_messageaQueue.erase_at(0);
 
    //   //            if (m_messageaQueue.is_empty())
    //   //            {
@@ -304,7 +304,7 @@ namespace uwp
       if(get_application() != nullptr)
       {
 
-         Sys(get_application()).window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
+         Sys(get_application()).window_map().m_map.erase_key((oswindow)(iptr)(void *)get_handle());
 
       }
 

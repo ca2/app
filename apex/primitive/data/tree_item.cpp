@@ -52,17 +52,17 @@ namespace data
 
       }
 
-      list_remove(m_pparent, this);
+      list_erase(m_pparent, this);
 
       m_pparent = pparent;
 
    }
 
    
-   void tree_item::remove_tree_item()
+   void tree_item::erase_tree_item()
    {
 
-      remove_tree_item_descendants();
+      erase_tree_item_descendants();
 
       if(m_pparent)
       {
@@ -70,7 +70,7 @@ namespace data
          if(list_contains(m_pparent, this))
          {
 
-            list_remove(m_pparent, this);
+            list_erase(m_pparent, this);
 
          }
 
@@ -79,12 +79,12 @@ namespace data
    }
 
 
-   void tree_item::remove_tree_item_descendants()
+   void tree_item::erase_tree_item_descendants()
    {
 
-      list_predicate(this, [](auto p) { p->remove_tree_item(); });
+      list_predicate(this, [](auto p) { p->erase_tree_item(); });
 
-      list_remove_all(this);
+      list_erase_all(this);
 
    }
 
@@ -118,7 +118,7 @@ namespace data
    }
 
 
-   bool tree_item::remove_item_from_parent()
+   bool tree_item::erase_item_from_parent()
    {
 
       tree_item * pitem = this;
@@ -140,7 +140,7 @@ namespace data
 
       }
 
-      list_remove(pitem->m_pparent, pitem);
+      list_erase(pitem->m_pparent, pitem);
 
       pitem->m_pparent = nullptr;
 
@@ -155,7 +155,7 @@ namespace data
       if (erelative == RelativeFirstChild)
       {
 
-         pitemNew->remove_item_from_parent();
+         pitemNew->erase_item_from_parent();
 
          list_add_head(this, pitemNew);
 
@@ -169,7 +169,7 @@ namespace data
       else if (erelative == RelativeLastChild)
       {
 
-         pitemNew->remove_item_from_parent();
+         pitemNew->erase_item_from_parent();
 
          list_add(this, pitemNew);
 
@@ -276,7 +276,7 @@ namespace data
 
          m_pparent = nullptr;
 
-         remove_tree_item();
+         erase_tree_item();
 
       }
 

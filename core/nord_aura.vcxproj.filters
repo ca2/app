@@ -892,7 +892,7 @@
     <ClCompile Include="primitive\string\base64.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\aaa_want_to_remove_verisimple_wstring.cpp">
+    <ClCompile Include="primitive\string\aaa_want_to_erase_verisimple_wstring.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\_unicode32.cpp">
@@ -3624,10 +3624,10 @@
     <ClInclude Include="aura\compress\compress_gz.h">
       <Filter>Header Files\aura\compress</Filter>
     </ClInclude>
-    <ClInclude Include="aura\compress\aaa_want_to_remove_compress_bzip.h">
+    <ClInclude Include="aura\compress\aaa_want_to_erase_compress_bzip.h">
       <Filter>Header Files\aura\compress</Filter>
     </ClInclude>
-    <ClInclude Include="aura\compress\aaa_want_to_remove_compress_gzip.h">
+    <ClInclude Include="aura\compress\aaa_want_to_erase_compress_gzip.h">
       <Filter>Header Files\aura\compress</Filter>
     </ClInclude>
     <ClInclude Include="aura\charguess\big5Prober.h">
@@ -4323,28 +4323,28 @@
     <ClInclude Include="filesystem\file\_var_stream_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_common.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_common.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_binary_file.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_binary_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_reader.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_reader.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_seekable.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_seekable.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_simple_file.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_simple_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_writer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer_flush.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_file_writer_flush.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_stream2.h">
+    <ClInclude Include="filesystem\file\aaa_want_to_erase_stream2.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\binary_stream.h">
@@ -4800,22 +4800,22 @@
     <ClInclude Include="aura\aura\_system_xml_impl.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_application_common.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_application_common.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_common.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_common.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_console_window2.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_console_window2.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_runnable.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_runnable.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_system_common.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_system_common.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_template.h">
+    <ClInclude Include="aura\aura\aaa_want_to_erase_template.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\align_byte_count.h">
@@ -5379,7 +5379,7 @@
     <ClInclude Include="graphics\graphics\_.h">
       <Filter>Header Files\graphics\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h">
+    <ClInclude Include="graphics\graphics\aaa_wat_to_erase_window_graphics.h">
       <Filter>Header Files\graphics\graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics\buffer.h">
@@ -5640,16 +5640,16 @@
     <ClInclude Include="node\android\thread.h">
       <Filter>Header Files\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h">
+    <ClInclude Include="account\aaa_want_to_erase_account_authentication_map.h">
       <Filter>Header Files\account</Filter>
     </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h">
+    <ClInclude Include="account\aaa_want_to_erase_account_authorization_task.h">
       <Filter>Header Files\account</Filter>
     </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_object.h">
+    <ClInclude Include="account\aaa_want_to_erase_account_object.h">
       <Filter>Header Files\account</Filter>
     </ClInclude>
-    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h">
+    <ClInclude Include="account\aaa_want_to_erase_account_user_authentication.h">
       <Filter>Header Files\account</Filter>
     </ClInclude>
     <ClInclude Include="account\authenticator.h">
@@ -5841,25 +5841,25 @@
     <ClInclude Include="xml\_impl.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h">
+    <ClInclude Include="platform\aaa_want_to_erase_application_common.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_common.h">
+    <ClInclude Include="platform\aaa_want_to_erase_common.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h">
+    <ClInclude Include="platform\aaa_want_to_erase_console_window2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h">
+    <ClInclude Include="platform\aaa_want_to_erase_extras.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h">
+    <ClInclude Include="platform\aaa_want_to_erase_runnable.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h">
+    <ClInclude Include="platform\aaa_want_to_erase_system_common.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_template.h">
+    <ClInclude Include="platform\aaa_want_to_erase_template.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\all.h">
@@ -6456,7 +6456,7 @@
     <ClInclude Include="html\graphics\value.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_want_to_remove_shell.h">
+    <ClInclude Include="node\android\aaa_want_to_erase_shell.h">
       <Filter>Header Files\node\android</Filter>
     </ClInclude>
     <ClInclude Include="node\android\shell.h">
@@ -6591,7 +6591,7 @@
     <ClInclude Include="os\android\cairo_keep.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\aaa_want_to_remove_android_window_impl.h">
+    <ClInclude Include="os\android\aaa_want_to_erase_android_window_impl.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>
     <ClInclude Include="os\android\_c.h">
@@ -6693,31 +6693,31 @@
     <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_app_object.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_app_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_array.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_array.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_context_object.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_context_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_object.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_pointer1.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_relation_set.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_relation_set.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_stick.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_stick.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_topic_text_string.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_topic_text_string.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_transport_object.h">
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_transport_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\action_context.h">
@@ -7032,7 +7032,7 @@
     <ClInclude Include="exception\_dump_context.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h">
+    <ClInclude Include="exception\aaa_want_to_erase_exception_verisimple.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\assert.h">
@@ -7179,7 +7179,7 @@
     <ClInclude Include="exception\void_implementation.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h">
+    <ClInclude Include="exception\aaa_want_to_erase_memory_state.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_.h">
@@ -7257,19 +7257,19 @@
     <ClInclude Include="primitive\collection\_string_array_impl.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h">
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_point_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_rect_array.h">
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_rect_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_size_array.h">
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_size_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h">
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_papaya_array_decl.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_primitive_array.h">
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_primitive_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\address_array.h">
@@ -7482,13 +7482,13 @@
     <ClInclude Include="graphics\draw2d\_visual_impl.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_const.h">
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_font_effects.h">
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_font_effects.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_image.h">
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\api.h">
@@ -8209,7 +8209,7 @@
     <None Include="primitive\geometry\geometry_size.inl">
       <Filter>Header Files\primitive\geometry</Filter>
     </None>
-    <None Include="inline\aaa_want_to_remove_app_prelude.inl">
+    <None Include="inline\aaa_want_to_erase_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>
     <None Include="platform\aura1.inl">

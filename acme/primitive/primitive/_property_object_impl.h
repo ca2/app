@@ -20,7 +20,7 @@ inline property_object::property_object(const property_object & object) :
 
 inline bool property_object::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
 inline property * property_object::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
-inline bool property_object::remove_key(const id & id) { return m_pset && m_pset->remove_by_name(id); }
+inline bool property_object::erase_key(const id & id) { return m_pset && m_pset->erase_by_name(id); }
 inline property_set & property_object::get_property_set() { defer_propset(); return *m_pset; }
 inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_pset; }
 

@@ -88,7 +88,7 @@ namespace filehandler
    void view::list::parse(::filehandler::handler * phandler, const char * pszTopic)
    {
 
-      remove_all();
+      erase_all();
 
       string_array straApp;
 

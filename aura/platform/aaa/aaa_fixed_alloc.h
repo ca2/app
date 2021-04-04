@@ -46,7 +46,7 @@ inline void * fixed_alloc_no_sync::Alloc()
    {
       NewBlock();
    }
-   // remove the first available node from the free list
+   // erase the first available node from the free list
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
    return (void *) (((u8 *)pNode) + 16);

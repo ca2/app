@@ -38,6 +38,7 @@ public:
       struct
       {
 
+         bool        m_bTaskReadyToQuit : 1;
          bool        m_bHeapAllocated : 1;
          bool        m_bSetFinish : 1;
          bool        m_bFinishing : 1;
@@ -123,7 +124,7 @@ public:
    virtual ::task * get_task();
    virtual const char * get_task_tag();
    //virtual ::index task_add(::task* pthread);
-   virtual void task_remove(::task* pthread);
+   virtual void task_erase(::task* pthread);
 
 
    virtual void notify_on_finish(::property_object * pobject);
@@ -132,8 +133,8 @@ public:
    virtual void kick_idle();
 
    //::e_status add_update(const ::id & id);
-   //::e_status remove_update(const ::id& id);
-   void remove_from_any_source();
+   //::e_status erase_update(const ::id& id);
+   void erase_from_any_source();
 
    //inline bool is_shared() const { return m_countReference > 1; }
 
@@ -155,6 +156,7 @@ public:
    inline i64 release(OBJ_REF_DBG_PARAMS);
 #endif
 
+   
    virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
    virtual ::e_status finalize();

@@ -938,9 +938,9 @@ namespace axis
       try
       {
 
-         m_stringtable.remove_all();
+         m_stringtable.erase_all();
 
-         m_stringtableStd.remove_all();
+         m_stringtableStd.erase_all();
 
       }
       catch(...)
@@ -1436,21 +1436,21 @@ namespace axis
          if(::is_set(m_pappParent))
          {
 
-            m_pappParent->app_remove(this);
+            m_pappParent->app_erase(this);
 
          }
 
          if(::is_set(get_session()))
          {
 
-            get_session()->app_remove(this);
+            get_session()->app_erase(this);
 
          }
 
          //if(::is_set(get_context_system()))
          //{
 
-         //   psystem->app_remove(this);
+         //   psystem->app_erase(this);
 
          //}
 

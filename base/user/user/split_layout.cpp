@@ -19,8 +19,8 @@ namespace user
       m_cyBorder = 1;
       m_iPaneCount = 0;
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
    }
 
@@ -922,7 +922,7 @@ namespace user
 
       ::count iSplitBarCount = get_pane_count();
 
-      m_splitbara.remove_all();
+      m_splitbara.erase_all();
 
       index i;
 
@@ -1006,11 +1006,11 @@ namespace user
 
       ASSERT(iIndex < get_pane_count());
 
-      m_splitpanecompositea.remove_at(iIndex);
+      m_splitpanecompositea.erase_at(iIndex);
 
       ::count iSplitBarCount = get_pane_count();
 
-      m_splitbara.remove_all();
+      m_splitbara.erase_all();
 
       index i;
 

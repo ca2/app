@@ -1242,7 +1242,7 @@ namespace user
 
                synchronous_lock synchronouslock(pimpl2->mutex());
 
-               pimpl2->m_uiptraMouseHover.remove(m_puserinteraction);
+               pimpl2->m_uiptraMouseHover.erase(m_puserinteraction);
 
             }
 
@@ -1339,7 +1339,7 @@ namespace user
    }
 
 
-   bool primitive_impl::mouse_hover_remove(::user::interaction * pinterface)
+   bool primitive_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
       ::user::interaction * pinteraction = get_host_window();
@@ -1347,7 +1347,7 @@ namespace user
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->mouse_hover_remove(pinterface);
+         return pinteraction->mouse_hover_erase(pinterface);
 
       }
 
@@ -1379,7 +1379,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::remove_keyboard_focus(::user::primitive * pprimitive)
+   ::e_status primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       UNREFERENCED_PARAMETER(pprimitive);
@@ -1405,7 +1405,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::impl_remove_keyboard_focus(::user::primitive * pprimitive)
+   ::e_status primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       return ::error_failed;
@@ -1450,7 +1450,7 @@ namespace user
          try
          {
 
-            remove_all_routes();
+            erase_all_routes();
 
          }
          catch (...)
@@ -1619,7 +1619,7 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_remove(::object * point_i32)
+   void primitive_impl::redraw_erase(::object * point_i32)
    {
 
    }

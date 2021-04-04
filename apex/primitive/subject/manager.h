@@ -55,27 +55,27 @@ namespace subject
 
       virtual void set_modified(const ::id &id);
       virtual void delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify = false);
-      virtual void remove_subject(const ::id &id, ::matter *pmatter);
+      virtual void erase_subject(const ::id &id, ::matter *pmatter);
       //static handler_pointer fork_handler(const ::id &id, ::matter *pmatter = nullptr);
       //subject_pointer subject(const ::id &id, ::matter *pmatter = nullptr);
 
       virtual ::e_status finalize() override;
 
       //virtual void source_add(::matter* pmatter);
-      //virtual void source_remove(::matter* pmatter);
+      //virtual void source_erase(::matter* pmatter);
 
       //void update_add(const ::id& id, ::matter* pmatter);
-      //void update_remove(const ::id& id, ::matter* pmatter);
+      //void update_erase(const ::id& id, ::matter* pmatter);
 
-      void remove(::matter *pmatter);
+      void erase(::matter *pmatter);
 
-      static void remove_from_any_source(::matter *pmatter);
+      static void erase_from_any_source(::matter *pmatter);
 
       //static void __add(const ::id& id, ::matter* pmatter);
 
-      //static void __remove(const ::id& id, ::matter* pmatter);
+      //static void __erase(const ::id& id, ::matter* pmatter);
 
-      static void __remove(::matter *pmatter);
+      static void __erase(::matter *pmatter);
 
       static void post_destroy_all();
 

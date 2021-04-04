@@ -71,7 +71,7 @@ namespace user
    void impact_host::_001OnDestroy(::message::message * pmessage)
    {
 
-      m_impactdatamap.remove_all();
+      m_impactdatamap.erase_all();
 
    }
 
@@ -204,7 +204,7 @@ namespace user
 
             //::acme::del(pimpactdata);
             // todo
-            //remove_impact_data(pimpactdata);
+            //erase_impact_data(pimpactdata);
 
             return nullptr;
 
@@ -234,7 +234,7 @@ namespace user
 
          //::acme::del(pimpactdata);
          // todo
-         //remove_impact_data(pimpactdata);
+         //erase_impact_data(pimpactdata);
 
          return nullptr;
 
@@ -317,7 +317,7 @@ namespace user
       catch (const ::exception::exception & exception)
       {
 
-         m_impactdatamap.remove_key(pimpactdata->m_id);
+         m_impactdatamap.erase_key(pimpactdata->m_id);
 
          handle_exception(exception);
 
@@ -391,7 +391,7 @@ namespace user
    }
 
 
-   void impact_host::on_remove_child(::user::interaction* pinteraction)
+   void impact_host::on_erase_child(::user::interaction* pinteraction)
    {
 
       //__pointer(::user::interaction) pupdown = pinteraction;
@@ -423,7 +423,7 @@ namespace user
    }
 
 
-   void impact_host::on_remove_place_holder_child(::user::interaction* pinteraction)
+   void impact_host::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
       //__pointer(::user::interaction) pupdown = pinteraction;

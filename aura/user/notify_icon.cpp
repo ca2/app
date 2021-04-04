@@ -337,10 +337,10 @@ namespace user
    //}
 
 
-   //void notify_icon::remove_all_routes()
+   //void notify_icon::erase_all_routes()
    //{
 
-   //   ::user::interaction::remove_all_routes();
+   //   ::user::interaction::erase_all_routes();
 
    //}
 
@@ -451,7 +451,7 @@ namespace user
 
    //         }
 
-   //         m_wndptraHidden.remove_at(0);
+   //         m_wndptraHidden.erase_at(0);
 
    //      }
 

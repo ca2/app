@@ -183,7 +183,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(mutex(), true);
 
-      m_map.remove_key(pscript->m_strName);
+      m_map.erase_key(pscript->m_strName);
 
    }
 

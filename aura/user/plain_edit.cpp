@@ -2310,7 +2310,7 @@ namespace user
 
          iTab = -1;
 
-         iaTab.remove_all();
+         iaTab.erase_all();
 
          strLineGraphics = strLine;
 
@@ -2771,7 +2771,7 @@ namespace user
 
          iTab = -1;
 
-         iaTab.remove_all();
+         iaTab.erase_all();
 
          strLineGraphics = strLine;
 
@@ -3154,7 +3154,7 @@ namespace user
 
       string strLine;
 
-      stra.remove_all();
+      stra.erase_all();
 
       stra.add_lines(straLines[iLine], false);
 
@@ -3603,9 +3603,9 @@ end:
 
       i32 iLineSize = 0;
 
-      m_iaLineLen.remove_all();
+      m_iaLineLen.erase_all();
 
-      m_iaLineEnd.remove_all();
+      m_iaLineEnd.erase_all();
 
       memsize uiPos;
 
@@ -5996,7 +5996,7 @@ finished_update:
          if (m_bParseDataPacks)
          {
 
-            m_base64map.remove_all();
+            m_base64map.erase_all();
 
             auto psystem = m_psystem->m_paurasystem;
 

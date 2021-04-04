@@ -125,7 +125,7 @@ namespace xml
       node * get_child_at( index iIndex);
       node *                  get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
       ::count get_child_attr_value(string_array & stra, const char * lpszName, const char * pszAttrName, index iDepth = 1);
-      ::count remove_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
+      ::count erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
 
       // search node
       node *                  rfind( const char * name, i32 iDepth = -1);
@@ -141,7 +141,7 @@ namespace xml
       node *                  add_child(const char * name = nullptr, const char * value = nullptr);
       node *                  add_child(const char * name, const property_set & set, const char * value = nullptr);
       node *                  add_child( node * node );
-      bool                    remove_child( node * node );
+      bool                    erase_child( node * node );
       node *                  detach_child( node * node );
 
       // node/branch copy
@@ -161,8 +161,8 @@ namespace xml
       ::property *            attribute_at(index i) { return m_set.element_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_id, property); }
       ::property *            set_attribute(const ::id & id, const ::payload & payload = ::e_type_new);
-      bool                    remove_attribute(::property * pproperty) { return remove_attribute(pproperty->m_id); }
-      bool                    remove_attribute(const ::id & id) { return m_set.remove_by_name(id) > 0; }
+      bool                    erase_attribute(::property * pproperty) { return erase_attribute(pproperty->m_id); }
+      bool                    erase_attribute(const ::id & id) { return m_set.erase_by_name(id) > 0; }
 
 
       bool from_row_column_v2(const string2a & str2a);

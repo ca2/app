@@ -616,7 +616,7 @@ namespace user
 
    void tool_tip_window::RemoveAllTools()
    {
-      m_toolmap.remove_all();
+      m_toolmap.erase_all();
    }
 
 

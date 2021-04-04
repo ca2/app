@@ -30,12 +30,12 @@
 // v1.5 released 2007-06-01
 //+# TODO
 // v1.1 released 2005-12-04
-//      - Bug in OpenPassiveDataConnection removed: SendCommand was called before data connection was established.
-//      - Bugs in GetSingleResponseLine removed:
+//      - Bug in OpenPassiveDataConnection erased: SendCommand was called before data connection was established.
+//      - Bugs in GetSingleResponseLine erased:
 //         * Infinite loop if response line doesn't end with CRLF.
 //         * Return value of std:string->find must be checked against npos.
 //      - Now runs in unicode.
-//      - Streams removed.
+//      - Streams erased.
 //      - Explicit detaching of observers are not necessary anymore.
 //      - ExecuteDatachannelCommand now accepts an itransfer_notification object.
 //        Through this concept there is no need to write the received files to a file.
@@ -1256,7 +1256,7 @@ auto tickStart = ::millis::now();
 
                synchronous_lock synchronouslock(mutex());
 
-               iNumRead = sckDataConnection.m_file.remove_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+               iNumRead = sckDataConnection.m_file.erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
                if (sckDataConnection.GetSocket() == INVALID_SOCKET && iNumRead <= 0)
                {
@@ -1518,7 +1518,7 @@ auto tickStart = ::millis::now();
 
          }
 
-         // remove CrLf if exists (don't use mc_strEolCharacterSequence here)
+         // erase CrLf if exists (don't use mc_strEolCharacterSequence here)
          strResponse.trim_right();
 
       }
@@ -1911,7 +1911,7 @@ auto tickStart = ::millis::now();
    }
 
    /// Executes the FTP command RMD (REMOVE DIRECTORY)
-   /// This command causes the directory specified in the pathname to be removed
+   /// This command causes the directory specified in the pathname to be erased
    /// as a directory (if the pathname is absolute) or as a subdirectory of the
    /// current working directory (if the pathname is relative).
    /// @lparam[in] strDirectory Pathname of the directory to delete.

@@ -244,7 +244,7 @@ namespace userfs
    void list::get_selected_user_path(::file::patha & patha)
    {
 
-      patha.remove_all();
+      patha.erase_all();
 
       auto itema = get_selected_items();
 
@@ -261,7 +261,7 @@ namespace userfs
    void list::get_selected_final_path(::file::patha & patha)
    {
 
-      patha.remove_all();
+      patha.erase_all();
 
       auto itema = get_selected_items();
 
@@ -740,7 +740,7 @@ namespace userfs
       {
       for(i32 i = 0; i < m_itema.get_item_count(); i++)
       {
-      pset->m_table.remove_request(item(i).m_strPath);
+      pset->m_table.erase_request(item(i).m_strPath);
       }
       }*/
    }

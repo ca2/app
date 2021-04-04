@@ -56,7 +56,7 @@ namespace sockets
       SSLInitializer();
 
       /**
-         remove random file
+         erase random file
       */
       ~SSLInitializer();
 

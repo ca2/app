@@ -354,9 +354,9 @@ namespace html
 
 
 
-         m_straLines.remove_all();
+         m_straLines.erase_all();
 
-         m_sizea.remove_all();
+         m_sizea.erase_all();
 
          ::size_f32 sizeText;
 

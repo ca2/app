@@ -94,13 +94,13 @@ namespace subject
    }
 
 
-   void manager::remove_from_any_source(::matter* pmatter)
+   void manager::erase_from_any_source(::matter* pmatter)
    {
 
-//      void matter::remove_from_any_source()
+//      void matter::erase_from_any_source()
   //    {
 
-         ::subject::manager::__remove(pmatter);
+         ::subject::manager::__erase(pmatter);
 
     //  }
 
@@ -231,10 +231,10 @@ namespace subject
    }
 
 
-   void manager::remove_subject(const ::id &id, ::matter *pmatter)
+   void manager::erase_subject(const ::id &id, ::matter *pmatter)
    {
 
-      subject(id)->remove(pmatter);
+      subject(id)->erase(pmatter);
 
    }
 
@@ -274,7 +274,7 @@ namespace subject
    }
 
 
-   void manager::remove(::matter *pmatter)
+   void manager::erase(::matter *pmatter)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -282,14 +282,14 @@ namespace subject
       for (auto &pupdate : m_pmapSubject->values())
       {
 
-         pupdate->m_mattercontext.remove_key(pmatter);
+         pupdate->m_mattercontext.erase_key(pmatter);
 
       }
 
    }
 
 
-   void manager::__remove(::matter *pmatter)
+   void manager::__erase(::matter *pmatter)
    {
 
       critical_section_lock synchronouslock(&s_criticalsection);
@@ -297,7 +297,7 @@ namespace subject
       for (auto & manager : s_managerset)
       {
 
-         manager.element()->remove(pmatter);
+         manager.element()->erase(pmatter);
 
       }
 

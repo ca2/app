@@ -56,7 +56,7 @@ namespace user
       if (m_pimpactsystem != nullptr)
       {
 
-         m_pimpactsystem->remove_document(this);
+         m_pimpactsystem->erase_document(this);
 
       }
 
@@ -442,7 +442,7 @@ namespace user
 
       }
 
-      m_viewa.remove_all();
+      m_viewa.erase_all();
 
    }
 
@@ -465,7 +465,7 @@ namespace user
 
          m_path.Empty();
 
-         m_datamap.remove_all();
+         m_datamap.erase_all();
 
       }
 
@@ -1076,7 +1076,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_viewa.remove_all();
+         m_viewa.erase_all();
 
       }
 
@@ -1144,7 +1144,7 @@ namespace user
          if (m_pimpactsystem != nullptr)
          {
 
-            m_pimpactsystem->remove_document(this);
+            m_pimpactsystem->erase_document(this);
 
          }
 
@@ -1726,7 +1726,7 @@ namespace user
    }
 
 
-   ::e_status document::remove_view(::user::impact * pview)
+   ::e_status document::erase_view(::user::impact * pview)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1740,7 +1740,7 @@ namespace user
 
       }
 
-      if (m_viewa.remove(pview) < 0)
+      if (m_viewa.erase(pview) < 0)
       {
 
          return ::error_not_found;

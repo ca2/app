@@ -181,8 +181,8 @@ namespace mail
       Send((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
-      m_ppop3->m_straId.remove_at(0);
-      m_ppop3->m_straIndex.remove_at(0);
+      m_ppop3->m_straId.erase_at(0);
+      m_ppop3->m_straIndex.erase_at(0);
       return true;
    }
 

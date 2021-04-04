@@ -89,9 +89,9 @@ namespace userex
 
          synchronous_lock synchronouslock(mutex());
 
-         m_imageaThumb.remove_all();
+         m_imageaThumb.erase_all();
 
-         m_imagea.remove_all();
+         m_imagea.erase_all();
 
          auto pcontext = m_pcontext;
 
@@ -100,7 +100,7 @@ namespace userex
          if (m_pathFolder.has_char())
          {
 
-            m_plisting->remove_all();
+            m_plisting->erase_all();
 
             pcontext->m_papexcontext->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
 
@@ -177,7 +177,7 @@ namespace userex
 
                   TRACE("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
-                  m_plisting->remove_at(i);
+                  m_plisting->erase_at(i);
 
                }
 
@@ -189,7 +189,7 @@ namespace userex
 
                TRACE("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
-               m_plisting->remove_at(i);
+               m_plisting->erase_at(i);
 
             }
 

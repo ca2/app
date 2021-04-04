@@ -764,7 +764,7 @@ synchronization_result event::wait (const duration & durationTimeout)
    //   if(pthread)
    //   {
 
-   //      pthread->remove_waiting_event(this);
+   //      pthread->erase_waiting_event(this);
 
    //   }
 

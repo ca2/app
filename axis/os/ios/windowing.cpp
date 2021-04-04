@@ -143,7 +143,7 @@ CLASS_DECL_AXIS ::user::interaction_impl * oswindow_get(oswindow oswindow)
 //}
 
 
-bool oswindow_remove(UIWindow * window)
+bool oswindow_erase(UIWindow * window)
 {
 
    iptr iFind = oswindow_find(window);
@@ -151,7 +151,7 @@ bool oswindow_remove(UIWindow * window)
    if(iFind < 0)
       return false;
 
-   g_poswindowdataptra->remove_at(iFind);
+   g_poswindowdataptra->erase_at(iFind);
 
    return true;
 

@@ -2517,7 +2517,7 @@ void simple_toolbar::SetItemImage(index iItem, index iImage)
 void simple_toolbar::RemoveAllTools()
 {
 
-   m_itema.remove_all();
+   m_itema.erase_all();
 
 }
 

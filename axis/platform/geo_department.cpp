@@ -87,11 +87,11 @@ namespace geo
             file.del(pathFolder / "weather-lon.bin");
             file.del(pathFolder / "weather-lat.bin");
 
-            m_straCityLo.remove_all();
-            m_straCity.remove_all();
-            m_iaIds.remove_all();
-            m_daLon.remove_all();
-            m_daLat.remove_all();
+            m_straCityLo.erase_all();
+            m_straCity.erase_all();
+            m_iaIds.erase_all();
+            m_daLon.erase_all();
+            m_daLat.erase_all();
 
          }
          catch (...)
@@ -199,7 +199,7 @@ namespace geo
 
       stra.trim();
 
-      stra.remove_empty();
+      stra.erase_empty();
 
       if (stra.get_count() <= 0)
       {

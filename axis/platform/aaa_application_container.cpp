@@ -39,10 +39,10 @@ void application_container::app_add(::aura::application * papp)
 }
 
 
-void application_container::app_remove(::aura::application * papp)
+void application_container::app_erase(::aura::application * papp)
 {
 
-   m_applicationa.remove(papp);
+   m_applicationa.erase(papp);
 
    if (m_applicationa.isEmpty() && m_bFinalizeIfNoApplication)
    {
@@ -116,7 +116,7 @@ void application_container::request_exit()
                if (!pappItem || pappItem->m_bFranceExit)
                {
 
-                  applicationa.remove_at(j);
+                  applicationa.erase_at(j);
 
                }
                else
@@ -184,7 +184,7 @@ application_array application_container::get_applicationa()
 //}
 //
 //
-//void application_container::app_remove(::aura::application * papp)
+//void application_container::app_erase(::aura::application * papp)
 //{
 //
 //   synchronous_lock synchronouslock(mutex());
@@ -192,7 +192,7 @@ application_array application_container::get_applicationa()
 //   if (m_applicationa.is_set())
 //   {
 //
-//      m_applicationa.remove(papp);
+//      m_applicationa.erase(papp);
 //
 //   }
 //
@@ -374,7 +374,7 @@ __pointer(::aura::application) application_container::start_application(const ch
       || pcreate->m_pcommandline->m_varQuery.has_property("uninstall"))
    {
 
-      m_applicationa.remove(papp);
+      m_applicationa.erase(papp);
 
       return nullptr;
 

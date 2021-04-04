@@ -228,7 +228,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
    //if (iFind >= 0)
    //{
 
-   //   strVoice = straAttributes.remove_at(iFind);
+   //   strVoice = straAttributes.erase_at(iFind);
 
    //}
 

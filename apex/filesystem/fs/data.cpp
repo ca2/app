@@ -179,7 +179,7 @@ namespace fs
    //   {
    //      if(straParam[i].is_empty())
    //      {
-   //         straParam.remove_at(i);
+   //         straParam.erase_at(i);
    //         if(i == 1 && ::str::ends(straParam[0], ":"))
    //         {
    //            straParam[0] = straParam[0] + "//";

@@ -186,7 +186,7 @@ int hash_drop(hash_t *table, const char *key)
    while (entry != NULL) {
 	/* traverse the linked list looking for the key */
 	if (!strcmp(key, entry->key)) {
-	  /* match, remove the entry */
+	  /* match, erase the entry */
 	  xmpp_free(ctx, entry->key);
 	  if (table->free) table->free(ctx, entry->value);
 	  if (prev == NULL) {

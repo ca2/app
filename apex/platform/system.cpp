@@ -731,10 +731,10 @@ namespace apex
    }
 
 
-   void system::session_remove(index iEdge)
+   void system::session_erase(index iEdge)
    {
 
-      m_sessionmap.remove_key(iEdge);
+      m_sessionmap.erase_key(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
@@ -956,7 +956,7 @@ namespace apex
    //            if (!applicationa[i] || applicationa[i]->is_session() || applicationa[i]->is_system())
    //            {
 
-   //               applicationa.remove_at(i);
+   //               applicationa.erase_at(i);
 
    //               continue;
 
@@ -964,7 +964,7 @@ namespace apex
    //            else if (applicationa[i]->is_serviceable())
    //            {
 
-   //               applicationa.remove_at(i);
+   //               applicationa.erase_at(i);
 
    //               continue;
 
@@ -974,7 +974,7 @@ namespace apex
    //         catch (...)
    //         {
 
-   //            applicationa.remove_at(i);
+   //            applicationa.erase_at(i);
 
    //            continue;
 
@@ -2260,7 +2260,7 @@ namespace apex
 
       //}
 
-      //m_serviceptra.remove_all();
+      //m_serviceptra.erase_all();
 
       try
       {
@@ -2485,7 +2485,7 @@ namespace apex
       try
       {
 
-         m_mapAppLibrary.remove_all();
+         m_mapAppLibrary.erase_all();
 
       }
       catch (...)
@@ -3279,7 +3279,7 @@ namespace apex
 
       /*      m_spfilehandler(new ::apex::filehandler::handler(this));*/
 
-//      m_mapAppLibrary.remove_all();
+//      m_mapAppLibrary.erase_all();
 //
 //      string strLibraryId;
 //
@@ -3584,7 +3584,7 @@ namespace apex
 
       ::apex::application * papp = nullptr;
 
-      appptra.predicate_remove([](auto & papp)
+      appptra.predicate_erase([](auto & papp)
       {
 
          return papp->is_system() || papp->is_session();
@@ -3630,9 +3630,9 @@ namespace apex
 
       string_array straExtra = m_straCommandLineExtra;
 
-      m_straCommandLineAccumul.remove_all();
+      m_straCommandLineAccumul.erase_all();
 
-      m_straCommandLineExtra.remove_all();
+      m_straCommandLineExtra.erase_all();
 
       command_line_pointer line(e_create_new);
 
@@ -3822,7 +3822,7 @@ namespace apex
 //   __throw(todo("aura"));
 ////#ifdef WINDOWS_DESKTOP
 ////
-////      m_monitorinfoa.remove_all();
+////      m_monitorinfoa.erase_all();
 ////
 ////      ::EnumDisplayMonitors(nullptr, nullptr, psystem::monitor_enum_proc, (LPARAM)(dynamic_cast < ::apex::system * > (this)));
 ////
@@ -5148,7 +5148,7 @@ namespace apex
    {
 
       __throw(todo, "filehandler");
-     // m_pfilehandler->m_ptree->remove_all();
+     // m_pfilehandler->m_ptree->erase_all();
 
    }
 
@@ -5747,7 +5747,7 @@ namespace apex
 
       }
 
-      m_mapLibrary.remove_all();
+      m_mapLibrary.erase_all();
 
       return ::success;
 

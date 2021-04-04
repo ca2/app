@@ -55,13 +55,13 @@ namespace user
    }
 
 
-   void single_document_template::remove_document(::user::document * pdocument)
+   void single_document_template::erase_document(::user::document * pdocument)
    {
 
       if(m_pdocument == pdocument)
       {
 
-         impact_system::remove_document(pdocument);
+         impact_system::erase_document(pdocument);
 
          m_pdocument.release();
 

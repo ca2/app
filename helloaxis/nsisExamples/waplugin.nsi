@@ -115,7 +115,7 @@ Function GetWinampInstPath
 
     StrCpy $1 $0 1 0 ; get firstchar
     StrCmp $1 '"' "" getparent 
-      ; if first char is ", let's remove "'s first.
+      ; if first char is ", let's erase "'s first.
       StrCpy $0 $0 "" 1
       StrCpy $1 0
       rqloop:

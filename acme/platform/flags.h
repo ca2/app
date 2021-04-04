@@ -20,7 +20,7 @@ public:
    virtual ~flags();
 
    bool add(ENUM eenum);
-   bool remove(ENUM eenum);
+   bool erase(ENUM eenum);
    bool has(ENUM eenum) const;
    bool set(ENUM eenum, bool bSet);
    i32 add(flags < ENUM > & f);
@@ -58,7 +58,7 @@ public:
    }
    flags < ENUM > & operator -= (ENUM eenum)
    {
-      remove(eenum);
+      erase(eenum);
       return *this;
    }
    flags < ENUM > & operator |= (const flags < ENUM > & f)
@@ -130,9 +130,9 @@ bool flags < ENUM > ::add(ENUM eenum)
 
 
 template < class ENUM >
-bool flags < ENUM > ::remove(ENUM eenum)
+bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.remove((::i64)eenum);
+   return m_ia.erase((::i64)eenum);
 }
 
 
@@ -152,7 +152,7 @@ bool flags < ENUM > ::set(ENUM eenum, bool bSet)
    }
    else
    {
-      return remove(eenum);
+      return erase(eenum);
    }
 }
 
@@ -174,7 +174,7 @@ bool flags < ENUM > ::toggle(ENUM eenum)
    ASSERT(((i32)eenum) < 128);
    if (has(eenum))
    {
-      return remove(eenum);
+      return erase(eenum);
    }
    else
    {
@@ -185,7 +185,7 @@ bool flags < ENUM > ::toggle(ENUM eenum)
 template < class ENUM >
 bool flags < ENUM > ::clear()
 {
-   m_ia.remove_all();
+   m_ia.erase_all();
    return true;
 }
 
@@ -245,7 +245,7 @@ void flags_listener < ENUM > ::on_change_signalization(i32 iEnum)
 //
 //   using ::flags < ENUM >::add;
 //   virtual bool add(ENUM eenum);
-//   virtual bool remove(ENUM eenum);
+//   virtual bool erase(ENUM eenum);
 //   virtual bool clear();
 //   virtual bool toggle(ENUM eenum);
 //
@@ -288,9 +288,9 @@ void flags_listener < ENUM > ::on_change_signalization(i32 iEnum)
 //}
 //
 //template < class ENUM >
-//bool flags_ex < ENUM > ::remove(ENUM eenum)
+//bool flags_ex < ENUM > ::erase(ENUM eenum)
 //{
-//   if (flags<ENUM>::remove(eenum))
+//   if (flags<ENUM>::erase(eenum))
 //   {
 //      on_change_signalization(eenum);
 //      return true;

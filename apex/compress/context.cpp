@@ -25,7 +25,7 @@ bool compress_context::get_patha(::file::path & path, string_array & straPath, c
 
    bool bFinalIsZip = false;
 
-   straPath.remove_all();
+   straPath.erase_all();
 
    path.Empty();
 

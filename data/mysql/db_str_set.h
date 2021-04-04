@@ -16,7 +16,7 @@ public:
    bool load(const char * lpKey, string &strValue);
    bool save(const char * lpKey, const char * lpcsz);
 
-   bool remove(const char * lpKey);
+   bool erase(const char * lpKey);
 
 
 };

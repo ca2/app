@@ -181,7 +181,7 @@ void task::add_notify(::matter* pmatter)
 }
 
 
-void task::remove_notify(::matter* pmatter)
+void task::erase_notify(::matter* pmatter)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -189,7 +189,7 @@ void task::remove_notify(::matter* pmatter)
    if (m_pnotifya)
    {
 
-      m_pnotifya->remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+      m_pnotifya->erase_item(pmatter OBJ_REF_DBG_COMMA_THIS);
 
    }
 
@@ -283,7 +283,7 @@ void task::term_task()
    //   for (auto & pmatter : notifya)
    //   {
 
-   //      pmatter->task_remove(this);
+   //      pmatter->task_erase(this);
 
    //      pmatter->task_on_term(this);
 
@@ -298,7 +298,7 @@ void task::term_task()
 
    //   m_pthreadParent->task_on_term(this);
 
-   //   m_pthreadParent->task_remove(this);
+   //   m_pthreadParent->task_erase(this);
 
    //   //m_pthreadParent->kick_idle();
 

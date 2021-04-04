@@ -79,7 +79,7 @@ namespace uwp
       // The system raises this event to request the current selection.
       _editContext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
-      // The system raises this event when it wants the edit control to remove focus.
+      // The system raises this event when it wants the edit control to erase focus.
       _editContext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.

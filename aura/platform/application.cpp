@@ -1743,7 +1743,7 @@ retry_license:
 
          return false;
 
-//         psystem->install().remove_spa_start(m_strAppId);
+//         psystem->install().erase_spa_start(m_strAppId);
 
       }
 
@@ -1801,7 +1801,7 @@ retry_license:
       {
          ::apex::application::on_uninstall();
 
-         //if (!os_remove_service())
+         //if (!os_erase_service())
          //{
 
          //   bOk = false;
@@ -1859,7 +1859,7 @@ retry_license:
 
    //   }
 
-   //   //psystem->install().remove_spa_start(strId);
+   //   //psystem->install().erase_spa_start(strId);
    //   //psystem->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
    //   //psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
    //   //psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
@@ -2323,14 +2323,14 @@ retry_license:
          if(::is_set(m_pappParent))
          {
 
-            m_pappParent->app_remove(this);
+            m_pappParent->app_erase(this);
 
          }
 
          if(::is_set(get_session()))
          {
 
-            get_session()->app_remove(this);
+            get_session()->app_erase(this);
 
          }
 
@@ -2650,7 +2650,7 @@ retry_license:
 //   ::e_status application::release_exclusive()
 //   {
 //
-//      m_mapExclusive.remove_all();
+//      m_mapExclusive.erase_all();
 //
 //      return true;
 //
@@ -3188,8 +3188,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.remove_all();
-   //  localeschema.m_idaSchema.remove_all();
+   //  localeschema.m_idaLocale.erase_all();
+   //  localeschema.m_idaSchema.erase_all();
 
 
    //  string strLocale(pszLocale);
@@ -3216,8 +3216,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.remove_all();
-   //  localeschema.m_idaSchema.remove_all();
+   //  localeschema.m_idaLocale.erase_all();
+   //  localeschema.m_idaSchema.erase_all();
 
 
    //  //localeschema.m_bAddAlternateStyle = true;
@@ -3234,7 +3234,7 @@ retry_license:
 
    //  stra = value("locale").stra();
 
-   //  stra.remove_ci("_std");
+   //  stra.erase_ci("_std");
 
    //  straLocale.add_unique(value("locale").stra());
 
@@ -3242,7 +3242,7 @@ retry_license:
 
    //  stra = value("schema").stra();
 
-   //  stra.remove_ci("_std");
+   //  stra.erase_ci("_std");
 
    //  straSchema.add_unique(value("schema").stra());
 
@@ -3934,10 +3934,10 @@ retry_license:
    }
 
 
-   void application::remove_frame(::user::interaction * puserinteraction)
+   void application::erase_frame(::user::interaction * puserinteraction)
    {
 
-      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.remove(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
+      synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
 
       //if(get_active_uie() == puserinteraction)
@@ -3958,10 +3958,10 @@ retry_license:
       if (m_puiptraFrame != nullptr)
       {
 
-         if (m_puiptraFrame->remove_interaction(puserinteraction) > 0)
+         if (m_puiptraFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            TRACE("::base::application::remove_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            TRACE("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          }
 
@@ -6601,7 +6601,7 @@ namespace aura
    bool bLast = ((i + 1) == __argc);
    if (pszParam[0] == '-' || pszParam[0] == '/')
    {
-   // remove flag specifier
+   // erase flag specifier
    bFlag = true;
    ++pszParam;
    }
@@ -8943,21 +8943,21 @@ namespace aura
            {
               //   try
               //   {
-              //      papplication->remove_frame(pinteraction);
+              //      papplication->erase_frame(pinteraction);
               //   }
               //   catch(...)
               //   {
               //   }
               //   try
               //   {
-              //      psession->remove_frame(pinteraction);
+              //      psession->erase_frame(pinteraction);
               //   }
               //   catch(...)
               //   {
               //   }
               //   try
               //   {
-              //      psystem->remove_frame(pinteraction);
+              //      psystem->erase_frame(pinteraction);
               //   }
               //   catch(...)
               //   {

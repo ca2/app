@@ -599,7 +599,7 @@ namespace android
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
 //      ::exception::throw_not_implemented();
       return error_failed;

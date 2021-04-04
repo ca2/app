@@ -25,7 +25,7 @@ namespace databaseuser
       virtual count _001GetItemCount() override;
 
       bool add_unique(const string_array & stra);
-      bool remove(const string_array & stra);
+      bool erase(const string_array & stra);
 
       void GetSel(::user::list * plist , string_array & stra);
 

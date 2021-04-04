@@ -96,7 +96,7 @@ namespace http
 
       auto estatus = pcontext->m_papexcontext->http().get(pszUrl, process_set(set, pszUrl));
 
-      set.remove_by_name("get_memory");
+      set.erase_by_name("get_memory");
 
       return estatus;
 

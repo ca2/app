@@ -21,8 +21,8 @@ public:
    T calc_max_b();
 
 
-   T remove_a(T a);
-   T remove_b(T b);
+   T erase_a(T a);
+   T erase_b(T b);
 
    T array_translate_a(T aNew, T aOld);
 
@@ -44,7 +44,7 @@ public:
    T get_max_a() const;
    T get_max_b() const;
 
-   void remove_all();
+   void erase_all();
 
    void set_empty_a(T iEmpty);
    void set_empty_b(T iEmpty);
@@ -115,13 +115,13 @@ T biunique < T, T_to_T > ::get_b (T a) const
 }
 
 template < class T, class T_to_T >
-T biunique < T, T_to_T > ::remove_a(T a)
+T biunique < T, T_to_T > ::erase_a(T a)
 {
    if(has_a(a))
    {
       T b = get_b(a);
-      m_ba.remove_key(b);
-      m_ab.remove_key(a);
+      m_ba.erase_key(b);
+      m_ab.erase_key(a);
       m_iMaxA = calc_max_a();
       m_iMaxB = calc_max_b();
       return b;
@@ -149,8 +149,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
       return bParam;
    }
 
-   m_ba.remove_key(bParam);
-   m_ab.remove_key(aOld);
+   m_ba.erase_key(bParam);
+   m_ab.erase_key(aOld);
    m_iMaxA = calc_max_a();
    m_iMaxB = calc_max_b();
    //if (aNew > aOld)
@@ -163,8 +163,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
    //      {
    //         break;
    //      }
-   //      m_ba.remove_key(b);
-   //      m_ab.remove_key(a + 1);
+   //      m_ba.erase_key(b);
+   //      m_ab.erase_key(a + 1);
    //      m_ba.set_at(b, a);
    //      m_ab.set_at(a, b);
    //      m_iMaxA = calc_max_a();
@@ -197,8 +197,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
          b = get_b(a);
          if (b != m_iEmptyB)
          {
-            m_ba.remove_key(b);
-            m_ab.remove_key(a);
+            m_ba.erase_key(b);
+            m_ab.erase_key(a);
             m_ba.set_at(b, a + 1);
             m_ab.set_at(a + 1, b);
          }
@@ -219,13 +219,13 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 
 
 template < class T, class T_to_T >
-T biunique < T, T_to_T > ::remove_b(T b)
+T biunique < T, T_to_T > ::erase_b(T b)
 {
    if(has_b(b))
    {
       T a = get_a(b);
-      m_ab.remove_key(a);
-      m_ba.remove_key(b);
+      m_ab.erase_key(a);
+      m_ba.erase_key(b);
       m_iMaxA = calc_max_a();
       m_iMaxB = calc_max_b();
       return a;
@@ -236,7 +236,7 @@ T biunique < T, T_to_T > ::remove_b(T b)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::translate_a(T a1, T a2)
 {
-   T b = remove_a(a2);
+   T b = erase_a(a2);
    set(a1, b);
    return b;
 }
@@ -244,7 +244,7 @@ T biunique < T, T_to_T > ::translate_a(T a1, T a2)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::translate_b(T b1, T b2)
 {
-   T a = remove_b(b2);
+   T a = erase_b(b2);
    set(a, b1);
    return a;
 }
@@ -255,9 +255,9 @@ void biunique < T, T_to_T > ::set(T a, T b)
    if(m_bBiunivoca)
    {
       if(has_a(a))
-         remove_a(a);
+         erase_a(a);
       if(has_b(b))
-         remove_b(b);
+         erase_b(b);
    }
    m_ab.set_at(a, b);
    m_ba.set_at(b, a);
@@ -281,10 +281,10 @@ T biunique < T, T_to_T > ::get_max_b() const
 
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::remove_all()
+void biunique < T, T_to_T > ::erase_all()
 {
-   m_ab.remove_all();
-   m_ba.remove_all();
+   m_ab.erase_all();
+   m_ba.erase_all();
    m_iMaxA = -1;
    m_iMaxB = -1;
 }
@@ -460,7 +460,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
       istream >> iCount;
       t1 key;
       t3 value;
-      m.remove_all();
+      m.erase_all();
       for(i32 i = 0; i < iCount; i++)
       {
          istream >> key;
@@ -470,7 +470,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
    }
    catch(const char * psz)
    {
-      m.remove_all();
+      m.erase_all();
       __throw(::exception::exception(psz));
    }
 }
@@ -532,8 +532,8 @@ inline stream & operator >> (stream & stream, biunique < T, T_to_T > & biunique)
    }
    catch (const char * psz)
    {
-      biunique.m_ab.remove_all();
-      biunique.m_ba.remove_all();
+      biunique.m_ab.erase_all();
+      biunique.m_ba.erase_all();
       biunique.m_bBiunivoca = true;
       biunique.m_iEmptyA = -1;
       biunique.m_iEmptyB = -1;

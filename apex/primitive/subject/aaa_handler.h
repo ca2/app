@@ -49,7 +49,7 @@ namespace promise
 
       virtual void add(::matter *pmatter, bool bForkWhenNotify = false);
 
-      virtual void remove(::matter *pmatter);
+      virtual void erase(::matter *pmatter);
 
       void set_modified();
 

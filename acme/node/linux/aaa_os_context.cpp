@@ -754,7 +754,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::matter * pobject)
+   bool os_context::erase_service(::matter * pobject)
    {
 //      __throw(error_not_implemented);
       return false;

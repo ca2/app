@@ -42,7 +42,7 @@
     <ClInclude Include="kissfft\kiss_fft_guts.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h">
+    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_erase_xxx.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\math_math.h">

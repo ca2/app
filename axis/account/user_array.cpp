@@ -192,11 +192,11 @@ namespace account
          if(!pair.element2()->is_authenticated())
          {
 
-            psession->on_remove_user(pair.element2());
+            psession->on_erase_user(pair.element2());
 
             synchronouslock.lock();
 
-            m_map.remove_key(pair.element1());
+            m_map.erase_key(pair.element1());
 
             synchronouslock.unlock();
 

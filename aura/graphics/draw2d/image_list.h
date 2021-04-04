@@ -84,7 +84,7 @@ public:
 
    bool get_image_info(i32 nImage, info * pinfo) const;
 
-   void remove_all();
+   void erase_all();
 
    image_list & operator = (const image_list & imagelist);
 

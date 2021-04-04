@@ -163,7 +163,7 @@ repeat:;
           {
              if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {
-                m_itema.remove_at(0);
+                m_itema.erase_at(0);
                 synchronouslock.unlock();
                 goto repeat;
              }
@@ -187,7 +187,7 @@ repeat:;
              strUrl += "&value=";
              strUrl += psystem->url().url_encode(m_itema[0]->m_str);
 
-             m_itema.remove_at(0);
+             m_itema.erase_at(0);
 
              synchronouslock.unlock();
 
@@ -257,7 +257,7 @@ db_str_set::~db_str_set()
 
 
 // true if deleted
-bool db_str_set::remove(const char * lpKey)
+bool db_str_set::erase(const char * lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
    return false;

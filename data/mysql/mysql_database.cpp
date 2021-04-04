@@ -175,7 +175,7 @@ namespace mysql
       }
 
 
-      //      m_resultptra.remove_all();
+      //      m_resultptra.erase_all();
 
             /*
 

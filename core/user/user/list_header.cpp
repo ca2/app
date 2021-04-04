@@ -13,8 +13,8 @@ namespace user
       m_bHover = false;
       m_iImageSpacing = 4;
       //m_ecolorBackground = color_list_header_background;
-      m_flagNonClient.remove(::user::interaction::non_client_background);
-      m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
+      m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
    }
 
    list_header::~list_header()

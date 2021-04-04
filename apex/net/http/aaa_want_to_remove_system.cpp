@@ -111,7 +111,7 @@ namespace http
 
       }
 
-      straRequestingServer.remove(strHost);
+      straRequestingServer.erase(strHost);
 
       straRequestingServer.insert_at(0, strHost);
 
@@ -161,7 +161,7 @@ namespace http
          if(ppair != nullptr)
          {
 //            delete ppair->element2();
-            m_mapPac.remove_key(pszUrl);
+            m_mapPac.erase_key(pszUrl);
          }
 
          auto ppac  = __new(class pac(this));
@@ -224,7 +224,7 @@ namespace http
          if(ppair != nullptr)
          {
 //            delete ppair->element2();
-            m_mapPac.remove_key(pszUrl);
+            m_mapPac.erase_key(pszUrl);
          }
 
          auto pproxy  = __new(class ::http::system::proxy(this));
@@ -729,7 +729,7 @@ retry:
          else if(!psession->is_valid())
          {
 
-            handler.remove(psession);
+            handler.erase(psession);
 
             bSeemsOk = false;
 
@@ -2131,7 +2131,7 @@ retry_session:
 
             synchronouslock.lock();
 
-            m_straExists.remove(pszUrl);
+            m_straExists.erase(pszUrl);
 
             if (::is_set(petype))
             {
@@ -2154,7 +2154,7 @@ retry_session:
 
       }
 
-      m_straExists.remove(pszUrl);
+      m_straExists.erase(pszUrl);
 
       bool bExists = iStatusCode == 200;
 

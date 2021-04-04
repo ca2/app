@@ -17,7 +17,7 @@
 //      //for (auto pchannel : m_sendera)
 //      //{
 //
-//      //   pchannel->remove_receiver(this);
+//      //   pchannel->erase_receiver(this);
 //
 //      //}
 //
@@ -33,7 +33,7 @@
 //   void receiver::message_receiver_destruct()
 //   {
 //
-//      //m_sendera.remove_all();
+//      //m_sendera.erase_all();
 //
 //   }
 //

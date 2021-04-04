@@ -208,7 +208,7 @@ namespace helloaxis
 //                  if (dNow - daFrame[i] >= 1000.0)
 //                  {
 //
-//                     daFrame.remove_at(i);
+//                     daFrame.erase_at(i);
 //
 //                  }
 //                  else
@@ -1174,7 +1174,7 @@ namespace helloaxis
 //         else if (!bilbo.m_bNew && bilbo.m_b)
 //         {
 //
-//            m_stra23.remove(bilbo.m_strPath);
+//            m_stra23.erase(bilbo.m_strPath);
 //
 //            bilbo.m_b = false;
 //

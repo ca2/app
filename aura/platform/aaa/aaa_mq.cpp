@@ -103,7 +103,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
             m_bQuit = true;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             continue;
 
@@ -114,7 +114,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
             *pMsg = msg;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             return true;
 
@@ -192,7 +192,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
          if(wRemoveMsg & PM_REMOVE)
          {
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
          }
 
@@ -364,7 +364,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 }
 
 
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 {
 
 //   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -396,7 +396,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   synchronous_lock ml(&pmq->m_mutex);
 //
-//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;
@@ -422,7 +422,7 @@ CLASS_DECL_AURA void mq_clear(itask_t idthread)
 
    synchronous_lock ml(pmq->mutex());
 
-   pmq->m_messagea.remove_all();
+   pmq->m_messagea.erase_all();
 
 }
 

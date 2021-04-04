@@ -16,7 +16,7 @@ namespace papaya
          if(&m != &attribmap)
          {
 
-            m.remove_all();
+            m.erase_all();
 
             for(auto & pair : attribmap)
             {

@@ -42,7 +42,7 @@ public:
 
 
    virtual bool is_valid() const override;
-   memsize remove_begin(void * pdata, memsize uiCount);
+   memsize erase_begin(void * pdata, memsize uiCount);
 
 
    void load_string(string & str);

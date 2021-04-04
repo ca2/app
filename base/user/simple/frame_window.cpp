@@ -837,7 +837,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_ebuttonaHide.contains(::experience::e_button_transparent_frame))
       {
 
-         layout().remove_appearance(e_appearance_transparent_frame);
+         layout().erase_appearance(e_appearance_transparent_frame);
 
       }
 

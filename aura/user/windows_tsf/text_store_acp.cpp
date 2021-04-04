@@ -97,7 +97,7 @@ namespace tsf
        //find the advise sink
        if(punkID == m_AdviseSink.punkID)
        {
-           //remove the advise sink from the list
+           //erase the advise sink from the list
            _ClearAdviseSink(&m_AdviseSink);
 
            if(m_pServices)
@@ -956,7 +956,7 @@ namespace tsf
                uFetched++;
                ulCount--;
 
-               //remove the item from the requested state
+               //erase the item from the requested state
                VariantClear(&m_rgAttributes[i].varValue);
                m_rgAttributes[i].dwFlags = ATTR_FLAG_NONE;
            }

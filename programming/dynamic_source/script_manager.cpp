@@ -780,7 +780,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists.remove_key(path);
+            m_mapIncludeMatchesFileExists.erase_key(path);
 
          }
          catch (...)
@@ -791,7 +791,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.remove_key(path);
+            m_mapIncludeMatchesIsDir.erase_key(path);
 
          }
          catch (...)
@@ -810,7 +810,7 @@ namespace dynamic_source
 
          single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
 
-         m_mapIncludeExpandMd5.remove_key(path);
+         m_mapIncludeExpandMd5.erase_key(path);
 
       }
       catch (...)
@@ -831,7 +831,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists.remove_all();
+            m_mapIncludeMatchesFileExists.erase_all();
 
          }
          catch(...)
@@ -842,7 +842,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.remove_all();
+            m_mapIncludeMatchesIsDir.erase_all();
 
          }
          catch(...)
@@ -861,7 +861,7 @@ namespace dynamic_source
 
          single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
 
-         m_mapIncludeExpandMd5.remove_all();
+         m_mapIncludeExpandMd5.erase_all();
 
       }
       catch(...)
@@ -1138,7 +1138,7 @@ namespace dynamic_source
          if(passoc->element2().is_null())
          {
 
-            m_mapSession.remove_item(passoc);
+            m_mapSession.erase_item(passoc);
 
          }
          else if(passoc->element2()->get_ref_count() <= 1)
@@ -1147,7 +1147,7 @@ namespace dynamic_source
             if(passoc->element2()->m_timeExpiry < time)
             {
 
-               m_mapSession.remove_item(passoc);
+               m_mapSession.erase_item(passoc);
 
             }
 
@@ -1218,7 +1218,7 @@ namespace dynamic_source
       if(m_rsaptra.get_size() > 23)
       {
 
-         m_rsaptra.remove_at(0);
+         m_rsaptra.erase_at(0);
 
       }
 
@@ -1303,7 +1303,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.remove_key(pszServer);
+         m_mapOutLink.erase_key(pszServer);
 
       }
 
@@ -1339,7 +1339,7 @@ namespace dynamic_source
 
       ::sockets::link_in_socket * pinsocket = ppair->element2();
 
-      m_mapInLink.remove_key(poutsocket);
+      m_mapInLink.erase_key(poutsocket);
 
       return pinsocket;
 

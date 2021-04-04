@@ -37,8 +37,8 @@ namespace sockets
       //m_mapCache.m_bAutoGudoSet = false;
       //m_mapReverseCache.m_bAutoGudoSet = false;
 
-      //m_mapCache.remove_all();
-      //m_mapReverseCache.remove_all();
+      //m_mapCache.erase_all();
+      //m_mapReverseCache.erase_all();
 
    }
 
@@ -830,7 +830,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //                  auto pitem = m_reversecacheaRequest[0];
 //
-//                  m_reversecacheaRequest.remove_at(0);
+//                  m_reversecacheaRequest.erase_at(0);
 //
 //                  synchronouslock.unlock();
 //

@@ -128,7 +128,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
 
 
-   void object::task_remove(::task* ptask)
+   void object::task_erase(::task* ptask)
    {
 
 

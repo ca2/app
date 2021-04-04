@@ -90,9 +90,9 @@ bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, str
 
    UNREFERENCED_PARAMETER(flags);
 
-   m_straLink.remove_all();
-   m_iaLinkStart.remove_all();
-   m_iaLinkEnd.remove_all();
+   m_straLink.erase_all();
+   m_iaLinkStart.erase_all();
+   m_iaLinkEnd.erase_all();
 
    strsize               iChars;
    strsize               iStr;

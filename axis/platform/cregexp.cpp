@@ -1226,7 +1226,7 @@
 //index cregexp::match(string_array & stra, const string & pcsz, strsize iSize)
 //
 //{
-//   stra.remove_all();
+//   stra.erase_all();
 //
 //   if(iSize <= 0)
 //      return 0;

@@ -38,10 +38,10 @@ namespace url
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
       string override_if_set_at_source(const char * pszDest, const char * pszSrc);
-      string remove_key(const char * pszUrl, const char * pszKey);
-      string string_remove(string & strUrl, const char * pszKey);
-      ::payload & var_remove(::payload & varUrl, const char * pszKey);
-      property & property_remove(property & propUrl, const char * pszKey);
+      string erase_key(const char * pszUrl, const char * pszKey);
+      string string_erase(string & strUrl, const char * pszKey);
+      ::payload & var_erase(::payload & varUrl, const char * pszKey);
+      property & property_erase(property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
       string object_get_query(const char *); // id=1
@@ -59,8 +59,8 @@ namespace url
       string url_decode(const char * psz, strsize iLen);
 
       string query_append(const char * pszUrl, const char * pszQuery);
-      string query_remove(const char * pszQuery, string_array & straKey);
-      string query_remove(const char * pszQuery, const char * pszKey);
+      string query_erase(const char * pszQuery, string_array & straKey);
+      string query_erase(const char * pszQuery, const char * pszKey);
       string query_set(const char * pszQuery, const char * pszKey, ::payload payload);
       string query_set_param(const char * pszQuery, const char * pszKey, const string & strParam);
       bool query_get_param(string & strValue, const string & strUrl, const string & strKey);
@@ -72,7 +72,7 @@ namespace url
       string get_param(const char * pszQuery, const char * pszKey);
       string query_get_param(const string & strQuery, const string & strKey);
       bool query_has_param_replace(string & strQuery, const string & strKey, const string & strValue);
-      string __query_remove(const char * pszQuery, const char * pszAndKeyEqual);
+      string __query_erase(const char * pszQuery, const char * pszAndKeyEqual);
       bool get_param(string & strValue, const string & strUrl, const string & strKey);
       bool has_param(const string & strUrl, const string & strKey);
       bool param_has_char(const string & strUrl, const string & strKey);

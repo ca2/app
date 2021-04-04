@@ -4,9 +4,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// removed baseclass CObject
-// removed baseclass CException
-// removed all LPCTSTR char *
+// erased baseclass CObject
+// erased baseclass CException
+// erased all LPCTSTR char *
 // _select only defined to avoid compiler warning in WIN32
 // make it run on linux
 

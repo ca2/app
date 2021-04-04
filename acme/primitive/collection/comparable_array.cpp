@@ -13,7 +13,7 @@ void unit_test_base_comparable_array_debug()
 
    ia.find_first(i);
 
-   ia.remove_first(i);
+   ia.erase_first(i);
    
 }
 

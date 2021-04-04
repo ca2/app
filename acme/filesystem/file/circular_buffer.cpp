@@ -118,7 +118,7 @@ namespace file
    }
 
 
-   bool circular_file::remove(memsize l)
+   bool circular_file::erase(memsize l)
    {
 
       try

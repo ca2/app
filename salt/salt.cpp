@@ -143,7 +143,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       // NOTE: If this Extension DLL is being implicitly linked to by
       //  an ca2 API Regular DLL (such as an ActiveX control)
       //  instead of an ca2 API application, then you will want to
-      //  remove this line from DllMain and put it in a separate
+      //  erase this line from DllMain and put it in a separate
       //  function exported from this Extension DLL.  The Regular DLL
       //  that uses this Extension DLL should then explicitly call that
       //  function to initialize this Extension DLL.  Otherwise,

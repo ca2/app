@@ -90,7 +90,7 @@ const Type & string_array_base < Type, RawType >::element_at(::index nIndex) con
 template < class Type, class RawType >
 string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (::payload varSrc)
 {
-   this->remove_all();
+   this->erase_all();
    if (varSrc.get_type() == ::e_type_stra)
    {
       varSrc.get_array(*this);
@@ -206,7 +206,7 @@ void string_array_base < Type, RawType >::get_quick_sort_ci(index_array & ia)
    ::index iUpperBound;
    ::index iLPos,iUPos,iMPos;
    Type t;
-   ia.remove_all();
+   ia.erase_all();
    ::papaya::array::append_sequence(ia,(::index)0,(::index)get_upper_bound());
    if(this->get_size() >= 2)
    {

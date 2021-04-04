@@ -55,7 +55,7 @@ namespace linux
 
 
       virtual bool create_service(::object * pobject);
-      virtual bool remove_service(::object * pobject);
+      virtual bool erase_service(::object * pobject);
 
       virtual bool start_service(::object * pobject);
       virtual bool stop_service(::object * pobject);

@@ -869,7 +869,7 @@ namespace windowing
 
       //unhook();
 
-      //::update_task::remove(id_dark_mode, this);
+      //::update_task::erase(id_dark_mode, this);
 
    }
 

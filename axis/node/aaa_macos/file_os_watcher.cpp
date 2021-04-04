@@ -16,7 +16,7 @@ namespace file
    os_watch::~os_watch()
    {
       
-      removeAll();
+      eraseAll();
 
    }
 
@@ -177,7 +177,7 @@ namespace file
 
 
 
-   void os_watch::removeAll()
+   void os_watch::eraseAll()
    {
 
       FSEventStreamStop(m_stream);

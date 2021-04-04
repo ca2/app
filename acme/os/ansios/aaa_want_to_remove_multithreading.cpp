@@ -519,7 +519,7 @@
 ////   }
 ////
 ////   // Remove this thread from the pending list.
-////   pendingThreads().remove_key(hthread);
+////   pendingThreads().erase_key(hthread);
 ////
 ////   return 0;
 ////}
@@ -566,7 +566,7 @@
 ////   if(freeTlsIndices->get_count() > 0)
 ////   {
 ////      ::u32 result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
-////      freeTlsIndices->remove_at(freeTlsIndices->get_count() - 1);
+////      freeTlsIndices->erase_at(freeTlsIndices->get_count() - 1);
 ////      return result;
 ////   }
 ////
@@ -796,7 +796,7 @@
 ////
 ////      synchronous_lock ml(g_pmutexTlsData);
 ////
-////      allthreaddata->remove_key(currentThread);
+////      allthreaddata->erase_key(currentThread);
 ////
 ////      currentThreadData = NULL;
 ////
@@ -864,7 +864,7 @@
 ////      if(s_pptra->element_at(i) == this)
 ////      {
 ////
-////         s_pptra->remove_at(i);
+////         s_pptra->erase_at(i);
 ////
 ////      }
 ////

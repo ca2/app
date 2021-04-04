@@ -255,7 +255,7 @@ namespace base
 
       }
 
-      m_mapUserStyle.remove_all();
+      m_mapUserStyle.erase_all();
 
       auto estatus = ::axis::user::finalize();
 

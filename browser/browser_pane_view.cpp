@@ -99,7 +99,7 @@ namespace browser
       string strId = get_view_id();
       string_array stra;
       m_prollfps = nullptr;
-      m_checkptraBilbo.remove_all();
+      m_checkptraBilbo.erase_all();
 
       stra.explode("->:<-",strId);
 

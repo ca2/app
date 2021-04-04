@@ -94,7 +94,7 @@ namespace android
          if(psystem->m_pwindowmap != nullptr)
          {
 
-            psystem->m_pwindowmap->m_map.remove_key(get_handle());
+            psystem->m_pwindowmap->m_map.erase_key(get_handle());
 
          }
 
@@ -591,7 +591,7 @@ namespace android
       //if (m_puserinteraction->m_pthreadUserInteraction != nullptr)
       //{
 
-         //m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread->remove(m_puserinteraction);
+         //m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread->erase(m_puserinteraction);
 
       //}
 

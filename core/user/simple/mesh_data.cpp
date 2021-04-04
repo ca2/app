@@ -69,7 +69,7 @@ index simple_mesh_data::_001GetItemCount()
 void simple_mesh_data::clear()
 {
 
-   m_map.remove_all();
+   m_map.erase_all();
 
 }
 

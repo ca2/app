@@ -277,7 +277,7 @@ strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const cha
    if (pcoll->get_upper_bound() == -1)
       goto LError;
    // current collection could not be emptied?
-   if (!removeAll())
+   if (!eraseAll())
       goto LError;
 
    m_parrAttrib = pcoll;
@@ -341,7 +341,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
    m_strValue.trim_right();
 
    // ignore line feeds
-   m_strValue.remove('\n');
+   m_strValue.erase('\n');
 
    // replace tab and carriage-return with a single space
    m_strValue.replace('\r', ' ');

@@ -21,7 +21,7 @@ namespace windowing
       if (bOn)
       {
 
-         m_pitem->remove_status(::windowing::e_status_disabled);
+         m_pitem->erase_status(::windowing::e_status_disabled);
 
       }
       else
@@ -47,7 +47,7 @@ namespace windowing
       else
       {
 
-         m_pitem->remove_status(::windowing::e_status_checked);
+         m_pitem->erase_status(::windowing::e_status_checked);
 
       }
 

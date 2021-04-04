@@ -64,7 +64,7 @@ namespace apex
       m_pschemaSchemaStd      = nullptr;
 
 
-      m_schemaptra.remove_all();
+      m_schemaptra.erase_all();
 
 
       if(m_plocaleschema != nullptr)
@@ -404,7 +404,7 @@ namespace apex
       do
       {
 
-         stra2.remove_all();
+         stra2.erase_all();
 
          id2 = string(id.m_psz) + "[" + __str(i) + "]";
 

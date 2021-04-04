@@ -148,7 +148,7 @@ namespace file
 
 
       virtual void add_listener(listener * plistener);
-      virtual void remove_listener(listener * plistener);
+      virtual void erase_listener(listener * plistener);
 
       virtual void handle_action(action * psubject);
 
@@ -191,9 +191,9 @@ namespace file
 
       virtual watch_id add_watch(const ::file::path & pathFolder, listener * plistener, bool bRecursive);
 
-      virtual void remove_watch(const ::file::path & pathFolder);
+      virtual void erase_watch(const ::file::path & pathFolder);
 
-      virtual void remove_watch(watch_id watch_id);
+      virtual void erase_watch(watch_id watch_id);
 
       virtual ::e_status run() override;
 

@@ -180,82 +180,82 @@ bool var_array::contains(const ::payload & payload, index find, index last, ::co
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-::count var_array::remove_first_ci(const char * pcsz, index find, index last)
+::count var_array::erase_first_ci(const char * pcsz, index find, index last)
 
 {
    if((find = find_first_ci(pcsz, find, last)) >= 0)
 
-      remove_at(find);
+      erase_at(find);
    return find;
 }
 
-::count var_array::remove_first(const char * pcsz, index find, index last)
+::count var_array::erase_first(const char * pcsz, index find, index last)
 
 {
    if((find = find_first(pcsz, find, last)) >= 0)
 
-      remove_at(find);
+      erase_at(find);
    return find;
 }
 
-::count var_array::remove_first(const ::payload & payload, index find, index last)
+::count var_array::erase_first(const ::payload & payload, index find, index last)
 {
    if((find = find_first(payload, find, last)) >= 0)
-      remove_at(find);
+      erase_at(find);
    return find;
 }
 
 
-::count var_array::remove_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
+::count var_array::erase_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
 
 {
    ::count count = 0;
    if(contains_ci(pcsz, find, last, countMin, countMax))
 
       while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first_ci(pcsz, find, last)) >= 0)
+            && (find = erase_first_ci(pcsz, find, last)) >= 0)
 
          count++;
    return count;
 }
 
 
-::count var_array::remove(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
+::count var_array::erase(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
 
 {
    ::count count = 0;
    if(contains(pcsz, find, last, countMin, countMax))
 
       while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first(pcsz, find, last)) >= 0)
+            && (find = erase_first(pcsz, find, last)) >= 0)
 
          count++;
    return count;
 }
 
 
-::count var_array::remove(const ::payload & payload, index find, index last, ::count countMin, ::count countMax)
+::count var_array::erase(const ::payload & payload, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(payload, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first(payload, find, last)) >= 0)
+            && (find = erase_first(payload, find, last)) >= 0)
          count++;
    return count;
 }
 
-::count var_array::remove(const var_array & vara)
+::count var_array::erase(const var_array & vara)
 {
    if(&vara == this)
    {
-      return remove_all();
+      return erase_all();
    }
    else
    {
       ::count count = 0;
       for(index i = 0; i < vara.get_count(); i++)
       {
-         count += remove(vara[i]);
+         count += erase(vara[i]);
       }
       return count;
    }
@@ -263,27 +263,27 @@ bool var_array::contains(const ::payload & payload, index find, index last, ::co
 
 var_array & var_array::operator -=(::payload payload)
 {
-   remove(payload);
+   erase(payload);
    return *this;
 }
 
 var_array & var_array::operator -=(var_array vara)
 {
-   remove(vara);
+   erase(vara);
    return *this;
 }
 
 var_array var_array::operator -(::payload payload) const
 {
    var_array vara(*this);
-   vara.remove(payload);
+   vara.erase(payload);
    return vara;
 }
 
 var_array var_array::operator -(var_array varaParam) const
 {
    var_array vara(*this);
-   vara.remove(varaParam);
+   vara.erase(varaParam);
    return vara;
 }
 
@@ -315,7 +315,7 @@ var_array var_array::operator +(var_array varaParam) const
 
 var_array & var_array::operator = (const string_array & stra)
 {
-   remove_all();
+   erase_all();
    for(i32 i = 0; i < stra.get_count(); i++)
    {
       add(stra[i]);
@@ -325,7 +325,7 @@ var_array & var_array::operator = (const string_array & stra)
 
 var_array & var_array::operator = (const int_array & inta)
 {
-   remove_all();
+   erase_all();
    for(i32 i = 0; i < inta.get_count(); i++)
    {
       add(inta[i]);
@@ -337,7 +337,7 @@ var_array & var_array::operator = (const int_array & inta)
 var_array & var_array::operator = (const property_set & propset)
 {
 
-   remove_all();
+   erase_all();
 
    index i = 0;
 
@@ -357,7 +357,7 @@ var_array & var_array::operator = (const var_array & vara)
 {
    if(this != &vara)
    {
-      remove_all();
+      erase_all();
       for(i32 i = 0; i < vara.get_count(); i++)
       {
          add(vara[i]);

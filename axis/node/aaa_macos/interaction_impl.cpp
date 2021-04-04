@@ -259,7 +259,7 @@ namespace macos
          //         single_lock synchronouslock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
-         //      pMap->remove_handle(get_handle());
+         //      pMap->erase_handle(get_handle());
          //         set_handle(nullptr);
          m_oswindow = nullptr;
       }

@@ -241,7 +241,7 @@ namespace datetime
             return nullptr;
 
          // but don't __throw( exception or generate error...
-         // (reason for commenting out below, fat to be removed...)
+         // (reason for commenting out below, fat to be erased...)
 //         if(errno != 0)
          //          return nullptr;
 

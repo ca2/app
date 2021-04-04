@@ -25,7 +25,7 @@ namespace ___FlagsDebug
    {
       flags < ___EFlagsDebug > flagsdebug;
       flagsdebug.add(___FlagsDebugA);
-      flagsdebug.remove(___FlagsDebugB);
+      flagsdebug.erase(___FlagsDebugB);
       flags < ___EFlagsDebug > flagsdebugB;
       flagsdebugB = flagsdebug;
    
@@ -40,7 +40,7 @@ namespace ___FlagsDebug
       ASSERT(flagsdebugC.has(___FlagsDebugD));
       ASSERT(flagsdebugC.has(___FlagsDebugD));
       ASSERT(!flagsdebugC.has(___FlagsDebugE));
-      flagsdebugC.remove(___FlagsDebugD);
+      flagsdebugC.erase(___FlagsDebugD);
       ASSERT(flagsdebugC.has(___FlagsDebugA));
       ASSERT(flagsdebugC.has(___FlagsDebugB));
       ASSERT(flagsdebugC.has(___FlagsDebugD));

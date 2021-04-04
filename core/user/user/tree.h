@@ -164,9 +164,9 @@ namespace user
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual ::count   selection_remove(::data::tree_item_ptr_array & itemptra);
-      virtual bool      selection_remove(::data::tree_item * pitem);
-      virtual bool      selection_remove(::data::item * pitem, index i = 0);
+      virtual ::count   selection_erase(::data::tree_item_ptr_array & itemptra);
+      virtual bool      selection_erase(::data::tree_item * pitem);
+      virtual bool      selection_erase(::data::item * pitem, index i = 0);
 
 
       virtual bool      can_merge(const ::data::tree * ptree) const;

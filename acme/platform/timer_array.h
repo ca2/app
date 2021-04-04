@@ -28,7 +28,7 @@ namespace apex
 
       virtual bool set_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
-      virtual bool remove_timer(::timer * ptimer) override;
+      virtual bool erase_timer(::timer * ptimer) override;
 
 
       virtual ::e_status finalize() override;

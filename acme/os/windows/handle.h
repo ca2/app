@@ -28,7 +28,7 @@
 //      stores those C++ objects that have been explicitly created by
 //      the developer.  The C++ constructor for the wrapper class will
 //      insert the mapping into the permanent dictionary and the C++
-//      destructor will remove it and possibly free up the associated
+//      destructor will erase it and possibly free up the associated
 //      Windows matter.
 //  When a handle passes through a C++ interface that doesn't exist in
 //      the permanent dictionary, we allocate a temporary wrapping matter
@@ -176,7 +176,7 @@ public:
    void delete_temp();
 
    void set_permanent(HANDLE h, CT * permOb);
-   void remove_handle(HANDLE h);
+   void erase_handle(HANDLE h);
 
    CT * lookup_permanent(HANDLE h);
    CT * lookup_temporary(HANDLE h);
@@ -332,7 +332,7 @@ void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 
 #ifdef __DEBUG
 template < class HT, class CT >
-void handle_map < HT, CT > ::remove_handle(HANDLE h)
+void handle_map < HT, CT > ::erase_handle(HANDLE h)
 {
 
    single_lock synchronouslock(&m_mutex, true);
@@ -356,9 +356,9 @@ void handle_map < HT, CT > ::remove_handle(HANDLE h)
       ASSERT(ph[0] == h);
       // permanent matter may have secondary handles that are different
    }
-   // remove only from permanent map -- temporary objects are removed
+   // erase only from permanent map -- temporary objects are erased
    //  at idle in CHandleMap::delete_temp, always!
-   m_permanentMap.remove_key((LPVOID)h);
+   m_permanentMap.erase_key((LPVOID)h);
 }
 #endif //__DEBUG
 
@@ -394,7 +394,7 @@ void handle_map < HT, CT >::delete_temp()
       (*m_pfnDestructObject)(pTemp);   // destruct the matter
    }
 
-   m_temporaryMap.remove_all();       // free up dictionary links etc
+   m_temporaryMap.erase_all();       // free up dictionary links etc
    m_alloc.FreeAll();   // free all the memory used for these temp objects
 }
 
@@ -406,11 +406,11 @@ inline void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
    { m_permanentMap[(HANDLE)h] = permOb; }
 
 template < class HT, class CT >
-inline void handle_map < HT, CT >::remove_handle(HANDLE h)
+inline void handle_map < HT, CT >::erase_handle(HANDLE h)
 {
-   // remove only from permanent map -- temporary objects are removed
+   // erase only from permanent map -- temporary objects are erased
    //  at idle in CHandleMap::delete_temp, always!
-   m_permanentMap.remove_key((HANDLE)h);
+   m_permanentMap.erase_key((HANDLE)h);
 }
 #endif //__DEBUG
 

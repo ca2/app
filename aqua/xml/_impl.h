@@ -112,7 +112,7 @@ template < typename POINT_TYPE >
 inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_array_base < POINT_TYPE > & pointa)
 {
 
-   pointa.remove_all();
+   pointa.erase_all();
 
    string strPoints;
 

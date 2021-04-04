@@ -604,7 +604,7 @@ namespace linux
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
 //
-//            m_puserinteraction->m_pthread->m_puiptra->remove(m_puserinteraction);
+//            m_puserinteraction->m_pthread->m_puiptra->erase(m_puserinteraction);
 //
 //         }
 //
@@ -739,7 +739,7 @@ namespace linux
 //
 //         auto pwindowing = ::aura::get_system()->windowing();
 //
-//         pwindowing->remove_window(this);
+//         pwindowing->erase_window(this);
 //
 //         return true;
 //
@@ -4062,7 +4062,7 @@ namespace linux
       //if(eactivation &)
 //      {
 //
-//         wm_add_remove_state(m_oswindow, net_wm_state_hidden, false);
+//         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
 //
 //      }
 //

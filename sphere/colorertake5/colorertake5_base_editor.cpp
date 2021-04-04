@@ -208,9 +208,9 @@ namespace colorertake5
       regionHandlers.add(rh);
    }
 
-   void base_editor::removeRegionHandler(RegionHandler *rh)
+   void base_editor::eraseRegionHandler(RegionHandler *rh)
    {
-      regionHandlers.remove(rh);
+      regionHandlers.erase(rh);
    }
 
    void base_editor::addEditorListener(EditorListener *el)
@@ -218,9 +218,9 @@ namespace colorertake5
       editorListeners.add(el);
    }
 
-   void base_editor::removeEditorListener(EditorListener *el)
+   void base_editor::eraseEditorListener(EditorListener *el)
    {
-      editorListeners.remove(el);
+      editorListeners.erase(el);
    }
 
 

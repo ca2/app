@@ -182,7 +182,7 @@ enum enum_status : ::i64
    error_too_many_open_files,
    error_file_access_denied,
    error_invalid_file,
-   error_remove_current_dir,
+   error_erase_current_dir,
    error_directory_full,
    error_bad_seek,
    error_hard_io,

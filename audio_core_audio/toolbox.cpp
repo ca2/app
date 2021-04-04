@@ -78,7 +78,7 @@ namespace multimedia
 //
 //               AudioQueueFreeBuffer(m_Queue, m_Buffers[i]);
 //
-//               m_Buffers.remove_at(i);
+//               m_Buffers.erase_at(i);
 //
 //               break;
 //
@@ -101,7 +101,7 @@ namespace multimedia
 
          }
 
-         m_Buffers.remove_all();
+         m_Buffers.erase_all();
 
       }
 

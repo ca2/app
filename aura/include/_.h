@@ -636,28 +636,28 @@ CLASS_DECL_AURA void aura_ref();
 //enum enum_check: ::i32;
 //
 //template <typename TYPE>
-//struct remove_const_struct { // remove top-level const qualifier
+//struct erase_const_struct { // erase top-level const qualifier
 //   using NON_CONST_TYPE = TYPE;
 //};
 //
 //template <typename TYPE>
-//struct remove_const_struct< TYPE &> {
+//struct erase_const_struct< TYPE &> {
 //   using NON_CONST_TYPE = TYPE &;
 //};
 //
 //
 //template <typename TYPE>
-//struct remove_const_struct<const TYPE> {
+//struct erase_const_struct<const TYPE> {
 //   using NON_CONST_TYPE = TYPE;
 //};
 //
 //template <typename TYPE>
-//struct remove_const_struct<const TYPE &> {
+//struct erase_const_struct<const TYPE &> {
 //   using NON_CONST_TYPE = TYPE &;
 //};
 //
 //template <class TYPE>
-//using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
+//using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
 //
 //struct true_type { };
 //struct false_type { };
@@ -1009,28 +1009,28 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //template<class T>
-//struct remove_reference
+//struct erase_reference
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T>
-//struct remove_reference<T&>
+//struct erase_reference<T&>
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T>
-//struct remove_reference<T&&>
+//struct erase_reference<T&&>
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T> inline
-//typename remove_reference<T>::TYPE&& move(T && t)
+//typename erase_reference<T>::TYPE&& move(T && t)
 //{
 //
-//   return (static_cast<typename remove_reference<T>::TYPE&&>(t));
+//   return (static_cast<typename erase_reference<T>::TYPE&&>(t));
 //
 //}
 //
@@ -1777,7 +1777,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1819,7 +1819,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1858,7 +1858,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1899,7 +1899,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {

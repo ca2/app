@@ -635,7 +635,7 @@ namespace axis
    //}
 
 
-   void session::on_remove_user(::account::user * puser)
+   void session::on_erase_user(::account::user * puser)
    {
 
    }

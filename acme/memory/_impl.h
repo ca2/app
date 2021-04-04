@@ -22,7 +22,7 @@ template < typename TYPE, std::size_t SIZE >
 inline array_reference < TYPE, SIZE > & __zero(TYPE (& array)[ SIZE ] ) { ::zero((void *) array, sizeof(array)); return array; }
 
 template < a_pointer POINTER >
-inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p) { ::zero((void *) p, sizeof(*p)); return *p; }
+inline typename std::erase_pointer<POINTER>::type & __zero(POINTER p) { ::zero((void *) p, sizeof(*p)); return *p; }
 
 template < non_pointer NON_POINTER >
 inline NON_POINTER & __zero(NON_POINTER & t) { ::zero((void *) &t, sizeof(t)); return t; }

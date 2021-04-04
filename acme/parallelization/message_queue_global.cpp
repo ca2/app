@@ -60,7 +60,7 @@ void clear_message_queue(itask_t idthread)
 
    synchronous_lock synchronouslock(g_pmutexMq);
 
-   g_pmapMq->remove_key(idthread);
+   g_pmapMq->erase_key(idthread);
 
 }
 
@@ -103,7 +103,7 @@ void clear_message_queue(itask_t idthread)
 //}
 
 
-//CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
+//CLASS_DECL_APEX int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 ////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -135,7 +135,7 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   synchronous_lock ml(&pmq->m_mutex);
 ////
-////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+////   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 ////   {
 ////
 ////      return item.hwnd == oswindow;
@@ -161,7 +161,7 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 
    synchronous_lock ml(g_pmutexMq);
 
-   pmq->m_messagea.remove_all();
+   pmq->m_messagea.erase_all();
 
 }
 

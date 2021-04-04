@@ -134,7 +134,7 @@ namespace data
    }
 
 
-   void tree::remove(item * pitemdata, index i)
+   void tree::erase(item * pitemdata, index i)
    {
       
       tree_item * pitem = find(pitemdata, &i);
@@ -146,31 +146,31 @@ namespace data
 
       }
 
-      return remove(pitem);
+      return erase(pitem);
 
    }
 
 
-   void tree::remove(tree_item_ptr_array & itemptra)
+   void tree::erase(tree_item_ptr_array & itemptra)
    {
 
       for(i32 i = 0; i < itemptra.get_count(); i++)
       {
 
-         remove(itemptra[i]);
+         erase(itemptra[i]);
 
       }
 
    }
 
 
-   void tree::remove(tree_item * pitem)
+   void tree::erase(tree_item * pitem)
    {
 
       if (pitem->m_ptree == this)
       {
 
-         pitem->remove_tree_item();
+         pitem->erase_tree_item();
 
       }
 
@@ -507,13 +507,13 @@ namespace data
    }
 
 
-   void tree::remove_all()
+   void tree::erase_all()
    {
 
       if (m_proot)
       {
 
-         m_proot->remove_tree_item_descendants();
+         m_proot->erase_tree_item_descendants();
 
       }
 

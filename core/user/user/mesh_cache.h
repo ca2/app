@@ -139,7 +139,7 @@ namespace user
    void mesh_cache<CELL>::_001Invalidate()
    {
       
-      m_map.remove_all();
+      m_map.erase_all();
 
    }
 

@@ -294,7 +294,7 @@ void CProcessEnvReader::ParseEnvironmentStrings(const widechar * pStringToConver
 {
    int nIdx = 0;
 
-   EnvStrArr.remove_all();
+   EnvStrArr.erase_all();
    while(nIdx < nLen)
    {
       size_t nSingleLen = wcslen(&pStringToConvert[nIdx]);

@@ -14,8 +14,6 @@ namespace user
       ::rectangle_f64                                   m_rectInitialRateOrSize;
 
 
-
-
       main_window();
       virtual ~main_window();
 

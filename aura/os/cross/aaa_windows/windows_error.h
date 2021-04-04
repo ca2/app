@@ -270,7 +270,7 @@
 //
 // MessageText:
 //
-// The directory Cannot be removed.
+// The directory Cannot be erased.
 //
 #define ERROR_CURRENT_DIRECTORY          16L
 
@@ -1702,7 +1702,7 @@
 //
 // MessageText:
 //
-// This file contains a virus and Cannot be opened. Due to the nature of this virus, the file has been removed from this loCAtion.
+// This file contains a virus and Cannot be opened. Due to the nature of this virus, the file has been erased from this loCAtion.
 //
 #define ERROR_VIRUS_DELETED              226L
 
@@ -3054,7 +3054,7 @@
 //
 // MessageText:
 //
-// A device was removed so enumeration must be restarted.
+// A device was erased so enumeration must be restarted.
 //
 #define ERROR_PNP_RESTART_ENUMERATION    636L
 
@@ -3111,7 +3111,7 @@
 //
 // MessageText:
 //
-// An attempt to remove a processes DebugPort was made, but a port was not already associated with the process.
+// An attempt to erase a processes DebugPort was made, but a port was not already associated with the process.
 //
 #define ERROR_PORT_NOT_SET               642L
 
@@ -4184,7 +4184,7 @@
 //
 // MessageText:
 //
-// An exception occurred in a user mode CALLBACK and the kernel CALLBACK frame should be removed.
+// An exception occurred in a user mode CALLBACK and the kernel CALLBACK frame should be erased.
 //
 #define ERROR_CALLBACK_POP_STACK         768L
 
@@ -4388,7 +4388,7 @@
 //
 // {Delayed Write Failed}
 // Windows was unable to save all the data for the file %hs; the data has been lost.
-// This error may be CAused if the device has been removed or the media is write-protected.
+// This error may be CAused if the device has been erased or the media is write-protected.
 //
 #define ERROR_LOST_WRITEBEHIND_DATA_LOCAL_DISK_ERROR 790L
 
@@ -5562,7 +5562,7 @@
 //
 // MessageText:
 //
-// Unable to remove the file to be replaced.
+// Unable to erase the file to be replaced.
 //
 #define ERROR_UNABLE_TO_REMOVE_REPLACED  1175L
 
@@ -7159,7 +7159,7 @@
 //
 // MessageText:
 //
-// The user Cannot be removed from a group because the group is currently the user's primary group.
+// The user Cannot be erased from a group because the group is currently the user's primary group.
 //
 #define ERROR_MEMBERS_PRIMARY_GROUP      1374L
 
@@ -7276,7 +7276,7 @@
 //
 // MessageText:
 //
-// A member could not be added to or removed from the loCAl group because the member does not exist.
+// A member could not be added to or erased from the loCAl group because the member does not exist.
 //
 #define ERROR_NO_SUCH_MEMBER             1387L
 
@@ -7842,7 +7842,7 @@
 //
 // MessageText:
 //
-// Cannot show or remove the interaction_impl in the way specified.
+// Cannot show or erase the interaction_impl in the way specified.
 //
 #define ERROR_INVALID_SHOWWIN_COMMAND    1449L
 
@@ -8271,7 +8271,7 @@
 //
 // MessageText:
 //
-// The device has been removed.
+// The device has been erased.
 //
 #define ERROR_DEVICE_REMOVED             1617L
 
@@ -8460,7 +8460,7 @@
 //
 // MessageText:
 //
-// Another version of this product is already installed. Installation of this version Cannot continue. To configure or remove the existing version of this product, use Add/Remove Programs on the Control Panel.
+// Another version of this product is already installed. Installation of this version Cannot continue. To configure or erase the existing version of this product, use Add/Remove Programs on the Control Panel.
 //
 #define ERROR_PRODUCT_VERSION            1638L
 
@@ -8478,7 +8478,7 @@
 //
 // MessageText:
 //
-// Only administrators have permission to add, remove, or configure server software during a Terminal services remote session. If you want to install or configure software on the server, contact your network administrator.
+// Only administrators have permission to add, erase, or configure server software during a Terminal services remote session. If you want to install or configure software on the server, contact your network administrator.
 //
 #define ERROR_INSTALL_REMOTE_DISALLOWED  1640L
 
@@ -10052,7 +10052,7 @@
 //
 // MessageText:
 //
-// The specified profile matter could not be removed.
+// The specified profile matter could not be erased.
 //
 #define RPC_S_PRF_ELT_NOT_REMOVED        1927L
 
@@ -10070,7 +10070,7 @@
 //
 // MessageText:
 //
-// The group matter could not be removed.
+// The group matter could not be erased.
 //
 #define RPC_S_GRP_ELT_NOT_REMOVED        1929L
 
@@ -11406,7 +11406,7 @@
 //
 // MessageText:
 //
-// The media type Cannot be removed from this library since at least one drive in the library reports it can support this media type.
+// The media type Cannot be erased from this library since at least one drive in the library reports it can support this media type.
 //
 #define ERROR_INDIGENOUS_TYPE            4338L
 
@@ -12145,7 +12145,7 @@
 //
 // MessageText:
 //
-// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability Cannot be removed from the network.
+// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability Cannot be erased from the network.
 //
 #define ERROR_CLUSTER_LAST_INTERNAL_NETWORK 5066L
 
@@ -12154,7 +12154,7 @@
 //
 // MessageText:
 //
-// One or more cluster resources depend on the network to provide service to clients. The client access CApability Cannot be removed from the network.
+// One or more cluster resources depend on the network to provide service to clients. The client access CApability Cannot be erased from the network.
 //
 #define ERROR_CLUSTER_NETWORK_HAS_DEPENDENTS 5067L
 
@@ -15851,7 +15851,7 @@
 //
 // MessageText:
 //
-// The attribute Cannot be removed because it is not present on the object.
+// The attribute Cannot be erased because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT    8324L
 
@@ -15860,7 +15860,7 @@
 //
 // MessageText:
 //
-// The attribute value Cannot be removed because it is not present on the object.
+// The attribute value Cannot be erased because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325L
 
@@ -15986,7 +15986,7 @@
 //
 // MessageText:
 //
-// The operation Cannot continue because the object is in the process of being removed.
+// The operation Cannot continue because the object is in the process of being erased.
 //
 #define ERROR_DS_OBJECT_BEING_REMOVED    8339L
 
@@ -16562,7 +16562,7 @@
 //
 // MessageText:
 //
-// The attribute could not be removed from the CAche.
+// The attribute could not be erased from the CAche.
 //
 #define ERROR_DS_CANT_REMOVE_ATT_CACHE   8403L
 
@@ -16571,7 +16571,7 @@
 //
 // MessageText:
 //
-// The class could not be removed from the CAche.
+// The class could not be erased from the CAche.
 //
 #define ERROR_DS_CANT_REMOVE_CLASS_CACHE 8404L
 
@@ -16985,7 +16985,7 @@
 //
 // MessageText:
 //
-// The naming action_context Cannot be removed because it is replicated to another server.
+// The naming action_context Cannot be erased because it is replicated to another server.
 //
 #define ERROR_DS_DRA_OBJ_IS_REP_SOURCE   8450L
 
@@ -17003,7 +17003,7 @@
 //
 // MessageText:
 //
-// The naming action_context is in the process of being removed or is not replicated from the specified server.
+// The naming action_context is in the process of being erased or is not replicated from the specified server.
 //
 #define ERROR_DS_DRA_NO_REPLICA          8452L
 
@@ -17354,7 +17354,7 @@
 //
 // MessageText:
 //
-// A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be removed to restore the system to a consistent state.
+// A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be erased to restore the system to a consistent state.
 //
 #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491L
 
@@ -20155,7 +20155,7 @@
 //
 // MessageText:
 //
-// Cannot remove a directory that is not empty.
+// Cannot erase a directory that is not empty.
 //
 #define WSAENOTEMPTY                     10066L
 
@@ -25618,7 +25618,7 @@
 //
 // MessageText:
 //
-// Not all the objects requested could be removed
+// Not all the objects requested could be erased
 //
 #define EVENT_E_NOT_ALL_REMOVED          _HRESULT_TYPEDEF_(0x8004020BL)
 
@@ -29045,7 +29045,7 @@
 //
 // MessageText:
 //
-// The SID filtering operation removed all SIDs.
+// The SID filtering operation erased all SIDs.
 //
 #define ERROR_ALL_SIDS_FILTERED          _HRESULT_TYPEDEF_(0xC0090002L)
 
@@ -32671,7 +32671,7 @@
 //
 // MessageText:
 //
-// The operation Cannot be performed because the device interface has been removed from the system.
+// The operation Cannot be performed because the device interface has been erased from the system.
 //
 #define SPAPI_E_DEVICE_INTERFACE_REMOVED _HRESULT_TYPEDEF_(0x800F021CL)
 
@@ -32869,7 +32869,7 @@
 //
 // MessageText:
 //
-// The device could not be dynamically removed.
+// The device could not be dynamically erased.
 //
 #define SPAPI_E_CANT_REMOVE_DEVINST      _HRESULT_TYPEDEF_(0x800F0232L)
 
@@ -33628,7 +33628,7 @@
 //
 // MessageText:
 //
-// Power has been removed from the smart CArd, so that further communiCAtion is not possible.
+// Power has been erased from the smart CArd, so that further communiCAtion is not possible.
 //
 #define SCARD_W_UNPOWERED_CARD           _HRESULT_TYPEDEF_(0x80100067L)
 
@@ -33646,7 +33646,7 @@
 //
 // MessageText:
 //
-// The smart CArd has been removed, so that further communiCAtion is not possible.
+// The smart CArd has been erased, so that further communiCAtion is not possible.
 //
 #define SCARD_W_REMOVED_CARD             _HRESULT_TYPEDEF_(0x80100069L)
 
@@ -34725,7 +34725,7 @@
 //
 // MessageText:
 //
-// The Base AppliCAtion Partition exists in all partition sets and Cannot be removed.
+// The Base AppliCAtion Partition exists in all partition sets and Cannot be erased.
 //
 #define COMADMIN_E_AXISPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
 
@@ -34868,7 +34868,7 @@
 //
 // MessageText:
 //
-// The filter must cleanup any operation specific action_context at this time because it is being removed from the system before the operation is completed by the lower drivers.
+// The filter must cleanup any operation specific action_context at this time because it is being erased from the system before the operation is completed by the lower drivers.
 //
 #define ERROR_FLT_POST_OPERATION_CLEANUP _HRESULT_TYPEDEF_(0x801F0009L)
 
@@ -36651,7 +36651,7 @@
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed this OPM video output because the operating system's state changed. This error typically occurs because the monitor PDO associated with this video output was removed, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
+// The operating system asynchronously destroyed this OPM video output because the operating system's state changed. This error typically occurs because the monitor PDO associated with this video output was erased, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
 //
 #define ERROR_GRAPHICS_OPM_VIDEO_OUTPUT_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026251AL)
 
@@ -36843,7 +36843,7 @@
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
+// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was erased, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
 //
 #define ERROR_GRAPHICS_MONITOR_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026258DL)
 
@@ -39008,7 +39008,7 @@
 //
 // MessageText:
 //
-// A required TPM measurement is missing. If there is a bootable CD or DVD in your computer, remove it, restart the computer, and turn on BitLocker again. If the problem persists, ensure the master boot record is up to date.
+// A required TPM measurement is missing. If there is a bootable CD or DVD in your computer, erase it, restart the computer, and turn on BitLocker again. If the problem persists, ensure the master boot record is up to date.
 //
 #define FVE_E_NO_BOOTSECTOR_METRIC       _HRESULT_TYPEDEF_(0x80310004L)
 
@@ -39377,7 +39377,7 @@
 //
 // MessageText:
 //
-// The drive encryption algorithm and key Cannot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, remove the previous encryption and then turn on BitLocker.
+// The drive encryption algorithm and key Cannot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, erase the previous encryption and then turn on BitLocker.
 //
 #define FVE_E_CANNOT_SET_FVEK_ENCRYPTED  _HRESULT_TYPEDEF_(0x8031002DL)
 
@@ -41246,7 +41246,7 @@
 //
 // MessageText:
 //
-// At attempt was made to remove a multiCAst address that was never added.
+// At attempt was made to erase a multiCAst address that was never added.
 //
 #define ERROR_NDIS_MULTICAST_NOT_FOUND   _NDIS_ERROR_TYPEDEF_(0x8034000BL)
 
@@ -41336,7 +41336,7 @@
 //
 // MessageText:
 //
-// The network interface has been removed.
+// The network interface has been erased.
 //
 #define ERROR_NDIS_ADAPTER_REMOVED       _NDIS_ERROR_TYPEDEF_(0x80340018L)
 
@@ -41354,7 +41354,7 @@
 //
 // MessageText:
 //
-// An attempt was made to remove a token ring group address that is in use by other components.
+// An attempt was made to erase a token ring group address that is in use by other components.
 //
 #define ERROR_NDIS_GROUP_ADDRESS_IN_USE  _NDIS_ERROR_TYPEDEF_(0x8034001AL)
 
@@ -42319,7 +42319,7 @@
 //
 // MessageText:
 //
-// The specified disk(s) Cannot be removed since it is the last remaining voter.
+// The specified disk(s) Cannot be erased since it is the last remaining voter.
 //
 #define ERROR_VOLMGR_DISK_LAST_VOTER     _NDIS_ERROR_TYPEDEF_(0xC038000AL)
 
@@ -42760,7 +42760,7 @@
 //
 // MessageText:
 //
-// The specified plex is the last active plex in the volume. The plex Cannot be removed or else the volume will go offline.
+// The specified plex is the last active plex in the volume. The plex Cannot be erased or else the volume will go offline.
 //
 #define ERROR_VOLMGR_PLEX_LAST_ACTIVE    _NDIS_ERROR_TYPEDEF_(0xC038003BL)
 

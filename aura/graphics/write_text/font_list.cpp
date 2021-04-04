@@ -884,7 +884,7 @@ namespace write_text
       else
       {
 
-         // Remove absent/removed fonts
+         // Remove absent/erased fonts
 
          __pointer(font_list_item) pitem;
 
@@ -898,7 +898,7 @@ namespace write_text
             if (pitem && pitem->m_strName.has_char() && !m_pfontenumeration->has_font_name(pitem->m_strName))
             {
 
-               plistdata->remove_at(iItem);
+               plistdata->erase_at(iItem);
 
             }
             else
@@ -1248,7 +1248,7 @@ namespace write_text
             && !m_pfontenumeration->has_font_name(pitem->m_strName))
          {
 
-            //plistdata->remove_at(i);
+            //plistdata->erase_at(i);
 
             //iFontCount = plistdata->get_count();
 

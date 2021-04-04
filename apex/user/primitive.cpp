@@ -90,7 +90,7 @@ namespace user
 //                  array[j]))
 //            {
 //               array[i] = rectangle;
-//               array.remove_at(j);
+//               array.erase_at(j);
 //               goto Restart;
 //
 //            }
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   bool primitive::remove_prodevian(::object * pobject)
+   bool primitive::erase_prodevian(::object * pobject)
    {
 
       return false;
@@ -2910,7 +2910,7 @@ namespace user
    //}
 
 
-   //bool primitive::mouse_hover_remove(::user::interaction * pinterface)
+   //bool primitive::mouse_hover_erase(::user::interaction * pinterface)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3915,12 +3915,12 @@ namespace user
    //}
 
 
-   //void primitive::remove_thread(::thread * pthread)
+   //void primitive::erase_thread(::thread * pthread)
    //{
 
    //   synchronous_lock synchronouslock(mutex());
 
-   //   m_threadptra.remove(pthread);
+   //   m_threadptra.erase(pthread);
 
    //}
 
@@ -4250,7 +4250,7 @@ namespace user
    }
 
 
-   ::e_status primitive::remove_keyboard_focus()
+   ::e_status primitive::erase_keyboard_focus()
    {
 
       return ::error_interface_only;

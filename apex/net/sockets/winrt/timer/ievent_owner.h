@@ -49,8 +49,8 @@ namespace sockets
       long AddEvent(long sec,long usec);
       /** clear all events scheduled by this owner. */
       void ClearEvents();
-      /** remove one event scheduled by this owner.
-         \param eid Event ID to remove */
+      /** erase one event scheduled by this owner.
+         \param eid Event ID to erase */
       void RemoveEvent(long eid);
       /** Event callback will fire when time is up. */
       virtual void OnEvent(int) = 0;

@@ -52,9 +52,9 @@ namespace fs
 
       }
 
-      m_spafsdata.remove_all();
+      m_spafsdata.erase_all();
 
-      m_fsdatamap.remove_all();
+      m_fsdatamap.erase_all();
       
       ::fs::data::finalize();
 
@@ -68,7 +68,7 @@ namespace fs
 
       single_lock synchronouslock(mutex(), true);
 
-      m_fsdatamap.remove_all();
+      m_fsdatamap.erase_all();
 
       ::file::listing straFsPath;
 

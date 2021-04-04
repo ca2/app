@@ -64,7 +64,7 @@ Modified 07/2002
 By Ralph Giles <giles@artofcode.com>
 Still 100% public domain
 modified for use with stdint types, autoconf
-code cleanup, removed attribution comments
+code cleanup, erased attribution comments
 switched SHA1Final() argument order for consistency
 use SHA1_ prefix for public api
 move public api to sha1.h

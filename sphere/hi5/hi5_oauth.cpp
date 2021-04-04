@@ -596,7 +596,7 @@ namespace hi5
          string str( "" );
 
          /* Push key-value pairs to a list of strings */
-         keyValueList.remove_all();
+         keyValueList.erase_all();
 
          for(auto property : rawParamMap)
          {

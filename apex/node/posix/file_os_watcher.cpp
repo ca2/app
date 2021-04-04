@@ -55,7 +55,7 @@ namespace file
 
       //::parallelization::post_quit_and_wait(m_pthread, seconds(15));
 
-      m_watchmap.remove_all();
+      m_watchmap.erase_all();
 
    }
 

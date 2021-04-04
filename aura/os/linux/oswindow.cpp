@@ -698,7 +698,7 @@ void oswindow_data::post_nc_destroy()
    if(!::is_null(this))
    {
 
-      oswindow_remove(display(), window());
+      oswindow_erase(display(), window());
 
    }
 

@@ -1180,9 +1180,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      m_straList.remove_all();
+      m_straList.erase_all();
 
-      m_straValue.remove_all();
+      m_straValue.erase_all();
 
       m_itemCurrent = -1;
       m_itemHover = -1;

@@ -56,7 +56,7 @@ namespace sockets
 
          });
 
-      m_eventplist.remove_all();
+      m_eventplist.erase_all();
 
    }
 
@@ -224,7 +224,7 @@ namespace sockets
 
          }
 
-         m_eventplist.remove_all();
+         m_eventplist.erase_all();
       }
       while (repeat);
    }

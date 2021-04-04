@@ -12,7 +12,7 @@ namespace parallelization
    protected:
 
       matter_array         m_mattera;
-      void remove(matter* pmatter);
+      void erase(matter* pmatter);
 
    public:
 

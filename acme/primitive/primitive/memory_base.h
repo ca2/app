@@ -134,7 +134,7 @@ public:
    virtual void reserve(memsize dwNewLength);
 
 
-   virtual void remove_offset();
+   virtual void erase_offset();
 
    //virtual void random_bytes(::count c = -1);
 

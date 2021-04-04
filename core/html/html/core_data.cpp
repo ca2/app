@@ -206,7 +206,7 @@ namespace html
    void core_data::destroy()
    {
 
-      m_focusptra.remove_all();
+      m_focusptra.erase_all();
 
       if (m_pelement)
       {
@@ -227,7 +227,7 @@ namespace html
    void core_data::delete_implementation()
    {
 
-      m_focusptra.remove_all();
+      m_focusptra.erase_all();
 
       m_pelement->delete_implementation(this);
 
@@ -299,7 +299,7 @@ namespace html
 
       m_pgraphics = pgraphics;
 
-      m_focusptra.remove_all();
+      m_focusptra.erase_all();
 
       m_pelement->implement(this);
 
@@ -455,15 +455,15 @@ namespace html
 
       m_bHasChar = false;
 
-      m_cxMax.remove_all();
+      m_cxMax.erase_all();
 
       m_cxMax.add(0.f);
 
-      m_cxa.remove_all();
+      m_cxa.erase_all();
 
       m_cxa.add(0.f);
 
-      m_cya.remove_all();
+      m_cya.erase_all();
 
       m_cya.add(0.f);
 
@@ -487,10 +487,10 @@ namespace html
    void core_data::layout_state3::reset()
    {
 
-      //      m_cyStack.remove_all();
-      m_yParent.remove_all();
-      m_cya.remove_all();
-      m_xParent.remove_all();
+      //      m_cyStack.erase_all();
+      m_yParent.erase_all();
+      m_cya.erase_all();
+      m_xParent.erase_all();
       m_x = 0.f;
 
       m_iBody = 0;

@@ -151,7 +151,7 @@ void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrent
    if (iFind >= 0)
    {
 
-      m_pobjrefdbg->m_itema.remove_at(iFind);
+      m_pobjrefdbg->m_itema.erase_at(iFind);
 
    }
 

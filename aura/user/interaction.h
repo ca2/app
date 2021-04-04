@@ -422,7 +422,7 @@ namespace user
       virtual enum_control_type get_control_type() const override;
       void set_control_type(enum_control_type e_control);
       void add_function(enum_control_function enum_control_function);
-      void remove_function(enum_control_function enum_control_function);
+      void erase_function(enum_control_function enum_control_function);
       bool has_function(enum_control_function enum_control_function);
       enum_control_data_type get_data_type();
       void set_data_type(enum_control_data_type enum_control_data_type);
@@ -705,10 +705,10 @@ namespace user
 
 
       inline bool set_prodevian() { return add_prodevian(this); }
-      inline bool clear_prodevian() { return remove_prodevian(this); }
+      inline bool clear_prodevian() { return erase_prodevian(this); }
 
       virtual bool add_prodevian(::object* pobject) override;
-      virtual bool remove_prodevian(::object* pobject) override;
+      virtual bool erase_prodevian(::object* pobject) override;
       inline bool has_prodevian() const noexcept;
 
 
@@ -807,7 +807,7 @@ namespace user
 
 
       virtual bool mouse_hover_add(::user::interaction* pinterface);
-      virtual bool mouse_hover_remove(::user::interaction* pinterface);
+      virtual bool mouse_hover_erase(::user::interaction* pinterface);
 
       virtual i32 get_wheel_scroll_delta();
 
@@ -1603,8 +1603,8 @@ namespace user
 
 
 
-      virtual void on_remove_child(::user::interaction* pinteraction);
-      virtual void on_remove_place_holder_child(::user::interaction* pinteraction);
+      virtual void on_erase_child(::user::interaction* pinteraction);
+      virtual void on_erase_place_holder_child(::user::interaction* pinteraction);
       virtual void on_hide_child(::user::interaction* pinteraction);
       virtual void on_hide_place_holder_child(::user::interaction* pinteraction);
 
@@ -1638,10 +1638,10 @@ namespace user
 
       //virtual ::user::primitive * get_keyboard_focus();
       //virtual ::e_status set_keyboard_focus(::user::primitive* pprimitive);
-      //virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive);
+      //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
 
       //virtual ::e_status set_keyboard_focus() override;
-      //virtual ::e_status remove_keyboard_focus() override;
+      //virtual ::e_status erase_keyboard_focus() override;
       //virtual ::e_status clear_keyboard_focus() override;
 
 
@@ -1687,7 +1687,7 @@ namespace user
 
       virtual void redraw_add(::object * pobject);
 
-      virtual void redraw_remove(::object * pobject);
+      virtual void redraw_erase(::object * pobject);
 
       virtual bool has_redraw();
 

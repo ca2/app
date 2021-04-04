@@ -79,8 +79,8 @@
 //////CLASS_DECL_APEX oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
 ////CLASS_DECL_APEX oswindow_data * oswindow_get(Window window);
 ////CLASS_DECL_APEX oswindow oswindow_defer_get(Window w);
-////CLASS_DECL_APEX bool oswindow_remove(Display * pdisplay, Window window);
-////CLASS_DECL_APEX bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+////CLASS_DECL_APEX bool oswindow_erase(Display * pdisplay, Window window);
+////CLASS_DECL_APEX bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 ////
 //
 //

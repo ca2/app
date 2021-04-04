@@ -635,8 +635,8 @@ auto tickStart = ::millis::now();
 
       /*
 
-      straParam.remove_all();
-      argv.remove_all();
+      straParam.erase_all();
+      argv.erase_all();
       straParam.explode_command_line(pszCmdLineParam, &argv);
 
       tool = (char * )argv[0];

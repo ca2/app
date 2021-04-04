@@ -212,7 +212,7 @@ namespace multimedia
       void device::map_controls()
       {
 
-         m_mapIDToControl.remove_all();
+         m_mapIDToControl.erase_all();
 
          for(i32 i = 0; i < m_mixerdestinationa.get_size(); i++)
          {
@@ -240,7 +240,7 @@ namespace multimedia
       void device::map_lines()
       {
 
-         m_mapIDToLine.remove_all();
+         m_mapIDToLine.erase_all();
 
          for(i32 i = 0; i < m_mixerdestinationa.get_size(); i++)
          {
@@ -299,7 +299,7 @@ namespace multimedia
 
       void device::MapDlgCtrlIDToControls()
       {
-         m_mapDlgItemIDToControl.remove_all();
+         m_mapDlgItemIDToControl.erase_all();
 
          ::multimedia::audio_mixer::destination_array & destinationa = m_mixerdestinationa;
          for(i32 i = 0; i < destinationa.get_size(); i++)
@@ -341,13 +341,13 @@ namespace multimedia
 
             mmrc = mmsystem::translate(mixerClose(m_hMixer));
 
-            m_mixerdestinationa.remove_all();
+            m_mixerdestinationa.erase_all();
 
-            m_mapIDToControl.remove_all();
+            m_mapIDToControl.erase_all();
 
-            m_mapDlgItemIDToControl.remove_all();
+            m_mapDlgItemIDToControl.erase_all();
 
-            m_mapIDToLine.remove_all();
+            m_mapIDToLine.erase_all();
 
             m_hMixer = nullptr;
 

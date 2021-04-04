@@ -546,7 +546,7 @@ namespace linux
 
          synchronous_lock synchronouslock(mutex());
 
-         m_iaSize.remove_all();
+         m_iaSize.erase_all();
 
          m_iaSize.add(16);
 
@@ -882,7 +882,7 @@ namespace linux
 //
 //               image_key * pkey = m_keyptra.first();
 //
-//               m_keyptra.remove_at(0);
+//               m_keyptra.erase_at(0);
 //
 //               synchronouslock.unlock();
 //

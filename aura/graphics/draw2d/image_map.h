@@ -49,7 +49,7 @@ public:
       while (get_count() > m_iLimitCount)
       {
 
-         remove_bigger();
+         erase_bigger();
 
       }
 
@@ -70,7 +70,7 @@ public:
    }
 
 
-   void remove_bigger()
+   void erase_bigger()
    {
 
       image_header keyFind;
@@ -98,13 +98,13 @@ public:
       if (uAreaMax > 0)
       {
 
-         remove_key(keyFind);
+         erase_key(keyFind);
 
       }
       else
       {
 
-         remove_key(get_start()->element1());
+         erase_key(get_start()->element1());
 
       }
 

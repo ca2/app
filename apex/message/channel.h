@@ -30,11 +30,11 @@ public:
 
    virtual ::e_status finalize() override;
 
-   virtual void remove_receiver(::object * preceiver);
+   virtual void erase_receiver(::object * preceiver);
 
    virtual void transfer_receiver(::message::handler_map & handlermap, ::object * preceiver);
 
-   virtual void remove_all_routes();
+   virtual void erase_all_routes();
 
 //   template < typename RECEIVER, typename MESSAGE >
 //   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);

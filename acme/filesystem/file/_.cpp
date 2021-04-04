@@ -198,7 +198,7 @@ CLASS_DECL_ACME bool solve_relative_inline(string & str, bool & bUrl, bool & bOn
 
                iSlashCount--;
 
-               iPos--; // remove trailing slash
+               iPos--; // erase trailing slash
 
             }
 
@@ -220,13 +220,13 @@ CLASS_DECL_ACME bool solve_relative_inline(string & str, bool & bUrl, bool & bOn
                if (iSlashCount >= 2)
                {
 
-                  iPos -= 2; // remove the dot and and trailing slash
+                  iPos -= 2; // erase the dot and and trailing slash
 
                }
                else
                {
 
-                  iPos--;// remove the dot
+                  iPos--;// erase the dot
 
                }
 

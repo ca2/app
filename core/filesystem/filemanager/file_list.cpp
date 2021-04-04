@@ -594,7 +594,7 @@ namespace filemanager
 
          auto pmenu = pitema->element_at(pmenucommandui->m_iIndex)->m_pmenu;
 
-         pitema->remove_at(pcommand->m_iIndex);
+         pitema->erase_at(pcommand->m_iIndex);
 
          index iStartIndex = pcommand->m_iIndex;
 
@@ -987,7 +987,7 @@ namespace filemanager
 
          synchronous_lock lock(fs_list()->mutex());
 
-         fs_list()->m_itema.remove_all();
+         fs_list()->m_itema.erase_all();
 
          for (i32 i = 0; i < stra.get_size(); i++)
          {
@@ -1062,7 +1062,7 @@ namespace filemanager
 
       iSize = 0;
 
-      m_pathaStrictOrder.remove_all();
+      m_pathaStrictOrder.erase_all();
 
       _001OnUpdateItemCount();
 
@@ -1145,7 +1145,7 @@ namespace filemanager
             index find = m_pathaStrictOrder.find_first(str);
             if(find < 0)
             {
-            iaDisplayToStrictNew.remove_b(strictOld);
+            iaDisplayToStrictNew.erase_b(strictOld);
             }
             }*/
             // segundo, reordena conforme a

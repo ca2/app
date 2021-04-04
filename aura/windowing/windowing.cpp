@@ -486,10 +486,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::remove_window(::windowing::window * pwindow)
+   ::e_status windowing::erase_window(::windowing::window * pwindow)
    {
 
-      //if (!m_windowmap.remove_key(pwindow->get_os_data()))
+      //if (!m_windowmap.erase_key(pwindow->get_os_data()))
       //{
 
         // return ::error_failed;

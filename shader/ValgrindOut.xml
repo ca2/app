@@ -547,7 +547,7 @@
     <frame>
       <ip>0x582A88E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -2529,7 +2529,7 @@
     <frame>
       <ip>0x5CB78B8</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, var, var const&amp;, property&gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, var, var const&amp;, property&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -3527,7 +3527,7 @@
     <frame>
       <ip>0x582A88E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -8679,7 +8679,7 @@
     <frame>
       <ip>0x586C2B5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>array_base&lt;pointer&lt;message::route&gt;, pointer&lt;message::route&gt; const&amp;, allocator::def&lt;pointer&lt;message::route&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;message::route&gt;, pointer&lt;message::route&gt; const&amp;, allocator::def&lt;pointer&lt;message::route&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -8878,7 +8878,7 @@
     <frame>
       <ip>0x5867E4F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -9005,7 +9005,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -9180,7 +9180,7 @@
     <frame>
       <ip>0x5ADF662</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::remove_assoc(map_association&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
+      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::erase_assoc(map_association&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -9188,7 +9188,7 @@
     <frame>
       <ip>0x5ADB39E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::remove_key(unsigned long)</fn>
+      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::erase_key(unsigned long)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1474</line>
@@ -12597,7 +12597,7 @@
     <frame>
       <ip>0x5AA68D9</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>array_base&lt;pointer&lt;draw2d::path::matter&gt;, pointer&lt;draw2d::path::matter&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::matter&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;draw2d::path::matter&gt;, pointer&lt;draw2d::path::matter&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::path::matter&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -14523,7 +14523,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -14531,7 +14531,7 @@
     <frame>
       <ip>0x58CE8DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>channel::remove_all_routes()</fn>
+      <fn>channel::erase_all_routes()</fn>
       <dir>/xcore/app/aura/message</dir>
       <file>message_sender.cpp</file>
       <line>143</line>
@@ -14929,7 +14929,7 @@
     <frame>
       <ip>0x5DA014E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::remove_assoc(map_association&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
+      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::erase_assoc(map_association&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -14937,7 +14937,7 @@
     <frame>
       <ip>0x5D9F29E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::remove_key(oswindow_data*)</fn>
+      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::erase_key(oswindow_data*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1474</line>
@@ -14945,7 +14945,7 @@
     <frame>
       <ip>0x5D9E9B8</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>oswindow_remove_impl(user::interaction_impl*)</fn>
+      <fn>oswindow_erase_impl(user::interaction_impl*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_windowing.cpp</file>
       <line>85</line>
@@ -15128,7 +15128,7 @@
     <frame>
       <ip>0x5DA0210</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::remove_assoc(map_association&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
+      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::erase_assoc(map_association&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -15136,7 +15136,7 @@
     <frame>
       <ip>0x5D9F3A0</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::remove_key(user::interaction_impl*)</fn>
+      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::erase_key(user::interaction_impl*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1474</line>
@@ -15144,7 +15144,7 @@
     <frame>
       <ip>0x5D9EA11</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>oswindow_remove_impl(user::interaction_impl*)</fn>
+      <fn>oswindow_erase_impl(user::interaction_impl*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_windowing.cpp</file>
       <line>107</line>
@@ -15319,7 +15319,7 @@
     <frame>
       <ip>0x5926942</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>oswindow_remove(_XDisplay*, unsigned long)</fn>
+      <fn>oswindow_erase(_XDisplay*, unsigned long)</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_windowing.cpp</file>
       <line>250</line>
@@ -15598,7 +15598,7 @@
     <frame>
       <ip>0x120AE4DB</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>array_base&lt;pointer&lt;user::impact_system&gt;, pointer&lt;user::impact_system&gt; const&amp;, allocator::def&lt;pointer&lt;user::impact_system&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;user::impact_system&gt;, pointer&lt;user::impact_system&gt; const&amp;, allocator::def&lt;pointer&lt;user::impact_system&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -15797,7 +15797,7 @@
     <frame>
       <ip>0x120AE4DB</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>array_base&lt;pointer&lt;user::impact_system&gt;, pointer&lt;user::impact_system&gt; const&amp;, allocator::def&lt;pointer&lt;user::impact_system&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;user::impact_system&gt;, pointer&lt;user::impact_system&gt; const&amp;, allocator::def&lt;pointer&lt;user::impact_system&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -16115,7 +16115,7 @@
     <frame>
       <ip>0x5CC6A50</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;long, long, long, long, pair&lt;long, long, long, long&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;long, long, long, long, pair&lt;long, long, long, long&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -17376,7 +17376,7 @@
     <frame>
       <ip>0x12006153</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;experience::experience&gt;, pointer&lt;experience::experience&gt; const&amp;, pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;experience::experience&gt;, pointer&lt;experience::experience&gt; const&amp;, pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -17503,7 +17503,7 @@
     <frame>
       <ip>0x12006160</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;experience::experience&gt;, pointer&lt;experience::experience&gt; const&amp;, pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;experience::experience&gt;, pointer&lt;experience::experience&gt; const&amp;, pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -18498,7 +18498,7 @@
     <frame>
       <ip>0xD9CF550</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, simpledb::item, simpledb::item const&amp;, pair&lt;string, simpledb::item, string const&amp;, simpledb::item const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, simpledb::item, simpledb::item const&amp;, pair&lt;string, simpledb::item, string const&amp;, simpledb::item const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -20008,7 +20008,7 @@
     <frame>
       <ip>0xDA072DA</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, pair&lt;string, pointer&lt;fs::data&gt;, string const&amp;, pointer&lt;fs::data&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, pair&lt;string, pointer&lt;fs::data&gt;, string const&amp;, pointer&lt;fs::data&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -20287,7 +20287,7 @@
     <frame>
       <ip>0xDA082F3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>array_base&lt;pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, allocator::def&lt;pointer&lt;fs::data&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, allocator::def&lt;pointer&lt;fs::data&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -20486,7 +20486,7 @@
     <frame>
       <ip>0xDA082F3</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>array_base&lt;pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, allocator::def&lt;pointer&lt;fs::data&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;fs::data&gt;, pointer&lt;fs::data&gt; const&amp;, allocator::def&lt;pointer&lt;fs::data&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -22197,7 +22197,7 @@
     <frame>
       <ip>0x5D8E28C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_double, user::e_double, double, double, pair&lt;user::e_double, double, user::e_double, double&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -22595,7 +22595,7 @@
     <frame>
       <ip>0x5D8E71C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_int, user::e_int, int, int, pair&lt;user::e_int, int, user::e_int, int&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_int, user::e_int, int, int, pair&lt;user::e_int, int, user::e_int, int&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -22993,7 +22993,7 @@
     <frame>
       <ip>0x5D8EBAC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_rect, user::e_rect, user::style_rect, user::style_rect const&amp;, pair&lt;user::e_rect, user::style_rect, user::e_rect, user::style_rect const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_rect, user::e_rect, user::style_rect, user::style_rect const&amp;, pair&lt;user::e_rect, user::style_rect, user::e_rect, user::style_rect const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -23391,7 +23391,7 @@
     <frame>
       <ip>0x5D8F9AA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_font, user::e_font, pointer&lt;draw2d::font&gt;, pointer&lt;draw2d::font&gt; const&amp;, pair&lt;user::e_font, pointer&lt;draw2d::font&gt;, user::e_font, pointer&lt;draw2d::font&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_font, user::e_font, pointer&lt;draw2d::font&gt;, pointer&lt;draw2d::font&gt; const&amp;, pair&lt;user::e_font, pointer&lt;draw2d::font&gt;, user::e_font, pointer&lt;draw2d::font&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -23789,7 +23789,7 @@
     <frame>
       <ip>0x5D9009A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::e_color, user::e_color, unsigned int, unsigned int, pair&lt;user::e_color, unsigned int, user::e_color, unsigned int&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -24187,7 +24187,7 @@
     <frame>
       <ip>0x5822B18</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;user::theme&gt;, pointer&lt;user::theme&gt; const&amp;, pair&lt;string, pointer&lt;user::theme&gt;, string const&amp;, pointer&lt;user::theme&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;user::theme&gt;, pointer&lt;user::theme&gt; const&amp;, pair&lt;string, pointer&lt;user::theme&gt;, string const&amp;, pointer&lt;user::theme&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -24585,7 +24585,7 @@
     <frame>
       <ip>0x1214A467</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;user::shell::image_key, int, user::shell::image_key const&amp;, int&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;user::shell::image_key, int, user::shell::image_key const&amp;, int&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -24593,7 +24593,7 @@
     <frame>
       <ip>0x12148404</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map&lt;user::shell::image_key, user::shell::image_key const&amp;, int, int, pair&lt;user::shell::image_key, int, user::shell::image_key const&amp;, int&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;user::shell::image_key, user::shell::image_key const&amp;, int, int, pair&lt;user::shell::image_key, int, user::shell::image_key const&amp;, int&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -25182,7 +25182,7 @@
     <frame>
       <ip>0x1223C64A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map&lt;id, id const&amp;, user::impact_system*, user::impact_system* const&amp;, pair&lt;id, user::impact_system*, id const&amp;, user::impact_system* const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, user::impact_system*, user::impact_system* const&amp;, pair&lt;id, user::impact_system*, id const&amp;, user::impact_system* const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -27045,7 +27045,7 @@
     <frame>
       <ip>0x5AB2F15</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>array_base&lt;pointer&lt;draw2d::font_enum_item&gt;, pointer&lt;draw2d::font_enum_item&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::font_enum_item&gt; &gt; &gt;::remove_all()</fn>
+      <fn>array_base&lt;pointer&lt;draw2d::font_enum_item&gt;, pointer&lt;draw2d::font_enum_item&gt; const&amp;, allocator::def&lt;pointer&lt;draw2d::font_enum_item&gt; &gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_array_impl.inl</file>
       <line>110</line>
@@ -27841,7 +27841,7 @@
     <frame>
       <ip>0x5AAC07F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;e_cursor, e_cursor, pointer&lt;draw2d::cursor&gt;, pointer&lt;draw2d::cursor&gt; const&amp;, pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;e_cursor, e_cursor, pointer&lt;draw2d::cursor&gt;, pointer&lt;draw2d::cursor&gt; const&amp;, pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -27968,7 +27968,7 @@
     <frame>
       <ip>0x5AAC08C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;e_cursor, e_cursor, pointer&lt;draw2d::cursor&gt;, pointer&lt;draw2d::cursor&gt; const&amp;, pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;e_cursor, e_cursor, pointer&lt;draw2d::cursor&gt;, pointer&lt;draw2d::cursor&gt; const&amp;, pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -28764,7 +28764,7 @@
     <frame>
       <ip>0x582A65A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;acme::library&gt;, pointer&lt;acme::library&gt; const&amp;, pair&lt;string, pointer&lt;acme::library&gt;, string const&amp;, pointer&lt;acme::library&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;acme::library&gt;, pointer&lt;acme::library&gt; const&amp;, pair&lt;string, pointer&lt;acme::library&gt;, string const&amp;, pointer&lt;acme::library&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -29162,7 +29162,7 @@
     <frame>
       <ip>0xDA1195E</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, char, char, pair&lt;string, char, string const&amp;, char&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, char, char, pair&lt;string, char, string const&amp;, char&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -29560,7 +29560,7 @@
     <frame>
       <ip>0xDA11310</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>map&lt;string, string const&amp;, unsigned int, unsigned int const&amp;, pair&lt;string, unsigned int, string const&amp;, unsigned int const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, unsigned int, unsigned int const&amp;, pair&lt;string, unsigned int, string const&amp;, unsigned int const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/axis/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -30022,7 +30022,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -30157,7 +30157,7 @@
     <frame>
       <ip>0x582A774</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -30420,7 +30420,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -30619,7 +30619,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -30818,7 +30818,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -31017,7 +31017,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -31216,7 +31216,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -31415,7 +31415,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -31614,7 +31614,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -31813,7 +31813,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -32012,7 +32012,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -32211,7 +32211,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -32410,7 +32410,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -32609,7 +32609,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -32808,7 +32808,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -33007,7 +33007,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -33206,7 +33206,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -33405,7 +33405,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -33604,7 +33604,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -33803,7 +33803,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34002,7 +34002,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34201,7 +34201,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34400,7 +34400,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34599,7 +34599,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34798,7 +34798,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -34997,7 +34997,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -35196,7 +35196,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -35395,7 +35395,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -35594,7 +35594,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -35793,7 +35793,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -35992,7 +35992,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -36191,7 +36191,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -36390,7 +36390,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -36589,7 +36589,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -36788,7 +36788,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -36987,7 +36987,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -37186,7 +37186,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -37385,7 +37385,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -37584,7 +37584,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -37783,7 +37783,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -37982,7 +37982,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -38181,7 +38181,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -38380,7 +38380,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -38579,7 +38579,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -38778,7 +38778,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -38977,7 +38977,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -39176,7 +39176,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -39375,7 +39375,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -39574,7 +39574,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -39773,7 +39773,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -39972,7 +39972,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -40171,7 +40171,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -40370,7 +40370,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -40569,7 +40569,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -40768,7 +40768,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -40967,7 +40967,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -41166,7 +41166,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -41365,7 +41365,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -41564,7 +41564,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -41763,7 +41763,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -41962,7 +41962,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -42161,7 +42161,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -42360,7 +42360,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -42559,7 +42559,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -42758,7 +42758,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -42957,7 +42957,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -43156,7 +43156,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -43355,7 +43355,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -43554,7 +43554,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -43753,7 +43753,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -43952,7 +43952,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -44151,7 +44151,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -44350,7 +44350,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -44549,7 +44549,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -44748,7 +44748,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -44947,7 +44947,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -45146,7 +45146,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -45345,7 +45345,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -45544,7 +45544,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -45743,7 +45743,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -45942,7 +45942,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -46141,7 +46141,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -46340,7 +46340,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -46539,7 +46539,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -46738,7 +46738,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -46937,7 +46937,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -47136,7 +47136,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -47335,7 +47335,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -47534,7 +47534,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -47733,7 +47733,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -47932,7 +47932,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -48131,7 +48131,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -48330,7 +48330,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -48529,7 +48529,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -48728,7 +48728,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -48927,7 +48927,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -49126,7 +49126,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -49325,7 +49325,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -49524,7 +49524,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -49723,7 +49723,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -49922,7 +49922,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -50121,7 +50121,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -50320,7 +50320,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -50519,7 +50519,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -50718,7 +50718,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -50917,7 +50917,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -51116,7 +51116,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -51315,7 +51315,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -51514,7 +51514,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -51713,7 +51713,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -51912,7 +51912,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -52111,7 +52111,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -52310,7 +52310,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -52509,7 +52509,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -52708,7 +52708,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -52907,7 +52907,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -53106,7 +53106,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -53305,7 +53305,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -53504,7 +53504,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -53703,7 +53703,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -53902,7 +53902,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -54101,7 +54101,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -54300,7 +54300,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -54499,7 +54499,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -54698,7 +54698,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -54897,7 +54897,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -55096,7 +55096,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -55295,7 +55295,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -55494,7 +55494,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -55693,7 +55693,7 @@
     <frame>
       <ip>0x582A767</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -55828,7 +55828,7 @@
     <frame>
       <ip>0x5846B7B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -55836,7 +55836,7 @@
     <frame>
       <ip>0x582A78E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;alloc_interface&gt;, pointer&lt;alloc_interface&gt; const&amp;, pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -56422,7 +56422,7 @@
     <frame>
       <ip>0x5846BEF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;string, string, string const&amp;, string const&amp;&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;string, string, string const&amp;, string const&amp;&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -56430,7 +56430,7 @@
     <frame>
       <ip>0x582A8A8</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -56620,7 +56620,7 @@
     <frame>
       <ip>0x582A88E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, string, string const&amp;, pair&lt;string, string, string const&amp;, string const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -56890,7 +56890,7 @@
     <frame>
       <ip>0x5D5DB05</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;user::language&gt;, pointer&lt;user::language&gt; const&amp;, pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;user::language&gt;, pointer&lt;user::language&gt; const&amp;, pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57016,7 +57016,7 @@
     <frame>
       <ip>0x5D5DB12</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, pointer&lt;user::language&gt;, pointer&lt;user::language&gt; const&amp;, pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, pointer&lt;user::language&gt;, pointer&lt;user::language&gt; const&amp;, pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57214,7 +57214,7 @@
     <frame>
       <ip>0x584DB3F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;id, string, id const&amp;, string const&amp;&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;id, string, id const&amp;, string const&amp;&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -57222,7 +57222,7 @@
     <frame>
       <ip>0x582FAE2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, string, string const&amp;, pair&lt;id, string, id const&amp;, string const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, string, string const&amp;, pair&lt;id, string, id const&amp;, string const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -57262,7 +57262,7 @@
     <frame>
       <ip>0x58301CC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57412,7 +57412,7 @@
     <frame>
       <ip>0x58301D9</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57452,7 +57452,7 @@
     <frame>
       <ip>0x583D96A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57610,7 +57610,7 @@
     <frame>
       <ip>0x584DBEB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -57618,7 +57618,7 @@
     <frame>
       <ip>0x58301F3</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_schema, aura::str_schema const&amp;, pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -57658,7 +57658,7 @@
     <frame>
       <ip>0x583D96A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -57808,7 +57808,7 @@
     <frame>
       <ip>0x583D977</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -58006,7 +58006,7 @@
     <frame>
       <ip>0x5858D15</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_dynamic_hash_table&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt;, 17&gt;::remove_all()</fn>
+      <fn>map_dynamic_hash_table&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt;, 17&gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>80</line>
@@ -58014,7 +58014,7 @@
     <frame>
       <ip>0x583D991</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, aura::str_locale, aura::str_locale const&amp;, pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1174</line>
@@ -59194,7 +59194,7 @@
     <frame>
       <ip>0x5839BC4</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, user::interaction*, user::interaction* const&amp;, pair&lt;id, user::interaction*, id const&amp;, user::interaction* const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, user::interaction*, user::interaction* const&amp;, pair&lt;id, user::interaction*, id const&amp;, user::interaction* const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -59670,7 +59670,7 @@
     <frame>
       <ip>0x583E7B5</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;long, long, pointer&lt;aura::session&gt;, pointer&lt;aura::session&gt; const&amp;, pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;long, long, pointer&lt;aura::session&gt;, pointer&lt;aura::session&gt; const&amp;, pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -59788,7 +59788,7 @@
     <frame>
       <ip>0x583E7C2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;long, long, pointer&lt;aura::session&gt;, pointer&lt;aura::session&gt; const&amp;, pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;long, long, pointer&lt;aura::session&gt;, pointer&lt;aura::session&gt; const&amp;, pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -60184,7 +60184,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -60192,7 +60192,7 @@
     <frame>
       <ip>0x58CE8DC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>channel::remove_all_routes()</fn>
+      <fn>channel::erase_all_routes()</fn>
       <dir>/xcore/app/aura/message</dir>
       <file>message_sender.cpp</file>
       <line>143</line>
@@ -60382,7 +60382,7 @@
     <frame>
       <ip>0x5867E5C</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;id, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;, pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -60984,7 +60984,7 @@
     <frame>
       <ip>0x594A342</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>osdisplay_dataptra::remove_all()</fn>
+      <fn>osdisplay_dataptra::erase_all()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_osdisplay.h</file>
       <line>187</line>
@@ -61166,7 +61166,7 @@
     <frame>
       <ip>0x594A34F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>osdisplay_dataptra::remove_all()</fn>
+      <fn>osdisplay_dataptra::erase_all()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_osdisplay.h</file>
       <line>187</line>
@@ -61744,7 +61744,7 @@
     <frame>
       <ip>0x594AA51</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>oswindow_dataptra::remove_all()</fn>
+      <fn>oswindow_dataptra::erase_all()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_oswindow.h</file>
       <line>296</line>
@@ -63484,7 +63484,7 @@
     <frame>
       <ip>0x5957458</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;unsigned long, unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, pair&lt;unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;unsigned long, unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, pair&lt;unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*, unsigned long, address_array&lt;void*, comparable_array&lt;void*, void*, comparable_eq_array&lt;void*, void*, raw_array&lt;void*, void*, allocator::zero&lt;void*&gt; &gt; &gt; &gt; &gt;*&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>
@@ -64346,7 +64346,7 @@
     <frame>
       <ip>0x58585EC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;string, string const&amp;, acme::library* (*)(object*), acme::library* (* const&amp;)(object*), pair&lt;string, acme::library* (*)(object*), string const&amp;, acme::library* (* const&amp;)(object*)&gt; &gt;::remove_all()</fn>
+      <fn>map&lt;string, string const&amp;, acme::library* (*)(object*), acme::library* (* const&amp;)(object*), pair&lt;string, acme::library* (*)(object*), string const&amp;, acme::library* (* const&amp;)(object*)&gt; &gt;::erase_all()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1168</line>

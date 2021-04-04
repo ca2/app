@@ -224,13 +224,13 @@ void scArrayContains(CScriptVar *ca, void *data) {
 
 void scArrayRemove(CScriptVar *ca, void *data) {
   CScriptVar *obj = ca->getParameter("obj");
-  int_array removedIndices;
+  int_array erasedIndices;
   CScriptVarLink *v;
-  // remove
+  // erase
   v = ca->getParameter("this")->firstChild;
   while (v) {
       if (v->payload->equals(obj)) {
-        removedIndices.push_back(v->getIntName());
+        erasedIndices.push_back(v->getIntName());
       }
       v = v->nextSibling;
   }
@@ -239,8 +239,8 @@ void scArrayRemove(CScriptVar *ca, void *data) {
   while (v) {
       i32 n = v->getIntName();
       i32 newn = n;
-      for (strsize i=0;i<removedIndices.get_size();i++)
-        if (n>=removedIndices[i])
+      for (strsize i=0;i<erasedIndices.get_size();i++)
+        if (n>=erasedIndices[i])
           newn--;
       if (newn!=n)
         v->setIntName(newn);
@@ -285,7 +285,7 @@ void registerFunctions(tinyjs *tinyJS) {
     tinyJS->addNative("function JSON.stringify(obj, replacer)", scJSONStringify, 0); // convert to JSON. replacer is ignored at the moment
     // JSON.parse is left out as you can (unsafely!) use eval instead
     tinyJS->addNative("function Array.contains(obj)", scArrayContains, 0);
-    tinyJS->addNative("function Array.remove(obj)", scArrayRemove, 0);
+    tinyJS->addNative("function Array.erase(obj)", scArrayRemove, 0);
     tinyJS->addNative("function Array.join(separator)", scArrayJoin, 0);
 }
 

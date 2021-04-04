@@ -74,12 +74,12 @@ namespace user
    }
 
 
-   void multiple_document_template::remove_document(::user::document * pdocument)
+   void multiple_document_template::erase_document(::user::document * pdocument)
    {
 
-      impact_system::remove_document(pdocument);
+      impact_system::erase_document(pdocument);
 
-      m_docptra.remove(pdocument);
+      m_docptra.erase(pdocument);
 
    }
 
@@ -134,7 +134,7 @@ namespace user
 
          }
 
-         remove_document(pdocument);
+         erase_document(pdocument);
 
          return;
 

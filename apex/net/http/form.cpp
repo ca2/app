@@ -213,7 +213,7 @@ namespace http
 
                      }
 
-                     // remove trailing cr/linefeed
+                     // erase trailing cr/linefeed
 
                      while (!val.is_empty() && (val[val.get_length() - 1] == 13 || val[val.get_length() - 1] == 10))
                      {

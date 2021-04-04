@@ -146,7 +146,7 @@ array < array < locationd > > box::faces_vertices()
    for(index i = 0; i < f.get_count(); i++)
    {
       int_array & ia = f[i];
-      vertices.remove_all();
+      vertices.erase_all();
       for(index j = 0; j < ia.get_count(); j++)
       {
          vertices.add(v[ia[j]]);

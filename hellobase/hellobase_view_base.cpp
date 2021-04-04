@@ -163,7 +163,7 @@ auto m_millisRoll = ::millis::now();
 
          if (m_tickaFrame[i].elapsed() > 1000)
          {
-            m_dwaFrame.remove_at(i);
+            m_dwaFrame.erase_at(i);
          }
          else
          {

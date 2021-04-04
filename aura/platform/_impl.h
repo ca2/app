@@ -269,7 +269,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//   get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//   get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
 //
 //}
 
@@ -461,7 +461,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {

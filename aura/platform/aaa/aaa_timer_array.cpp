@@ -123,7 +123,7 @@ namespace aura
 
       auto ptimer = ppair->element2();
 
-      m_map.remove_key(uEvent);
+      m_map.erase_key(uEvent);
 
       ptimer->set_finish();
 
@@ -132,7 +132,7 @@ namespace aura
    }
 
 
-   bool timer_array::remove_timer(::timer * ptimer)
+   bool timer_array::erase_timer(::timer * ptimer)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -156,7 +156,7 @@ namespace aura
          if(ptimerMapped == ptimer)
          {
 
-            m_map.remove_key(uEvent);
+            m_map.erase_key(uEvent);
 
          }
 

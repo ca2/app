@@ -172,8 +172,8 @@ namespace draw3d
 
          }
 
-         point1.remove_at(iMax);
-         point2.remove_at(iMax);
+         point1.erase_at(iMax);
+         point2.erase_at(iMax);
 
          i++;
       }
@@ -339,8 +339,8 @@ namespace draw3d
 
          }
 
-         f.remove_at(iMax);
-         iaf.remove_at(iMax);
+         f.erase_at(iMax);
+         iaf.erase_at(iMax);
 
          i++;
 

@@ -37,7 +37,7 @@ public:
       {
          if(dwLimit > m_pData[i].m_dwTickCount)
          {
-            remove_at(i);
+            erase_at(i);
          }
          else
          {
@@ -59,7 +59,7 @@ public:
       {
          if(m_pData[mi].contains(point))
          {
-            remove_at(mi);
+            erase_at(mi);
             return true;
          }
       }

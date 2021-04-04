@@ -304,7 +304,7 @@ void timer::term_thread()
    try
    {
 
-      m_ptimera->remove_timer(this);
+      m_ptimera->erase_timer(this);
 
    }
    catch (...)
@@ -322,7 +322,7 @@ void timer::term_thread()
 //{
 //
 //
-////   papplication->thread_remove(this);
+////   papplication->thread_erase(this);
 //
 //
 //   {

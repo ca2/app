@@ -28,7 +28,7 @@
 //
 //      }
 //
-//      m_cursormap.remove_all();
+//      m_cursormap.erase_all();
 //
 //      ::matter::finalize();
 //

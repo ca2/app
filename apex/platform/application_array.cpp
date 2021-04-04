@@ -83,7 +83,7 @@ restart:
          if (papp.is_null())
          {
 
-            remove(papp);
+            erase(papp);
 
             goto restart;
 

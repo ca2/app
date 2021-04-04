@@ -46,7 +46,7 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual void add_document_template(::user::impact_system * ptemplate);
-      virtual void remove_document_template(::user::impact_system * ptemplate);
+      virtual void erase_document_template(::user::impact_system * ptemplate);
       virtual ::count get_template_count() const;
       virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);

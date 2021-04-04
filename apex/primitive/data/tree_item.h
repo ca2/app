@@ -8,7 +8,7 @@ template < typename LIST_ITEM, typename ARRAY >
 void list_set_children(LIST_ITEM* plist, const ARRAY& a)
 {
 
-   list_remove_all(plist);
+   list_erase_all(plist);
 
    if (a.is_empty())
    {
@@ -290,7 +290,7 @@ namespace data
 
       }
 
-      virtual bool      remove_item_from_parent();
+      virtual bool      erase_item_from_parent();
 
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
@@ -376,8 +376,8 @@ namespace data
 
       void set_parent(tree_item * pparent);
 
-      void remove_tree_item();
-      void remove_tree_item_descendants();
+      void erase_tree_item();
+      void erase_tree_item_descendants();
 
 
       virtual bool is_expanded() const;

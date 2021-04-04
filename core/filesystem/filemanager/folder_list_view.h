@@ -32,7 +32,7 @@ namespace filemanager
 
       bool add_unique(const string_array & stra);
       bool add_unique(const string_array & stra, int_array & baRecursive);
-      bool remove(const string_array & stra);
+      bool erase(const string_array & stra);
 
 
       virtual void GetSel(string_array & stra);

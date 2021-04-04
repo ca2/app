@@ -564,7 +564,7 @@ namespace apex
 
       __pointer(::apex::system) psystem = get_system();
 
-      psystem->session_remove(m_iEdge);
+      psystem->session_erase(m_iEdge);
 
    }
 
@@ -2883,7 +2883,7 @@ namespace apex
    ::e_status session::finalize()
    {
 
-      ::application_container::m_applicationa.remove_all();
+      ::application_container::m_applicationa.erase_all();
 
       ::apex::context_thread::finalize();
 

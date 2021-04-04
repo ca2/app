@@ -270,7 +270,7 @@ CLASS_DECL_ACME void __node_term_cross_windows_threading()
 //
 //      synchronous_lock ml(g_pmutexThreadLocalData);
 //
-//      g_pmapThreadLocalData->remove_key(get_current_ithread());
+//      g_pmapThreadLocalData->erase_key(get_current_ithread());
 //
 //   }
 //

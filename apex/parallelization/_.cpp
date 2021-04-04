@@ -919,7 +919,7 @@ namespace apex
          catch (...)
          {
 
-            remove(pthread);
+            erase(pthread);
 
             break;
 

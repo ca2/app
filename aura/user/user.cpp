@@ -566,7 +566,7 @@ namespace user
    }
 
 
-   void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
       synchronous_lock synchronouslock(mutex());

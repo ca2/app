@@ -383,7 +383,7 @@ namespace sockets
       /** Set close and delete to terminate the connection. */
       void SetCloseAndDelete(bool = true);
       /** Check close and delete flag.
-      \return true if this base_socket should be closed and the instance removed */
+      \return true if this base_socket should be closed and the instance erased */
       bool IsCloseAndDelete();
 
       /** Return number of seconds since base_socket was ordered to close. \sa SetCloseAndDelete */

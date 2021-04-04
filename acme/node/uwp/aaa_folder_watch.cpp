@@ -87,8 +87,8 @@
 //         // The file was added to the directory.
 //         return action_added;
 //      case FILE_ACTION_REMOVED:
-//         // The file was removed from the directory.
-//         return action_removed;
+//         // The file was erased from the directory.
+//         return action_erased;
 //      case FILE_ACTION_RENAMED_OLD_NAME:
 //         // The file was renamed and this is the old name.
 //         return action_renamed_old_name;

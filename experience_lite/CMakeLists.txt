@@ -18,7 +18,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_
 list(APPEND experience_lite_source
         _.cpp
         _.h
-        #aaa_want_to_remove_experience_lite_style.cpp
+        #aaa_want_to_erase_experience_lite_style.cpp
         button.cpp
         button.h
         control_box.cpp

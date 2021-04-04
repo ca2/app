@@ -203,7 +203,7 @@ namespace user
    }
 
 
-   bool tab::remove_tab_by_id(id id)
+   bool tab::erase_tab_by_id(id id)
    {
 
       bool bRestorableMatch = false;
@@ -221,7 +221,7 @@ namespace user
 
             }
 
-            remove_tab(i, false);
+            erase_tab(i, false);
 
             break;
 
@@ -299,7 +299,7 @@ namespace user
    }
 
 
-   void tab::remove_tab(::index iPane, bool bVisible)
+   void tab::erase_tab(::index iPane, bool bVisible)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -325,7 +325,7 @@ namespace user
 
                   __pointer(::user::tab_pane) ppane = get_data()->m_tabpanecompositea[iPane];
 
-                  get_data()->m_tabpanecompositea.remove_at(iPane);
+                  get_data()->m_tabpanecompositea.erase_at(iPane);
 
                   _001OnRemoveTab(ppane);
 
@@ -351,7 +351,7 @@ namespace user
 
          __pointer(::user::tab_pane) ppane = get_data()->m_tabpanecompositea[iPane];
 
-         get_data()->m_tabpanecompositea.remove_at(iPane);
+         get_data()->m_tabpanecompositea.erase_at(iPane);
 
          _001OnRemoveTab(ppane);
 
@@ -362,12 +362,12 @@ namespace user
    }
 
 
-   void tab::remove_all_tabs()
+   void tab::erase_all_tabs()
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      get_data()->m_tabpanecompositea.remove_all();
+      get_data()->m_tabpanecompositea.erase_all();
 
       on_change_pane_count();
 
@@ -2230,7 +2230,7 @@ namespace user
    }
 
 
-   void tab::defer_remove_child_pane(::user::interaction * pinteraction)
+   void tab::defer_erase_child_pane(::user::interaction * pinteraction)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -2240,25 +2240,25 @@ namespace user
       if (iPane >= 0)
       {
 
-         remove_tab(iPane, false);
+         erase_tab(iPane, false);
 
       }
 
    }
 
 
-   void tab::on_remove_child(::user::interaction * pinteraction)
+   void tab::on_erase_child(::user::interaction * pinteraction)
    {
 
-      defer_remove_child_pane(pinteraction);
+      defer_erase_child_pane(pinteraction);
 
    }
 
 
-   void tab::on_remove_place_holder_child(::user::interaction * pinteraction)
+   void tab::on_erase_place_holder_child(::user::interaction * pinteraction)
    {
 
-      defer_remove_child_pane(pinteraction);
+      defer_erase_child_pane(pinteraction);
 
    }
 
@@ -2273,7 +2273,7 @@ namespace user
       //      && pupdown->m_eupdown != updown_none)
       //{
 
-      //   defer_remove_child_pane(pinteraction);
+      //   defer_erase_child_pane(pinteraction);
 
       //}
 
@@ -2290,7 +2290,7 @@ namespace user
       //      && pupdown->m_eupdown != updown_none)
       //{
 
-      //   defer_remove_child_pane(pinteraction);
+      //   defer_erase_child_pane(pinteraction);
 
       //}
 
@@ -2561,7 +2561,7 @@ namespace user
 
          synchronous_lock lock(get_data()->mutex());
 
-         get_data()->m_idaSel.remove_all();
+         get_data()->m_idaSel.erase_all();
 
          id idTab = tab_id(iSel);
 
@@ -3911,7 +3911,7 @@ namespace user
    void tab::_001CloseTab(::index iTab)
    {
 
-      remove_tab_by_id(tab_id(iTab));
+      erase_tab_by_id(tab_id(iTab));
 
    }
 

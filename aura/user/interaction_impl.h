@@ -214,7 +214,7 @@ namespace user
 
 
       virtual bool mouse_hover_add(::user::interaction * pinterface) override;
-      virtual bool mouse_hover_remove(::user::interaction * pinterface) override;
+      virtual bool mouse_hover_erase(::user::interaction * pinterface) override;
 
 
       virtual void _task_transparent_mouse_event();
@@ -229,7 +229,7 @@ namespace user
 
 
       virtual bool add_prodevian(::object * pobject) override;
-      virtual bool remove_prodevian(::object * pobject) override;
+      virtual bool erase_prodevian(::object * pobject) override;
       inline bool has_prodevian() const noexcept { return m_ptraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
@@ -691,14 +691,14 @@ namespace user
 
       //virtual ::user::primitive * get_keyboard_focus() override;
       //virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status clear_keyboard_focus() override;
       //virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status impl_clear_keyboard_focus() override;
 
       virtual void redraw_add(::object * point_i32) override;
-      virtual void redraw_remove(::object * point_i32) override;
+      virtual void redraw_erase(::object * point_i32) override;
       virtual bool has_redraw() override;
       virtual ::mutex * mutex_redraw();
 

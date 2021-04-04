@@ -21,7 +21,7 @@ namespace colorertake5
 
          delete schemeStack.last();
 
-         schemeStack.remove_last();
+         schemeStack.erase_last();
 
       }
 
@@ -135,11 +135,11 @@ namespace colorertake5
 
          delete schemeStack.last();
 
-         schemeStack.remove_last();
+         schemeStack.erase_last();
 
       }
 
-      schemeStack.remove_all();
+      schemeStack.erase_all();
 
       schemeStack.add(&background);
 

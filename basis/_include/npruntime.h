@@ -336,7 +336,7 @@ struct NPClass
     NPHasPropertyFunctionPtr hasProperty;
     NPGetPropertyFunctionPtr getProperty;
     NPSetPropertyFunctionPtr setProperty;
-    NPRemovePropertyFunctionPtr removeProperty;
+    NPRemovePropertyFunctionPtr eraseProperty;
     NPEnumerationFunctionPtr enumerate;
     NPConstructFunctionPtr construct;
 };

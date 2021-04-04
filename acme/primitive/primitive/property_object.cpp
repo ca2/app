@@ -121,7 +121,7 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 
    //            synchronouslock.lock();
 
-   //            pnotifya->remove(pmatter);
+   //            pnotifya->erase(pmatter);
 
    //            goto restart_notifya_loop;
 

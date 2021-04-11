@@ -148,7 +148,7 @@ repeat:;
           set["interactive_user"] = true;
 
           strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/long_set_save?key=";
-          strUrl += psystem->url().url_encode(m_itema[0]->m_strKey);
+          strUrl += purl->url_encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
           strUrl += __str(m_itema[0]->m_l);
 
@@ -229,7 +229,7 @@ bool db_long_set::load(const char * lpKey, i64 * plValue)
       set["interactive_user"] = true;
 
       strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/long_set_load?key=";
-      strUrl += psystem->url().url_encode(lpKey);
+      strUrl += purl->url_encode(lpKey);
 
       //m_phttpsession = pcontext->m_papexcontext->http().request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);
       m_pcore-> m_phttpsession = pcontext->m_papexcontext->http().request(m_pcore->m_phttpsession,strUrl,set);

@@ -529,7 +529,7 @@ namespace sphere
 
    //   //      string strId;
    //   //
-   //   //      __pointer(::apex::department) pcaapp;
+   //   //      __pointer(::acme::department) pcaapp;
    //   //
    //   //      POSITION pos = m_mapApplication.get_start_position();
    //   //
@@ -542,7 +542,7 @@ namespace sphere
    //   //
    //   //         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
    //   //
-   //   //         __pointer(::apex::department) papp = (pcaapp);
+   //   //         __pointer(::acme::department) papp = (pcaapp);
    //   //
    //   //         papp->set_finish();
    //   //

@@ -58,7 +58,7 @@ namespace experience
          if(get_top_level()->frame_is_transparent())
          {
 
-            crBackground = argb(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+            crBackground = m_colorBackground + opacity(100);
 
          }
          else

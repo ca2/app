@@ -827,7 +827,7 @@ namespace base
 //      //virtual bool base_support() override;
 //
 //
-//      DECL_GEN_SIGNAL(on_application_signal);
+//      DECLARE_MESSAGE_HANDLER(on_application_signal);
 //
 //
 //      ::e_status set_history(::aura::history* phistory);

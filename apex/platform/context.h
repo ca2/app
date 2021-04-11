@@ -162,6 +162,8 @@ namespace apex
 
       virtual ::e_status finalize() override;
 
+      file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
+
 
    };
 

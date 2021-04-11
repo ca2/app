@@ -77,7 +77,7 @@ namespace filemanager
       pview->get_parent_frame()->set_need_redraw();
       pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
-      pview->get_parent_frame()->DestroyWindow();
+      pview->get_parent_frame()->destroy_window();
       return true;
 
    }

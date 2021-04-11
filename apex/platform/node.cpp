@@ -132,30 +132,6 @@ namespace apex
    }
 
 
-   string node::multimedia_audio_get_default_library_name()
-   {
-
-      return "";
-
-   }
-
-
-   string node::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "";
-
-   }
-
-
-   string node::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "";
-
-   }
-
-
    bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
    {
 

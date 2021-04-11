@@ -283,40 +283,40 @@ namespace user
       virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(on_message_right_button_up);
-      DECL_GEN_SIGNAL(on_message_mouse_move);
-      DECL_GEN_SIGNAL(on_message_mouse_leave);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnKeyUp);
-      DECL_GEN_SIGNAL(_001OnChar);
-      DECL_GEN_SIGNAL(_001OnUniChar);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
+      DECLARE_MESSAGE_HANDLER(_001OnChar);
+      DECLARE_MESSAGE_HANDLER(_001OnUniChar);
 
-      //DECL_GEN_SIGNAL(_001OnSetFocus);
-      //DECL_GEN_SIGNAL(_001OnKillFocus);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
-      DECL_GEN_SIGNAL(_001OnUpdateEditCut);
-      DECL_GEN_SIGNAL(_001OnEditCut);
-      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
-      DECL_GEN_SIGNAL(_001OnEditCopy);
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
-      DECL_GEN_SIGNAL(_001OnEditPaste);
-      DECL_GEN_SIGNAL(_001OnUpdateEditDelete);
-      DECL_GEN_SIGNAL(_001OnEditDelete);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCut);
+      DECLARE_MESSAGE_HANDLER(_001OnEditCut);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
+      DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
 
       
 
 
-      virtual DECL_GEN_SIGNAL(_009OnChar);
+      virtual DECLARE_MESSAGE_HANDLER(_009OnChar);
 
-      DECL_GEN_SIGNAL(_001OnSysChar);
+      DECLARE_MESSAGE_HANDLER(_001OnSysChar);
 
-      DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown) override;
-      DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
-      DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
+      DECLARE_MESSAGE_HANDLER(keyboard_focus_OnKeyDown) override;
+      DECLARE_MESSAGE_HANDLER(keyboard_focus_OnKeyUp) override;
+      DECLARE_MESSAGE_HANDLER(keyboard_focus_OnChar) override;
 
 
       virtual void on_set_keyboard_focus() override;
@@ -437,15 +437,15 @@ namespace user
       bool CanRedo();
       ::count GetRedoBranchCount();
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
       void VirtualOnSize(::draw2d::graphics_pointer & pgraphics);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
 
 
       virtual __pointer(::data::item) on_allocate_item();

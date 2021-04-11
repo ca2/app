@@ -210,12 +210,18 @@ namespace user
 
             auto psystem = m_psystem->m_paurasystem;
 
-            auto pcontext = get_context();
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            if (pcontext->m_pauracontext->image().save_image(mem, pimage, psaveimage))
+            auto pcontextimage = pcontext->context_image();
+
+            if (pcontextimage->save_image(mem, pimage, psaveimage))
             {
 
-               str = psystem->m_papexsystem->base64().encode(mem);
+               auto psystem = m_psystem;
+
+               auto pbase64 = psystem->base64();
+
+               str = pbase64->encode(mem);
 
                if (psaveimage->m_eformat == ::draw2d::format_png)
                {
@@ -267,9 +273,11 @@ namespace user
                   varFile["raw_http"] = true;
                   varFile["disable_common_name_cert_check"] = true;
 
-                  auto pcontext = get_context();
+                  auto pcontext = m_pcontext->m_pauracontext;
 
-                  auto pimage = pcontext->m_pauracontext->image().load_image(varFile, false);
+                  auto pcontextimage = pcontext->context_image();
+
+                  auto pimage = pcontextimage->load_image(varFile, false);
 
                   if (pimage)
                   {
@@ -280,9 +288,11 @@ namespace user
 
                      pcontext->m_papexcontext->file().as_memory(varFile, mem);
 
-                     auto psystem = m_psystem->m_paurasystem;
+                     auto psystem = m_psystem;
 
-                     string strBase64 = psystem->m_papexsystem->base64().encode(mem);
+                     auto pbase64 = psystem->base64();
+
+                     string strBase64 = pbase64->encode(mem);
 
                      str = "data:image/gif;base64," + strBase64;
 
@@ -396,9 +406,11 @@ namespace user
 
             }
 
-            auto pcontext = get_context();
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            if (!pcontext->m_pauracontext->image().load_image(pimage, pmemory))
+            auto pcontextimage = pcontext->context_image();
+
+            if (!pcontextimage->load_image(pimage, pmemory))
             {
 
                // Couldn't load image from file/URL path...

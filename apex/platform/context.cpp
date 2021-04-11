@@ -1151,6 +1151,16 @@ namespace apex
    }
 
 
+   file_result context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+   {
+
+      auto pfile = m_papexcontext->file().get_file(varFile, eopen);
+
+      return pfile;
+
+   }
+
+
 } // namespace apex
 
 

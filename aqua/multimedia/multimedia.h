@@ -1,34 +1,18 @@
 #pragma once
 
 
-namespace multimedia
-{
-
-
-   class CLASS_DECL_AQUA information
-   {
-   public:
-
-
-      string      m_strName;
-      string      m_strAlbum;
-      string      m_strArtist;
-
-
-   };
-
-
-}
-
-
 namespace aqua
 {
 
 
    class CLASS_DECL_AQUA multimedia :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
+
+
+      ::multimedia::multimedia *                         m_pmultimedia;
+      ::veriwell::multimedia::multimedia *               m_pveriwellmultimedia;
 
 
 #ifdef WINDOWS

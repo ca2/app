@@ -44,7 +44,7 @@ namespace xml
 
       //}
 
-      if (!::apex::department::init1())
+      if (!::acme::department::init1())
       {
 
          return ::error_failed;
@@ -78,7 +78,7 @@ namespace xml
    ::e_status xml::init()
    {
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;

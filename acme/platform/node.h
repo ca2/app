@@ -44,6 +44,13 @@ namespace acme
 //
 //#endif
 
+
+      virtual string audio_get_default_library_name();
+      virtual string multimedia_audio_get_default_library_name();
+      virtual string multimedia_audio_mixer_get_default_library_name();
+      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+
+
       virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status on_initialize_object() override;

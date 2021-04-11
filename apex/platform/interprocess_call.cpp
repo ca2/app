@@ -74,10 +74,12 @@ void interprocess_call::exclude_this_app()
 void interprocess_call::post(const ::id& idPid)
 {
 
-   fork([this, idPid]()
+   __pointer(interprocess_call) pcall = this;
+
+   fork([pcall, idPid]()
       {
 
-         auto& pobjectTask = m_mapTask[idPid];
+         auto& pobjectTask = pcall->m_mapTask[idPid];
 
          if (pobjectTask)
          {
@@ -86,9 +88,9 @@ void interprocess_call::post(const ::id& idPid)
 
          }
 
-         pobjectTask = m_pinterprocessintercommunication->create_task(this, idPid);
+         pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
 
-         pobjectTask->do_task(m_strObject, m_strMember, m_varaArgs);
+         pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_varaArgs);
 
       });
 

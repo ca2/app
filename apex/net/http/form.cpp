@@ -274,7 +274,9 @@ namespace http
 
                         auto psystem = m_psystem->m_papexsystem;
 
-                        strMessage = psystem->datetime().international().get_gmt_date_time() + " " + strTempFile;
+                        auto pdatetime = psystem->datetime();
+
+                        strMessage = pdatetime->international().get_gmt_date_time() + " " + strTempFile;
 
                         file_append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

@@ -21,13 +21,13 @@ namespace exception
 }
 
 
-#ifdef DEBUG
-
-
-CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage);
-
-
-#endif
+//#ifdef DEBUG
+//
+//
+//CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage);
+//
+//
+//#endif
 
 
 //object::object(::object * pobject) :
@@ -131,55 +131,57 @@ void object::to_string(const class string_exchange& str) const
 }
 
 
-//::e_status object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
-//{
-//
-//   synchronous_lock synchronouslock(mutex());
-//
-//   m_pcompositea.defer_create_new();
-//
-//   if (m_pcompositea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS))
-//   {
-//
+::e_status object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_pcompositea.defer_create_new();
+
+   if (!m_pcompositea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS))
+   {
+
+      return success_none;
+
 //#ifdef DEBUG
 //
 //      object_on_add_composite(pmatter);
 //
 //#endif
-//
-//   }
-//
-//   return ::success;
-//
-//}
+
+   }
+
+   return ::success;
+
+}
 
 
-//::e_status object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
-//{
-//
-//   synchronous_lock synchronouslock(mutex());
-//
-//   m_preferencea.defer_create_new();
-//
-//   m_preferencea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS);
-//
-//   if (m_preferencea->get_upper_bound() == 8)
-//   {
-//
-//      if (string(type_name()).contains("application"))
-//      {
-//
-//         string strMessage = "what is this? : " + string(m_preferencea->last()->type_name());
-//         output_debug_string(strMessage);
-//      }
-//
-//   }
-//
-//   return ::success;
-//
-//}
-//
-//
+::e_status object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_preferencea.defer_create_new();
+
+   m_preferencea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS);
+
+   if (m_preferencea->get_upper_bound() == 8)
+   {
+
+      if (string(type_name()).contains("application"))
+      {
+
+         string strMessage = "what is this? : " + string(m_preferencea->last()->type_name());
+         output_debug_string(strMessage);
+      }
+
+   }
+
+   return ::success;
+
+}
+
+
 //::e_status object::release_composite2(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 //{
 //
@@ -373,46 +375,60 @@ void object::dev_log(string strMessage) const
 //}
 
 
-void object::add_object(::object* pobject)
-{
+//void object::add_object(::object* pobject)
+//{
+//
+//   {
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      __defer_construct_new(m_pobjecta);
+//
+//      m_pobjecta->add_unique(pobject);
+//
+//   }
+//
+//   {
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      __defer_construct_new(pobject->m_pobjecta);
+//
+//      pobject->m_pobjecta->add_unique(this);
+//
+//   }
+//
+//}
+//
+//
+//void object::on_delete_object(::object* pobject)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   if (m_pobjecta)
+//   {
+//
+//      m_pobjecta->erase(pobject);
+//
+//   }
+//
+//}
 
-   synchronous_lock synchronouslock(mutex());
-
-   defer_construct_new(m_pobjecta);
-
-   m_pobjecta->add(pobject);
-
-}
-
-
-void object::on_delete_object(::object* pobject)
-{
-
-   synchronous_lock synchronouslock(mutex());
-
-   if (m_pobjecta)
-   {
-
-      m_pobjecta->erase(pobject);
-
-   }
-
-}
+//
+//void object::enumerate_composite(matter_array& a)
+//{
+//
+//
+//}
 
 
-void object::enumerate_composite(matter_array& a)
-{
-
-
-}
-
-
-void object::enumerate_reference(matter_array& a)
-{
-
-
-}
-
+//void object::enumerate_reference(matter_array& a)
+//{
+//
+//
+//}
+//
 
 void object::call_routine(const ::id& id)
 {
@@ -425,7 +441,7 @@ void object::call_routine(const ::id& id)
 
 
 
-text object::__text(const ::id& id)
+::text::text object::__text(const ::id& id)
 {
 
    return m_pcontext->__text(id);
@@ -899,7 +915,7 @@ void object::system(const char* pszProjectName)
    if (estatus == error_pending)
    {
 
-      m_psystem->add_pending_finish(this);
+      //m_psystem->add_pending_finish(this);
 
       return estatus;
 
@@ -994,14 +1010,25 @@ void object::system(const char* pszProjectName)
 
    //release_references();
 
-   for (auto& pobject : m_objecta)
-   {
+   //{
 
-      pobject->on_delete_object(this);
+   //   synchronous_lock synchronouslock(mutex());
 
-   }
+   //   if (m_pobjecta)
+   //   {
 
-   m_objecta.erase_all();
+   //      for (auto& pobject : *m_pobjecta)
+   //      {
+
+   //         pobject->on_delete_object(this);
+
+   //      }
+
+   //      m_pobjecta->erase_all();
+
+   //   }
+
+   //}
 
    return ::success;
 
@@ -1222,23 +1249,43 @@ void object::delete_this()
 
    string strTypeName = type_name();
 
-   matter_array compositea;
-
-   enumerate_composite(compositea);
-
-   for (auto& pmatter : compositea)
+   if (m_pcompositea)
    {
 
-      auto estatusItem = pmatter->set_finish();
-
-      if (estatusItem == error_pending)
+      for (auto& pmatter : *m_pcompositea)
       {
 
-         estatus = error_pending;
+         auto estatusItem = pmatter->set_finish();
+
+         if (estatusItem == error_pending)
+         {
+
+            estatus = error_pending;
+
+         }
 
       }
 
    }
+
+   //if (m_pobjecta)
+   //{
+
+   //   for (auto& pobject : *m_pobjecta)
+   //   {
+
+   //      auto estatusItem = pobject->finish();
+
+   //      if (estatusItem == error_pending)
+   //      {
+
+   //         estatus = error_pending;
+
+   //      }
+
+   //   }
+
+   //}
 
    return estatus;
 
@@ -1254,19 +1301,20 @@ void object::delete_this()
 
    string strTypeName = type_name();
 
-   matter_array compositea;
-
-   enumerate_composite(compositea);
-
-   for(auto & pmatter : compositea)
+   if (m_pcompositea)
    {
 
-      auto estatusItem = pmatter->finish();
-
-      if (estatusItem == error_pending)
+      for (auto& pmatter : *m_pcompositea)
       {
 
-         estatus = error_pending;
+         auto estatusItem = pmatter->finish();
+
+         if (estatusItem == error_pending)
+         {
+
+            estatus = error_pending;
+
+         }
 
       }
 
@@ -1700,24 +1748,6 @@ bool object::__is_child_task(::task* ptask) const
 //
 //#endif
 
-
-void object::start()
-{
-
-   if (has(e_object_synchro))
-   {
-
-      operator()();
-
-   }
-   else
-   {
-
-      ::task::launch(this);
-
-   }
-
-}
 
 
 void object::single_fork(const ::routine_array& procedurea)
@@ -2283,12 +2313,13 @@ __pointer(::matter) object::running(const char* pszTag) const
 //}
 
 
-//::file_result object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
-//{
-//
-//   return m_pcontext->m_papexcontext->file().get_file(varFile, eopen);
-//
-//}
+::file_result object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+{
+
+   return m_pcontext->get_file(varFile, eopen);
+
+}
+
 //
 //
 //
@@ -2329,20 +2360,20 @@ struct context_object_test_struct :
 //
 //}
 //
-
-CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage)
-{
-
-   string strType = ::str::demangle(pusermessage->type_name());
-
-   if (strType.contains_ci("user::thread"))
-   {
-
-      //debug_break();
-
-   }
-
-}
+//
+//CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage)
+//{
+//
+//   string strType = ::str::demangle(pusermessage->type_name());
+//
+//   if (strType.contains_ci("user::thread"))
+//   {
+//
+//      //debug_break();
+//
+//   }
+//
+//}
 
 
 bool __no_continue(::e_status estatus)
@@ -2848,12 +2879,12 @@ matter* object::get_taskpool_container()
 }
 
 
-::e_status object::on_initialize_object()
-{
-
-   return ::success;
-
-}
+//::e_status object::on_initialize_object()
+//{
+//
+//   return ::success;
+//
+//}
 
 
 //::e_status object::finalize()

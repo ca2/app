@@ -46,7 +46,7 @@ bool font_department::is_initialized()
 ::e_status font_department::initialize(::object * pobject)
 {
 
-   auto estatus = ::apex::department::initialize(pobject);
+   auto estatus = ::acme::department::initialize(pobject);
 
    if (!estatus)
    {

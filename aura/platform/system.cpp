@@ -5,7 +5,7 @@
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
-#include "apex/platform/str_context.h"
+#include "acme/primitive/text/context.h"
 //#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
@@ -117,7 +117,7 @@ namespace aura
 
       create_factory < ::aura::session, ::apex::session >();
       create_factory < ::aura::application, ::apex::application >();
-      create_factory < ::aura::idpool, ::apex::idpool >();
+      create_factory < ::aura::idpool, ::acme::idpool >();
 
       m_bMessageThread = true;
 
@@ -278,6 +278,14 @@ namespace aura
    {
 
       return "_std/_std";
+
+   }
+
+
+   ::aura::estamira* system::estamira()
+   {
+
+      return m_pestamira ? m_pestamira->m_pauraestamira : nullptr;
 
    }
 
@@ -1516,10 +1524,10 @@ namespace aura
 
       //auto psession = get_session();
 
-      //if (psession->m_puserstrcontext)
+      //if (psession->m_ptextcontext)
       //{
 
-      //   psession->m_puserstrcontext->defer_ok(m_puserstr);
+      //   psession->m_ptextcontext->defer_ok(m_puserstr);
 
       //}
 
@@ -3760,9 +3768,11 @@ namespace aura
       if (!::is_ok(pimage))
       {
 
-         auto pcontext = get_context();
+         auto pcontext = m_pcontext->m_pauracontext;
 
-         pcontext->m_pauracontext->image()._load_image(pimage, varFile, bSync);
+         auto pcontextimage = pcontext->context_image();
+
+         pcontextimage->_load_image(pimage, varFile, bSync);
 
       }
 

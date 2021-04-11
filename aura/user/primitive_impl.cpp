@@ -1254,7 +1254,7 @@ namespace user
 
       m_puserinteraction = nullptr;
 
-      bool bOk = DestroyWindow();
+      bool bOk = start_destroying_window();
 
       //TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
 
@@ -1263,7 +1263,7 @@ namespace user
    }
 
 
-   bool primitive_impl::DestroyWindow()
+   bool primitive_impl::start_destroying_window()
    {
 
       if (!m_bUserPrimitiveOk)

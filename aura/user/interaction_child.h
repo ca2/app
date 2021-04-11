@@ -44,7 +44,7 @@ namespace user
 
       //virtual bool is_active() const override;
 
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -96,8 +96,8 @@ namespace user
 
 
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
       void send_message_to_descendants(const ::id & id,wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
 

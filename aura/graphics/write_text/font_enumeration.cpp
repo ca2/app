@@ -186,7 +186,9 @@ namespace write_text
 
       auto psystem = m_psystem->m_paurasystem;
 
-      psystem->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      auto pdraw2d = psystem->draw2d();
+
+      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
 
       if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
       {
@@ -223,9 +225,11 @@ namespace write_text
 
       pitema = __new(::write_text::font_enum_item_array);
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem->m_paurasystem;
 
-      psystem->draw2d()->write_text()->fonts()->sorted_fonts(*pitema);
+      auto pdraw2d = psystem->draw2d();
+
+      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
 
       m_pitema = pitema;
 

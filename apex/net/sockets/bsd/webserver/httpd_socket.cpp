@@ -92,10 +92,14 @@ namespace sockets
          else*/
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         auto psystem = m_psystem;
+
+         auto pbase64 = psystem->base64();
 
          memory mem;
-         psystem->base64().decode(mem, str64);
+
+         pbase64->decode(mem, str64);
+
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 

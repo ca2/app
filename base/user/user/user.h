@@ -78,7 +78,7 @@ namespace base
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 

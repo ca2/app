@@ -102,6 +102,8 @@ thread::thread()
        
    //set_layer(LAYERED_THREAD, this);
 
+   m_pthread = this;
+
    m_bThreadClosed = false;
 
    m_bIsPredicate = false;
@@ -3685,19 +3687,20 @@ void thread::update_task_ready_to_quit()
 
    string strTypeName = type_name();
 
-   matter_array compositea;
-
-   enumerate_composite(compositea);
-
    bool bReadyToQuit = true;
 
-   for (auto& pmatter : compositea)
+   if (m_pcompositea)
    {
 
-      if(!pmatter->m_bTaskReadyToQuit)
+      for (auto& pmatter : *m_pcompositea)
       {
 
-         bReadyToQuit = false;
+         if (!pmatter->m_bTaskReadyToQuit)
+         {
+
+            bReadyToQuit = false;
+
+         }
 
       }
 
@@ -3815,17 +3818,10 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
       if (m_bSetFinish)
       {
 
-         while(!::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
+         while(iRet = ::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
          {
 
             sleep(100_ms);
-
-            if (msg.message == e_message_quit)
-            {
-
-               return false;
-
-            }
 
             update_task_ready_to_quit();
 
@@ -3842,7 +3838,14 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
       else
       {
 
-         ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+         iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+
+      }
+
+      if (msg.message == e_message_quit)
+      {
+
+         ::output_debug_string("e_message_quit");
 
       }
 
@@ -3900,6 +3903,8 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
          finish();
 
       }
+
+      return false;
 
    }
 

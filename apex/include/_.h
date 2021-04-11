@@ -420,10 +420,6 @@ namespace apex
 
    class command;
 
-   class str;
-   class str_context;
-
-
 } // namespace apex
 
 
@@ -870,7 +866,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/primitive/primitive/object_meta.h"
+//#include "acme/primitive/primitive/object_meta.h"
 
 #include "app/acme/platform/trace.h"
 
@@ -946,7 +942,7 @@ namespace core
 #include "apex/platform/simple_log.h"
 
 
-#include "apex/platform/department.h"
+//#include "apex/platform/department.h"
 
 
 #include "apex/parallelization/threading.h"
@@ -1025,20 +1021,11 @@ namespace file
 
 #include "apex/filesystem/file/set.h"
 
-#include "apex/user/ewindowflag.h"
-
-#include "apex/primitive/primitive/command_line.h"
-
-#include "apex/primitive/primitive/create.h"
-
-
 #include "apex/platform/net.h"
 
+#include "apex/platform/command_line.h"
 
-#include "apex/primitive/datetime/_.h"
-
-
-#include "apex/platform/international_locale_schema.h"
+#include "apex/platform/create.h"
 
 
 namespace zip
@@ -1125,6 +1112,16 @@ namespace apex
 } // namespace apex
 
 
+namespace user
+{
+
+   
+   class menu;
+
+
+} // namespace user
+
+
 #include "apex/filesystem/fs/_fs.h"
 
 #include "apex/_.h"
@@ -1157,7 +1154,7 @@ namespace apex
 //CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
 
 
-CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
+//CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
 
 
 class node_data_exchange;

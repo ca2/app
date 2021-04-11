@@ -2,6 +2,7 @@
 #include "aqua/multimedia/_.h"
 #include "tts_speaker.h"
 
+
 #pragma comment(lib, "Shlwapi")
 
 inline bool SpGetDefaultTokenFromCategoryIdAndLang(
@@ -739,9 +740,9 @@ namespace tts_sapi
 
          }
 
-         auto & audio = Au(get_context());
+         auto paudio = m_psystem->m_paquasystem->audio();
 
-         audio.play_audio(pfile, bSync);
+         paudio->play_audio(pfile, bSync);
 
          return true;
 
@@ -942,7 +943,9 @@ namespace tts_sapi
 
          }
 
-         Au(get_context()).play_audio(pfile, bSync);
+         auto paudio = m_psystem->m_paquasystem->audio();
+
+         paudio->play_audio(pfile, bSync);
 
          return true;
 

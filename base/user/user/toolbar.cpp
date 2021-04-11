@@ -1745,9 +1745,9 @@ return { 0,0 };
 
       m_itema.erase_all();
 
-      xml::document doc;
+      auto pxmldocument = __create_new < xml::document >();
 
-      if (!doc.load(pszXml))
+      if (!pxmldocument->load(pszXml))
 
       {
 
@@ -1755,18 +1755,16 @@ return { 0,0 };
 
       }
 
-      xml::node::array childs;
-
-      childs = doc.root()->children();
+      auto & children = pxmldocument->root()->children();
 
       __pointer(::user::toolbar_item) item;
 
       auto papplication = get_application();
 
-      for(index i = 0; i < childs.get_size(); i++)
+      for(index i = 0; i < children.get_size(); i++)
       {
 
-         __pointer(::xml::node) pchild = childs[i];
+         auto pchild = children.element_at(i)->get_xml_node();
 
          if(pchild->get_name() == "button")
          {
@@ -1782,9 +1780,11 @@ return { 0,0 };
             if(pchild->attribute("image").get_string().has_char())
             {
 
-               auto pcontext = m_pcontext;
+               auto pcontext = m_pcontext->m_pauracontext;
 
-               item->m_pimage = pcontext->m_pauracontext->image().load_image(pchild->attribute("image"), false);
+               auto pcontextimage = pcontext->context_image();
+
+               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), false);
 
             }
 

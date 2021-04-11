@@ -1034,19 +1034,21 @@ namespace user
 
       }
 
-      auto pcontext = get_context();
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
 
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = pcontext->m_pauracontext->image().get_image(payload);
+         m_pbitmap->m_pimage = pcontextimage->get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = pcontext->m_pauracontext->image().get_image(varSel);
+         m_pbitmap->m_pimageSel = pcontextimage->get_image(varSel);
 
       }
 
@@ -1054,7 +1056,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = pcontext->m_pauracontext->image().get_image(varFocus);
+         m_pbitmap->m_pimageFocus = pcontextimage->get_image(varFocus);
 
       }
 
@@ -1062,7 +1064,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = pcontext->m_pauracontext->image().get_image(varDisabled);
+         m_pbitmap->m_pimageDisabled = pcontextimage->get_image(varDisabled);
 
       }
 
@@ -1070,7 +1072,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = pcontext->m_pauracontext->image().get_image(varHover);
+         m_pbitmap->m_pimageHover = pcontextimage->get_image(varHover);
 
       }
 

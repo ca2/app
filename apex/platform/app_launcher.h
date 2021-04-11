@@ -27,7 +27,7 @@ namespace apex
 
       virtual string get_params();
 
-      virtual bool start();
+      virtual ::e_status run();
 
    };
 

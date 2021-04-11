@@ -18,9 +18,11 @@ namespace html
    bool core_data::image::load_image()
    {
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      m_pimage = pcontext->m_pauracontext->image().load_image(m_strPath);
+      auto pcontextimage = pcontext->context_image();
+
+      m_pimage = pcontextimage->load_image(m_strPath);
 
       return m_pimage;
 
@@ -244,6 +246,8 @@ namespace html
       auto phtmlreader = __create_new < lite_html_reader >();
 
       ::html::reader reader;
+
+      phtmlreader->m_phtml = m_psystem->m_paxissystem->m_phtml;
 
       phtmlreader->setEventHandler(&reader);
 
@@ -527,7 +531,11 @@ namespace html
          ::str::begins(m_strPathName, "https://"))
       {
 
-         strUrl = psystem->url().path(m_strPathName, strUrl);
+         auto psystem = m_psystem;
+
+         auto purl = psystem->url();
+
+         strUrl = purl->path(m_strPathName, strUrl);
 
       }
       else
@@ -771,7 +779,7 @@ namespace html
       //   else
       //   {
       //      
-      //      varFile = psystem->url().override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
+      //      varFile = purl->override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
 
       //      goto restart;
 

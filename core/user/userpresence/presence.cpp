@@ -75,8 +75,8 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      psystem->url().string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
-      psystem->url().string_set(strUrl, "long_status", m_strLongStatus);
+      purl->string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
+      purl->string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 

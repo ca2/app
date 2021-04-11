@@ -1574,7 +1574,7 @@ namespace user
    }
 
 
-   bool interaction_impl::DestroyWindow()
+   bool interaction_impl::start_destroying_window()
    {
 
       if (m_bDestroying)
@@ -1587,15 +1587,26 @@ namespace user
       if (!m_bDestroying)
       {
 
-         m_bDestroying = true;
+         if (m_pprodevian && m_pprodevian->task_active())
+         {
 
-         m_puserinteraction->post_message(e_message_destroy_window);
+            m_pprodevian->finish();
+
+         }
+         else
+         {
+
+            m_bDestroying = true;
+
+            m_puserinteraction->post_message(e_message_destroy_window);
+
+         }
 
          return true;
 
       }
 
-      bool bResult = ::user::primitive::DestroyWindow();
+      bool bResult = ::user::primitive::start_destroying_window();
 
       return bResult;
 

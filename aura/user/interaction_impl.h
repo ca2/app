@@ -250,18 +250,18 @@ namespace user
 
       virtual void route_command_message(::message::command * pcommand) override;
 
-      DECL_GEN_SIGNAL(_002OnDraw);
+      DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
-      DECL_GEN_SIGNAL(_001OnKillFocus);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnApplyVisual);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnDestroyWindow);
-      DECL_GEN_SIGNAL(on_message_destroy);
-      DECL_GEN_SIGNAL(_001OnRedraw);
-      DECL_GEN_SIGNAL(_001OnDoShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(_001OnRedraw);
+      DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
@@ -313,7 +313,7 @@ namespace user
 
 
       virtual bool destroy_impl_only() override;
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rectangle_i32 adjustment hooks
@@ -586,17 +586,17 @@ namespace user
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnCaptureChanged);
-      DECL_GEN_SIGNAL(_001OnPrioCreate);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
+      DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
 
 
 #ifdef WINDOWS_DESKTOP
 
-      DECL_GEN_SIGNAL(_001OnWindowPosChanged);
+      DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanged);
 
 #endif
 

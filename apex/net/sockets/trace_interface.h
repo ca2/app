@@ -13,7 +13,7 @@ namespace sockets
 
 
 
-   //class CLASS_DECL_APEX trace_interface
+   //class CLASS_DECL_ACME trace_interface
    //{
    //public:
 

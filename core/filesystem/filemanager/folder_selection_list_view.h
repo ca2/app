@@ -29,8 +29,8 @@ namespace filemanager
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      DECL_GEN_SIGNAL(_001OnAdd);
-      DECL_GEN_SIGNAL(_001OnRemove);
+      DECLARE_MESSAGE_HANDLER(_001OnAdd);
+      DECLARE_MESSAGE_HANDLER(_001OnRemove);
 
       virtual void on_create_split_impact() override;
 

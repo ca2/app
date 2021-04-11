@@ -312,7 +312,7 @@ namespace user
       if (m_psubmenu.is_set())
       {
 
-         m_psubmenu->DestroyWindow();
+         m_psubmenu->start_destroying_window();
 
          m_psubmenu.release();
 
@@ -1004,7 +1004,7 @@ namespace user
                            if (m_psubmenu != nullptr)
                            {
 
-                              m_psubmenu->DestroyWindow();
+                              m_psubmenu->start_destroying_window();
 
                               m_psubmenu = nullptr;
 

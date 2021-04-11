@@ -101,15 +101,15 @@ namespace user
       virtual void update_active_document(const ::id & id);
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnQueryEndSession);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnQueryEndSession);
 
-      DECL_GEN_SIGNAL(_001OnActivate);
-      DECL_GEN_SIGNAL(_001OnNcActivate);
-      DECL_GEN_SIGNAL(_001OnSysCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnNcActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
 
 
       virtual void OnInitialFrameUpdate(bool bMakeVisible);

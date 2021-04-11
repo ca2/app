@@ -29,8 +29,8 @@ public:
 
 
    //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
-   DECL_GEN_SIGNAL(_001OnSetFocus);
-   DECL_GEN_SIGNAL(_001OnKillFocus);
+   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
    form_document * get_document();

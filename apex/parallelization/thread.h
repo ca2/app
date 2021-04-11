@@ -402,8 +402,8 @@ public:
 
    virtual void message_queue_message_handler(::message::message * pmessage);
 
-   //DECL_GEN_SIGNAL(_001OnSendThreadMessage);
-   //DECL_GEN_SIGNAL(_001OnThreadMessage);
+   //DECLARE_MESSAGE_HANDLER(_001OnSendThreadMessage);
+   //DECLARE_MESSAGE_HANDLER(_001OnThreadMessage);
 
 
    virtual void shutdown(bool bPrompt = true);

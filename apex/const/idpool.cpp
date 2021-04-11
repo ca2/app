@@ -7,9 +7,6 @@ namespace apex
 {
 
 
-   __pointer(idpool) idpool::g_p;
-
-
    idpool * idpool::g_pthis = nullptr;
 
 
@@ -281,20 +278,25 @@ namespace apex
    }
 
 
-   void idpool::init()
-   {
+   //void idpool::init()
+   //{
 
-      __construct(g_p);
+   //   if (!g_pthis)
+   //   {
 
-   }
+   //      g_pthis = new idpool();
+
+   //   }
+
+   //}
 
 
-   void idpool::term()
-   {
+   //void idpool::term()
+   //{
 
-      ::release(g_p);
+   //   ::acme::del(g_pthis);
 
-   }
+   //}
 
 
 } // namespace apex

@@ -116,9 +116,11 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      __pointer(::axis::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      if (psystem->url().get_server(pathUrl).lowered() == "server.ca2.cc")
+      auto purl = psystem->url();
+
+      if (purl->get_server(pathUrl).lowered() == "server.ca2.cc")
       {
 
          return false;
@@ -146,14 +148,14 @@ namespace account
 
       }
 
-      if(::str::find_ci("/matter/",psystem->url().get_script(pathUrl)) >= 0)
+      if(::str::find_ci("/matter/",purl->get_script(pathUrl)) >= 0)
       {
 
          return false;
 
       }
 
-      string strServer = psystem->url().get_server(pathUrl);
+      string strServer = purl->get_server(pathUrl);
 
       url_domain domain;
 
@@ -198,7 +200,7 @@ namespace account
 //   string department::get_account_server(::file::path pathUrl, i32 iRetry)
 //   {
 //
-//      string strRequestingServer = psystem->url().get_server(pathUrl);
+//      string strRequestingServer = purl->get_server(pathUrl);
 //
 //      ::u32 dwGetFontopusBeg= ::millis::now();
 //
@@ -239,7 +241,7 @@ namespace account
    ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {

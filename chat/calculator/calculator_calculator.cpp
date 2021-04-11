@@ -7,7 +7,7 @@ namespace calculator
 
    calculator::calculator(::object * pobject) :
       ::object(pobject),
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
    
    }

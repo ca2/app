@@ -44,14 +44,14 @@ public:
 
 
 
-   DECL_GEN_SIGNAL(on_message_create);
-   DECL_GEN_SIGNAL(on_message_left_button_down);
-   DECL_GEN_SIGNAL(on_message_mouse_move);
-   DECL_GEN_SIGNAL(on_message_mouse_leave);
-   DECL_GEN_SIGNAL(on_message_left_button_up);
-   DECL_GEN_SIGNAL(_001OnImageLoaded);
-   DECL_GEN_SIGNAL(_001OnKeyDown);
-   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+   DECLARE_MESSAGE_HANDLER(_001OnImageLoaded);
+   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
 
 

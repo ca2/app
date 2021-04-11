@@ -29,11 +29,11 @@ namespace prompt
       void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
 
 
-      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
-      DECL_GEN_SIGNAL(_001OnEditCopy);
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
-      DECL_GEN_SIGNAL(_001OnEditPaste);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
 
 
    };

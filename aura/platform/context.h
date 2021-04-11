@@ -12,7 +12,6 @@ namespace aura
    public:
 
 
-      __composite(::context_image)        m_pimage;
 
 
       context();
@@ -21,7 +20,6 @@ namespace aura
 
       virtual ::e_status initialize_context() override;
 
-      inline ::context_image & image() { return *m_pimage; }
 
 
    };

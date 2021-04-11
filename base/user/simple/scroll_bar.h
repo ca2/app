@@ -59,14 +59,14 @@ public:
 
    bool GetTrackRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
-   DECL_GEN_SIGNAL(on_message_mouse_move);
-   DECL_GEN_SIGNAL(on_message_left_button_down);
-   DECL_GEN_SIGNAL(on_message_left_button_up);
-   DECL_GEN_SIGNAL(_001OnHScroll);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+   DECLARE_MESSAGE_HANDLER(_001OnHScroll);
    void _001OnTimer(::timer * ptimer) override;
-   DECL_GEN_SIGNAL(on_message_create);
-   DECL_GEN_SIGNAL(_001OnShowWindow);
-   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
    void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);

@@ -207,11 +207,11 @@ public:
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, strsize * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen);
 
 
-   DECL_GEN_SIGNAL(OnMouseMove);
-   DECL_GEN_SIGNAL(OnLButtonDown);
-   DECL_GEN_SIGNAL(OnLButtonUp);
+   DECLARE_MESSAGE_HANDLER(OnMouseMove);
+   DECLARE_MESSAGE_HANDLER(OnLButtonDown);
+   DECLARE_MESSAGE_HANDLER(OnLButtonUp);
    virtual void _001OnTimer(::timer * ptimer);
-   DECL_GEN_SIGNAL(OnSetCursor);
+   DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
    XfplayerViewLineSelection::enum_state GetSelectionState();
    XfplayerViewLineSelection & GetSelection();

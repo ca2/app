@@ -199,12 +199,12 @@ namespace aura
       }
 
 
-      //estatus = __compose_new(m_puserstrcontext);
+      //estatus = __compose_new(m_ptextcontext);
 
       //if (!estatus)
       //{
 
-      //   INFO("apex::str_context Failed to Allocate!!");
+      //   INFO("acme::str_context Failed to Allocate!!");
 
       //   return estatus;
 
@@ -219,7 +219,7 @@ namespace aura
 
       }
 
-      INFO("apex::str_context Succeeded to Allocate!!");
+      INFO("acme::str_context Succeeded to Allocate!!");
 
       INFO("aura::session::process_init success");
 
@@ -321,16 +321,18 @@ namespace aura
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      string strProtocol = psystem->url().get_protocol(strPathName);
+      auto purl = psystem->url();
+
+      string strProtocol = purl->get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = psystem->url().get_server(strPathName);
+         strId = purl->get_server(strPathName);
 
-         string str = psystem->url().get_object(strPathName);
+         string str = purl->get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -2408,7 +2410,7 @@ namespace aura
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = psystem->url().url_decode(str);
+      //      str = purl->url_decode(str);
 
       //   }
 

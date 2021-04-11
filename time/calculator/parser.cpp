@@ -19,10 +19,10 @@ namespace datetime
    }
 
 
-   ::e_status parser::initialize_datetime_parse(::apex::str_context* pstrcontext)
+   ::e_status parser::initialize_datetime_parse(::text::context* ptextcontext)
    {
 
-      auto estatus = ::object::initialize(pstrcontext);
+      auto estatus = ::object::initialize(ptextcontext);
 
       if (!estatus)
       {
@@ -40,7 +40,7 @@ namespace datetime
 
       }
 
-      estatus = m_pscanner->initialize_datetime_scanner(pstrcontext);
+      estatus = m_pscanner->initialize_datetime_scanner(ptextcontext);
 
       if (!estatus)
       {

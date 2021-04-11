@@ -23,7 +23,7 @@ namespace simpledb
 
       virtual void clear_search() override;
 
-      DECL_GEN_SIGNAL(data_on_after_change);
+      DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
 
    };

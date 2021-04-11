@@ -98,15 +98,15 @@ namespace uwp
       void on_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      // DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      //DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      // DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
-      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
-      DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
       
 #if(WINVER >= 0x0500)
@@ -454,12 +454,12 @@ namespace uwp
       void OnClose();
       void OnContextMenu(::user::interaction_impl * pWnd, point_i32 pos);
       //      bool OnCopyData(::user::interaction_impl * pWnd, COPYDATASTRUCT* pCopyDataStruct);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
       HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics, ::user::interaction_impl * pWnd, ::u32 nCtlColor);
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(::u32 nWhy, ::user::interaction_impl * pWho);
@@ -471,8 +471,8 @@ namespace uwp
       //LRESULT OnMenuChar(::u32 nChar, ::u32 nFlags, ::user::menu* pMenu);
       void OnMenuSelect(::u32 nItemID, ::u32 nFlags, HMENU hSysMenu);
       void OnMove(int x, int y);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
       void OnParentNotify(::u32 message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
@@ -545,7 +545,7 @@ namespace uwp
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

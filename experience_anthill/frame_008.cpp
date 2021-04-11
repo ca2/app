@@ -317,7 +317,7 @@ SizingNone:
             
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(1.0, argb((i + 1) * 10, iR, iG, iB));
+            pen->create_solid(1.0, argb((byte) ((i + 1) * 10), iR, iG, iB));
 
             pgraphics->set(pen);
 
@@ -639,7 +639,7 @@ SizingNone:
             }
 
 
-            void frame_008::on_style_change()
+            void frame_008::_on_style_change(::draw2d::graphics_pointer& pgraphics)
             {
 
                frame::on_style_change();

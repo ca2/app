@@ -11,9 +11,9 @@ namespace aqua
    multimedia::multimedia()
    {
 
+      m_pmultimedia = nullptr;
 
-
-
+      m_pveriwellmultimedia = nullptr;
 
    }
 

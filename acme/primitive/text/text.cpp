@@ -3,121 +3,131 @@
 #include "_.h"
 
 
-text::text()
-{
-   
-   m_ptextdata = nullptr;
-
-}
-
-
-text::text(text&& text)
-{
-
-   m_ptextdata = text.m_ptextdata;
-   
-   text.m_ptextdata = nullptr;
-
-}
-
-
-text::text(const text& text)
-{
-   
-   m_ptextdata = text.clone_text_data();
-
-}
-
-
-text::~text()
-{
-
-   destroy();
-
-}
-
-
-text::text(text_data* ptextdata) :
-   m_ptextdata(ptextdata)
+namespace text
 {
 
 
-}
-
-
-text_data * text::clone_text_data() const
-{
-
-   auto ptextdata = m_ptextdata;
-
-   if (::is_null(ptextdata))
+   text::text()
    {
 
-      return nullptr;
+      m_pdata = nullptr;
 
    }
 
-   auto ptexttranslator = ptextdata->m_ptexttranslator;
 
-   return ptexttranslator->clone_text_data(ptextdata);
-
-}
-
-
-string text::get_text() const
-{
-
-   if (::is_null(m_ptextdata))
+   text::text(text&& text)
    {
 
-      return "";
+      m_pdata = text.m_pdata;
+
+      text.m_pdata = nullptr;
 
    }
 
-   synchronous_lock lock(m_ptextdata->m_ptexttranslator->mutex());
 
-   if (m_ptextdata->m_bPendingUpdate)
+   text::text(const text& text)
    {
 
-      m_ptextdata->m_bPendingUpdate = false;
-
-      m_ptextdata->m_ptexttranslator->translate_text_data(m_ptextdata);
+      m_pdata = text.clone_text_data();
 
    }
 
-   return m_ptextdata->m_str;
 
-}
-
-
-void text::destroy()
-{
-
-   if (::is_set(m_ptextdata))
-   {
-
-      m_ptextdata->m_ptexttranslator->destroy_text_data(m_ptextdata);
-
-      m_ptextdata = nullptr;
-
-   }
-
-}
-
-
-text& text::operator = (const text& text)
-{
-
-   if (m_ptextdata != text.m_ptextdata)
+   text::~text()
    {
 
       destroy();
 
-      m_ptextdata = text.clone_text_data();
+   }
+
+
+   text::text(data* pdata) :
+      m_pdata(pdata)
+   {
+
 
    }
 
-   return *this;
 
-}
+   data* text::clone_text_data() const
+   {
+
+      auto pdata = m_pdata;
+
+      if (::is_null(pdata))
+      {
+
+         return nullptr;
+
+      }
+
+      auto ptranslator = pdata->m_ptranslator;
+
+      return ptranslator->clone_text_data(pdata);
+
+   }
+
+
+   string text::get_text() const
+   {
+
+      if (::is_null(m_pdata))
+      {
+
+         return "";
+
+      }
+
+      synchronous_lock lock(m_pdata->m_ptranslator->mutex());
+
+      if (m_pdata->m_bPendingUpdate)
+      {
+
+         m_pdata->m_bPendingUpdate = false;
+
+         m_pdata->m_ptranslator->translate_text_data(m_pdata);
+
+      }
+
+      return m_pdata->m_str;
+
+   }
+
+
+   void text::destroy()
+   {
+
+      if (::is_set(m_pdata))
+      {
+
+         m_pdata->m_ptranslator->destroy_text_data(m_pdata);
+
+         m_pdata = nullptr;
+
+      }
+
+   }
+
+
+   text& text::operator = (const text& text)
+   {
+
+      if (m_pdata != text.m_pdata)
+      {
+
+         destroy();
+
+         m_pdata = text.clone_text_data();
+
+      }
+
+      return *this;
+
+   }
+
+
+} // namespace text
+
+
+
 

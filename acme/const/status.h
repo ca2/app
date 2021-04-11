@@ -232,6 +232,9 @@ enum enum_status : ::i64
    success_not_allocated,
    success_not_created,
    success_not_composed,
+   success_already_added,
+   success_started,
+   success_scheduled,
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

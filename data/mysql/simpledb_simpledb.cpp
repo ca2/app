@@ -10,7 +10,7 @@ namespace simpledb
 
    simpledb::simpledb(::object * pobject) :
       ::object(pobject),
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
       m_pserver      = nullptr;
@@ -126,7 +126,7 @@ namespace simpledb
 //      ::aura::application_request * prequest = psystem->get_application_request();
 
 
-      get_application()->m_psession->fill_locale_schema(*get_application()->m_psession->str_context()->m_plocaleschema);
+      get_application()->m_psession->fill_locale_schema(*get_application()->m_psession->textcontext()->m_plocaleschema);
 
 
       //if(!get_application()->m_pcoreapp->is_installing() && !get_application()->m_pcoreapp->is_unstalling() && !get_application()->m_pcoreapp->is_system())

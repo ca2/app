@@ -55,7 +55,7 @@ namespace simpledb
       void install_message_routing(::channel * pchannel) override;
 
 
-      DECL_GEN_SIGNAL(OnApp);
+      DECLARE_MESSAGE_HANDLER(OnApp);
 
 
    };

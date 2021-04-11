@@ -78,6 +78,7 @@ namespace core
    user::user()
    {
 
+      m_pcoreuser = this;
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
       m_ptemplatePlaceHolder = nullptr;
@@ -417,7 +418,7 @@ namespace core
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      if (!::acme::department::init2())
       {
 
          return false;
@@ -446,7 +447,7 @@ namespace core
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch (...)
@@ -466,8 +467,12 @@ namespace core
 
    }
 
-   void user::term()
+
+
+   ::e_status user::term()
    {
+
+      return ::success;
 
    }
 
@@ -972,8 +977,10 @@ namespace core
    }
 
 
-   void user::term_instance()
+   ::e_status user::term_instance()
    {
+
+      return ::success;
 
    }
 
@@ -2038,13 +2045,13 @@ namespace core
 
          auto psystem = m_psystem->m_paurasystem;
 
-         psystem->draw2d()->write_text()->fonts();
+         auto pdraw2d = psystem->draw2d();
 
-
+         pdraw2d->write_text()->fonts();
 
          //fork([&]()
          //{
-         //         psystem->draw2d()->fonts().m_pfontenumeration->check_need_update();
+         //         pdraw2d->fonts().m_pfontenumeration->check_need_update();
 
 
          //});

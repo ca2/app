@@ -92,7 +92,7 @@ namespace user
       void common_construct();
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
       virtual ::e_status show(const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox);

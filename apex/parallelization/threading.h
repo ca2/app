@@ -15,7 +15,7 @@ namespace parallelization
 
 
    class CLASS_DECL_APEX threading :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

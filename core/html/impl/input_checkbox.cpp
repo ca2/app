@@ -47,7 +47,7 @@ namespace html
             if(m_pcheckbox->is_window())
             {
 
-               m_pcheckbox->DestroyWindow();
+               m_pcheckbox->destroy_window();
 
             }
 

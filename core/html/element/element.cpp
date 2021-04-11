@@ -932,8 +932,13 @@ namespace html
             else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
                     ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
+
                auto psystem = m_psystem->m_paurasystem;
-               strUrl = psystem->url().path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+
+               auto purl = psystem->url();
+
+               strUrl = purl->path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+
             }
             else
             {

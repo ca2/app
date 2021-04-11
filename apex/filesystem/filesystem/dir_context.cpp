@@ -1546,9 +1546,11 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          // todo: keep cache timeout information;
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
 
-         string strUrl = "https://api.ca2.cc/api/matter/list_dir?dir=" + psystem->url().url_encode(strMatter);
+         auto purl = psystem->url();
+
+         string strUrl = "https://api.ca2.cc/api/matter/list_dir?dir=" + purl->url_encode(strMatter);
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -1768,7 +1770,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    auto psession = get_session();
 
-   ::apex::str_context * pcontext = psession->str_context();
+   ::text::context * ptextcontext = psession->text_context();
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -1826,9 +1828,11 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       string strCandidate = stra.implode("|");
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      string strParam = psystem->url().url_encode(strCandidate);
+      auto purl = psystem->url();
+
+      string strParam = purl->url_encode(strCandidate);
 
       string strUrl;
 
@@ -1867,7 +1871,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
          if (bDir)
          {
 
-            ::dir::mk(psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            ::dir::mk(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
 
          }
 

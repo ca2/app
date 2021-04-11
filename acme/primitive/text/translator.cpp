@@ -3,69 +3,80 @@
 #include "_.h"
 
 
-text_translator::text_translator()
-{
-   
-   defer_create_mutex();
-
-}
-
-
-text_translator::~text_translator()
+namespace text
 {
 
-
-}
-
-
-void text_translator::translate_text_data(text_data* ptextdata)
-{
-
-   m_pcontext->translate_text_data(ptextdata);
-
-}
-
-
-void text_translator::translate_text_data()
-{
-
-   for (auto ptextdata : m_textdataaddressa)
+   translator::translator()
    {
 
-      ptextdata->m_bPendingUpdate = true;
+      defer_create_mutex();
 
    }
 
-}
+
+   translator::~translator()
+   {
 
 
-text_data* text_translator::create_text_data(const ::id& id)
-{
+   }
 
-   text_data* ptextdata = new text_data(this);
 
-   ptextdata->m_id = id;
+   void translator::translate_text_data(data* ptextdata)
+   {
 
-   return ptextdata;
+      m_pcontext->translate_text_data(ptextdata);
 
-}
+   }
 
-text_data* text_translator::clone_text_data(const text_data * ptextdataParam)
-{
 
-   text_data* ptextdata = new text_data(this);
+   void translator::translate_text_data()
+   {
 
-   ptextdata->m_id = ptextdataParam->m_id;
+      for (auto ptextdata : m_dataaddressa)
+      {
 
-   ptextdata->m_str = ptextdataParam->m_str;
+         ptextdata->m_bPendingUpdate = true;
 
-   return ptextdata;
+      }
 
-}
+   }
 
-void text_translator::destroy_text_data(text_data* ptextdata)
-{
 
-   delete ptextdata;
+   data* translator::create_text_data(const ::id& id)
+   {
 
-}
+      data* ptextdata = new data(this);
+
+      ptextdata->m_id = id;
+
+      return ptextdata;
+
+   }
+
+
+   data* translator::clone_text_data(const data* ptextdataParam)
+   {
+
+      data* ptextdata = new data(this);
+
+      ptextdata->m_id = ptextdataParam->m_id;
+
+      ptextdata->m_str = ptextdataParam->m_str;
+
+      return ptextdata;
+
+   }
+
+
+   void translator::destroy_text_data(data* ptextdata)
+   {
+
+      delete ptextdata;
+
+   }
+
+
+} // namespace text
+
+
+

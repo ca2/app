@@ -1503,7 +1503,7 @@ namespace user
       //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*psystem->draw2d()->fonts().GetListCtrlFont());
+      //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 

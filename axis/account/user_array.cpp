@@ -59,11 +59,13 @@ namespace account
 
       __pointer(user) puser;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
 
       {
 
-         string strHost = psystem->url().get_server(pathUrl);
+         string strHost = purl->get_server(pathUrl);
 
          auto estatus = __construct(puser);
 
@@ -220,9 +222,11 @@ namespace account
 
       }
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      string strHost = psystem->url().get_server(pathUrl);
+      auto purl = psystem->url();
+
+      string strHost = purl->get_server(pathUrl);
 
       {
 

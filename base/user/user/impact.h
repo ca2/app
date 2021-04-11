@@ -110,25 +110,25 @@ namespace user
       virtual void PostNcDestroy() override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      //DECL_GEN_SIGNAL(_001OnView);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      //DECLARE_MESSAGE_HANDLER(_001OnView);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      DECL_GEN_SIGNAL(_001OnMouseActivate);
-      DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
-      DECL_GEN_SIGNAL(_001OnSplitCmd);
-      DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu);
-      DECL_GEN_SIGNAL(_001OnNextPaneCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateSplitCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnSplitCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateNextPaneMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnNextPaneCmd);
 
-      DECL_GEN_SIGNAL(_001OnFilePrint);
-      DECL_GEN_SIGNAL(_001OnFilePrintPreview);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrint);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrintPreview);
 
 
-      DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(on_message_middle_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
 
 
       void OnUpdateSplitCmd(::message::command* pCmdUI);

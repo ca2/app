@@ -176,10 +176,10 @@ namespace user
       for(::index i = 0; i < m_splitpanecompositea.get_count(); i++)
       {
 
-         if(m_splitpanecompositea[i].is_null())
-         {
+         auto& ppane = m_splitpanecompositea[i];
 
-            auto & ppane = m_splitpanecompositea.add_new();
+         if(!ppane)
+         {
 
             auto estatus = __compose_new(ppane);
 

@@ -66,7 +66,9 @@ retry:
 
    auto psystem = m_psystem->m_papexsystem;
 
-   string strRemoteFile = psystem->url().get_object(m_filepath);
+   auto purl = psystem->url();
+
+   string strRemoteFile = purl->get_object(m_filepath);
 
    if (!pclient->UploadFile(m_varFile, strRemoteFile))
    {

@@ -23,7 +23,7 @@ namespace str
       return to_i64(string(psz));
    }
 
-} // namespace ::acme::str
+} // namespace ::text::table
 
 template < typename TYPE >
 class numeric_array :

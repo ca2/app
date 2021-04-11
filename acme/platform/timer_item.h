@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_APEX timer_item :
+//   class CLASS_DECL_ACME timer_item :
 //      virtual public object
 //   {
 //   public:

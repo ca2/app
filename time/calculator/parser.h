@@ -20,7 +20,7 @@ namespace datetime
       virtual ~parser();
 
 
-      virtual ::e_status initialize_datetime_parse(::apex::str_context * pcontext);
+      virtual ::e_status initialize_datetime_parse(::text::context * pcontext);
 
 
       ::datetime::element * parse(const char * psz);

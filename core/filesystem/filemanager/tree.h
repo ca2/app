@@ -89,7 +89,7 @@ namespace filemanager
 
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      DECL_GEN_SIGNAL(_001OnMainPostMessage);
+      DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
       void GetSelectedFilePath(string_array & stra);
       virtual bool _001IsTranslucent() override;
 
@@ -106,9 +106,9 @@ namespace filemanager
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnShellCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
 
 
       virtual void on_merge_user_tree(::user::tree * pusertree) override;

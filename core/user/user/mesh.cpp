@@ -3260,9 +3260,9 @@ namespace user
       }
 
 
-      //m_font->operator=(*psystem->draw2d()->fonts().GetMeshCtrlFont());
+      //m_font->operator=(*pdraw2d->fonts().GetMeshCtrlFont());
 
-      //m_fontHover->operator=(*psystem->draw2d()->fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*pdraw2d->fonts().GetMeshCtrlFont());
 
       //m_fontHover->set_underline();
       ////m_fontHover->set_bold();

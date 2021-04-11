@@ -42,7 +42,7 @@ namespace aqua
 
       virtual ::e_status create_audio();
 
-      virtual ::aqua::audio* defer_get_audio();
+      virtual ::e_status defer_audio() override;
 
       virtual void defer_multimedia();
 
@@ -54,7 +54,6 @@ namespace aqua
       inline bool has_audio() const { return ::is_set(m_paudio); }
 
       inline ::aqua::multimedia * multimedia() { return m_pmultimedia; }
-
 
 
    };

@@ -66,7 +66,7 @@
     <ClCompile Include="frame_011.cpp" />
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="library.cpp" />
+    <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="style.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
@@ -84,7 +84,7 @@
     <ClInclude Include="frame_011.h" />
     <ClInclude Include="frame_013.h" />
     <ClInclude Include="frame_Minimal001.h" />
-    <ClInclude Include="library.h" />
+    <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="style.h" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +106,9 @@
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_anthill.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>experience_anthill</ProjectName>

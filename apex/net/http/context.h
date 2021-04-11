@@ -73,7 +73,7 @@ namespace http
       void http_system_destruct();
 
 
-      DECL_GEN_SIGNAL(get);
+      DECLARE_MESSAGE_HANDLER(get);
 
       virtual bool http_get(__pointer(::sockets::http_client_socket) & m_psocket, const char * pszUrl, property_set & set);
       virtual bool get(::http::session & session, const char * pszUrl, string & str, property_set & set);
@@ -125,7 +125,7 @@ namespace http
 
       property_set & process_set(property_set & set, const char * pszUrl);
 
-      //DECL_GEN_SIGNAL(get);
+      //DECLARE_MESSAGE_HANDLER(get);
 
       virtual bool get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set);
 

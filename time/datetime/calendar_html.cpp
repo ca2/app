@@ -93,7 +93,7 @@ namespace datetime
                      iDayOfWeek = 1;
                }
                pfile->raw_print("<td>");
-               pfile->printf("%s", GetTinyWeekDay(pfile->str_context(), iDayOfWeek).c_str());
+               pfile->printf("%s", GetTinyWeekDay(pfile->textcontext(), iDayOfWeek).c_str());
                pfile->raw_print("</td>");
             }
             pfile->raw_print("</tr>");
@@ -115,7 +115,7 @@ namespace datetime
             {
                time_t w;       if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
-                  w = atoi(psystem->datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
                }
                else
                {

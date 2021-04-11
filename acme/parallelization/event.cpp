@@ -546,7 +546,11 @@ synchronization_result event::wait (const duration & durationTimeout)
 
    auto osduration = durationTimeout.u32_millis();
 
-   result = windows_wait_result_to_synchronization_result(::WaitForSingleObjectEx(hsync(), osduration,false));
+   auto hsync = this->hsync();
+
+   DWORD dwResult = ::WaitForSingleObjectEx(hsync, osduration, false);
+
+   result = windows_wait_result_to_synchronization_result(dwResult);
 
 #elif defined(ANDROID)
 

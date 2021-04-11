@@ -152,11 +152,17 @@ namespace app_shader
 
                auto psystem = m_psystem->m_paurasystem;
 
-               string strDate = psystem->datetime().international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+               auto pdatetime = psystem->m_pdatetime;
+
+               string strDate = pdatetime->international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
                auto papplication = get_application();
 
-               papplication->image().save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
+               auto pcontext = m_pcontext;
+
+               auto pcontextimage = pcontext->context_image();
+
+               pcontextimage->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
 
             });
 

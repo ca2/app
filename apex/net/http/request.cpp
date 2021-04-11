@@ -74,9 +74,12 @@ namespace http
 
       m_form.clear();
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      m_strQueryString = psystem->url().object_get_query(m_strRequestUri);
+      auto purl = psystem->url();
+
+      m_strQueryString = purl->object_get_query(m_strRequestUri);
+
       attr(__id(query_string)) = m_strQueryString;
       m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
       m_form.request()         = m_form.get();

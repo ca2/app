@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS html:
-      public ::apex::department
+      public ::acme::department
    {
    public:
 

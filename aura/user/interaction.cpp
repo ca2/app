@@ -1754,22 +1754,16 @@ namespace user
    ::e_status interaction::finish()
    {
 
-      //if (!m_bUserInteractionSetFinish)
-      //{
+      if (!m_bUserInteractionSetFinish)
+      {
 
-      //   m_bUserInteractionSetFinish = true;
+         m_bUserInteractionSetFinish = true;
 
-      //   display(::e_display_none);
+         start_destroying_window();
 
-      //   set_need_redraw();
+         return error_pending;
 
-      //   post_redraw();
-
-      //   post_method(__routine([this]() { finish(); }));
-
-      //   return error_pending;
-
-      //}
+      }
 
       return ::user::primitive::finish();
 
@@ -4154,24 +4148,24 @@ namespace user
    }
 
 
-   void interaction::enumerate_composite(matter_array& a)
-   {
+   //void interaction::enumerate_composite(matter_array& a)
+   //{
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (puserinteractionpointeraChild)
-      {
+   //   if (puserinteractionpointeraChild)
+   //   {
 
-         for (auto& puserinteractionChild : puserinteractionpointeraChild->interactiona())
-         {
+   //      for (auto& puserinteractionChild : puserinteractionpointeraChild->interactiona())
+   //      {
 
-            a.add_non_null(puserinteractionChild);
+   //         a.add_non_null(puserinteractionChild);
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    ::e_status interaction::main_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
@@ -5408,7 +5402,7 @@ namespace user
       if (is_window())
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -5503,7 +5497,7 @@ namespace user
       if (is_window())
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -5641,7 +5635,7 @@ namespace user
       if (is_window())
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -6636,7 +6630,7 @@ namespace user
       if (m_ewindowflag & e_window_flag_is_window)
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
          return error_pending;
 
@@ -6747,7 +6741,7 @@ namespace user
    //}
 
 
-   bool interaction::DestroyWindow()
+   bool interaction::start_destroying_window()
    {
 
       string strType;
@@ -6757,7 +6751,7 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         output_debug_string("main_frame DestroyWindow\n");
+         output_debug_string("main_frame start_destroying_window\n");
 
       }
 
@@ -6781,7 +6775,7 @@ namespace user
 
       //::user::primitive::on_finish();
 
-      return m_pimpl->DestroyWindow();
+      return m_pimpl->start_destroying_window();
 
    }
 
@@ -10299,7 +10293,7 @@ namespace user
       if (is_window())
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -11244,7 +11238,7 @@ restart:
 
       display(e_display_none);
 
-      DestroyWindow();
+      start_destroying_window();
 
    }
 
@@ -14035,12 +14029,12 @@ restart:
       // If this is a "top level" or "operating system" window,
       // the operating system may keep object to this object,
       // preventing it from being fully released.
-      // If the window DestroyWindow member is called in interaction::~interaction destructor,
+      // If the window start_destroying_window member is called in interaction::~interaction destructor,
       // derived classes from interaction::~interaction may have deleted object resources
-      // that could be used to correctly destroy window, as DestroyWindow generally require
+      // that could be used to correctly destroy window, as start_destroying_window generally require
       // that the object be a full valid object before being disposed.
 
-      DestroyWindow();
+      start_destroying_window();
 
       ::user::primitive::destruct();
 
@@ -15709,7 +15703,7 @@ restart:
    //::e_status interaction::finalize()
    //{
 
-   //   DestroyWindow();
+   //   start_destroying_window();
 
    //}
 
@@ -16565,7 +16559,7 @@ restart:
    //   //   if(m_bCreated)
    //   //   {
 
-   //   //      m_pcontrol->DestroyWindow();
+   //   //      m_pcontrol->start_destroying_window();
 
    //   //   }
    //   //   else if(m_bSubclassed)

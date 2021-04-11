@@ -99,7 +99,7 @@ namespace userex
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void on_command(::message::command * pcommand) override;
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;

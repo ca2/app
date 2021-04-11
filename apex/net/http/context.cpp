@@ -47,9 +47,11 @@ namespace http
 
       set["app"] = get_application();
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      string strServer = psystem->url().get_root(pszUrl);
+      auto purl = psystem->url();
+
+      string strServer = purl->get_root(pszUrl);
 
       if (strServer == "server.ca2.cc")
       {
@@ -243,9 +245,11 @@ namespace http
 
       }
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      if (::str::find_wwci("ca2", psystem->url().get_server(pszUrl)) < 0 && psystem->url().get_object(pszUrl).find_ci("/matter/") < 0)
+      auto purl = psystem->url();
+
+      if (::str::find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).find_ci("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -457,8 +461,8 @@ namespace http
       //
       //      string strFontopusServer;
       //
-      //      if(atoi(psystem->url().get_param(pszUrl, "authnone")) == 1
-      //            || psystem->url().get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
+      //      if(atoi(purl->get_param(pszUrl, "authnone")) == 1
+      //            || purl->get_param(pszUrl,"sessid").compare_ci("noauth") == 0)
       //      {
       //
       //         strFontopusServer = pszUrl;
@@ -773,11 +777,13 @@ namespace http
 
       string strHost;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      strHost = psystem->url().get_server(pszUrl);
+      auto purl = psystem->url();
 
-      i32 port = psystem->url().get_port(pszUrl);
+      strHost = purl->get_server(pszUrl);
+
+      i32 port = purl->get_port(pszUrl);
 
       ::net::address ad(strHost, port);
 
@@ -913,9 +919,9 @@ namespace http
 
       //bool bOk = true;
 
-      //string strHost = psystem->url().get_server(pszUrl);
+      //string strHost = purl->get_server(pszUrl);
 
-      //i32 iHostPort = psystem->url().get_port(pszUrl);
+      //i32 iHostPort = purl->get_port(pszUrl);
 
       //::net::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
@@ -1075,13 +1081,13 @@ namespace http
    //   if (strSessId.is_empty())
    //   {
 
-   //      psystem->url().string_set(strUrl, "authnone", 1);
+   //      purl->string_set(strUrl, "authnone", 1);
 
    //      return;
 
    //   }
 
-   //   //psystem->url().string_set(strUrl, "sessid", strSessId);
+   //   //purl->string_set(strUrl, "sessid", strSessId);
 
    //}
 
@@ -1126,23 +1132,27 @@ namespace http
       // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         auto psystem = m_psystem;
 
-         string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
+         auto purl = psystem->url();
+
+         string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
          strScript.replace("+", "%20");
 
          strScript.replace("%2F", "/");
 
-         strUrl = psystem->url().set_script(strUrl, strScript);
+         strUrl = purl->set_script(strUrl, strScript);
 
       }
 
       property_set setQuery;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      setQuery.parse_url_query(psystem->url().get_query(strUrl));
+      auto purl = psystem->url();
+
+      setQuery.parse_url_query(purl->get_query(strUrl));
 
       string strIp;
 
@@ -1259,7 +1269,9 @@ namespace http
 
       }
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
 
       if (!bSeemsOk)
       {
@@ -1269,7 +1281,7 @@ namespace http
 
             auto tickBeg = ::millis::now();
 
-            if (!open(psession, psystem->url().get_server(pszRequest), psystem->url().get_protocol(pszRequest), set, set["http_protocol_version"]))
+            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
 
                return false;
@@ -1297,28 +1309,28 @@ namespace http
 
          ::apex::application * papp = psession->m_psockethandler->get_application();
 
-         string strRequest = psystem->url().get_object(pszRequest);
+         string strRequest = purl->get_object(pszRequest);
 
-         string strServer = psystem->url().get_server(pszRequest);
+         string strServer = purl->get_server(pszRequest);
 
          string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
          {
 
-            string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
+            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
             strScript.replace("+", "%20");
 
             strScript.replace("%2F", "/");
 
-            strUrl = psystem->url().set_script(strUrl, strScript);
+            strUrl = purl->set_script(strUrl, strScript);
 
          }
 
          property_set setQuery;
 
-         setQuery.parse_url_query(psystem->url().get_query(strUrl));
+         setQuery.parse_url_query(purl->get_query(strUrl));
 
          string strSessId;
 
@@ -1326,7 +1338,7 @@ namespace http
 
          //on_auth(set, papp, strUrl, strSessId, puser);
 
-         strRequest = psystem->url().get_object(strUrl);
+         strRequest = purl->get_object(strUrl);
 
          psession->inheaders().clear();
          psession->outheaders().clear();
@@ -1384,9 +1396,9 @@ namespace http
 
          }
 
-         psession->m_host = psystem->url().get_server(pszRequest);
+         psession->m_host = purl->get_server(pszRequest);
 
-         psession->m_strHost = psystem->url().get_server(pszRequest);
+         psession->m_strHost = purl->get_server(pszRequest);
 
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
 
@@ -1741,6 +1753,8 @@ namespace http
 
       auto psystem = m_psystem->m_papexsystem;
 
+      auto purl = psystem->url();
+
       i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
       TRACE("");
@@ -1784,11 +1798,11 @@ namespace http
 
       auto tickTimeProfile1 = ::millis::now();
 
-      string strServer = psystem->url().get_root(pszUrl);
+      string strServer = purl->get_root(pszUrl);
 
-      string strProtocol = psystem->url().get_protocol(pszUrl);
+      string strProtocol = purl->get_protocol(pszUrl);
 
-      string strObject = psystem->url().get_object(pszUrl);
+      string strObject = purl->get_object(pszUrl);
 
       __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
@@ -1853,13 +1867,13 @@ namespace http
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
          {
 
-            string strScript = psystem->url().url_encode(psystem->url().url_decode(psystem->url().get_script(strUrl)));
+            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
             strScript.replace("+", "%20");
 
             strScript.replace("%2F", "/");
 
-            strUrl = psystem->url().set_script(strUrl, strScript);
+            strUrl = purl->set_script(strUrl, strScript);
 
          }
 
@@ -1942,7 +1956,7 @@ namespace http
       if (strProtocol == "https")
       {
 
-         psocket->m_strTlsHostName = psystem->url().get_server(strUrl);
+         psocket->m_strTlsHostName = purl->get_server(strUrl);
 
       }
 
@@ -2404,7 +2418,7 @@ namespace http
             else
             {
 
-               strLocation = psystem->url().get_protocol(pszUrl) + psystem->url().get_server(pszUrl) + psystem->url().get_object(strLocation);
+               strLocation = purl->get_protocol(pszUrl) + purl->get_server(pszUrl) + purl->get_object(strLocation);
 
                return http_get(psocket, strLocation, set);
 
@@ -2502,11 +2516,13 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      domain.create(psystem->url().get_server(pmessageMessage->m_strUrl));
+      auto purl = psystem->url();
 
-      if (domain.m_strRadix == "ca2" && ::str::begins(psystem->url().get_object(pmessageMessage->m_strUrl), astr.MatterUri))
+      domain.create(purl->get_server(pmessageMessage->m_strUrl));
+
+      if (domain.m_strRadix == "ca2" && ::str::begins(purl->get_object(pmessageMessage->m_strUrl), astr.MatterUri))
       {
 
          string strUrl(pmessageMessage->m_strUrl);
@@ -2691,11 +2707,13 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = m_psystem->m_papexsystem;
+         auto psystem = m_psystem;
 
-         domain.create(psystem->url().get_server(pszUrl));
+         auto purl = psystem->url();
 
-         if (::str::begins(psystem->url().get_object(pszUrl), astr.MatterUri))
+         domain.create(purl->get_server(pszUrl));
+
+         if (::str::begins(purl->get_object(pszUrl), astr.MatterUri))
          {
 
             set["raw_http"] = true;
@@ -2768,11 +2786,13 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      domain.create(psystem->url().get_server(pszUrl));
+      auto purl = psystem->url();
 
-      if (::str::begins(psystem->url().get_object(pszUrl), astr.MatterUri))
+      domain.create(purl->get_server(pszUrl));
+
+      if (::str::begins(purl->get_object(pszUrl), astr.MatterUri))
       {
 
          set["disable_ca2_sessid"] = true;

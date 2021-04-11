@@ -128,8 +128,6 @@ namespace acme
 
    class node;
 
-//   CLASS_DECL_ACME system * get_system();
-
 
 } // namespace acme
 
@@ -290,6 +288,12 @@ template < typename DERIVED, typename BASE >
 concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
 
+template < typename FROM >
+concept matter_pointer_castable = pointer_castable < FROM, ::matter >;
+
+
+template < typename FROM >
+concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 template < bool, typename T1, typename T2 >
 struct boolean_type_selection { using type = T1; };
@@ -339,7 +343,7 @@ template < typename TYPE, std::size_t SIZE >
 inline array_reference < TYPE, SIZE > & __zero(TYPE(&)[SIZE]);
 
 template < a_pointer POINTER>
-inline typename std::erase_pointer<POINTER>::type & __zero(POINTER p);
+inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p);
 
 template < non_pointer NON_POINTER>
 inline NON_POINTER & __zero(NON_POINTER & t);
@@ -1929,13 +1933,8 @@ namespace acme
    class command;
 
 
-   class str;
-
-
-   class str_context;
-
-
 } // namespace acme
+
 
 namespace gpu
 {
@@ -2428,21 +2427,6 @@ enum e_extract
 };
 
 
-namespace str
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace str
 
 
 class event;
@@ -2558,10 +2542,27 @@ class type;
 
 #include "acme/primitive/string/_.h"
 
+namespace text
+{
+ 
+   class text;
+   class data;
+   class translator;
 
-class text;
-class text_data;
-class text_translator;
+
+   class table;
+   class context;
+
+
+   namespace international
+   {
+
+      class locale_schema;
+
+   }
+
+
+} // namespace text
 
 
 //#include "acme/primitive/text/data.h"
@@ -2791,6 +2792,7 @@ using wparam = c_number<iptr>;
 
 #include "acme/primitive/datetime/_datetime.h"
 
+
 #include "acme/platform/common.h"
 
 
@@ -2871,6 +2873,11 @@ class memory_base;
 
 
 #include "acme/exception/status.h"
+
+
+CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);
+
+
 
 
 class thread;
@@ -3117,8 +3124,44 @@ namespace core
 
 class task;
 
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
+using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
+
+
+
+using routine_array = ::array < routine >;
+
+//using process_array = ::array < process >;
+
+template<typename PRED>
+void add_routine(routine_array& array, PRED pred);
+
+
+//template<typename PRED>
+//void add_process(process_array &array, PRED pred);
+
+
+//} // namespace subject
+
+
+using exception_array = ::array < ::exception::exception >;
+
+
+#include "acme/primitive/primitive/linked_property.h"
+
+
+
+#include "acme/exception/extended_status.h"
+
+
+
+#include "acme/primitive/primitive/property_object.h"
+
 
 #include "acme/exception/_.h"
+
+
+#include "acme/exception/extended_transport.h"
 
 
 #include "acme/user/conversation.h"
@@ -3130,32 +3173,8 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 
 
 
-   using routine_array = ::array < routine >;
-
-   //using process_array = ::array < process >;
-
-   template<typename PRED>
-   void add_routine(routine_array &array, PRED pred);
 
 
-   //template<typename PRED>
-   //void add_process(process_array &array, PRED pred);
-
-
-//} // namespace subject
-
-
-#include "acme/primitive/primitive/linked_property.h"
-
-
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
-using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
-
-
-#include "acme/primitive/primitive/property_object.h"
-
-
-//#include "acme/primitive/primitive/layered.h"
 
 
 #include "acme/primitive/comparison/var_strict.h"
@@ -3181,18 +3200,50 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 #include "acme/primitive/primitive/object.h"
 
 
-class optional_base1 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
-class optional_base2 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
-class optional_base3 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
-class optional_base4 : virtual public ::object { public: virtual ::e_status on_initialize_object() { return ::success; } };
+namespace draw2d
+{
+
+
+   class graphics;
+
+   using graphics_pointer = __pointer(graphics);
+
+
+} // namespace draw2d
+
+
+#define OPTIONAL_BASE_BODY                                                          \
+public:                                                                             \
+   virtual ::e_status on_initialize_object() override { return ::success; }         \
+   virtual void assert_valid() const override {}                                    \
+   virtual void dump(dump_context&) const override {}                               \
+   virtual void on_subject(::subject::subject*, ::subject::context*) override {}    \
+
+
+#define OPTIONAL_INTERACTION_BODY                                                   \
+   OPTIONAL_BASE_BODY                                                               \
+   virtual void install_message_routing(::channel*) override {}                     \
+   virtual void on_layout(::draw2d::graphics_pointer&) {}                           
+
+
+class optional_base1 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base2 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base3 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base4 : virtual public ::object { OPTIONAL_BASE_BODY };
+
+class optional_interaction1 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction2 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction3 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+
+
+class context_image;
 
 
 #include "acme/parallelization/_.h"
 
 
-
-
-//#include "acme/parallelization/critical_section.h"
+#include "acme/primitive/data/_.h"
 
 
 #include "acme/primitive/text/_.h"
@@ -3547,9 +3598,6 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/restore.h"
 
 
-//#include "acme/primitive/data/_.h"
-
-
 #include "acme/primitive/mathematics/objects.h"
 
 
@@ -3559,10 +3607,6 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/primitive/collection/file_path_map.h"
 
 #include "acme/primitive/primitive/edit.h"
-//#include "acme/platform/department.h"
-//#include "acme/platform/department_container.h"
-
-//#include "acme/parallelization/threading.h"
 
 class mq_base;
 
@@ -3640,7 +3684,8 @@ class mq_base;
 
 
 #include "acme/primitive/mathematics/random_number_generator.h"
-//#include "acme/primitive/math/department.h"
+
+
 #include "acme/primitive/geometry2d/geometry.h"
 
 
@@ -3705,10 +3750,19 @@ namespace file
 #include "acme/filesystem/file/buffered_file.h"
 
 
+#include "acme/platform/department.h"
+
+
+#include "acme/net/_.h"
+
+
+#include "acme/primitive/text/context.h"
+
+
 #include "acme/primitive/datetime/_.h"
 
 
-//#include "acme/primitive/string/international_locale_schema.h"
+#include "acme/primitive/text/international_locale_schema.h"
 
 
 //#include "acme/platform/cregexp.h"
@@ -3851,7 +3905,7 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 //#include "acme/platform/message_queue.h"
 
 
-#include "acme/platform/international.h"
+#include "acme/primitive/text/international.h"
 
 
 //#include "acme/platform/static_start.h"
@@ -4167,6 +4221,9 @@ namespace draw2d
 
 
 #include "acme/user/_.h"
+
+
+#include "acme/user/ewindowflag.h"
 
 
 #include "acme/platform/node.h"

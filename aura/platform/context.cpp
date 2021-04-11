@@ -36,7 +36,7 @@ namespace aura
       if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
       {
 
-         estatus = __compose(m_pimage);
+         estatus = __compose(m_pcontextimage);
 
          if (!estatus)
          {

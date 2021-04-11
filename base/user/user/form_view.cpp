@@ -130,7 +130,7 @@ namespace user
             else
             {
 
-               m_pform->DestroyWindow();
+               m_pform->start_destroying_window();
 
                m_pform.release();
 
@@ -158,7 +158,7 @@ namespace user
 
          }
 
-         pformOld->DestroyWindow();
+         pformOld->destroy_window();
 
          pformOld.release();
 

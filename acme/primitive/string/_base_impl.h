@@ -850,29 +850,29 @@ bool string_base < TYPE_CHAR >::contains_wci(const string_base < TYPE_CHAR >& st
 }
 
 
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::erase(strsize iStart, strsize strsize)
-{
-
-   if (iStart < 0)
-   {
-
-      strsize = 0;
-
-   }
-
-   if (strsize < 0)
-   {
-
-      strsize = get_length();
-
-   }
-
-   Delete(iStart, strsize);
-
-   return *this;
-
-}
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::erase(strsize iStart, strsize strsize)
+//{
+//
+//   if (iStart < 0)
+//   {
+//
+//      strsize = 0;
+//
+//   }
+//
+//   if (strsize < 0)
+//   {
+//
+//      strsize = get_length();
+//
+//   }
+//
+//   Delete(iStart, strsize);
+//
+//   return *this;
+//
+//}
 
 
 template < typename TYPE_CHAR >

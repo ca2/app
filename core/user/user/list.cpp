@@ -7536,7 +7536,9 @@ namespace user
 
                auto psystem = m_psystem->m_paurasystem;
 
-               if (psystem->draw2d()->embossed_text_out(
+               auto pdraw2d = psystem->draw2d();
+
+               if (pdraw2d->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,

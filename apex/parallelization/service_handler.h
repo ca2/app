@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_APEX service_handler :
-   virtual public ::apex::department
+   virtual public ::acme::department
 {
 public:
 

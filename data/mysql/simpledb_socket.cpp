@@ -54,7 +54,7 @@ namespace simpledb
 
          string strUri(inattr("request_uri"));
          string strHost(inheader("host"));
-         string strScript = psystem->url().object_get_script(strUri);
+         string strScript = purl->object_get_script(strUri);
          if(strUri.find("thesecret") >= 0)
          {
             //      debug_break();
@@ -121,14 +121,14 @@ namespace simpledb
       if(strKey.compare_ci("Location") == 0)
       {
          url_domain domain;
-         domain.create(psystem->url().get_server(strValue));
+         domain.create(purl->get_server(strValue));
          if(domain.m_strRadix == "ca2open")
          {
-            strValue = "https://" + papplication->m_strFontopusServer + psystem->url().get_object(strValue);
+            strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.cc" && psystem->url().get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.cc" && purl->get_protocol(strValue) == "https")
          {
-            strValue = "https://" + papplication->m_strFontopusServer + psystem->url().get_object(strValue);
+            strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
          }
       }
       strValue.trim();
@@ -180,7 +180,7 @@ namespace simpledb
       }
       else
       {
-         strRelative = psystem->url().url_decode(psystem->url().get_script(inattr("request_uri")));
+         strRelative = purl->url_decode(purl->get_script(inattr("request_uri")));
       }
       string strPath;
       strPath = pcontext->m_papexcontext->dir().path(psz, strRelative);
@@ -298,7 +298,7 @@ namespace simpledb
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().ostream() << psystem->base64().encode(*memfile.get_memory());
+               response().ostream() << pbase64->encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";

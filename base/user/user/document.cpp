@@ -686,7 +686,9 @@ namespace user
 
          auto psystem = m_psystem->m_pbasesystem;
 
-         strPathName = psystem->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+         auto pdatetime = psystem->datetime();
+
+         strPathName = pdatetime->international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
 
       }
       else
@@ -910,7 +912,9 @@ namespace user
 
       __keep(m_pcreate, pcreate);
 
-      if (!open_document(pcreate->m_pcommandline->m_varFile))
+      ::payload varFile = pcreate->get_file();
+
+      if (!open_document(varFile))
       {
 
          return false;

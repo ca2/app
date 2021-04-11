@@ -57,19 +57,36 @@ namespace sockets
       {
          if(code == "334")
          {
+            
             string strWord = pa.getword();
-            auto psystem = m_psystem->m_paurasystem;
-            string strRequest = psystem->base64().decode(strWord);
+
+            auto psystem = m_psystem;
+
+            auto pbase64 = psystem->base64();
+
+            string strRequest = pbase64->decode(strWord);
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = psystem->base64().encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+
+               auto psystem = m_psystem;
+
+               auto pbase64 = psystem->base64();
+
+               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = psystem->base64().encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+
+               auto psystem = m_psystem;
+
+               auto pbase64 = psystem->base64();
+
+               strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+
                print(strResponse + "\r\n");
+
             }
          }
          else if(code == "235")
@@ -98,9 +115,14 @@ namespace sockets
       {
          if(code.Mid(0, 1) == "3")
          {
+
             m_estate = state_body;
-            auto psystem = m_psystem->m_paurasystem;
-            print("Subject:  =?utf-8?B?" + psystem->base64().encode(m_pemail->m_strSubject) + "?=\r\n");
+
+            auto psystem = m_psystem;
+
+            auto pbase64 = psystem->base64();
+
+            print("Subject:  =?utf-8?B?" + pbase64->encode(m_pemail->m_strSubject) + "?=\r\n");
             m_pemail->prepare_headers();
             print(m_pemail->m_strHeaders);
             print("Content-Type: text/plain; charset=\"utf-8\"\r\n");

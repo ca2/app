@@ -27,9 +27,9 @@ namespace bred
 
       create_factory < ::bred::application, ::apex::application >();
       create_factory < ::bred::session, ::apex::session >();
-      create_factory < ::bred::idpool, ::apex::idpool >();
+      create_factory < ::bred::idpool, ::acme::idpool >();
       //create_factory < ::core::user, ::user::user >();
-      create_factory < ::bred::idpool, ::apex::idpool >();
+      //create_factory < ::bred::idpool, ::apex::idpool >();
 
    }
 

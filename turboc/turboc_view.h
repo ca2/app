@@ -105,7 +105,7 @@ namespace turboc
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual string get_turboc();
 

@@ -9,7 +9,7 @@ namespace calculator
 
 
    class CLASS_DECL_AXIS calculator :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

@@ -517,6 +517,13 @@ public:
 
       }
 
+      if (m_pcounter.is_set())
+      {
+
+         (*m_pcounter)++;
+
+      }
+
       return ::success;
 
    }
@@ -793,26 +800,26 @@ __pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCo
 }
 
 
-//template < typename PRED >
-//::task * predicate_run(::object * pobject, bool bSync, PRED pred)
-//{
-//
-//   if (bSync)
-//   {
-//
-//      pred();
-//
-//      return nullptr;
-//
-//   }
-//   else
-//   {
-//
-//      return pobject->fork(pred);
-//
-//   }
-//
-//}
+template < typename PRED >
+::task * predicate_run(::object * pobject, bool bSync, PRED pred)
+{
+
+  if (bSync)
+  {
+
+     pred();
+
+     return nullptr;
+
+  }
+  else
+  {
+
+     return pobject->fork(pred);
+
+  }
+
+}
 
 
 //template < typename PRED >

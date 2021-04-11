@@ -410,7 +410,9 @@ namespace dynamic_source
 
       auto psystem = m_psystem->m_paurasystem;
 
-      strRndTitle = "_" + psystem->datetime().international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
+      auto pdatetime = psystem->datetime();
+
+      strRndTitle = "_" + pdatetime->international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
       string strTime = m_strTime;
 
@@ -1649,7 +1651,9 @@ namespace dynamic_source
 
             property_set set;
 
-            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + psystem->url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            auto purl = psystem->url();
+
+            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
@@ -3269,7 +3273,7 @@ ch_else:
 
       auto psystem = m_psystem->m_paurasystem;
 
-      psystem->str().set(pszTopic,idLocale,idSchema,psz);
+      psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 
    }
 

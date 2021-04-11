@@ -114,6 +114,8 @@ namespace apex
 
       create_factory < ::thread >();
 
+      create_factory<::apex::idpool, ::acme::idpool >();
+
       m_edisplay = e_display_default;
 
       //set_layer(LAYERED_APEX, this);
@@ -424,7 +426,7 @@ namespace apex
 
       //m_pDraw2dFactoryExchange = nullptr;
 
-      //m_puserstr = nullptr;
+      //m_ptexttable = nullptr;
 
 //      __node_axis_factory_exchange(::factory_map * pfactorymap);
 
@@ -527,7 +529,7 @@ namespace apex
       //m_bProcessInitialize       = false;
       //m_bProcessInitializeResult = false;
 
-      //m_puserstr                 = nullptr;
+      //m_ptexttable                 = nullptr;
 
       //m_pparserfactory           = nullptr;
 
@@ -739,7 +741,7 @@ namespace apex
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
-         set_finish();
+         finish();
 
       }
 
@@ -1012,20 +1014,6 @@ namespace apex
    //}
 
 
-   ::datetime::department & system::datetime()
-   {
-
-      return *m_pdatetime;
-
-   }
-
-
-   ::apex::str & system::str()
-   {
-
-      return *m_puserstr;
-
-   }
 
 
    //::layered * system::get_layered_window(oswindow oswindow)
@@ -1419,8 +1407,6 @@ namespace apex
 
       //string strAppId = m_papplicationStartup->m_strAppId;
 
-      ::apex::idpool::init();
-
       if (is_true("show_application_information"))
       {
 
@@ -1719,9 +1705,11 @@ namespace apex
 
       //}
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      string strLogTime = psystem->datetime().international().get_gmt_date_time_for_file_with_no_spaces();
+      auto pdatetime = psystem->datetime();
+
+      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
 
       strLogTime.replace("-", "/");
 
@@ -2000,6 +1988,15 @@ namespace apex
 
 #endif
 
+      auto strMain = m_pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
+
+      if (!m_ptexttable->load(strMain))
+      {
+
+         return error_failed;
+
+      }
+
       return true;
 
    }
@@ -2024,15 +2021,6 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      ::e_status estatus = ::apex::context_thread::inline_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       auto papplicationStartup = new_application(m_strAppId);
 
       if (!papplicationStartup)
@@ -2045,6 +2033,17 @@ namespace apex
       __refer(m_papplicationStartup, papplicationStartup);
 
       m_papplicationStartup->get_property_set().merge(get_property_set());
+
+      set_main_struct(*m_papplicationStartup);
+
+      ::e_status estatus = ::apex::context_thread::inline_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return estatus;
 
@@ -2416,7 +2415,6 @@ namespace apex
    void system::TermSystem()
    {
 
-      //::apex::application::TermSystem();
 
 
 //#ifdef LINUX
@@ -2442,6 +2440,10 @@ namespace apex
 //
 //#endif
 //
+
+
+      ::acme::system::TermSystem();
+
    }
 
 
@@ -2702,12 +2704,12 @@ namespace apex
 
 
 
-   class ::str::base64 & system::base64()
-   {
+   //class ::str::base64 & system::base64()
+   //{
 
-      return *m_pbase64;
+   //   return *m_pbase64;
 
-   }
+   //}
 
 
    ::apex::log & system::log()
@@ -2725,20 +2727,7 @@ namespace apex
    }
 
 
-   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
-   {
 
-      return nullptr;
-
-   }
-
-
-   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
-   {
-
-      return nullptr;
-
-   }
 
 
    ::apex::session * system::session(index iEdge)
@@ -3854,22 +3843,24 @@ namespace apex
    void system::on_extra(string str)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      string strProtocol = psystem->url().get_protocol(str);
+      auto purl = psystem->url();
+
+      string strProtocol = purl->get_protocol(str);
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = psystem->url().get_server(str);
+         string strBase = purl->get_server(str);
 
-         string strAppId = psystem->url().get_script(str);
+         string strAppId = purl->get_script(str);
 
          ::str::begins_eat(strAppId, "/");
 
-         string strQuery = psystem->url().get_query(str);
+         string strQuery = purl->get_query(str);
 
          string strMessage;
 
@@ -3904,9 +3895,9 @@ namespace apex
       if (strProtocol == "ca2project")
       {
 
-         string strBase = psystem->url().get_server(str);
+         string strBase = purl->get_server(str);
 
-         string strScheme = psystem->url().get_script(str);
+         string strScheme = purl->get_script(str);
 
          ::str::begins_eat(strScheme, "/");
 
@@ -4464,7 +4455,7 @@ namespace apex
 
          argv.add(nullptr);
 
-         string strApp = psystem->url().url_decode(path);
+         string strApp = purl->url_decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
@@ -4933,7 +4924,7 @@ namespace apex
   //      //m_bProcessInitialize       = false;
   //      //m_bProcessInitializeResult = false;
   //
-  //      //m_puserstr                 = nullptr;
+  //      //m_ptexttable                 = nullptr;
   //
   //      //m_pparserfactory           = nullptr;
   //
@@ -5077,9 +5068,9 @@ namespace apex
 
       //}
 
-      estatus = __compose_new(m_puserstr);
+      estatus = __compose_new(m_ptexttable);
 
-      if (!m_puserstr || !estatus)
+      if (!m_ptexttable || !estatus)
       {
 
          return estatus;
@@ -5088,7 +5079,7 @@ namespace apex
 
       auto psession = get_session();
 
-      psession->m_puserstrcontext->defer_ok(m_puserstr);
+      psession->m_ptextcontext->defer_ok(m_ptexttable);
 
 
       //if(!::apex::application::init2())
@@ -5574,7 +5565,7 @@ namespace apex
    ::e_status     system::main()
    {
 
-      return ::thread::main();
+      return ::acme::system::main();
 
    }
 
@@ -6020,6 +6011,18 @@ namespace apex
    {
 
       return ::acme::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+
+   }
+
+   // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
+   
+
+   ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
+   {
+
+      auto estatus = acme::system::get_public_internet_domain_extension_list(stra);
+      
+      return estatus;
 
    }
 

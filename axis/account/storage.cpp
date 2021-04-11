@@ -29,7 +29,7 @@ namespace account
 //      
 //      ASSERT(m_strToken.has_char());
 //      
-//      string strName = psystem->url().os_fsname(strToken);
+//      string strName = purl->os_fsname(strToken);
 //      
 //      return pacmedir->system() / "credential_storage" / strName;
 //      

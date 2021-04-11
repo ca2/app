@@ -217,7 +217,11 @@ namespace filemanager
 
                }
 
-               strName = strPrefix + psystem->datetime().international().get_gmt_date_time() + strSuffix;
+               //auto psystem = m_psystem;
+
+               auto pdatetime = psystem->datetime();
+
+               strName = strPrefix + pdatetime->international().get_gmt_date_time() + strSuffix;
 
                strName.replace(":", "-");
 

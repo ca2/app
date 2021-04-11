@@ -25,7 +25,7 @@ public:
    virtual void install_message_routing(::channel * pchannel) override;
 
 
-   DECL_GEN_SIGNAL(on_message_create);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
 
    
 

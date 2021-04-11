@@ -19,7 +19,7 @@ namespace programming
       virtual ~application();
 
 
-      DECL_GEN_SIGNAL(on_application_signal);
+      DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
       void on_request(::create * pcreate);

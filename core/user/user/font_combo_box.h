@@ -21,7 +21,7 @@ namespace user
       virtual void install_message_routing(::channel * psender);
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics);
 

@@ -261,11 +261,15 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            __pointer(::apex::system) psystem = get_system();
+            auto psystem = m_psystem;
 
-            string strScript = psystem->url().object_get_script(strRequestUri);
-            string strQuery = psystem->url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = psystem->url().url_decode(strScript) + ::str::has_char(strQuery, "?");
+            auto purl = psystem->url();
+
+            string strScript = purl->object_get_script(strRequestUri);
+
+            string strQuery = purl->object_get_query(strRequestUri);
+
+            m_request.m_strRequestUri = purl->url_decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
             m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");

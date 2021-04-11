@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = psystem->draw2d()->fonts();
+                  //class font_department & fonts = pdraw2d->fonts();
 
                   string wstrWindowText;
 

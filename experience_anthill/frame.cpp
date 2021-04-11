@@ -135,7 +135,7 @@ namespace experience
 
             }
 
-            color32_t frame::get_border_main_body_color()
+            status < ::color::color > frame::get_border_main_body_color()
             {
                return argb(255, 63, 150, 106);
             }
@@ -350,10 +350,10 @@ namespace experience
                auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
                m_penText1->create_solid(1, argb(255, 255, 255, 255));
-               m_penFace1->create_solid(1, crButtonFace | 0xff000000);
-               m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
-               m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
-               m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
+               m_penFace1->create_solid(1, opaque(crButtonFace));
+               m_penHilight1->create_solid(1, opaque(crButtonHilite));
+               m_penShadow1->create_solid(1, opaque(crButtonShadow));
+               m_penDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
                m_colorDkShadow = crButtonDarkShadow;
                m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -668,7 +668,7 @@ namespace experience
 
                   }
 
-                  //class font_department & fonts = psystem->draw2d()->fonts();
+                  //class font_department & fonts = pdraw2d->fonts();
                   
                   auto pstyle = pframewindow->get_style(pgraphics);
 

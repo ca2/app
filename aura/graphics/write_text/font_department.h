@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_AURA font_department :
-   virtual public ::apex::department
+   virtual public ::acme::department
 {
 public:
 

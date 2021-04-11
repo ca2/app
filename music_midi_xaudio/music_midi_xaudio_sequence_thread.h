@@ -49,8 +49,8 @@ namespace music
             virtual bool initialize_thread() override;
             virtual i32 exit_instance();
 
-            DECL_GEN_SIGNAL(OnCommand)
-            DECL_GEN_SIGNAL(OnMidiSequenceEvent)
+            DECLARE_MESSAGE_HANDLER(OnCommand)
+            DECLARE_MESSAGE_HANDLER(OnMidiSequenceEvent)
 
          };
 

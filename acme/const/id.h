@@ -217,6 +217,17 @@ enum e_id : u64
    id_session,
    id_system,
    id_thread,
+   id_process_init,
+   id_init,
+   id_init1,
+   id_init2,
+   id_init3,
+   id_init_instance,
+   id_term3,
+   id_term1,
+   id_term2,
+   id_term,
+   id_term_instance,
 
    // procedures:
 

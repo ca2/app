@@ -130,15 +130,15 @@ namespace draw2d_direct2d
 
       }
 
-      /*psystem->draw2d()->direct2d() = __new(::draw2d_direct2d::plugin);
+      /*pdraw2d->direct2d() = __new(::draw2d_direct2d::plugin);
 
-      psystem->draw2d()->direct2d()->initialize();*/
+      pdraw2d->direct2d()->initialize();*/
 
       HRESULT hr;
 
       Microsoft::WRL::ComPtr<ID2D1DeviceContext> pdevicecontextTemplate;
 
-      if (FAILED(hr = psystem->draw2d()->direct2d()->m_pd2device->CreateDeviceContext(
+      if (FAILED(hr = pdraw2d->direct2d()->m_pd2device->CreateDeviceContext(
                       D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
                       //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
                       &pdevicecontextTemplate)))
@@ -4792,7 +4792,7 @@ namespace draw2d_direct2d
 
       ::u32 uLength = (::u32)text.m_wstr.get_length();
 
-      hr = psystem->draw2d()->direct2d()->dwrite_factory()->CreateTextLayout(
+      hr = pdraw2d->direct2d()->dwrite_factory()->CreateTextLayout(
            text.m_wstr,                // The string to be laid out and formatted.
            uLength,   // The length of the string.
            pfont,    // The text format to apply to the string (contains font information, etc).
@@ -5594,7 +5594,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
-      IDWriteFactory * pfactory = psystem->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5634,7 +5634,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
-      IDWriteFactory * pfactory = psystem->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5681,7 +5681,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = psystem->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5721,7 +5721,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = psystem->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5791,7 +5791,7 @@ namespace draw2d_direct2d
    //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
    //{
 
-   //   psystem->draw2d()->direct2d() = pplugin;
+   //   pdraw2d->direct2d() = pplugin;
 
    //}
 

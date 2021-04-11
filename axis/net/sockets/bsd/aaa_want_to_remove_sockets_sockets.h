@@ -7,7 +7,7 @@ namespace sockets
    class SSLInitializer;
 
    class CLASS_DECL_AXIS sockets :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

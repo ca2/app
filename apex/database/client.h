@@ -35,8 +35,8 @@ namespace database
 
       void initialize_data_client(server * pserver);
 
-//      DECL_GEN_SIGNAL(data_on_before_change);
-      DECL_GEN_SIGNAL(data_on_after_change);
+//      DECLARE_MESSAGE_HANDLER(data_on_before_change);
+      DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
       virtual bool data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject::subject * psubject);
       virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject::subject * psubject);

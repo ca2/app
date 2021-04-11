@@ -159,7 +159,7 @@ namespace draw2d_cairo
 //   }
 //
 
-   void draw2d::term()
+   ::e_status draw2d::term()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -182,11 +182,11 @@ namespace draw2d_cairo
 
       }
 
-
-
       m_alpha_spread__24CC_filterMap.erase_all();
 
       m_alpha_spread__32CC_filterMap.erase_all();
+
+      return ::success;
 
    }
 

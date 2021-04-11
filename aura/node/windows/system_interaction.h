@@ -21,8 +21,8 @@
 //
 //         virtual void install_message_routing(::channel * pchannel) override;
 //
-//         DECL_GEN_SIGNAL(_001OnMessage);
-//         DECL_GEN_SIGNAL(_001OnDestroy);
+//         DECLARE_MESSAGE_HANDLER(_001OnMessage);
+//         DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 //
 //
 //         virtual bool DestroyWindow() override;

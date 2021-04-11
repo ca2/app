@@ -206,9 +206,11 @@ namespace sockets
       if (m_host.is_empty())
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
 
-         m_strInitSSLClientContext = psystem->url().get_server(strRequestUri);
+         auto purl = psystem->url();
+
+         m_strInitSSLClientContext = purl->get_server(strRequestUri);
 
       }
       else
@@ -571,16 +573,24 @@ namespace sockets
       return m_content_type;
    }
 
+
    void http_client_socket::Url(const string & url_in, string & host, port_t & port)
    {
+
       string url;
+
       url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
+
       m_request.attr("url") = url;
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      host = psystem->url().get_server(url);
-      port = (port_t) psystem->url().get_port(url);
+      auto purl = psystem->url();
+
+      host = purl->get_server(url);
+
+      port = (port_t) purl->get_port(url);
+
    }
 
 

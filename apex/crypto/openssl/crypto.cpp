@@ -663,9 +663,11 @@ namespace crypto
 
       //__pointer(::apex::system) psystem = get_system();
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      return psystem->base64().encode(storage);
+      auto pbase64 = psystem->base64();
+
+      return pbase64->encode(storage);
 
    }
 
@@ -682,13 +684,15 @@ namespace crypto
       }
       storageDecrypt.from_string(pszDecrypt);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      psystem->base64().decode(storageKey, pszKey);
+      auto pbase64 = psystem->base64();
+
+      pbase64->decode(storageKey, pszKey);
 
       i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
 
-      strEncrypt = psystem->base64().encode(storageEncrypt);
+      strEncrypt = pbase64->encode(storageEncrypt);
 
       return cipherlen;
 
@@ -704,11 +708,13 @@ namespace crypto
 
       memory storageKey;
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      psystem->base64().decode(storageEncrypt, pszEncrypt);
+      auto pbase64 = psystem->base64();
 
-      psystem->base64().decode(storageKey, pszKey);
+      pbase64->decode(storageEncrypt, pszEncrypt);
+
+      pbase64->decode(storageKey, pszKey);
 
       i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 

@@ -316,7 +316,7 @@ namespace app_message_box
 
                auto papplication = get_application();
 
-               papplication->set_finish();
+               papplication->_001TryCloseApplication();
 
             }
             else

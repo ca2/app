@@ -65,14 +65,16 @@ namespace aura
          if (strEncoding.compare_ci("base64") == 0)
          {
 
-            ::str::base64& b64 = base64();
+            auto psystem = m_psystem;
+
+            auto pbase64 = psystem->base64();
 
             index iBase64 = iEncoding + 1;
 
             for (; iBase64 < str.get_length(); iBase64++)
             {
 
-               if (!b64.is(str[iBase64]))
+               if (!pbase64->is(str[iBase64]))
                {
 
                   break;

@@ -2,28 +2,28 @@
 #pragma once
 
 
-namespace parallelization
-{
-
-
-   class CLASS_DECL_ACME cleanup_task :
-      virtual public ::task
-   {
-   protected:
-
-      matter_array         m_mattera;
-      void erase(matter* pmatter);
-
-   public:
-
-      void add(matter* pmatter);
-
-      virtual ::e_status run();
-
-   };
-
-
-} // namespace parallelization
+//namespace parallelization
+//{
+//
+//
+//   class CLASS_DECL_ACME cleanup_task :
+//      virtual public ::task
+//   {
+//   protected:
+//
+//      matter_array         m_mattera;
+//      void erase(matter* pmatter);
+//
+//   public:
+//
+//      void add(matter* pmatter);
+//
+//      virtual ::e_status run();
+//
+//   };
+//
+//
+//} // namespace parallelization
 
 
 

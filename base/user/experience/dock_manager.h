@@ -33,9 +33,9 @@ namespace experience
       virtual ::e_status initialize_dock_manager(::experience::frame_window* pframewindow);
 
 
-      DECL_GEN_SIGNAL(dock_button_on_message_left_button_down);
-      DECL_GEN_SIGNAL(dock_button_on_message_mouse_move);
-      DECL_GEN_SIGNAL(dock_button_on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(dock_button_on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(dock_button_on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(dock_button_on_message_left_button_up);
 
 
       bool _001OnTimer(::u32 uEvent);

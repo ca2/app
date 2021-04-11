@@ -53,10 +53,13 @@ namespace draw2d
    }
 
 
-   ::apex::str_context * graphics::str_context()
+   ::text::context * graphics::textcontext()
    {
-      return m_pstrcontext;
+      
+      return m_ptextcontext;
+
    }
+
 
    ::aura::draw_context * graphics::draw_context()
    {

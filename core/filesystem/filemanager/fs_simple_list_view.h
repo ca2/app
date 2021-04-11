@@ -152,12 +152,12 @@ namespace filemanager
 
             virtual bool on_click(const ::user::item & item) override;
 
-            DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+            DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
             void _001OnTimer(::timer * ptimer) override;
-            DECL_GEN_SIGNAL(_001OnSize);
-            DECL_GEN_SIGNAL(_001OnContextMenu);
-            DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-            DECL_GEN_SIGNAL(_001OnFillTaskResponse);
+            DECLARE_MESSAGE_HANDLER(_001OnSize);
+            DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+            DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+            DECLARE_MESSAGE_HANDLER(_001OnFillTaskResponse);
 
          };
 

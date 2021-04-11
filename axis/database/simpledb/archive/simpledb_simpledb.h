@@ -19,7 +19,7 @@ namespace simpledb
 
 
    class CLASS_DECL_CORE simpledb :
-      virtual public ::apex::department,
+      virtual public ::acme::department,
       virtual public ::database::database
    {
    public:

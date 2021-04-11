@@ -93,7 +93,7 @@ namespace account
 //      {
 //         strText = "https://ca2.cc/";
 //      }
-//      strText = psystem->url().get_server(strText);
+//      strText = purl->get_server(strText);
 //      if(strText.is_empty())
 //         strText = pszText;
 //      string strSessId;
@@ -144,7 +144,7 @@ namespace account
 //      {
 //         strText = "https://ca2.cc/";
 //      }
-//      strText = psystem->url().get_server(strText);
+//      strText = purl->get_server(strText);
 //      m_sessionidmap[strText] = pszSessid;
 //   }
 

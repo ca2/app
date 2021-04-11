@@ -24,7 +24,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA windowing :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -72,7 +72,9 @@ namespace windowing
 
       virtual void finalize_windowing();
 
-      virtual ::e_status finalize();
+      virtual ::e_status finalize() override;
+
+      virtual ::e_status finish() override;
 
 
       virtual ::e_status start();
@@ -113,9 +115,9 @@ namespace windowing
       virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
-      virtual void term1();
+      virtual ::e_status term1();
 
-      virtual void term2();
+      virtual ::e_status term2();
 
       virtual ::windowing::display * display();
 

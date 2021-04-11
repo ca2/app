@@ -356,7 +356,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_uppercase(char * psz,strsize size) noexcept
 //{
 //
-//   ::acme::strupr_s(psz, size);
+//   ::text::tableupr_s(psz, size);
 //
 //   return psz;
 //
@@ -365,7 +365,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_lowercase(char * psz, strsize size) noexcept
 //{
 //
-//   ::acme::strlwr_s(psz, size);
+//   ::text::tablelwr_s(psz, size);
 //
 //   return psz;
 //

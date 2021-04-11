@@ -47,9 +47,9 @@ namespace android
 
       void _002OnDraw(::image * pimage);
 
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
       //void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
       //void OnWindowPosChanged(WINDOWPOS* lpuserinteractionpos);
@@ -357,12 +357,12 @@ namespace android
       virtual bool OnCommand(::user::message * pusermessage) override;
       virtual bool OnNotify(::user::message * pusermessage) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual bool SubclassWindow(oswindow hWnd);
       //HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       bool OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
@@ -372,8 +372,8 @@ namespace android
       //LRESULT OnMenuChar(::u32 nChar,::u32 nFlags,::user::menu* pMenu);
       //void OnMenuSelect(::u32 nItemID,::u32 nFlags,HMENU hSysMenu);
       void OnMove(i32 x,i32 y);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
       void OnParentNotify(const ::id & id,LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
@@ -393,7 +393,7 @@ namespace android
       //void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(::user::system * lpCreateStruct);
 
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
       LRESULT OnNcHitTest(::point_i32 point);
       void OnNcLButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
       void OnNcLButtonDown(::u32 nHitTest, const ::point_i32 & point);
@@ -445,7 +445,7 @@ namespace android
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

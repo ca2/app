@@ -7,11 +7,11 @@
 //{
 //
 //
-//   str_context::str_context()
+//   str_context::textcontext()
 //   {
 //
 //
-//      m_plocaleschema = __new(::str::international::locale_schema);
+//      m_plocaleschema = __new(::text::international::locale_schema);
 //
 //
 //      m_pstr = nullptr;
@@ -19,7 +19,7 @@
 //
 //   }
 //
-//   str_context::~str_context()
+//   str_context::~textcontext()
 //   {
 //
 //   }

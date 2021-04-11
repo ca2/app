@@ -202,7 +202,7 @@ namespace uwp
 
                auto pfile = create_memory_file(speechStream);
 
-               Audio.play_audio(pfile, true);
+               paudio->play_audio(pfile, true);
 
             });
 
@@ -213,7 +213,7 @@ namespace uwp
             ::fork_then(get_application(), GetSpeechStreamTask(strLang, wstr), [=](SpeechSynthesisStream ^speechStream)
             {
 
-               Audio.play_audio(create_memory_file(speechStream->GetInputStreamAt(0)), true);
+               paudio->play_audio(create_memory_file(speechStream->GetInputStreamAt(0)), true);
 
             });
 

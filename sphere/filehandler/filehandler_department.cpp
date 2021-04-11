@@ -6,7 +6,7 @@ namespace filehandler
 
 
    department::department(::object * pobject) :
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
       m_ptemplateMenu   = nullptr;
@@ -39,7 +39,7 @@ namespace filehandler
       create_factory <frame >();
       create_factory <view >();
 
-      if(!::apex::department::init_instance())
+      if(!::acme::department::init_instance())
          return false;
 
 
@@ -64,7 +64,7 @@ namespace filehandler
       try
       {
 
-         ::apex::department::term_instance();
+         ::acme::department::term_instance();
 
       }
       catch(...)

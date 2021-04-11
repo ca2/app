@@ -36,9 +36,9 @@ public:
 
    virtual void _001Refresh();
 
-   DECL_GEN_SIGNAL(_001OnEditPaste);
-   DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
-   DECL_GEN_SIGNAL(_001OnOperationDocMessage);
+   DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
+   DECLARE_MESSAGE_HANDLER(_001OnOperationDocMessage);
 
 
 };

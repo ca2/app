@@ -87,13 +87,13 @@ namespace user
 
    //   //virtual void on_hit_test(::user::item & item) override;
 
-   //   DECL_GEN_SIGNAL(on_message_create);
-   //   //DECL_GEN_SIGNAL(on_message_mouse_move);
-   //   //DECL_GEN_SIGNAL(on_message_mouse_leave);
-   //   DECL_GEN_SIGNAL(_001OnKeyDown);
-   //   DECL_GEN_SIGNAL(_001OnEnable);
-   //   DECL_GEN_SIGNAL(_001OnSetFocus);
-   //   DECL_GEN_SIGNAL(_001OnKillFocus);
+   //   DECLARE_MESSAGE_HANDLER(on_message_create);
+   //   //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   //   //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+   //   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+   //   DECLARE_MESSAGE_HANDLER(_001OnEnable);
+   //   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+   //   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
    //   virtual void route_control_event(::user::control_event* pevent) override;
 

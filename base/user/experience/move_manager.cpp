@@ -196,6 +196,27 @@ namespace experience
    }
 
 
+   bool move_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
+   {
+
+      if (!m_pframewindow->is_moving_enabled())
+      {
+
+         return false;
+
+      }
+
+      if (!window_is_moving())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
    bool move_manager::window_stop_moving(bool bApply, ::message::mouse * pmouse)
    {

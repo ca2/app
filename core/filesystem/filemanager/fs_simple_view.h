@@ -48,8 +48,8 @@ namespace filemanager
             virtual void assert_valid() const;
             virtual void dump(dump_context & dumpcontext) const;
 
-            DECL_GEN_SIGNAL(on_request_response);
-            DECL_GEN_SIGNAL(_001OnDestroy);
+            DECLARE_MESSAGE_HANDLER(on_request_response);
+            DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
          };
 

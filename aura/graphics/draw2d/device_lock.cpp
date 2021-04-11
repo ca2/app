@@ -14,7 +14,7 @@ namespace draw2d
 
       __pointer(::aura::system) psystem = m_psystem;
 
-      m_D2DMultithread = psystem->draw2d()->direct2d()->m_d2dMultithread.Get();
+      m_D2DMultithread = pdraw2d->direct2d()->m_d2dMultithread.Get();
 
       m_D2DMultithread->Enter();
 

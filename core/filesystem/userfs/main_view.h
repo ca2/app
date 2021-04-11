@@ -19,7 +19,7 @@ namespace userfs
 
       main_view();
       void install_message_routing(::channel * pchannel);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
 
 

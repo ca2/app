@@ -38,10 +38,12 @@ namespace net
    void email::prepare_headers()
    {
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      m_strHeaders += "From: =?utf-8?B?" + psystem->m_papexsystem->base64().encode(m_strSenderName) + "?= <" + m_addressSender.to_string() + ">\r\n";
-      m_strHeaders += "To: =?utf-8?B?" + psystem->m_papexsystem->base64().encode(m_strRecipientName) + "?= <" + m_addressRecipient.to_string() + ">\r\n";
+      auto pbase64 = psystem->base64();
+
+      m_strHeaders += "From: =?utf-8?B?" + pbase64->encode(m_strSenderName) + "?= <" + m_addressSender.to_string() + ">\r\n";
+      m_strHeaders += "To: =?utf-8?B?" + pbase64->encode(m_strRecipientName) + "?= <" + m_addressRecipient.to_string() + ">\r\n";
 
    }
 

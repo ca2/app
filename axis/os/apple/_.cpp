@@ -158,7 +158,7 @@ void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * 
 
          }
 
-         stra[i] = psystem->url().url_decode(stra[i]);
+         stra[i] = purl->url_decode(stra[i]);
 
       }
 

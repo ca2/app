@@ -182,10 +182,10 @@ namespace tsf
       //virtual LRESULT _OnSetFocus(VOID);
       //virtual LRESULT _OnKillFocus(VOID);
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
       //void on_edit_set_focus(::user::interaction * pinteraction);

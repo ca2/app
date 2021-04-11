@@ -29,12 +29,15 @@ namespace experience
       virtual ::e_status initialize_size_manager(::experience::frame_window* pframewindow);
 
 
-      e_hittest _001HitTest(const ::point_i32 & pointCursor);
+      virtual e_hittest _001HitTest(const ::point_i32 & pointCursor);
+      virtual enum_cursor translate(e_hittest ehittest);
 
 
       bool on_message_left_button_down(::message::mouse * pmouse);
       bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
+
+      bool on_message_set_cursor(::message::set_cursor * psetcursor);
 
 
       void NotifyFramework(e_hittest emode);
@@ -44,7 +47,6 @@ namespace experience
       bool window_is_sizing();
       //void SetSWPFlags(::u32 uFlags);
       virtual ::size_i32 GetMinSize();
-      enum_cursor translate(e_hittest ehittest);
       bool set_frame_window(frame_window * pframewindow);
 
       void size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking);

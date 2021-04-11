@@ -33,6 +33,7 @@ namespace user
       ::initialize_user_mutex();
       initialize_children_mutex();
 
+
    }
 
 
@@ -48,7 +49,16 @@ namespace user
    ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_puserstyle);
 
       if (!estatus)
       {
@@ -351,7 +361,7 @@ namespace user
 
       //}
 
-      if (!::apex::department::init1())
+      if (!::acme::department::init1())
       {
 
          return false;
@@ -366,7 +376,7 @@ namespace user
    ::e_status user::init()
    {
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;
@@ -446,7 +456,7 @@ namespace user
    ::e_status user::init2()
    {
 
-      auto estatus = ::apex::department::init2();
+      auto estatus = ::acme::department::init2();
 
       if(!estatus)
       {
@@ -469,7 +479,24 @@ namespace user
    }
 
 
-   void user::term()
+   ::e_status user::finish()
+   {
+
+      auto estatus = ::acme::department::finish();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status user::term()
    {
 
 
@@ -503,13 +530,15 @@ namespace user
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch(...)
       {
 
       }
+
+      return ::success;
 
    }
 
@@ -1302,7 +1331,7 @@ namespace user
 
       ::e_status estatus = ::success;
 
-      estatus = ::__construct(m_pwindowing);
+      estatus = __compose(m_pwindowing);
 
       if (!estatus)
       {
@@ -1352,7 +1381,7 @@ namespace user
 
          }
 
-         estatus = ::__construct(m_pwindowing);
+         estatus = __compose(m_pwindowing);
 
          if (!estatus)
          {

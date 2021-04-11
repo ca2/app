@@ -2,25 +2,34 @@
 #pragma once
 
 
-class CLASS_DECL_ACME text_data
+namespace text
 {
-protected:
 
 
-   bool                       m_bPendingUpdate;
-   text_translator *          m_ptexttranslator;
-   ::id                       m_id;
-   string                     m_str;
-
-   friend class text_translator;
-   friend class text;
-   friend class ::acme::context;
-
-   text_data(text_translator* ptexttranslator);
-   ~text_data();
+   class CLASS_DECL_ACME data
+   {
+   protected:
 
 
-};
+      bool                       m_bPendingUpdate;
+      translator *               m_ptranslator;
+      ::id                       m_id;
+      string                     m_str;
+
+
+      friend class translator;
+      friend class text;
+      friend class ::acme::context;
+
+
+      data(translator * ptranslator);
+      ~data();
+
+
+   };
+
+
+} // namespace text
 
 
 

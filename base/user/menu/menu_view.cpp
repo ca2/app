@@ -175,9 +175,11 @@ namespace user
 
       papplication->data_get(m_id + ".cur_text", strText);
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      m_pimageLogo = pcontext->m_pauracontext->image().load_image("matter://main/logo.png", false);
+      auto pcontextimage = pcontext->context_image();
+
+      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", false);
 
       m_fontTitle.create(this);
 
@@ -685,7 +687,11 @@ namespace user
 
             get_item_rect(iPos, rectangle);
 
-            ::image_pointer pimage1 = pcontext->m_pauracontext->image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
             if (pimage1)
             {

@@ -74,8 +74,8 @@ namespace userex
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

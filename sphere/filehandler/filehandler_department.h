@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_SPHERE department :
-      public ::apex::department
+      public ::acme::department
    {
    public:
 

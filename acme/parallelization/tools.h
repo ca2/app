@@ -48,7 +48,7 @@ public:
    bool set_predicate(::predicate_holder_base * ppred);
 
    void reset();
-   void set_ready();
+   ::e_status set_ready_to_start();
 
 
 };
@@ -123,7 +123,7 @@ public:
    bool nok() const { return is_empty(); };
 
    bool prepare(::enum_task_op eop, ::count cIteration = 0);
-   bool start();
+   virtual ::e_status set_ready_to_start();
    bool wait();
    bool process();
 

@@ -58,7 +58,7 @@ namespace music
 
             bool bFound = false;
             
-            __pointer(::music::midi::core_midi::midi) pmidi = Multimedia.midi();
+            __pointer(::music::midi::core_midi::midi) pmidi = pmultimedia->midi();
             
             if(pmidi)
             {
@@ -167,7 +167,7 @@ namespace music
             
             bool bFound = false;
             
-            __pointer(::music::midi::core_midi::midi) pmidi = Multimedia.midi();
+            __pointer(::music::midi::core_midi::midi) pmidi = pmultimedia->midi();
             
             if(pmidi)
             {

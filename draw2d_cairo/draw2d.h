@@ -24,7 +24,7 @@ namespace draw2d_cairo
       virtual ::e_status init() override;
       virtual ::e_status init1() override;
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::e_status finalize() override;
 

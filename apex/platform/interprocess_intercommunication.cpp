@@ -5,8 +5,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
-interprocess_intercommunication::interprocess_intercommunication(const string & strApp) :
-   m_strApp(strApp)
+interprocess_intercommunication::interprocess_intercommunication() 
 {
 
    m_iTaskSeed = 0;
@@ -15,15 +14,6 @@ interprocess_intercommunication::interprocess_intercommunication(const string & 
 
    defer_create_mutex();
 
-#ifdef _UWP
-
-   m_idApp = strApp;
-
-#else
-
-   m_idApp = (::i64) ::get_current_process_id();
-
-#endif
 
 }
 
@@ -35,7 +25,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::initialize(::object * pobject)
+::e_status interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -46,6 +36,18 @@ interprocess_intercommunication::~interprocess_intercommunication()
       return estatus;
 
    }
+
+   m_strApp = strApp;
+
+#ifdef _UWP
+
+   m_idApp = strApp;
+
+#else
+
+   m_idApp = (::i64) ::get_current_process_id();
+
+#endif
 
    run_property("on_create");
 

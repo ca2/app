@@ -37,7 +37,7 @@ namespace sockets
    {
 
       ::acme::del(::net::g_paddressdepartment);
-      ::acme::del(m_psslinit);
+      //::acme::del(m_psslinit);
 
       //::acme::del(m_pajpaxissocketinit);
 
@@ -84,7 +84,7 @@ namespace sockets
 
       }
 
-      //if (!::apex::department::initialize())
+      //if (!::acme::department::initialize())
       //{
 
       //   return error_failed;

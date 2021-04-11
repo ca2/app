@@ -45,7 +45,7 @@ namespace draw2d
    ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -81,7 +81,7 @@ namespace draw2d
    ::e_status draw2d::init1()
    {
 
-      if (!::apex::department::init1())
+      if (!::acme::department::init1())
       {
 
          return false;
@@ -110,7 +110,7 @@ namespace draw2d
    ::e_status draw2d::process_init()
    {
 
-      if (!::apex::department::process_init())
+      if (!::acme::department::process_init())
       {
 
          return false;
@@ -134,7 +134,7 @@ namespace draw2d
    ::e_status draw2d::init()
    {
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;
@@ -193,7 +193,7 @@ namespace draw2d
    }
 
 
-   void draw2d::term()
+   ::e_status draw2d::term()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -216,11 +216,11 @@ namespace draw2d
 
       }
 
-
-
       m_alpha_spread__24CC_filterMap.erase_all();
 
       m_alpha_spread__32CC_filterMap.erase_all();
+
+      return ::success;
 
    }
 
@@ -230,7 +230,7 @@ namespace draw2d
 
       m_papi.release();
 
-      auto estatus = ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
 
       return estatus;
 
@@ -242,16 +242,18 @@ namespace draw2d
 
       auto psaveimage = __new(save_image);
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem->m_paurasystem;
 
-      auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
+      auto pdraw2d = psystem->draw2d();
+
+      auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 
       if (eformat != ::draw2d::format_none)
       {
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
+         eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
 
       }
 
@@ -297,16 +299,14 @@ namespace draw2d
    }
 
 
-
-
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
-   void draw2d::term_instance()
+   ::e_status draw2d::term_instance()
    {
 
       try
       {
 
-         ::apex::department::term_instance();
+         ::acme::department::term_instance();
 
       }
       catch (...)
@@ -315,6 +315,8 @@ namespace draw2d
          message_box("except", "except", e_message_box_ok);
 
       }
+
+      return ::success;
 
    }
 

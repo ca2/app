@@ -714,8 +714,8 @@
 //
 //
 //
-//      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-//      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
+//      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
+//      virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 //
 //      virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr);
 //      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
@@ -728,7 +728,7 @@
 //      virtual bool is_application() const override;
 //
 //
-//      DECL_GEN_SIGNAL(_001OnAppExit);
+//      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
 //      virtual bool _001OnAgreeExit();
 //      virtual void _001OnFranceExit();
 //      virtual void _001FranceExit();
@@ -922,8 +922,8 @@
 //      virtual bool on_run_install();
 //      virtual bool on_run_uninstall();
 //
-//      DECL_GEN_SIGNAL(on_application_signal);
-//      DECL_GEN_SIGNAL(_001OnSwitchContextTheme);
+//      DECLARE_MESSAGE_HANDLER(on_application_signal);
+//      DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 //
 //
 //      // open named file, trying to match a regsitered
@@ -1138,7 +1138,7 @@
 //
 //      virtual ::user::document* _001OpenDocumentFile(::payload varFile);
 //      //virtual bool on_open_document_file(::payload varFile) override;
-//      //DECL_GEN_SIGNAL(_001OnFileNew) override;
+//      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 //
 //
 //      //virtual string get_version();
@@ -1410,7 +1410,7 @@
 //
 //
 //      // programming
-//      //DECL_GEN_SIGNAL(on_application_signal);
+//      //DECLARE_MESSAGE_HANDLER(on_application_signal);
 //      //void on_request(::create* pcreate);
 //      string get_visual_studio_build();
 //

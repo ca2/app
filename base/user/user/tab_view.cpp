@@ -944,19 +944,19 @@ namespace user
 
       ::user::tab_pane* ppane = get_pane_by_id(pimpactdata->m_id);
 
-      //if (!ppane)
-      //{
+      if (!ppane)
+      {
 
-      //   if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
-      //   {
+         if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
+         {
 
-      //      return false;
+            return false;
 
-      //   }
+         }
 
-      //   ppane = get_pane_by_id(pimpactdata->m_id);
+         ppane = get_pane_by_id(pimpactdata->m_id);
 
-      //}
+      }
 
       if (ppane != nullptr)
       {
@@ -1165,7 +1165,7 @@ namespace user
 
       display(e_display_none);
 
-      DestroyWindow();
+      start_destroying_window();
 
       pmessage->m_bRet = true;
 

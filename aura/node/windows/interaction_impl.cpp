@@ -491,10 +491,10 @@ namespace windows
    }
 
 
-   bool interaction_impl::DestroyWindow()
+   bool interaction_impl::start_destroying_window()
    {
 
-      return ::user::interaction_impl::DestroyWindow();
+      return ::user::interaction_impl::start_destroying_window();
 
    }
 

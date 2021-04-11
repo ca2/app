@@ -460,9 +460,11 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            auto pcontext = m_pcontext;
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            m_plogin->m_pimage = pcontext->m_pauracontext->image().load_matter_image(stra[0]);
+            auto pcontextimage = pcontext->context_image();
+
+            m_plogin->m_pimage = pcontextimage->load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 

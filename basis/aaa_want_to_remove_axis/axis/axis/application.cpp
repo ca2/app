@@ -987,7 +987,7 @@ m_millisHeartBeat.Now();
    bool application::update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
-      auto plocaleschema = __create_new < ::str::international::locale_schema >();
+      auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -1041,7 +1041,7 @@ m_millisHeartBeat.Now();
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += psystem->url().url_encode(strRelative);
+      strUrl += purl->url_encode(strRelative);
 
       if(psession == nullptr)
       {
@@ -1051,7 +1051,7 @@ m_millisHeartBeat.Now();
 
             property_set setEmpty;
 
-            if (pcontext->m_papexcontext->http().open(handler, psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (pcontext->m_papexcontext->http().open(handler, psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;

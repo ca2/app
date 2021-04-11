@@ -42,6 +42,8 @@ namespace subject
 
          psubject = __new(::subject::subject(this, id));
 
+         synchronouslock.unlock();
+
          start_subject_handling(id);
 
       }

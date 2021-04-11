@@ -355,7 +355,7 @@ namespace user
          if (m_pil[iSize].is_null())
          {
 
-            m_pil[iSize] = __new(::image_list);
+            m_pil[iSize] = __create_new < ::image_list >();
             m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -369,7 +369,7 @@ namespace user
          if (m_pilHover[iSize].is_null())
          {
 
-            m_pilHover[iSize] = __new(::image_list);
+            m_pilHover[iSize] = __create_new < ::image_list >();
             m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }

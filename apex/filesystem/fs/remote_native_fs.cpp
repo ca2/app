@@ -41,7 +41,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
 
       //string strSource;
 
@@ -114,8 +114,8 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(psystem->url().get_script(listing.m_pathUser))
-      //         + "&server=" + psystem->url().url_encode(psystem->url().get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(purl->get_script(listing.m_pathUser))
+      //         + "&server=" + purl->url_encode(purl->get_server(listing.m_pathUser));
 
       //string strSource;
 
@@ -198,10 +198,12 @@ namespace fs
          return 1;
       }
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      if(psystem->url().get_script(path).is_empty() ||
-         psystem->url().get_script(path) == "/")
+      auto purl = psystem->url();
+
+      if(purl->get_script(path).is_empty() ||
+         purl->get_script(path) == "/")
       {
          return 1;
       }
@@ -266,7 +268,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + psystem->url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
 
       string strSource;
 

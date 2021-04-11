@@ -39,7 +39,7 @@ namespace aqua
 
       create_factory < ::aqua::application, ::apex::application >();
       create_factory < ::aqua::session, ::apex::session >();
-      create_factory < ::aqua::idpool, ::apex::idpool >();
+      create_factory < ::aqua::idpool, ::acme::idpool >();
       create_factory < ::aqua::multimedia >();
 
    }
@@ -201,6 +201,13 @@ namespace aqua
    void system::defer_multimedia()
    {
 
+      if (m_pmultimedia)
+      {
+
+         return;
+
+      }
+
       string strName;
 
       auto pszName = ::multimedia_get_library_name();
@@ -240,22 +247,28 @@ namespace aqua
    }
 
 
-   ::aqua::audio* system::defer_get_audio()
+   ::e_status system::defer_audio()
    {
 
       if (!m_paudio)
       {
 
-         create_audio();
+         auto estatus = create_audio();
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 
-      return m_paudio;
+      return ::success_none;
 
    }
-
-
-
 
 
    __namespace_system_factory(system);

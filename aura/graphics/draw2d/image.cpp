@@ -5241,65 +5241,92 @@ bool image::Rotate034(::image * pimage, double dAngle, double dScale)
    map();
    pimage->map();
 
-   i32 l = maximum(width(), height());
+   auto hdst = height();
+   auto wdst = width();
 
-   i32 jmax = minimum(l, height() / 2);
-   i32 jmin = -jmax;
-   i32 imax = minimum(l, width() / 2);
-   i32 imin = -imax;
+   auto hsrc = pimage->height();
+   auto wsrc = pimage->width();
 
-
-   if ((height() % 2) == 1)
-      jmax++;
-
-   if ((width() % 2) == 1)
-      imax++;
-
-   i32 joff = height() / 2;
-   i32 ioff = width() / 2;
-
-   int stride_unit = m_iScan / sizeof(color32_t);
-   i32 k = 0;
-   double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
-   double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-   i32 cx1 = width() - 1;
-   i32 cy1 = height() - 1;
-   for (i32 j = jmin; j < jmax; j++)
+   if (hdst != hsrc)
    {
-      for (i32 i = imin; i < imax; i++)
+
+      output_debug_string("different height");
+
+   }
+
+   if (wdst != wsrc)
+   {
+
+      output_debug_string("different width");
+
+   }
+
+   auto hdstmid = hdst / 2.0;
+   auto wdstmid = wdst / 2.0;
+
+   i32 ihdstmid = (::i32) hdstmid;
+
+   auto hsrcmid = hsrc / 2.0;
+   auto wsrcmid = wsrc / 2.0;
+
+   //i32 l = maximum(w, h);
+
+   i32 jdstmin = (::i32) -hdstmid;
+   i32 jdstmax = jdstmin + hdst;
+   i32 idstmin = (::i32)-wdstmid;
+   i32 idstmax = idstmin + wdst;
+
+   i32 k = 0;
+   
+   double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
+   
+   double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
+
+   auto pdataSrc = pimage->get_data();
+
+   auto pdataDst = get_data();
+
+   int strideSrc = pimage->m_iScan / sizeof(color32_t);
+
+   int strideDst = m_iScan / sizeof(color32_t);
+
+   for (i32 jdst = jdstmin; jdst < jdstmax; jdst++)
+   {
+
+      int lineDst = (i32)(jdst + ihdstmid);
+
+      if (lineDst < 0)
       {
-         i32 x, y;
 
-         // A Combination of a 2d Translation/rotation/Scale Matrix
-         //x=abs((i32(dCos * i - dSin * j) + ioff) % width());
-         //y=abs((i32(dSin * i + dCos * j) + joff) % height());
+         output_debug_string("test");
 
-         x = (i32)fabs((dCos * i - dSin * j) + ioff);
-         y = (i32)fabs((dSin * i + dCos * j) + joff);
+      }
 
-         if ((x / width()) % 2 == 0)
+      color32_t * pline = pdataDst + (lineDst * strideDst);
+      
+      for (i32 idst = idstmin; idst < idstmax; idst++)
+      {
+
+         i32 xsrc, ysrc;
+
+         double dj = jdst;
+         double di = idst;
+
+         xsrc = (i32)((dCos * di - dSin * dj) + wsrcmid);
+         ysrc = (i32)((dSin * di + dCos * dj) + hsrcmid);
+
+         color32_t colorSrc = 0xff000000;
+
+         if(xsrc >= 0 && xsrc < wsrc && ysrc >= 0 && ysrc < hsrc)
          {
-            x %= width();
-         }
-         else
-         {
-            x = cx1 - (x % width());
+
+            colorSrc = pdataSrc[ysrc * strideSrc + xsrc];
+
          }
 
-         if ((y / height()) % 2 == 0)
-         {
-            y %= height();
-         }
-         else
-         {
-            y = cy1 - (y % height());
-         }
+         *pline = colorSrc;
 
-
-
-         get_data()[(j + joff)*stride_unit + (i + ioff)] =
-         pimage->get_data()[y * stride_unit + x];
-         k++;
+         pline++;
 
       }
 
@@ -8665,14 +8692,14 @@ save_image::save_image()
 //
 //   __pointer(::aura::system) psystem = m_psystem;
 //
-//   auto eformat = psystem->draw2d()->text_to_format(varOptions["format"]);
+//   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
 //   if (eformat != ::draw2d::format_none)
 //   {
 //
 //      __pointer(::aura::system) psystem = m_psystem;
 //
-//      eformat = psystem->draw2d()->file_extension_to_format(varFile.get_file_path());
+//      eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
 //
 //   }
 //

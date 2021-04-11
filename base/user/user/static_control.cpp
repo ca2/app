@@ -23,7 +23,7 @@ namespace user
    static_control::~static_control()
    {
 
-      DestroyWindow();
+      destroy_window();
 
    }
 

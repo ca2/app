@@ -275,7 +275,11 @@ namespace imaging_freeimage
 
       }
 
-      auto estatus = m_pcontext->m_pauracontext->image().load_svg(pimage, pmemory);
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      auto estatus = pcontextimage->load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {

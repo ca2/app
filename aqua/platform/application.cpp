@@ -59,6 +59,13 @@ namespace aqua
    }
 
 
+   void application::game_on_create()
+   {
+
+
+
+   }
+
    //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 

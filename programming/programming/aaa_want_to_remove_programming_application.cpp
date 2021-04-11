@@ -77,7 +77,7 @@ namespace programming
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = dir::config() / "programming/vs_build.txt";
+      ::file::path path = pacmedir->config() / "programming/vs_build.txt";
 
       string strBuild = pcontext->m_papexcontext->file().as_string(path);
 

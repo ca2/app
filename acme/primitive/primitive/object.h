@@ -52,7 +52,9 @@ public:
    __pointer(::acme::context)                           m_pcontext;
 
 
-   __pointer(__pointer_array(::object))                 m_pobjecta;
+   //__pointer(__pointer_array(::object))                 m_pobjecta;
+   __pointer(__pointer_array(::matter))                 m_pcompositea;
+   __pointer(__pointer_array(::matter))                 m_preferencea;
 
 
 
@@ -95,11 +97,11 @@ public:
    //inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
    //inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
-   virtual void add_object(::object * pobject);
-   virtual void on_delete_object(::object * pobject);
+   //virtual void add_object(::object * pobject);
+   //virtual void on_delete_object(::object * pobject);
 
-   virtual void enumerate_composite(matter_array& a);
-   virtual void enumerate_reference(matter_array& a);
+   //virtual void enumerate_composite(matter_array& a);
+   //virtual void enumerate_reference(matter_array& a);
 
    //virtual void process_exit_status(const ::e_status& estatus);
 
@@ -132,7 +134,7 @@ public:
    //inline ::payload context_value(const ::payload& payload);
 
 
-   virtual text __text(const ::id& id);
+   virtual ::text::text __text(const ::id& id);
 
 
    virtual void task_erase(::task* ptask) override;
@@ -169,7 +171,7 @@ public:
 
 
 
-   virtual ::e_status on_initialize_object();
+   //virtual ::e_status on_initialize_object() override;
 
 
    //inline const char* topic_text();
@@ -265,56 +267,6 @@ public:
 
    template < typename TYPE >
    inline __transport(TYPE) __create_new();
-
-   //inline ::e_status __compose(__composite(::image) & pimage);
-
-   //inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
-
-   //inline ::e_status __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::e_status(::success); }
-
-   // for composition (ownership)
-
-   //template < typename BASE_TYPE >
-   //inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage);
-
-   //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
-
-   //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
-
-   //template < typename BASE_TYPE >
-   //inline ::e_status __id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id);
-
-   //template < typename BASE_TYPE >
-   //inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage);
-
-   //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource);
-
-   //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource);
-
-   //template < typename TYPE >
-   //inline ::e_status __raw_compose_new(__composite(TYPE) & ptype);
-
-   //template < typename TYPE >
-   //inline ::e_status __compose_new(__composite(TYPE) & ptype);
-
-
-
-
-   //template < typename BASE_TYPE >
-   //inline ::e_status __defer_compose(__composite(BASE_TYPE) & pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
-
-   //template < typename BASE_TYPE >
-   //inline ::e_status __defer_id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
-
-   //template < typename TYPE >
-   //inline ::e_status __defer_raw_compose_new(__composite(TYPE) & ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
-
-   //template < typename TYPE >
-   //inline ::e_status __defer_compose_new(__composite(TYPE) & ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
 
 
 
@@ -476,9 +428,6 @@ public:
    bool IsSerializable() const;
 
 
-   void start();
-
-
    void single_fork(const ::routine_array& routinea);
    void multiple_fork(const ::routine_array& routinea);
 
@@ -581,14 +530,14 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-
+   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_result fully_shared_reader(const ::payload& varFile) { return get_reader(varFile, ::file::e_open_share_deny_none); }
 
    //virtual void to_string(string & str) const override;
 
 
-   //virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen);
+   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen);
    //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
    //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
@@ -820,29 +769,6 @@ public:
 
    virtual void to_string(const string_exchange& str) const override;
 
-   //::image_result create_image();
-   //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
-
-   //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
-
-   //template < typename BASE_TYPE >
-   //inline __transport(BASE_TYPE) __create();
-
-   //template < typename BASE_TYPE >
-   //inline __transport(BASE_TYPE) __id_create(const ::id& id);
-
-   //template < typename TYPE >
-   //inline __transport(TYPE) __create_new();
-
-   //template < typename TYPE >
-   //inline __transport(TYPE) __create_new();
-
-   //inline ::e_status __compose(__composite(::image) & pimage);
-
-   //inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
-
-   //inline ::e_status __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::e_status(::success); }
 
    // for composition (ownership)
 
@@ -909,8 +835,8 @@ public:
    inline ::e_status __release(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   //virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   //virtual ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
    //virtual ::e_status release_composite2(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) override;

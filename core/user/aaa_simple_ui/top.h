@@ -28,14 +28,14 @@ namespace simple_ui
       void install_message_routing(::channel * pchannel) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      DECL_GEN_SIGNAL(_001OnActivate);
-      DECL_GEN_SIGNAL(_001OnNcActivate);
-      DECL_GEN_SIGNAL(_001OnSysCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnNcActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
 
    };
 

@@ -21,7 +21,7 @@ namespace fs
    ::e_status fs::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {

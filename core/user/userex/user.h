@@ -90,7 +90,7 @@ namespace core
       //::payload                                                   m_varCurrentViewFile;
       //bool                                                  m_bShowPlatform;
 
-      //__composite(::apex::str_context)                      m_puserstrcontext;
+      //__composite(::text::context)                      m_ptextcontext;
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
@@ -197,7 +197,8 @@ namespace core
       virtual void will_use_view_hint(::id idView);
 
 
-      virtual void term_instance() override;
+      virtual ::e_status term_instance() override;
+
 
       void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
@@ -332,7 +333,7 @@ namespace core
       //virtual ::user::interaction * get_session_window();
 
 
-      //::apex::str_context *                        str_context() { return m_puserstrcontext; }
+      //::text::context *                        textcontext() { return m_ptextcontext; }
 
       ////virtual bool is_session() const override;
 
@@ -705,10 +706,9 @@ namespace core
 
       //virtual void SendMessageToWindows(const ::id & id, WPARAM wParam, LPARAM lParam);
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
-
 
 
    };

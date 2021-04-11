@@ -110,8 +110,8 @@ namespace user
       virtual void PreSubClassWindow();
 
 
-      virtual DECL_GEN_SIGNAL(_008GetWindowText);
-      virtual DECL_GEN_SIGNAL(_008GetWindowTextLength);
+      virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
+      virtual DECLARE_MESSAGE_HANDLER(_008GetWindowTextLength);
 #ifdef WINDOWS
       virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
 #else
@@ -292,7 +292,7 @@ namespace user
       //virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
 
-      virtual bool DestroyWindow();
+      virtual bool start_destroying_window();
 
       virtual void destroy_window();
 

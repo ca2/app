@@ -109,13 +109,15 @@ namespace simpledb
 
                strUrl = "https://ca2.cc/api/account/str_set_save?key=";
 
-               auto psystem = m_psystem->m_paurasystem;
+               auto psystem = m_psystem->m_papexsystem;
 
-               strUrl += psystem->url().url_encode(strKey);
+               auto purl = psystem->url();
+
+               strUrl += purl->url_encode(strKey);
 
                strUrl += "&value=";
 
-               strUrl += psystem->url().url_encode(strBase64);
+               strUrl += purl->url_encode(strBase64);
 
                {
 

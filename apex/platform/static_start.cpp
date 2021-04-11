@@ -376,7 +376,7 @@ namespace apex
 
       //g_pmapFontFaceName = nullptr;
 
-      create_factory < ::apex::idpool >();
+      //create_factory < ::apex::idpool >();
 
 
 

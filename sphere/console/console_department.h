@@ -6,7 +6,7 @@ namespace console
 
 
    class CLASS_DECL_SPHERE department :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -26,7 +26,7 @@ namespace console
       void pre_translate_message(::message::message * pmessage);
 
 
-      DECL_GEN_SIGNAL(_001OnImpact);
+      DECLARE_MESSAGE_HANDLER(_001OnImpact);
 
 
    };

@@ -161,7 +161,7 @@ namespace axis
 
       //}
 
-      //fill_locale_schema(*str_context()->m_plocaleschema);
+      //fill_locale_schema(*textcontext()->m_plocaleschema);
 
       INFO("success");
 

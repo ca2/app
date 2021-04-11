@@ -6,7 +6,7 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER render :
-      virtual public __application_consumer
+      virtual public application_consumer < application >
    {
    public:
 

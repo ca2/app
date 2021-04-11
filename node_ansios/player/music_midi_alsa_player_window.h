@@ -37,10 +37,10 @@ namespace music
 
             void install_message_handling(::message::dispatch * pinterface);
 
-            DECL_GEN_SIGNAL(_001OnNotifyEvent);
-               DECL_GEN_SIGNAL(_001OnMmsgDone);
-               DECL_GEN_SIGNAL(_001OnUserMessage);
-               DECL_GEN_SIGNAL(_001OnApp3388Message);
+            DECLARE_MESSAGE_HANDLER(_001OnNotifyEvent);
+               DECLARE_MESSAGE_HANDLER(_001OnMmsgDone);
+               DECLARE_MESSAGE_HANDLER(_001OnUserMessage);
+               DECLARE_MESSAGE_HANDLER(_001OnApp3388Message);
          };
 
 

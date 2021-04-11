@@ -100,18 +100,18 @@ namespace user
 
          virtual ::user::rich_text::data * get_rich_text_data() override;
 
-         DECL_GEN_SIGNAL(on_message_create);
-         DECL_GEN_SIGNAL(_001OnDestroy);
-         DECL_GEN_SIGNAL(_001OnShowWindow);
-         DECL_GEN_SIGNAL(on_message_left_button_down);
-         DECL_GEN_SIGNAL(on_message_left_button_up);
-         DECL_GEN_SIGNAL(on_message_mouse_move);
-         DECL_GEN_SIGNAL(on_message_mouse_leave);
-         DECL_GEN_SIGNAL(_001OnChar);
-         DECL_GEN_SIGNAL(_001OnKeyDown);
-         DECL_GEN_SIGNAL(_001OnKeyUp);
-         // DECL_GEN_SIGNAL(_001OnSetFocus);
-         //DECL_GEN_SIGNAL(_001OnKillFocus);
+         DECLARE_MESSAGE_HANDLER(on_message_create);
+         DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+         DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+         DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+         DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+         DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+         DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+         DECLARE_MESSAGE_HANDLER(_001OnChar);
+         DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+         DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
+         // DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+         //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
          virtual void _001OnTimer(::timer * ptimer) override;

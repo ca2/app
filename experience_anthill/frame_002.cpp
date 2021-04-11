@@ -464,7 +464,7 @@ SizingNone:;
             }
 
 
-            void frame_002::on_style_change()
+            void frame_002::_on_style_change(::draw2d::graphics_pointer& pgraphics)
             {
 
                on_style_change_001_and_002(pgraphics);
@@ -1053,13 +1053,12 @@ SizingNone:;
             }
 
 
-            color32_t frame_002::get_border_main_body_color()
+            status < ::color::color > frame_002::get_border_main_body_color()
             {
 
                return m_colorMoveableBorder;
 
             }
-
 
 
          } // namespace anthill

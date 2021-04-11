@@ -36,7 +36,7 @@ namespace userpresence
    ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {

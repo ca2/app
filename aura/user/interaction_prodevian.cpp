@@ -229,6 +229,20 @@ namespace user
 
       }
 
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+      {
+
+         if (!m_pimpl->m_bDestroying)
+         {
+
+            m_pimpl->m_bDestroying = true;
+
+            m_puserinteraction->post_message(e_message_destroy_window);
+
+         }
+
+      }
+
       return m_estatus;
 
    }

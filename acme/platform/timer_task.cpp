@@ -44,7 +44,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 #endif
 
 
-::e_status timer_task::initialize_timer(::apex::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
+::e_status timer_task::initialize_timer(::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
 
    m_bRunning = false;

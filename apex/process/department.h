@@ -6,7 +6,7 @@ namespace process
 
 
    class CLASS_DECL_APEX department:
-      public ::apex::department
+      public ::acme::department
    {
    public:
 

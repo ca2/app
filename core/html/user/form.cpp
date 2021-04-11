@@ -501,7 +501,11 @@ void html_form::set_need_load_form_data()
       else if (varFile.cast < ::file::file >() != nullptr)
       {
 
-         path = psystem->datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         path = pdatetime->international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else

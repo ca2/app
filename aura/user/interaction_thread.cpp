@@ -405,7 +405,7 @@ namespace user
                && ::thread::finish_bit())
             {
 
-               m_pimpl->m_puserinteraction->DestroyWindow();
+               m_pimpl->m_puserinteraction->start_destroying_window();
 
             }
 
@@ -1055,7 +1055,7 @@ namespace user
          else if (m_pimpl->m_puserinteraction)
          {
 
-            m_pimpl->m_puserinteraction->DestroyWindow();
+            m_pimpl->m_puserinteraction->start_destroying_window();
 
          }
 

@@ -2,31 +2,39 @@
 #pragma once
 
 
-class CLASS_DECL_ACME text
+namespace text
 {
-public:
-
-   
-   text_data * m_ptextdata;
-
-   text();
-   text(text && text);
-   text(const text & text);
-   text(text_data * ptextdata);
-   ~text();
-
-   string get_text() const;
-
-   void destroy();
-
-   text& operator = (const text& text);
-
-protected:
-
-   text_data* clone_text_data() const;
 
 
-};
+   class CLASS_DECL_ACME text
+   {
+   public:
+
+
+      data * m_pdata;
+
+
+      text();
+      text(text&& text);
+      text(const text& text);
+      text(data * ptextdata);
+      ~text(); 
+
+      string get_text() const;
+
+      void destroy();
+
+      text& operator = (const text& text);
+
+   protected:
+
+      data * clone_text_data() const;
+
+
+   };
+
+
+} // namespace text
 
 
 

@@ -24,7 +24,7 @@ namespace sockets
    ::e_status sockets::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -58,7 +58,7 @@ namespace sockets
 
       }
 
-      //if (!::apex::department::initialize())
+      //if (!::acme::department::initialize())
       //{
 
       //   return error_failed;

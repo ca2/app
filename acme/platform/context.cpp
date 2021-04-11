@@ -39,7 +39,7 @@ namespace acme
       m_papexnode = nullptr;
       m_pauranode = nullptr;
       
-      m_ptexttranslator = new text_translator();
+      m_ptexttranslator = new ::text::translator();
 
       m_ptexttranslator->m_pcontext = this;
 
@@ -62,7 +62,7 @@ namespace acme
    }
 
    
-   void context::translate_text_data(text_data* ptextdata)
+   void context::translate_text_data(::text::data * ptextdata)
    {
 
       bool bSet = false;
@@ -93,10 +93,46 @@ namespace acme
    }
 
 
-   text context::__text(const ::id& id)
+   ::text::text context::__text(const ::id& id)
    {
 
       return m_ptexttranslator->create_text_data(id);
+
+   }
+
+
+   ::payload context::file_payload(const ::payload & payloadFile)
+   {
+
+      return payloadFile;
+
+   }
+
+
+   file_result context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+   {
+
+      __pointer(::file::file) pfile;
+
+      auto estatus = __construct(pfile);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+      
+      estatus = pfile->open(varFile, eopen);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return pfile;
 
    }
 

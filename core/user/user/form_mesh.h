@@ -82,12 +82,12 @@ namespace user
 
       virtual void _001GetSelection(::database::key & key,::database::selection & selection) override;
 
-      DECL_GEN_SIGNAL(_001OnNotify);
-      DECL_GEN_SIGNAL(_001OnMessageNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnHScroll);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
 
       virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult);
 

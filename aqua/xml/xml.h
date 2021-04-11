@@ -6,7 +6,7 @@ namespace xml
 
 
    class CLASS_DECL_AQUA xml :
-      public ::apex::department
+      public ::acme::department
    {
    public:
 

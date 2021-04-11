@@ -46,10 +46,10 @@ namespace console
       void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
       virtual bool keyboard_focus_is_focusable();
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnKeyUp);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

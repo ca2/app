@@ -158,7 +158,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-bool task_group::start()
+::e_status task_group::set_ready_to_start()
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -172,12 +172,31 @@ bool task_group::start()
 
    m_cSpan = m_cIteration / m_cCount;
 
+   ::count cSuccess = 0;
+
+   ::count cFailed = 0;
+
    for (index i = 0; i < m_cCount; i++)
    {
 
-      m_taska[i]->set_ready();
+      auto estatusTask = m_taska[i]->set_ready_to_start();
+
+      if (estatusTask)
+      {
+
+         cSuccess++;
+
+      }
+      else
+      {
+
+         cFailed++;
+
+      }
 
    }
+
+   auto estatus = _003CountStatus(cSuccess, cFailed);
 
    return true;
 
@@ -208,7 +227,7 @@ bool task_group::wait()
 bool task_group::process()
 {
 
-   start();
+   set_ready_to_start();
 
    wait();
 
@@ -350,15 +369,17 @@ void tool_task::reset()
 }
 
 
-void tool_task::set_ready()
+::e_status tool_task::set_ready_to_start()
 {
 
    m_pevStart->SetEvent();
 
+   return ::success;
+
 }
 
 
-//CLASS_DECL_APEX ::task_group * get_task_group(::e_priority epriority)
+//CLASS_DECL_ACME ::task_group * get_task_group(::e_priority epriority)
 //{
 //
 //   return  ::apex::get_system()->tools(epriority);
@@ -366,7 +387,7 @@ void tool_task::set_ready()
 //}
 //
 //
-//CLASS_DECL_APEX ::task_groupet * get_task_groupet(::enum_task_tool etool)
+//CLASS_DECL_ACME ::task_groupet * get_task_groupet(::enum_task_tool etool)
 //{
 //
 //   return ::apex::get_system()->toolset(etool);

@@ -16,11 +16,6 @@ namespace apex
    public:
 
 
-      __reference(::apex::application)                   m_papplicationStartup;
-      __reference(::apex::application)                   m_papplicationMain;
-
-      __composite(::apex::system)                        m_psystemParent;
-
       ///__composite(::apex::node)                          m_papexnode;
 
       //__composite(::apex::session)                       m_psessionMain;
@@ -62,7 +57,6 @@ namespace apex
       ::mutex                                            m_mutexUserChildren;
       //__composite(class imaging)                         m_pimaging;
 
-      __composite(class ::datetime::department)          m_pdatetime;
       __composite(::crypto::crypto)                      m_pcrypto;
       //__composite(class ::account::user_set)             m_puserset;
 
@@ -71,8 +65,6 @@ namespace apex
 
       // apex commented
       //__composite(math::math)                            m_pmath;
-
-      __composite(::apex::str)                           m_puserstr;
 
       ::apex::session::map                               m_sessionmap;
 
@@ -83,7 +75,6 @@ namespace apex
 
       // for lesser cooperative GUI applications
       //bool                                               m_bProdevianMouse;
-      __composite(class ::str::base64)                   m_pbase64;
 
       ::string_to_string                                 m_mapAppLibrary;
       __composite(class machine_event_central)           m_pmachineeventcentral;
@@ -112,8 +103,6 @@ namespace apex
       bool                                               m_bFinalizeIfNoSession;
 
 
-//      __composite(::html::html)                          m_phtml;
-      __composite(::url::department)                     m_purldepartment;
 
       __composite(::dir_system)                          m_pdirsystem;
       __composite(::file_system)                         m_pfilesystem;
@@ -461,12 +450,10 @@ namespace apex
       //class base_factory                           &  factory();
 
 
-      ::apex::str                                  &  str();
       ::process::department                        &  process();
 
       //using acme::system::process;
 
-      class ::str::base64                          &  base64();
       class ::apex::log                            &  log();
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
@@ -487,13 +474,6 @@ namespace apex
       //inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
 
 
-      inline ::url::department                     &  url()
-      {
-
-         return *m_purldepartment;   // only usable from base.dll and dependants
-
-      }
-
 
       //inline class ::compress_department           &  compress()
       //{
@@ -512,9 +492,6 @@ namespace apex
       //::net::email_department                & email();
 
       //__pointer(::account::user_set)                userset();
-
-      ::datetime::department                 & datetime();
-
 
       //virtual string url_encode(const string & str);
 
@@ -697,8 +674,6 @@ namespace apex
 
       //virtual void on_request(::create * pcreate) override;
 
-      virtual __pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
-      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
@@ -847,7 +822,7 @@ namespace apex
       //virtual bool base_support() override;
 
 
-      DECL_GEN_SIGNAL(on_application_signal);
+      DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
       ::e_status set_history(::apex::history* phistory);
@@ -1016,6 +991,9 @@ namespace apex
 
 
       virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+
+
+      virtual ::e_status get_public_internet_domain_extension_list(string_array& stra) override;
 
 
    };

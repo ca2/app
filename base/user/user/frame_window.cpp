@@ -510,9 +510,11 @@ namespace user
 
                   psession->copydesk().image_to_desk(pimage1);
 
-                  auto pcontext = m_pcontext;
+                  auto pcontext = m_pcontext->m_pauracontext;
 
-                  pcontext->m_pauracontext->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
+                  auto pcontextimage = pcontext->context_image();
+
+                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -538,7 +540,7 @@ namespace user
 
                   pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
-                  pcontext->m_pauracontext->image().save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
+                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 

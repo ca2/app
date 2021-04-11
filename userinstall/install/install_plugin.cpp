@@ -139,7 +139,7 @@ namespace install
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
-      m_strLoginRequestingServer = psystem->url().get_server(m_phost->get_host_location_url());
+      m_strLoginRequestingServer = purl->get_server(m_phost->get_host_location_url());
 
       return true;
 
@@ -532,7 +532,7 @@ namespace install
       if(m_bCa2Login || m_bCa2Logout)
          return;
 
-      string strScript = psystem->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
+      string strScript = purl->get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       //if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
       if(!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout"))
@@ -585,7 +585,7 @@ namespace install
 
          property_set set;
 
-         set.parse_url_query(psystem->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_url_query(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          string strUrl(set["ruri"]);
 
@@ -596,7 +596,7 @@ namespace install
 
          }
 
-         psystem->url().set_param(strUrl,strUrl,"sessid",psession->account()->get_user()->get_sessid(psystem->url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
+         purl->set_param(strUrl,strUrl,"sessid",psession->account()->get_user()->get_sessid(purl->get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
          m_phost->open_link(strUrl, "");
 
@@ -618,7 +618,7 @@ namespace install
 
          property_set set;
 
-         set.parse_url_query(psystem->url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_url_query(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          //ca2logout(set);
 
@@ -1372,7 +1372,7 @@ run_install:
       if(psystem->install().is_installing_ca2())
          return;
 
-      string strScript = psystem->url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
+      string strScript = purl->get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if (!m_bInstalling && psystem->install().is_ca2_installed())
       {
@@ -1435,7 +1435,7 @@ retry_get_prompt:
 
             strPrompt.trim();
 
-            strApp = psystem->url().get_script(strPrompt);
+            strApp = purl->get_script(strPrompt);
 
          }
          else if(::str::begins_eat_ci(strPrompt,"native_desktop_launcher"))

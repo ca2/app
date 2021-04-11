@@ -56,7 +56,7 @@ namespace write_text
    }
 
 
-   void write_text::term()
+   ::e_status write_text::term()
    {
 
       try
@@ -73,13 +73,11 @@ namespace write_text
       catch (...)
       {
 
-
       }
 
+      auto estatus = ::acme::department::term();
 
-      ::apex::department::term();
-
-
+      return success;
 
    }
 
@@ -89,7 +87,7 @@ namespace write_text
 
       m_pfontdepartment.release();
 
-      auto estatus = ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
 
       return estatus;
 

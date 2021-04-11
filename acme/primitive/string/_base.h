@@ -513,7 +513,7 @@ public:
    strsize Delete(strsize iIndex, strsize nCount = 1);
    strsize erase(strsize iIndex, strsize nCount = 1);
 
-   string_base& erase(strsize start = 0, strsize count = -1);
+   //string_base& erase(strsize start = 0, strsize count = -1);
 
 
    template < typename PRED >

@@ -397,9 +397,11 @@ i32 image_list::add_file(::payload varFile, int iItem)
    fork([this, varFile, iItem]()
       {
 
-      auto pcontext = get_context();
+         auto pcontext = m_pcontext->m_pauracontext;
 
-         auto pimage = pcontext->m_pauracontext->image().load_image(varFile, true);
+         auto pcontextimage = pcontext->context_image();
+
+         auto pimage = pcontextimage->load_image(varFile, true);
 
          if (!pimage)
          {

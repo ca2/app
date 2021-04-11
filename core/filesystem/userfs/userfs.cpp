@@ -22,7 +22,7 @@ namespace userfs
    ::e_status userfs::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobject);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ namespace userfs
       create_factory <::userfs::list > ();
       create_factory <::userfs::list_item > ();
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;

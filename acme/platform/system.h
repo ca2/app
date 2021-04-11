@@ -24,6 +24,11 @@ namespace acme
       //::core::system *              m_pcoresystem;
 
 
+      __reference(::apex::application)                   m_papplicationStartup;
+      __reference(::apex::application)                   m_papplicationMain;
+
+      __composite(::apex::system)                        m_psystemParent;
+
       string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
 
 #ifdef LINUX
@@ -36,6 +41,9 @@ namespace acme
       task_id_map                                        m_taskidmap;
       ::mutex                                            m_mutexTaskOn;
       map < itask_t, itask_t >                           m_mapTaskOn;
+
+
+      __composite(class ::datetime::department)          m_pdatetime;
 
 
       ::mutex                                            m_mutexLibrary;
@@ -57,13 +65,23 @@ namespace acme
       string_map < string_map < i64 > >                  m_mapTextToEnum;
 
 
+      //      __composite(::html::html)                          m_phtml;
+      __composite(::url::department)                     m_purldepartment;
+
+      __composite(class ::str::base64)                   m_pbase64;
+
       __composite(class ::xml::xml)                      m_pxml;
 
       __composite(class ::acme::node)                    m_pnode;
       __composite(class ::acme_dir)                      m_pacmedir;
       __composite(class ::acme_path)                     m_pacmepath;
-      __pointer(::parallelization::cleanup_task)         m_pcleanuptask;
+      //__pointer(::parallelization::cleanup_task)         m_pcleanuptask;
       __composite(geometry::geometry)                    m_pgeometry;
+
+
+      __composite(::text::table)                         m_ptexttable;
+
+
 
 
 
@@ -76,32 +94,31 @@ namespace acme
 
       inline ::acme::node              *  node() { return m_pnode; }
 
+      inline class ::str::base64       *  base64() { return m_pbase64; };
+
       inline ::xml::xml                *  xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
       inline acme_dir                  *  acmedir() const { return m_pacmedir; }
 
       inline acme_path                 *  acmepath() const { return m_pacmepath; }
 
-
-      inline void add_pending_finish(::matter* pmatter)
-      {
-
-         m_pcleanuptask->add(pmatter);
-
-      }
-
-
       virtual ::xml::xml* _xml();
 
+      inline geometry::geometry * geometry() { return m_pgeometry; }
 
-      geometry::geometry& geometry()
-      {
+      inline ::datetime::department* datetime() { return m_pdatetime; }
 
-         return *m_pgeometry;
+      inline ::text::table* texttable() { return m_ptexttable; }
 
-      }
+      inline ::url::department * url() { return m_purldepartment; }
+
+      virtual ::e_status defer_audio();
 
       virtual ::e_status init1();
+
+
+      virtual void TermSystem();
+
 
       virtual ::e_status create_os_node();
 
@@ -164,6 +181,10 @@ namespace acme
       virtual ::e_status start();
       //virtual ::e_status run_system();
       virtual ::e_status main();
+
+      virtual ::e_status end();
+
+      virtual ::e_status on_end();
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
@@ -371,6 +392,12 @@ namespace acme
       inline ::id id(const property& prop);
 
       virtual void check_exit();
+
+      virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str);
+      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+
+
+      virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
       
    };

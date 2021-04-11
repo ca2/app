@@ -484,7 +484,7 @@ namespace hi5
       //psystem->memory_to_hex(strHmac, memHmac);
 
       /* Do a base64 encode of signature */
-      string base64Str = psystem->base64().encode(memHmac.get_data(), 20);
+      string base64Str = pbase64->encode(memHmac.get_data(), 20);
 
       /* Do an url encode */
       oAuthSignature = urlencode( base64Str );

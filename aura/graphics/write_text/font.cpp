@@ -104,28 +104,7 @@ namespace write_text
    bool font::create_pixel_font(const char * pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
 
-#ifdef WINDOWS
-
-      //if (ansi_compare_ci(pszFacename, pnode->font_name(e_font_sans)) == 0)
-      //{
-
-      //   m_strFontFamilyName = pnode->font_name(e_font_sans);
-
-      //}
-      //else
-      //{
-
-      //   m_strFontFamilyName = pszFacename;
-
-
-      //}
-
-#else
-
       m_strFontFamilyName = pszFacename;
-
-
-#endif
 
       m_dFontSize = dSize;
       m_dFontWidth = 1.0;

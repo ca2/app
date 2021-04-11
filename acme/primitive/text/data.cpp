@@ -3,21 +3,27 @@
 #include "_.h"
 
 
-
-text_data::text_data(text_translator* ptexttranslator) :
-   m_ptexttranslator(ptexttranslator)
-{
-   
-   m_bPendingUpdate = true;
-
-}
-
-
-text_data::~text_data()
+namespace text
 {
 
-}
 
+   data::data(translator* ptexttranslator) :
+      m_ptranslator(ptexttranslator)
+   {
+
+      m_bPendingUpdate = true;
+
+   }
+
+
+   data::~data()
+   {
+
+   }
+
+
+
+} // namespace text
 
 
 

@@ -36,7 +36,7 @@ namespace browser
 
       virtual void dump(dump_context & dumpcontext) const;
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void on_control_event(::user::control_event * pevent);
       void on_change_cur_sel();
 

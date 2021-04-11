@@ -100,7 +100,7 @@ namespace apex
    }
 
 
-   bool app_launcher::start()
+   ::e_status app_launcher::run()
    {
 
 #ifdef _UWP

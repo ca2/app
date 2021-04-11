@@ -160,7 +160,7 @@ namespace aura
       //virtual ::user::interaction * get_session_window() override;
 
 
-      //::apex::str_context * str_context() { return m_puserstrcontext; }
+      //::text::context * textcontext() { return m_ptextcontext; }
 
       //virtual bool is_session() const override;
 

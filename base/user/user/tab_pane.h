@@ -11,7 +11,7 @@ namespace user
    {
    public:
 
-      ::text   m_textTitle;
+      ::text::text   m_textTitle;
 
 
    public:

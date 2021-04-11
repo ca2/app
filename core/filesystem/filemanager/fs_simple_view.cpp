@@ -170,9 +170,11 @@ namespace filemanager
 
             string strUrl;
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = m_psystem;
 
-            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + psystem->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            auto purl = psystem->url();
+
+            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + purl->url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
             //if(m_prequestinterface != nullptr)
             //{

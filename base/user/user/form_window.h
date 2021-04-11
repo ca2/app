@@ -42,8 +42,8 @@ namespace user
       virtual bool _001Validate(interaction * pinteraction, ::payload & payload);
       virtual bool _001SaveEdit(interaction * pinteraction);
       virtual void on_command(::message::command * pcommand) override;
-      DECL_GEN_SIGNAL(_001OnNotify);
-      DECL_GEN_SIGNAL(_001OnMessageNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key, ::database::selection & selection) override;
       virtual void Update(bool bSave);
       virtual bool _001SetData(const ::id & id, bool bData);
@@ -52,8 +52,8 @@ namespace user
 
       virtual void WfiOnClose() override;
 
-      DECL_GEN_SIGNAL(_000OnPosCreate);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
@@ -67,7 +67,7 @@ namespace user
       virtual void _001UpdateDbFlags(interaction * pinteraction) override;
       virtual void _001UpdateDbFlagsCheckBox(interaction * pinteraction) override;
 
-      DECL_GEN_SIGNAL(_001OnAppLanguage);
+      DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
       bool OnCommand(wparam wparam, lparam lparam);
 

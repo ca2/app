@@ -13,7 +13,7 @@ class image_list;
 
 
 class CLASS_DECL_AURA imaging :
-   virtual public ::apex::department
+   virtual public ::acme::department
 {
 public:
 

@@ -128,7 +128,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + psystem->url().url_encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + purl->url_encode(listing.m_pathUser);
 
    //string strSource;
 

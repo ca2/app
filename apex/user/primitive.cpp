@@ -1826,7 +1826,7 @@ namespace user
    //}
 
 
-   bool primitive::DestroyWindow()
+   bool primitive::start_destroying_window()
    {
 
       ::exception::throw_interface_only();

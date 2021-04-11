@@ -20,7 +20,7 @@ namespace user
 
 
    class CLASS_DECL_AURA user :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -42,7 +42,7 @@ namespace user
       
       __pointer_array(::user::interaction)      m_uiptraToolWindow;
 
-      __pointer(::windowing::windowing)         m_pwindowing;
+      __composite(::windowing::windowing)       m_pwindowing;
 
       ::mutex                                   m_mutexRunnable;
 
@@ -92,9 +92,14 @@ namespace user
       //virtual ::e_status create_user_shell();
 
 
+
       virtual ::e_status init1() override;
       virtual ::e_status init2() override;
       virtual ::e_status init() override;
+
+
+      virtual ::e_status finish() override;
+
 
 
       virtual ::e_status create_windowing();
@@ -119,7 +124,7 @@ namespace user
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam);
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 

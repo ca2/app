@@ -51,6 +51,48 @@ namespace acme
    }
 
 
+   ::e_status system::end()
+   {
+
+      //auto estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   auto estatus = m_pnode->start();
+
+      //}
+
+      auto estatus = on_end();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = inline_term();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    void system::process_exit_status(::object* pobject, const ::e_status& estatus)
    {
 
@@ -134,6 +176,14 @@ namespace acme
 
 
    ::e_status system::on_start()
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::on_end()
    {
 
       return ::success;

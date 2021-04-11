@@ -66,7 +66,7 @@ namespace net
 
 
 #include "ip_enum.h"
-#include "url_domain.h"
+//#include "url_domain.h"
 
 
 #include "email_address.h"
@@ -76,8 +76,8 @@ namespace net
 #include "port_forward.h"
 
 
-#include "url.h"
-#include "url_department.h"
+//#include "url.h"
+//#include "url_department.h"
 //#include "email_department.h"
 
 

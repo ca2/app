@@ -33,11 +33,11 @@ namespace user
 		//virtual void install_message_routing(::channel * pchannel) override;
 
 
-		//DECL_GEN_SIGNAL(_001OnKeyDown);
-		//DECL_GEN_SIGNAL(_011OnChar);
-		//DECL_GEN_SIGNAL(_001OnIme);
-		//DECL_GEN_SIGNAL(_001OnSetFocus);
-		//DECL_GEN_SIGNAL(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+		//DECLARE_MESSAGE_HANDLER(_011OnChar);
+		//DECLARE_MESSAGE_HANDLER(_001OnIme);
+		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 
@@ -70,11 +70,11 @@ namespace user
 		virtual ::e_status initialize_text_composition_client();
 
 
-		//DECL_GEN_SIGNAL(_001OnKeyDown);
-		//DECL_GEN_SIGNAL(_011OnChar);
-		//DECL_GEN_SIGNAL(_001OnIme);
-		//DECL_GEN_SIGNAL(_001OnSetFocus);
-		//DECL_GEN_SIGNAL(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+		//DECLARE_MESSAGE_HANDLER(_011OnChar);
+		//DECLARE_MESSAGE_HANDLER(_001OnIme);
+		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 

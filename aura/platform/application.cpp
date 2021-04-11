@@ -3,7 +3,7 @@
 #include "acme/platform/version.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
-#include "apex/platform/str_context.h"
+#include "acme/primitive/text/context.h"
 #include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/platform/node.h"
@@ -365,7 +365,9 @@ namespace aura
    void application::call_request(::create * pcreate)
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto purl = psystem->url();
 
       if (pcreate->m_ecommand == ::command_protocol)
       {
@@ -415,7 +417,7 @@ namespace aura
                if (::str::begins_eat_ci(str, "send?message="))
                {
 
-                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, psystem->url().url_decode(str));
+                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
                }
                else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -430,7 +432,11 @@ namespace aura
 
                      memory m;
 
-                     psystem->base64().decode(m, psystem->url().url_decode(str.Mid(iFind + 1)));
+                     auto psystem = m_psystem;
+
+                     auto pbase64 = psystem->base64();
+
+                     pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
                      m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -2310,8 +2316,6 @@ retry_license:
    }
 
 
-
-
    void application::term_application()
    {
 
@@ -3149,7 +3153,7 @@ retry_license:
 
    //  matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-   //  ::apex::str_context * pcontext = psession->str_context();
+   //  ::text::context * pcontext = psession->textcontext();
 
    //  for (i32 i = 0; i < localeschema().m_idaLocale.get_count(); i++)
    //  {
@@ -3184,7 +3188,7 @@ retry_license:
    //}
 
 
-   //void application::fill_locale_schema(::str::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+   //void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
    //{
 
 
@@ -3212,7 +3216,7 @@ retry_license:
    //}
 
 
-   //void application::fill_locale_schema(::str::international::locale_schema & localeschema)
+   //void application::fill_locale_schema(::text::international::locale_schema & localeschema)
    //{
 
 
@@ -3389,7 +3393,7 @@ retry_license:
 //
 //      string strMessage;
 //
-//      strMessage = psystem->datetime().international().get_gmt_date_time();
+//      strMessage = pdatetime->international().get_gmt_date_time();
 //      strMessage += " ";
 //      strMessage += pszMessage;
 //      strMessage += "\n";
@@ -3861,8 +3865,6 @@ retry_license:
    }
 
 
-
-
    void application::add_frame(::user::interaction * puserinteraction)
    {
 
@@ -3939,15 +3941,6 @@ retry_license:
 
       synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
-
-      //if(get_active_uie() == puserinteraction)
-      //{
-
-      //   set_a
-
-      //}
-
-
       if (m_puserinteractionMain == puserinteraction)
       {
 
@@ -3958,6 +3951,8 @@ retry_license:
       if (m_puiptraFrame != nullptr)
       {
 
+         auto oldInteractionCount = m_puiptraFrame->interaction_count();
+
          if (m_puiptraFrame->erase_interaction(puserinteraction) > 0)
          {
 
@@ -3965,15 +3960,24 @@ retry_license:
 
          }
 
-      }
+         if (oldInteractionCount > 0)
+         {
 
+            if (m_puiptraFrame->has_no_interaction())
+            {
+
+               apex::application::_001CloseApplication();
+
+            }
+
+         }
+
+      }
 
    }
 
 
-
    bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
-
    {
 
       __pointer(::user::interaction) puserinteraction;
@@ -4386,7 +4390,7 @@ retry_license:
    //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
    //{
 
-   //   //auto pcontroller = Multimedia.defer_create_view(strView, puiParent, ewindowflag, id);
+   //   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
 
    //   //if (pcontroller)
    //   //{
@@ -5158,7 +5162,7 @@ retry_license:
    bool application::update_appmatter( __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
-      auto plocaleschema = __create_new < ::str::international::locale_schema >();
+      auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -5219,9 +5223,11 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = m_psystem;
 
-      strUrl += psystem->url().url_encode(strRelative);
+      auto purl = psystem->url();
+
+      strUrl += purl->url_encode(strRelative);
 
       if (psession == nullptr)
       {
@@ -5231,7 +5237,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http().open(psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -8553,7 +8559,7 @@ namespace aura
       else
       {
 
-         pframe->DestroyWindow();
+         pframe->start_destroying_window();
 
       }
 
@@ -9227,6 +9233,28 @@ namespace aura
 
 
 
+   void application::_001CloseApplication()
+   {
+
+      if (m_puiptraFrame && m_puiptraFrame->has_interaction())
+      {
+
+         for (auto& pframe : m_puiptraFrame->interactiona())
+         {
+
+            pframe->finish();
+
+         }
+
+      }
+      else
+      {
+
+         ::apex::application::_001CloseApplication();
+
+      }
+
+   }
 
 
 //   icon_result application::load_icon(const ::payload& varFile)

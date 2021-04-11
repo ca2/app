@@ -6,7 +6,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA draw2d  :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -40,7 +40,7 @@ namespace draw2d
       virtual ::e_status init() override;
       virtual ::e_status init1() override;
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::e_status finalize() override;
 
@@ -65,7 +65,9 @@ namespace draw2d
       virtual ::e_status initialize_write_text();
       virtual ::e_status write_text_factory_exchange(::factory_map * pfactorymap);
 
-      virtual void term_instance() override;
+
+      virtual ::e_status term_instance() override;
+
 
       virtual string write_text_get_default_library_name();
 

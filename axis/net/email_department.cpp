@@ -141,9 +141,11 @@ namespace net
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = m_psystem;
 
-      if (!psystem->url().is_valid_public_domain(strDomain))
+      auto purl = psystem->url();
+
+      if (!purl->is_valid_public_domain(strDomain))
       {
 
          return false;

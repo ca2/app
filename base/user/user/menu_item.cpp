@@ -161,9 +161,11 @@ namespace user
          if (strImage.has_char())
          {
 
-            auto pcontext = m_pcontext;
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            __compose(m_pimage, pcontext->m_pauracontext->image().matter_image(strImage));
+            auto pcontextimage = pcontext->context_image();
+
+            __compose(m_pimage, pcontextimage->matter_image(strImage));
 
          }
 
@@ -275,7 +277,7 @@ namespace user
          if (pinteraction->is_window())
          {
 
-            pinteraction->DestroyWindow();
+            pinteraction->start_destroying_window();
 
          }
 

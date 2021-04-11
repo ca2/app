@@ -788,7 +788,7 @@ namespace linux
 
             }
 
-            ::image_pointer pimage = papplication->image().load_image(strIcon48);
+            ::image_pointer pimage = pcontextimage->load_image(strIcon48);
 
             if (!::is_ok(pimage))
             {

@@ -59,7 +59,7 @@ namespace datetime
 {
 //
 //
-//   value span_strtotime(::matter * pobject, const ::acme::str_context * pcontext, const char * pszSpanExpression)
+//   value span_strtotime(::matter * pobject, const ::text::context * pcontext, const char * pszSpanExpression)
 //   {
 //
 //      static id idCalendarDay("calendar:day");
@@ -267,7 +267,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::matter * pobject, const ::acme::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+//   value strtotime(::matter * pobject, const ::text::context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
 //   {
 //      ::datetime::time time;
 //      string str(psz);
@@ -470,7 +470,7 @@ namespace datetime
 //   }
 //
 //
-//   string to_string(::matter * pobject, const ::acme::str_context * pcontext,const ::datetime::result & value)
+//   string to_string(::matter * pobject, const ::text::context * pcontext,const ::datetime::result & value)
 //   {
 //      string str;
 //      if(value.m_bSpan)

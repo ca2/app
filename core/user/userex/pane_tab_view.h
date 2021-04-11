@@ -41,9 +41,9 @@ namespace userex
 
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnFileSaveAs);
-      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnFileSaveAs);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileSaveAs);
 
 
       virtual void _001OnRemoveTab(::user::tab_pane * ptab) override;

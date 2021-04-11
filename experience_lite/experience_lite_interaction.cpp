@@ -21,7 +21,7 @@
             fork([&]()
             {
 
-               psystem->draw2d()->set_cursor_set_from_matter("cursor/polar");
+               pdraw2d->set_cursor_set_from_matter("cursor/polar");
 
             });
 

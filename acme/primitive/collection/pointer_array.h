@@ -300,6 +300,44 @@ public:
    }
 
 
+   ::e_status call_member(enum_id eid, ::index iStart, ::count inCountLastOut)
+   {
+
+      this->prepare_first_in_count_last_out(iStart, inCountLastOut);
+
+      ::count cFailed = 0;
+
+      ::count cSucceeded = 0;
+
+      for (index i = iStart; i <= inCountLastOut; i++)
+      {
+
+         auto p = this->element_at(i);
+
+         auto estatus = p->call_member(eid);
+
+         if(!estatus)
+         {
+
+            cFailed++;
+
+         }
+         else
+         {
+
+            cSucceeded++;
+
+         }
+
+      }
+
+      auto estatus = _003CountStatus(cSucceeded, cFailed);
+
+      return estatus;
+
+   }
+
+
    ::index comp_find_first(const T & t, ::index (* pfnCompare)(const T *, const T *), ::index iStart = 0, ::count nCount = -1) const
    {
 

@@ -97,12 +97,17 @@
       // strTask - Task
       interprocess_map                                            m_mapTask;
 
+   protected:
 
-      interprocess_intercommunication(const string & strApp);
+      using object::initialize;
+
+   public:
+
+      interprocess_intercommunication();
       virtual ~interprocess_intercommunication();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status initialize_interprocess_communication(::object * pobject, const string & strApp);
 
       virtual ::e_status finalize() override;
 

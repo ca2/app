@@ -39,7 +39,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

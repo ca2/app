@@ -465,12 +465,10 @@ namespace user
    }
 
 
-
-
-   bool control_bar::DestroyWindow()
+   bool control_bar::start_destroying_window()
    {
 
-      return ::user::interaction::DestroyWindow();
+      return ::user::interaction::start_destroying_window();
 
    }
 

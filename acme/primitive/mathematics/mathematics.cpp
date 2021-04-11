@@ -314,7 +314,7 @@ namespace mathematics
    ::e_status mathematics::finalize()
    {
 
-      //::apex::department::finalize();
+      //::acme::department::finalize();
 
       return ::success;
 

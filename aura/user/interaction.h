@@ -457,7 +457,7 @@ namespace user
       //virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
 
 
-      virtual void enumerate_composite(matter_array& a) override;
+      //virtual void enumerate_composite(matter_array& a) override;
 
       virtual ::e_status main_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
@@ -1026,7 +1026,7 @@ namespace user
 
 
 
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
       virtual void destroy_window() override;
 
@@ -1261,42 +1261,42 @@ namespace user
 
 
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(on_message_mouse_move);
-      DECL_GEN_SIGNAL(_001OnMouseEnter);
-      DECL_GEN_SIGNAL(on_message_mouse_leave);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseEnter);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
 
 
       virtual void _001OnTimer(::timer* ptimer) override;
       virtual bool on_timer(::timer* ptimer) override;
-      DECL_GEN_SIGNAL(_001OnChar);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnPostUser);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      DECL_GEN_SIGNAL(_001OnClose);
-      //DECL_GEN_SIGNAL(_001OnCommand);
-      DECL_GEN_SIGNAL(_001OnSimpleCommand);
-      DECL_GEN_SIGNAL(_001OnNeedLoadFormData);
-      DECL_GEN_SIGNAL(_001OnNeedSaveFormData);
-      DECL_GEN_SIGNAL(_001OnDisplayChange);
+      DECLARE_MESSAGE_HANDLER(_001OnChar);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPostUser);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      //DECLARE_MESSAGE_HANDLER(_001OnCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSimpleCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnNeedLoadFormData);
+      DECLARE_MESSAGE_HANDLER(_001OnNeedSaveFormData);
+      DECLARE_MESSAGE_HANDLER(_001OnDisplayChange);
 
 
-      virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
-      virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
-      virtual DECL_GEN_SIGNAL(_002OnMouseMove);
-      virtual DECL_GEN_SIGNAL(_002OnMouseEnter);
-      virtual DECL_GEN_SIGNAL(_002OnMouseLeave);
-      virtual DECL_GEN_SIGNAL(_002OnKeyDown);
-      virtual DECL_GEN_SIGNAL(_002OnKeyUp);
-      virtual DECL_GEN_SIGNAL(_002OnTimer);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonDown);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonUp);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseMove);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseEnter);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseLeave);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnKeyDown);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnKeyUp);
+      virtual DECLARE_MESSAGE_HANDLER(_002OnTimer);
 
-      DECL_GEN_SIGNAL(_001OnTextComposition);
+      DECLARE_MESSAGE_HANDLER(_001OnTextComposition);
 
 
       virtual bool _001IsPointInside(const ::point_i32 & point) override;
@@ -1727,9 +1727,9 @@ namespace user
       void install_update_data_message_routing(::channel * pchannel);
 
 
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(on_message_middle_button_down);
-      DECL_GEN_SIGNAL(on_message_middle_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_middle_button_up);
 
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
@@ -1806,13 +1806,13 @@ namespace user
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
       //virtual void on_hit_test(::user::item & item) override;
-      //DECL_GEN_SIGNAL(on_message_create);
-      //DECL_GEN_SIGNAL(on_message_mouse_move);
-      //DECL_GEN_SIGNAL(on_message_mouse_leave);
-      //DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnEnable);
-      //DECL_GEN_SIGNAL(_001OnSetFocus);
-      //DECL_GEN_SIGNAL(_001OnKillFocus);
+      //DECLARE_MESSAGE_HANDLER(on_message_create);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      //DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnEnable);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
       //virtual void route_control_event(::user::control_event* pevent) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
       //virtual void on_control_event(::user::control_event* pevent) override;

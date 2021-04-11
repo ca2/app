@@ -6,7 +6,7 @@ namespace prompt
 
 
    department::department(::object * pobject) :
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
    }
@@ -37,7 +37,7 @@ namespace prompt
       create_factory <prompt::pane_view >();
       create_factory <prompt::primary_view >();
 
-      if (!::apex::department::init_instance())
+      if (!::acme::department::init_instance())
       {
 
          return false;
@@ -79,7 +79,7 @@ namespace prompt
    //void department::route_command_message(::message::command * pcommand)
    //{
 
-   //   ::apex::department::route_command_message(pcommand);
+   //   ::acme::department::route_command_message(pcommand);
 
    //}
 

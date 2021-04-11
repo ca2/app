@@ -16,7 +16,7 @@ namespace sockets
 
       interlocked_i32                  m_lListenSocket;
 
-      SSLInitializer *                 m_psslinit;
+      __pointer(SSLInitializer)        m_psslinit;
 
       byte                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 

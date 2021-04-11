@@ -2,6 +2,7 @@
 
 
 #include "acme/const/id.h"
+#include "acme/const/idpool.h"
 
 
 namespace apex
@@ -9,12 +10,10 @@ namespace apex
 
 
    class CLASS_DECL_APEX idpool :
-      virtual public ::matter
+      virtual public ::acme::idpool
    {
    public:
 
-
-      static __pointer(idpool) g_p;
 
       static idpool * g_pthis;
 
@@ -278,8 +277,8 @@ namespace apex
 
       idpool();
 
-      static void init();
-      static void term();
+      //static void init();
+      //static void term();
 
       //void reset() const
       //{

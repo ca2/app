@@ -8,7 +8,7 @@ class CLASS_DECL_ACME timer_task :
 public:
 
 
-   __pointer(::apex::timer_array)      m_ptimera;
+   __pointer(::acme::timer_array)      m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    void *                              m_pvoidData;
    bool                                m_bRunning;
@@ -57,14 +57,12 @@ public:
    void impl_term();
 
 
-   virtual ::e_status initialize_timer(::apex::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
+   virtual ::e_status initialize_timer(::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
 
    virtual ::e_status run() override;
 
 
    bool start(const ::duration& duration, bool bPeriodic);
-
-   //void call_on_timer();
 
    virtual bool on_timer();
 

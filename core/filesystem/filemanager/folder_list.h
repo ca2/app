@@ -62,8 +62,8 @@ namespace filemanager
 
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnCancelMode);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
       virtual void assert_valid() const override;

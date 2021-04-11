@@ -20,6 +20,7 @@ class string_exchange;
 // Shared with:
 // Objective-C++
 
+
 class CLASS_DECL_ACME matter
 {
 private:
@@ -98,6 +99,9 @@ public:
    virtual ::e_status initialize_matter(::matter* pmatter);
 
 
+   virtual ::e_status on_initialize_object();
+
+
    inline bool is_set() const { return ::is_set(this); }
 
 
@@ -109,6 +113,7 @@ public:
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
+   virtual ::e_status start();
 
    inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
@@ -204,6 +209,9 @@ public:
 
    virtual const char* debug_note() const;
    virtual ::matter * clone() const;
+
+   // <3TBS_!! handle -> call_member <3TBS_!!
+   virtual ::e_status call_member(enum_id eid);
 
 
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }

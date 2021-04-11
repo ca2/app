@@ -305,9 +305,11 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            auto psystem = m_psystem->m_paurasystem;
+            auto psystem = m_psystem;
 
-            strUrl += psystem->url().url_encode(strKey);
+            auto purl = psystem->url();
+
+            strUrl += purl->url_encode(strKey);
 
             strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -329,7 +331,11 @@ namespace simpledb
 
             string strListingTime = strFirstLine;
 
-            ::datetime::time timeListing(psystem->datetime().from_gmt(strListingTime));
+            auto pdatetime = psystem->datetime();
+
+            auto ptextcontext = get_session()->text_context();
+
+            ::datetime::time timeListing(pdatetime->from_gmt(ptextcontext, strListingTime));
 
             if (timeListing.abs_diff(::datetime::now) > 5_s)
             {

@@ -101,7 +101,7 @@ namespace ios
 //         string_array stra;
 //         get_ascendants_name(pcsz, stra);
 //         string str;
-//         bool bUrl = psystem->url().is_url(pcsz);
+//         bool bUrl = purl->is_url(pcsz);
 //#ifdef LINUX
 //         bool bLinux = true;
 //         str += "/";

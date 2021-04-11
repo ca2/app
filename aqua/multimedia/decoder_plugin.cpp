@@ -52,7 +52,7 @@ namespace multimedia
 
 #ifdef APPLE_IOS
 
-      m_lpfnNewDecoder = Audio.get_multimedia_decoder_factory(pszTitle);
+      m_lpfnNewDecoder = paudio->get_multimedia_decoder_factory(pszTitle);
 
       if (m_lpfnNewDecoder == nullptr)
       {

@@ -197,7 +197,7 @@ namespace base
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      if (!::acme::department::init2())
       {
 
          return false;
@@ -209,7 +209,7 @@ namespace base
    }
 
 
-   void user::term()
+   ::e_status user::term()
    {
 
 
@@ -222,7 +222,7 @@ namespace base
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch(...)
@@ -241,6 +241,8 @@ namespace base
       {
 
       }
+
+      return ::success;
 
    }
 

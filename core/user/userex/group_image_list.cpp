@@ -99,9 +99,11 @@ namespace userex
 
       __pointer(::message::create) pcreate(pmessage);
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      m_pimage = pcontext->m_pauracontext->image().load_image("project->jpg", false);
+      auto pcontextimage = pcontext->context_image();
+
+      m_pimage = pcontextimage->load_image("project->jpg", false);
 
       pcreate->previous();
 
@@ -271,9 +273,11 @@ namespace userex
 
       m_itemCurrent = plist->m_iIndex;
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      ::image_pointer pimage = pcontext->m_pauracontext->image().matter_image(pgroup->m_strIcon);
+      auto pcontextimage = pcontext->context_image();
+
+      ::image_pointer pimage = pcontextimage->matter_image(pgroup->m_strIcon);
 
       m_buttonMenu.set_window_text(get_group_title(pgroup));
 

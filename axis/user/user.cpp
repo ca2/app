@@ -41,8 +41,10 @@ namespace axis
    }
 
    
-   void user::term()
+   ::e_status user::term()
    {
+
+      return ::success;
 
    }
 

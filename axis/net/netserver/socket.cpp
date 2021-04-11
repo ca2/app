@@ -124,19 +124,21 @@ namespace netserver
       if (key == __id(location) && straValue.get_count() >= 1)
       {
 
-         auto psystem = m_psystem->m_paurasystem;
-         
+         auto psystem = m_psystem;
+
+         auto purl = psystem->url();
+
          for (int i = 0; i < straValue.get_size(); i++)
          {
 
             url_domain domain;
 
-            domain.create(psystem->url().get_server(straValue[i]));
+            domain.create(purl->get_server(straValue[i]));
 
             if (domain.m_strName == "ca2.cc")
             {
 
-               //straValue[i] = "https://" + papplication->m_strFontopusServer + psystem->url().get_object(straValue[i]);
+               //straValue[i] = "https://" + papplication->m_strFontopusServer + purl->get_object(straValue[i]);
 
             }
 

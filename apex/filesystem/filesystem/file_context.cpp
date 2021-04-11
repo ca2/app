@@ -2329,9 +2329,11 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
 
             __pointer(memory_file) pmemoryfile = __new(memory_file());
 
-            __pointer(::apex::system) psystem = get_system();
+            auto psystem = m_psystem;
 
-            if (psystem->base64().decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
+            auto pbase64 = psystem->base64();
+
+            if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
             {
 
                TRACE("::file::file_context::data_get_file Succeeded");
@@ -2393,11 +2395,13 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    ::url_domain domain;
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = m_psystem;
 
-   domain.create(psystem->url().get_server(path));
+   auto purl = psystem->url();
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str::begins(psystem->url().get_object(path), astr.MatterUri);
+   domain.create(purl->get_server(path));
+
+   bool bSaveCache = domain.m_strRadix != "ca2" || !::str::begins(purl->get_object(path), astr.MatterUri);
 
    ::file::path pathCache;
 
@@ -2699,12 +2703,12 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
          //   __pointer(::apex::application) pappLookup;
 
-         //   string strApp = psystem->url().get_server("matter://" + strPath);
+         //   string strApp = purl->get_server("matter://" + strPath);
 
          //   if (strApp == papp->m_strAppName)
          //   {
 
-         //      strPath = psystem->url().get_object("matter://" + strPath).Mid(1);
+         //      strPath = purl->get_object("matter://" + strPath).Mid(1);
 
          //      spfile = App(papp).alloc(__type(::file::binary_file));
 

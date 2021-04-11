@@ -777,7 +777,7 @@ namespace experience
 
             //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
 
-            //class font_department & fonts = psystem->draw2d()->fonts();
+            //class font_department & fonts = pdraw2d->fonts();
 
             millis tick5;
 

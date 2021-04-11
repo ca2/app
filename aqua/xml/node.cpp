@@ -27,6 +27,8 @@ namespace xml
    node::node(::xml::node * pnodeParent)
    {
 
+      initialize(pnodeParent);
+
       m_pxmlnode = this;
       m_pnodeParent           = pnodeParent;
       m_pdocument                  = pnodeParent->m_pdocument;

@@ -27,9 +27,11 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
    ::size_i32 size(sizeParam);
 
-   auto pcontext = pobject->get_context();
+   auto pcontext = pobject->get_context()->m_pauracontext;
 
-   auto pimageSource = pcontext->m_pauracontext->image().get_image(varFile);
+   auto pcontextimage = pcontext->context_image();
+
+   auto pimageSource = pcontextimage->get_image(varFile);
 
    //if (!imageSource.load_image(varFile, bCreateHelperMaps))
    //{

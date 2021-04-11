@@ -95,7 +95,7 @@ namespace apex
       ::payload                                                   m_varCurrentViewFile;
       bool                                                  m_bShowPlatform;
 
-      __composite(::apex::str_context)                      m_puserstrcontext;
+      __composite(::text::context)                      m_ptextcontext;
 
 
 
@@ -231,7 +231,7 @@ namespace apex
       //virtual ::user::interaction * get_session_window();
 
       // apex commented
-      ::apex::str_context * str_context() { return m_puserstrcontext; }
+      ::text::context * text_context() { return m_ptextcontext.get(); }
 
       //virtual bool is_session() const override;
 

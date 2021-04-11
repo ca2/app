@@ -256,7 +256,7 @@ namespace uwp
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      return papplication->image()._desk_to_image(pimage);
+      return pcontextimage->_desk_to_image(pimage);
 
    }
 
@@ -264,7 +264,7 @@ namespace uwp
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      return papplication->image()._image_to_desk(pimage);
+      return pcontextimage->_image_to_desk(pimage);
 
    }
 

@@ -71,11 +71,13 @@ namespace write_text
          if (m_pfontenumeration.is_null())
          {
 
-            __pointer(::aura::system) psystem = m_psystem;
+            auto psystem = m_psystem->m_paurasystem;
 
-            psystem->draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            auto pdraw2d = psystem->draw2d();
 
-            m_pfontenumeration = psystem->draw2d()->write_text()->fonts()->m_pfontenumeration;
+            pdraw2d->write_text()->fonts()->defer_create_font_enumeration(psubject);
+
+            m_pfontenumeration = pdraw2d->write_text()->fonts()->m_pfontenumeration;
 
          }
 
@@ -756,72 +758,64 @@ namespace write_text
    void font_list::update_extents()
    {
 
-      synchronous_lock synchronouslock(mutex());
-
-      if (!m_pitema)
-      {
-
-         return;
-
-      }
-
-      if (m_etype != type_single_column && !m_rectClient)
-      {
-
-         return;
-
-      }
-
-      //if (m_rectClient.is_empty())
-      //{
-
-      //   return;
-
-      //}
+      int_array iaSize;
 
       int iBaseSize;
 
-      if (m_etype == type_wide)
-      {
-
-         int iBaseHeight = maximum(250, m_rectClient.height());
-
-         iBaseHeight = iBaseHeight + 250;
-
-         int iStep = 200;
-
-         int iDiv = 10;
-
-         iBaseSize = ((iBaseHeight / iStep) * iStep) / iDiv;
-
-      }
-      else
-      {
-
-         iBaseSize = 18;
-
-      }
-
       auto plistdata = m_plistdata;
-
-      if (plistdata.is_set() &&
-            plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
-            && (m_etype == type_single_column ||
-               plistdata->m_rectClient == m_rectClient))
-      {
-
-         set_modified(id_font_list_layout);
-
-         return;
-
-      }
 
       bool bSameSize = false;
 
-      if (plistdata.is_set() && iBaseSize == plistdata->m_iBaseSize)
       {
 
-         if (plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
+         synchronous_lock synchronouslock(mutex());
+
+         if (!m_pitema)
+         {
+
+            return;
+
+         }
+
+         if (m_etype != type_single_column && !m_rectClient)
+         {
+
+            return;
+
+         }
+
+         //if (m_rectClient.is_empty())
+         //{
+
+         //   return;
+
+         //}
+
+         if (m_etype == type_wide)
+         {
+
+            int iBaseHeight = maximum(250, m_rectClient.height());
+
+            iBaseHeight = iBaseHeight + 250;
+
+            int iStep = 200;
+
+            int iDiv = 10;
+
+            iBaseSize = ((iBaseHeight / iStep) * iStep) / iDiv;
+
+         }
+         else
+         {
+
+            iBaseSize = 18;
+
+         }
+
+         if (plistdata.is_set() &&
+            plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
+            && (m_etype == type_single_column ||
+               plistdata->m_rectClient == m_rectClient))
          {
 
             set_modified(id_font_list_layout);
@@ -830,49 +824,61 @@ namespace write_text
 
          }
 
-         bSameSize = true;
+         if (plistdata.is_set() && iBaseSize == plistdata->m_iBaseSize)
+         {
 
-      }
+            if (plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
+            {
 
-      int_array iaSize;
+               set_modified(id_font_list_layout);
 
-      if (m_etype == type_wide)
-      {
+               return;
 
-         iaSize.add(iBaseSize * 16 / 40);
+            }
 
-         iaSize.add(iBaseSize * 24 / 40);
+            bSameSize = true;
 
-         iaSize.add(iBaseSize * 32 / 40);
+         }
 
-      }
-      else
-      {
+         if (m_etype == type_wide)
+         {
 
-         iaSize.add(18);
+            iaSize.add(iBaseSize * 16 / 40);
 
-      }
+            iaSize.add(iBaseSize * 24 / 40);
 
-      if (plistdata.is_set() && iaSize == plistdata->m_iaSize
-         && plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
-      {
+            iaSize.add(iBaseSize * 32 / 40);
 
-         set_modified(id_font_list_layout);
+         }
+         else
+         {
 
-         return;
+            iaSize.add(18);
 
-      }
-      else
-      {
+         }
 
-         bSameSize = false;
+         if (plistdata.is_set() && iaSize == plistdata->m_iaSize
+            && plistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
+         {
+
+            set_modified(id_font_list_layout);
+
+            return;
+
+         }
+         else
+         {
+
+            bSameSize = false;
+
+         }
 
       }
 
       if (plistdata == nullptr)
       {
 
-         plistdata = __new(font_list_data);
+         plistdata = __create_new < font_list_data >();
 
          plistdata->m_iSerial = 0;
 
@@ -888,67 +894,69 @@ namespace write_text
 
          __pointer(font_list_item) pitem;
 
-         synchronous_lock synchronouslock(mutex());
-
-         for (index iItem = 0; iItem < plistdata->get_count(); )
          {
 
-            auto pitem = plistdata->element_at(iItem);
+            synchronous_lock synchronouslock(mutex());
 
-            if (pitem && pitem->m_strName.has_char() && !m_pfontenumeration->has_font_name(pitem->m_strName))
+            for (index iItem = 0; iItem < plistdata->get_count(); )
             {
 
-               plistdata->erase_at(iItem);
+               auto pitem = plistdata->element_at(iItem);
+
+               if (pitem && pitem->m_strName.has_char() && !m_pfontenumeration->has_font_name(pitem->m_strName))
+               {
+
+                  plistdata->erase_at(iItem);
+
+               }
+               else
+               {
+
+                  iItem++;
+
+               }
 
             }
-            else
+
+            // Make room for new fonts
+
+            for (index iItem = 0; iItem < m_pitema->get_count(); iItem++)
             {
 
-               iItem++;
+               auto pitem = plistdata->element_at(iItem);
+
+               if (pitem && pitem->m_strName.has_char() && pitem->m_strName != m_pitema->ptr_at(iItem)->m_strName)
+               {
+
+                  __pointer(font_list_item) pitemNewEmpty;
+
+                  plistdata->insert_at(iItem, pitemNewEmpty);
+
+               }
 
             }
+
+            ASSERT(plistdata->get_size() == m_pitema->get_count());
+
+            plistdata->m_iSerial++;
 
          }
 
-         // Make room for new fonts
+         plistdata->m_rectClient = m_rectClient;
 
-         for (index iItem = 0; iItem < m_pitema->get_count(); iItem++)
-         {
+         plistdata->m_iUpdateId = m_pfontenumeration->m_iUpdateId;
 
-            auto pitem = plistdata->element_at(iItem);
+         plistdata->m_iUpdatedCount = 0;
 
-            if (pitem && pitem->m_strName.has_char() && pitem->m_strName != m_pitema->ptr_at(iItem)->m_strName)
-            {
+         plistdata->m_bLayoutStillIntersect = true;
 
-               __pointer(font_list_item) pitemNewEmpty;
-
-               plistdata->insert_at(iItem, pitemNewEmpty);
-
-            }
-
-         }
-
-         ASSERT(plistdata->get_size() == m_pitema->get_count());
-
-         plistdata->m_iSerial++;
+         m_iLayoutSerial = 0;
 
       }
-
-      plistdata->m_rectClient = m_rectClient;
-
-      plistdata->m_iUpdateId = m_pfontenumeration->m_iUpdateId;
-
-      plistdata->m_iUpdatedCount = 0;
 
       plistdata->m_iBaseSize = iBaseSize;
 
       plistdata->m_iaSize = iaSize;
-
-      plistdata->m_bLayoutStillIntersect = true;
-
-      m_iLayoutSerial = 0;
-
-      synchronouslock.unlock();
 
       auto iFontCount = plistdata->get_count();
 
@@ -971,7 +979,11 @@ namespace write_text
 
          ::rectangle_i32 rectangle;
 
-         __pointer(font_list_item) pitem;
+         __pointer(font_list_item) plistitem;
+
+         __pointer(font_enum_item) penumitem;
+
+         single_lock lock(mutex());
 
          for (index iItem = iStart; iItem < plistdata->get_count(); iItem += iScan)
          {
@@ -994,35 +1006,38 @@ namespace write_text
 
                }
 
-            }
+               plistitem = plistdata->element_at(iItem);
 
-            {
-
-               synchronous_lock synchronouslock(mutex());
-
-               pitem = plistdata->element_at(iItem);
+               penumitem = m_pitema->element_at(iItem);
 
             }
 
             bool bNew = false;
 
-            if (!pitem || pitem->m_strFont.is_empty())
+            if (!penumitem)
+            {
+
+               continue;
+
+            }
+
+            if (!plistitem || plistitem->m_strFont.is_empty())
             {
 
                bNew = true;
 
-               pitem = __new(font_list_item());
+               plistitem = __new(font_list_item);
 
-               pitem->m_iItem = iItem;
+               plistitem->m_iItem = iItem;
 
-               pitem->m_strFont = m_pitema->ptr_at(iItem)->m_strName;
+               plistitem->m_strFont = penumitem->m_strName;
 
-               pitem->m_strName = m_pitema->ptr_at(iItem)->m_strName;
+               plistitem->m_strName = penumitem->m_strName;
 
-               pitem->m_echarseta = m_pitema->ptr_at(iItem)->m_echarseta;
+               plistitem->m_echarseta = penumitem->m_echarseta;
 
             }
-            else if (pitem->m_strFont != m_pitema->ptr_at(iItem)->m_mapFileName[0])
+            else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
             {
 
                TRACE("what?!?!");
@@ -1034,7 +1049,7 @@ namespace write_text
             if (bNew || !bSameSize)
             {
 
-               update_extents(plistdata, pitem, pgraphics, 0);
+               update_extents(plistdata, plistitem, pgraphics, 0);
 
             }
 
@@ -1049,7 +1064,7 @@ namespace write_text
 
                }
 
-               plistdata->element_at(iItem) = pitem;
+               plistdata->element_at(iItem) = plistitem;
 
                if (!m_bLayoutWideStillIntersect)
                {

@@ -28,6 +28,14 @@ namespace acme
    }
 
 
+   string node::audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
    ::e_status node::initialize(::object * pobject)
    {
 
@@ -730,6 +738,31 @@ namespace acme
       auto path = pathFolder / (strName + ".filememorymap");
 
       return path;
+
+   }
+
+
+   string node::multimedia_audio_mixer_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   string node::multimedia_audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+
+   string node::veriwell_multimedia_music_midi_get_default_library_name()
+   {
+
+      return "";
 
    }
 

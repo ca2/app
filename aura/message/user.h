@@ -215,7 +215,7 @@ namespace message
    public:
 
 
-      mouse_activate() {}
+      mouse_activate();
 
       ::user::interaction * get_desktop_window();
 
@@ -231,7 +231,7 @@ namespace message
    public:
 
 
-      context_menu() { }
+      context_menu();
 
       point_i32 GetPoint();
 
@@ -239,7 +239,9 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_cursor : public ::user::message
+   class CLASS_DECL_AURA set_cursor :
+      public ::user::message,
+      public ::user::mouse
    {
    public:
 
@@ -249,7 +251,8 @@ namespace message
       ::u32                    m_message;
 
 
-      set_cursor() { }
+      set_cursor();
+      ~set_cursor();
 
 
    };

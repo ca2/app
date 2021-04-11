@@ -155,7 +155,7 @@ namespace user
          {
             // ::account::user has be alerted to what failed in on_new_document
             TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
-            pFrame->DestroyWindow();
+            pFrame->destroy_window();
             return;
 
          }

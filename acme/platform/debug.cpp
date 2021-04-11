@@ -225,3 +225,50 @@ CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const
 //
 //
 //
+
+
+::e_status _003CountStatus(::count countSuccess, ::count countFailed)
+{
+
+   ::count countTotal = countFailed + countSuccess;
+
+   if (countTotal <= 0)
+   {
+
+      return error_failed;
+
+   }
+   else if (countSuccess <= 0)
+   {
+
+      return error_all_failed;
+
+   }
+   else if (countSuccess == countTotal)
+   {
+
+      return success;
+
+   }
+   else if (countFailed <= countTotal / 3)
+   {
+
+      return partial_one_third_or_less_has_failed;
+
+   }
+   else if (countFailed >= 2 * countTotal / 3)
+   {
+
+      return partial_two_thirds_or_more_but_not_all_has_failed;
+
+   }
+   else
+   {
+
+      return partial_sorf_of_half_has_failed;
+
+   }
+
+
+}
+

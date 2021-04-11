@@ -1415,6 +1415,59 @@ namespace experience
    }
 
 
+   void frame_window::on_message_set_cursor(::message::message* pmessage)
+   {
+
+      __pointer(::message::set_cursor) psetcursor(pmessage);
+
+      if (!is_frame_experience_enabled())
+      {
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
+         {
+
+            INFO("e_message_mouse_move during window move ignored!!");
+
+         }
+         else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
+         {
+
+            INFO("synthesized e_message_mouse_move ignored!!");
+
+         }
+         else
+         {
+
+            //INFO("e_message_mouse_move for experience::frame");
+
+            if (m_pframe->on_message_set_cursor(psetcursor))
+            {
+
+               psetcursor->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
+      if (psetcursor->m_bRet)
+      {
+
+         psetcursor->m_lresult = 1;
+
+      }
+
+   }
+
+
    void frame_window::_001OnNcLButtonDown(::message::message * pmessage)
    {
 

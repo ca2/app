@@ -875,9 +875,11 @@ namespace user
       if (!payload.is_empty())
       {
 
-         auto pcontext = get_context();
+         auto pcontext = m_pcontext->m_pauracontext;
 
-         m_pimage = pcontext->m_pauracontext->image().get_image(payload);
+         auto pcontextimage = pcontext->context_image();
+
+         m_pimage = pcontextimage->get_image(payload);
 
       }
 

@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_APEX fs :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

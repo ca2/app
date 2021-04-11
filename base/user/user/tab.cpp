@@ -256,7 +256,7 @@ namespace user
    bool tab::add_image_tab(const char * pcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
    {
 
-      auto ppane = get_data()->m_tabpanecompositea.add_new();
+      auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
       auto estatus = __compose_new(ppane);
 
@@ -266,6 +266,8 @@ namespace user
          return false;
 
       }
+
+      ppane->initialize_tab_pane(this);
 
       ppane->m_bTabPaneVisible = bVisible;
       ppane->m_bPermanent  = bPermanent;
@@ -286,11 +288,11 @@ namespace user
       ppane->m_id          = id;
       ppane->m_pplaceholder = nullptr;
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      ppane->m_pimage       = pcontext->m_pauracontext->image().load_image(pszImage, false);
+      auto pcontextimage = pcontext->context_image();
 
-      
+      ppane->m_pimage = pcontextimage->load_image(pszImage, false);
 
       on_change_pane_count({ ppane });
 

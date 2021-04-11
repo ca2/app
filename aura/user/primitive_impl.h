@@ -27,7 +27,7 @@ namespace user
       bool                                      m_bIgnoreMoveEvent;
       ap(critical_section)                      m_pcsDisplay;
 
-      __composite(::apex::timer_array)          m_ptimerarray;
+      __composite(::acme::timer_array)          m_ptimerarray;
 
       const char *                              m_pszInteractionImplBaseDebug;
 
@@ -229,7 +229,7 @@ namespace user
       virtual bool IsTopParentActive();
 
       virtual bool destroy_impl_only();
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
 
       //virtual void defer_start_prodevian();
@@ -258,10 +258,10 @@ namespace user
 
       //virtual bool display(::display edisplay) override;
 
-      DECL_GEN_SIGNAL(_001OnPrioCreate);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnNcDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnNcDestroy);
 
       virtual void show_task(bool bShow);
 

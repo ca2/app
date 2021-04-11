@@ -104,7 +104,7 @@ namespace account
 
       //   estatus = ::success_authenticated;
 
-      //   if(puser->m_strHost == psystem->url().get_server(psession->account()->get_default_url()))
+      //   if(puser->m_strHost == purl->get_server(psession->account()->get_default_url()))
       //   {
 
       //      pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
@@ -219,23 +219,25 @@ namespace account
 
       string strDeferRegistration;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
 
       if(puser->m_bDeferRegistration)
       {
 
-         psystem->url().set_param(strAuthUrl, "defer_registration", "true");
+         purl->set_param(strAuthUrl, "defer_registration", "true");
 
       }
 
       if(puser->m_bDeferRegistration)
       {
 
-         psystem->url().set_param(strAuthUrl, "ruri", psystem->url().url_encode(puser->m_pathRuri));
+         purl->set_param(strAuthUrl, "ruri", purl->url_encode(puser->m_pathRuri));
 
       }
 
-      psystem->url().set_param(strAuthUrl, "sessid", puser->m_strSessId);
+      purl->set_param(strAuthUrl, "sessid", puser->m_strSessId);
 
       property_set set;
 
@@ -312,9 +314,11 @@ namespace account
 
       //auto pinteractive = pcredentials->m_pinteractive;
 
-      auto psystem = m_psystem->m_papexsystem;
+      auto psystem = m_psystem;
 
-      puser->m_strHost = psystem->url().get_server(puser->m_pathUrl);
+      auto purl = psystem->url();
+
+      puser->m_strHost = purl->get_server(puser->m_pathUrl);
 
       string strGetFontopus;
 
@@ -322,9 +326,9 @@ namespace account
 
       auto pcontext = get_context();
 
-      psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_papexcontext->get_locale());
+      purl->set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_papexcontext->get_locale());
 
-      psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",pcontext->m_papexcontext->get_schema());
+      purl->set_param(strGetFontopus,strGetFontopus,"styl",pcontext->m_papexcontext->get_schema());
 
       string strNode;
 
@@ -455,7 +459,7 @@ namespace account
 //string department::get_server(::file::path pathUrl, i32 iRetry)
 //{
 //
-//   string strHost(psystem->url().get_server(pszUrl));
+//   string strHost(purl->get_server(pszUrl));
 //
 //   if(iRetry <= 0)
 //   {
@@ -485,9 +489,9 @@ namespace account
 //
 //   strGetFontopus = "http://ca2.cc/get_account_login";
 //
-//   psystem->url().set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
+//   purl->set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
-//   psystem->url().set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
+//   purl->set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
 //
 //   __pointer(::sockets::http_session) psession;
 //

@@ -135,17 +135,18 @@ namespace experience
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_mouse_move);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnNcLButtonDown);
-      DECL_GEN_SIGNAL(_001OnNcMouseMove);
-      DECL_GEN_SIGNAL(_001OnNcLButtonUp);
-      DECL_GEN_SIGNAL(_001OnNcHitTest);
-      DECL_GEN_SIGNAL(_001OnActivate);
-      //DECL_GEN_SIGNAL(_001OnCommand);
-      DECL_GEN_SIGNAL(_001OnSysCommand);
-      DECL_GEN_SIGNAL(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
+      DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
+      DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);
+      DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
+      DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      //DECLARE_MESSAGE_HANDLER(_001OnCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
 
       virtual bool _001CanEnterScreenSaver() override;
 

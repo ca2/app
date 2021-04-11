@@ -6,7 +6,7 @@ namespace console
 
 
    department::department(::object * pobject) :
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
    }
@@ -26,7 +26,7 @@ namespace console
       create_factory <console::prompt_frame >();
       create_factory <console::prompt_impact >();
 
-      if(!::apex::department::init_instance())
+      if(!::acme::department::init_instance())
          return false;
 
 

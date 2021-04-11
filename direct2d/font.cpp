@@ -42,7 +42,7 @@ namespace draw2d_direct2d
 
          }
 
-         IDWriteFactory * pfactory = psystem->draw2d()->direct2d()->dwrite_factory();
+         IDWriteFactory * pfactory = pdraw2d->direct2d()->dwrite_factory();
 
          DWRITE_FONT_STYLE style;
 

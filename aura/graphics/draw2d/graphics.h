@@ -39,7 +39,7 @@ namespace draw2d
 
       bool                                   m_bPat;
 
-      __reference(::apex::str_context)       m_pstrcontext;
+      __reference(::text::context)       m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
       ::image_pointer                        m_pimageAlphaBlend;
       ::point_f64                               m_pointAlphaBlend;
@@ -185,7 +185,7 @@ namespace draw2d
 
       virtual bool prefer_mapped_image_on_mix();
 
-      virtual ::apex::str_context * str_context();
+      virtual ::text::context * textcontext();
       virtual ::aura::draw_context * draw_context();
 
       virtual bool set_alpha_mode(enum_alpha_mode ealphamode);

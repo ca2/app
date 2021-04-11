@@ -55,11 +55,11 @@ namespace geo
          *file.get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
 
 
-         //pcontext->m_papexcontext->file().to_array(m_straCity, m_pcontext->m_papexcontext->system() / "weather-cit.bin");
-         //pcontext->m_papexcontext->file().to_array(m_straCityLo, m_pcontext->m_papexcontext->system() / "weather-cil.bin");
-         //pcontext->m_papexcontext->file().to_array(m_iaIds, m_pcontext->m_papexcontext->system() / "weather-ids.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLon, m_pcontext->m_papexcontext->system() / "weather-lon.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLat, m_pcontext->m_papexcontext->system() / "weather-lat.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCity, pacmedir->system() / "weather-cit.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCityLo, pacmedir->system() / "weather-cil.bin");
+         //pcontext->m_papexcontext->file().to_array(m_iaIds, pacmedir->system() / "weather-ids.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLon, pacmedir->system() / "weather-lon.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLat, pacmedir->system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()

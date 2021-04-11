@@ -8,7 +8,7 @@ namespace aura
    game::game()
    {
 
-      m_thisaGame[0] = this;
+      //m_thisaGame[0] = this;
 
    }
 

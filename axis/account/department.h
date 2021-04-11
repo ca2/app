@@ -10,7 +10,7 @@ namespace account
 
 
    class CLASS_DECL_AXIS department :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

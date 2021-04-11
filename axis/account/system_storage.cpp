@@ -57,9 +57,11 @@ namespace account
          
       }
 
-      auto psystem = m_psystem->m_papexsystem;
-      
-      string strName = psystem->url().os_fsname(strToken);
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      string strName = purl->os_fsname(strToken);
       
       return m_paccount->system_storage_default_path_prefix() / strName;
       

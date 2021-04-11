@@ -237,7 +237,9 @@ retry:
 
    auto psystem = m_psystem->m_paurasystem;
 
-   strPath = psystem->url().get_object(listing.m_pathUser);
+   auto purl = psystem->url();
+
+   strPath = purl->get_object(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
    {
@@ -434,7 +436,9 @@ retry:
 
       auto psystem = m_psystem->m_papexsystem;
 
-      string strRemoteFile = psystem->url().get_object(path);
+      auto purl = psystem->url();
+
+      string strRemoteFile = purl->get_object(path);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {
@@ -507,12 +511,14 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto psystem = m_psystem->m_pcoresystem;
 
-   plogon->Hostname() = psystem->url().get_server(strPath);
-   //logon.Username() = psystem->url().get_username(listing.m_path);
+   auto purl = psystem->url();
+
+   plogon->Hostname() = purl->get_server(strPath);
+   //logon.Username() = purl->get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";
 
-   plogon->m_strToken = psystem->url().os_fspath(strUrl);
+   plogon->m_strToken = purl->os_fspath(strUrl);
 
    __pointer(::ftp::client_socket) & pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 

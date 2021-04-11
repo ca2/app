@@ -33,9 +33,9 @@ namespace core
 
       create_factory < ::core::application, ::apex::application >();
       create_factory < ::core::session, ::apex::session >();
-      create_factory < ::core::idpool, ::apex::idpool >();
+      create_factory < ::core::idpool, ::acme::idpool >();
       create_factory < ::core::user, ::user::user >();
-      create_factory < ::core::idpool, ::apex::idpool >();
+      //create_factory < ::core::idpool, ::apex::idpool >();
 
    }
 
@@ -100,7 +100,11 @@ namespace core
       if (ftpFileStatus.m_timeModification > 0)
       {
 
-         ftpFileStatus.m_strModificationTime = datetime().international().get_gmt_date_time(ftpFileStatus.m_timeModification);
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         ftpFileStatus.m_strModificationTime = pdatetime->international().get_gmt_date_time(ftpFileStatus.m_timeModification);
 
       }
 

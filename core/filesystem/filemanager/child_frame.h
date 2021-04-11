@@ -27,9 +27,9 @@ namespace filemanager
       bool DestroyBars();
       virtual void route_command_message(::message::command * pcommand) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnAppLanguage);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
 
    };

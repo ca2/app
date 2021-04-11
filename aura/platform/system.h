@@ -305,7 +305,7 @@ namespace aura
       //void set_thread(itask_t itask, ::thread * pthread);
       //void unset_thread(itask_t itask, ::thread * pthread);
 
-      ::aura::estamira& estamira();
+      ::aura::estamira * estamira();
 
 
       inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
@@ -829,7 +829,7 @@ namespace aura
       //virtual bool base_support() override;
 
 
-      //DECL_GEN_SIGNAL(on_application_signal);
+      //DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
       //::e_status set_history(::apex::history* phistory);

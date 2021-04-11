@@ -62,6 +62,8 @@ namespace app_app
 
       __compose_new(m_pmainwindow);
 
+      //add_object(m_pmainwindow);
+
       //rectangle_i32 rectWindow;
 
       //bool bOk = m_pmainwindow->_001InitialFramePosition(rectWindow, );

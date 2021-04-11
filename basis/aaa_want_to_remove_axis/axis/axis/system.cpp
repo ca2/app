@@ -143,7 +143,7 @@ namespace axis
       //if(!::axis::application::init1())
       //   return false;
 
-      Sess(get_application()).m_puserstrcontext->defer_ok(m_puserstr);
+      Sess(get_application()).m_ptextcontext->defer_ok(m_puserstr);
 
       return true;
 

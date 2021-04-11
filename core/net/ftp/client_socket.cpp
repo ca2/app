@@ -2091,11 +2091,17 @@ auto tickStart = ::millis::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::FileModificationTime(const string& strPath, string& strModificationTime)
    {
-      strModificationTime.erase();
+      
+      strModificationTime.Empty();
 
       reply Reply;
-      if (!SendCommand(command::MDTM(), { strPath } , Reply))
+
+      if (!SendCommand(command::MDTM(), { strPath }, Reply))
+      {
+
          return FTP_ERROR;
+
+      }
 
       if (Reply.Value().length() >= 18)
       {

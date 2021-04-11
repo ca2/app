@@ -7,7 +7,7 @@ namespace simpledb
 
    simpledb::simpledb(::object * pobject) :
       ::object(pobject),
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
       m_pserver         = nullptr;

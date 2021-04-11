@@ -264,11 +264,11 @@ bool isIDString(const char *s)
 void replace(string &str, char textFrom, const char *textTo)
 {
    strsize sLen = strlen(textTo);
-   strsize point = str.find(textFrom);
-   while (point_i32 >= 0)
+   strsize iPosition = str.find(textFrom);
+   while (iPosition >= 0)
    {
-      str = str.substr(0, point_i32) + textTo + str.substr(point_i32+1);
-      point = str.find(textFrom, point_i32+sLen);
+      str = str.substr(0, iPosition) + textTo + str.substr(iPosition +1);
+      iPosition = str.find(textFrom, iPosition +sLen);
    }
 }
 
@@ -982,16 +982,16 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, i32 varFl
 CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
 {
 
-   strsize point = path.find('.');
+   strsize iPosition = path.find('.');
 
-   if (point_i32 < 0)
+   if (iPosition < 0)
    {
 
       return findChildOrCreate(path);
 
    }
 
-   return findChildOrCreate(path.substr(0,point_i32), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(point_i32+1));
+   return findChildOrCreate(path.substr(0, iPosition), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(iPosition +1));
 
 }
 
@@ -1846,7 +1846,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
           * have messed up and left us with the wrong ScriptLex, so
           * we want to be careful here... */
 
-         ::exception_pointer exception;
+         ::exception::exception exception;
 
          CScriptLex *oldLex = l;
          CScriptLex *newLex = new CScriptLex(function->payload->getString());
@@ -1857,15 +1857,20 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
             // because return will probably have called this, and set execute to false
             execute = true;
          }
-         catch (CScriptException *e)
+         catch (CScriptException & e)
          {
             exception = e;
          }
          delete newLex;
          l = oldLex;
 
-         if (exception)
+         if (!exception.m_estatus)
+         {
+
             throw exception;
+
+         }
+
       }
 #ifdef TINYJS_callstack
       if (!callstack.is_empty()) callstack.pop();

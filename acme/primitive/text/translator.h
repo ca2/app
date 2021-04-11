@@ -2,30 +2,36 @@
 #pragma once
 
 
-
-class CLASS_DECL_ACME text_translator :
-   virtual public ::object
+namespace text
 {
-public:
 
 
-   address_array < text_data * >       m_textdataaddressa;
+   class CLASS_DECL_ACME translator :
+      virtual public ::object
+   {
+   public:
 
 
-   text_translator();
-   virtual ~text_translator();
+      address_array < data * >       m_dataaddressa;
 
 
-   void translate_text_data(text_data* ptextdata);
-   void translate_text_data();
-
-   text_data* clone_text_data(const text_data* ptextdata);
-   text_data* create_text_data(const ::id& id);
-   void destroy_text_data(text_data* ptextdata);
+      translator();
+      virtual ~translator();
 
 
-   //create_text_data();
-};
+      void translate_text_data(data* ptextdata);
+      void translate_text_data();
+
+      data* clone_text_data(const data* ptextdata);
+      data* create_text_data(const ::id& id);
+      void destroy_text_data(data* ptextdata);
+
+
+      //create_text_data();
+   };
+
+
+} // namespace text
 
 
 

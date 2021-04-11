@@ -8,6 +8,7 @@ namespace aqua
    audio::audio()
    {
 
+      m_paudio = nullptr;
 
    }
 
@@ -19,7 +20,7 @@ namespace aqua
    }
 
 
-   void audio::play_audio(const ::payload & varFile, bool bSynch)
+   void audio::play_audio(::file::file * pfile, bool bSynch)
    {
 
       __throw(error_interface_only);
@@ -97,6 +98,12 @@ namespace aqua
    }
 
 
+   ::e_status audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
+   {
+
+      return error_interface_only;
+
+   }
 
 
 } // namespace aura

@@ -35,7 +35,7 @@ namespace calculator
 
       virtual ::payload get_payload() override;
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
    };
 

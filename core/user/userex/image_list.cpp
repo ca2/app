@@ -136,9 +136,11 @@ namespace userex
 
             ::file::path path = m_plisting->element_at(i);
 
-            auto pcontext = m_pcontext;
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            pimage1 = pcontext->m_pauracontext->image().load_image(path, false);
+            auto pcontextimage = pcontext->context_image();
+
+            pimage1 = pcontextimage->load_image(path, false);
 
             if (pimage1)
             {

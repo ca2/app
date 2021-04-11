@@ -738,7 +738,7 @@ namespace apex
       //         if (::str::begins_eat_ci(str, "send?message="))
       //         {
 
-      //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, psystem->url().url_decode(str));
+      //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
       //         }
       //         else if (::str::begins_eat_ci(str, "send?messagebin="))
@@ -753,7 +753,7 @@ namespace apex
 
       //               memory m;
 
-      //               psystem->base64().decode(m, psystem->url().url_decode(str.Mid(iFind + 1)));
+      //               pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
       //               m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
@@ -1983,7 +1983,7 @@ namespace apex
          try
          {
 
-            __own(this, m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init_instance"));
+            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init_instance"));
 
          }
          catch (...)
@@ -1998,7 +1998,7 @@ namespace apex
 
          }
 
-         auto estatus = m_pinterprocessintercommunication->initialize(this);
+         auto estatus = m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
 
          if (!estatus)
          {
@@ -3512,7 +3512,7 @@ retry_license:
       try
       {
 
-         return __new(::interprocess_intercommunication(m_strAppName));
+         return __new(::interprocess_intercommunication());
 
       }
       catch (...)
@@ -4776,14 +4776,14 @@ retry_license:
 
       auto psession = get_session();
 
-      ::apex::str_context * pcontext = psession->str_context();
+      auto ptextcontext = psession->text_context();
 
-      for (i32 i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+      for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
       {
 
-         string strLocale = pcontext->localeschema().m_idaLocale[i];
+         string strLocale = ptextcontext->localeschema().m_idaLocale[i];
 
-         string strSchema = pcontext->localeschema().m_idaSchema[i];
+         string strSchema = ptextcontext->localeschema().m_idaSchema[i];
 
          matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
@@ -4811,7 +4811,7 @@ retry_license:
    }
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+   void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
    {
 
 
@@ -4837,7 +4837,7 @@ retry_license:
    }
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema)
+   void application::fill_locale_schema(::text::international::locale_schema & localeschema)
    {
 
 
@@ -4959,7 +4959,6 @@ retry_license:
    void application::_001OnFranceExit()
    {
 
-
       HideApplication();
 
       finish();
@@ -4998,9 +4997,11 @@ retry_license:
 
       string strMessage;
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      strMessage = psystem->datetime().international().get_gmt_date_time();
+      auto pdatetime = psystem->m_pdatetime;
+
+      strMessage = pdatetime->international().get_gmt_date_time();
       strMessage += " ";
       strMessage += pszMessage;
       strMessage += "\n";
@@ -5776,7 +5777,7 @@ retry_license:
    //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
    //{
 
-   //   //auto pcontroller = Multimedia.defer_create_view(strView, puiParent, ewindowflag, id);
+   //   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
 
    //   //if (pcontroller)
    //   //{
@@ -6235,19 +6236,7 @@ retry_license:
       if (_001CanCloseApplication())
       {
 
-#ifdef _UWP
-         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
-            Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([this]()
-               {
-                  Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
-      }));
-
-#else
-
-         finish();
-
-#endif
+         _001CloseApplication();
 
       }
 
@@ -6258,6 +6247,27 @@ retry_license:
    {
 
       return true;
+
+   }
+
+
+   void application::_001CloseApplication()
+   {
+
+#ifdef _UWP
+
+      Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+         Windows::UI::Core::CoreDispatcherPriority::Normal,
+         ref new Windows::UI::Core::DispatchedHandler([this]()
+      {
+         Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+      }));
+
+#else
+
+      finish();
+
+#endif
 
    }
 
@@ -6833,7 +6843,7 @@ retry_license:
 
       __pointer(::apex::system) psystem = get_system();
 
-      auto plocaleschema = __create_new < ::str::international::locale_schema >();
+      auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -6887,9 +6897,11 @@ retry_license:
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem;
 
-      strUrl += psystem->url().url_encode(strRelative);
+      auto purl = psystem->url();
+
+      strUrl += purl->url_encode(strRelative);
 
       if (psession == nullptr)
       {
@@ -6899,7 +6911,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (m_pcontext->m_papexcontext->http().open(psession, psystem->url().get_server(strUrl), psystem->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (m_pcontext->m_papexcontext->http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;

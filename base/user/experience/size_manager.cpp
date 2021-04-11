@@ -211,6 +211,51 @@ namespace experience
    }
 
 
+   bool size_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
+   {
+
+      if (!m_pframewindow->is_sizing_enabled())
+      {
+
+         return false;
+
+      }
+
+      if (m_ehittestSizing != hittest_none)
+      {
+
+         psetcursor->m_ecursor = translate(m_ehittestSizing);
+
+         psetcursor->m_lresult = 1;
+
+         psetcursor->m_bRet = true;
+
+         return true;
+
+      }
+
+      m_ehittestCursor = _001HitTest(psetcursor->m_point);
+
+      if (m_ehittestCursor != hittest_none)
+      {
+
+         auto ecursor = translate(m_ehittestCursor);
+
+         psetcursor->m_ecursor = ecursor;
+
+         psetcursor->m_lresult = 1;
+
+         psetcursor->m_bRet = true;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    bool size_manager::on_message_left_button_up(::message::mouse * pmouse)
    {
 

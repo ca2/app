@@ -59,6 +59,15 @@ void matter::dump(dump_context & dumpcontext) const
 
 }
 
+
+::e_status matter::on_initialize_object()
+{
+
+   return ::success;
+
+}
+
+
 ::e_status matter::initialize(::object * pobject)
 {
 
@@ -118,7 +127,7 @@ void matter::dump(dump_context & dumpcontext) const
    if (estatus == error_pending)
    {
 
-      m_psystem->add_pending_finish(this);
+      //m_psystem->add_pending_finish(this);
 
       return estatus;
 
@@ -129,7 +138,7 @@ void matter::dump(dump_context & dumpcontext) const
    if (estatus == error_pending)
    {
 
-      m_psystem->add_pending_finish(this);
+      //m_psystem->add_pending_finish(this);
 
       return estatus;
 
@@ -261,6 +270,14 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+::e_status matter::call_member(enum_id eid)
+{
+
+   return ::success_none;
+
+}
+
+
 void matter::set_mutex(synchronization_object* psync)
 {
 
@@ -273,6 +290,34 @@ void matter::set_mutex(synchronization_object* psync)
 
 void matter::erase_from_any_source()
 {
+
+}
+
+
+::e_status matter::start()
+{
+
+   if (has(e_object_synchro))
+   {
+
+      return operator()();
+
+   }
+   else
+   {
+
+      auto ptask = ::task::launch(this);
+
+      if (!ptask)
+      {
+
+         return error_failed;
+
+      }
+
+      return success_started;
+
+   }
 
 }
 
@@ -343,7 +388,7 @@ bool matter::thread_is_running() const
 ::task * matter::get_task()
 {
 
-   return nullptr;
+   return ::get_task();
 
 }
 

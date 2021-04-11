@@ -7,6 +7,7 @@
 
 ::acme::system * g_psystem = nullptr;
 
+extern const char* g_pszTopLevelDomainList[];
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 
@@ -18,10 +19,10 @@ namespace acme
    system::system()
    {
 
-      m_pcleanuptask = __new(::parallelization::cleanup_task);
+      //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
-      m_pcleanuptask->begin();
-
+      //m_pcleanuptask->begin();
+      create_factory<acme::idpool>();
       m_psystem = this;
 
       //m_pacme = nullptr;
@@ -137,6 +138,8 @@ namespace acme
    ::e_status system::process_init()
    {
 
+      ::acme::idpool::init();
+
       m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
 
       if (!m_pfactorymapsquare)
@@ -217,6 +220,13 @@ namespace acme
 //      return estatus;
 //
 //   }
+
+   void system::TermSystem()
+   {
+
+      ::acme::idpool::term();
+
+   }
 
 
    string system::os_get_user_theme()
@@ -539,6 +549,14 @@ namespace acme
    }
 
 
+   ::e_status system::defer_audio()
+   {
+
+      return error_interface_only;
+
+   }
+
+
    ::e_status system::init1()
    {
 
@@ -806,6 +824,84 @@ namespace acme
    void system::check_exit()
    {
 
+
+   }
+
+
+   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   {
+
+      return nullptr;
+
+   }
+
+
+   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   {
+
+      return nullptr;
+
+   }
+
+   
+   ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
+   {
+
+//         ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
+
+  //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
+
+      auto psz = g_pszTopLevelDomainList;
+
+      while (*psz != nullptr)
+      {
+
+         string str(psz);
+
+         auto iStart = str.find('(');
+
+         if (iStart < 0)
+         {
+
+            stra.add(str);
+
+            continue;
+
+         }
+
+         auto iEnd = str.find(')', iStart + 1);
+
+         if (iEnd < 0)
+         {
+
+            string strItem = str.Left(iStart);
+
+            stra.add(strItem);
+
+            continue;
+
+         }
+
+         string strItem = str.Mid(iStart, iEnd - iStart - 1);
+
+         stra.add(strItem);
+
+      }
+
+      stra.trim();
+
+      stra.erase_empty();
+
+      TRACE("acme::system::get_public_internet_domain_extension_list");
+
+      for (auto& str : stra)
+      {
+
+         TRACE("%s", str.c_str());
+
+      }
+
+      return ::success;
 
    }
 

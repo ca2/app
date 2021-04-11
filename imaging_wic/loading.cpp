@@ -105,9 +105,11 @@ namespace imaging_wic
 
             }
 
-            auto pcontext = get_context();
+            auto pcontext = m_pcontext->m_pauracontext;
 
-            auto estatus = pcontext->m_pauracontext->image().load_svg(pimage, pmemory);
+            auto pcontextimage = pcontext->context_image();
+
+            auto estatus = pcontextimage->load_svg(pimage, pmemory);
 
             if (::succeeded(estatus))
             {

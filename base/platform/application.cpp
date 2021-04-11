@@ -150,6 +150,37 @@ namespace base
 
    }
 
+   
+   void application::on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context)
+   {
+
+      auto pcreate = __create_new<create>();
+
+      if (itema.get_size() == 1)
+      {
+
+         pcreate->m_varFile = itema[0]->get_final_path();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         for (auto& pitem : itema)
+         {
+
+            stra.add(pitem->get_final_path());
+
+         }
+
+         pcreate->m_varFile = stra;
+
+      }
+
+      do_request(pcreate);
+
+   }
 
 } // namespace base
 

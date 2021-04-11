@@ -33,7 +33,7 @@ namespace prompt
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema);
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage);
+      DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -41,8 +41,8 @@ namespace prompt
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
    };
 
 

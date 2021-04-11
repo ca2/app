@@ -172,7 +172,7 @@ public:
 
    void install_message_routing(::channel * pchannel);
 
-   DECL_GEN_SIGNAL(_001OnCopyData);
+   DECLARE_MESSAGE_HANDLER(_001OnCopyData);
    void _001OnTimer(::timer * ptimer);
 
 

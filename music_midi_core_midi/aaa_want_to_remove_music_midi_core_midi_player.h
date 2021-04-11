@@ -37,7 +37,7 @@ namespace music
             virtual void term_thread() override;
             virtual void pre_translate_message(::message::message * pmessage) override;
             void OnMmsgDone(::music::midi::sequence *pSeq) override;
-            DECL_GEN_SIGNAL(OnUserMessage);
+            DECLARE_MESSAGE_HANDLER(OnUserMessage);
             //virtual void SaveFile(memory & memory) override;
             void SetPosition(double dRate) override;
             void pause() override;
@@ -66,9 +66,9 @@ namespace music
             //void SendTempoChange() override; // verificar
 
 
-            //DECL_GEN_SIGNAL(OnNotifyEvent);
-            DECL_GEN_SIGNAL(OnMultimediaMidiOutputMessageDone);
-            //DECL_GEN_SIGNAL(OnMultimediaMidiOutputMessagePositionCB);
+            //DECLARE_MESSAGE_HANDLER(OnNotifyEvent);
+            DECLARE_MESSAGE_HANDLER(OnMultimediaMidiOutputMessageDone);
+            //DECLARE_MESSAGE_HANDLER(OnMultimediaMidiOutputMessagePositionCB);
 
             // midi central listener
             virtual void on_attribute_change(::message::message * pmessage) override;

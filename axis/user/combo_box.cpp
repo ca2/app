@@ -37,7 +37,7 @@ namespace user
          if(m_plist->is_window())
          {
 
-            m_plist->DestroyWindow();
+            m_plist->destroy_window();
 
          }
 

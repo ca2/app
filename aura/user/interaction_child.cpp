@@ -57,7 +57,7 @@ namespace user
          INFO("");
          INFO("");
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -391,7 +391,7 @@ namespace user
    //}
 
 
-   bool interaction_child::DestroyWindow()
+   bool interaction_child::start_destroying_window()
    {
 
       if (!m_bCreate)
@@ -401,7 +401,7 @@ namespace user
 
       }
 
-      bool bOk = ::user::primitive_impl::DestroyWindow();
+      bool bOk = ::user::primitive_impl::start_destroying_window();
 
       return bOk;
 

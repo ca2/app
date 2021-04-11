@@ -4813,9 +4813,11 @@ color32_t cr)
 
    }
 
-   __pointer(::aura::system) psystem = m_psystem;
+   auto psystem = m_psystem->m_paurasystem;
 
-   if (!psystem->draw2d()->channel_spread__32CC(
+   auto pdraw2d = psystem->draw2d();
+
+   if (!pdraw2d->channel_spread__32CC(
          pimageDst,
          pimageSrc,
          iChannel,
@@ -4990,11 +4992,13 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   __pointer(::aura::system) psystem = m_psystem;
+   auto psystem = m_psystem->m_paurasystem;
 
-   synchronous_lock synchronouslock(psystem->draw2d()->mutex());
+   auto pdraw2d = psystem->draw2d();
 
-   auto & pmemory = psystem->draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
+   synchronous_lock synchronouslock(pdraw2d->mutex());
+
+   auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
    pmemory.defer_create_new();
 

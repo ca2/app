@@ -2484,7 +2484,7 @@ inline uptr uptr_hash < block >(block b)
 inline ::apex::application* object::get_application() const 
 { 
    
-   return m_pcontext ? m_pcontext->m_papexapplication : nullptr; 
+   return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication : (m_psystem ? m_psystem->m_papplicationMain : nullptr);
 
 }
 
@@ -2598,10 +2598,10 @@ inline __transport(TYPE) object::__create_new()
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__compose(__composite(BASE_TYPE)& pusermessage)
+inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite)
 {
 
-   if (!pusermessage)
+   if (!pcomposite)
    {
 
       auto& pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -2622,16 +2622,16 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pusermessage)
 
       }
 
-      pusermessage = ptypeNew;
+      pcomposite = ptypeNew;
 
-      if (!pusermessage)
+      if (!pcomposite)
       {
 
          return error_wrong_type;
 
       }
 
-      auto estatus = pusermessage->initialize(this);
+      auto estatus = pcomposite->initialize(this);
 
       if (!estatus)
       {
@@ -2640,7 +2640,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pusermessage)
 
       }
 
-      estatus = add_composite(pusermessage);
+      estatus = add_composite(pcomposite);
 
       if (!estatus)
       {
@@ -3290,20 +3290,20 @@ inline ::e_status object::add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS
 //}
 
 
-//inline ::file_result object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
-//{
-//
-//   return get_file(varFile, eopen | ::file::e_open_read);
-//
-//}
+inline ::file_result object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
+{
 
-//
-//inline ::file_result object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
-//{
-//
-//   return get_file(varFile, eopen | ::file::e_open_write);
-//
-//}
+   return get_file(varFile, eopen | ::file::e_open_read);
+
+}
+
+
+inline ::file_result object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
+{
+
+   return get_file(varFile, eopen | ::file::e_open_write);
+
+}
 
 
 template < typename TYPE >
@@ -3929,13 +3929,13 @@ inline auto ::object::new_predicate_task(PRED pred)
 
 
 
-//template < typename PRED >
-//inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
-//{
-//
-//   return ::predicate_run(this, bSync, pred);
-//
-//}
+template < typename PRED >
+inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
+{
+
+   return ::predicate_run(this, bSync, pred);
+
+}
 
 
 //inline ::acme::system* object::get_system() const

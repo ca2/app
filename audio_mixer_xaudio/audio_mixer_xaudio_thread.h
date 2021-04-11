@@ -45,9 +45,9 @@ namespace multimedia
          virtual void pre_translate_message(::message::message * pmessage);
 
 
-         DECL_GEN_SIGNAL(OnMixerMessage)
-            DECL_GEN_SIGNAL(OnVmsmException)
-            DECL_GEN_SIGNAL(OnUserMessage)
+         DECLARE_MESSAGE_HANDLER(OnMixerMessage)
+            DECLARE_MESSAGE_HANDLER(OnVmsmException)
+            DECLARE_MESSAGE_HANDLER(OnUserMessage)
 
 
       };

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE menu_central :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

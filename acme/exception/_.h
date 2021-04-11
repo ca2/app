@@ -9,8 +9,6 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 #include "exception.h"
 
-#include "extended_status.h"
-
 CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 
 //#include "base.h"

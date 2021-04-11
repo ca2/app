@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_CORE department :
-      virtual public ::apex::department,
+      virtual public ::acme::department,
       virtual public ::apex::timer_array
    {
    public:

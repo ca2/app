@@ -25,7 +25,7 @@ namespace datetime
    }
 
 
-   ::datetime::result element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   ::datetime::result element::get_result(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
@@ -33,7 +33,7 @@ namespace datetime
 
          __pointer(::apex::system) psystem = get_system();
 
-         return ::datetime::time(psystem->datetime().strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
+         return ::datetime::time(pdatetime->strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)
@@ -122,7 +122,7 @@ namespace datetime
    }
    
 
-   string element::get_expression(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   string element::get_expression(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number)
@@ -130,7 +130,7 @@ namespace datetime
 
          __pointer(::apex::system) psystem = get_system();
 
-         return psystem->datetime().international().get_gmt_date_time(::datetime::time((psystem->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
@@ -138,7 +138,7 @@ namespace datetime
 
          __pointer(::apex::system) psystem = get_system();
 
-         return psystem->datetime().international().get_gmt_date_time(::datetime::time((psystem->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)

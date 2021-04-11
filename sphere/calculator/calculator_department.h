@@ -6,7 +6,7 @@ namespace calculator
 
 
    class CLASS_DECL_SPHERE department :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

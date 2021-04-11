@@ -127,7 +127,7 @@
 //   protected:
 //
 //      friend class str;
-//      __pointer(::str::international::locale_schema)     m_plocaleschema;
+//      __pointer(::text::international::locale_schema)     m_plocaleschema;
 //
 //
 //      __pointer(str)                                     m_pstr;
@@ -151,8 +151,8 @@
 //
 //
 //
-//      str_context();
-//      virtual ~str_context();
+//      textcontext();
+//      virtual ~textcontext();
 //
 //      virtual i64 add_ref(OBJ_REF_DBG_PARAMS)
 //      {
@@ -183,12 +183,12 @@
 //      const comparable_array < id > & schema_ex() const;
 //
 //
-//      inline ::str::international::locale_schema & localeschema()
+//      inline ::text::international::locale_schema & localeschema()
 //      {
 //         return *m_plocaleschema;
 //      }
 //
-//      inline const ::str::international::locale_schema & localeschema() const
+//      inline const ::text::international::locale_schema & localeschema() const
 //      {
 //         return *m_plocaleschema;
 //      }

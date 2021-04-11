@@ -229,7 +229,7 @@ namespace filemanager
    }
 
 
-   bool operation::start()
+   ::e_status operation::start()
    {
       switch(m_eoperation)
       {
@@ -249,8 +249,13 @@ namespace filemanager
 
          }
 
-         if(!open_src_dst(m_stra[m_iFile],strName, m_str))
-            return false;
+         if (!open_src_dst(m_stra[m_iFile], strName, m_str))
+         {
+
+            return error_failed;
+
+         }
+
       }
       break;
       case operation_delete:
@@ -266,8 +271,12 @@ namespace filemanager
 
          ::file::path strPath = m_str / m_stra[m_iFile].name();
 
-         if(!open_src_dst(m_stra[m_iFile],strPath,m_str))
-            return false;
+         if (!open_src_dst(m_stra[m_iFile], strPath, m_str))
+         {
+
+            return error_failed;
+
+         }
 
       }
       break;
@@ -275,7 +284,9 @@ namespace filemanager
 
          break;
       }
-      return true;
+
+      return success;
+
    }
 
    

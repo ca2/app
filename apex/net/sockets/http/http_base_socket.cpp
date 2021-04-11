@@ -622,9 +622,11 @@ namespace sockets
                      break;
                }
 
-               __pointer(::apex::system) psystem = get_system();
+               auto psystem = m_psystem;
+
+               auto pbase64 = psystem->base64();
                
-               response().println(psystem->base64().encode(*pfile->get_memory()));
+               response().println(pbase64->encode(*pfile->get_memory()));
 
             }
             

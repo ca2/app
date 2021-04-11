@@ -392,6 +392,13 @@ namespace message
    }
 
 
+   mouse_activate::mouse_activate()
+   {
+
+
+   }
+
+
    ::user::interaction * mouse_activate::get_desktop_window()
    {
 
@@ -419,11 +426,66 @@ namespace message
 
    }
 
+   
+   context_menu::context_menu()
+   {
+
+   }
+
 
    point_i32 context_menu::GetPoint()
    {
 
       return __point(m_lparam);
+
+   }
+
+
+   set_cursor::set_cursor()
+   {
+
+
+   }
+
+
+   set_cursor::~set_cursor()
+   {
+
+      try
+      {
+
+         auto puserinteraction = userinteraction();
+
+         if (puserinteraction)
+         {
+
+            auto pwindow = puserinteraction->get_window();
+
+            if (pwindow)
+            {
+
+               if (m_pcursor)
+               {
+
+                  pwindow->set_cursor(m_pcursor);
+
+               }
+               else if (m_ecursor != e_cursor_unmodified)
+               {
+
+                  puserinteraction->set_cursor(m_ecursor);
+
+               }
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 

@@ -322,7 +322,6 @@ CLASS_DECL_ACME string thread_get_name()
 }
 
 
-
 enum_synchronization_result windows_wait_result_to_synchronization_result(int iResult)
 {
 
@@ -364,3 +363,6 @@ enum_synchronization_result windows_wait_result_to_synchronization_result(int iR
    }
 
 }
+
+
+

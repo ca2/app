@@ -65,7 +65,7 @@ void clear_message_queue(itask_t idthread)
 }
 
 
-//CLASS_DECL_APEX int_bool post_ui_message(const MESSAGE & message)
+//CLASS_DECL_ACME int_bool post_ui_message(const MESSAGE & message)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -103,7 +103,7 @@ void clear_message_queue(itask_t idthread)
 //}
 
 
-//CLASS_DECL_APEX int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
+//CLASS_DECL_ACME int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 ////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);

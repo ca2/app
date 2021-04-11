@@ -79,7 +79,7 @@ namespace sip
       m_form.clear();
       if(attrs().has_property("request_uri"))
       {
-         attr("query_string") = psystem->url().object_get_query(attr("request_uri"));
+         attr("query_string") = purl->object_get_query(attr("request_uri"));
          string str = attrs()["query_string"];
          m_form.parse_query_string(str);
       }

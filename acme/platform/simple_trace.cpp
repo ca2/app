@@ -14,7 +14,7 @@ CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const char * pszFu
 CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-//CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::os_message_box(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -22,7 +22,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFu
 //}
 
 
-//CLASS_DECL_APEX void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags, const ::function_arg& function)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags, const ::function_arg& function)
 //{
 //
 //   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -122,11 +122,11 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
 //int g_iMemoryCounters = -1;
 //
-//CLASS_DECL_APEX::mutex * g_pmutexMemoryCounters = nullptr;
+//CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
 //
 //int g_iMemoryCountersStartable = 0;
 //
-//CLASS_DECL_APEX bool memory_counter_on()
+//CLASS_DECL_ACME bool memory_counter_on()
 //{
 //
 //   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
@@ -151,7 +151,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //::file::path * g_pMemoryCounters = nullptr;
 //
 //
-//CLASS_DECL_APEX::file::path memory_counter_base_path()
+//CLASS_DECL_ACME::file::path memory_counter_base_path()
 //{
 //
 //   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)

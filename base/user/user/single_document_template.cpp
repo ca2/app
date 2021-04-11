@@ -93,7 +93,12 @@ namespace user
 
       pcreate->m_estatus = error_failed;
 
-      pcreate->m_pcommandline->m_varQuery["document"].release();
+      if (pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"].release();
+
+      }
 
       //bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
       //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
@@ -194,9 +199,18 @@ namespace user
 
       ASSERT_VALID(pFrame);
 
-      bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+      bool bMakeVisible = true;
+      
+      if (pcreate->m_pcommandline)
+      {
 
-      if (pcreate->m_pcommandline->m_varFile.is_empty() || pcreate->m_pcommandline->m_varFile.is_numeric())
+         bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+
+      }
+
+      ::payload varFile = pcreate->get_file();
+
+      if (varFile.is_empty() || varFile.is_numeric())
       {
 
          // create a new ::user::document
@@ -216,7 +230,11 @@ namespace user
             TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
 
             if (bCreated)
-               pFrame->DestroyWindow();    // will destroy ::user::document
+            {
+
+               pFrame->destroy_window();    // will destroy ::user::document
+
+            }
 
             return;
 
@@ -241,7 +259,9 @@ namespace user
 
             if (bCreated)
             {
-               pFrame->DestroyWindow();    // will destroy ::user::document
+
+               pFrame->destroy_window();    // will destroy ::user::document
+
             }
             else if (!pdocument->is_modified())
             {
@@ -262,7 +282,7 @@ namespace user
             }
             return;        // open failed
          }
-         pdocument->set_path_name(pcreate->m_pcommandline->m_varFile);
+         pdocument->set_path_name(varFile);
          pdocument->update_title();
          pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
 
@@ -285,7 +305,18 @@ namespace user
 
       }
 
-      pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+      if (pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+
+      }
+      else
+      {
+
+         //pcreate->m_varQuery["document"] = pdocument;
+
+      }
 
       pcreate->m_estatus = ::success;
 

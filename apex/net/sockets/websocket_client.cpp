@@ -563,7 +563,11 @@ namespace sockets
 
          generate_random_bytes(m.get_data(), m.get_size());
 
-         m_strBase64 = m_psystem->m_papexsystem->base64().encode(m);
+         auto psystem = m_psystem;
+
+         auto pbase64 = psystem->base64();
+
+         m_strBase64 = pbase64->encode(m);
 
          int iLen;
 
@@ -675,11 +679,13 @@ namespace sockets
 
                memory mem2;
 
-               __pointer(::apex::system) psystem = get_system();
+               auto psystem = m_psystem->m_papexsystem;
+
+               auto pbase64 = psystem->base64();
 
                psystem->crypto().sha1(mem2, mem);
 
-               strKey = psystem->base64().encode(mem2);
+               strKey = pbase64->encode(mem2);
 
                if (strAccept == strKey)
                {

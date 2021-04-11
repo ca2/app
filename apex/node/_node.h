@@ -29,7 +29,7 @@
 #endif
 
 
-CLASS_DECL_APEX void __node_apex_factory_exchange(::factory_map * pfactorymap);
+CLASS_DECL_ACME void __node_apex_factory_exchange(::factory_map * pfactorymap);
 
 
 

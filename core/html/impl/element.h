@@ -133,9 +133,9 @@ namespace html
          virtual bool is_value();
 
 
-         DECL_GEN_SIGNAL(OnLButtonDown);
-         DECL_GEN_SIGNAL(OnMouseMove);
-         DECL_GEN_SIGNAL(OnLButtonUp);
+         DECLARE_MESSAGE_HANDLER(OnLButtonDown);
+         DECLARE_MESSAGE_HANDLER(OnMouseMove);
+         DECLARE_MESSAGE_HANDLER(OnLButtonUp);
 
 
       };

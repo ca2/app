@@ -165,13 +165,13 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(_001OnNcHitTest);
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
-      DECL_GEN_SIGNAL(_001OnSysColorChange);
-      DECL_GEN_SIGNAL(_001OnSetButtonSize);
-      DECL_GEN_SIGNAL(_001OnSetBitmapSize);
-      DECL_GEN_SIGNAL(_001OnPreserveZeroBorderHelper);
+      DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
+      DECLARE_MESSAGE_HANDLER(_001OnSysColorChange);
+      DECLARE_MESSAGE_HANDLER(_001OnSetButtonSize);
+      DECLARE_MESSAGE_HANDLER(_001OnSetBitmapSize);
+      DECLARE_MESSAGE_HANDLER(_001OnPreserveZeroBorderHelper);
 
       //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 

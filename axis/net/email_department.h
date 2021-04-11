@@ -6,7 +6,7 @@ namespace net
 
 
    class CLASS_DECL_AXIS email_department :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 

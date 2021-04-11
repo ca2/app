@@ -100,7 +100,7 @@ namespace base
 
       create_factory < ::base::session, ::apex::session >();
       create_factory < ::base::application, ::apex::application >();
-      create_factory < ::base::idpool, ::apex::idpool >();
+      create_factory < ::base::idpool, ::acme::idpool >();
       create_factory < ::base::user, ::user::user >();
 
    }

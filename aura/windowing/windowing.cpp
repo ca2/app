@@ -78,7 +78,24 @@ namespace windowing
 
       m_pcursormanager.release();
 
-      auto estatus = ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
+
+      return estatus;
+
+   }
+
+
+   ::e_status windowing::finish()
+   {
+
+      auto estatus = ::acme::department::finish();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return estatus;
 
@@ -418,10 +435,10 @@ namespace windowing
    }
 
    
-   void windowing::term1()
+   ::e_status windowing::term1()
    {
 
-
+      return ::success;
 
    }
 
@@ -434,10 +451,10 @@ namespace windowing
    }
 
 
-   void windowing::term2()
+   ::e_status windowing::term2()
    {
 
-
+      return ::success;
 
    }
    //bool windowing::set_window_icon(window *pwindow, const ::file::path &path)
@@ -586,7 +603,7 @@ namespace windowing
 
       }
 
-      ////pcursor->m_pimage = pcontext->m_pauracontext->image().load_image(path, bFromCache, bSync);
+      ////pcursor->m_pimage = pcontextimage->load_image(path, bFromCache, bSync);
 
       return true;
 

@@ -54,7 +54,7 @@ void application_container::app_erase(::apex::application * papp)
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      set_finish();
+      finish();
 
    }
 
@@ -283,8 +283,6 @@ __pointer(::apex::application) application_container::instantiate_application(co
    }
 
    papp->initialize(this);
-
-   m_psystem->m_papexsystem->set_main_struct(*papp);
 
    on_instantiate_application(papp);
 

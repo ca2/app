@@ -1,0 +1,8 @@
+//
+// Created by camilo on 14/04/2021.
+//
+
+#ifndef BASIS_STATIC_START_PRIVATE_H
+#define BASIS_STATIC_START_PRIVATE_H
+
+#endif //BASIS_STATIC_START_PRIVATE_H

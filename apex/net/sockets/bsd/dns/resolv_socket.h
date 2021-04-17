@@ -45,15 +45,15 @@ namespace sockets
       virtual ::e_status initialize(::object * pobject) override;
       virtual ::e_status finalize() override;
 
-      void OnAccept() { m_bServer = true; }
-      void OnLine(const string & line);
-      void OnDetached();
-      void OnDelete();
+      void OnAccept() override { m_bServer = true; }
+      void OnLine(const string & line) override;
+      void OnDetached() override;
+      void OnDelete() override;
 
       void SetId(i32 x) { m_resolv_id = x; }
       i32 GetId() { return m_resolv_id; }
 
-      void OnConnect();
+      void OnConnect() override;
 
       void SetResolveIpv6(bool x = true) { m_resolve_ipv6 = x; }
 

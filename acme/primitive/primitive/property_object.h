@@ -17,10 +17,10 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::e_status                                m_estatus;
-   __pointer(::id_map < routine_array >)     m_pmapPropertyRoutine;
-   __pointer(::i64_array)                    m_pia;
-   __pointer(property_set)                   m_pset;
+   ::e_status                                         m_estatus;
+   __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
+   __pointer(::i64_array)                          m_pia;
+   __pointer(property_set)                            m_pset;
 
 
    property_object() { }
@@ -93,11 +93,19 @@ public:
 
 
 
+//#ifdef GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS
+//
+//   inline GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & _routine_array(const ::id& id);
+//
+//   inline GGCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & routine_array(const ::id & id);
+//
+//#else
 
-   inline routine_array& _routine_array(const ::id& id);
+   inline ::routine_array & _routine_array(const ::id& id);
 
+   inline ::routine_array & routine_array(const ::id& id);
 
-   inline routine_array& routine_array(const ::id& id);
+//#endif
 
 
    inline void add_routine(const ::id& id, const ::routine& routine);
@@ -120,11 +128,11 @@ public:
 
    using matter::set;
 
-   template < typename TYPE >
-   inline void set(const ::id & id, const TYPE & t);
-
-   template < typename TYPE >
-   inline void get(const ::id & id, TYPE & t);
+//   template < typename TYPE >
+//   inline void set(const ::id & id, const TYPE & t);
+//
+//   template < typename TYPE >
+//   inline void get(const ::id & id, TYPE & t);
 
    inline ::payload topic(const ::id & id);
 

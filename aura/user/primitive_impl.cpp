@@ -1792,7 +1792,7 @@ namespace user
    i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
    {
 
-      return NULL;
+      return 0;
 
    }
 

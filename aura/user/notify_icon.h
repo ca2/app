@@ -23,7 +23,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       virtual public ::user::interaction
 #else
-      virtual public ::layered
+      virtual public ::object
 #endif
       , virtual public user_notify_icon_bridge
    {

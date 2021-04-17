@@ -40,10 +40,10 @@ namespace acme
    }
 
 
-   ::e_status department::call_member(enum_id eid)
+   ::e_status department::call_member(::i64 iId)
    {
 
-      switch (eid)
+      switch (iId)
       {
       case id_process_init:
          return process_init();

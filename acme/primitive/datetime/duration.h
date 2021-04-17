@@ -815,7 +815,7 @@ inline nanosecond::nanosecond(FLOATING fNanos) :
 
 template < primitive_floating FLOATING >
 inline microsecond::microsecond(FLOATING fMicroseconds) :
-   duration(((i64)(fMicroseconds / (1'000'000.0)), (i64)fmod(fMicroseconds * 1'000.0, 1'000'000'000.0)))
+   duration((i64)(fMicroseconds / 1'000'000.0), (i64)fmod(fMicroseconds * 1'000.0, 1'000'000'000.0))
 {
 
 }

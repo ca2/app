@@ -425,12 +425,12 @@ namespace acme
 
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//      UNREFERENCED_PARAMETER(bShow);
+//
+//   }
 
 
    bool application::os_on_start_application()

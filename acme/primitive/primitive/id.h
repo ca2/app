@@ -47,7 +47,7 @@ public:
       e_type_id,
       e_type_factory,
       e_type_task_tool,
-      e_type_clock,
+      e_type_timer,
       e_type_message,
       e_type_property,
 
@@ -91,8 +91,8 @@ public:
             e_id                 m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
-            enum_task_tool     m_etasktool;
-            enum_clock           m_eclock;
+            enum_task_tool       m_etasktool;
+            enum_timer           m_etimer;
             enum_message         m_emessage;
          };
 
@@ -129,7 +129,7 @@ public:
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
    inline id(enum_task_tool etasktool);
-   inline id(enum_clock eclock);
+   inline id(enum_timer etimer);
    inline id(enum_message emessage);
    inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
@@ -286,7 +286,7 @@ public:
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_task_tool & etasktool);
-   id & operator = (const enum_clock & eclock);
+   id & operator = (const enum_timer & etimer);
    id & operator = (const enum_message & emessage);
 
 
@@ -406,9 +406,9 @@ inline id::id(enum_task_tool etasktool) :
 }
 
 
-inline id::id(enum_clock eclock) :
-   m_etype(e_type_clock),
-   m_eclock(eclock)
+inline id::id(enum_timer etimer) :
+   m_etype(e_type_timer),
+   m_etimer(etimer)
 {
 
 }

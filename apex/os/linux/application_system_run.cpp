@@ -166,7 +166,9 @@ namespace apex
 
       {
 
-         auto pnode = Node;
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
 
          pnode->node_init_check(&m_argc, &m_argv);
 
@@ -199,9 +201,11 @@ namespace apex
 
       }
 
-      auto pnode = Node;
+      auto psystem = m_psystem;
 
-      pnode->start();
+      auto pnode = psystem->node();
+
+      m_pcontext->branch(pnode);
 
       return ::success;
 

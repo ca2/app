@@ -156,7 +156,7 @@ va_list *Arguments
 void output_debug_string(const char * pOutputString)
 {
 
-   if(::acme::g_bOutputDebugString)
+   if(::acme::should_output_debug_string())
    {
 
       if(strstr(pOutputString, "font_list"))
@@ -178,7 +178,7 @@ void output_debug_string(const char * pOutputString)
 void output_debug_string(const widechar * pOutputString)
 {
 
-   if(::acme::g_bOutputDebugString)
+   if(::acme::should_output_debug_string())
    {
 
       output_debug_string(string(pOutputString));

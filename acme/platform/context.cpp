@@ -122,8 +122,10 @@ namespace acme
          return estatus;
 
       }
+
+      auto path = varFile.get_file_path();
       
-      estatus = pfile->open(varFile, eopen);
+      estatus = pfile->open(path, eopen);
 
       if (!estatus)
       {

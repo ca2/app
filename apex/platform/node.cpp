@@ -8,6 +8,7 @@
 namespace apex
 {
 
+
    node::node()
    {
 
@@ -42,7 +43,9 @@ namespace apex
    }
 
 
-   ::e_status node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   ::e_status
+   node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco,
+                           int iIcon)
    {
 
       return ::error_interface_only;
@@ -66,7 +69,7 @@ namespace apex
    }
 
 
-   ::e_status node::thread_initialize(::thread* pthread)
+   ::e_status node::thread_initialize(::thread * pthread)
    {
 
       return ::error_interface_only;
@@ -74,7 +77,7 @@ namespace apex
    }
 
 
-   ::e_status node::thread_finalize(::thread* pthread)
+   ::e_status node::thread_finalize(::thread * pthread)
    {
 
       return ::error_interface_only;
@@ -82,7 +85,7 @@ namespace apex
    }
 
 
-   ::e_status node::node_thread_initialize(::thread* pthread)
+   ::e_status node::node_thread_initialize(::thread * pthread)
    {
 
       return ::error_interface_only;
@@ -90,7 +93,7 @@ namespace apex
    }
 
 
-   ::e_status node::node_thread_finalize(::thread* pthread)
+   ::e_status node::node_thread_finalize(::thread * pthread)
    {
 
       return ::error_interface_only;
@@ -122,7 +125,7 @@ namespace apex
    }
 
 
-   ::e_status node::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
+   ::e_status node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
       __throw(error_interface_only);
@@ -132,14 +135,18 @@ namespace apex
    }
 
 
-   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+                                       const char * pszPlatform, const char * pszConfiguration,
+                                       const char * pszLocale, const char * pszSchema)
    {
 
       return false;
 
    }
 
-   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
+                                        const char * pszPlatform, const char * pszConfiguration,
+                                        const char * pszLocale, const char * pszSchema)
    {
 
 
@@ -154,7 +161,6 @@ namespace apex
       return false;
 
    }
-
 
 
    void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
@@ -178,14 +184,14 @@ namespace apex
    }
 
 
-   ::e_status node::start()
+   ::e_status node::start_node()
    {
 
       __pointer(::apex::system) psystem = get_system();
 
       auto estatus = psystem->on_start();
 
-      if(!estatus)
+      if (!estatus)
       {
 
          return estatus;
@@ -196,7 +202,6 @@ namespace apex
 
 
    }
-
 
 
    void node::on_os_dark_mode_change()

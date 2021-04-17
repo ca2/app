@@ -127,7 +127,9 @@ namespace user
 
       string strLang = m_strLanguageCode;
 
-      ::file::path path = psystem->dir().module() / "po" / (strLang + ".po");
+      auto pcontext = m_pcontext;
+
+      ::file::path path = pcontext->m_papexsystem->dir().module() / "po" / (strLang + ".po");
 
       return file_as_string(path, bOnlyHeader ? 4096 : -1);
 

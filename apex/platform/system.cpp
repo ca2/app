@@ -166,7 +166,7 @@ namespace apex
    ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::context_thread::initialize(pobject);
+      auto estatus = ::apex::context::initialize(pobject);
 
       if (!estatus)
       {
@@ -767,7 +767,7 @@ namespace apex
 
       }
 
-      return ::apex::context_thread::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_thread_name(strThreadName);
 
    }
 
@@ -863,9 +863,7 @@ namespace apex
    system::~system()
    {
 
-
       //::acme::del(m_ppatch);
-
 
       //::acme::del(m_purldepartment);
 
@@ -911,9 +909,9 @@ namespace apex
 
 #ifdef LINUX
 
-      auto pnode = Node;
+      //auto pnode = Node;
 
-      pnode->post_quit();
+      //pnode->post_quit();
 
 #elif defined(__APPLE__)
 
@@ -1040,41 +1038,7 @@ namespace apex
 
       }
 
-#ifdef LINUX
-
-      auto edesktop = get_edesktop();
-
-      if (edesktop & ::user::e_desktop_kde)
-      {
-
-         estatus = do_factory_exchange("node", "kde");
-
-      }
-      else if (edesktop & ::user::e_desktop_gnome)
-      {
-
-         estatus = do_factory_exchange("node", "gnome");
-
-      }
-      else
-      {
-
-         estatus = do_factory_exchange("node", "kde");
-
-         if (!estatus)
-         {
-
-            estatus = do_factory_exchange("node", "gnome");
-
-         }
-
-      }
-
-#elif defined(WINDOWS_DESKTOP)
-
-      estatus = do_factory_exchange("apex", "windows");
-
-#endif
+      estatus = do_factory_exchange("apex", __PLATFORM);
 
       if (!estatus)
       {
@@ -2036,7 +2000,7 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
-      ::e_status estatus = ::apex::context_thread::inline_init();
+      ::e_status estatus = ::apex::context::inline_init();
 
       if (!estatus)
       {
@@ -2053,7 +2017,7 @@ namespace apex
    ::e_status system::inline_term()
    {
 
-      ::e_status estatus = ::apex::context_thread::inline_term();
+      ::e_status estatus = ::apex::context::inline_term();
 
       if (!estatus)
       {
@@ -2212,7 +2176,7 @@ namespace apex
    bool system::task_get_run() const
    {
 
-      return ::apex::context_thread::task_get_run();
+      return ::apex::context::task_get_run();
 
    }
 
@@ -5632,7 +5596,11 @@ namespace apex
          else if (psubject->id() == id_os_user_theme)
          {
 
-            string strTheme = ::user::_os_get_user_theme();
+            auto pnode = node();
+
+            //string strTheme = ::user::_os_get_user_theme();
+
+            string strTheme = pnode->os_get_user_theme();
 
             if (strTheme != m_strOsUserTheme)
             {
@@ -5659,7 +5627,7 @@ namespace apex
          if (psubject->id() == id_os_user_theme)
          {
 
-            ::user::_os_process_user_theme(m_strOsUserTheme);
+            //::user::_os_process_user_theme(m_strOsUserTheme);
 
          }
 
@@ -5718,7 +5686,7 @@ namespace apex
 
       ::app_core::finalize();
 
-      ::apex::context_thread::finalize();
+      ::apex::context::finalize();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -5748,28 +5716,22 @@ namespace apex
    void system::process_exit_status(::object* pobject, const ::e_status& estatus)
    {
 
-      if (estatus == error_exit_system)
+      if (estatus == error_exit_session)
       {
 
-         m_psystem->finish();
-
-      }
-      else if (estatus == error_exit_session)
-      {
-      
-         get_session()->finish();
+         pobject->get_session()->finish();
       
       }
       else if (estatus == error_exit_application)
       {
-      
-         get_session()->finish();
+
+         pobject->get_session()->finish();
       
       }
-      else if (estatus == error_exit_application)
+      else
       {
       
-         ::get_task()->finish();
+         ::acme::system::process_exit_status(pobject, estatus);
       
       }
 

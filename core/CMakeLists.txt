@@ -146,9 +146,10 @@ list(APPEND core_source
    filesystem/fs/_fs.h
    filesystem/fs/ftp_file.cpp
    filesystem/fs/ftp_file.h
-   filesystem/fs/ftp_net.h
    filesystem/fs/ftpfs.cpp
    filesystem/fs/ftpfs.h
+   filesystem/fs/ftpnet.cpp
+   filesystem/fs/ftpnet.h
    filesystem/userfs/_.h
    filesystem/userfs/_data.h
    filesystem/userfs/_tree.h
@@ -337,8 +338,6 @@ list(APPEND core_source
    user/account/account_simple_ui.cpp
    user/account/dialog.h
    user/account/login.h
-   user/account/simple_ui.h
-   user/account/simple_ui_style.h
    user/account/view.cpp
    user/account/view.h
    user/databaseuser/_.h
@@ -436,24 +435,6 @@ list(APPEND core_source
    user/simple/toolbar.h
    user/simple/tree_view.cpp
    user/simple/tree_view.h
-   user/simple_ui/_.h
-   user/simple_ui/_simple_ui.h
-   user/simple_ui/edit_box.cpp
-   user/simple_ui/edit_box.h
-   user/simple_ui/interaction.cpp
-   user/simple_ui/interaction.h
-   user/simple_ui/label.cpp
-   user/simple_ui/label.h
-   user/simple_ui/message_box.cpp
-   user/simple_ui/message_box.h
-   user/simple_ui/password.cpp
-   user/simple_ui/password.h
-   user/simple_ui/style.cpp
-   user/simple_ui/style.h
-   user/simple_ui/tap.cpp
-   user/simple_ui/tap.h
-   user/simple_ui/top.cpp
-   user/simple_ui/top.h
    user/user/00.h
    user/user/_.cpp
    user/user/_.h

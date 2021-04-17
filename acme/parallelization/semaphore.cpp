@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -93,9 +94,15 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       string strPath;
 
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
+
       if(str::begins_ci(pstrName, "Local\\") || str::begins_ci(pstrName, "Local\\"))
       {
+
          strPath = pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+
       }
       else
       {

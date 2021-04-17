@@ -76,8 +76,6 @@ list(APPEND aura_source
    graphics/draw2d/context_image.h
    graphics/draw2d/cursor.cpp
    graphics/draw2d/cursor.h
-   graphics/draw2d/cursor_set.cpp
-   graphics/draw2d/cursor_set.h
    graphics/draw2d/debug.cpp
    graphics/draw2d/device_lock.cpp
    graphics/draw2d/device_lock.h
@@ -146,8 +144,8 @@ list(APPEND aura_source
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
-   graphics/draw2d/thread_tool.cpp
-   graphics/draw2d/thread_tool.h
+   graphics/draw2d/task_tool.cpp
+   graphics/draw2d/task_tool.h
    graphics/draw2d/ttf_util.cpp
    graphics/draw2d/ttf_util.h
    graphics/draw2d/water_routine.h
@@ -279,6 +277,8 @@ list(APPEND aura_source
    platform/application.cpp
    platform/application.h
    platform/aura_mq.cpp
+   platform/context.cpp
+   platform/context.h
    platform/draw_context.cpp
    platform/draw_context2.h
    platform/drawable.cpp
@@ -372,8 +372,6 @@ list(APPEND aura_source
    user/plain_edit.h
    user/plain_text_data.cpp
    user/plain_text_data.h
-   user/primitive.cpp
-   user/primitive.h
    user/primitive_impl.cpp
    user/primitive_impl.h
    user/prodevian.h
@@ -416,8 +414,8 @@ list(APPEND aura_source
    windowing/buffer.h
    windowing/cursor.cpp
    windowing/cursor.h
-   windowing/cursor_set.cpp
-   windowing/cursor_set.h
+   windowing/cursor_manager.cpp
+   windowing/cursor_manager.h
    windowing/display.cpp
    windowing/display.h
    windowing/icon.cpp
@@ -518,7 +516,7 @@ if (WIN32)
       os/windows/itemidlist.cpp
       os/windows/itemidlist.h
       os/windows/language.cpp
-      os/windows/launcher.cpp
+      #os/windows/launcher.cpp
       os/windows/library.cpp
       os/windows/lock.cpp
       os/windows/main.cpp
@@ -725,7 +723,7 @@ if (LINUX)
       os/linux/graphics.h
       os/linux/graphics2.h
       os/linux/language.cpp
-      os/linux/launcher.cpp
+      #os/linux/launcher.cpp
       os/linux/library.cpp
       os/linux/linux.inl
       os/linux/linux_linux.h

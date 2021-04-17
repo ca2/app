@@ -320,6 +320,8 @@ namespace apex
 
 #ifdef LINUX
 
+      auto psystem = m_psystem->m_papexsystem;
+
       if(psystem->m_bGtkApp)
       {
 
@@ -346,9 +348,9 @@ namespace apex
 
       __unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
 
-      ::apex::context_thread::finalize();
+      auto estatus = ::apex::context::finalize();
 
-      return ::success;
+      return estatus;
 
    }
 
@@ -394,16 +396,16 @@ namespace apex
    }
    
    
-   void application::show_wait_cursor(bool bShow)
-   {
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      auto papexnode = psystem->m_papexnode;
-
-      papexnode->show_wait_cursor(bShow);
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      auto papexnode = psystem->m_papexnode;
+//
+//      papexnode->show_wait_cursor(bShow);
+//
+//   }
 
 
    void application::assert_valid() const
@@ -2525,6 +2527,8 @@ namespace apex
          return false;
 
       }
+
+      auto psystem = m_psystem->m_papexsystem;
 
       psystem->install_progress_add_up();
 
@@ -5966,10 +5970,9 @@ retry_license:
       else
       {
 
-         begin();
+         branch();
 
       }
-
 
       return true;
 
@@ -7080,7 +7083,12 @@ retry_license:
       {
 
          m_iWaitCursorCount = 0;
-         show_wait_cursor(false);
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(false);
 
       }
       else if (nCode == 0)
@@ -7094,12 +7102,21 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            show_wait_cursor(true);
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node()->m_papexnode;
+
+            pnode->show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         show_wait_cursor(false);
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(false);
 
       }
       else
@@ -7112,7 +7129,11 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         show_wait_cursor(true);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(true);
 
       }
 

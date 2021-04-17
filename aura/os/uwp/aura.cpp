@@ -223,11 +223,11 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //      }
 //      */
 //
-//   //t_phthread = new hthread();
+//   //t_phthread = new htask();
 //
 //   //t_phthread->m_bRun = true;
 //
-//   //currentThread = new hthread();
+//   //currentThread = new htask();
 //
 //
 //   return true;

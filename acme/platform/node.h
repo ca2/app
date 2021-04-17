@@ -80,7 +80,9 @@ namespace acme
 
       virtual int node_init_check(int * pi, char *** ppz);
 
-      virtual ::e_status start();
+      virtual ::e_status start_node();
+
+      virtual ::e_status install_sigchld_handler();
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 

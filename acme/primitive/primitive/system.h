@@ -8,7 +8,7 @@ namespace apex
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
       virtual public ::acme::system,
-      virtual public ::apex::context_thread
+      virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
 #endif

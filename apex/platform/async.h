@@ -185,6 +185,7 @@ namespace async
       LPFN_COMPLETION_CALLBACK         m_pfncompletioncallback;
       enum_state                       m_estate;
       task_completion_event < T > *    m_pev;
+      manual_reset_event               m_manualresetevent;
       cancellation_token               m_cancellationtoken;
 
 
@@ -239,6 +240,8 @@ namespace async
 
          (m_pcompletioncallback->*m_pfncompletioncallback)(*this, m_estatus);
 
+         m_manualresetevent.set_event();
+
       }
 
       virtual ::e_status  run() override
@@ -248,10 +251,10 @@ namespace async
 
       }
 
-      virtual T * wait(u32 dwMillis = U32_INFINITE_TIMEOUT)
+      virtual T * wait(const ::duration & duration = ::duration::infinite())
       {
 
-         ::get_thread()->wait(millis(dwMillis));
+         m_manualresetevent.wait(duration);
 
          return m_presult;
 
@@ -297,7 +300,7 @@ namespace async
    class task_completion_event
    {
    public:
-      event m_event;
+      manual_reset_event m_event;
       bool set(T r )
       {
          m_event.set_event();

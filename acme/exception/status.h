@@ -35,11 +35,15 @@ public:
       if (estatus == error_not_initialized)
       {
 
-         estatus = ::error_failed;
+         m_estatus = ::error_failed;
 
       }
+      else
+      {
 
-      m_estatus = estatus;
+         m_estatus = estatus;
+
+      }
 
    }
 

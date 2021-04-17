@@ -163,7 +163,7 @@ public:
    //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
    //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
    //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
-   virtual ::e_status on_finish();
+   virtual ::e_status on_finish() override;
 
    virtual ::e_status set_finish_composites();
 
@@ -427,32 +427,44 @@ public:
 
    bool IsSerializable() const;
 
+   //using property_object::branch;
 
-   void single_fork(const ::routine_array& routinea);
-   void multiple_fork(const ::routine_array& routinea);
+   void branch(const ::routine_array& routinea);
+   void branch_each(const ::routine_array& routinea);
 
-   using property_object::defer_fork;
+   //using property_object::defer_branch;
 
-   template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
+   template < typename TASK >
+   inline __composite(TASK) & defer_branch(__composite(TASK) & ptask, const ::routine& routine)
    {
 
-      if (pthread && pthread->is_running())
+      if (ptask && ptask->is_running())
       {
 
-         return pthread;
+         return ptask;
 
       }
 
-      pthread->start(routine);
+      auto estatus = __defer_compose_new(ptask);
 
-      return pthread;
+      if(!estatus)
+      {
+
+         return ptask;
+
+      }
+
+      ptask->m_pmatter = routine;
+
+      ptask->branch();
+
+      return ptask;
 
    }
 
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread)
+   inline __pointer(THREAD)& defer_branch(__pointer(THREAD)& pthread)
    {
 
       if (pthread && pthread->is_running())
@@ -469,7 +481,7 @@ public:
    }
 
 
-   inline ::e_status defer_fork(::task_pointer& ptask, const ::routine& routine);
+   inline ::e_status defer_branch(::task_pointer& ptask, const ::routine& routine);
 
 
    //template < typename THREAD >
@@ -483,8 +495,11 @@ public:
    //}
 
 
-   template < typename PRED >
-   inline ::task_pointer fork(PRED pred);
+   template < typename PREDICATE >
+   inline __transport(task) fork(PREDICATE predicate,
+      ::e_priority epriority = priority_normal,
+      ::u32 nStackSize = 0,
+      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
    //inline ::task_pointer launch(const ::routine& routine);
@@ -498,11 +513,11 @@ public:
    //inline ::task_pointer fork(METHOD method);
 
 
-   template < typename PRED >
-   inline auto new_predicateicate_thread(PRED pred);
+//   template < typename PRED >
+   //inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
-   inline auto async(void (TYPE::* pfnMemberProcedure)())
+   inline __transport(task) branch(void (TYPE::* pfnMemberProcedure)())
    {
 
       return fork([this, pfnMemberProcedure]()
@@ -516,10 +531,26 @@ public:
 
    }
 
+
+   inline __transport(::task) branch(matter * pmatter)
+   {
+
+      return fork([pmatter]()
+                  {
+
+                     pmatter->operator()();
+
+                  });
+
+   }
+
+
    template < typename PRED >
    inline ::task_pointer predicate_run(bool bSync, PRED pred);
 
-   ::task_pointer begin(
+   //using property_object::branch;
+
+   ::task_pointer branch(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -586,10 +617,10 @@ public:
 
 
    template < typename TYPE >
-   ::task_pointer start_below_normal(void (TYPE::* pfn)())
+   ::task_pointer branch_below_normal(void (TYPE::* pfn)())
    {
 
-      return fork(pfn, ::priority_below_normal);
+      return branch(pfn, ::priority_below_normal);
 
    }
 
@@ -602,8 +633,9 @@ public:
 
 
    template < typename TYPE >
-   ::task_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   ::task_pointer defer_branch(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
 
+   ::task_pointer defer_branch(const ::id& id, const ::routine & routine, e_priority epriority = priority_normal);
 
    virtual matter* get_taskpool_container() override;
 
@@ -1068,8 +1100,8 @@ public:
    //inline ::task_pointer fork(METHOD method);
 
 
-   template < typename PRED >
-   inline auto new_predicate_task(PRED pred);
+//   template < typename PRED >
+  // inline auto new_predicate_task(PRED pred);
 
    //template < typename TYPE >
    //inline auto async(void (TYPE::* pfnMemberProcedure)())
@@ -1184,33 +1216,8 @@ public:
 #define __make_identifier(PART1, PART2) PART1 ## PART2
 
 
-#define __defer_fork(ID)                                             \
+#define __defer_branch(ID) defer_branch(m_ptask ## ID, __routine([](){ID ## TaskProcedure();}))
                                                                      \
-do                                                                   \
-{                                                                    \
-                                                                     \
-   auto & pthread = m_pthread ## ID;                                 \
-                                                                     \
-   if(!pthread)                                                      \
-   {                                                                 \
-                                                                     \
-      __construct(pthread);                                          \
-                                                                     \
-      pthread->m_pmatter = __routine([this]()                        \
-      {                                                              \
-                                                                     \
-         ID ## ThreadProcedure();                                    \
-                                                                     \
-      });                                                            \
-                                                                     \
-   }                                                                 \
-                                                                     \
-   defer_fork(pthread);                                              \
-                                                                     \
-} while(false)                                                       \
-                                                                     \
-
-
 
 CLASS_DECL_ACME ::e_status call_sync(const ::routine_array& routinea);
 

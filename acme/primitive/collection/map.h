@@ -129,9 +129,9 @@ public:
 
 
    typedef typename ::set < KEY, ARG_KEY, PAIR >      BASE_SET;
-   typedef BASE_SET::HASH_TABLE                       HASH_TABLE;
-   typedef BASE_SET::BASE_KEY                         BASE_KEY;
-   typedef BASE_SET::BASE_ARG_KEY                     BASE_ARG_KEY;
+   typedef typename BASE_SET::HASH_TABLE                       HASH_TABLE;
+   typedef typename BASE_SET::BASE_KEY                         BASE_KEY;
+   typedef typename BASE_SET::BASE_ARG_KEY                     BASE_ARG_KEY;
    typedef VALUE                                      BASE_VALUE;
    typedef ARG_VALUE                                  BASE_ARG_VALUE;
 
@@ -526,7 +526,7 @@ public:
 
    }
 
-   virtual void on_after_read() {}
+   virtual void on_after_read() override {}
 
    ::range < iterator > elements()
    {

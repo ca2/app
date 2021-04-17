@@ -17,8 +17,8 @@ list(APPEND app_app_source
         application.h
         framework.cpp
         framework.h
-        window.cpp
-        window.h)
+        main_window.cpp
+        main_window.h)
 
 
 if (MSVC)

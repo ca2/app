@@ -6,7 +6,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX session:
-      virtual public ::apex::context_thread,
+      virtual public ::apex::context,
       virtual public ::application_container
       //,
       //virtual public ::filemanager::item_action //,

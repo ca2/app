@@ -157,11 +157,11 @@ enum enum_type
    //type_block = 1000,
    e_type_bool,
    e_type_pbool,
-   type_char,
-   e_type_i8 = type_char,
+   e_type_char,
+   e_type_i8 = e_type_char,
    e_type_pi8,
-   type_byte,
-   e_type_u8 = type_byte,
+   e_type_byte,
+   e_type_u8 = e_type_byte,
    e_type_pu8,
    e_type_i16,
    e_type_pi16,
@@ -185,42 +185,42 @@ enum enum_type
    // simple classes
    e_type_string = 4000,
    e_type_pstring,
-   type_type,
-   type_secs,
-   type_psecs,
-   type_millis,
-   type_pmillis,
-   type_micros,
-   type_pmicros,
-   type_nanos,
-   type_pnanos,
-   type_duration,
-   type_pduration,
+   e_type_type,
+   e_type_secs,
+   e_type_psecs,
+   e_type_millis,
+   e_type_pmillis,
+   e_type_micros,
+   e_type_pmicros,
+   e_type_nanos,
+   e_type_pnanos,
+   e_type_duration,
+   e_type_pduration,
    e_type_id,
-   type_pid,
-   type_time,
-   type_filetime,
-   type_prop,
-   type_pvar,
-   type_routine,
-   type_process,
+   e_type_pid,
+   e_type_time,
+   e_type_filetime,
+   e_type_prop,
+   e_type_pvar,
+   e_type_routine,
+   //e_type_process,
 
    // matter classes
    e_type_element = 8000,
    e_type_stra,
    e_type_inta,
-   type_vara,
+   e_type_vara,
    e_type_propset,
    e_type_i64a,
    e_type_memory,
    e_type_path,
    //type_image,
-   __type_last_element,
+   e_type_last_element,
 
    // enum
-   type_enum_command = 20000,
-   type_enum_status,
-   type_enum_check,
+   e_type_enum_command = 20000,
+   e_type_enum_status,
+   e_type_enum_check,
 
 };
 
@@ -319,7 +319,6 @@ enum enum_object : i64
    e_object_storing = 1 << 5,
    e_object_acquire = 1 << 6,
    e_object_default = 1 << 7,
-   e_object_synchro = 1 << 8,
    e_object_changed = 1 << 9,
    aaa_want_to_erase_object_locked = 1 << 10,
    aaa_want_to_erase_object_shared = 1 << 11,
@@ -334,6 +333,7 @@ enum enum_object : i64
 #if OBJ_TYP_CTR
    e_object_obj_typ_ctr = 1 << 20,
 #endif
+   e_object_synchronous = 1 << 21,
 
 };
 
@@ -401,14 +401,14 @@ enum enum_bit
 
 
 
-enum enum_clock
-{
+// enum enum_timer
+// {
 
-   e_clock_none,
-   e_clock_slow, // indicative usage: few minutes
-   e_clock_fast, // indicative usage: few seconds or big second fraction
+//    e_clock_none,
+//    e_clock_slow, // indicative usage: few minutes
+//    e_clock_fast, // indicative usage: few seconds or big second fraction
 
-};
+// };
 
 
 

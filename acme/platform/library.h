@@ -30,7 +30,7 @@ namespace acme
       virtual void assert_valid() const override;
       virtual void dump(dump_context &) const override;
 
-      virtual ::e_status     initialize_matter(::matter * pmatter);
+      virtual ::e_status     initialize_matter(::matter * pmatter) override;
       virtual ::e_status     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);

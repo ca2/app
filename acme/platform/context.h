@@ -54,7 +54,7 @@ namespace acme
       virtual ::e_status initialize_context();
 
       virtual void translate_text_data(::text::data * ptextdata);
-      virtual ::text::text __text(const ::id& id);
+      virtual ::text::text __text(const ::id& id) override;
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

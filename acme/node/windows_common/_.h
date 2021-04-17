@@ -125,7 +125,7 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char* pszName);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName);
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
@@ -343,7 +343,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(htask_t hthread);
+string get_thread_name(htask_t htask);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -358,7 +358,7 @@ string get_thread_name(const ::task* ptask);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char * psz);
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 //#include "update_task_item_array.h"

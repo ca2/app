@@ -74,7 +74,7 @@ namespace account
 
       ::file::path get_default_url();
 
-      void on_clock(enum_clock eclock);
+      void on_clock(enum_timer etimer);
 
 
    };

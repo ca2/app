@@ -257,6 +257,24 @@ public:
 };
 
 
+
+
+template<class T>
+class ___pointer;
+
+
+template<class T>
+class pointer_array;
+
+
+//#define __composite(TYPE) ::reference < TYPE >
+
+#define __pointer(TYPE) ::___pointer < TYPE >
+#define __pointer_array(TYPE) ::pointer_array < TYPE >
+#define __address_array(TYPE) ::comparable_array < TYPE * >
+
+class matter;
+
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
 
@@ -329,7 +347,7 @@ using array_reference = TYPE ( & ) [ SIZE ];
 
 
 template < typename TYPE, std::size_t SIZE >
-inline std::size_t item_count(const array_reference < TYPE, SIZE > &) { return SIZE; }
+inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
 template < typename T >
@@ -1512,20 +1530,6 @@ typename erase_reference<T>::TYPE &&move(T &&t)
 class task;
 
 
-template<class T>
-class ___pointer;
-
-
-template<class T>
-class pointer_array;
-
-
-//#define __composite(TYPE) ::reference < TYPE >
-
-#define __pointer(TYPE) ::___pointer < TYPE >
-#define __pointer_array(TYPE) ::pointer_array < TYPE >
-#define __address_array(TYPE) ::comparable_array < TYPE * >
-
 
 namespace subject
 {
@@ -2604,8 +2608,6 @@ class thread_parameter;
 #include "acme/primitive/primitive/uid.h"
 
 
-
-
 namespace primitive
 {
 
@@ -2931,8 +2933,7 @@ namespace factory
 #include "acme/primitive/primitive/material_object.h"
 
 
-
-
+#include "acme/const/idpool.h"
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -3127,9 +3128,17 @@ class task;
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
 using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
 
+#ifdef __GNUC__
 
+#define GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS
+
+#endif
 
 using routine_array = ::array < routine >;
+
+#define GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array ::array < routine >
+
+
 
 //using process_array = ::array < process >;
 
@@ -3190,6 +3199,13 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 //#include "acme/platform/predicate_handler.h"
 
 #include "acme/platform/predicate_process.h"
+
+
+#include "acme/parallelization/_preamble.h"
+
+
+#include "acme/parallelization/critical_section.h"
+
 
 #include "acme/primitive/primitive/factory.h"
 

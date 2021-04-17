@@ -159,7 +159,7 @@ namespace papaya
             i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType > >());
 
          }
-         else if (payload.get_type() == ::type_vara)
+         else if (payload.get_type() == ::e_type_vara)
          {
 
             for (::index i = 0; i < payload.vara().get_count(); i++)

@@ -595,27 +595,27 @@ namespace draw2d
 
 //      virtual bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color& cr, const ::opacity& opacity);
 
-      template < image_source_pointer IMAGE_SOURCE_POINTER >
-      bool color_blend(IMAGE_SOURCE_POINTER pimagesource, const ::color::color& color, const ::opacity& opacity)
-      {
-
-         if (!draw(pimagesource))
-         {
-
-            return false;
-
-         }
-
-         if (!color_blend(::rectangle_i32(pimagesource->size()), opacity))
-         {
-
-            return false;
-
-         }
-
-         return true;
-
-      }
+//      template < image_source_pointer IMAGE_SOURCE_POINTER >
+//      bool color_blend(IMAGE_SOURCE_POINTER pimagesource, const ::color::color& color, const ::opacity& opacity)
+//      {
+//
+//         if (!draw(pimagesource))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         if (!color_blend(::rectangle_i32(pimagesource->size()), color, opacity))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         return true;
+//
+//      }
 
 
 

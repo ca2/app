@@ -1282,12 +1282,14 @@ void thread::kick_idle()
             m_pmq->m_eventNewMessage.SetEvent();
 
          }
+#ifdef WINDOWS_DESKTOP
          else
          {
 
-            ::PostThreadMessage((DWORD)m_itask, WM_KICKIDLE, 0, 0);
+            ::PostThreadMessage(m_itask, WM_KICKIDLE, 0, 0);
 
          }
+#endif
 
       }
 
@@ -2020,83 +2022,83 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 
 }
 
-
-void thread::wait()
-{
-
-   wait(::duration::infinite());
-
-}
-
-
-synchronization_result thread::wait(const duration & duration)
-{
-
-   itask_t itask = m_itask;
-
-   try
-   {
-
-#if defined(WINDOWS)
-
-      ::u32 timeout = duration.u32_millis();
-
-      htask_t hthread = m_htask;
-
-      if (hthread == NULL || hthread == INVALID_HANDLE_VALUE)
-      {
-
-         return e_synchronization_result_error;
-
-      }
-
-      auto windowsWaitResult = ::WaitForSingleObject(hthread, timeout);
-
-      return windows_wait_result_to_synchronization_result(windowsWaitResult);
-
-#else
-
-      if(duration.is_pos_infinity())
-      {
-
-         while(is_thread_on(itask))
-         {
-
-            sleep(100_ms);
-
-         }
-
-      }
-      else
-      {
-
-         auto millisDelay = duration.millis();
-
-         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
-
-         while(is_thread_on(itask))
-         {
-
-            sleep(dwStep);
-
-         }
-
-      }
-
-#endif
-
-   }
-   catch(...)
-   {
+//
+//void thread::wait()
+//{
+//
+//   wait(::duration::infinite());
+//
+//}
 
 
-   }
-
-   return get_system()->is_task_on(itask) ?
-          synchronization_result(e_synchronization_result_timed_out) :
-          synchronization_result(e_synchronization_result_signaled_base);
-
-}
+//synchronization_result thread::wait(const duration & duration)
+//{
+//
+//   itask_t itask = m_itask;
+//
+//   try
+//   {
+//
+//#if defined(WINDOWS)
+//
+//      ::u32 timeout = duration.u32_millis();
+//
+//      htask_t htask = m_htask;
+//
+//      if (htask == NULL || htask == INVALID_HANDLE_VALUE)
+//      {
+//
+//         return e_synchronization_result_error;
+//
+//      }
+//
+//      auto windowsWaitResult = ::WaitForSingleObject(htask, timeout);
+//
+//      return windows_wait_result_to_synchronization_result(windowsWaitResult);
+//
+//#else
+//
+//      if(duration.is_pos_infinity())
+//      {
+//
+//         while(is_task_on(itask))
+//         {
+//
+//            sleep(100_ms);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         auto millisDelay = duration.millis();
+//
+//         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
+//
+//         while(is_thread_on(itask))
+//         {
+//
+//            sleep(dwStep);
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//   }
+//   catch(...)
+//   {
+//
+//
+//   }
+//
+//   return get_system()->is_task_on(itask) ?
+//          synchronization_result(e_synchronization_result_timed_out) :
+//          synchronization_result(e_synchronization_result_signaled_base);
+//
+//}
 
 
 void thread::pre_translate_message(::message::message * pmessage)
@@ -2359,7 +2361,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 
    }
 
-   auto estatus = begin(epriority, nStackSize, uiCreateFlags);
+   auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
    if(m_htask == 0)
    {
@@ -2419,10 +2421,10 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 
 
 
-::e_status thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::e_status thread::branch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto estatus = task::begin(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
    if(!estatus)
    {
@@ -3022,7 +3024,7 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 }
 
 
-bool thread::send_object(const ::id & id, wparam wparam, lparam lparam, ::duration durWaitStep)
+bool thread::send_object(const ::id & id, wparam wparam, ::matter * pmatter, ::duration durWaitStep)
 {
 
    if (!id.is_message())
@@ -3042,28 +3044,19 @@ bool thread::send_object(const ::id & id, wparam wparam, lparam lparam, ::durati
    if (id == e_message_quit)
    {
 
-      wait(durWaitStep);
-
-      return true;
+      return false;
 
    }
 
    if (m_htask == (htask_t)nullptr || !task_get_run())
    {
 
-      if (lparam != 0)
-      {
-
-         __pointer(object) spo(lparam);
-
-
-      }
 
       return false;
 
    }
 
-   send_message(id, wparam, lparam, durWaitStep);
+   send_message(id, wparam, pmatter, durWaitStep);
 
    return true;
 
@@ -3090,7 +3083,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
    if (id == e_message_quit)
    {
 
-      wait(durWaitStep);
+      ///wait(durWaitStep);
 
       return true;
 
@@ -4776,16 +4769,16 @@ bool thread::is_running() const
 }
 
 
-::e_status thread::start(
-   ::matter * pmatter,
-   ::e_priority epriority,
-   u32 nStackSize,
-   u32 dwCreateFlags ARG_SEC_ATTRS)
-{
-
-   return ::task::start(pmatter, epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);
-
-}
+//__transport(::task) thread::branch(
+//   ::matter * pmatter,
+//   ::e_priority epriority,
+//   u32 nStackSize,
+//   u32 dwCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   return ::task::branch(pmatter, epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//}
 
 
 ::duration thread::set_file_sharing_violation_timeout(::duration duration)

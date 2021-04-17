@@ -39,19 +39,18 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::object * pobject) :
-      ::object(pobject)
-   {
-
-      linux_interaction_impl_common_construct();
-
-   }
+//   interaction_impl::interaction_impl()
+//   {
+//
+//      linux_interaction_impl_common_construct();
+//
+//   }
 
 
    void interaction_impl::linux_interaction_impl_common_construct()
    {
 
-      set_os_data(nullptr);
+      //set_os_data(nullptr);
 
       m_bExposing    = false;
       m_bEnabled     = true;
@@ -144,7 +143,7 @@ namespace linux
 
       }
 
-      set_os_data(hWndNew);
+      //set_os_data(hWndNew);
 
       return true;
 
@@ -154,16 +153,22 @@ namespace linux
    oswindow interaction_impl::Detach()
    {
 
-      oswindow hwnd = (oswindow) get_os_data();
+//      oswindow hwnd = (oswindow) get_os_data();
+//
+//      if (hwnd != nullptr)
+//      {
+//
+//         set_os_data(nullptr);
+//
+//      }
 
-      if (hwnd != nullptr)
-      {
+      //return hwnd;
 
-         set_os_data(nullptr);
+      auto oswindow = get_oswindow();
 
-      }
+      m_pwindow->set_oswindow(nullptr);
 
-      return hwnd;
+      return oswindow;
 
    }
 
@@ -328,7 +333,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_fork("delayed_placement", __routine([this]()
+            defer_branch("delayed_placement", __routine([this]()
             {
 
                _thread_delayed_placement();
@@ -572,27 +577,27 @@ namespace linux
    void interaction_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
-
-      {
-
-         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
-
-         ::thread* pthread = ::get_thread();
-
-         if (pthread != nullptr)
-         {
-
-            if (pthread->get_active_ui() == m_puserinteraction)
-            {
-
-               pthread->set_active_ui(nullptr);
-
-            }
-
-         }
-
-      }
+//      UNREFERENCED_PARAMETER(pmessage);
+//
+//      {
+//
+//         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+//
+//         auto ptask = ::get_task();
+//
+//         if (::is_null(ptask))
+//         {
+//
+//            if (pthread->get_active_ui() == m_puserinteraction)
+//            {
+//
+//               pthread->set_active_ui(nullptr);
+//
+//            }
+//
+//         }
+//
+//      }
 
 //      ::parallelization::post_quit_and_wait(m_pthreadProDevian, seconds(10));
 
@@ -618,7 +623,7 @@ namespace linux
    void interaction_impl::PostNcDestroy()
    {
 
-      clear_os_data();
+      //clear_os_data();
 
       if (m_pwindow)
       {
@@ -638,7 +643,7 @@ namespace linux
       if (get_os_data() != nullptr)
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
       else
@@ -718,7 +723,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::DestroyWindow()
+   bool interaction_impl::start_destroying_window()
    {
 
       if(!m_pwindow)
@@ -762,23 +767,31 @@ namespace linux
 
    }
 
+
    /////////////////////////////////////////////////////////////////////////////
    // Default interaction_impl implementation
 
 
    void interaction_impl::default_window_procedure(::message::message * pmessage)
-
    {
+
       /*  if (m_pfnSuper != nullptr)
            return ::callWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
 
-
         WNDPROC pfnWndProc;
         if ((pfnWndProc = *GetSuperWndProcaddr()) == nullptr)
+        {
+
            return ::default_window_procedure(get_handle(), nMsg, wparam, lparam);
 
+         }
         else
-           return ::callWindowProc(pfnWndProc, get_handle(), nMsg, wparam, lparam);*/
+        {
+
+           return ::callWindowProc(pfnWndProc, get_handle(), nMsg, wparam, lparam);
+
+           }
+           */
 
 
 //      return 0;
@@ -920,12 +933,12 @@ namespace linux
    }
 
 
-   void interaction_impl::on_control_event(::user::control_event * pevent)
-   {
-
-      UNREFERENCED_PARAMETER(pevent);
-
-   }
+//   void interaction_impl::on_control_event(::user::control_event * pevent)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pevent);
+//
+//   }
 
 
 //   void interaction_impl::_002OnDraw(::image * pimage)
@@ -1131,14 +1144,16 @@ namespace linux
 
          }
 
-         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
-         {
-
-            auto psession = Sess(m_puserinteraction->get_session());
-
-            psession->m_pointCursor = pmouse->m_point;
-
-         }
+//         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
+//         {
+//
+//            auto psystem = m_psystem;
+//
+//            auto psession = psystem->node();
+//
+//            psession->m_pointCursor = pmouse->m_point;
+//
+//         }
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1323,12 +1338,12 @@ namespace linux
             m_puserinteraction->on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
 
          }
-         else
-         {
-
-            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
-
-         }
+//         else
+//         {
+//
+//            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+//
+//         }
 
          return;
 

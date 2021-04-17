@@ -214,16 +214,16 @@ namespace file
          if (m_bCreateWatchThread)
          {
 
-            auto estatus = __construct_new(m_pthread);
+//            auto estatus = __construct_new(m_pthread);
+//
+//            if (!estatus)
+//            {
+//
+//               return estatus;
+//
+//            }
 
-            if (!estatus)
-            {
-
-               return estatus;
-
-            }
-
-            m_pthread->start(this);
+            m_pthread = m_pcontext->branch(this);
 
          }
 

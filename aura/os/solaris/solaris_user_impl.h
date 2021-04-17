@@ -6,7 +6,7 @@
 
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {

@@ -19,6 +19,10 @@ namespace windowing
    windowing::windowing()
    {
 
+      m_pWindowing = nullptr;
+
+      m_pWindowing2 = nullptr;
+
       m_bSettingCursorMatter = false;
 
    }

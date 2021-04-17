@@ -149,7 +149,7 @@ namespace acme
 
       }
 
-      auto estatus = do_factory_exchange("acme", "windows");
+      auto estatus = do_factory_exchange("acme", __PLATFORM);
 
       if (!estatus)
       {
@@ -904,6 +904,91 @@ namespace acme
       return ::success;
 
    }
+
+
+   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
+   {
+
+      if (estatus == error_exit_system)
+      {
+
+         pobject->m_psystem->finish();
+
+      }
+
+   }
+
+
+
+
+
+//   ::apex::application* system::get_main_application()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   void system::system_construct(int argc, char** argv, char** envp)
+//   {
+//
+//
+//   }
+//
+//   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+//   {
+//
+//
+//   }
+//
+//
+//   ::e_status system::inline_init()
+//   {
+//
+//      auto estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::inline_term()
+//   {
+//
+//      return ::success;
+//
+//   }
+
+
+//   ::e_status system::on_start()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::on_end()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void system::os_construct()
+//   {
+//
+//
+//   }
 
 
 } // namespace acme

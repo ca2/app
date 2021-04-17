@@ -72,7 +72,7 @@ namespace linux
 
       virtual void route_command_message(::message::command * pcommand) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void on_control_event(::user::control_event * pevent) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
       DECLARE_MESSAGE_HANDLER(_001OnMove);
@@ -137,7 +137,7 @@ namespace linux
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
       // special pre-creation and ::user::interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;

@@ -25,6 +25,8 @@ list(APPEND experience_anthill_source
         control_box.h
         experience.cpp
         experience.h
+        factory_exchange.cpp
+        factory_exchange.h
         frame.cpp
         frame.h
         frame_001.cpp
@@ -43,8 +45,6 @@ list(APPEND experience_anthill_source
         frame_Minimal001.h
         framework.cpp
         framework.h
-        library.cpp
-        library.h
         style.cpp
         style.h)
 

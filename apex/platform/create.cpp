@@ -19,7 +19,7 @@ create::create()
    for(auto & arg : arguments)
    {
 
-      if(arg.get_type() == type_enum_command)
+      if(arg.get_type() == e_type_enum_command)
       {
 
          m_ecommand = arg.m_ecommand;

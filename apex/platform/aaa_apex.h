@@ -40,7 +40,7 @@ namespace apex
       virtual ::e_status _001InitializeShellOpen();
 
 
-      virtual void show_wait_cursor(bool bShow = true);
+      //virtual void show_wait_cursor(bool bShow = true);
 
       virtual ::e_status get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 

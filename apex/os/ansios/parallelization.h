@@ -3,7 +3,7 @@
 
 //#if !defined(WINDOWS_DESKTOP)
 //
-//void set_defer_process_x_message(bool (* pfn)(htask_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
+//void set_defer_process_x_message(bool (* pfn)(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
 //
 //
 //#ifdef __cplusplus
@@ -79,7 +79,7 @@
 //
 //// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 //
-//// CLASS_DECL_APEX void mq_clear(itask_t hthread);
+//// CLASS_DECL_APEX void mq_clear(itask_t htask);
 //
 //
 //// #ifndef _UWP

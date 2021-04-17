@@ -1,6 +1,7 @@
 #include "framework.h"
-//#include "acme/platform/app_core.h"
 #include "acme/platform/static_start.h"
+#include "acme/platform/static_start_internal.h"
+
 
 #ifdef LINUX
 #include <locale.h>
@@ -776,7 +777,9 @@ void property_set::parse_json(const string & strJson)
 {
 
 #ifdef LINUX
+
    uselocale(::acme::g_localeC);
+
 #endif
 
    const char * pszJson = strJson;
@@ -1190,7 +1193,7 @@ property_set& property_set::operator = (const ::payload & payload)
       ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
 
    }
-   else if (payload.m_etype == type_prop)
+   else if (payload.m_etype == e_type_prop)
    {
 
       erase_all();

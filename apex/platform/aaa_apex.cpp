@@ -98,10 +98,10 @@ namespace apex
    }
 
 
-   void apex::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void apex::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 
    ::e_status apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)

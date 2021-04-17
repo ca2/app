@@ -113,7 +113,7 @@ public:
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
-   virtual ::e_status start();
+   //::e_status branch();
 
    inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
@@ -201,7 +201,7 @@ public:
    virtual ::task_pool * taskpool();
 
 
-   virtual ::task * defer_fork(const ::id & id, const ::routine & routine);
+   //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
 
 
    virtual void delete_this();
@@ -211,7 +211,7 @@ public:
    virtual ::matter * clone() const;
 
    // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual ::e_status call_member(enum_id eid);
+   virtual ::e_status call_member(::i64 i64);
 
 
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }

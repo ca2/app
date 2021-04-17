@@ -87,7 +87,7 @@ namespace subject
       else if (psubject->should_poll(psubject->poll_time()))
       {
 
-         ::task::launch(psubject);
+         m_pcontext->branch(psubject);
 
       }
 

@@ -48,20 +48,20 @@ namespace file
 
 
 
-::file::path dir::program_data()
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   return ::get_known_folder(FOLDERID_ProgramData);
-
-#else
-
-   return ca2roaming() / "program_data";
-
-#endif
-
-}
+//::file::path dir::program_data()
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   return ::get_known_folder(FOLDERID_ProgramData);
+//
+//#else
+//
+//   return ca2roaming() / "program_data";
+//
+//#endif
+//
+//}
 
 
 

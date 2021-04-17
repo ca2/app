@@ -306,10 +306,10 @@ namespace acme
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 //   ::user::primitive * application::window_from_os_data(void * pdata)
 //   {

@@ -136,7 +136,7 @@ namespace acme
    }
 
 
-   ::e_status node::start()
+   ::e_status node::start_node()
    {
 
       return ::success;
@@ -695,6 +695,14 @@ namespace acme
    }
 
 
+   ::e_status node::install_sigchld_handler()
+   {
+
+      return ::success;
+
+   }
+
+
    //string node::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
    //{
 
@@ -745,7 +753,7 @@ namespace acme
    string node::multimedia_audio_mixer_get_default_library_name()
    {
 
-      return "";
+      return "audio_mixer_alsa";
 
    }
 
@@ -753,16 +761,15 @@ namespace acme
    string node::multimedia_audio_get_default_library_name()
    {
 
-      return "";
+      return "audio_alsa";
 
    }
-
 
 
    string node::veriwell_multimedia_music_midi_get_default_library_name()
    {
 
-      return "";
+      return "music_midi_alsa";
 
    }
 

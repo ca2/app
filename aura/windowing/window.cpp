@@ -12,6 +12,10 @@ namespace windowing
    window::window()
    {
 
+      m_pWindow = nullptr;
+
+      m_pWindow2 = nullptr;
+
       set_oswindow(nullptr);
 
       //set_oswindow(oswindow);

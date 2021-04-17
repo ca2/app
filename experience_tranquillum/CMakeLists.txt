@@ -25,6 +25,7 @@ list(APPEND experience_tranquillum_source
         control_box.h
         experience.cpp
         experience.h
+        factory_exchange.cpp
         frame.cpp
         frame.h
         frame_001.cpp
@@ -43,8 +44,6 @@ list(APPEND experience_tranquillum_source
         frame_Minimal001.h
         framework.cpp
         framework.h
-        library.cpp
-        library.h
         style.cpp
         style.h)
 

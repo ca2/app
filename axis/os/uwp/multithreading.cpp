@@ -225,10 +225,10 @@ htask_t g_hMainThread = nullptr;
 ::u32 g_iMainThread = -1;
 
 
-void set_main_hthread(htask_t hthread)
+void set_main_hthread(htask_t htask)
 {
 
-   g_hMainThread = hthread;
+   g_hMainThread = htask;
 
 }
 

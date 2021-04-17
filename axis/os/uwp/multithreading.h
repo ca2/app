@@ -28,9 +28,9 @@ CLASS_DECL_AXIS void WINAPI TlsShutdown();
 
 #ifndef _UWP
 
-CLASS_DECL_AXIS BOOL WINAPI SetThreadPriority(htask_t hthread,int iPriority);
+CLASS_DECL_AXIS BOOL WINAPI SetThreadPriority(htask_t htask,int iPriority);
 
-CLASS_DECL_AXIS int WINAPI GetThreadPriority(htask_t hthread);
+CLASS_DECL_AXIS int WINAPI GetThreadPriority(htask_t htask);
 
 #endif
 

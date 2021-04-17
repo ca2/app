@@ -9,7 +9,7 @@ int main(int argc, char * argv[], char * envp[])
 
    auto papplicationStartup = psystem->new_application(strAppId);
 
-   __bind(psystem, m_papplicationStartup, papplicationStartup);
+   psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
 
    psystem->set_main_struct(*psystem->m_papplicationStartup);
 

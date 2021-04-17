@@ -42,9 +42,9 @@
 #ifndef _UWP
 
 
-CLASS_DECL_AURA ::u32 WINAPI ResumeThread(htask_t hthread);
-CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(htask_t hthread, i32 nPriority);
-CLASS_DECL_AURA i32 WINAPI GetThreadPriority(htask_t hthread);
+CLASS_DECL_AURA ::u32 WINAPI ResumeThread(htask_t htask);
+CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(htask_t htask, i32 nPriority);
+CLASS_DECL_AURA i32 WINAPI GetThreadPriority(htask_t htask);
 
 //CLASS_DECL_AURA VOID WINAPI sleep(::u32 dwMilliseconds);
 

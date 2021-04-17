@@ -550,9 +550,9 @@ namespace linux
 
             }
 
-            htask_t hthread = ::get_current_hthread();
+            htask_t htask = ::get_current_hthread();
 
-            m_oswindow->m_htask = hthread;
+            m_oswindow->m_htask = htask;
 
 
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))

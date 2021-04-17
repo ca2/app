@@ -8,7 +8,7 @@ namespace apex
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
       virtual public ::acme::system,
-      virtual public ::apex::context_thread
+      virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
 #endif
@@ -226,8 +226,8 @@ namespace apex
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void system_construct(int argc, char** argv, char** envp);
-      virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
+      virtual void system_construct(int argc, char** argv, char** envp) override;
+      virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
 
 
 #ifdef WINDOWS_DESKTOP
@@ -258,11 +258,11 @@ namespace apex
       virtual ::e_status init_system() override;
       virtual void term_system();
 
-      virtual ::e_status on_system_construct();
+      virtual ::e_status on_system_construct() override;
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start() override;
 
-      virtual ::e_status start();
+      virtual ::e_status start() override;
 
       virtual void term();
 
@@ -336,9 +336,9 @@ namespace apex
 
       //virtual ::layered * get_layered_window(oswindow oswindow);
 
-      virtual ::e_status process_init();
+      virtual ::e_status process_init() override;
 
-      virtual ::e_status init1();
+      virtual ::e_status init1() override;
 
       virtual ::e_status init2();
 
@@ -606,7 +606,7 @@ namespace apex
 
       //virtual void term();
 
-      virtual void TermSystem();
+      virtual void TermSystem() override;
 
 
       virtual void process_term();
@@ -960,7 +960,7 @@ namespace apex
       //virtual int install_canvas_increment_mode() override;
 
 
-      virtual bool do_events();
+      virtual bool do_events() override;
 
 
       void post_quit_to_all_threads();
@@ -976,8 +976,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject::subject * psubject);
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      virtual void on_subject(::subject::subject * psubject) override;
+      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

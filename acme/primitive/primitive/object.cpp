@@ -7,49 +7,10 @@
 #include "acme/primitive/text/_.h"
 
 
-namespace exception
-{
-
-
-   void finish(::e_status estatusExit, const ::object* pobject)
-   {
-
-
-   }
-
-
-}
-
-
-//#ifdef DEBUG
-//
-//
-//CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage);
-//
-//
-//#endif
-
-
-//object::object(::object * pobject) :
-//   m_pmeta(nullptr)
-//{
-//
-//   set_layer(0, this);
-//
-//   initialize(pobject);
-//
-//}
-//
 
 object::~object()
 {
 
-   //if (m_pmeta)
-   //{
-
-   //   ::acme::del(m_pmeta);
-
-   //}
 
 }
 
@@ -1750,19 +1711,19 @@ bool object::__is_child_task(::task* ptask) const
 
 
 
-void object::single_fork(const ::routine_array& procedurea)
+void object::branch(const ::routine_array& routinea)
 {
 
-   fork([procedurea]()
+   fork([routinea]()
    {
 
-      for (auto& procedure : procedurea)
+      for (auto& routine : routinea)
       {
 
          try
          {
 
-            procedure();
+            routine();
 
          }
          catch (...)
@@ -1777,20 +1738,46 @@ void object::single_fork(const ::routine_array& procedurea)
 }
 
 
-void object::multiple_fork(const ::routine_array& procedurea)
+void object::branch_each(const ::routine_array& routinea)
 {
 
-   for (auto& procedure : procedurea)
+   for (auto& routine : routinea)
    {
 
-      fork([procedure]()
+      fork([routine]()
       {
 
-         procedure();
+         routine();
 
       });
 
    }
+
+}
+
+
+
+::task_pointer object::defer_branch(const ::id& id, const ::routine & routine, e_priority epriority)
+{
+
+   auto ptask = get_property_set()[__id(thread)][id].cast < ::task>();
+
+   if(ptask && ptask->is_running())
+   {
+
+      return ptask;
+
+   }
+
+   ptask = __create_new < task >();
+
+   ptask->m_pmatter = routine;
+
+   get_property_set()[__id(thread)][id] = ptask;
+
+   ptask->branch();
+
+   return ptask;
 
 }
 

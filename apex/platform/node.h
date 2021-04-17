@@ -33,7 +33,7 @@ namespace apex
       virtual void defer_notify_startup_complete();
 
 
-      virtual ::e_status start();
+      virtual ::e_status start_node() override;
 
 
       virtual void on_os_dark_mode_change() override;

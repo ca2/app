@@ -64,7 +64,7 @@ namespace account
       
       virtual bool is_authenticated();
       
-      void on_clock(enum_clock eclock);
+      void on_clock(enum_timer etimer);
       
    };
    

@@ -375,13 +375,13 @@ namespace account
    }
 
 
-   void department::on_clock(enum_clock eclock)
+   void department::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_clock_slow)
       {
 
-         m_pusera->on_clock(eclock);
+         m_pusera->on_clock(etimer);
 
       }
 

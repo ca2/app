@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(apex CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
 if (LINUX)
    set(USE_OPENSSL TRUE)
    set(PTHREAD TRUE)
@@ -188,38 +185,10 @@ list(APPEND apex_source
    message/message.h
    message/receiver.cpp
    message/receiver.h
-        #message/route.h
+   #message/route.h
    message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
-   parallelization/_.cpp
-   parallelization/_.h
-   parallelization/_impl.h
-   parallelization/common.h
-   parallelization/create_thread.h
-   parallelization/data.h
-   parallelization/delay_thread.h
-   parallelization/fork.h
-   parallelization/handler.cpp
-   parallelization/handler.h
-   parallelization/retry.h
-   # parallelization/retry_multi_lock.cpp
-   # parallelization/retry_multi_lock.h
-   # parallelization/retry_single_lock.cpp
-   # parallelization/retry_single_lock.h
-   parallelization/service_base.cpp
-   parallelization/service_base.h
-   parallelization/service_status.h
-   parallelization/thread.cpp
-   parallelization/thread.h
-   parallelization/thread_impl.h
-   parallelization/thread_os.cpp
-   parallelization/thread_os.h
-   parallelization/thread_pool.cpp
-   parallelization/threading.cpp
-   parallelization/threading.h
-   parallelization/tools.cpp
-   parallelization/tools.h
    net/http/_.cpp
    net/http/_.h
    net/http/context.cpp
@@ -337,6 +306,8 @@ list(APPEND apex_source
    net/_net_impl.h
    net/address.cpp
    net/address.h
+   net/address_department.cpp
+   net/address_department.h
    net/byte_order.h
    net/email.cpp
    net/email.h
@@ -349,12 +320,6 @@ list(APPEND apex_source
    net/port_forward.cpp
    net/port_forward.h
    net/sockets.cpp
-   net/url.cpp
-   net/url.h
-   net/url_department.cpp
-   net/url_department.h
-   net/url_domain.cpp
-   net/url_domain.h
    node/_.h
    node/_node.h
    os/ansios/_.h
@@ -399,6 +364,32 @@ list(APPEND apex_source
    os/thread.cpp
    os/thread.h
    os/windowing.h
+   parallelization/_.cpp
+   parallelization/_.h
+   parallelization/_impl.h
+   parallelization/common.h
+   parallelization/create_thread.h
+   parallelization/data.h
+   parallelization/delay_thread.h
+   parallelization/handler.cpp
+   parallelization/handler.h
+   parallelization/retry.h
+   # parallelization/retry_multi_lock.cpp
+   # parallelization/retry_multi_lock.h
+   # parallelization/retry_single_lock.cpp
+   # parallelization/retry_single_lock.h
+   parallelization/service.cpp
+   parallelization/service.h
+   parallelization/service_handler.cpp
+   parallelization/service_handler.h
+   parallelization/service_status.h
+   parallelization/thread.cpp
+   parallelization/thread.h
+   parallelization/thread_impl.h
+   parallelization/thread_os.cpp
+   parallelization/thread_os.h
+   parallelization/threading.cpp
+   parallelization/threading.h
    platform/_.cpp
    platform/_impl.h
    platform/_platform.h
@@ -433,25 +424,24 @@ list(APPEND apex_source
    platform/async.h
    platform/aura_regex.h
    platform/build_debug.cpp
+   platform/command_line.cpp
+   platform/command_line.h
    platform/console_application.cpp
    platform/console_application.h
    platform/context.cpp
    platform/context.h
    platform/context_thread.cpp
    platform/context_thread.h
+   platform/create.cpp
+   platform/create.h
    #platform/debug.cpp
    #platform/debug.h
    platform/definition.h
-   platform/department.cpp
-   platform/department.h
    platform/display.h
    platform/error.h
    platform/history.cpp
    platform/history.h
    platform/hyperlink.h
-   platform/international.h
-   platform/international_locale_schema.cpp
-   platform/international_locale_schema.h
    platform/interprocess_call.cpp
    platform/interprocess_call.h
    platform/interprocess_communication.cpp
@@ -461,9 +451,8 @@ list(APPEND apex_source
    platform/interprocess_task.cpp
    platform/interprocess_task.h
    platform/keep.h
+   platform/launcher.cpp
    platform/launcher.h
-   platform/library.cpp
-   platform/library.h
    platform/library_object_allocator.h
    platform/log.cpp
    platform/log.h
@@ -494,61 +483,32 @@ list(APPEND apex_source
    platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
-   platform/static_setup.cpp
-   platform/static_setup.h
    platform/static_start.cpp
    platform/static_start.h
    platform/static_start_apex.cpp
-   platform/str_context.cpp
-   platform/str_context.h
    platform/system.cpp
    platform/system.h
    platform/text.cpp
    platform/thread_set.h
-   ../acme/platform/trace.cpp
-   ../acme/platform/trace.h
-   primitive/data/_.h
-   primitive/data/_data.h
-   primitive/data/_impl.h
-   primitive/data/_tree.h
-   primitive/data/container.cpp
-   primitive/data/container.h
-   primitive/data/data.cpp
-   primitive/data/data.h
-   primitive/data/item.cpp
-   primitive/data/item.h
-   primitive/data/listener.cpp
-   primitive/data/listener.h
-   primitive/data/node.cpp
-   primitive/data/node.h
-   primitive/data/simple_item.cpp
-   primitive/data/simple_item.h
-   primitive/data/tree.cpp
-   primitive/data/tree.h
-   primitive/data/tree_item.cpp
-   primitive/data/tree_item.h
    primitive/datetime/_.h
    primitive/datetime/_c.h
    primitive/datetime/_impl.h
-   primitive/datetime/datetime.cpp
-   primitive/datetime/department.cpp
-   primitive/datetime/department.h
-   primitive/math/_.h
-   primitive/math/department.cpp
-   primitive/math/department.h
-   primitive/primitive/_.cpp
+   #primitive/datetime/datetime.cpp
+   #primitive/primitive/_.cpp
    primitive/primitive/_.h
    primitive/primitive/_defer.h
    primitive/primitive/_impl.h
    primitive/primitive/action_context.h
-   primitive/primitive/command_line.cpp
-   primitive/primitive/command_line.h
-   primitive/primitive/create.cpp
-   primitive/primitive/create.h
-   primitive/primitive/object.cpp
-   primitive/primitive/object.h
-   primitive/primitive/object_meta.cpp
-   primitive/primitive/object_meta.h
+   primitive/subject/context.cpp
+   primitive/subject/context.h
+   primitive/subject/manager.cpp
+   primitive/subject/manager.h
+   primitive/subject/process.cpp
+   primitive/subject/promise.cpp
+   primitive/subject/promise.h
+   primitive/subject/routine.cpp
+   primitive/subject/subject.cpp
+   primitive/subject/subject.h
    process/_.h
    process/department.cpp
    process/department.h
@@ -561,13 +521,14 @@ list(APPEND apex_source
    user/check.h
    user/command.cpp
    user/command.h
-   user/ewindowflag.h
    user/language.cpp
    user/language.h
    user/language_map.cpp
    user/language_map.h
    user/menu_shared_commnand.cpp
    user/notify_icon_bridge.h
+   user/primitive.cpp
+   user/primitive.h
    user/text.cpp
    user/text.h
    version/version.config.h
@@ -612,15 +573,15 @@ if (WIN32)
       node/windows/factory_exchange.h
       node/windows/file_context.cpp
       node/windows/file_context.h
-      node/windows/file_os_watcher.cpp
-      node/windows/file_os_watcher.h
+      #node/windows/file_os_watcher.cpp
+      #node/windows/file_os_watcher.h
       node/windows/file_system.cpp
       node/windows/file_system.h
       node/windows/folder_watch.h
       node/windows/ip_enum.cpp
       node/windows/ip_enum.h
-      node/windows/os_context.cpp
-      node/windows/os_context.h
+      #node/windows/os_context.cpp
+      #node/windows/os_context.h
       node/windows/process.cpp
       node/windows/process.h
       node/windows/thread.cpp
@@ -839,34 +800,34 @@ if (LINUX)
       node/linux/_linux.h
       node/linux/application.cpp
       node/linux/application.h
-      node/linux/dir_context.cpp
-      node/linux/dir_context.h
-      node/linux/dir_system.cpp
-      node/linux/dir_system.h
+      #node/linux/dir_context.cpp
+      #node/linux/dir_context.h
+      #node/linux/dir_system.cpp
+      #node/linux/dir_system.h
       node/linux/dumpinit.cpp
       node/linux/error.cpp
       node/linux/exception.cpp
       node/linux/factory_exchange.cpp
       node/linux/factory_exchange.h
-      node/linux/file_context.cpp
-      node/linux/file_context.h
-      node/linux/file_system.cpp
-      node/linux/file_system.h
+      #node/linux/file_context.cpp
+      #node/linux/file_context.h
+      #node/linux/file_system.cpp
+      #node/linux/file_system.h
       #node/linux/frame_window.cpp
       node/linux/internal.h
       node/linux/linux.cpp
-      node/linux/os_context.cpp
-      node/linux/os_context.h
-      node/linux/process.cpp
-      node/linux/process.h
+      #node/linux/os_context.cpp
+      #node/linux/os_context.h
+      #node/linux/process.cpp
+      #node/linux/process.h
       node/linux/root_tools.cpp
       node/linux/root_tools.h
       node/linux/thread.cpp
       node/linux/parallelization.h
       node/linux/trace.cpp
       node/linux/util.cpp
-      node/posix/file_os_watcher.cpp
-      node/posix/file_os_watcher.cpp
+      #node/posix/file_os_watcher.cpp
+      #node/posix/file_os_watcher.cpp
       os/linux/_.h
       os/linux/_c.h
       os/linux/_linux.h
@@ -889,8 +850,7 @@ if (LINUX)
       os/linux/graphics.h
       os/linux/graphics2.h
       os/linux/language.cpp
-      os/linux/launcher.cpp
-      os/linux/library.cpp
+      #os/linux/library.cpp
       os/linux/linux_linux.h
       os/linux/lock.cpp
       os/linux/menu.cpp
@@ -904,7 +864,7 @@ if (LINUX)
       os/linux/shell_launcher.cpp
       os/linux/shell_launcher.h
       os/linux/standard_exception.cpp
-      node/linux/interprocess_communication.cpp
+      #node/linux/interprocess_communication.cpp
       os/linux/time.cpp
       os/linux/user.cpp
       os/linux/user.h
@@ -1346,6 +1306,7 @@ elseif (LINUX)
    target_link_options(apex PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
+
 
 target_link_directories(apex PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)

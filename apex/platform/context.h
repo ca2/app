@@ -8,6 +8,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX context :
+      virtual public ::thread,
       virtual public ::acme::context,
       virtual public ::file::listing_provider
    {
@@ -28,9 +29,38 @@ namespace apex
       string_array                        m_straMatterLocatorPriority;
       string_array                        m_straMatterLocator;
 
+      ::payload                                    m_varFile;
+      __reference_array(::create)            m_createaPending;
+      __reference_array(::create)            m_createaHistory;
+      __reference(::create)                  m_pcreate;
+      //__pointer(::task_pool)                 m_ptaskpool;
+
+
+      // context_thread();
+      // virtual ~context_thread();
+
+
+
+
+
 
       context();
       virtual ~context();
+
+
+      virtual void on_command_create(::create* pcreate);
+
+      void add_create(::create* pcreate);
+
+      create * get_create();
+
+      bool contains(::create* pcreate) const;
+
+      string command_line_text() const;
+
+      virtual ::e_status finalize() override;
+
+      //virtual ::task_pool* taskpool() override;
 
 
       virtual ::e_status initialize_context() override;
@@ -160,7 +190,7 @@ namespace apex
       inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
-      virtual ::e_status finalize() override;
+      //virtual ::e_status finalize() override;
 
       file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
 

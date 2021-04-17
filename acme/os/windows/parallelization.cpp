@@ -5,14 +5,14 @@
 static HANDLE g_hMainThread = nullptr;
 static itask_t g_iMainThread = -1;
 
-void set_main_hthread(htask_t hthread)
+void set_main_hthread(htask_t htask)
 {
 
    MSG msg;
 
    PeekMessage(&msg,nullptr,0,0xffffffff,false);
 
-   g_hMainThread = (HANDLE) hthread;
+   g_hMainThread = (HANDLE) htask;
 
 }
 

@@ -505,11 +505,13 @@ namespace aura
       try
       {
 
-         auto pnode = Node;
+         auto psystem = m_psystem;
 
-         auto papp = this;
+         auto pnode = psystem->node()->m_papexnode;
 
-         ::file::path path = pnode->get_desktop_file_path(papp);
+         auto papplication = get_application();
+
+         ::file::path path = pnode->get_desktop_file_path(papplication);
 
          if(path.has_char() && !file_exists(path))
          {

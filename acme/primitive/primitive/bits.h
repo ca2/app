@@ -13,7 +13,7 @@ public:
    bits() { m_natural = 0; }
    bits(enum_no_initialize) {}
    bits(NATURAL n) : m_natural(n) { }
-   bits(nullptr_t) { m_natural = 0; }
+   bits(std::nullptr_t) { m_natural = 0; }
 
    
    template < primitive_integral INTEGRAL >

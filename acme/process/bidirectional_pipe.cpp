@@ -31,7 +31,7 @@ namespace process
 
 #ifdef LINUX
 
-      if(!m_sppipeIn->not_inherit_write())
+      if(!m_ppipeIn->not_inherit_write())
       {
 
          return false;
@@ -49,7 +49,7 @@ namespace process
 
 #ifdef LINUX
 
-      if(!m_sppipeOut->not_inherit_read())
+      if(!m_ppipeOut->not_inherit_read())
       {
 
          return false;

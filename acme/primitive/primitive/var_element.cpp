@@ -37,9 +37,9 @@ if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 enum_type set_element(::payload & payload, ::matter * pobject)
 {
 
-   VAR_SET_ELEMENT(m_pstra    , ::string_array             , ::e_type_stra);
+   VAR_SET_ELEMENT(m_pstra    , ::string_array        , ::e_type_stra);
    VAR_SET_ELEMENT(m_pia      , ::int_array           , ::e_type_inta);
-   VAR_SET_ELEMENT(m_pvara    , ::var_array           , ::type_vara);
+   VAR_SET_ELEMENT(m_pvara    , ::var_array           , ::e_type_vara);
    VAR_SET_ELEMENT(m_pset     , ::property_set        , ::e_type_propset);
    VAR_SET_ELEMENT(m_pi64a    , ::i64_array           , ::e_type_i64a);
    VAR_SET_ELEMENT(m_pmemory  , ::memory              , ::e_type_memory);
@@ -92,7 +92,7 @@ enum_type set_element(::payload & payload, ::matter * pobject)
       return ::release(m_pstra);
    case e_type_inta:
       return ::release(m_pia);
-   case type_vara:
+   case e_type_vara:
       return ::release(m_pvara);
    case e_type_propset:
       return ::release(m_pset);

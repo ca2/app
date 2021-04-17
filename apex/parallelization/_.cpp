@@ -870,20 +870,20 @@ namespace apex
    //}
 
 
-   void __post_quit_message(i32 nExitCode)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ::PostQuitMessage(nExitCode);
-
-#else
-
-      ::parallelization::finish(::get_application());
-
-#endif
-
-   }
+//   void __post_quit_message(i32 nExitCode)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::PostQuitMessage(nExitCode);
+//
+//#else
+//
+//      ::parallelization::finish(::get_application());
+//
+//#endif
+//
+//   }
 
 
 

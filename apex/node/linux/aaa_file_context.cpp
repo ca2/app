@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "acme/os/ansios/file_raw.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 struct PROCESS_INFO_t
@@ -99,6 +100,10 @@ namespace linux
    {
 
       ::file::path pathJson;
+
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
 
       pathJson = pacmedir->home() / ".dropbox/info.json";
 

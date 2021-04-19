@@ -336,6 +336,8 @@ namespace apex
 
       //virtual ::layered * get_layered_window(oswindow oswindow);
 
+      virtual ::e_status node_factory_exchange() override;
+
       virtual ::e_status process_init() override;
 
       virtual ::e_status init1() override;

@@ -73,6 +73,8 @@ namespace acme
    ::e_status system::main()
    {
 
+      //auto estatus = run();
+
       auto estatus = run();
 
       if (!estatus)
@@ -135,6 +137,23 @@ namespace acme
    }
 
 
+   ::e_status system::node_factory_exchange()
+   {
+
+      auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::process_init()
    {
 
@@ -149,14 +168,14 @@ namespace acme
 
       }
 
-      auto estatus = do_factory_exchange("acme", __PLATFORM);
+      // auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
 
-      if (!estatus)
-      {
+      // if (!estatus)
+      // {
 
-         return estatus;
+      //    return estatus;
 
-      }
+      // }
 
       //estatus = __compose(m_pacmenode);
 

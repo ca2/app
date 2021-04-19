@@ -336,6 +336,8 @@ namespace aura
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
+      virtual ::e_status node_factory_exchange() override;
+
       virtual ::e_status process_init() override;
 
       virtual ::e_status init1() override;

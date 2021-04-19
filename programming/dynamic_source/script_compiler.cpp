@@ -120,7 +120,7 @@ namespace dynamic_source
 #elif defined(_DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" __PLATFORM;
+      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
 
 #else
 
@@ -227,7 +227,7 @@ namespace dynamic_source
 
 #endif
 
-      m_strTime = m_pcontext->m_papexcontext->dir().install() / "time-" __PLATFORM;
+      m_strTime = m_pcontext->m_papexcontext->dir().install() / "time-" PLATFORM_NAME;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -452,7 +452,7 @@ namespace dynamic_source
 
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
-      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" __PLATFORM "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" PLATFORM_NAME "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / m_strSdk1 + ".pdb";
 
       //::file::path pathCompiler;
@@ -734,7 +734,7 @@ namespace dynamic_source
       {
 
          pathObjFile = strV;
-         pathObjFile /= "time-" __PLATFORM"/intermediate";
+         pathObjFile /= "time-" PLATFORM_NAME"/intermediate";
          pathObjFile /= m_strPlatform;
          pathObjFile /= m_strDynamicSourceConfiguration;
          pathObjFile /= "app-core/netnode_dynamic_source_script";
@@ -752,9 +752,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" PLATFORM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
       str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -922,9 +922,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" PLATFORM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
          str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -1406,7 +1406,7 @@ namespace dynamic_source
 //   if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
 //      strFolder += "/";
 //   string strTemplate;
-//   string strSource = "platform/time-" __PLATFORM"/dynamic_source/";
+//   string strSource = "platform/time-" PLATFORM_NAME"/dynamic_source/";
 //   strSource += lpcszSource;
 //
       ::file::path pathN = m_pathProjectDir;
@@ -1419,7 +1419,7 @@ namespace dynamic_source
 //   //#ifdef _DEBUG
 //   strTemplate = strFolder / strSource;
 //   //#else
-//   // strTemplate = strFolder, "app/time-" __PLATFORM"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
+//   // strTemplate = strFolder, "app/time-" PLATFORM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
 //   //#endif
 //   string str;
 //   str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
@@ -1442,7 +1442,7 @@ namespace dynamic_source
 //   //#ifdef _DEBUG
 //   strCmd = strFolder / strDest;
 //   //#else
-//   // strCmd = strFolder, "app\\time-" __PLATFORM"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
+//   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //   //#endif
 //   m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
 //   //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
@@ -1584,7 +1584,7 @@ namespace dynamic_source
       if(!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "archive/platform-" __PLATFORM "/_stage/dynamic_source/";
+      string strSource = "archive/platform-" PLATFORM_NAME "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
 //   string strN = m_pmanager->m_strNetnodePath;
@@ -1724,7 +1724,7 @@ namespace dynamic_source
 
       ::file::path strName = strLibrary;
 
-      m_strLibsLibs = m_pcontext->m_papexcontext->dir().install() / "time-" __PLATFORM"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
+      m_strLibsLibs = m_pcontext->m_papexcontext->dir().install() / "time-" PLATFORM_NAME"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
 
       //m_memfileLibError.set_length(0);
       string strFolder;
@@ -1819,8 +1819,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
       vars1batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
       vars2batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
@@ -1865,9 +1865,9 @@ namespace dynamic_source
 //         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
 
          //#else
@@ -2038,9 +2038,9 @@ auto tickStart = ::millis::now();
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
 #else
-      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
       //#else
       // strCmd.Format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

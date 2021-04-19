@@ -518,18 +518,8 @@ namespace aura
    //}
 
 
-
-   ::e_status system::process_init()
+   ::e_status system::node_factory_exchange()
    {
-
-      auto estatus = ::apex::system::process_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
 #ifdef LINUX
 
@@ -538,24 +528,24 @@ namespace aura
       if (edesktop & ::user::e_desktop_kde)
       {
 
-         estatus = do_factory_exchange("node", "kde");
+         estatus = do_factory_exchange("desktop_environment", "kde");
 
       }
       else if (edesktop & ::user::e_desktop_gnome)
       {
 
-         estatus = do_factory_exchange("node", "gnome");
+         estatus = do_factory_exchange("desktop_environment", "gnome");
 
       }
       else
       {
 
-         estatus = do_factory_exchange("node", "kde");
+         estatus = do_factory_exchange("desktop_environment", "gnome");
 
          if (!estatus)
          {
 
-            estatus = do_factory_exchange("node", "gnome");
+            estatus = do_factory_exchange("desktop_environment", "kde");
 
          }
 
@@ -573,6 +563,24 @@ namespace aura
          return estatus;
 
       }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::process_init()
+   {
+
+      auto estatus = ::apex::system::process_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
 
 
       //auto estatus = system_prep();

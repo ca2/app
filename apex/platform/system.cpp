@@ -1021,6 +1021,22 @@ namespace apex
 
    //}
 
+   ::e_status system::node_factory_exchange()
+   {
+
+      auto estatus = do_factory_exchange("apex", __PLATFORM_NAME);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
 
    ::e_status system::process_init()
    {
@@ -1038,14 +1054,14 @@ namespace apex
 
       }
 
-      estatus = do_factory_exchange("apex", __PLATFORM);
+      // estatus = do_factory_exchange("apex", PLATFORM_NAME);
 
-      if (!estatus)
-      {
+      // if (!estatus)
+      // {
 
-         return estatus;
+      //    return estatus;
 
-      }
+      // }
 
       //estatus = __compose(m_papexnode);
 
@@ -1246,14 +1262,6 @@ namespace apex
 
       }
 
-      estatus = init_system();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
       //estatus = process_creation_requests();
 
@@ -5526,10 +5534,30 @@ namespace apex
    }
 
 
-   ::e_status     system::main()
+   ::e_status system::main()
    {
 
-      return ::acme::system::main();
+      auto estatus = init_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //auto estatus = ::acme::system::main();
+
+      estatus = ::thread::main();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

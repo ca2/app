@@ -169,6 +169,9 @@ namespace acme
 #endif
 
 
+      virtual ::e_status node_factory_exchange();
+
+
       virtual ::e_status inline_init();
       virtual ::e_status inline_term();
 

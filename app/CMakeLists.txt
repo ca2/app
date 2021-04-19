@@ -2,13 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(app_app CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND app_app_source
         _.cpp
         _.h
@@ -19,13 +12,6 @@ list(APPEND app_app_source
         framework.h
         main_window.cpp
         main_window.h)
-
-
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
 
 add_executable(app_app ${app_app_source})

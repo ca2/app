@@ -57,6 +57,8 @@ namespace acme
 
       virtual void initialize_memory_counter();
 
+      virtual ::e_status system_main();
+
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
 
@@ -142,11 +144,11 @@ namespace acme
       void node_fork(PRED pred)
       {
 
-         node_fork(__routine(pred));
+         node_branch(__routine(pred));
 
       }
 
-      virtual void node_fork(const ::routine & routine);
+      virtual void node_branch(const ::routine & routine);
 
       template < typename PRED >
       void node_sync(const ::duration & durationTimeout, PRED pred)

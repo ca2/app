@@ -44,6 +44,7 @@ namespace draw2d_cairo
       virtual ~graphics();
 
 
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void * detach() override;
 

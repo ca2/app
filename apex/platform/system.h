@@ -255,14 +255,16 @@ namespace apex
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
+      virtual ::e_status on_pre_run_thread() override;
+
       virtual ::e_status init_system() override;
       virtual void term_system();
 
       virtual ::e_status on_system_construct() override;
 
-      virtual ::e_status on_start() override;
+      virtual ::e_status on_start_system() override;
 
-      virtual ::e_status start() override;
+      virtual ::e_status system_main() override;
 
       virtual void term();
 

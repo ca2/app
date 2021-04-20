@@ -182,9 +182,10 @@ namespace acme
       virtual ::e_status init_system();
 
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start_system();
 
-      virtual ::e_status start();
+
+      virtual ::e_status system_main();
       //virtual ::e_status run_system();
       virtual ::e_status main();
 

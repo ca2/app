@@ -36,6 +36,7 @@ elseif(LINUX)
 endif()
 
 add_dependencies(app_app ${app_common_dependencies})
+add_dependencies(app_app apex_linux)
 
 target_link_directories(app_app PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
@@ -43,21 +44,10 @@ target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 
 
 target_include_directories(app_app PRIVATE .)
-target_include_directories(app_app PRIVATE $ENV{HOME}/__config)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(app_app PRIVATE _APP_APP_LIBRARY)
-target_compile_definitions(app_app PRIVATE UNICODE)
-target_compile_definitions(app_app PRIVATE _UNICODE)

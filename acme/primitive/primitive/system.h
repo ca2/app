@@ -255,7 +255,7 @@ namespace apex
 
       virtual ::e_status on_system_construct();
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start_system();
 
       virtual ::e_status start();
 

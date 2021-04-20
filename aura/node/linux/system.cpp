@@ -97,7 +97,23 @@ namespace aura
 {
 
 
-   ::e_status system::start()
+   ::e_status system::system_main()
+   {
+
+      auto estatus = ::apex::system::system_main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+   ::e_status system::on_start_system()
    {
 
 //      auto estatus = do_factory_exchange("windowing", "x11");
@@ -164,41 +180,51 @@ namespace aura
       //int c = 2;
 
       //const char * argv[]={"app", "--g-fatal-warnings"};
+//
+//#if !defined(__SANITIZE_ADDRESS__)
+//
+//      auto pnode = m_pnode;
+//
+//      if(pnode)
+//      {
+//
+//         if (!pnode->node_init_check(&m_argc, &m_argv))
+//         {
+//
+//            return ::error_failed;
+//
+//         }
+//
+//      }
+//
+//#endif
 
-#if !defined(__SANITIZE_ADDRESS__)
+      auto estatus = ::apex::system::on_start_system();
 
-      auto pnode = m_pnode;
-
-      if(pnode)
+      if(!estatus)
       {
 
-         if (!pnode->node_init_check(&m_argc, &m_argv))
-         {
-
-            return ::error_failed;
-
-         }
+         return estatus;
 
       }
 
-#endif
-
-      if (!begin_synch())
-      {
-
-         output_debug_string("\nFailed to begin_synch the system (::aura::system or ::aura::system derived)");
-
-         return error_failed;
-
-      }
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto estatus = pwindowing->start();
+//
+//      if (!begin_synch())
+//      {
+//
+//         output_debug_string("\nFailed to begin_synch the system (::aura::system or ::aura::system derived)");
+//
+//         return error_failed;
+//
+//      }
+//
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      auto estatus = pwindowing->start();
 
 //      if (m_bUser)
 //      {

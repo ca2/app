@@ -525,6 +525,8 @@ namespace aura
 
       auto edesktop = get_edesktop();
 
+      ::e_status estatus = error_failed;
+
       if (edesktop & ::user::e_desktop_kde)
       {
 

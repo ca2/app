@@ -1024,7 +1024,7 @@ namespace apex
    ::e_status system::node_factory_exchange()
    {
 
-      auto estatus = do_factory_exchange("apex", __PLATFORM_NAME);
+      auto estatus = do_factory_exchange("apex", PLATFORM_NAME);
 
       if(!estatus)
       {
@@ -1114,7 +1114,7 @@ namespace apex
    }
 
 
-   ::e_status system::on_start()
+   ::e_status system::on_start_system()
    {
 
       //auto papp = m_papplicationMain;
@@ -1178,7 +1178,7 @@ namespace apex
 //      else
 //      {
 //
-//         estatus = on_start();
+//         estatus = on_start_system();
 //
 //      }
 //
@@ -1226,25 +1226,23 @@ namespace apex
    ::e_status system::init_thread()
    {
 
-      //if (!m_papplicationStartup)
+      //auto estatus = node_factory_exchange();
+
+      //if(!estatus)
       //{
 
-      //   message_box("Startup application is not allocated!!");
-
-      //   return false;
+        // return estatus;
 
       //}
 
-      //auto estatus = m_papplicationStartup->initialize(get_session());
+      auto estatus = process_init();
 
-      //if (!estatus)
-      //{
+      if(!estatus)
+      {
 
-      //   message_box("Failed to initialize papplication object!!");
+         return estatus;
 
-      //   return false;
-
-      //}
+      }
 
       if (m_psystemParent)
       {
@@ -1253,7 +1251,6 @@ namespace apex
 
       }
 
-      auto estatus = process_init();
 
       if (!estatus)
       {
@@ -1261,6 +1258,34 @@ namespace apex
          return estatus;
 
       }
+
+      estatus = init1();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = init2();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
+//      estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
 
       //estatus = process_creation_requests();
@@ -2008,7 +2033,7 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
-      ::e_status estatus = ::apex::context::inline_init();
+      auto estatus = ::apex::context::inline_init();
 
       if (!estatus)
       {
@@ -2081,15 +2106,6 @@ namespace apex
 
       auto estatus = ::acme::system::init_system();
 
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = init1();
-
       if(!estatus)
       {
 
@@ -2097,16 +2113,7 @@ namespace apex
 
       }
 
-      estatus = init2();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
+      return estatus;
 
    }
 
@@ -5534,21 +5541,40 @@ namespace apex
    }
 
 
+   ::e_status system::on_pre_run_thread()
+   {
+
+//      auto estatus = m_pnode->on_start_system();
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+
+//      return estatus;
+
+return ::success;
+
+   }
+
+
    ::e_status system::main()
    {
 
-      auto estatus = init_system();
+//      auto estatus = init_system();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      //auto estatus = ::acme::system::main();
 
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      //auto estatus = ::acme::system::main();
-
-      estatus = ::thread::main();
+      auto estatus = ::thread::main();
 
       if (!estatus)
       {

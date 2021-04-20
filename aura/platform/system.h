@@ -292,7 +292,7 @@ namespace aura
 //      virtual void term_system() override;
 
 
-      virtual ::e_status start() override;
+      virtual ::e_status system_main() override;
 
       virtual void term() override;
 
@@ -716,7 +716,7 @@ namespace aura
 
       //#endif
 
-
+      virtual ::e_status on_start_system() override;
       //virtual void on_start_find_applications_from_cache() override;
       //virtual void on_end_find_applications_from_cache(stream & is) override;
 

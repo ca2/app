@@ -1,6 +1,10 @@
 #include "framework.h"
 #include "_.h"
 #include "context_glx.h"
+#include "platform-posix/windowing_x11/_.h"
+
+
+mutex * user_mutex();
 
 
 namespace opengl
@@ -31,6 +35,8 @@ namespace opengl
 
    ::e_status context_glx::_create_offscreen_buffer(const ::size_i32 & size)
    {
+
+      auto psystem = m_psystem->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 
@@ -64,9 +70,9 @@ namespace opengl
 
       };
 
-      synchronous_lock synchronouslock(x11_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
-      auto psession = get_session();
+      auto psession = get_session()->m_paurasession;
 
       auto puser = psession->user();
 
@@ -166,9 +172,9 @@ namespace opengl
 
       ::e_status estatus = ::success;
 
-      synchronous_lock synchronouslock(x11_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
-      auto psession = get_session();
+      auto psession = get_session()->m_paurasession;
 
       auto puser = psession->user();
 
@@ -223,9 +229,9 @@ namespace opengl
 
       };
 
-      synchronous_lock synchronouslock(x11_mutex());
+      synchronous_lock synchronouslock(user_mutex());
 
-      auto psession = get_session();
+      auto psession = get_session()->m_paurasession;
 
       auto puser = psession->user();
 
@@ -233,7 +239,7 @@ namespace opengl
 
       auto pdisplay = pwindowing->display();
 
-      auto pdisplayx11 = (::windowing_x11::display *) pdisplay->layer(LAYERED_X11);
+      auto pdisplayx11 = (::windowing_x11::display *) pdisplay->m_pDisplay;
 
       ::windowing_x11::display_lock display(pdisplayx11);
 

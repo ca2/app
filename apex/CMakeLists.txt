@@ -1313,8 +1313,5 @@ target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)
-target_compile_definitions(apex PRIVATE UNICODE)
-target_compile_definitions(apex PRIVATE _UNICODE)
-
 
 

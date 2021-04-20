@@ -195,7 +195,7 @@ namespace windowing
 
 
       virtual ::e_status user_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status user_fork(const ::routine & routine);
+      virtual ::e_status user_branch(const ::routine & routine);
 
 
       virtual void _main_loop();

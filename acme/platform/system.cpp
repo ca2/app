@@ -73,8 +73,6 @@ namespace acme
    ::e_status system::main()
    {
 
-      //auto estatus = run();
-
       auto estatus = run();
 
       if (!estatus)
@@ -164,7 +162,7 @@ namespace acme
       if (!m_pfactorymapsquare)
       {
 
-         return ::success;
+         return ::error_no_memory;
 
       }
 
@@ -186,7 +184,7 @@ namespace acme
 
       //}
 
-      estatus = __compose(m_pacmedir);
+      auto estatus = __compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -554,7 +552,25 @@ namespace acme
    ::e_status system::init_system()
    {
 
-      auto estatus = create_os_node();
+      auto estatus = node_factory_exchange();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = process_init();
 
       if (!estatus)
       {
@@ -938,6 +954,30 @@ namespace acme
    }
 
 
+   ::e_status system::system_main()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnode->system_main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
 
 
@@ -987,7 +1027,7 @@ namespace acme
 //   }
 
 
-//   ::e_status system::on_start()
+//   ::e_status system::on_start_system()
 //   {
 //
 //      return ::success;
